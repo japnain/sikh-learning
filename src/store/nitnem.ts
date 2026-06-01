@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { BANIS } from '../data/banis'
-import { toLocalDayStamp } from '../utils/learnDates'
+import { toLocalDayStamp } from '../utils/localDates'
 import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils/baniRouteResolver'
 import { queueActivityEvent } from './activityEvents'
 

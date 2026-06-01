@@ -530,8 +530,8 @@ export default function More() {
         <SettingsBlock
           title={moreCopy.learningProfileTitle}
           description={moreCopy.learningProfileDescription}
-          headingId="more-learning-profile-title"
-          testId="more-learning-profile"
+          headingId="more-reading-profile-title"
+          testId="more-reading-profile"
         >
         <div className="grid grid-cols-3 gap-2 mb-3">
           {(['beginner', 'familiar', 'daily-reader'] as const).map(level => {
@@ -598,23 +598,6 @@ export default function More() {
         </button>
         </SettingsBlock>
       </DisclosureSection>
-
-      <section className="section-shell-quiet p-4 mb-5" aria-labelledby="more-grow-title" data-testid="more-grow">
-        <p id="more-grow-title" className="eyebrow mb-3">{moreCopy.grow}</p>
-        <button
-          onClick={() => navigate('/learn')}
-          className="w-full flex items-center justify-between section-shell px-4 py-4 min-h-[52px]"
-          data-testid="more-open-learn"
-        >
-          <div className="text-left">
-            <p className="font-sans text-sm font-medium text-ink dark:text-dark-text">{moreCopy.openLearn}</p>
-            <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5">
-              {editorial?.more.growDescription ?? moreCopy.growDescription}
-            </p>
-          </div>
-          <IconArrowRight size={16} className="text-gold dark:text-gold-light" />
-        </button>
-      </section>
 
       <section className="section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
         <p id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</p>

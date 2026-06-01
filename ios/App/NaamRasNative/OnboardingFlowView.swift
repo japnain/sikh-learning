@@ -145,7 +145,7 @@ struct OnboardingFlowView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Backup stays optional.")
                         .font(.headline)
-                    Text("Guest reading works now. Sign in with Apple or email later to sync saved passages, learning progress, and reader preferences through Supabase.")
+                    Text("Guest reading works now. Sign in with Apple or email later to sync saved passages, reading progress, and reader preferences through Supabase.")
                         .font(.subheadline)
                         .foregroundStyle(Color.naamInk.opacity(0.64))
                     SignInWithAppleButton(.continue) { request in
@@ -178,7 +178,7 @@ struct OnboardingFlowView: View {
     private func subtitle(for goal: LearningGoal) -> String {
         switch goal {
         case .read: "Open daily bani and keep the original line readable."
-        case .understand: "Pair source text with meanings and guided Learn paths."
+        case .understand: "Pair source text with meanings and reader support."
         case .habit: "Use gentle progress, saved passages, and daily returns."
         }
     }
@@ -195,7 +195,7 @@ struct OnboardingFlowView: View {
         switch stepIndex {
         case 0: "FlowHomeHero"
         case 1: "FlowReadHero"
-        case 2: "FlowLearnHero"
+        case 2: "FlowReadHero"
         case 3: "FlowSavedHero"
         default: "FlowMoreHero"
         }

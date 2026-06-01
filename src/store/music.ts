@@ -63,7 +63,7 @@ export const SOUNDS: Sound[] = [
     category: 'water',
     description: 'Open harbor water and distant shore movement for steady, spacious concentration.',
     energy: 2,
-    recommendedContexts: ['learn', 'study'],
+    recommendedContexts: ['study'],
     qualityApproved: true,
   },
   {
@@ -99,7 +99,7 @@ export const SOUNDS: Sound[] = [
     category: 'sanctuary',
     description: 'A closer hearth bed for quiet repetition, reflection, and slower sessions.',
     energy: 1,
-    recommendedContexts: ['learn', 'study'],
+    recommendedContexts: ['study'],
     qualityApproved: true,
   },
 ]
@@ -110,7 +110,7 @@ export const FOCUS_PRESETS: FocusPreset[] = [
     name: 'Settle',
     description: 'Ease into the session with a warm fireplace bed.',
     soundId: 'temple-fountain',
-    recommendedContexts: ['learn', 'study'],
+    recommendedContexts: ['study'],
     defaultVolume: 0.5,
   },
   {
@@ -118,7 +118,7 @@ export const FOCUS_PRESETS: FocusPreset[] = [
     name: 'Focus',
     description: 'Use open harbor water for steady reading concentration.',
     soundId: 'mountain-stream',
-    recommendedContexts: ['learn', 'study', 'review'],
+    recommendedContexts: ['study', 'review'],
     defaultVolume: 0.55,
   },
   {

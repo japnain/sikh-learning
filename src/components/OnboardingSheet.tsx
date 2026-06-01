@@ -421,7 +421,7 @@ export default function OnboardingSheet({
     {
       id: 'understand',
       title: 'Understand scripture',
-      body: 'Learn with meaning and context',
+      body: 'Read with meaning and context',
       goal: 'understand',
       preset: 'guided',
       learningLevel: 'familiar',
@@ -773,7 +773,7 @@ export default function OnboardingSheet({
             Choose the script your reader opens with.
           </h3>
           <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
-            This updates the actual reader default used across Read, Hukamnama, Learn passages, and Saved passages.
+            This updates the actual reader default used across Read, Hukamnama, and Saved passages.
           </p>
         </div>
 
@@ -903,10 +903,10 @@ export default function OnboardingSheet({
         <div className="space-y-2">
           <p className="eyebrow">{copy.onboarding.learningLevel}</p>
           <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-            Set the learning profile Home will respond to.
+            Set the reading profile Home will respond to.
           </h3>
           <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
-            Home, Learn, and Saved use this profile to choose whether to emphasize reading, meaning, review, or daily rhythm.
+            Home, Read, and Saved use this profile to choose whether to emphasize reading, meaning, review, or daily rhythm.
           </p>
         </div>
 
@@ -939,7 +939,7 @@ export default function OnboardingSheet({
         </div>
 
         <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
-          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.intentTitle}</p>
+          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">Reading intent</p>
           <div className="grid gap-2">
             {(['read', 'understand', 'habit'] as const).map(goal => (
               <MiniChoice

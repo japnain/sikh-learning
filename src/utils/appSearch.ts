@@ -1,9 +1,7 @@
 import type { SearchResult } from '../api/banidb'
 import { READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
-import type { LearnSearchIndex } from '../types'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
-import { buildLearnDetailPath } from './learnRails'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
@@ -27,7 +25,7 @@ export interface AppSearchMatch {
   detail: string
   path: string
   score: number
-  kind: 'read-route' | 'learn-topic'
+  kind: 'read-route'
 }
 
 export interface DirectAngTarget {
@@ -180,16 +178,6 @@ function normalizeRomanizedBaniLabel(value: string) {
     .trim()
 }
 
-function normalizeTopicQuery(value: string) {
-  return value
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
 function getCanonicalRouteMatchScore(query: string, labels: string[]) {
   const normalizedQuery = normalizeBaniLabel(query)
   const romanizedQuery = normalizeRomanizedBaniLabel(query)
@@ -227,29 +215,6 @@ function getCanonicalRouteMatchScore(query: string, labels: string[]) {
   }
 
   return bestScore
-}
-
-function scoreTopicMatch(title: string, shortTitle: string, searchTerms: string[], query: string): number {
-  const normalized = normalizeTopicQuery(query)
-  if (!normalized) return -1
-
-  const normalizedTitle = normalizeTopicQuery(title)
-  const normalizedShortTitle = normalizeTopicQuery(shortTitle)
-  const normalizedTerms = searchTerms.map(normalizeTopicQuery)
-
-  if (normalizedTitle === normalized || normalizedShortTitle === normalized) return 136
-  if (normalizedTerms.includes(normalized)) return 126
-  if (normalizedTitle.includes(normalized) || normalizedShortTitle.includes(normalized)) return 112
-
-  const tokens = normalized.split(' ')
-  const score = tokens.reduce((running, token) => {
-    if (!token) return running
-    if (normalizedTitle.includes(token) || normalizedShortTitle.includes(token)) return running + 12
-    if (normalizedTerms.some(term => term.includes(token))) return running + 10
-    return running
-  }, 0)
-
-  return score
 }
 
 function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
@@ -341,66 +306,13 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
   return matches
 }
 
-export function getLearnTopicMatches(
-  query: string,
-  searchIndex: LearnSearchIndex | null
-): AppSearchMatch[] {
-  const normalized = normalizeTopicQuery(query)
-  if (!normalized || normalized.length < 2 || !searchIndex) return []
-
-  const canonicalMatch = searchIndex.synonyms[normalized] ?? null
-  const canonicalTopicId = canonicalMatch?.topicId ?? null
-
-  return searchIndex.topics
-    .map(topic => {
-      const baseScore = scoreTopicMatch(topic.title, topic.shortTitle, topic.searchTerms, normalized)
-      let score = baseScore
-
-      if (canonicalTopicId) {
-        if (topic.id === canonicalTopicId) {
-          score = Math.max(score, 220)
-        } else if (topic.id.startsWith(`${canonicalTopicId}-`)) {
-          score += 12
-        }
-      }
-
-      return { topic, score }
-    })
-    .filter(item => item.score >= (canonicalTopicId ? 24 : 48))
-    .sort((left, right) =>
-      right.score - left.score
-      || Number(right.topic.id === canonicalTopicId) - Number(left.topic.id === canonicalTopicId)
-      || left.topic.title.localeCompare(right.topic.title)
-    )
-    .slice(0, 4)
-    .map(({ topic, score }) => ({
-      key: `learn-${topic.id}`,
-      label: topic.title,
-      detail: canonicalMatch?.scenarioKey && topic.id === canonicalTopicId
-        ? `Learn topic · ${canonicalMatch.scenarioKey}`
-        : 'Learn topic guide',
-      path: buildLearnDetailPath(
-        'topic-guide',
-        topic.id,
-        'topics',
-        topic.id === canonicalTopicId ? canonicalMatch?.scenarioKey ?? null : null
-      ),
-      score,
-      kind: 'learn-topic' as const,
-    }))
-}
-
 export function getAppSearchMatches(
   query: string,
-  searchSource: SearchSource = 'all',
-  searchIndex: LearnSearchIndex | null = null
+  searchSource: SearchSource = 'all'
 ): AppSearchMatch[] {
   if (query.trim().length < 2) return []
 
-  return [
-    ...getLearnTopicMatches(query, searchIndex),
-    ...getReadRouteMatches(query, searchSource),
-  ]
+  return getReadRouteMatches(query, searchSource)
     .sort((left, right) => right.score - left.score || left.label.length - right.label.length || left.label.localeCompare(right.label))
     .slice(0, 8)
 }

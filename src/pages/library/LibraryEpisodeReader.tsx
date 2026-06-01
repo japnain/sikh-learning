@@ -17,6 +17,12 @@ interface EpisodeReaderState {
   nextEpisode: LibraryEpisodeIndexEntry | null
 }
 
+type EpisodeLoadState = {
+  key: string
+  status: 'loading' | 'ready' | 'error'
+  reader: EpisodeReaderState | null
+}
+
 const METER_PATTERN = /\b(Dohra|Chaupai|Chaupa[iî]|Kabitt|Savaiyya|Soratha|Bhujang|Rasaval|Pauri)\b/gi
 const VERSE_MARKER_PATTERN = /\((\d{1,3})\)/g
 
@@ -74,15 +80,16 @@ function buildTrustSummary(pages: LibraryPagePayload[]) {
 export default function LibraryEpisodeReader() {
   const { workId = 'panth-prakash-english', episodeNumber = '1' } = useParams<{ workId: string; episodeNumber: string }>()
   const numericEpisode = Number(episodeNumber)
-  const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading')
-  const [reader, setReader] = useState<EpisodeReaderState | null>(null)
+  const requestKey = `${workId}:${numericEpisode}`
+  const [loadState, setLoadState] = useState<EpisodeLoadState>({
+    key: requestKey,
+    status: 'loading',
+    reader: null,
+  })
   const [showSource, setShowSource] = useState(false)
 
   useEffect(() => {
     let cancelled = false
-    setState('loading')
-    setReader(null)
-    setShowSource(false)
 
     Promise.all([loadLibraryWorkCatalog(), loadLibraryEpisodeIndex(workId)])
       .then(async ([catalog, episodes]) => {
@@ -96,25 +103,35 @@ export default function LibraryEpisodeReader() {
 
         const episodeIndex = episodes.findIndex(entry => entry.episodeNumber === episode.episodeNumber)
         if (cancelled) return
-        setReader({
-          work,
-          episode,
-          pages,
-          previousEpisode: episodeIndex > 0 ? episodes[episodeIndex - 1] : null,
-          nextEpisode: episodeIndex >= 0 && episodeIndex < episodes.length - 1 ? episodes[episodeIndex + 1] : null,
+        setLoadState({
+          key: requestKey,
+          status: 'ready',
+          reader: {
+            work,
+            episode,
+            pages,
+            previousEpisode: episodeIndex > 0 ? episodes[episodeIndex - 1] : null,
+            nextEpisode: episodeIndex >= 0 && episodeIndex < episodes.length - 1 ? episodes[episodeIndex + 1] : null,
+          },
         })
-        setState('ready')
+        setShowSource(false)
       })
       .catch(() => {
         if (cancelled) return
-        setState('error')
+        setLoadState({
+          key: requestKey,
+          status: 'error',
+          reader: null,
+        })
       })
 
     return () => {
       cancelled = true
     }
-  }, [workId, numericEpisode])
+  }, [workId, numericEpisode, requestKey])
 
+  const state = loadState.key === requestKey ? loadState.status : 'loading'
+  const reader = loadState.key === requestKey ? loadState.reader : null
   const editorial = reader ? getPanthPrakashEpisodeEditorial(reader.episode) : null
   const displayTitle = reader ? getPanthPrakashEpisodeDisplayTitle(reader.episode) : ''
   const trustSummary = useMemo(() => reader ? buildTrustSummary(reader.pages) : null, [reader])

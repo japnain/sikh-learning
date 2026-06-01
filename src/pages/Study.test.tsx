@@ -167,19 +167,6 @@ describe('Study bookmark button', () => {
     })
   })
 
-  test('shows learn return context when opened from Learn', async () => {
-    render(
-      <MemoryRouter initialEntries={['/study?source=G&ang=1&learnProgram=start-reading&learnModule=start-japji-guided']}>
-        <Routes><Route path="/study" element={<Study />} /></Routes>
-      </MemoryRouter>
-    )
-
-    await waitFor(() => {
-      expect(screen.getByText(/Learn Context/i)).toBeInTheDocument()
-      expect(screen.getByText(/Japji Sahib Opening/i)).toBeInTheDocument()
-      expect(screen.getByRole('button', { name: /Return to Learn/i })).toBeInTheDocument()
-    })
-  })
 })
 
 describe('Study source browsing', () => {

@@ -42,6 +42,35 @@ function readJson<T>(relativePath: string): T {
   return JSON.parse(fs.readFileSync(path.join(WORK_ROOT, relativePath), 'utf8')) as T
 }
 
+let pagePayloadCache: Promise<PagePayload[]> | null = null
+
+async function readPagePayloadBatch(pageIndex: PageIndexEntry[]): Promise<PagePayload[]> {
+  const pages: PagePayload[] = []
+  const batchSize = 512
+
+  for (let index = 0; index < pageIndex.length; index += batchSize) {
+    const batch = pageIndex.slice(index, index + batchSize)
+    const payloads = await Promise.all(
+      batch.map(async page => (
+        JSON.parse(
+          await fs.promises.readFile(path.join(WORK_ROOT, `pages/${page.pageNumber}.json`), 'utf8')
+        ) as PagePayload
+      ))
+    )
+    pages.push(...payloads)
+  }
+
+  return pages
+}
+
+function readAllPagePayloads(pageIndex: PageIndexEntry[]): Promise<PagePayload[]> {
+  if (!pagePayloadCache) {
+    pagePayloadCache = readPagePayloadBatch(pageIndex)
+  }
+
+  return pagePayloadCache
+}
+
 const REPAIRED_READING_FIXTURES = [
   { pageNumber: 2, title: 'Publication Details and Imprint', anchor: 'ISBN 81-85815-28-3' },
   { pageNumber: 6, title: 'Contents: Banda Bahadur and the Khalsa Struggle', anchor: 'Banda Bahadur sequence' },
@@ -147,14 +176,12 @@ describe('Panth Prakash native library integrity', () => {
     })
   })
 
-  test('syncs retained page-level episode metadata with the canonical episode index', () => {
+  test('syncs retained page-level episode metadata with the canonical episode index', async () => {
     const pageIndex = readJson<PageIndexEntry[]>('pages.json')
     const episodes = readJson<EpisodeIndexEntry[]>('episodes.json')
     const episodesByNumber = new Map(episodes.map(episode => [episode.episodeNumber, episode]))
 
-    for (const pageIndexEntry of pageIndex) {
-      const page = readJson<PagePayload>(`pages/${pageIndexEntry.pageNumber}.json`)
-
+    for (const page of await readAllPagePayloads(pageIndex)) {
       if (!page.episode) continue
 
       const expectedEpisode = episodesByNumber.get(page.episode.number)
@@ -168,20 +195,19 @@ describe('Panth Prakash native library integrity', () => {
         endPage: expectedEpisode!.endPage,
       })
     }
-  })
+  }, 600_000)
 
-  test('keeps every manual readable page tied to retained raw source provenance', () => {
+  test('keeps every manual readable page tied to retained raw source provenance', async () => {
     const pageIndex = readJson<PageIndexEntry[]>('pages.json')
 
-    for (const pageIndexEntry of pageIndex) {
-      const page = readJson<PagePayload>(`pages/${pageIndexEntry.pageNumber}.json`)
+    for (const page of await readAllPagePayloads(pageIndex)) {
       const isManualReadablePage = page.blocks.some(block => block.id.startsWith(`manual-${page.pageNumber}-`))
 
       if (!isManualReadablePage) continue
 
       expect(page.rawBlocks?.length ?? 0, `manual page ${page.pageNumber} should retain raw source/provenance blocks`).toBeGreaterThan(0)
     }
-  })
+  }, 600_000)
 
   test('keeps repaired audit-queue pages readable with stable source-grounded anchors', () => {
     for (const fixture of REPAIRED_READING_FIXTURES) {

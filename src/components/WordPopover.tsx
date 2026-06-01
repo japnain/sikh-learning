@@ -1,6 +1,5 @@
 import type { Word } from '../types'
 import { getWordFamilyForWord } from '../data/wordFamilies'
-import useMilestoneCheck from '../hooks/useMilestoneCheck'
 import { useLanguageStore } from '../store/language'
 import { useVocabStore } from '../store/vocab'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
@@ -33,7 +32,6 @@ export default function WordPopover({
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const { vocab, addWord } = useVocabStore()
-  const checkMilestones = useMilestoneCheck()
   const isSaved = vocab.some(v => v.word === word.gurmukhi)
   const wordFamily = getWordFamilyForWord(word.gurmukhi)
   const { entries, loading, error, normalizedWord } = useMahanKosh(word.gurmukhi)
@@ -67,7 +65,6 @@ export default function WordPopover({
         line,
       },
     })
-    checkMilestones()
   }
 
   return (

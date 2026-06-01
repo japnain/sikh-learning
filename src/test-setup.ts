@@ -2,7 +2,6 @@ import '@testing-library/jest-dom'
 import fs from 'node:fs'
 import path from 'node:path'
 import './test-storage'
-import { configureLearnRepositoryLoader, resetLearnRepositoryCache } from './data/learnRepository'
 import { configureLibraryRepositoryLoader, resetLibraryRepositoryCache } from './data/libraryRepository'
 import { server } from './test/msw-server'
 
@@ -198,14 +197,6 @@ Object.defineProperty(globalThis, 'ResizeObserver', {
 
 const PROJECT_ROOT = process.cwd()
 
-configureLearnRepositoryLoader(async (resourcePath) => {
-  const normalizedPath = resourcePath.startsWith('/')
-    ? resourcePath.slice(1)
-    : resourcePath
-  const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/learn\//, 'data/learn/'))
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
-})
-
 configureLibraryRepositoryLoader(async (resourcePath) => {
   const normalizedPath = resourcePath.startsWith('/')
     ? resourcePath.slice(1)
@@ -221,15 +212,7 @@ afterEach(() => {
   sessionStorage.clear()
   vi.clearAllTimers()
   vi.useRealTimers()
-  resetLearnRepositoryCache()
   resetLibraryRepositoryCache()
-  configureLearnRepositoryLoader(async (resourcePath) => {
-    const normalizedPath = resourcePath.startsWith('/')
-      ? resourcePath.slice(1)
-      : resourcePath
-    const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/learn\//, 'data/learn/'))
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'))
-  })
   configureLibraryRepositoryLoader(async (resourcePath) => {
     const normalizedPath = resourcePath.startsWith('/')
       ? resourcePath.slice(1)

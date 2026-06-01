@@ -61,7 +61,6 @@ Deno.serve(async request => {
   const profile = snapshot.profile as Json | undefined;
   const readerPreferences = snapshot.readerPreferences as Json | undefined;
   const bookmarks = Array.isArray(snapshot.bookmarks) ? snapshot.bookmarks as Json[] : [];
-  const savedLearnItemIds = Array.isArray(snapshot.savedLearnItemIds) ? snapshot.savedLearnItemIds as string[] : [];
   const vocabEntries = Array.isArray(snapshot.vocabEntries) ? snapshot.vocabEntries as Json[] : [];
   const learningProgress = Array.isArray(snapshot.learningProgress) ? snapshot.learningProgress as Json[] : [];
   const activityEvents = Array.isArray(snapshot.activityEvents) ? snapshot.activityEvents as Json[] : [];
@@ -120,14 +119,6 @@ Deno.serve(async request => {
     }, { onConflict: "user_id,natural_key" });
   }
 
-  await supabase.from("learning_state").upsert({
-    user_id: user.id,
-    device_id: deviceId,
-    saved_item_ids: savedLearnItemIds,
-    payload: { savedLearnItemIds, learningProgress },
-    client_updated_at: new Date().toISOString(),
-  }, { onConflict: "user_id" });
-
   for (const [readingId, progress] of Object.entries(readingProgress)) {
     await supabase.from("reading_progress").upsert({
       id: `${user.id}-${readingId}`,
@@ -165,7 +156,6 @@ Deno.serve(async request => {
     occurred_at: new Date().toISOString(),
     payload: {
       bookmarks: bookmarks.length,
-      savedLearnItemIds: savedLearnItemIds.length,
       vocabEntries: vocabEntries.length,
       learningProgress: learningProgress.length,
     },

@@ -14,7 +14,6 @@ import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import { LEARN_MODULE_BY_ID, LEARN_PROGRAMS } from '../data/learningCurriculum'
 import type { ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
 import {
   getHindiSourceLabel,
@@ -248,8 +247,6 @@ export default function Study() {
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
   const flowParam = searchParams.get('flow')
   const randomHukamnamaAngParam = Number(searchParams.get('randomHukamnamaAng')) || null
-  const learnProgramParam = searchParams.get('learnProgram')
-  const learnModuleParam = searchParams.get('learnModule')
   const fromParam = searchParams.get('from')
   const akHeaderIdParam = Number(searchParams.get('akHeaderId')) || null
   const akSectionParam = Number(searchParams.get('akSection')) || null
@@ -303,10 +300,6 @@ export default function Study() {
   const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode && !isHukamnamaMode
   const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode || isHukamnamaMode
   const shouldTrackProgress = !isArdaasHukamnamaFlow
-  const learnModule = learnModuleParam ? LEARN_MODULE_BY_ID[learnModuleParam] : null
-  const learnProgram = learnProgramParam
-    ? LEARN_PROGRAMS.find(program => program.id === learnProgramParam) ?? null
-    : null
   const searchParamsString = searchParams.toString()
 
   useEffect(() => {
@@ -482,8 +475,6 @@ export default function Study() {
       if (baniDbIdParam) nextParams.set('baniDbId', String(baniDbIdParam))
       if (isBaniDbMode) nextParams.set('exactBani', '1')
       if (effectiveSgLength) nextParams.set('sgLength', effectiveSgLength)
-      if (learnProgramParam) nextParams.set('learnProgram', learnProgramParam)
-      if (learnModuleParam) nextParams.set('learnModule', learnModuleParam)
     }
 
     const nextSearch = nextParams.toString()
@@ -501,8 +492,6 @@ export default function Study() {
     isBaniDbMode,
     isBaniRangeMode,
     isHukamnamaMode,
-    learnModuleParam,
-    learnProgramParam,
     shouldTrackProgress,
     startAngParam,
   ])
@@ -995,8 +984,6 @@ export default function Study() {
       if (baniName) params.bani = baniName
       if (baniIdParam) params.baniId = baniIdParam
       if (effectiveSgLength) params.sgLength = effectiveSgLength
-      if (learnProgramParam) params.learnProgram = learnProgramParam
-      if (learnModuleParam) params.learnModule = learnModuleParam
       setSearchParams(params)
       return
     }
@@ -1006,8 +993,6 @@ export default function Study() {
     if (baniIdParam) params.baniId = baniIdParam
     if (isBaniRangeMode) params.startAng = String(startAngParam ?? angParam!)
     if (endAngParam) params.endAng = String(endAngParam)
-    if (learnProgramParam) params.learnProgram = learnProgramParam
-    if (learnModuleParam) params.learnModule = learnModuleParam
     setSearchParams(params)
   }
 
@@ -1251,29 +1236,6 @@ export default function Study() {
               className="interactive-focus rounded-full border border-gold/20 bg-gold/[0.08] px-4 py-2 font-sans text-xs font-semibold text-gold-dark dark:border-gold/25 dark:bg-gold/10 dark:text-gold-light"
             >
               Back to Section
-            </button>
-          </div>
-        </div>
-      )}
-
-      {(learnProgram || learnModule) && (
-        <div className="section-shell-quiet p-4 mb-4">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="eyebrow">{studyCopy.learnContext}</p>
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mt-2">
-                {learnModule?.title ?? 'Return to your active Learn path'}
-              </p>
-              <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-2">
-                {learnProgram?.name ?? 'Learn'}{learnModule ? ` · ${learnModule.estimatedMinutes} min module` : ''}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => navigate(`/learn?program=${learnProgramParam ?? ''}${learnModuleParam ? `&module=${learnModuleParam}` : ''}`)}
-              className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-xs font-semibold min-h-[44px]"
-            >
-              {studyCopy.returnToLearn}
             </button>
           </div>
         </div>

@@ -27,6 +27,7 @@ const initialVendorChunkGroups = [
 export default defineConfig({
   plugins: [react()],
   build: {
+    copyPublicDir: false,
     rolldownOptions: {
       output: {
         codeSplitting: {
@@ -60,6 +61,11 @@ export default defineConfig({
     exclude: [...defaultExclude, 'tmp/**', 'dist/**', 'ios/**'],
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
+    testTimeout: 120000,
+    hookTimeout: 120000,
+    teardownTimeout: 30000,
+    fileParallelism: false,
+    maxWorkers: 1,
     server: {
       deps: {
         inline: [

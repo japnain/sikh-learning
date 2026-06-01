@@ -12,19 +12,16 @@ import {
   IconHeart,
   IconLibrary,
   IconLayers,
-  IconLeaf,
   IconMoon,
   IconSun,
 } from '../components/icons'
 import NaamRasLogoMark from '../components/NaamRasLogoMark'
 import StreakBadge from '../components/StreakBadge'
 import { useHukamnama } from '../hooks/useHukamnama'
-import useLearnHomeCatalog from '../hooks/useLearnHomeCatalog'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
-import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
@@ -36,17 +33,10 @@ import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } f
 import type { UiLocale, VocabEntry } from '../types'
 import { getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
-import { getLearningLevelLabels } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
-import { toLocalDayStamp } from '../utils/learnDates'
-import { getLearnItemLabel } from '../utils/learnExperience'
-import { getLearnHomeSavedItems, getTodayLearnHomeSurface } from '../utils/learnHomeExperience'
-import { buildLearnDetailPath } from '../utils/learnRails'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getEditorialCopy } from '../content/editorialCopy'
-import featuredInstrumentSrc from '../assets/home-calm/featured-instrument.webp'
-import guidancePixelMotifSrc from '../assets/home-calm/guidance-pixel-motif.webp'
 import nitnemPixelMotifSrc from '../assets/home-calm/nitnem-pixel-motif.webp'
 
 const HOME_SPOTLIGHT_HIGHLIGHT_CLASSES = [
@@ -68,7 +58,7 @@ const SOURCE_SHORT_NAME: Record<string, string> = {
 
 type HomeSavedPreviewItem = {
   id: string
-  kind: 'learn' | 'passage' | 'vocab'
+  kind: 'passage' | 'vocab'
   feedbackKind: SavedFeedbackKind
   label: string
   title: string
@@ -302,12 +292,6 @@ const HOME_SAVED_PREVIEW_APPEARANCE: Record<
     detailClassName: string
   }
 > = {
-  learn: {
-    icon: IconLibrary,
-    badgeClassName: 'bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light',
-    surfaceClassName: 'border-gold/16 bg-[linear-gradient(180deg,rgba(255,250,241,0.94),rgba(244,230,205,0.84))] dark:border-gold/16 dark:bg-[linear-gradient(180deg,rgba(42,31,57,0.96),rgba(28,21,40,0.92))]',
-    detailClassName: 'text-ink/65 dark:text-dark-text/70',
-  },
   passage: {
     icon: IconBookmarkFilled,
     badgeClassName: 'bg-saffron/12 text-saffron dark:bg-saffron/12 dark:text-saffron-light',
@@ -343,204 +327,36 @@ function getVocabPreviewDetail(entry: VocabEntry, locale: UiLocale): string {
 }
 
 const HOME_MESSAGES: Record<UiLocale, {
-  resumeStudyBody: string
-  openTodaysHukamnama: string
-  todaysMeaningBody: string
-  todaysReadingBody: string
-  browseReadBody: string
-  buildHabitTitle: string
-  learnScriptTitle: string
-  buildConfidenceTitle: string
-  childLearnBody: string
-  adultLearnBody: string
-  pickUpPausedTitle: string
-  nitnemImmediateBody: string
   dailyNitnem: string
   nitnemHeroTitle: string
-  nitnemHeroBody: string
-  nitnemRemaining: (count: number) => string
-  nitnemCompleteToday: string
   nitnemCarouselLabel: (index: number, total: number) => string
   beginNitnem: string
-  continueNitnem: string
-  completeNitnemStep: string
-  markNitnemIncomplete: string
   customizeNitnem: string
-  hideNitnemCustomize: string
   chooseNitnemBody: string
-  readTodayEyebrow: string
-  readTodayTitle: string
-  readTodayBody: string
-  beginTodayTitle: string
-  beginTodayMeaningTitle: string
-  beginTodayMeaningBody: string
-  beginTodayBody: string
-  nextActionsBody: string
-  openTodaysGuidance: string
-  todayInLearn: string
-  todayInLearnBody: string
-  openLearnToday: string
-  continueInLearn: string
-  featuredShabad: string
-  openFeaturedShabad: string
-  featuredShabadUnavailable: string
-  featuredShabadUnavailableBody: string
-  topicGuideMeta: string
-  learnFallbackTitle: string
-  learnFallbackBody: string
-  browseRead: string
-  trackSuffix: string
-  reviewDue: (count: number) => string
 }> = {
   en: {
-    resumeStudyBody: 'Return to the last passage you were studying so the context stays intact.',
-    openTodaysHukamnama: 'Open Today’s Hukamnama',
-    todaysMeaningBody: 'Start with the daily hukamnama and keep the meaning close.',
-    todaysReadingBody: 'Start with the daily hukamnama and stay in a steady daily rhythm.',
-    browseReadBody: 'Open the reading surfaces that are already live in the app without restarting from today’s hukamnama.',
-    buildHabitTitle: 'Build a reading habit before adding more weight.',
-    learnScriptTitle: 'Learn the script before chasing too much meaning.',
-    buildConfidenceTitle: 'Build reading confidence before the overwhelm.',
-    childLearnBody: 'Keep the next step simple: guided letters, short drills, then one real line at a time.',
-    adultLearnBody: 'Start with guided letters, practice recognition, then move into live pankti when you are ready.',
-    pickUpPausedTitle: 'Pick up exactly where you paused.',
-    nitnemImmediateBody: 'Nitnem should feel immediate. Resume your last reading without hunting through the library.',
     dailyNitnem: 'Daily Nitnem',
     nitnemHeroTitle: 'Anchor the day in Nitnem.',
-    nitnemHeroBody: 'A calm ritual card for the next bani that matters now, with the rest tucked behind it until you need it.',
-    nitnemRemaining: (count) => `${count} remaining today`,
-    nitnemCompleteToday: 'Complete for today',
     nitnemCarouselLabel: (index, total) => `Nitnem card ${index} of ${total}`,
     beginNitnem: 'Begin Nitnem',
-    continueNitnem: 'Continue Nitnem',
-    completeNitnemStep: 'Mark as complete',
-    markNitnemIncomplete: 'Mark as incomplete',
     customizeNitnem: 'Customize Daily Nitnem',
-    hideNitnemCustomize: 'Hide Nitnem options',
     chooseNitnemBody: 'Choose the banis that should appear in your daily Nitnem ritual.',
-    readTodayEyebrow: 'Read Today',
-    readTodayTitle: 'Start with Ardaas, then keep the next doorway close.',
-    readTodayBody: 'Open the devotional flow first, follow the featured shabad when it lands, or browse scripture by source when you already know where to go.',
-    beginTodayTitle: 'Begin with today’s hukamnama.',
-    beginTodayMeaningTitle: 'Begin with today’s hukamnama and keep the meaning close.',
-    beginTodayMeaningBody: 'A calm first step for daily reading, with meaning controls and guided support built into the reader.',
-    beginTodayBody: 'A calm first step for daily reading, with meaning controls and a cleaner mobile reader built in.',
-    nextActionsBody: 'Keep the next step explicit: open today’s guidance, continue into Read, or return to what you saved.',
-    openTodaysGuidance: 'Open Today’s Guidance',
-    todayInLearn: 'Today in Learn',
-    todayInLearnBody: 'Keep the learning side of the app grounded in one real next step, not placeholder prompts.',
-    openLearnToday: 'Open Learn Today',
-    continueInLearn: 'Continue in Learn',
-    featuredShabad: 'Featured Shabad',
-    openFeaturedShabad: 'Open Featured Shabad',
-    featuredShabadUnavailable: 'Featured shabad is temporarily unavailable.',
-    featuredShabadUnavailableBody: 'Today’s guidance is still ready above, and browsing by source stays open below while the shabad preview catches up.',
-    topicGuideMeta: 'Topic guide',
-    learnFallbackTitle: 'Open Learn',
-    learnFallbackBody: 'Browse the guided surfaces that are already live in the app.',
-    browseRead: 'Browse Read',
-    trackSuffix: 'track',
-    reviewDue: (count) => `${count} review item${count === 1 ? '' : 's'} due`,
   },
   pa: {
-    resumeStudyBody: 'ਜਿੱਥੇ ਤੁਸੀਂ ਅਖੀਰ ਵਾਰ ਅਰਥ ਨਾਲ ਪੜ੍ਹ ਰਹੇ ਸੀ, ਓਥੇ ਹੀ ਵਾਪਸ ਜਾਓ ਤਾਂ ਜੋ ਸੰਦਰਭ ਬਣਾ ਰਹੇ।',
-    openTodaysHukamnama: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ ਖੋਲ੍ਹੋ',
-    todaysMeaningBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।',
-    todaysReadingBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਪਾਠ ਦੀ ਲਯ ਬਣਾਈ ਰੱਖੋ।',
-    browseReadBody: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਨੂੰ ਦੁਹਰਾਉਣ ਤੋਂ ਬਿਨਾਂ ਐਪ ਵਿੱਚ ਮੌਜੂਦ ਪੜ੍ਹਨ ਵਾਲੀਆਂ ਸਤਹਾਂ ਖੋਲ੍ਹੋ।',
-    buildHabitTitle: 'ਹੋਰ ਭਾਰ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦੀ ਆਦਤ ਬਣਾਓ।',
-    learnScriptTitle: 'ਬਹੁਤ ਅਰਥ ਦੇ ਪਿੱਛੇ ਦੌੜਨ ਤੋਂ ਪਹਿਲਾਂ ਲਿਪੀ ਸਿੱਖੋ।',
-    buildConfidenceTitle: 'ਘਬਰਾਹਟ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦਾ ਵਿਸ਼ਵਾਸ ਬਣਾਓ।',
-    childLearnBody: 'ਅਗਲਾ ਕਦਮ ਸੌਖਾ ਰੱਖੋ: ਮਾਰਗਦਰਸ਼ਿਤ ਅੱਖਰ, ਛੋਟੇ ਅਭਿਆਸ, ਫਿਰ ਇੱਕ ਅਸਲੀ ਲਾਈਨ।',
-    adultLearnBody: 'ਮਾਰਗਦਰਸ਼ਿਤ ਅੱਖਰਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਪਛਾਣ ਦਾ ਅਭਿਆਸ ਕਰੋ, ਫਿਰ ਜਦੋਂ ਤਿਆਰ ਹੋਵੋ ਤਾਂ ਜੀਵੰਤ ਪੰਕਤੀ ਵੱਲ ਵਧੋ।',
-    pickUpPausedTitle: 'ਜਿੱਥੇ ਰੁਕੇ ਸੀ ਓਥੇ ਹੀ ਤੋਂ ਚੁੱਕੋ।',
-    nitnemImmediateBody: 'ਨਿਤਨੇਮ ਤੁਰੰਤ ਮਹਿਸੂਸ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਲੱਭਣ ਤੋਂ ਬਿਨਾਂ ਆਪਣਾ ਪਿਛਲਾ ਪਾਠ ਜਾਰੀ ਰੱਖੋ।',
     dailyNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ',
     nitnemHeroTitle: 'ਨਿਤਨੇਮ ਨਾਲ ਦਿਨ ਨੂੰ ਅਡੋਲ ਕਰੋ।',
-    nitnemHeroBody: 'ਅਗਲੀ ਜ਼ਰੂਰੀ ਬਾਣੀ ਪਹਿਲਾਂ ਦਿਖੇ, ਬਾਕੀ ਚੋਣਾਂ ਸਿਰਫ਼ ਲੋੜ ਪੈਣ ਤੇ ਖੁੱਲਣ।',
-    nitnemRemaining: (count) => `ਅੱਜ ਲਈ ${count} ਬਾਕੀ`,
-    nitnemCompleteToday: 'ਅੱਜ ਲਈ ਪੂਰਾ',
     nitnemCarouselLabel: (index, total) => `ਨਿਤਨੇਮ ਕਾਰਡ ${index} / ${total}`,
     beginNitnem: 'ਨਿਤਨੇਮ ਸ਼ੁਰੂ ਕਰੋ',
-    continueNitnem: 'ਨਿਤਨੇਮ ਜਾਰੀ ਰੱਖੋ',
-    completeNitnemStep: 'ਪੂਰਾ ਚਿੰਨ੍ਹਿਤ ਕਰੋ',
-    markNitnemIncomplete: 'ਅਧੂਰਾ ਚਿੰਨ੍ਹਿਤ ਕਰੋ',
     customizeNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਸੰਵਾਰੋ',
-    hideNitnemCustomize: 'ਨਿਤਨੇਮ ਚੋਣਾਂ ਲੁਕਾਓ',
     chooseNitnemBody: 'ਉਹ ਬਾਣੀਆਂ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਵਿੱਚ ਦਿਸਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।',
-    readTodayEyebrow: 'ਅੱਜ ਪੜ੍ਹੋ',
-    readTodayTitle: 'ਅਰਦਾਸ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਅਗਲਾ ਦਰਵਾਜ਼ਾ ਨੇੜੇ ਰੱਖੋ।',
-    readTodayBody: 'ਪਹਿਲਾਂ ਅਰਦਾਸ + ਹੁਕਮਨਾਮਾ ਖੋਲ੍ਹੋ, ਫਿਰ ਖਾਸ ਸ਼ਬਦ ਨਾਲ ਰਹੋ ਜਾਂ ਜਦੋਂ ਲੋੜ ਹੋਵੇ ਤਾਂ ਸਰੋਤ ਅਨੁਸਾਰ ਸਿੱਧਾ ਪਾਠ ਖੋਲ੍ਹੋ।',
-    beginTodayTitle: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।',
-    beginTodayMeaningTitle: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।',
-    beginTodayMeaningBody: 'ਰੋਜ਼ਾਨਾ ਪਾਠ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਪਹਿਲਾ ਕਦਮ, ਜਿਸ ਵਿੱਚ ਅਰਥ ਨਿਯੰਤਰਣ ਅਤੇ ਮਾਰਗਦਰਸ਼ਿਤ ਸਹਾਇਤਾ ਬਣੀ ਹੋਈ ਹੈ।',
-    beginTodayBody: 'ਰੋਜ਼ਾਨਾ ਪਾਠ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਪਹਿਲਾ ਕਦਮ, ਜਿਸ ਵਿੱਚ ਅਰਥ ਨਿਯੰਤਰਣ ਅਤੇ ਹੋਰ ਸਾਫ਼ ਮੋਬਾਈਲ ਪਾਠਕ ਸ਼ਾਮਲ ਹੈ।',
-    nextActionsBody: 'ਅਗਲਾ ਕਦਮ ਸਾਫ਼ ਰੱਖੋ: ਅੱਜ ਦੀ ਮਾਰਗਦਰਸ਼ਨਾ ਖੋਲ੍ਹੋ, Read ਵਿੱਚ ਜਾਓ, ਜਾਂ ਆਪਣੀ ਸੰਭਾਲੀ ਚੀਜ਼ਾਂ ਵੱਲ ਵਾਪਸ ਜਾਓ।',
-    openTodaysGuidance: 'ਅੱਜ ਦੀ ਮਾਰਗਦਰਸ਼ਨਾ ਖੋਲ੍ਹੋ',
-    todayInLearn: 'ਅੱਜ Learn ਵਿੱਚ',
-    todayInLearnBody: 'ਸਿੱਖਣ ਵਾਲੀ ਸਤਹ ਨੂੰ ਇੱਕ ਅਸਲੀ ਅਗਲੇ ਕਦਮ ਨਾਲ ਜੁੜਿਆ ਰੱਖੋ।',
-    openLearnToday: 'ਅੱਜ ਦਾ Learn ਖੋਲ੍ਹੋ',
-    continueInLearn: 'Learn ਵਿੱਚ ਜਾਰੀ ਰੱਖੋ',
-    featuredShabad: 'ਖਾਸ ਸ਼ਬਦ',
-    openFeaturedShabad: 'ਖਾਸ ਸ਼ਬਦ ਖੋਲ੍ਹੋ',
-    featuredShabadUnavailable: 'ਖਾਸ ਸ਼ਬਦ ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
-    featuredShabadUnavailableBody: 'ਅੱਜ ਦੀ ਮਾਰਗਦਰਸ਼ਨਾ ਉੱਪਰ ਹੀ ਤਿਆਰ ਹੈ, ਅਤੇ ਹੇਠਾਂ ਸਰੋਤ ਅਨੁਸਾਰ ਬ੍ਰਾਊਜ਼ਿੰਗ ਖੁੱਲੀ ਰਹਿੰਦੀ ਹੈ ਜਦੋਂ ਤੱਕ ਸ਼ਬਦ ਝਲਕ ਮੁੜ ਨਹੀਂ ਆ ਜਾਂਦੀ।',
-    topicGuideMeta: 'ਵਿਸ਼ਾ ਮਾਰਗਦਰਸ਼ਕ',
-    learnFallbackTitle: 'Learn ਖੋਲ੍ਹੋ',
-    learnFallbackBody: 'ਐਪ ਦੇ ਮਾਰਗਦਰਸ਼ਿਤ ਅਤੇ ਜੀਵੰਤ ਸਤਹਾਂ ਵਿੱਚ ਦਾਖ਼ਲ ਹੋਵੋ।',
-    browseRead: 'ਪੜ੍ਹੋ ਬ੍ਰਾਊਜ਼ ਕਰੋ',
-    trackSuffix: 'ਮਾਰਗ',
-    reviewDue: (count) => `${count} ਦੁਹਰਾਈ ਆਇਟਮ ਬਾਕੀ`,
   },
   hi: {
-    resumeStudyBody: 'जिस अंश को आप अर्थ के साथ पढ़ रहे थे, वहीं लौटें ताकि संदर्भ बना रहे।',
-    openTodaysHukamnama: 'आज का हुकमनामा खोलें',
-    todaysMeaningBody: 'दैनिक हुकमनामे से शुरू करें और अर्थ को पास रखें।',
-    todaysReadingBody: 'दैनिक हुकमनामे से शुरू करें और पढ़ने की लय बनाए रखें।',
-    browseReadBody: 'आज के हुकमनामे को दोहराए बिना ऐप के भीतर मौजूद रीड सतहों को खोलें।',
-    buildHabitTitle: 'और भार जोड़ने से पहले पढ़ने की आदत बनाइए।',
-    learnScriptTitle: 'बहुत अर्थ पकड़ने से पहले लिपि सीखिए।',
-    buildConfidenceTitle: 'घबराहट से पहले पढ़ने का आत्मविश्वास बनाइए।',
-    childLearnBody: 'अगला कदम सरल रखें: मार्गदर्शित अक्षर, छोटे अभ्यास, फिर एक वास्तविक पंक्ति।',
-    adultLearnBody: 'मार्गदर्शित अक्षरों से शुरू करें, पहचान का अभ्यास करें, फिर तैयार होने पर जीवंत पंक्ति में जाएँ।',
-    pickUpPausedTitle: 'जहाँ रुके थे, वहीं से आगे बढ़ें।',
-    nitnemImmediateBody: 'नितनेम तुरंत उपलब्ध लगना चाहिए। लाइब्रेरी में खोजे बिना अपना पिछला पाठ जारी रखें।',
     dailyNitnem: 'दैनिक नितनेम',
     nitnemHeroTitle: 'नितनेम से दिन को स्थिर करो।',
-    nitnemHeroBody: 'अगली ज़रूरी बानी सामने रहे, बाकी विकल्प तभी खुलें जब आप उन्हें सच में चाहें।',
-    nitnemRemaining: (count) => `आज ${count} बाकी`,
-    nitnemCompleteToday: 'आज के लिए पूरा',
     nitnemCarouselLabel: (index, total) => `नितनेम कार्ड ${index} / ${total}`,
     beginNitnem: 'नितनेम शुरू करें',
-    continueNitnem: 'नितनेम जारी रखें',
-    completeNitnemStep: 'पूरा चिन्हित करें',
-    markNitnemIncomplete: 'अधूरा चिन्हित करें',
     customizeNitnem: 'दैनिक नितनेम बदलें',
-    hideNitnemCustomize: 'नितनेम विकल्प छिपाएँ',
     chooseNitnemBody: 'वे बानियाँ चुनें जो आपके दैनिक नितनेम में दिखाई दें।',
-    readTodayEyebrow: 'आज पढ़ें',
-    readTodayTitle: 'अरदास से शुरू करें, फिर अगला दरवाज़ा पास रखें।',
-    readTodayBody: 'पहले अरदास + हुकमनामा खोलें, फिर विशेष शबद के साथ रहें या जब ज़रूरत हो तो स्रोत के हिसाब से सीधे पाठ खोलें।',
-    beginTodayTitle: 'आज के हुकमनामे से शुरू करें।',
-    beginTodayMeaningTitle: 'आज के हुकमनामे से शुरू करें और अर्थ को पास रखें।',
-    beginTodayMeaningBody: 'दैनिक पाठ के लिए एक शांत पहला कदम, जिसमें अर्थ नियंत्रण और मार्गदर्शित सहायता पहले से जुड़ी हो।',
-    beginTodayBody: 'दैनिक पाठ के लिए एक शांत पहला कदम, जिसमें अर्थ नियंत्रण और एक अधिक साफ़ मोबाइल रीडर शामिल है।',
-    nextActionsBody: 'अगला कदम साफ़ रखें: आज की guidance खोलें, Read में जाएँ, या अपनी saved shelf पर लौटें।',
-    openTodaysGuidance: 'आज की guidance खोलें',
-    todayInLearn: 'आज Learn में',
-    todayInLearnBody: 'सीखने वाली सतह को एक वास्तविक अगले कदम से जोड़े रखें।',
-    openLearnToday: 'आज का Learn खोलें',
-    continueInLearn: 'Learn में जारी रखें',
-    featuredShabad: 'विशेष शबद',
-    openFeaturedShabad: 'विशेष शबद खोलें',
-    featuredShabadUnavailable: 'विशेष शबद अभी उपलब्ध नहीं है।',
-    featuredShabadUnavailableBody: 'आज की guidance ऊपर तैयार है, और नीचे source browsing खुली रहती है जब तक शबद preview वापस नहीं आता।',
-    topicGuideMeta: 'विषय मार्गदर्शिका',
-    learnFallbackTitle: 'Learn खोलें',
-    learnFallbackBody: 'ऐप के भीतर मौजूद वास्तविक guided surfaces में जाएँ।',
-    browseRead: 'रीड ब्राउज़ करें',
-    trackSuffix: 'मार्ग',
-    reviewDue: (count) => `${count} रिव्यू आइटम बाकी`,
   },
 }
 
@@ -558,9 +374,7 @@ export default function Home() {
   const favorites = useFavoritesStore(state => state.favorites)
   const vocab = useVocabStore(s => s.vocab)
   const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
-  const learnStateSnapshot = useLearningStore(state => state.learnState)
   const {
-    learningLevel,
     openOnboarding,
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
@@ -568,7 +382,6 @@ export default function Home() {
   const homeCopy = copy.home
   const libraryCopy = copy.library
   const homeMessages = HOME_MESSAGES[locale]
-  const learningLevelLabels = getLearningLevelLabels(locale)
   const nitnemSpotlightRef = useRef<HTMLElement | null>(null)
   const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
   const nitnemScrollTimeoutRef = useRef<number | null>(null)
@@ -583,13 +396,6 @@ export default function Home() {
     const localeCode = locale === 'pa' ? 'pa-IN' : locale === 'hi' ? 'hi-IN' : 'en-US'
     return new Intl.DateTimeFormat(localeCode, { hour: 'numeric', minute: '2-digit' }).format(homeNow)
   }, [homeNow, locale])
-  const {
-    catalog: learnCatalog,
-    loading: learnCatalogLoading,
-    error: learnCatalogError,
-  } = useLearnHomeCatalog()
-  const learnDayStamp = toLocalDayStamp(new Date(now))
-
   const getNitnemOptionDetail = (option: NitnemRouteOption) => (
     option.supportsLengthAdjustment && isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
       ? getSundarGutkaLengthDetail(sundarGutkaLengths[option.baseBaniId])
@@ -634,18 +440,6 @@ export default function Home() {
   }, [location.pathname, location.state, navigate, openOnboarding])
 
   const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
-  const todayLearnSurface = useMemo(
-    () => (learnCatalog ? getTodayLearnHomeSurface(learnCatalog, learnDayStamp, learnStateSnapshot) : null),
-    [learnCatalog, learnDayStamp, learnStateSnapshot]
-  )
-  const todayGuidance = todayLearnSurface?.dailyGuidance.item ?? null
-  const todayGuidancePath = todayGuidance
-    ? buildLearnDetailPath('daily-guidance', todayGuidance.id, 'today')
-    : null
-  const featuredShabad = todayLearnSurface?.featuredShabad.item ?? null
-  const featuredShabadPath = featuredShabad
-    ? buildLearnDetailPath('shabad-deep-dive', featuredShabad.id, 'today')
-    : null
 
   const selectedNitnemOptions = useMemo(() => {
     return selectedIds
@@ -826,10 +620,6 @@ export default function Home() {
       nitnemSwipeRef.current = null
     }
   }, [completeNitnemSwipeFromPoint])
-  const savedLearnItems = useMemo(
-    () => (learnCatalog ? getLearnHomeSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
-    [learnCatalog, learnStateSnapshot.savedItemIds]
-  )
   const savedBookmarks = bookmarks.length
   const savedFavorites = favorites.length
   const savedReviewItems = vocab.length
@@ -847,8 +637,6 @@ export default function Home() {
   } = useHomeHeroReveal()
   const savedShelfNotice = useMemo(() => {
     switch (lastSaved?.kind) {
-      case 'learn':
-        return 'Learn save added to the shelf.'
       case 'bookmark':
         return 'Bookmarked passage added to the shelf.'
       case 'favorite':
@@ -873,20 +661,6 @@ export default function Home() {
   }, [hukamnama, hukamnamaPreviewLine?.transliteration])
   const savedPreviewItems = useMemo<HomeSavedPreviewItem[]>(() => {
     const previewItems: HomeSavedPreviewItem[] = []
-    const latestLearnSave = savedLearnItems[0]
-
-    if (latestLearnSave) {
-      previewItems.push({
-        id: latestLearnSave.id,
-        kind: 'learn',
-        feedbackKind: 'learn',
-        label: getLearnItemLabel(latestLearnSave.kind),
-        title: latestLearnSave.title,
-        detail: latestLearnSave.detail,
-        path: buildLearnDetailPath(latestLearnSave.kind, latestLearnSave.id, 'saved'),
-        meta: latestLearnSave.theme,
-      })
-    }
 
     const latestSavedPassage = [
       ...bookmarks.map(item => ({ item, feedbackKind: 'bookmark' as const, label: libraryCopy.bookmarks })),
@@ -923,41 +697,7 @@ export default function Home() {
     }
 
     return previewItems.slice(0, 3)
-  }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, savedLearnItems, vocab])
-  const featuredShabadSupport = useMemo(() => {
-    if (learnCatalogLoading) {
-      return { state: 'loading' as const }
-    }
-
-    if (featuredShabad && featuredShabadPath) {
-      return {
-        state: 'ready' as const,
-        eyebrow: homeMessages.featuredShabad,
-        title: featuredShabad.title,
-        summary: featuredShabad.subtitle || featuredShabad.summary,
-        body: editorial?.learn.compactShabadBody ?? featuredShabad.whyItMatters,
-        meta: featuredShabad.rotation.theme,
-        actionLabel: homeMessages.openFeaturedShabad,
-        path: featuredShabadPath,
-      }
-    }
-
-    return {
-      state: 'unavailable' as const,
-      eyebrow: homeMessages.featuredShabad,
-      title: homeMessages.featuredShabadUnavailable,
-      body: homeMessages.featuredShabadUnavailableBody,
-    }
-  }, [
-    editorial?.learn.compactShabadBody,
-    featuredShabad,
-    featuredShabadPath,
-    homeMessages.featuredShabad,
-    homeMessages.featuredShabadUnavailable,
-    homeMessages.featuredShabadUnavailableBody,
-    homeMessages.openFeaturedShabad,
-    learnCatalogLoading,
-  ])
+  }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, vocab])
   return (
     <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
@@ -1017,7 +757,7 @@ export default function Home() {
               {homeDateLabel}
             </p>
             <div className="flex items-center gap-2">
-              <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
+              <span className="chip-pill">Reading Profile</span>
               <StreakBadge streak={streak} />
             </div>
           </div>
@@ -1103,64 +843,6 @@ export default function Home() {
             )}
           </div>
         </div>
-      </section>
-
-      <section
-        className="home-guidance-note mb-4 py-4 pl-10 pr-4 animate-slide-up stagger-2"
-        aria-label="Today's Guidance"
-        data-testid="home-guidance-hero"
-        data-ai-surface="home-guidance"
-        data-ai-state={learnCatalogLoading ? 'loading' : learnCatalogError ? 'degraded' : todayGuidance && todayGuidancePath ? 'ready' : 'empty'}
-        data-ai-error={learnCatalogError ? 'learn-catalog' : undefined}
-      >
-        <span className="home-note-pin" aria-hidden="true" />
-        <span className="home-sprig" aria-hidden="true" />
-        <img
-          src={guidancePixelMotifSrc}
-          alt=""
-          aria-hidden="true"
-          className="home-guidance-motif"
-        />
-        {learnCatalogLoading ? (
-          <div className="animate-pulse" data-testid="home-guidance-skeleton">
-            <div className="h-3 w-28 rounded bg-sand/20 dark:bg-dark-text/10" />
-            <div className="mt-3 h-8 rounded bg-sand/20 dark:bg-dark-text/10" />
-            <div className="mt-3 h-4 w-4/5 rounded bg-sand/20 dark:bg-dark-text/10" />
-          </div>
-        ) : todayGuidance && todayGuidancePath ? (
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p className="eyebrow">Today&apos;s Guidance</p>
-              <h2 className="mt-2 font-display text-[1.55rem] leading-[1.02] text-ink dark:text-dark-text">
-                {todayGuidance.title}
-              </h2>
-              <p className="mt-2 line-clamp-2 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">
-                {todayGuidance.summary || editorial?.learn.compactGuidanceBody || 'Open today’s Learn doorway and move into the exact guide chosen for the day.'}
-              </p>
-            </div>
-            <Link
-              to={todayGuidancePath}
-              className="interactive-focus interactive-pill-link shrink-0 gap-1 rounded-lg border border-gold/20 bg-parchment-card/72 px-3 py-2 font-sans text-xs font-semibold text-gold-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] dark:border-gold/20 dark:bg-white/[0.045] dark:text-gold-light"
-              data-testid="home-hero-guidance-action"
-              data-ai-action="open-todays-guidance"
-            >
-              <span>Open</span>
-              <IconArrowRight size={13} />
-            </Link>
-          </div>
-        ) : (
-          <>
-            <p className="eyebrow">Today&apos;s Guidance</p>
-            <h2 className="mt-2 font-display text-[1.55rem] leading-[1.02] text-ink dark:text-dark-text">
-              {learnCatalogError ? 'Today’s Learn guidance could not be loaded.' : 'Today’s guidance is preparing the next doorway.'}
-            </h2>
-            <p className="mt-2 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">
-              {learnCatalogError
-                ? 'Home is staying grounded in the hukamnama-led path until the Learn archive is available again.'
-                : editorial?.learn.compactGuidanceBody || 'A short doorway into the day, anchored in a real line and written for return rather than skimming.'}
-            </p>
-          </>
-        )}
       </section>
 
       <section
@@ -1313,64 +995,6 @@ export default function Home() {
       </section>
 
       <section
-        className="home-featured-slip home-quiet-card mb-4 p-4 animate-slide-up stagger-4"
-        data-testid="home-read-today-featured-shabad"
-      >
-        <img
-          src={featuredInstrumentSrc}
-          alt=""
-          aria-hidden="true"
-          data-testid="home-featured-instrument"
-          className="home-featured-instrument"
-        />
-        {featuredShabadSupport.state === 'loading' ? (
-          <div className="animate-pulse" data-testid="home-read-today-featured-shabad-loading">
-            <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28" />
-            <div className="mt-4 h-8 rounded bg-sand/20 dark:bg-dark-text/10" />
-            <div className="mt-3 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-            <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
-          </div>
-        ) : featuredShabadSupport.state === 'ready' ? (
-          <>
-            <div className="flex items-start justify-between gap-3">
-              <div className="min-w-0">
-                <p className="eyebrow">{featuredShabadSupport.eyebrow}</p>
-                <h3 className="mt-2 font-display text-[1.5rem] leading-[1.02] text-ink dark:text-dark-text">
-                  {featuredShabadSupport.title}
-                </h3>
-                <p className="mt-2 font-sans text-sm font-semibold text-ink/70 dark:text-dark-text/75">
-                  {featuredShabadSupport.summary}
-                </p>
-              </div>
-              <span className="chip-pill">{featuredShabadSupport.meta}</span>
-            </div>
-
-            <p className="mt-3 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-              {featuredShabadSupport.body}
-            </p>
-            <Link
-              to={featuredShabadSupport.path}
-              className="interactive-focus interactive-pill-link mt-4 min-h-[42px] gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
-              data-testid="home-open-featured-shabad"
-            >
-              <span>{featuredShabadSupport.actionLabel}</span>
-              <IconArrowRight size={14} />
-            </Link>
-          </>
-        ) : (
-          <>
-            <p className="eyebrow">{featuredShabadSupport.eyebrow}</p>
-            <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
-              {featuredShabadSupport.title}
-            </p>
-            <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-              {featuredShabadSupport.body}
-            </p>
-          </>
-        )}
-      </section>
-
-      <section
         className="home-saved-cabinet p-4 mb-5 animate-slide-up stagger-4"
         aria-labelledby="home-saved-title"
         data-testid="home-saved-overview"
@@ -1396,12 +1020,7 @@ export default function Home() {
             </p>
           </div>
         ) : null}
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4" data-testid="home-saved-metrics">
-          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
-            <IconLeaf className="home-saved-metric-icon" size={20} />
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{learnStateSnapshot.savedItemIds.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.learnSaves}</p>
-          </div>
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3" data-testid="home-saved-metrics">
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <IconLibrary className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedBookmarks}</p>
@@ -1464,7 +1083,7 @@ export default function Home() {
             <div className="home-quiet-card home-saved-empty-preview px-4 py-4">
               <p className="eyebrow">Saved Preview</p>
               <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                Learn saves, bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
+                Bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
               </p>
             </div>
           )}

@@ -21,7 +21,6 @@ const AmritKeertanPage = lazy(() => import('./pages/AmritKeertan'))
 const RehatPage = lazy(() => import('./pages/Rehat'))
 const NitnemCustomizePage = lazy(() => import('./pages/NitnemCustomize'))
 const MorePage = lazy(() => import('./pages/More'))
-const LearnPage = lazy(() => import('./pages/Learn'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
 const PrivacyPage = lazy(() => import('./pages/Privacy'))
 const LibraryPageReader = lazy(() => import('./pages/library/LibraryPageReader'))
@@ -281,7 +280,7 @@ function AppShell() {
                 <Route path="/banis/rehat/:rehatId/chapters/:chapterId" element={<RehatPage />} />
                 <Route path="/banis" element={<BanisPage />} />
                 <Route path="/more" element={<MorePage />} />
-                <Route path="/learn/*" element={<LearnPage />} />
+                <Route path="/learn/*" element={<Navigate to="/" replace />} />
                 <Route path="/vocab" element={<VocabPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />

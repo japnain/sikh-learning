@@ -7,7 +7,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'naam',
     rootMeaning: 'name; the Divine Name',
     theme: 'divine-names',
-    relatedThemePathId: 'words-for-the-divine',
     members: [
       { gurmukhi: 'ਨਾਮੁ', transliteration: 'naam', meaning: 'the Name', exampleAng: 1 },
       { gurmukhi: 'ਨਾਮਿ', transliteration: 'naam', meaning: 'in the Name', exampleAng: 5 },
@@ -21,7 +20,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'gur',
     rootMeaning: 'Guru; guidance',
     theme: 'guidance',
-    relatedThemePathId: 'inside-the-nitnem',
     members: [
       { gurmukhi: 'ਗੁਰੂ', transliteration: 'guroo', meaning: 'Guru' },
       { gurmukhi: 'ਗੁਰਿ', transliteration: 'gur', meaning: 'through the Guru', exampleAng: 2 },
@@ -35,7 +33,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'kar',
     rootMeaning: 'do; make; create',
     theme: 'creation',
-    relatedThemePathId: 'creation-and-time',
     members: [
       { gurmukhi: 'ਕਰਤਾ', transliteration: 'kartaa', meaning: 'creator / doer', exampleAng: 1 },
       { gurmukhi: 'ਕਰਿ', transliteration: 'kar', meaning: 'having done', exampleAng: 8 },
@@ -49,7 +46,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'bhagat',
     rootMeaning: 'devotion; devotee',
     theme: 'devotion',
-    relatedThemePathId: 'language-of-devotion',
     members: [
       { gurmukhi: 'ਭਗਤਿ', transliteration: 'bhagat', meaning: 'devotion' },
       { gurmukhi: 'ਭਗਤ', transliteration: 'bhagat', meaning: 'devotee' },
@@ -62,7 +58,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'hukam',
     rootMeaning: 'order; command',
     theme: 'creation',
-    relatedThemePathId: 'creation-and-time',
     members: [
       { gurmukhi: 'ਹੁਕਮੁ', transliteration: 'hukam', meaning: 'command / order', exampleAng: 1 },
       { gurmukhi: 'ਹੁਕਮਿ', transliteration: 'hukam', meaning: 'within Hukam', exampleAng: 1 },
@@ -75,7 +70,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'sat',
     rootMeaning: 'truth; true',
     theme: 'divine-names',
-    relatedThemePathId: 'words-for-the-divine',
     members: [
       { gurmukhi: 'ਸਤਿ', transliteration: 'sat', meaning: 'truth', exampleAng: 1 },
       { gurmukhi: 'ਸਚੁ', transliteration: 'sach', meaning: 'true', exampleAng: 1 },
@@ -88,7 +82,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'har',
     rootMeaning: 'the Divine; remover',
     theme: 'divine-names',
-    relatedThemePathId: 'words-for-the-divine',
     members: [
       { gurmukhi: 'ਹਰਿ', transliteration: 'har', meaning: 'the Divine' },
       { gurmukhi: 'ਹਰਿ ਨਾਮੁ', transliteration: 'har naam', meaning: 'the Divine Name' },
@@ -101,7 +94,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'akaal',
     rootMeaning: 'beyond time',
     theme: 'creation',
-    relatedThemePathId: 'creation-and-time',
     members: [
       { gurmukhi: 'ਅਕਾਲ', transliteration: 'akaal', meaning: 'timeless', exampleAng: 1 },
       { gurmukhi: 'ਅਕਾਲ ਮੂਰਤਿ', transliteration: 'akaal moorat', meaning: 'timeless form', exampleAng: 1 },
@@ -114,7 +106,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'purakh',
     rootMeaning: 'being; personified presence',
     theme: 'divine-names',
-    relatedThemePathId: 'words-for-the-divine',
     members: [
       { gurmukhi: 'ਪੁਰਖੁ', transliteration: 'purakh', meaning: 'being', exampleAng: 1 },
       { gurmukhi: 'ਅਕਾਲ ਪੁਰਖ', transliteration: 'akaal purakh', meaning: 'timeless being' },
@@ -127,7 +118,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'simar',
     rootMeaning: 'remember; meditate',
     theme: 'devotion',
-    relatedThemePathId: 'language-of-devotion',
     members: [
       { gurmukhi: 'ਸਿਮਰਿ', transliteration: 'simar', meaning: 'remembering' },
       { gurmukhi: 'ਸਿਮਰਨ', transliteration: 'simaran', meaning: 'remembrance' },
@@ -140,7 +130,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'araadh',
     rootMeaning: 'adore; worship',
     theme: 'devotion',
-    relatedThemePathId: 'language-of-devotion',
     members: [
       { gurmukhi: 'ਅਰਾਧਨਾ', transliteration: 'araadhanaa', meaning: 'adoration' },
       { gurmukhi: 'ਅਰਾਧਿ', transliteration: 'araadh', meaning: 'worshipping' },
@@ -153,7 +142,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'nir',
     rootMeaning: 'without; free from',
     theme: 'divine-names',
-    relatedThemePathId: 'words-for-the-divine',
     members: [
       { gurmukhi: 'ਨਿਰਭਉ', transliteration: 'nirbhau', meaning: 'without fear', exampleAng: 1 },
       { gurmukhi: 'ਨਿਰਵੈਰੁ', transliteration: 'nirvair', meaning: 'without hatred', exampleAng: 1 },
@@ -202,7 +190,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'anand',
     rootMeaning: 'bliss',
     theme: 'devotion',
-    relatedThemePathId: 'inside-the-nitnem',
     members: [
       { gurmukhi: 'ਅਨੰਦੁ', transliteration: 'anand', meaning: 'bliss' },
       { gurmukhi: 'ਆਨੰਦ', transliteration: 'aanand', meaning: 'joy' },
@@ -239,7 +226,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'sabad',
     rootMeaning: 'shabad; divine utterance',
     theme: 'inside-the-nitnem',
-    relatedThemePathId: 'inside-the-nitnem',
     members: [
       { gurmukhi: 'ਸਬਦੁ', transliteration: 'sabad', meaning: 'the Word' },
       { gurmukhi: 'ਸਬਦੀ', transliteration: 'sabadee', meaning: 'through the Word' },
@@ -300,7 +286,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'jot',
     rootMeaning: 'light',
     theme: 'divine-names',
-    relatedThemePathId: 'words-for-the-divine',
     members: [
       { gurmukhi: 'ਜੋਤਿ', transliteration: 'jot', meaning: 'light' },
       { gurmukhi: 'ਜੋਤੀ', transliteration: 'jotee', meaning: 'lights' },
@@ -313,7 +298,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'kaal',
     rootMeaning: 'time; death',
     theme: 'creation',
-    relatedThemePathId: 'creation-and-time',
     members: [
       { gurmukhi: 'ਕਾਲ', transliteration: 'kaal', meaning: 'time / death' },
       { gurmukhi: 'ਅਕਾਲ', transliteration: 'akaal', meaning: 'timeless', exampleAng: 1 },
@@ -326,7 +310,6 @@ export const WORD_FAMILIES: WordFamily[] = [
     rootTransliteration: 'rach',
     rootMeaning: 'arrange; compose; create',
     theme: 'creation',
-    relatedThemePathId: 'creation-and-time',
     members: [
       { gurmukhi: 'ਰਚਨਾ', transliteration: 'rachanaa', meaning: 'creation / arrangement' },
       { gurmukhi: 'ਰਚਿ', transliteration: 'rach', meaning: 'having fashioned' },

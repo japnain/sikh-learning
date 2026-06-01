@@ -5,7 +5,6 @@ import { applyRemoteSnapshot, exportLocalSnapshot } from './snapshot'
 import type {
   CloudLocalSnapshot,
   CloudRemoteSnapshot,
-  CloudSavedLearnItemPayload,
   CloudUserSummary,
   MergeLocalStateResult,
 } from './types'
@@ -15,7 +14,6 @@ import { useBookmarksStore } from '../store/bookmarks'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
-import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
@@ -76,10 +74,6 @@ function getAvailableProviders() {
 }
 
 function toSupabaseMergeSnapshot(snapshot: CloudLocalSnapshot) {
-  const savedLearnItemIds = snapshot.savedItems
-    .filter(record => record.kind === 'learn-item' && !record.deletedAt)
-    .map(record => (record.payload as CloudSavedLearnItemPayload).itemId)
-
   const readingProgressRecord = snapshot.learningProgress.find(record => record.scope === 'reading-progress')
   const readingProgressPayload = readingProgressRecord?.payload as { progress?: Record<string, number> } | undefined
 
@@ -95,7 +89,6 @@ function toSupabaseMergeSnapshot(snapshot: CloudLocalSnapshot) {
     bookmarks: snapshot.savedItems
       .filter(record => record.kind === 'bookmark')
       .map(record => record.payload),
-    savedLearnItemIds,
     vocabEntries: snapshot.vocabEntries,
     learningProgress: snapshot.learningProgress,
     readingProgress: readingProgressPayload?.progress ?? {},
@@ -126,7 +119,6 @@ function bindStoreSubscriptions() {
     useBookmarksStore.subscribe(() => scheduleSync('bookmarks')),
     useFavoritesStore.subscribe(() => scheduleSync('favorites')),
     useVocabStore.subscribe(() => scheduleSync('vocab')),
-    useLearningStore.subscribe(() => scheduleSync('learning')),
     useProgressStore.subscribe(() => scheduleSync('study-progress')),
     useReadingProgressStore.subscribe(() => scheduleSync('reading-progress')),
     useNitemStore.subscribe(() => scheduleSync('nitnem')),

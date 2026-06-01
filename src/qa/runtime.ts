@@ -1,8 +1,6 @@
 import type { QaStoredControls } from './types'
 
 export type QaFaultTarget =
-  | 'learn-catalog'
-  | 'learn-detail'
   | 'home-search'
   | 'read-search'
   | 'study-ang'

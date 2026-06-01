@@ -30,16 +30,6 @@ function ReadGlyph({ active }: NavGlyphProps) {
   )
 }
 
-function LearnGlyph({ active }: NavGlyphProps) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="overflow-visible" aria-hidden="true">
-      <path d="M12 3.15 14 7.15l4.4.62-3.18 3.05.76 4.32L12 13.15l-3.98 1.99.76-4.32L5.6 7.77l4.4-.62L12 3.15Z" fill="currentColor" opacity={active ? 0.26 : 0.12} />
-      <path d="M12 3.15 14 7.15l4.4.62-3.18 3.05.76 4.32L12 13.15l-3.98 1.99.76-4.32L5.6 7.77l4.4-.62L12 3.15Z" stroke="currentColor" strokeWidth={active ? 1.9 : 1.66} strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12 14.85v5.65M9.3 17.45h5.4" stroke="currentColor" strokeWidth="1.48" strokeLinecap="round" opacity={active ? 0.98 : 0.6} />
-    </svg>
-  )
-}
-
 function SavedGlyph({ active }: NavGlyphProps) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="overflow-visible" aria-hidden="true">
@@ -91,13 +81,6 @@ export default function NavBar() {
       label: copy.nav.read,
       ariaLabel: `${copy.nav.read} tab`,
       Glyph: ReadGlyph,
-    },
-    {
-      id: 'learn',
-      to: '/learn',
-      label: copy.nav.learn,
-      ariaLabel: `${copy.nav.learn} tab`,
-      Glyph: LearnGlyph,
     },
     {
       id: 'saved',

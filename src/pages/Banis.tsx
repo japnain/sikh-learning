@@ -856,7 +856,7 @@ export default function Banis() {
                           </p>
                         ) : null}
                       </div>
-                      <span className="chip-pill">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
+                      <span className="chip-pill">Read</span>
                     </div>
                   </button>
                 )

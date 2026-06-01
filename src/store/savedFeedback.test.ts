@@ -12,19 +12,19 @@ afterEach(() => {
 
 test('records the latest saved item and clears it after the feedback ttl', () => {
   useSavedFeedbackStore.getState().recordSaved({
-    kind: 'learn',
-    targetId: 'topic-anxiety',
+    kind: 'bookmark',
+    targetId: 'G-1-1',
     surfacedAt: '2026-04-11T11:00:00.000Z',
   })
 
   expect(useSavedFeedbackStore.getState().lastSaved).toEqual({
-    kind: 'learn',
-    targetId: 'topic-anxiety',
+    kind: 'bookmark',
+    targetId: 'G-1-1',
     surfacedAt: '2026-04-11T11:00:00.000Z',
   })
 
   vi.advanceTimersByTime(SAVED_FEEDBACK_TTL_MS - 1)
-  expect(useSavedFeedbackStore.getState().lastSaved?.targetId).toBe('topic-anxiety')
+  expect(useSavedFeedbackStore.getState().lastSaved?.targetId).toBe('G-1-1')
 
   vi.advanceTimersByTime(1)
   expect(useSavedFeedbackStore.getState().lastSaved).toBeNull()

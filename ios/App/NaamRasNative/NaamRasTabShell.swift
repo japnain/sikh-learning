@@ -27,7 +27,6 @@ struct NaamRasTabShell: View {
         switch tab {
         case .home: HomeScreen()
         case .read: ReadScreen()
-        case .learn: LearnScreen()
         case .saved: SavedScreen()
         case .more: MoreScreen()
         }
@@ -43,22 +42,11 @@ struct HomeScreen: View {
                 HomeDoorHero(
                     item: appState.continueReading,
                     profileLabel: appState.profile.level.title,
-                    savedCount: appState.bookmarks.count + appState.savedLearnItemIds.count
+                    savedCount: appState.bookmarks.count
                 ) {
                     appState.openReadTab()
                 } openSaved: {
                     appState.selectedTab = .saved
-                }
-
-                HomeFlowBand(
-                    imageName: "FlowLearnHero",
-                    eyebrow: "Today's Guidance",
-                    title: "One real next step, not a prompt.",
-                    text: "Open the Learn doorway for a short, source-aware guide that stays grounded in the line.",
-                    actionTitle: "Open Learn",
-                    symbolName: "arrow.right"
-                ) {
-                    appState.selectedTab = .learn
                 }
 
                 HomeFlowBand(
@@ -72,7 +60,7 @@ struct HomeScreen: View {
                     appState.selectedTab = .read
                 }
 
-                SectionHeader(title: "Read Today", subtitle: "Hukamnama, Nitnem, today's guidance, and saved return points stay one scroll apart.")
+                SectionHeader(title: "Read Today", subtitle: "Hukamnama, Nitnem, and saved return points stay one scroll apart.")
                 NativeCard {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
                         FlowActionTile(title: "Hukamnama", subtitle: "Open today's guidance with reader controls.", systemImage: "sparkle.magnifyingglass", tint: .naamGold) {
@@ -80,9 +68,6 @@ struct HomeScreen: View {
                         }
                         FlowActionTile(title: "Nitnem", subtitle: "Jump into the daily bani shelf.", systemImage: "book.closed", tint: .naamSage) {
                             appState.selectedTab = .read
-                        }
-                        FlowActionTile(title: "Guidance", subtitle: "Learn from one focused practice.", systemImage: "graduationcap", tint: .naamSage) {
-                            appState.selectedTab = .learn
                         }
                         FlowActionTile(title: "Saved", subtitle: "Return to bookmarks and progress.", systemImage: "bookmark", tint: .naamGold) {
                             appState.selectedTab = .saved
@@ -92,8 +77,8 @@ struct HomeScreen: View {
 
                 FlowSavedFooter(
                     title: "Saved and progress",
-                    subtitle: "Bookmarks, Learn saves, and reader progress stay available offline first.",
-                    value: "\(appState.bookmarks.count + appState.savedLearnItemIds.count)",
+                    subtitle: "Bookmarks and reader progress stay available offline first.",
+                    value: "\(appState.bookmarks.count)",
                     symbolName: "bookmark.fill",
                     actionTitle: "Open Saved"
                 ) {
@@ -321,106 +306,6 @@ struct ReaderScreen: View {
     }
 }
 
-struct LearnScreen: View {
-    @EnvironmentObject private var appState: NaamRasAppState
-    @State private var activeCategory = "All"
-
-    private var categories: [String] {
-        ["All"] + Array(Set(appState.learnItems.map(\.category))).sorted()
-    }
-
-    private var filteredItems: [LearnItem] {
-        appState.learnItems.filter { activeCategory == "All" || $0.category == activeCategory }
-    }
-
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                FlowHero(
-                    imageName: "FlowLearnHero",
-                    eyebrow: "Learn",
-                    title: "Guidance without losing the line.",
-                    subtitle: "Topics, shabads, daily guidance, collections, saved Learn items, and vocab review stay in one calm flow.",
-                    symbolName: "graduationcap",
-                    progressTitle: "Saved Learn items",
-                    progressValue: min(Double(appState.savedLearnItemIds.count) / 12, 1)
-                )
-
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
-                    FlowActionTile(title: "Topics", subtitle: "Study by theme.", systemImage: "square.grid.2x2", tint: .naamSage) {
-                        activeCategory = categories.first { $0.localizedCaseInsensitiveContains("Topic") } ?? "All"
-                    }
-                    FlowActionTile(title: "Shabads", subtitle: "Open deeper readings.", systemImage: "music.note.list", tint: .naamGold) {
-                        activeCategory = categories.first { $0.localizedCaseInsensitiveContains("Shabad") } ?? "All"
-                    }
-                    FlowActionTile(title: "Guidance", subtitle: "Daily practice cards.", systemImage: "sparkles", tint: .naamSage) {
-                        activeCategory = categories.first { $0.localizedCaseInsensitiveContains("Guidance") } ?? "All"
-                    }
-                    FlowActionTile(title: "Collections", subtitle: "Follow a grouped path.", systemImage: "rectangle.stack", tint: .naamGold) {
-                        activeCategory = categories.first { $0.localizedCaseInsensitiveContains("Collection") } ?? "All"
-                    }
-                }
-
-                SectionHeader(title: "Learning shelf", subtitle: "Guided paths keep original text, source, and practice together.")
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        ForEach(categories, id: \.self) { category in
-                            Button {
-                                activeCategory = category
-                            } label: {
-                                Text(category)
-                                    .font(.caption.weight(.semibold))
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 8)
-                                    .background(activeCategory == category ? Color.naamSage.opacity(0.22) : Color.white.opacity(0.62), in: Capsule())
-                                    .foregroundStyle(Color.naamInk)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                }
-                Text("\(filteredItems.count) items")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(Color.naamInk.opacity(0.52))
-
-                ForEach(filteredItems) { item in
-                    NativeCard {
-                        HStack(alignment: .top, spacing: 12) {
-                            VStack(alignment: .leading, spacing: 7) {
-                                Eyebrow(text: item.category)
-                                Text(item.title)
-                                    .font(.title3.weight(.semibold))
-                                    .foregroundStyle(Color.naamInk)
-                                Text(item.summary)
-                                    .foregroundStyle(Color.naamInk.opacity(0.64))
-                            }
-                            Spacer()
-                            Button {
-                                appState.toggleLearnItem(item)
-                            } label: {
-                                Image(systemName: appState.isLearnItemSaved(item) ? "bookmark.fill" : "bookmark")
-                                    .font(.title3)
-                            }
-                        }
-                    }
-                }
-
-                FlowSavedFooter(
-                    title: "Saved Learn",
-                    subtitle: "Saved guidance and vocab review items remain ready for the next session.",
-                    value: "\(appState.savedLearnItemIds.count)",
-                    symbolName: "bookmark.fill",
-                    actionTitle: "Open Saved"
-                ) {
-                    appState.selectedTab = .saved
-                }
-            }
-            .padding(18)
-        }
-        .background(NativeBackground())
-    }
-}
-
 struct SavedScreen: View {
     @EnvironmentObject private var appState: NaamRasAppState
 
@@ -431,19 +316,18 @@ struct SavedScreen: View {
                     imageName: "FlowSavedHero",
                     eyebrow: "Saved",
                     title: "Everything worth returning to.",
-                    subtitle: "Bookmarks, favorite guidance, vocab review, and reading progress stay offline first and sync when you choose.",
+                    subtitle: "Bookmarks, vocab review, and reading progress stay offline first and sync when you choose.",
                     symbolName: "bookmark.fill",
                     progressTitle: "Saved total",
-                    progressValue: min(Double(appState.bookmarks.count + appState.savedLearnItemIds.count) / 12, 1)
+                    progressValue: min(Double(appState.bookmarks.count) / 12, 1)
                 )
 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
                     MetricCard(title: "Bookmarks", value: "\(appState.bookmarks.count)", symbol: "bookmark")
-                    MetricCard(title: "Learn saves", value: "\(appState.savedLearnItemIds.count)", symbol: "graduationcap")
                     MetricCard(title: "Progress", value: "\(appState.readingProgress.count)", symbol: "chart.line.uptrend.xyaxis")
                 }
 
-                if appState.bookmarks.isEmpty && appState.savedLearnItems.isEmpty {
+                if appState.bookmarks.isEmpty {
                     NativeCard {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "bookmark")
@@ -452,7 +336,7 @@ struct SavedScreen: View {
                             Text("Nothing saved yet.")
                                 .font(.title2.bold())
                                 .foregroundStyle(Color.naamInk)
-                            Text("Save a reader line or Learn path and it appears here with source context.")
+                            Text("Save a reader line and it appears here with source context.")
                                 .foregroundStyle(Color.naamInk.opacity(0.64))
                         }
                     }
@@ -474,25 +358,10 @@ struct SavedScreen: View {
                     }
                 }
 
-                if !appState.savedLearnItems.isEmpty {
-                    SectionHeader(title: "Saved Learn", subtitle: "Guided items you marked for review.")
-                }
-                ForEach(appState.savedLearnItems) { item in
-                    NativeCard {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Eyebrow(text: item.category)
-                            Text(item.title)
-                                .font(.headline)
-                            Text(item.summary)
-                                .foregroundStyle(Color.naamInk.opacity(0.64))
-                        }
-                    }
-                }
-
                 FlowSavedFooter(
                     title: "Continue from Saved",
-                    subtitle: "Use Saved as the bottom return point after reading or learning.",
-                    value: "\(appState.bookmarks.count + appState.savedLearnItemIds.count)",
+                    subtitle: "Use Saved as the bottom return point after reading.",
+                    value: "\(appState.bookmarks.count)",
                     symbolName: "tray.full",
                     actionTitle: "Open Read"
                 ) {
@@ -574,7 +443,7 @@ struct MoreScreen: View {
                         Eyebrow(text: "Privacy & Sources")
                         Text("No subscriptions, trial gates, paid locks, or unsupported recitation claims.")
                             .font(.headline)
-                        Text("Guest data is stored on device. When signed in, bookmarks, reader preferences, vocab, learning state, and reading progress sync through Supabase with row-level security.")
+                        Text("Guest data is stored on device. When signed in, bookmarks, reader preferences, vocab, and reading progress sync through Supabase with row-level security.")
                             .foregroundStyle(Color.naamInk.opacity(0.64))
                     }
                 }
@@ -611,7 +480,7 @@ struct MoreScreen: View {
                 FlowSavedFooter(
                     title: "Saved stays local first",
                     subtitle: "Account setup never blocks reading; saved content can sync after sign-in.",
-                    value: "\(appState.bookmarks.count + appState.savedLearnItemIds.count)",
+                    value: "\(appState.bookmarks.count)",
                     symbolName: "bookmark.fill",
                     actionTitle: "Open Saved"
                 ) {

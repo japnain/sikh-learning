@@ -11,7 +11,7 @@ const CLOUD_COPY = {
   en: {
     eyebrow: 'Cloud Sync',
     title: 'Keep NaamRas with you across devices.',
-    body: 'Supabase backs up bookmarks, vocab, Learn saves, progress, and reader preferences without changing the guest reading flow.',
+    body: 'Supabase backs up bookmarks, vocab, reading progress, and reader preferences without changing the guest reading flow.',
     notConfigured: 'This build is still running local-only. Add the Supabase environment variables to enable sign-in and sync.',
     signedOut: 'Browsing stays anonymous. Sign in only when you want backup and cross-device sync.',
     providersHint: 'Enable Apple and email OTP in Supabase Auth to match the App Store rollout.',
@@ -33,7 +33,7 @@ const CLOUD_COPY = {
     providerSupported: 'Supported',
     providerNeedsSetup: 'Needs setup',
     featureGuest: 'Guest reading stays open',
-    featureLibrary: 'Bookmarks, vocab, Learn, progress',
+    featureLibrary: 'Bookmarks, vocab, reading progress',
     featureMerge: 'Offline queue with merge replay',
     mergeHint: 'First sign-in merges this device into your account before syncing future changes.',
     localOnlyStatus: 'Local only',
@@ -52,7 +52,7 @@ const CLOUD_COPY = {
   pa: {
     eyebrow: 'ਕਲਾਉਡ ਸਿੰਕ',
     title: 'NaamRas ਨੂੰ ਹਰ ਡਿਵਾਈਸ ਤੇ ਨਾਲ ਰੱਖੋ।',
-    body: 'Supabase ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, Learn saves, ਤਰੱਕੀ ਅਤੇ ਰੀਡਰ ਪਸੰਦਾਂ ਦਾ ਬੈਕਅੱਪ ਰੱਖਦਾ ਹੈ, ਪਰ guest ਪੜ੍ਹਾਈ ਨੂੰ ਨਹੀਂ ਤੋੜਦਾ।',
+    body: 'Supabase ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, ਪੜ੍ਹਨ ਤਰੱਕੀ ਅਤੇ ਰੀਡਰ ਪਸੰਦਾਂ ਦਾ ਬੈਕਅੱਪ ਰੱਖਦਾ ਹੈ, ਪਰ guest ਪੜ੍ਹਾਈ ਨੂੰ ਨਹੀਂ ਤੋੜਦਾ।',
     notConfigured: 'ਇਹ build ਹਾਲੇ ਸਿਰਫ਼ local mode ਵਿੱਚ ਹੈ। Sign-in ਅਤੇ sync ਲਈ Supabase environment variables ਜੋੜੋ।',
     signedOut: 'ਬ੍ਰਾਊਜ਼ਿੰਗ ਅਗਿਆਤ ਹੀ ਰਹਿੰਦੀ ਹੈ। Sign in ਕੇਵਲ ਤਦੋਂ ਕਰੋ ਜਦੋਂ ਤੁਸੀਂ backup ਅਤੇ cross-device sync ਚਾਹੁੰਦੇ ਹੋ।',
     providersHint: 'App Store rollout ਲਈ Supabase Auth ਵਿੱਚ Apple ਅਤੇ email OTP ਚਾਲੂ ਕਰੋ।',
@@ -74,7 +74,7 @@ const CLOUD_COPY = {
     providerSupported: 'ਸਮਰਥਿਤ',
     providerNeedsSetup: 'ਸੈੱਟਅੱਪ ਲੋੜੀਂਦਾ',
     featureGuest: 'Guest ਪੜ੍ਹਾਈ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ',
-    featureLibrary: 'ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, Learn, ਤਰੱਕੀ',
+    featureLibrary: 'ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, ਪੜ੍ਹਨ ਤਰੱਕੀ',
     featureMerge: 'Offline queue ਅਤੇ merge replay',
     mergeHint: 'ਪਹਿਲੀ sign-in ਇਸ ਡਿਵਾਈਸ ਦਾ ਡਾਟਾ ਤੁਹਾਡੇ account ਨਾਲ merge ਕਰਦੀ ਹੈ, ਫਿਰ ਅੱਗੇ sync ਹੁੰਦਾ ਹੈ।',
     localOnlyStatus: 'ਸਿਰਫ਼ local',
@@ -93,7 +93,7 @@ const CLOUD_COPY = {
   hi: {
     eyebrow: 'क्लाउड सिंक',
     title: 'NaamRas को हर डिवाइस पर साथ रखिए।',
-    body: 'Supabase बुकमार्क, शब्द, Learn saves, प्रगति और रीडर पसंदों का बैकअप रखता है, बिना guest reading flow को बदले।',
+    body: 'Supabase बुकमार्क, शब्द, पढ़ने की प्रगति और रीडर पसंदों का बैकअप रखता है, बिना guest reading flow को बदले।',
     notConfigured: 'यह build अभी केवल local mode में है। Sign-in और sync के लिए Supabase environment variables जोड़िए।',
     signedOut: 'ब्राउज़िंग गुमनाम ही रहती है। Sign in केवल तब करें जब आपको backup और cross-device sync चाहिए।',
     providersHint: 'App Store rollout के लिए Supabase Auth में Apple और email OTP चालू कीजिए।',
@@ -115,7 +115,7 @@ const CLOUD_COPY = {
     providerSupported: 'समर्थित',
     providerNeedsSetup: 'सेटअप चाहिए',
     featureGuest: 'Guest reading खुली रहती है',
-    featureLibrary: 'बुकमार्क, शब्द, Learn, प्रगति',
+    featureLibrary: 'बुकमार्क, शब्द, पढ़ने की प्रगति',
     featureMerge: 'Offline queue और merge replay',
     mergeHint: 'पहली sign-in इस डिवाइस के डेटा को आपके account के साथ merge करती है, फिर आगे sync चलता है।',
     localOnlyStatus: 'केवल local',
@@ -321,7 +321,7 @@ function getCloudSyncSummary({
       : 'A sync is queued and will travel on the next successful connection.'
   }
 
-  return 'Bookmarks, vocabulary, Learn progress, and reader preferences follow you quietly.'
+  return 'Bookmarks, vocabulary, reading progress, and reader preferences follow you quietly.'
 }
 
 function getProviderAvailabilityView({

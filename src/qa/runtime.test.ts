@@ -17,10 +17,10 @@ test('reads fail controls from the query string', async () => {
 
 test('reads empty controls from localStorage', async () => {
   window.localStorage.setItem('naamras:qa-controls', JSON.stringify({
-    empty: ['learn-detail'],
+    empty: ['study-ang'],
   }))
 
-  const value = await withQaControl('learn-detail', async () => 'loaded', {
+  const value = await withQaControl('study-ang', async () => 'loaded', {
     emptyValue: 'empty',
   })
 

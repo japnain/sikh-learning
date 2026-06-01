@@ -96,9 +96,9 @@ const MANUAL_RESEARCH_BY_ID: Record<string, ReaderEditorialResearch> = {
     "usage": "Read with Laavan and other marriage-linked bani in mind, but keep the spiritual metaphor primary rather than treating it as social ceremony alone."
   },
   "onkar": {
-    "premise": "Dakhani Onkar in Raag Ramkali, Angs 929–938, is Guru Nanak Sahib Ji’s extended reflection around Oankar, learning, creation, and the One.",
+    "premise": "Dakhani Onkar in Raag Ramkali, Angs 929–938, is Guru Nanak Sahib Ji’s extended reflection around Oankar, grammar, creation, and the One.",
     "context": "Reviewed from the Ramkali Dakhani Oankar heading and range. The copy names the teaching-dialogue quality without speculating beyond the source heading.",
-    "usage": "Read as a sustained teaching composition. Keep the opening Oankar frame visible as later lines unfold grammar, learning, and Divine order."
+    "usage": "Read as a sustained teaching composition. Keep the opening Oankar frame visible as later lines unfold grammar, instruction, and Divine order."
   },
   "sidh-gosht": {
     "premise": "Sidh Gosht in Raag Ramkali, Angs 938–946, presents Guru Nanak Sahib Ji’s dialogue with Siddhas on yoga, detachment, the Guru, and living truthfully in the world.",
@@ -336,7 +336,7 @@ const MANUAL_RESEARCH_BY_ID: Record<string, ReaderEditorialResearch> = {
     "usage": "Use for source browsing with extra attention to headings and ang changes; check each section before treating the route as one continuous composition."
   },
   "bavan-akhri-kabir": {
-    "premise": "Bavan Akhri Kabir Ji uses the alphabetic teaching form in Raag Gauri on Angs 340–343 to press remembrance beyond learned display.",
+    "premise": "Bavan Akhri Kabir Ji uses the alphabetic teaching form in Raag Gauri on Angs 340–343 to press remembrance beyond scholarly display.",
     "context": "Reviewed from the Gauri Bavan Akhri Kabir heading and range. The copy keeps Bhagat Kabir Ji’s voice distinct from the Guru Arjan Bavan Akhri entry.",
     "usage": "Read letter by letter and compare the alphabetic discipline with the longer Bavan Akhri entry, without merging the two compositions."
   },
@@ -348,10 +348,10 @@ const MANUAL_RESEARCH_BY_ID: Record<string, ReaderEditorialResearch> = {
   "patti-likhi": {
     "premise": "Patti Likhi in Raag Asa uses the writing-board/alphabet image as a teaching frame for Guru Nanak Sahib Ji’s spiritual instruction.",
     "context": "Grounded in the Asa Mahalla 1 Patti Likhi heading and Angs 432–434. The copy names its pedagogical form instead of treating it as generic alphabet poetry.",
-    "usage": "Read as instruction: each letter-like turn should slow the reader into learning, correction, and remembrance."
+    "usage": "Read as instruction: each letter-like turn should slow the reader into reflection, correction, and remembrance."
   },
   "patti-mahalla-3": {
-    "premise": "Patti Mahalla 3 continues the alphabet-board teaching mode in Asa, bringing Guru Amar Das Ji’s voice into the same disciplined learning frame.",
+    "premise": "Patti Mahalla 3 continues the alphabet-board teaching mode in Asa, bringing Guru Amar Das Ji’s voice into the same disciplined instruction frame.",
     "context": "Reviewed from the contiguous Angs 434–435 placement and title. The note keeps the relation to Patti Likhi visible while preserving it as a separate entry.",
     "usage": "Read alongside Patti Likhi to compare how the teaching form is carried by different Guru voices."
   },
