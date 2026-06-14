@@ -1,0 +1,41 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-109-episode-about-satguru-guru-nanak",
+  "chapterNumber": 111,
+  "episodeNumber": 109,
+  "kind": "episode",
+  "title": "Episode About Satguru (Guru Nanak)",
+  "volume": 2,
+  "startSourcePage": 336,
+  "endSourcePage": 337,
+  "pages": [
+    {
+      "sourcePageNumber": 336,
+      "fileName": "EPUB/page_336.html",
+      "blocks": [
+        {
+          "id": "v2-p336-1",
+          "type": "line",
+          "text": "W. hhth fwa oft (fa ifc fnur h^) 110. sakhi matab singh ki (dhann dhann singh matab) : h£ w*ft prat hh^h fmr at nfe i S3\" 3TCT ddsidld t tTfe»TR ^ Hfe 1 1 1 dohra : suno sakhi ab dusn matab singh ki joi. lain gayo harbhagat tho jandialc valo soi.l. trust : au3 it? @h H3T« est i thut a V5f3?i ?5st i h§ ^tr ay thuts fto i h?i et3?> an »r% s tf® i ? i chaupai : bahut phauj us muglo dai. matab singh ko pakrdan lai. sou rahai bahu singhan sath. jan thordan bahu avai na hath.2. fnur u m y% i 3 trfe tTHHfi 5% 1 ?5d7i ^ fsWd\" 13 1 matab singh hai suro puro. nam sunat hoi dushman duro. nam lei us bandhc hathiar. maran laran ko rahai tiar.3. frlTTd\" dMoCdcS a^rfe I fcSdVlcSl T33 ?75 tFTS\" I fnur gff ssf to >M i »ffefu HoFut ia i jidhar halkaran day 6 batai. chardyo nirnjani tit val dhai. singh rahain luk bclan manhi. phauj vardat chit atihi sankahi.4. nir tnur fl- nrt1 | >(Tg- f^ur f?r k ay rro i f?> fs3 fc> 5tst faw i HH^a fmr 3a a hs ira mi marain singh jo avain hath, marc singh un lai bahu sath. unai dhundat din kai bitayo. matab singh tab yau sun payo.5. EU^\" : 3Tf THUf Fit 3d\" 3TCT yrfUxfrHfi FTO ?5d\"d\" I HTH Mdl^cS 333\" THd\" EdTO\" HE7??) ^Td\" I £ I dohra : tarii singh ji tur gayo ahidian sath lahaur. sis lagavan turak sir dargah machavan raur.6. trust : ?5ura ffts fFTd\" s^a i fanns\" Edgra §h 5ra/ tfd^a i o!H?> H ordcIT1 HTH fcWtS I 335^ ^ THd\" THd\" E§3T Wrfs IP I chaupai : lahaur jai sir chardgu navab. lijai dargah us karu kharab. kcsan so karuga sis nibai. turkan kc sir sir dcug lai. 7. fts 1% tHd\" HTUa I H^5 HS THd\" 3d^?> I THUf W> H HIT HE1^ I tHUf US H 3d^i\" THd\" It I ui mannai sir sahib bhana. suphal mannc sir turkan lana. singh dhann jo juddh machavain. singh dhann jo turak sir lavain.8."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 337,
+      "fileName": "EPUB/page_337.html",
+      "blocks": [
+        {
+          "id": "v2-p337-1",
+          "type": "line",
+          "text": "Episode 110 Episode About Mehtab Singh1 ((Praise Be to Mehtab Singh) Dohra : (Dear devout readers) listen to another episode, About Mehtab Singh (a great Singh Martyr), Whom Harbhagat2 (Niranjania) hailing from Jandiala, Had proceeded to take into Mughal's custody. (1) Chaupai : Having been allotted a large contingent of Mughal troops, He proceeded to take Mehtab Singh into custody. Mehtab Singh being, always with a large contingent of Singhs, A smaller Mughal contingent could never arrest him. (2) Mehtab Singh being a mighty warrior and a Singh perfect, His very name sent shivers down the enemy's spine. The Singhs, who put on their armour by swearing on Mehtab Singh's name, They would always remain prepared to do or die. (3) The possible hideouts of Mehtab Singh the Mughal spies indicated, Were those raided by the troops of Harbhagat Niranjania. The Singhs having camouflaged themselves in the wilds, Mughal troops did feel scared of getting into the wild growth. (4) They would kill an odd Singh whom they came across, Who would always fight to the finish, killing so many Mughals. As Harbhagat kept on looking for Mehtab Singh for many days, Mehtab Singh came to hear about this witch hunt from Singhs. (5) Dohra : Mehtab Singh heard of Bhai Taru Singh's being taken a prisoner, The Mughal officials having taken him to the city of Lahore. With Bhai Taru Singh making a supreme sacrifice of his life, A turmoil was bound to erupt at the Divine Court. (6) Chaupai : Laying the blame for his sacrifice squarely on Lahore's Nawab, Bhai Taru Singh would make the Nawab face Divine retribution. Keeping his faith with hair intact till the last breath, Bhai Taru Singh would lay the blame squarely on the Mughals. (7) Acquiescing and abiding with the will Divine, Would Taru Singh succeed in proving the Mughals guilty. Praise be to the Singh who wages a religious war, Praise be to him who sacrifices accusing the Mughals. (8)"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "sri gur vol 2.epub"
+  },
+  "previousChapterId": "episode-108-episode-about-babur",
+  "nextChapterId": "episode-110-another-episode-about-taru-singh"
+}

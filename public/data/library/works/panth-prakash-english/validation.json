@@ -1,0 +1,40 @@
+{
+  "status": "validated",
+  "generatedAt": "2026-06-13T22:46:16.607Z",
+  "volumes": [
+    {
+      "volume": 1,
+      "epubPagesWithText": 573,
+      "firstSourcePage": 0,
+      "lastSourcePage": 573
+    },
+    {
+      "volume": 2,
+      "epubPagesWithText": 840,
+      "firstSourcePage": 0,
+      "lastSourcePage": 839
+    }
+  ],
+  "chapters": {
+    "total": 171,
+    "empty": []
+  },
+  "fullText": [
+    {
+      "volume": 1,
+      "provided": true,
+      "referenceFile": "vol 1 .rtfd",
+      "fullTextCharacters": 1144908,
+      "epubTextCharacters": 1059597,
+      "leadingSampleTokenCoverage": 99.5
+    },
+    {
+      "volume": 2,
+      "provided": true,
+      "referenceFile": "vol 2.rtfd",
+      "fullTextCharacters": 1621812,
+      "epubTextCharacters": 1532202,
+      "leadingSampleTokenCoverage": 99.5
+    }
+  ]
+}

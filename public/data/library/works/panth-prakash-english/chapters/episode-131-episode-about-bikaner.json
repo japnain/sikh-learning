@@ -1,0 +1,46 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-131-episode-about-bikaner",
+  "chapterNumber": 133,
+  "episodeNumber": 131,
+  "kind": "episode",
+  "title": "Episode About Bikaner",
+  "volume": 2,
+  "startSourcePage": 512,
+  "endSourcePage": 513,
+  "pages": [
+    {
+      "sourcePageNumber": 512,
+      "fileName": "EPUB/page_512.html",
+      "blocks": [
+        {
+          "id": "v2-p512-1",
+          "type": "line",
+          "text": "chaupai : tab khalsai malvai bulag. hui agai ko mulak batag. alo singh au budho singh bhai. gurbakhash singh layo bulai.2. : »rft sra\" fenfes fm urfs i fHW) Eftf frwfs §fs 5ra- wj£ sfu1 ^eis 13 1 dohra : agai karg vakil in jo un ko mil pai. singhan dghin milai 6i kar apng lghin bachai.3. trust : StiMlS 5^ fiws i y>m fmj yhs ui? h^s i Hgt^T flfc ftwst I HW?st»l?> 5K\" UH tT5FSt 19 1 chaupai : kaithlic hath bhai milac. ale singh ath khcrdc bachag. mar saphidon jind milai. malvaian hath kachhu paiso chukai.4. fej oiW UZT^t Wfe ^ fe3T flW €t£ IU I dohra : daurd su Mnsija lutinamaul hisarai mar. phir kama pahardi luti kg dhig jaipur dino sar.5. trust : 3 rrurats fer^s i oh 3h ara\" ^ fnu srai? i 33T HUW frBSt I 3H UH Hdsfd ?5St l£l chaupai : tau jaipurig vakil bhijvag. ham turn gur kg sikkh kahag. tgg bahadar dakhan jitai. tab rajg ham sarnahi lai.6."
+        },
+        {
+          "id": "v2-p512-2",
+          "type": "line",
+          "text": "W fe3T »rfs S^1\" W 12 1 ham turn hain yauhi gurbhai. mulak hamar ujardo nanhin. tau singhan ng morda laya. jamna dhig ai dagra paya.7. ^33. H^fl\" fH3 fHW HUfe oft ('fi-f3 & H#et feH ?5^t, H f53T* tTU^ IT (TO') 133. sakhi mit singh shahid ki ('mit singh shahidi im laT, su lardyo jahan khan naT) : i& ftim Pt 3TdT fnur nrtrfs i f3H 3% f)-(3 fjW '3U f37> GT H3 UoFfs 1=11 dohra : daallg valig misal main ik tara singh akhai. tis dagrg mit singh rahg tin yaun mato pakai. 1 . trust : en w 3?> fmt §H% i fl>w su ?w usts h%% i 3^ fnur 3H m 5rat i f fe? uwr of Hut 13 1 chaupai : das hazar tan singh uchhgrg. jamna tap langh paig savgrg. tara singh tabai sun kahi. tun bgphtu khalsg kg mahi.2."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 513,
+      "fileName": "EPUB/page_513.html",
+      "blocks": [
+        {
+          "id": "v2-p513-1",
+          "type": "line",
+          "text": "Among those Malwa chiefs were Bhai Alo Singh1 and Bhai Budho Singh2 , Bhai Gurbax Singh3 being another among the invited. (2) Dohra : Putting their representatives at the head of Khalsa Panth force, They made them lead the Khalsa Panth expedition. Bringing about settlements between Singhs and those others, They protected those whom they considered their own. (3) Chaupai : Bringing about settlement between Singhs and chiefs of Kaithal, Alo Singh saved eight villages from plunder by Khalsa Panth. Striking a deal with the chiefs of Jind4 and Safidon5 after a raid, Some amount of ransom was sent to the Singhs through Malwa Singhs. (4) Dohra : With a rush, did the Khalsa Panth ransack the distant Hansi6 , They also plundered the more remote towns of Narnaul7 and Hissar8 , Thereafter, plundering the hill fort Kama9 at the hill top, Khalsa Panth forces sent a message about their arrival to the Jaipur ruler. (5) Chaupai : Thereafter, the Jaipur chief sent his representatives to the Singhs, Professing himself to be as devout a Sikh of the Gurus as the Singhs, When Guru Tegh Bahadur had conquered the southern region, The Rajput ruler had sought Guru Tegh Bahadur's protection. (6) Both Rajputs and Singhs, being followers of the same Guru, The Rajputs begged the Singhs to spare their territory from plunder. Thereupon, the Singhs retracing their steps from there, They put up their camp in the vicinity of river Yamuna. (7) Episode 133 Episode About Mit Singh, the Martyr (Mit Singh had made the Supreme Sacrifice in this way As he had put up a brave fight against Jahan khan's forces) Dohra : There was one Singh known as Tara Singh1 (Gaiba), Who belonged the Khalsa Panth Misl of Dalewalia2 . There was also one Mit Singh (the rioteer in this Misl), Who arrived at an (independent) resolution of his own: (1) Chaupai : That ten thousand Singhs, having an independent mind, They should raid across the Yamuna river the early morning. Overhearing this conversation did Tara Singh tell Mit Singh, That the latter alone was an egocentric among the Khalsa Panth. (2)"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "sri gur vol 2.epub"
+  },
+  "previousChapterId": "episode-130-episode-about-hattoo-singh-majhail",
+  "nextChapterId": "episode-132-episode-about-the-bangar-region"
+}

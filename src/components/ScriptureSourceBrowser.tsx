@@ -14,7 +14,7 @@ type ScriptureSourceSection = {
   id: string
   name: string
   source?: string
-  totalAngs: number
+  totalAngs?: number
   pagePathTemplate?: string
   overviewPath?: string
   overviewEyebrow?: string
@@ -36,14 +36,11 @@ const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
   {
     id: 'panth-prakash-english',
     name: 'Panth Prakash (English)',
-    totalAngs: 1417,
-    pagePathTemplate: '/library/panth-prakash-english/page/:pageNumber',
     overviewPath: '/library/panth-prakash-english',
-    overviewEyebrow: 'Historical reading edition',
+    overviewEyebrow: 'EPUB book reader',
     overviewDescription:
-      'Open the separate reading page for chapter-style episode browsing, full-text search, source scan mapping, and honest review status before jumping into a page.',
-    overviewStats: ['169 episodes', '1417 pages', 'source scan mapping', 'machine-cleaned'],
-    quickBrowseLabel: 'Show quick page numbers',
+      'Open the EPUB-derived book reader for volume navigation, chapter reading, and full-text search across both supplied volumes.',
+    overviewStats: ['171 chapters', '169 episodes', '2 EPUB volumes'],
   },
 ]
 
@@ -121,25 +118,27 @@ function SourceOverviewCard({
           {section.overviewPath ? (
             <Link
               to={section.overviewPath}
-              aria-label="Browse Panth Prakash episodes"
+              aria-label="Open Panth Prakash book reader"
               className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
             >
-              Browse Panth Prakash
+              Open Panth Prakash
               <IconArrowRight size={16} />
             </Link>
           ) : null}
 
-          <button
-            type="button"
-            onClick={onToggleQuickPages}
-            className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
-            aria-label={isOpen ? 'Hide quick page numbers' : 'Show quick page numbers'}
-            aria-expanded={isOpen}
-            aria-controls={panelId}
-          >
-            <IconSearch size={15} />
-            {isOpen ? 'Hide quick pages' : 'Quick page numbers'}
-          </button>
+          {section.pagePathTemplate ? (
+            <button
+              type="button"
+              onClick={onToggleQuickPages}
+              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
+              aria-label={isOpen ? 'Hide quick page numbers' : 'Show quick page numbers'}
+              aria-expanded={isOpen}
+              aria-controls={panelId}
+            >
+              <IconSearch size={15} />
+              {isOpen ? 'Hide quick pages' : 'Quick page numbers'}
+            </button>
+          ) : null}
         </div>
       </div>
     </div>
@@ -148,6 +147,7 @@ function SourceOverviewCard({
 
 function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
   const [page, setPage] = useState(0)
+  if (!section.totalAngs) return null
   const start = page * PAGE_SIZE + 1
   const end = Math.min(start + PAGE_SIZE - 1, section.totalAngs)
 

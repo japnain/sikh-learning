@@ -1,0 +1,41 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-009-episode-about-the-delhi-emperor",
+  "chapterNumber": 10,
+  "episodeNumber": 9,
+  "kind": "episode",
+  "title": "Episode About the Delhi Emperor",
+  "volume": 1,
+  "startSourcePage": 95,
+  "endSourcePage": 96,
+  "pages": [
+    {
+      "sourcePageNumber": 95,
+      "fileName": "EPUB/page_95.html",
+      "blocks": [
+        {
+          "id": "v1-p95-1",
+          "type": "line",
+          "text": "Dohra : \"Whatever has been narrated in great detail earlier, I have only made a mention very briefly. Whatever has gone unnoticed earlier, I have given expression to those events. (10) Episode 9 Now Follows the Episode of Delhi's Emperor (Your Time is up Now) Dohra : Now, my dear readers, listen to the narration further, When Delhi was being ruled by the Pathan emperor. How he invited Guru Nanak's wrath on himself, And how his reign was replaced by the Mughal rule. (1) Chaupai : Brahm Khan Lodhi1 was the ruler of Delhi at that time, Who fell on bad days during his reign. He ordered all the Sidhas, Saints and prophets to be arrested, And made them grind corn with the manually operated Chakkis2 . (2) He declared all of them as fraudulent exploiters of the masses, Since they had failed to demonstrate any kind of miracles. Then all the Muslim and the Hindu saints agreed unanimously, That Guru Nanak alone was capable of getting them released. (3) He alone could protect their dignity and honour, He alone could preserve the sanctity of their sacred robes. As everyone is not the bravest amongst a battery of armed troops, As every animal is not as brave as a lion in the whole forest. (4) Dohra : Hearing their petition, Guru Nanak remarked smilingly, That all the saints and prophets were equally empowered. That they were unnecessarily giving him that credit, And assured them that everything would turn out well the next day. (5) Chaupai : Guru Nanak made all stone -wheeled chakis run automatically, And made all the debris-loaded baskets rise above the heads of labouring saints. As he protected the honour of their sacred robes, His fame and reputation spread far and wide. (6) Dohra : An elephant belonging to a gardener had died, Satguru Guru Nanak brought this dead elephant back to life."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 96,
+      "fileName": "EPUB/page_96.html",
+      "blocks": [
+        {
+          "id": "v1-p96-1",
+          "type": "paragraph",
+          "text": "Sri Gur Panth Prakash muyo hathi hathvan ko sri satigur dayo uthai. un huti tahal santan kari kari daya gur tahin.7. W> U3\" Wft5 PdH'M1 I OTTOfefe «W I sun gur par shahi risaya. yah jadu in hindu chalaya. shahron isko dayo kadhai. bahur na dili var hai ai.8. *m Wfe HOT* 3Kt I H FTO I tf I satigur kahyo ham tau varg ai. kar aur bahavain dili patshahi. ab ai bolyo tumro kala. atharan sau athtarg sala.9. H^t Ht 3T3\" §H 3St grfe §H K1^ I fest\" tJBH ?55t fi=Tt5t W3 W I I dai phitak sri gur usg bhai bai us mara. tab dili chugtg lai sikhi Mbg dhara.10. y'dH'Td fesr1) 10. karun patshahi ka parsang ('huto karu patshahi ik') § Wftt H?> UH ofat HFT 3^ tT3\" I off aiH3 ?)fcj oTUt CTT>t H5T tlf^ I H I tau mali sun ham kahi sabh sansg bhag dura. karun gosat nahin kahi yamai shakk zarura. 1 . 3^ at^ I o(3t o(B W3 \\ tanko bitg baras hazara. goshat kari kab babg nara. tau usko ham uttar dayo. yah goshat main sanso bhayo.2. w§ srat s h yftr Mr mfl\" i fey^ftwHln^^ i WHT fi-IW @^ 3 t^1\"! §?> >ofe3\" ^ 5^ 331\" 13 I babg kahi na jo mukhi niji sakhi. likhari likh so goshat rakhi. agg milg unon tai chaurda. un achchhar bahu aur dag torda.3. ?ftf feg- tTWJ HHH I ^XT WE (\"jftf I Ufa £o?fa fTTO\" M I feH 5!^ fetf HM 3St 19 1 nahin kichh janyo sammat sala. vadh ghat nahin samjhayo havala. pir fakir sidh gosat boi. im kar gosat likh gayo koi.4."
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "sri gur vol 1.epub"
+  },
+  "previousChapterId": "episode-008-episode-about-udasi-to-the-north",
+  "nextChapterId": "episode-010-episode-about-the-emperor-karon"
+}

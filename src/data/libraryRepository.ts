@@ -1,4 +1,6 @@
 import type {
+  LibraryChapterIndexEntry,
+  LibraryChapterPayload,
   LibraryEpisodeIndexEntry,
   LibraryManifest,
   LibraryPageIndexEntry,
@@ -37,6 +39,8 @@ let searchIndexPromise: Promise<LibrarySearchIndex> | null = null
 const pageIndexPromises = new Map<string, Promise<LibraryPageIndexEntry[]>>()
 const episodeIndexPromises = new Map<string, Promise<LibraryEpisodeIndexEntry[]>>()
 const pagePromises = new Map<string, Promise<LibraryPagePayload | null>>()
+const chapterIndexPromises = new Map<string, Promise<LibraryChapterIndexEntry[]>>()
+const chapterPromises = new Map<string, Promise<LibraryChapterPayload | null>>()
 
 export function configureLibraryRepositoryLoader(loader: LibraryJsonLoader | null) {
   jsonLoader = loader ?? defaultFetchJson
@@ -50,6 +54,8 @@ export function resetLibraryRepositoryCache() {
   pageIndexPromises.clear()
   episodeIndexPromises.clear()
   pagePromises.clear()
+  chapterIndexPromises.clear()
+  chapterPromises.clear()
 }
 
 export async function loadLibraryManifest() {
@@ -88,7 +94,7 @@ export async function loadLibraryPageIndex(workId: string) {
     const promise = loadLibraryWorkCatalog()
       .then(async catalog => {
         const work = catalog.workById[workId]
-        if (!work) throw new Error(`Unknown library work: ${workId}`)
+        if (!work?.pageIndexPath) throw new Error(`Unknown page-indexed library work: ${workId}`)
         return jsonLoader<LibraryPageIndexEntry[]>(work.pageIndexPath)
       })
     pageIndexPromises.set(workId, promise)
@@ -117,7 +123,7 @@ export async function loadLibraryPage(workId: string, pageNumber: number) {
     const promise = loadLibraryWorkCatalog()
       .then(async catalog => {
         const work = catalog.workById[workId]
-        if (!work) return null
+        if (!work?.pagePathTemplate) return null
         const pagePath = work.pagePathTemplate.replace(':pageNumber', String(pageNumber))
         return jsonLoader<LibraryPagePayload>(pagePath)
       })
@@ -125,4 +131,34 @@ export async function loadLibraryPage(workId: string, pageNumber: number) {
   }
 
   return pagePromises.get(key)!
+}
+
+export async function loadLibraryChapterIndex(workId: string) {
+  if (!chapterIndexPromises.has(workId)) {
+    const promise = loadLibraryWorkCatalog()
+      .then(async catalog => {
+        const work = catalog.workById[workId]
+        if (!work?.chapterIndexPath) throw new Error(`Unknown chapter-indexed library work: ${workId}`)
+        return jsonLoader<LibraryChapterIndexEntry[]>(work.chapterIndexPath)
+      })
+    chapterIndexPromises.set(workId, promise)
+  }
+
+  return chapterIndexPromises.get(workId)!
+}
+
+export async function loadLibraryChapter(workId: string, chapterId: string) {
+  const key = `${workId}:${chapterId}`
+  if (!chapterPromises.has(key)) {
+    const promise = loadLibraryWorkCatalog()
+      .then(async catalog => {
+        const work = catalog.workById[workId]
+        if (!work?.chapterPathTemplate) return null
+        const chapterPath = work.chapterPathTemplate.replace(':chapterId', chapterId)
+        return jsonLoader<LibraryChapterPayload>(chapterPath)
+      })
+    chapterPromises.set(key, promise)
+  }
+
+  return chapterPromises.get(key)!
 }

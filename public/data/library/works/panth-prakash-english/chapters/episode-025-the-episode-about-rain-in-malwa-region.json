@@ -1,0 +1,30 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-025-the-episode-about-rain-in-malwa-region",
+  "chapterNumber": 26,
+  "episodeNumber": 25,
+  "kind": "episode",
+  "title": "The Episode About Rain in Malwa Region",
+  "volume": 1,
+  "startSourcePage": 215,
+  "endSourcePage": 215,
+  "pages": [
+    {
+      "sourcePageNumber": 215,
+      "fileName": "EPUB/page_215.html",
+      "blocks": [
+        {
+          "id": "v1-p215-1",
+          "type": "line",
+          "text": "Episode 25 The Episode about Rain in the Malwa Region (I wish to see a Fertile Green Malwa) Dohra : Once in the dry tract of Malwa region of Punjab, The people felt the need for rain to sustain their crops. These inhabitants of Malwa assembled before the Guru, And appealed to the Guru with folded hands. (1) Chaupai : All of them pleaded before the Guru about their woes, That the whole congregation wanted rain in their land. So following a prayer by the Guru to the God Almighty, There occurred a plenty of rain in that region. (2) Then while sitting on a raised ground at Damdama, The Guru invited his followers to see with their own eyes. The Guru predicted that one day a river would flow through that region, Which will irrigate the Malwa lands to make these fertile. (3) But these ignorant people of Malwa region refused to believe Guru's words, With a remark that the present rain water would seep into the earth. Then Satguru expressed his wish to the Malwa people, That he wished to see the Malwa region to be fertile and prosperous. (4) The Guru wished the Malwa farmers to cultivate sugarcane, wheat and paddy, And become as affluent and prosperous as the region of Sirhind. But Rai Dalla, failing to appreciate the Guru's express wish, Remarked that his people preferred dry crops of pulses and course grains. (5) Dohra : The Guru felt extremely offended at Rai Dalla's ignorance, And remarked that those ignorant inhabitants would rot there, Though the Guru had wished the Malwa region to be prosperous, And wished to bless its inhabitants with plenty and prosperity. (6) Episode 26 The Episode About Guru Gobind Singh's Movement to the South (Aurangzeb Expired and proceeded on his Journey to hell) Dohra : One day the Guru was standing in a contemplative mood, Reflecting deeply over some serious matters about the future."
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "sri gur vol 1.epub"
+  },
+  "previousChapterId": "episode-024-episode-about-sabo-talwandi-r-nion-a-talwa",
+  "nextChapterId": "episode-026-the-episode-about-guru-gobind-singh-s-move"
+}

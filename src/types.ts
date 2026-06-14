@@ -283,17 +283,35 @@ export interface LibraryPageIndexEntry {
   path: string
 }
 
+export interface LibraryChapterIndexEntry {
+  id: string
+  chapterNumber: number
+  episodeNumber?: number
+  kind: 'front-matter' | 'episode' | 'back-matter'
+  title: string
+  volume: number
+  startSourcePage: number
+  endSourcePage: number
+  pageCount: number
+  path: string
+}
+
 export interface LibraryWork {
   id: string
   title: string
   shortTitle: string
   description: string
   language: string
+  source?: 'epub' | 'page-json'
   totalPages: number
-  pageIndexPath: string
+  totalChapters?: number
+  totalSourcePages?: number
+  pageIndexPath?: string
   provenancePath: string
-  pagePathTemplate: string
+  pagePathTemplate?: string
   episodeIndexPath?: string
+  chapterIndexPath?: string
+  chapterPathTemplate?: string
 }
 
 export interface LibrarySearchPageEntry {
@@ -331,6 +349,22 @@ export interface LibrarySearchEpisodeEntry {
   searchText: string
 }
 
+export interface LibrarySearchChapterEntry {
+  workId: string
+  chapterId: string
+  chapterNumber: number
+  episodeNumber?: number
+  kind: 'front-matter' | 'episode' | 'back-matter'
+  volume: number
+  title: string
+  startSourcePage: number
+  endSourcePage: number
+  pageCount: number
+  path: string
+  snippet: string
+  searchText: string
+}
+
 export interface LibrarySearchIndex {
   works: Array<{
     id: string
@@ -339,15 +373,19 @@ export interface LibrarySearchIndex {
   }>
   pages?: LibrarySearchPageEntry[]
   episodes?: LibrarySearchEpisodeEntry[]
+  chapters?: LibrarySearchChapterEntry[]
   metadata?: {
     panthPrakash?: {
-      totalPages: number
-      totalEpisodes: number
-      pagesMissingSourceMapping: number
-      sourceBackedPages: number
-      editorialReconstructionPages: number
-      contentsNavigationPages: number
-      rawSourceRetainedPages: number
+      totalPages?: number
+      totalEpisodes?: number
+      totalChapters?: number
+      totalSourcePages?: number
+      pagesMissingSourceMapping?: number
+      sourceBackedPages?: number
+      editorialReconstructionPages?: number
+      contentsNavigationPages?: number
+      rawSourceRetainedPages?: number
+      source: 'epub' | 'page-json'
       generatedAt: string
     }
   }
@@ -371,4 +409,29 @@ export interface LibraryEpisodeIndexEntry {
   startPage: number
   endPage: number
   volume: number
+}
+
+export interface LibraryChapterPagePayload {
+  sourcePageNumber: number
+  fileName: string
+  blocks: LibraryTextBlock[]
+}
+
+export interface LibraryChapterPayload {
+  workId: string
+  id: string
+  chapterNumber: number
+  episodeNumber?: number
+  kind: 'front-matter' | 'episode' | 'back-matter'
+  title: string
+  volume: number
+  startSourcePage: number
+  endSourcePage: number
+  pages: LibraryChapterPagePayload[]
+  previousChapterId?: string
+  nextChapterId?: string
+  source: {
+    type: 'epub'
+    fileName: string
+  }
 }
