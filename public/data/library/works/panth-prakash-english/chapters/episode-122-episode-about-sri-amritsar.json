@@ -1,0 +1,30 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-122-episode-about-sri-amritsar",
+  "chapterNumber": 124,
+  "episodeNumber": 122,
+  "kind": "episode",
+  "title": "Episode About Sri Amritsar",
+  "volume": 2,
+  "startSourcePage": 458,
+  "endSourcePage": 458,
+  "pages": [
+    {
+      "sourcePageNumber": 458,
+      "fileName": "EPUB/page_458.html",
+      "blocks": [
+        {
+          "id": "v2-p458-1",
+          "type": "paragraph",
+          "text": "123. sakhi ahimad shah au sukkha singh ki ('mar muyo tahin bhayo shahid') h en fud\" fed\" »ra »rfe>fE Hiu i H?H §ZT& TrRtH if HS\" HUHtT H^U 1=11 atharan sai das fiprg phir ayo ahimad shahi. saddyo ruhglg najib khan mug muhmmad shahi. 1. ^d\"1\" dohra trust chaupai OTd\"1\" dohra Bust chaupai dohra chaupai w$ u7? & Htftd\" i »fu fes hot atitd\" i wfuh >rru wdloid 5t!f i »fuh H^fe h >Rf ht i? i char pav kg char bajir. dabyo ap tin mulakh gambhir. apas manhi sharikat karain. apas manhi su marain marain.2. ?5US§ HOT HcSHdfd »T«t I HSFrat S3\" fed\" B75t I djj STfltd\" femfe »ffft I BUS %o( gut @?> 3Wt 13 1 lakhnau malyo mansurhi ali. mansuri take mohar jih chali. huto bajir nizamhi ali. dakkhan rok rakhi un bhali.3. fejft ^ uferfu ^ 1s?> at£ ?5S\" u^h i f^W fe?r FT tHOT ?rRtg UTi §H 19 1 dilli kg patishahi ko in kino lun haram. ruhgla giljai ja milyo najib khan us nam.4. H3IS dl'ritiT HUZ?> ?5CP% I §Ud\" @^ B^t I UT) ?> Tri^B ^a1\" I H3TJ5 US1^ Id\" 3H H^7 I U I mugal gajdin marhtan layavai. ruhglg upar unain chardavai. najib khan nc najib gardah racha. mugal pathan bair tab macha.5. HdVpE WT! HH Hd\" 3TGT fewt Ud\" Ife I cSHlyTd it?) w 3Fi=ref aw i£ i muhmmad shah jab mar gayo dilli par gayo raul. rahyo najibhi khan au mugal gajdin bol.6. ?TT& S US7^ H3TO7 I H3TW> § ?fa tFdU HdW I tsH fsrfu wTddid h7? as^ i 3^rs § fsH f^sr >rat \\? i ruhglg ng pathan mangaya. muglan ko vahi chahat maraya. it bidhi satigur bat banavain. turkan tg im turak maravain.7. 'mm § fee\" ?53T aw e^s\" i w ^ fnur tpfe | §tS x& gt tFHH i-Fd\" I tfHH §7i tT^H?) o( dFd\" 1 1 I singhan ko bich lag gayo dai. marain turkan ko singh dhai. ui dou bhi khalsg marg. khalso un duuan ko garg.8."
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "sri gur vol 2.epub"
+  },
+  "previousChapterId": "episode-121-episode-about-the-valour-of-kaura-mal",
+  "nextChapterId": "episode-123-episode-about-ahmad-shah-and-sukha-singh"
+}

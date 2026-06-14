@@ -17,7 +17,7 @@ test('renders the 4-tab product nav', () => {
 
 test('keeps the Saved nav tab active on nested library routes', () => {
   render(
-    <MemoryRouter initialEntries={['/library/panth-prakash/page/1']}>
+    <MemoryRouter initialEntries={['/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa']}>
       <NavBar />
     </MemoryRouter>
   )

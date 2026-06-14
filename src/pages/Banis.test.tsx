@@ -4,7 +4,6 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
 import { sanitizeRehatHtml } from '../utils/rehatHtml'
 import Study from './Study'
-import LibraryPageReader from './library/LibraryPageReader'
 import PanthPrakashLibraryHome from './library/PanthPrakashLibraryHome'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
@@ -121,7 +120,7 @@ test('keeps secondary Read source cards readable in dark mode', () => {
   )
 })
 
-test('keeps source browsing at the bottom of Read while featuring Panth Prakash as a dedicated browse page', () => {
+test('keeps source browsing at the bottom of Read while featuring Panth Prakash as an EPUB book page', () => {
   renderBanis()
 
   const sourceBrowser = screen.getByTestId('read-source-browser-shared')
@@ -130,24 +129,19 @@ test('keeps source browsing at the bottom of Read while featuring Panth Prakash 
   expect(screen.queryByTestId('library-source-browser-shared')).not.toBeInTheDocument()
 
   const panthCard = within(sourceBrowser).getByTestId('panth-prakash-source-card')
-  const panthBrowseLink = within(panthCard).getByRole('link', { name: /browse panth prakash episodes/i })
+  const panthBrowseLink = within(panthCard).getByRole('link', { name: /open panth prakash book reader/i })
   expect(panthBrowseLink).toHaveAttribute(
     'href',
     '/library/panth-prakash-english'
   )
   expect(panthBrowseLink).toHaveClass('text-cream')
-  expect(panthCard).toHaveTextContent(/separate reading page/i)
-  expect(panthCard).toHaveTextContent(/source scan mapping/i)
+  expect(panthCard).toHaveTextContent(/EPUB-derived book reader/i)
+  expect(panthCard).toHaveTextContent(/171 chapters/i)
+  expect(within(panthCard).queryByRole('button', { name: /show quick page numbers/i })).not.toBeInTheDocument()
   expect(within(panthCard).queryByRole('link', { name: /^open panth prakash page 1$/i })).not.toBeInTheDocument()
-
-  fireEvent.click(within(panthCard).getByRole('button', { name: /show quick page numbers/i }))
-  expect(within(panthCard).getByRole('link', { name: /^open panth prakash page 1$/i })).toHaveAttribute(
-    'href',
-    '/library/panth-prakash-english/page/1'
-  )
 })
 
-test('opens the Panth Prakash Read card into the dedicated browse page before entering page reader', async () => {
+test('opens the Panth Prakash Read card into the EPUB chapter overview', async () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
       <Routes>
@@ -158,7 +152,7 @@ test('opens the Panth Prakash Read card into the dedicated browse page before en
   )
 
   const sourceBrowser = screen.getByTestId('read-source-browser-shared')
-  fireEvent.click(within(sourceBrowser).getByRole('link', { name: /browse panth prakash episodes/i }))
+  fireEvent.click(within(sourceBrowser).getByRole('link', { name: /open panth prakash book reader/i }))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english')
@@ -168,35 +162,8 @@ test('opens the Panth Prakash Read card into the dedicated browse page before en
   })
 
   expect(screen.getByRole('heading', { name: /Panth Prakash/i })).toBeInTheDocument()
-  expect(screen.getByLabelText(/search episodes/i)).toBeInTheDocument()
-  expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
-})
-
-test('still allows optional quick Panth Prakash page numbers to open the reader with navigation breadcrumbs', async () => {
-  render(
-    <MemoryRouter initialEntries={['/banis']}>
-      <Routes>
-        <Route path="/banis" element={<Banis />} />
-        <Route path="/library/:workId/page/:pageNumber" element={<><LibraryPageReader /><LocationSpy /></>} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  const sourceBrowser = screen.getByTestId('read-source-browser-shared')
-  const panthCard = within(sourceBrowser).getByTestId('panth-prakash-source-card')
-  fireEvent.click(within(panthCard).getByRole('button', { name: /show quick page numbers/i }))
-  fireEvent.click(within(panthCard).getByRole('link', { name: /^open panth prakash page 1$/i }))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english/page/1')
-  })
-  await waitFor(() => {
-    expect(screen.getByTestId('library-page-reader')).toBeInTheDocument()
-  })
-
-  expect(screen.getByTestId('library-breadcrumb')).toHaveTextContent(/Read/i)
-  expect(screen.getByRole('link', { name: /next page/i })).toHaveAttribute('href', '/library/panth-prakash-english/page/2')
-  expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
+  expect(screen.getByLabelText(/search chapters/i)).toBeInTheDocument()
+  expect(screen.queryByLabelText(/jump to page/i)).not.toBeInTheDocument()
 })
 
 test('keeps the SGGS directory free of Sundar Gutka duplicate rows while preserving source-only content', () => {

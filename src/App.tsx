@@ -23,8 +23,7 @@ const NitnemCustomizePage = lazy(() => import('./pages/NitnemCustomize'))
 const MorePage = lazy(() => import('./pages/More'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
 const PrivacyPage = lazy(() => import('./pages/Privacy'))
-const LibraryPageReader = lazy(() => import('./pages/library/LibraryPageReader'))
-const LibraryEpisodeReader = lazy(() => import('./pages/library/LibraryEpisodeReader'))
+const LibraryChapterReader = lazy(() => import('./pages/library/LibraryChapterReader'))
 const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
 
 function SkeletonBlock({ className }: { className: string }) {
@@ -270,8 +269,7 @@ function AppShell() {
                 <Route path="/study/:scriptureId" element={<StudyPage />} />
                 <Route path="/library" element={<LibraryPage />} />
                 <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
-                <Route path="/library/:workId/episode/:episodeNumber" element={<LibraryEpisodeReader />} />
-                <Route path="/library/:workId/page/:pageNumber" element={<LibraryPageReader />} />
+                <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
                 <Route path="/nitnem/customize" element={<NitnemCustomizePage />} />
                 <Route path="/banis/amrit-keertan" element={<AmritKeertanPage />} />
                 <Route path="/banis/amrit-keertan/:headerId" element={<AmritKeertanPage />} />

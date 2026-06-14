@@ -47,6 +47,11 @@ function buildLegacyResumePath(scriptureId: string | null | undefined): string |
   return `/study?source=${source}&ang=${ang}`
 }
 
+function isRetiredPanthPrakashResumePath(path: string | null | undefined) {
+  return Boolean(path?.startsWith('/library/panth-prakash-english/page/')
+    || path?.startsWith('/library/panth-prakash-english/episode/'))
+}
+
 export function parseSessionScriptureId(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
   return parseSessionScriptureIdParts(scriptureId)
 }
@@ -56,6 +61,7 @@ export function buildSessionResumePath(session: Session | null | undefined): str
 
   const basePath = session.resumePath || buildLegacyResumePath(session.scriptureId)
   if (!basePath) return null
+  if (isRetiredPanthPrakashResumePath(basePath)) return null
 
   if (!session.resumeVerseId) {
     return basePath
@@ -80,6 +86,8 @@ function normalizeSession(session: Session | LegacySession | null | undefined): 
   }
 
   if ('resumePath' in session && typeof session.resumePath === 'string' && session.resumePath.trim()) {
+    if (isRetiredPanthPrakashResumePath(session.resumePath)) return null
+
     const resumeVerseId = typeof session.resumeVerseId === 'number' && session.resumeVerseId > 0
       ? session.resumeVerseId
       : undefined
@@ -151,7 +159,7 @@ export const useProgressStore = create<ProgressState>()(
     }),
     {
       name: 'sikh-progress',
-      version: 1,
+      version: 2,
       migrate: (persistedState) => {
         const state = (persistedState as Partial<ProgressState> | undefined) ?? {}
 

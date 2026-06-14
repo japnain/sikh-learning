@@ -1,64 +1,65 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibrarySearchIndex, LibrarySearchPageEntry, LibraryWork } from '../../types'
-import { loadLibraryEpisodeIndex, loadLibraryPage, loadLibraryPageIndex, loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
-import {
-  getPanthPrakashArcOptions,
-  getPanthPrakashEpisodeDisplayTitle,
-  getPanthPrakashEpisodeEditorial,
-  type PanthPrakashArcId,
-} from '../../data/panthPrakashEditorial'
+import { Link, useParams } from 'react-router-dom'
+import type { LibraryChapterIndexEntry, LibraryChapterPayload, LibrarySearchChapterEntry, LibrarySearchIndex, LibraryWork } from '../../types'
+import { loadLibraryChapter, loadLibraryChapterIndex, loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
 
 const DEFAULT_WORK_ID = 'panth-prakash-english'
+const INITIAL_VISIBLE_CHAPTERS = 36
 
-type PageSearchResult = Pick<LibrarySearchPageEntry, 'pageNumber' | 'title' | 'snippet' | 'episodeNumber' | 'episodeDisplayTitle' | 'sourcePageNumber'>
+type ChapterSearchResult = Pick<LibrarySearchChapterEntry, 'chapterId' | 'title' | 'snippet' | 'episodeNumber' | 'volume' | 'startSourcePage' | 'endSourcePage'>
+
+function chapterLabel(chapter: Pick<LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
+  return chapter.kind === 'episode' && chapter.episodeNumber
+    ? `Episode ${chapter.episodeNumber}`
+    : `Chapter ${chapter.chapterNumber}`
+}
+
+function chapterRangeLabel(chapter: Pick<LibraryChapterIndexEntry, 'startSourcePage' | 'endSourcePage'>) {
+  return chapter.startSourcePage === chapter.endSourcePage
+    ? `EPUB page ${chapter.startSourcePage}`
+    : `EPUB pages ${chapter.startSourcePage}-${chapter.endSourcePage}`
+}
+
+function chapterPath(workId: string, chapterId: string) {
+  return `/library/${workId}/chapters/${chapterId}`
+}
 
 export default function PanthPrakashLibraryHome() {
-  const navigate = useNavigate()
   const { workId: routeWorkId } = useParams<{ workId: string }>()
   const workId = routeWorkId ?? DEFAULT_WORK_ID
   const currentSession = useProgressStore(state => state.currentSession)
   const [work, setWork] = useState<LibraryWork | null>(null)
-  const [pageIndex, setPageIndex] = useState<LibraryPageIndexEntry[]>([])
-  const [episodeIndex, setEpisodeIndex] = useState<LibraryEpisodeIndexEntry[]>([])
+  const [chapters, setChapters] = useState<LibraryChapterIndexEntry[]>([])
   const [searchIndex, setSearchIndex] = useState<LibrarySearchIndex | null>(null)
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
-  const [pageJumpValue, setPageJumpValue] = useState('1')
-  const [episodeSearch, setEpisodeSearch] = useState('')
-  const [episodeVolume, setEpisodeVolume] = useState<'all' | number>('all')
-  const [episodeArc, setEpisodeArc] = useState<'all' | PanthPrakashArcId>('all')
-  const [visibleEpisodeWindow, setVisibleEpisodeWindow] = useState({ filterKey: '', count: 24 })
-  const [pageSearchQuery, setPageSearchQuery] = useState('')
-  const [pageSearchStatus, setPageSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty'>('idle')
-  const [pageSearchResults, setPageSearchResults] = useState<PageSearchResult[]>([])
+  const [chapterQuery, setChapterQuery] = useState('')
+  const [volumeFilter, setVolumeFilter] = useState<'all' | number>('all')
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_CHAPTERS)
+  const [bookSearchQuery, setBookSearchQuery] = useState('')
+  const [bookSearchStatus, setBookSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty'>('idle')
+  const [bookSearchResults, setBookSearchResults] = useState<ChapterSearchResult[]>([])
 
   useEffect(() => {
     let cancelled = false
+    setStatus('loading')
 
-    Promise.resolve().then(() => {
-      if (cancelled) return
-      setStatus('loading')
-
-      Promise.all([
-        loadLibraryWorkCatalog(),
-        loadLibraryPageIndex(workId),
-        loadLibraryEpisodeIndex(workId),
-        loadLibrarySearchIndex().catch(() => null),
-      ])
-        .then(([catalog, pages, episodes, loadedSearchIndex]) => {
-          if (cancelled) return
-          setWork(catalog.workById[workId] ?? null)
-          setPageIndex(pages)
-          setEpisodeIndex(episodes)
-          setSearchIndex(loadedSearchIndex)
-          setStatus(catalog.workById[workId] ? 'ready' : 'error')
-        })
-        .catch(() => {
-          if (cancelled) return
-          setStatus('error')
-        })
+    Promise.all([
+      loadLibraryWorkCatalog(),
+      loadLibraryChapterIndex(workId),
+      loadLibrarySearchIndex().catch(() => null),
+    ])
+      .then(([catalog, loadedChapters, loadedSearchIndex]) => {
+        if (cancelled) return
+        setWork(catalog.workById[workId] ?? null)
+        setChapters(loadedChapters)
+        setSearchIndex(loadedSearchIndex)
+        setStatus(catalog.workById[workId] ? 'ready' : 'error')
+      })
+      .catch(() => {
+        if (cancelled) return
+        setStatus('error')
       })
 
     return () => {
@@ -68,125 +69,91 @@ export default function PanthPrakashLibraryHome() {
 
   const volumeSummary = useMemo(() => {
     const counts = new Map<number, number>()
-    for (const entry of pageIndex) {
-      counts.set(entry.volume, (counts.get(entry.volume) ?? 0) + 1)
+    for (const chapter of chapters) {
+      counts.set(chapter.volume, (counts.get(chapter.volume) ?? 0) + 1)
     }
     return [...counts.entries()].map(([volume, count]) => ({ volume, count }))
-  }, [pageIndex])
+  }, [chapters])
 
-  const continueReadingPath = currentSession && currentSession.resumePath.startsWith(`/library/${workId}/page/`)
+  const filteredChapters = useMemo(() => {
+    const normalizedQuery = chapterQuery.trim().toLowerCase()
+    return chapters.filter(chapter => {
+      const matchesVolume = volumeFilter === 'all' || chapter.volume === volumeFilter
+      const haystack = `${chapterLabel(chapter)} ${chapter.title} volume ${chapter.volume} ${chapter.startSourcePage} ${chapter.endSourcePage}`.toLowerCase()
+      return matchesVolume && (!normalizedQuery || haystack.includes(normalizedQuery))
+    })
+  }, [chapterQuery, chapters, volumeFilter])
+
+  const visibleChapters = filteredChapters.slice(0, visibleCount)
+  const firstChapter = chapters[0]
+  const firstVolumeTwoChapter = chapters.find(chapter => chapter.volume === 2)
+  const continueReadingPath = currentSession && currentSession.resumePath.startsWith(`/library/${workId}/chapters/`)
     ? buildSessionResumePath(currentSession)
     : null
 
-  const filteredEpisodes = useMemo(() => {
-    const normalizedSearch = episodeSearch.trim().toLowerCase()
-    return episodeIndex.filter(episode => {
-      const matchesVolume = episodeVolume === 'all' || episode.volume === episodeVolume
-      const editorial = getPanthPrakashEpisodeEditorial(episode)
-      const matchesArc = episodeArc === 'all' || editorial?.arc === episodeArc
-      const displayTitle = getPanthPrakashEpisodeDisplayTitle(episode)
-      const searchable = `${episode.episodeNumber} ${episode.title} ${displayTitle} ${editorial?.arcLabel ?? ''} ${episode.startPage} ${episode.endPage}`.toLowerCase()
-      return matchesVolume && matchesArc && (!normalizedSearch || searchable.includes(normalizedSearch))
-    })
-  }, [episodeIndex, episodeSearch, episodeVolume, episodeArc])
-
-  const episodeFilterKey = `${episodeSearch.trim().toLowerCase()}|${episodeVolume}|${episodeArc}`
-  const visibleEpisodeCount = visibleEpisodeWindow.filterKey === episodeFilterKey
-    ? visibleEpisodeWindow.count
-    : 24
-  const visibleEpisodes = filteredEpisodes.slice(0, visibleEpisodeCount)
-  const pagesMissingSourceMapping = useMemo(() => pageIndex.filter(entry => !entry.sourcePageNumber).length, [pageIndex])
-
-  function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleBookSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const nextPage = Math.min(pageIndex.length || 1, Math.max(1, Number(pageJumpValue) || 1))
-    navigate(`/library/${workId}/page/${nextPage}`)
-  }
-
-  async function handlePageSearchSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const query = pageSearchQuery.trim().toLowerCase()
+    const query = bookSearchQuery.trim().toLowerCase()
     if (!query) {
-      setPageSearchResults([])
-      setPageSearchStatus('idle')
+      setBookSearchResults([])
+      setBookSearchStatus('idle')
       return
     }
 
-    setPageSearchStatus('searching')
+    setBookSearchStatus('searching')
+    const indexedChapters = searchIndex?.chapters?.filter(entry => entry.workId === workId)
 
-    const indexedPages = searchIndex?.pages?.filter(entry => entry.workId === workId)
-    if (indexedPages?.length) {
-      const rawMatches = indexedPages
-        .map<PageSearchResult | null>(entry => {
+    if (indexedChapters?.length) {
+      const matches = indexedChapters
+        .map<ChapterSearchResult | null>(entry => {
           const normalizedHaystack = entry.searchText.toLowerCase()
           const index = normalizedHaystack.indexOf(query)
           if (index === -1) return null
-          const snippetStart = Math.max(0, index - 72)
-          const snippetEnd = Math.min(entry.searchText.length, index + pageSearchQuery.length + 112)
+          const snippetStart = Math.max(0, index - 90)
+          const snippetEnd = Math.min(entry.searchText.length, index + bookSearchQuery.length + 150)
           return {
-            pageNumber: entry.pageNumber,
+            chapterId: entry.chapterId,
             title: entry.title,
-            sourcePageNumber: entry.sourcePageNumber,
             episodeNumber: entry.episodeNumber,
-            episodeDisplayTitle: entry.episodeDisplayTitle,
+            volume: entry.volume,
+            startSourcePage: entry.startSourcePage,
+            endSourcePage: entry.endSourcePage,
             snippet: entry.searchText.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
-          } satisfies PageSearchResult
+          }
         })
-        .filter((result): result is PageSearchResult => Boolean(result))
-      const seenMatches = new Set<string>()
-      const matches = rawMatches
-        .filter(result => {
-          const key = result.episodeNumber ? `episode:${result.episodeNumber}` : `page:${result.pageNumber}`
-          if (seenMatches.has(key)) return false
-          seenMatches.add(key)
-          return true
-        })
+        .filter((result): result is ChapterSearchResult => Boolean(result))
         .slice(0, 8)
 
-      setPageSearchResults(matches)
-      setPageSearchStatus(matches.length ? 'ready' : 'empty')
+      setBookSearchResults(matches)
+      setBookSearchStatus(matches.length ? 'ready' : 'empty')
       return
     }
 
-    const loadedPages = await Promise.all(pageIndex.map(entry => loadLibraryPage(workId, entry.pageNumber).catch(() => null)))
-    const rawFallbackMatches = loadedPages
-      .filter((page): page is LibraryPagePayload => Boolean(page))
-      .map<PageSearchResult | null>(page => {
-        const haystack = [
-          page.title,
-          page.episode?.title ?? '',
-          ...page.blocks.map(block => block.text),
-          ...(page.rawBlocks ?? []).map(block => block.text),
-        ].join(' ')
+    const loadedChapters = await Promise.all(chapters.map(chapter => loadLibraryChapter(workId, chapter.id).catch(() => null)))
+    const matches = loadedChapters
+      .filter((chapter): chapter is LibraryChapterPayload => Boolean(chapter))
+      .map<ChapterSearchResult | null>(chapter => {
+        const haystack = [chapter.title, ...chapter.pages.flatMap(page => page.blocks.map(block => block.text))].join(' ')
         const normalizedHaystack = haystack.toLowerCase()
         const index = normalizedHaystack.indexOf(query)
         if (index === -1) return null
-        const snippetStart = Math.max(0, index - 72)
-        const snippetEnd = Math.min(haystack.length, index + pageSearchQuery.length + 112)
+        const snippetStart = Math.max(0, index - 90)
+        const snippetEnd = Math.min(haystack.length, index + bookSearchQuery.length + 150)
         return {
-          pageNumber: page.pageNumber,
-          title: page.title,
-          sourcePageNumber: page.sourcePageNumber,
-          episodeNumber: page.episode?.number,
-          episodeDisplayTitle: page.episode
-            ? getPanthPrakashEpisodeDisplayTitle({ ...page.episode, episodeNumber: page.episode.number, volume: page.volume })
-            : undefined,
+          chapterId: chapter.id,
+          title: chapter.title,
+          episodeNumber: chapter.episodeNumber,
+          volume: chapter.volume,
+          startSourcePage: chapter.startSourcePage,
+          endSourcePage: chapter.endSourcePage,
           snippet: haystack.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
-        } satisfies PageSearchResult
+        }
       })
-      .filter((result): result is PageSearchResult => Boolean(result))
-    const fallbackSeenMatches = new Set<string>()
-    const matches = rawFallbackMatches
-      .filter(result => {
-        const key = result.episodeNumber ? `episode:${result.episodeNumber}` : `page:${result.pageNumber}`
-        if (fallbackSeenMatches.has(key)) return false
-        fallbackSeenMatches.add(key)
-        return true
-      })
+      .filter((result): result is ChapterSearchResult => Boolean(result))
       .slice(0, 8)
 
-    setPageSearchResults(matches)
-    setPageSearchStatus(matches.length ? 'ready' : 'empty')
+    setBookSearchResults(matches)
+    setBookSearchStatus(matches.length ? 'ready' : 'empty')
   }
 
   if (status === 'loading') {
@@ -194,9 +161,9 @@ export default function PanthPrakashLibraryHome() {
       <SurfaceStateCard
         surface="panth-library-home"
         state="loading"
-        eyebrow="Source Browsing"
+        eyebrow="Book Reader"
         title="Loading Panth Prakash"
-        body="Preparing the book overview, page map, and episode list."
+        body="Preparing the EPUB-derived chapter index."
         page="library"
       />
     )
@@ -207,9 +174,9 @@ export default function PanthPrakashLibraryHome() {
       <SurfaceStateCard
         surface="panth-library-home"
         state="degraded"
-        eyebrow="Source Browsing"
+        eyebrow="Book Reader"
         title="Panth Prakash unavailable"
-        body="The Panth Prakash overview could not be loaded yet."
+        body="The Panth Prakash book reader could not be loaded yet."
         page="library"
       />
     )
@@ -222,261 +189,165 @@ export default function PanthPrakashLibraryHome() {
       style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
     >
       <div className="mb-4">
-        <p className="eyebrow">Native reader</p>
+        <p className="eyebrow">EPUB book reader</p>
         <h1 className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          Read the full Panth Prakash as bundled NaamRas text, with volume navigation, episode reading, and source pages one tap away when you want to verify a passage.
+          Read the supplied Sri Gur Panth Prakash EPUBs as a continuous book, organized by volume and episode chapters.
         </p>
       </div>
 
-      <section className="section-shell-quiet px-4 py-4 mb-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="chip-pill">{work.totalPages} total pages</span>
-          {volumeSummary.map(entry => (
-            <span key={entry.volume} className="chip-pill">Volume {entry.volume} · {entry.count} pages</span>
-          ))}
-          <span className="chip-pill">{episodeIndex.length} extracted episodes</span>
-        </div>
-      </section>
-
-      <section className="section-shell-quiet px-4 py-4 mb-4" data-testid="panth-native-coverage">
-        <p className="eyebrow">Complete native reader</p>
+      <section className="section-shell-quiet px-4 py-4 mb-4" data-testid="panth-epub-coverage">
+        <p className="eyebrow">Book coverage</p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <span className="chip-pill">{work.totalPages.toLocaleString('en-US')} pages bundled</span>
-          <span className="chip-pill">{episodeIndex.length} episodes</span>
-          <span className="chip-pill">Volumes 1 and 2</span>
-          <span className="chip-pill">{pagesMissingSourceMapping} pages missing source mapping</span>
+          <span className="chip-pill">{work.totalChapters ?? chapters.length} chapters</span>
+          <span className="chip-pill">{work.totalSourcePages ?? work.totalPages} EPUB pages</span>
+          {volumeSummary.map(entry => (
+            <span key={entry.volume} className="chip-pill">Volume {entry.volume} · {entry.count} chapters</span>
+          ))}
+          <span className="chip-pill">Source: EPUB</span>
         </div>
-        <ul className="mt-3 grid gap-2 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/74">
-          <li>• Read continuously by episode instead of paging through scans.</li>
-          <li>• Keep source-page links available as evidence without making them the reading surface.</li>
-          <li>• Search spans the bundled text across both volumes and opens the matching episode.</li>
-        </ul>
       </section>
 
       <section className="section-shell px-5 py-5 mb-4">
-        <p className="eyebrow">Jump in</p>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <form onSubmit={handlePageJumpSubmit} className="flex flex-wrap items-center gap-2">
-            <label htmlFor="panth-home-jump" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
-              Jump to page
-            </label>
-            <input
-              id="panth-home-jump"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              value={pageJumpValue}
-              onChange={event => setPageJumpValue(event.target.value)}
-              className="w-24 rounded-full border border-sand/18 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-            />
-            <button
-              type="submit"
+        <p className="eyebrow">Start reading</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {firstChapter ? (
+            <Link
+              to={chapterPath(work.id, firstChapter.id)}
               className="interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
             >
-              Go to page
-            </button>
-          </form>
-          <Link
-            to={`/library/${work.id}/page/1`}
-            className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
-          >
-            Start at page 1
-          </Link>
+              Start Volume I
+            </Link>
+          ) : null}
+          {firstVolumeTwoChapter ? (
+            <Link
+              to={chapterPath(work.id, firstVolumeTwoChapter.id)}
+              className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+            >
+              Start Volume II
+            </Link>
+          ) : null}
           {continueReadingPath ? (
             <Link
               to={continueReadingPath}
               className="interactive-focus rounded-full border border-gold/18 bg-gold/10 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
             >
-              Resume page {currentSession?.resumePath.match(/\/page\/(\d+)/)?.[1] ?? ''}
+              Continue reading
             </Link>
           ) : null}
         </div>
       </section>
 
-      {continueReadingPath ? (
-        <section className="section-shell-quiet px-4 py-4 mb-4">
-          <p className="eyebrow">Continue reading</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-            Pick up where you left off inside Panth Prakash instead of hunting for the page again.
-          </p>
-          <div className="mt-4">
-            <Link
-              to={continueReadingPath}
-              className="interactive-focus interactive-card-link block rounded-[24px] border border-gold/16 bg-parchment-card/88 px-4 py-4 dark:border-gold/16 dark:bg-dark-card/78"
-            >
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
-                Continue reading
-              </p>
-              <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                Resume page {currentSession?.resumePath.match(/\/page\/(\d+)/)?.[1] ?? ''}
-              </p>
-            </Link>
-          </div>
-        </section>
-      ) : null}
-
       <section className="section-shell px-5 py-5 mb-4">
-        <p className="eyebrow">Search the text</p>
+        <p className="eyebrow">Search the book</p>
         <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          Search inside the bundled Panth Prakash text. Results stay page-first and link into the episode reader with source context available when needed.
+          Search the EPUB-derived chapter text across both volumes.
         </p>
-        <form onSubmit={handlePageSearchSubmit} className="mt-4 grid gap-3">
-          <label htmlFor="panth-page-search" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
-            Search within Panth Prakash pages
-          </label>
-          <div className="flex flex-wrap gap-2">
-            <input
-              id="panth-page-search"
-              aria-label="Search within Panth Prakash pages"
-              value={pageSearchQuery}
-              onChange={event => setPageSearchQuery(event.target.value)}
-              placeholder="Search people, places, or phrases"
-              className="min-w-0 flex-1 rounded-full border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-            />
-            <button
-              type="submit"
-              className="interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
-            >
-              Search pages
-            </button>
-          </div>
+        <form onSubmit={handleBookSearchSubmit} className="mt-4 flex flex-col gap-2 sm:flex-row">
+          <label htmlFor="panth-book-search" className="sr-only">Search within Panth Prakash chapters</label>
+          <input
+            id="panth-book-search"
+            value={bookSearchQuery}
+            onChange={event => setBookSearchQuery(event.target.value)}
+            className="min-h-[44px] flex-1 rounded-[18px] border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            placeholder="Search the book"
+          />
+          <button
+            type="submit"
+            className="interactive-focus rounded-[18px] bg-ink px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-cream dark:bg-gold-light dark:text-dark-bg"
+          >
+            Search
+          </button>
         </form>
-        <div className="mt-4 grid gap-3" data-testid="panth-full-text-results">
-          {pageSearchStatus === 'searching' ? <p className="font-sans text-sm text-ink/68 dark:text-dark-text/74">Searching page text…</p> : null}
-          {pageSearchStatus === 'empty' ? <p className="font-sans text-sm text-ink/68 dark:text-dark-text/74">No page matches yet. Try a person, place, or exact phrase.</p> : null}
-          {pageSearchResults.map(result => {
-            const resultPath = result.episodeNumber
-              ? `/library/${work.id}/episode/${result.episodeNumber}`
-              : `/library/${work.id}/page/${result.pageNumber}`
-            const openLabel = result.episodeNumber ? `Open episode ${result.episodeNumber}` : `Open page ${result.pageNumber}`
-            return (
-              <div
-                key={result.pageNumber}
-                className="rounded-[22px] border border-sand/14 bg-parchment-card/72 px-4 py-3 text-left dark:border-dark-text/10 dark:bg-dark-card/62"
+        {bookSearchStatus !== 'idle' ? (
+          <div className="mt-4 grid gap-3" data-testid="panth-full-text-results">
+            {bookSearchStatus === 'searching' ? (
+              <p className="font-sans text-sm text-ink/62 dark:text-dark-text/68">Searching chapters...</p>
+            ) : null}
+            {bookSearchStatus === 'empty' ? (
+              <p className="font-sans text-sm text-ink/62 dark:text-dark-text/68">No chapter matches found.</p>
+            ) : null}
+            {bookSearchResults.map(result => (
+              <Link
+                key={result.chapterId}
+                to={chapterPath(work.id, result.chapterId)}
+                className="interactive-focus interactive-card-link rounded-[22px] border border-sand/14 bg-parchment-card/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
               >
-                <div className="flex flex-wrap gap-2">
-                  <Link
-                    to={resultPath}
-                    className="interactive-focus rounded-full bg-gold/10 px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:bg-gold/12 dark:text-gold-light"
-                  >
-                    {openLabel}
-                  </Link>
-                  {result.episodeNumber ? (
-                    <Link
-                      to={`/library/${work.id}/page/${result.pageNumber}`}
-                      className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
-                    >
-                      Open page {result.pageNumber}
-                    </Link>
-                  ) : null}
-                </div>
-                <p className="mt-3 font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                  Page {result.pageNumber}{result.episodeDisplayTitle ? ` · ${result.episodeDisplayTitle}` : ''}
+                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
+                  {result.episodeNumber ? `Episode ${result.episodeNumber}` : `Volume ${result.volume}`} · EPUB pages {result.startSourcePage}-{result.endSourcePage}
                 </p>
-                <p className="mt-1 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/74">{result.snippet}</p>
-              </div>
-            )
-          })}
-        </div>
+                <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{result.title}</p>
+                <p className="mt-2 line-clamp-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/66">{result.snippet}</p>
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </section>
 
-      <section className="hero-surface px-5 py-6">
-        <div className="flex items-center justify-between gap-3 mb-5">
+      <section className="section-shell px-5 py-5" data-testid="panth-chapter-browser">
+        <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="eyebrow">Episode Browser</p>
-            <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-              Search, filter, and load the full episode map for both volumes, then open each section as native app text.
-            </p>
+            <p className="eyebrow">Table of contents</p>
+            <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">Chapters</h2>
           </div>
+          <p className="font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/74" data-testid="panth-chapter-count-meta">
+            Showing {visibleChapters.length} of {filteredChapters.length} chapters
+          </p>
         </div>
 
-        <div className="mb-4 grid gap-3 rounded-[24px] border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56">
-          <label htmlFor="panth-episode-search" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
-            Search episodes
-          </label>
+        <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto]">
+          <label className="sr-only" htmlFor="panth-chapter-filter">Search chapters</label>
           <input
-            id="panth-episode-search"
-            aria-label="Search episodes"
-            value={episodeSearch}
-            onChange={event => setEpisodeSearch(event.target.value)}
-            placeholder="Search titles, episode numbers, or page ranges"
-            className="rounded-full border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            id="panth-chapter-filter"
+            value={chapterQuery}
+            onChange={event => {
+              setChapterQuery(event.target.value)
+              setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
+            }}
+            className="min-h-[44px] rounded-[18px] border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            placeholder="Filter chapters"
           />
-          <div className="flex flex-wrap gap-2" aria-label="Episode volume filters">
+          <div className="flex gap-2">
             {(['all', 1, 2] as const).map(option => (
               <button
                 key={option}
                 type="button"
-                onClick={() => setEpisodeVolume(option)}
-                className={episodeVolume === option
-                  ? 'interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white'
-                  : 'interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}
+                onClick={() => {
+                  setVolumeFilter(option)
+                  setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
+                }}
+                className={`interactive-focus rounded-full px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] ${volumeFilter === option ? 'bg-gold text-ink' : 'border border-sand/18 bg-parchment-card/82 text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}`}
               >
-                {option === 'all' ? 'All volumes' : `Volume ${option}`}
+                {option === 'all' ? 'All' : `Vol ${option}`}
               </button>
             ))}
           </div>
-          <div className="flex flex-wrap gap-2" aria-label="Episode arc filters">
-            <button
-              type="button"
-              onClick={() => setEpisodeArc('all')}
-              className={episodeArc === 'all'
-                ? 'interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white'
-                : 'interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}
+        </div>
+
+        <div className="mt-5 grid gap-3">
+          {visibleChapters.map(chapter => (
+            <Link
+              key={chapter.id}
+              to={chapterPath(work.id, chapter.id)}
+              className="interactive-focus interactive-card-link rounded-[24px] border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
             >
-              All arcs
-            </button>
-            {getPanthPrakashArcOptions().map(option => (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => setEpisodeArc(option.id)}
-                className={episodeArc === option.id
-                  ? 'interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white'
-                  : 'interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-          <p className="font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/74" data-testid="panth-episode-count-meta">
-            Showing {visibleEpisodes.length} of {filteredEpisodes.length} episodes
-          </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="chip-pill">{chapterLabel(chapter)}</span>
+                <span className="chip-pill">Volume {chapter.volume}</span>
+                <span className="chip-pill">{chapterRangeLabel(chapter)}</span>
+              </div>
+              <p className="mt-3 font-sans text-sm font-semibold leading-6 text-ink dark:text-dark-text">{chapter.title}</p>
+            </Link>
+          ))}
         </div>
 
-        <div className="grid gap-3">
-          {visibleEpisodes.map(episode => {
-            const editorial = getPanthPrakashEpisodeEditorial(episode)
-            const displayTitle = getPanthPrakashEpisodeDisplayTitle(episode)
-            return (
-              <Link
-                key={episode.episodeNumber}
-                to={`/library/${work.id}/episode/${episode.episodeNumber}`}
-                aria-label={`Start episode ${episode.episodeNumber}: ${displayTitle}`}
-                className="section-shell interactive-focus interactive-card-link px-4 py-4 text-left"
-              >
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="chip-pill">Episode {episode.episodeNumber}</span>
-                  <span className="chip-pill">Volume {episode.volume}</span>
-                  <span className="chip-pill">Pages {episode.startPage}–{episode.endPage}</span>
-                  <span className="chip-pill">{editorial?.arcLabel}</span>
-                </div>
-                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{displayTitle}</p>
-              </Link>
-            )
-          })}
-        </div>
-
-        {visibleEpisodes.length < filteredEpisodes.length ? (
+        {visibleChapters.length < filteredChapters.length ? (
           <button
             type="button"
-            onClick={() => setVisibleEpisodeWindow(current => ({
-              filterKey: episodeFilterKey,
-              count: (current.filterKey === episodeFilterKey ? current.count : 24) + 24,
-            }))}
-            className="interactive-focus mt-4 w-full rounded-full border border-gold/18 bg-gold/10 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
+            onClick={() => setVisibleCount(count => count + INITIAL_VISIBLE_CHAPTERS)}
+            className="interactive-focus mt-5 w-full rounded-[18px] border border-gold/18 bg-gold/10 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
           >
-            Load more episodes
+            Load more chapters
           </button>
         ) : null}
       </section>
