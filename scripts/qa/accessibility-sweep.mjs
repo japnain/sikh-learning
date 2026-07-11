@@ -10,6 +10,8 @@ import { chromium } from 'playwright-core'
 const require = createRequire(import.meta.url)
 const AXE_SOURCE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8')
 const BASE_URL = process.env.QA_A11Y_BASE_URL ?? 'http://127.0.0.1:4186'
+const SERVER_MODE = process.env.QA_A11Y_SERVER_MODE === 'preview' ? 'preview' : 'dev'
+const SCAN_TIMEOUT_MS = Number(process.env.QA_A11Y_SCAN_TIMEOUT_MS) || 45_000
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
 const ROUTES = [
   '/',
@@ -83,14 +85,14 @@ async function startDevServer() {
 
   const serverUrl = new URL(BASE_URL)
   const port = serverUrl.port || (serverUrl.protocol === 'https:' ? '443' : '80')
-  const child = spawn('npm', ['run', 'dev', '--', '--host', serverUrl.hostname, '--port', port, '--strictPort'], {
+  const child = spawn('npm', ['run', SERVER_MODE, '--', '--host', serverUrl.hostname, '--port', port, '--strictPort'], {
     cwd: process.cwd(),
     env: {
       ...process.env,
       FORCE_COLOR: '0',
       VITE_NAAMRAS_BANIDB_MOCK: 'true',
     },
-    stdio: ['ignore', 'pipe', 'pipe'],
+    stdio: 'ignore',
   })
 
   await waitForServer(BASE_URL, child)
@@ -123,11 +125,19 @@ async function preparePage(page, route) {
 }
 
 async function scanPage(page) {
-  return page.evaluate(async tags => {
-    const result = await window.axe.run(document, {
-      runOnly: { type: 'tag', values: tags },
-      resultTypes: ['violations'],
+  return page.evaluate(async ({ tags, timeoutMs }) => {
+    let timeoutId
+    const timeout = new Promise((_, reject) => {
+      timeoutId = window.setTimeout(() => reject(new Error(`Axe scan exceeded ${timeoutMs}ms.`)), timeoutMs)
     })
+
+    const result = await Promise.race([
+      window.axe.run(document, {
+        runOnly: { type: 'tag', values: tags },
+        resultTypes: ['violations'],
+      }),
+      timeout,
+    ]).finally(() => window.clearTimeout(timeoutId))
 
     return result.violations.map(rule => ({
       id: rule.id,
@@ -136,7 +146,54 @@ async function scanPage(page) {
       nodeCount: rule.nodes.length,
       targets: rule.nodes.slice(0, 8).map(node => node.target.join(' ')),
     }))
-  }, WCAG_TAGS)
+  }, { tags: WCAG_TAGS, timeoutMs: SCAN_TIMEOUT_MS })
+}
+
+async function scanMode(browser, mode) {
+  const failures = []
+  const context = await browser.newContext({
+    viewport: mode.viewport,
+    colorScheme: mode.dark ? 'dark' : 'light',
+    reducedMotion: 'reduce',
+  })
+
+  await context.addInitScript(({ dark }) => {
+    localStorage.clear()
+    sessionStorage.clear()
+    sessionStorage.setItem('splash-shown', '1')
+    localStorage.setItem('sikh-onboarding', JSON.stringify({
+      state: {
+        hasCompletedOnboarding: true,
+        isOnboardingOpen: false,
+        presentationMode: 'overlay',
+        learningLevel: 'beginner',
+        audience: 'adult',
+        learningGoal: 'read',
+      },
+      version: 0,
+    }))
+    localStorage.setItem('sikh-theme', JSON.stringify({ state: { dark }, version: 0 }))
+  }, { dark: mode.dark })
+
+  const page = await context.newPage()
+
+  try {
+    for (const route of ROUTES) {
+      const startedAt = Date.now()
+
+      await preparePage(page, route)
+      const violations = await scanPage(page)
+      if (violations.length > 0) failures.push({ mode: mode.id, route, violations })
+
+      const durationSeconds = ((Date.now() - startedAt) / 1000).toFixed(1)
+      console.log(`[a11y] ${mode.id} ${route} (${durationSeconds}s)`)
+    }
+  } finally {
+    await page.close()
+    await context.close()
+  }
+
+  return failures
 }
 
 async function main() {
@@ -150,45 +207,22 @@ async function main() {
       headless: process.env.QA_HEADLESS !== '0',
     })
 
-    for (const mode of MODES) {
-      const context = await browser.newContext({
-        viewport: mode.viewport,
-        colorScheme: mode.dark ? 'dark' : 'light',
-        reducedMotion: 'reduce',
-      })
+    const requestedConcurrency = Number(process.env.QA_A11Y_CONCURRENCY) || 2
+    const concurrency = Math.max(1, Math.min(requestedConcurrency, MODES.length))
+    const modeQueue = [...MODES]
+    const modeFailures = await Promise.all(Array.from({ length: concurrency }, async () => {
+      const workerFailures = []
 
-      await context.addInitScript(({ dark }) => {
-        localStorage.clear()
-        sessionStorage.clear()
-        sessionStorage.setItem('splash-shown', '1')
-        localStorage.setItem('sikh-onboarding', JSON.stringify({
-          state: {
-            hasCompletedOnboarding: true,
-            isOnboardingOpen: false,
-            presentationMode: 'overlay',
-            learningLevel: 'beginner',
-            audience: 'adult',
-            learningGoal: 'read',
-          },
-          version: 0,
-        }))
-        localStorage.setItem('sikh-theme', JSON.stringify({ state: { dark }, version: 0 }))
-      }, { dark: mode.dark })
-
-      for (const route of ROUTES) {
-        const page = await context.newPage()
-
-        try {
-          await preparePage(page, route)
-          const violations = await scanPage(page)
-          if (violations.length > 0) failures.push({ mode: mode.id, route, violations })
-        } finally {
-          await page.close()
-        }
+      while (modeQueue.length > 0) {
+        const mode = modeQueue.shift()
+        if (!mode) break
+        workerFailures.push(...await scanMode(browser, mode))
       }
 
-      await context.close()
-    }
+      return workerFailures
+    }))
+
+    failures.push(...modeFailures.flat())
   } finally {
     await browser?.close()
     await stopDevServer(server)

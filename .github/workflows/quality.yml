@@ -24,6 +24,8 @@ jobs:
       - run: npm run qa:css-selectors
       - run: npm run build
       - run: npm run qa:a11y
+        env:
+          QA_A11Y_SERVER_MODE: preview
       - run: npm test
       - name: Verify native catalog is current
         run: |
