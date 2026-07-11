@@ -72,28 +72,28 @@ export default function NavBar() {
       id: 'home',
       to: '/',
       label: copy.nav.home,
-      ariaLabel: `${copy.nav.home} tab`,
+      ariaLabel: copy.nav.home,
       Glyph: HomeGlyph,
     },
     {
       id: 'read',
       to: '/banis',
       label: copy.nav.read,
-      ariaLabel: `${copy.nav.read} tab`,
+      ariaLabel: copy.nav.read,
       Glyph: ReadGlyph,
     },
     {
       id: 'saved',
       to: '/library',
       label: copy.nav.saved,
-      ariaLabel: `${copy.nav.saved} tab`,
+      ariaLabel: copy.nav.saved,
       Glyph: SavedGlyph,
     },
     {
       id: 'more',
       to: '/more',
       label: copy.nav.more,
-      ariaLabel: `${copy.nav.more} tab and settings`,
+      ariaLabel: copy.nav.more,
       Glyph: MoreGlyph,
     },
   ]
@@ -121,7 +121,7 @@ export default function NavBar() {
     <div className="app-nav-stack z-50" ref={stackRef} data-testid="nav-stack" data-ai-surface="nav-stack">
       <nav
         className="app-nav"
-        aria-label="Primary navigation"
+        aria-label={copy.nav.primaryNavigation}
         data-testid="primary-nav"
         data-ai-surface="primary-nav"
       >

@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
@@ -143,4 +143,35 @@ test('saved overview shows only reading, favorites, and review metrics', () => {
   expect(within(metrics).getByText('Bookmarks').parentElement).toHaveTextContent('1')
   expect(within(metrics).getByText('Favorites').parentElement).toHaveTextContent('0')
   expect(within(metrics).getByText('Review Bank').parentElement).toHaveTextContent('0')
+})
+
+test('keeps ordinary Nitnem clicks separate from carousel drag capture', () => {
+  renderHome()
+
+  const carousel = screen.getByTestId('home-nitnem-carousel')
+  const setPointerCapture = vi.fn()
+  const releasePointerCapture = vi.fn()
+  const hasPointerCapture = vi.fn(() => true)
+  carousel.setPointerCapture = setPointerCapture
+  carousel.releasePointerCapture = releasePointerCapture
+  carousel.hasPointerCapture = hasPointerCapture
+
+  fireEvent.pointerDown(carousel, {
+    pointerId: 7,
+    pointerType: 'mouse',
+    button: 0,
+    clientX: 220,
+    clientY: 100,
+  })
+
+  expect(setPointerCapture).not.toHaveBeenCalled()
+
+  fireEvent.pointerMove(carousel, {
+    pointerId: 7,
+    pointerType: 'mouse',
+    clientX: 160,
+    clientY: 102,
+  })
+
+  expect(setPointerCapture).toHaveBeenCalledWith(7)
 })

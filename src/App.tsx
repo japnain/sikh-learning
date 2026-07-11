@@ -23,8 +23,16 @@ const NitnemCustomizePage = lazy(() => import('./pages/NitnemCustomize'))
 const MorePage = lazy(() => import('./pages/More'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
 const PrivacyPage = lazy(() => import('./pages/Privacy'))
+const SupportPage = lazy(() => import('./pages/Support'))
 const LibraryChapterReader = lazy(() => import('./pages/library/LibraryChapterReader'))
 const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
+
+const PUBLIC_DOCUMENT_PATHS = new Set(['/privacy', '/support'])
+
+function isPublicDocumentPath(pathname: string) {
+  const normalizedPath = pathname.replace(/\/+$/, '') || '/'
+  return PUBLIC_DOCUMENT_PATHS.has(normalizedPath)
+}
 
 function SkeletonBlock({ className }: { className: string }) {
   return (
@@ -108,6 +116,7 @@ function AppShell() {
   const location = useLocation()
   const navigate = useNavigate()
   const mainContentRef = useRef<HTMLElement | null>(null)
+  const previousPathnameRef = useRef(location.pathname)
   const dark = useThemeStore(s => s.dark)
   const displayMode = useDisplayMode()
   const scriptMode = useLanguageStore(s => s.scriptMode)
@@ -122,18 +131,16 @@ function AppShell() {
   const isOnboardingOpen = useOnboardingStore(s => s.isOnboardingOpen)
   const presentationMode = useOnboardingStore(s => s.presentationMode)
   const learningLevel = useOnboardingStore(s => s.learningLevel)
-  const audience = useOnboardingStore(s => s.audience)
   const learningGoal = useOnboardingStore(s => s.learningGoal)
-  const setLearningLevel = useOnboardingStore(s => s.setLearningLevel)
-  const setAudience = useOnboardingStore(s => s.setAudience)
   const setLearningGoal = useOnboardingStore(s => s.setLearningGoal)
   const completeOnboarding = useOnboardingStore(s => s.completeOnboarding)
   const closeOnboarding = useOnboardingStore(s => s.closeOnboarding)
   const locale = useLocaleStore(s => s.locale)
   const [isCompletingOnboarding, setIsCompletingOnboarding] = useState(false)
   const [pendingOnboardingViewportReset, setPendingOnboardingViewportReset] = useState(false)
-  const showFirstRun = !hasCompletedOnboarding && presentationMode === 'first-run'
-  const showOverlay = hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
+  const isPublicDocument = isPublicDocumentPath(location.pathname)
+  const showFirstRun = !isPublicDocument && !hasCompletedOnboarding && presentationMode === 'first-run'
+  const showOverlay = !isPublicDocument && hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
 
   useNitemOfflineCache()
   useSupabaseBootstrap()
@@ -144,7 +151,15 @@ function AppShell() {
   }, [dark, displayMode])
 
   useEffect(() => {
-    if (typeof window === 'undefined' || location.hash) return
+    document.documentElement.lang = locale === 'pa' ? 'pa-Guru' : locale === 'hi' ? 'hi' : 'en'
+    document.documentElement.dir = 'ltr'
+  }, [locale])
+
+  useEffect(() => {
+    const didPathChange = previousPathnameRef.current !== location.pathname
+    previousPathnameRef.current = location.pathname
+
+    if (!didPathChange || typeof window === 'undefined' || location.hash) return
 
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
@@ -187,7 +202,7 @@ function AppShell() {
       startTransition(() => {
         navigate('/', {
           replace: true,
-          state: learningGoal === 'habit' ? { highlightTodayPath: true } : null,
+          state: null,
         })
       })
       setPendingOnboardingViewportReset(true)
@@ -236,10 +251,6 @@ function AppShell() {
           setMeaningLanguage={setMeaningLanguage}
           englishSource={englishSource}
           setEnglishSource={setEnglishSource}
-          learningLevel={learningLevel}
-          setLearningLevel={setLearningLevel}
-          audience={audience}
-          setAudience={setAudience}
           learningGoal={learningGoal}
           setLearningGoal={setLearningGoal}
           onComplete={handleOnboardingComplete}
@@ -281,6 +292,7 @@ function AppShell() {
                 <Route path="/learn/*" element={<Navigate to="/" replace />} />
                 <Route path="/vocab" element={<VocabPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/support" element={<SupportPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </Suspense>
@@ -298,10 +310,6 @@ function AppShell() {
               setMeaningLanguage={setMeaningLanguage}
               englishSource={englishSource}
               setEnglishSource={setEnglishSource}
-              learningLevel={learningLevel}
-              setLearningLevel={setLearningLevel}
-              audience={audience}
-              setAudience={setAudience}
               learningGoal={learningGoal}
               setLearningGoal={setLearningGoal}
               onComplete={handleOnboardingComplete}
@@ -310,7 +318,7 @@ function AppShell() {
             />
           )}
 
-          <NavBar />
+          {!isPublicDocument && <NavBar />}
         </div>
       )}
     </>

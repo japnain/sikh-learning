@@ -11,8 +11,8 @@
   "lang": "en",
   "dir": "ltr",
   "categories": ["books", "education", "lifestyle", "reference"],
-  "background_color": "#0f0a1e",
-  "theme_color": "#0f0a1e",
+  "background_color": "#070c0e",
+  "theme_color": "#070c0e",
   "icons": [
     {
       "src": "/icons/icon-192.png",

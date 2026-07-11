@@ -34,7 +34,7 @@ function SettingsBlock({
     >
       <p id={headingId} className="eyebrow">{title}</p>
       {description ? (
-        <p className="mt-1 mb-3 font-sans text-xs text-ink/50 dark:text-dark-text/50">
+        <p className="mt-1 mb-3 font-sans text-xs text-ink/68 dark:text-dark-text/64">
           {description}
         </p>
       ) : null}
@@ -122,13 +122,13 @@ export default function NitnemCustomizePanel() {
         testId="nitnem-ritual-order"
       >
         <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="font-sans text-xs text-ink/55 dark:text-dark-text/60">
+          <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">
             Selected banis appear on Home in this sequence.
           </p>
           <button
             type="button"
             onClick={handleReset}
-            className="font-sans text-xs text-gold underline underline-offset-2 dark:text-gold-light"
+            className="min-h-[44px] px-2 font-sans text-xs text-gold-dark underline underline-offset-2 dark:text-gold-light"
             data-testid="nitnem-reset"
           >
             {confirmingReset ? 'Tap again to reset' : 'Reset'}
@@ -146,7 +146,7 @@ export default function NitnemCustomizePanel() {
                 data-testid="nitnem-ritual-item"
               >
                 <div className="flex items-start gap-3">
-                  <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-gold/10 font-sans text-[11px] font-semibold text-gold dark:text-gold-light">
+                  <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-gold/10 font-sans text-[11px] font-semibold text-gold-dark dark:text-gold-light">
                     {index + 1}
                   </span>
                   <div className="min-w-0 flex-1">
@@ -154,14 +154,14 @@ export default function NitnemCustomizePanel() {
                       <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed`}>
                         {renderScriptText(option.gurmukhiTitle, scriptMode)}
                       </p>
-                      <span className="rounded-full bg-ink/5 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-ink/55 dark:bg-white/10 dark:text-dark-text/60">
+                      <span className="rounded-full bg-ink/5 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-ink/68 dark:bg-white/10 dark:text-dark-text/64">
                         {option.group}
                       </span>
                     </div>
                     <p className="mt-1 font-sans text-xs font-semibold text-ink/70 dark:text-dark-text/75">
                       {option.romanizedTitle}
                     </p>
-                    <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/58">
+                    <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
                       {getNitnemOptionDetail(option)}
                     </p>
                   </div>
@@ -219,7 +219,7 @@ export default function NitnemCustomizePanel() {
         <div className="space-y-4">
           {(['Morning', 'Evening', 'Night', 'Additional'] as const).map(group => (
             <div key={`manage-${group}`}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/50 dark:text-dark-text/50">
+              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
                 {group}
               </p>
               <div className="space-y-2">
@@ -233,7 +233,7 @@ export default function NitnemCustomizePanel() {
                         key={`manage-${option.id}`}
                         className={`rounded-lg border px-3 py-3 transition-colors duration-300 ${
                           selected
-                            ? 'border-gold/24 bg-[linear-gradient(180deg,rgba(250,241,222,0.9),rgba(246,235,214,0.82))] text-ink dark:border-gold/26 dark:bg-[linear-gradient(180deg,rgba(54,41,63,0.96),rgba(38,29,47,0.92))] dark:text-dark-text'
+                            ? 'border-gold/24 bg-gold/10 text-ink dark:border-gold/26 dark:bg-gold/10 dark:text-dark-text'
                             : 'border-sand/15 bg-parchment-card/72 text-ink dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text'
                         }`}
                       >
@@ -245,7 +245,7 @@ export default function NitnemCustomizePanel() {
                             <p className={`mt-1 font-sans text-xs font-semibold ${selected ? 'text-ink/75 dark:text-dark-text/75' : 'text-ink/70 dark:text-dark-text/75'}`}>
                               {option.romanizedTitle}
                             </p>
-                            <p className={`mt-1 font-sans text-xs ${selected ? 'text-ink/60 dark:text-dark-text/60' : 'text-ink/55 dark:text-dark-text/55'}`}>
+                            <p className={`mt-1 font-sans text-xs ${selected ? 'text-ink/68 dark:text-dark-text/64' : 'text-ink/68 dark:text-dark-text/64'}`}>
                               {getNitnemOptionDetail(option)}
                             </p>
                           </div>
@@ -257,7 +257,7 @@ export default function NitnemCustomizePanel() {
                             <button
                               type="button"
                               onClick={() => toggleSelected(option.id)}
-                              className="rounded-full bg-gold/12 px-3 py-2 font-sans text-[11px] font-semibold text-gold transition-colors duration-300 hover:bg-gold/18 dark:text-gold-light"
+                              className="rounded-full bg-gold/12 px-3 py-2 font-sans text-[11px] font-semibold text-gold-dark transition-colors duration-300 hover:bg-gold/18 dark:text-gold-light"
                               aria-label={`Add ${option.romanizedTitle}`}
                             >
                               Add
@@ -315,11 +315,11 @@ export default function NitnemCustomizePanel() {
             <div>
               <div className="h-px overflow-hidden bg-sand/18 dark:bg-dark-text/12">
                 <div
-                  className="h-full bg-[linear-gradient(90deg,rgba(158,111,41,0.9),rgba(232,196,104,0.7))]"
+                  className="h-full bg-gold"
                   style={{ width: `${nitnemProgressPct}%` }}
                 />
               </div>
-              <p className="mt-2 font-sans text-[11px] uppercase tracking-[0.16em] text-ink/50 dark:text-dark-text/55">
+              <p className="mt-2 font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">
                 {nitnemDone} / {nitnemTotal} daily banis complete
               </p>
             </div>
@@ -347,8 +347,8 @@ export default function NitnemCustomizePanel() {
                         onClick={() => done ? unmarkComplete(option.id) : markComplete(option.id)}
                         className={`shrink-0 rounded-full border px-3 py-2 font-sans text-[11px] font-semibold transition-colors duration-300 ${
                           done
-                            ? 'border-gold/24 bg-gold/10 text-gold dark:text-gold-light'
-                            : 'border-sand/16 bg-parchment-low text-ink/62 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/68'
+                            ? 'border-gold/24 bg-gold/10 text-gold-dark dark:text-gold-light'
+                            : 'border-sand/16 bg-parchment-low text-ink/68 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/68'
                         }`}
                       >
                         {done ? 'Complete' : 'Mark complete'}

@@ -263,7 +263,7 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    fireEvent.click(within(screen.getAllByTestId('study-card')[0]!).getAllByRole('button', { name: 'ੴ' })[0]!)
+    fireEvent.click(within(screen.getAllByTestId('study-card')[0]!).getAllByRole('button', { name: 'Open word details for ੴ' })[0]!)
 
     expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=1')
   })
@@ -673,8 +673,10 @@ describe('Study hukamnama mode', () => {
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Japji Sahib' })).toBeInTheDocument()
       expect(screen.getByText(/opens Sri Guru Granth Sahib Ji on Ang 1/i)).toBeInTheDocument()
-      expect(screen.getAllByText(/Guru Nanak Sahib Ji/i).length).toBeGreaterThan(1)
     })
+
+    fireEvent.click(within(screen.getByTestId('study-reader-context')).getByRole('button'))
+    expect(screen.getAllByText(/Guru Nanak Sahib Ji/i).length).toBeGreaterThan(1)
 
     expect(screen.queryByText(/Comfortable reading first/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/controls stay close/i)).not.toBeInTheDocument()

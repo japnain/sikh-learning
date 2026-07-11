@@ -41,7 +41,7 @@ struct HomeScreen: View {
             VStack(alignment: .leading, spacing: 18) {
                 HomeDoorHero(
                     item: appState.continueReading,
-                    profileLabel: appState.profile.level.title,
+                    profileLabel: appState.readerPreferences.supportDensity.title,
                     savedCount: appState.bookmarks.count
                 ) {
                     appState.openReadTab()
@@ -53,19 +53,16 @@ struct HomeScreen: View {
                     imageName: "FlowReadHero",
                     eyebrow: "Daily Nitnem",
                     title: "Anchor the day in the next bani.",
-                    text: "Keep Nitnem immediate, then browse Banis, Rehat, Amrit Keertan, and Panth Prakash when you need the wider shelf.",
+                    text: "Open a complete BaniDB-backed reading with the script and support defaults you chose.",
                     actionTitle: "Open Read",
                     symbolName: "book.pages"
                 ) {
                     appState.selectedTab = .read
                 }
 
-                SectionHeader(title: "Read Today", subtitle: "Hukamnama, Nitnem, and saved return points stay one scroll apart.")
+                SectionHeader(title: "Read Today", subtitle: "Daily prayers and saved return points stay one scroll apart.")
                 NativeCard {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
-                        FlowActionTile(title: "Hukamnama", subtitle: "Open today's guidance with reader controls.", systemImage: "sparkle.magnifyingglass", tint: .naamGold) {
-                            appState.selectedTab = .read
-                        }
                         FlowActionTile(title: "Nitnem", subtitle: "Jump into the daily bani shelf.", systemImage: "book.closed", tint: .naamSage) {
                             appState.selectedTab = .read
                         }
@@ -95,6 +92,7 @@ struct ReadScreen: View {
     @EnvironmentObject private var appState: NaamRasAppState
     @State private var query = ""
     @State private var activeCategory = "All"
+    @FocusState private var searchFocused: Bool
 
     private var categories: [String] {
         ["All"] + Array(Set(appState.readings.map(\.category))).sorted()
@@ -118,8 +116,8 @@ struct ReadScreen: View {
                 FlowHero(
                     imageName: "FlowReadHero",
                     eyebrow: "Read",
-                    title: "Scripture and history, ready to open.",
-                    subtitle: "Browse Nitnem, Banis, Rehat, Panth Prakash, and scripture search with the same reader controls.",
+                    title: "Complete banis, ready to open.",
+                    subtitle: "Browse exact BaniDB-backed readings with one consistent set of reader controls.",
                     symbolName: "book.pages",
                     progressTitle: "Current reading",
                     progressValue: appState.continueReading.progress
@@ -129,22 +127,17 @@ struct ReadScreen: View {
                     FlowActionTile(title: "Nitnem", subtitle: "Filter daily bani.", systemImage: "sun.max", tint: .naamGold) {
                         activeCategory = categories.first { $0.localizedCaseInsensitiveContains("Nitnem") } ?? "All"
                     }
-                    FlowActionTile(title: "Banis", subtitle: "Browse bani sources.", systemImage: "text.book.closed", tint: .naamSage) {
-                        activeCategory = categories.first { $0.localizedCaseInsensitiveContains("Bani") } ?? "All"
-                    }
-                    FlowActionTile(title: "Search", subtitle: "Find title, category, or source.", systemImage: "magnifyingglass", tint: .naamSage) {
-                        query = ""
-                    }
-                    FlowActionTile(title: "Continue", subtitle: appState.continueReading.title, systemImage: "play.circle", tint: .naamGold) {
-                        appState.markProgress(readingId: appState.continueReading.id, progress: max(appState.continueReading.progress, 0.25))
+                    FlowActionTile(title: "Search", subtitle: "Find a title, category, or source.", systemImage: "magnifyingglass", tint: .naamSage) {
+                        searchFocused = true
                     }
                 }
 
                 NativeCard {
                     VStack(alignment: .leading, spacing: 12) {
                         Eyebrow(text: "Scripture search")
-                        TextField("Search Nitnem, Banis, Panth Prakash", text: $query)
+                        TextField("Search complete banis", text: $query)
                             .textFieldStyle(.roundedBorder)
+                            .focused($searchFocused)
                             .accessibilityIdentifier("native-read-search")
                     }
                 }
@@ -198,6 +191,10 @@ struct ReaderScreen: View {
     @EnvironmentObject private var appState: NaamRasAppState
     var item: ReadingItem
     @State private var selectedWord: WordNote?
+    @State private var loadedLines: [ReadingLine] = []
+    @State private var isLoading = true
+    @State private var loadingError: String?
+    private let baniService = NativeBaniService()
 
     var body: some View {
         ScrollView {
@@ -212,74 +209,95 @@ struct ReaderScreen: View {
                     progressValue: appState.readingProgress[item.id] ?? item.progress
                 )
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
-                    FlowActionTile(title: appState.isBookmarked(item) ? "Saved" : "Save", subtitle: "Bookmark this reading.", systemImage: appState.isBookmarked(item) ? "bookmark.fill" : "bookmark", tint: .naamGold) {
-                        appState.toggleBookmark(item)
-                    }
-                    FlowActionTile(title: "Complete", subtitle: "Mark progress done.", systemImage: "checkmark.circle", tint: .naamSage) {
-                        appState.markProgress(readingId: item.id, progress: 1)
-                    }
-                }
-
-                ReaderControls()
-
-                ForEach(item.lines) { line in
+                if isLoading {
                     NativeCard {
-                        VStack(alignment: appState.readerPreferences.centerAligned ? .center : .leading, spacing: appState.readerPreferences.lineSpacing) {
-                            Text(appState.readerPreferences.scriptMode == .gurmukhi ? line.gurmukhi : line.devanagari)
-                                .font(.system(size: appState.readerPreferences.fontSize, weight: .semibold, design: .serif))
-                                .multilineTextAlignment(appState.readerPreferences.centerAligned ? .center : .leading)
-                            if appState.readerPreferences.transliterationVisible {
-                                Text(line.transliteration)
-                                    .foregroundStyle(Color.naamInk.opacity(0.62))
+                        HStack(spacing: 12) {
+                            ProgressView()
+                            Text("Loading scripture from BaniDB…")
+                                .foregroundStyle(Color.naamInk.opacity(0.68))
+                        }
+                    }
+                } else if let loadingError {
+                    NativeCard {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Label("Reading unavailable", systemImage: "exclamationmark.triangle")
+                                .font(.headline)
+                                .foregroundStyle(Color.naamInk)
+                            Text(loadingError)
+                                .foregroundStyle(Color.naamInk.opacity(0.64))
+                            Button("Try again") {
+                                Task { await loadReading() }
                             }
-                            if appState.readerPreferences.meaningLanguage != .none {
-                                Text(line.meaning)
-                                    .foregroundStyle(Color.naamSage)
-                            }
-                            if appState.readerPreferences.vishraamVisible {
-                                Label(line.vishraamNote, systemImage: "pause.circle")
-                                    .font(.caption)
-                                    .foregroundStyle(Color.naamInk.opacity(0.56))
+                            .buttonStyle(.bordered)
+                        }
+                    }
+                } else {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
+                        FlowActionTile(title: appState.isBookmarked(item) ? "Saved" : "Save", subtitle: "Bookmark this reading.", systemImage: appState.isBookmarked(item) ? "bookmark.fill" : "bookmark", tint: .naamGold) {
+                            appState.toggleBookmark(item)
+                        }
+                        FlowActionTile(title: "Complete", subtitle: "Mark progress done.", systemImage: "checkmark.circle", tint: .naamSage) {
+                            appState.markProgress(readingId: item.id, progress: 1)
+                        }
+                    }
+
+                    ReaderControls()
+
+                    ForEach(loadedLines) { line in
+                        NativeCard {
+                            VStack(alignment: appState.readerPreferences.centerAligned ? .center : .leading, spacing: appState.readerPreferences.lineSpacing) {
+                                Text(appState.readerPreferences.scriptMode == .gurmukhi ? line.gurmukhi : line.devanagari)
+                                    .font(.system(size: appState.readerPreferences.fontSize, weight: .semibold, design: .serif))
                                     .multilineTextAlignment(appState.readerPreferences.centerAligned ? .center : .leading)
-                            }
-                            Text(line.source)
-                                .font(.caption)
-                                .foregroundStyle(Color.naamInk.opacity(0.48))
-                            if !line.wordNotes.isEmpty {
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 8) {
-                                        ForEach(line.wordNotes) { note in
-                                            Button {
-                                                selectedWord = note
-                                            } label: {
-                                                Label(note.word, systemImage: "text.magnifyingglass")
-                                                    .font(.caption.weight(.semibold))
-                                                    .padding(.horizontal, 10)
-                                                    .padding(.vertical, 7)
-                                                    .background(Color.naamParchment.opacity(0.78), in: Capsule())
+                                if appState.readerPreferences.transliterationVisible, !line.transliteration.isEmpty {
+                                    Text(line.transliteration)
+                                        .foregroundStyle(Color.naamInk.opacity(0.62))
+                                }
+                                let meaning = line.meaning(for: appState.readerPreferences.meaningLanguage)
+                                if !meaning.isEmpty {
+                                    Text(meaning)
+                                        .foregroundStyle(Color.naamSage)
+                                }
+                                Text(line.source)
+                                    .font(.caption)
+                                    .foregroundStyle(Color.naamInk.opacity(0.48))
+                                if !line.wordNotes.isEmpty {
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(spacing: 8) {
+                                            ForEach(line.wordNotes) { note in
+                                                Button {
+                                                    selectedWord = note
+                                                } label: {
+                                                    Label(note.word, systemImage: "text.magnifyingglass")
+                                                        .font(.caption.weight(.semibold))
+                                                        .padding(.horizontal, 10)
+                                                        .padding(.vertical, 7)
+                                                        .background(Color.naamParchment.opacity(0.78), in: Capsule())
+                                                }
+                                                .buttonStyle(.plain)
                                             }
-                                            .buttonStyle(.plain)
                                         }
                                     }
                                 }
                             }
+                            .frame(maxWidth: .infinity, alignment: appState.readerPreferences.centerAligned ? .center : .leading)
                         }
-                        .frame(maxWidth: .infinity, alignment: appState.readerPreferences.centerAligned ? .center : .leading)
                     }
                 }
 
-                FlowSavedFooter(
-                    title: appState.isBookmarked(item) ? "This reading is saved" : "Save this reading",
-                    subtitle: "Saved readings appear in the bottom tab with source context and progress.",
-                    value: "\(Int((appState.readingProgress[item.id] ?? item.progress) * 100))%",
-                    symbolName: appState.isBookmarked(item) ? "bookmark.fill" : "bookmark",
-                    actionTitle: appState.isBookmarked(item) ? "Open Saved" : "Save Now"
-                ) {
-                    if appState.isBookmarked(item) {
-                        appState.selectedTab = .saved
-                    } else {
-                        appState.toggleBookmark(item)
+                if !loadedLines.isEmpty {
+                    FlowSavedFooter(
+                        title: appState.isBookmarked(item) ? "This reading is saved" : "Save this reading",
+                        subtitle: "Saved readings appear in the bottom tab with source context and progress.",
+                        value: "\(Int((appState.readingProgress[item.id] ?? item.progress) * 100))%",
+                        symbolName: appState.isBookmarked(item) ? "bookmark.fill" : "bookmark",
+                        actionTitle: appState.isBookmarked(item) ? "Open Saved" : "Save Now"
+                    ) {
+                        if appState.isBookmarked(item) {
+                            appState.selectedTab = .saved
+                        } else {
+                            appState.toggleBookmark(item)
+                        }
                     }
                 }
             }
@@ -289,19 +307,44 @@ struct ReaderScreen: View {
         .sheet(item: $selectedWord) { note in
             WordLookupSheet(note: note)
         }
+        .task(id: item.id) {
+            await loadReading()
+        }
         .toolbar {
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                Button {
-                    appState.toggleBookmark(item)
-                } label: {
-                    Image(systemName: appState.isBookmarked(item) ? "bookmark.fill" : "bookmark")
-                }
-                Button {
-                    appState.markProgress(readingId: item.id, progress: 1)
-                } label: {
-                    Image(systemName: "checkmark.circle")
+            if !loadedLines.isEmpty {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        appState.toggleBookmark(item)
+                    } label: {
+                        Image(systemName: appState.isBookmarked(item) ? "bookmark.fill" : "bookmark")
+                    }
+                    Button {
+                        appState.markProgress(readingId: item.id, progress: 1)
+                    } label: {
+                        Image(systemName: "checkmark.circle")
+                    }
                 }
             }
+        }
+    }
+
+    @MainActor
+    private func loadReading() async {
+        loadingError = nil
+        if !item.lines.isEmpty {
+            loadedLines = item.lines
+            isLoading = false
+            return
+        }
+
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            loadedLines = try await baniService.fetchLines(for: item)
+        } catch {
+            loadedLines = []
+            loadingError = error.localizedDescription
         }
     }
 }
@@ -376,6 +419,7 @@ struct SavedScreen: View {
 
 struct MoreScreen: View {
     @EnvironmentObject private var appState: NaamRasAppState
+    @State private var showingDeleteConfirmation = false
 
     var body: some View {
         ScrollView {
@@ -384,56 +428,61 @@ struct MoreScreen: View {
                     imageName: "FlowMoreHero",
                     eyebrow: "More",
                     title: appState.currentUser?.email ?? "Guest reading is active",
-                    subtitle: "Account, sync, privacy, sources, reader settings, support, and App Review notes live behind one quiet control surface.",
+                    subtitle: appState.cloudBackupAvailable
+                        ? "Optional backup, privacy, sources, and reader settings stay in one control surface."
+                        : "Appearance, privacy, sources, and reader settings stay in one control surface.",
                     symbolName: "ellipsis.circle",
-                    progressTitle: "Sync state",
-                    progressValue: appState.cloudStatus == .synced ? 1 : 0.35
+                    progressTitle: appState.cloudBackupAvailable ? "Sync state" : "Reader setup",
+                    progressValue: appState.cloudBackupAvailable ? (appState.cloudStatus == .synced ? 1 : 0.35) : 1
                 )
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
-                    FlowActionTile(title: "Sync", subtitle: appState.cloudStatus.rawValue, systemImage: "icloud", tint: .naamGold) {
-                        Task { try? await appState.syncNow() }
-                    }
-                    FlowActionTile(title: "Privacy", subtitle: "Sources and data use.", systemImage: "hand.raised", tint: .naamSage) {}
-                    FlowActionTile(title: "Reader", subtitle: "Typography controls.", systemImage: "textformat.size", tint: .naamSage) {}
-                    FlowActionTile(title: "Onboarding", subtitle: "Retune the setup.", systemImage: "slider.horizontal.3", tint: .naamGold) {
-                        appState.resetOnboarding()
-                    }
-                }
+                if appState.cloudBackupAvailable {
+                    NativeCard(tint: .naamGold) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Eyebrow(text: "Cloud backup")
+                            Text("Optional backup")
+                                .font(.title2.bold())
+                                .foregroundStyle(Color.naamInk)
+                            Text("Status: \(appState.cloudStatus.rawValue)")
+                                .foregroundStyle(Color.naamInk.opacity(0.64))
+                            if let lastSyncedAt = appState.lastSyncedAt {
+                                Text("Last synced \(lastSyncedAt.formatted(date: .abbreviated, time: .shortened))")
+                                    .font(.caption)
+                                    .foregroundStyle(Color.naamInk.opacity(0.56))
+                            }
+                            if appState.currentUser == nil {
+                                SignInWithAppleButton(.continue) { request in
+                                    appState.prepareAppleRequest(request)
+                                } onCompletion: { result in
+                                    Task { await appState.handleAppleAuthorization(result) }
+                                }
+                                .signInWithAppleButtonStyle(.black)
+                                .frame(height: 48)
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            } else {
+                                Button("Sync now") {
+                                    Task { try? await appState.syncNow() }
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .disabled(appState.cloudStatus == .syncing || appState.cloudStatus == .deleting)
 
-                NativeCard(tint: .naamGold) {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Eyebrow(text: "Supabase sync")
-                        Text("Optional backup")
-                            .font(.title2.bold())
-                            .foregroundStyle(Color.naamInk)
-                        Text("Status: \(appState.cloudStatus.rawValue)")
-                            .foregroundStyle(Color.naamInk.opacity(0.64))
-                        if let lastSyncedAt = appState.lastSyncedAt {
-                            Text("Last synced \(lastSyncedAt.formatted(date: .abbreviated, time: .shortened))")
-                                .font(.caption)
-                                .foregroundStyle(Color.naamInk.opacity(0.56))
-                        }
-                        SignInWithAppleButton(.continue) { request in
-                            appState.prepareAppleRequest(request)
-                        } onCompletion: { result in
-                            Task { await appState.handleAppleAuthorization(result) }
-                        }
-                        .signInWithAppleButtonStyle(.black)
-                        .frame(height: 48)
-                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                        TextField("Email for magic link", text: $appState.emailForMagicLink)
-                            .keyboardType(.emailAddress)
-                            .textInputAutocapitalization(.never)
-                            .textFieldStyle(.roundedBorder)
-                        Button("Send magic link") {
-                            Task { await appState.sendMagicLink() }
-                        }
-                        .buttonStyle(.borderedProminent)
-                        if let error = appState.lastError {
-                            Text(error)
-                                .font(.caption)
-                                .foregroundStyle(Color.naamSage)
+                                Button("Sign out") {
+                                    Task { await appState.signOutOfCloud() }
+                                }
+                                .buttonStyle(.bordered)
+                                .disabled(appState.cloudStatus == .syncing || appState.cloudStatus == .deleting)
+
+                                Button("Delete cloud account", role: .destructive) {
+                                    showingDeleteConfirmation = true
+                                }
+                                .buttonStyle(.bordered)
+                                .disabled(appState.cloudStatus == .syncing || appState.cloudStatus == .deleting)
+                            }
+                            if let error = appState.lastError {
+                                Text(error)
+                                    .font(.caption)
+                                    .foregroundStyle(Color.naamSage)
+                            }
                         }
                     }
                 }
@@ -441,30 +490,29 @@ struct MoreScreen: View {
                 NativeCard {
                     VStack(alignment: .leading, spacing: 10) {
                         Eyebrow(text: "Privacy & Sources")
-                        Text("No subscriptions, trial gates, paid locks, or unsupported recitation claims.")
+                        Text("Reading stays available without an account.")
                             .font(.headline)
-                        Text("Guest data is stored on device. When signed in, bookmarks, reader preferences, vocab, and reading progress sync through Supabase with row-level security.")
+                        Text(appState.cloudBackupAvailable
+                            ? "Guest data is stored on device. After sign-in, bookmarks, reader preferences, and reading progress can sync."
+                            : "Bookmarks, reader preferences, and reading progress are stored on this device.")
                             .foregroundStyle(Color.naamInk.opacity(0.64))
                     }
                 }
 
                 NativeCard {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Eyebrow(text: "App Review Notes")
-                        Text("Reviewer path")
-                            .font(.headline)
-                        ReviewNoteRow(title: "Demo mode", value: "Continue as Guest, then open Read > Japji Sahib.")
-                        ReviewNoteRow(title: "Account", value: "Sign in is optional; Apple and email link are backup paths.")
-                        ReviewNoteRow(title: "Content", value: "BaniDB remains the scripture source; guidance is not canonical commentary.")
-                        ReviewNoteRow(title: "Commerce", value: "No IAP, subscriptions, paid locks, or restore flow.")
-                    }
-                }
-
-                NativeCard {
                     VStack(alignment: .leading, spacing: 12) {
+                        Eyebrow(text: "Appearance")
+                        Picker("Appearance", selection: $appState.appearanceMode) {
+                            ForEach(AppAppearanceMode.allCases) { mode in
+                                Text(mode.title).tag(mode)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+
+                        Divider()
+
                         Eyebrow(text: "Reader settings")
                         Toggle("Show transliteration", isOn: $appState.readerPreferences.transliterationVisible)
-                        Toggle("Show vishraam support", isOn: $appState.readerPreferences.vishraamVisible)
                         Toggle("Center align lines", isOn: $appState.readerPreferences.centerAligned)
                         Slider(value: $appState.readerPreferences.fontSize, in: 18...34, step: 1) {
                             Text("Reader size")
@@ -479,7 +527,9 @@ struct MoreScreen: View {
 
                 FlowSavedFooter(
                     title: "Saved stays local first",
-                    subtitle: "Account setup never blocks reading; saved content can sync after sign-in.",
+                    subtitle: appState.cloudBackupAvailable
+                        ? "Account setup never blocks reading; saved content can sync after sign-in."
+                        : "Bookmarks and reading progress stay on this device.",
                     value: "\(appState.bookmarks.count)",
                     symbolName: "bookmark.fill",
                     actionTitle: "Open Saved"
@@ -490,6 +540,18 @@ struct MoreScreen: View {
             .padding(18)
         }
         .background(NativeBackground())
+        .confirmationDialog(
+            "Delete cloud account?",
+            isPresented: $showingDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Delete account permanently", role: .destructive) {
+                Task { await appState.deleteCloudAccount() }
+            }
+            Button("Keep account", role: .cancel) {}
+        } message: {
+            Text("Your account and all synced NaamRas data will be permanently deleted. Guest data on this device stays until you clear the app data.")
+        }
     }
 }
 
@@ -561,19 +623,11 @@ private struct HomeDoorHero: View {
                             .clipped()
                             .accessibilityHidden(true)
 
-                        LinearGradient(
-                            colors: [
-                                Color.clear,
-                                Color.naamParchment.opacity(0.22),
-                                Color.naamParchment.opacity(0.88)
-                            ],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
+                        Color.naamParchment.opacity(0.3)
 
                         VStack(alignment: .leading, spacing: 12) {
                             HStack {
-                                Eyebrow(text: "Today's Hukamnama")
+                                Eyebrow(text: "Start reading")
                                 Spacer()
                                 Text(item.source)
                                     .font(.caption.monospacedDigit())
@@ -594,7 +648,7 @@ private struct HomeDoorHero: View {
                                 .foregroundStyle(Color.naamInk.opacity(0.68))
                                 .lineLimit(2)
                             ProgressPill(title: "Continue reading", value: item.progress)
-                            PrimaryActionButton(title: "Read Hukamnama", systemImage: "book.pages", action: openReader)
+                            PrimaryActionButton(title: "Open Read", systemImage: "book.pages", action: openReader)
                         }
                         .padding(14)
                         .background(
@@ -749,7 +803,6 @@ private struct ReaderControls: View {
                 }
                 .pickerStyle(.segmented)
                 Toggle("Transliteration", isOn: $appState.readerPreferences.transliterationVisible)
-                Toggle("Vishraam", isOn: $appState.readerPreferences.vishraamVisible)
                 Slider(value: $appState.readerPreferences.fontSize, in: 18...34, step: 1) {
                     Text("Font size")
                 }
@@ -782,22 +835,6 @@ private struct WordLookupSheet: View {
             .background(NativeBackground())
             .navigationTitle("Word Lookup")
             .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-}
-
-private struct ReviewNoteRow: View {
-    var title: String
-    var value: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Text(title)
-                .font(.caption.weight(.bold))
-                .textCase(.uppercase)
-                .foregroundStyle(Color.naamInk.opacity(0.48))
-            Text(value)
-                .foregroundStyle(Color.naamInk.opacity(0.72))
         }
     }
 }

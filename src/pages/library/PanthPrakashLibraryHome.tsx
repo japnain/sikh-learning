@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import type { LibraryChapterIndexEntry, LibraryChapterPayload, LibrarySearchChapterEntry, LibrarySearchIndex, LibraryWork } from '../../types'
 import { loadLibraryChapter, loadLibraryChapterIndex, loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
@@ -9,6 +9,14 @@ const DEFAULT_WORK_ID = 'panth-prakash-english'
 const INITIAL_VISIBLE_CHAPTERS = 36
 
 type ChapterSearchResult = Pick<LibrarySearchChapterEntry, 'chapterId' | 'title' | 'snippet' | 'episodeNumber' | 'volume' | 'startSourcePage' | 'endSourcePage'>
+
+interface LibraryLoadState {
+  key: string
+  status: 'loading' | 'ready' | 'error'
+  work: LibraryWork | null
+  chapters: LibraryChapterIndexEntry[]
+  searchIndex: LibrarySearchIndex | null
+}
 
 function chapterLabel(chapter: Pick<LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
   return chapter.kind === 'episode' && chapter.episodeNumber
@@ -30,10 +38,17 @@ export default function PanthPrakashLibraryHome() {
   const { workId: routeWorkId } = useParams<{ workId: string }>()
   const workId = routeWorkId ?? DEFAULT_WORK_ID
   const currentSession = useProgressStore(state => state.currentSession)
-  const [work, setWork] = useState<LibraryWork | null>(null)
-  const [chapters, setChapters] = useState<LibraryChapterIndexEntry[]>([])
-  const [searchIndex, setSearchIndex] = useState<LibrarySearchIndex | null>(null)
-  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
+  const [loadState, setLoadState] = useState<LibraryLoadState>({
+    key: workId,
+    status: 'loading',
+    work: null,
+    chapters: [],
+    searchIndex: null,
+  })
+  const currentLoadState = loadState.key === workId
+    ? loadState
+    : { key: workId, status: 'loading' as const, work: null, chapters: [], searchIndex: null }
+  const { work, chapters, searchIndex, status } = currentLoadState
   const [chapterQuery, setChapterQuery] = useState('')
   const [volumeFilter, setVolumeFilter] = useState<'all' | number>('all')
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_CHAPTERS)
@@ -43,7 +58,6 @@ export default function PanthPrakashLibraryHome() {
 
   useEffect(() => {
     let cancelled = false
-    setStatus('loading')
 
     Promise.all([
       loadLibraryWorkCatalog(),
@@ -52,14 +66,18 @@ export default function PanthPrakashLibraryHome() {
     ])
       .then(([catalog, loadedChapters, loadedSearchIndex]) => {
         if (cancelled) return
-        setWork(catalog.workById[workId] ?? null)
-        setChapters(loadedChapters)
-        setSearchIndex(loadedSearchIndex)
-        setStatus(catalog.workById[workId] ? 'ready' : 'error')
+        const loadedWork = catalog.workById[workId] ?? null
+        setLoadState({
+          key: workId,
+          status: loadedWork ? 'ready' : 'error',
+          work: loadedWork,
+          chapters: loadedChapters,
+          searchIndex: loadedSearchIndex,
+        })
       })
       .catch(() => {
         if (cancelled) return
-        setStatus('error')
+        setLoadState({ key: workId, status: 'error', work: null, chapters: [], searchIndex: null })
       })
 
     return () => {
@@ -67,22 +85,22 @@ export default function PanthPrakashLibraryHome() {
     }
   }, [workId])
 
-  const volumeSummary = useMemo(() => {
+  const volumeSummary = (() => {
     const counts = new Map<number, number>()
     for (const chapter of chapters) {
       counts.set(chapter.volume, (counts.get(chapter.volume) ?? 0) + 1)
     }
     return [...counts.entries()].map(([volume, count]) => ({ volume, count }))
-  }, [chapters])
+  })()
 
-  const filteredChapters = useMemo(() => {
+  const filteredChapters = (() => {
     const normalizedQuery = chapterQuery.trim().toLowerCase()
     return chapters.filter(chapter => {
       const matchesVolume = volumeFilter === 'all' || chapter.volume === volumeFilter
       const haystack = `${chapterLabel(chapter)} ${chapter.title} volume ${chapter.volume} ${chapter.startSourcePage} ${chapter.endSourcePage}`.toLowerCase()
       return matchesVolume && (!normalizedQuery || haystack.includes(normalizedQuery))
     })
-  }, [chapterQuery, chapters, volumeFilter])
+  })()
 
   const visibleChapters = filteredChapters.slice(0, visibleCount)
   const firstChapter = chapters[0]
@@ -186,9 +204,10 @@ export default function PanthPrakashLibraryHome() {
     <div
       className="page-shell animate-fade-in"
       data-testid="panth-library-home"
+      data-page="library-work"
       style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
     >
-      <div className="mb-4">
+      <div className="panth-work-header mb-4">
         <p className="eyebrow">EPUB book reader</p>
         <h1 className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
@@ -214,7 +233,7 @@ export default function PanthPrakashLibraryHome() {
           {firstChapter ? (
             <Link
               to={chapterPath(work.id, firstChapter.id)}
-              className="interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
+              className="interactive-focus rounded-lg bg-saffron px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
             >
               Start Volume I
             </Link>
@@ -249,12 +268,12 @@ export default function PanthPrakashLibraryHome() {
             id="panth-book-search"
             value={bookSearchQuery}
             onChange={event => setBookSearchQuery(event.target.value)}
-            className="min-h-[44px] flex-1 rounded-[18px] border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            className="min-h-[44px] flex-1 rounded-lg border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
             placeholder="Search the book"
           />
           <button
             type="submit"
-            className="interactive-focus rounded-[18px] bg-ink px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-cream dark:bg-gold-light dark:text-dark-bg"
+            className="interactive-focus rounded-lg bg-ink px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-cream dark:bg-gold-light dark:text-dark-bg"
           >
             Search
           </button>
@@ -262,22 +281,22 @@ export default function PanthPrakashLibraryHome() {
         {bookSearchStatus !== 'idle' ? (
           <div className="mt-4 grid gap-3" data-testid="panth-full-text-results">
             {bookSearchStatus === 'searching' ? (
-              <p className="font-sans text-sm text-ink/62 dark:text-dark-text/68">Searching chapters...</p>
+              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/68">Searching chapters...</p>
             ) : null}
             {bookSearchStatus === 'empty' ? (
-              <p className="font-sans text-sm text-ink/62 dark:text-dark-text/68">No chapter matches found.</p>
+              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/68">No chapter matches found.</p>
             ) : null}
             {bookSearchResults.map(result => (
               <Link
                 key={result.chapterId}
                 to={chapterPath(work.id, result.chapterId)}
-                className="interactive-focus interactive-card-link rounded-[22px] border border-sand/14 bg-parchment-card/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
+                className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
               >
-                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
+                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">
                   {result.episodeNumber ? `Episode ${result.episodeNumber}` : `Volume ${result.volume}`} · EPUB pages {result.startSourcePage}-{result.endSourcePage}
                 </p>
                 <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{result.title}</p>
-                <p className="mt-2 line-clamp-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/66">{result.snippet}</p>
+                <p className="mt-2 line-clamp-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/66">{result.snippet}</p>
               </Link>
             ))}
           </div>
@@ -290,7 +309,7 @@ export default function PanthPrakashLibraryHome() {
             <p className="eyebrow">Table of contents</p>
             <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">Chapters</h2>
           </div>
-          <p className="font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/74" data-testid="panth-chapter-count-meta">
+          <p className="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/74" data-testid="panth-chapter-count-meta">
             Showing {visibleChapters.length} of {filteredChapters.length} chapters
           </p>
         </div>
@@ -304,7 +323,7 @@ export default function PanthPrakashLibraryHome() {
               setChapterQuery(event.target.value)
               setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
             }}
-            className="min-h-[44px] rounded-[18px] border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            className="min-h-[44px] rounded-lg border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
             placeholder="Filter chapters"
           />
           <div className="flex gap-2">
@@ -316,7 +335,7 @@ export default function PanthPrakashLibraryHome() {
                   setVolumeFilter(option)
                   setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
                 }}
-                className={`interactive-focus rounded-full px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] ${volumeFilter === option ? 'bg-gold text-ink' : 'border border-sand/18 bg-parchment-card/82 text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}`}
+                className={`interactive-focus min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] ${volumeFilter === option ? 'bg-saffron text-white dark:bg-gold-light dark:text-dark-bg' : 'border border-sand/18 bg-parchment-card/82 text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}`}
               >
                 {option === 'all' ? 'All' : `Vol ${option}`}
               </button>
@@ -324,12 +343,12 @@ export default function PanthPrakashLibraryHome() {
           </div>
         </div>
 
-        <div className="mt-5 grid gap-3">
+        <div className="panth-chapter-grid mt-5 grid gap-3">
           {visibleChapters.map(chapter => (
             <Link
               key={chapter.id}
               to={chapterPath(work.id, chapter.id)}
-              className="interactive-focus interactive-card-link rounded-[24px] border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
+              className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
             >
               <div className="flex flex-wrap gap-2">
                 <span className="chip-pill">{chapterLabel(chapter)}</span>
@@ -345,7 +364,7 @@ export default function PanthPrakashLibraryHome() {
           <button
             type="button"
             onClick={() => setVisibleCount(count => count + INITIAL_VISIBLE_CHAPTERS)}
-            className="interactive-focus mt-5 w-full rounded-[18px] border border-gold/18 bg-gold/10 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
+            className="interactive-focus mt-5 w-full rounded-lg border border-gold/18 bg-gold/10 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
           >
             Load more chapters
           </button>

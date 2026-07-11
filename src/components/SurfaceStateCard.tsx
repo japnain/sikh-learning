@@ -36,7 +36,7 @@ export default function SurfaceStateCard({
 }: SurfaceStateCardProps) {
   const content = (
     <section
-      className="section-shell p-5 border border-gold/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(250,240,222,0.88))] shadow-card dark:border-gold/10 dark:bg-[linear-gradient(180deg,rgba(34,27,45,0.96),rgba(24,19,34,0.94))]"
+      className="section-shell border border-gold/12 bg-parchment-card p-5 shadow-card dark:border-gold/10 dark:bg-dark-card"
       data-ai-surface={surface}
       data-ai-state={state}
       data-ai-error={state === 'degraded' && errorCode ? errorCode : undefined}
@@ -54,7 +54,7 @@ export default function SurfaceStateCard({
               className={
                 action.emphasis === 'secondary'
                   ? 'rounded-full border border-sand/16 bg-white/78 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'
-                  : 'rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white'
+                  : 'rounded-lg bg-saffron px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white'
               }
               data-ai-action={action.aiAction}
             >

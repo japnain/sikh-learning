@@ -24,13 +24,6 @@ function numberField(body, name) {
 function parseBanis() {
   const source = readText('src/data/banis.ts')
   const baniMatcher = /(?:exactBani|browseOnlyBani)\(\{([^}]+)\}\)/g
-  const progressById = new Map([
-    ['japji-sahib', 0.42],
-    ['rehras-sahib', 0.18],
-    ['anand-sahib', 0.11],
-    ['amrit-keertan', 0.08],
-  ])
-
   const readings = []
   let match
   while ((match = baniMatcher.exec(source))) {
@@ -53,50 +46,22 @@ function parseBanis() {
       subtitle: `${sourceCode || 'Source'} ${range} · ${description}`,
       category,
       source: baniDbId ? `${sourceCode} · BaniDB #${baniDbId}` : `${sourceCode} · Browse`,
-      progress: progressById.get(id) ?? 0,
+      baniDbId,
+      progress: 0,
     })
   }
 
-  readings.push(
-    {
-      id: 'hukamnama',
-      title: 'Hukamnama',
-      subtitle: 'Daily reflection with source context and saved progress',
-      category: 'Today',
-      source: 'SGGS · BaniDB',
-      progress: 0,
-    },
-    {
-      id: 'rehat-maryada',
-      title: 'Rehat Maryada',
-      subtitle: 'Structured sections with reading progress and source notes',
-      category: 'Rehat',
-      source: 'SGPC',
-      progress: 0,
-    },
-    {
-      id: 'panth-prakash',
-      title: 'Panth Prakash',
-      subtitle: 'English volumes, episodes, and saved reading position',
-      category: 'Library',
-      source: 'Panthic Library',
-      progress: 0.28,
-    },
-    {
-      id: 'scripture-search',
-      title: 'Scripture Search',
-      subtitle: 'BaniDB-backed search route for shabad and ang lookup',
-      category: 'Search',
-      source: 'BaniDB v2',
-      progress: 0,
-    }
-  )
+  const availableReadings = readings.filter(reading => reading.baniDbId !== null)
+  const ids = availableReadings.map(reading => reading.baniDbId)
+  const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index)
+  if (duplicateIds.length > 0) {
+    throw new Error(`Duplicate BaniDB ids in native catalog: ${[...new Set(duplicateIds)].join(', ')}`)
+  }
 
-  return readings
+  return availableReadings
 }
 
 const catalog = {
-  generatedAt: new Date().toISOString(),
   readings: parseBanis(),
 }
 

@@ -51,6 +51,10 @@ import {
 
 type Scripture = 'SGGS' | 'DG'
 type ExactBani = Bani & { baniDbId: number }
+
+function isExactBani(bani: Bani): bani is ExactBani {
+  return typeof bani.baniDbId === 'number'
+}
 interface ResolvedRouteOption {
   key: string
   label: string
@@ -64,13 +68,13 @@ const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; catego
 }
 
 const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; minLength: number }> = {
-  'first-letters': { type: 0, placeholder: 'Search first letters in Gurmukhi...', minLength: 2 },
-  'first-letters-anywhere': { type: 1, placeholder: 'Search first letters anywhere in the line...', minLength: 2 },
-  gurmukhi: { type: 2, placeholder: 'Search full Gurbani words...', minLength: 2 },
-  english: { type: 3, placeholder: 'Search English meanings...', minLength: 2 },
-  transliteration: { type: 4, placeholder: 'Search transliteration...', minLength: 2 },
-  ang: { type: -1, placeholder: 'Open an ang or page directly...', minLength: 1 },
-  'auto-detect': { type: 8, placeholder: 'Type Gurbani, meaning, or ang...', minLength: 2 },
+  'first-letters': { type: 0, placeholder: 'First letters in Gurmukhi', minLength: 2 },
+  'first-letters-anywhere': { type: 1, placeholder: 'First letters in any line', minLength: 2 },
+  gurmukhi: { type: 2, placeholder: 'Full Gurbani words', minLength: 2 },
+  english: { type: 3, placeholder: 'English meanings', minLength: 2 },
+  transliteration: { type: 4, placeholder: 'Transliteration', minLength: 2 },
+  ang: { type: -1, placeholder: 'Open an ang or page', minLength: 1 },
+  'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
 }
 const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
   'first-letters': 'Search by first letters and slip into the right bani with less hunting.',
@@ -156,10 +160,10 @@ const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
 ])
 
 const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
-const EXACT_BANIS_BY_SCRIPTURE = {
-  SGGS: READ_DIRECTORY_SGGS_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
-  DG: READ_DIRECTORY_DG_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
-} satisfies Record<Scripture, ExactBani[]>
+const DIRECTORY_BANIS_BY_SCRIPTURE = {
+  SGGS: READ_DIRECTORY_SGGS_BANIS,
+  DG: READ_DIRECTORY_DG_BANIS,
+} satisfies Record<Scripture, Bani[]>
 
 const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
   .flat()
@@ -172,7 +176,7 @@ const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_B
     return groups
   }, new Map())
 
-function getExactBaniRowLabel(bani: ExactBani) {
+function getBaniRowLabel(bani: Bani) {
   if (!bani.variantOf) return bani.name
 
   const exactVariants = EXACT_VARIANT_OPTIONS_BY_BASE_ID.get(bani.variantOf) ?? []
@@ -344,12 +348,12 @@ function IndexRow({
         {label}
       </p>
       {detail ? (
-        <p className={`read-index-row__detail ${detailClassName ?? 'font-sans text-xs text-gold dark:text-gold-light mt-0.5'}`}>
+        <p className={`read-index-row__detail ${detailClassName ?? 'font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5'}`}>
           {detail}
         </p>
       ) : null}
       {supplementalDetail ? (
-        <p className={`read-index-row__detail ${supplementalDetailClassName ?? 'font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1'}`}>
+        <p className={`read-index-row__detail ${supplementalDetailClassName ?? 'font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1'}`}>
           {supplementalDetail}
         </p>
       ) : null}
@@ -364,7 +368,7 @@ function MetadataChip({
   children: ReactNode
   onClick?: () => void
 }) {
-  const className = 'rounded-full bg-gold/10 dark:bg-gold/10 border border-gold/15 dark:border-gold/20 px-2 py-1 font-sans text-[10px] text-gold dark:text-gold-light'
+  const className = 'rounded-full bg-gold/10 dark:bg-gold/10 border border-gold/15 dark:border-gold/20 px-2 py-1 font-sans text-[10px] text-gold-dark dark:text-gold-light'
 
   if (!onClick) {
     return <span className={className}>{children}</span>
@@ -617,8 +621,8 @@ export default function Banis() {
   }, [sundarGutkaBanis])
 
   const scriptureGroups = useMemo(() => {
-    return (Object.keys(SCRIPTURE_META) as Scripture[]).reduce<Record<Scripture, Array<{ category: string; items: Array<Bani & { baniDbId: number }> }>>>((groups, scripture) => {
-      const items = EXACT_BANIS_BY_SCRIPTURE[scripture]
+    return (Object.keys(SCRIPTURE_META) as Scripture[]).reduce<Record<Scripture, Array<{ category: string; items: Bani[] }>>>((groups, scripture) => {
+      const items = DIRECTORY_BANIS_BY_SCRIPTURE[scripture]
       const orderedCategories = SCRIPTURE_META[scripture].categoryOrder
 
       groups[scripture] = orderedCategories
@@ -734,7 +738,7 @@ export default function Banis() {
             value={searchQuery}
             onChange={e => handleSearch(e.target.value)}
             placeholder={SEARCH_MODE_META[searchMode].placeholder}
-            className="read-search-input w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-2xl pl-11 pr-4 py-4 font-sans text-base text-ink dark:text-dark-text placeholder:text-ink/36 dark:placeholder:text-dark-text/38 outline-none focus:border-saffron/45 transition-colors duration-300"
+            className="read-search-input w-full rounded-lg border border-sand/15 bg-parchment-card py-4 pl-11 pr-4 font-sans text-base text-ink outline-none transition-colors duration-300 placeholder:text-ink/36 focus:border-saffron/45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text dark:placeholder:text-dark-text/38"
             data-ai-action="read-smart-search"
           />
         </div>
@@ -757,9 +761,9 @@ export default function Banis() {
                       key={mode}
                       onClick={() => setSearchMode(mode)}
                       aria-pressed={selected}
-                      className={`min-h-[44px] rounded-xl px-3 py-2 font-sans text-xs font-medium transition-all duration-300 ${
+                      className={`min-h-[44px] rounded-lg px-3 py-2 font-sans text-xs font-medium transition-all duration-300 ${
                         selected
-                          ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                          ? 'bg-saffron text-white'
                           : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
@@ -779,7 +783,7 @@ export default function Banis() {
                       className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border transition-all duration-300 ${
                         selected
                           ? 'bg-saffron text-white border-saffron'
-                          : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'
+                          : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
                     {label}
@@ -798,34 +802,34 @@ export default function Banis() {
                   addRecent(searchQuery.trim(), 'ang')
                   navigate(target.path)
                 }}
-                className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
+                className="w-full rounded-lg border border-sand/15 bg-parchment-card px-3 py-3 text-left transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card"
               >
                 <p className="font-sans text-sm text-ink dark:text-dark-text">
                   Open {target.label} {target.kind}{' '}
                   <SearchHighlight text={searchQuery.trim()} query={searchQuery.trim()} />
                 </p>
-                <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
+                <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-1">
                   Direct page lookup without running a word search.
                 </p>
               </button>
             )) : (
-              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No matching source can open that ang/page.</p>
+              <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">No matching source can open that ang/page.</p>
             )}
           </div>
           )}
-          {searching && <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
+          {searching && <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">Searching exact results...</p>}
           {searchIssue && !searching && searchMode !== 'ang' && (
-            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 rounded-[20px] border border-[#b4553d]/18 bg-[#b4553d]/8 px-4 py-3 text-sm text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
+            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 rounded-lg border border-[#b4553d]/18 bg-[#b4553d]/8 px-4 py-3 text-sm text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
               {getSearchIssueCopy(searchIssue)}
             </div>
           )}
           {appSearchMatches.length > 0 && searchMode !== 'ang' && (
             <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-app-results" data-ai-result-group="in-app">
             <div className="flex items-center justify-between gap-3 px-1">
-              <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+              <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
                 In the app
               </p>
-              <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+              <p className="font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
                 Exact destinations first
               </p>
             </div>
@@ -840,18 +844,18 @@ export default function Banis() {
                   <button
                     key={match.key}
                     onClick={() => navigate(match.path)}
-                    className="w-full text-left rounded-[22px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:from-saffron/12 dark:to-saffron-light/12"
+                    className="w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 py-3 text-left transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:bg-saffron/12"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
                           <SearchHighlight text={match.label} query={trimmedSearchQuery} />
                         </p>
-                        <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+                        <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
                           <SearchHighlight text={match.detail} query={trimmedSearchQuery} />
                         </p>
                         {showMatchedQuery ? (
-                          <p className="mt-2 font-sans text-[11px] text-ink/52 dark:text-dark-text/54">
+                          <p className="mt-2 font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
                             Matched for <SearchHighlight text={trimmedSearchQuery} query={trimmedSearchQuery} />
                           </p>
                         ) : null}
@@ -873,7 +877,7 @@ export default function Banis() {
                       <button
                         onClick={() => setRaagFilter('all')}
                         aria-pressed={raagFilter === 'all'}
-                        className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                        className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'}`}
                     >
                       All Raags
                     </button>
@@ -882,7 +886,7 @@ export default function Banis() {
                           key={raag}
                           onClick={() => setRaagFilter(raag)}
                           aria-pressed={raagFilter === raag}
-                          className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === raag ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                          className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === raag ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'}`}
                       >
                         {raag}
                       </button>
@@ -894,7 +898,7 @@ export default function Banis() {
                       <button
                         onClick={() => setWriterFilter('all')}
                         aria-pressed={writerFilter === 'all'}
-                        className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                        className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'}`}
                     >
                       All Writers
                     </button>
@@ -903,7 +907,7 @@ export default function Banis() {
                           key={writer}
                           onClick={() => setWriterFilter(writer)}
                           aria-pressed={writerFilter === writer}
-                          className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === writer ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                          className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === writer ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'}`}
                       >
                         {writer}
                       </button>
@@ -915,7 +919,7 @@ export default function Banis() {
             {groupedSearchResults.map(r => (
               <div
                 key={r.key}
-                className="bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
+                className="rounded-lg border border-sand/15 bg-parchment-card px-3 py-3 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card"
               >
                 <button
                   type="button"
@@ -923,8 +927,8 @@ export default function Banis() {
                   className="w-full text-left"
                 >
                   <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink dark:text-dark-text`}><SearchHighlight text={renderScriptText(r.gurmukhi, scriptMode)} query={searchQuery.trim()} /></p>
-                  <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><SearchHighlight text={r.transliteration} query={searchQuery.trim()} /></p>
-                  <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><SearchHighlight text={r.translation_en} query={searchQuery.trim()} /></p>
+                  <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-0.5"><SearchHighlight text={r.transliteration} query={searchQuery.trim()} /></p>
+                  <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-0.5"><SearchHighlight text={r.translation_en} query={searchQuery.trim()} /></p>
                 </button>
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {r.sourceName && r.source in SEARCH_SOURCE_LABELS
@@ -940,12 +944,12 @@ export default function Banis() {
           </div>
         )}
         {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && !searchIssue && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (
-            <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
+            <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">No results found</p>
         )}
         {!searchQuery && recent.length > 0 && (
           <div className="mt-2">
             <div className="flex justify-between items-center mb-1">
-              <p className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40 uppercase tracking-wider">Recent</p>
+              <p className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">Recent</p>
               <button onClick={clearRecent} className="font-sans text-[10px] text-ink/30 dark:text-dark-text/30">Clear</button>
             </div>
             <div className="space-y-2">
@@ -956,14 +960,14 @@ export default function Banis() {
                       setSearchMode(item.mode)
                       handleSearch(item.query, item.mode, searchSource)
                     }}
-                    className="flex-1 text-left font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-2 text-ink/60 dark:text-dark-text/60 active:scale-95 transition-transform duration-150"
+                    className="flex-1 text-left font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-2 text-ink/68 dark:text-dark-text/64 active:scale-95 transition-transform duration-150"
                   >
                     {item.query} · {SEARCH_MODE_LABELS[item.mode]}
                   </button>
                   <button
                     onClick={() => togglePinned(item.query, item.mode)}
                     aria-label={item.pinned ? `Unpin ${item.query}` : `Pin ${item.query}`}
-                    className="min-h-[40px] min-w-[40px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/45 dark:text-dark-text/45"
+                    className="min-h-[40px] min-w-[40px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/68 dark:text-dark-text/64"
                   >
                     {item.pinned ? <IconBookmarkFilled size={15} className="text-saffron dark:text-saffron-light" /> : <IconBookmark size={15} />}
                   </button>
@@ -996,11 +1000,11 @@ export default function Banis() {
                 {ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek}
               </p>
             </div>
-            <span className="read-featured-flow-card__action mt-1 shrink-0 text-gold dark:text-gold-light">
+            <span className="read-featured-flow-card__action mt-1 shrink-0 text-gold-dark dark:text-gold-light">
               <IconArrowRight size={18} />
             </span>
           </div>
-          <span className="read-featured-flow-card__cta mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream dark:bg-gold-light dark:text-dark-bg">
+          <span className="read-featured-flow-card__cta mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream dark:bg-gold-light dark:text-dark-bg">
             Begin devotional flow
             <IconArrowRight size={15} />
           </span>
@@ -1012,7 +1016,7 @@ export default function Banis() {
             <h2 id="read-directory-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
               Bani directories
             </h2>
-            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/76">
+            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
               Open named banis and daily prayers.
             </p>
           </div>
@@ -1035,7 +1039,7 @@ export default function Banis() {
         {expanded['sundar-gutka'] && (
           <div id="banis-sundar-gutka-panel" className="mt-2 ml-2">
             {loadingSundarGutka ? (
-              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Sundar Gutka…</p>
+              <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 px-2 py-3">Loading Sundar Gutka…</p>
             ) : sundarGutkaGroups.map(group => {
               const groupKey = `sundar-gutka-${group.key}`
               return (
@@ -1047,8 +1051,8 @@ export default function Banis() {
                     aria-expanded={Boolean(expanded[groupKey])}
                     aria-controls={`${groupKey}-panel`}
                   >
-                    <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.label}</p>
-                    <span className="icon-surface h-7 w-7 text-ink/58 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                    <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">{group.label}</p>
+                    <span className="icon-surface h-7 w-7 text-ink/68 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
                   </button>
                   {expanded[groupKey] && (
                     <div id={`${groupKey}-panel`} className="mt-1 ml-2">
@@ -1066,7 +1070,7 @@ export default function Banis() {
                               supplementalDetail={getReaderEditorialCopyForBani(option.id)?.dek}
                               labelLang={getScriptTextLang(scriptMode)}
                               labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
-                              detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
+                              detailClassName="font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5"
                               onClick={() => navigate(buildNitnemStudyPath(option))}
                             />
                           ))
@@ -1081,7 +1085,7 @@ export default function Banis() {
                             detail={displayCopy.detail}
                             labelLang={getScriptTextLang(scriptMode)}
                             labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
-                            detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
+                            detailClassName="font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5"
                             onClick={() => openSundarGutkaBani(item)}
                           />
                         )
@@ -1129,12 +1133,24 @@ export default function Banis() {
                         aria-expanded={Boolean(expanded[groupKey])}
                         aria-controls={`${groupKey}-panel`}
                       >
-                        <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.category}</p>
-                        <span className="icon-surface h-7 w-7 text-ink/58 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                        <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">{group.category}</p>
+                        <span className="icon-surface h-7 w-7 text-ink/68 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
                       </button>
                       {expanded[groupKey] && (
                         <div id={`${groupKey}-panel`} className="mt-1 ml-2">
                           {group.items.flatMap(item => {
+                            if (!isExactBani(item)) {
+                              return (
+                                <IndexRow
+                                  key={item.id}
+                                  label={getBaniRowLabel(item)}
+                                  detail={getReaderEditorialCopyForBani(item.id)?.dek ?? item.description}
+                                  detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
+                                  onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
+                                />
+                              )
+                            }
+
                             if (item.variantOf) {
                               const baseItemVisible = group.items.some(candidate => !candidate.variantOf && candidate.id === item.variantOf)
                               if (baseItemVisible) return []
@@ -1142,9 +1158,9 @@ export default function Banis() {
                               return (
                                 <IndexRow
                                   key={item.id}
-                                  label={getExactBaniRowLabel(item)}
+                                  label={getBaniRowLabel(item)}
                                   detail={getReaderEditorialCopyForBani(item.id)?.dek}
-                                  detailClassName="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1"
+                                  detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
                                   onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                                 />
                               )
@@ -1157,7 +1173,7 @@ export default function Banis() {
                                   key={option.key}
                                   label={option.label}
                                   detail={option.detail}
-                                  detailClassName="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1"
+                                  detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
                                   onClick={() => navigate(option.path)}
                                 />
                               ))
@@ -1166,9 +1182,9 @@ export default function Banis() {
                             return (
                               <IndexRow
                                 key={item.id}
-                                label={getExactBaniRowLabel(item)}
+                                label={getBaniRowLabel(item)}
                                 detail={getReaderEditorialCopyForBani(item.id)?.dek}
-                                detailClassName="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1"
+                                detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
                                 onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                               />
                             )
@@ -1192,7 +1208,7 @@ export default function Banis() {
             <h2 id="read-companion-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
               Source-backed companions
             </h2>
-            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/76">
+            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
               Open complementary readers with search, source context, and page navigation.
             </p>
           </div>
@@ -1200,12 +1216,12 @@ export default function Banis() {
           <div className="mt-4 grid gap-3">
       <Link
         to="/banis/rehat"
-        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
         data-testid="banis-open-rehat"
       >
         <span className="min-w-0">
           <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</span>
-          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/82">
+          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
             Open the Rehat reader with list search, chapter filtering, source context, and chapter text search.
           </span>
         </span>
@@ -1216,12 +1232,12 @@ export default function Banis() {
 
       <Link
         to="/banis/amrit-keertan"
-        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
         data-testid="banis-open-amrit-keertan"
       >
         <span className="min-w-0">
           <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</span>
-          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/82">
+          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
             Open the Amrit Keertan directory with section search, source metadata, English, and page navigation.
           </span>
         </span>

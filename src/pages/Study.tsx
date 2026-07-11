@@ -61,6 +61,8 @@ const SOURCE_DISPLAY_NAMES: Record<BaniSource, string> = {
   A: 'Amrit Keertan',
 }
 
+const PAGINATED_ENTRY_THRESHOLD = 4
+
 function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: BaniSource) {
   if (entry?.sourceName && entry.sourceName !== entry.scripture) return entry.sourceName
   return SOURCE_DISPLAY_NAMES[(entry?.source ?? fallbackSource) as BaniSource] ?? entry?.scripture ?? SOURCE_DISPLAY_NAMES.G
@@ -68,9 +70,9 @@ function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: Ban
 
 function readerControlOptionClass(selected: boolean, extra = '') {
   return [
-    'rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 interactive-focus',
+    'rounded-lg px-3 py-2 font-sans text-xs font-medium min-h-[44px] transition-all duration-300 interactive-focus',
     selected
-      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white shadow-sm'
+      ? 'bg-saffron text-white shadow-sm'
       : 'bg-parchment-card/78 dark:bg-dark-card/78 text-ink/72 dark:text-dark-text/76 border border-sand/15 dark:border-dark-text/10',
     extra,
   ].filter(Boolean).join(' ')
@@ -159,6 +161,10 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   hukamnamaEyebrow: string
   hukamnamaBody: string
   sectionLabel: (index: number, total: number) => string
+  previousSection: string
+  nextSection: string
+  contextTitle: string
+  contextSummary: string
 }> = {
   en: {
     shareCopied: 'Copied to clipboard for sharing.',
@@ -177,6 +183,10 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     hukamnamaEyebrow: "Today's Hukamnama",
     hukamnamaBody: 'Receive the day through the Hukamnama first, then open the full source shabad when you want the wider context.',
     sectionLabel: (index, total) => `Shabad ${index} of ${total}`,
+    previousSection: 'Previous shabad',
+    nextSection: 'Next shabad',
+    contextTitle: 'Context & sources',
+    contextSummary: 'Historical, practice, and source notes for this reading.',
   },
   pa: {
     shareCopied: 'ਸਾਂਝਾ ਕਰਨ ਲਈ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ।',
@@ -195,6 +205,10 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     hukamnamaEyebrow: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ',
     hukamnamaBody: 'ਦਿਨ ਦੀ ਸ਼ੁਰੂਆਤ ਹੁਕਮਨਾਮੇ ਨਾਲ ਕਰੋ, ਫਿਰ ਚਾਹੋ ਤਾਂ ਮੂਲ ਸ਼ਬਦ ਦਾ ਪੂਰਾ ਸੰਦਰਭ ਖੋਲ੍ਹੋ।',
     sectionLabel: (index, total) => `ਸ਼ਬਦ ${index} / ${total}`,
+    previousSection: 'ਪਿਛਲਾ ਸ਼ਬਦ',
+    nextSection: 'ਅਗਲਾ ਸ਼ਬਦ',
+    contextTitle: 'ਸੰਦਰਭ ਅਤੇ ਸਰੋਤ',
+    contextSummary: 'ਇਸ ਪਾਠ ਲਈ ਇਤਿਹਾਸਕ, ਅਭਿਆਸ ਅਤੇ ਸਰੋਤ ਨੋਟ।',
   },
   hi: {
     shareCopied: 'शेयर करने के लिए क्लिपबोर्ड में कॉपी हो गया।',
@@ -213,6 +227,10 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     hukamnamaEyebrow: 'आज का हुकमनामा',
     hukamnamaBody: 'दिन को पहले हुकमनामे से ग्रहण करें, फिर चाहें तो मूल शबद का पूरा संदर्भ खोलें।',
     sectionLabel: (index, total) => `शबद ${index} / ${total}`,
+    previousSection: 'पिछला शबद',
+    nextSection: 'अगला शबद',
+    contextTitle: 'संदर्भ और स्रोत',
+    contextSummary: 'इस पाठ के ऐतिहासिक, अभ्यास और स्रोत नोट।',
   },
 }
 
@@ -407,7 +425,31 @@ export default function Study() {
     isBaniDbMode ? baniResult.status :
     angResult.status
 
-  const currentEntry = entries[0] ?? null
+  const [activeEntryIndex, setActiveEntryIndex] = useState(0)
+  const shouldPaginateEntries = entries.length > PAGINATED_ENTRY_THRESHOLD
+  const safeActiveEntryIndex = shouldPaginateEntries
+    ? Math.max(0, Math.min(activeEntryIndex, entries.length - 1))
+    : 0
+  const currentEntry = entries[safeActiveEntryIndex] ?? null
+  const renderedEntries = useMemo(
+    () => shouldPaginateEntries && currentEntry
+      ? [{ entry: currentEntry, entryIndex: safeActiveEntryIndex }]
+      : entries.map((entry, entryIndex) => ({ entry, entryIndex })),
+    [currentEntry, entries, safeActiveEntryIndex, shouldPaginateEntries]
+  )
+
+  useEffect(() => {
+    if (!shouldPaginateEntries) {
+      setActiveEntryIndex(0)
+      return
+    }
+
+    const resumeIndex = resumeVerseIdParam
+      ? entries.findIndex(entry => entry.lines?.some(line => line.verseId === resumeVerseIdParam))
+      : -1
+    setActiveEntryIndex(resumeIndex >= 0 ? resumeIndex : 0)
+  }, [entries, resumeVerseIdParam, searchParamsString, shouldPaginateEntries])
+
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
   const currentShabadId = currentEntry ? (parseShabadId(currentEntry) ?? undefined) : undefined
@@ -586,7 +628,7 @@ export default function Study() {
         window.clearTimeout(timeoutId)
       }
     }
-  }, [loading, resumeVerseIdParam, searchParamsString])
+  }, [loading, resumeVerseIdParam, safeActiveEntryIndex, searchParamsString])
 
   const announceAction = (message: string) => {
     setActionNotice(message)
@@ -699,8 +741,8 @@ export default function Study() {
   }
 
   const shabadIds = useMemo(
-    () => entries.map(entry => parseShabadId(entry)),
-    [entries]
+    () => renderedEntries.map(({ entry }) => parseShabadId(entry)),
+    [renderedEntries]
   )
   const { wordDataMap } = useMultiShabadWordData(isApiMode ? shabadIds : [])
   const isExactSearchResult = isExactShabadMode && verseIdParam !== null
@@ -996,11 +1038,11 @@ export default function Study() {
     setSearchParams(params)
   }
 
-  const jumpToEntry = (sectionId: string) => {
-    const target = document.getElementById(sectionId)
-    if (!target) return
-
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const jumpToEntry = (entryIndex: number) => {
+    setActiveEntryIndex(entryIndex)
+    window.requestAnimationFrame(() => {
+      document.getElementById(`study-entry-${entryIndex + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
   }
 
   if (!isApiMode) return null
@@ -1149,8 +1191,10 @@ export default function Study() {
         ) : null}
       </div>
 
+      <div className="study-reader-layout">
+        <aside className="study-reader-rail" aria-label="Reading context and settings">
       <div
-        className={`study-reader-hero ${isHukamnamaMode ? 'study-reader-hero--hukamnama' : 'study-reader-hero--bani'} section-shell-quiet px-4 py-4 mb-4`}
+        className={`study-reader-hero ${isHukamnamaMode ? 'study-reader-hero--hukamnama' : 'study-reader-hero--bani'} px-4 py-4 mb-4`}
         aria-labelledby="study-reader-title"
         data-testid="study-reader-header"
       >
@@ -1179,8 +1223,27 @@ export default function Study() {
         <p className="study-reader-hero__body">
           {readerIntroBody}
         </p>
-        {(readerEditorialCopy?.historicalNote || readerEditorialCopy?.practiceNote || readerEditorialCopy?.sourceRefs.length) ? (
-          <div className="mt-4 grid gap-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/72">
+        {isHukamnamaMode && hukamnamaResult.data?.shabadId ? (
+          <button
+            onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
+            className="study-reader-hero__cta"
+          >
+            {studyCopy.goToSourceShabad}
+          </button>
+        ) : null}
+      </div>
+
+      {(readerEditorialCopy?.historicalNote || readerEditorialCopy?.practiceNote || readerEditorialCopy?.sourceRefs.length) ? (
+        <DisclosureSection
+          storageKey={`study-reader-context-${baniIdParam ?? baniDbIdParam ?? currentSource}`}
+          title={studyExperienceCopy.contextTitle}
+          summary={studyExperienceCopy.contextSummary}
+          defaultOpen={false}
+          className="section-shell-quiet mb-4 px-4 py-3"
+          bodyClassName="mt-4 grid gap-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/72"
+          sectionId="study-reader-context"
+          testId="study-reader-context"
+        >
             {readerEditorialCopy.historicalNote ? (
               <p>
                 <span className="font-semibold text-ink dark:text-dark-text">Context: </span>
@@ -1206,17 +1269,8 @@ export default function Study() {
                 </ul>
               </div>
             ) : null}
-          </div>
-        ) : null}
-        {isHukamnamaMode && hukamnamaResult.data?.shabadId ? (
-          <button
-            onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
-            className="study-reader-hero__cta"
-          >
-            {studyCopy.goToSourceShabad}
-          </button>
-        ) : null}
-      </div>
+        </DisclosureSection>
+      ) : null}
 
       {isAmritKeertanContext && (
         <div className="section-shell-quiet px-4 py-4 mb-4" data-testid="study-amrit-keertan-context">
@@ -1226,7 +1280,7 @@ export default function Study() {
               <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
                 {amritKeertanContextMeta || 'Book index'}
               </p>
-              <p className="mt-1 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/66">
+              <p className="mt-1 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/66">
                 This shabad opened from the Amrit Keertan book order; source Ang below shows where the shabad appears in scripture.
               </p>
             </div>
@@ -1460,7 +1514,7 @@ export default function Study() {
       {showBookmarkForm && (
         <div
           ref={bookmarkFormRef}
-          className="mb-4 section-shell rounded-[28px] border border-saffron/18 bg-[linear-gradient(180deg,rgba(255,249,240,0.96),rgba(252,239,220,0.9))] p-4 shadow-gold-strong transition-colors duration-300 dark:border-gold/18 dark:bg-[linear-gradient(180deg,rgba(41,31,56,0.96),rgba(28,21,40,0.94))]"
+          className="mb-4 section-shell rounded-lg border border-saffron/18 bg-parchment-card p-4 shadow-gold-strong transition-colors duration-300 dark:border-gold/18 dark:bg-dark-card"
           data-testid="study-bookmark-form"
         >
           <p className="eyebrow">{studyCopy.saveBookmark}</p>
@@ -1473,29 +1527,33 @@ export default function Study() {
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
             placeholder={studyCopy.addNote}
-            className="mt-3 w-full rounded-xl border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/30 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            className="mt-3 w-full rounded-lg border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/30 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
           />
           <button
             onClick={handleSaveBookmark}
-            className="mt-3 w-full rounded-xl bg-gradient-to-r from-saffron to-saffron-light py-2 text-sm font-semibold text-white transition-colors duration-300 min-h-[44px]"
+            className="mt-3 w-full rounded-lg bg-saffron py-2 text-sm font-semibold text-white transition-colors duration-300 min-h-[44px]"
           >
             {studyCopy.saveBookmark}
           </button>
         </div>
       )}
 
+        </aside>
+
+        <div className="study-reader-body">
+
       {isRandomHukamnamaMode && currentEntry && randomHukamnamaAngParam && (
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">
             Hukamnama after Ardaas
           </p>
-          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+          <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
             Selected from Sri Guru Granth Sahib Ji · Ang {randomHukamnamaAngParam}
             {currentEntry.ang !== randomHukamnamaAngParam
               ? `; this shabad begins on Ang ${currentEntry.ang}.`
               : '.'}
           </p>
-          <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/60">
+          <p className="mt-2 font-sans text-xs text-ink/68 dark:text-dark-text/64">
             {ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote}
           </p>
         </div>
@@ -1504,7 +1562,7 @@ export default function Study() {
       {isExactSearchResult && currentEntry && (
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{studyCopy.exactSearchResult}</p>
-          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+          <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
             {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · ${studyCopy.verse} ${verseIdParam}` : ''}
           </p>
           {verseIdParam && fullShabadEntry && (currentEntry.lines?.length ?? 0) < (fullShabadEntry.lines?.length ?? 0) && (
@@ -1522,26 +1580,62 @@ export default function Study() {
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
           {isBaniRangeMode && (
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+            <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
               Ang {currentAng} of {startAngParam ?? angParam}–{endAngParam}
             </p>
           )}
         </div>
       )}
 
+      {shouldPaginateEntries && currentEntry ? (
+        <nav
+          className="section-shell-quiet mb-4 px-4 py-3"
+          aria-label={studyExperienceCopy.entryOutlineEyebrow}
+          data-testid="study-entry-paginator"
+        >
+          <div aria-live="polite" aria-atomic="true">
+            <p className="eyebrow">{studyExperienceCopy.sectionLabel(safeActiveEntryIndex + 1, entries.length)}</p>
+            <p
+              lang={getScriptTextLang(scriptMode)}
+              className={`${getScriptTextFontClass(scriptMode)} mt-2 text-xl leading-tight text-ink dark:text-dark-text`}
+            >
+              {renderScriptText(entryOutline[safeActiveEntryIndex]?.title ?? currentEntry.gurmukhi, scriptMode)}
+            </p>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => jumpToEntry(safeActiveEntryIndex - 1)}
+              disabled={safeActiveEntryIndex === 0}
+              className="interactive-focus min-h-[44px] rounded-lg border border-sand/15 px-3 font-sans text-xs font-semibold text-ink disabled:opacity-35 dark:border-dark-text/10 dark:text-dark-text"
+            >
+              {studyExperienceCopy.previousSection}
+            </button>
+            <button
+              type="button"
+              onClick={() => jumpToEntry(safeActiveEntryIndex + 1)}
+              disabled={safeActiveEntryIndex === entries.length - 1}
+              className="interactive-focus min-h-[44px] rounded-lg bg-saffron px-3 font-sans text-xs font-semibold text-white disabled:opacity-35"
+            >
+              {studyExperienceCopy.nextSection}
+            </button>
+          </div>
+        </nav>
+      ) : null}
+
       <div className="space-y-4" data-testid="study-entry-list">
-        {entries.map((entry, index) => {
+        {renderedEntries.map(({ entry, entryIndex }) => {
           const shabadId = parseShabadId(entry)
           return (
             <StudyCard
               key={entry.id}
               entry={entry}
-              sectionId={entryOutline[index]?.sectionId}
-              sectionEyebrow={showEntryOutline ? entryOutline[index]?.eyebrow ?? null : null}
+              sectionId={entryOutline[entryIndex]?.sectionId}
+              sectionEyebrow={showEntryOutline ? entryOutline[entryIndex]?.eyebrow ?? null : null}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
               hideMainLines={isArdaasReaderFlow}
-              showHeaderBlock={index === 0}
-              showAudioPlayer={index === 0}
+              showHeaderBlock={entryIndex === 0 || shouldPaginateEntries}
+              showAudioPlayer={entryIndex === 0}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
               onShareLine={handleShareLine}
@@ -1567,11 +1661,12 @@ export default function Study() {
             testId="study-entry-outline"
           >
             <div className="grid gap-2">
-              {entryOutline.map(item => (
+              {entryOutline.map((item, index) => (
                 <button
                   key={item.sectionId}
                   type="button"
-                  onClick={() => jumpToEntry(item.sectionId)}
+                  onClick={() => jumpToEntry(index)}
+                  aria-current={shouldPaginateEntries && index === safeActiveEntryIndex ? 'true' : undefined}
                   className="section-shell px-4 py-4 text-left"
                 >
                   <p className="eyebrow">{item.eyebrow}</p>
@@ -1583,7 +1678,7 @@ export default function Study() {
                   >
                     {renderScriptText(item.title, scriptMode)}
                   </p>
-                  <p className="mt-2 font-sans text-xs text-ink/56 dark:text-dark-text/58">
+                  <p className="mt-2 font-sans text-xs text-ink/68 dark:text-dark-text/64">
                     {item.lineCount} {studyCopy.verse} · {item.detail}
                   </p>
                 </button>
@@ -1605,7 +1700,7 @@ export default function Study() {
             type="button"
             onClick={handleTakeHukamnama}
             disabled={isTakingHukamnama}
-            className="mt-4 w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-70"
+            className="mt-4 w-full rounded-lg bg-saffron px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-70"
           >
             {isTakingHukamnama ? 'Taking Hukamnama...' : 'Take Hukamnama'}
           </button>
@@ -1617,16 +1712,18 @@ export default function Study() {
           <button
             onClick={() => navTo(currentAng - 1)}
             disabled={currentAng <= navMinAng}
-            className="flex-1 py-3 rounded-2xl section-shell-quiet text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+            className="flex-1 py-3 rounded-lg section-shell-quiet text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
           >&#8592; Ang {previousNavAng ?? navMinAng}</button>
           <button
             onClick={() => navTo(currentAng + 1)}
             disabled={currentAng >= navMaxAng}
-            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+            className="flex-1 py-3 rounded-lg bg-saffron text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
           >Ang {nextNavAng ?? navMaxAng} &#8594;</button>
         </div>
       )}
 
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useMemo, useState, type MouseEvent, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react'
 import type { ScriptureEntry, ScriptureLine, ScriptureVisraamMarker, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
@@ -7,6 +7,7 @@ import { getHindiSourceLabels, getPunjabiSourceLabels, getVisraamSourceLabels } 
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
 import { IconBookmark, IconBookmarkFilled, IconClose, IconMoreHorizontal, IconShare } from './icons'
+import ModalSheet from './ModalSheet'
 
 interface Props {
   entry: ScriptureEntry
@@ -51,7 +52,7 @@ function ReaderChip({
     <span className={`rounded-full border px-2.5 py-1 font-sans text-[10px] ${
       active
         ? 'border-saffron/25 bg-saffron/10 text-saffron dark:border-saffron/25 dark:bg-saffron/10 dark:text-saffron-light'
-        : 'border-sand/12 bg-parchment-low/80 text-ink/55 dark:border-dark-text/10 dark:bg-dark-surface/70 dark:text-dark-text/58'
+        : 'border-sand/12 bg-parchment-low/80 text-ink/68 dark:border-dark-text/10 dark:bg-dark-surface/70 dark:text-dark-text/64'
     }`}>
       {children}
     </span>
@@ -73,7 +74,7 @@ function LineActionItem({
     <button
       type="button"
       onClick={onClick}
-      className={`w-full rounded-2xl border px-4 py-3 text-left font-sans text-sm transition-all duration-300 ${
+      className={`w-full rounded-lg border px-4 py-3 text-left font-sans text-sm transition-all duration-300 ${
         active
           ? 'bg-saffron/10 dark:bg-saffron/15 border-saffron/20 text-saffron dark:text-saffron-light'
           : 'bg-parchment-low dark:bg-dark-surface border-sand/10 dark:border-dark-text/10 text-ink dark:text-dark-text'
@@ -85,6 +86,22 @@ function LineActionItem({
       </span>
     </button>
   )
+}
+
+function handleWordKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+
+  const group = event.currentTarget.parentElement
+  if (!group) return
+
+  const words = Array.from(group.querySelectorAll<HTMLButtonElement>('[data-reader-word]'))
+  const currentIndex = words.indexOf(event.currentTarget)
+  if (currentIndex < 0) return
+
+  const direction = event.key === 'ArrowRight' ? 1 : -1
+  const nextIndex = (currentIndex + direction + words.length) % words.length
+  event.preventDefault()
+  words[nextIndex]?.focus()
 }
 
 export default function StudyCard({
@@ -106,6 +123,10 @@ export default function StudyCard({
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
   const [actionLine, setActionLine] = useState<ScriptureLine | null>(null)
   const [sourceLayersOpen, setSourceLayersOpen] = useState(false)
+  const wordTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const actionTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const restoreWordFocusRef = useRef(false)
+  const restoreActionFocusRef = useRef(false)
   const locale = useLocaleStore(s => s.locale)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
@@ -165,6 +186,18 @@ export default function StudyCard({
     }
   }, [actionLine])
 
+  useEffect(() => {
+    if (activeWord || !restoreWordFocusRef.current) return
+    restoreWordFocusRef.current = false
+    wordTriggerRef.current?.focus()
+  }, [activeWord])
+
+  useEffect(() => {
+    if (actionLine || !restoreActionFocusRef.current) return
+    restoreActionFocusRef.current = false
+    actionTriggerRef.current?.focus()
+  }, [actionLine])
+
   const handleWordTap = (
     event: MouseEvent<HTMLButtonElement>,
     originalGurmukhi: string,
@@ -172,6 +205,7 @@ export default function StudyCard({
   ) => {
     event.preventDefault()
     event.stopPropagation()
+    wordTriggerRef.current = event.currentTarget
 
     const wordsToSearch = wordData ?? entry.words ?? []
     const cleaned = cleanGurmukhi(originalGurmukhi)
@@ -197,8 +231,15 @@ export default function StudyCard({
   }
 
   const closeActionSheet = () => {
+    restoreActionFocusRef.current = true
     setActionLine(null)
     setSourceLayersOpen(false)
+  }
+
+  const closeWordPopover = () => {
+    restoreWordFocusRef.current = true
+    setActiveWord(null)
+    setActiveLine(null)
   }
 
   const handleLineAction = (line: ScriptureLine, action?: (line: ScriptureLine, entry: ScriptureEntry) => void) => {
@@ -211,15 +252,15 @@ export default function StudyCard({
       <section
         id={sectionId}
         data-testid="study-card"
-        className="animate-scale-in scroll-mt-24 section-shell rounded-xl px-4 py-5 sm:px-5"
+        className="animate-scale-in scroll-mt-24 section-shell rounded-lg px-4 py-5 sm:px-5"
       >
         <div className="mb-5">
           {sectionEyebrow ? (
-            <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.2em] mb-2">
+            <p className="font-sans text-[11px] text-gold-dark dark:text-gold-light uppercase tracking-[0.2em] mb-2">
               {sectionEyebrow}
             </p>
           ) : null}
-          <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.2em]">
+          <p className="font-sans text-[11px] text-gold-dark dark:text-gold-light uppercase tracking-[0.2em]">
             {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
           </p>
           {(entry.raag || entry.writer || entry.sourceName) && (
@@ -252,7 +293,7 @@ export default function StudyCard({
                       {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: line.larivaar })}
                     </p>
                     {showTransliteration && line.transliteration && (
-                      <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                      <p className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
@@ -289,12 +330,13 @@ export default function StudyCard({
                   >
                     <button
                       type="button"
-                      onClick={() => {
+                      onClick={event => {
+                        actionTriggerRef.current = event.currentTarget
                         setActionLine(line)
                         setSourceLayersOpen(false)
                       }}
                       aria-label={`Open verse actions for line ${index + 1}`}
-                      className={`absolute right-0 top-4 flex min-h-[32px] min-w-[32px] items-center justify-center rounded-full border border-transparent text-ink/28 transition-colors duration-300 hover:border-sand/20 hover:text-ink/55 dark:text-dark-text/28 dark:hover:border-dark-text/10 dark:hover:text-dark-text/55 ${
+                      className={`absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-transparent text-ink/68 transition-colors duration-300 hover:border-sand/20 hover:text-ink/65 dark:text-dark-text/64 dark:hover:border-dark-text/10 dark:hover:text-dark-text/65 ${
                         isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
                       }`}
                     >
@@ -316,9 +358,13 @@ export default function StudyCard({
                             key={`${line.verseId}-${wordIndex}`}
                             type="button"
                             lang={getScriptTextLang(scriptMode)}
-                            className={`${getScriptTextFontClass(scriptMode)} bg-transparent border-0 p-0 mr-[0.1em] text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                            tabIndex={wordIndex === 0 ? 0 : -1}
+                            data-reader-word
+                            aria-label={`Open word details for ${renderScriptText(word, scriptMode)}`}
+                            className={`${getScriptTextFontClass(scriptMode)} mr-[0.1em] min-h-11 min-w-6 rounded-sm border-0 bg-transparent px-1 py-0 text-ink transition-colors duration-300 hover:text-gold-dark active:text-gold-dark dark:text-dark-text dark:hover:text-gold-light dark:active:text-gold-light ${lineSpacingClass}`}
                             style={{ fontSize: `${fontSize}px` }}
                             onPointerDown={event => event.stopPropagation()}
+                            onKeyDown={handleWordKeyDown}
                             onClick={event => handleWordTap(event, word, line)}
                           >
                             {formatGurbaniWord(word, { scriptMode, showVishraam })}
@@ -328,7 +374,7 @@ export default function StudyCard({
                     )}
 
                     {showTransliteration && line.transliteration && (
-                      <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                      <p className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
@@ -349,10 +395,6 @@ export default function StudyCard({
                 )
               })}
             </div>
-
-            <p className={`font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-5 ${meaningAlignmentClass}`}>
-              Tap a Gurbani word for meaning. Use the verse menu for saving, sharing, and source layers.
-            </p>
           </>
         )}
       </section>
@@ -360,10 +402,7 @@ export default function StudyCard({
       {activeWord && (
         <WordPopover
           word={activeWord}
-          onClose={() => {
-            setActiveWord(null)
-            setActiveLine(null)
-          }}
+          onClose={closeWordPopover}
           scripture={entry.scripture}
           sourceId={entry.source ?? entry.id.split('-')[0]}
           ang={activeLine?.ang ?? entry.ang}
@@ -374,28 +413,18 @@ export default function StudyCard({
       )}
 
       {actionLine && (
-        <div className="fixed inset-0 z-[70] bg-ink/35 dark:bg-black/60">
-          <button
-            type="button"
-            onClick={closeActionSheet}
-            className="absolute inset-0"
-            aria-label="Close verse actions"
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 flex justify-center px-3"
-            style={{ paddingBottom: 'calc(var(--nav-stack-height, 0px) + 0.75rem + env(safe-area-inset-bottom))' }}
-          >
-            <div
-              role="dialog"
-              aria-modal="true"
-              aria-label="Verse actions"
-              data-testid="study-verse-actions-sheet"
-              className="w-full max-w-md overflow-y-auto rounded-[30px] border border-sand/15 bg-parchment-card px-4 pb-5 pt-3 shadow-gold-strong max-h-[min(72vh,38rem)] dark:border-dark-text/10 dark:bg-dark-card"
-            >
+        <ModalSheet
+          open
+          onClose={closeActionSheet}
+          title="Verse actions"
+          description="Save, copy, share, bookmark, or inspect source layers for this verse."
+          testId="study-verse-actions-sheet"
+          className="max-h-[min(72vh,38rem)] overflow-y-auto rounded-lg px-4 pb-5 pt-3"
+        >
               <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-sand/25 dark:bg-dark-text/15" />
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div>
-                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                     Verse Actions
                   </p>
                   <p
@@ -405,7 +434,7 @@ export default function StudyCard({
                     {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: actionLine.larivaar })}
                   </p>
                   {showTransliteration && actionLine.transliteration && (
-                    <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
+                    <p className="mt-2 font-sans text-sm italic text-ink/68 dark:text-dark-text/64">
                       {actionLine.transliteration}
                     </p>
                   )}
@@ -424,7 +453,7 @@ export default function StudyCard({
                   type="button"
                   onClick={closeActionSheet}
                   aria-label="Dismiss verse actions"
-                  className="flex min-h-[36px] min-w-[36px] items-center justify-center rounded-full bg-parchment-low text-ink/50 dark:bg-dark-surface dark:text-dark-text/50"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-parchment-low text-ink/68 dark:bg-dark-surface dark:text-dark-text/64"
                 >
                   <IconClose size={16} />
                 </button>
@@ -467,7 +496,7 @@ export default function StudyCard({
                 >
                   {actionSourceLayers.punjabiVariants.length > 0 ? (
                     <div>
-                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                         Punjabi
                       </p>
                       <div className="space-y-2">
@@ -490,7 +519,7 @@ export default function StudyCard({
 
                   {actionSourceLayers.hindiVariants.length > 0 ? (
                     <div>
-                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                         Hindi
                       </p>
                       <div className="space-y-2">
@@ -513,7 +542,7 @@ export default function StudyCard({
 
                   {actionSourceLayers.visraamVariants.length > 0 ? (
                     <div>
-                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                         Visraam Sets
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -527,9 +556,7 @@ export default function StudyCard({
                   ) : null}
                 </div>
               ) : null}
-            </div>
-          </div>
-        </div>
+        </ModalSheet>
       )}
     </>
   )

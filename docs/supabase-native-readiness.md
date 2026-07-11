@@ -1,38 +1,30 @@
-# NaamRas Supabase Native Readiness
+# NaamRas Native and Supabase Readiness
 
-NaamRas now has a Supabase-first native path for the SwiftUI App Store build. InsForge runtime files, scripts, schema, and dependencies have been removed from the active app path; the React app now uses `src/supabase/*` as the reference runtime while the native target reaches parity.
+The SwiftUI app is local first. BaniDB supplies scripture on demand; Supabase is an optional account and state-backup layer.
 
-## Apply Supabase Backend
+## Configure Supabase
 
 1. Create or select the Supabase project.
 2. Run `supabase/schema/001_naamras_native_core.sql`.
-3. Deploy these Edge Functions:
-   - `supabase/functions/banidb-proxy`
-   - `supabase/functions/merge-local-state`
-4. Enable Sign in with Apple in Supabase Auth and register bundle id `com.naamras.app`.
-5. Set native Xcode build settings:
-   - `SUPABASE_URL`
-   - `SUPABASE_ANON_KEY`
-6. Set web/reference environment variables from `.env.example`:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-   - `VITE_SUPABASE_FUNCTIONS_URL`
-   - `VITE_SUPABASE_BANIDB_FUNCTION`
-   - `VITE_SUPABASE_MERGE_FUNCTION`
+3. Deploy `supabase/functions/merge-local-state` and `supabase/functions/delete-account`.
+4. Enable Sign in with Apple and register bundle id `com.naamras.app`.
+5. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in the native Xcode build settings.
+6. Set the web variables documented in `.env.example` when running the reference app.
 
 ## Native App Behavior
 
-- Guest mode is fully local and persists onboarding, reader settings, bookmarks, saved Learn items, and reading progress.
-- The SwiftUI shell uses five tabs: Home, Read, Learn, Saved, and More, each with its own `NavigationStack`.
-- Onboarding is a real five-step setup: intent, script, support density, reader profile, and account/preview.
-- Reader flows include script switching, transliteration, meanings, vishraam notes, word lookup sheets, bookmarks, and progress.
-- Read and Learn include filter lanes backed by `NativeCatalog.json`, generated from the web product data with `npm run native:generate-catalog`. The current bundle includes 111 reading entries and 470 Learn/library entries, so Nitnem, Banis, Keertan, Rehat, Panth Prakash/library, scripture search, topics, shabads, collections, guidance, and vocab review are reachable without placeholder screens.
-- Sign in with Apple uses `AuthenticationServices` and Supabase `signInWithIdToken`.
-- Email magic link uses Supabase OTP.
-- Sync sends a local snapshot to `merge-local-state`, which upserts profile, reader preferences, bookmarks, learning state, and reading progress under RLS.
+- Guest mode persists onboarding, appearance, reader settings, bookmarks, and reading progress on device.
+- Four tabs ship: Home, Read, Saved, and More, each with its own `NavigationStack`.
+- Onboarding has four steps: intent, script, support, and reader preview.
+- The reader supports script switching, transliteration, meaning language, font size, alignment, bookmarks, progress, loading, retry, and unavailable states.
+- `NativeCatalog.json` contains 103 unique BaniDB IDs. The app fetches real scripture lines from BaniDB when a reading opens and never maps unsupported library entries to fixture content.
+- Sign in with Apple is shown only when Supabase is configured. Native email magic-link UI remains disabled until a complete deep-link callback flow is implemented and verified.
+- Sync sends a local snapshot to `merge-local-state`, which upserts user-owned state under RLS.
+- Connected users can sign out or confirm permanent account deletion. `delete-account` validates the caller's access token, deletes that same Supabase auth user with the server-side service role, and relies on `on delete cascade` for synced NaamRas rows.
 
-## App Review Notes
+## Release Checks
 
 - No IAP, subscriptions, paid locks, or restore-purchase UI exists in the native target.
-- BaniDB remains the scripture source; Supabase only brokers safe read requests and user-owned sync.
-- The native privacy manifest declares user id and user content for app functionality and no tracking.
+- The privacy manifest declares user id and user content for app functionality and no tracking.
+- If cloud backup ships enabled, verify account deletion for every enabled provider and confirm Sign in with Apple token revocation behavior before submission. Keep Supabase configuration absent from the release otherwise.
+- Verify BaniDB first-load, retry, and offline behavior on a physical device before submission.

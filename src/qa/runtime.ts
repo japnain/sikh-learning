@@ -10,6 +10,7 @@ export type QaFaultTarget =
   | 'mahankosh'
   | 'supabase-bootstrap'
   | 'cloud-sync'
+  | 'cloud-account-delete'
 
 type QaFaultKind = 'fail' | 'empty' | 'slow'
 

@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import CloudSyncPanel from '../components/CloudSyncPanel'
 import DisclosureSection from '../components/DisclosureSection'
 import SoundscapeControls from '../components/SoundscapeControls'
@@ -7,14 +7,12 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
+import { useThemeStore } from '../store/theme'
 import {
   getEnglishSourceLabels,
   getHindiSourceLabels,
-  getLearningGoalLabels,
-  getLearningLevelLabels,
   getLineSpacingLabels,
   getMeaningLanguageLabels,
-  getOnboardingAudienceLabels,
   getPunjabiSourceLabels,
   getScriptModeLabels,
   getTextAlignmentLabels,
@@ -22,9 +20,10 @@ import {
   getVisraamSourceLabels,
 } from '../utils/translations'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
-import { IconArrowRight } from '../components/icons'
+import { IconArrowRight, IconExternalLink } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
+import { getPublicAppLinks } from '../utils/appConfig'
 
 function SettingsBlock({
   title,
@@ -47,7 +46,7 @@ function SettingsBlock({
     >
       <p id={headingId} className="eyebrow">{title}</p>
       {description ? (
-        <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-1 mb-3">
+        <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-1 mb-3">
           {description}
         </p>
       ) : null}
@@ -57,7 +56,6 @@ function SettingsBlock({
 }
 
 export default function More() {
-  const navigate = useNavigate()
   const {
     scriptMode,
     setScriptMode,
@@ -86,14 +84,9 @@ export default function More() {
   } = useLanguageStore()
   const locale = useLocaleStore(s => s.locale)
   const setLocale = useLocaleStore(s => s.setLocale)
-  const {
-    learningLevel,
-    setLearningLevel,
-    audience,
-    setAudience,
-    learningGoal,
-    setLearningGoal,
-  } = useOnboardingStore()
+  const openOnboarding = useOnboardingStore(s => s.openOnboarding)
+  const dark = useThemeStore(s => s.dark)
+  const setDark = useThemeStore(s => s.setDark)
   const selectedNitnemCount = useNitemStore(s => s.selectedIds.length)
   const completionTrackingEnabled = useNitemStore(s => s.completionTrackingEnabled)
   const copy = getUiCopy(locale)
@@ -104,14 +97,12 @@ export default function More() {
   const punjabiSourceLabels = getPunjabiSourceLabels(locale)
   const hindiSourceLabels = getHindiSourceLabels(locale)
   const visraamSourceLabels = getVisraamSourceLabels(locale)
-  const learningGoalLabels = getLearningGoalLabels(locale)
-  const learningLevelLabels = getLearningLevelLabels(locale)
   const lineSpacingLabels = getLineSpacingLabels(locale)
   const meaningLanguageLabels = getMeaningLanguageLabels(locale)
-  const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
   const scriptModeLabels = getScriptModeLabels(locale)
   const textAlignmentLabels = getTextAlignmentLabels(locale)
   const uiLocaleLabels = getUiLocaleLabels(locale)
+  const publicLinks = getPublicAppLinks()
   return (
     <div className="page-shell animate-fade-in" data-testid="page-more" data-page="more" data-ai-surface="more" data-ai-state="ready">
       <div className="mb-5">
@@ -124,78 +115,63 @@ export default function More() {
         </p>
       </div>
 
-      <section
-        className="hero-surface p-5 mb-5"
-        aria-labelledby="more-promise-title"
-        data-testid="more-promise"
-      >
-        <p className="eyebrow">{moreCopy.productPromise}</p>
-        <p id="more-promise-title" className="font-display text-3xl leading-none text-ink dark:text-dark-text mt-2">
-          {editorial?.brand.promise ?? copy.home.promise}
-        </p>
-        <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-3 max-w-[34ch]">
-          {editorial?.more.promiseBody ?? moreCopy.promiseBody}
-        </p>
-      </section>
-
-      <div className="mb-5">
-        <SoundscapeControls
-          context="study"
-          variant="full"
-          storageKey="more-soundscapes"
-          defaultExpanded={false}
-        />
-      </div>
-
-      <CloudSyncPanel />
-
-      <section
-        className="screen-flow-band mb-5 px-4 py-4"
-        aria-labelledby="more-review-ready-title"
-        data-testid="more-review-ready"
-      >
-        <p className="eyebrow">Review & Privacy</p>
-        <h2 id="more-review-ready-title" className="mt-2 font-display text-2xl leading-none text-ink dark:text-dark-text">
-          Clear behavior for App Store review.
-        </h2>
-        <p className="mt-2 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          NaamRas keeps guest reading local, makes cloud backup optional, and avoids purchase or audio claims that are not live in the product.
-        </p>
-        <div className="review-ready-grid mt-4">
-          <div className="review-ready-item">
-            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Privacy</p>
-            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
-              Saved progress stays on device unless sync is connected.
-            </p>
-          </div>
-          <div className="review-ready-item">
-            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Sources</p>
-            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
-              Scripture and translation layers identify source context in reader flows.
-            </p>
-          </div>
-          <div className="review-ready-item">
-            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Purchases</p>
-            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
-              No subscription, trial, restore, or locked content path is presented.
-            </p>
-          </div>
-          <div className="review-ready-item">
-            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Audio</p>
-            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
-              Ambient focus audio is separate from recitation and labeled as such.
-            </p>
-          </div>
-        </div>
-        <Link
-          to="/privacy"
-          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
-          data-testid="more-open-privacy"
+      <div className="mb-5 grid gap-3 sm:grid-cols-2">
+        <SettingsBlock
+          title={moreCopy.appearanceTitle}
+          description={moreCopy.appearanceDescription}
+          headingId="more-appearance-title"
+          testId="more-appearance"
         >
-          Open Privacy & Sources
-          <IconArrowRight size={14} />
-        </Link>
-      </section>
+          <div className="grid grid-cols-2 gap-2">
+            {([false, true] as const).map(option => {
+              const selected = dark === option
+              return (
+                <button
+                  key={option ? 'dark' : 'light'}
+                  type="button"
+                  onClick={() => setDark(option)}
+                  aria-pressed={selected}
+                  className={`interactive-focus min-h-[48px] rounded-lg border px-3 font-sans text-sm font-semibold ${
+                    selected
+                      ? 'border-saffron bg-saffron text-white'
+                      : 'border-sand/15 text-ink dark:border-dark-text/10 dark:text-dark-text'
+                  }`}
+                >
+                  {option ? moreCopy.darkMode : moreCopy.lightMode}
+                </button>
+              )
+            })}
+          </div>
+        </SettingsBlock>
+
+        <SettingsBlock
+          title={moreCopy.appLanguageTitle}
+          description={moreCopy.appLanguageDescription}
+          headingId="more-app-language-title"
+          testId="more-app-language"
+        >
+          <div className="grid grid-cols-3 gap-2">
+            {(['en', 'pa', 'hi'] as const).map(option => {
+              const selected = locale === option
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => setLocale(option)}
+                  aria-pressed={selected}
+                  className={`interactive-focus min-h-[48px] rounded-lg border px-2 font-sans text-xs font-semibold ${
+                    selected
+                      ? 'border-saffron bg-saffron text-white'
+                      : 'border-sand/15 text-ink dark:border-dark-text/10 dark:text-dark-text'
+                  }`}
+                >
+                  {uiLocaleLabels[option]}
+                </button>
+              )
+            })}
+          </div>
+        </SettingsBlock>
+      </div>
 
       <section
         id="daily-nitnem"
@@ -205,16 +181,16 @@ export default function More() {
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="eyebrow">Daily Ritual</p>
+            <p className="eyebrow">{moreCopy.dailyRitual}</p>
             <h2 id="more-daily-nitnem-title" className="mt-2 font-display text-2xl leading-none text-ink dark:text-dark-text">
-              Daily Nitnem
+              {moreCopy.dailyNitnem}
             </h2>
             <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-              Choose the banis shown on Home, reorder the ritual, and manage optional completion tracking on its own page.
+              {moreCopy.dailyNitnemDescription}
             </p>
           </div>
           <span className="chip-pill shrink-0">
-            {completionTrackingEnabled ? 'Tracking on' : `${selectedNitnemCount} banis`}
+            {completionTrackingEnabled ? moreCopy.trackingOn : moreCopy.baniCount(selectedNitnemCount)}
           </span>
         </div>
         <Link
@@ -222,7 +198,7 @@ export default function More() {
           className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
           data-testid="more-open-nitnem-customize"
         >
-          Customize Daily Nitnem
+          {moreCopy.customizeDailyNitnem}
           <IconArrowRight size={14} />
         </Link>
       </section>
@@ -252,9 +228,9 @@ export default function More() {
                   key={mode}
                   onClick={() => setScriptMode(mode)}
                   aria-pressed={selected}
-                  className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[44px] transition-all duration-300 ${
+                  className={`rounded-lg px-3 py-3 font-sans text-xs font-medium min-h-[44px] transition-colors duration-200 ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                      ? 'bg-saffron text-white'
                       : 'bg-white/70 dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                   }`}
                 >
@@ -267,7 +243,7 @@ export default function More() {
           <div className="mt-4">
             <div className="flex justify-between mb-1">
             <p className="font-sans text-sm text-ink dark:text-dark-text">{moreCopy.scriptSize}</p>
-            <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{fontSize}px</span>
+            <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{fontSize}px</span>
             </div>
             <input
               type="range"
@@ -279,15 +255,15 @@ export default function More() {
               className="w-full h-1 accent-gold"
             />
             <div className="flex justify-between mt-2">
-              <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">{commonCopy.small}</span>
+              <span className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64">{commonCopy.small}</span>
               <span
                 lang={getScriptTextLang(scriptMode)}
-                className={`${getScriptTextFontClass(scriptMode)} text-gold dark:text-gold-light`}
+                className={`${getScriptTextFontClass(scriptMode)} text-gold-dark dark:text-gold-light`}
                 style={{ fontSize: `${fontSize}px` }}
               >
                 {renderScriptText('ੴ', scriptMode)}
               </span>
-              <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">{commonCopy.large}</span>
+              <span className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64">{commonCopy.large}</span>
             </div>
           </div>
 
@@ -299,9 +275,9 @@ export default function More() {
                   key={key}
                   onClick={() => setLineSpacing(key as typeof lineSpacing)}
                   aria-pressed={selected}
-                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                  className={`rounded-lg px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      ? 'bg-saffron text-white border-saffron'
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
@@ -316,9 +292,9 @@ export default function More() {
                   key={key}
                   onClick={() => setTextAlign(key as typeof textAlign)}
                   aria-pressed={selected}
-                  className={`rounded-2xl px-2 py-3 font-sans text-xs font-medium min-h-[48px] ${
+                  className={`rounded-lg px-2 py-3 font-sans text-xs font-medium min-h-[48px] ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                      ? 'bg-saffron text-white'
                       : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
                   }`}
                 >
@@ -338,11 +314,10 @@ export default function More() {
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setShowTransliteration(!showTransliteration)}
-            aria-label="Toggle transliteration"
             aria-pressed={showTransliteration}
-            className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
+            className={`rounded-lg px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               showTransliteration
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                ? 'bg-saffron text-white'
                 : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
             }`}
           >
@@ -351,9 +326,9 @@ export default function More() {
           <button
             onClick={() => setLarivaar(!larivaar)}
             aria-pressed={larivaar}
-            className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
+            className={`rounded-lg px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               larivaar
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                ? 'bg-saffron text-white'
                 : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
             }`}
           >
@@ -362,9 +337,9 @@ export default function More() {
           <button
             onClick={() => setShowVishraam(!showVishraam)}
             aria-pressed={showVishraam}
-            className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
+            className={`rounded-lg px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               showVishraam
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                ? 'bg-saffron text-white'
                 : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
             }`}
           >
@@ -381,9 +356,9 @@ export default function More() {
                 <button
                   key={option}
                   onClick={() => setMeaningLanguage(option)}
-                  className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                  className={`rounded-lg px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      ? 'bg-saffron text-white border-saffron'
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
@@ -410,9 +385,9 @@ export default function More() {
                   key={key}
                   onClick={() => setEnglishSource(key as typeof englishSource)}
                   aria-pressed={selected}
-                  className={`w-full flex items-center justify-between rounded-2xl px-3 py-3 border min-h-[48px] ${
+                  className={`w-full flex items-center justify-between rounded-lg px-3 py-3 border min-h-[48px] ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      ? 'bg-saffron text-white border-saffron'
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
@@ -434,9 +409,9 @@ export default function More() {
                   key={key}
                   onClick={() => setPunjabiSource(key as typeof punjabiSource)}
                   aria-pressed={selected}
-                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                  className={`rounded-lg px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      ? 'bg-saffron text-white border-saffron'
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
@@ -455,9 +430,9 @@ export default function More() {
                   key={key}
                   onClick={() => setHindiSource(key as typeof hindiSource)}
                   aria-pressed={selected}
-                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                  className={`rounded-lg px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      ? 'bg-saffron text-white border-saffron'
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
@@ -476,9 +451,9 @@ export default function More() {
                   key={key}
                   onClick={() => setVisraamSource(key as typeof visraamSource)}
                   aria-pressed={selected}
-                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                  className={`rounded-lg px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      ? 'bg-saffron text-white border-saffron'
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
@@ -490,126 +465,81 @@ export default function More() {
         </SettingsBlock>
       </DisclosureSection>
 
-      <DisclosureSection
-        storageKey="more-profile-language"
-        title={moreCopy.profileLanguage}
-        summary={`${moreCopy.appLanguageDescription} ${moreCopy.learningProfileDescription}`}
-        defaultOpen={false}
-        className="section-shell p-4 mb-5"
-        bodyClassName="mt-4 space-y-3"
-        sectionId="more-profile-language"
-        testId="more-profile-language"
-      >
-        <SettingsBlock
-          title={moreCopy.appLanguageTitle}
-          description={moreCopy.appLanguageDescription}
-          headingId="more-app-language-title"
-          testId="more-app-language"
-        >
-        <div className="grid grid-cols-3 gap-2">
-          {(['en', 'pa', 'hi'] as const).map(option => {
-            const selected = locale === option
-            return (
-              <button
-                key={option}
-                onClick={() => setLocale(option)}
-                aria-pressed={selected}
-                className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
-                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
-                }`}
-              >
-                {uiLocaleLabels[option]}
-              </button>
-              )
-            })}
-          </div>
-        </SettingsBlock>
+      <div className="mb-5">
+        <CloudSyncPanel />
+      </div>
 
-        <SettingsBlock
-          title={moreCopy.learningProfileTitle}
-          description={moreCopy.learningProfileDescription}
-          headingId="more-reading-profile-title"
-          testId="more-reading-profile"
-        >
-        <div className="grid grid-cols-3 gap-2 mb-3">
-          {(['beginner', 'familiar', 'daily-reader'] as const).map(level => {
-            const selected = learningLevel === level
-            return (
-              <button
-                key={level}
-                onClick={() => setLearningLevel(level)}
-                aria-pressed={selected}
-                className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
-                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
-                }`}
-              >
-                {learningLevelLabels[level]}
-              </button>
-            )
-          })}
-        </div>
-        <div className="grid grid-cols-3 gap-2 mb-3">
-          {(['child', 'teen', 'adult'] as const).map(option => {
-            const selected = audience === option
-            return (
-              <button
-                key={option}
-                onClick={() => setAudience(option)}
-                aria-pressed={selected}
-                className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
-                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
-                }`}
-              >
-                {onboardingAudienceLabels[option]}
-              </button>
-            )
-          })}
-        </div>
-        <div className="grid gap-2 mb-3">
-          {(['read', 'understand', 'habit'] as const).map(goal => {
-            const selected = learningGoal === goal
-            return (
-              <button
-                key={goal}
-                onClick={() => setLearningGoal(goal)}
-                aria-pressed={selected}
-                className={`rounded-2xl px-3 py-3 border min-h-[48px] text-left font-sans text-xs font-medium ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
-                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
-                }`}
-              >
-                {learningGoalLabels[goal]}
-              </button>
-            )
-          })}
-        </div>
-        <button
-          onClick={() => navigate('/', { state: { reopenOnboarding: true } })}
-          className="font-sans text-xs text-saffron dark:text-saffron-light underline underline-offset-2"
-        >
-          {moreCopy.reopenOnHome}
-        </button>
-        </SettingsBlock>
-      </DisclosureSection>
+      <div className="mb-5">
+        <SoundscapeControls
+          context="study"
+          variant="full"
+          storageKey="more-soundscapes"
+          defaultExpanded={false}
+        />
+      </div>
 
       <section className="section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
         <p id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
           {editorial?.more.aboutBody ?? moreCopy.aboutBody}
         </p>
-        <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2">
+        <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2">
           {moreCopy.aboutSource}
         </p>
-        <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2">
+        <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2">
           {moreCopy.aboutTrust}
         </p>
+        <button
+          type="button"
+          onClick={openOnboarding}
+          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
+          data-testid="more-open-onboarding"
+        >
+          {moreCopy.reopenOnHome}
+          <IconArrowRight size={14} />
+        </button>
+        {publicLinks.supportUrl ? (
+          <a
+            href={publicLinks.supportUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
+            data-testid="more-open-support"
+          >
+            {moreCopy.support}
+            <IconExternalLink size={14} />
+          </a>
+        ) : (
+          <Link
+            to="/support"
+            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
+            data-testid="more-open-support"
+          >
+            {moreCopy.support}
+            <IconArrowRight size={14} />
+          </Link>
+        )}
+        {publicLinks.privacyUrl ? (
+          <a
+            href={publicLinks.privacyUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
+            data-testid="more-open-public-privacy"
+          >
+            {moreCopy.publicPrivacyPolicy}
+            <IconExternalLink size={14} />
+          </a>
+        ) : (
+          <Link
+            to="/privacy"
+            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
+            data-testid="more-open-public-privacy"
+          >
+            {moreCopy.publicPrivacyPolicy}
+            <IconArrowRight size={14} />
+          </Link>
+        )}
       </section>
     </div>
   )

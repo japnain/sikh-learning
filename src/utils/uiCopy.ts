@@ -18,6 +18,7 @@ type LocaleCopy = {
     of: string
   }
   nav: {
+    primaryNavigation: string
     home: string
     read: string
     saved: string
@@ -56,14 +57,17 @@ type LocaleCopy = {
     textFirstBody: string
     textFirstLabel: string
     audience: string
+    curatedSetup: string
     readingScript: string
+    scriptTitle: string
+    scriptBody: string
     meaning: string
     transliteration: string
     learningLevel: string
     englishSource: string
     authTitle: string
     authBody: string
-    authGuest: string
+    authUnavailable: string
     authApple: string
     authEmail: string
     authEmailPlaceholder: string
@@ -116,6 +120,17 @@ type LocaleCopy = {
     body: string
     productPromise: string
     promiseBody: string
+    appearanceTitle: string
+    appearanceDescription: string
+    lightMode: string
+    darkMode: string
+    dailyRitual: string
+    dailyNitnem: string
+    dailyNitnemDescription: string
+    trackingOn: string
+    baniCount: (count: number) => string
+    customizeDailyNitnem: string
+    privacySources: string
     readerDefaults: string
     scriptLayoutTitle: string
     scriptLayoutDescription: string
@@ -143,6 +158,8 @@ type LocaleCopy = {
     aboutBody: string
     aboutSource: string
     aboutTrust: string
+    support: string
+    publicPrivacyPolicy: string
   }
   study: {
     eyebrow: string
@@ -196,6 +213,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       of: 'of',
     },
     nav: {
+      primaryNavigation: 'Primary navigation',
       home: 'Home',
       read: 'Read',
       saved: 'Saved',
@@ -230,18 +248,21 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       styleDeepBody: 'Meaning remains close, transliteration steps back, and the reader feels lighter and more focused.',
       tuneReader: 'Fine tune reader',
       hideTuning: 'Keep this feel',
-      fineTune: 'Open the lower-level choices only if you want to refine script, support, or profile details now.',
+      fineTune: 'Open the lower-level choices only if you want to refine script or support details now.',
       textFirstBody: 'Text-first reading stays active here. Meaning can be added later without rebuilding your setup.',
       textFirstLabel: 'Text-first',
       audience: 'Audience',
+      curatedSetup: 'Curated setup',
       readingScript: 'Reading script',
+      scriptTitle: 'Choose the script your reader opens with.',
+      scriptBody: 'This changes the reader default used across Read, Hukamnama, and Saved passages.',
       meaning: 'Meaning',
       transliteration: 'Transliteration',
       learningLevel: 'Reading comfort',
       englishSource: 'English source',
       authTitle: 'Backup later if you want it.',
       authBody: 'Guest reading stays open on this device. Sign in now only if you want backup and cross-device sync from the first session.',
-      authGuest: 'Continue as Guest',
+      authUnavailable: 'Sign-in is not enabled in this build. Use the primary action and add backup later.',
       authApple: 'Continue with Apple',
       authEmail: 'Send magic link',
       authEmailPlaceholder: 'Email for magic link',
@@ -294,6 +315,17 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       body: 'The defaults here shape Home, Read, Hukamnama, and Saved. The app should feel deliberate, calm, and consistent every time you open it.',
       productPromise: 'Reading Promise',
       promiseBody: 'Keep the app calm, steady, and close to Gurbani each time you return.',
+      appearanceTitle: 'Appearance',
+      appearanceDescription: 'Choose the app theme. Your choice is remembered on this device.',
+      lightMode: 'Light',
+      darkMode: 'Dark',
+      dailyRitual: 'Daily ritual',
+      dailyNitnem: 'Daily Nitnem',
+      dailyNitnemDescription: 'Choose the banis shown on Home, reorder the ritual, and manage optional completion tracking.',
+      trackingOn: 'Tracking on',
+      baniCount: count => `${count} ${count === 1 ? 'bani' : 'banis'}`,
+      customizeDailyNitnem: 'Customize Daily Nitnem',
+      privacySources: 'Privacy & Sources',
       readerDefaults: 'Reader Defaults',
       scriptLayoutTitle: 'Script & Layout',
       scriptLayoutDescription: 'Choose the script, text size, spacing, and alignment that keep long reading comfortable.',
@@ -316,11 +348,13 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       appLanguageDescription: 'This changes the app chrome and guidance copy, not the scripture text itself.',
       learningProfileTitle: 'Reading Profile',
       learningProfileDescription: 'This changes what Home recommends first and how Read, Saved, and reader settings feel when you return.',
-      reopenOnHome: 'Re-open first setup on Home',
+      reopenOnHome: 'Review reading setup',
       about: 'About',
       aboutBody: 'NaamRas is a Sikh scripture reading app shaped around Read, Saved, and steady reader settings.',
-      aboutSource: 'Scripture text stays current inside the app, and recitation will appear only when it feels worthy of the same standard.',
-      aboutTrust: 'If something feels off, it should be easy to correct and worthy of attention. Clarity and care belong inside the experience.',
+      aboutSource: 'Scripture and translations are retrieved from BaniDB and shown with source context in the reader.',
+      aboutTrust: 'Bookmarks, preferences, and progress stay on this device unless you choose cloud backup.',
+      support: 'Support',
+      publicPrivacyPolicy: 'Public privacy policy',
     },
     study: {
       eyebrow: 'Read',
@@ -372,6 +406,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       of: 'ਵਿੱਚੋਂ',
     },
     nav: {
+      primaryNavigation: 'ਮੁੱਖ ਨੇਵੀਗੇਸ਼ਨ',
       home: 'ਘਰ',
       read: 'ਪੜ੍ਹੋ',
       saved: 'ਸੰਭਾਲਿਆ',
@@ -406,18 +441,21 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       styleDeepBody: 'ਅਰਥ ਨੇੜੇ ਰਹਿੰਦਾ ਹੈ, ਲਿਪਾਂਤਰ ਪਿੱਛੇ ਹੁੰਦਾ ਹੈ ਅਤੇ ਪਾਠਕ ਹੋਰ ਹਲਕਾ ਤੇ ਕੇਂਦ੍ਰਿਤ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।',
       tuneReader: 'ਪਾਠਕ ਹੋਰ ਠੀਕ ਕਰੋ',
       hideTuning: 'ਇਹ ਮਿਜ਼ਾਜ ਰੱਖੋ',
-      fineTune: 'ਹੇਠਾਂ ਵਾਲੀਆਂ ਛੋਟੀਆਂ ਚੋਣਾਂ ਤਦੋਂ ਹੀ ਖੋਲ੍ਹੋ ਜਦੋਂ ਤੁਸੀਂ ਹੁਣੇ ਲਿਪੀ, ਸਹਾਇਤਾ ਜਾਂ ਪ੍ਰੋਫ਼ਾਈਲ ਨੂੰ ਹੋਰ ਸੰਵਾਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।',
+      fineTune: 'ਹੇਠਾਂ ਵਾਲੀਆਂ ਛੋਟੀਆਂ ਚੋਣਾਂ ਤਦੋਂ ਹੀ ਖੋਲ੍ਹੋ ਜਦੋਂ ਤੁਸੀਂ ਹੁਣੇ ਲਿਪੀ ਜਾਂ ਪੜ੍ਹਨ ਸਹਾਇਤਾ ਨੂੰ ਹੋਰ ਸੰਵਾਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।',
       textFirstBody: 'ਇੱਥੇ ਪਾਠ-ਪਹਿਲਾਂ ਅਨੁਭਵ ਚਾਲੂ ਹੈ। ਲੋੜ ਪੈਣ ਤੇ ਅਰਥ ਬਾਅਦ ਵਿੱਚ ਵੀ ਜੋੜੇ ਜਾ ਸਕਦੇ ਹਨ।',
       textFirstLabel: 'ਪਾਠ ਪਹਿਲਾਂ',
       audience: 'ਸਰੋਤਾ',
+      curatedSetup: 'ਚੁਣਿਆ ਸੈੱਟਅੱਪ',
       readingScript: 'ਪੜ੍ਹਨ ਦੀ ਲਿਪੀ',
+      scriptTitle: 'ਉਹ ਲਿਪੀ ਚੁਣੋ ਜਿਸ ਨਾਲ ਤੁਹਾਡਾ ਪਾਠਕ ਖੁੱਲੇ।',
+      scriptBody: 'ਇਹ ਚੋਣ ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲੇ ਪਾਠਾਂ ਦੀ ਮੂਲ ਲਿਪੀ ਬਦਲਦੀ ਹੈ।',
       meaning: 'ਅਰਥ',
       transliteration: 'ਲਿਪਾਂਤਰ',
       learningLevel: 'ਪੜ੍ਹਨ ਸੁਵਿਧਾ',
       englishSource: 'ਅੰਗਰੇਜ਼ੀ ਸਰੋਤ',
       authTitle: 'ਜੇ ਚਾਹੋ ਤਾਂ backup ਬਾਅਦ ਵਿੱਚ ਵੀ ਜੋੜ ਸਕਦੇ ਹੋ।',
       authBody: 'Guest ਪੜ੍ਹਾਈ ਇਸ ਡਿਵਾਈਸ ‘ਤੇ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ। ਹੁਣੇ sign in ਸਿਰਫ਼ ਤਦੋਂ ਕਰੋ ਜਦੋਂ ਪਹਿਲੇ ਹੀ ਸੈਸ਼ਨ ਤੋਂ backup ਅਤੇ cross-device sync ਚਾਹੀਦਾ ਹੋਵੇ।',
-      authGuest: 'Guest ਵਜੋਂ ਜਾਰੀ ਰੱਖੋ',
+      authUnavailable: 'ਇਸ build ਵਿੱਚ sign-in ਚਾਲੂ ਨਹੀਂ ਹੈ। ਮੁੱਖ action ਨਾਲ ਅੱਗੇ ਵਧੋ ਅਤੇ backup ਬਾਅਦ ਵਿੱਚ ਜੋੜੋ।',
       authApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
       authEmail: 'Magic link ਭੇਜੋ',
       authEmailPlaceholder: 'Magic link ਲਈ email',
@@ -470,6 +508,17 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       body: 'ਇੱਥੋਂ ਵਾਲੀਆਂ ਮੂਲ ਸੈਟਿੰਗਾਂ ਘਰ, ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲਿਆ ਭਾਗ ਨੂੰ ਰੂਪ ਦੇਂਦੀਆਂ ਹਨ। ਐਪ ਹਰ ਵਾਰ ਖੁਲ੍ਹਣ ਤੇ ਸੰਤੁਲਿਤ, ਸ਼ਾਂਤ ਅਤੇ ਇਕਸਾਰ ਮਹਿਸੂਸ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।',
       productPromise: 'ਉਤਪਾਦ ਵਚਨ',
       promiseBody: 'ਨਿਤਨੇਮ ਨੂੰ ਮੋਬਾਈਲ-ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦੇ ਸਾਥੀ ਵਾਂਗ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ, ਨਾ ਕਿ ਕਿਸੇ ਆਮ ਯੂਟਿਲਿਟੀ ਡੈਸ਼ਬੋਰਡ ਵਾਂਗ।',
+      appearanceTitle: 'ਦਿੱਖ',
+      appearanceDescription: 'ਐਪ ਦਾ ਰੰਗ ਰੂਪ ਚੁਣੋ। ਇਹ ਚੋਣ ਇਸ ਡਿਵਾਈਸ ਤੇ ਯਾਦ ਰਹੇਗੀ।',
+      lightMode: 'ਹਲਕਾ',
+      darkMode: 'ਗੂੜ੍ਹਾ',
+      dailyRitual: 'ਰੋਜ਼ਾਨਾ ਮਰਯਾਦਾ',
+      dailyNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ',
+      dailyNitnemDescription: 'ਘਰ ਤੇ ਦਿਸਣ ਵਾਲੀਆਂ ਬਾਣੀਆਂ ਚੁਣੋ, ਉਨ੍ਹਾਂ ਦਾ ਕ੍ਰਮ ਬਦਲੋ ਅਤੇ ਚਾਹੋ ਤਾਂ ਪੂਰਾ ਹੋਣ ਦੀ ਨਿਸ਼ਾਨਦੇਹੀ ਚਾਲੂ ਕਰੋ।',
+      trackingOn: 'ਨਿਸ਼ਾਨਦੇਹੀ ਚਾਲੂ',
+      baniCount: count => `${count} ਬਾਣੀਆਂ`,
+      customizeDailyNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਸੰਵਾਰੋ',
+      privacySources: 'ਪਰਦੇਦਾਰੀ ਅਤੇ ਸਰੋਤ',
       readerDefaults: 'ਪਾਠ ਮੂਲ ਸੈਟਿੰਗਾਂ',
       scriptLayoutTitle: 'ਲਿਪੀ ਅਤੇ ਲੇਆਉਟ',
       scriptLayoutDescription: 'ਉਹ ਲਿਪੀ, ਆਕਾਰ, ਅੰਤਰ ਅਤੇ ਸਰਖਾਈ ਚੁਣੋ ਜੋ ਲੰਬੇ ਪਾਠ ਨੂੰ ਆਰਾਮਦਾਇਕ ਰੱਖੇ।',
@@ -492,11 +541,13 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       appLanguageDescription: 'ਇਹ ਐਪ ਦੇ ਬਾਹਰੀ ਲੇਬਲ ਅਤੇ ਮਾਰਗਦਰਸ਼ਕ ਲਿਖਤ ਨੂੰ ਬਦਲਦਾ ਹੈ, ਗੁਰਬਾਣੀ ਦੇ ਮੂਲ ਪਾਠ ਨੂੰ ਨਹੀਂ।',
       learningProfileTitle: 'ਪੜ੍ਹਨ ਪ੍ਰੋਫ਼ਾਈਲ',
       learningProfileDescription: 'ਇਹ ਬਦਲਦਾ ਹੈ ਕਿ ਘਰ ਪਹਿਲਾਂ ਕੀ ਸੁਝਾਅ ਦਿੰਦਾ ਹੈ ਅਤੇ ਵਾਪਸੀ ਤੇ ਪੜ੍ਹੋ, ਸੰਭਾਲਿਆ ਅਤੇ ਪਾਠਕ ਸੈਟਿੰਗਾਂ ਕਿਵੇਂ ਮਹਿਸੂਸ ਹੁੰਦੀਆਂ ਹਨ।',
-      reopenOnHome: 'ਘਰ ਤੇ ਪਹਿਲਾ ਸੈੱਟਅੱਪ ਮੁੜ ਖੋਲ੍ਹੋ',
+      reopenOnHome: 'ਪੜ੍ਹਨ ਸੈੱਟਅੱਪ ਮੁੜ ਵੇਖੋ',
       about: 'ਬਾਰੇ',
       aboutBody: 'NaamRas ਇੱਕ ਸਿੱਖ ਗੁਰਬਾਣੀ ਪਾਠ ਐਪ ਹੈ ਜੋ ਪੜ੍ਹੋ, ਸੰਭਾਲਿਆ ਅਤੇ ਸਥਿਰ ਪਾਠਕ ਸੈਟਿੰਗਾਂ ਦੇ ਆਲੇ ਦੁਆਲੇ ਬਣਿਆ ਹੈ।',
-      aboutSource: 'ਗੁਰਬਾਣੀ ਦਾ ਪਾਠ ਐਪ ਦੇ ਅੰਦਰ ਹੀ ਤਾਜ਼ਾ ਰਹਿੰਦਾ ਹੈ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਪਾਠ-ਆਵਾਜ਼ ਉਸੇ ਮਿਆਰ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚਦੀ, ਉਹ ਜਾਣਬੁੱਝ ਕੇ ਲੁਕਾਈ ਰਹੇਗੀ।',
-      aboutTrust: 'ਸਰੋਤ ਪਾਰਦਰਸ਼ਤਾ ਅਤੇ ਸੁਧਾਰ ਰਿਪੋਰਟਿੰਗ ਭਰੋਸੇ ਦੀ ਪਰਤ ਦਾ ਹਿੱਸਾ ਹਨ। ਜਦ ਤੱਕ ਉਹ ਫਲੋ ਬਣਦੇ ਨਹੀਂ, ਮਸਲਿਆਂ ਨੂੰ ਛੁਪੇ ਹੋਏ ਕੋਨੇ ਨਹੀਂ ਸਗੋਂ ਉਤਪਾਦ ਕੰਮ ਸਮਝਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ।',
+      aboutSource: 'ਗੁਰਬਾਣੀ ਅਤੇ ਅਨੁਵਾਦ BaniDB ਤੋਂ ਲਏ ਜਾਂਦੇ ਹਨ ਅਤੇ ਪਾਠਕ ਵਿੱਚ ਸਰੋਤ ਸਮੇਤ ਦਿਖਾਏ ਜਾਂਦੇ ਹਨ।',
+      aboutTrust: 'ਬੁੱਕਮਾਰਕ, ਪਸੰਦਾਂ ਅਤੇ ਤਰੱਕੀ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਰਹਿੰਦੇ ਹਨ ਜਦ ਤੱਕ ਤੁਸੀਂ ਕਲਾਉਡ ਬੈਕਅੱਪ ਨਹੀਂ ਚੁਣਦੇ।',
+      support: 'ਸਹਾਇਤਾ',
+      publicPrivacyPolicy: 'ਜਨਤਕ ਪਰਦੇਦਾਰੀ ਨੀਤੀ',
     },
     study: {
       eyebrow: 'ਪੜ੍ਹੋ',
@@ -548,6 +599,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       of: 'में से',
     },
     nav: {
+      primaryNavigation: 'मुख्य नेविगेशन',
       home: 'होम',
       read: 'पढ़ें',
       saved: 'सहेजा',
@@ -582,18 +634,21 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       styleDeepBody: 'अर्थ पास रहता है, लिप्यंतरण पीछे हटता है और रीडर अधिक हल्का और केंद्रित महसूस होता है।',
       tuneReader: 'रीडर को और ठीक करें',
       hideTuning: 'यही एहसास रखें',
-      fineTune: 'नीचे की छोटी सेटिंग्स तभी खोलें जब आप अभी लिपि, सहायता या प्रोफ़ाइल को और सटीक करना चाहते हों।',
+      fineTune: 'नीचे की छोटी सेटिंग्स तभी खोलें जब आप अभी लिपि या पढ़ने की सहायता को और सटीक करना चाहते हों।',
       textFirstBody: 'यहाँ पाठ-प्रथम अनुभव सक्रिय है। अर्थ बाद में भी जोड़ा जा सकता है।',
       textFirstLabel: 'पाठ पहले',
       audience: 'श्रोता',
+      curatedSetup: 'चुना हुआ सेटअप',
       readingScript: 'पढ़ने की लिपि',
+      scriptTitle: 'वह लिपि चुनें जिसमें आपका रीडर खुले।',
+      scriptBody: 'यह चुनाव पढ़ें, हुकमनामा और सहेजे गए पाठों की डिफ़ॉल्ट लिपि बदलता है।',
       meaning: 'अर्थ',
       transliteration: 'लिप्यंतरण',
       learningLevel: 'पढ़ने की सहजता',
       englishSource: 'अंग्रेज़ी स्रोत',
       authTitle: 'अगर चाहें तो backup बाद में भी जोड़ सकते हैं।',
       authBody: 'Guest reading इस डिवाइस पर खुली रहती है। अभी sign in तभी करें जब पहले ही session से backup और cross-device sync चाहिए।',
-      authGuest: 'Guest के रूप में जारी रखें',
+      authUnavailable: 'इस build में sign-in चालू नहीं है। मुख्य action से आगे बढ़ें और backup बाद में जोड़ें।',
       authApple: 'Apple के साथ जारी रखें',
       authEmail: 'Magic link भेजें',
       authEmailPlaceholder: 'Magic link के लिए email',
@@ -646,6 +701,17 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       body: 'यहाँ की डिफॉल्ट सेटिंग्स होम, पढ़ें, हुकमनामा और सहेजा को आकार देती हैं। ऐप हर बार खुलने पर संतुलित, शांत और एकसार महसूस होना चाहिए।',
       productPromise: 'उत्पाद वादा',
       promiseBody: 'नितनेम को मोबाइल-प्रथम पढ़ने के साथी की तरह बनाया जा रहा है, किसी सामान्य यूटिलिटी डैशबोर्ड की तरह नहीं।',
+      appearanceTitle: 'रूप',
+      appearanceDescription: 'ऐप की थीम चुनें। यह चुनाव इस डिवाइस पर याद रखा जाएगा।',
+      lightMode: 'हल्का',
+      darkMode: 'गहरा',
+      dailyRitual: 'दैनिक मर्यादा',
+      dailyNitnem: 'दैनिक नितनेम',
+      dailyNitnemDescription: 'होम पर दिखने वाली बाणियाँ चुनें, उनका क्रम बदलें और चाहें तो पूरा होने की ट्रैकिंग चालू करें।',
+      trackingOn: 'ट्रैकिंग चालू',
+      baniCount: count => `${count} बाणियाँ`,
+      customizeDailyNitnem: 'दैनिक नितनेम बदलें',
+      privacySources: 'गोपनीयता और स्रोत',
       readerDefaults: 'रीडर डिफॉल्ट्स',
       scriptLayoutTitle: 'लिपि और लेआउट',
       scriptLayoutDescription: 'वह लिपि, आकार, अंतर और संरेखण चुनिए जो लंबे पाठ को आरामदायक रखे।',
@@ -668,11 +734,13 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       appLanguageDescription: 'यह ऐप के बाहरी लेबल और मार्गदर्शक कॉपी को बदलता है, मूल गुरबाणी पाठ को नहीं।',
       learningProfileTitle: 'रीडिंग प्रोफ़ाइल',
       learningProfileDescription: 'यह बदलता है कि होम पहले क्या सुझाता है और वापसी पर पढ़ें, सहेजा और रीडर सेटिंग्स कैसी महसूस होती हैं।',
-      reopenOnHome: 'होम पर पहला सेटअप फिर से खोलें',
+      reopenOnHome: 'रीडिंग सेटअप फिर देखें',
       about: 'परिचय',
       aboutBody: 'NaamRas एक सिख गुरबाणी पढ़ने की ऐप है जो पढ़ें, सहेजा और स्थिर रीडर सेटिंग्स के इर्द-गिर्द बनी है।',
-      aboutSource: 'गुरबाणी का पाठ ऐप के भीतर ताज़ा रहता है, और पाठ-आवाज़ तभी दिखाई जाएगी जब वह उसी मानक तक पहुँच जाए।',
-      aboutTrust: 'स्रोत पारदर्शिता और सुधार रिपोर्टिंग भरोसे की परत का हिस्सा हैं। जब तक वे प्रवाह नहीं बनते, मुद्दों को छिपे हुए किनारे नहीं बल्कि उत्पाद कार्य माना जाना चाहिए।',
+      aboutSource: 'गुरबाणी और अनुवाद BaniDB से लिए जाते हैं और रीडर में स्रोत संदर्भ के साथ दिखाए जाते हैं।',
+      aboutTrust: 'बुकमार्क, पसंद और प्रगति इस डिवाइस पर रहती है, जब तक आप क्लाउड बैकअप नहीं चुनते।',
+      support: 'सहायता',
+      publicPrivacyPolicy: 'सार्वजनिक गोपनीयता नीति',
     },
     study: {
       eyebrow: 'पढ़ें',

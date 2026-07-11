@@ -1,12 +1,14 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import CloudSyncPanel from './CloudSyncPanel'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
 import type { CloudUserSummary } from '../supabase/types'
+import { deleteCloudAccount } from '../supabase/runtime'
 
 vi.mock('../supabase/runtime', () => ({
+  deleteCloudAccount: vi.fn(),
   sendMagicLink: vi.fn(),
   signInWithProvider: vi.fn(),
   signOutOfCloud: vi.fn(),
@@ -72,6 +74,7 @@ function renderPanel(
 }
 
 beforeEach(() => {
+  vi.clearAllMocks()
   useLocaleStore.setState({ locale: 'en' })
   useCloudSyncStore.getState().reset()
   useActivityEventsStore.setState({ pendingEvents: [] })
@@ -173,5 +176,24 @@ describe('CloudSyncPanel truth model', () => {
     const appleCard = getProviderCard('apple')
     expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
     expect(within(appleCard).getByText('Sync queued')).toBeInTheDocument()
+  })
+
+  test('requires explicit confirmation before deleting the connected cloud account', async () => {
+    vi.mocked(deleteCloudAccount).mockResolvedValue({ ok: true })
+    renderPanel()
+
+    fireEvent.click(screen.getByRole('button', { name: /delete cloud account/i }))
+
+    const dialog = screen.getByTestId('cloud-delete-account-dialog')
+    expect(dialog).toHaveTextContent(/all synced NaamRas data will be permanently deleted/i)
+    expect(dialog).toHaveTextContent(/guest data on this device stays available/i)
+    expect(deleteCloudAccount).not.toHaveBeenCalled()
+
+    fireEvent.click(screen.getByTestId('cloud-delete-account-confirm'))
+
+    await waitFor(() => {
+      expect(deleteCloudAccount).toHaveBeenCalledTimes(1)
+      expect(screen.queryByTestId('cloud-delete-account-dialog')).not.toBeInTheDocument()
+    })
   })
 })

@@ -344,3 +344,46 @@ export async function signOutOfCloud() {
   syncStore.setSyncQueued(false)
   return { ok: true }
 }
+
+export async function deleteCloudAccount() {
+  const client = getNaamrasSupabaseClient()
+  const config = getNaamrasSupabaseConfig()
+  const syncStore = useCloudSyncStore.getState()
+
+  if (!client || !config.enabled || !currentUserId) {
+    syncStore.setLastError(getCloudSyncFailureMessage('account'))
+    return { ok: false }
+  }
+
+  try {
+    const response = await withQaControl('cloud-account-delete', async () => (
+      client.functions.invoke<{ deleted?: boolean }>(config.deleteAccountFunctionSlug, {
+        body: { confirmation: 'delete' },
+      })
+    ))
+
+    if (response.error || !response.data?.deleted) {
+      syncStore.setStatus('error')
+      syncStore.setLastError(getCloudSyncFailureMessage('account'))
+      return { ok: false, error: response.error }
+    }
+
+    if (syncTimer !== null && typeof window !== 'undefined') {
+      window.clearTimeout(syncTimer)
+      syncTimer = null
+    }
+
+    await client.auth.signOut({ scope: 'local' }).catch(() => undefined)
+    currentUserId = null
+    syncStore.setCurrentUser(null)
+    syncStore.setStatus('signed-out')
+    syncStore.setLastError(null)
+    syncStore.setSyncQueued(false)
+    syncStore.setLastSyncedAt(null)
+    return { ok: true }
+  } catch (error) {
+    syncStore.setStatus('error')
+    syncStore.setLastError(getCloudSyncFailureMessage('account'))
+    return { ok: false, error }
+  }
+}

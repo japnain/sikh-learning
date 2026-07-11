@@ -10,6 +10,7 @@ export interface NaamrasSupabaseConfig {
   banidbPublicOrigin: string
   banidbFunctionSlug: string
   mergeFunctionSlug: string
+  deleteAccountFunctionSlug: string
   studyFunctionSlug: string
   studyEnabled: boolean
 }
@@ -55,6 +56,7 @@ export function getNaamrasSupabaseConfig(): NaamrasSupabaseConfig {
     ),
     banidbFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_BANIDB_FUNCTION) ?? 'banidb-proxy',
     mergeFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_MERGE_FUNCTION) ?? 'merge-local-state',
+    deleteAccountFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_DELETE_ACCOUNT_FUNCTION) ?? 'delete-account',
     studyFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_STUDY_FUNCTION) ?? 'generate-study-response',
     studyEnabled: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_ENABLE_STUDY_AI) === 'true',
   }

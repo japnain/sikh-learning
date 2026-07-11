@@ -134,12 +134,12 @@ test('uses the provided larivaar text when larivaar is enabled', () => {
   useLanguageStore.setState({ larivaar: true })
   render(<StudyCard entry={entry} />)
   expect(screen.getByText('ੴ-ਸਤਿ')).toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: 'ੴ' })).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Open word details for ੴ' })).not.toBeInTheDocument()
 })
 
 test('opens word popover on word tap and shows Mahankosh context', async () => {
   render(<StudyCard entry={entry} />)
-  fireEvent.click(screen.getByRole('button', { name: 'ੴ' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Open word details for ੴ' }))
   expect(screen.getByText('One Creator')).toBeInTheDocument()
   expect(await screen.findByText('Mahankosh')).toBeInTheDocument()
   expect(await screen.findByText('ਇੱਕ ਅਕਾਲ ਪੁਰਖ.')).toBeInTheDocument()
@@ -152,6 +152,7 @@ test('opens source layers from the verse actions sheet', async () => {
   expect(screen.queryByRole('button', { name: /show source layers/i })).not.toBeInTheDocument()
 
   fireEvent.click(screen.getByLabelText(/open verse actions for line 1/i))
+  expect(screen.getByRole('dialog', { name: /verse actions/i })).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: /show source layers/i }))
 
   expect(await screen.findByText('Faridkot')).toBeInTheDocument()

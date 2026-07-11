@@ -1,0 +1,64 @@
+[data-page] h1,
+[data-page] h2,
+[data-page] h3 {
+  text-wrap: balance;
+}
+
+[data-page] p {
+  text-wrap: pretty;
+}
+
+[data-page] * {
+  letter-spacing: 0 !important;
+}
+
+[data-page]:not([data-page='home']):not([data-page='onboarding']) .section-shell,
+[data-page]:not([data-page='home']):not([data-page='onboarding']) .surface-primary,
+[data-page]:not([data-page='home']):not([data-page='onboarding']) .surface-spotlight {
+  border-color: var(--nr-border);
+  border-radius: var(--nr-radius-control);
+  background: var(--nr-surface);
+  background-image: none;
+}
+
+[data-page]:not([data-page='home']):not([data-page='onboarding']) .section-shell-quiet {
+  border-color: rgb(var(--color-border) / 0.28);
+  border-radius: var(--nr-radius-control);
+  background: var(--nr-surface-quiet);
+  background-image: none;
+}
+
+[data-page]:not([data-page='home']):not([data-page='onboarding']) .hero-surface {
+  border-color: rgb(var(--color-accent-strong) / 0.24);
+  border-radius: var(--nr-radius-control);
+  background: var(--nr-surface);
+  background-image: none;
+}
+
+[data-page]:not([data-page='home']) .ornate-top::before {
+  background: rgb(var(--color-accent-strong) / 0.72);
+}
+
+.interactive-focus:focus-visible,
+[data-page] button:focus-visible,
+[data-page] a:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: 3px;
+}
+
+@media (min-width: 700px) {
+  .page-shell:not(.home-stack) {
+    width: min(100%, var(--nr-page-max));
+    max-width: var(--nr-page-max);
+    padding-right: max(1.5rem, calc(var(--safe-area-right) + 1.5rem));
+    padding-left: max(1.5rem, calc(var(--safe-area-left) + 1.5rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-page] *,
+  [data-page] *::before,
+  [data-page] *::after {
+    scroll-behavior: auto;
+  }
+}

@@ -350,14 +350,14 @@ export default function SoundscapeControls({
               key={preset.id}
               type="button"
               onClick={() => activatePreset(preset.id)}
-              className={`rounded-2xl border px-3 py-3 text-left min-h-[56px] ${
+              className={`min-h-[56px] rounded-lg border px-3 py-3 text-left ${
                 selected
-                  ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                  ? 'border-saffron bg-saffron text-white'
                   : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
               }`}
             >
               <p className="font-sans text-[11px] uppercase tracking-[0.18em]">{presetText.name}</p>
-              <p className={`mt-1 font-sans text-[11px] leading-4 ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
+              <p className={`mt-1 font-sans text-[11px] leading-4 ${selected ? 'text-white/80' : 'text-ink/68 dark:text-dark-text/64'}`}>
                 {presetText.description}
               </p>
             </button>
@@ -366,7 +366,7 @@ export default function SoundscapeControls({
       </div>
 
       <div className="mt-4 flex items-center gap-3">
-        <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45">
+        <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
           {copy.volume}
         </span>
         <input
@@ -393,14 +393,14 @@ export default function SoundscapeControls({
               key={preset.id}
               type="button"
               onClick={() => activatePreset(preset.id)}
-              className={`rounded-2xl px-3 py-3 text-left min-h-[60px] ${
+              className={`min-h-[60px] rounded-lg px-3 py-3 text-left ${
                 selected
-                  ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                  ? 'bg-saffron text-white'
                   : 'section-shell-quiet text-ink dark:text-dark-text'
               }`}
             >
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em]">{presetText.name}</p>
-              <p className={`mt-1 font-sans text-[11px] leading-4 ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
+              <p className={`mt-1 font-sans text-[11px] leading-4 ${selected ? 'text-white/80' : 'text-ink/68 dark:text-dark-text/64'}`}>
                 {presetText.description}
               </p>
             </button>
@@ -409,7 +409,7 @@ export default function SoundscapeControls({
       </div>
 
       <div className="mt-4 flex items-center gap-3">
-        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{copy.volume}</span>
+        <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.volume}</span>
         <input
           type="range"
           min="0"
@@ -426,7 +426,7 @@ export default function SoundscapeControls({
         {groupedSounds.map(group => (
           <div key={group.category} className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-xs font-semibold text-ink dark:text-dark-text">{group.label}</p>
-            <p className="mt-1 font-sans text-[11px] text-ink/50 dark:text-dark-text/50">
+            <p className="mt-1 font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
               {copy.shipped(group.shipped.length, group.target)}
             </p>
           </div>
@@ -443,9 +443,9 @@ export default function SoundscapeControls({
               key={sound.id}
               type="button"
               onClick={() => toggleSound(sound.id)}
-              className={`w-full rounded-[24px] border px-4 py-4 text-left ${
+              className={`w-full rounded-lg border px-4 py-4 text-left ${
                 active
-                  ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                  ? 'border-saffron bg-saffron text-white'
                   : selected
                     ? 'bg-saffron/8 dark:bg-saffron/12 border-saffron/25 text-ink dark:text-dark-text'
                     : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
@@ -457,10 +457,10 @@ export default function SoundscapeControls({
                     {soundText.name}
                     {active ? ` · ${copy.playing}` : selected ? ` · ${copy.selected}` : ''}
                   </p>
-                  <p className={`mt-1 font-sans text-xs leading-5 ${active ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
+                  <p className={`mt-1 font-sans text-xs leading-5 ${active ? 'text-white/80' : 'text-ink/68 dark:text-dark-text/64'}`}>
                     {soundText.description}
                   </p>
-                  <p className={`mt-2 font-sans text-[11px] uppercase tracking-[0.18em] ${active ? 'text-white/75' : 'text-gold dark:text-gold-light'}`}>
+                  <p className={`mt-2 font-sans text-[11px] uppercase tracking-[0.18em] ${active ? 'text-white/75' : 'text-gold-dark dark:text-gold-light'}`}>
                     {categoryLabels[sound.category]}
                   </p>
                 </div>
@@ -481,7 +481,7 @@ export default function SoundscapeControls({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <IconMusic size={14} className="text-gold dark:text-gold-light" />
+            <IconMusic size={14} className="text-gold-dark dark:text-gold-light" />
             <p className="eyebrow">{copy.eyebrow}</p>
           </div>
           <p className={`mt-2 font-sans text-sm ${variant === 'compact' ? 'text-ink dark:text-dark-text' : 'text-ink/68 dark:text-dark-text/70'}`}>
@@ -491,7 +491,7 @@ export default function SoundscapeControls({
 
         <div className="flex items-center gap-2">
           {variant === 'compact' ? (
-            <Link to="/more" className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2">
+            <Link to="/more" className="font-sans text-xs text-gold-dark dark:text-gold-light underline underline-offset-2">
               {copy.fullLibrary}
             </Link>
           ) : (
@@ -504,27 +504,27 @@ export default function SoundscapeControls({
             aria-expanded={isExpanded}
             aria-controls={panelId}
             aria-label={isExpanded ? copy.collapse : copy.expand}
-            className="icon-surface min-h-[40px] min-w-[40px] text-gold dark:text-gold-light"
+            className="icon-surface min-h-[40px] min-w-[40px] text-gold-dark dark:text-gold-light"
           >
             {isExpanded ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
           </button>
         </div>
       </div>
 
-      <div className="mt-4 rounded-[22px] border border-sand/15 bg-white/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card">
+      <div className="mt-4 rounded-lg border border-sand/15 bg-white/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card">
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
               {summaryTitle}
             </p>
-            <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+            <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
               {summaryBody}
             </p>
           </div>
           <button
             type="button"
             onClick={handlePlaybackToggle}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-saffron text-white"
             aria-label={isPlaying ? copy.pause : copy.play}
           >
             {isPlaying ? <IconPause size={14} /> : <IconPlay size={14} />}

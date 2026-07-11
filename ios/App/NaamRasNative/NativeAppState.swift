@@ -7,13 +7,13 @@ final class NaamRasAppState: ObservableObject {
     @Published var selectedTab: AppTab = .home
     @Published var profile = OnboardingProfile() { didSet { persist() } }
     @Published var readerPreferences = ReaderPreferences() { didSet { persist() } }
+    @Published var appearanceMode: AppAppearanceMode = .system { didSet { persist() } }
     @Published var bookmarks: [BookmarkItem] = [] { didSet { persist() } }
     @Published var readingProgress: [String: Double] = [:] { didSet { persist() } }
     @Published var currentUser: CloudUser? { didSet { persist() } }
     @Published var cloudStatus: CloudSyncStatus
     @Published var lastSyncedAt: Date? { didSet { persist() } }
     @Published var lastError: String?
-    @Published var emailForMagicLink = ""
 
     private let storageKey = "naamras-native-state-v1"
     private let supabase: SupabaseBridge
@@ -37,10 +37,15 @@ final class NaamRasAppState: ObservableObject {
         readings.first { $0.progress > 0 } ?? readings[0]
     }
 
+    var cloudBackupAvailable: Bool {
+        supabase.configuration.isConfigured
+    }
+
     var snapshot: NativeSnapshot {
         NativeSnapshot(
             profile: profile,
             readerPreferences: readerPreferences,
+            appearanceMode: appearanceMode,
             bookmarks: bookmarks,
             readingProgress: readingProgress,
             exportedAt: Date()
@@ -51,7 +56,6 @@ final class NaamRasAppState: ObservableObject {
         profile.accountChoice = accountChoice
         profile.completed = true
         readerPreferences.applySupportDensity(readerPreferences.supportDensity)
-        markProgress(readingId: continueReading.id, progress: max(continueReading.progress, 0.2))
     }
 
     func resetOnboarding() {
@@ -112,22 +116,30 @@ final class NaamRasAppState: ObservableObject {
         pendingAppleNonce = nil
     }
 
-    func sendMagicLink() async {
-        let email = emailForMagicLink.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard email.contains("@") else {
-            lastError = "Enter a valid email address."
-            return
-        }
-
+    func signOutOfCloud() async {
         do {
-            cloudStatus = .authenticating
-            try await supabase.sendMagicLink(email: email)
-            currentUser = CloudUser(id: email.lowercased(), email: email)
-            cloudStatus = .signedIn
-            lastError = "Check your email for the Supabase magic link."
+            try await supabase.signOut()
+            currentUser = nil
+            cloudStatus = .configured
+            lastSyncedAt = nil
+            lastError = nil
         } catch {
             cloudStatus = .error
             lastError = error.localizedDescription
+        }
+    }
+
+    func deleteCloudAccount() async {
+        do {
+            cloudStatus = .deleting
+            lastError = nil
+            try await supabase.deleteAccount()
+            currentUser = nil
+            cloudStatus = .configured
+            lastSyncedAt = nil
+        } catch {
+            cloudStatus = .error
+            lastError = "Your cloud account could not be deleted. Try again before signing out."
         }
     }
 
@@ -149,6 +161,7 @@ final class NaamRasAppState: ObservableObject {
         let envelope = NativeStateEnvelope(
             profile: profile,
             readerPreferences: readerPreferences,
+            appearanceMode: appearanceMode,
             bookmarks: bookmarks,
             readingProgress: readingProgress,
             currentUser: currentUser,
@@ -168,6 +181,7 @@ final class NaamRasAppState: ObservableObject {
 
         profile = envelope.profile
         readerPreferences = envelope.readerPreferences
+        appearanceMode = envelope.appearanceMode ?? .system
         bookmarks = envelope.bookmarks
         readingProgress = envelope.readingProgress
         currentUser = envelope.currentUser
@@ -181,6 +195,7 @@ final class NaamRasAppState: ObservableObject {
 private struct NativeStateEnvelope: Codable {
     var profile: OnboardingProfile
     var readerPreferences: ReaderPreferences
+    var appearanceMode: AppAppearanceMode?
     var bookmarks: [BookmarkItem]
     var readingProgress: [String: Double]
     var currentUser: CloudUser?

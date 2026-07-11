@@ -416,8 +416,10 @@ async function startDevServer() {
     return { process: null, logs: [] }
   }
 
+  const serverUrl = new URL(BASE_URL)
+  const serverPort = serverUrl.port || (serverUrl.protocol === 'https:' ? '443' : '80')
   const logs = []
-  const child = spawn('npm', ['run', 'dev', '--', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], {
+  const child = spawn('npm', ['run', 'dev', '--', '--host', serverUrl.hostname, '--port', serverPort, '--strictPort'], {
     cwd: process.cwd(),
     env: {
       ...process.env,
@@ -825,6 +827,18 @@ async function main() {
       },
     },
     {
+      id: 'home-nitnem-open',
+      title: 'Home Nitnem card opens with a normal click',
+      viewport: 'desktop',
+      path: '/',
+      run: async ({ page, notes }) => {
+        notes.push('Expected the carousel to preserve ordinary link activation while retaining swipe navigation.')
+        await ensureVisible(page, '[data-testid="home-nitnem-primary-action"]', 'the active Home Nitnem action')
+        await page.getByTestId('home-nitnem-primary-action').click()
+        await ensureVisible(page, '[data-page="study"][data-ai-state="ready"]', 'the Study reader opened from Home')
+      },
+    },
+    {
       id: 'read-desktop',
       title: 'Read desktop route',
       viewport: 'desktop',
@@ -844,7 +858,12 @@ async function main() {
         notes.push('Expected Auto search to find Roman-letter meaning/transliteration matches without opening Refine.')
         await ensureVisible(page, '[data-page="banis"]', 'the Read page shell')
         await page.locator('#banis-search').fill('death')
-        await ensureVisible(page, 'text=Death is not called bad', 'the auto-search Roman-letter result')
+        await ensureVisible(page, '[data-ai-surface="read-smart-search"][data-ai-state="ready"]', 'the ready auto-search surface')
+        await ensureVisible(page, '[data-testid="banis-search-gurbani-results"]', 'the auto-search Roman-letter results')
+        const resultText = await page.locator('[data-testid="banis-search-gurbani-results"]').innerText()
+        if (!/death/i.test(resultText)) {
+          throw createAssertionError('Expected auto-search results to include the Roman-letter query in transliteration or meaning.')
+        }
       },
     },
     {
@@ -991,9 +1010,16 @@ async function main() {
       onboarding: 'first-run',
       path: '/',
       run: async ({ page, notes }) => {
-        notes.push('Expected first-run onboarding to render with its dedicated route shell and auth surface.')
+        notes.push('Expected first-run onboarding to keep optional backup hidden until the preview drawer is opened.')
         await ensureVisible(page, '[data-page="onboarding"][data-ai-surface="onboarding"][data-ai-state="ready"]', 'the first-run onboarding shell')
-        await page.getByRole('button', { name: /^Continue$/i }).click()
+        for (let step = 0; step < 3; step += 1) {
+          await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
+        }
+        await ensureVisible(page, '[data-testid="onboarding-preview-primary-action"]', 'the onboarding preview action')
+        if (await page.locator('[data-ai-surface="onboarding-auth"]').count() > 0) {
+          throw createAssertionError('Expected optional backup controls to stay hidden before the backup drawer is opened.')
+        }
+        await page.locator('[data-testid="onboarding-backup-toggle"]').click()
         await ensureVisible(page, '[data-ai-surface="onboarding-auth"]', 'the onboarding auth surface')
       },
     },
@@ -1004,10 +1030,45 @@ async function main() {
       onboarding: 'overlay',
       path: '/',
       run: async ({ page, notes }) => {
-        notes.push('Expected overlay onboarding to render with its overlay route shell and auth surface.')
+        notes.push('Expected overlay onboarding to preserve the same progressive optional-backup flow.')
         await ensureVisible(page, '[data-page="onboarding-overlay"][data-ai-surface="onboarding-overlay"][data-ai-state="ready"]', 'the onboarding overlay shell')
-        await page.getByRole('button', { name: /^Continue$/i }).click()
+        for (let step = 0; step < 3; step += 1) {
+          await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
+        }
+        await ensureVisible(page, '[data-testid="onboarding-preview-primary-action"]', 'the onboarding preview action')
+        if (await page.locator('[data-ai-surface="onboarding-auth"]').count() > 0) {
+          throw createAssertionError('Expected optional backup controls to stay hidden before the backup drawer is opened.')
+        }
+        await page.locator('[data-testid="onboarding-backup-toggle"]').click()
         await ensureVisible(page, '[data-ai-surface="onboarding-auth"]', 'the onboarding auth surface')
+      },
+    },
+    {
+      id: 'support-public-document',
+      title: 'Public Support route before onboarding',
+      viewport: 'mobile',
+      path: '/support',
+      onboarding: 'first-run',
+      run: async ({ page, notes }) => {
+        notes.push('Expected Support to remain directly available before onboarding without the private app navigation.')
+        await ensureVisible(page, '[data-page="support"][data-ai-state="ready"]', 'the public Support document')
+        if (await page.locator('[data-page="onboarding"], [data-testid="primary-nav"]').count() > 0) {
+          throw createAssertionError('Public Support was obscured by onboarding or app navigation.')
+        }
+      },
+    },
+    {
+      id: 'privacy-public-document',
+      title: 'Public Privacy route before onboarding',
+      viewport: 'mobile',
+      path: '/privacy',
+      onboarding: 'first-run',
+      run: async ({ page, notes }) => {
+        notes.push('Expected Privacy to remain directly available before onboarding without the private app navigation.')
+        await ensureVisible(page, '[data-page="privacy"][data-ai-state="ready"]', 'the public Privacy document')
+        if (await page.locator('[data-page="onboarding"], [data-testid="primary-nav"]').count() > 0) {
+          throw createAssertionError('Public Privacy was obscured by onboarding or app navigation.')
+        }
       },
     },
     {

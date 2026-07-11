@@ -18,15 +18,15 @@ extension Color {
         })
     }
 
-    static let naamInk = Color.naamAdaptive(light: 0x21170f, dark: 0xf6ead8)
-    static let naamSage = Color.naamAdaptive(light: 0x456653, dark: 0x91b59e)
-    static let naamDeep = Color.naamAdaptive(light: 0x15110b, dark: 0xf3e3c4)
-    static let naamGold = Color.naamAdaptive(light: 0xbe8133, dark: 0xe8c776)
-    static let naamParchment = Color.naamAdaptive(light: 0xf8ecd9, dark: 0x17131f)
-    static let naamMist = Color.naamAdaptive(light: 0xefe4d1, dark: 0x211a2c)
-    static let naamSurface = Color.naamAdaptive(light: 0xfffbf2, dark: 0x251d31)
-    static let naamSurfaceMuted = Color.naamAdaptive(light: 0xf1dfc2, dark: 0x1b1525)
-    static let naamBorder = Color.naamAdaptive(light: 0xd4b985, dark: 0x4a3a5e)
+    static let naamInk = Color.naamAdaptive(light: 0x17201f, dark: 0xf2f1e9)
+    static let naamSage = Color.naamAdaptive(light: 0x1b6568, dark: 0x72b7ae)
+    static let naamDeep = Color.naamAdaptive(light: 0x070c0e, dark: 0xf2f1e9)
+    static let naamGold = Color.naamAdaptive(light: 0xb77926, dark: 0xe3b85d)
+    static let naamParchment = Color.naamAdaptive(light: 0xf2f1e9, dark: 0x070c0e)
+    static let naamMist = Color.naamAdaptive(light: 0xe5e5dd, dark: 0x10191b)
+    static let naamSurface = Color.naamAdaptive(light: 0xfbfaf5, dark: 0x0f191b)
+    static let naamSurfaceMuted = Color.naamAdaptive(light: 0xe9e8df, dark: 0x132123)
+    static let naamBorder = Color.naamAdaptive(light: 0xb8b6a9, dark: 0x355052)
 }
 
 extension UIColor {
@@ -41,22 +41,14 @@ extension UIColor {
 }
 
 struct NativeBackground: View {
-    @Environment(\.colorScheme) private var colorScheme
-
     var body: some View {
-        LinearGradient(
-            colors: colorScheme == .dark
-                ? [Color(hex: 0x15101d), Color(hex: 0x20182a), Color(hex: 0x17131f)]
-                : [Color(hex: 0xfbf1df), Color(hex: 0xf3e4cb), Color(hex: 0xe6d2b2)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
+        Color.naamParchment
         .ignoresSafeArea()
         .overlay {
             Image("ManuscriptTexture")
                 .resizable()
                 .scaledToFill()
-                .opacity(colorScheme == .dark ? 0.035 : 0.07)
+                .opacity(0.05)
                 .blendMode(.multiply)
                 .ignoresSafeArea()
         }
@@ -74,16 +66,7 @@ struct NativeCard<Content: View>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color.naamSurface.opacity(0.96),
-                                Color.naamSurfaceMuted.opacity(0.82)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(Color.naamSurface.opacity(0.96))
                     .overlay(
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .stroke(tint.opacity(0.28), lineWidth: 1)
@@ -114,14 +97,7 @@ struct FlowHero: View {
                             .clipped()
                             .accessibilityHidden(true)
 
-                        LinearGradient(
-                            colors: [
-                                Color.black.opacity(0.02),
-                                Color.black.opacity(0.32)
-                            ],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
+                        Color.black.opacity(0.2)
 
                         HStack(spacing: 8) {
                             Image(systemName: symbolName)

@@ -27,6 +27,7 @@ test('renders Amrit Keertan sections and filters section search', async () => {
 
   expect(screen.getByTestId('page-amrit-keertan')).toBeInTheDocument()
   expect(screen.getByText('113 sections')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search Amrit Keertan sections' })).toBeInTheDocument()
   expect(await screen.findByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument()
   expect(screen.getByText('ਢਾਢੀ ਦਰਿ ਪ੍ਰਭ ਮੰਗਣਾ ॥')).toBeInTheDocument()
 
@@ -40,6 +41,7 @@ test('renders section breadcrumbs, true metadata, English, search, and study nav
   renderAmritKeertan('/banis/amrit-keertan/1')
 
   expect(await screen.findByTestId('amrit-keertan-chapter')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search this Amrit Keertan section' })).toBeInTheDocument()
   expect(within(screen.getByTestId('amrit-keertan-breadcrumbs')).getByText('Read')).toBeInTheDocument()
   expect(within(screen.getByTestId('amrit-keertan-breadcrumbs')).getByText('Amrit Keertan')).toBeInTheDocument()
   expect(await screen.findByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()

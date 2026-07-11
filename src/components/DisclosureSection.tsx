@@ -54,7 +54,7 @@ export default function DisclosureSection({
         </div>
         <span
           className={`icon-surface mt-1 h-10 w-10 shrink-0 ${
-            open ? "text-ink/60 dark:text-dark-text/64" : "text-gold dark:text-gold-light"
+            open ? "text-ink/68 dark:text-dark-text/64" : "text-gold-dark dark:text-gold-light"
           }`}
           aria-hidden="true"
         >

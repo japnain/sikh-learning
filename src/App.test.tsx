@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import App from './App'
 import { useCloudSyncStore } from './store/cloudSync'
@@ -14,7 +15,7 @@ const APP_TEST_WAIT = { timeout: 30000 }
 beforeEach(() => {
   window.history.replaceState({}, '', '/')
   vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback: FrameRequestCallback) => {
-    callback(0)
+    queueMicrotask(() => callback(0))
     return 0
   })
   window.history.replaceState({}, '', '/')
@@ -47,7 +48,7 @@ afterEach(() => {
 })
 
 function advanceFirstRunOnboardingToPreview() {
-  for (let step = 0; step < 4; step += 1) {
+  for (let step = 0; step < 3; step += 1) {
     fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
   }
 }
@@ -58,14 +59,14 @@ test('shows onboarding above the app shell and lands home after first-run setup'
 
   expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
-  expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /^NaamRas$/ })).toBeInTheDocument()
   expect(screen.queryByRole('heading', { level: 1, name: /satshriakaal/i })).not.toBeInTheDocument()
   expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument()
 
-  fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
+  fireEvent.click(screen.getByTestId('onboarding-intent-understand'))
   advanceFirstRunOnboardingToPreview()
-  fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   await waitFor(() => {
     expect(useOnboardingStore.getState().hasCompletedOnboarding).toBe(true)
@@ -101,6 +102,30 @@ test('wraps routed content in the main landmark once onboarding is complete', as
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
 
+test('keeps the skip link as the first keyboard target on initial load', async () => {
+  const user = userEvent.setup()
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.getByTestId('main-content')).not.toHaveFocus()
+
+  await user.tab()
+  expect(screen.getByTestId('skip-to-content')).toHaveFocus()
+
+  await user.keyboard('{Enter}')
+  expect(screen.getByTestId('main-content')).toHaveFocus()
+  expect(window.location.hash).toBe('#main-content')
+})
+
 test('keeps the bottom nav visible when the main app shell renders with stale onboarding state', async () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: false,
@@ -116,6 +141,22 @@ test('keeps the bottom nav visible when the main app shell renders with stale on
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
+})
+
+test('keeps public support and privacy documents available before onboarding', async () => {
+  const renderPublicDocument = async (path: string, pageTestId: string) => {
+    window.history.replaceState({}, '', path)
+    const view = render(<App />)
+
+    expect(await screen.findByTestId(pageTestId, undefined, APP_TEST_WAIT)).toBeInTheDocument()
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
+
+    view.unmount()
+  }
+
+  await renderPublicDocument('/support', 'page-support')
+  await renderPublicDocument('/privacy', 'page-privacy')
 })
 
 test('refreshes the skip link target on each route', async () => {
@@ -166,9 +207,9 @@ test('redirects retired article routes home', async () => {
 test('habit onboarding completion returns home after the premium onboarding flow', async () => {
   render(<App />)
 
-  fireEvent.click(screen.getByRole('button', { name: /build a daily reading habit/i }))
+  fireEvent.click(screen.getByTestId('onboarding-intent-habit'))
   advanceFirstRunOnboardingToPreview()
-  fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')
@@ -179,7 +220,7 @@ test('habit onboarding completion returns home after the premium onboarding flow
   }, APP_TEST_WAIT)
 })
 
-test('reopening onboarding from more keeps the saved profile selections', async () => {
+test('reopening onboarding from more keeps the saved reading intent', async () => {
   window.history.replaceState({}, '', '/more')
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
@@ -192,15 +233,13 @@ test('reopening onboarding from more keeps the saved profile selections', async 
 
   render(<App />)
 
-  fireEvent.click(await screen.findByRole('button', { name: /profile & app language/i }, APP_TEST_WAIT))
-  fireEvent.click(await screen.findByRole('button', { name: /re-open first setup on home/i }, APP_TEST_WAIT))
+  await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
+  fireEvent.click(screen.getByTestId('more-open-onboarding'))
 
   await waitFor(() => {
-    expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: /shape how gurbani opens for you/i })).toBeInTheDocument()
   }, APP_TEST_WAIT)
 
-  expect(screen.getByRole('button', { name: /understand scripture/i })).toHaveAttribute('aria-pressed', 'true')
-  expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
-  expect(useOnboardingStore.getState().audience).toBe('teen')
+  expect(screen.getByRole('button', { name: /i want to understand/i })).toHaveAttribute('aria-pressed', 'true')
   expect(useOnboardingStore.getState().learningGoal).toBe('understand')
 })

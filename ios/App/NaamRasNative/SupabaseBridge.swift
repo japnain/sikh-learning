@@ -125,16 +125,6 @@ final class SupabaseBridge {
         )
     }
 
-    func sendMagicLink(email: String) async throws {
-        guard configuration.isConfigured else { throw SupabaseBridgeError.notConfigured }
-        #if canImport(Supabase)
-        guard let client else { throw SupabaseBridgeError.notConfigured }
-        try await client.auth.signInWithOTP(email: email)
-        #else
-        throw SupabaseBridgeError.sdkUnavailable
-        #endif
-    }
-
     func invokeMerge(snapshot: NativeSnapshot) async throws -> Date {
         guard configuration.isConfigured,
               let functionsBaseURL = configuration.functionsBaseURL,
@@ -164,6 +154,49 @@ final class SupabaseBridge {
         }
 
         return Date()
+    }
+
+    func signOut() async throws {
+        guard configuration.isConfigured else { throw SupabaseBridgeError.notConfigured }
+        #if canImport(Supabase)
+        guard let client else { throw SupabaseBridgeError.notConfigured }
+        try await client.auth.signOut(scope: .local)
+        #else
+        throw SupabaseBridgeError.sdkUnavailable
+        #endif
+    }
+
+    func deleteAccount() async throws {
+        guard configuration.isConfigured,
+              let functionsBaseURL = configuration.functionsBaseURL,
+              let anonKey = configuration.anonKey else {
+            throw SupabaseBridgeError.notConfigured
+        }
+
+        let accessToken: String
+        #if canImport(Supabase)
+        guard let client else { throw SupabaseBridgeError.notConfigured }
+        accessToken = try await client.auth.session.accessToken
+        #else
+        throw SupabaseBridgeError.sdkUnavailable
+        #endif
+
+        var request = URLRequest(url: functionsBaseURL.appending(path: "delete-account"))
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "content-type")
+        request.setValue(anonKey, forHTTPHeaderField: "apikey")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "authorization")
+        request.httpBody = try JSONEncoder.nativeSyncEncoder.encode(["confirmation": "delete"])
+
+        let (_, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200..<300).contains(httpResponse.statusCode) else {
+            throw SupabaseBridgeError.invalidResponse
+        }
+
+        #if canImport(Supabase)
+        try await client.auth.signOut(scope: .local)
+        #endif
     }
 }
 

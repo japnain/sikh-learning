@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, within } from '@testing-library/react'
+import { afterEach, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import More from './More'
 import { UI_DISCLOSURE_STORAGE_KEY } from '../hooks/usePersistentDisclosure'
@@ -6,8 +7,8 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useMusicStore } from '../store/music'
 import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
-import { useOnboardingStore } from '../store/onboarding'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
+import { useThemeStore } from '../store/theme'
 
 beforeEach(() => {
   window.localStorage.removeItem(UI_DISCLOSURE_STORAGE_KEY)
@@ -25,14 +26,8 @@ beforeEach(() => {
     hindiSource: 'ss',
     visraamSource: 'sttm',
   })
-  useOnboardingStore.setState({
-    hasCompletedOnboarding: true,
-    presentationMode: 'overlay',
-    learningLevel: 'beginner',
-    audience: 'adult',
-    learningGoal: 'read',
-  })
   useLocaleStore.setState({ locale: 'en' })
+  useThemeStore.getState().setDark(false)
   useMusicStore.setState({
     selectedSoundId: null,
     isPlaying: false,
@@ -52,6 +47,10 @@ beforeEach(() => {
       'kirtan-sohila': 'short',
     },
   })
+})
+
+afterEach(() => {
+  vi.unstubAllEnvs()
 })
 
 function openMoreSection(name: RegExp) {
@@ -88,13 +87,14 @@ test('persists selected English source', () => {
 test('persists reader display defaults', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   openMoreSection(/Reader Defaults/i)
-  fireEvent.click(screen.getAllByRole('button', { name: /^Hindi$/i })[0])
-  fireEvent.click(screen.getAllByRole('button', { name: /Punjabi/i })[0])
-  fireEvent.click(screen.getByLabelText(/toggle transliteration/i))
-  fireEvent.click(screen.getByRole('button', { name: /Larivaar Off/i }))
-  fireEvent.click(screen.getByRole('button', { name: /Vishraam On/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^Compact$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^Center$/i }))
+  const readerDefaults = within(screen.getByTestId('more-reader-defaults'))
+  fireEvent.click(readerDefaults.getAllByRole('button', { name: /^Hindi$/i })[0])
+  fireEvent.click(readerDefaults.getAllByRole('button', { name: /Punjabi/i })[0])
+  fireEvent.click(readerDefaults.getByRole('button', { name: /Transliteration Off/i }))
+  fireEvent.click(readerDefaults.getByRole('button', { name: /Larivaar Off/i }))
+  fireEvent.click(readerDefaults.getByRole('button', { name: /Vishraam On/i }))
+  fireEvent.click(readerDefaults.getByRole('button', { name: /^Compact$/i }))
+  fireEvent.click(readerDefaults.getByRole('button', { name: /^Center$/i }))
 
   const state = useLanguageStore.getState()
   expect(state.scriptMode).toBe('devanagari')
@@ -106,24 +106,23 @@ test('persists reader display defaults', () => {
   expect(state.textAlign).toBe('center')
 })
 
-test('persists selected reading comfort', () => {
+test('persists appearance and applies it to the document', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
-  openMoreSection(/Profile & App Language/i)
-  fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
-  expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
+  fireEvent.click(screen.getByRole('button', { name: /^Dark$/i }))
+
+  expect(useThemeStore.getState().dark).toBe(true)
+  expect(document.documentElement).toHaveClass('dark')
+  expect(screen.getByRole('button', { name: /^Dark$/i })).toHaveAttribute('aria-pressed', 'true')
 })
 
-test('persists locale, audience, and reading intent', () => {
+test('persists app locale without exposing unused profile controls', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
-  openMoreSection(/Profile & App Language/i)
 
   fireEvent.click(screen.getByRole('button', { name: /^Punjabi$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /ਕਿਸ਼ੋਰ/i }))
-  fireEvent.click(screen.getByRole('button', { name: /ਸਮਝਣਾ/i }))
 
   expect(useLocaleStore.getState().locale).toBe('pa')
-  expect(useOnboardingStore.getState().audience).toBe('teen')
-  expect(useOnboardingStore.getState().learningGoal).toBe('understand')
+  expect(screen.queryByRole('button', { name: /ਕਿਸ਼ੋਰ/i })).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /ਸਮਝਣਾ/i })).not.toBeInTheDocument()
 })
 
 test('toggles ambient playback without clearing the selected sound', () => {
@@ -158,7 +157,8 @@ test('heavy More sections start collapsed while About stays visible', () => {
   expect(screen.getByRole('button', { name: /keep naamras with you across devices/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByTestId('more-open-nitnem-customize')).toHaveAttribute('href', '/nitnem/customize')
   expect(screen.getByRole('button', { name: /reader defaults/i })).toHaveAttribute('aria-expanded', 'false')
-  expect(screen.getByRole('button', { name: /profile & app language/i })).toHaveAttribute('aria-expanded', 'false')
+  expect(screen.getByTestId('more-appearance')).toBeInTheDocument()
+  expect(screen.getByTestId('more-app-language')).toBeInTheDocument()
   expect(screen.queryByTestId('more-nitnem-completion')).not.toBeInTheDocument()
   expect(screen.queryByText(/^English translation$/i)).not.toBeInTheDocument()
   expect(screen.getByTestId('more-about')).toBeInTheDocument()
@@ -208,4 +208,23 @@ test('More disclosure state persists across remounts', () => {
 
   expect(screen.getByRole('button', { name: /Reader Defaults/i })).toHaveAttribute('aria-expanded', 'true')
   expect(screen.getByText(/^English translation$/i)).toBeInTheDocument()
+})
+
+test('shows only configured HTTPS release links', () => {
+  vi.stubEnv('VITE_SUPPORT_URL', 'https://naamras.example/support')
+  vi.stubEnv('VITE_PRIVACY_URL', 'https://naamras.example/privacy')
+
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  expect(screen.getByTestId('more-open-support')).toHaveAttribute('href', 'https://naamras.example/support')
+  expect(screen.getByTestId('more-open-support')).toHaveAttribute('target', '_blank')
+  expect(screen.getByTestId('more-open-public-privacy')).toHaveAttribute('href', 'https://naamras.example/privacy')
+})
+
+test('falls back to public document routes when release URLs are not configured', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  expect(screen.getByTestId('more-open-support')).toHaveAttribute('href', '/support')
+  expect(screen.getByTestId('more-open-support')).not.toHaveAttribute('target')
+  expect(screen.getByTestId('more-open-public-privacy')).toHaveAttribute('href', '/privacy')
 })

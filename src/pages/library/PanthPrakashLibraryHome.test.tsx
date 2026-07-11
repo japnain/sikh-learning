@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import PanthPrakashLibraryHome from './PanthPrakashLibraryHome'
@@ -31,8 +31,8 @@ describe('PanthPrakashLibraryHome', () => {
     expect(screen.getByRole('heading', { name: /Sri Gur Panth Prakash/i })).toBeInTheDocument()
     expect(screen.getByTestId('panth-epub-coverage')).toHaveTextContent(/171 chapters/i)
     expect(screen.getByTestId('panth-epub-coverage')).toHaveTextContent(/Source: EPUB/i)
-    expect(screen.getByRole('link', { name: /start volume i/i })).toHaveAttribute('href', '/library/panth-prakash-english/chapters/vol-1-front-matter')
-    expect(screen.getByRole('link', { name: /start volume ii/i })).toHaveAttribute('href', '/library/panth-prakash-english/chapters/vol-2-front-matter')
+    expect(screen.getByRole('link', { name: 'Start Volume I', exact: true })).toHaveAttribute('href', '/library/panth-prakash-english/chapters/vol-1-front-matter')
+    expect(screen.getByRole('link', { name: 'Start Volume II', exact: true })).toHaveAttribute('href', '/library/panth-prakash-english/chapters/vol-2-front-matter')
     expect(screen.queryByLabelText(/jump to page/i)).not.toBeInTheDocument()
   })
 
@@ -80,10 +80,11 @@ describe('PanthPrakashLibraryHome', () => {
     await waitFor(() => {
       expect(screen.getByTestId('panth-full-text-results')).toHaveTextContent(/Origin of the Khalsa/i)
     })
-    expect(screen.getByRole('link', { name: /The Episode About the Origin of the Khalsa/i })).toHaveAttribute(
-      'href',
-      '/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa'
-    )
+    const exactChapterPath = '/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa'
+    const matchingChapter = within(screen.getByTestId('panth-full-text-results'))
+      .getAllByRole('link')
+      .find(link => link.getAttribute('href') === exactChapterPath)
+    expect(matchingChapter).toHaveAttribute('href', exactChapterPath)
   })
 
   test('ignores retired page resume sessions and shows chapter resume sessions', async () => {
@@ -109,12 +110,14 @@ describe('PanthPrakashLibraryHome', () => {
 
     expect(screen.queryByRole('link', { name: /continue reading/i })).not.toBeInTheDocument()
 
-    useProgressStore.setState({
-      currentSession: {
-        scriptureId: 'panth-prakash-english-episode-001',
-        resumePath: '/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa',
-        updatedAt: '2026-04-19T12:00:00.000Z',
-      },
+    act(() => {
+      useProgressStore.setState({
+        currentSession: {
+          scriptureId: 'panth-prakash-english-episode-001',
+          resumePath: '/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa',
+          updatedAt: '2026-04-19T12:00:00.000Z',
+        },
+      })
     })
 
     rerender(

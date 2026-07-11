@@ -9,10 +9,10 @@ test('renders the 4-tab product nav', () => {
   expect(screen.getByTestId('nav-tab-read')).toBeInTheDocument()
   expect(screen.getByTestId('nav-tab-saved')).toBeInTheDocument()
   expect(screen.getByTestId('nav-tab-more')).toBeInTheDocument()
-  expect(screen.getByLabelText('Home tab')).toBeInTheDocument()
-  expect(screen.getByLabelText('Read tab')).toBeInTheDocument()
-  expect(screen.getByLabelText('Saved tab')).toBeInTheDocument()
-  expect(screen.getByLabelText('More tab and settings')).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Read' })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Saved' })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'More' })).toBeInTheDocument()
 })
 
 test('keeps the Saved nav tab active on nested library routes', () => {

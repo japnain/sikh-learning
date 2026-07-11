@@ -2,8 +2,8 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 export const THEME_STORAGE_KEY = 'sikh-theme'
-export const LIGHT_THEME_COLOR = '#f7ecd8'
-export const DARK_THEME_COLOR = '#0f0a1e'
+export const LIGHT_THEME_COLOR = '#f2f1e9'
+export const DARK_THEME_COLOR = '#070c0e'
 
 export interface ThemeState {
   dark: boolean

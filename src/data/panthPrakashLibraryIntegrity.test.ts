@@ -97,7 +97,7 @@ describe('Panth Prakash EPUB library integrity', () => {
     const validation = readWorkJson<{
       status: string
       chapters: { total: number; empty: string[] }
-      fullText: Array<{ volume: number; provided: boolean }>
+      fullText: Array<{ volume: number; provided: boolean; leadingSampleTokenCoverage: number }>
     }>('validation.json')
 
     expect(searchIndex.chapters).toHaveLength(171)
@@ -108,8 +108,10 @@ describe('Panth Prakash EPUB library integrity', () => {
       totalSourcePages: 1413,
     }))
     expect(searchIndex.chapters.find(chapter => chapter.episodeNumber === 1)?.searchText).toContain('origin of the Khalsa')
-    expect(validation.status).toBe('skipped-missing-full-text')
+    expect(validation.status).toBe('validated')
     expect(validation.chapters.empty).toEqual([])
-    expect(validation.fullText.every(entry => entry.provided === false)).toBe(true)
+    expect(validation.fullText).toHaveLength(2)
+    expect(validation.fullText.every(entry => entry.provided)).toBe(true)
+    expect(validation.fullText.every(entry => entry.leadingSampleTokenCoverage >= 99)).toBe(true)
   })
 })

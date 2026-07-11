@@ -200,6 +200,17 @@ export function IconArrowRight({ className = '', size = 24 }: IconProps) {
   )
 }
 
+// Arrow leaving a square
+export function IconExternalLink({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M14 5h5v5" />
+      <path d="m19 5-8 8" />
+      <path d="M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" />
+    </svg>
+  )
+}
+
 // Close / X
 export function IconClose({ className = '', size = 24 }: IconProps) {
   return (

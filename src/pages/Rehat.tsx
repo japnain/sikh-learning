@@ -68,16 +68,16 @@ function Breadcrumbs({
 }) {
   return (
     <nav
-      className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-ink/60 dark:text-dark-text/75"
+      className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-ink/68 dark:text-dark-text/75"
       aria-label="Breadcrumb"
       data-testid="rehat-breadcrumbs"
     >
-      <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-gold dark:text-gold-light">
+      <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
         Read
       </Link>
       <span aria-hidden="true">/</span>
       {rehat ? (
-        <Link to="/banis/rehat" className="interactive-focus rounded-full px-2 py-1 text-gold dark:text-gold-light">
+        <Link to="/banis/rehat" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
           Rehat
         </Link>
       ) : (
@@ -89,7 +89,7 @@ function Breadcrumbs({
           {chapter ? (
             <Link
               to={`/banis/rehat/${rehat.rehatId}`}
-              className="interactive-focus rounded-full px-2 py-1 text-gold dark:text-gold-light"
+              className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light"
             >
               {rehat.rehatName}
             </Link>
@@ -110,12 +110,14 @@ function Breadcrumbs({
 
 function SearchField({
   id,
+  label,
   value,
   onChange,
   placeholder,
   testId,
 }: {
   id: string
+  label: string
   value: string
   onChange: (value: string) => void
   placeholder: string
@@ -123,11 +125,12 @@ function SearchField({
 }) {
   return (
     <div className="relative mt-4">
-      <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/40" />
+      <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/64" />
       <input
         id={id}
         name={id}
         type="search"
+        aria-label={label}
         autoCapitalize="none"
         autoCorrect="off"
         autoComplete="off"
@@ -137,7 +140,7 @@ function SearchField({
         value={value}
         onChange={event => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-sand/15 bg-parchment-card py-3 pl-9 pr-4 font-sans text-sm text-ink outline-none transition-colors duration-300 placeholder:text-ink/40 focus:border-saffron/40 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text dark:placeholder:text-dark-text/50"
+        className="w-full rounded-lg border border-sand/15 bg-parchment-card py-3 pl-9 pr-4 font-sans text-sm text-ink outline-none transition-colors duration-300 placeholder:text-ink/68 focus:border-saffron/40 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text dark:placeholder:text-dark-text/50"
         data-testid={testId}
       />
     </div>
@@ -161,7 +164,7 @@ function RehatSectionNavCard({
   if (!chapter) {
     return (
       <div
-        className="flex min-h-[72px] items-center gap-3 rounded-xl border border-dashed border-sand/15 bg-parchment-low/70 px-4 py-3 text-ink/42 dark:border-dark-text/15 dark:bg-white/[0.035] dark:text-dark-text/45"
+        className="flex min-h-[72px] items-center gap-3 rounded-lg border border-dashed border-sand/15 bg-parchment-low/70 px-4 py-3 text-ink/68 dark:border-dark-text/15 dark:bg-white/[0.035] dark:text-dark-text/64"
         aria-disabled="true"
       >
         <span className="icon-surface h-8 w-8 shrink-0 opacity-55">{icon}</span>
@@ -177,11 +180,11 @@ function RehatSectionNavCard({
     <Link
       to={`/banis/rehat/${rehatId}/chapters/${chapter.chapterId}`}
       aria-label={`${label}: ${chapter.chapterName}`}
-      className="interactive-focus flex min-h-[72px] items-center gap-3 rounded-xl border border-sand/15 bg-parchment-card px-4 py-3 text-left text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
+      className="interactive-focus flex min-h-[72px] items-center gap-3 rounded-lg border border-sand/15 bg-parchment-card px-4 py-3 text-left text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
     >
       {isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">{icon}</span> : null}
       <div className="min-w-0 flex-1">
-        <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/48 dark:text-dark-text/58">
+        <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
           {label}
         </p>
         <p className="mt-1 truncate font-sans text-sm font-semibold text-ink dark:text-dark-text">
@@ -211,7 +214,7 @@ function RehatSectionNavigation({
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="eyebrow">Continue reading</p>
-          <p className="mt-1 font-sans text-sm text-ink/58 dark:text-dark-text/68">
+          <p className="mt-1 font-sans text-sm text-ink/68 dark:text-dark-text/68">
             Move section by section without returning to the chapter list.
           </p>
         </div>
@@ -416,6 +419,7 @@ export default function Rehat() {
         {!selectedRehatId ? (
           <SearchField
             id="rehat-search"
+            label="Search rehats"
             value={rehatQuery}
             onChange={setRehatQuery}
             placeholder="Search rehats..."
@@ -424,6 +428,7 @@ export default function Rehat() {
         ) : selectedChapterId ? (
           <SearchField
             id="rehat-chapter-text-search"
+            label="Search inside this Rehat chapter"
             value={chapterTextQuery}
             onChange={updateChapterTextQuery}
             placeholder="Search inside this chapter..."
@@ -432,6 +437,7 @@ export default function Rehat() {
         ) : (
           <SearchField
             id="rehat-chapter-search"
+            label="Search Rehat chapters"
             value={chapterQuery}
             onChange={setChapterQuery}
             placeholder="Search chapters..."
@@ -456,7 +462,7 @@ export default function Rehat() {
       ) : selectedRehatId && selectedChapterId ? (
         <section className="mt-5 space-y-4" data-testid="rehat-chapter-page">
           {loadingChapter ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               Loading chapter...
             </p>
           ) : chapterIssue || !selectedChapter ? (
@@ -481,7 +487,7 @@ export default function Rehat() {
                     <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
                       {selectedChapter.chapterName}
                     </h2>
-                    <p className="mt-2 font-sans text-sm text-ink/58 dark:text-dark-text/68">
+                    <p className="mt-2 font-sans text-sm text-ink/68 dark:text-dark-text/68">
                       {selectedRehat?.rehatName ?? `Rehat ${selectedRehatId}`}
                     </p>
                   </div>
@@ -494,7 +500,7 @@ export default function Rehat() {
 
               {!chapterTextHasMatch ? (
                 <section className="section-shell-quiet px-4 py-5">
-                  <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
+                  <p className="font-sans text-sm text-ink/68 dark:text-dark-text/64">
                     No matching text found in this chapter.
                   </p>
                 </section>
@@ -526,7 +532,7 @@ export default function Rehat() {
           </Link>
 
           {loadingChapters ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               Loading chapters...
             </p>
           ) : chapterListIssue ? (
@@ -536,7 +542,7 @@ export default function Rehat() {
               </p>
             </section>
           ) : filteredChapters.length === 0 ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               No chapters match this search yet.
             </p>
           ) : (
@@ -566,7 +572,7 @@ export default function Rehat() {
       ) : (
         <section className="mt-5 space-y-3" data-testid="rehat-list-page">
           {loadingRehats ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               Loading rehats...
             </p>
           ) : rehatIssue ? (
@@ -576,7 +582,7 @@ export default function Rehat() {
               </p>
             </section>
           ) : filteredRehats.length === 0 ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               No rehats match this search yet.
             </p>
           ) : (
@@ -594,7 +600,7 @@ export default function Rehat() {
                       <p className="font-sans text-base font-semibold text-ink dark:text-dark-text">
                         {rehat.rehatName}
                       </p>
-                      <p className="mt-2 font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/70">
+                      <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
                         {rehatEditorial.summary}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-1.5">

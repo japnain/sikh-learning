@@ -4,10 +4,9 @@ import { beforeEach, expect, test, vi } from 'vitest'
 import type {
   EnglishSource,
   LearningGoal,
-  LearningLevel,
   MeaningLanguage,
-  OnboardingAudience,
   ScriptMode,
+  UiLocale,
 } from '../types'
 import { useCloudSyncStore } from '../store/cloudSync'
 import OnboardingSheet from './OnboardingSheet'
@@ -24,24 +23,24 @@ vi.mock('../supabase/runtime', () => ({
 
 function Harness({
   presentation = 'first-run' as const,
+  locale = 'en',
   onComplete = vi.fn(),
 }: {
   presentation?: 'first-run' | 'overlay'
+  locale?: UiLocale
   onComplete?: () => void | Promise<void>
 }) {
   const [scriptMode, setScriptMode] = useState<ScriptMode>('gurmukhi')
   const [showTransliteration, setShowTransliteration] = useState(false)
   const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguage>('en')
   const [englishSource, setEnglishSource] = useState<EnglishSource>('bdb')
-  const [learningLevel, setLearningLevel] = useState<LearningLevel>('beginner')
-  const [audience, setAudience] = useState<OnboardingAudience>('adult')
   const [learningGoal, setLearningGoal] = useState<LearningGoal>('read')
 
   return (
     <>
       <OnboardingSheet
         presentation={presentation}
-        locale="en"
+        locale={locale}
         scriptMode={scriptMode}
         setScriptMode={setScriptMode}
         showTransliteration={showTransliteration}
@@ -50,10 +49,6 @@ function Harness({
         setMeaningLanguage={setMeaningLanguage}
         englishSource={englishSource}
         setEnglishSource={setEnglishSource}
-        learningLevel={learningLevel}
-        setLearningLevel={setLearningLevel}
-        audience={audience}
-        setAudience={setAudience}
         learningGoal={learningGoal}
         setLearningGoal={setLearningGoal}
         onComplete={onComplete}
@@ -65,8 +60,6 @@ function Harness({
           showTransliteration,
           meaningLanguage,
           englishSource,
-          learningLevel,
-          audience,
           learningGoal,
         })}
       </pre>
@@ -81,7 +74,7 @@ beforeEach(() => {
 })
 
 function advanceToPreview() {
-  for (let step = 0; step < 4; step += 1) {
+  for (let step = 0; step < 3; step += 1) {
     fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
   }
 }
@@ -89,16 +82,15 @@ function advanceToPreview() {
 test('setup step presents visual intent choices that curate the reader and sticky action shelf', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /build a daily reading habit/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
 
   const helper = screen.getByTestId('onboarding-setup-helper')
   const actionBar = screen.getByTestId('onboarding-setup-action-bar')
 
-  expect(screen.getByText(/welcome to naamras/i)).toBeInTheDocument()
-  expect(screen.getByText(/i'm here to/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /find peace and clarity/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /grow spiritually/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /just exploring/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /naamras/i })).toBeInTheDocument()
+  expect(screen.getByText(/how do you want to begin/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /i want to read/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /i want to understand/i })).toBeInTheDocument()
   expect(helper).toHaveTextContent(/curated setup/i)
   expect(helper).toHaveTextContent(/keep the next step simple/i)
   expect(helper).toHaveTextContent(/reading \+ meaning/i)
@@ -113,7 +105,7 @@ test('setup step presents visual intent choices that curate the reader and stick
 test('guided flow keeps the hero dominant while secondary setup stays collapsed until requested', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   advanceToPreview()
 
   const previewHero = screen.getByTestId('onboarding-preview-hero')
@@ -135,7 +127,7 @@ test('guided flow keeps the hero dominant while secondary setup stays collapsed 
   expect(within(actionBar).queryByRole('button', { name: /^continue as guest$/i })).not.toBeInTheDocument()
   expect(document.querySelector('[data-ai-surface="onboarding-auth"]')).toBeNull()
   expect(actionBar).toHaveTextContent(/fine tune reader/i)
-  expect(actionBar).toHaveTextContent(/open the lower-level choices only if you want to refine script, support, or profile details now/i)
+  expect(actionBar).toHaveTextContent(/open the lower-level choices only if you want to refine script or support details now/i)
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
   expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"understand"')
 
@@ -144,35 +136,30 @@ test('guided flow keeps the hero dominant while secondary setup stays collapsed 
   expect(actionBar).toHaveTextContent(/backup later if you want it/i)
   expect(actionBar).toHaveTextContent(/guest reading stays open on this device/i)
 
-  fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
-  fireEvent.click(screen.getByRole('button', { name: /teen/i }))
-
-  expect(screen.getByTestId('state').textContent).toContain('"learningLevel":"daily-reader"')
-  expect(screen.getByTestId('state').textContent).toContain('"audience":"teen"')
+  expect(screen.queryByRole('button', { name: /daily reader/i })).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /teen/i })).not.toBeInTheDocument()
 })
 
-test('intent buttons apply distinct reader and profile curation', () => {
+test('intent buttons apply distinct, real reader defaults', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /grow spiritually/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
 
   expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"habit"')
-  expect(screen.getByTestId('state').textContent).toContain('"learningLevel":"daily-reader"')
-  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
-  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
-
-  fireEvent.click(screen.getByRole('button', { name: /just exploring/i }))
-
-  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"read"')
-  expect(screen.getByTestId('state').textContent).toContain('"learningLevel":"beginner"')
   expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
+
+  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
+
+  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"read"')
+  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
+  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
 })
 
 test('quiet preset keeps the preview text-first', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   advanceToPreview()
 
   const previewHero = screen.getByTestId('onboarding-preview-hero')
@@ -186,7 +173,7 @@ test('quiet preset keeps the preview text-first', () => {
 test('turning meaning off updates the preview summary and action copy for understand mode', async () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   advanceToPreview()
 
   expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
@@ -210,6 +197,15 @@ test('first-run onboarding does not lock document scrolling', () => {
   expect(document.documentElement.style.overflow).toBe('')
 })
 
+test('localizes the script setup step in Punjabi', () => {
+  render(<Harness locale="pa" />)
+
+  fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
+
+  expect(screen.getByRole('heading', { name: 'ਉਹ ਲਿਪੀ ਚੁਣੋ ਜਿਸ ਨਾਲ ਤੁਹਾਡਾ ਪਾਠਕ ਖੁੱਲੇ।' })).toBeInTheDocument()
+  expect(screen.getByText('ਇਹ ਚੋਣ ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲੇ ਪਾਠਾਂ ਦੀ ਮੂਲ ਲਿਪੀ ਬਦਲਦੀ ਹੈ।')).toBeInTheDocument()
+})
+
 test('overlay onboarding still locks document scrolling and restores it on unmount', () => {
   const { unmount } = render(<Harness presentation="overlay" />)
 
@@ -224,7 +220,7 @@ test('overlay onboarding still locks document scrolling and restores it on unmou
   expect(document.documentElement.style.overflow).toBe('')
 })
 
-test('preview step offers guest plus configured sign-in providers only after backup drawer is expanded', async () => {
+test('preview step offers configured sign-in providers only after backup drawer is expanded', async () => {
   const onComplete = vi.fn()
 
   useCloudSyncStore.setState({
@@ -239,13 +235,13 @@ test('preview step offers guest plus configured sign-in providers only after bac
 
   render(<Harness onComplete={onComplete} />)
 
-  fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   advanceToPreview()
 
   expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
   fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
-  expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
   expect(screen.getByRole('button', { name: /continue with apple/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /send magic link/i })).toBeDisabled()
 
@@ -279,7 +275,7 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
 
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   advanceToPreview()
   fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
@@ -289,5 +285,6 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
   expect(authSurface).toHaveAttribute('data-ai-state', 'empty')
   expect(authSurface).not.toHaveAttribute('data-ai-error')
   expect(screen.getByText(/backup is unavailable right now/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
+  expect(screen.getByTestId('onboarding-preview-primary-action')).toBeEnabled()
 })
