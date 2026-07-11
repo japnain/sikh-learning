@@ -1,0 +1,89 @@
+:root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --nav-stack-height: 8rem;
+
+  --nr-page-max: 76rem;
+  --nr-reading-rail: 18.5rem;
+  --nr-layout-gap: 1.25rem;
+  --nr-radius-control: 0.5rem;
+
+  --theme-color: #f2f1e9;
+
+  --color-bg: 242 241 233;
+  --color-surface: 255 253 248;
+  --color-surface-muted: 231 235 225;
+  --color-surface-elevated: 202 216 199;
+  --color-text: 36 40 35;
+  --color-text-muted: 82 91 80;
+  --color-accent: 137 78 35;
+  --color-accent-strong: 48 111 95;
+  --color-success: 61 127 96;
+  --color-warning: 164 104 38;
+  --color-danger: 178 74 50;
+  --color-border: 157 158 128;
+  --color-focus: 197 126 45;
+
+  --color-overlay: rgba(255, 252, 245, 0.9);
+  --color-scrim: rgba(37, 26, 18, 0.2);
+
+  --nr-surface: rgb(var(--color-surface) / 0.9);
+  --nr-surface-quiet: rgb(var(--color-surface) / 0.68);
+  --nr-border: rgb(var(--color-border) / 0.34);
+
+  --shadow-soft: 0 10px 24px rgba(84, 53, 24, 0.08);
+  --shadow-elevated: 0 16px 36px rgba(84, 53, 24, 0.12);
+  --shadow-glow: 0 10px 22px rgba(142, 76, 32, 0.18);
+  --shadow-glow-strong:
+    0 0 0 1px rgba(211, 152, 66, 0.2),
+    0 14px 28px rgba(142, 76, 32, 0.22);
+
+  --motion-duration-sm: 180ms;
+  --motion-duration-md: 260ms;
+  --motion-duration-lg: 420ms;
+  --motion-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-emphasis: cubic-bezier(0.34, 1.22, 0.64, 1);
+
+  color-scheme: light;
+}
+
+html.dark,
+html[data-theme='dark'] {
+  --theme-color: #070c0e;
+
+  --color-bg: 7 12 14;
+  --color-surface: 24 31 34;
+  --color-surface-muted: 35 45 43;
+  --color-surface-elevated: 52 67 59;
+  --color-text: 246 241 231;
+  --color-text-muted: 194 201 187;
+  --color-accent: 224 160 72;
+  --color-accent-strong: 123 192 164;
+  --color-success: 137 194 158;
+  --color-warning: 236 185 103;
+  --color-danger: 255 171 149;
+  --color-border: 92 111 100;
+  --color-focus: 242 199 119;
+
+  --color-overlay: rgba(7, 12, 14, 0.9);
+  --color-scrim: rgba(6, 4, 10, 0.58);
+
+  --shadow-soft: 0 12px 26px rgba(0, 0, 0, 0.26);
+  --shadow-elevated: 0 18px 38px rgba(0, 0, 0, 0.34);
+  --shadow-glow: 0 10px 24px rgba(219, 159, 75, 0.18);
+  --shadow-glow-strong:
+    0 0 0 1px rgba(242, 199, 119, 0.18),
+    0 14px 30px rgba(0, 0, 0, 0.38);
+
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-sm: 1ms;
+    --motion-duration-md: 1ms;
+    --motion-duration-lg: 1ms;
+  }
+}

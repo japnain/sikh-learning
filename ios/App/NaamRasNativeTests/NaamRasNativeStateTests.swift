@@ -18,7 +18,6 @@ final class NaamRasNativeStateTests: XCTestCase {
         XCTAssertEqual(preferences.supportDensity, .minimal)
         XCTAssertEqual(preferences.meaningLanguage, .none)
         XCTAssertFalse(preferences.transliterationVisible)
-        XCTAssertFalse(preferences.vishraamVisible)
     }
 
     func testBookmarksToggleWithoutDuplicates() {
@@ -33,14 +32,14 @@ final class NaamRasNativeStateTests: XCTestCase {
         XCTAssertTrue(state.isBookmarked(item))
     }
 
-    func testOnboardingCompletionCreatesUsableGuestState() {
+    func testOnboardingCompletionDoesNotInventReadingProgress() {
         let state = makeLocalOnlyState()
 
         state.completeOnboarding()
 
         XCTAssertTrue(state.profile.completed)
         XCTAssertEqual(state.profile.accountChoice, "Guest")
-        XCTAssertGreaterThan(state.readingProgress[state.continueReading.id] ?? 0, 0)
+        XCTAssertTrue(state.readingProgress.isEmpty)
     }
 
     func testSnapshotCarriesSyncPayload() {
@@ -55,11 +54,13 @@ final class NaamRasNativeStateTests: XCTestCase {
         XCTAssertEqual(snapshot.bookmarks.map(\.readingId), [item.id])
     }
 
-    func testNativeCatalogAddsProductCoverageBeyondPreviewFixtures() {
+    func testNativeCatalogOnlyPublishesReadingsWithRealContentRoutes() {
         let state = makeLocalOnlyState()
 
-        XCTAssertGreaterThanOrEqual(state.readings.count, NativeFixtures.readings.count)
-        XCTAssertNotNil(state.readings.first { $0.id == "panth-prakash" })
-        XCTAssertNotNil(state.readings.first { $0.id == "scripture-search" })
+        XCTAssertGreaterThan(state.readings.count, 50)
+        XCTAssertTrue(state.readings.allSatisfy { $0.baniDbId != nil })
+        XCTAssertTrue(state.readings.allSatisfy { $0.lines.isEmpty })
+        XCTAssertNil(state.readings.first { $0.id == "panth-prakash" })
+        XCTAssertFalse(state.cloudBackupAvailable)
     }
 }

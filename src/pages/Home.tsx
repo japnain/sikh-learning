@@ -295,13 +295,13 @@ const HOME_SAVED_PREVIEW_APPEARANCE: Record<
   passage: {
     icon: IconBookmarkFilled,
     badgeClassName: 'bg-saffron/12 text-saffron dark:bg-saffron/12 dark:text-saffron-light',
-    surfaceClassName: 'border-saffron/14 bg-[linear-gradient(180deg,rgba(255,249,238,0.96),rgba(246,232,208,0.84))] dark:border-saffron/18 dark:bg-[linear-gradient(180deg,rgba(40,29,55,0.96),rgba(24,19,36,0.92))]',
+    surfaceClassName: 'border-saffron/14 bg-parchment-card dark:border-saffron/18 dark:bg-dark-card',
     detailClassName: 'text-saffron dark:text-saffron-light',
   },
   vocab: {
     icon: IconCheck,
     badgeClassName: 'bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/14 dark:text-emerald-300',
-    surfaceClassName: 'border-emerald-500/14 bg-[linear-gradient(180deg,rgba(249,252,246,0.96),rgba(238,245,236,0.86))] dark:border-emerald-500/20 dark:bg-[linear-gradient(180deg,rgba(31,39,42,0.96),rgba(20,28,30,0.92))]',
+    surfaceClassName: 'border-emerald-500/14 bg-parchment-card dark:border-emerald-500/20 dark:bg-dark-card',
     detailClassName: 'text-ink/70 dark:text-dark-text/70',
   },
 }
@@ -549,7 +549,6 @@ export default function Home() {
       startY: event.clientY,
       handled: false,
     }
-    event.currentTarget.setPointerCapture?.(event.pointerId)
   }, [nitnemHasCarousel])
 
   const completeNitnemSwipeFromPoint = useCallback((clientX: number, clientY: number) => {
@@ -569,6 +568,7 @@ export default function Home() {
     const swipe = nitnemSwipeRef.current
     if (!swipe || swipe.pointerId !== event.pointerId) return
     if (completeNitnemSwipeFromPoint(event.clientX, event.clientY)) {
+      event.currentTarget.setPointerCapture?.(event.pointerId)
       event.preventDefault()
     }
   }, [completeNitnemSwipeFromPoint])
@@ -580,7 +580,9 @@ export default function Home() {
     }
     if (nitnemSwipeRef.current?.pointerId === event.pointerId) {
       nitnemSwipeRef.current = null
-      event.currentTarget.releasePointerCapture?.(event.pointerId)
+      if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
+        event.currentTarget.releasePointerCapture?.(event.pointerId)
+      }
     }
   }, [completeNitnemSwipeFromPoint])
 
@@ -725,7 +727,7 @@ export default function Home() {
               <p className="font-display text-[2.05rem] leading-none text-ink dark:text-dark-text">
                 {editorial?.brand.name ?? 'NaamRas'}
               </p>
-              <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark/70 dark:text-gold-light">
+              <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                 Daily · Divine · You
               </p>
             </div>
@@ -867,7 +869,7 @@ export default function Home() {
           <div className="min-w-0">
             <p
               id="home-nitnem-title"
-              className="font-sans text-[11px] uppercase tracking-[0.24em] text-gold dark:text-gold-light"
+              className="font-sans text-[11px] uppercase tracking-[0.24em] text-gold-dark dark:text-gold-light"
             >
               {homeMessages.dailyNitnem}
             </p>
@@ -875,7 +877,7 @@ export default function Home() {
               {homeMessages.nitnemHeroTitle}
             </h2>
           </div>
-          <span className="shrink-0 rounded-full border border-sand/16 bg-parchment-card/78 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/60">
+          <span className="shrink-0 rounded-full border border-sand/16 bg-parchment-card/78 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/64">
             {activeNitnemOption?.group ?? homeMessages.dailyNitnem}
           </span>
         </div>
@@ -937,31 +939,21 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setNitnemCarouselIndex(safeNitnemIndex - 1)}
-                    className="interactive-focus icon-surface h-10 w-10 disabled:opacity-40"
+                    className="interactive-focus icon-surface h-11 w-11 disabled:opacity-40"
                     aria-label="Previous Nitnem bani"
                   >
                     <IconArrowRight size={16} className="rotate-180" />
                   </button>
-                  <div className="flex flex-wrap justify-center gap-2" aria-label="Daily Nitnem carousel pages">
-                    {selectedNitnemOptions.map((option, index) => (
-                      <button
-                        key={`home-nitnem-dot-${option.id}`}
-                        type="button"
-                        onClick={() => setNitnemCarouselIndex(index)}
-                        aria-label={`Show ${option.romanizedTitle}`}
-                        aria-current={index === safeNitnemIndex ? 'true' : undefined}
-                        className={`h-2.5 rounded-full transition-all duration-200 ${
-                          index === safeNitnemIndex
-                            ? 'w-7 bg-gold dark:bg-gold-light'
-                            : 'w-2.5 bg-sand/28 dark:bg-dark-text/20'
-                        }`}
-                      />
-                    ))}
-                  </div>
+                  <p
+                    className="min-w-20 text-center font-sans text-xs font-medium text-ink/68 dark:text-dark-text/64"
+                    aria-live="polite"
+                  >
+                    {safeNitnemIndex + 1} of {selectedNitnemOptions.length}
+                  </p>
                   <button
                     type="button"
                     onClick={() => setNitnemCarouselIndex(safeNitnemIndex + 1)}
-                    className="interactive-focus icon-surface h-10 w-10 disabled:opacity-40"
+                    className="interactive-focus icon-surface h-11 w-11 disabled:opacity-40"
                     aria-label="Next Nitnem bani"
                   >
                     <IconArrowRight size={16} />
@@ -979,7 +971,7 @@ export default function Home() {
             </>
           ) : (
             <div className="rounded-lg border border-dashed border-sand/18 px-4 py-5 dark:border-dark-text/10">
-              <p className="font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/70">
+              <p className="font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
                 {homeMessages.chooseNitnemBody}
               </p>
               <Link
@@ -1008,7 +1000,7 @@ export default function Home() {
           </div>
           <Link
             to="/library"
-            className="interactive-focus inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-sans text-sm text-gold dark:text-gold-light"
+            className="interactive-focus inline-flex min-h-11 shrink-0 items-center gap-1 whitespace-nowrap px-2 font-sans text-sm text-gold-dark dark:text-gold-light"
           >
             {homeCopy.openSaved} <IconArrowRight size={14} />
           </Link>
@@ -1024,17 +1016,17 @@ export default function Home() {
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <IconLibrary className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedBookmarks}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.bookmarks}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.bookmarks}</p>
           </div>
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
             <IconHeart className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedFavorites}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.favorites}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.favorites}</p>
           </div>
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
             <IconLayers className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedReviewItems}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.reviewBank}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.reviewBank}</p>
           </div>
         </div>
 
@@ -1074,7 +1066,7 @@ export default function Home() {
                     </p>
                   )}
                 </div>
-                <span className="mt-1 shrink-0 text-gold dark:text-gold-light">
+                <span className="mt-1 shrink-0 text-gold-dark dark:text-gold-light">
                   <IconArrowRight size={16} />
                 </span>
               </Link>

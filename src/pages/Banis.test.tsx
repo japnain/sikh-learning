@@ -405,7 +405,7 @@ test('supports direct ang lookup mode', async () => {
   renderBanis()
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
   fireEvent.click(screen.getByRole('button', { name: /ang \/ page/i }))
-  fireEvent.change(screen.getByPlaceholderText(/open an ang or page directly/i), { target: { value: '12' } })
+  fireEvent.change(screen.getByRole('searchbox', { name: /search gurbani, meanings, or direct routes/i }), { target: { value: '12' } })
 
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()

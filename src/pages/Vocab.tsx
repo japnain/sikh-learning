@@ -23,7 +23,9 @@ const VOCAB_COPY: Record<UiLocale, {
   dueBadge: (count: number) => string
   modes: Record<Mode, string>
   noCards: string
+  browseRead: string
   tapToReveal: string
+  hideMeaning: string
   phraseReview: string
   wordReview: string
   again: string
@@ -55,7 +57,9 @@ const VOCAB_COPY: Record<UiLocale, {
       review: 'Review',
     },
     noCards: 'No review cards are due yet.',
+    browseRead: 'Browse readings',
     tapToReveal: 'Tap to reveal meaning',
+    hideMeaning: 'Hide meaning',
     phraseReview: 'Phrase Review',
     wordReview: 'Word Review',
     again: 'Again',
@@ -87,7 +91,9 @@ const VOCAB_COPY: Record<UiLocale, {
       review: 'ਦੁਹਰਾਈ',
     },
     noCards: 'ਹਾਲੇ ਕੋਈ ਦੁਹਰਾਈ ਕਾਰਡ ਤਿਆਰ ਨਹੀਂ ਹੈ।',
+    browseRead: 'ਪਾਠ ਵੇਖੋ',
     tapToReveal: 'ਅਰਥ ਵੇਖਣ ਲਈ ਟੈਪ ਕਰੋ',
+    hideMeaning: 'ਅਰਥ ਲੁਕਾਓ',
     phraseReview: 'ਵਾਕ ਦੁਹਰਾਈ',
     wordReview: 'ਸ਼ਬਦ ਦੁਹਰਾਈ',
     again: 'ਫਿਰ',
@@ -119,7 +125,9 @@ const VOCAB_COPY: Record<UiLocale, {
       review: 'रिव्यू',
     },
     noCards: 'अभी कोई रिव्यू कार्ड ड्यू नहीं है।',
+    browseRead: 'पाठ देखें',
     tapToReveal: 'अर्थ देखने के लिए टैप करें',
+    hideMeaning: 'अर्थ छिपाएँ',
     phraseReview: 'वाक्यांश रिव्यू',
     wordReview: 'शब्द रिव्यू',
     again: 'फिर',
@@ -170,12 +178,25 @@ export default function Vocab() {
           </button>
         </div>
 
-        <section className="hero-surface p-6 text-center" aria-labelledby="vocab-empty-title" data-testid="vocab-empty-state">
-          <p className="eyebrow">{copy.savedShelfEyebrow}</p>
-          <h1 id="vocab-empty-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">{copy.title}</h1>
-          <p lang={getScriptTextLang(scriptMode)} className={`mt-6 ${getScriptTextFontClass(scriptMode)} text-5xl text-ink/20 dark:text-dark-text/20`}>{renderScriptText('ਸ਼ਬਦ', scriptMode)}</p>
-          <p className="mt-4 font-sans text-base font-semibold text-ink dark:text-dark-text">{copy.emptyTitle}</p>
-          <p className="mt-3 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">{copy.emptyBody}</p>
+        <section className="vocab-empty-layout" aria-labelledby="vocab-empty-title" data-testid="vocab-empty-state">
+          <div className="vocab-empty-intro">
+            <p className="eyebrow">{copy.savedShelfEyebrow}</p>
+            <h1 id="vocab-empty-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">{copy.title}</h1>
+            <p lang={getScriptTextLang(scriptMode)} className={`vocab-empty-word ${getScriptTextFontClass(scriptMode)}`} aria-hidden="true">
+              {renderScriptText('ਸ਼ਬਦ', scriptMode)}
+            </p>
+          </div>
+          <div className="vocab-empty-action">
+            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text">{copy.emptyTitle}</p>
+            <p className="mt-3 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">{copy.emptyBody}</p>
+            <button
+              type="button"
+              onClick={() => navigate('/banis')}
+              className="interactive-focus mt-5 min-h-[48px] w-full rounded-lg bg-saffron px-4 font-sans text-sm font-semibold text-white"
+            >
+              {copy.browseRead}
+            </button>
+          </div>
         </section>
       </div>
     )
@@ -204,26 +225,26 @@ export default function Vocab() {
             <h1 className="mt-1 font-display text-3xl leading-none text-ink dark:text-dark-text">{copy.title}</h1>
           </div>
         </div>
-        <span className="font-sans text-xs text-ink/58 dark:text-dark-text/60">{copy.dueBadge(dueWords.length)}</span>
+        <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.dueBadge(dueWords.length)}</span>
       </div>
 
-      <section className="hero-surface p-5 mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
-        <div className="grid grid-cols-3 gap-3">
-          <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/45 dark:text-dark-text/45">{copy.totalSaved}</p>
+      <section className="section-shell p-5 mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
+        <div className="grid grid-cols-3 divide-x divide-sand/15 dark:divide-dark-text/10">
+          <div className="px-3 py-2">
+            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.totalSaved}</p>
             <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{vocab.length}</p>
           </div>
-          <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/45 dark:text-dark-text/45">{copy.dueNow}</p>
+          <div className="px-3 py-2">
+            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.dueNow}</p>
             <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{dueWords.length}</p>
           </div>
-          <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/45 dark:text-dark-text/45">{copy.phrases}</p>
+          <div className="px-3 py-2">
+            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.phrases}</p>
             <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{phraseCount}</p>
           </div>
         </div>
 
-        <div className="section-shell mt-4 p-4">
+        <div className="mt-4 border-t border-sand/15 pt-4 dark:border-dark-text/10">
           <p id="vocab-summary-title" className="eyebrow">{copy.reviewEyebrow}</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
             {dueWords.length > 0 ? copy.reviewReady(dueWords.length) : copy.reviewEmpty}
@@ -231,13 +252,14 @@ export default function Vocab() {
         </div>
       </section>
 
-      <div className="grid grid-cols-3 gap-2 mb-4">
+      <div className="grid grid-cols-3 gap-1 rounded-lg bg-parchment-low p-1 dark:bg-dark-surface mb-4">
         {(Object.entries(copy.modes) as Array<[Mode, string]>).map(([nextMode, label]) => (
           <button
             key={nextMode}
             onClick={() => { setMode(nextMode); setCardIdx(0); setRevealed(false) }}
-            className={`py-2 rounded-xl font-sans text-xs font-medium transition-colors duration-300 ${
-              mode === nextMode ? 'bg-saffron text-white' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/68'
+            aria-pressed={mode === nextMode}
+            className={`min-h-[44px] rounded-md px-2 py-2 font-sans text-xs font-medium transition-colors duration-200 ${
+              mode === nextMode ? 'bg-saffron text-white' : 'text-ink/68 dark:text-dark-text/68'
             }`}
           >
             {label}
@@ -251,23 +273,33 @@ export default function Vocab() {
             <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
               {copy.noCards}
             </p>
+            <button
+              type="button"
+              onClick={() => navigate('/banis')}
+              className="interactive-focus mt-4 min-h-[44px] rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
+            >
+              {copy.browseRead}
+            </button>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-6 mt-4" data-testid="vocab-review-card">
-            <p className="font-sans text-xs text-ink/54 dark:text-dark-text/56 uppercase tracking-wide">
+            <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wide">
               {safeIdx + 1} of {reviewPool.length}
             </p>
-            <div
+            <button
+              type="button"
               onClick={() => setRevealed(r => !r)}
-              className="w-full section-shell rounded-[28px] p-8 flex flex-col items-center cursor-pointer min-h-[260px] justify-center gap-4 transition-colors duration-300"
+              aria-label={revealed ? copy.hideMeaning : copy.tapToReveal}
+              aria-pressed={revealed}
+              className="interactive-focus w-full section-shell rounded-lg p-8 flex flex-col items-center min-h-[260px] justify-center gap-4 transition-colors duration-200"
             >
               <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-5xl text-ink dark:text-dark-text text-center`}>
                 {renderScriptText(activeCard.word, scriptMode)}
               </p>
-              <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+              <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                 {(activeCard.kind ?? 'word') === 'phrase' ? copy.phraseReview : copy.wordReview}
               </p>
-              <p className="font-sans text-sm text-ink/56 dark:text-dark-text/58">{activeCard.transliteration}</p>
+              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/64">{activeCard.transliteration}</p>
               {revealed ? (
                 <div className="text-center">
                   <p className="font-sans font-medium text-ink dark:text-dark-text">{activeCard.meaning_en}</p>
@@ -277,33 +309,33 @@ export default function Vocab() {
                   {meaningLanguage === 'pa' && activeCard.meaning_pa && (
                     <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/72 dark:text-dark-text/74 mt-1`}>{renderScriptText(activeCard.meaning_pa, scriptMode)}</p>
                   )}
-                  <p className="font-sans text-xs text-gold dark:text-gold-light mt-3">
+                  <p className="font-sans text-xs text-gold-dark dark:text-gold-light mt-3">
                     {activeCard.context?.scripture ?? activeCard.scripture}
                     {activeCard.context?.ang ? ` · Ang ${activeCard.context.ang}` : ''}
                   </p>
                 </div>
               ) : (
-                <p className="font-sans text-xs text-ink/46 dark:text-dark-text/48">{copy.tapToReveal}</p>
+                <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.tapToReveal}</p>
               )}
-            </div>
+            </button>
 
             {mode === 'review' ? (
               <div className="grid grid-cols-3 gap-3 w-full">
                 <button
                   onClick={() => handleReview('again')}
-                  className="py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px]"
+                  className="py-3 rounded-lg bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px]"
                 >
                   {copy.again}
                 </button>
                 <button
                   onClick={() => handleReview('good')}
-                  className="py-3 rounded-2xl bg-gold/15 text-gold dark:text-gold-light font-sans text-sm font-semibold min-h-[44px]"
+                  className="py-3 rounded-lg bg-gold/15 text-gold-dark dark:text-gold-light font-sans text-sm font-semibold min-h-[44px]"
                 >
                   {copy.good}
                 </button>
                 <button
                   onClick={() => handleReview('easy')}
-                  className="py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px]"
+                  className="py-3 rounded-lg bg-saffron text-white font-sans text-sm font-semibold min-h-[44px]"
                 >
                   {copy.easy}
                 </button>
@@ -313,14 +345,14 @@ export default function Vocab() {
                 <button
                   onClick={() => { setCardIdx(i => Math.max(0, i - 1)); setRevealed(false) }}
                   disabled={safeIdx === 0}
-                  className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 disabled:opacity-30 min-h-[44px]"
+                  className="min-h-[44px] flex-1 rounded-lg bg-parchment-low py-3 font-sans text-sm text-ink/70 disabled:opacity-30 dark:bg-dark-surface dark:text-dark-text/70"
                 >
                   &#8592; {copy.prev}
                 </button>
                 <button
                   onClick={() => { setCardIdx(i => i + 1); setRevealed(false) }}
                   disabled={safeIdx === reviewPool.length - 1}
-                  className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30"
+                  className="min-h-[44px] flex-1 rounded-lg bg-saffron py-3 font-sans text-sm font-semibold text-white disabled:opacity-30"
                 >
                   {copy.next} &#8594;
                 </button>
@@ -342,7 +374,7 @@ export default function Vocab() {
                     <span lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl text-ink dark:text-dark-text`}>
                       {renderScriptText(entry.word, scriptMode)}
                     </span>
-                    <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{entry.transliteration}</span>
+                    <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{entry.transliteration}</span>
                   </div>
                   <p className="font-sans text-sm text-ink/82 dark:text-dark-text/84">{entry.meaning_en}</p>
                   {meaningLanguage === 'hi' && entry.meaning_hi && (
@@ -358,7 +390,7 @@ export default function Vocab() {
                     {entry.context?.ang ? ` · Ang ${entry.context.ang}` : ''}
                     {entry.context?.line ? ` · ${copy.verseSavedFrom}` : ''}
                   </p>
-                  <p className="font-sans text-[10px] text-ink/48 dark:text-dark-text/50 mt-1">
+                  <p className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64 mt-1">
                     {timeLabel(entry, now, copy)}
                   </p>
                 </div>

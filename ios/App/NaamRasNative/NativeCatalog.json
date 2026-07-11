@@ -1,5 +1,4 @@
 {
-  "generatedAt": "2026-06-01T18:25:09.515Z",
   "readings": [
     {
       "id": "japji-sahib",
@@ -7,14 +6,7 @@
       "subtitle": "SGGS Ang 1-8 · Opening bani of Sri Guru Granth Sahib Ji recited at amrit vela.",
       "category": "Daily Prayers",
       "source": "SGGS · BaniDB #2",
-      "progress": 0.42
-    },
-    {
-      "id": "sodar",
-      "title": "Sodar",
-      "subtitle": "SGGS Ang 8 · The So Dar section that opens Rehras Sahib.",
-      "category": "Daily Prayers",
-      "source": "SGGS · BaniDB #7",
+      "baniDbId": 2,
       "progress": 0
     },
     {
@@ -23,7 +15,8 @@
       "subtitle": "SGGS Ang 8-12 · Evening Nitnem composition with adjustable STTM length support.",
       "category": "Daily Prayers",
       "source": "SGGS · BaniDB #21",
-      "progress": 0.18
+      "baniDbId": 21,
+      "progress": 0
     },
     {
       "id": "kirtan-sohila",
@@ -31,6 +24,7 @@
       "subtitle": "SGGS Ang 12-13 · Night prayer recited before sleep.",
       "category": "Daily Prayers",
       "source": "SGGS · BaniDB #23",
+      "baniDbId": 23,
       "progress": 0
     },
     {
@@ -39,7 +33,8 @@
       "subtitle": "SGGS Ang 917-922 · Bani of bliss by Guru Amar Das Ji.",
       "category": "Daily Prayers",
       "source": "SGGS · BaniDB #10",
-      "progress": 0.11
+      "baniDbId": 10,
+      "progress": 0
     },
     {
       "id": "barah-maha-majh",
@@ -47,6 +42,7 @@
       "subtitle": "SGGS Ang 133-136 · The soul's longing through the twelve months in Majh raag.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #27",
+      "baniDbId": 27,
       "progress": 0
     },
     {
@@ -55,6 +51,7 @@
       "subtitle": "SGGS Ang 250-262 · Acrostic bani covering the Gurmukhi letters.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #33",
+      "baniDbId": 33,
       "progress": 0
     },
     {
@@ -63,6 +60,7 @@
       "subtitle": "SGGS Ang 262-296 · Pearl of peace by Guru Arjan Dev Ji.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #31",
+      "baniDbId": 31,
       "progress": 0
     },
     {
@@ -71,6 +69,7 @@
       "subtitle": "SGGS Ang 462-475 · Morning ballad traditionally sung in Asa raag.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #90",
+      "baniDbId": 90,
       "progress": 0
     },
     {
@@ -79,6 +78,7 @@
       "subtitle": "SGGS Ang 573-577 · Wedding songs on the soul's union with the Divine.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #40",
+      "baniDbId": 40,
       "progress": 0
     },
     {
@@ -87,6 +87,7 @@
       "subtitle": "SGGS Ang 929-938 · Guru Nanak Dev Ji's reflection on the One Creator.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #35",
+      "baniDbId": 35,
       "progress": 0
     },
     {
@@ -95,6 +96,7 @@
       "subtitle": "SGGS Ang 938-946 · Dialogue between Guru Nanak Dev Ji and the Siddhas.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #34",
+      "baniDbId": 34,
       "progress": 0
     },
     {
@@ -103,6 +105,7 @@
       "subtitle": "SGGS Ang 83-91 · Vaar within Sri Raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #86",
+      "baniDbId": 86,
       "progress": 0
     },
     {
@@ -111,6 +114,7 @@
       "subtitle": "SGGS Ang 137-150 · Vaar in Majh raag by Guru Nanak Dev Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #87",
+      "baniDbId": 87,
       "progress": 0
     },
     {
@@ -119,6 +123,7 @@
       "subtitle": "SGGS Ang 300-317 · Vaar in Gauri raag associated with Guru Ram Das Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #88",
+      "baniDbId": 88,
       "progress": 0
     },
     {
@@ -127,6 +132,7 @@
       "subtitle": "SGGS Ang 318-323 · Vaar in Gauri raag associated with Guru Arjan Dev Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #89",
+      "baniDbId": 89,
       "progress": 0
     },
     {
@@ -135,6 +141,7 @@
       "subtitle": "SGGS Ang 508-517 · Vaar in Gujari raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #91",
+      "baniDbId": 91,
       "progress": 0
     },
     {
@@ -143,6 +150,7 @@
       "subtitle": "SGGS Ang 548-556 · Vaar in Bihagara raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #93",
+      "baniDbId": 93,
       "progress": 0
     },
     {
@@ -151,6 +159,7 @@
       "subtitle": "SGGS Ang 585-594 · Vaar in Vadahans raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #94",
+      "baniDbId": 94,
       "progress": 0
     },
     {
@@ -159,6 +168,7 @@
       "subtitle": "SGGS Ang 642-654 · Vaar in Sorath raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #95",
+      "baniDbId": 95,
       "progress": 0
     },
     {
@@ -167,6 +177,7 @@
       "subtitle": "SGGS Ang 705-710 · Jaitsri vaar with saloks.",
       "category": "Vars",
       "source": "SGGS · BaniDB #96",
+      "baniDbId": 96,
       "progress": 0
     },
     {
@@ -175,6 +186,7 @@
       "subtitle": "SGGS Ang 785-792 · Vaar in Suhi raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #97",
+      "baniDbId": 97,
       "progress": 0
     },
     {
@@ -183,6 +195,7 @@
       "subtitle": "SGGS Ang 849-855 · Vaar in Bilaval raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #98",
+      "baniDbId": 98,
       "progress": 0
     },
     {
@@ -191,6 +204,7 @@
       "subtitle": "SGGS Ang 947-956 · Ramkali vaar linked with Guru Amar Das Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #99",
+      "baniDbId": 99,
       "progress": 0
     },
     {
@@ -199,6 +213,7 @@
       "subtitle": "SGGS Ang 957-966 · Ramkali vaar linked with Guru Arjan Dev Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #100",
+      "baniDbId": 100,
       "progress": 0
     },
     {
@@ -207,6 +222,7 @@
       "subtitle": "SGGS Ang 966-968 · The Rai Balvand and Satta ramkali vaar.",
       "category": "Vars",
       "source": "SGGS · BaniDB #101",
+      "baniDbId": 101,
       "progress": 0
     },
     {
@@ -215,6 +231,7 @@
       "subtitle": "SGGS Ang 1086-1094 · Maru vaar linked with Guru Amar Das Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #102",
+      "baniDbId": 102,
       "progress": 0
     },
     {
@@ -223,6 +240,7 @@
       "subtitle": "SGGS Ang 1193 · Single-ang vaar in Basant raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #104",
+      "baniDbId": 104,
       "progress": 0
     },
     {
@@ -231,6 +249,7 @@
       "subtitle": "SGGS Ang 1237-1251 · Vaar in Sarang raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #105",
+      "baniDbId": 105,
       "progress": 0
     },
     {
@@ -239,6 +258,7 @@
       "subtitle": "SGGS Ang 1278-1291 · Vaar in Mallar raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #106",
+      "baniDbId": 106,
       "progress": 0
     },
     {
@@ -247,6 +267,7 @@
       "subtitle": "SGGS Ang 1312-1318 · Vaar in Kanara raag.",
       "category": "Vars",
       "source": "SGGS · BaniDB #107",
+      "baniDbId": 107,
       "progress": 0
     },
     {
@@ -255,6 +276,7 @@
       "subtitle": "SGGS Ang 218-220 · Healing bani often read for comfort and recovery.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #36",
+      "baniDbId": 36,
       "progress": 0
     },
     {
@@ -263,6 +285,7 @@
       "subtitle": "SGGS Ang 296-300 · Lunar-calendar composition in Majh raag.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #49",
+      "baniDbId": 49,
       "progress": 0
     },
     {
@@ -271,6 +294,7 @@
       "subtitle": "SGGS Ang 557-558 · Short songs of longing and separation.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #42",
+      "baniDbId": 42,
       "progress": 0
     },
     {
@@ -279,6 +303,7 @@
       "subtitle": "SGGS Ang 663 · Guru Nanak Dev Ji's cosmic aarti.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #22",
+      "baniDbId": 22,
       "progress": 0
     },
     {
@@ -287,6 +312,7 @@
       "subtitle": "SGGS Ang 773-774 · The four laavaan of Anand Karaj.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #11",
+      "baniDbId": 11,
       "progress": 0
     },
     {
@@ -295,6 +321,7 @@
       "subtitle": "SGGS Ang 923-924 · Short Ramkali composition on spiritual departure.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #46",
+      "baniDbId": 46,
       "progress": 0
     },
     {
@@ -303,6 +330,7 @@
       "subtitle": "SGGS Ang 1361-1363 · Short poetic composition by Guru Arjan Dev Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #17",
+      "baniDbId": 17,
       "progress": 0
     },
     {
@@ -311,6 +339,7 @@
       "subtitle": "SGGS Ang 1363-1364 · Four-line verses by Guru Arjan Dev Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #18",
+      "baniDbId": 18,
       "progress": 0
     },
     {
@@ -319,6 +348,7 @@
       "subtitle": "SGGS Ang 1364-1377 · Kabir Ji's saloks collected in SGGS.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #77",
+      "baniDbId": 77,
       "progress": 0
     },
     {
@@ -327,6 +357,7 @@
       "subtitle": "SGGS Ang 1377-1385 · Sheikh Farid Ji's saloks collected in SGGS.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #78",
+      "baniDbId": 78,
       "progress": 0
     },
     {
@@ -335,6 +366,7 @@
       "subtitle": "SGGS Ang 1426-1429 · Saloks of Guru Tegh Bahadur Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #30",
+      "baniDbId": 30,
       "progress": 0
     },
     {
@@ -343,6 +375,7 @@
       "subtitle": "SGGS Ang 1429-1430 · Closing raag garland at the end of SGGS.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #38",
+      "baniDbId": 38,
       "progress": 0
     },
     {
@@ -351,6 +384,7 @@
       "subtitle": "DG Ang 1-10 · Morning Nitnem bani by Guru Gobind Singh Ji.",
       "category": "Daily Prayers",
       "source": "DG · BaniDB #4",
+      "baniDbId": 4,
       "progress": 0
     },
     {
@@ -359,6 +393,7 @@
       "subtitle": "DG Ang 10 · Nitnem swaiyas rejecting empty ritual.",
       "category": "Daily Prayers",
       "source": "DG · BaniDB #6",
+      "baniDbId": 6,
       "progress": 0
     },
     {
@@ -367,6 +402,7 @@
       "subtitle": "DG Ang 1386-1388 · Benati Chaupai Sahib with adjustable STTM length support.",
       "category": "Daily Prayers",
       "source": "DG · BaniDB #9",
+      "baniDbId": 9,
       "progress": 0
     },
     {
@@ -375,6 +411,7 @@
       "subtitle": "DG Ang 55-64 · Fierce devotional composition invoking the Divine protector.",
       "category": "Bir Ras",
       "source": "DG · BaniDB #53",
+      "baniDbId": 53,
       "progress": 0
     },
     {
@@ -383,6 +420,7 @@
       "subtitle": "DG Ang 119-127 · Also known as Chandi Di Vaar.",
       "category": "Bir Ras",
       "source": "DG · BaniDB #13",
+      "baniDbId": 13,
       "progress": 0
     },
     {
@@ -391,14 +429,7 @@
       "subtitle": "DG Ang 11-38 · Praise of the Timeless One.",
       "category": "Major Compositions",
       "source": "DG · BaniDB #29",
-      "progress": 0
-    },
-    {
-      "id": "zafarnama",
-      "title": "Zafarnama",
-      "subtitle": "DG Ang 1389 · Guru Gobind Singh Ji's Persian letter to Aurangzeb.",
-      "category": "Major Compositions",
-      "source": "DG · BaniDB #98",
+      "baniDbId": 29,
       "progress": 0
     },
     {
@@ -407,6 +438,7 @@
       "subtitle": "DG Ang 709-712 · Shabads of longing and love by Guru Gobind Singh Ji.",
       "category": "Shorter Banis",
       "source": "DG · BaniDB #5",
+      "baniDbId": 5,
       "progress": 0
     },
     {
@@ -415,6 +447,7 @@
       "subtitle": "DG Ang 717-809 · Meditation through the names of weapons.",
       "category": "Shorter Banis",
       "source": "DG · BaniDB #19",
+      "baniDbId": 19,
       "progress": 0
     },
     {
@@ -423,6 +456,7 @@
       "subtitle": "SGGS Ang 13 · Short foundational mantra at the start of SGGS reading.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #1",
+      "baniDbId": 1,
       "progress": 0
     },
     {
@@ -431,6 +465,7 @@
       "subtitle": "SGGS Ang 96-795 · Collected Shabad Hazare composition served as one exact BaniDB bani.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #3",
+      "baniDbId": 3,
       "progress": 0
     },
     {
@@ -439,6 +474,7 @@
       "subtitle": "SGGS Ang 762 · Short bani traditionally grouped with wedding and union imagery.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #14",
+      "baniDbId": 14,
       "progress": 0
     },
     {
@@ -447,6 +483,7 @@
       "subtitle": "SGGS Ang 762 · Short bani traditionally paired with Kuchji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #15",
+      "baniDbId": 15,
       "progress": 0
     },
     {
@@ -455,6 +492,7 @@
       "subtitle": "SGGS Ang 763 · Short composition on spiritual worthiness and virtue.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #16",
+      "baniDbId": 16,
       "progress": 0
     },
     {
@@ -463,6 +501,7 @@
       "subtitle": "SGGS Ang 833-1326 · Exact BaniDB Sukhmana Sahib composition.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #32",
+      "baniDbId": 32,
       "progress": 0
     },
     {
@@ -471,6 +510,7 @@
       "subtitle": "SGGS Ang 340-343 · Bavan Akhri composition of Bhagat Kabir Ji.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #39",
+      "baniDbId": 39,
       "progress": 0
     },
     {
@@ -479,6 +519,7 @@
       "subtitle": "SGGS Ang 234 · Compact SGGS composition served as its own exact bani.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #41",
+      "baniDbId": 41,
       "progress": 0
     },
     {
@@ -487,6 +528,7 @@
       "subtitle": "SGGS Ang 432-434 · Alphabet-based teaching composition.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #43",
+      "baniDbId": 43,
       "progress": 0
     },
     {
@@ -495,6 +537,7 @@
       "subtitle": "SGGS Ang 434-435 · Patti composition from Guru Amar Das Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #44",
+      "baniDbId": 44,
       "progress": 0
     },
     {
@@ -503,6 +546,7 @@
       "subtitle": "SGGS Ang 927-929 · Seasonal composition from Guru Arjan Dev Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #45",
+      "baniDbId": 45,
       "progress": 0
     },
     {
@@ -511,6 +555,7 @@
       "subtitle": "SGGS Ang 343-344 · Thitanti composition of Bhagat Kabir Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #47",
+      "baniDbId": 47,
       "progress": 0
     },
     {
@@ -519,6 +564,7 @@
       "subtitle": "SGGS Ang 838-840 · Thiti composition from Guru Nanak Dev Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #48",
+      "baniDbId": 48,
       "progress": 0
     },
     {
@@ -527,6 +573,7 @@
       "subtitle": "SGGS Ang 344-345 · Vaar of Bhagat Kabir Ji in Gauri.",
       "category": "Vars",
       "source": "SGGS · BaniDB #50",
+      "baniDbId": 50,
       "progress": 0
     },
     {
@@ -535,6 +582,7 @@
       "subtitle": "SGGS Ang 841-842 · Bilaval vaar composition linked with Guru Amar Das Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #51",
+      "baniDbId": 51,
       "progress": 0
     },
     {
@@ -543,6 +591,7 @@
       "subtitle": "SGGS Ang 81-82 · Compact SGGS bani on the trader-soul metaphor.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #52",
+      "baniDbId": 52,
       "progress": 0
     },
     {
@@ -551,6 +600,7 @@
       "subtitle": "SGGS Ang 91-93 · Exact BaniDB raag section for Kabir Ji in Siri Raag.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #55",
+      "baniDbId": 55,
       "progress": 0
     },
     {
@@ -559,6 +609,7 @@
       "subtitle": "SGGS Ang 323-346 · Exact BaniDB raag section for Gauri.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #56",
+      "baniDbId": 56,
       "progress": 0
     },
     {
@@ -567,6 +618,7 @@
       "subtitle": "SGGS Ang 475-488 · Exact BaniDB raag section for Asa.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #57",
+      "baniDbId": 57,
       "progress": 0
     },
     {
@@ -575,6 +627,7 @@
       "subtitle": "SGGS Ang 524-526 · Exact BaniDB raag section for Gujri.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #58",
+      "baniDbId": 58,
       "progress": 0
     },
     {
@@ -583,6 +636,7 @@
       "subtitle": "SGGS Ang 654-659 · Exact BaniDB raag section for Sorath.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #59",
+      "baniDbId": 59,
       "progress": 0
     },
     {
@@ -591,6 +645,7 @@
       "subtitle": "SGGS Ang 691-695 · Exact BaniDB raag section for Dhanasri.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #60",
+      "baniDbId": 60,
       "progress": 0
     },
     {
@@ -599,6 +654,7 @@
       "subtitle": "SGGS Ang 710 · Exact BaniDB raag section for Jaitsri.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #61",
+      "baniDbId": 61,
       "progress": 0
     },
     {
@@ -607,6 +663,7 @@
       "subtitle": "SGGS Ang 718 · Exact BaniDB raag section for Bhagat bani in Todi.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #62",
+      "baniDbId": 62,
       "progress": 0
     },
     {
@@ -615,6 +672,7 @@
       "subtitle": "SGGS Ang 727 · Exact BaniDB raag section for Kabir Ji in Tilang.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #63",
+      "baniDbId": 63,
       "progress": 0
     },
     {
@@ -623,6 +681,7 @@
       "subtitle": "SGGS Ang 792-794 · Exact BaniDB raag section for Suhi.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #64",
+      "baniDbId": 64,
       "progress": 0
     },
     {
@@ -631,6 +690,7 @@
       "subtitle": "SGGS Ang 855-858 · Exact BaniDB raag section for Bilaval.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #65",
+      "baniDbId": 65,
       "progress": 0
     },
     {
@@ -639,6 +699,7 @@
       "subtitle": "SGGS Ang 870-875 · Exact BaniDB raag section for Gond.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #66",
+      "baniDbId": 66,
       "progress": 0
     },
     {
@@ -647,6 +708,7 @@
       "subtitle": "SGGS Ang 923-974 · Exact BaniDB Ramkali section keyed around Sadd.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #67",
+      "baniDbId": 67,
       "progress": 0
     },
     {
@@ -655,6 +717,7 @@
       "subtitle": "SGGS Ang 988 · Exact BaniDB raag section for Mali Gaura.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #68",
+      "baniDbId": 68,
       "progress": 0
     },
     {
@@ -663,6 +726,7 @@
       "subtitle": "SGGS Ang 1102-1106 · Exact BaniDB raag section for Maru.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #69",
+      "baniDbId": 69,
       "progress": 0
     },
     {
@@ -671,6 +735,7 @@
       "subtitle": "SGGS Ang 1123-1124 · Exact BaniDB raag section for Kedara.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #70",
+      "baniDbId": 70,
       "progress": 0
     },
     {
@@ -679,6 +744,7 @@
       "subtitle": "SGGS Ang 1157-1167 · Exact BaniDB raag section for Bhairao.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #71",
+      "baniDbId": 71,
       "progress": 0
     },
     {
@@ -687,6 +753,7 @@
       "subtitle": "SGGS Ang 1193-1196 · Exact BaniDB raag section for Basant.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #72",
+      "baniDbId": 72,
       "progress": 0
     },
     {
@@ -695,6 +762,7 @@
       "subtitle": "SGGS Ang 1251-1253 · Exact BaniDB raag section for Sarang.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #73",
+      "baniDbId": 73,
       "progress": 0
     },
     {
@@ -703,6 +771,7 @@
       "subtitle": "SGGS Ang 1292-1293 · Exact BaniDB raag section for Malaar.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #74",
+      "baniDbId": 74,
       "progress": 0
     },
     {
@@ -711,6 +780,7 @@
       "subtitle": "SGGS Ang 1318 · Exact BaniDB raag section for Kanara.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #75",
+      "baniDbId": 75,
       "progress": 0
     },
     {
@@ -719,6 +789,7 @@
       "subtitle": "SGGS Ang 1349-1351 · Exact BaniDB raag section for Prabhati.",
       "category": "Raag Sections",
       "source": "SGGS · BaniDB #76",
+      "baniDbId": 76,
       "progress": 0
     },
     {
@@ -727,6 +798,7 @@
       "subtitle": "SGGS Ang 1385-1387 · First exact Savaiye cluster of Guru Arjan Dev Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #79",
+      "baniDbId": 79,
       "progress": 0
     },
     {
@@ -735,6 +807,7 @@
       "subtitle": "SGGS Ang 1387-1389 · Second exact Savaiye cluster of Guru Arjan Dev Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #80",
+      "baniDbId": 80,
       "progress": 0
     },
     {
@@ -743,6 +816,7 @@
       "subtitle": "SGGS Ang 1389-1390 · Exact Savaiye set of Guru Nanak Dev Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #81",
+      "baniDbId": 81,
       "progress": 0
     },
     {
@@ -751,6 +825,7 @@
       "subtitle": "SGGS Ang 1391-1392 · Exact Savaiye set of Guru Angad Dev Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #82",
+      "baniDbId": 82,
       "progress": 0
     },
     {
@@ -759,6 +834,7 @@
       "subtitle": "SGGS Ang 1392-1396 · Exact Savaiye set of Guru Amar Das Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #83",
+      "baniDbId": 83,
       "progress": 0
     },
     {
@@ -767,6 +843,7 @@
       "subtitle": "SGGS Ang 1396-1406 · Exact Savaiye set of Guru Ram Das Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #84",
+      "baniDbId": 84,
       "progress": 0
     },
     {
@@ -775,6 +852,7 @@
       "subtitle": "SGGS Ang 1406-1409 · Exact Savaiye set of Guru Arjan Dev Ji.",
       "category": "Swaiye",
       "source": "SGGS · BaniDB #85",
+      "baniDbId": 85,
       "progress": 0
     },
     {
@@ -783,6 +861,7 @@
       "subtitle": "SGGS Ang 517-524 · Exact Gujari vaar composition of Guru Arjan Dev Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #92",
+      "baniDbId": 92,
       "progress": 0
     },
     {
@@ -791,6 +870,7 @@
       "subtitle": "SGGS Ang 1094-1102 · Exact Maru vaar with dakhane of Guru Arjan Dev Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #103",
+      "baniDbId": 103,
       "progress": 0
     },
     {
@@ -799,6 +879,7 @@
       "subtitle": "DG Ang 11-37 · The Dheenan Ki exact BaniDB variant of Tav Prasad Savaiye.",
       "category": "Daily Prayers",
       "source": "DG · BaniDB #7",
+      "baniDbId": 7,
       "progress": 0
     },
     {
@@ -807,6 +888,7 @@
       "subtitle": "DG Ang 11 · Short chaupai section drawn from Akal Ustat.",
       "category": "Supplemental Banis",
       "source": "DG · BaniDB #8",
+      "baniDbId": 8,
       "progress": 0
     },
     {
@@ -815,6 +897,7 @@
       "subtitle": "DG Ang 1428 · Panth Prakash exact BaniDB variant of Sri Bhagauti Astotr.",
       "category": "Supplemental Banis",
       "source": "DG · BaniDB #25",
+      "baniDbId": 25,
       "progress": 0
     },
     {
@@ -823,6 +906,7 @@
       "subtitle": "DG Ang 1428 · Hazur Sahib exact BaniDB variant of Sri Bhagauti Astotr.",
       "category": "Supplemental Banis",
       "source": "DG · BaniDB #26",
+      "baniDbId": 26,
       "progress": 0
     },
     {
@@ -831,6 +915,7 @@
       "subtitle": "DG Ang 119 · Compact Chandi Charitar composition served as its own exact bani.",
       "category": "Bir Ras",
       "source": "DG · BaniDB #12",
+      "baniDbId": 12,
       "progress": 0
     },
     {
@@ -839,54 +924,7 @@
       "subtitle": "DG Ang 383-384 · Exact Dasam composition on the twelve months in savaiyaa form.",
       "category": "Shorter Banis",
       "source": "DG · BaniDB #28",
-      "progress": 0
-    },
-    {
-      "id": "bhai-gurdas-vaaran",
-      "title": "Bhai Gurdas Ji Vaaran",
-      "subtitle": "BGV Ang 1-628 · Poetic vaaran by Bhai Gurdas Ji.",
-      "category": "Vars",
-      "source": "BGV · Browse",
-      "progress": 0
-    },
-    {
-      "id": "amrit-keertan",
-      "title": "Amrit Keertan",
-      "subtitle": "AK Ang 1-1430 · Songbook-style shabad collection for keertan.",
-      "category": "Keertan",
-      "source": "AK · Browse",
-      "progress": 0.08
-    },
-    {
-      "id": "hukamnama",
-      "title": "Hukamnama",
-      "subtitle": "Daily reflection with source context and saved progress",
-      "category": "Today",
-      "source": "SGGS · BaniDB",
-      "progress": 0
-    },
-    {
-      "id": "rehat-maryada",
-      "title": "Rehat Maryada",
-      "subtitle": "Structured sections with reading progress and source notes",
-      "category": "Rehat",
-      "source": "SGPC",
-      "progress": 0
-    },
-    {
-      "id": "panth-prakash",
-      "title": "Panth Prakash",
-      "subtitle": "English volumes, episodes, and saved reading position",
-      "category": "Library",
-      "source": "Panthic Library",
-      "progress": 0.28
-    },
-    {
-      "id": "scripture-search",
-      "title": "Scripture Search",
-      "subtitle": "BaniDB-backed search route for shabad and ang lookup",
-      "category": "Search",
-      "source": "BaniDB v2",
+      "baniDbId": 28,
       "progress": 0
     }
   ]

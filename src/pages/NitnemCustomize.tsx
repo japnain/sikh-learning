@@ -11,15 +11,15 @@ export default function NitnemCustomize() {
       data-ai-state="ready"
     >
       <nav
-        className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-ink/60 dark:text-dark-text/75"
+        className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-ink/68 dark:text-dark-text/75"
         aria-label="Breadcrumb"
         data-testid="nitnem-customize-breadcrumbs"
       >
-        <Link to="/" className="interactive-focus rounded-full px-2 py-1 text-gold dark:text-gold-light">
+        <Link to="/" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
           Home
         </Link>
         <span aria-hidden="true">/</span>
-        <Link to="/#home-nitnem-title" className="interactive-focus rounded-full px-2 py-1 text-gold dark:text-gold-light">
+        <Link to="/#home-nitnem-title" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
           Daily Nitnem
         </Link>
         <span aria-hidden="true">/</span>

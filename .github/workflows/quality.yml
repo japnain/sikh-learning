@@ -1,0 +1,31 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run qa:css-selectors
+      - run: npm run build
+      - run: npm run qa:a11y
+      - run: npm test
+      - name: Verify native catalog is current
+        run: |
+          npm run native:generate-catalog
+          git diff --exit-code -- ios/App/NaamRasNative/NativeCatalog.json

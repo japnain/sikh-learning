@@ -24,7 +24,7 @@ function browseOnlyBani(bani: Omit<Bani, 'baniDbId'> & { type: 'browse-only' }):
 
 const EXACT_SGGS_BANIS: Bani[] = [
   exactBani({ id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of Sri Guru Granth Sahib Ji recited at amrit vela.', baniDbId: 2 }),
-  exactBani({ id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, startVerseId: 386, category: 'Daily Prayers', description: 'The So Dar section that opens Rehras Sahib.', baniDbId: 7 }),
+  browseOnlyBani({ id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, startVerseId: 386, category: 'Daily Prayers', description: 'The So Dar section that opens Rehras Sahib.', type: 'browse-only' }),
   exactBani({ id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, startVerseId: 386, category: 'Daily Prayers', description: 'Evening Nitnem composition with adjustable STTM length support.', baniDbId: 21 }),
   exactBani({ id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, startVerseId: 534, category: 'Daily Prayers', description: 'Night prayer recited before sleep.', baniDbId: 23 }),
   exactBani({ id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, startVerseId: 39128, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji.', baniDbId: 10 }),
@@ -80,7 +80,7 @@ const EXACT_DG_BANIS: Bani[] = [
   exactBani({ id: 'vaar-sri-bhagauti-ji-ki', name: 'Vaar Sri Bhagauti Ji Ki', scripture: 'DG', source: 'D', startAng: 119, endAng: 127, category: 'Bir Ras', description: 'Also known as Chandi Di Vaar.', baniDbId: 13 }),
 
   exactBani({ id: 'akal-ustat', name: 'Akal Ustat', scripture: 'DG', source: 'D', startAng: 11, endAng: 38, category: 'Major Compositions', description: 'Praise of the Timeless One.', baniDbId: 29 }),
-  exactBani({ id: 'zafarnama', name: 'Zafarnama', scripture: 'DG', source: 'D', startAng: 1389, endAng: 1389, category: 'Major Compositions', description: 'Guru Gobind Singh Ji\'s Persian letter to Aurangzeb.', baniDbId: 98 }),
+  browseOnlyBani({ id: 'zafarnama', name: 'Zafarnama', scripture: 'DG', source: 'D', startAng: 1389, endAng: 1389, category: 'Major Compositions', description: 'Guru Gobind Singh Ji\'s Persian letter to Aurangzeb.', type: 'browse-only' }),
 
   exactBani({ id: 'shabad-hazare-10', name: 'Shabad Hazare Patshahi 10', scripture: 'DG', source: 'D', startAng: 709, endAng: 712, category: 'Shorter Banis', description: 'Shabads of longing and love by Guru Gobind Singh Ji.', baniDbId: 5 }),
   exactBani({ id: 'sastra-naam-mala', name: 'Shastar Naam Mala', scripture: 'DG', source: 'D', startAng: 717, endAng: 809, category: 'Shorter Banis', description: 'Meditation through the names of weapons.', baniDbId: 19 }),

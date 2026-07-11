@@ -11,6 +11,12 @@ interface ChapterReaderState {
   chapters: LibraryChapterIndexEntry[]
 }
 
+interface ChapterLoadState {
+  key: string
+  status: 'loading' | 'ready' | 'error'
+  reader: ChapterReaderState | null
+}
+
 function blockClassName(block: LibraryTextBlock) {
   if (block.type === 'heading') return 'mt-8 font-display text-2xl leading-snug text-ink dark:text-dark-text'
   if (block.type === 'line') return 'mt-4 font-serif text-[1.04rem] leading-8 text-ink/84 dark:text-dark-text/84'
@@ -36,13 +42,13 @@ function chapterPath(workId: string, chapterId: string) {
 export default function LibraryChapterReader() {
   const updateSession = useProgressStore(state => state.updateSession)
   const { workId = 'panth-prakash-english', chapterId = '' } = useParams<{ workId: string; chapterId: string }>()
-  const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading')
-  const [reader, setReader] = useState<ChapterReaderState | null>(null)
+  const requestKey = `${workId}:${chapterId}`
+  const [loadState, setLoadState] = useState<ChapterLoadState>({ key: requestKey, status: 'loading', reader: null })
+  const state = loadState.key === requestKey ? loadState.status : 'loading'
+  const reader = loadState.key === requestKey ? loadState.reader : null
 
   useEffect(() => {
     let cancelled = false
-    setState('loading')
-    setReader(null)
 
     Promise.all([
       loadLibraryWorkCatalog(),
@@ -53,18 +59,17 @@ export default function LibraryChapterReader() {
         const work = catalog.workById[workId]
         if (!work || !chapter) throw new Error('Chapter not found')
         if (cancelled) return
-        setReader({ work, chapter, chapters })
-        setState('ready')
+        setLoadState({ key: requestKey, status: 'ready', reader: { work, chapter, chapters } })
       })
       .catch(() => {
         if (cancelled) return
-        setState('error')
+        setLoadState({ key: requestKey, status: 'error', reader: null })
       })
 
     return () => {
       cancelled = true
     }
-  }, [chapterId, workId])
+  }, [chapterId, requestKey, workId])
 
   useEffect(() => {
     if (!reader) return
@@ -118,15 +123,16 @@ export default function LibraryChapterReader() {
     <div
       className="page-shell animate-fade-in"
       data-testid="panth-chapter-reader"
+      data-page="library-chapter"
       style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
     >
       <section className="section-shell px-5 py-5 mb-5" data-testid="panth-chapter-compass">
         <nav className="mb-4 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/78" aria-label="Breadcrumb" data-testid="panth-chapter-breadcrumb">
-          <Link to="/banis" className="interactive-focus underline-offset-4 hover:underline">Read</Link>
+          <Link to="/banis" className="interactive-focus inline-flex min-h-[44px] items-center px-1 underline-offset-4 hover:underline">Read</Link>
           <span aria-hidden="true"> / </span>
-          <Link to="/library" className="interactive-focus underline-offset-4 hover:underline">Library</Link>
+          <Link to="/library" className="interactive-focus inline-flex min-h-[44px] items-center px-1 underline-offset-4 hover:underline">Library</Link>
           <span aria-hidden="true"> / </span>
-          <Link to={`/library/${work.id}`} className="interactive-focus underline-offset-4 hover:underline">{work.shortTitle}</Link>
+          <Link to={`/library/${work.id}`} className="interactive-focus inline-flex min-h-[44px] items-center px-1 underline-offset-4 hover:underline">{work.shortTitle}</Link>
           <span aria-hidden="true"> / </span>
           <span>{chapterLabel(chapter)}</span>
         </nav>
@@ -147,7 +153,7 @@ export default function LibraryChapterReader() {
 
         <div className="mt-5 h-2 overflow-hidden rounded-full bg-sand/20 dark:bg-dark-text/16" aria-hidden="true" data-testid="panth-chapter-progress-track">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-gold to-saffron-light"
+            className="h-full rounded-full bg-accent"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -170,7 +176,7 @@ export default function LibraryChapterReader() {
           ))}
         </section>
 
-        <section className="mt-6 rounded-[24px] border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-chapter-provenance">
+        <section className="mt-6 rounded-lg border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-chapter-provenance">
           <p className="eyebrow">Source</p>
           <div className="mt-3 flex flex-wrap gap-2">
             <span className="chip-pill">{chapter.source.fileName}</span>
@@ -179,14 +185,14 @@ export default function LibraryChapterReader() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[24px] border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-chapter-mini-contents">
+        <section className="mt-6 rounded-lg border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-chapter-mini-contents">
           <p className="eyebrow">Nearby chapters</p>
           <div className="mt-3 grid gap-2">
             {nearbyChapters.map(entry => (
               <Link
                 key={entry.id}
                 to={chapterPath(work.id, entry.id)}
-                className={`interactive-focus rounded-[18px] border px-3 py-3 font-sans text-sm ${entry.id === chapter.id ? 'border-gold/22 bg-gold/10 text-gold-dark dark:border-gold/20 dark:bg-gold/12 dark:text-gold-light' : 'border-sand/14 bg-parchment-card/70 text-ink dark:border-dark-text/10 dark:bg-dark-card/62 dark:text-dark-text'}`}
+                className={`interactive-focus rounded-lg border px-3 py-3 font-sans text-sm ${entry.id === chapter.id ? 'border-gold/22 bg-gold/10 text-gold-dark dark:border-gold/20 dark:bg-gold/12 dark:text-gold-light' : 'border-sand/14 bg-parchment-card/70 text-ink dark:border-dark-text/10 dark:bg-dark-card/62 dark:text-dark-text'}`}
               >
                 {chapterLabel(entry)} · {entry.title}
               </Link>
@@ -196,14 +202,14 @@ export default function LibraryChapterReader() {
 
         <nav className="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Chapter navigation">
           {previousChapter ? (
-            <Link to={chapterPath(work.id, previousChapter.id)} className="interactive-focus interactive-card-link rounded-[24px] border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">Previous</p>
+            <Link to={chapterPath(work.id, previousChapter.id)} className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62">
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">Previous</p>
               <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{chapterLabel(previousChapter)}</p>
             </Link>
           ) : <span />}
           {nextChapter ? (
-            <Link to={chapterPath(work.id, nextChapter.id)} className="interactive-focus interactive-card-link rounded-[24px] border border-sand/14 bg-parchment-card/72 px-4 py-4 text-right dark:border-dark-text/10 dark:bg-dark-card/62">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">Next</p>
+            <Link to={chapterPath(work.id, nextChapter.id)} className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/72 px-4 py-4 text-right dark:border-dark-text/10 dark:bg-dark-card/62">
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">Next</p>
               <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{chapterLabel(nextChapter)}</p>
             </Link>
           ) : null}

@@ -5,7 +5,7 @@ struct OnboardingFlowView: View {
     @EnvironmentObject private var appState: NaamRasAppState
     @State private var stepIndex = 0
 
-    private let totalSteps = 5
+    private let totalSteps = 4
 
     var body: some View {
         ScrollView {
@@ -23,7 +23,7 @@ struct OnboardingFlowView: View {
                     imageName: heroImageName,
                     eyebrow: "NaamRas setup",
                     title: onboardingTitle,
-                    subtitle: "Five choices build a real reader: intent, script, support, profile, and backup.",
+                    subtitle: "Choose an intent, script, and support level, then preview the reader.",
                     symbolName: "sparkles",
                     progressTitle: "Setup progress",
                     progressValue: Double(stepIndex + 1) / Double(totalSteps)
@@ -112,22 +112,6 @@ struct OnboardingFlowView: View {
                         appState.readerPreferences.applySupportDensity(density)
                     }
                 }
-            }
-        case 3:
-            VStack(alignment: .leading, spacing: 14) {
-                Eyebrow(text: "Step 4")
-                Text("Set your reading profile.")
-                    .font(.title.bold())
-                    .foregroundStyle(Color.naamInk)
-                ForEach(LearningLevel.allCases) { level in
-                    SelectableRow(
-                        title: level.title,
-                        subtitle: levelSubtitle(for: level),
-                        selected: appState.profile.level == level
-                    ) {
-                        appState.profile.level = level
-                    }
-                }
                 Picker("Meaning language", selection: $appState.readerPreferences.meaningLanguage) {
                     ForEach(MeaningLanguage.allCases) { language in
                         Text(language.title).tag(language)
@@ -137,39 +121,31 @@ struct OnboardingFlowView: View {
             }
         default:
             VStack(alignment: .leading, spacing: 16) {
-                Eyebrow(text: "Step 5")
-                Text("Preview and choose backup.")
+                Eyebrow(text: "Step 4")
+                Text(appState.cloudBackupAvailable ? "Preview and choose backup." : "Preview your reader.")
                     .font(.title.bold())
                     .foregroundStyle(Color.naamInk)
-                ReaderPreviewCard(item: appState.continueReading)
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Backup stays optional.")
-                        .font(.headline)
-                    Text("Guest reading works now. Sign in with Apple or email later to sync saved passages, reading progress, and reader preferences through Supabase.")
+                ReaderPreviewCard()
+                if appState.cloudBackupAvailable {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Backup stays optional.")
+                            .font(.headline)
+                        Text("Guest reading works now. Sign in with Apple to sync saved passages, reading progress, and reader preferences.")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.naamInk.opacity(0.64))
+                        SignInWithAppleButton(.continue) { request in
+                            appState.prepareAppleRequest(request)
+                        } onCompletion: { result in
+                            Task { await appState.handleAppleAuthorization(result) }
+                        }
+                        .signInWithAppleButtonStyle(.black)
+                        .frame(height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    }
+                } else {
+                    Text("Your settings, bookmarks, and reading progress will be stored on this device.")
                         .font(.subheadline)
                         .foregroundStyle(Color.naamInk.opacity(0.64))
-                    SignInWithAppleButton(.continue) { request in
-                        appState.prepareAppleRequest(request)
-                    } onCompletion: { result in
-                        Task { await appState.handleAppleAuthorization(result) }
-                    }
-                    .signInWithAppleButtonStyle(.black)
-                    .frame(height: 48)
-                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                    TextField("Email for magic link", text: $appState.emailForMagicLink)
-                        .keyboardType(.emailAddress)
-                        .textContentType(.emailAddress)
-                        .textInputAutocapitalization(.never)
-                        .padding(12)
-                        .background(Color.white.opacity(0.7), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                    Button {
-                        Task { await appState.sendMagicLink() }
-                    } label: {
-                        Label("Send magic link", systemImage: "envelope")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                    .disabled(appState.emailForMagicLink.trimmingCharacters(in: .whitespacesAndNewlines).contains("@") == false)
                 }
             }
         }
@@ -183,20 +159,11 @@ struct OnboardingFlowView: View {
         }
     }
 
-    private func levelSubtitle(for level: LearningLevel) -> String {
-        switch level {
-        case .beginner: "Keep transliteration and meanings close."
-        case .familiar: "Balance original text with context."
-        case .dailyReader: "Start with quieter controls and faster navigation."
-        }
-    }
-
     private var heroImageName: String {
         switch stepIndex {
         case 0: "FlowHomeHero"
         case 1: "FlowReadHero"
         case 2: "FlowReadHero"
-        case 3: "FlowSavedHero"
         default: "FlowMoreHero"
         }
     }
@@ -206,7 +173,6 @@ struct OnboardingFlowView: View {
         case 0: "Begin with your purpose."
         case 1: "Choose the first script."
         case 2: "Set the support density."
-        case 3: "Shape the reader profile."
         default: "Preview, then start."
         }
     }
@@ -214,13 +180,13 @@ struct OnboardingFlowView: View {
 
 private struct ReaderPreviewCard: View {
     @EnvironmentObject private var appState: NaamRasAppState
-    var item: ReadingItem
+    private let previewLine = NativeFixtures.dailyLines[0]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(item.title)
+            Text("Reader preview")
                 .font(.headline)
-            ForEach(item.lines.prefix(2)) { line in
+            ForEach([previewLine]) { line in
                 VStack(alignment: appState.readerPreferences.centerAligned ? .center : .leading, spacing: 6) {
                     Text(appState.readerPreferences.scriptMode == .gurmukhi ? line.gurmukhi : line.devanagari)
                         .font(.system(size: appState.readerPreferences.fontSize, weight: .semibold, design: .serif))
@@ -230,7 +196,7 @@ private struct ReaderPreviewCard: View {
                             .foregroundStyle(Color.naamInk.opacity(0.62))
                     }
                     if appState.readerPreferences.meaningLanguage != .none {
-                        Text(line.meaning)
+                        Text(line.meaning(for: appState.readerPreferences.meaningLanguage))
                             .font(.footnote)
                             .foregroundStyle(Color.naamSage)
                     }

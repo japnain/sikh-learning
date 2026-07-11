@@ -34,6 +34,7 @@ test('renders the Rehat list with breadcrumbs and list search', async () => {
   renderRehat()
 
   expect(screen.getByTestId('page-rehat')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search rehats' })).toBeInTheDocument()
   expect(screen.getByText(/loading rehats/i)).toBeInTheDocument()
   expect(within(screen.getByTestId('rehat-breadcrumbs')).getByText('Read')).toBeInTheDocument()
   expect(await screen.findByText('Sikh Rehat Maryada')).toBeInTheDocument()
@@ -50,6 +51,7 @@ test('supports direct Rehat detail URLs with source-backed context and chapter f
   renderRehat('/banis/rehat/1')
 
   expect(await screen.findByText('Daily Discipline')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search Rehat chapters' })).toBeInTheDocument()
   expect(within(screen.getByTestId('rehat-breadcrumbs')).getByText('Read')).toBeInTheDocument()
   expect(within(screen.getByTestId('rehat-breadcrumbs')).getByText('Rehat')).toBeInTheDocument()
   expect(within(screen.getByTestId('rehat-breadcrumbs')).getByText('Sikh Rehat Maryada')).toBeInTheDocument()
@@ -81,6 +83,7 @@ test('supports direct Rehat chapter URLs, chapter text search, and sanitized ren
   renderRehat('/banis/rehat/1/chapters/11')
 
   expect(screen.getByTestId('rehat-chapter-page')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search inside this Rehat chapter' })).toBeInTheDocument()
   expect(within(screen.getByTestId('rehat-breadcrumbs')).getByText('Daily Discipline')).toBeInTheDocument()
 
   const content = screen.getByTestId('rehat-chapter-content')

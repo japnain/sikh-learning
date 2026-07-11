@@ -78,13 +78,12 @@ function SourceOverviewCard({
 }) {
   return (
     <div
-      className="relative overflow-hidden rounded-[1.75rem] border border-gold/25 bg-gradient-to-br from-gold/15 via-white/90 to-cream/80 p-4 shadow-[0_20px_60px_rgba(87,64,25,0.12)] dark:border-gold-light/25 dark:from-gold/15 dark:via-dark-surface/95 dark:to-dark-bg"
+      className="relative overflow-hidden rounded-lg border border-gold/25 bg-parchment-card p-4 shadow-soft dark:border-gold-light/25 dark:bg-dark-surface"
     >
-      <div className="pointer-events-none absolute -right-8 -top-10 h-28 w-28 rounded-full bg-gold/20 blur-3xl dark:bg-gold-light/10" />
       <div className="relative space-y-4">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-2">
-            <p className="font-sans text-[0.68rem] font-bold uppercase tracking-[0.24em] text-gold dark:text-gold-light">
+            <p className="font-sans text-[0.68rem] font-bold uppercase tracking-[0.24em] text-gold-dark dark:text-gold-light">
               {section.overviewEyebrow ?? 'Source edition'}
             </p>
             <div>
@@ -96,7 +95,7 @@ function SourceOverviewCard({
               ) : null}
             </div>
           </div>
-          <span className="icon-surface shrink-0 text-gold dark:text-gold-light" aria-hidden="true">
+          <span className="icon-surface shrink-0 text-gold-dark dark:text-gold-light" aria-hidden="true">
             <IconLibrary size={20} />
           </span>
         </div>
@@ -119,7 +118,7 @@ function SourceOverviewCard({
             <Link
               to={section.overviewPath}
               aria-label="Open Panth Prakash book reader"
-              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
+              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
             >
               Open Panth Prakash
               <IconArrowRight size={16} />
@@ -130,7 +129,7 @@ function SourceOverviewCard({
             <button
               type="button"
               onClick={onToggleQuickPages}
-              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
+              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold-dark dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
               aria-label={isOpen ? 'Hide quick page numbers' : 'Show quick page numbers'}
               aria-expanded={isOpen}
               aria-controls={panelId}
@@ -159,7 +158,7 @@ function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
             key={ang}
             to={buildPagePath(section, ang)}
             aria-label={buildPageLinkLabel(section, ang)}
-            className="section-shell interactive-focus interactive-card-link flex min-h-[44px] items-center justify-center rounded-2xl py-2 text-center font-sans text-sm text-ink hover:text-gold dark:text-dark-text dark:hover:text-gold-light"
+            className="section-shell interactive-focus interactive-card-link flex min-h-[44px] items-center justify-center rounded-lg py-2 text-center font-sans text-sm text-ink hover:text-gold-dark dark:text-dark-text dark:hover:text-gold-light"
           >
             {ang}
           </Link>
@@ -170,19 +169,19 @@ function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
           type="button"
           onClick={() => setPage(current => Math.max(0, current - 1))}
           disabled={page === 0}
-          className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold disabled:opacity-30 dark:text-gold-light"
+          className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold-dark disabled:opacity-30 dark:text-gold-light"
         >
           <IconArrowLeft size={14} />
           Prev
         </button>
-        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">
+        <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">
           {angLabel(section)} {start}–{end} of {section.totalAngs}
         </span>
         <button
           type="button"
           onClick={() => setPage(current => current + 1)}
           disabled={end >= section.totalAngs}
-          className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold disabled:opacity-30 dark:text-gold-light"
+          className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold-dark disabled:opacity-30 dark:text-gold-light"
         >
           Next
           <IconArrowRight size={14} />
@@ -241,7 +240,7 @@ export default function ScriptureSourceBrowser({
               aria-controls={panelId}
             >
               <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{section.name}</p>
-              <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">
+              <span className="icon-surface h-8 w-8 text-gold-dark dark:text-gold-light">
                 {isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
               </span>
             </button>

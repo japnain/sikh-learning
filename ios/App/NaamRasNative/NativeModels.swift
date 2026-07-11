@@ -54,9 +54,9 @@ enum SupportDensity: String, CaseIterable, Identifiable, Codable {
 
     var description: String {
         switch self {
-        case .full: "Show transliteration, meanings, vishraam, and source context."
+        case .full: "Show transliteration, meanings, and source context."
         case .guided: "Keep meanings and pronunciation visible without crowding the line."
-        case .light: "Focus the original line and keep help one tap away."
+        case .light: "Keep the original line central with meanings below."
         case .minimal: "Quiet reading with only core source markers."
         }
     }
@@ -112,12 +112,27 @@ enum MeaningLanguage: String, CaseIterable, Identifiable, Codable {
     }
 }
 
+enum AppAppearanceMode: String, CaseIterable, Identifiable, Codable {
+    case system
+    case light
+    case dark
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .system: "System"
+        case .light: "Light"
+        case .dark: "Dark"
+        }
+    }
+}
+
 struct ReaderPreferences: Codable, Equatable {
     var scriptMode: ScriptMode = .gurmukhi
     var supportDensity: SupportDensity = .guided
     var meaningLanguage: MeaningLanguage = .english
     var transliterationVisible = true
-    var vishraamVisible = true
     var fontSize: Double = 24
     var lineSpacing: Double = 12
     var centerAligned = false
@@ -128,22 +143,18 @@ struct ReaderPreferences: Codable, Equatable {
         case .full:
             meaningLanguage = .english
             transliterationVisible = true
-            vishraamVisible = true
             lineSpacing = 14
         case .guided:
             meaningLanguage = .english
             transliterationVisible = true
-            vishraamVisible = true
             lineSpacing = 12
         case .light:
             meaningLanguage = .english
             transliterationVisible = false
-            vishraamVisible = false
             lineSpacing = 10
         case .minimal:
             meaningLanguage = .none
             transliterationVisible = false
-            vishraamVisible = false
             lineSpacing = 8
         }
     }
@@ -163,9 +174,20 @@ struct ReadingLine: Identifiable, Codable, Equatable {
     var devanagari: String
     var transliteration: String
     var meaning: String
+    var meaningPunjabi: String? = nil
+    var meaningHindi: String? = nil
     var source: String
     var vishraamNote: String
     var wordNotes: [WordNote]
+
+    func meaning(for language: MeaningLanguage) -> String {
+        switch language {
+        case .none: ""
+        case .english: meaning
+        case .punjabi: meaningPunjabi.flatMap { $0.isEmpty ? nil : $0 } ?? meaning
+        case .hindi: meaningHindi.flatMap { $0.isEmpty ? nil : $0 } ?? meaning
+        }
+    }
 }
 
 struct WordNote: Identifiable, Codable, Equatable {
@@ -183,6 +205,7 @@ struct ReadingItem: Identifiable, Codable, Equatable {
     var category: String
     var source: String
     var progress: Double
+    var baniDbId: Int? = nil
     var lines: [ReadingLine]
 }
 
@@ -206,18 +229,30 @@ enum CloudSyncStatus: String, Codable, Equatable {
     case signedIn = "Signed in"
     case syncing = "Syncing"
     case synced = "Synced"
+    case deleting = "Deleting account"
     case error = "Needs attention"
 }
 
 struct NativeSnapshot: Codable, Equatable {
     var profile: OnboardingProfile
     var readerPreferences: ReaderPreferences
+    var appearanceMode: AppAppearanceMode
     var bookmarks: [BookmarkItem]
     var readingProgress: [String: Double]
     var exportedAt: Date
 }
 
 enum NativeFixtures {
+    static let catalogUnavailable = ReadingItem(
+        id: "catalog-unavailable",
+        title: "Reading catalog unavailable",
+        subtitle: "Reconnect and relaunch NaamRas to load the reading catalog.",
+        category: "Unavailable",
+        source: "NaamRas",
+        progress: 0,
+        lines: []
+    )
+
     static let dailyLines = [
         ReadingLine(
             id: 1,
@@ -260,81 +295,6 @@ enum NativeFixtures {
         )
     ]
 
-    static let readings: [ReadingItem] = [
-        ReadingItem(
-            id: "japji-sahib",
-            title: "Japji Sahib",
-            subtitle: "Morning Nitnem, Ang 1-8",
-            category: "Daily Nitnem",
-            source: "SGGS",
-            progress: 0.42,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "rehras-sahib",
-            title: "Rehras Sahib",
-            subtitle: "Evening paath with support controls",
-            category: "Daily Nitnem",
-            source: "SGGS / DG",
-            progress: 0.18,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "hukamnama",
-            title: "Hukamnama",
-            subtitle: "Daily reflection with source context",
-            category: "Today",
-            source: "SGGS",
-            progress: 0,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "anand-sahib",
-            title: "Anand Sahib",
-            subtitle: "Full bani reader with meanings and support density",
-            category: "Banis",
-            source: "SGGS",
-            progress: 0.11,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "amrit-keertan",
-            title: "Amrit Keertan",
-            subtitle: "Browse shabad headers and saved hymns",
-            category: "Keertan",
-            source: "AK",
-            progress: 0.08,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "panth-prakash",
-            title: "Panth Prakash",
-            subtitle: "Episodes, volumes, and editorial bridges",
-            category: "Library",
-            source: "Panthic Library",
-            progress: 0.28,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "rehat-maryada",
-            title: "Rehat Maryada",
-            subtitle: "Structured sections with reading progress",
-            category: "Rehat",
-            source: "SGPC",
-            progress: 0,
-            lines: dailyLines
-        ),
-        ReadingItem(
-            id: "scripture-search",
-            title: "Scripture Search",
-            subtitle: "Search-ready route for BaniDB-backed scripture lookup",
-            category: "Search",
-            source: "BaniDB v2",
-            progress: 0,
-            lines: dailyLines
-        )
-    ]
-
 }
 
 private struct NativeCatalogPayload: Decodable {
@@ -348,8 +308,9 @@ private struct NativeCatalogReading: Decodable {
     var category: String
     var source: String
     var progress: Double
+    var baniDbId: Int?
 
-    func item(sampleLines: [ReadingLine]) -> ReadingItem {
+    func item() -> ReadingItem {
         ReadingItem(
             id: id,
             title: title,
@@ -357,7 +318,8 @@ private struct NativeCatalogReading: Decodable {
             category: category,
             source: source,
             progress: progress,
-            lines: sampleLines
+            baniDbId: baniDbId,
+            lines: []
         )
     }
 }
@@ -373,7 +335,125 @@ enum NativeCatalogStore {
     }()
 
     static var readings: [ReadingItem] {
-        let items = payload?.readings.map { $0.item(sampleLines: NativeFixtures.dailyLines) } ?? []
-        return items.isEmpty ? NativeFixtures.readings : items
+        let items = payload?.readings.map { $0.item() } ?? []
+        let availableItems = items.filter { $0.baniDbId != nil }
+        return availableItems.isEmpty ? [NativeFixtures.catalogUnavailable] : availableItems
     }
+}
+
+enum NativeBaniServiceError: LocalizedError {
+    case unavailable
+    case invalidResponse
+    case emptyReading
+
+    var errorDescription: String? {
+        switch self {
+        case .unavailable: "This catalog item does not have a native BaniDB reading yet."
+        case .invalidResponse: "The scripture service returned an unexpected response."
+        case .emptyReading: "No scripture lines were returned for this reading."
+        }
+    }
+}
+
+struct NativeBaniService {
+    var baseURL = URL(string: "https://api.banidb.com")!
+
+    func fetchLines(for item: ReadingItem) async throws -> [ReadingLine] {
+        guard let baniDbId = item.baniDbId else { throw NativeBaniServiceError.unavailable }
+
+        let url = baseURL.appending(path: "v2/banis/\(baniDbId)")
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200..<300).contains(httpResponse.statusCode) else {
+            throw NativeBaniServiceError.invalidResponse
+        }
+
+        let payload = try JSONDecoder().decode(NativeBaniPayload.self, from: data)
+        let sourceName = payload.baniInfo?.source?.english ?? item.source
+        let lines = payload.verses.enumerated().compactMap { index, envelope -> ReadingLine? in
+            let verse = envelope.verse
+            let gurmukhi = verse.verse?.unicode?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            guard !gurmukhi.isEmpty else { return nil }
+
+            let page = verse.pageNo ?? payload.baniInfo?.source?.pageNo
+            let source = page.map { "\(sourceName) · Ang \($0)" } ?? sourceName
+
+            return ReadingLine(
+                id: verse.verseId ?? index + 1,
+                gurmukhi: gurmukhi,
+                devanagari: verse.transliteration?.hindi ?? gurmukhi,
+                transliteration: verse.transliteration?.english ?? "",
+                meaning: verse.translation?.en?.bdb ?? verse.translation?.en?.ssk ?? verse.translation?.en?.ms ?? "",
+                meaningPunjabi: verse.translation?.pu?.ss?.unicode ?? verse.translation?.pu?.ft?.unicode,
+                meaningHindi: verse.translation?.hi?.ss ?? verse.translation?.hi?.sts,
+                source: source,
+                vishraamNote: "",
+                wordNotes: []
+            )
+        }
+
+        guard !lines.isEmpty else { throw NativeBaniServiceError.emptyReading }
+        return lines
+    }
+}
+
+private struct NativeBaniPayload: Decodable {
+    var baniInfo: NativeBaniInfo?
+    var verses: [NativeBaniEnvelope]
+}
+
+private struct NativeBaniInfo: Decodable {
+    var source: NativeBaniSource?
+}
+
+private struct NativeBaniSource: Decodable {
+    var english: String?
+    var pageNo: Int?
+}
+
+private struct NativeBaniEnvelope: Decodable {
+    var verse: NativeBaniVerse
+}
+
+private struct NativeBaniVerse: Decodable {
+    var verseId: Int?
+    var pageNo: Int?
+    var verse: NativeBaniScript?
+    var transliteration: NativeBaniTransliteration?
+    var translation: NativeBaniTranslation?
+}
+
+private struct NativeBaniScript: Decodable {
+    var unicode: String?
+}
+
+private struct NativeBaniTransliteration: Decodable {
+    var english: String?
+    var hindi: String?
+}
+
+private struct NativeBaniTranslation: Decodable {
+    var en: NativeBaniEnglishTranslation?
+    var pu: NativeBaniPunjabiTranslations?
+    var hi: NativeBaniHindiTranslation?
+}
+
+private struct NativeBaniEnglishTranslation: Decodable {
+    var bdb: String?
+    var ms: String?
+    var ssk: String?
+}
+
+private struct NativeBaniPunjabiTranslations: Decodable {
+    var ss: NativeBaniUnicodeTranslation?
+    var ft: NativeBaniUnicodeTranslation?
+}
+
+private struct NativeBaniUnicodeTranslation: Decodable {
+    var unicode: String?
+}
+
+private struct NativeBaniHindiTranslation: Decodable {
+    var ss: String?
+    var sts: String?
 }

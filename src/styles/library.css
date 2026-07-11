@@ -1,0 +1,108 @@
+/* Legacy library rules extracted from the shared stylesheet; active rules follow. */
+@tailwind components;
+
+@layer components {
+
+  .saved-feedback-highlight {
+    border-color: rgb(var(--color-accent) / 0.42) !important;
+    box-shadow: var(--shadow-glow-strong);
+  }
+
+}
+
+.library-adaptive-layout,
+.library-shelf-rail,
+.library-shelf-content {
+  min-width: 0;
+}
+
+[data-page='library'] [data-testid='library-snapshot'],
+[data-page='library'] [data-testid='library-favorites'],
+[data-page='library'] [data-testid='library-in-progress'],
+[data-page='library'] [data-testid='library-bookmarks'],
+[data-page='library'] [data-testid='library-reading-history'] {
+  border: 0;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.library-shelf-content > * {
+  margin-bottom: 1rem;
+}
+
+.vocab-empty-layout {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0.5rem 0 2rem;
+}
+
+.vocab-empty-word {
+  margin-top: 1.5rem;
+  color: rgb(var(--color-text) / 0.58);
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.dark .vocab-empty-word {
+  color: rgb(var(--color-text) / 0.4);
+}
+
+.vocab-empty-action {
+  border-left: 2px solid color-mix(in srgb, var(--color-gold, #ad7d25) 38%, transparent);
+  padding-left: 1rem;
+}
+
+@media (min-width: 760px) {
+  [data-page='library'],
+  [data-page='vocab'] {
+    max-width: var(--nr-page-max);
+  }
+
+  .library-adaptive-layout {
+    display: grid;
+    grid-template-columns: minmax(17.5rem, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--nr-layout-gap);
+    align-items: start;
+  }
+
+  .library-shelf-rail {
+    position: sticky;
+    top: max(1rem, calc(var(--safe-area-top) + 1rem));
+  }
+
+  .library-shelf-content {
+    grid-column: 2;
+  }
+
+  .vocab-empty-layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(19rem, 1.1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    min-height: min(34rem, calc(100vh - 12rem));
+    padding: 2rem 1rem;
+  }
+
+  .vocab-empty-word {
+    margin-top: 2.5rem;
+    font-size: 4.5rem;
+  }
+
+  .vocab-empty-action {
+    padding: 1.25rem 0 1.25rem 1.5rem;
+  }
+
+  .vocab-empty-action button {
+    width: auto;
+    min-width: 14rem;
+  }
+}
+
+@media (min-width: 1080px) {
+  .library-adaptive-layout {
+    grid-template-columns: minmax(19rem, 0.72fr) minmax(0, 1.28fr);
+    gap: 1.75rem;
+  }
+}

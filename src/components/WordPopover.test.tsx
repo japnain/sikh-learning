@@ -1,4 +1,4 @@
-import { beforeEach, expect, test } from 'vitest'
+import { beforeEach, expect, test, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import WordPopover from './WordPopover'
 import { useLanguageStore } from '../store/language'
@@ -58,4 +58,14 @@ test('renders Mahankosh and BaniDB Kosh together and preserves save-word behavio
   expect(screen.getByRole('button', { name: /saved/i })).toBeInTheDocument()
   expect(useVocabStore.getState().vocab).toHaveLength(1)
   expect(useVocabStore.getState().vocab[0]?.context?.verseId).toBe(1)
+})
+
+test('is an accessible modal and closes with Escape', () => {
+  const onClose = vi.fn()
+
+  render(<WordPopover word={word} onClose={onClose} />)
+
+  expect(screen.getByRole('dialog', { name: /word details for/i })).toHaveStyle({ position: 'fixed' })
+  fireEvent.keyDown(document, { key: 'Escape' })
+  expect(onClose).toHaveBeenCalledTimes(1)
 })

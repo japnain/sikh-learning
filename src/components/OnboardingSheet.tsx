@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
 import type {
   EnglishSource,
   LearningGoal,
-  LearningLevel,
   MeaningLanguage,
-  OnboardingAudience,
   OnboardingPresentationMode,
   ScriptMode,
   UiLocale,
@@ -13,9 +12,7 @@ import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../
 import {
   getEnglishSourceLabels,
   getLearningGoalLabels,
-  getLearningLevelLabels,
   getMeaningLanguageLabels,
-  getOnboardingAudienceLabels,
   getScriptModeLabels,
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
@@ -23,12 +20,12 @@ import { getEditorialCopy } from '../content/editorialCopy'
 import { sendMagicLink, signInWithProvider } from '../supabase/runtime'
 import { useCloudSyncStore } from '../store/cloudSync'
 import NaamRasLogoMark from './NaamRasLogoMark'
-import { IconHeart, IconLeaf, IconLibrary, IconStar, IconUsers } from './icons'
+import { IconHeart, IconLibrary, IconUsers } from './icons'
 
-type OnboardingStep = 'intent' | 'script' | 'support' | 'profile' | 'preview'
+type OnboardingStep = 'intent' | 'script' | 'support' | 'preview'
 type ReadingPresetId = 'quiet' | 'guided' | 'deep'
 type OnboardingProvider = 'apple' | 'email'
-type OnboardingIntentId = 'habit' | 'peace' | 'grow' | 'understand' | 'explore'
+type OnboardingIntentId = 'habit' | 'read' | 'understand'
 type IntentIcon = (props: { className?: string; size?: number }) => ReactNode
 
 interface OnboardingIntentChoice {
@@ -37,11 +34,8 @@ interface OnboardingIntentChoice {
   body: string
   goal: LearningGoal
   preset: ReadingPresetId
-  learningLevel: LearningLevel
-  audience: OnboardingAudience
   icon: IntentIcon
-  tone: 'gold' | 'terracotta' | 'sage' | 'mauve' | 'slate'
-  legacyLabel?: string
+  tone: 'gold' | 'terracotta' | 'teal'
 }
 
 interface Props {
@@ -55,10 +49,6 @@ interface Props {
   setMeaningLanguage: (value: MeaningLanguage) => void
   englishSource: EnglishSource
   setEnglishSource: (value: EnglishSource) => void
-  learningLevel: LearningLevel
-  setLearningLevel: (value: LearningLevel) => void
-  audience: OnboardingAudience
-  setAudience: (value: OnboardingAudience) => void
   learningGoal: LearningGoal
   setLearningGoal: (value: LearningGoal) => void
   onComplete: () => void | Promise<void>
@@ -66,7 +56,7 @@ interface Props {
   isCompleting?: boolean
 }
 
-const ONBOARDING_STEPS: OnboardingStep[] = ['intent', 'script', 'support', 'profile', 'preview']
+const ONBOARDING_STEPS: OnboardingStep[] = ['intent', 'script', 'support', 'preview']
 const TOTAL_STEPS = ONBOARDING_STEPS.length
 
 const SAMPLE_LINE = {
@@ -83,8 +73,7 @@ const STEP_INDEX: Record<OnboardingStep, number> = {
   intent: 1,
   script: 2,
   support: 3,
-  profile: 4,
-  preview: 5,
+  preview: 4,
 }
 
 const ONBOARDING_PROVIDER_ORDER: OnboardingProvider[] = ['apple', 'email']
@@ -173,7 +162,7 @@ function getPresetTitle(preset: ReadingPresetId, copy: ReturnType<typeof getUiCo
 function getDefaultIntentId(learningGoal: LearningGoal, presentation: OnboardingPresentationMode): OnboardingIntentId {
   if (learningGoal === 'understand') return 'understand'
   if (learningGoal === 'habit') return 'habit'
-  return presentation === 'first-run' ? 'habit' : 'peace'
+  return presentation === 'first-run' ? 'habit' : 'read'
 }
 
 function getIntentToneClasses(tone: OnboardingIntentChoice['tone'], selected: boolean) {
@@ -184,15 +173,9 @@ function getIntentToneClasses(tone: OnboardingIntentChoice['tone'], selected: bo
     terracotta: selected
       ? 'border-[#c97a5d]/42 bg-[#c97a5d]/14 text-[#9d4e35] dark:border-[#df987f]/38 dark:bg-[#c97a5d]/18 dark:text-[#f0b39d]'
       : 'border-[#c97a5d]/16 bg-[#c97a5d]/10 text-[#a9573d] dark:border-[#df987f]/22 dark:bg-[#c97a5d]/12 dark:text-[#efb29d]',
-    sage: selected
-      ? 'border-[#7a8f6d]/42 bg-[#7a8f6d]/16 text-[#4d704f] dark:border-[#a8c29a]/38 dark:bg-[#7a8f6d]/20 dark:text-[#bfd4b4]'
-      : 'border-[#7a8f6d]/18 bg-[#7a8f6d]/10 text-[#557456] dark:border-[#a8c29a]/22 dark:bg-[#7a8f6d]/12 dark:text-[#bfd4b4]',
-    mauve: selected
-      ? 'border-[#8e7ab5]/42 bg-[#8e7ab5]/16 text-[#66518f] dark:border-[#b3a1dd]/38 dark:bg-[#8e7ab5]/20 dark:text-[#c8b9ee]'
-      : 'border-[#8e7ab5]/18 bg-[#8e7ab5]/10 text-[#6d5795] dark:border-[#b3a1dd]/22 dark:bg-[#8e7ab5]/12 dark:text-[#c8b9ee]',
-    slate: selected
-      ? 'border-[#6c7b8a]/42 bg-[#6c7b8a]/14 text-[#465765] dark:border-[#9aa8b5]/35 dark:bg-[#6c7b8a]/18 dark:text-[#c3ccd5]'
-      : 'border-[#6c7b8a]/16 bg-[#6c7b8a]/9 text-[#536473] dark:border-[#9aa8b5]/22 dark:bg-[#6c7b8a]/12 dark:text-[#c3ccd5]',
+    teal: selected
+      ? 'border-[#4f8f83]/42 bg-[#4f8f83]/16 text-[#28695d] dark:border-[#7bc0b1]/38 dark:bg-[#4f8f83]/20 dark:text-[#9bd5c8]'
+      : 'border-[#4f8f83]/18 bg-[#4f8f83]/10 text-[#347569] dark:border-[#7bc0b1]/22 dark:bg-[#4f8f83]/12 dark:text-[#9bd5c8]',
   }
 
   return tones[tone]
@@ -218,9 +201,9 @@ function IntentChoice({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`group flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
+      className={`group flex w-full items-center gap-3 rounded-lg border px-3 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
         selected
-          ? 'border-gold/46 bg-[linear-gradient(180deg,rgba(255,250,241,0.98),rgba(247,237,219,0.94))] text-ink shadow-[0_12px_26px_rgba(122,84,32,0.12),inset_0_0_0_1px_rgba(155,99,40,0.14)] dark:border-gold/38 dark:bg-[linear-gradient(180deg,rgba(46,35,55,0.98),rgba(28,22,38,0.94))] dark:text-dark-text'
+          ? 'border-gold/46 bg-white/88 text-ink shadow-[0_12px_26px_rgba(122,84,32,0.12),inset_0_0_0_1px_rgba(155,99,40,0.14)] dark:border-gold/38 dark:bg-white/[0.075] dark:text-dark-text'
           : 'border-sand/20 bg-white/64 text-ink/82 hover:border-gold/30 hover:bg-white/82 dark:border-dark-text/10 dark:bg-white/[0.045] dark:text-dark-text/76 dark:hover:border-gold/22'
       }`}
       data-testid={`onboarding-intent-${choice.id}`}
@@ -232,17 +215,16 @@ function IntentChoice({
         <span className="block font-sans text-sm font-semibold leading-tight text-ink dark:text-dark-text">
           {choice.title}
         </span>
-        <span className="mt-1 block text-xs leading-5 text-ink/60 dark:text-dark-text/65">
+        <span className="mt-1 block text-xs leading-5 text-ink/68 dark:text-dark-text/65">
           {choice.body}
         </span>
         <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] ${
           selected
             ? 'bg-gold/16 text-gold-dark dark:bg-gold/16 dark:text-gold-light'
-            : 'bg-gold/8 text-gold dark:bg-gold/12 dark:text-gold-light'
+            : 'bg-gold/8 text-gold-dark dark:bg-gold/12 dark:text-gold-light'
         }`}>
           {selected ? `${selectedLabel} · ${presetLabel}` : presetLabel}
         </span>
-        {choice.legacyLabel ? <span className="sr-only">{choice.legacyLabel}</span> : null}
       </span>
       <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${
         selected
@@ -316,7 +298,7 @@ function StepIndicator({
 
   return (
     <div className="flex items-center justify-between gap-3">
-      <p className="font-sans text-xs uppercase tracking-[0.16em] text-ink/45 dark:text-dark-text/45">
+      <p className="font-sans text-xs uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">
         {copy.onboarding.step} {stepNumber} {copy.common.of} {TOTAL_STEPS}
       </p>
       <div className="flex items-center gap-2">
@@ -329,7 +311,7 @@ function StepIndicator({
               key={step}
               className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${
                 isActive
-                  ? 'w-10 bg-gradient-to-r from-saffron to-saffron-light'
+                  ? 'w-10 bg-saffron dark:bg-gold-light'
                   : isComplete
                     ? 'w-4 bg-gold/70'
                     : 'w-4 bg-sand/30 dark:bg-dark-text/15'
@@ -353,10 +335,6 @@ export default function OnboardingSheet({
   setMeaningLanguage,
   englishSource,
   setEnglishSource,
-  learningLevel,
-  setLearningLevel,
-  audience,
-  setAudience,
   learningGoal,
   setLearningGoal,
   onComplete,
@@ -366,6 +344,11 @@ export default function OnboardingSheet({
   const [currentStep, setCurrentStep] = useState<OnboardingStep>('intent')
   const [showFineTune, setShowFineTune] = useState(false)
   const [showBackup, setShowBackup] = useState(false)
+  const overlayReturnFocusRef = useRef<HTMLElement | null>(
+    presentation === 'overlay' && typeof document !== 'undefined'
+      ? document.activeElement as HTMLElement | null
+      : null
+  )
 
   const copy = getUiCopy(locale)
   const {
@@ -378,70 +361,44 @@ export default function OnboardingSheet({
   const editorial = getEditorialCopy(locale)
   const englishSourceLabels = getEnglishSourceLabels(locale)
   const learningGoalLabels = getLearningGoalLabels(locale)
-  const learningLevelLabels = getLearningLevelLabels(locale)
   const meaningLanguageLabels = getMeaningLanguageLabels(locale)
-  const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
   const scriptModeLabels = getScriptModeLabels(locale)
   const intentChoices = useMemo<OnboardingIntentChoice[]>(() => [
     {
       id: 'habit',
-      title: 'Build a daily reading habit',
-      body: 'Stay consistent with scripture',
+      title: learningGoalLabels.habit,
+      body: copy.onboarding.goalHabitBody,
       goal: 'habit',
       preset: 'guided',
-      learningLevel: 'beginner',
-      audience: 'adult',
       icon: IconLibrary,
       tone: 'gold',
-      legacyLabel: learningGoalLabels.habit,
-    },
-    {
-      id: 'peace',
-      title: 'Find peace and clarity',
-      body: 'Calm my mind, center my heart',
-      goal: 'read',
-      preset: 'quiet',
-      learningLevel: 'beginner',
-      audience: 'adult',
-      icon: IconHeart,
-      tone: 'terracotta',
-      legacyLabel: learningGoalLabels.read,
-    },
-    {
-      id: 'grow',
-      title: 'Grow spiritually',
-      body: 'Deepen my connection',
-      goal: 'habit',
-      preset: 'deep',
-      learningLevel: 'daily-reader',
-      audience: 'adult',
-      icon: IconLeaf,
-      tone: 'sage',
     },
     {
       id: 'understand',
-      title: 'Understand scripture',
-      body: 'Read with meaning and context',
+      title: learningGoalLabels.understand,
+      body: copy.onboarding.goalUnderstandBody,
       goal: 'understand',
       preset: 'guided',
-      learningLevel: 'familiar',
-      audience: 'adult',
       icon: IconUsers,
-      tone: 'mauve',
-      legacyLabel: learningGoalLabels.understand,
+      tone: 'teal',
     },
     {
-      id: 'explore',
-      title: 'Just exploring',
-      body: 'I am not sure yet',
+      id: 'read',
+      title: learningGoalLabels.read,
+      body: copy.onboarding.goalReadBody,
       goal: 'read',
-      preset: 'guided',
-      learningLevel: 'beginner',
-      audience: 'adult',
-      icon: IconStar,
-      tone: 'slate',
+      preset: 'quiet',
+      icon: IconHeart,
+      tone: 'terracotta',
     },
-  ], [learningGoalLabels.habit, learningGoalLabels.read, learningGoalLabels.understand])
+  ], [
+    copy.onboarding.goalHabitBody,
+    copy.onboarding.goalReadBody,
+    copy.onboarding.goalUnderstandBody,
+    learningGoalLabels.habit,
+    learningGoalLabels.read,
+    learningGoalLabels.understand,
+  ])
   const [selectedIntentId, setSelectedIntentId] = useState<OnboardingIntentId>(() => getDefaultIntentId(learningGoal, presentation))
   const [magicLinkEmail, setMagicLinkEmail] = useState('')
   const selectedIntent = intentChoices.find(choice => choice.id === selectedIntentId) ?? intentChoices[0]
@@ -492,6 +449,7 @@ export default function OnboardingSheet({
     const previousBodyOverflow = document.body.style.overflow
     const previousBodyOverscroll = document.body.style.overscrollBehavior
     const previousHtmlOverflow = document.documentElement.style.overflow
+    const returnFocusElement = overlayReturnFocusRef.current
 
     document.body.style.overflow = 'hidden'
     document.body.style.overscrollBehavior = 'none'
@@ -501,6 +459,7 @@ export default function OnboardingSheet({
       document.body.style.overflow = previousBodyOverflow
       document.body.style.overscrollBehavior = previousBodyOverscroll
       document.documentElement.style.overflow = previousHtmlOverflow
+      window.requestAnimationFrame(() => returnFocusElement?.focus())
     }
   }, [presentation])
 
@@ -509,8 +468,6 @@ export default function OnboardingSheet({
 
     initialIntentAppliedRef.current = true
     setLearningGoal(selectedIntent.goal)
-    setLearningLevel(selectedIntent.learningLevel)
-    setAudience(selectedIntent.audience)
     applyPreset(
       selectedIntent.preset,
       locale,
@@ -520,13 +477,9 @@ export default function OnboardingSheet({
   }, [
     locale,
     presentation,
-    selectedIntent.audience,
     selectedIntent.goal,
-    selectedIntent.learningLevel,
     selectedIntent.preset,
-    setAudience,
     setLearningGoal,
-    setLearningLevel,
     setMeaningLanguage,
     setShowTransliteration,
   ])
@@ -534,8 +487,6 @@ export default function OnboardingSheet({
   function handleIntentSelection(choice: OnboardingIntentChoice) {
     setSelectedIntentId(choice.id)
     setLearningGoal(choice.goal)
-    setLearningLevel(choice.learningLevel)
-    setAudience(choice.audience)
     applyPreset(
       choice.preset,
       locale,
@@ -576,7 +527,6 @@ export default function OnboardingSheet({
     if (currentStep === 'intent') return `${copy.common.selected} · ${selectedIntent.title} · ${selectedPresetTitle}`
     if (currentStep === 'script') return `${copy.onboarding.readingScript} · ${scriptModeLabels[scriptMode]}`
     if (currentStep === 'support') return `${copy.onboarding.stylePanelEyebrow} · ${selectedPresetTitle}`
-    if (currentStep === 'profile') return `${copy.onboarding.learningLevel} · ${learningLevelLabels[learningLevel]}`
     return routeSummary
   }
 
@@ -588,19 +538,6 @@ export default function OnboardingSheet({
         data-ai-state={onboardingAuthState}
         data-ai-error={onboardingErrorCode ?? undefined}
       >
-        <div className="max-w-[28rem] space-y-2">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/65">
-            {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
-          </p>
-          <p className="text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-            {currentUser
-              ? copy.onboarding.authConnectedBody
-              : isProviderLoading
-                ? copy.onboarding.authChecking
-                : copy.onboarding.authBody}
-          </p>
-        </div>
-
         {connectedLabel && (
           <p className="rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/70 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/70">
             {connectedLabel}
@@ -608,21 +545,16 @@ export default function OnboardingSheet({
         )}
 
         {lastError && !currentUser && (
-          <p className="rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
+          <p className="rounded-lg border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
             {lastError}
           </p>
         )}
 
-        {!currentUser && (
-          <button
-            type="button"
-            onClick={() => void onComplete()}
-            disabled={isCompleting || isCloudBusy}
-            className="w-full rounded-[20px] border border-sand/15 bg-white/78 px-4 py-3 text-sm font-medium text-ink transition-colors duration-200 hover:border-gold/25 hover:text-gold-dark disabled:cursor-not-allowed disabled:opacity-70 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text dark:hover:text-gold-light"
-          >
-            {copy.onboarding.authGuest}
-          </button>
-        )}
+        {!currentUser && supportedProviders.length === 0 && !lastError && !isProviderLoading ? (
+          <p className="text-xs leading-5 text-ink/68 dark:text-dark-text/64">
+            {copy.onboarding.authUnavailable}
+          </p>
+        ) : null}
 
         {!currentUser && supportedProviders.length > 0 && (
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -638,7 +570,7 @@ export default function OnboardingSheet({
                       onChange={event => setMagicLinkEmail(event.target.value)}
                       type="email"
                       placeholder={copy.onboarding.authEmailPlaceholder}
-                      className="w-full rounded-[18px] border border-sand/15 bg-white/78 px-4 py-3 text-sm text-ink outline-none focus:border-gold/30 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text"
+                      className="w-full rounded-lg border border-sand/15 bg-white/78 px-4 py-3 text-sm text-ink outline-none focus:border-gold/30 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text"
                     />
                   ) : null}
                   <ProviderChoice
@@ -668,10 +600,10 @@ export default function OnboardingSheet({
               testId="onboarding-brand-mark"
             />
             <h3 className="mt-3 font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-              Welcome to NaamRas
+              {editorial?.brand.name ?? 'NaamRas'}
             </h3>
             <p className="mx-auto mt-2 max-w-[18rem] text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-              Begin your journey with a simple intention.
+              {copy.onboarding.intentBody}
             </p>
           </div>
 
@@ -685,7 +617,7 @@ export default function OnboardingSheet({
               [copy.onboarding.previewEyebrow, routeSummary],
             ].map(([label, value]) => (
                 <div key={label} className="rounded-md border border-sand/12 bg-parchment-low/70 px-2.5 py-2 dark:border-dark-text/10 dark:bg-white/[0.04]">
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">
                   {label}
                 </p>
                 <p className="mt-1 line-clamp-2 font-sans text-[11px] leading-4 text-ink/70 dark:text-dark-text/75">
@@ -697,7 +629,7 @@ export default function OnboardingSheet({
 
           <div>
             <p className="mb-3 font-display text-[1.35rem] leading-none text-ink dark:text-dark-text">
-              I&apos;m here to...
+              {copy.onboarding.intentTitle}
             </p>
             <div className="grid gap-2">
               {intentChoices.map(choice => (
@@ -719,10 +651,10 @@ export default function OnboardingSheet({
             data-ai-surface="onboarding-setup-helper"
           >
             <div className="flex items-start gap-3">
-              <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_0_18px_rgba(224,154,70,0.45)]" />
+              <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-saffron shadow-[0_0_18px_rgba(224,154,70,0.45)]" />
               <div className="min-w-0">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                  Curated setup · {getPresetTitle(selectedIntent.preset, copy.onboarding)}
+                <p className="text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
+                  {copy.onboarding.curatedSetup} · {getPresetTitle(selectedIntent.preset, copy.onboarding)}
                 </p>
                 <p className="mt-1 text-sm leading-6 text-ink/70 dark:text-dark-text/70">
                   {goalBody}
@@ -730,12 +662,11 @@ export default function OnboardingSheet({
                 <div className="mt-3 flex flex-wrap gap-2">
                   {[
                     learningGoalLabels[selectedIntent.goal],
-                    learningLevelLabels[selectedIntent.learningLevel],
-                    onboardingAudienceLabels[selectedIntent.audience],
+                    getPresetTitle(selectedIntent.preset, copy.onboarding),
                   ].map(label => (
                     <span
                       key={label}
-                      className="rounded-full border border-sand/15 bg-white/58 px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink/55 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/62"
+                      className="rounded-full border border-sand/15 bg-white/58 px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink/68 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/64"
                     >
                       {label}
                     </span>
@@ -770,10 +701,10 @@ export default function OnboardingSheet({
         <div className="space-y-2">
           <p className="eyebrow">{copy.onboarding.readingScript}</p>
           <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-            Choose the script your reader opens with.
+            {copy.onboarding.scriptTitle}
           </h3>
           <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
-            This updates the actual reader default used across Read, Hukamnama, and Saved passages.
+            {copy.onboarding.scriptBody}
           </p>
         </div>
 
@@ -786,7 +717,7 @@ export default function OnboardingSheet({
                 type="button"
                 onClick={() => setScriptMode(mode)}
                 aria-pressed={selected}
-                className={`rounded-xl border px-4 py-4 text-left transition-[border-color,background-color,color,box-shadow] duration-200 ${
+                className={`rounded-lg border px-4 py-4 text-left transition-[border-color,background-color,color,box-shadow] duration-200 ${
                   selected
                     ? 'border-gold/45 bg-gold/12 text-ink shadow-[0_12px_24px_rgba(122,84,32,0.10)] dark:border-gold/34 dark:bg-gold/14 dark:text-dark-text'
                     : 'border-sand/18 bg-white/68 text-ink/76 dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/74'
@@ -799,7 +730,7 @@ export default function OnboardingSheet({
                 >
                   {renderScriptText(SAMPLE_LINE.gurmukhi, mode)}
                 </span>
-                <span className="mt-3 block text-xs leading-5 text-ink/56 dark:text-dark-text/58">
+                <span className="mt-3 block text-xs leading-5 text-ink/68 dark:text-dark-text/64">
                   {selected ? copy.common.selected : copy.common.tapToUse}
                 </span>
               </button>
@@ -818,10 +749,10 @@ export default function OnboardingSheet({
         <div className="space-y-2">
           <p className="eyebrow">{copy.onboarding.stylePanelEyebrow}</p>
           <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-            Decide how much support appears while reading.
+            {copy.onboarding.styleTitle}
           </h3>
           <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
-            These choices change meaning and transliteration defaults immediately, so the first reader is not a generic setup screen.
+            {copy.onboarding.styleBody}
           </p>
         </div>
 
@@ -841,7 +772,7 @@ export default function OnboardingSheet({
                 type="button"
                 onClick={() => handlePresetSelection(preset)}
                 aria-pressed={selected}
-                className={`rounded-xl border px-4 py-4 text-left transition-[border-color,background-color,color,box-shadow] duration-200 ${
+                className={`rounded-lg border px-4 py-4 text-left transition-[border-color,background-color,color,box-shadow] duration-200 ${
                   selected
                     ? 'border-gold/45 bg-gold/12 text-ink shadow-[0_12px_24px_rgba(122,84,32,0.10)] dark:border-gold/34 dark:bg-gold/14 dark:text-dark-text'
                     : 'border-sand/18 bg-white/68 text-ink/76 dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/74'
@@ -850,12 +781,12 @@ export default function OnboardingSheet({
                 <span className="flex items-start justify-between gap-3">
                   <span>
                     <span className="block font-sans text-sm font-semibold">{title}</span>
-                    <span className="mt-1 block text-xs leading-5 text-ink/58 dark:text-dark-text/62">{body}</span>
+                    <span className="mt-1 block text-xs leading-5 text-ink/68 dark:text-dark-text/64">{body}</span>
                   </span>
                   <span className={`mt-0.5 rounded-full px-2 py-1 text-[10px] uppercase tracking-[0.14em] ${
                     selected
                       ? 'bg-gold/18 text-gold-dark dark:text-gold-light'
-                      : 'bg-ink/5 text-ink/45 dark:bg-white/8 dark:text-dark-text/45'
+                      : 'bg-ink/5 text-ink/68 dark:bg-white/8 dark:text-dark-text/64'
                   }`}>
                     {selected ? copy.common.selected : copy.common.tapToUse}
                   </span>
@@ -897,64 +828,6 @@ export default function OnboardingSheet({
     )
   }
 
-  function renderProfileStep() {
-    return (
-      <div className="space-y-4" data-testid="onboarding-profile-step">
-        <div className="space-y-2">
-          <p className="eyebrow">{copy.onboarding.learningLevel}</p>
-          <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-            Set the reading profile Home will respond to.
-          </h3>
-          <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
-            Home, Read, and Saved use this profile to choose whether to emphasize reading, meaning, review, or daily rhythm.
-          </p>
-        </div>
-
-        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
-          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.learningLevel}</p>
-          <div className="grid grid-cols-3 gap-2">
-            {(['beginner', 'familiar', 'daily-reader'] as const).map(level => (
-              <MiniChoice
-                key={level}
-                label={learningLevelLabels[level]}
-                selected={learningLevel === level}
-                onClick={() => setLearningLevel(level)}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
-          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.audience}</p>
-          <div className="grid grid-cols-3 gap-2">
-            {(['child', 'teen', 'adult'] as const).map(option => (
-              <MiniChoice
-                key={option}
-                label={onboardingAudienceLabels[option]}
-                selected={audience === option}
-                onClick={() => setAudience(option)}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
-          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">Reading intent</p>
-          <div className="grid gap-2">
-            {(['read', 'understand', 'habit'] as const).map(goal => (
-              <MiniChoice
-                key={goal}
-                label={learningGoalLabels[goal]}
-                selected={learningGoal === goal}
-                onClick={() => setLearningGoal(goal)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   function renderPreviewStep() {
     const previewSupportSummary = showTransliteration
       ? `${copy.onboarding.transliteration} ${copy.common.on}`
@@ -970,29 +843,29 @@ export default function OnboardingSheet({
           <h3 className="font-display text-[1.8rem] leading-tight text-ink dark:text-dark-text">
             {copy.onboarding.previewTitle}
           </h3>
-          <p className="mt-2 text-sm leading-5 text-ink/60 dark:text-dark-text/65">
+          <p className="mt-2 text-sm leading-5 text-ink/68 dark:text-dark-text/65">
             {copy.onboarding.previewBody}
           </p>
         </div>
 
         <div
-          className="overflow-hidden rounded-xl border border-gold/18 bg-[linear-gradient(180deg,rgba(255,252,246,0.98),rgba(244,235,220,0.9))] p-4 shadow-[0_12px_28px_rgba(122,84,32,0.10)] dark:border-gold/14 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.96),rgba(25,20,34,0.96))]"
+          className="overflow-hidden rounded-lg border border-gold/18 bg-parchment-low/80 p-4 shadow-[0_12px_28px_rgba(122,84,32,0.10)] dark:border-gold/14 dark:bg-white/[0.055]"
           data-testid="onboarding-preview-hero"
           data-ai-surface="onboarding-preview-hero"
         >
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                 {copy.onboarding.previewEyebrow}
               </p>
               <p className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">
                 {primaryActionLabel}
               </p>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-ink/50 dark:text-dark-text/55">
+              <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">
                 {previewSummaryLine}
               </p>
             </div>
-            <span className="rounded-full border border-gold/18 bg-white/65 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-gold dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
+            <span className="rounded-full border border-gold/18 bg-white/65 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-gold-dark dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
               {copy.onboarding.ready}
             </span>
           </div>
@@ -1005,7 +878,7 @@ export default function OnboardingSheet({
               {previewScript}
             </p>
             {showTransliteration && (
-              <p className="mt-3 text-sm italic text-ink/60 dark:text-dark-text/60">
+              <p className="mt-3 text-sm italic text-ink/68 dark:text-dark-text/64">
                 {SAMPLE_LINE.transliteration}
               </p>
             )}
@@ -1019,7 +892,7 @@ export default function OnboardingSheet({
                 {previewMeaning}
               </p>
             ) : (
-              <p className="mt-4 text-sm leading-6 text-ink/55 dark:text-dark-text/55">
+              <p className="mt-4 text-sm leading-6 text-ink/68 dark:text-dark-text/64">
                 {copy.onboarding.textFirstBody}
               </p>
             )}
@@ -1039,7 +912,7 @@ export default function OnboardingSheet({
     <div
       className={`relative flex flex-col ${
         isOverlayPresentation
-          ? 'h-full min-h-0 overflow-hidden rounded-xl border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card'
+          ? 'h-full min-h-0 overflow-hidden rounded-lg border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card'
           : 'min-h-0 flex-1 overflow-visible'
       }`}
       data-testid={isOverlayPresentation ? 'onboarding-dialog' : 'onboarding-first-run-panel'}
@@ -1050,12 +923,12 @@ export default function OnboardingSheet({
         !isOverlayPresentation
           ? 'sr-only'
           : isOverlayPresentation
-          ? 'border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.96),rgba(25,20,34,0.88))]'
+          ? 'border-b border-sand/10 bg-parchment-low/80 px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-dark-surface'
           : 'px-1 pb-3 pt-1'
       }`}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+            <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
               {copy.onboarding.eyebrow}
             </p>
             <h2 id={titleId} className="font-display text-[1.55rem] leading-tight text-ink dark:text-dark-text">
@@ -1103,9 +976,7 @@ export default function OnboardingSheet({
               ? renderScriptStep()
               : currentStep === 'support'
                 ? renderSupportStep()
-                : currentStep === 'profile'
-                  ? renderProfileStep()
-                  : renderPreviewStep()}
+                : renderPreviewStep()}
         </div>
       </div>
 
@@ -1120,19 +991,19 @@ export default function OnboardingSheet({
           <div
             className={isOverlayPresentation
               ? 'space-y-0'
-              : 'rounded-xl border border-sand/18 bg-parchment-card px-4 py-4 shadow-[0_-10px_24px_rgba(122,84,32,0.10)] dark:border-white/5 dark:bg-dark-card'}
+              : 'rounded-lg border border-sand/18 bg-parchment-card px-4 py-4 shadow-[0_-10px_24px_rgba(122,84,32,0.10)] dark:border-white/5 dark:bg-dark-card'}
             data-testid="onboarding-setup-action-bar"
             data-ai-surface="onboarding-setup-action-bar"
           >
             {!isOverlayPresentation && (
-              <p className="mb-3 text-xs uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/55">
+              <p className="mb-3 text-xs uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">
                 {getStepActionSummary()}
               </p>
             )}
             <button
               type="button"
               onClick={goToNextStep}
-              className="w-full rounded-lg bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong"
+              className="w-full rounded-lg bg-saffron py-3 text-sm font-semibold text-white shadow-gold-strong transition-colors hover:bg-gold dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
               data-testid="onboarding-setup-primary-action"
             >
               {copy.common.continueLabel}
@@ -1143,14 +1014,14 @@ export default function OnboardingSheet({
             className={`${
               isOverlayPresentation
                 ? 'border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
-                : 'rounded-xl border border-sand/18 bg-parchment-card px-4 py-4 shadow-[0_-10px_24px_rgba(122,84,32,0.10)] dark:border-white/5 dark:bg-dark-card'
+                : 'rounded-lg border border-sand/18 bg-parchment-card px-4 py-4 shadow-[0_-10px_24px_rgba(122,84,32,0.10)] dark:border-white/5 dark:bg-dark-card'
             }`}
             data-testid="onboarding-preview-action-bar"
             data-ai-surface="onboarding-preview-action-bar"
           >
             <div className="space-y-3">
               <div className="max-w-[28rem] space-y-1">
-                <p className="text-[11px] tracking-[0.12em] text-ink/40 dark:text-dark-text/40">
+                <p className="text-[11px] tracking-[0.12em] text-ink/68 dark:text-dark-text/64">
                   {copy.onboarding.previewSupportTitle}
                 </p>
                 <p className="text-sm leading-6 text-ink/70 dark:text-dark-text/70">
@@ -1164,12 +1035,12 @@ export default function OnboardingSheet({
                 disabled={isCompleting || (!currentUser && isCloudBusy)}
                 data-testid="onboarding-preview-primary-action"
                 data-ai-action="complete-onboarding"
-                className="w-full rounded-lg bg-gradient-to-r from-saffron to-saffron-light py-4 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+                className="w-full rounded-lg bg-saffron py-4 text-sm font-semibold text-white shadow-gold-strong transition-colors hover:bg-gold disabled:cursor-not-allowed disabled:opacity-70 dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
               >
                 {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
               </button>
 
-              <div className="rounded-lg border border-sand/18 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-white/[0.04]">
+              <div className="border-t border-sand/18 pt-3 dark:border-dark-text/10">
                 <button
                   type="button"
                   onClick={() => setShowBackup(value => !value)}
@@ -1178,14 +1049,18 @@ export default function OnboardingSheet({
                   data-testid="onboarding-backup-toggle"
                 >
                   <span>
-                    <span className="block text-[11px] uppercase tracking-[0.16em] text-gold dark:text-gold-light">
-                      {copy.onboarding.authTitle}
+                    <span className="block text-[11px] uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">
+                      {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
                     </span>
-                    <span className="mt-1 block text-xs leading-5 text-ink/60 dark:text-dark-text/60">
-                      {copy.onboarding.authBody}
+                    <span className="mt-1 block text-xs leading-5 text-ink/68 dark:text-dark-text/64">
+                      {currentUser
+                        ? copy.onboarding.authConnectedBody
+                        : isProviderLoading
+                          ? copy.onboarding.authChecking
+                          : copy.onboarding.authBody}
                     </span>
                   </span>
-                  <span className="shrink-0 rounded-full border border-sand/20 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-ink/50 dark:border-dark-text/14 dark:text-dark-text/55">
+                  <span className="shrink-0 rounded-full border border-sand/20 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-ink/68 dark:border-dark-text/14 dark:text-dark-text/64">
                     {showBackup ? copy.common.hide : copy.common.show}
                   </span>
                 </button>
@@ -1197,16 +1072,16 @@ export default function OnboardingSheet({
                 <button
                   type="button"
                   onClick={() => setShowFineTune(value => !value)}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-ink/55 transition-colors duration-200 hover:text-ink/70 dark:text-dark-text/60 dark:hover:text-dark-text/85"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink/68 transition-colors duration-200 hover:text-ink/70 dark:text-dark-text/64 dark:hover:text-dark-text/85"
                   aria-expanded={showFineTune}
                   aria-controls={fineTunePanelId}
                 >
                   <span>{showFineTune ? copy.onboarding.hideTuning : copy.onboarding.tuneReader}</span>
-                  <span className="rounded-full border border-sand/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-ink/45 dark:border-dark-text/14 dark:text-dark-text/50">
+                  <span className="rounded-full border border-sand/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-ink/68 dark:border-dark-text/14 dark:text-dark-text/64">
                     {showFineTune ? copy.common.hide : copy.common.show}
                   </span>
                 </button>
-                <p className="max-w-[28rem] text-xs leading-5 text-ink/55 dark:text-dark-text/60">
+                <p className="max-w-[28rem] text-xs leading-5 text-ink/68 dark:text-dark-text/64">
                   {copy.onboarding.fineTune}
                 </p>
               </div>
@@ -1215,7 +1090,7 @@ export default function OnboardingSheet({
             {showFineTune && (
               <div
                 id={fineTunePanelId}
-                className="mt-4 space-y-4 rounded-lg border border-sand/15 bg-white/72 p-4 shadow-[0_10px_22px_rgba(122,84,32,0.08)] dark:border-dark-text/10 dark:bg-white/[0.04]"
+                className="mt-4 space-y-4 border-t border-sand/15 pt-4 dark:border-dark-text/10"
               >
                 <div>
                   <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.readingScript}</p>
@@ -1264,7 +1139,7 @@ export default function OnboardingSheet({
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-sm text-ink dark:text-dark-text">{copy.onboarding.transliteration}</p>
-                    <p className="mt-1 text-xs text-ink/55 dark:text-dark-text/55">
+                    <p className="mt-1 text-xs text-ink/68 dark:text-dark-text/64">
                       {showTransliteration ? copy.common.on : copy.common.off}
                     </p>
                   </div>
@@ -1282,34 +1157,6 @@ export default function OnboardingSheet({
                   </button>
                 </div>
 
-                <div>
-                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.learningLevel}</p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {(['beginner', 'familiar', 'daily-reader'] as const).map(level => (
-                      <MiniChoice
-                        key={level}
-                        label={learningLevelLabels[level]}
-                        selected={learningLevel === level}
-                        onClick={() => setLearningLevel(level)}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.audience}</p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {(['child', 'teen', 'adult'] as const).map(option => (
-                      <MiniChoice
-                        key={option}
-                        label={onboardingAudienceLabels[option]}
-                        selected={audience === option}
-                        onClick={() => setAudience(option)}
-                      />
-                    ))}
-                  </div>
-                </div>
-
               </div>
             )}
           </div>
@@ -1320,27 +1167,34 @@ export default function OnboardingSheet({
 
   if (presentation === 'overlay') {
     return (
-      <div
-        className="fixed inset-0 z-[110] overflow-hidden bg-ink/55 backdrop-blur-sm dark:bg-black/80"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        aria-describedby={descriptionId}
-        data-testid="onboarding-overlay"
-        data-page="onboarding-overlay"
-        data-ai-surface="onboarding-overlay"
-        data-ai-state="ready"
-      >
-        <div
-          className="mx-auto flex h-[100dvh] w-full max-w-md flex-col px-4"
-          style={{
-            paddingTop: 'max(env(safe-area-inset-top), 1rem)',
-            paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)',
-          }}
-        >
-          {chrome}
-        </div>
-      </div>
+      <Dialog.Root open onOpenChange={nextOpen => {
+        if (!nextOpen) onDismiss?.()
+      }}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[110] bg-ink/55 backdrop-blur-sm dark:bg-black/80" />
+          <Dialog.Content
+            className="fixed inset-0 z-[111] overflow-hidden outline-none"
+            data-testid="onboarding-overlay"
+            data-page="onboarding-overlay"
+            data-ai-surface="onboarding-overlay"
+            data-ai-state="ready"
+          >
+            <Dialog.Title className="sr-only">{copy.onboarding.title}</Dialog.Title>
+            <Dialog.Description className="sr-only">
+              {editorial?.onboarding.brandBody ?? copy.onboarding.body}
+            </Dialog.Description>
+            <div
+              className="mx-auto flex h-[100dvh] w-full max-w-md flex-col px-4"
+              style={{
+                paddingTop: 'max(env(safe-area-inset-top), 1rem)',
+                paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)',
+              }}
+            >
+              {chrome}
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     )
   }
 
@@ -1364,7 +1218,7 @@ export default function OnboardingSheet({
         <header className="sr-only">
           <div className="min-w-0">
             <p className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
-            <p className="mt-1 max-w-[22rem] text-xs leading-4 text-ink/60 dark:text-dark-text/60">{editorial?.brand.promise ?? copy.home.promise}</p>
+            <p className="mt-1 max-w-[22rem] text-xs leading-4 text-ink/68 dark:text-dark-text/64">{editorial?.brand.promise ?? copy.home.promise}</p>
           </div>
           <span className="shrink-0 rounded-full border border-sand/18 bg-white/62 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-gold-light">
             {copy.onboarding.ready}

@@ -27,5 +27,14 @@ struct NaamRasRootView: View {
             }
         }
         .animation(.snappy(duration: 0.35), value: appState.profile.completed)
+        .preferredColorScheme(preferredColorScheme)
+    }
+
+    private var preferredColorScheme: ColorScheme? {
+        switch appState.appearanceMode {
+        case .system: nil
+        case .light: .light
+        case .dark: .dark
+        }
     }
 }

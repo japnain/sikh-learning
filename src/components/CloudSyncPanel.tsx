@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { IconChevronDown, IconChevronUp } from './icons'
-import { sendMagicLink, signInWithProvider, signOutOfCloud, syncNow } from '../supabase/runtime'
+import ModalSheet from './ModalSheet'
+import { deleteCloudAccount, sendMagicLink, signInWithProvider, signOutOfCloud, syncNow } from '../supabase/runtime'
 import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
@@ -20,6 +21,13 @@ const CLOUD_COPY = {
     emailPlaceholder: 'Email for magic link',
     syncNow: 'Sync now',
     signOut: 'Sign out',
+    deleteAccount: 'Delete cloud account',
+    deleteTitle: 'Delete your cloud account?',
+    deleteDescription: 'Your account and all synced NaamRas data will be permanently deleted. This cannot be undone.',
+    deleteLocalNote: 'Guest data on this device stays available until you clear the app or site data.',
+    deleteConfirm: 'Delete account permanently',
+    deleteCancel: 'Keep account',
+    deleting: 'Deleting account…',
     queueReady: 'Changes are queued and will sync on the next successful connection.',
     offline: 'You are offline. Local changes are still safe on this device.',
     lastSynced: 'Last synced',
@@ -61,6 +69,13 @@ const CLOUD_COPY = {
     emailPlaceholder: 'Magic link ਲਈ email',
     syncNow: 'ਹੁਣੇ sync ਕਰੋ',
     signOut: 'Sign out',
+    deleteAccount: 'ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਓ',
+    deleteTitle: 'ਆਪਣਾ ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਉਣਾ ਹੈ?',
+    deleteDescription: 'ਤੁਹਾਡਾ ਖਾਤਾ ਅਤੇ ਸਾਰਾ sync ਕੀਤਾ NaamRas ਡਾਟਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟ ਜਾਵੇਗਾ। ਇਹ ਵਾਪਸ ਨਹੀਂ ਹੋ ਸਕਦਾ।',
+    deleteLocalNote: 'ਇਸ ਡਿਵਾਈਸ ਦਾ guest ਡਾਟਾ ਤਦ ਤੱਕ ਰਹੇਗਾ ਜਦ ਤੱਕ ਤੁਸੀਂ app ਜਾਂ site data ਸਾਫ਼ ਨਹੀਂ ਕਰਦੇ।',
+    deleteConfirm: 'ਖਾਤਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਓ',
+    deleteCancel: 'ਖਾਤਾ ਰੱਖੋ',
+    deleting: 'ਖਾਤਾ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…',
     queueReady: 'ਬਦਲਾਅ queue ਵਿੱਚ ਹਨ ਅਤੇ ਅਗਲੀ ਸਫਲ ਕਨੈਕਸ਼ਨ ਤੇ sync ਹੋ ਜਾਣਗੇ।',
     offline: 'ਤੁਸੀਂ offline ਹੋ। Local ਬਦਲਾਅ ਇਸ ਡਿਵਾਈਸ ਤੇ ਸੁਰੱਖਿਅਤ ਹਨ।',
     lastSynced: 'ਆਖਰੀ sync',
@@ -102,6 +117,13 @@ const CLOUD_COPY = {
     emailPlaceholder: 'Magic link के लिए email',
     syncNow: 'अभी sync करें',
     signOut: 'Sign out',
+    deleteAccount: 'क्लाउड खाता मिटाएँ',
+    deleteTitle: 'अपना क्लाउड खाता मिटाना है?',
+    deleteDescription: 'आपका खाता और NaamRas में sync किया गया सारा डेटा हमेशा के लिए मिट जाएगा। इसे वापस नहीं लाया जा सकता।',
+    deleteLocalNote: 'इस डिवाइस का guest डेटा तब तक रहेगा जब तक आप app या site data साफ़ नहीं करते।',
+    deleteConfirm: 'खाता हमेशा के लिए मिटाएँ',
+    deleteCancel: 'खाता रखें',
+    deleting: 'खाता मिटाया जा रहा है…',
     queueReady: 'बदलाव queue में हैं और अगली सफल कनेक्शन पर sync हो जाएंगे।',
     offline: 'आप offline हैं। Local बदलाव इस डिवाइस पर सुरक्षित हैं।',
     lastSynced: 'आखिरी sync',
@@ -338,7 +360,7 @@ function getProviderAvailabilityView({
       label: copy.providerNeedsSetup,
       statusLabel: null,
       statusClassName: null,
-      className: 'text-ink/52 dark:text-dark-text/52',
+      className: 'text-ink/68 dark:text-dark-text/64',
     }
   }
 
@@ -378,13 +400,15 @@ export default function CloudSyncPanel() {
   } = useCloudSyncStore()
   const pendingEventsCount = useActivityEventsStore(state => state.pendingEvents.length)
   const [magicLinkEmail, setMagicLinkEmail] = useState('')
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false)
 
   const supportedProviders = availableProviders.filter(
     (provider): provider is keyof typeof PROVIDER_META => provider in PROVIDER_META
   )
   const supportsApple = supportedProviders.includes('apple')
   const supportsEmail = supportedProviders.includes('email')
-  const isBusy = status === 'booting' || status === 'authenticating' || status === 'syncing'
+  const isBusy = status === 'booting' || status === 'authenticating' || status === 'syncing' || isDeletingAccount
   const formattedLastSynced = formatSyncTimestamp(lastSyncedAt, locale)
   const isOffline = status === 'offline' || (typeof navigator !== 'undefined' && navigator.onLine === false)
   const statusView = getStatusView({
@@ -421,6 +445,18 @@ export default function CloudSyncPanel() {
   const scriptureDataStatus = getScriptureDataStatus(copy)
   const panelId = 'more-cloud-sync-panel'
 
+  async function handleDeleteAccount() {
+    if (isDeletingAccount) return
+
+    setIsDeletingAccount(true)
+    const result = await deleteCloudAccount()
+    setIsDeletingAccount(false)
+
+    if (result.ok) {
+      setDeleteDialogOpen(false)
+    }
+  }
+
   return (
     <section
       className="section-shell mb-5 overflow-hidden"
@@ -431,7 +467,6 @@ export default function CloudSyncPanel() {
       data-ai-error={panelError ?? undefined}
     >
       <div className="relative px-5 pt-5 pb-4" data-ai-anchor="cloud-sync-summary">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(232,196,104,0.18),transparent_72%)] dark:bg-[radial-gradient(circle_at_top,rgba(232,196,104,0.12),transparent_72%)]" />
         <button
           type="button"
           onClick={() => setDetailsOpen(current => !current)}
@@ -456,7 +491,7 @@ export default function CloudSyncPanel() {
               {summary}
             </p>
             <div
-              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/56 dark:text-dark-text/58"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64"
               data-ai-surface="cloud-sync-metrics"
               data-ai-state={panelState}
             >
@@ -478,7 +513,7 @@ export default function CloudSyncPanel() {
           </div>
           <span
             className={`icon-surface mt-1 h-10 w-10 shrink-0 ${
-              detailsOpen ? 'text-ink/60 dark:text-dark-text/64' : 'text-gold dark:text-gold-light'
+              detailsOpen ? 'text-ink/68 dark:text-dark-text/64' : 'text-gold-dark dark:text-gold-light'
             }`}
             aria-hidden="true"
           >
@@ -492,8 +527,8 @@ export default function CloudSyncPanel() {
           {!configured ? (
             <div className="hero-surface px-4 py-4" data-ai-surface="cloud-sync-local-only" data-ai-state="empty">
               <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.notConfigured}</p>
-              <p className="mt-3 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/58">{copy.scriptureData}: {scriptureDataStatus}</p>
-              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/55 dark:text-dark-text/55">
+              <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.scriptureData}: {scriptureDataStatus}</p>
+              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/68 dark:text-dark-text/64">
                 <span className="chip-pill">{copy.featureGuest}</span>
                 <span className="chip-pill">{copy.featureLibrary}</span>
                 <span className="chip-pill">{copy.featureMerge}</span>
@@ -506,29 +541,28 @@ export default function CloudSyncPanel() {
               data-ai-state={panelState}
               data-ai-error={panelError ?? undefined}
             >
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/55 to-transparent dark:from-white/5 dark:to-transparent" />
               <div className="relative">
                 {currentUser ? (
                   <>
-                    <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                    <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                       {copy.connectedAs}
                     </p>
                     <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
                       {currentUser.name ?? currentUser.email}
                     </p>
                     {currentUser.name ? (
-                      <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">{currentUser.email}</p>
+                      <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">{currentUser.email}</p>
                     ) : null}
                   </>
                 ) : (
                   <>
                     <p className="font-sans text-sm text-ink/72 dark:text-dark-text/72">{copy.signedOut}</p>
-                    <p className="mt-3 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/58">{copy.mergeHint}</p>
+                    <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.mergeHint}</p>
                   </>
                 )}
 
-                <div className="mt-4 rounded-[20px] border border-sand/12 bg-white/80 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/75">
-                  <div className="flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/60 dark:text-dark-text/60">
+                <div className="mt-4 rounded-lg border border-sand/12 bg-white/80 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/75">
+                  <div className="flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64">
                     <span>{copy.pendingChanges} {pendingEventsCount}</span>
                     <span>{copy.lastSynced} {formattedLastSynced ?? copy.waiting}</span>
                     <span>{copy.syncMode} {currentUser ? copy.cloudMode : copy.guestMode}</span>
@@ -549,7 +583,7 @@ export default function CloudSyncPanel() {
                     return (
                       <div
                         key={providerId}
-                        className={`rounded-[20px] border px-3 py-3 ${
+                        className={`rounded-lg border px-3 py-3 ${
                           enabled
                             ? 'border-gold/20 bg-white/85 dark:border-gold/15 dark:bg-dark-card/80'
                             : 'border-sand/10 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/80'
@@ -571,7 +605,7 @@ export default function CloudSyncPanel() {
                 </div>
 
                 {!supportsApple || !supportsEmail ? (
-                  <p className="mt-4 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/58">{copy.providersHint}</p>
+                  <p className="mt-4 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.providersHint}</p>
                 ) : null}
 
                 <div className="mt-4 space-y-2" aria-live="polite" data-ai-anchor="cloud-sync-notices">
@@ -580,7 +614,7 @@ export default function CloudSyncPanel() {
                   ) : null}
 
                   {syncQueued ? (
-                    <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60">{copy.queueReady}</p>
+                    <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.queueReady}</p>
                   ) : null}
 
                   {lastError ? (
@@ -588,7 +622,7 @@ export default function CloudSyncPanel() {
                   ) : null}
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/55 dark:text-dark-text/55">
+                <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/68 dark:text-dark-text/64">
                   <span className="chip-pill">{copy.featureGuest}</span>
                   <span className="chip-pill">{copy.featureLibrary}</span>
                   <span className="chip-pill">{copy.featureMerge}</span>
@@ -611,7 +645,7 @@ export default function CloudSyncPanel() {
                                 onChange={event => setMagicLinkEmail(event.target.value)}
                                 type="email"
                                 placeholder={copy.emailPlaceholder}
-                                className="w-full rounded-2xl border border-sand/15 bg-white/75 px-4 py-3 font-sans text-sm text-ink outline-none focus:border-gold/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+                                className="w-full rounded-lg border border-sand/15 bg-white/75 px-4 py-3 font-sans text-sm text-ink outline-none focus:border-gold/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
                               />
                             ) : null}
                             <button
@@ -625,9 +659,9 @@ export default function CloudSyncPanel() {
                               }}
                               disabled={isBusy || (isEmail && !emailReady)}
                               data-ai-action={`cloud-sign-in-${providerId}`}
-                              className={`w-full rounded-2xl px-4 py-3 font-sans text-sm font-semibold disabled:opacity-45 ${
+                              className={`w-full rounded-lg px-4 py-3 font-sans text-sm font-semibold disabled:opacity-45 ${
                                 index === 0
-                                  ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                                  ? 'bg-saffron text-white'
                                   : 'border border-sand/15 bg-white/70 text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
                               }`}
                             >
@@ -644,7 +678,7 @@ export default function CloudSyncPanel() {
                         onClick={() => { void syncNow('manual') }}
                         disabled={isBusy}
                         data-ai-action="cloud-sync-now"
-                        className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45"
+                        className="w-full rounded-lg bg-saffron px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45"
                       >
                         {copy.syncNow}
                       </button>
@@ -653,9 +687,18 @@ export default function CloudSyncPanel() {
                         onClick={() => { void signOutOfCloud() }}
                         disabled={isBusy}
                         data-ai-action="cloud-sign-out"
-                        className="w-full rounded-2xl border border-sand/15 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+                        className="w-full rounded-lg border border-sand/15 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
                       >
                         {copy.signOut}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeleteDialogOpen(true)}
+                        disabled={isBusy}
+                        data-ai-action="cloud-delete-account"
+                        className="w-full rounded-lg border border-[#b4553d]/28 bg-[#b4553d]/8 px-4 py-3 font-sans text-sm font-semibold text-[#9b3f2c] disabled:opacity-45 dark:border-[#ffb29d]/22 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]"
+                      >
+                        {copy.deleteAccount}
                       </button>
                     </>
                   )}
@@ -665,6 +708,48 @@ export default function CloudSyncPanel() {
           )}
         </div>
       ) : null}
+
+      <ModalSheet
+        open={deleteDialogOpen}
+        onClose={() => {
+          if (!isDeletingAccount) setDeleteDialogOpen(false)
+        }}
+        title={copy.deleteTitle}
+        description={copy.deleteDescription}
+        className="rounded-lg"
+        testId="cloud-delete-account-dialog"
+      >
+        <div className="px-5 py-5">
+          <p className="eyebrow">{copy.deleteAccount}</p>
+          <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">{copy.deleteTitle}</h2>
+          <p className="mt-3 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/72">{copy.deleteDescription}</p>
+          <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.deleteLocalNote}</p>
+          {lastError ? (
+            <p className="mt-3 font-sans text-xs leading-5 text-[#9b3f2c] dark:text-[#ffb29d]" aria-live="polite">
+              {lastError}
+            </p>
+          ) : null}
+          <div className="mt-5 grid gap-2 sm:grid-cols-2">
+            <button
+              type="button"
+              onClick={() => setDeleteDialogOpen(false)}
+              disabled={isDeletingAccount}
+              className="interactive-focus min-h-[48px] rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/15 dark:text-dark-text"
+            >
+              {copy.deleteCancel}
+            </button>
+            <button
+              type="button"
+              onClick={() => { void handleDeleteAccount() }}
+              disabled={isDeletingAccount}
+              className="interactive-focus min-h-[48px] rounded-lg bg-[#a94732] px-4 font-sans text-sm font-semibold text-white disabled:opacity-45 dark:bg-[#d86f58] dark:text-[#160c09]"
+              data-testid="cloud-delete-account-confirm"
+            >
+              {isDeletingAccount ? copy.deleting : copy.deleteConfirm}
+            </button>
+          </div>
+        </div>
+      </ModalSheet>
     </section>
   )
 }

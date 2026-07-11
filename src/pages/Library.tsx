@@ -111,6 +111,8 @@ export default function Library() {
         </p>
       </div>
 
+      <div className="library-adaptive-layout">
+        <aside className="library-shelf-rail" aria-label="Saved overview">
       <section
         className="hero-surface ornate-top p-5 mb-5"
         aria-labelledby="library-snapshot-title"
@@ -123,20 +125,20 @@ export default function Library() {
               {editorial?.library.snapshotTitle ?? libraryCopy.returnKeep}
             </p>
           </div>
-          <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
+          <IconLibrary size={20} className="text-gold-dark dark:text-gold-light mt-1" />
         </div>
         <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-3">
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.bookmarks}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.bookmarks}</p>
           </div>
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{favorites.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.favorites}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.favorites}</p>
           </div>
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{phrases.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.phrases}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.phrases}</p>
           </div>
         </div>
         {savedShelfNotice ? (
@@ -155,7 +157,7 @@ export default function Library() {
             <div className="mt-4 flex flex-wrap gap-2">
               <Link
                 to="/banis"
-                className="interactive-focus interactive-pill-link rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
+                className="interactive-focus interactive-pill-link rounded-lg bg-saffron px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
               >
                 Browse Read
               </Link>
@@ -169,6 +171,10 @@ export default function Library() {
           </div>
         ) : null}
       </section>
+
+        </aside>
+
+        <div className="library-shelf-content">
 
       {favorites.length > 0 && (
         <section
@@ -188,18 +194,18 @@ export default function Library() {
               <div key={favorite.id} className="section-shell px-4 py-4 relative border border-saffron/12 dark:border-saffron/16">
                 <button
                   onClick={() => removeFavorite(favorite.id)}
-                  className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
+                  className="absolute right-1 top-1 flex min-h-[44px] min-w-[44px] items-center justify-center text-ink/68 dark:text-dark-text/64"
                   aria-label="Remove favorite"
                 >
                   <IconClose size={14} />
                 </button>
                 <Link
                   to={buildSavedStudyPath(favorite)}
-                  className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'favorite' && lastSaved.targetId === favorite.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
+                  className={`interactive-focus interactive-card-link w-full rounded-lg pr-12 text-left ${lastSaved?.kind === 'favorite' && lastSaved.targetId === favorite.id ? 'saved-feedback-highlight' : ''}`}
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <IconHeartFilled size={14} className="text-saffron dark:text-saffron-light" />
-                    <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                    <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                       {SOURCE_SHORT_NAME[favorite.source] ?? favorite.source} · {angLabel(favorite.source)} {favorite.ang}
                     </span>
                   </div>
@@ -242,17 +248,19 @@ export default function Library() {
           </p>
         </Link>
 
-        <Link
-          to="/banis"
-          className="section-shell interactive-focus interactive-card-link p-4 text-left sm:col-span-2"
-          data-testid="library-browse-read"
-        >
-          <p className="eyebrow">Read</p>
-          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Browse Read</p>
-          <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
-            Open exact banis, angs, and scripture sections without leaving the Saved shelf behind.
-          </p>
-        </Link>
+        {currentSession ? (
+          <Link
+            to="/banis"
+            className="section-shell interactive-focus interactive-card-link p-4 text-left sm:col-span-2"
+            data-testid="library-browse-read"
+          >
+            <p className="eyebrow">Read</p>
+            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Browse Read</p>
+            <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
+              Open exact banis, angs, and scripture sections without leaving the Saved shelf behind.
+            </p>
+          </Link>
+        ) : null}
       </div>
 
       {inProgress.length > 0 && (
@@ -271,10 +279,10 @@ export default function Library() {
               >
                 <div className="flex justify-between gap-3">
                   <p className="font-sans text-sm text-ink dark:text-dark-text">{item.name}</p>
-                  <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45">{item.pct}%</p>
+                  <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{item.pct}%</p>
                 </div>
                 <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-2">
-                  <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${item.pct}%` }} />
+                  <div className="h-full rounded-full bg-saffron" style={{ width: `${item.pct}%` }} />
                 </div>
               </Link>
             ))}
@@ -295,7 +303,7 @@ export default function Library() {
             aria-controls="library-bookmarks-panel"
           >
             <div className="text-left flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/12 text-gold-dark dark:bg-gold/14 dark:text-gold-light">
                 <IconBookmarkFilled size={14} />
               </span>
               <div>
@@ -303,7 +311,7 @@ export default function Library() {
                 <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{bookmarks.length} saved passage{bookmarks.length === 1 ? '' : 's'}</p>
               </div>
             </div>
-            <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+            <span className="icon-surface h-8 w-8 text-gold-dark dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
           </button>
           {expanded.bookmarks && (
             <div id="library-bookmarks-panel" className="mt-4 space-y-2">
@@ -314,24 +322,24 @@ export default function Library() {
                 >
                   <button
                     onClick={() => removeBookmark(bookmark.id)}
-                    className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
+                    className="absolute right-1 top-1 flex min-h-[44px] min-w-[44px] items-center justify-center text-ink/68 dark:text-dark-text/64"
                     aria-label="Remove bookmark"
                   >
                     <IconClose size={14} />
                   </button>
                   <Link
                     to={buildSavedStudyPath(bookmark)}
-                    className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'bookmark' && lastSaved.targetId === bookmark.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
+                    className={`interactive-focus interactive-card-link w-full rounded-lg pr-12 text-left ${lastSaved?.kind === 'bookmark' && lastSaved.targetId === bookmark.id ? 'saved-feedback-highlight' : ''}`}
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <IconBookmarkFilled size={14} className="text-gold dark:text-gold-light" />
-                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                      <IconBookmarkFilled size={14} className="text-gold-dark dark:text-gold-light" />
+                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                         {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · {angLabel(bookmark.source)} {bookmark.ang}
                       </span>
                     </div>
                     <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{bookmark.title}</p>
                     {bookmark.description && (
-                      <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-1">{bookmark.description}</p>
+                      <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 italic mt-1">{bookmark.description}</p>
                     )}
                   </Link>
                 </div>
@@ -355,7 +363,7 @@ export default function Library() {
                 to={`/study?source=${entry!.id.split('-')[0]}&ang=${entry!.id.split('-')[1]}`}
                 className="w-full section-shell-quiet interactive-focus interactive-card-link px-4 py-4 text-left"
               >
-                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
                   {entry!.scripture}
                 </p>
                 <p
@@ -370,6 +378,8 @@ export default function Library() {
         </section>
       )}
 
+        </div>
+      </div>
     </div>
   )
 }

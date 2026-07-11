@@ -1,0 +1,50 @@
+ [data-page='nitnem-customize'] [data-testid='nitnem-ritual-order'],
+ [data-page='nitnem-customize'] [data-testid='nitnem-selection'],
+ [data-page='nitnem-customize'] [data-testid='nitnem-completion'] {
+  border: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 760px) {
+  [data-page='more'] {
+    display: grid;
+    max-width: var(--nr-page-max);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--nr-layout-gap);
+    align-items: start;
+  }
+
+  [data-page='more'] > * {
+    min-width: 0;
+    margin-bottom: 0;
+  }
+
+  [data-page='more'] > :nth-child(1),
+  [data-page='more'] > :nth-child(2),
+  [data-page='more'] > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  [data-page='more'] > :nth-child(3),
+  [data-page='more'] > :nth-child(5) {
+    grid-column: 1;
+  }
+
+  [data-page='more'] > :nth-child(4),
+  [data-page='more'] > :nth-child(6) {
+    grid-column: 2;
+  }
+
+  [data-page='privacy'],
+  [data-page='nitnem-customize'] {
+    max-width: 56rem;
+  }
+
+  .privacy-data-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,129 @@
+[data-page='amrit-keertan'],
+[data-page='rehat'],
+[data-page='library-work'],
+[data-page='library-chapter'] {
+  min-width: 0;
+}
+
+[data-page='amrit-keertan'],
+[data-page='rehat'] {
+  max-width: 64rem;
+}
+
+[data-page='amrit-keertan'] input,
+[data-page='rehat'] input,
+[data-page='library-work'] input,
+[data-page='library-work'] button,
+[data-page='library-work'] a,
+[data-page='library-chapter'] a,
+[data-page='library-chapter'] [data-testid='panth-chapter-provenance'],
+[data-page='library-chapter'] [data-testid='panth-chapter-mini-contents'] {
+  border-radius: var(--nr-radius-control);
+}
+
+.panth-chapter-grid > a {
+  min-width: 0;
+}
+
+[data-page='library-chapter'] [data-testid='panth-chapter-article'] {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+[data-page='library-work'] [data-testid='panth-chapter-browser'] {
+  border: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+[data-page='library-chapter'] [data-testid='panth-chapter-text'] {
+  max-width: 46rem;
+}
+
+@media (min-width: 760px) {
+  [data-testid='amrit-keertan-header-list'],
+  [data-testid='rehat-list-page'],
+  [data-testid='rehat-chapter-list-page'] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  [data-testid='amrit-keertan-header-list'] > *,
+  [data-testid='rehat-list-page'] > *,
+  [data-testid='rehat-chapter-list-page'] > * {
+    min-width: 0;
+    margin-top: 0;
+  }
+
+  [data-testid='amrit-keertan-header-list'] > div:last-child,
+  [data-testid='rehat-list-page'] > :not(a),
+  [data-testid='rehat-chapter-list-page'] > :not(a),
+  [data-testid='rehat-chapter-list-page'] > a:first-child {
+    grid-column: 1 / -1;
+  }
+
+  [data-testid='amrit-keertan-header-list'] > a,
+  [data-testid='rehat-list-page'] > a,
+  [data-testid='rehat-chapter-list-page'] > a:not(:first-child) {
+    height: 100%;
+  }
+
+  [data-page='library-work'] {
+    display: grid;
+    max-width: var(--nr-page-max);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--nr-layout-gap);
+    align-items: start;
+  }
+
+  [data-page='library-work'] > * {
+    min-width: 0;
+    margin-bottom: 0;
+  }
+
+  [data-page='library-work'] > .panth-work-header,
+  [data-page='library-work'] > [data-testid='panth-epub-coverage'],
+  [data-page='library-work'] > [data-testid='panth-chapter-browser'] {
+    grid-column: 1 / -1;
+  }
+
+  .panth-chapter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  [data-page='library-chapter'] {
+    display: grid;
+    max-width: var(--nr-page-max);
+    grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+    gap: var(--nr-layout-gap);
+    align-items: start;
+  }
+
+  [data-page='library-chapter'] > [data-testid='panth-chapter-compass'] {
+    position: sticky;
+    top: max(1rem, calc(var(--safe-area-top) + 1rem));
+    max-height: calc(100dvh - var(--nav-stack-height) - var(--safe-area-bottom) - 2.5rem);
+    margin-bottom: 0;
+    overflow-y: auto;
+  }
+
+  [data-page='library-chapter'] > [data-testid='panth-chapter-article'] {
+    grid-column: 2;
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 1080px) {
+  [data-page='library-chapter'] {
+    grid-template-columns: 20rem minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+}
