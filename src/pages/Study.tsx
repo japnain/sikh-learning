@@ -10,6 +10,7 @@ import { useHukamnama } from '../hooks/useHukamnama'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import SoundscapeControls from '../components/SoundscapeControls'
 import StudyCard from '../components/StudyCard'
+import StudyEntryNavigator from '../components/StudyEntryNavigator'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
@@ -163,6 +164,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   sectionLabel: (index: number, total: number) => string
   previousSection: string
   nextSection: string
+  continueReading: string
+  beginningOfReading: string
+  endOfReading: string
   contextTitle: string
   contextSummary: string
 }> = {
@@ -185,6 +189,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     sectionLabel: (index, total) => `Shabad ${index} of ${total}`,
     previousSection: 'Previous shabad',
     nextSection: 'Next shabad',
+    continueReading: 'Continue reading',
+    beginningOfReading: 'Beginning of reading',
+    endOfReading: 'End of reading',
     contextTitle: 'Context & sources',
     contextSummary: 'Historical, practice, and source notes for this reading.',
   },
@@ -207,6 +214,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     sectionLabel: (index, total) => `ਸ਼ਬਦ ${index} / ${total}`,
     previousSection: 'ਪਿਛਲਾ ਸ਼ਬਦ',
     nextSection: 'ਅਗਲਾ ਸ਼ਬਦ',
+    continueReading: 'ਪਾਠ ਜਾਰੀ ਰੱਖੋ',
+    beginningOfReading: 'ਪਾਠ ਦੀ ਸ਼ੁਰੂਆਤ',
+    endOfReading: 'ਪਾਠ ਸਮਾਪਤ',
     contextTitle: 'ਸੰਦਰਭ ਅਤੇ ਸਰੋਤ',
     contextSummary: 'ਇਸ ਪਾਠ ਲਈ ਇਤਿਹਾਸਕ, ਅਭਿਆਸ ਅਤੇ ਸਰੋਤ ਨੋਟ।',
   },
@@ -229,6 +239,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     sectionLabel: (index, total) => `शबद ${index} / ${total}`,
     previousSection: 'पिछला शबद',
     nextSection: 'अगला शबद',
+    continueReading: 'पाठ जारी रखें',
+    beginningOfReading: 'पाठ की शुरुआत',
+    endOfReading: 'पाठ समाप्त',
     contextTitle: 'संदर्भ और स्रोत',
     contextSummary: 'इस पाठ के ऐतिहासिक, अभ्यास और स्रोत नोट।',
   },
@@ -1039,11 +1052,34 @@ export default function Study() {
   }
 
   const jumpToEntry = (entryIndex: number) => {
-    setActiveEntryIndex(entryIndex)
+    const nextIndex = Math.max(0, Math.min(entryIndex, entries.length - 1))
+    setActiveEntryIndex(nextIndex)
     window.requestAnimationFrame(() => {
-      document.getElementById(`study-entry-${entryIndex + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      document.getElementById(`study-entry-${nextIndex + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   }
+  const entryNavigatorProps = shouldPaginateEntries && currentEntry ? {
+    currentIndex: safeActiveEntryIndex,
+    total: entries.length,
+    currentLabel: studyExperienceCopy.sectionLabel(safeActiveEntryIndex + 1, entries.length),
+    currentTitle: renderScriptText(entryOutline[safeActiveEntryIndex]?.title ?? currentEntry.gurmukhi, scriptMode),
+    previousLabel: studyExperienceCopy.previousSection,
+    nextLabel: studyExperienceCopy.nextSection,
+    previousTitle: entryOutline[safeActiveEntryIndex - 1]?.title
+      ? renderScriptText(entryOutline[safeActiveEntryIndex - 1]!.title, scriptMode)
+      : null,
+    nextTitle: entryOutline[safeActiveEntryIndex + 1]?.title
+      ? renderScriptText(entryOutline[safeActiveEntryIndex + 1]!.title, scriptMode)
+      : null,
+    beginningLabel: studyExperienceCopy.beginningOfReading,
+    endLabel: studyExperienceCopy.endOfReading,
+    continueLabel: studyExperienceCopy.continueReading,
+    navLabel: studyExperienceCopy.entryOutlineEyebrow,
+    titleLang: getScriptTextLang(scriptMode),
+    titleClassName: getScriptTextFontClass(scriptMode),
+    onPrevious: () => jumpToEntry(safeActiveEntryIndex - 1),
+    onNext: () => jumpToEntry(safeActiveEntryIndex + 1),
+  } : null
 
   if (!isApiMode) return null
 
@@ -1587,40 +1623,11 @@ export default function Study() {
         </div>
       )}
 
-      {shouldPaginateEntries && currentEntry ? (
-        <nav
-          className="section-shell-quiet mb-4 px-4 py-3"
-          aria-label={studyExperienceCopy.entryOutlineEyebrow}
-          data-testid="study-entry-paginator"
-        >
-          <div aria-live="polite" aria-atomic="true">
-            <p className="eyebrow">{studyExperienceCopy.sectionLabel(safeActiveEntryIndex + 1, entries.length)}</p>
-            <p
-              lang={getScriptTextLang(scriptMode)}
-              className={`${getScriptTextFontClass(scriptMode)} mt-2 text-xl leading-tight text-ink dark:text-dark-text`}
-            >
-              {renderScriptText(entryOutline[safeActiveEntryIndex]?.title ?? currentEntry.gurmukhi, scriptMode)}
-            </p>
-          </div>
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => jumpToEntry(safeActiveEntryIndex - 1)}
-              disabled={safeActiveEntryIndex === 0}
-              className="interactive-focus min-h-[44px] rounded-lg border border-sand/15 px-3 font-sans text-xs font-semibold text-ink disabled:opacity-35 dark:border-dark-text/10 dark:text-dark-text"
-            >
-              {studyExperienceCopy.previousSection}
-            </button>
-            <button
-              type="button"
-              onClick={() => jumpToEntry(safeActiveEntryIndex + 1)}
-              disabled={safeActiveEntryIndex === entries.length - 1}
-              className="interactive-focus min-h-[44px] rounded-lg bg-saffron px-3 font-sans text-xs font-semibold text-white disabled:opacity-35"
-            >
-              {studyExperienceCopy.nextSection}
-            </button>
-          </div>
-        </nav>
+      {entryNavigatorProps ? (
+        <StudyEntryNavigator
+          placement="top"
+          {...entryNavigatorProps}
+        />
       ) : null}
 
       <div className="space-y-4" data-testid="study-entry-list">
@@ -1646,6 +1653,13 @@ export default function Study() {
           )
         })}
       </div>
+
+      {entryNavigatorProps ? (
+        <StudyEntryNavigator
+          placement="bottom"
+          {...entryNavigatorProps}
+        />
+      ) : null}
 
       <div className="study-reader-secondary-tools mt-4">
         {showEntryOutline && (

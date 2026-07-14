@@ -17,12 +17,12 @@ This checklist reflects the React/Vite reference app and the SwiftUI App Store t
 
 ## Verified On This Machine
 
-- The production web build compiles after extracting authoritative tokens plus focused Home, Reader, Navigation, Catalog, Library, and Settings stylesheets. Dead-rule, hidden-pseudo, and contrast-token consolidation reduced the production CSS asset from 165.72 kB (29.43 kB gzip) to 143.19 kB (25.55 kB gzip).
+- The production web build compiles after extracting authoritative tokens plus focused Home, Reader, Navigation, Catalog, Library, and Settings stylesheets. Dead-rule, hidden-pseudo, and contrast-token consolidation reduced the production CSS asset from 165.72 kB (29.43 kB gzip) to 146.62 kB (26.04 kB gzip), including the responsive end-of-shabad navigator.
 - `npm run qa:css-selectors` verifies all nine style modules against source usage, including individual branches in comma-separated selectors; the same audit runs in CI before the build and test gates.
 - A 52-check browser matrix covers 13 routes at 320px and 390px phone widths plus 834px tablet in light and dark appearance. It reports no horizontal overflow, unnamed interactive controls, active CSS gradients, route errors, error boundaries, or console errors.
 - `npm run qa:a11y` uses Axe 4.12.1 and reports zero automated WCAG 2.2 AA violations across 51 scans: 17 route and reader-detail states at 390px light, 1440px light, and 834px dark. CI runs the sweep after the production build. Five additional light-mode onboarding states pass, and a keyboard pass across 11 core routes confirms that the skip link is the first visible Tab target, moves focus to the main landmark, and continues through named, onscreen controls.
 - The isolated AI browser sweep passes all 22 scenarios, including Home Nitnem link activation, loading, empty, degraded, first-run, navigation, and pre-onboarding public-document states.
-- ESLint, the production build, `git diff --check`, and all 290 Vitest tests pass on 2026-07-11.
+- ESLint, the production build, `git diff --check`, and all 291 Vitest tests pass on 2026-07-11.
 - Amrit Keertan initially mounts 18 of 113 section rows and exposes progressive loading, reducing the tablet document from 15,729px to 1,833px.
 - Native catalog generation completes with 103 exact readings, and `xcrun swiftc -parse ios/App/NaamRasNative/*.swift` passes.
 - Xcode command-line inspection on 2026-07-11 finds no installed iOS runtime, no eligible iOS simulator, and no connected iPhone. Physical VoiceOver testing and final native screenshots therefore remain external sign-off items.
