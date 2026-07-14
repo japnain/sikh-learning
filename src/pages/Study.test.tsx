@@ -1,6 +1,7 @@
 import { describe, it, test, expect, beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { http, HttpResponse } from 'msw'
 import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
@@ -13,6 +14,8 @@ import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
 import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
+import { server } from '../test/msw-server'
+import { MOCK_BANI_RESPONSE } from '../test/msw-handlers'
 
 function LocationSpy() {
   const location = useLocation()
@@ -641,6 +644,71 @@ describe('Study exact shabad mode', () => {
       expect(screen.getByText('Exact Search Result')).toBeInTheDocument()
       expect(scrollSpy).toHaveBeenCalled()
     })
+  })
+
+  it('offers the same shabad navigation at the end of paginated scripture content', async () => {
+    const shabadTitles = [
+      'ਪਹਿਲਾ ਸ਼ਬਦ',
+      'ਦੂਜਾ ਸ਼ਬਦ',
+      'ਤੀਜਾ ਸ਼ਬਦ',
+      'ਚੌਥਾ ਸ਼ਬਦ',
+      'ਪੰਜਵਾਂ ਸ਼ਬਦ',
+    ]
+    const baseVerse = MOCK_BANI_RESPONSE.verses[0]
+    const verses = shabadTitles.map((title, index) => ({
+      ...baseVerse,
+      verseId: 8000 + index,
+      shabadId: 9000 + index,
+      pageNo: 100 + index,
+      verse: { unicode: title },
+      larivaar: { unicode: title.replaceAll(' ', '') },
+    }))
+
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+
+        if (body.path === '/v2/banis/99') {
+          return HttpResponse.json({ verses })
+        }
+        if (body.path?.startsWith('/v2/shabads/')) {
+          return HttpResponse.json({ verses: [] })
+        }
+
+        return HttpResponse.json({ error: 'Unexpected BaniDB test path.' }, { status: 404 })
+      })
+    )
+
+    const scrollSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
+
+    render(
+      <MemoryRouter initialEntries={['/study?baniDbId=99&bani=Test%20Reading']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const topNavigator = await screen.findByTestId('study-entry-paginator')
+    const bottomNavigator = await screen.findByTestId('study-entry-paginator-bottom')
+    const previousButton = within(bottomNavigator).getByRole('button', { name: /Previous shabad:/i })
+    const nextButton = within(bottomNavigator).getByRole('button', { name: /Next shabad:/i })
+
+    expect(screen.getAllByTestId('study-card')).toHaveLength(1)
+    expect(within(bottomNavigator).getByText('Shabad 1 of 5')).toBeInTheDocument()
+    expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1')
+    expect(previousButton).toBeDisabled()
+    expect(nextButton).toBeEnabled()
+
+    fireEvent.click(nextButton)
+
+    await waitFor(() => {
+      expect(within(topNavigator).getByText('Shabad 2 of 5')).toBeInTheDocument()
+      expect(within(bottomNavigator).getByText('Shabad 2 of 5')).toBeInTheDocument()
+      expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '2')
+      expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' })
+    })
+
+    expect(within(bottomNavigator).getByRole('button', { name: /Previous shabad: ਪਹਿਲਾ ਸ਼ਬਦ/i })).toBeEnabled()
+    expect(within(bottomNavigator).getByRole('button', { name: /Next shabad: ਤੀਜਾ ਸ਼ਬਦ/i })).toBeEnabled()
   })
 })
 
