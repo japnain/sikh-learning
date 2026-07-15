@@ -104,6 +104,7 @@ export interface ScriptureLine {
   ang: number
   originalAng?: number | null
   isHeader?: boolean
+  headerLevel?: number
   gurmukhi: string
   larivaar?: string
   transliteration: string

@@ -689,11 +689,11 @@ describe('Study exact shabad mode', () => {
 
     const topNavigator = await screen.findByTestId('study-entry-paginator')
     const bottomNavigator = await screen.findByTestId('study-entry-paginator-bottom')
-    const previousButton = within(bottomNavigator).getByRole('button', { name: /Previous shabad:/i })
-    const nextButton = within(bottomNavigator).getByRole('button', { name: /Next shabad:/i })
+    const previousButton = within(bottomNavigator).getByRole('button', { name: /Previous part:/i })
+    const nextButton = within(bottomNavigator).getByRole('button', { name: /Next part:/i })
 
     expect(screen.getAllByTestId('study-card')).toHaveLength(1)
-    expect(within(bottomNavigator).getByText('Shabad 1 of 5')).toBeInTheDocument()
+    expect(within(bottomNavigator).getByText('Part 1 of 5')).toBeInTheDocument()
     expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1')
     expect(previousButton).toBeDisabled()
     expect(nextButton).toBeEnabled()
@@ -701,14 +701,14 @@ describe('Study exact shabad mode', () => {
     fireEvent.click(nextButton)
 
     await waitFor(() => {
-      expect(within(topNavigator).getByText('Shabad 2 of 5')).toBeInTheDocument()
-      expect(within(bottomNavigator).getByText('Shabad 2 of 5')).toBeInTheDocument()
+      expect(within(topNavigator).getByText('Part 2 of 5')).toBeInTheDocument()
+      expect(within(bottomNavigator).getByText('Part 2 of 5')).toBeInTheDocument()
       expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '2')
       expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' })
     })
 
-    expect(within(bottomNavigator).getByRole('button', { name: /Previous shabad: ਪਹਿਲਾ ਸ਼ਬਦ/i })).toBeEnabled()
-    expect(within(bottomNavigator).getByRole('button', { name: /Next shabad: ਤੀਜਾ ਸ਼ਬਦ/i })).toBeEnabled()
+    expect(within(bottomNavigator).getByRole('button', { name: /Previous part: ਪਹਿਲਾ ਸ਼ਬਦ/i })).toBeEnabled()
+    expect(within(bottomNavigator).getByRole('button', { name: /Next part: ਤੀਜਾ ਸ਼ਬਦ/i })).toBeEnabled()
   })
 })
 

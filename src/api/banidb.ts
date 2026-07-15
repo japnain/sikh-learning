@@ -505,6 +505,9 @@ function buildLine(
   const translations_hi = getHindiTranslations(verse.translation)
   const translations_pa = getPunjabiTranslations(verse.translation)
   const visraam = normalizeVisraam(verse.visraam)
+  const headerLevel = 'headerLevel' in verse && typeof verse.headerLevel === 'number'
+    ? verse.headerLevel
+    : undefined
 
   return {
     verseId,
@@ -512,6 +515,7 @@ function buildLine(
     ang,
     originalAng,
     isHeader: 'isHeader' in verse ? Boolean(verse.isHeader) : originalAng === null,
+    headerLevel,
     gurmukhi: getVerseText(verse.verse),
     larivaar: getVerseText(verse.larivaar),
     transliteration: getEnglishTransliteration(verse.transliteration),
@@ -680,6 +684,7 @@ interface BaniFlatVerse {
     english?: string
   }
   isHeader?: boolean
+  headerLevel?: number
 }
 
 interface NormalizedSundarGutkaLengthOption {
@@ -838,6 +843,9 @@ export async function fetchBani(
         source?: { id?: string }
       }
       const pageNo = inner.pageNo ?? item.pageNo ?? null
+      const headerLevel = typeof item.header === 'number' && item.header > 0
+        ? item.header
+        : undefined
       const flatVerse: BaniFlatVerse = {
         verseId: inner.verseId ?? 0,
         shabadId: inner.shabadId ?? 0,
@@ -851,7 +859,8 @@ export async function fetchBani(
         source: (inner.source ?? item.source ?? { id: 'G' }) as BaniFlatVerse['source'],
         raag: (inner.raag ?? item.raag) as BaniFlatVerse['raag'],
         writer: (inner.writer ?? item.writer) as BaniFlatVerse['writer'],
-        isHeader: Boolean(item.header) || pageNo === null,
+        isHeader: headerLevel !== undefined,
+        headerLevel,
       }
 
       if (pageNo === null && currentPageNo === null) {

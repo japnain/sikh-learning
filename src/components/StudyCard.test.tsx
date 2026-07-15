@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, within } from '@testing-library/react'
 import StudyCard from './StudyCard'
 import type { ScriptureEntry } from '../types'
 import { useLanguageStore } from '../store/language'
@@ -73,6 +73,41 @@ const introOnlyEntry: ScriptureEntry = {
       translations_en: { bdb: 'In the beginning I remember Bhagauti' },
       translation_hi: 'आरंभ में मैं भगौती को स्मरण करता हूँ',
       translation_pa: 'ਆਰੰਭ ਵਿੱਚ ਮੈਂ ਭਗੌਤੀ ਨੂੰ ਸਿਮਰਦਾ ਹਾਂ',
+    },
+  ],
+}
+
+const orderedHeaderEntry: ScriptureEntry = {
+  ...entry,
+  id: 'ordered-headers',
+  lines: [
+    {
+      ...entry.lines![0],
+      verseId: 20,
+      gurmukhi: 'ਸੋ ਦਰੁ ਰਾਗੁ ਆਸਾ ਮਹਲਾ ੧',
+      isHeader: true,
+      headerLevel: 2,
+    },
+    {
+      ...entry.lines![0],
+      verseId: 21,
+      gurmukhi: 'ਪਹਿਲੀ ਪੰਕਤੀ',
+      isHeader: false,
+      headerLevel: undefined,
+    },
+    {
+      ...entry.lines![0],
+      verseId: 22,
+      gurmukhi: 'ਆਸਾ ਮਹਲਾ ੧ ॥',
+      isHeader: true,
+      headerLevel: 2,
+    },
+    {
+      ...entry.lines![0],
+      verseId: 23,
+      gurmukhi: 'ਦੂਜੀ ਪੰਕਤੀ',
+      isHeader: false,
+      headerLevel: undefined,
     },
   ],
 }
@@ -168,4 +203,15 @@ test('can hide non-header lines for devotional readers like Ardaas', () => {
   expect(screen.queryByText('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ')).not.toBeInTheDocument()
   expect(screen.queryByText('Intro')).not.toBeInTheDocument()
   expect(screen.queryByText(/Tap any Gurbani word for meaning/i)).not.toBeInTheDocument()
+})
+
+test('keeps later BaniDB headers in their source sequence instead of hoisting them', () => {
+  render(<StudyCard entry={orderedHeaderEntry} />)
+
+  expect(within(screen.getByTestId('study-header-block')).getByText('ਸੋ ਦਰੁ ਰਾਗੁ ਆਸਾ ਮਹਲਾ ੧')).toBeInTheDocument()
+
+  const orderedLines = screen.getAllByTestId('study-line')
+  expect(orderedLines.map(line => line.dataset.verseId)).toEqual(['21', '22', '23'])
+  expect(orderedLines.map(line => line.dataset.lineKind)).toEqual(['verse', 'header', 'verse'])
+  expect(orderedLines[1]).toHaveAttribute('data-header-level', '2')
 })
