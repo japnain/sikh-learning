@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, within } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
+import { vi } from 'vitest'
 import StudyCard from './StudyCard'
 import type { ScriptureEntry } from '../types'
 import { useLanguageStore } from '../store/language'
@@ -153,6 +154,29 @@ test('keeps Gurbani as one selectable semantic line with one explicit keyboard w
   fireEvent.click(screen.getByRole('button', { name: /explore words/i }))
   const explorer = screen.getByTestId('study-word-explorer')
   expect(within(explorer).getByRole('button', { name: 'Open word details for ੴ' })).toBeInTheDocument()
+})
+
+test('carries a selected Gurmukhi phrase into the share action', async () => {
+  useLanguageStore.setState({ showVishraam: false })
+  const onShareLine = vi.fn()
+  render(<StudyCard entry={entry} onShareLine={onShareLine} />)
+
+  const words = screen.getByTestId('study-gurbani-line').querySelectorAll<HTMLElement>('[data-reader-word]')
+  const range = document.createRange()
+  range.setStart(words[0]!.firstChild!, 0)
+  range.setEnd(words[1]!.firstChild!, words[1]!.textContent!.length)
+  const selection = window.getSelection()!
+  selection.removeAllRanges()
+  selection.addRange(range)
+  document.dispatchEvent(new Event('selectionchange'))
+
+  fireEvent.click(screen.getByLabelText(/open verse actions for line 1/i))
+  expect(await screen.findByText('Selected for sharing')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Share selection' }))
+
+  await waitFor(() => {
+    expect(onShareLine).toHaveBeenCalledWith(entry.lines![0], entry, 'ੴ ਸਤਿ')
+  })
 })
 
 test('shows translation inline without flipping', () => {

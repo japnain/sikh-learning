@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react'
+import { lazy, Suspense, useState, useEffect, useMemo, useRef } from 'react'
 import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
@@ -62,6 +62,20 @@ import {
 } from '../utils/sourceReaderMeta'
 
 type BaniSource = SourceReaderId
+
+type ShareHighlightSheetContent = {
+  gurmukhi: string
+  transliteration?: string
+  meaning?: string
+  sourceLabel: string
+  caption?: string
+  verseId?: number
+  selectedExcerpt?: boolean
+  initialShowTransliteration?: boolean
+  initialShowMeaning?: boolean
+}
+
+const ShareHighlightSheet = lazy(() => import('../features/shareHighlight/ShareHighlightSheet'))
 
 const PAGINATED_ENTRY_THRESHOLD = 4
 
@@ -703,6 +717,7 @@ export default function Study() {
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
   const [actionNotice, setActionNotice] = useState<string | null>(null)
+  const [shareHighlightContent, setShareHighlightContent] = useState<ShareHighlightSheetContent | null>(null)
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
   const [readerProgress, setReaderProgress] = useState(0)
@@ -876,28 +891,6 @@ export default function Study() {
     await navigator.clipboard.writeText(text)
   }
 
-  const shareTextWithFallback = async (text: string) => {
-    if (navigator.share) {
-      try {
-        await navigator.share({ text })
-        announceAction(studyExperienceCopy.shareOpened)
-        return
-      } catch {
-        try {
-          await copyText(text)
-          announceAction(studyExperienceCopy.shareUnavailable)
-          return
-        } catch {
-          announceAction(studyExperienceCopy.shareCopied)
-          return
-        }
-      }
-    }
-
-    await copyText(text)
-    announceAction(studyExperienceCopy.shareCopied)
-  }
-
   useEffect(() => {
     if (shouldTrackProgress && currentAng) {
       recordAng(currentSource, currentAng)
@@ -944,18 +937,49 @@ export default function Study() {
     }
   }, [entries.length, loading, safeActiveEntryIndex, searchParamsString, shouldPaginateEntries])
 
-  const handleShare = async () => {
+  const buildShareHighlightContent = (
+    line: ScriptureLine,
+    entry: ScriptureEntry,
+    selectedText?: string
+  ): ShareHighlightSheetContent => {
+    const selectedExcerpt = Boolean(selectedText?.trim()) && selectedText?.trim() !== line.gurmukhi.trim()
+    const gurmukhi = selectedExcerpt ? selectedText!.trim() : line.gurmukhi.trim()
+    const transliteration = selectedExcerpt ? '' : line.transliteration.trim()
+    const meaning = selectedExcerpt ? '' : getLineMeaningText(line, meaningLanguage, englishSource).trim()
+    const sourceName = baniName || entry.scripture
+    const sourceLabel = `${sourceName} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${line.ang}`
+    return {
+      gurmukhi,
+      transliteration: transliteration || undefined,
+      meaning: meaning || undefined,
+      sourceLabel,
+      verseId: line.verseId,
+      selectedExcerpt,
+      initialShowTransliteration: !selectedExcerpt && showTransliteration && Boolean(transliteration),
+      initialShowMeaning: !selectedExcerpt && Boolean(meaning),
+    }
+  }
+
+  const handleShare = () => {
     if (!currentEntry) return
-    const text = [
-      currentEntry.gurmukhi,
-      currentEntry.transliteration,
-      getEntryMeaningText(currentEntry, meaningLanguage, englishSource),
-      baniName
-        ? `— ${baniName} · ${currentReadingUnit} ${currentEntry.ang}`
-        : `— ${currentEntry.scripture} · ${currentReadingUnit} ${currentEntry.ang}`,
-      editorial?.brand.attribution ?? 'via NaamRas',
-    ].filter(Boolean).join('\n')
-    await shareTextWithFallback(text)
+    const line = findFirstRenderableLine([currentEntry])
+    if (line) {
+      setShareHighlightContent(buildShareHighlightContent(line, currentEntry))
+      return
+    }
+
+    const sourceLabel = baniName
+      ? `${baniName} · ${currentReadingUnit} ${currentEntry.ang}`
+      : `${currentEntry.scripture} · ${currentReadingUnit} ${currentEntry.ang}`
+    const meaning = getEntryMeaningText(currentEntry, meaningLanguage, englishSource).trim()
+    setShareHighlightContent({
+      gurmukhi: currentEntry.gurmukhi.trim(),
+      transliteration: currentEntry.transliteration.trim() || undefined,
+      meaning: meaning || undefined,
+      sourceLabel,
+      initialShowTransliteration: showTransliteration && Boolean(currentEntry.transliteration.trim()),
+      initialShowMeaning: Boolean(meaning),
+    })
   }
 
   const shabadIds = useMemo(
@@ -1059,9 +1083,8 @@ export default function Study() {
     announceAction(studyExperienceCopy.lineCopied)
   }
 
-  const handleShareLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
-    const text = buildLineText(entry, line)
-    await shareTextWithFallback(text)
+  const handleShareLine = (line: ScriptureLine, entry: ScriptureEntry, selectedText?: string) => {
+    setShareHighlightContent(buildShareHighlightContent(line, entry, selectedText))
   }
 
   const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {
@@ -1523,6 +1546,24 @@ export default function Study() {
           </div>
         ) : null}
       </div>
+
+      {shareHighlightContent ? (
+        <Suspense
+          fallback={(
+            <div role="status" className="sr-only">
+              Preparing share highlight.
+            </div>
+          )}
+        >
+          <ShareHighlightSheet
+            open
+            onClose={() => setShareHighlightContent(null)}
+            content={shareHighlightContent}
+            locale={locale}
+            onNotice={announceAction}
+          />
+        </Suspense>
+      ) : null}
 
       <div className="study-reader-layout">
         <aside className="study-reader-rail" aria-label="Reading context and settings">
