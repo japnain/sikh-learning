@@ -1,0 +1,155 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-118",
+  "chapterNumber": 118,
+  "episodeNumber": 118,
+  "kind": "episode",
+  "title": "Another Episode - The Head count of Singhs Martyred in Chhota Ghallughara I",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 429,
+  "endSourcePage": 431,
+  "wordCount": 335,
+  "charCount": 1898,
+  "startPosition": 150556,
+  "pages": [
+    {
+      "sourcePageNumber": 429,
+      "fileName": "EPUB/page_429.html",
+      "sourceHref": "EPUB/page_429.html",
+      "printPageNumber": 375,
+      "blocks": [
+        {
+          "id": "episode-118-p429-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-118-p429-b003",
+          "type": "verse",
+          "text": "(Dear readers) now listen to the narrative of all those Singhs, Who had passed through this dark night of death and destruction. Of those who had survived by sneaking into the wilds, As well as of those who had taken refuge in Majha region after return. (1)",
+          "lines": [
+            "(Dear readers) now listen to the narrative of all those Singhs,",
+            "Who had passed through this dark night of death and destruction.",
+            "Of those who had survived by sneaking into the wilds,",
+            "As well as of those who had taken refuge in Majha region after return."
+          ],
+          "number": "1"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 431,
+      "fileName": "EPUB/page_431.html",
+      "sourceHref": "EPUB/page_431.html",
+      "printPageNumber": 377,
+      "blocks": [
+        {
+          "id": "episode-118-p431-b001",
+          "type": "verse",
+          "text": "Of those who had been captured and killed at Parol, As well as of those who exhausted themselves in the mountains. Majority of them having been imprisoned in jail at Basoli, After being put in fetters around their necks and hands. (2)",
+          "lines": [
+            "Of those who had been captured and killed at Parol,",
+            "As well as of those who exhausted themselves in the mountains.",
+            "Majority of them having been imprisoned in jail at Basoli,",
+            "After being put in fetters around their necks and hands."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-118-p431-b002",
+          "type": "verse",
+          "text": "Were these prisoners taken to the Nawab (Shah Nawaz) at Lahore, Who piled up their heads in heaps (after beheading them). Very few of those Singhs who had survived this ordeal, Were they left with no horses to mount and survive. (3)",
+          "lines": [
+            "Were these prisoners taken to the Nawab (Shah Nawaz) at Lahore,",
+            "Who piled up their heads in heaps (after beheading them).",
+            "Very few of those Singhs who had survived this ordeal,",
+            "Were they left with no horses to mount and survive."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-118-p431-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-118-p431-b004",
+          "type": "verse",
+          "text": "Those who had gone and survived under Sukha Singh's command, Were they between two to three thousands in total strength. Whatever number of horses were left with these Singhs, Were these negligible in number (for any armed struggle). (4)",
+          "lines": [
+            "Those who had gone and survived under Sukha Singh's command,",
+            "Were they between two to three thousands in total strength.",
+            "Whatever number of horses were left with these Singhs,",
+            "Were these negligible in number (for any armed struggle)."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-118-p431-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-118-p431-b006",
+          "type": "verse",
+          "text": "Someone put the figure of those killed at forty thousand, Some others put this figure of those slaughtered still higher. Someone else put their total number at forty thousand, Of whom six to seven thousands had survived. (5)",
+          "lines": [
+            "Someone put the figure of those killed at forty thousand,",
+            "Some others put this figure of those slaughtered still higher.",
+            "Someone else put their total number at forty thousand,",
+            "Of whom six to seven thousands had survived."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-118-p431-b007",
+          "type": "verse",
+          "text": "Some others reckoned the number of those killed at fifty thousand, Of whom forty thousand had been done to death. Still others put this figure much higher than fifty thousand, As no definite head count of those killed could be made. (6)",
+          "lines": [
+            "Some others reckoned the number of those killed at fifty thousand,",
+            "Of whom forty thousand had been done to death.",
+            "Still others put this figure much higher than fifty thousand,",
+            "As no definite head count of those killed could be made."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-118-p431-b008",
+          "type": "verse",
+          "text": "Truly had I (the author) narrated what I had heard indeed, As no exact head count of the survivors and the dead was possible. Whatever account had my father narrated to me, So have I (Rattan Singh) got it recorded to (David Murray). (7)",
+          "lines": [
+            "Truly had I (the author) narrated what I had heard indeed,",
+            "As no exact head count of the survivors and the dead was possible.",
+            "Whatever account had my father narrated to me,",
+            "So have I (Rattan Singh) got it recorded to (David Murray)."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-118-p431-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-118-p431-b010",
+          "type": "verse",
+          "text": "It was in the year eighteen hundred and three2 , (of the Indian calendar as per Bikrami Samvat era). That a massacre on such a massive scale occurred, Which the Mughals had perpetrated on the Singhs. (8)",
+          "lines": [
+            "It was in the year eighteen hundred and three2 ,",
+            "(of the Indian calendar as per Bikrami Samvat era).",
+            "That a massacre on such a massive scale occurred,",
+            "Which the Mughals had perpetrated on the Singhs."
+          ],
+          "number": "8"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-117",
+  "nextChapterId": "episode-119"
+}

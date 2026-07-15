@@ -1,0 +1,187 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-013",
+  "chapterNumber": 13,
+  "episodeNumber": 13,
+  "kind": "episode",
+  "title": "Legend of the Tenth Sikh Guru",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 115,
+  "endSourcePage": 117,
+  "wordCount": 439,
+  "charCount": 2633,
+  "startPosition": 11699,
+  "pages": [
+    {
+      "sourcePageNumber": 115,
+      "fileName": "EPUB/page_115.html",
+      "sourceHref": "EPUB/page_115.html",
+      "printPageNumber": 71,
+      "blocks": [
+        {
+          "id": "episode-013-p115-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-013-p115-b003",
+          "type": "verse",
+          "text": "Then a confrontation started and developed, Between the tenth Sikh Guru and the Mughals. The chiefs of Hill states also started a whispering compaign,, Which soon spread into an open slander like a wild fire. (1)",
+          "lines": [
+            "Then a confrontation started and developed,",
+            "Between the tenth Sikh Guru and the Mughals.",
+            "The chiefs of Hill states also started a whispering compaign,,",
+            "Which soon spread into an open slander like a wild fire."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-013-p115-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-013-p115-b005",
+          "type": "paragraph",
+          "text": "The Muslims Theologians (Kazis) Indoctrinated the Moghal rulers, Forgetting all Babur's promises of allegiance to the Sikh Gurus."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 117,
+      "fileName": "EPUB/page_117.html",
+      "sourceHref": "EPUB/page_117.html",
+      "printPageNumber": 73,
+      "blocks": [
+        {
+          "id": "episode-013-p117-b001",
+          "type": "verse",
+          "text": "Denying that the Hindus (Guru Nanak1 ) had bestowed the sovereignty on Mughals, They claimed that their prophet Mohammad had bestowed sovereignty on them. (2)",
+          "lines": [
+            "Denying that the Hindus (Guru Nanak1 ) had bestowed the sovereignty on Mughals,",
+            "They claimed that their prophet Mohammad had bestowed sovereignty on them."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-013-p117-b002",
+          "type": "verse",
+          "text": "Guru Gobind Singh felt outraged (at this travesty of truth), And he created the Khalsa Panth2 to destroy the Mughals. He sacrificed his four sons for this cherished cause, As he lost his own progeny for nurturing the Khalsa Panth. (3)",
+          "lines": [
+            "Guru Gobind Singh felt outraged (at this travesty of truth),",
+            "And he created the Khalsa Panth2 to destroy the Mughals.",
+            "He sacrificed his four sons for this cherished cause,",
+            "As he lost his own progeny for nurturing the Khalsa Panth."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-013-p117-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-013-p117-b004",
+          "type": "verse",
+          "text": "Then David Murry asked me to resolve this paradox, Why did the Guru not preserve both his progeny as well as his ideology. I replied that if one promoted and preserved one's own progeny, Then One could not promote and preserve one's ideological organisation. (4)",
+          "lines": [
+            "Then David Murry asked me to resolve this paradox,",
+            "Why did the Guru not preserve both his progeny as well as his ideology.",
+            "I replied that if one promoted and preserved one's own progeny,",
+            "Then One could not promote and preserve one's ideological organisation."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-013-p117-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-013-p117-b006",
+          "type": "verse",
+          "text": "All the ancient Sidhas and saints like Datta Tray3 and Gorakhnath4 , Also had not raised any family to promote their ideological orders. The Muslim's prophet Mohammad5 had also sacrificed his progeny, Sparing only the best among his progeny to promote his cause. (5)",
+          "lines": [
+            "All the ancient Sidhas and saints like Datta Tray3 and Gorakhnath4 ,",
+            "Also had not raised any family to promote their ideological orders.",
+            "The Muslim's prophet Mohammad5 had also sacrificed his progeny,",
+            "Sparing only the best among his progeny to promote his cause."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-013-p117-b007",
+          "type": "verse",
+          "text": "Then Murry questioned me Why was I blaming the Muslims alone, When Guru Gobind Singh had adopted the same strategy for the same purpose. To this query of Captain Murry, I offered the following explanation: The Muslims were cursed because of the cold-blooded murder of Sahibzadas6 . (6)",
+          "lines": [
+            "Then Murry questioned me Why was I blaming the Muslims alone,",
+            "When Guru Gobind Singh had adopted the same strategy for the same purpose.",
+            "To this query of Captain Murry,",
+            "I offered the following explanation: The Muslims were cursed because of the cold-blooded murder of Sahibzadas6 ."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-013-p117-b008",
+          "type": "verse",
+          "text": "Guru Gobind wished to destroy the Mughals for this grave injustice, And the blame went to the Mughals mainly for shedding the blood of innocents. He created the order of the Khalsa Panth with the sole motive, Of strengthening the Sikhs and for destroying the wicked Mughals. (7)",
+          "lines": [
+            "Guru Gobind wished to destroy the Mughals for this grave injustice,",
+            "And the blame went to the Mughals mainly for shedding the blood of innocents.",
+            "He created the order of the Khalsa Panth with the sole motive,",
+            "Of strengthening the Sikhs and for destroying the wicked Mughals."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-013-p117-b009",
+          "type": "verse",
+          "text": "He also attributed the blame for his own sacrifice to the Mughals, And wished to promote his own ideological order, the Khalsa Panth. It is not possible to promote One's family and one's ideology simultaneously, As even Lord Rama7 and Lord Krishna8 could not promote the two together. (8)",
+          "lines": [
+            "He also attributed the blame for his own sacrifice to the Mughals,",
+            "And wished to promote his own ideological order, the Khalsa Panth.",
+            "It is not possible to promote One's family and one's ideology simultaneously,",
+            "As even Lord Rama7 and Lord Krishna8 could not promote the two together."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-013-p117-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-013-p117-b011",
+          "type": "verse",
+          "text": "Both Rama and Krishna kept their own nearest kins deprived of power, They handed over power to others to uphold that tradition. Satguru Gobind Singh handed over power to his followers, the Sikhs, For further strengthening the same old great tradition. (9)",
+          "lines": [
+            "Both Rama and Krishna kept their own nearest kins deprived of power,",
+            "They handed over power to others to uphold that tradition.",
+            "Satguru Gobind Singh handed over power to his followers, the Sikhs,",
+            "For further strengthening the same old great tradition."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-013-p117-b012",
+          "type": "verse",
+          "text": "By keeping one's own family and progeny near one's heart, One can not preserve and promote one's own ideology. Much as an agricultural piece of land over grown with weeds, Cannot give a wholesome yield of grains. (10)",
+          "lines": [
+            "By keeping one's own family and progeny near one's heart,",
+            "One can not preserve and promote one's own ideology.",
+            "Much as an agricultural piece of land over grown with weeds,",
+            "Cannot give a wholesome yield of grains."
+          ],
+          "number": "10"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-012",
+  "nextChapterId": "episode-014"
+}

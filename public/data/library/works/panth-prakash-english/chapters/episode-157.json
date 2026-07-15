@@ -1,0 +1,744 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-157",
+  "chapterNumber": 157,
+  "episodeNumber": 157,
+  "kind": "episode",
+  "title": "Ahmad Shah (Abdali)1, Jawahar Mai of Bharatpur and Najib Khan Rohilla",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 711,
+  "endSourcePage": 723,
+  "wordCount": 1795,
+  "charCount": 10452,
+  "startPosition": 199035,
+  "pages": [
+    {
+      "sourcePageNumber": 711,
+      "fileName": "EPUB/page_711.html",
+      "sourceHref": "EPUB/page_711.html",
+      "printPageNumber": 657,
+      "blocks": [
+        {
+          "id": "episode-157-p711-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p711-b003",
+          "type": "verse",
+          "text": "Then did Captain David Murray4 ask the author, Must he narrate the account of further developments. Where did (Abdali) go and what did he do further, From where did he return (in India to Kabul)? (1)",
+          "lines": [
+            "Then did Captain David Murray4 ask the author,",
+            "Must he narrate the account of further developments.",
+            "Where did (Abdali) go and what did he do further,",
+            "From where did he return (in India to Kabul)?"
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-157-p711-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p711-b005",
+          "type": "paragraph",
+          "text": "(Must the author also narrate) how was Delhi laid under a siege, Was it because of a wrong move by najib Khan Rohilla?"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 713,
+      "fileName": "EPUB/page_713.html",
+      "sourceHref": "EPUB/page_713.html",
+      "printPageNumber": 659,
+      "blocks": [
+        {
+          "id": "episode-157-p713-b001",
+          "type": "verse",
+          "text": "Was Delhi's ransacking put off itself or was it saved by Abdali? Must the author narrate about Delhi as well as Abdali's action. (2)",
+          "lines": [
+            "Was Delhi's ransacking put off itself or was it saved by Abdali?",
+            "Must the author narrate about Delhi as well as Abdali's action."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-157-p713-b002",
+          "type": "verse",
+          "text": "The way the author explained it to Captain David Murray, So would he put (both the events) in black and white. As the news about Ahmad Shah Abdali's arrival spread, (Bharatpur's) Jat ruler decided to recruit more troops. (3)",
+          "lines": [
+            "The way the author explained it to Captain David Murray,",
+            "So would he put (both the events) in black and white.",
+            "As the news about Ahmad Shah Abdali's arrival spread,",
+            "(Bharatpur's) Jat ruler decided to recruit more troops."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-157-p713-b003",
+          "type": "verse",
+          "text": "To the Khalsa Panth did he send his representatives, Cartloads of treasures and elephants did he send as gifts. Brindaban and Mathura Dass were the names of his representatives, Who approached the Khalsa Panth for military support. (4)",
+          "lines": [
+            "To the Khalsa Panth did he send his representatives,",
+            "Cartloads of treasures and elephants did he send as gifts.",
+            "Brindaban and Mathura Dass were the names of his representatives,",
+            "Who approached the Khalsa Panth for military support."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-157-p713-b004",
+          "type": "verse",
+          "text": "Both Jats and Singhs being fraternal Hindu Kshtriyas, Shared the same caste and the same occupation. Both being protectors of saints and the cow mother, Were they equally keen to destroy the wicked Muslims. (5)",
+          "lines": [
+            "Both Jats and Singhs being fraternal Hindu Kshtriyas,",
+            "Shared the same caste and the same occupation.",
+            "Both being protectors of saints and the cow mother,",
+            "Were they equally keen to destroy the wicked Muslims."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-157-p713-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p713-b006",
+          "type": "verse",
+          "text": "As both the Jats and the Singhs were defenders of Hinduism, Both Najib Khan Rohilla and Ahmed Shah Abdali believed in Islam. Taking into consideration the religious affinity between the Jats and Singhs, Must the Singhs come forward to defend their faith. (6)",
+          "lines": [
+            "As both the Jats and the Singhs were defenders of Hinduism,",
+            "Both Najib Khan Rohilla and Ahmed Shah Abdali believed in Islam.",
+            "Taking into consideration the religious affinity between the Jats and Singhs,",
+            "Must the Singhs come forward to defend their faith."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-157-p713-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p713-b008",
+          "type": "verse",
+          "text": "Plenty of ammunition and arms could the Singhs have, Plenty of money could they also take for buying provisions. All the Jat treasures could the Singhs share with them, Provided they came forward and joined the Jats. (7)",
+          "lines": [
+            "Plenty of ammunition and arms could the Singhs have,",
+            "Plenty of money could they also take for buying provisions.",
+            "All the Jat treasures could the Singhs share with them,",
+            "Provided they came forward and joined the Jats."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-157-p713-b009",
+          "type": "verse",
+          "text": "If the Khalsa Panth wished to uphold India's honur, Must then the Singhs come and accomplish that noble deed. As Abdali's Gilja Pathans had come on a religious crusade, All the Muslims had rushed to sneak into Delhi. (8)",
+          "lines": [
+            "If the Khalsa Panth wished to uphold India's honur,",
+            "Must then the Singhs come and accomplish that noble deed.",
+            "As Abdali's Gilja Pathans had come on a religious crusade,",
+            "All the Muslims had rushed to sneak into Delhi."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-157-p713-b010",
+          "type": "verse",
+          "text": "The same petition of the Jats did Khalsa Panth accept, Instantly did the Singhs advance without any delay. To the Malwa region did the Khalsa send their families, Among the Brars did the Singhs leave all of them. (9)",
+          "lines": [
+            "The same petition of the Jats did Khalsa Panth accept,",
+            "Instantly did the Singhs advance without any delay.",
+            "To the Malwa region did the Khalsa send their families,",
+            "Among the Brars did the Singhs leave all of them."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-157-p713-b011",
+          "type": "verse",
+          "text": "The Bangar region did the Khalsa Panth occupy, This region did they occupy for their main stay. As a severe scarcity of food grains then occurred, City of Delhi did the people desert in search of food. (10)",
+          "lines": [
+            "The Bangar region did the Khalsa Panth occupy,",
+            "This region did they occupy for their main stay.",
+            "As a severe scarcity of food grains then occurred,",
+            "City of Delhi did the people desert in search of food."
+          ],
+          "number": "10"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 715,
+      "fileName": "EPUB/page_715.html",
+      "sourceHref": "EPUB/page_715.html",
+      "printPageNumber": 661,
+      "blocks": [
+        {
+          "id": "episode-157-p715-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p715-b002",
+          "type": "verse",
+          "text": "On the other side, listening about this new development, Highly concerned did Ahmad Shah Abdali feel. Being so scared, he cried, shrieked and pulled his hair, Time and again did he stamp the earth in frustration. (11)",
+          "lines": [
+            "On the other side, listening about this new development,",
+            "Highly concerned did Ahmad Shah Abdali feel.",
+            "Being so scared, he cried, shrieked and pulled his hair,",
+            "Time and again did he stamp the earth in frustration."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-157-p715-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p715-b004",
+          "type": "verse",
+          "text": "Earlier he (Abdali) had fought against Bhau's5 large force, Thoroughly had he defeated such a large Maratha force. Now that the young Khalsa Singhs had joined the Jat chief, With small arms would they vanquish his troops. (12)",
+          "lines": [
+            "Earlier he (Abdali) had fought against Bhau's5 large force,",
+            "Thoroughly had he defeated such a large Maratha force.",
+            "Now that the young Khalsa Singhs had joined the Jat chief,",
+            "With small arms would they vanquish his troops."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-157-p715-b005",
+          "type": "verse",
+          "text": "Immensely brave and great warriors were those Singhs, Calling themselves falcons they called us (timid) quails. The victory that he had achieved over Bhau's Maratha forces, Lest the Khalsa Singhs should snatch it from him. (13)",
+          "lines": [
+            "Immensely brave and great warriors were those Singhs,",
+            "Calling themselves falcons they called us (timid) quails.",
+            "The victory that he had achieved over Bhau's Maratha forces,",
+            "Lest the Khalsa Singhs should snatch it from him."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-157-p715-b006",
+          "type": "verse",
+          "text": "Such depresing thoughts did cross Ahmed Shah's mind, Extremely bitter, and scared did he feel in his mind. Return to Kabul would compromise his reputation, Marching forward (against such odds) would serve no purpose. (14)",
+          "lines": [
+            "Such depresing thoughts did cross Ahmed Shah's mind,",
+            "Extremely bitter, and scared did he feel in his mind.",
+            "Return to Kabul would compromise his reputation,",
+            "Marching forward (against such odds) would serve no purpose."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-157-p715-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p715-b008",
+          "type": "verse",
+          "text": "Moving his forces ahead at a slow speed, Many a halt did he make on his way. With such lame excuses did he pretend before the public, That for more reinforcements was he waiting. (15)",
+          "lines": [
+            "Moving his forces ahead at a slow speed,",
+            "Many a halt did he make on his way.",
+            "With such lame excuses did he pretend before the public,",
+            "That for more reinforcements was he waiting."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-157-p715-b009",
+          "type": "verse",
+          "text": "So did Najib Khan Rohilla evaluate and assess, The strength that Ahmad Shah Abdali wielded. One who could once attack an enemy with in forty miles, Of his steam had he run out completely. (16)",
+          "lines": [
+            "So did Najib Khan Rohilla evaluate and assess,",
+            "The strength that Ahmad Shah Abdali wielded.",
+            "One who could once attack an enemy with in forty miles,",
+            "Of his steam had he run out completely."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-157-p715-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p715-b011",
+          "type": "verse",
+          "text": "Ahmad Shah kept writing missives to Najib Khan Rohilla, That an epidemic had seriously infected his troops. Countless number of his soldiers had perished, Since the day his forces had entered India. (17)",
+          "lines": [
+            "Ahmad Shah kept writing missives to Najib Khan Rohilla,",
+            "That an epidemic had seriously infected his troops.",
+            "Countless number of his soldiers had perished,",
+            "Since the day his forces had entered India."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-157-p715-b012",
+          "type": "verse",
+          "text": "After his troops had been cured of their affliction, Then alone would he be able to participate in war. More forces had he ordered from his home town, He would start the fight only after these troops arrived. (18)",
+          "lines": [
+            "After his troops had been cured of their affliction,",
+            "Then alone would he be able to participate in war.",
+            "More forces had he ordered from his home town,",
+            "He would start the fight only after these troops arrived."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-157-p715-b013",
+          "type": "verse",
+          "text": "For a month should Najib Rohilla keep his patience, After that would Abdali show his prowess in fight. The nearer the Abdali's troops moved to the theatre of war, The more scared and panicky did he feel at heart. (19)",
+          "lines": [
+            "For a month should Najib Rohilla keep his patience,",
+            "After that would Abdali show his prowess in fight.",
+            "The nearer the Abdali's troops moved to the theatre of war,",
+            "The more scared and panicky did he feel at heart."
+          ],
+          "number": "19"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 717,
+      "fileName": "EPUB/page_717.html",
+      "sourceHref": "EPUB/page_717.html",
+      "printPageNumber": 663,
+      "blocks": [
+        {
+          "id": "episode-157-p717-b001",
+          "type": "verse",
+          "text": "Reaching Ambala, did Abdali's force camp at Ambala, The war-drum did he order to be beaten for launching an attack. (Bharatpur's) Jat ruler also got ready for a fight, To go on the offensive against Abdali's forces did he decide. (20)",
+          "lines": [
+            "Reaching Ambala, did Abdali's force camp at Ambala,",
+            "The war-drum did he order to be beaten for launching an attack.",
+            "(Bharatpur's) Jat ruler also got ready for a fight,",
+            "To go on the offensive against Abdali's forces did he decide."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-157-p717-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p717-b003",
+          "type": "verse",
+          "text": "Calling an assembly of Rajputs, Marathas and Brars, As well as those who were followers of saint Dadu6 . He also invited the Gosains7 , Bhaiyyas and hill chiefs, As well as the foreigners and the Singh Chiefs. (21)",
+          "lines": [
+            "Calling an assembly of Rajputs,",
+            "Marathas and Brars,",
+            "As well as those who were followers of saint Dadu6 .",
+            "He also invited the Gosains7 ,",
+            "Bhaiyyas and hill chiefs,",
+            "As well as the foreigners and the Singh Chiefs."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-157-p717-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p717-b005",
+          "type": "verse",
+          "text": "Thus did the Jat chief declare to his fraternal forces, On the Gilja Pathan forces would he launch an attack. The (invading) Pathans would he first evict from India, Delhi would he overtake after his return from there. (22)",
+          "lines": [
+            "Thus did the Jat chief declare to his fraternal forces,",
+            "On the Gilja Pathan forces would he launch an attack.",
+            "The (invading) Pathans would he first evict from India,",
+            "Delhi would he overtake after his return from there."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-157-p717-b006",
+          "type": "verse",
+          "text": "All the chiefs agreed to the Jat chief's proposal, All of them endorsed what the Jat chief proposed. To the Singhs also did he send money for support, Each faction according to its strength received finances. (23)",
+          "lines": [
+            "All the chiefs agreed to the Jat chief's proposal,",
+            "All of them endorsed what the Jat chief proposed.",
+            "To the Singhs also did he send money for support,",
+            "Each faction according to its strength received finances."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-157-p717-b007",
+          "type": "verse",
+          "text": "Hearing this news, the Khalsa Panth drummed up their support, Assuring him of vanquishing Abdali provided he compensated. As this news (of Khalsa's allegiance) reached Najib Rohilla, This Abdali's puppet came to the end of his wits. (24)",
+          "lines": [
+            "Hearing this news, the Khalsa Panth drummed up their support,",
+            "Assuring him of vanquishing Abdali provided he compensated.",
+            "As this news (of Khalsa's allegiance) reached Najib Rohilla,",
+            "This Abdali's puppet came to the end of his wits."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-157-p717-b008",
+          "type": "verse",
+          "text": "Rohilla feared lest Abdali should leave him in the lurch, As he was not so well equipped as the Hindu forces. The poor Bhau Maratha8 had been killed in the earlier battle, As all the Mughal and Hindu forces had ganged up against him. (25)",
+          "lines": [
+            "Rohilla feared lest Abdali should leave him in the lurch,",
+            "As he was not so well equipped as the Hindu forces.",
+            "The poor Bhau Maratha8 had been killed in the earlier battle,",
+            "As all the Mughal and Hindu forces had ganged up against him."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-157-p717-b009",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-157-p717-b010",
+          "type": "verse",
+          "text": "Those who were killed were Ragho9 and Malhar10 Marathas, Along with Tuko Holkar\" the Maratha chief. Jawahar Mai's father12 had Abdali killed as well, With a victory over them had he gone home. (26)",
+          "lines": [
+            "Those who were killed were Ragho9 and Malhar10 Marathas,",
+            "Along with Tuko Holkar\" the Maratha chief.",
+            "Jawahar Mai's father12 had Abdali killed as well,",
+            "With a victory over them had he gone home."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-157-p717-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p717-b012",
+          "type": "verse",
+          "text": "Between the two powers had Jawahar Mai created a rift, Into the Abdali's ranks had Jawahar Mai infliterated. Jaura, Bhaura13 , had he stolen from Abdali's stables, Abdali's treasures had he plundered and made his own. (27)",
+          "lines": [
+            "Between the two powers had Jawahar Mai created a rift,",
+            "Into the Abdali's ranks had Jawahar Mai infliterated.",
+            "Jaura,",
+            "Bhaura13 , had he stolen from Abdali's stables,",
+            "Abdali's treasures had he plundered and made his own."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-157-p717-b013",
+          "type": "verse",
+          "text": "So formidable and dangerous was this Jat chief, Lest he should succeed in throwing Abdali out of India. Thereafter would he capture Delhi in an instant, Might he succeed in wiping out Islam from India. (28)",
+          "lines": [
+            "So formidable and dangerous was this Jat chief,",
+            "Lest he should succeed in throwing Abdali out of India.",
+            "Thereafter would he capture Delhi in an instant,",
+            "Might he succeed in wiping out Islam from India."
+          ],
+          "number": "28"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 719,
+      "fileName": "EPUB/page_719.html",
+      "sourceHref": "EPUB/page_719.html",
+      "printPageNumber": 665,
+      "blocks": [
+        {
+          "id": "episode-157-p719-b001",
+          "type": "verse",
+          "text": "A new strategy must he (Rohilla) devise at the moment, \"Surrender, bribe, retribution or split\", one of these he must devise. Ragho Malhar, the Marhatta chief was one among the conglomerate, Sixty thousand horse-mounted troops did he command. (29)",
+          "lines": [
+            "A new strategy must he (Rohilla) devise at the moment,",
+            "\"Surrender, bribe, retribution or split\", one of these he must devise.",
+            "Ragho Malhar, the Marhatta chief was one among the conglomerate,",
+            "Sixty thousand horse-mounted troops did he command."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-157-p719-b002",
+          "type": "verse",
+          "text": "With Rohilla had he once entered into a fraternal bond, Fraternal brothers in faith had they become to each other. Thus to Ragho Malhar did Rohilla send his representatives, Warning him that all powerful Jat could harass the Marathas as well. (30)",
+          "lines": [
+            "With Rohilla had he once entered into a fraternal bond,",
+            "Fraternal brothers in faith had they become to each other.",
+            "Thus to Ragho Malhar did Rohilla send his representatives,",
+            "Warning him that all powerful Jat could harass the Marathas as well."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-157-p719-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p719-b004",
+          "type": "verse",
+          "text": "Once the Jat ruler evicted Abdali (out of India), Certainly would he overpower Rohilla and Marathas too. The Khalsa Panth Singhs had he already invited, Who are supposed to be highly brave warriors. (31)",
+          "lines": [
+            "Once the Jat ruler evicted Abdali (out of India),",
+            "Certainly would he overpower Rohilla and Marathas too.",
+            "The Khalsa Panth Singhs had he already invited,",
+            "Who are supposed to be highly brave warriors."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-157-p719-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p719-b006",
+          "type": "verse",
+          "text": "Only one fraternal bond existed between two of them, Must he save him (Rohilla) who was facing defeat. Secretly a lot of ransom did he promise to pay, But must Ragho Malhar protect Rohilla the supplicant. (32)",
+          "lines": [
+            "Only one fraternal bond existed between two of them,",
+            "Must he save him (Rohilla) who was facing defeat.",
+            "Secretly a lot of ransom did he promise to pay,",
+            "But must Ragho Malhar protect Rohilla the supplicant."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-157-p719-b007",
+          "type": "verse",
+          "text": "Though Ragho Malhar assured him of his support, Even then Najib Rohilla felt scared at heart. From both the parties were the Southern Marathas receiving ransom, With both the parties had they made secret pacts. (33)",
+          "lines": [
+            "Though Ragho Malhar assured him of his support,",
+            "Even then Najib Rohilla felt scared at heart.",
+            "From both the parties were the Southern Marathas receiving ransom,",
+            "With both the parties had they made secret pacts."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-157-p719-b008",
+          "type": "verse",
+          "text": "Thereafter, Ragho Malhar started counselling the Jat chief, Being Indians, both Jats and Marathas shared a common heritage: With every possibility of Ahmed Shah Abdali's invasion, They might perchance, lose their honour in the battle. (34)",
+          "lines": [
+            "Thereafter,",
+            "Ragho Malhar started counselling the Jat chief,",
+            "Being Indians, both Jats and Marathas shared a common heritage: With every possibility of Ahmed Shah Abdali's invasion,",
+            "They might perchance, lose their honour in the battle."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-157-p719-b009",
+          "type": "verse",
+          "text": "Therefore, the Jat chief should heed to his counsel, Rohilla should he call to his camp for negotiation. As Rohilla would come to mourn Jat ruler's father's death, Much would the Jat ruler gain in his reputation. (35)",
+          "lines": [
+            "Therefore, the Jat chief should heed to his counsel,",
+            "Rohilla should he call to his camp for negotiation.",
+            "As Rohilla would come to mourn Jat ruler's father's death,",
+            "Much would the Jat ruler gain in his reputation."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-157-p719-b010",
+          "type": "verse",
+          "text": "With folded hands and grass in mouth would Rohilla submit, Thus would Maratha chief make Rohilla sit with Jawahar Mai. The Jat ruler demanded Rohilla's daughter in matrimony, Must she be wedded to him with Hindu rites. (36)",
+          "lines": [
+            "With folded hands and grass in mouth would Rohilla submit,",
+            "Thus would Maratha chief make Rohilla sit with Jawahar Mai.",
+            "The Jat ruler demanded Rohilla's daughter in matrimony,",
+            "Must she be wedded to him with Hindu rites."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-157-p719-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p719-b012",
+          "type": "verse",
+          "text": "Malhar Rao replied as Rohilla had no daughter of his own, He was helpless in fulfilling the Jat ruler's condition. Gladly would he pay rupees one crore in ransom, Surely would Malhar Rao get this deed executed in writing. (37)",
+          "lines": [
+            "Malhar Rao replied as Rohilla had no daughter of his own,",
+            "He was helpless in fulfilling the Jat ruler's condition.",
+            "Gladly would he pay rupees one crore in ransom,",
+            "Surely would Malhar Rao get this deed executed in writing."
+          ],
+          "number": "37"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 721,
+      "fileName": "EPUB/page_721.html",
+      "sourceHref": "EPUB/page_721.html",
+      "printPageNumber": 667,
+      "blocks": [
+        {
+          "id": "episode-157-p721-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p721-b002",
+          "type": "verse",
+          "text": "To this proposal Jawahar Mai did not agree, For money would he never barter his family's reputation. Crores of rupees had he already spent for war, Crores more would he gladly spend for that cause. (38)",
+          "lines": [
+            "To this proposal Jawahar Mai did not agree,",
+            "For money would he never barter his family's reputation.",
+            "Crores of rupees had he already spent for war,",
+            "Crores more would he gladly spend for that cause."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-157-p721-b003",
+          "type": "verse",
+          "text": "People would denounce him after hearing about this barter, Rightly would they accuse him of bartering his father's honour for money. Thereupon did Malhar Rao contemplate the whole issue again, The way the personages in the past had dealt with such an issue. (39)",
+          "lines": [
+            "People would denounce him after hearing about this barter,",
+            "Rightly would they accuse him of bartering his father's honour for money.",
+            "Thereupon did Malhar Rao contemplate the whole issue again,",
+            "The way the personages in the past had dealt with such an issue."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-157-p721-b004",
+          "type": "verse",
+          "text": "The way this issue had been dealt with in the past, The same procedure should Jawahar Mai adopt. A girl in matrimony would Rohilla give to Jawahar Mai, Like his own daughter would Rohilla give her in matrimony. (40)",
+          "lines": [
+            "The way this issue had been dealt with in the past,",
+            "The same procedure should Jawahar Mai adopt.",
+            "A girl in matrimony would Rohilla give to Jawahar Mai,",
+            "Like his own daughter would Rohilla give her in matrimony."
+          ],
+          "number": "40"
+        },
+        {
+          "id": "episode-157-p721-b005",
+          "type": "verse",
+          "text": "With loads of jewelry and attending maids would he send, As had been the precedent in such dealings. To this proposal did Jawahar Mai readily agree, As Najib Rohilla had really been in a tight corner. (41)",
+          "lines": [
+            "With loads of jewelry and attending maids would he send,",
+            "As had been the precedent in such dealings.",
+            "To this proposal did Jawahar Mai readily agree,",
+            "As Najib Rohilla had really been in a tight corner."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-157-p721-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-157-p721-b007",
+          "type": "verse",
+          "text": "The bride in a palanquin did Rohilla send first, Along with maids and servants in ready attendance. Lots of jewels and treasures did Rohilla give in dowry, Like a bride's father did he shower money on her palanquin. (42)",
+          "lines": [
+            "The bride in a palanquin did Rohilla send first,",
+            "Along with maids and servants in ready attendance.",
+            "Lots of jewels and treasures did Rohilla give in dowry,",
+            "Like a bride's father did he shower money on her palanquin."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-157-p721-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-157-p721-b009",
+          "type": "verse",
+          "text": "Lavishly did he pay to the maids and servants, Happily did he reward whosoever came to beg. Like the domestic servants did they congratulate Rohilla, Much did they receive in return for these felicitations. (43)",
+          "lines": [
+            "Lavishly did he pay to the maids and servants,",
+            "Happily did he reward whosoever came to beg.",
+            "Like the domestic servants did they congratulate Rohilla,",
+            "Much did they receive in return for these felicitations."
+          ],
+          "number": "43"
+        },
+        {
+          "id": "episode-157-p721-b010",
+          "type": "verse",
+          "text": "With blowing of trumpets and firing of shots did he celebrate, The massive artillery guns did he bring back. The flag, demarcating his territorial claims, did he dismantle, As he accepted the proposal made by Malhar Rao. (44)",
+          "lines": [
+            "With blowing of trumpets and firing of shots did he celebrate,",
+            "The massive artillery guns did he bring back.",
+            "The flag, demarcating his territorial claims, did he dismantle,",
+            "As he accepted the proposal made by Malhar Rao."
+          ],
+          "number": "44"
+        },
+        {
+          "id": "episode-157-p721-b011",
+          "type": "verse",
+          "text": "Thereafter Najib Rohella came to see Jawahar Mai, With an apology had he put off a great danger. An elephant, a horse and a robe did he offer, As tendering of an apology had he used as a strategy. (45)",
+          "lines": [
+            "Thereafter Najib Rohella came to see Jawahar Mai,",
+            "With an apology had he put off a great danger.",
+            "An elephant, a horse and a robe did he offer,",
+            "As tendering of an apology had he used as a strategy."
+          ],
+          "number": "45"
+        },
+        {
+          "id": "episode-157-p721-b012",
+          "type": "verse",
+          "text": "Much applause and praise did Jawahar Mai earn, His father's murder had he avenged very effectively. Thereafter Najib Rohilla did depart for his home, Much did he delight for being relieved of threat. (46)",
+          "lines": [
+            "Much applause and praise did Jawahar Mai earn,",
+            "His father's murder had he avenged very effectively.",
+            "Thereafter Najib Rohilla did depart for his home,",
+            "Much did he delight for being relieved of threat."
+          ],
+          "number": "46"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 723,
+      "fileName": "EPUB/page_723.html",
+      "sourceHref": "EPUB/page_723.html",
+      "printPageNumber": 669,
+      "blocks": [
+        {
+          "id": "episode-157-p723-b001",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-157-p723-b002",
+          "type": "verse",
+          "text": "His army did he withdraw thereafter, Silver coins did he pay after calculations. Much fame and name did he earn, Such became the reputation of Jawahar Mai. (47)",
+          "lines": [
+            "His army did he withdraw thereafter,",
+            "Silver coins did he pay after calculations.",
+            "Much fame and name did he earn,",
+            "Such became the reputation of Jawahar Mai."
+          ],
+          "number": "47"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-156",
+  "nextChapterId": "episode-158"
+}

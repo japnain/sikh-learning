@@ -1,0 +1,312 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-034",
+  "chapterNumber": 34,
+  "episodeNumber": 34,
+  "kind": "episode",
+  "title": "Singhs of Village Salodi",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 261,
+  "endSourcePage": 265,
+  "wordCount": 789,
+  "charCount": 4500,
+  "startPosition": 37829,
+  "pages": [
+    {
+      "sourcePageNumber": 261,
+      "fileName": "EPUB/page_261.html",
+      "sourceHref": "EPUB/page_261.html",
+      "printPageNumber": 217,
+      "blocks": [
+        {
+          "id": "episode-034-p261-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-034-p261-b003",
+          "type": "verse",
+          "text": "There was a village by the name Sailodi near Sirhind, Which was inhabited by the Guru's Khalsa Singhs. One of the residents who was named S. Aali Singh, Was an employee in Wazir Khan's court at Sirhind. (1)",
+          "lines": [
+            "There was a village by the name Sailodi near Sirhind,",
+            "Which was inhabited by the Guru's Khalsa Singhs.",
+            "One of the residents who was named S.",
+            "Aali Singh,",
+            "Was an employee in Wazir Khan's court at Sirhind."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-034-p261-b004",
+          "type": "verse",
+          "text": "One day the Nawab of Sirhind summoned Aali Singh to his court, To enquire if another Sikh Guru had come to Punjab. The Nawab taunted him to go and join his Guru's camp, And dared him to bring his Guru to the province of Sirhind. (2)",
+          "lines": [
+            "One day the Nawab of Sirhind summoned Aali Singh to his court,",
+            "To enquire if another Sikh Guru had come to Punjab.",
+            "The Nawab taunted him to go and join his Guru's camp,",
+            "And dared him to bring his Guru to the province of Sirhind."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-034-p261-b005",
+          "type": "verse",
+          "text": "The Nawab declared that he would kill his Guru as well, So that his soul should quickly join his dead sons' souls. The Singh brothers remarked that in case their Guru was perfect, He would certainly arrive himself without their assistance. (3)",
+          "lines": [
+            "The Nawab declared that he would kill his Guru as well,",
+            "So that his soul should quickly join his dead sons' souls.",
+            "The Singh brothers remarked that in case their Guru was perfect,",
+            "He would certainly arrive himself without their assistance."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-034-p261-b006",
+          "type": "verse",
+          "text": "The Nawab remarked that he would keep them in his custody, And release them only when their Guru had arrived. He would slaughter them if their Guru failed to arrive. On this premise he prepared to handcuff the two Singhs. (4)",
+          "lines": [
+            "The Nawab remarked that he would keep them in his custody,",
+            "And release them only when their Guru had arrived.",
+            "He would slaughter them if their Guru failed to arrive.",
+            "On this premise he prepared to handcuff the two Singhs."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-034-p261-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-034-p261-b008",
+          "type": "verse",
+          "text": "But since the Mughal officials failed to chain their feet, They felt extremely embarrassed at their failure. In the meantime, the spirits (sent by Banda Singh) reached there, And urged the two Singh brothers to depart for Banda Singh's camp. (5)",
+          "lines": [
+            "But since the Mughal officials failed to chain their feet,",
+            "They felt extremely embarrassed at their failure.",
+            "In the meantime, the spirits (sent by Banda Singh) reached there,",
+            "And urged the two Singh brothers to depart for Banda Singh's camp."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-034-p261-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-034-p261-b010",
+          "type": "verse",
+          "text": "Feeling convinced of the Guru's Will and Banda Singh's powers, They asked the Nawab to relieve them from his service. Although the Nawab claimed that he had done everything in jest, But the Singh brothers refused to continue in his service. (6)",
+          "lines": [
+            "Feeling convinced of the Guru's Will and Banda Singh's powers,",
+            "They asked the Nawab to relieve them from his service.",
+            "Although the Nawab claimed that he had done everything in jest,",
+            "But the Singh brothers refused to continue in his service."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-034-p261-b011",
+          "type": "verse",
+          "text": "Since the Nawab had accused them of being afraid of death, They would prove their credentials by going to their Guru. Promising that they would meet the Nawab along with their Guru, They bid farewell to the Nawab by shouting the Singh slogan. (7)",
+          "lines": [
+            "Since the Nawab had accused them of being afraid of death,",
+            "They would prove their credentials by going to their Guru.",
+            "Promising that they would meet the Nawab along with their Guru,",
+            "They bid farewell to the Nawab by shouting the Singh slogan."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-034-p261-b012",
+          "type": "verse",
+          "text": "They consulted the roadmap to the village of Sehar Khand, Which was situated in the Khakhroad Pargana of Punjab (Haryana). Assessing that this village was situated at thirty miles from Delhi, The two Singh brothers made their departure towards this place. (8)",
+          "lines": [
+            "They consulted the roadmap to the village of Sehar Khand,",
+            "Which was situated in the Khakhroad Pargana of Punjab (Haryana).",
+            "Assessing that this village was situated at thirty miles from Delhi,",
+            "The two Singh brothers made their departure towards this place."
+          ],
+          "number": "8"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 263,
+      "fileName": "EPUB/page_263.html",
+      "sourceHref": "EPUB/page_263.html",
+      "printPageNumber": 219,
+      "blocks": [
+        {
+          "id": "episode-034-p263-b001",
+          "type": "verse",
+          "text": "Still they wished to confirm Banda Singh's spiritual powers, Only then they could be convinced of his mandate to kill Wazir Khan. If Banda Singh received them by calling them by their personal names, Then they would be assured of Guru's Will about his mission. (9)",
+          "lines": [
+            "Still they wished to confirm Banda Singh's spiritual powers,",
+            "Only then they could be convinced of his mandate to kill Wazir Khan.",
+            "If Banda Singh received them by calling them by their personal names,",
+            "Then they would be assured of Guru's Will about his mission."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-034-p263-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-034-p263-b003",
+          "type": "verse",
+          "text": "So taking ten other Guru's Singhs along with them, S. Aali Singh and Maali Singh departed towards Banda Singh's location. Spotting their contingent coming towards his camp, Banda Singh raised both of his hands to greet them. (10)",
+          "lines": [
+            "So taking ten other Guru's Singhs along with them,",
+            "S.",
+            "Aali Singh and Maali Singh departed towards Banda Singh's location.",
+            "Spotting their contingent coming towards his camp,",
+            "Banda Singh raised both of his hands to greet them."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-034-p263-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-034-p263-b005",
+          "type": "verse",
+          "text": "Banda Singh greeted them with the traditional Khalsa greetings, And shouting \"Waheguru ji ki Fateh3 \" to receive them. Banda Singh then told them about their secret wish, That they wished him to identify them by their names. (11)",
+          "lines": [
+            "Banda Singh greeted them with the traditional Khalsa greetings,",
+            "And shouting \"Waheguru ji ki Fateh3 \" to receive them.",
+            "Banda Singh then told them about their secret wish,",
+            "That they wished him to identify them by their names."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-034-p263-b006",
+          "type": "verse",
+          "text": "He remarked that Aali Singh and Maali Singh had arrived from Bhasor, And expected to see a miracle performed by him. Banda Singh told the Singhs that all miracles belonged to the Guru, Who would stand by those whom He had sent. (12)",
+          "lines": [
+            "He remarked that Aali Singh and Maali Singh had arrived from Bhasor,",
+            "And expected to see a miracle performed by him.",
+            "Banda Singh told the Singhs that all miracles belonged to the Guru,",
+            "Who would stand by those whom He had sent."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-034-p263-b007",
+          "type": "verse",
+          "text": "After this as he identified them by their respective names, They felt convinced of the Guru's Will behind his mission. Then both Aali Singh and Maali Singh told Banda Singh, That they considered him to be the embodiment of the Guru. (13)",
+          "lines": [
+            "After this as he identified them by their respective names,",
+            "They felt convinced of the Guru's Will behind his mission.",
+            "Then both Aali Singh and Maali Singh told Banda Singh,",
+            "That they considered him to be the embodiment of the Guru."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-034-p263-b008",
+          "type": "verse",
+          "text": "Then they asked Banda Singh why he was wasting his time, In accomplishing the mission assigned to him by the Guru. Banda Singh informed these devout Singh brothers, That he was waiting for some other Singh contingents to join him. (14)",
+          "lines": [
+            "Then they asked Banda Singh why he was wasting his time,",
+            "In accomplishing the mission assigned to him by the Guru.",
+            "Banda Singh informed these devout Singh brothers,",
+            "That he was waiting for some other Singh contingents to join him."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-034-p263-b009",
+          "type": "verse",
+          "text": "As he wished all other Singh contingents to join the expedition, That was causing a little delay in launching the operation. All those Singhs to whom messages had been sent by him, They were on their way from long distances to join him. (15)",
+          "lines": [
+            "As he wished all other Singh contingents to join the expedition,",
+            "That was causing a little delay in launching the operation.",
+            "All those Singhs to whom messages had been sent by him,",
+            "They were on their way from long distances to join him."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-034-p263-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-034-p263-b011",
+          "type": "verse",
+          "text": "Banda Singh remarked as he knew their cherished desire, They were desirous of winning this victory themselves. That is why they were coming from all the directions, Of South, East, West as well as the Northern mountains. (16)",
+          "lines": [
+            "Banda Singh remarked as he knew their cherished desire,",
+            "They were desirous of winning this victory themselves.",
+            "That is why they were coming from all the directions,",
+            "Of South,",
+            "East,",
+            "West as well as the Northern mountains."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-034-p263-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-034-p263-b013",
+          "type": "verse",
+          "text": "A contingent of the Khalsa Singhs came from the Malwa region, Which was led by Bhai Fateh Singh of village Bhaika. Another contingent was led by Bhai Karam Singh of Roopa village, Who were also the dear and devout Singhs of the Guru. (17)",
+          "lines": [
+            "A contingent of the Khalsa Singhs came from the Malwa region,",
+            "Which was led by Bhai Fateh Singh of village Bhaika.",
+            "Another contingent was led by Bhai Karam Singh of Roopa village,",
+            "Who were also the dear and devout Singhs of the Guru."
+          ],
+          "number": "17"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 265,
+      "fileName": "EPUB/page_265.html",
+      "sourceHref": "EPUB/page_265.html",
+      "printPageNumber": 221,
+      "blocks": [
+        {
+          "id": "episode-034-p265-b001",
+          "type": "verse",
+          "text": "Ram Singh and Tiloka Singh (the two sons of Sodhi Kaul Singh) did not come themselves, But sent several other Singhs by hiring their services for money. Mercenaries from Mehraj came with the aim to loot the booty, After getting paid by the rich sons of Baba Phool4 . (18)",
+          "lines": [
+            "Ram Singh and Tiloka Singh (the two sons of Sodhi Kaul Singh) did not come themselves,",
+            "But sent several other Singhs by hiring their services for money.",
+            "Mercenaries from Mehraj came with the aim to loot the booty,",
+            "After getting paid by the rich sons of Baba Phool4 ."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-034-p265-b002",
+          "type": "verse",
+          "text": "No contingent of soldiers came from Nawab of Kotkapoora, Which kept him deprived of Guru's grace (for the second time). (19)",
+          "lines": [
+            "No contingent of soldiers came from Nawab of Kotkapoora,",
+            "Which kept him deprived of Guru's grace (for the second time)."
+          ],
+          "number": "19"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-033",
+  "nextChapterId": "episode-035"
+}

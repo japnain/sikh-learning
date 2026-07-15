@@ -1,0 +1,515 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-092",
+  "chapterNumber": 92,
+  "episodeNumber": 92,
+  "kind": "episode",
+  "title": "Nawab Kapoor Singh Bhujangi",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 151,
+  "endSourcePage": 159,
+  "wordCount": 1200,
+  "charCount": 7193,
+  "startPosition": 103121,
+  "pages": [
+    {
+      "sourcePageNumber": 151,
+      "fileName": "EPUB/page_151.html",
+      "sourceHref": "EPUB/page_151.html",
+      "printPageNumber": 97,
+      "blocks": [
+        {
+          "id": "episode-092-p151-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p151-b003",
+          "type": "paragraph",
+          "text": "Khalsa Panth would run away post haste (into the wilds), Whenever Nadar Shah1 invaded the territory of Punjab."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 153,
+      "fileName": "EPUB/page_153.html",
+      "sourceHref": "EPUB/page_153.html",
+      "printPageNumber": 99,
+      "blocks": [
+        {
+          "id": "episode-092-p153-b001",
+          "type": "verse",
+          "text": "The Khalsa Singhs would ran helter-skelter, And seek refuge wherever they found convenient. (1)",
+          "lines": [
+            "The Khalsa Singhs would ran helter-skelter,",
+            "And seek refuge wherever they found convenient."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-092-p153-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-092-p153-b003",
+          "type": "verse",
+          "text": "Nawab Kapoor Singh, the veteran Singh warrior, Entered Malwa region among the fraternity of Brars. After his contingent passed a few days with them, They turned his contingent out of their sanctuary. (2)",
+          "lines": [
+            "Nawab Kapoor Singh, the veteran Singh warrior,",
+            "Entered Malwa region among the fraternity of Brars.",
+            "After his contingent passed a few days with them,",
+            "They turned his contingent out of their sanctuary."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-092-p153-b004",
+          "type": "verse",
+          "text": "There was a Singh hailing from village Thikriwal2 , Who made Nawab's contingent put up a camp at his village. Nawab's contingent which passed a few days there, Had a strength of around two thousands Khalsa Singhs. (3)",
+          "lines": [
+            "There was a Singh hailing from village Thikriwal2 ,",
+            "Who made Nawab's contingent put up a camp at his village.",
+            "Nawab's contingent which passed a few days there,",
+            "Had a strength of around two thousands Khalsa Singhs."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-092-p153-b005",
+          "type": "verse",
+          "text": "Some of the Singhs returned and entered Majha again, After robbing and plundering the lethargic wayfarers. Whosoever had plenty of wealth and resources, Would surely join the Khalsa Panth and share his possessions. (4)",
+          "lines": [
+            "Some of the Singhs returned and entered Majha again,",
+            "After robbing and plundering the lethargic wayfarers.",
+            "Whosoever had plenty of wealth and resources,",
+            "Would surely join the Khalsa Panth and share his possessions."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-092-p153-b006",
+          "type": "verse",
+          "text": "Thus, Khalsa Panth spent some time in want and need, Since the Khalsa could not survive without loot and plunder. Then the Khalsa Panth was approached by Bhai Gohar Singh3 , Who was the (proud) father of (a devout Sikh) Bhai Budho. (5)",
+          "lines": [
+            "Thus,",
+            "Khalsa Panth spent some time in want and need,",
+            "Since the Khalsa could not survive without loot and plunder.",
+            "Then the Khalsa Panth was approached by Bhai Gohar Singh3 ,",
+            "Who was the (proud) father of (a devout Sikh) Bhai Budho."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-092-p153-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p153-b008",
+          "type": "verse",
+          "text": "Then Gohar Singh served Nawab Kapoor Singh's Khalsa contingent, And won the hearts of Khalsa Panth with his service. Whosoever defied his writ in his own territory, He got them subjugated with the might of Khalsa contingent. (6)",
+          "lines": [
+            "Then Gohar Singh served Nawab Kapoor Singh's Khalsa contingent,",
+            "And won the hearts of Khalsa Panth with his service.",
+            "Whosoever defied his writ in his own territory,",
+            "He got them subjugated with the might of Khalsa contingent."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-092-p153-b009",
+          "type": "verse",
+          "text": "Then it was the turn of the devout Bhai Gurbax Singh4, Who made all the provisions for the meals of Khalsa force. Leading the Khalsa contingent on various expeditions, He also made successful attempts on various territories. (7)",
+          "lines": [
+            "Then it was the turn of the devout Bhai Gurbax Singh4,",
+            "Who made all the provisions for the meals of Khalsa force.",
+            "Leading the Khalsa contingent on various expeditions,",
+            "He also made successful attempts on various territories."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-092-p153-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-092-p153-b011",
+          "type": "verse",
+          "text": "Baba Ala Singh5 also organized a community kitchen for Singhs, Along with many members of his \"Phool\" dynasty. Getting himself initiated by the sacred hands of Nawab Kapoor Singh, Baba Ala Singh joined the fraternity of the Khalsa Panth. (8)",
+          "lines": [
+            "Baba Ala Singh5 also organized a community kitchen for Singhs,",
+            "Along with many members of his \"Phool\" dynasty.",
+            "Getting himself initiated by the sacred hands of Nawab Kapoor Singh,",
+            "Baba Ala Singh joined the fraternity of the Khalsa Panth."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-092-p153-b012",
+          "type": "verse",
+          "text": "Since a fighting force came to be at his disposal gratis, He also got many of his personal scores settled. His brothers founded a village in the midst of a wild, Which the Khalsa contingent named as Gorjiana. (9)",
+          "lines": [
+            "Since a fighting force came to be at his disposal gratis,",
+            "He also got many of his personal scores settled.",
+            "His brothers founded a village in the midst of a wild,",
+            "Which the Khalsa contingent named as Gorjiana."
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 155,
+      "fileName": "EPUB/page_155.html",
+      "sourceHref": "EPUB/page_155.html",
+      "printPageNumber": 101,
+      "blocks": [
+        {
+          "id": "episode-092-p155-b001",
+          "type": "verse",
+          "text": "While Gurbax Singh got a lot of territory occupied, Baba Ala Singh also took over a large tract. Since he had many of his brothers with him, He made each of them occupy a significant territory. (10)",
+          "lines": [
+            "While Gurbax Singh got a lot of territory occupied,",
+            "Baba Ala Singh also took over a large tract.",
+            "Since he had many of his brothers with him,",
+            "He made each of them occupy a significant territory."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-092-p155-b002",
+          "type": "verse",
+          "text": "Baba Ala Singh's dynasty spread manifold, Who occupied a large territory around Sunam. (11)",
+          "lines": [
+            "Baba Ala Singh's dynasty spread manifold,",
+            "Who occupied a large territory around Sunam."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-092-p155-b003",
+          "type": "heading",
+          "text": "Episode 92 contd. The Episode About Ransacking of Sirhind (The Khalsa Panth Got Ready)"
+        },
+        {
+          "id": "episode-092-p155-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p155-b005",
+          "type": "verse",
+          "text": "(Dear readers) listen to the episode about Sirhind, And the way it was first ransacked by the Singhs. As the Singhs had run short of money severely, They brought a lot of money after ransacking Sirhind. (1)",
+          "lines": [
+            "(Dear readers) listen to the episode about Sirhind,",
+            "And the way it was first ransacked by the Singhs.",
+            "As the Singhs had run short of money severely,",
+            "They brought a lot of money after ransacking Sirhind."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-092-p155-b006",
+          "type": "verse",
+          "text": "Hearing about the annual congregation at Amritsar drawing near, The Khalsa Panth (contigent) felt extremely delighted. They must participate in the congregation somehow or the other, Such was the faith they had (for the Guru's shrine). (2)",
+          "lines": [
+            "Hearing about the annual congregation at Amritsar drawing near,",
+            "The Khalsa Panth (contigent) felt extremely delighted.",
+            "They must participate in the congregation somehow or the other,",
+            "Such was the faith they had (for the Guru's shrine)."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-092-p155-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-092-p155-b008",
+          "type": "verse",
+          "text": "Let us proceed to Amritsar, all of them remarked, And have a dip in the sacred pool at Amritsar. Approaching Nawab Kapoor Singh they begged him, To allow them to ransack some town to meet their traveling expenses. (3)",
+          "lines": [
+            "Let us proceed to Amritsar, all of them remarked,",
+            "And have a dip in the sacred pool at Amritsar.",
+            "Approaching Nawab Kapoor Singh they begged him,",
+            "To allow them to ransack some town to meet their traveling expenses."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-092-p155-b009",
+          "type": "verse",
+          "text": "At this S. Labh Singh came out with a suggestion, That they must ransack a city soaked with martyr's blood, The town where Guru's two Sahibzadas were executed, Must be leveled up to the level of agricultural fields. (4)",
+          "lines": [
+            "At this S.",
+            "Labh Singh came out with a suggestion,",
+            "That they must ransack a city soaked with martyr's blood,",
+            "The town where Guru's two Sahibzadas were executed,",
+            "Must be leveled up to the level of agricultural fields."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-092-p155-b010",
+          "type": "verse",
+          "text": "While some of them were too keen to rush immediately, Some others opined that their contingent was too small. Nawab Kapoor Singh remarked why should they hesitate, Since in both the situations of killing and being killed was profitable. (5)",
+          "lines": [
+            "While some of them were too keen to rush immediately,",
+            "Some others opined that their contingent was too small.",
+            "Nawab Kapoor Singh remarked why should they hesitate,",
+            "Since in both the situations of killing and being killed was profitable."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-092-p155-b011",
+          "type": "verse",
+          "text": "Whosoever sacrificed his life at such a place, Would receive Guru's blessing to his heart's content. It would indeed be a profitable bargain both ways, Salvation through death, material gains through survival. (6)",
+          "lines": [
+            "Whosoever sacrificed his life at such a place,",
+            "Would receive Guru's blessing to his heart's content.",
+            "It would indeed be a profitable bargain both ways,",
+            "Salvation through death, material gains through survival."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-092-p155-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p155-b013",
+          "type": "paragraph",
+          "text": "With the grace of Guru Gobind Singh's prophetic words, Even a handful of Singhs would snatch a victory."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 157,
+      "fileName": "EPUB/page_157.html",
+      "sourceHref": "EPUB/page_157.html",
+      "printPageNumber": 103,
+      "blocks": [
+        {
+          "id": "episode-092-p157-b001",
+          "type": "verse",
+          "text": "As Guru's prophetic words would prove to be true, This town would be razed to the level of agricultural fields. (7)",
+          "lines": [
+            "As Guru's prophetic words would prove to be true,",
+            "This town would be razed to the level of agricultural fields."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-092-p157-b002",
+          "type": "verse",
+          "text": "As Nawab Kapoor Singh made these remarks about Sirhind, The Khalsa Panth contingent felt free to launch an attack, Entering Sirhind just with the break of dawn, The Singhs indulged in heavy loot and plunder in the city. (8)",
+          "lines": [
+            "As Nawab Kapoor Singh made these remarks about Sirhind,",
+            "The Khalsa Panth contingent felt free to launch an attack,",
+            "Entering Sirhind just with the break of dawn,",
+            "The Singhs indulged in heavy loot and plunder in the city."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-092-p157-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-092-p157-b004",
+          "type": "verse",
+          "text": "The Singhs, being five thousand in numerical strength, They occupied the five main entrances to the city. While all the Muslim residents were done to death, They dispossessed all the Hindus of their jewellery. (9)",
+          "lines": [
+            "The Singhs, being five thousand in numerical strength,",
+            "They occupied the five main entrances to the city.",
+            "While all the Muslim residents were done to death,",
+            "They dispossessed all the Hindus of their jewellery."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-092-p157-b005",
+          "type": "verse",
+          "text": "Whatever gold, silver and other expensive articles they found, They picked up all those valuables after a thorough search. After looting and plundering the town for about six hours, They gorged themselves on sweets to satisfy their hunger. (10)",
+          "lines": [
+            "Whatever gold, silver and other expensive articles they found,",
+            "They picked up all those valuables after a thorough search.",
+            "After looting and plundering the town for about six hours,",
+            "They gorged themselves on sweets to satisfy their hunger."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-092-p157-b006",
+          "type": "verse",
+          "text": "Gathering as much wealth as they could carry, They loaded it on horses they picked from the city. Returning by the same route they had come by, They arrived back at the village of Thikriwal. (11)",
+          "lines": [
+            "Gathering as much wealth as they could carry,",
+            "They loaded it on horses they picked from the city.",
+            "Returning by the same route they had come by,",
+            "They arrived back at the village of Thikriwal."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-092-p157-b007",
+          "type": "verse",
+          "text": "They procured as many horses from the Malwa region, As they could spot out through out this region. Having been provided with the traveling expenses, How could the Singhs do without marching towards Amritsar? (12)",
+          "lines": [
+            "They procured as many horses from the Malwa region,",
+            "As they could spot out through out this region.",
+            "Having been provided with the traveling expenses,",
+            "How could the Singhs do without marching towards Amritsar?"
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-092-p157-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p157-b009",
+          "type": "verse",
+          "text": "As the time for the annual congregation approached near, Khalsa Panth Singhs prepared themselves for any eventuality. Being never scared of shedding their mortal frame, They reckoned even defeat as their (moral) victory. (13)",
+          "lines": [
+            "As the time for the annual congregation approached near,",
+            "Khalsa Panth Singhs prepared themselves for any eventuality.",
+            "Being never scared of shedding their mortal frame,",
+            "They reckoned even defeat as their (moral) victory."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-092-p157-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-092-p157-b011",
+          "type": "verse",
+          "text": "As the people of Malwa heard about their success stories, All of them came to congratulate the Singhs. Presenting horses as gifts to all the (brave) Singhs, They stood with folded hands to bid farewell to the departing Singhs. (14)",
+          "lines": [
+            "As the people of Malwa heard about their success stories,",
+            "All of them came to congratulate the Singhs.",
+            "Presenting horses as gifts to all the (brave) Singhs,",
+            "They stood with folded hands to bid farewell to the departing Singhs."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-092-p157-b012",
+          "type": "verse",
+          "text": "As the Khalsa Panth had found a new foothold in Malwa, They were welcome to return there after a congregation at Amritsar. Whenever the Mughals committed oppression in the Malwa, The Khalsa Panth was entreated to come to their support. (15)",
+          "lines": [
+            "As the Khalsa Panth had found a new foothold in Malwa,",
+            "They were welcome to return there after a congregation at Amritsar.",
+            "Whenever the Mughals committed oppression in the Malwa,",
+            "The Khalsa Panth was entreated to come to their support."
+          ],
+          "number": "15"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 159,
+      "fileName": "EPUB/page_159.html",
+      "sourceHref": "EPUB/page_159.html",
+      "printPageNumber": 105,
+      "blocks": [
+        {
+          "id": "episode-092-p159-b001",
+          "type": "verse",
+          "text": "The Khalsa Singhs promised to rush forth post haste, Provided the Malwa Singhs sent a written appeal to them. After a solemn prayer, the Khalsa Singhs departed for Amritsar, With a faith that the Guru would grant them success. (16)",
+          "lines": [
+            "The Khalsa Singhs promised to rush forth post haste,",
+            "Provided the Malwa Singhs sent a written appeal to them.",
+            "After a solemn prayer, the Khalsa Singhs departed for Amritsar,",
+            "With a faith that the Guru would grant them success."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-092-p159-b002",
+          "type": "verse",
+          "text": "The Khalsa Panth contingents, after crossing the rivers, Finally arrived at the holy shrine at Sri Amritsar. But the Mughals had desecrated the sacred pool, And demolished all the constructed Singh Bungas6. (17)",
+          "lines": [
+            "The Khalsa Panth contingents, after crossing the rivers,",
+            "Finally arrived at the holy shrine at Sri Amritsar.",
+            "But the Mughals had desecrated the sacred pool,",
+            "And demolished all the constructed Singh Bungas6."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-092-p159-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p159-b004",
+          "type": "verse",
+          "text": "Filling the sacred pool with animal bones and dung, The Mughals had sowed a crop over its surface. Soon after their arrival, the Singhs cleared the whole debris, And restored the sacred pool to its original glory. (18)",
+          "lines": [
+            "Filling the sacred pool with animal bones and dung,",
+            "The Mughals had sowed a crop over its surface.",
+            "Soon after their arrival, the Singhs cleared the whole debris,",
+            "And restored the sacred pool to its original glory."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-092-p159-b005",
+          "type": "meter",
+          "text": "Jhoolna:"
+        },
+        {
+          "id": "episode-092-p159-b006",
+          "type": "verse",
+          "text": "The Khalsa, coming out of hibernation from gorges and ravines, Must assemble for an annual congregation at Akal Bunga. After constructing and renovating the damaged structures, They must assemble at Akal Takht for a new resolution. After robbing and plundering those that are wicked, They must share and partake the booty inside their structures. The Singhs must escape when the Mughals come in large numbers, As this is in accordance with Satguru's will for Khalsa's expansion. (19)",
+          "lines": [
+            "The Khalsa, coming out of hibernation from gorges and ravines,",
+            "Must assemble for an annual congregation at Akal Bunga.",
+            "After constructing and renovating the damaged structures,",
+            "They must assemble at Akal Takht for a new resolution.",
+            "After robbing and plundering those that are wicked,",
+            "They must share and partake the booty inside their structures.",
+            "The Singhs must escape when the Mughals come in large numbers,",
+            "As this is in accordance with Satguru's will for Khalsa's expansion."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-092-p159-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-092-p159-b008",
+          "type": "verse",
+          "text": "After illuminating the shrine on the Diwali congregation, The Singhs spent a few days there in comparative peace. But as the Mughal forces invaded in large numbers, The Singhs ran away helter shelter for safety. (20)",
+          "lines": [
+            "After illuminating the shrine on the Diwali congregation,",
+            "The Singhs spent a few days there in comparative peace.",
+            "But as the Mughal forces invaded in large numbers,",
+            "The Singhs ran away helter shelter for safety."
+          ],
+          "number": "20"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-091",
+  "nextChapterId": "episode-093"
+}

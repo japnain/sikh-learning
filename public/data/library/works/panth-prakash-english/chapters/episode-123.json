@@ -1,0 +1,829 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-123",
+  "chapterNumber": 123,
+  "episodeNumber": 123,
+  "kind": "episode",
+  "title": "Ahmad Shah and Sukha Singh",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 459,
+  "endSourcePage": 469,
+  "wordCount": 2105,
+  "charCount": 12331,
+  "startPosition": 155406,
+  "pages": [
+    {
+      "sourcePageNumber": 459,
+      "fileName": "EPUB/page_459.html",
+      "sourceHref": "EPUB/page_459.html",
+      "printPageNumber": 405,
+      "blocks": [
+        {
+          "id": "episode-123-p459-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p459-b003",
+          "type": "verse",
+          "text": "It was in the year eighteen hundred and ten1 (B.S.), That Ahmad Shah Abdali2 did come to invade India. He had come at the invitation of Najib Khan Ruhela3 , After the demise of Mohammad Shah, the emperor of Delhi. (1)",
+          "lines": [
+            "It was in the year eighteen hundred and ten1 (B.S.),",
+            "That Ahmad Shah Abdali2 did come to invade India.",
+            "He had come at the invitation of Najib Khan Ruhela3 ,",
+            "After the demise of Mohammad Shah, the emperor of Delhi."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-123-p459-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p459-b005",
+          "type": "verse",
+          "text": "There being four ministers of the four provinces of Delhi, Each one of them occupied one of the provinces each. These four ministers being rivals to each others' prowess, They indulged in an internecine war to kill each other. (2)",
+          "lines": [
+            "There being four ministers of the four provinces of Delhi,",
+            "Each one of them occupied one of the provinces each.",
+            "These four ministers being rivals to each others' prowess,",
+            "They indulged in an internecine war to kill each other."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-123-p459-b006",
+          "type": "verse",
+          "text": "Mansur Ali4 having occupied the Lucknow province, He introduced his minted coins known as Mansuri coins. Nizam Ali5 being another minister of another state, He had strengthened his occupation of the Deccan province. (3)",
+          "lines": [
+            "Mansur Ali4 having occupied the Lucknow province,",
+            "He introduced his minted coins known as Mansuri coins.",
+            "Nizam Ali5 being another minister of another state,",
+            "He had strengthened his occupation of the Deccan province."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-123-p459-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p459-b008",
+          "type": "paragraph",
+          "text": "All these four ministers proving untrue to their salt, They had betrayed the emperor of Delhi, their master. Another minister who being known as Najib Khan Ruhela, He had aligned himself with Ahmed Shah of Gilja race."
+        },
+        {
+          "id": "episode-123-p459-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p459-b010",
+          "type": "verse",
+          "text": "Another Muslim minister Gazdi6 inviting the Marathas from the South, He made them invade Najib Khan Ruhela's province. As Najib Khan Ruhela had constructed the Najibgarh fort, There grew a great hostility between the Mughals and Pathans. (5)",
+          "lines": [
+            "Another Muslim minister Gazdi6 inviting the Marathas from the South,",
+            "He made them invade Najib Khan Ruhela's province.",
+            "As Najib Khan Ruhela had constructed the Najibgarh fort,",
+            "There grew a great hostility between the Mughals and Pathans."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-123-p459-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p459-b012",
+          "type": "verse",
+          "text": "As soon as Mohammad Shah did shed his mortal frame, Extreme chaos did come to prevail in Delhi. There remained mainly two contenders for power, These two being Najib Khan Ruhela and Gazi-ud-din Gazdi. (6)",
+          "lines": [
+            "As soon as Mohammad Shah did shed his mortal frame,",
+            "Extreme chaos did come to prevail in Delhi.",
+            "There remained mainly two contenders for power,",
+            "These two being Najib Khan Ruhela and Gazi-ud-din Gazdi."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-123-p459-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p459-b014",
+          "type": "verse",
+          "text": "Thus did Najib Khan Ruhela invite the Pathan Ahmad Shah, As he intended to get the Mughals eliminated by the Pathans. Such being the will ordained by the Divine Satguru, He ordained that the Mughals be eliminated by the Mughals. (7)",
+          "lines": [
+            "Thus did Najib Khan Ruhela invite the Pathan Ahmad Shah,",
+            "As he intended to get the Mughals eliminated by the Pathans.",
+            "Such being the will ordained by the Divine Satguru,",
+            "He ordained that the Mughals be eliminated by the Mughals."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-123-p459-b015",
+          "type": "verse",
+          "text": "Having got a good opportunity during this internecine Muslim strife, The Singhs made a dash to kill the Muslims on both sides. As both the Muslim factions attempted to kill the Singhs, The Singhs, too, endeavoured to decimate both of them. (8)",
+          "lines": [
+            "Having got a good opportunity during this internecine Muslim strife,",
+            "The Singhs made a dash to kill the Muslims on both sides.",
+            "As both the Muslim factions attempted to kill the Singhs,",
+            "The Singhs, too, endeavoured to decimate both of them."
+          ],
+          "number": "8"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 461,
+      "fileName": "EPUB/page_461.html",
+      "sourceHref": "EPUB/page_461.html",
+      "printPageNumber": 407,
+      "blocks": [
+        {
+          "id": "episode-123-p461-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p461-b002",
+          "type": "verse",
+          "text": "As after summoning the Marahatta reinforcements to his support, Gazi-ud-ddin's forces laid a siege to Nijabudin Ruhela's forces, The latter, seeking the support of Ahmad Shah Abdali from Kabul, He called for the Pathan reinforcements to his support. (9)",
+          "lines": [
+            "As after summoning the Marahatta reinforcements to his support,",
+            "Gazi-ud-ddin's forces laid a siege to Nijabudin Ruhela's forces,",
+            "The latter, seeking the support of Ahmad Shah Abdali from Kabul,",
+            "He called for the Pathan reinforcements to his support."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-123-p461-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p461-b004",
+          "type": "verse",
+          "text": "Thereafter, as he had called for Ahmad Shah's support, Ahmad Shah did arrive to liberate Najibu Khan Rohela. Thereafter, Ahmad Shah Abdali not only occupied Sirhind and Lahore, But he also got Delhi vacated from Marhatta occupation. (10)",
+          "lines": [
+            "Thereafter, as he had called for Ahmad Shah's support,",
+            "Ahmad Shah did arrive to liberate Najibu Khan Rohela.",
+            "Thereafter,",
+            "Ahmad Shah Abdali not only occupied Sirhind and Lahore,",
+            "But he also got Delhi vacated from Marhatta occupation."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-123-p461-b005",
+          "type": "verse",
+          "text": "Gazi-ud-din (Gazdi) summoning Marhatta reinforcements once again, He laid a siege around Najibu Khan Ruhela's forces for the second time. Najibudin Ruhela, once again, summoned the Pathan reinforcements, Who came rushing from Kabul (to crush the Marhattas). (11)",
+          "lines": [
+            "Gazi-ud-din (Gazdi) summoning Marhatta reinforcements once again,",
+            "He laid a siege around Najibu Khan Ruhela's forces for the second time.",
+            "Najibudin Ruhela, once again, summoned the Pathan reinforcements,",
+            "Who came rushing from Kabul (to crush the Marhattas)."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-123-p461-b006",
+          "type": "verse",
+          "text": "Mir Mannu7 , having become lax after this development, As he received no support from Delhi (against Abdali). As Ahmad Shah Abdali's force invaded Shahdra8 , Dewan Kaura Mai fortified his defences at Lahore (to combat the invaders). (12)",
+          "lines": [
+            "Mir Mannu7 , having become lax after this development,",
+            "As he received no support from Delhi (against Abdali).",
+            "As Ahmad Shah Abdali's force invaded Shahdra8 ,",
+            "Dewan Kaura Mai fortified his defences at Lahore (to combat the invaders)."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-123-p461-b007",
+          "type": "verse",
+          "text": "Thereafter, the Dewan sent a very warm invitation to the Singhs, That the Hindus and the Singhs were fraternal followers of the same Guru. Asking for the Singhs' support on the basis of ideological affinity, He pleaded before the Singhs to push back Abdali's troops. (13)",
+          "lines": [
+            "Thereafter, the Dewan sent a very warm invitation to the Singhs,",
+            "That the Hindus and the Singhs were fraternal followers of the same Guru.",
+            "Asking for the Singhs' support on the basis of ideological affinity,",
+            "He pleaded before the Singhs to push back Abdali's troops."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-123-p461-b008",
+          "type": "verse",
+          "text": "Offering not only to provide the Singhs with arms and ammunition, He was even prepared to offer a financial ransom to the Singhs. Procuring a written assurance from Mir Mannu in favour of the Khalsa, He sent that written despatch to the Khalsa Panth. (14)",
+          "lines": [
+            "Offering not only to provide the Singhs with arms and ammunition,",
+            "He was even prepared to offer a financial ransom to the Singhs.",
+            "Procuring a written assurance from Mir Mannu in favour of the Khalsa,",
+            "He sent that written despatch to the Khalsa Panth."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-123-p461-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p461-b010",
+          "type": "verse",
+          "text": "(Mir Mannu) assured the Khalsa to start a dialogue with them, Soon after they had (jointly) repulsed the (Afghan) invader. He would allow the Singhs to occupy that (Punjab) region, Which had always remained defiant to the Mughal rule. (15)",
+          "lines": [
+            "(Mir Mannu) assured the Khalsa to start a dialogue with them,",
+            "Soon after they had (jointly) repulsed the (Afghan) invader.",
+            "He would allow the Singhs to occupy that (Punjab) region,",
+            "Which had always remained defiant to the Mughal rule."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-123-p461-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p461-b012",
+          "type": "verse",
+          "text": "(He narrated) that ever since Banda Bahadur's9 occupation of the hilly region, The Mughal empire had received no revenues from there. As these hill chiefs had harassed the Khalsa Panth in the recent past, The Khalsa Panth should occupy the entire hill territory. (16)",
+          "lines": [
+            "(He narrated) that ever since Banda Bahadur's9 occupation of the hilly region,",
+            "The Mughal empire had received no revenues from there.",
+            "As these hill chiefs had harassed the Khalsa Panth in the recent past,",
+            "The Khalsa Panth should occupy the entire hill territory."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-123-p461-b013",
+          "type": "verse",
+          "text": "They should not only occupy hills upto Parol, Kathua and Basohali10, They must settle scores with the hill chiefs in the whole Doon valley. They must collect as much revenue from the hills, As they collected from the Punjab region of their own. (17)",
+          "lines": [
+            "They should not only occupy hills upto Parol,",
+            "Kathua and Basohali10,",
+            "They must settle scores with the hill chiefs in the whole Doon valley.",
+            "They must collect as much revenue from the hills,",
+            "As they collected from the Punjab region of their own."
+          ],
+          "number": "17"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 463,
+      "fileName": "EPUB/page_463.html",
+      "sourceHref": "EPUB/page_463.html",
+      "printPageNumber": 409,
+      "blocks": [
+        {
+          "id": "episode-123-p463-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p463-b002",
+          "type": "verse",
+          "text": "Thereafter, the Singhs having held an assembly, They did perform a congregational prayer. Thereafter, putting up a camp at village Ghaniya Ke, They made a move to join Dewan Kaura Mai's force. (18)",
+          "lines": [
+            "Thereafter, the Singhs having held an assembly,",
+            "They did perform a congregational prayer.",
+            "Thereafter, putting up a camp at village Ghaniya Ke,",
+            "They made a move to join Dewan Kaura Mai's force."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-123-p463-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p463-b004",
+          "type": "verse",
+          "text": "Soon after, the Singhs themselves entered into a factional fight, Themselves they invited harassment from their own kin. Hari Singh\" from the Bhangi contingent did betray the Khalsa, As he shot dead Kushal Singh Ramgharia (brother of Jassa Singh Ramgarhia). (19)",
+          "lines": [
+            "Soon after, the Singhs themselves entered into a factional fight,",
+            "Themselves they invited harassment from their own kin.",
+            "Hari Singh\" from the Bhangi contingent did betray the Khalsa,",
+            "As he shot dead Kushal Singh Ramgharia (brother of Jassa Singh Ramgarhia)."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-123-p463-b005",
+          "type": "verse",
+          "text": "As all the Singhs considered it to be an act of evil, They decided to ransack the seat of the Bhangis. As the Bhangis came to know about this raid, They fled away to a distant place to avoid violence. (20)",
+          "lines": [
+            "As all the Singhs considered it to be an act of evil,",
+            "They decided to ransack the seat of the Bhangis.",
+            "As the Bhangis came to know about this raid,",
+            "They fled away to a distant place to avoid violence."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-123-p463-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p463-b007",
+          "type": "verse",
+          "text": "As this contingent of ten thousand Bhangi Singhs fled, Were they attacked by a force of twenty thousand Singhs. In this way, the total strength of these Singhs taken together, Came to thirty thousands who constituted this fighting force. (21)",
+          "lines": [
+            "As this contingent of ten thousand Bhangi Singhs fled,",
+            "Were they attacked by a force of twenty thousand Singhs.",
+            "In this way, the total strength of these Singhs taken together,",
+            "Came to thirty thousands who constituted this fighting force."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-123-p463-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p463-b009",
+          "type": "verse",
+          "text": "Therefore, these Khalsa Singhs put up a camp at Lahore, At a place in the vicinity of Shalimar gardens. As the Singhs took a round around the Lahori gate, They noticed the city butchers taking a cow for a slaughter. (22)",
+          "lines": [
+            "Therefore, these Khalsa Singhs put up a camp at Lahore,",
+            "At a place in the vicinity of Shalimar gardens.",
+            "As the Singhs took a round around the Lahori gate,",
+            "They noticed the city butchers taking a cow for a slaughter."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-123-p463-b010",
+          "type": "verse",
+          "text": "As the Singh slaughtered those cow-slaughterers, The shopkeepers of Lahore shut their shops in protest. As the people of the city of Lahore attacked the Singhs, Here also the Singhs had to face a lot of harassment. (23)",
+          "lines": [
+            "As the Singh slaughtered those cow-slaughterers,",
+            "The shopkeepers of Lahore shut their shops in protest.",
+            "As the people of the city of Lahore attacked the Singhs,",
+            "Here also the Singhs had to face a lot of harassment."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-123-p463-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p463-b012",
+          "type": "verse",
+          "text": "In the afternoon, after taking a dose of cannabis, (Warrior) Sukha Singh (carpenter) did go on a round. Though being a foster son of (warrior) Sham Singh12, He was a native of village Mari-Kambo-ki13 . (24)",
+          "lines": [
+            "In the afternoon, after taking a dose of cannabis,",
+            "(Warrior) Sukha Singh (carpenter) did go on a round.",
+            "Though being a foster son of (warrior) Sham Singh12,",
+            "He was a native of village Mari-Kambo-ki13 ."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-123-p463-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p463-b014",
+          "type": "verse",
+          "text": "Thereafter, without consulting any of his companions, Did he cross to the other side of the river Ravi. He was followed by a few other (Nihang) Singhs, Without keeping a proper count of those who followed. (25)",
+          "lines": [
+            "Thereafter, without consulting any of his companions,",
+            "Did he cross to the other side of the river Ravi.",
+            "He was followed by a few other (Nihang) Singhs,",
+            "Without keeping a proper count of those who followed."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-123-p463-b015",
+          "type": "verse",
+          "text": "As they approached the camp of Abdali's troops, They did camouflage themselves among the bushes. As the Singhs refreshed themselves with waters of Ravi, There was a lot of commotion among the Abdali troops. (26)",
+          "lines": [
+            "As they approached the camp of Abdali's troops,",
+            "They did camouflage themselves among the bushes.",
+            "As the Singhs refreshed themselves with waters of Ravi,",
+            "There was a lot of commotion among the Abdali troops."
+          ],
+          "number": "26"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 465,
+      "fileName": "EPUB/page_465.html",
+      "sourceHref": "EPUB/page_465.html",
+      "printPageNumber": 411,
+      "blocks": [
+        {
+          "id": "episode-123-p465-b001",
+          "type": "verse",
+          "text": "As the Abdali troops noticed the Singhs advancing towards them, They stood up to observe the Singhs marching towards them. As Ahmad Shah Abdali sensed a threat to his security, He seemed to lose heart on that occasion. (27)",
+          "lines": [
+            "As the Abdali troops noticed the Singhs advancing towards them,",
+            "They stood up to observe the Singhs marching towards them.",
+            "As Ahmad Shah Abdali sensed a threat to his security,",
+            "He seemed to lose heart on that occasion."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-123-p465-b002",
+          "type": "verse",
+          "text": "Instantly did Ahmad Shah Abdali mount his horse, Instantly did he deploy his contingents in front. Declaring that Hindustani troops had launched an invasion, He would never allow his troops to retreat to Kabul. (28)",
+          "lines": [
+            "Instantly did Ahmad Shah Abdali mount his horse,",
+            "Instantly did he deploy his contingents in front.",
+            "Declaring that Hindustani troops had launched an invasion,",
+            "He would never allow his troops to retreat to Kabul."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-123-p465-b003",
+          "type": "verse",
+          "text": "Asking his troops to pick up their swords for a fight, He deployed his troops right in front of the Singhs. (29)",
+          "lines": [
+            "Asking his troops to pick up their swords for a fight,",
+            "He deployed his troops right in front of the Singhs."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-123-p465-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p465-b005",
+          "type": "verse",
+          "text": "(But) only a few Singhs had actually crossed Ravi, Majority of them having put up in their base camp. While some had returned, a few had gone with Sukha Singh, (But) those reckoned to be the best warriors had remained behind. (30)",
+          "lines": [
+            "(But) only a few Singhs had actually crossed Ravi,",
+            "Majority of them having put up in their base camp.",
+            "While some had returned, a few had gone with Sukha Singh,",
+            "(But) those reckoned to be the best warriors had remained behind."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-123-p465-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p465-b007",
+          "type": "verse",
+          "text": "As Sukha Singh noticed the approach of Abdali's forces, He reckoned his own companions to be small in strength. Thereafter, contemplating the whole situation from all angles, He found himself completely helpless in everyway. (31)",
+          "lines": [
+            "As Sukha Singh noticed the approach of Abdali's forces,",
+            "He reckoned his own companions to be small in strength.",
+            "Thereafter, contemplating the whole situation from all angles,",
+            "He found himself completely helpless in everyway."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-123-p465-b008",
+          "type": "verse",
+          "text": "If he picked up a fight with the Abdali's troops, He and his companions would be greatly out numbered. As Singhs' strength was as little as a pinch of salt in a flour heap, No sensible person would approve of their fighting with the Afghans. (32)",
+          "lines": [
+            "If he picked up a fight with the Abdali's troops,",
+            "He and his companions would be greatly out numbered.",
+            "As Singhs' strength was as little as a pinch of salt in a flour heap,",
+            "No sensible person would approve of their fighting with the Afghans."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-123-p465-b009",
+          "type": "verse",
+          "text": "If he chose to desert and run away from the battlefield, He would have to bear the humiliation of having been a coward. As he found himself caught between the devil and the deep sea, He considered it better to fight and make a sacrifice. (33)",
+          "lines": [
+            "If he chose to desert and run away from the battlefield,",
+            "He would have to bear the humiliation of having been a coward.",
+            "As he found himself caught between the devil and the deep sea,",
+            "He considered it better to fight and make a sacrifice."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-123-p465-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p465-b011",
+          "type": "verse",
+          "text": "Under no circumstances would anybody retrace his steps, Thus did Sukha Singh convey his resolve to the Singhs. At that very spot, would they make a supreme sacrifice, For their religion and ideology would they certainly fight. (34)",
+          "lines": [
+            "Under no circumstances would anybody retrace his steps,",
+            "Thus did Sukha Singh convey his resolve to the Singhs.",
+            "At that very spot, would they make a supreme sacrifice,",
+            "For their religion and ideology would they certainly fight."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-123-p465-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p465-b013",
+          "type": "verse",
+          "text": "Still did Sukha Singh give an option to the accompanying Singhs, That those who craved for life could go back across the river. To which the Singhs retorted : How could they dare to desert him, As they had broken bread with him from the same bowl. (35)",
+          "lines": [
+            "Still did Sukha Singh give an option to the accompanying Singhs,",
+            "That those who craved for life could go back across the river.",
+            "To which the Singhs retorted : How could they dare to desert him,",
+            "As they had broken bread with him from the same bowl."
+          ],
+          "number": "35"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 467,
+      "fileName": "EPUB/page_467.html",
+      "sourceHref": "EPUB/page_467.html",
+      "printPageNumber": 413,
+      "blocks": [
+        {
+          "id": "episode-123-p467-b001",
+          "type": "verse",
+          "text": "Gladly would they make a sacrifice along with them, Proudly would they fain to be counted among the martyrs. Among them was one of author's own uncles named Jasraurio, Who, despite being an infant, did never choose to return. (36)",
+          "lines": [
+            "Gladly would they make a sacrifice along with them,",
+            "Proudly would they fain to be counted among the martyrs.",
+            "Among them was one of author's own uncles named Jasraurio,",
+            "Who, despite being an infant, did never choose to return."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-123-p467-b002",
+          "type": "verse",
+          "text": "As the author's father (being infant) was instructed to return, He too, begged S. Sham Singh (to seek his approval to fight). In the meantime, as Abdali's forces arrived too close, The Singh spurred their horses to confront the enemy. (37)",
+          "lines": [
+            "As the author's father (being infant) was instructed to return,",
+            "He too, begged S.",
+            "Sham Singh (to seek his approval to fight).",
+            "In the meantime, as Abdali's forces arrived too close,",
+            "The Singh spurred their horses to confront the enemy."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-123-p467-b003",
+          "type": "verse",
+          "text": "As the Singhs fired muskets, shots arrows and wielded their swords, Truly were the approaching Afghan troops pushed back. As the Singhs kept standing there instead of beating a retreat, Really had they made a mistake in their fighting strategy. (38)",
+          "lines": [
+            "As the Singhs fired muskets, shots arrows and wielded their swords,",
+            "Truly were the approaching Afghan troops pushed back.",
+            "As the Singhs kept standing there instead of beating a retreat,",
+            "Really had they made a mistake in their fighting strategy."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-123-p467-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p467-b005",
+          "type": "verse",
+          "text": "Hardly had the Singhs repulsed the attack of one of enemy's contingents, When four times larger in strength did enemy troops arrive. Surely was the Singhs' strength reduced to as small a number, As is a pinch of salt found in a heap of wheat flour. (39)",
+          "lines": [
+            "Hardly had the Singhs repulsed the attack of one of enemy's contingents,",
+            "When four times larger in strength did enemy troops arrive.",
+            "Surely was the Singhs' strength reduced to as small a number,",
+            "As is a pinch of salt found in a heap of wheat flour."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-123-p467-b006",
+          "type": "verse",
+          "text": "Thereupon did Sukha Singh think in his own mind, Would that he could spot out Ahmed Shah Abdali. Gladly would he prefer to grapple with the Afghan chief, If somebody could disclose the latter's whereabouts. (40)",
+          "lines": [
+            "Thereupon did Sukha Singh think in his own mind,",
+            "Would that he could spot out Ahmed Shah Abdali.",
+            "Gladly would he prefer to grapple with the Afghan chief,",
+            "If somebody could disclose the latter's whereabouts."
+          ],
+          "number": "40"
+        },
+        {
+          "id": "episode-123-p467-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p467-b008",
+          "type": "verse",
+          "text": "As Sukha Singh pushed forwarded in the midst of raging battle, Nobody did provide any clue about Afghan chief's location. As no body could communicate with him in his native tongue, Darkness did descend on the scene in the midst of din and dust. (41)",
+          "lines": [
+            "As Sukha Singh pushed forwarded in the midst of raging battle,",
+            "Nobody did provide any clue about Afghan chief's location.",
+            "As no body could communicate with him in his native tongue,",
+            "Darkness did descend on the scene in the midst of din and dust."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-123-p467-b009",
+          "type": "verse",
+          "text": "As Sukha Singh did fail in his attempt to hit his target, He started killing rest of the Afghan troops of Abdali. As he fell a martyr while fighting and killing those Afghan troops, His stubbornness had had cost him his own life. (42)",
+          "lines": [
+            "As Sukha Singh did fail in his attempt to hit his target,",
+            "He started killing rest of the Afghan troops of Abdali.",
+            "As he fell a martyr while fighting and killing those Afghan troops,",
+            "His stubbornness had had cost him his own life."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-123-p467-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p467-b011",
+          "type": "verse",
+          "text": "As Sukha had died fighting there with the Afghan troops, Rest of the Singhs did beat a retreat towards Lahore. As the retreating Singhs approached the city of Lahore, The inhabitants of Lahore opened a fierce fire on them. (43)",
+          "lines": [
+            "As Sukha had died fighting there with the Afghan troops,",
+            "Rest of the Singhs did beat a retreat towards Lahore.",
+            "As the retreating Singhs approached the city of Lahore,",
+            "The inhabitants of Lahore opened a fierce fire on them."
+          ],
+          "number": "43"
+        },
+        {
+          "id": "episode-123-p467-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p467-b013",
+          "type": "verse",
+          "text": "As the Singhs suffered loss on both the fronts, Then did they feel harassed from all sides. Thereafter, the Singhs put up a camp on the outskirts, Where they passed the night while guarding their defences. (44)",
+          "lines": [
+            "As the Singhs suffered loss on both the fronts,",
+            "Then did they feel harassed from all sides.",
+            "Thereafter, the Singhs put up a camp on the outskirts,",
+            "Where they passed the night while guarding their defences."
+          ],
+          "number": "44"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 469,
+      "fileName": "EPUB/page_469.html",
+      "sourceHref": "EPUB/page_469.html",
+      "printPageNumber": 415,
+      "blocks": [
+        {
+          "id": "episode-123-p469-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p469-b002",
+          "type": "verse",
+          "text": "As the night descended on the scene near Lahore, Did the Singhs resolve to make a move towards Majha. As both the Mughals and the Afghans were equally wicked Muslims, Must the Singhs loot, plunder and ransack both of them. (45)",
+          "lines": [
+            "As the night descended on the scene near Lahore,",
+            "Did the Singhs resolve to make a move towards Majha.",
+            "As both the Mughals and the Afghans were equally wicked Muslims,",
+            "Must the Singhs loot, plunder and ransack both of them."
+          ],
+          "number": "45"
+        },
+        {
+          "id": "episode-123-p469-b003",
+          "type": "verse",
+          "text": "Thus had passed eighteen hundred years in the Bikrami Samvat, As well as ten more years in the same Indian Calendar. When Sukha had made a supreme sacrifice of his life, While fighting Abdali's Afghan troops from Kabul. (46)",
+          "lines": [
+            "Thus had passed eighteen hundred years in the Bikrami Samvat,",
+            "As well as ten more years in the same Indian Calendar.",
+            "When Sukha had made a supreme sacrifice of his life,",
+            "While fighting Abdali's Afghan troops from Kabul."
+          ],
+          "number": "46"
+        },
+        {
+          "id": "episode-123-p469-b004",
+          "type": "verse",
+          "text": "Never can the Singhs and Muslim remain together, Well it does not augur such a combination indeed. The moment this deadly combination comes into being, Instantly does Goddess Chandi14 break this configuration. (47)",
+          "lines": [
+            "Never can the Singhs and Muslim remain together,",
+            "Well it does not augur such a combination indeed.",
+            "The moment this deadly combination comes into being,",
+            "Instantly does Goddess Chandi14 break this configuration."
+          ],
+          "number": "47"
+        },
+        {
+          "id": "episode-123-p469-b005",
+          "type": "heading",
+          "text": "Episode 123 (Contd.) Rest of the Episode Continues (It was during this skirmish that Dewan Kaura Mai died)"
+        },
+        {
+          "id": "episode-123-p469-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-123-p469-b007",
+          "type": "verse",
+          "text": "God forbid, a reader may put forth a question: How did Ahmad Shah Abdali1 proceed with his mission? Could he break the siege to enter the city of Lahore? The author must provide answer to these questions. (1)",
+          "lines": [
+            "God forbid, a reader may put forth a question: How did Ahmad Shah Abdali1 proceed with his mission?",
+            "Could he break the siege to enter the city of Lahore?",
+            "The author must provide answer to these questions."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-123-p469-b008",
+          "type": "verse",
+          "text": "It was during this skirmish (between Abdali and Mughal forces), That (the venerable) Dewan Kaura Mai2 did shed his mortal frame. With him perished Sangat Singh (another Singh chief), As well as the chief of Jaswan principality of Jajowal. (2)",
+          "lines": [
+            "It was during this skirmish (between Abdali and Mughal forces),",
+            "That (the venerable) Dewan Kaura Mai2 did shed his mortal frame.",
+            "With him perished Sangat Singh (another Singh chief),",
+            "As well as the chief of Jaswan principality of Jajowal."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-123-p469-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-123-p469-b010",
+          "type": "verse",
+          "text": "As these skirmishes continued for several months, No reinforcements arrived from Delhi to assist Mir Mannu's forces. As Najib Khan Ruhela3 created a fear psychosis from the otherside, Ahmad Shah Abdali defeated the forces of Mir Mannu4 . (3)",
+          "lines": [
+            "As these skirmishes continued for several months,",
+            "No reinforcements arrived from Delhi to assist Mir Mannu's forces.",
+            "As Najib Khan Ruhela3 created a fear psychosis from the otherside,",
+            "Ahmad Shah Abdali defeated the forces of Mir Mannu4 ."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-123-p469-b011",
+          "type": "verse",
+          "text": "With folded hands and a scarf round his neck did Mir Mannu submit, Prefering not to desert, did he become an ally of Abdali. Accepting to pay a ransom of fifty lakh rupees, Did Abdali nominate him as Lahore's governor on his behalf. (4)",
+          "lines": [
+            "With folded hands and a scarf round his neck did Mir Mannu submit,",
+            "Prefering not to desert, did he become an ally of Abdali.",
+            "Accepting to pay a ransom of fifty lakh rupees,",
+            "Did Abdali nominate him as Lahore's governor on his behalf."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-123-p469-b012",
+          "type": "verse",
+          "text": "After Lahore's occupation, Abdali conquered Delhi as well, Appointing Najib Khan Rohela as ruler of Delhi on his behalf. As Abdali appointed the latter a minister to rule Delhi, The Mughal empire's writ ceased to run at Delhi at last. (5)",
+          "lines": [
+            "After Lahore's occupation,",
+            "Abdali conquered Delhi as well,",
+            "Appointing Najib Khan Rohela as ruler of Delhi on his behalf.",
+            "As Abdali appointed the latter a minister to rule Delhi,",
+            "The Mughal empire's writ ceased to run at Delhi at last."
+          ],
+          "number": "5"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-122",
+  "nextChapterId": "episode-124"
+}

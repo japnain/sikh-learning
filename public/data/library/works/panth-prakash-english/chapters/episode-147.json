@@ -1,0 +1,273 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-147",
+  "chapterNumber": 147,
+  "episodeNumber": 147,
+  "kind": "episode",
+  "title": "Taruna Dal",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 645,
+  "endSourcePage": 647,
+  "wordCount": 612,
+  "charCount": 3603,
+  "startPosition": 188152,
+  "pages": [
+    {
+      "sourcePageNumber": 645,
+      "fileName": "EPUB/page_645.html",
+      "sourceHref": "EPUB/page_645.html",
+      "printPageNumber": 591,
+      "blocks": [
+        {
+          "id": "episode-147-p645-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-147-p645-b003",
+          "type": "verse",
+          "text": "Now listen to the account of the other faction (Taruna Dal), Who had enriched themselves after ransacking of Kasur2 . They heard about Bishambhar Dass' slaughter by (Buddha Dal), And their occupation of the Doaba region after that. (1)",
+          "lines": [
+            "Now listen to the account of the other faction (Taruna Dal),",
+            "Who had enriched themselves after ransacking of Kasur2 .",
+            "They heard about Bishambhar Dass' slaughter by (Buddha Dal),",
+            "And their occupation of the Doaba region after that."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-147-p645-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-147-p645-b005",
+          "type": "verse",
+          "text": "As they (Buddha Dal) had occupied Doaba on their own, Why would they agree to share their possession with Taruna Dal? Either the Taruna Dal should fight against Buddha Dal unitedly, Or should they try their luck elsewhere in (Punjab). (2)",
+          "lines": [
+            "As they (Buddha Dal) had occupied Doaba on their own,",
+            "Why would they agree to share their possession with Taruna Dal?",
+            "Either the Taruna Dal should fight against Buddha Dal unitedly,",
+            "Or should they try their luck elsewhere in (Punjab)."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-147-p645-b006",
+          "type": "verse",
+          "text": "The Buddha Dal regretted that they were deprived of the booty, Though Taruna Dal had enriched themselves after Kasur's ransacking. Now what would it avail to repent over the past, In no way would Kasur's looted booty fall into their hands. (3)",
+          "lines": [
+            "The Buddha Dal regretted that they were deprived of the booty,",
+            "Though Taruna Dal had enriched themselves after Kasur's ransacking.",
+            "Now what would it avail to repent over the past,",
+            "In no way would Kasur's looted booty fall into their hands."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-147-p645-b007",
+          "type": "verse",
+          "text": "Both the factions repented for each other's exploits, Though each faction received what was in store for them. Thereafter, the Taruna Dal had an impulse to take an initiative, As they found the surrounding areas of Lahore unguarded. (4)",
+          "lines": [
+            "Both the factions repented for each other's exploits,",
+            "Though each faction received what was in store for them.",
+            "Thereafter, the Taruna Dal had an impulse to take an initiative,",
+            "As they found the surrounding areas of Lahore unguarded."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-147-p645-b008",
+          "type": "verse",
+          "text": "Three contingents (misls) of troop strength did they dispatch there, Two contingents did they send towards Majha3 and the hills. The Singhs who belonged to the villages in Majha region, In those villages did they establish their hegemony. (5)",
+          "lines": [
+            "Three contingents (misls) of troop strength did they dispatch there,",
+            "Two contingents did they send towards Majha3 and the hills.",
+            "The Singhs who belonged to the villages in Majha region,",
+            "In those villages did they establish their hegemony."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-147-p645-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-147-p645-b010",
+          "type": "verse",
+          "text": "As the Nakai4 contingent advanced towards the Nakka5 region, The Bhangi contingent marched towards Multan6 in the west. S. Charat Singh7 , fixing his gaze on the vicinity of Lahore, He occupied certain pockets here and there in that region. (6)",
+          "lines": [
+            "As the Nakai4 contingent advanced towards the Nakka5 region,",
+            "The Bhangi contingent marched towards Multan6 in the west.",
+            "S.",
+            "Charat Singh7 , fixing his gaze on the vicinity of Lahore,",
+            "He occupied certain pockets here and there in that region."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-147-p645-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-147-p645-b012",
+          "type": "verse",
+          "text": "S. Charat Singh himself being as mighty as Death itself, He occupied the region reputed for breeding quality horses. Establishing a police post in the city of Gujaranwala8 , He decided to loot and plunder the rest of the region. (7)",
+          "lines": [
+            "S.",
+            "Charat Singh himself being as mighty as Death itself,",
+            "He occupied the region reputed for breeding quality horses.",
+            "Establishing a police post in the city of Gujaranwala8 ,",
+            "He decided to loot and plunder the rest of the region."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-147-p645-b013",
+          "type": "verse",
+          "text": "There being a number of contingent chiefs among the Bhangis9 , They occupied a lot of territory on both sides of the river. As they kept up a continuous strife with S. Charat Singh, He spent whole of his life in conflict with the Bhangis. (8)",
+          "lines": [
+            "There being a number of contingent chiefs among the Bhangis9 ,",
+            "They occupied a lot of territory on both sides of the river.",
+            "As they kept up a continuous strife with S.",
+            "Charat Singh,",
+            "He spent whole of his life in conflict with the Bhangis."
+          ],
+          "number": "8"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 647,
+      "fileName": "EPUB/page_647.html",
+      "sourceHref": "EPUB/page_647.html",
+      "printPageNumber": 593,
+      "blocks": [
+        {
+          "id": "episode-147-p647-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-147-p647-b002",
+          "type": "verse",
+          "text": "Having looted Kasur and having thrashed Bishambar Dass 10 , A lot of treasure had fallen into the Singhs' hands. As the Khalsa gained in prosperity and strength, Truly had the Mughals fallen on bad days. (9)",
+          "lines": [
+            "Having looted Kasur and having thrashed Bishambar Dass 10 ,",
+            "A lot of treasure had fallen into the Singhs' hands.",
+            "As the Khalsa gained in prosperity and strength,",
+            "Truly had the Mughals fallen on bad days."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-147-p647-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-147-p647-b004",
+          "type": "verse",
+          "text": "Much in prominence as the Singhs did gain, All round frustration did the enemy encounter. The Mughal custodian who happened to be in Lahore, Helpless did he feel without finances to meet his expenses. (10)",
+          "lines": [
+            "Much in prominence as the Singhs did gain,",
+            "All round frustration did the enemy encounter.",
+            "The Mughal custodian who happened to be in Lahore,",
+            "Helpless did he feel without finances to meet his expenses."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-147-p647-b005",
+          "type": "verse",
+          "text": "By exploiting the Lahore residents did he survive, Venturing out of Lahore for collection did he not dare. As the Singhs collected all the revenues from the region, The troops strength inside Lahore dwindled (for want of wages). (11)",
+          "lines": [
+            "By exploiting the Lahore residents did he survive,",
+            "Venturing out of Lahore for collection did he not dare.",
+            "As the Singhs collected all the revenues from the region,",
+            "The troops strength inside Lahore dwindled (for want of wages)."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-147-p647-b006",
+          "type": "verse",
+          "text": "Neither could the Mughals venture out of Lahore, Nor could any revenues come to them from outside. How could they maintain an army without paying wages, So did they fall short of troops with them. (12)",
+          "lines": [
+            "Neither could the Mughals venture out of Lahore,",
+            "Nor could any revenues come to them from outside.",
+            "How could they maintain an army without paying wages,",
+            "So did they fall short of troops with them."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-147-p647-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-147-p647-b008",
+          "type": "verse",
+          "text": "Then did Ahmad Shah Abdali send two brigades, From the capital city of Kabul\" (to fight the Singhs), These brigades led by Sar Buland Khan12 and Jahan Khan13 , Landed in Punjab and settled themselves there. (13)",
+          "lines": [
+            "Then did Ahmad Shah Abdali send two brigades,",
+            "From the capital city of Kabul\" (to fight the Singhs),",
+            "These brigades led by Sar Buland Khan12 and Jahan Khan13 ,",
+            "Landed in Punjab and settled themselves there."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-147-p647-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-147-p647-b010",
+          "type": "verse",
+          "text": "As Sar Buland Khan occupied the fort of Rohtas14, He established himself as the special custodian of Attock15 . Jahan Khan, putting up a camp at the city of Sialkot, He wished to have encounter with the Singhs. (14)",
+          "lines": [
+            "As Sar Buland Khan occupied the fort of Rohtas14,",
+            "He established himself as the special custodian of Attock15 .",
+            "Jahan Khan, putting up a camp at the city of Sialkot,",
+            "He wished to have encounter with the Singhs."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-147-p647-b011",
+          "type": "verse",
+          "text": "Taimur Shah16 having established himself at Lahore, Such a strategy did the Gilja Pathans chalk out. Having strengthened their forces for fighting with the Singhs, They gathered their Mughal and Pathan troops for this purpose. (15)",
+          "lines": [
+            "Taimur Shah16 having established himself at Lahore,",
+            "Such a strategy did the Gilja Pathans chalk out.",
+            "Having strengthened their forces for fighting with the Singhs,",
+            "They gathered their Mughal and Pathan troops for this purpose."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-147-p647-b012",
+          "type": "verse",
+          "text": "Having annexed Multan, Kashmir and Bhakhar provinces, They annexed a total of five provinces with Kabul. (16)",
+          "lines": [
+            "Having annexed Multan,",
+            "Kashmir and Bhakhar provinces,",
+            "They annexed a total of five provinces with Kabul."
+          ],
+          "number": "16"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-146",
+  "nextChapterId": "episode-148"
+}

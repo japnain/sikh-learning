@@ -1,0 +1,387 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-166",
+  "chapterNumber": 166,
+  "episodeNumber": 166,
+  "kind": "episode",
+  "title": "Phulkians (With a Sovereign Rule was (Phool) invested)",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 817,
+  "endSourcePage": 823,
+  "wordCount": 773,
+  "charCount": 4406,
+  "startPosition": 216983,
+  "pages": [
+    {
+      "sourcePageNumber": 817,
+      "fileName": "EPUB/page_817.html",
+      "sourceHref": "EPUB/page_817.html",
+      "printPageNumber": 763,
+      "blocks": [
+        {
+          "id": "episode-166-p817-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p817-b003",
+          "type": "verse",
+          "text": "Listen now to the account of (Baba) Phool, The way his clan multiplied and flourished. They way he stood before Guru Hargobind, Patting his empty stomach (displaying his poverty). (1)",
+          "lines": [
+            "Listen now to the account of (Baba) Phool,",
+            "The way his clan multiplied and flourished.",
+            "They way he stood before Guru Hargobind,",
+            "Patting his empty stomach (displaying his poverty)."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-166-p817-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-166-p817-b005",
+          "type": "verse",
+          "text": "Once upon a time the sixth Guru arrived at Mehraj 1 , Bhai Bhagtu2 brought kala3 to the Guru's presence. The Guru blessed whatever a devotee prayed for, With wealth, livelihood and sons the Guru blessed. (2)",
+          "lines": [
+            "Once upon a time the sixth Guru arrived at Mehraj 1 ,",
+            "Bhai Bhagtu2 brought kala3 to the Guru's presence.",
+            "The Guru blessed whatever a devotee prayed for,",
+            "With wealth, livelihood and sons the Guru blessed."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-166-p817-b006",
+          "type": "paragraph",
+          "text": "As many devotees went to pay obeisance to the Guru, The infant Phool4 was left behind to graze cattle."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 819,
+      "fileName": "EPUB/page_819.html",
+      "sourceHref": "EPUB/page_819.html",
+      "printPageNumber": 765,
+      "blocks": [
+        {
+          "id": "episode-166-p819-b001",
+          "type": "verse",
+          "text": "Hearing that all others had gone to see the Guru, He did not take meals as a matter of protest. (3)",
+          "lines": [
+            "Hearing that all others had gone to see the Guru,",
+            "He did not take meals as a matter of protest."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-166-p819-b002",
+          "type": "verse",
+          "text": "As his parents had not been alive, There was nobody else to take him to the Guru. As he started crying under such depressing thoughts, The news about his cries reached his uncle Kala. (4)",
+          "lines": [
+            "As his parents had not been alive,",
+            "There was nobody else to take him to the Guru.",
+            "As he started crying under such depressing thoughts,",
+            "The news about his cries reached his uncle Kala."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-166-p819-b003",
+          "type": "verse",
+          "text": "As Phool got up in the morning along with Kala, Carrying a bowl of curd did he go with Kala. As both of them arrived at the Guru's congregation, Guru's attention was drawn towards the face of Phool. (5)",
+          "lines": [
+            "As Phool got up in the morning along with Kala,",
+            "Carrying a bowl of curd did he go with Kala.",
+            "As both of them arrived at the Guru's congregation,",
+            "Guru's attention was drawn towards the face of Phool."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-166-p819-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p819-b005",
+          "type": "verse",
+          "text": "Placing the bowl of curd before the Guru, (Baba) Phool prostrated himself before the Guru. Thereafter, standing up did he pat his stomach, As he had been instructed to do by Kala. (6)",
+          "lines": [
+            "Placing the bowl of curd before the Guru,",
+            "(Baba) Phool prostrated himself before the Guru.",
+            "Thereafter, standing up did he pat his stomach,",
+            "As he had been instructed to do by Kala."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-166-p819-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-166-p819-b007",
+          "type": "verse",
+          "text": "Thereupon, the Guru felt delighted after looking at Phool, A hearty laugh did the Guru have to Phool's good luck. Auspicious was the moment when Phool had left home, Fortunate was he indeed to attract Guru's attention. (7)",
+          "lines": [
+            "Thereupon, the Guru felt delighted after looking at Phool,",
+            "A hearty laugh did the Guru have to Phool's good luck.",
+            "Auspicious was the moment when Phool had left home,",
+            "Fortunate was he indeed to attract Guru's attention."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-166-p819-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p819-b009",
+          "type": "verse",
+          "text": "The revered Guru enquired from Kala, Who was that infant that he had brought. Why did he pat upon his stomach, Must Kala tell the Guru in detail. (8)",
+          "lines": [
+            "The revered Guru enquired from Kala,",
+            "Who was that infant that he had brought.",
+            "Why did he pat upon his stomach,",
+            "Must Kala tell the Guru in detail."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-166-p819-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-166-p819-b011",
+          "type": "verse",
+          "text": "With folded hands did Kala answer, Standing in front of the Guru in the congregation. Declaring the Guru to be omniscient, Phool's father had died fighting a battle. (9)",
+          "lines": [
+            "With folded hands did Kala answer,",
+            "Standing in front of the Guru in the congregation.",
+            "Declaring the Guru to be omniscient,",
+            "Phool's father had died fighting a battle."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-166-p819-b012",
+          "type": "verse",
+          "text": "When Chattarsal's forces had invaded them, His father was killed by Chattarsal's soldiers. Phool's father being the elder brother of Kala, Phool happened to be Kala's nephew. (10)",
+          "lines": [
+            "When Chattarsal's forces had invaded them,",
+            "His father was killed by Chattarsal's soldiers.",
+            "Phool's father being the elder brother of Kala,",
+            "Phool happened to be Kala's nephew."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-166-p819-b013",
+          "type": "verse",
+          "text": "As the infant had no means of livelihood, So did he pat his stomach before the Guru. Knowing the Guru to be the protector of the disadvantaged, So did the infant pat his stomach before the Guru. (11)",
+          "lines": [
+            "As the infant had no means of livelihood,",
+            "So did he pat his stomach before the Guru.",
+            "Knowing the Guru to be the protector of the disadvantaged,",
+            "So did the infant pat his stomach before the Guru."
+          ],
+          "number": "11"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 821,
+      "fileName": "EPUB/page_821.html",
+      "sourceHref": "EPUB/page_821.html",
+      "printPageNumber": 767,
+      "blocks": [
+        {
+          "id": "episode-166-p821-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p821-b002",
+          "type": "verse",
+          "text": "May the Guru bless him with means of livelihood, May the Guru bless this poor indigent child. He, being the son of Kala's elder brother, Guru's protection has this needy child sought. (12)",
+          "lines": [
+            "May the Guru bless him with means of livelihood,",
+            "May the Guru bless this poor indigent child.",
+            "He, being the son of Kala's elder brother,",
+            "Guru's protection has this needy child sought."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-166-p821-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-166-p821-b004",
+          "type": "verse",
+          "text": "Thereupon, the revered Guru called Phool close to him, Who proceeded and bowed down to the Guru. Thereupon, being in a moment of graceful pleasure, The Guru showered his plentiful blessings on Baba Phool. (13)",
+          "lines": [
+            "Thereupon, the revered Guru called Phool close to him,",
+            "Who proceeded and bowed down to the Guru.",
+            "Thereupon, being in a moment of graceful pleasure,",
+            "The Guru showered his plentiful blessings on Baba Phool."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-166-p821-b005",
+          "type": "verse",
+          "text": "With a sovereign rule was Phool invested, said the Guru, With that blessing had a mission been accomplished. With elephants, horses, guns and arms (would he be empowered), With palanquins would his house remain equipped. (14)",
+          "lines": [
+            "With a sovereign rule was Phool invested, said the Guru,",
+            "With that blessing had a mission been accomplished.",
+            "With elephants, horses, guns and arms (would he be empowered),",
+            "With palanquins would his house remain equipped."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-166-p821-b006",
+          "type": "verse",
+          "text": "Similar blessings did the Guru bestow on others, Inexhaustible indeed would Guru's blessings remain forever, Territorial land rights between the two rivers did the Guru grant, Such lofty words of grace did the revered Guru speak. (15)",
+          "lines": [
+            "Similar blessings did the Guru bestow on others,",
+            "Inexhaustible indeed would Guru's blessings remain forever,",
+            "Territorial land rights between the two rivers did the Guru grant,",
+            "Such lofty words of grace did the revered Guru speak."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-166-p821-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p821-b008",
+          "type": "verse",
+          "text": "Blessed with so many boons of power and Prosperity, Kala brought his nephew Phool back to home. Hearing this, Kala's wife flared up in anger, How did her husband empower another's son? (16)",
+          "lines": [
+            "Blessed with so many boons of power and Prosperity,",
+            "Kala brought his nephew Phool back to home.",
+            "Hearing this,",
+            "Kala's wife flared up in anger,",
+            "How did her husband empower another's son?"
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-166-p821-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-166-p821-b010",
+          "type": "verse",
+          "text": "So much was Kala nagged by his nagging wife, Hardly could he stay at home for ten days. A bowl of curd did he pick up again as usual, On his own son's head did he place it this time. (17)",
+          "lines": [
+            "So much was Kala nagged by his nagging wife,",
+            "Hardly could he stay at home for ten days.",
+            "A bowl of curd did he pick up again as usual,",
+            "On his own son's head did he place it this time."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-166-p821-b011",
+          "type": "verse",
+          "text": "As the revered Guru looked up once again, A child did the Guru spot in his presence. As the Guru fixed his gaze upon the child, In the same old way did the child pat his stomach. (18)",
+          "lines": [
+            "As the revered Guru looked up once again,",
+            "A child did the Guru spot in his presence.",
+            "As the Guru fixed his gaze upon the child,",
+            "In the same old way did the child pat his stomach."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-166-p821-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p821-b013",
+          "type": "verse",
+          "text": "Thereupon, the revered Guru remarked smilingly, Another child had Kala brought again. So much had he (the Guru) endowed Baba Phool already, Surely would he take care of all of them. (19)",
+          "lines": [
+            "Thereupon, the revered Guru remarked smilingly,",
+            "Another child had Kala brought again.",
+            "So much had he (the Guru) endowed Baba Phool already,",
+            "Surely would he take care of all of them."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-166-p821-b014",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-166-p821-b015",
+          "type": "verse",
+          "text": "Bhai Bhagtoo who stood near the Guru, The Guru enjoined upon him to make a prayer: Whatever Mohan's descendents cultivated and produced, Untaxed, undivided should the whole produce stay with them. (20)",
+          "lines": [
+            "Bhai Bhagtoo who stood near the Guru,",
+            "The Guru enjoined upon him to make a prayer: Whatever Mohan's descendents cultivated and produced,",
+            "Untaxed, undivided should the whole produce stay with them."
+          ],
+          "number": "20"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 823,
+      "fileName": "EPUB/page_823.html",
+      "sourceHref": "EPUB/page_823.html",
+      "printPageNumber": 769,
+      "blocks": [
+        {
+          "id": "episode-166-p823-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-166-p823-b002",
+          "type": "verse",
+          "text": "As the Guru conceded Bhai Bhagtu's prayer, Everyone felt assured at the Guru's recommendation. It was indeed devout Kala's service to the Guru, Which enriched all the sons of Baba Mohan. (21)",
+          "lines": [
+            "As the Guru conceded Bhai Bhagtu's prayer,",
+            "Everyone felt assured at the Guru's recommendation.",
+            "It was indeed devout Kala's service to the Guru,",
+            "Which enriched all the sons of Baba Mohan."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-166-p823-b003",
+          "type": "verse",
+          "text": "So much worthy of Guru's grace did Kala become, That the Divine Guru empowered him with so much power. Thereafter, the mighty Jaid Purana5 did Kala kill, Whom everyone acknowledged as the most powerful. (22)",
+          "lines": [
+            "So much worthy of Guru's grace did Kala become,",
+            "That the Divine Guru empowered him with so much power.",
+            "Thereafter, the mighty Jaid Purana5 did Kala kill,",
+            "Whom everyone acknowledged as the most powerful."
+          ],
+          "number": "22"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-165",
+  "nextChapterId": "episode-167"
+}

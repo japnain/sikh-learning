@@ -1,0 +1,408 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-044",
+  "chapterNumber": 44,
+  "episodeNumber": 44,
+  "kind": "episode",
+  "title": "Doaba Region",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 297,
+  "endSourcePage": 303,
+  "wordCount": 1081,
+  "charCount": 6560,
+  "startPosition": 44380,
+  "pages": [
+    {
+      "sourcePageNumber": 297,
+      "fileName": "EPUB/page_297.html",
+      "sourceHref": "EPUB/page_297.html",
+      "printPageNumber": 253,
+      "blocks": [
+        {
+          "id": "episode-044-p297-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-044-p297-b003",
+          "type": "verse",
+          "text": "After the capture of Malerkotla province by the Singhs, Banda Singh launched on a mission to capture Doaba1 . Since (the Mughal) rulers had fled away (at the approach of Banda Singh) Nobody had the guts to fight against Banda Singh's valour. (1)",
+          "lines": [
+            "After the capture of Malerkotla province by the Singhs,",
+            "Banda Singh launched on a mission to capture Doaba1 .",
+            "Since (the Mughal) rulers had fled away (at the approach of Banda Singh) Nobody had the guts to fight against Banda Singh's valour."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-044-p297-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-044-p297-b005",
+          "type": "verse",
+          "text": "After vacating their garrisons at Rahon, Jalandhar and Hoshiarpur2 in (Doaba), The Mughal forces fled away and crossed over the river (Ravi). After taking over the whole region and consolidating his position, Banda Singh handed over the civil) administration to the Singhs. (2)",
+          "lines": [
+            "After vacating their garrisons at Rahon,",
+            "Jalandhar and Hoshiarpur2 in (Doaba),",
+            "The Mughal forces fled away and crossed over the river (Ravi).",
+            "After taking over the whole region and consolidating his position,",
+            "Banda Singh handed over the civil) administration to the Singhs."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-044-p297-b006",
+          "type": "verse",
+          "text": "There were large-scale conversions into the Sikh Panth, As Banda Singh had started a different tradition of conversions. Whenever any impoverished person approached him for a monetary help, Banda Singh rewarded him profusely with plenty of wealth. (3)",
+          "lines": [
+            "There were large-scale conversions into the Sikh Panth,",
+            "As Banda Singh had started a different tradition of conversions.",
+            "Whenever any impoverished person approached him for a monetary help,",
+            "Banda Singh rewarded him profusely with plenty of wealth."
+          ],
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 299,
+      "fileName": "EPUB/page_299.html",
+      "sourceHref": "EPUB/page_299.html",
+      "printPageNumber": 255,
+      "blocks": [
+        {
+          "id": "episode-044-p299-b001",
+          "type": "verse",
+          "text": "When Phagwara3 rulers submitted and accepted Banda Singh's sovereignty, He handed them the powers to make revenue collections on his behalf. When the custodians of some other regions also submitted voluntarily, Banda Singh took ransom on the pretext of providing them security. (4)",
+          "lines": [
+            "When Phagwara3 rulers submitted and accepted Banda Singh's sovereignty,",
+            "He handed them the powers to make revenue collections on his behalf.",
+            "When the custodians of some other regions also submitted voluntarily,",
+            "Banda Singh took ransom on the pretext of providing them security."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-044-p299-b002",
+          "type": "verse",
+          "text": "While the Hindus felt extremely safe and happy under Banda Singh's rule, The Muslims had precarious existence under this new dispensation. They had to live their existence, perforce, under the Hindu domination, As they could live in this region now merely as subjects. (5)",
+          "lines": [
+            "While the Hindus felt extremely safe and happy under Banda Singh's rule,",
+            "The Muslims had precarious existence under this new dispensation.",
+            "They had to live their existence, perforce, under the Hindu domination,",
+            "As they could live in this region now merely as subjects."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-044-p299-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-044-p299-b004",
+          "type": "verse",
+          "text": "Beginning from the cities of Panipat and Hissar (in the south and the west), Banda Singh's rule extended upto Patti in the Majha region. No Muslim could dare to beat a ceremonial royal drum, Nor shout the morning Muslim Azan4 (in the Banda Singh occupied territory). (6)",
+          "lines": [
+            "Beginning from the cities of Panipat and Hissar (in the south and the west),",
+            "Banda Singh's rule extended upto Patti in the Majha region.",
+            "No Muslim could dare to beat a ceremonial royal drum,",
+            "Nor shout the morning Muslim Azan4 (in the Banda Singh occupied territory)."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-044-p299-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-044-p299-b006",
+          "type": "verse",
+          "text": "Banda Singh occupied the entire Pathan ruled territory, Upto the towns of Sathiala5 and Butala6 (in the Majha region). After that he occupied the whole territory of the Jaiswali7 Valley in the hills, And made the population of Doon, Parrol and Basoli8 areas his subjects. (7)",
+          "lines": [
+            "Banda Singh occupied the entire Pathan ruled territory,",
+            "Upto the towns of Sathiala5 and Butala6 (in the Majha region).",
+            "After that he occupied the whole territory of the Jaiswali7 Valley in the hills,",
+            "And made the population of Doon,",
+            "Parrol and Basoli8 areas his subjects."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-044-p299-b007",
+          "type": "verse",
+          "text": "While the revenue collections being made under the Mughals were terminated, The collections on behalf the Khalsa rule were fixed and implemented. While those who submitted voluntarily were treated as subjects, Those who defied the Khalsa dictat were chastised and eliminated. (8)",
+          "lines": [
+            "While the revenue collections being made under the Mughals were terminated,",
+            "The collections on behalf the Khalsa rule were fixed and implemented.",
+            "While those who submitted voluntarily were treated as subjects,",
+            "Those who defied the Khalsa dictat were chastised and eliminated."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-044-p299-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-044-p299-b009",
+          "type": "verse",
+          "text": "When Banda Singh assessed that Mughals' writ no longer ran in Punjab, And people of Punjab had completely stopped paying any revenue to them, He ransacked the north-western regions of Kashmir9 , Bahawalpur10 and Bhakhar11 , And accepted big ransom amounts for sparing their lives. (9)",
+          "lines": [
+            "When Banda Singh assessed that Mughals' writ no longer ran in Punjab,",
+            "And people of Punjab had completely stopped paying any revenue to them,",
+            "He ransacked the north-western regions of Kashmir9 ,",
+            "Bahawalpur10 and Bhakhar11 ,",
+            "And accepted big ransom amounts for sparing their lives."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-044-p299-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-044-p299-b011",
+          "type": "verse",
+          "text": "Hearing the news of Banda Singh's occupation of entire Punjab, The rulers of all the twenty-two states of Mughal empire felt threatened. Even the people of Kabul12 (in distant Afghanistan) felt extremely concerned, Lest Banda Singh should invade their own country as well. (10)",
+          "lines": [
+            "Hearing the news of Banda Singh's occupation of entire Punjab,",
+            "The rulers of all the twenty-two states of Mughal empire felt threatened.",
+            "Even the people of Kabul12 (in distant Afghanistan) felt extremely concerned,",
+            "Lest Banda Singh should invade their own country as well."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-044-p299-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-044-p299-b013",
+          "type": "verse",
+          "text": "With Banda Singh's occupation of the remaining Doaba region, The whole of Punjab and its Punjabi populations came under his command, Whosoever did not submit to his sovereignty voluntarily, Was instructed to join the Khalsa rule through the despatch of messengers. (11)",
+          "lines": [
+            "With Banda Singh's occupation of the remaining Doaba region,",
+            "The whole of Punjab and its Punjabi populations came under his command,",
+            "Whosoever did not submit to his sovereignty voluntarily,",
+            "Was instructed to join the Khalsa rule through the despatch of messengers."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-044-p299-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-044-p299-b015",
+          "type": "verse",
+          "text": "The Khalsa's (saffron) standards were hoisted (to herald the Sikh sovereignty), And all the Mughal flags (with the crescent moon) were dismantled. While S. Baaj Singh was appointed as the Singh Nawab of Sirhind, His second brother (Ram Singh) was made the custodian of Doaba region of Punjab. (12)",
+          "lines": [
+            "The Khalsa's (saffron) standards were hoisted (to herald the Sikh sovereignty),",
+            "And all the Mughal flags (with the crescent moon) were dismantled.",
+            "While S.",
+            "Baaj Singh was appointed as the Singh Nawab of Sirhind,",
+            "His second brother (Ram Singh) was made the custodian of Doaba region of Punjab."
+          ],
+          "number": "12"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 301,
+      "fileName": "EPUB/page_301.html",
+      "sourceHref": "EPUB/page_301.html",
+      "printPageNumber": 257,
+      "blocks": [
+        {
+          "id": "episode-044-p301-b001",
+          "type": "verse",
+          "text": "Then Banda Singh raided the towns of Pathankot and Achal Batala13 , And occupied the whole province around these towns. While the third brother of S. Baaj Singh was made its custodian, The fourth brother became a bodyguard of Banda Singh. (13)",
+          "lines": [
+            "Then Banda Singh raided the towns of Pathankot and Achal Batala13 ,",
+            "And occupied the whole province around these towns.",
+            "While the third brother of S.",
+            "Baaj Singh was made its custodian,",
+            "The fourth brother became a bodyguard of Banda Singh."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-044-p301-b002",
+          "type": "verse",
+          "text": "Banda Singh's invasions created such a terror at Delhi and Lahore, That no Mughal ruler dared to confront and challenge Banda Singh. While no Mughal ruler dared to violate the demarcated territory of Banda Singh, Only his Khalsa saffron flags were allowed to flutter at Panipat. (14)",
+          "lines": [
+            "Banda Singh's invasions created such a terror at Delhi and Lahore,",
+            "That no Mughal ruler dared to confront and challenge Banda Singh.",
+            "While no Mughal ruler dared to violate the demarcated territory of Banda Singh,",
+            "Only his Khalsa saffron flags were allowed to flutter at Panipat."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-044-p301-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-044-p301-b004",
+          "type": "verse",
+          "text": "With a view to consolidate his position in the occupied territory, Banda Singh established police stations inside the captured forts. A part of the accommodation was constructed in the forts' precincts, For the exclusive use of Banda Singh's stay. (15)",
+          "lines": [
+            "With a view to consolidate his position in the occupied territory,",
+            "Banda Singh established police stations inside the captured forts.",
+            "A part of the accommodation was constructed in the forts' precincts,",
+            "For the exclusive use of Banda Singh's stay."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-044-p301-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-044-p301-b006",
+          "type": "verse",
+          "text": "Thus, from Panipat (in the South) to Pathankot (in the north), Two inter-connected forts were constructed (at each strategic sites). Banda Singh kept on inspecting these newly established sites at random, Without sending any prior intimation about his impending visit. (16)",
+          "lines": [
+            "Thus, from Panipat (in the South) to Pathankot (in the north),",
+            "Two inter-connected forts were constructed (at each strategic sites).",
+            "Banda Singh kept on inspecting these newly established sites at random,",
+            "Without sending any prior intimation about his impending visit."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-044-p301-b007",
+          "type": "verse",
+          "text": "He entered these forts, all of a sudden, unnoticed by the guards, As he could enter a building even when it was barred and locked. He could disappear underground or fly high into sky at will, As well as become invisible while standing close to a person. (17)",
+          "lines": [
+            "He entered these forts, all of a sudden, unnoticed by the guards,",
+            "As he could enter a building even when it was barred and locked.",
+            "He could disappear underground or fly high into sky at will,",
+            "As well as become invisible while standing close to a person."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-044-p301-b008",
+          "type": "verse",
+          "text": "He could survive without partaking of any food or water intake, As well as arrive at any place of his choice without notice. He could reach and inspect each and every post and fort, As well as gather every kind of information from every designated post. (18)",
+          "lines": [
+            "He could survive without partaking of any food or water intake,",
+            "As well as arrive at any place of his choice without notice.",
+            "He could reach and inspect each and every post and fort,",
+            "As well as gather every kind of information from every designated post."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-044-p301-b009",
+          "type": "verse",
+          "text": "He could comprehend everyone's intentions being omniscient, As well as allay every one's fears and worries of any kind. He could make provisions to the extent of everyone's expectations, As well as he could be present simultaneously with everyone. (19)",
+          "lines": [
+            "He could comprehend everyone's intentions being omniscient,",
+            "As well as allay every one's fears and worries of any kind.",
+            "He could make provisions to the extent of everyone's expectations,",
+            "As well as he could be present simultaneously with everyone."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-044-p301-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-044-p301-b011",
+          "type": "verse",
+          "text": "As Lord Krishna could be present among his myriad consorts, Which made them speak of His proximity with each of them, Similarly, Banda Singh could be present at all times in his forts, As well as manage to fulfil the daily demands of his forces. (20)",
+          "lines": [
+            "As Lord Krishna could be present among his myriad consorts,",
+            "Which made them speak of His proximity with each of them,",
+            "Similarly,",
+            "Banda Singh could be present at all times in his forts,",
+            "As well as manage to fulfil the daily demands of his forces."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-044-p301-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-044-p301-b013",
+          "type": "verse",
+          "text": "He could go without sleep the whole night without feeling insomniac, As well as comprehend anybody's thoughts without listening to his verbal expression. Banda Singh was empowered and possessed with the powers of telepathy, As he could visualise and decipher phenomena happening at a great distance. (21)",
+          "lines": [
+            "He could go without sleep the whole night without feeling insomniac,",
+            "As well as comprehend anybody's thoughts without listening to his verbal expression.",
+            "Banda Singh was empowered and possessed with the powers of telepathy,",
+            "As he could visualise and decipher phenomena happening at a great distance."
+          ],
+          "number": "21"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 303,
+      "fileName": "EPUB/page_303.html",
+      "sourceHref": "EPUB/page_303.html",
+      "printPageNumber": 259,
+      "blocks": [
+        {
+          "id": "episode-044-p303-b001",
+          "type": "verse",
+          "text": "He was also possessed with the power of reducing his body to a micron, As well as the power to exercise complete control over men and matters. He had mastered the art of flying into space without effort, As well as mastered the art of controlling several other phenomena. (22)",
+          "lines": [
+            "He was also possessed with the power of reducing his body to a micron,",
+            "As well as the power to exercise complete control over men and matters.",
+            "He had mastered the art of flying into space without effort,",
+            "As well as mastered the art of controlling several other phenomena."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-044-p303-b002",
+          "type": "verse",
+          "text": "He could make the water flow out of a well without any device, As well as start fires without igniting it with any spark. He could make the rain fall without any clouds at will, As well as make the flowing river water stand still and calm. (23)",
+          "lines": [
+            "He could make the water flow out of a well without any device,",
+            "As well as start fires without igniting it with any spark.",
+            "He could make the rain fall without any clouds at will,",
+            "As well as make the flowing river water stand still and calm."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-044-p303-b003",
+          "type": "verse",
+          "text": "He could make the blowing wind stop and stand still, As well as change the direction of the facing wind in the opposite direction. He could work out such strange miraculous and magical feats, As well as demonstrate these supernatural feats without batting an eyelid. (24)",
+          "lines": [
+            "He could make the blowing wind stop and stand still,",
+            "As well as change the direction of the facing wind in the opposite direction.",
+            "He could work out such strange miraculous and magical feats,",
+            "As well as demonstrate these supernatural feats without batting an eyelid."
+          ],
+          "number": "24"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-043",
+  "nextChapterId": "episode-045"
+}

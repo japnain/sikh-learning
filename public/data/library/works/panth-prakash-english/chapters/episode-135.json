@@ -1,0 +1,868 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-135",
+  "chapterNumber": 135,
+  "episodeNumber": 135,
+  "kind": "episode",
+  "title": "Mathura And Koel",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 523,
+  "endSourcePage": 535,
+  "wordCount": 2393,
+  "charCount": 13774,
+  "startPosition": 166769,
+  "pages": [
+    {
+      "sourcePageNumber": 523,
+      "fileName": "EPUB/page_523.html",
+      "sourceHref": "EPUB/page_523.html",
+      "printPageNumber": 469,
+      "blocks": [
+        {
+          "id": "episode-135-p523-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p523-b003",
+          "type": "verse",
+          "text": "For full one year did Ahmad Shah Abdali1 stay, In the occupied region ruled by Najib Khan Rohela2 . Not only did all the (Mughal) Nawabs pay him a handsome ransom, But he also occupied a major portion of Lahore province. (1)",
+          "lines": [
+            "For full one year did Ahmad Shah Abdali1 stay,",
+            "In the occupied region ruled by Najib Khan Rohela2 .",
+            "Not only did all the (Mughal) Nawabs pay him a handsome ransom,",
+            "But he also occupied a major portion of Lahore province."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-135-p523-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p523-b005",
+          "type": "verse",
+          "text": "If we describe all these developments in minute detail, This epic would become too voluminous to be of much use. If we narrate the confrontation between Abdali and Maratha Bhau3 , This epic would become too unwieldy to be readable. (2)",
+          "lines": [
+            "If we describe all these developments in minute detail,",
+            "This epic would become too voluminous to be of much use.",
+            "If we narrate the confrontation between Abdali and Maratha Bhau3 ,",
+            "This epic would become too unwieldy to be readable."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-135-p523-b006",
+          "type": "verse",
+          "text": "So we would try to narrate events as briefly as possible, So that this epic remains within the reading limits. Thus did all the Muslims including the Mughals and Pathans resolve: They must get rid of all the Hindus chiefs including Marathas. (3)",
+          "lines": [
+            "So we would try to narrate events as briefly as possible,",
+            "So that this epic remains within the reading limits.",
+            "Thus did all the Muslims including the Mughals and Pathans resolve: They must get rid of all the Hindus chiefs including Marathas."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-135-p523-b007",
+          "type": "verse",
+          "text": "Summoning all the forces of all the Nawabs and ministers, They launched an attack on the major Hindu places. Many a Hindu did they captue after the occupation of Mathura4 , Those alone escaped capture who had deserted their homes. (4)",
+          "lines": [
+            "Summoning all the forces of all the Nawabs and ministers,",
+            "They launched an attack on the major Hindu places.",
+            "Many a Hindu did they captue after the occupation of Mathura4 ,",
+            "Those alone escaped capture who had deserted their homes."
+          ],
+          "number": "4"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 525,
+      "fileName": "EPUB/page_525.html",
+      "sourceHref": "EPUB/page_525.html",
+      "printPageNumber": 471,
+      "blocks": [
+        {
+          "id": "episode-135-p525-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p525-b002",
+          "type": "verse",
+          "text": "They alone survived who had fled (before the attack), Those who had taken shelter with the Bharatpur's ruler5 . As the Muslim troops had run after them in hot pursuit, They were repulsed by the heavy artillery fire by the Jats. (5)",
+          "lines": [
+            "They alone survived who had fled (before the attack),",
+            "Those who had taken shelter with the Bharatpur's ruler5 .",
+            "As the Muslim troops had run after them in hot pursuit,",
+            "They were repulsed by the heavy artillery fire by the Jats."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-135-p525-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p525-b004",
+          "type": "verse",
+          "text": "After having been repulsed from Bharatpur by the Jats, The Pathan troops did set up a base camp at Mathura. As they had been confronted by a heavy artillery fire, The Mughal-Pathan troops were at their wits' ends to combat it. (6)",
+          "lines": [
+            "After having been repulsed from Bharatpur by the Jats,",
+            "The Pathan troops did set up a base camp at Mathura.",
+            "As they had been confronted by a heavy artillery fire,",
+            "The Mughal-Pathan troops were at their wits' ends to combat it."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-135-p525-b005",
+          "type": "verse",
+          "text": "While a large number of Jat troops entered in the Deek6 fort, The Maratha troops took up positions inside the Ghumer7 fort. Besides these two forts, there was another very strong fort, On which the Jats had pinned great hopes for defence. (7)",
+          "lines": [
+            "While a large number of Jat troops entered in the Deek6 fort,",
+            "The Maratha troops took up positions inside the Ghumer7 fort.",
+            "Besides these two forts, there was another very strong fort,",
+            "On which the Jats had pinned great hopes for defence."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-135-p525-b006",
+          "type": "verse",
+          "text": "Not only had the Jat troops concentrated in large strength inside, They had also deployed many long-range guns inside the fort. Encircled as this fort was by a water channel and a huge wall, It could not be penetrated either through a tunnel or an open attack. (8)",
+          "lines": [
+            "Not only had the Jat troops concentrated in large strength inside,",
+            "They had also deployed many long-range guns inside the fort.",
+            "Encircled as this fort was by a water channel and a huge wall,",
+            "It could not be penetrated either through a tunnel or an open attack."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-135-p525-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p525-b008",
+          "type": "verse",
+          "text": "Neither could this massive wall be damaged by canon fire, Nor could it be breached through the construction of a tunnel. Nor even could any sustained attack or siege make it vulnerable, As the Jats had stored a large quantity of provisions inside this fort. (9)",
+          "lines": [
+            "Neither could this massive wall be damaged by canon fire,",
+            "Nor could it be breached through the construction of a tunnel.",
+            "Nor even could any sustained attack or siege make it vulnerable,",
+            "As the Jats had stored a large quantity of provisions inside this fort."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-135-p525-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p525-b010",
+          "type": "verse",
+          "text": "This fort which was famous by the name of Koel8 , The Hindus were wont to address it as Ramgarh. This fort which the Muslims addressed it as Aligarh, Had provisions inside which could last for twelve years. (10)",
+          "lines": [
+            "This fort which was famous by the name of Koel8 ,",
+            "The Hindus were wont to address it as Ramgarh.",
+            "This fort which the Muslims addressed it as Aligarh,",
+            "Had provisions inside which could last for twelve years."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-135-p525-b011",
+          "type": "verse",
+          "text": "Being extremely arrogant and overconfident of their prowess, These Jats derided the passing Mughal troops as Bangle-sellers. As these (vainglorious) Jats started beating a wardrum, The passing Ahmad Shah Abdali troops did hear its sound. (11)",
+          "lines": [
+            "Being extremely arrogant and overconfident of their prowess,",
+            "These Jats derided the passing Mughal troops as Bangle-sellers.",
+            "As these (vainglorious) Jats started beating a wardrum,",
+            "The passing Ahmad Shah Abdali troops did hear its sound."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-135-p525-b012",
+          "type": "verse",
+          "text": "Desperately did Najib Khan Rohela try to divert Abdali's attention, Lest Abdali's troops should get bogged down around that fort. Truly as this invincible fort could not be the penetrated for twelve years, All of his remaining designs would remain unfulfilled. (12)",
+          "lines": [
+            "Desperately did Najib Khan Rohela try to divert Abdali's attention,",
+            "Lest Abdali's troops should get bogged down around that fort.",
+            "Truly as this invincible fort could not be the penetrated for twelve years,",
+            "All of his remaining designs would remain unfulfilled."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-135-p525-b013",
+          "type": "verse",
+          "text": "As their ambitions of more territorial occupation would go haywire. In no case should Abdali get bogged down in this fort. Feigning that the beating drum sounded from a monastic seat, For a day or so could Najib Khan divert Abdali's attention. (13)",
+          "lines": [
+            "As their ambitions of more territorial occupation would go haywire.",
+            "In no case should Abdali get bogged down in this fort.",
+            "Feigning that the beating drum sounded from a monastic seat,",
+            "For a day or so could Najib Khan divert Abdali's attention."
+          ],
+          "number": "13"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 527,
+      "fileName": "EPUB/page_527.html",
+      "sourceHref": "EPUB/page_527.html",
+      "printPageNumber": 473,
+      "blocks": [
+        {
+          "id": "episode-135-p527-b001",
+          "type": "verse",
+          "text": "But the Jats being fated to meet their doomed end, They kept on beating the war drum without any let or hindrance. So outraged did Abdali feel after hearing the repeated sound, That instantly did he decide to take on the Jats before proceeding further. (14)",
+          "lines": [
+            "But the Jats being fated to meet their doomed end,",
+            "They kept on beating the war drum without any let or hindrance.",
+            "So outraged did Abdali feel after hearing the repeated sound,",
+            "That instantly did he decide to take on the Jats before proceeding further."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-135-p527-b002",
+          "type": "verse",
+          "text": "Saying that they were felicitating Abdali on his arrival there, Najib Khan Rohela told him that Abdali's writ ran there as well. Refusing to be taken for a ride with Najib Khan's pretence, Abdali refused to proceed further without subduing the warmongers. (15)",
+          "lines": [
+            "Saying that they were felicitating Abdali on his arrival there,",
+            "Najib Khan Rohela told him that Abdali's writ ran there as well.",
+            "Refusing to be taken for a ride with Najib Khan's pretence,",
+            "Abdali refused to proceed further without subduing the warmongers."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-135-p527-b003",
+          "type": "verse",
+          "text": "As the Jats were poking fun at him (out of their arrogance), It was incumbant upon him to give them a tit for tat. Thereupon, did Najib Khan Rohela revealed the whole secret, That never could their forces impregnate their formidable fort. (16)",
+          "lines": [
+            "As the Jats were poking fun at him (out of their arrogance),",
+            "It was incumbant upon him to give them a tit for tat.",
+            "Thereupon, did Najib Khan Rohela revealed the whole secret,",
+            "That never could their forces impregnate their formidable fort."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-135-p527-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p527-b005",
+          "type": "verse",
+          "text": "Not only was that fort stocked with plenty of provisions, It was also defended by many a thousand Jat troops. For twelve long years, would they remain bogged down there, Before they could hope to take over that invincible fort. (17)",
+          "lines": [
+            "Not only was that fort stocked with plenty of provisions,",
+            "It was also defended by many a thousand Jat troops.",
+            "For twelve long years, would they remain bogged down there,",
+            "Before they could hope to take over that invincible fort."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-135-p527-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p527-b007",
+          "type": "verse",
+          "text": "What purpose would his invasion of Hindustan serve (without chastising Jats), So incensed indeed did Abdali feel at this information. How long could he maintain his sovereignty there, If that much muscle could he not gather to face this challenge? (18)",
+          "lines": [
+            "What purpose would his invasion of Hindustan serve (without chastising Jats),",
+            "So incensed indeed did Abdali feel at this information.",
+            "How long could he maintain his sovereignty there,",
+            "If that much muscle could he not gather to face this challenge?"
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-135-p527-b008",
+          "type": "verse",
+          "text": "For what purpose had he enlisted so many war veterans, If they did not know the tactics to impregnate a fort? Ordering for a book that dealt with the art of breaking forts. He got a complete sketch design of the targeted fort traced. (19)",
+          "lines": [
+            "For what purpose had he enlisted so many war veterans,",
+            "If they did not know the tactics to impregnate a fort?",
+            "Ordering for a book that dealt with the art of breaking forts.",
+            "He got a complete sketch design of the targeted fort traced."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-135-p527-b009",
+          "type": "verse",
+          "text": "Matching the design of the Koel fort with the one in the book, He studied all the tactics to break through such a fort. Twirling his mustachios as a gesture of his full confidence, He ordered the war-drum to be beaten in retaliation. (20)",
+          "lines": [
+            "Matching the design of the Koel fort with the one in the book,",
+            "He studied all the tactics to break through such a fort.",
+            "Twirling his mustachios as a gesture of his full confidence,",
+            "He ordered the war-drum to be beaten in retaliation."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-135-p527-b010",
+          "type": "verse",
+          "text": "Deeming Abdali's decision to confront the Jats as extremely indiscrete, The Muslim chiefs felt crest fallen and frustrated in their hearts. Deciding to adopt all those tactics to wage this war, Abdali adopted all those war tactics as recorded in that book. (21)",
+          "lines": [
+            "Deeming Abdali's decision to confront the Jats as extremely indiscrete,",
+            "The Muslim chiefs felt crest fallen and frustrated in their hearts.",
+            "Deciding to adopt all those tactics to wage this war,",
+            "Abdali adopted all those war tactics as recorded in that book."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-135-p527-b011",
+          "type": "verse",
+          "text": "Adopting these tactics one could destroy a fort within eight days, Even if its walls were made of an alloy of eight metals. Even if artillery fire failed to make a hole in its walls, Even if it remained impregnable through an underground tunnel. (22)",
+          "lines": [
+            "Adopting these tactics one could destroy a fort within eight days,",
+            "Even if its walls were made of an alloy of eight metals.",
+            "Even if artillery fire failed to make a hole in its walls,",
+            "Even if it remained impregnable through an underground tunnel."
+          ],
+          "number": "22"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 529,
+      "fileName": "EPUB/page_529.html",
+      "sourceHref": "EPUB/page_529.html",
+      "printPageNumber": 475,
+      "blocks": [
+        {
+          "id": "episode-135-p529-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p529-b002",
+          "type": "verse",
+          "text": "With folded hands did the Muslim chiefs keep entreating, That Abdali should put off that operation for a while. They suggested to lay a siege round that Jat fort, After their forces had invaded and conquered Agra. (23)",
+          "lines": [
+            "With folded hands did the Muslim chiefs keep entreating,",
+            "That Abdali should put off that operation for a while.",
+            "They suggested to lay a siege round that Jat fort,",
+            "After their forces had invaded and conquered Agra."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-135-p529-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p529-b004",
+          "type": "verse",
+          "text": "Not a single plea of Mughal chiefs did Abdali accept, As he himself had been an expert military strategist. Never could they conquer the next fort at Agra, As conquest of this fort would lead to their occupation of Agra. (24)",
+          "lines": [
+            "Not a single plea of Mughal chiefs did Abdali accept,",
+            "As he himself had been an expert military strategist.",
+            "Never could they conquer the next fort at Agra,",
+            "As conquest of this fort would lead to their occupation of Agra."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-135-p529-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p529-b006",
+          "type": "verse",
+          "text": "Highly excited did Abdali feel in his heart of hearts, On the basis of his possessing a fort-breaking strategy. He decided to command his troops from one flank, After allotting the other three flanks to his various chiefs. (25)",
+          "lines": [
+            "Highly excited did Abdali feel in his heart of hearts,",
+            "On the basis of his possessing a fort-breaking strategy.",
+            "He decided to command his troops from one flank,",
+            "After allotting the other three flanks to his various chiefs."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-135-p529-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p529-b008",
+          "type": "verse",
+          "text": "Inside this fort was Jat ruler's maternal uncle, the fort custodian, Rai Mai was the name of this Jat custodian's name. Tension-free would he sleep inside, so impregnable being the fort, Though battle raged on all the four sides of the fort outside. (26)",
+          "lines": [
+            "Inside this fort was Jat ruler's maternal uncle, the fort custodian,",
+            "Rai Mai was the name of this Jat custodian's name.",
+            "Tension-free would he sleep inside, so impregnable being the fort,",
+            "Though battle raged on all the four sides of the fort outside."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-135-p529-b009",
+          "type": "verse",
+          "text": "They would let out a volley of artillery fire from inside, But no amount of artillery fire from outside could damage this fort. As water would spring up if an underground tunnel was dug up, No war tactic could be of any avail to break into this fort. (27)",
+          "lines": [
+            "They would let out a volley of artillery fire from inside,",
+            "But no amount of artillery fire from outside could damage this fort.",
+            "As water would spring up if an underground tunnel was dug up,",
+            "No war tactic could be of any avail to break into this fort."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-135-p529-b010",
+          "type": "verse",
+          "text": "Extremely concerned did Nawab Najib Khan Rohela feel, At the stubborn stand that Abdali had taken against the Jats. Definitely would Abdali wear himself out of this engagement, As in no case would he be able to conquer this Jat citadel. (28)",
+          "lines": [
+            "Extremely concerned did Nawab Najib Khan Rohela feel,",
+            "At the stubborn stand that Abdali had taken against the Jats.",
+            "Definitely would Abdali wear himself out of this engagement,",
+            "As in no case would he be able to conquer this Jat citadel."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-135-p529-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p529-b012",
+          "type": "verse",
+          "text": "Seven days having been wasted in this kind of confrontation, All the Muslim Nawabs came together to approach Abdali. This much query did they pose to Ahmad Shah Abdali: What kind of strategy was he contemplating to win this compaign? (29)",
+          "lines": [
+            "Seven days having been wasted in this kind of confrontation,",
+            "All the Muslim Nawabs came together to approach Abdali.",
+            "This much query did they pose to Ahmad Shah Abdali: What kind of strategy was he contemplating to win this compaign?"
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-135-p529-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p529-b014",
+          "type": "verse",
+          "text": "Which tactic would he adopt to break into that fort, With what expectations was he deploying troops on several fronts? Abdali retorted : indiscrete would it be to disclose his strategy, As no campaign ever succeeded with a prior disclosure of strategy. (30)",
+          "lines": [
+            "Which tactic would he adopt to break into that fort,",
+            "With what expectations was he deploying troops on several fronts?",
+            "Abdali retorted : indiscrete would it be to disclose his strategy,",
+            "As no campaign ever succeeded with a prior disclosure of strategy."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-135-p529-b015",
+          "type": "paragraph",
+          "text": "Surely in a day or so would he take over that fort, Though such a boastful claim did not behove a commander. Certainly did the nit-witted Nawabs failed to buy Abdali's argument, As they felt he was taking them for a ride for nothing. (3 1)"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 531,
+      "fileName": "EPUB/page_531.html",
+      "sourceHref": "EPUB/page_531.html",
+      "printPageNumber": 477,
+      "blocks": [
+        {
+          "id": "episode-135-p531-b001",
+          "type": "verse",
+          "text": "Thereafter, did Ahmad Shah Abdali mount his horse, Nor did he take any mounted bodyguards with him. Deliberately did he discard the royal canopy as well, So that he could reconnoitre the fort's surroundings being incognito. (32)",
+          "lines": [
+            "Thereafter, did Ahmad Shah Abdali mount his horse,",
+            "Nor did he take any mounted bodyguards with him.",
+            "Deliberately did he discard the royal canopy as well,",
+            "So that he could reconnoitre the fort's surroundings being incognito."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-135-p531-b002",
+          "type": "verse",
+          "text": "After surveying the entire topography of high and low ground positions, Secret did he keep the contemplated strategy in his own mind. Summoning, thereafter, all the chief commanders of his troops, Close to the fort did he allot the various pickets to them. (33)",
+          "lines": [
+            "After surveying the entire topography of high and low ground positions,",
+            "Secret did he keep the contemplated strategy in his own mind.",
+            "Summoning, thereafter, all the chief commanders of his troops,",
+            "Close to the fort did he allot the various pickets to them."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-135-p531-b003",
+          "type": "verse",
+          "text": "Advancing their positions during the day and then asking them to retreat, Same strategy did he keep on repeating during the night as well. Though he kept the enemy inside on tenterhooks in this way, But hardly did they feel concerned by these pranks of Abdali. (34)",
+          "lines": [
+            "Advancing their positions during the day and then asking them to retreat,",
+            "Same strategy did he keep on repeating during the night as well.",
+            "Though he kept the enemy inside on tenterhooks in this way,",
+            "But hardly did they feel concerned by these pranks of Abdali."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-135-p531-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p531-b005",
+          "type": "verse",
+          "text": "Repeating this tactic time and again for a few days, There did arrive a pitch dark night at last. Summoning all his field commanders to assemble once again, There did he issue fresh orders to all His commanders. (35)",
+          "lines": [
+            "Repeating this tactic time and again for a few days,",
+            "There did arrive a pitch dark night at last.",
+            "Summoning all his field commanders to assemble once again,",
+            "There did he issue fresh orders to all His commanders."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-135-p531-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p531-b007",
+          "type": "verse",
+          "text": "Thirty feet being the height of Jat forts' walls, A forty feet high wall did Abdali order to be raised. The highest spot that he had spotted during his survey, There did he order the forty feet wall to be raised. (36)",
+          "lines": [
+            "Thirty feet being the height of Jat forts' walls,",
+            "A forty feet high wall did Abdali order to be raised.",
+            "The highest spot that he had spotted during his survey,",
+            "There did he order the forty feet wall to be raised."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-135-p531-b008",
+          "type": "verse",
+          "text": "Asking them to raise the wall in a single night, The final strategy still did he keep secret in his mind. Secret must he keep his strategy till the end, Fail it would otherwise, if he disclosed it earlier. (37)",
+          "lines": [
+            "Asking them to raise the wall in a single night,",
+            "The final strategy still did he keep secret in his mind.",
+            "Secret must he keep his strategy till the end,",
+            "Fail it would otherwise, if he disclosed it earlier."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-135-p531-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p531-b010",
+          "type": "verse",
+          "text": "All strategies to break into a fort, I (the author) would narrate, In the book \"Dragsat\" that I would shortly be writing. It would include the strategy that Ahmad Shah Abdali adopted, And the way he succeeded in breaking into the Koelgarh fort. (38)",
+          "lines": [
+            "All strategies to break into a fort,",
+            "I (the author) would narrate,",
+            "In the book \"Dragsat\" that I would shortly be writing.",
+            "It would include the strategy that Ahmad Shah Abdali adopted,",
+            "And the way he succeeded in breaking into the Koelgarh fort."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-135-p531-b011",
+          "type": "verse",
+          "text": "As the day dawned, did the fort inmates come to notice, That a great miracle had occurred during the night. As if someone had placed a huge mountain or (wall) at night, Lord Hanuman9 must have been on their side indeed. (39)",
+          "lines": [
+            "As the day dawned, did the fort inmates come to notice,",
+            "That a great miracle had occurred during the night.",
+            "As if someone had placed a huge mountain or (wall) at night,",
+            "Lord Hanuman9 must have been on their side indeed."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-135-p531-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p531-b013",
+          "type": "verse",
+          "text": "Seeing this marvel, the Jats lost half the battle even before its onset, Quickly did he (Abdali) position all his guns on the top battlements. A total of sixty canons did he position on the top, Along with a battery of eight fireball shooting guns. (40)",
+          "lines": [
+            "Seeing this marvel, the Jats lost half the battle even before its onset,",
+            "Quickly did he (Abdali) position all his guns on the top battlements.",
+            "A total of sixty canons did he position on the top,",
+            "Along with a battery of eight fireball shooting guns."
+          ],
+          "number": "40"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 533,
+      "fileName": "EPUB/page_533.html",
+      "sourceHref": "EPUB/page_533.html",
+      "printPageNumber": 479,
+      "blocks": [
+        {
+          "id": "episode-135-p533-b001",
+          "type": "verse",
+          "text": "Positioning five hundred medium-range guns also there, He deployed several thousand musketeers on the top. Such a heavy volley of fire and arrows did they open, That their smoke created pitch darkness even during the day. (41)",
+          "lines": [
+            "Positioning five hundred medium-range guns also there,",
+            "He deployed several thousand musketeers on the top.",
+            "Such a heavy volley of fire and arrows did they open,",
+            "That their smoke created pitch darkness even during the day."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-135-p533-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p533-b003",
+          "type": "verse",
+          "text": "With fireballs, bows and arrows (such a heavy attack did he launch), That (this impregnable Jat fort) was set on fire from inside, With such force did they hurl sharp-edged knives and daggers, That they never failed to hit the Jat soldiers enconsed inside the fort. (42)",
+          "lines": [
+            "With fireballs, bows and arrows (such a heavy attack did he launch),",
+            "That (this impregnable Jat fort) was set on fire from inside,",
+            "With such force did they hurl sharp-edged knives and daggers,",
+            "That they never failed to hit the Jat soldiers enconsed inside the fort."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-135-p533-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p533-b005",
+          "type": "verse",
+          "text": "With such speed of lightening from the skies did Abdali's firearms strike, That all the Jat troops inside fort felt extremely scared. With the strategy of shooting arrows laced with poisons, Many of those hit with these arrows were rendered blind. (43)",
+          "lines": [
+            "With such speed of lightening from the skies did Abdali's firearms strike,",
+            "That all the Jat troops inside fort felt extremely scared.",
+            "With the strategy of shooting arrows laced with poisons,",
+            "Many of those hit with these arrows were rendered blind."
+          ],
+          "number": "43"
+        },
+        {
+          "id": "episode-135-p533-b006",
+          "type": "verse",
+          "text": "As these deadly arrows and fireballs set the fort on fire, Those guarding the fort from inside panicked with fear. Even the cannons which had been positioned on the fort, Those also could not stand the massive firing from outside. (44)",
+          "lines": [
+            "As these deadly arrows and fireballs set the fort on fire,",
+            "Those guarding the fort from inside panicked with fear.",
+            "Even the cannons which had been positioned on the fort,",
+            "Those also could not stand the massive firing from outside."
+          ],
+          "number": "44"
+        },
+        {
+          "id": "episode-135-p533-b007",
+          "type": "verse",
+          "text": "Lifting a siege from all the sides around this fort, Abdali ordered his troops to let those flee who wished to escape. As many of the fort inmates fled for fear of being killed, The rest of the Jat troops also looked forward to run away. (45)",
+          "lines": [
+            "Lifting a siege from all the sides around this fort,",
+            "Abdali ordered his troops to let those flee who wished to escape.",
+            "As many of the fort inmates fled for fear of being killed,",
+            "The rest of the Jat troops also looked forward to run away."
+          ],
+          "number": "45"
+        },
+        {
+          "id": "episode-135-p533-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p533-b009",
+          "type": "verse",
+          "text": "A very few among them had remained without getting wounded, As majority of them were wounded and charred with fire. It was indeed a great marvel that came to occur, That such (battle hardy) soldiers abandoned fighting the enemy. (46)",
+          "lines": [
+            "A very few among them had remained without getting wounded,",
+            "As majority of them were wounded and charred with fire.",
+            "It was indeed a great marvel that came to occur,",
+            "That such (battle hardy) soldiers abandoned fighting the enemy."
+          ],
+          "number": "46"
+        },
+        {
+          "id": "episode-135-p533-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p533-b011",
+          "type": "verse",
+          "text": "Thereupon, those stranded inside the fort sent a proposal, That they be allowed to escape from one side. Agreeing to grant them a passage of escape from the fort, Ahmad Shah Abdali ordered them to escape from one corner. (47)",
+          "lines": [
+            "Thereupon, those stranded inside the fort sent a proposal,",
+            "That they be allowed to escape from one side.",
+            "Agreeing to grant them a passage of escape from the fort,",
+            "Ahmad Shah Abdali ordered them to escape from one corner."
+          ],
+          "number": "47"
+        },
+        {
+          "id": "episode-135-p533-b012",
+          "type": "verse",
+          "text": "Thus, deserting their (well fortified) fort at midnight, Did these Jat soldiers seek refuge around the Yamuna river. From the other side the Jat ruler of Bharatpur sent a messanger, That never should his maternal uncle (Rai Mai) show him his disgraced face. (48)",
+          "lines": [
+            "Thus, deserting their (well fortified) fort at midnight,",
+            "Did these Jat soldiers seek refuge around the Yamuna river.",
+            "From the other side the Jat ruler of Bharatpur sent a messanger,",
+            "That never should his maternal uncle (Rai Mai) show him his disgraced face."
+          ],
+          "number": "48"
+        },
+        {
+          "id": "episode-135-p533-b013",
+          "type": "verse",
+          "text": "So did he kill himself jumping into the river Yamuna, So was his drowned body carried away by the heavy current. By the name of Rai Mai was this Jat warrior known, Brother-in-law was he in relationship to (late) Suraj Mai Jat chief. (49)",
+          "lines": [
+            "So did he kill himself jumping into the river Yamuna,",
+            "So was his drowned body carried away by the heavy current.",
+            "By the name of Rai Mai was this Jat warrior known,",
+            "Brother-in-law was he in relationship to (late) Suraj Mai Jat chief."
+          ],
+          "number": "49"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 535,
+      "fileName": "EPUB/page_535.html",
+      "sourceHref": "EPUB/page_535.html",
+      "printPageNumber": 481,
+      "blocks": [
+        {
+          "id": "episode-135-p535-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p535-b002",
+          "type": "verse",
+          "text": "As Agra also got vacated from its Jat rulers, Was there a great commotion among the Jat chiefs. That Kabul's ruler had entered into India, Did this news spread far into the deep South as well. (50)",
+          "lines": [
+            "As Agra also got vacated from its Jat rulers,",
+            "Was there a great commotion among the Jat chiefs.",
+            "That Kabul's ruler had entered into India,",
+            "Did this news spread far into the deep South as well."
+          ],
+          "number": "50"
+        },
+        {
+          "id": "episode-135-p535-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-135-p535-b004",
+          "type": "verse",
+          "text": "Thereupon, arrived three lakh (Maratha) horse-mounted soldiers from the South, Who did wage a battle against Abdali at the town of Panipat. Even with a strength of Six lakh Muslim troops which assembled there, They could not make any dent into the Maratha defences. (51)",
+          "lines": [
+            "Thereupon, arrived three lakh (Maratha) horse-mounted soldiers from the South,",
+            "Who did wage a battle against Abdali at the town of Panipat.",
+            "Even with a strength of Six lakh Muslim troops which assembled there,",
+            "They could not make any dent into the Maratha defences."
+          ],
+          "number": "51"
+        },
+        {
+          "id": "episode-135-p535-b005",
+          "type": "verse",
+          "text": "Thereafter, chalking out a new strategy to deal with the Marathas, The Muslim strategists alienated the Jat chief10 through (false) religious vows. With the alienation of Jats, were the Marathas overpowered, In this way were all the Maratha forces crushed by Abdali. (52)",
+          "lines": [
+            "Thereafter, chalking out a new strategy to deal with the Marathas,",
+            "The Muslim strategists alienated the Jat chief10 through (false) religious vows.",
+            "With the alienation of Jats, were the Marathas overpowered,",
+            "In this way were all the Maratha forces crushed by Abdali."
+          ],
+          "number": "52"
+        },
+        {
+          "id": "episode-135-p535-b006",
+          "type": "verse",
+          "text": "Thereafter, taking over Delhi from it present ruler, Ahmad Shah handed over its control to Najib Khan Rohela\" . Thereafter, handing over Sirhind's control to Jain Khan12 , Ahmad Shah himself took over Lahore after alerting others. (53)",
+          "lines": [
+            "Thereafter, taking over Delhi from it present ruler,",
+            "Ahmad Shah handed over its control to Najib Khan Rohela\" .",
+            "Thereafter, handing over Sirhind's control to Jain Khan12 ,",
+            "Ahmad Shah himself took over Lahore after alerting others."
+          ],
+          "number": "53"
+        },
+        {
+          "id": "episode-135-p535-b007",
+          "type": "verse",
+          "text": "Revenues started pouring into his coffers from as far as Lahore and Bhakhar, Even as Kashmir and hill chiefs dared not oppose his rule. Thus, getting very arrogant about his subduing the Indian chiefs, Ahamad Shah Abdali did put up his camp at Amritsar. (54)",
+          "lines": [
+            "Revenues started pouring into his coffers from as far as Lahore and Bhakhar,",
+            "Even as Kashmir and hill chiefs dared not oppose his rule.",
+            "Thus, getting very arrogant about his subduing the Indian chiefs,",
+            "Ahamad Shah Abdali did put up his camp at Amritsar."
+          ],
+          "number": "54"
+        },
+        {
+          "id": "episode-135-p535-b008",
+          "type": "verse",
+          "text": "Now as came the turn of the Sikhs' (confrontation with Abdali), Dear devout readers, listen to that account with concentration. The account as I (author) have heard from my elders, The same had Rattan Singh (author) decided to narrate. (55)",
+          "lines": [
+            "Now as came the turn of the Sikhs' (confrontation with Abdali),",
+            "Dear devout readers, listen to that account with concentration.",
+            "The account as I (author) have heard from my elders,",
+            "The same had Rattan Singh (author) decided to narrate."
+          ],
+          "number": "55"
+        },
+        {
+          "id": "episode-135-p535-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-135-p535-b010",
+          "type": "verse",
+          "text": "It was in the year of eighteen hundred and eighteen13 (B.S.), (That this Sikh- Abdali confrontation had taken place). What prceeded this confrontation have I narrated, What happened thereafter, must my dear readers listen? (56)",
+          "lines": [
+            "It was in the year of eighteen hundred and eighteen13 (B.S.),",
+            "(That this Sikh- Abdali confrontation had taken place).",
+            "What prceeded this confrontation have I narrated,",
+            "What happened thereafter, must my dear readers listen?"
+          ],
+          "number": "56"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-134",
+  "nextChapterId": "episode-136"
+}

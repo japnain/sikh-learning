@@ -1,0 +1,305 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-117",
+  "chapterNumber": 117,
+  "episodeNumber": 117,
+  "kind": "episode",
+  "title": "Another Episode",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 425,
+  "endSourcePage": 429,
+  "wordCount": 772,
+  "charCount": 4398,
+  "startPosition": 149784,
+  "pages": [
+    {
+      "sourcePageNumber": 425,
+      "fileName": "EPUB/page_425.html",
+      "sourceHref": "EPUB/page_425.html",
+      "printPageNumber": 371,
+      "blocks": [
+        {
+          "id": "episode-117-p425-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-117-p425-b003",
+          "type": "verse",
+          "text": "Let me (the author) narrate the account of those Singhs, Who were left behind around Parol1 and Kathua2 towns. Those who survived on horses entered this region, Those on foot climbed up the mountains to survive. (1)",
+          "lines": [
+            "Let me (the author) narrate the account of those Singhs,",
+            "Who were left behind around Parol1 and Kathua2 towns.",
+            "Those who survived on horses entered this region,",
+            "Those on foot climbed up the mountains to survive."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-117-p425-b004",
+          "type": "verse",
+          "text": "The Singhs had to scatter in all the four directions, With such adversity were the Singhs taken over. Did the river drown those who fell into its water, Even as the hilly people arrested those who climbed up the hills. (2)",
+          "lines": [
+            "The Singhs had to scatter in all the four directions,",
+            "With such adversity were the Singhs taken over.",
+            "Did the river drown those who fell into its water,",
+            "Even as the hilly people arrested those who climbed up the hills."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-117-p425-b005",
+          "type": "verse",
+          "text": "On another flank was positioned Dewan Lakhpat Rai's army, Which did keep slaughtering the (fleeing) Singhs. Truly was it difficult to find an escape route in the hilly terrain, Such being the tyranny and adversity of the times. (3)",
+          "lines": [
+            "On another flank was positioned Dewan Lakhpat Rai's army,",
+            "Which did keep slaughtering the (fleeing) Singhs.",
+            "Truly was it difficult to find an escape route in the hilly terrain,",
+            "Such being the tyranny and adversity of the times."
+          ],
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 427,
+      "fileName": "EPUB/page_427.html",
+      "sourceHref": "EPUB/page_427.html",
+      "printPageNumber": 373,
+      "blocks": [
+        {
+          "id": "episode-117-p427-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-117-p427-b002",
+          "type": "verse",
+          "text": "Failing to find any escape route to survive, Thus did the Singh arrive at a conclusion. Let all those Singhs on foot come down the hills, Fall flat on the ground to escape arrest. (4)",
+          "lines": [
+            "Failing to find any escape route to survive,",
+            "Thus did the Singh arrive at a conclusion.",
+            "Let all those Singhs on foot come down the hills,",
+            "Fall flat on the ground to escape arrest."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-117-p427-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-117-p427-b004",
+          "type": "verse",
+          "text": "There too were the Singhs chased by the hilly troops, As they kept on circling around and killing the Singhs. The Singhs who had reckoned the steep hills to provide protection, Had to return to the base failing to find a foothold. (5)",
+          "lines": [
+            "There too were the Singhs chased by the hilly troops,",
+            "As they kept on circling around and killing the Singhs.",
+            "The Singhs who had reckoned the steep hills to provide protection,",
+            "Had to return to the base failing to find a foothold."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-117-p427-b005",
+          "type": "verse",
+          "text": "Such was the catastrophe from all sides that fell upon Singhs, That no initiative on the part of Singhs could be of any avail. Neither could they ransack anyone nor could they buy anything, For want of any food did the Singhs keep dying of starvation. (6)",
+          "lines": [
+            "Such was the catastrophe from all sides that fell upon Singhs,",
+            "That no initiative on the part of Singhs could be of any avail.",
+            "Neither could they ransack anyone nor could they buy anything,",
+            "For want of any food did the Singhs keep dying of starvation."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-117-p427-b006",
+          "type": "verse",
+          "text": "As the Singhs kept on being killed in whatever direction they proceeded, Did the Singhs keep standing still in extreme desperation. Thereupon did the Singhs arrive at this conclusion, That they had never done any harm to the hilly people. (7)",
+          "lines": [
+            "As the Singhs kept on being killed in whatever direction they proceeded,",
+            "Did the Singhs keep standing still in extreme desperation.",
+            "Thereupon did the Singhs arrive at this conclusion,",
+            "That they had never done any harm to the hilly people."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-117-p427-b007",
+          "type": "verse",
+          "text": "The Khalsa Panth had rather killed the enemies of hill chiefs, As well as done deeds of good to the hilly people. The Singhs had all along been fighting with the Mughals, So that the latter could not overpower the hilly regions. (8)",
+          "lines": [
+            "The Khalsa Panth had rather killed the enemies of hill chiefs,",
+            "As well as done deeds of good to the hilly people.",
+            "The Singhs had all along been fighting with the Mughals,",
+            "So that the latter could not overpower the hilly regions."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-117-p427-b008",
+          "type": "verse",
+          "text": "As the Singhs had exterminated and killed the Mughals, The hill chiefs had been relieved of paying revenue to the Mughals. Had these hill chiefs been traitors from the beginning, As they had even played foul with the (tenth) Sikh Guru. (9)",
+          "lines": [
+            "As the Singhs had exterminated and killed the Mughals,",
+            "The hill chiefs had been relieved of paying revenue to the Mughals.",
+            "Had these hill chiefs been traitors from the beginning,",
+            "As they had even played foul with the (tenth) Sikh Guru."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-117-p427-b009",
+          "type": "verse",
+          "text": "After this observation, did the Singhs climb up the mountains, Proceeding with a rush to ransack that region. Thus thousands of Singhs crossed through the mountains, As they could no longer afford to stay put among the hills. (10)",
+          "lines": [
+            "After this observation, did the Singhs climb up the mountains,",
+            "Proceeding with a rush to ransack that region.",
+            "Thus thousands of Singhs crossed through the mountains,",
+            "As they could no longer afford to stay put among the hills."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-117-p427-b010",
+          "type": "verse",
+          "text": "With Mughal troops being in hot pursuit of the Singhs, They kept on being beheaded as had fallen on the way. Even as the Mughals got fed up with massacring the Singhs, Some of the Singhs still did survive this massacre. (11)",
+          "lines": [
+            "With Mughal troops being in hot pursuit of the Singhs,",
+            "They kept on being beheaded as had fallen on the way.",
+            "Even as the Mughals got fed up with massacring the Singhs,",
+            "Some of the Singhs still did survive this massacre."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-117-p427-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-117-p427-b012",
+          "type": "verse",
+          "text": "At places would the Singhs get into a fight with the Mughals, At places would the famished Singhs rob others for food. At places where they could not buy provisions even for a price, Would the Singhs survive on pulling and eating vegetation. (12)",
+          "lines": [
+            "At places would the Singhs get into a fight with the Mughals,",
+            "At places would the famished Singhs rob others for food.",
+            "At places where they could not buy provisions even for a price,",
+            "Would the Singhs survive on pulling and eating vegetation."
+          ],
+          "number": "12"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 429,
+      "fileName": "EPUB/page_429.html",
+      "sourceHref": "EPUB/page_429.html",
+      "printPageNumber": 375,
+      "blocks": [
+        {
+          "id": "episode-117-p429-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-117-p429-b002",
+          "type": "verse",
+          "text": "Being desperate and helpless for want of food, Did many a Singh perish and shed their mortal frame. For buying provisions were the Singhs barred from entering any town, For robbing and waylaying were they punished by the state. (13)",
+          "lines": [
+            "Being desperate and helpless for want of food,",
+            "Did many a Singh perish and shed their mortal frame.",
+            "For buying provisions were the Singhs barred from entering any town,",
+            "For robbing and waylaying were they punished by the state."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-117-p429-b003",
+          "type": "verse",
+          "text": "Would the Singhs be denied provisions even for a price, Such being the ordeal faced by the Khalsa Panth. Branding them as the companions of Banda Bahadur, Were the Singhs accused of having harassed the populace. (14)",
+          "lines": [
+            "Would the Singhs be denied provisions even for a price,",
+            "Such being the ordeal faced by the Khalsa Panth.",
+            "Branding them as the companions of Banda Bahadur,",
+            "Were the Singhs accused of having harassed the populace."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-117-p429-b004",
+          "type": "verse",
+          "text": "Would the Singhs desert being out numbered by the enemy, Would they provide themselves while outnumbering the enemy. Neither did any sovereign lend a moral support to the Singhs, Nor did any king took up cudgels on their behalf. (15)",
+          "lines": [
+            "Would the Singhs desert being out numbered by the enemy,",
+            "Would they provide themselves while outnumbering the enemy.",
+            "Neither did any sovereign lend a moral support to the Singhs,",
+            "Nor did any king took up cudgels on their behalf."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-117-p429-b005",
+          "type": "verse",
+          "text": "Thereafter, did the Singhs get into a disguise, Tying their long hair in knots and flowing locks. Thus did they succeed in reaching Mandi3 and Kullu4 , Disguising themselves as menials and daily wagers. (16)",
+          "lines": [
+            "Thereafter, did the Singhs get into a disguise,",
+            "Tying their long hair in knots and flowing locks.",
+            "Thus did they succeed in reaching Mandi3 and Kullu4 ,",
+            "Disguising themselves as menials and daily wagers."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-117-p429-b006",
+          "type": "verse",
+          "text": "Thus did they spend a few days in peace in a place, Being known as the region belonging to a queen with a clipped nose. Thus did the Singhs spend five six months in peace, Returning thereafter to Kiratpur5 (a holy Sikh shrine). (17)",
+          "lines": [
+            "Thus did they spend a few days in peace in a place,",
+            "Being known as the region belonging to a queen with a clipped nose.",
+            "Thus did the Singhs spend five six months in peace,",
+            "Returning thereafter to Kiratpur5 (a holy Sikh shrine)."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-117-p429-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-117-p429-b008",
+          "type": "verse",
+          "text": "Whosoever survived from the jaws of death, Had he to pass through the hills with great effort. Whatever miniscule number out of thousands survived, Did they manage to reach Kiratpur, the holy shrine. (18)",
+          "lines": [
+            "Whosoever survived from the jaws of death,",
+            "Had he to pass through the hills with great effort.",
+            "Whatever miniscule number out of thousands survived,",
+            "Did they manage to reach Kiratpur, the holy shrine."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-117-p429-b009",
+          "type": "verse",
+          "text": "Thereafter, was the head count of Khalsa forces made in the sixth month, After sending written dispatches to the scattered Singh contingents. Only after this head count were all the Singhs identified, As to who had survived and who had perished then. (19)",
+          "lines": [
+            "Thereafter, was the head count of Khalsa forces made in the sixth month,",
+            "After sending written dispatches to the scattered Singh contingents.",
+            "Only after this head count were all the Singhs identified,",
+            "As to who had survived and who had perished then."
+          ],
+          "number": "19"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-116",
+  "nextChapterId": "episode-118"
+}

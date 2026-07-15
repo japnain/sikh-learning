@@ -1,0 +1,433 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-058",
+  "chapterNumber": 58,
+  "episodeNumber": 58,
+  "kind": "episode",
+  "title": "Shamas Khan and Baizid Khan (After beheading (Shamas Khan), (Banda Singh) got his head lifted up)",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 371,
+  "endSourcePage": 377,
+  "wordCount": 1127,
+  "charCount": 6590,
+  "startPosition": 57882,
+  "pages": [
+    {
+      "sourcePageNumber": 371,
+      "fileName": "EPUB/page_371.html",
+      "sourceHref": "EPUB/page_371.html",
+      "printPageNumber": 327,
+      "blocks": [
+        {
+          "id": "episode-058-p371-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-058-p371-b003",
+          "type": "paragraph",
+          "text": "Whosoever heard that Jaali Din had been beheaded, Took to his heels without caring for anybody else."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 373,
+      "fileName": "EPUB/page_373.html",
+      "sourceHref": "EPUB/page_373.html",
+      "printPageNumber": 329,
+      "blocks": [
+        {
+          "id": "episode-058-p373-b001",
+          "type": "verse",
+          "text": "Feeling that no army could fight without a king's leadership, Everyone thought of fleeing (from the field of battle). (1)",
+          "lines": [
+            "Feeling that no army could fight without a king's leadership,",
+            "Everyone thought of fleeing (from the field of battle)."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-058-p373-b002",
+          "type": "verse",
+          "text": "Everyone said that a (mysterious) lightening fell from skies, Which had decimated all the forces in an instant. Although (S. Baaj Singh) had only five hundred Singhs with him, But see how far they came to destroy (the Mughal forces). (2)",
+          "lines": [
+            "Everyone said that a (mysterious) lightening fell from skies,",
+            "Which had decimated all the forces in an instant.",
+            "Although (S.",
+            "Baaj Singh) had only five hundred Singhs with him,",
+            "But see how far they came to destroy (the Mughal forces)."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-058-p373-b003",
+          "type": "verse",
+          "text": "Ordinary people from all sides went on a rampage, And ransacked the Mughals to their hearts fill. Besides, there were a large number of mercinaries and robbers, Who had accompanied the Mughal forces for loot and plunder. (3)",
+          "lines": [
+            "Ordinary people from all sides went on a rampage,",
+            "And ransacked the Mughals to their hearts fill.",
+            "Besides, there were a large number of mercinaries and robbers,",
+            "Who had accompanied the Mughal forces for loot and plunder."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-058-p373-b004",
+          "type": "verse",
+          "text": "Shamas Khan had come in hot pursuit of (S. Baaj Singh), After he had heard about the latter's escape and (killing of Jaali Khan). He branded (Jaali Khan) as an ignorant and foolish commander, Who had sent whole of his army away from his own camp. (4)",
+          "lines": [
+            "Shamas Khan had come in hot pursuit of (S.",
+            "Baaj Singh),",
+            "After he had heard about the latter's escape and (killing of Jaali Khan).",
+            "He branded (Jaali Khan) as an ignorant and foolish commander,",
+            "Who had sent whole of his army away from his own camp."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-058-p373-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-058-p373-b006",
+          "type": "verse",
+          "text": "He made a public declaration that he would kill S. Baaj Singh, Who had run away from (Lohgarh) for fear of being defeated. Then his people (his elders) advised Shamas Khan, That he should intimate his uncle (Baizid Khan) to remain alert. (5)",
+          "lines": [
+            "He made a public declaration that he would kill S.",
+            "Baaj Singh,",
+            "Who had run away from (Lohgarh) for fear of being defeated.",
+            "Then his people (his elders) advised Shamas Khan,",
+            "That he should intimate his uncle (Baizid Khan) to remain alert."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-058-p373-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-058-p373-b008",
+          "type": "verse",
+          "text": "Lest S. Baaj Singh should kill his uncle Baizid Khan also, He (Shamas Khan) should also move and join his uncle's forces. At this, Shamas Khan felt extremely concerned (about his safety), And tightened the security arrangements by sending messengers. (6)",
+          "lines": [
+            "Lest S.",
+            "Baaj Singh should kill his uncle Baizid Khan also,",
+            "He (Shamas Khan) should also move and join his uncle's forces.",
+            "At this,",
+            "Shamas Khan felt extremely concerned (about his safety),",
+            "And tightened the security arrangements by sending messengers."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-058-p373-b009",
+          "type": "verse",
+          "text": "He communicated (to his uncle) that they should jointly fight the war, And he (his uncle) should not make any move without Shamas Khan's help. S. Baaj Singh created such a terror among the Mughal forces, That they trembled (at the mere mention of his name). (7)",
+          "lines": [
+            "He communicated (to his uncle) that they should jointly fight the war,",
+            "And he (his uncle) should not make any move without Shamas Khan's help.",
+            "S.",
+            "Baaj Singh created such a terror among the Mughal forces,",
+            "That they trembled (at the mere mention of his name)."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-058-p373-b010",
+          "type": "verse",
+          "text": "When both Shamas Khan and Baizid Khan got together, Only then this Nephew-uncle duo felt a sigh of relief. Threat of a sudden attack by the Singhs loomed large over them, Lest the Singhs should nab them (as they did Jaali Khan). (8)",
+          "lines": [
+            "When both Shamas Khan and Baizid Khan got together,",
+            "Only then this Nephew-uncle duo felt a sigh of relief.",
+            "Threat of a sudden attack by the Singhs loomed large over them,",
+            "Lest the Singhs should nab them (as they did Jaali Khan)."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-058-p373-b011",
+          "type": "verse",
+          "text": "(Dear readers) listen further to the account of Banda Singh, And the way he slaughtered both these Mughal custodians. When the Singhs were passing through such a moment of crisis, Banda Singh made a plan (to assist the hard pressed Singhs). (9)",
+          "lines": [
+            "(Dear readers) listen further to the account of Banda Singh,",
+            "And the way he slaughtered both these Mughal custodians.",
+            "When the Singhs were passing through such a moment of crisis,",
+            "Banda Singh made a plan (to assist the hard pressed Singhs)."
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 375,
+      "fileName": "EPUB/page_375.html",
+      "sourceHref": "EPUB/page_375.html",
+      "printPageNumber": 331,
+      "blocks": [
+        {
+          "id": "episode-058-p375-b001",
+          "type": "verse",
+          "text": "Banda Singh ordered Birs3 (his captive spirits) to take him to Mandi, So that he might participate in the war in the foot hills of (Doab region). The Birs (captive spirits), following the instructions of their master, Lifted up the encaged Banda Singh and lowered him at Mandi. (10)",
+          "lines": [
+            "Banda Singh ordered Birs3 (his captive spirits) to take him to Mandi,",
+            "So that he might participate in the war in the foot hills of (Doab region).",
+            "The Birs (captive spirits), following the instructions of their master,",
+            "Lifted up the encaged Banda Singh and lowered him at Mandi."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-058-p375-b002",
+          "type": "verse",
+          "text": "Banda Singh started towards the foothills after getting out of the cage, As he had a very small contingent of Singhs with him. Without bothering about the meagre numerical strength of his troops, Banda Singh started rushing speedily towards the foothills. (11)",
+          "lines": [
+            "Banda Singh started towards the foothills after getting out of the cage,",
+            "As he had a very small contingent of Singhs with him.",
+            "Without bothering about the meagre numerical strength of his troops,",
+            "Banda Singh started rushing speedily towards the foothills."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-058-p375-b003",
+          "type": "verse",
+          "text": "When the Singhs came to know about Banda Singh' s approach, They felt delighted (at such a good turn of events). All those Singhs who had been in hiding came out and joined the Khalsa, As they felt extremely delighted at the arrival of Banda Singh. (12)",
+          "lines": [
+            "When the Singhs came to know about Banda Singh' s approach,",
+            "They felt delighted (at such a good turn of events).",
+            "All those Singhs who had been in hiding came out and joined the Khalsa,",
+            "As they felt extremely delighted at the arrival of Banda Singh."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-058-p375-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-058-p375-b005",
+          "type": "verse",
+          "text": "The Mughals felt extremely worried (after Banda Singh's arrival), As if they had been gripped by the fear of death. Feeling convinced that they were bound to meet their doom, They lost all sense of appetite and (peaceful) sleep. (13)",
+          "lines": [
+            "The Mughals felt extremely worried (after Banda Singh's arrival),",
+            "As if they had been gripped by the fear of death.",
+            "Feeling convinced that they were bound to meet their doom,",
+            "They lost all sense of appetite and (peaceful) sleep."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-058-p375-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-058-p375-b007",
+          "type": "verse",
+          "text": "So, when Banda Singh joined the contigent of his own Singhs, They felt as invigorated as orchard plants feel nourished by a spell of rain. Banda Singh's arrival amounted to a heavy spell of rain in the hottest month of June, And the sprouting up of green buds on the dried up branches. (14)",
+          "lines": [
+            "So, when Banda Singh joined the contigent of his own Singhs,",
+            "They felt as invigorated as orchard plants feel nourished by a spell of rain.",
+            "Banda Singh's arrival amounted to a heavy spell of rain in the hottest month of June,",
+            "And the sprouting up of green buds on the dried up branches."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-058-p375-b008",
+          "type": "verse",
+          "text": "The Sikhs (all over Punjab) burst out into as spontaneous an applause, As thousands of frogs start croaking together after rainfall. (On the other hand) the Mughal forces felt as crest fallen as withered cactus and grass, Which seemed intact from outside but drained and withered from inside. (15)",
+          "lines": [
+            "The Sikhs (all over Punjab) burst out into as spontaneous an applause,",
+            "As thousands of frogs start croaking together after rainfall.",
+            "(On the other hand) the Mughal forces felt as crest fallen as withered cactus and grass,",
+            "Which seemed intact from outside but drained and withered from inside."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-058-p375-b009",
+          "type": "verse",
+          "text": "Then Banda Singh, launching his attack, entered the Doab region, And targeted those places which had a majority of Muslim population. The Mughal forces also went in hot pursuit in search of him, Even though they dared not go near him in their frantic pursuit. (16)",
+          "lines": [
+            "Then Banda Singh, launching his attack, entered the Doab region,",
+            "And targeted those places which had a majority of Muslim population.",
+            "The Mughal forces also went in hot pursuit in search of him,",
+            "Even though they dared not go near him in their frantic pursuit."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-058-p375-b010",
+          "type": "verse",
+          "text": "Wherever a Mughal force advanced towards Banda Singh, The Singhs would immediately pounce on them and slaughter them. The Singhs would fall upon the Mughal forces unawares like lightening, Which left the Mughal forces befuddled and dumb founded. (17)",
+          "lines": [
+            "Wherever a Mughal force advanced towards Banda Singh,",
+            "The Singhs would immediately pounce on them and slaughter them.",
+            "The Singhs would fall upon the Mughal forces unawares like lightening,",
+            "Which left the Mughal forces befuddled and dumb founded."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-058-p375-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-058-p375-b012",
+          "type": "verse",
+          "text": "Neither could the Mughal soldiers desert their army being scared of their emperor, Nor could they dare to attack Banda Singh being scared of him. (18)",
+          "lines": [
+            "Neither could the Mughal soldiers desert their army being scared of their emperor,",
+            "Nor could they dare to attack Banda Singh being scared of him."
+          ],
+          "number": "18"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 377,
+      "fileName": "EPUB/page_377.html",
+      "sourceHref": "EPUB/page_377.html",
+      "printPageNumber": 333,
+      "blocks": [
+        {
+          "id": "episode-058-p377-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-058-p377-b002",
+          "type": "verse",
+          "text": "As Shamas Khan was destined to die (at this juncture), He had been engaged (to a girl) in the recent past. When he was returning to Kasoor on the pretence of getting married, Banda Singh came to know about (his return to Kasoor). (19)",
+          "lines": [
+            "As Shamas Khan was destined to die (at this juncture),",
+            "He had been engaged (to a girl) in the recent past.",
+            "When he was returning to Kasoor on the pretence of getting married,",
+            "Banda Singh came to know about (his return to Kasoor)."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-058-p377-b003",
+          "type": "verse",
+          "text": "Banda Singh declared that Shamas Khan be not allowed to escape, And challenged if any (Singh) warrior could bring him dead. The Singh replied that either Banda Singh himself could accomplish that task, Or he could despatch anyone else whom he blessed. (20)",
+          "lines": [
+            "Banda Singh declared that Shamas Khan be not allowed to escape,",
+            "And challenged if any (Singh) warrior could bring him dead.",
+            "The Singh replied that either Banda Singh himself could accomplish that task,",
+            "Or he could despatch anyone else whom he blessed."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-058-p377-b004",
+          "type": "verse",
+          "text": "Hearing this, Banda Singh himself launched (on this mission), Taking only forty horse-mounted Singhs along with him. Rushing speedily, Banda Singh launched his attack, And blocked (Shamas Khan's) passage leading to Kasoor. (21)",
+          "lines": [
+            "Hearing this,",
+            "Banda Singh himself launched (on this mission),",
+            "Taking only forty horse-mounted Singhs along with him.",
+            "Rushing speedily,",
+            "Banda Singh launched his attack,",
+            "And blocked (Shamas Khan's) passage leading to Kasoor."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-058-p377-b005",
+          "type": "verse",
+          "text": "He (Shamas Khan), feeling no sense of insecurity, Was proceeding towards his native place riding an elephant. Spotting him (Shamas Khan riding an elephant) from a distance, Banda Singh pounched upon him with the speed of lightening. (22)",
+          "lines": [
+            "He (Shamas Khan), feeling no sense of insecurity,",
+            "Was proceeding towards his native place riding an elephant.",
+            "Spotting him (Shamas Khan riding an elephant) from a distance,",
+            "Banda Singh pounched upon him with the speed of lightening."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-058-p377-b006",
+          "type": "verse",
+          "text": "Without being noticed by many among his troops, Banda Singh wounded him (Shamas Khan) grievously by shooting an arrow. Thereafter hitting him (Shamas Khan) with the tip of his spear, Banda Singh brought the wounded (Pathan) down from the elephant's back. (23)",
+          "lines": [
+            "Without being noticed by many among his troops,",
+            "Banda Singh wounded him (Shamas Khan) grievously by shooting an arrow.",
+            "Thereafter hitting him (Shamas Khan) with the tip of his spear,",
+            "Banda Singh brought the wounded (Pathan) down from the elephant's back."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-058-p377-b007",
+          "type": "verse",
+          "text": "Picking up (Shamas Khan's) head severed from his body, Banda Singh returned and joined his troops (in a flash). In this way, Banda Singh slaughterd Shamas Khan, Now listen (dear readers) furhter to the account of Baizid Khan (24)",
+          "lines": [
+            "Picking up (Shamas Khan's) head severed from his body,",
+            "Banda Singh returned and joined his troops (in a flash).",
+            "In this way,",
+            "Banda Singh slaughterd Shamas Khan,",
+            "Now listen (dear readers) furhter to the account of Baizid Khan"
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-058-p377-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-058-p377-b009",
+          "type": "verse",
+          "text": "The place where Baizid Khan was camping (with his troops), Banda Singh surrounded the place (from all sides). Seeing Banda Singh, Baizid Khan's troops deserted his camp, Shouting that the prophet Nehkalank4 had arrived (to decimate) them. (25)",
+          "lines": [
+            "The place where Baizid Khan was camping (with his troops),",
+            "Banda Singh surrounded the place (from all sides).",
+            "Seeing Banda Singh,",
+            "Baizid Khan's troops deserted his camp,",
+            "Shouting that the prophet Nehkalank4 had arrived (to decimate) them."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-058-p377-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-058-p377-b011",
+          "type": "verse",
+          "text": "He (Baizid Khan) could not desert the field of battle, As he was scared of the wrath of his own emperor. So getting fatally wounded during his fight ( with the Singhs), He also died on the way while returning to home. (26)",
+          "lines": [
+            "He (Baizid Khan) could not desert the field of battle,",
+            "As he was scared of the wrath of his own emperor.",
+            "So getting fatally wounded during his fight ( with the Singhs),",
+            "He also died on the way while returning to home."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-058-p377-b012",
+          "type": "verse",
+          "text": "So Banda slaughtered all these Mughal chiefs in one way or the other, All the Mughals had to accept defeat at the hands of Banda Singh. (27)",
+          "lines": [
+            "So Banda slaughtered all these Mughal chiefs in one way or the other,",
+            "All the Mughals had to accept defeat at the hands of Banda Singh."
+          ],
+          "number": "27"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-057",
+  "nextChapterId": "episode-059"
+}

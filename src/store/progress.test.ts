@@ -53,3 +53,23 @@ test('keeps exact verse routes intact when the resume path is already specific',
     updatedAt: '2026-04-15T16:00:00.000Z',
   })).toBe('/study?shabadId=50&verseId=100')
 })
+
+test('builds an exact EPUB resume hash from a persisted block locator', () => {
+  expect(buildSessionResumePath({
+    scriptureId: 'panth-prakash-english-episode-001',
+    resumePath: '/library/panth-prakash-english/chapters/episode-001',
+    readerLocator: {
+      revision: 'panth-prakash-english-v3-f9f801cc-243827eb',
+      href: '/library/panth-prakash-english/chapters/episode-001',
+      type: 'application/xhtml+xml',
+      title: 'The Episode of the origin of the Khalsa',
+      locations: {
+        progression: 0.08,
+        totalProgression: 0.004,
+        position: 9,
+        blockId: 'episode-001-p47-b003',
+      },
+    },
+    updatedAt: '2026-07-15T16:00:00.000Z',
+  })).toBe('/library/panth-prakash-english/chapters/episode-001#episode-001-p47-b003')
+})

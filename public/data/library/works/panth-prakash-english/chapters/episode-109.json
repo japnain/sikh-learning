@@ -1,0 +1,130 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-109",
+  "chapterNumber": 109,
+  "episodeNumber": 109,
+  "kind": "episode",
+  "title": "Another Episode",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 335,
+  "endSourcePage": 335,
+  "wordCount": 266,
+  "charCount": 1525,
+  "startPosition": 133953,
+  "pages": [
+    {
+      "sourcePageNumber": 335,
+      "fileName": "EPUB/page_335.html",
+      "sourceHref": "EPUB/page_335.html",
+      "printPageNumber": 281,
+      "blocks": [
+        {
+          "id": "episode-109-p335-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-109-p335-b003",
+          "type": "verse",
+          "text": "The way Bhai Taru Singh explained his point of view, To the congregated Sikhs (of his neighbouring village). The way he passed through the self-imposed ordeal, I (the author) would narrate the whole chain of events. (1)",
+          "lines": [
+            "The way Bhai Taru Singh explained his point of view,",
+            "To the congregated Sikhs (of his neighbouring village).",
+            "The way he passed through the self-imposed ordeal,",
+            "I (the author) would narrate the whole chain of events."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-109-p335-b004",
+          "type": "verse",
+          "text": "Thereafter, picking up Bhai Taru Singh from their camp, The Mughul officials left for Lahore in the early hours of morning. The Sikh villagers secured Bhai Taru Singh's sister's release, After paying a ransom in cash to the Mughal officials. (2)",
+          "lines": [
+            "Thereafter, picking up Bhai Taru Singh from their camp,",
+            "The Mughul officials left for Lahore in the early hours of morning.",
+            "The Sikh villagers secured Bhai Taru Singh's sister's release,",
+            "After paying a ransom in cash to the Mughal officials."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-109-p335-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-109-p335-b006",
+          "type": "verse",
+          "text": "Thereafter, praying with folded hands in a congregational prayers, The people prayed for Bhai Taru Singh's success in his ordeal. The Sikh congregation prayed to God Almighty. \"May God help to keep his faith till his last breath\". (3)",
+          "lines": [
+            "Thereafter, praying with folded hands in a congregational prayers,",
+            "The people prayed for Bhai Taru Singh's success in his ordeal.",
+            "The Sikh congregation prayed to God Almighty.",
+            "\"May God help to keep his faith till his last breath\"."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-109-p335-b007",
+          "type": "verse",
+          "text": "After the officials reached Lahore with Bhai Taru Singh, They put him behind the bars in a prison. Bhai Taru Singh being kept imprisoned for many days, A large number of devout Sikhs came to pay obeisance. (4)",
+          "lines": [
+            "After the officials reached Lahore with Bhai Taru Singh,",
+            "They put him behind the bars in a prison.",
+            "Bhai Taru Singh being kept imprisoned for many days,",
+            "A large number of devout Sikhs came to pay obeisance."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-109-p335-b008",
+          "type": "verse",
+          "text": "The more the Mughal officials tortured Bhai Taru Singh, The more upbeat and in high spirits he remained. The more Bhai Taru Singh abjured any food and drink, The more contented and pious he felt within. (5)",
+          "lines": [
+            "The more the Mughal officials tortured Bhai Taru Singh,",
+            "The more upbeat and in high spirits he remained.",
+            "The more Bhai Taru Singh abjured any food and drink,",
+            "The more contented and pious he felt within."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-109-p335-b009",
+          "type": "verse",
+          "text": "The more he abandoned all hope of keeping alive, The more fearless and immune he became from death. He always feels contented, confident and confidant of True Divine, Who accepts and acquiesces in God's Will in good cheer. (6)",
+          "lines": [
+            "The more he abandoned all hope of keeping alive,",
+            "The more fearless and immune he became from death.",
+            "He always feels contented, confident and confidant of True Divine,",
+            "Who accepts and acquiesces in God's Will in good cheer."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-109-p335-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-109-p335-b011",
+          "type": "verse",
+          "text": "One who abides by the will of God Divine, Why should he feel scared of death? One who carries a torch in his hand, What harm can darkness cause unto him? (7)",
+          "lines": [
+            "One who abides by the will of God Divine,",
+            "Why should he feel scared of death?",
+            "One who carries a torch in his hand,",
+            "What harm can darkness cause unto him?"
+          ],
+          "number": "7"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-108",
+  "nextChapterId": "episode-110"
+}

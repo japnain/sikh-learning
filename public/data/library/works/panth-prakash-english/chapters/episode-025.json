@@ -1,0 +1,118 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-025",
+  "chapterNumber": 25,
+  "episodeNumber": 25,
+  "kind": "episode",
+  "title": "Rain in the Malwa Region",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 215,
+  "endSourcePage": 215,
+  "wordCount": 259,
+  "charCount": 1491,
+  "startPosition": 29322,
+  "pages": [
+    {
+      "sourcePageNumber": 215,
+      "fileName": "EPUB/page_215.html",
+      "sourceHref": "EPUB/page_215.html",
+      "printPageNumber": 171,
+      "blocks": [
+        {
+          "id": "episode-025-p215-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-025-p215-b003",
+          "type": "verse",
+          "text": "Once in the dry tract of Malwa region of Punjab, The people felt the need for rain to sustain their crops. These inhabitants of Malwa assembled before the Guru, And appealed to the Guru with folded hands. (1)",
+          "lines": [
+            "Once in the dry tract of Malwa region of Punjab,",
+            "The people felt the need for rain to sustain their crops.",
+            "These inhabitants of Malwa assembled before the Guru,",
+            "And appealed to the Guru with folded hands."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-025-p215-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-025-p215-b005",
+          "type": "verse",
+          "text": "All of them pleaded before the Guru about their woes, That the whole congregation wanted rain in their land. So following a prayer by the Guru to the God Almighty, There occurred a plenty of rain in that region. (2)",
+          "lines": [
+            "All of them pleaded before the Guru about their woes,",
+            "That the whole congregation wanted rain in their land.",
+            "So following a prayer by the Guru to the God Almighty,",
+            "There occurred a plenty of rain in that region."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-025-p215-b006",
+          "type": "verse",
+          "text": "Then while sitting on a raised ground at Damdama, The Guru invited his followers to see with their own eyes. The Guru predicted that one day a river would flow through that region, Which will irrigate the Malwa lands to make these fertile. (3)",
+          "lines": [
+            "Then while sitting on a raised ground at Damdama,",
+            "The Guru invited his followers to see with their own eyes.",
+            "The Guru predicted that one day a river would flow through that region,",
+            "Which will irrigate the Malwa lands to make these fertile."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-025-p215-b007",
+          "type": "verse",
+          "text": "But these ignorant people of Malwa region refused to believe Guru's words, With a remark that the present rain water would seep into the earth. Then Satguru expressed his wish to the Malwa people, That he wished to see the Malwa region to be fertile and prosperous. (4)",
+          "lines": [
+            "But these ignorant people of Malwa region refused to believe Guru's words,",
+            "With a remark that the present rain water would seep into the earth.",
+            "Then Satguru expressed his wish to the Malwa people,",
+            "That he wished to see the Malwa region to be fertile and prosperous."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-025-p215-b008",
+          "type": "verse",
+          "text": "The Guru wished the Malwa farmers to cultivate sugarcane, wheat and paddy, And become as affluent and prosperous as the region of Sirhind. But Rai Dalla, failing to appreciate the Guru's express wish, Remarked that his people preferred dry crops of pulses and course grains. (5)",
+          "lines": [
+            "The Guru wished the Malwa farmers to cultivate sugarcane, wheat and paddy,",
+            "And become as affluent and prosperous as the region of Sirhind.",
+            "But Rai Dalla, failing to appreciate the Guru's express wish,",
+            "Remarked that his people preferred dry crops of pulses and course grains."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-025-p215-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-025-p215-b010",
+          "type": "verse",
+          "text": "The Guru felt extremely offended at Rai Dalla's ignorance, And remarked that those ignorant inhabitants would rot there, Though the Guru had wished the Malwa region to be prosperous, And wished to bless its inhabitants with plenty and prosperity. (6)",
+          "lines": [
+            "The Guru felt extremely offended at Rai Dalla's ignorance,",
+            "And remarked that those ignorant inhabitants would rot there,",
+            "Though the Guru had wished the Malwa region to be prosperous,",
+            "And wished to bless its inhabitants with plenty and prosperity."
+          ],
+          "number": "6"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-024",
+  "nextChapterId": "episode-026"
+}

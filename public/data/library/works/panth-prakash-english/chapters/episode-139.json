@@ -1,0 +1,254 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-139",
+  "chapterNumber": 139,
+  "episodeNumber": 139,
+  "kind": "episode",
+  "title": "Kapoora Brar",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 585,
+  "endSourcePage": 587,
+  "wordCount": 636,
+  "charCount": 3615,
+  "startPosition": 177993,
+  "pages": [
+    {
+      "sourcePageNumber": 585,
+      "fileName": "EPUB/page_585.html",
+      "sourceHref": "EPUB/page_585.html",
+      "printPageNumber": 531,
+      "blocks": [
+        {
+          "id": "episode-139-p585-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-139-p585-b003",
+          "type": "verse",
+          "text": "If somebody puts up a poser to the narrator, Has he narrated the whole account about the Brars? As Satguru (Guru Gobind Singh) had predicted Kapoora's1 death by hanging, Had he described how did Kapoora meet his final end? (1)",
+          "lines": [
+            "If somebody puts up a poser to the narrator,",
+            "Has he narrated the whole account about the Brars?",
+            "As Satguru (Guru Gobind Singh) had predicted Kapoora's1 death by hanging,",
+            "Had he described how did Kapoora meet his final end?"
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-139-p585-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-139-p585-b005",
+          "type": "verse",
+          "text": "Let me (the author) now narrate the manner of Kapoora's death, I shall narrate the account as Guru's prophecy came to be fulfilled. When the Guru had reached Ktkapoora (after leaving Anandpur Sahib), Its (selfish) Nawab Kapoora Brar had behaved rudely with the Guru. (2)",
+          "lines": [
+            "Let me (the author) now narrate the manner of Kapoora's death,",
+            "I shall narrate the account as Guru's prophecy came to be fulfilled.",
+            "When the Guru had reached Ktkapoora (after leaving Anandpur Sahib),",
+            "Its (selfish) Nawab Kapoora Brar had behaved rudely with the Guru."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-139-p585-b006",
+          "type": "verse",
+          "text": "Considering him a devout follower, had the Guru entreated Kapoora, That he grant him (the Guru) shelter in his (well-fortified) fort. As the Mughal forces were coming in hot pursuit of the Guru, At no cost would they desist from a fight with the Guru. (3)",
+          "lines": [
+            "Considering him a devout follower, had the Guru entreated Kapoora,",
+            "That he grant him (the Guru) shelter in his (well-fortified) fort.",
+            "As the Mughal forces were coming in hot pursuit of the Guru,",
+            "At no cost would they desist from a fight with the Guru."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-139-p585-b007",
+          "type": "verse",
+          "text": "Impossible would it be to fight the Mughals without a fort's protection, As even the mighty lion needs a jungle during his hunting spree. Should Kapoora provide shelter to the Guru in his fort, Definitely would the Mughals get defeated by the Guru's force. (4)",
+          "lines": [
+            "Impossible would it be to fight the Mughals without a fort's protection,",
+            "As even the mighty lion needs a jungle during his hunting spree.",
+            "Should Kapoora provide shelter to the Guru in his fort,",
+            "Definitely would the Mughals get defeated by the Guru's force."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-139-p585-b008",
+          "type": "verse",
+          "text": "All the people would then turn subjects of Kapoora's sovereignty, As the Guru would bestow Kapoora with a sovereignty over a large region. Then the (rude) answer that Kapoora tendered unto the Guru, That insolent remark became the cause for his damned end. (5)",
+          "lines": [
+            "All the people would then turn subjects of Kapoora's sovereignty,",
+            "As the Guru would bestow Kapoora with a sovereignty over a large region.",
+            "Then the (rude) answer that Kapoora tendered unto the Guru,",
+            "That insolent remark became the cause for his damned end."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-139-p585-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-139-p585-b010",
+          "type": "verse",
+          "text": "As Kapoora's fate was sealed due to his insolent remarks, It made him renege from his faith in the Guru's words. Being motivated by his narrow selfish considerations of his own, He apprehended his own ouster by the Guru from his own fort. (6)",
+          "lines": [
+            "As Kapoora's fate was sealed due to his insolent remarks,",
+            "It made him renege from his faith in the Guru's words.",
+            "Being motivated by his narrow selfish considerations of his own,",
+            "He apprehended his own ouster by the Guru from his own fort."
+          ],
+          "number": "6"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 587,
+      "fileName": "EPUB/page_587.html",
+      "sourceHref": "EPUB/page_587.html",
+      "printPageNumber": 533,
+      "blocks": [
+        {
+          "id": "episode-139-p587-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-139-p587-b002",
+          "type": "verse",
+          "text": "Thereafter, thus did Kapoora Brar tell the Guru, That he owed allegiance to the Mughal sovereign. If he provided shelter to the Guru in his fort at that time, Surely would the Mughal emperor hang him (Kapoora) by the neck. (7)",
+          "lines": [
+            "Thereafter, thus did Kapoora Brar tell the Guru,",
+            "That he owed allegiance to the Mughal sovereign.",
+            "If he provided shelter to the Guru in his fort at that time,",
+            "Surely would the Mughal emperor hang him (Kapoora) by the neck."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-139-p587-b003",
+          "type": "verse",
+          "text": "Thereupon, did the Guru spoke the prophetic words, That surely would he die by being hanged in any case. Not only would he die a spiritual death by reneging from his faith, He would also die a physical death after being hanged. (8)",
+          "lines": [
+            "Thereupon, did the Guru spoke the prophetic words,",
+            "That surely would he die by being hanged in any case.",
+            "Not only would he die a spiritual death by reneging from his faith,",
+            "He would also die a physical death after being hanged."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-139-p587-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-139-p587-b005",
+          "type": "verse",
+          "text": "The Guru did depart after uttering these prophetic words, Many a day did pass after this prediction was made. The way Kapoora Brar died by being hanged by the neck, Shall I (the author) narrate the account of Kapoora's destined end. (9)",
+          "lines": [
+            "The Guru did depart after uttering these prophetic words,",
+            "Many a day did pass after this prediction was made.",
+            "The way Kapoora Brar died by being hanged by the neck,",
+            "Shall I (the author) narrate the account of Kapoora's destined end."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-139-p587-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-139-p587-b007",
+          "type": "verse",
+          "text": "These was a custodian known by the name of Isa Khan Manjh2 , This Rajput Muslim convert had built a fort at Kot Isekhan. As the destined death of Kapoora Brar arrived near, It made him sell some horses to Isa Khan Manjh. (10)",
+          "lines": [
+            "These was a custodian known by the name of Isa Khan Manjh2 ,",
+            "This Rajput Muslim convert had built a fort at Kot Isekhan.",
+            "As the destined death of Kapoora Brar arrived near,",
+            "It made him sell some horses to Isa Khan Manjh."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-139-p587-b008",
+          "type": "verse",
+          "text": "Making a promissory note for paying after collecting revenues from Doab, Isa Khan proceeded to Doab from across the river. As fate was destined to make an end of Kapoora, It made him think of committing a sin against Isakhan. (11)",
+          "lines": [
+            "Making a promissory note for paying after collecting revenues from Doab,",
+            "Isa Khan proceeded to Doab from across the river.",
+            "As fate was destined to make an end of Kapoora,",
+            "It made him think of committing a sin against Isakhan."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-139-p587-b009",
+          "type": "verse",
+          "text": "Despatching a band of thieves after Isa Khan for a consideration, Kapoora got them take possession of the entire revenue proceeds. As his conspiracy against Isa Khan came to be exposed, His destined death confronted him in the face. (12)",
+          "lines": [
+            "Despatching a band of thieves after Isa Khan for a consideration,",
+            "Kapoora got them take possession of the entire revenue proceeds.",
+            "As his conspiracy against Isa Khan came to be exposed,",
+            "His destined death confronted him in the face."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-139-p587-b010",
+          "type": "verse",
+          "text": "How could Guru's prophetic words remain unfulfilled, Though Dharav3 and the Dhaval4 might shift their positions. Thus, getting Kapoora Brar arrested by his armed men, Was he hanged to death by the orders of Isa Khan. (13)",
+          "lines": [
+            "How could Guru's prophetic words remain unfulfilled,",
+            "Though Dharav3 and the Dhaval4 might shift their positions.",
+            "Thus, getting Kapoora Brar arrested by his armed men,",
+            "Was he hanged to death by the orders of Isa Khan."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-139-p587-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-139-p587-b012",
+          "type": "verse",
+          "text": "Such indeed were the prophetic words of the Guru, That Kapoora Brar would die after being hanged. Let no body else be held responsible for his death, As it were the Guru's prophecy that found its expression. (14)",
+          "lines": [
+            "Such indeed were the prophetic words of the Guru,",
+            "That Kapoora Brar would die after being hanged.",
+            "Let no body else be held responsible for his death,",
+            "As it were the Guru's prophecy that found its expression."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-139-p587-b013",
+          "type": "verse",
+          "text": "In the center of a makeshift platform made of mud, Did the (renegade) Kapoora Brar meet his fatal end. Exactly in the same manner had Rattan Singh narrated, As he heard of Kapoora's end from his revered elders. (15)",
+          "lines": [
+            "In the center of a makeshift platform made of mud,",
+            "Did the (renegade) Kapoora Brar meet his fatal end.",
+            "Exactly in the same manner had Rattan Singh narrated,",
+            "As he heard of Kapoora's end from his revered elders."
+          ],
+          "number": "15"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-138",
+  "nextChapterId": "episode-140"
+}

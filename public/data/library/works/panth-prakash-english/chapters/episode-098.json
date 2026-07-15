@@ -1,0 +1,705 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-098",
+  "chapterNumber": 98,
+  "episodeNumber": 98,
+  "kind": "episode",
+  "title": "S. Bota Singh - the Martyr",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 215,
+  "endSourcePage": 225,
+  "wordCount": 1652,
+  "charCount": 9369,
+  "startPosition": 113800,
+  "pages": [
+    {
+      "sourcePageNumber": 215,
+      "fileName": "EPUB/page_215.html",
+      "sourceHref": "EPUB/page_215.html",
+      "printPageNumber": 161,
+      "blocks": [
+        {
+          "id": "episode-098-p215-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p215-b003",
+          "type": "verse",
+          "text": "Let the author narrate the episode of (Bota) Singh, As he had heard it with his own ears. He was the one, who being unable to hear ill of the Singhs, Sacrificed his own life to keep their dignity. (1)",
+          "lines": [
+            "Let the author narrate the episode of (Bota) Singh,",
+            "As he had heard it with his own ears.",
+            "He was the one, who being unable to hear ill of the Singhs,",
+            "Sacrificed his own life to keep their dignity."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-098-p215-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p215-b005",
+          "type": "verse",
+          "text": "He was a man of perfect character and commitment, As well as a devout Sikh and a brave warrior. Bota Singh was the name of (this great Sikh martyr), As his village was situated in the Majha region of Punjab. (2)",
+          "lines": [
+            "He was a man of perfect character and commitment,",
+            "As well as a devout Sikh and a brave warrior.",
+            "Bota Singh was the name of (this great Sikh martyr),",
+            "As his village was situated in the Majha region of Punjab."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-098-p215-b006",
+          "type": "verse",
+          "text": "When (Zakariya Khan) had slaughtered most of the Singhs, No Singh could be spotted anywhere for four months. People said that all the Singhs had died and perished, As the Mughals had eliminated all of them. (3)",
+          "lines": [
+            "When (Zakariya Khan) had slaughtered most of the Singhs,",
+            "No Singh could be spotted anywhere for four months.",
+            "People said that all the Singhs had died and perished,",
+            "As the Mughals had eliminated all of them."
+          ],
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 217,
+      "fileName": "EPUB/page_217.html",
+      "sourceHref": "EPUB/page_217.html",
+      "printPageNumber": 163,
+      "blocks": [
+        {
+          "id": "episode-098-p217-b001",
+          "type": "verse",
+          "text": "As neither any fight nor any encounter was reported, Everyone believed that the whole Khalsa Panth was extinct. As Bota Singh had been separated from his contingent, Some one spotted him moving about somewhere. (4)",
+          "lines": [
+            "As neither any fight nor any encounter was reported,",
+            "Everyone believed that the whole Khalsa Panth was extinct.",
+            "As Bota Singh had been separated from his contingent,",
+            "Some one spotted him moving about somewhere."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-098-p217-b002",
+          "type": "verse",
+          "text": "The onlooker could not believe his own eyes, As he felt surprised how could that Singh survive. After looking at that Singh, the onlooker remarked, That he must be an imposter in the disguise of a Singh. (5)",
+          "lines": [
+            "The onlooker could not believe his own eyes,",
+            "As he felt surprised how could that Singh survive.",
+            "After looking at that Singh, the onlooker remarked,",
+            "That he must be an imposter in the disguise of a Singh."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-098-p217-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p217-b004",
+          "type": "verse",
+          "text": "Some remarked that not a single Singh had been spotted, Since the Mughals had eliminated all of them. Someone else remarked that he must be a coward, Who had taken a shelter somewhere to save himself. (6)",
+          "lines": [
+            "Some remarked that not a single Singh had been spotted,",
+            "Since the Mughals had eliminated all of them.",
+            "Someone else remarked that he must be a coward,",
+            "Who had taken a shelter somewhere to save himself."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-098-p217-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p217-b006",
+          "type": "verse",
+          "text": "He alone was the Khalsa who picked up a fight daily, He alone was the Khalsa who feared not death to encounter. He alone was the Khalsa who kept the fight to continue, He alone was the Khalsa who sacrificed his own life. (7)",
+          "lines": [
+            "He alone was the Khalsa who picked up a fight daily,",
+            "He alone was the Khalsa who feared not death to encounter.",
+            "He alone was the Khalsa who kept the fight to continue,",
+            "He alone was the Khalsa who sacrificed his own life."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-098-p217-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p217-b008",
+          "type": "verse",
+          "text": "As Bota Singh heard those taunting remarks, His blood froze in his veins where he stood. He felt hurt as grievously by such remarks, As one feels hurt by the sting of a scorpion. (8)",
+          "lines": [
+            "As Bota Singh heard those taunting remarks,",
+            "His blood froze in his veins where he stood.",
+            "He felt hurt as grievously by such remarks,",
+            "As one feels hurt by the sting of a scorpion."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-098-p217-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p217-b010",
+          "type": "verse",
+          "text": "Bota Singh made a resolution there and then, That his sacrifice alone could restore the Khalsa's credibility. The world would know of their presence only after his sacrifice, That Khalsa was still alive in this (cruel) world. (9)",
+          "lines": [
+            "Bota Singh made a resolution there and then,",
+            "That his sacrifice alone could restore the Khalsa's credibility.",
+            "The world would know of their presence only after his sacrifice,",
+            "That Khalsa was still alive in this (cruel) world."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-098-p217-b011",
+          "type": "verse",
+          "text": "He must now pick up a fight of some sort, So that the Mughal's claim of Singhs decimation be proved false. Then alone the people would think of the Khalsa Panth, That their claim to sovereignty was genuine and legitimate. (10)",
+          "lines": [
+            "He must now pick up a fight of some sort,",
+            "So that the Mughal's claim of Singhs decimation be proved false.",
+            "Then alone the people would think of the Khalsa Panth,",
+            "That their claim to sovereignty was genuine and legitimate."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-098-p217-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p217-b013",
+          "type": "verse",
+          "text": "He set up his post on a raised platform, At the intersection of road near Nurddin's Sarai2 . Making a make-shift goal post like one of sporting boys, He named it as the fort of Bota Singh. (11)",
+          "lines": [
+            "He set up his post on a raised platform,",
+            "At the intersection of road near Nurddin's Sarai2 .",
+            "Making a make-shift goal post like one of sporting boys,",
+            "He named it as the fort of Bota Singh."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-098-p217-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p217-b015",
+          "type": "verse",
+          "text": "Positioning himself there, he put up a toll tax barrier, Along with his companion belonging to a schedule caste. Both of them raised such a chaos and din there, So that the news of their rowdy acts might reach Lahore. (12)",
+          "lines": [
+            "Positioning himself there, he put up a toll tax barrier,",
+            "Along with his companion belonging to a schedule caste.",
+            "Both of them raised such a chaos and din there,",
+            "So that the news of their rowdy acts might reach Lahore."
+          ],
+          "number": "12"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 219,
+      "fileName": "EPUB/page_219.html",
+      "sourceHref": "EPUB/page_219.html",
+      "printPageNumber": 165,
+      "blocks": [
+        {
+          "id": "episode-098-p219-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p219-b002",
+          "type": "verse",
+          "text": "Moreover, they had sent such a stinging missive, That the Nawab might feel incensed after reading it. That he might despatch his troops immediately, Without any loss of time (to confront the defiant Singhs). (13)",
+          "lines": [
+            "Moreover, they had sent such a stinging missive,",
+            "That the Nawab might feel incensed after reading it.",
+            "That he might despatch his troops immediately,",
+            "Without any loss of time (to confront the defiant Singhs)."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-098-p219-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p219-b004",
+          "type": "verse",
+          "text": "The missive read that it had been written by Bota Singh, Who was blocking the way with a staff in hand. He was charging an anna from a bullock cart and a penny from an ass, Let these words be conveyed to my sister-in-law Khano3 Bhabi. (14)",
+          "lines": [
+            "The missive read that it had been written by Bota Singh,",
+            "Who was blocking the way with a staff in hand.",
+            "He was charging an anna from a bullock cart and a penny from an ass,",
+            "Let these words be conveyed to my sister-in-law Khano3 Bhabi."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-098-p219-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p219-b006",
+          "type": "verse",
+          "text": "Khano Bhabi was an elder sister of Khan Bahadur, (Zakariya Khan, who was the Nawab of Lahore). She, who was married to one Farzulla Khan, Had been the cause of great atrocities on the Singhs. (15)",
+          "lines": [
+            "Khano Bhabi was an elder sister of Khan Bahadur,",
+            "(Zakariya Khan, who was the Nawab of Lahore).",
+            "She, who was married to one Farzulla Khan,",
+            "Had been the cause of great atrocities on the Singhs."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-098-p219-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p219-b008",
+          "type": "verse",
+          "text": "Khan Bahadur dispatched troops after hearing the news, Which reached the (defiant) Singhs' post soon. While one of the Singhs was manning the tax barrier, The other one was going out for relieving himself. (16)",
+          "lines": [
+            "Khan Bahadur dispatched troops after hearing the news,",
+            "Which reached the (defiant) Singhs' post soon.",
+            "While one of the Singhs was manning the tax barrier,",
+            "The other one was going out for relieving himself."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-098-p219-b009",
+          "type": "verse",
+          "text": "Spotting out the troops, he returned to his post, Challenging the invaders with shouting of Waheguru ji ki Fateh. In this way, both the Singhs got ready for a confrontation, With one of them being armed with staff and a sword. (17)",
+          "lines": [
+            "Spotting out the troops, he returned to his post,",
+            "Challenging the invaders with shouting of Waheguru ji ki Fateh.",
+            "In this way, both the Singhs got ready for a confrontation,",
+            "With one of them being armed with staff and a sword."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-098-p219-b010",
+          "type": "verse",
+          "text": "The other one armed with a spear and a one-edged dagger, Stood out after coming out of a fenced area. At this, the Mughal soldiers advised the defiant Singhs, To accompany them to Lahore instead of dying in battle. (18)",
+          "lines": [
+            "The other one armed with a spear and a one-edged dagger,",
+            "Stood out after coming out of a fenced area.",
+            "At this, the Mughal soldiers advised the defiant Singhs,",
+            "To accompany them to Lahore instead of dying in battle."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-098-p219-b011",
+          "type": "verse",
+          "text": "Promising to intercede on their behalf with the Nawab, They would get the Singhs pardoned and be let off. But the Singhs rebuffed that they would loath to save their skins, Since they were desperate to sacrifice their lives. (19)",
+          "lines": [
+            "Promising to intercede on their behalf with the Nawab,",
+            "They would get the Singhs pardoned and be let off.",
+            "But the Singhs rebuffed that they would loath to save their skins,",
+            "Since they were desperate to sacrifice their lives."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-098-p219-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p219-b013",
+          "type": "verse",
+          "text": "Asking the Mughal soldiers to start the fight at the earliest, The Singhs challenged them to get down from their horses. While the Mughal soldiers could fight with their weapons, The Singhs would attack them only with their staffs. (20)",
+          "lines": [
+            "Asking the Mughal soldiers to start the fight at the earliest,",
+            "The Singhs challenged them to get down from their horses.",
+            "While the Mughal soldiers could fight with their weapons,",
+            "The Singhs would attack them only with their staffs."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-098-p219-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p219-b015",
+          "type": "verse",
+          "text": "The Singhs would demonstrate how much strength their staffs wielded, And how much stamina they could display to the Mughals. But the Mughals still advised the Singhs to accompany them, So that they could strike a deal with the Nawab in the court. (21)",
+          "lines": [
+            "The Singhs would demonstrate how much strength their staffs wielded,",
+            "And how much stamina they could display to the Mughals.",
+            "But the Mughals still advised the Singhs to accompany them,",
+            "So that they could strike a deal with the Nawab in the court."
+          ],
+          "number": "21"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 221,
+      "fileName": "EPUB/page_221.html",
+      "sourceHref": "EPUB/page_221.html",
+      "printPageNumber": 167,
+      "blocks": [
+        {
+          "id": "episode-098-p221-b001",
+          "type": "verse",
+          "text": "The Singhs retorted they had nothing to strike a deal there, As they would settle their scores in the Divine court. Singhs would deal with them only with their weapons, Which consisted of staffs, pelting stones and spears. (22)",
+          "lines": [
+            "The Singhs retorted they had nothing to strike a deal there,",
+            "As they would settle their scores in the Divine court.",
+            "Singhs would deal with them only with their weapons,",
+            "Which consisted of staffs, pelting stones and spears."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-098-p221-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p221-b003",
+          "type": "verse",
+          "text": "The Singhs warned them to get ready for an encounter, Lest they should accuse the Singhs of attacking them unawares. Then the Singhs taking a long leap like that of a lion, Reached the spot where Mughal soldiers stood. (23)",
+          "lines": [
+            "The Singhs warned them to get ready for an encounter,",
+            "Lest they should accuse the Singhs of attacking them unawares.",
+            "Then the Singhs taking a long leap like that of a lion,",
+            "Reached the spot where Mughal soldiers stood."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-098-p221-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p221-b005",
+          "type": "verse",
+          "text": "As the Singhs wielded their weapons with a leap, The Mughal soldiers managed to escape their attack. Then, as the Singhs pelted stones and hurled sticks, The Mughals spurred their horses to retreat. (24)",
+          "lines": [
+            "As the Singhs wielded their weapons with a leap,",
+            "The Mughal soldiers managed to escape their attack.",
+            "Then, as the Singhs pelted stones and hurled sticks,",
+            "The Mughals spurred their horses to retreat."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-098-p221-b006",
+          "type": "verse",
+          "text": "While the Mughal soldiers wished to save their lives, The Singhs were not at all scared of death. From whichever direction came the Mughals' attack, The Singhs rushed to the same side to combat them. (25)",
+          "lines": [
+            "While the Mughal soldiers wished to save their lives,",
+            "The Singhs were not at all scared of death.",
+            "From whichever direction came the Mughals' attack,",
+            "The Singhs rushed to the same side to combat them."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-098-p221-b007",
+          "type": "verse",
+          "text": "Reaching out, they would attack the Mughal soldiers, Without caring least to save their lives. Getting themselves wounded by the Mughals' weapons, The Singhs would rejoice every time they got wounded. (26)",
+          "lines": [
+            "Reaching out, they would attack the Mughal soldiers,",
+            "Without caring least to save their lives.",
+            "Getting themselves wounded by the Mughals' weapons,",
+            "The Singhs would rejoice every time they got wounded."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-098-p221-b008",
+          "type": "verse",
+          "text": "The Singhs fought as if they were playing a game of Sonchi4 , Now taking a big leap and now taking short steps. The Mughal soldiers also rushed to attack the Singhs, Planning to throw them away with their horses' backs. (27)",
+          "lines": [
+            "The Singhs fought as if they were playing a game of Sonchi4 ,",
+            "Now taking a big leap and now taking short steps.",
+            "The Mughal soldiers also rushed to attack the Singhs,",
+            "Planning to throw them away with their horses' backs."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-098-p221-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p221-b010",
+          "type": "verse",
+          "text": "The Singh would get up and then fall down again, Only to get up again and stand up. Even while seeing the Mughal soldiers well-armed, The Singhs did not feel scared even if empty-handed. (28)",
+          "lines": [
+            "The Singh would get up and then fall down again,",
+            "Only to get up again and stand up.",
+            "Even while seeing the Mughal soldiers well-armed,",
+            "The Singhs did not feel scared even if empty-handed."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-098-p221-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p221-b012",
+          "type": "verse",
+          "text": "While the Singhs were not scared to lose their lives, The Mughals soldiers were sacred of Singhs bereft of weapons. Both the combatants were in a fit of rage, The Singhs for being empty-handed, the Mughal for seeing Singhs defenceless. (29)",
+          "lines": [
+            "While the Singhs were not scared to lose their lives,",
+            "The Mughals soldiers were sacred of Singhs bereft of weapons.",
+            "Both the combatants were in a fit of rage,",
+            "The Singhs for being empty-handed, the Mughal for seeing Singhs defenceless."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-098-p221-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p221-b014",
+          "type": "verse",
+          "text": "With the superficial injuries on the skin and flesh, The (brave) Singhs would register no sense of pain. But whenever they had some of their bones fractured, They would show some decline in their energy levels. (30)",
+          "lines": [
+            "With the superficial injuries on the skin and flesh,",
+            "The (brave) Singhs would register no sense of pain.",
+            "But whenever they had some of their bones fractured,",
+            "They would show some decline in their energy levels."
+          ],
+          "number": "30"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 223,
+      "fileName": "EPUB/page_223.html",
+      "sourceHref": "EPUB/page_223.html",
+      "printPageNumber": 169,
+      "blocks": [
+        {
+          "id": "episode-098-p223-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p223-b002",
+          "type": "verse",
+          "text": "The Singhs would pull out an arrow that hit them, And would make it a point to show it to their enemy. The Singhs would react to the piercing arrows with a frown, To convey that the enemy arrows could not slice their bodies. (31)",
+          "lines": [
+            "The Singhs would pull out an arrow that hit them,",
+            "And would make it a point to show it to their enemy.",
+            "The Singhs would react to the piercing arrows with a frown,",
+            "To convey that the enemy arrows could not slice their bodies."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-098-p223-b003",
+          "type": "verse",
+          "text": "When the Mughal soldiers started attacking Singh with swords, They started repelling their swords with their sticks. Standing back to back against each other, The two Singhs turned the Mughals' horses with their sticks. (32)",
+          "lines": [
+            "When the Mughal soldiers started attacking Singh with swords,",
+            "They started repelling their swords with their sticks.",
+            "Standing back to back against each other,",
+            "The two Singhs turned the Mughals' horses with their sticks."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-098-p223-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p223-b005",
+          "type": "verse",
+          "text": "Leaving their horses, the Mughal soldiers came on foot, While combating Singhs' staff blows with their shields. But the Singhs gave such fierce blows with sticks, That even the Mughal soldiers' shields were badly crushed. (33)",
+          "lines": [
+            "Leaving their horses, the Mughal soldiers came on foot,",
+            "While combating Singhs' staff blows with their shields.",
+            "But the Singhs gave such fierce blows with sticks,",
+            "That even the Mughal soldiers' shields were badly crushed."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-098-p223-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p223-b007",
+          "type": "verse",
+          "text": "After such a beating, the Mughal soldiers were convinced, That they could not subdue the Singhs in a hand to hand fight. After that, the Mughal soldiers, loading their muskets, Opened a heavy shower of bullets on the Singhs. (34)",
+          "lines": [
+            "After such a beating, the Mughal soldiers were convinced,",
+            "That they could not subdue the Singhs in a hand to hand fight.",
+            "After that, the Mughal soldiers, loading their muskets,",
+            "Opened a heavy shower of bullets on the Singhs."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-098-p223-b008",
+          "type": "verse",
+          "text": "Wherever the bullets hit, they fractured Singhs' bones, As well as their hands which had wielded sticks. While the Singhs tried to wield sticks in their left hands, The bullet injuries crippled and maimed their legs. (35)",
+          "lines": [
+            "Wherever the bullets hit, they fractured Singhs' bones,",
+            "As well as their hands which had wielded sticks.",
+            "While the Singhs tried to wield sticks in their left hands,",
+            "The bullet injuries crippled and maimed their legs."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-098-p223-b009",
+          "type": "verse",
+          "text": "When they hit the Singhs and fractured their legs, They asked the Singhs to crawl with folded hands. Since they had spared their lives in their magnanimity, They would convert them to Islam while they were alive. (36)",
+          "lines": [
+            "When they hit the Singhs and fractured their legs,",
+            "They asked the Singhs to crawl with folded hands.",
+            "Since they had spared their lives in their magnanimity,",
+            "They would convert them to Islam while they were alive."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-098-p223-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p223-b011",
+          "type": "verse",
+          "text": "The (badly wounded) Singhs would get up even with a single leg, And endeavoured to walk even on one leg only. Making hop-step-and jump like a grasshopper, They smashed their enemy's head with their sticks. (37)",
+          "lines": [
+            "The (badly wounded) Singhs would get up even with a single leg,",
+            "And endeavoured to walk even on one leg only.",
+            "Making hop-step-and jump like a grasshopper,",
+            "They smashed their enemy's head with their sticks."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-098-p223-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p223-b013",
+          "type": "verse",
+          "text": "Even when these crippled Singhs fell down on the ground, They crawled on their knees and elbows towards their enemy. The Singhs kept looking straight into their enemy's eyes, As it had been narrated to me by my elders. (38)",
+          "lines": [
+            "Even when these crippled Singhs fell down on the ground,",
+            "They crawled on their knees and elbows towards their enemy.",
+            "The Singhs kept looking straight into their enemy's eyes,",
+            "As it had been narrated to me by my elders."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-098-p223-b014",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-098-p223-b015",
+          "type": "verse",
+          "text": "He alone turns his (face) and eyes from his adversary, Who has some kind of scarce about his death. The One who has given up hope for life, He never turns away his eyes from his enemy. (39)",
+          "lines": [
+            "He alone turns his (face) and eyes from his adversary,",
+            "Who has some kind of scarce about his death.",
+            "The One who has given up hope for life,",
+            "He never turns away his eyes from his enemy."
+          ],
+          "number": "39"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 225,
+      "fileName": "EPUB/page_225.html",
+      "sourceHref": "EPUB/page_225.html",
+      "printPageNumber": 171,
+      "blocks": [
+        {
+          "id": "episode-098-p225-b001",
+          "type": "verse",
+          "text": "The brave always confront their enemy face to face, And keep looking straight into each others' eyes. While they turn red in their faces and puffed up in their muscles, They bear the brunt of enemy's blows on their faces. (40)",
+          "lines": [
+            "The brave always confront their enemy face to face,",
+            "And keep looking straight into each others' eyes.",
+            "While they turn red in their faces and puffed up in their muscles,",
+            "They bear the brunt of enemy's blows on their faces."
+          ],
+          "number": "40"
+        },
+        {
+          "id": "episode-098-p225-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-098-p225-b003",
+          "type": "verse",
+          "text": "So the Mughal troops cut the Singhs' bodies into pieces, Lest they should stand again to confront them. In this way, these two Singhs made a supreme sacrifice, Praise be to their parents who begot those Singhs. (41)",
+          "lines": [
+            "So the Mughal troops cut the Singhs' bodies into pieces,",
+            "Lest they should stand again to confront them.",
+            "In this way, these two Singhs made a supreme sacrifice,",
+            "Praise be to their parents who begot those Singhs."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-098-p225-b004",
+          "type": "verse",
+          "text": "These Singhs had joined the abode of those brave Singhs, Who had kept the great (Islamic) prophets under leash. This was how Bota Singh had made the supreme sacrifice, And the author (Rattan Singh) had narrated it as he heard it. (42)",
+          "lines": [
+            "These Singhs had joined the abode of those brave Singhs,",
+            "Who had kept the great (Islamic) prophets under leash.",
+            "This was how Bota Singh had made the supreme sacrifice,",
+            "And the author (Rattan Singh) had narrated it as he heard it."
+          ],
+          "number": "42"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-097",
+  "nextChapterId": "episode-099"
+}

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { StudiedEntry } from '../types'
+import type { LibraryReaderLocator, StudiedEntry } from '../types'
 import { getUpdatedStreak } from '../utils/streak'
 import { queueActivityEvent } from './activityEvents'
 
@@ -8,6 +8,7 @@ export interface Session {
   scriptureId: string
   resumePath: string
   resumeVerseId?: number
+  readerLocator?: LibraryReaderLocator
   updatedAt: string
 }
 
@@ -63,6 +64,11 @@ export function buildSessionResumePath(session: Session | null | undefined): str
   if (!basePath) return null
   if (isRetiredPanthPrakashResumePath(basePath)) return null
 
+  if (session.readerLocator?.locations.blockId) {
+    const pathWithoutHash = basePath.split('#')[0]
+    return `${pathWithoutHash}#${encodeURIComponent(session.readerLocator.locations.blockId)}`
+  }
+
   if (!session.resumeVerseId) {
     return basePath
   }
@@ -94,11 +100,17 @@ function normalizeSession(session: Session | LegacySession | null | undefined): 
     const updatedAt = typeof session.updatedAt === 'string' && session.updatedAt.trim()
       ? session.updatedAt
       : new Date().toISOString()
+    const readerLocator = session.readerLocator
+      && typeof session.readerLocator.href === 'string'
+      && typeof session.readerLocator.locations?.totalProgression === 'number'
+      ? session.readerLocator
+      : undefined
 
     return {
       scriptureId: session.scriptureId,
       resumePath: session.resumePath,
       ...(resumeVerseId ? { resumeVerseId } : {}),
+      ...(readerLocator ? { readerLocator } : {}),
       updatedAt,
     }
   }

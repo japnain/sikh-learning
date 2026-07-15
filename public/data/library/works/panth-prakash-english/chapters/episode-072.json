@@ -1,0 +1,553 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-072",
+  "chapterNumber": 72,
+  "episodeNumber": 72,
+  "kind": "episode",
+  "title": "(Factional) Fight (Leave the (whole) Controversy to God Almighty )",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 483,
+  "endSourcePage": 491,
+  "wordCount": 1488,
+  "charCount": 8813,
+  "startPosition": 77824,
+  "pages": [
+    {
+      "sourcePageNumber": 483,
+      "fileName": "EPUB/page_483.html",
+      "sourceHref": "EPUB/page_483.html",
+      "printPageNumber": 439,
+      "blocks": [
+        {
+          "id": "episode-072-p483-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-072-p483-b003",
+          "type": "paragraph",
+          "text": "The Sikhs departed after the conclusion of the congregation, And making offerings at the sanctum sanctorum at Darbar Sahib1 ."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 485,
+      "fileName": "EPUB/page_485.html",
+      "sourceHref": "EPUB/page_485.html",
+      "printPageNumber": 441,
+      "blocks": [
+        {
+          "id": "episode-072-p485-b001",
+          "type": "verse",
+          "text": "Then the Bandhayee Singhs, with the tacit support of the Mughals, Laid a claim to half of the total offerings made at the congregation. (1)",
+          "lines": [
+            "Then the Bandhayee Singhs, with the tacit support of the Mughals,",
+            "Laid a claim to half of the total offerings made at the congregation."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-072-p485-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-072-p485-b003",
+          "type": "verse",
+          "text": "The Mughal police administrator at the congregation there, Was bribed by (Bandhayee Singhs) to side with them. He started adding fuel to the fire by inciting one of the factions, So that he might benefit after a factional fight between the two. (2)",
+          "lines": [
+            "The Mughal police administrator at the congregation there,",
+            "Was bribed by (Bandhayee Singhs) to side with them.",
+            "He started adding fuel to the fire by inciting one of the factions,",
+            "So that he might benefit after a factional fight between the two."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-072-p485-b004",
+          "type": "verse",
+          "text": "The way death and decimation approached the Bandhayee Singhs, Dear Gursikh readers, listen to the manner of its approach. The more the (Tat Khalsa) Singhs tried to avoid this factional fight, The more aggressive posture the Bandhayee Singhs kept on adopting. (3)",
+          "lines": [
+            "The way death and decimation approached the Bandhayee Singhs,",
+            "Dear Gursikh readers, listen to the manner of its approach.",
+            "The more the (Tat Khalsa) Singhs tried to avoid this factional fight,",
+            "The more aggressive posture the Bandhayee Singhs kept on adopting."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-072-p485-b005",
+          "type": "verse",
+          "text": "They surmised that the Tat Khalsa Singhs would get defeated now, As Bandhayee, with the Mughal support, would certainly brow beat them. That they would settle for half the offerings from all the Sikh shrines, Made them very arrogant as they thought resolutely in their mind. (4)",
+          "lines": [
+            "They surmised that the Tat Khalsa Singhs would get defeated now,",
+            "As Bandhayee, with the Mughal support, would certainly brow beat them.",
+            "That they would settle for half the offerings from all the Sikh shrines,",
+            "Made them very arrogant as they thought resolutely in their mind."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-072-p485-b006",
+          "type": "verse",
+          "text": "Since half the Sikh Congregation consisted of their followers, They had a legitimate claim to half of the offerings, The Singhs alleged that since the Guru's shrines belonged to the Singhs, The Bandhayee Singhs had no business to make such a claim. (5)",
+          "lines": [
+            "Since half the Sikh Congregation consisted of their followers,",
+            "They had a legitimate claim to half of the offerings,",
+            "The Singhs alleged that since the Guru's shrines belonged to the Singhs,",
+            "The Bandhayee Singhs had no business to make such a claim."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-072-p485-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-072-p485-b008",
+          "type": "verse",
+          "text": "Asking them to join the mainstream Khalsa Panth after giving up \"Fateh Darshan\"2 , All of them should get initiated with Khande-ki-PahuP . They must partake food along with Khalsa Singhs from all castes, And be proud to call themselves members of the Khalsa fraternity. (6)",
+          "lines": [
+            "Asking them to join the mainstream Khalsa Panth after giving up \"Fateh Darshan\"2 ,",
+            "All of them should get initiated with Khande-ki-PahuP .",
+            "They must partake food along with Khalsa Singhs from all castes,",
+            "And be proud to call themselves members of the Khalsa fraternity."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-072-p485-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-072-p485-b010",
+          "type": "verse",
+          "text": "The Bandhayee Singhs, adopting a very hard arrogant posture, Wished to propagate the customs and traditions of Vaishnavism. They claimed that their Guru (Banda Singh) possessed great powers, As he could bring about great miracles and feats. (7)",
+          "lines": [
+            "The Bandhayee Singhs, adopting a very hard arrogant posture,",
+            "Wished to propagate the customs and traditions of Vaishnavism.",
+            "They claimed that their Guru (Banda Singh) possessed great powers,",
+            "As he could bring about great miracles and feats."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-072-p485-b011",
+          "type": "verse",
+          "text": "Since their Guru was possessed with great powers, He could fly (like a bird) for hundreds of miles. Since he belonged to the six ancient4 and eternal sects of yogis, He became a guru for his powers of argumentation and magical feats. (8)",
+          "lines": [
+            "Since their Guru was possessed with great powers,",
+            "He could fly (like a bird) for hundreds of miles.",
+            "Since he belonged to the six ancient4 and eternal sects of yogis,",
+            "He became a guru for his powers of argumentation and magical feats."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-072-p485-b012",
+          "type": "verse",
+          "text": "The Singhs countered that they did not believe in my kind of magic, Since no magical tricks could stand against the power of the sword. The Singhs challenged them to fight with them in the open, Since they (the Singhs) did not believe in any kind of magic or necromancy. (9)",
+          "lines": [
+            "The Singhs countered that they did not believe in my kind of magic,",
+            "Since no magical tricks could stand against the power of the sword.",
+            "The Singhs challenged them to fight with them in the open,",
+            "Since they (the Singhs) did not believe in any kind of magic or necromancy."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-072-p485-b013",
+          "type": "paragraph",
+          "text": "The strife between the two factions reached such a pitch, As if they would be at each other's throat in a moment."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 487,
+      "fileName": "EPUB/page_487.html",
+      "sourceHref": "EPUB/page_487.html",
+      "printPageNumber": 443,
+      "blocks": [
+        {
+          "id": "episode-072-p487-b001",
+          "type": "verse",
+          "text": "There were some descendents of Bhai Buddha Ji5 and Bhai Salo6 , As well as grandsons of Bhai Bhagtu7 and Bhai Bahlo8 among them. (10)",
+          "lines": [
+            "There were some descendents of Bhai Buddha Ji5 and Bhai Salo6 ,",
+            "As well as grandsons of Bhai Bhagtu7 and Bhai Bahlo8 among them."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-072-p487-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-072-p487-b003",
+          "type": "verse",
+          "text": "And there were present some Masand Mewras in the congregation, Who intervened to bring about a rapprochement between the two factions. They said while the Hindus (The Sikh) would get killed in an internecine war, The Mughals would feel delighted at the fulfillment of their desire. (11)",
+          "lines": [
+            "And there were present some Masand Mewras in the congregation,",
+            "Who intervened to bring about a rapprochement between the two factions.",
+            "They said while the Hindus (The Sikh) would get killed in an internecine war,",
+            "The Mughals would feel delighted at the fulfillment of their desire."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-072-p487-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-072-p487-b005",
+          "type": "verse",
+          "text": "The wise on both sides of the Khalsa factions remarked, That they must find a solution acceptable to both the factions. If both the factions were willing to accede to their advice, Both the parties should sit together in a peaceful manner. (12)",
+          "lines": [
+            "The wise on both sides of the Khalsa factions remarked,",
+            "That they must find a solution acceptable to both the factions.",
+            "If both the factions were willing to accede to their advice,",
+            "Both the parties should sit together in a peaceful manner."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-072-p487-b006",
+          "type": "verse",
+          "text": "They advised that both the parties should leave the issue to the Divine God, And accept gracefully whatever the Divine Will revealed. Since every thing happens according to the Divine Will, Why should they ruin themselves by fighting with each other? (13)",
+          "lines": [
+            "They advised that both the parties should leave the issue to the Divine God,",
+            "And accept gracefully whatever the Divine Will revealed.",
+            "Since every thing happens according to the Divine Will,",
+            "Why should they ruin themselves by fighting with each other?"
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-072-p487-b007",
+          "type": "verse",
+          "text": "Either they should lay down both the written claims before Guru Granth Sahib, Or immerse both the versions in the waters of the sacred tank. Out of the two written captions of \"Waheguru ji ki Fateh\" and \"Fateh Darshan\", Whichever version floated above should be accepted as a valid religion. (14)",
+          "lines": [
+            "Either they should lay down both the written claims before Guru Granth Sahib,",
+            "Or immerse both the versions in the waters of the sacred tank.",
+            "Out of the two written captions of \"Waheguru ji ki Fateh\" and \"Fateh Darshan\",",
+            "Whichever version floated above should be accepted as a valid religion."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-072-p487-b008",
+          "type": "verse",
+          "text": "Whichever bundled version got drowned should be rejected, And no body should ever follow and propagate that religion. The Mughals fondly wished for the drowning of both the versions, So that they might get benefitted (by the extinction of Khalsa Panth). (15)",
+          "lines": [
+            "Whichever bundled version got drowned should be rejected,",
+            "And no body should ever follow and propagate that religion.",
+            "The Mughals fondly wished for the drowning of both the versions,",
+            "So that they might get benefitted (by the extinction of Khalsa Panth)."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-072-p487-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-072-p487-b010",
+          "type": "verse",
+          "text": "Both the Bandhayee and Tat Khalsa Singhs accepted the proposal, And left the whole controversy to be resolved by God's will. Since the Khalsa Panth was destined to be the sovereign, How could it ever come to be defeated (by anybody). (16)",
+          "lines": [
+            "Both the Bandhayee and Tat Khalsa Singhs accepted the proposal,",
+            "And left the whole controversy to be resolved by God's will.",
+            "Since the Khalsa Panth was destined to be the sovereign,",
+            "How could it ever come to be defeated (by anybody)."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-072-p487-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-072-p487-b012",
+          "type": "verse",
+          "text": "The (Tat Khalsa) Singhs were firmly convinced (of their victory), Since they had a firm faith and true devotion in the Guru. Since the Khalsa Panth was destined to grow and flourish, Every thing would turn out auspicious and beneficial in their favour. (17)",
+          "lines": [
+            "The (Tat Khalsa) Singhs were firmly convinced (of their victory),",
+            "Since they had a firm faith and true devotion in the Guru.",
+            "Since the Khalsa Panth was destined to grow and flourish,",
+            "Every thing would turn out auspicious and beneficial in their favour."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-072-p487-b013",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-072-p487-b014",
+          "type": "verse",
+          "text": "(After their mutual consent), (two) letters were drafted, As dictated by (the commonly agreed) arbitrators. Placing both the letters before the Guru in the sanctum sanctorum, Both the factions stood with folded hands before the Guru. (18)",
+          "lines": [
+            "(After their mutual consent),",
+            "(two) letters were drafted,",
+            "As dictated by (the commonly agreed) arbitrators.",
+            "Placing both the letters before the Guru in the sanctum sanctorum,",
+            "Both the factions stood with folded hands before the Guru."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-072-p487-b015",
+          "type": "paragraph",
+          "text": "Chaupai They prayed that they had faith in the Guru's Omniscience, Whose Will prevailed eternally in the past, present and future."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 489,
+      "fileName": "EPUB/page_489.html",
+      "sourceHref": "EPUB/page_489.html",
+      "printPageNumber": 445,
+      "blocks": [
+        {
+          "id": "episode-072-p489-b001",
+          "type": "verse",
+          "text": "Whichever religion His Divine Will wished to flourish, should flourish, Till this planet earth was going to stay, exist and last. (19)",
+          "lines": [
+            "Whichever religion His Divine Will wished to flourish, should flourish,",
+            "Till this planet earth was going to stay, exist and last."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-072-p489-b002",
+          "type": "verse",
+          "text": "While the written draft of the Divinely approved religion should float, The version that the Divine will disapproved should get drowned. Nothing could remain hidden from the (Omniscient) Divine Guru, Since He was the creator as well as the preserver of everything. (20)",
+          "lines": [
+            "While the written draft of the Divinely approved religion should float,",
+            "The version that the Divine will disapproved should get drowned.",
+            "Nothing could remain hidden from the (Omniscient) Divine Guru,",
+            "Since He was the creator as well as the preserver of everything."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-072-p489-b003",
+          "type": "verse",
+          "text": "A cotton thread, got prepared by an innocent virgin girl, Was wrapped around both the packets containing the two versions. Summoning a boy, both the packets were placed on the water's surface, Near \"Har-ki-Pauri\" adjacent to the back entrance of Sanctum Sanctorum. (21)",
+          "lines": [
+            "A cotton thread, got prepared by an innocent virgin girl,",
+            "Was wrapped around both the packets containing the two versions.",
+            "Summoning a boy, both the packets were placed on the water's surface,",
+            "Near \"Har-ki-Pauri\" adjacent to the back entrance of Sanctum Sanctorum."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-072-p489-b004",
+          "type": "verse",
+          "text": "Once when both the packets went down under the water for a while, Both the factions felt extremely concerned (about their future). If, perchance, both the packets sank down in the water, There would not remain a trace of the Hindus (the Sikhs) on earth. (22)",
+          "lines": [
+            "Once when both the packets went down under the water for a while,",
+            "Both the factions felt extremely concerned (about their future).",
+            "If, perchance, both the packets sank down in the water,",
+            "There would not remain a trace of the Hindus (the Sikhs) on earth."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-072-p489-b005",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-072-p489-b006",
+          "type": "verse",
+          "text": "Many, among the elders standing, witness to the scene, Were also of the opinion about the unfolding mystery: That in case both the packets started floating, Then both the religions would flourish till eternity. (23)",
+          "lines": [
+            "Many, among the elders standing, witness to the scene,",
+            "Were also of the opinion about the unfolding mystery: That in case both the packets started floating,",
+            "Then both the religions would flourish till eternity."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-072-p489-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-072-p489-b008",
+          "type": "verse",
+          "text": "Both the factions stood before the Guru with folded hands, And joined the prayer in a loud chorus. They prayed to the Guru to let that faction's packet float, Whose religion the Divine Will wished to prevail and flourish. (24)",
+          "lines": [
+            "Both the factions stood before the Guru with folded hands,",
+            "And joined the prayer in a loud chorus.",
+            "They prayed to the Guru to let that faction's packet float,",
+            "Whose religion the Divine Will wished to prevail and flourish."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-072-p489-b009",
+          "type": "verse",
+          "text": "Instantly one of the packets came afloat after going down, Containing the written version of one of the factions. The (Tat Khalsa) Singhs felt somewhat relieved at this scene, And felt as if the Guru had responded to the prayer. (25)",
+          "lines": [
+            "Instantly one of the packets came afloat after going down,",
+            "Containing the written version of one of the factions.",
+            "The (Tat Khalsa) Singhs felt somewhat relieved at this scene,",
+            "And felt as if the Guru had responded to the prayer."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-072-p489-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-072-p489-b011",
+          "type": "verse",
+          "text": "The Singhs from both the sides rushed to catch hold of the floating packet, Wielding their weapons and pushing ahead of each other. As the Mughal police officials were present on the scene, The arbitrators to the dispute declared that they would see the letter first. (26)",
+          "lines": [
+            "The Singhs from both the sides rushed to catch hold of the floating packet,",
+            "Wielding their weapons and pushing ahead of each other.",
+            "As the Mughal police officials were present on the scene,",
+            "The arbitrators to the dispute declared that they would see the letter first."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-072-p489-b012",
+          "type": "verse",
+          "text": "Immediately after the police officials handed over the letter, The arbitrators handed it over to the Tat Khalsa after reading it. Disclosing that the version with \"Waheguru ji ki Fateh\" had floated, The arbitrator pronounced the judgement to both the factions. (27)",
+          "lines": [
+            "Immediately after the police officials handed over the letter,",
+            "The arbitrators handed it over to the Tat Khalsa after reading it.",
+            "Disclosing that the version with \"Waheguru ji ki Fateh\" had floated,",
+            "The arbitrator pronounced the judgement to both the factions."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-072-p489-b013",
+          "type": "paragraph",
+          "text": "While the Tat Khalsa Singhs felt delighted at the declaration, The Bandhayee Singhs felt crest fallen after this decision."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 491,
+      "fileName": "EPUB/page_491.html",
+      "sourceHref": "EPUB/page_491.html",
+      "printPageNumber": 447,
+      "blocks": [
+        {
+          "id": "episode-072-p491-b001",
+          "type": "verse",
+          "text": "They felt so much shocked after hearing the decision, As if a monarch had been deprived of his sovereign rule. (28)",
+          "lines": [
+            "They felt so much shocked after hearing the decision,",
+            "As if a monarch had been deprived of his sovereign rule."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-072-p491-b002",
+          "type": "verse",
+          "text": "They felt as deprived as if a Cobra had been deprived of its Mani9 , And as miserable as a fish while kept out of water. Feeling highly concerned and regretting their loss of power, They started gasping for breath out of desperation. (29)",
+          "lines": [
+            "They felt as deprived as if a Cobra had been deprived of its Mani9 ,",
+            "And as miserable as a fish while kept out of water.",
+            "Feeling highly concerned and regretting their loss of power,",
+            "They started gasping for breath out of desperation."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-072-p491-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-072-p491-b004",
+          "type": "verse",
+          "text": "So crestfallen, desperate and frustrated felt the Bandhayee Singhs, As if both the elements (earth and sky) were refusing to shelter them. Wrenching their hands and shaking their heads in desperation, They felt as if they had no place to hide their shameless faces. (30)",
+          "lines": [
+            "So crestfallen, desperate and frustrated felt the Bandhayee Singhs,",
+            "As if both the elements (earth and sky) were refusing to shelter them.",
+            "Wrenching their hands and shaking their heads in desperation,",
+            "They felt as if they had no place to hide their shameless faces."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-072-p491-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-072-p491-b006",
+          "type": "verse",
+          "text": "Tat Khalsa Singhs burst out in shouting slogans of victory, And shouted the Khalsa Panth's greetings \"Waheguru ji ki Fateh\" loudly. Brandishing their daggers and swords to express their joy, They stood in prayer while reciting Gurbani hymns. (31)",
+          "lines": [
+            "Tat Khalsa Singhs burst out in shouting slogans of victory,",
+            "And shouted the Khalsa Panth's greetings \"Waheguru ji ki Fateh\" loudly.",
+            "Brandishing their daggers and swords to express their joy,",
+            "They stood in prayer while reciting Gurbani hymns."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-072-p491-b007",
+          "type": "verse",
+          "text": "A wave of excitement and joy ran through all ranks of the Khalsa, As the Khalsa Panth was declared victorious by the Divine Will. Tat Khalsa Singhs felt so much delighted at this victory, As the Gods had felt happy after the destruction of Devils. (32)",
+          "lines": [
+            "A wave of excitement and joy ran through all ranks of the Khalsa,",
+            "As the Khalsa Panth was declared victorious by the Divine Will.",
+            "Tat Khalsa Singhs felt so much delighted at this victory,",
+            "As the Gods had felt happy after the destruction of Devils."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-072-p491-b008",
+          "type": "verse",
+          "text": "The Khalsa Singhs who had earlier defected to the Bandhayees, Returned to the Khalsa fold and joined the Khalsa ranks. While some of the Bandhayees ran away, others became as shell- shocked, As if some sect of Sadhus had taken a vow of silence. (33)",
+          "lines": [
+            "The Khalsa Singhs who had earlier defected to the Bandhayees,",
+            "Returned to the Khalsa fold and joined the Khalsa ranks.",
+            "While some of the Bandhayees ran away, others became as shell- shocked,",
+            "As if some sect of Sadhus had taken a vow of silence."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-072-p491-b009",
+          "type": "verse",
+          "text": "Those who were extremely (Hawkish) and arrogant among them, They decided to fight it out till the last breath of their lives. The way, these haughty, arrogant Bandhayees met their doom, Dear readers, listen to their account (in the next episode). (34)",
+          "lines": [
+            "Those who were extremely (Hawkish) and arrogant among them,",
+            "They decided to fight it out till the last breath of their lives.",
+            "The way, these haughty, arrogant Bandhayees met their doom,",
+            "Dear readers, listen to their account (in the next episode)."
+          ],
+          "number": "34"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-071",
+  "nextChapterId": "episode-073"
+}

@@ -1,0 +1,95 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-005",
+  "chapterNumber": 5,
+  "episodeNumber": 5,
+  "kind": "episode",
+  "title": "Baba Nanak's Travel to the South The Daccan Udasi",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 81,
+  "endSourcePage": 81,
+  "wordCount": 169,
+  "charCount": 1021,
+  "startPosition": 5917,
+  "pages": [
+    {
+      "sourcePageNumber": 81,
+      "fileName": "EPUB/page_81.html",
+      "sourceHref": "EPUB/page_81.html",
+      "printPageNumber": 37,
+      "blocks": [
+        {
+          "id": "episode-005-p81-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-005-p81-b003",
+          "type": "verse",
+          "text": "Then Satguru (Baba Nanak) set out on another excursion. This time it was in the direction of the South. With a mission to preach the word of God, He took along Mardana for company. (1)",
+          "lines": [
+            "Then Satguru (Baba Nanak) set out on another excursion.",
+            "This time it was in the direction of the South.",
+            "With a mission to preach the word of God,",
+            "He took along Mardana for company."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-005-p81-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-005-p81-b005",
+          "type": "verse",
+          "text": "To whichever place of Hindu worship Guru Nanak paid a visit, He found it desecrated by the Muslim forces. After destroying the temples, they had raised Mosques at these sites, And put away the idols of the Hindu Deities after disfiguring these. (2)",
+          "lines": [
+            "To whichever place of Hindu worship Guru Nanak paid a visit,",
+            "He found it desecrated by the Muslim forces.",
+            "After destroying the temples, they had raised Mosques at these sites,",
+            "And put away the idols of the Hindu Deities after disfiguring these."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-005-p81-b006",
+          "type": "verse",
+          "text": "Seeing the desecration and destruction of these holy places., Baba Nanak recited the following hymns as reproduced below : \"Launching their invasion from Khurasan2 (Iran), They (the Mughals) threatened to occupy Hindustan. But neither was any Mughal chastised, Nor could any Deity checkmate their advance.\" (3)",
+          "lines": [
+            "Seeing the desecration and destruction of these holy places.,",
+            "Baba Nanak recited the following hymns as reproduced below : \"Launching their invasion from Khurasan2 (Iran),",
+            "They (the Mughals) threatened to occupy Hindustan.",
+            "But neither was any Mughal chastised,",
+            "Nor could any Deity checkmate their advance.\""
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-005-p81-b007",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-005-p81-b008",
+          "type": "verse",
+          "text": "The Kaliyuga had neutralised every kind of moral value even as, It had dispossessed all the gods and goddesses of their spiritual powers. It had contaminated and corrupted all the holy places, Which were considered sacred by the Hindus for worship. (4)",
+          "lines": [
+            "The Kaliyuga had neutralised every kind of moral value even as,",
+            "It had dispossessed all the gods and goddesses of their spiritual powers.",
+            "It had contaminated and corrupted all the holy places,",
+            "Which were considered sacred by the Hindus for worship."
+          ],
+          "number": "4"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-004",
+  "nextChapterId": "episode-006"
+}

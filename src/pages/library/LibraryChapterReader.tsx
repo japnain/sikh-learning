@@ -1,9 +1,42 @@
-import { useEffect, useMemo, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import type { LibraryChapterIndexEntry, LibraryChapterPayload, LibraryTextBlock, LibraryWork } from '../../types'
-import { loadLibraryChapter, loadLibraryChapterIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconClose,
+  IconLibrary,
+  IconMoreHorizontal,
+} from '../../components/icons'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
+import ModalSheet from '../../components/ModalSheet'
+import {
+  loadLibraryChapter,
+  loadLibraryChapterIndex,
+  loadLibraryWorkCatalog,
+} from '../../data/libraryRepository'
+import {
+  useEpubReaderStore,
+  type EpubReaderLineHeight,
+  type EpubReaderMeasure,
+  type EpubReaderPalette,
+} from '../../store/epubReader'
 import { useProgressStore } from '../../store/progress'
+import type {
+  LibraryChapterIndexEntry,
+  LibraryChapterPayload,
+  LibraryReaderLocator,
+  LibraryTextBlock,
+  LibraryWork,
+} from '../../types'
 
 interface ChapterReaderState {
   work: LibraryWork
@@ -17,38 +50,188 @@ interface ChapterLoadState {
   reader: ChapterReaderState | null
 }
 
-function blockClassName(block: LibraryTextBlock) {
-  if (block.type === 'heading') return 'mt-8 font-display text-2xl leading-snug text-ink dark:text-dark-text'
-  if (block.type === 'line') return 'mt-4 font-serif text-[1.04rem] leading-8 text-ink/84 dark:text-dark-text/84'
-  return 'mt-5 font-serif text-[1.06rem] leading-8 text-ink/86 dark:text-dark-text/86'
-}
+type ReaderPanel = 'contents' | 'display' | null
 
 function chapterLabel(chapter: Pick<LibraryChapterPayload | LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
   return chapter.kind === 'episode' && chapter.episodeNumber
     ? `Episode ${chapter.episodeNumber}`
-    : `Chapter ${chapter.chapterNumber}`
-}
-
-function sourceRangeLabel(chapter: Pick<LibraryChapterPayload, 'startSourcePage' | 'endSourcePage'>) {
-  return chapter.startSourcePage === chapter.endSourcePage
-    ? `EPUB page ${chapter.startSourcePage}`
-    : `EPUB pages ${chapter.startSourcePage}-${chapter.endSourcePage}`
+    : `Section ${chapter.chapterNumber}`
 }
 
 function chapterPath(workId: string, chapterId: string) {
   return `/library/${workId}/chapters/${chapterId}`
 }
 
+function readerBlockText(block: LibraryTextBlock) {
+  return block.lines?.join(' ') || block.text
+}
+
+function isDocumentScrollEnd() {
+  const root = document.documentElement
+  const scrollTop = window.scrollY || root.scrollTop
+  const documentHeight = Math.max(root.scrollHeight, document.body?.scrollHeight ?? 0)
+  return scrollTop > 0
+    && documentHeight > 0
+    && scrollTop + window.innerHeight >= documentHeight - 4
+}
+
+function ReaderInlineText({ text }: { text: string }) {
+  const normalized = text.replace(/\s+([,.;!?])/g, '$1')
+  const markerPattern = /([A-Za-z)])(\d{1,3})(?=(?:[,.;:!?)]|\s|$))/g
+  const content: ReactNode[] = []
+  let cursor = 0
+
+  for (const match of normalized.matchAll(markerPattern)) {
+    const number = match[2]
+    const numberStart = (match.index ?? 0) + match[1].length
+    content.push(normalized.slice(cursor, numberStart))
+    content.push(<sup key={`${numberStart}-${number}`} className="epub-reading-footnote-marker">{number}</sup>)
+    cursor = numberStart + number.length
+  }
+
+  content.push(normalized.slice(cursor))
+  return <>{content}</>
+}
+
+function ReaderBlock({ block, register }: { block: LibraryTextBlock; register: (blockId: string, node: HTMLElement | null) => void }) {
+  const common = {
+    id: block.id,
+    ref: (node: HTMLElement | null) => register(block.id, node),
+    'data-reader-block': block.id,
+  }
+
+  if (block.type === 'heading') {
+    return <h2 {...common} className="epub-reading-heading"><ReaderInlineText text={block.text} /></h2>
+  }
+
+  if (block.type === 'invocation') {
+    return <p {...common} className="epub-reading-invocation"><ReaderInlineText text={block.text} /></p>
+  }
+
+  if (block.type === 'meter') {
+    return <p {...common} className="epub-reading-meter">{block.text}</p>
+  }
+
+  if (block.type === 'verse' || block.type === 'line') {
+    const lines = block.lines?.length ? block.lines : [block.text]
+    return (
+      <div {...common} className="epub-reading-verse">
+        <div>
+          {lines.map((line, index) => <span key={`${block.id}-line-${index}`}><ReaderInlineText text={line} /></span>)}
+        </div>
+        {block.number ? <span className="epub-reading-verse__number">{block.number}</span> : null}
+      </div>
+    )
+  }
+
+  if (block.type === 'note') {
+    return <aside {...common} className="epub-reading-note" aria-label="Note"><ReaderInlineText text={block.text} /></aside>
+  }
+
+  return <p {...common} className="epub-reading-paragraph"><ReaderInlineText text={block.text} /></p>
+}
+
+function SegmentedControl<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string
+  value: T
+  options: Array<{ value: T; label: string }>
+  onChange: (value: T) => void
+}) {
+  return (
+    <fieldset className="epub-setting-group">
+      <legend>{label}</legend>
+      <div className="epub-segmented-control">
+        {options.map(option => (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={value === option.value}
+            onClick={() => onChange(option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </fieldset>
+  )
+}
+
+function ReaderPanelShell({ title, description, palette, onClose, children }: {
+  title: string
+  description: string
+  palette: EpubReaderPalette
+  onClose: () => void
+  children: ReactNode
+}) {
+  const paletteClass = palette === 'sepia'
+    ? 'epub-reader-panel--sepia'
+    : palette === 'night'
+      ? 'epub-reader-panel--night'
+      : 'epub-reader-panel--paper'
+
+  return (
+    <ModalSheet
+      open
+      onClose={onClose}
+      title={title}
+      description={description}
+      className={`epub-reader-panel ${paletteClass}`}
+      testId={`epub-reader-${title.toLowerCase().replace(/\s+/g, '-')}`}
+    >
+        <header>
+          <div>
+            <p className="eyebrow">Reader</p>
+            <h2 id="epub-reader-panel-title">{title}</h2>
+            <p>{description}</p>
+          </div>
+          <button type="button" onClick={onClose} aria-label={`Close ${title.toLowerCase()}`} autoFocus>
+            <IconClose size={18} />
+          </button>
+        </header>
+        <div className="epub-reader-panel__body">{children}</div>
+    </ModalSheet>
+  )
+}
+
 export default function LibraryChapterReader() {
   const updateSession = useProgressStore(state => state.updateSession)
   const { workId = 'panth-prakash-english', chapterId = '' } = useParams<{ workId: string; chapterId: string }>()
+  const location = useLocation()
   const requestKey = `${workId}:${chapterId}`
   const [loadState, setLoadState] = useState<ChapterLoadState>({ key: requestKey, status: 'loading', reader: null })
+  const [activePanel, setActivePanel] = useState<ReaderPanel>(null)
+  const [tocQuery, setTocQuery] = useState('')
+  const [progress, setProgress] = useState(0)
+  const blockNodes = useRef(new Map<string, HTMLElement>())
+  const currentBlockId = useRef<string | null>(null)
+  const didRestoreLocation = useRef(false)
+  const readerShellRef = useRef<HTMLDivElement | null>(null)
+  const contentsTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const settingsTriggerRef = useRef<HTMLButtonElement | null>(null)
+
+  const fontScale = useEpubReaderStore(state => state.fontScale)
+  const lineHeight = useEpubReaderStore(state => state.lineHeight)
+  const measure = useEpubReaderStore(state => state.measure)
+  const palette = useEpubReaderStore(state => state.palette)
+  const setFontScale = useEpubReaderStore(state => state.setFontScale)
+  const setLineHeight = useEpubReaderStore(state => state.setLineHeight)
+  const setMeasure = useEpubReaderStore(state => state.setMeasure)
+  const setPalette = useEpubReaderStore(state => state.setPalette)
+  const resetPreferences = useEpubReaderStore(state => state.resetPreferences)
+
   const state = loadState.key === requestKey ? loadState.status : 'loading'
   const reader = loadState.key === requestKey ? loadState.reader : null
 
   useEffect(() => {
     let cancelled = false
+    didRestoreLocation.current = false
+    blockNodes.current.clear()
+    currentBlockId.current = null
 
     Promise.all([
       loadLibraryWorkCatalog(),
@@ -71,28 +254,157 @@ export default function LibraryChapterReader() {
     }
   }, [chapterId, requestKey, workId])
 
-  useEffect(() => {
-    if (!reader) return
-    updateSession({
-      scriptureId: `${reader.work.id}-${reader.chapter.id}`,
-      resumePath: chapterPath(reader.work.id, reader.chapter.id),
-      updatedAt: new Date().toISOString(),
-    })
-  }, [reader, updateSession])
-
   const currentIndex = useMemo(() => {
     if (!reader) return -1
     return reader.chapters.findIndex(chapter => chapter.id === reader.chapter.id)
   }, [reader])
 
+  const chapterBlocks = useMemo(
+    () => reader?.chapter.pages.flatMap(page => page.blocks) ?? [],
+    [reader]
+  )
+
+  const createLocator = useCallback((blockId: string): LibraryReaderLocator | null => {
+    if (!reader) return null
+    const blockIndex = Math.max(0, chapterBlocks.findIndex(block => block.id === blockId))
+    const block = chapterBlocks[blockIndex]
+    if (!block) return null
+    const chapterProgression = chapterBlocks.length > 1 ? blockIndex / (chapterBlocks.length - 1) : 0
+    const chapterCharactersBefore = reader.chapters
+      .slice(0, Math.max(0, currentIndex))
+      .reduce((total, chapter) => total + (chapter.charCount ?? 0), 0)
+    const blockCharactersBefore = chapterBlocks
+      .slice(0, blockIndex)
+      .reduce((total, entry) => total + readerBlockText(entry).length, 0)
+    const blockWordsBefore = chapterBlocks
+      .slice(0, blockIndex)
+      .reduce((total, entry) => total + readerBlockText(entry).split(/\s+/).filter(Boolean).length, 0)
+    const chapterCharacters = reader.chapter.charCount
+      ?? chapterBlocks.reduce((total, entry) => total + readerBlockText(entry).length, 0)
+    const knownTotalCharacters = reader.work.totalCharacters
+      ?? reader.chapters.reduce((total, chapter) => total + (chapter.charCount ?? 0), 0)
+    const totalCharacters = Math.max(knownTotalCharacters, chapterCharacters, 1)
+    const totalProgression = Math.min(1, Math.max(0, (chapterCharactersBefore + blockCharactersBefore) / totalCharacters))
+
+    return {
+      revision: reader.work.revision,
+      href: chapterPath(reader.work.id, reader.chapter.id),
+      type: 'application/xhtml+xml',
+      title: reader.chapter.title,
+      locations: {
+        progression: chapterProgression,
+        totalProgression,
+        position: (reader.chapter.startPosition ?? 1) + blockWordsBefore,
+        blockId,
+      },
+      text: {
+        highlight: readerBlockText(block).slice(0, 180),
+      },
+    }
+  }, [chapterBlocks, currentIndex, reader])
+
+  const recordLocation = useCallback((blockId: string) => {
+    if (!reader) return
+    const resolvedBlockId = isDocumentScrollEnd()
+      ? chapterBlocks.at(-1)?.id ?? blockId
+      : blockId
+    if (currentBlockId.current === resolvedBlockId) return
+    const locator = createLocator(resolvedBlockId)
+    if (!locator) return
+    currentBlockId.current = blockId
+    setProgress(locator.locations.totalProgression)
+    updateSession({
+      scriptureId: `${reader.work.id}-${reader.chapter.id}`,
+      resumePath: chapterPath(reader.work.id, reader.chapter.id),
+      readerLocator: locator,
+      updatedAt: new Date().toISOString(),
+    })
+  }, [chapterBlocks, createLocator, reader, updateSession])
+
+  const closeActivePanel = useCallback(() => {
+    const trigger = activePanel === 'contents' ? contentsTriggerRef.current : settingsTriggerRef.current
+    setActivePanel(null)
+    window.requestAnimationFrame(() => trigger?.focus({ preventScroll: true }))
+  }, [activePanel])
+
+  useEffect(() => {
+    if (!reader) return
+    const focusFrame = window.requestAnimationFrame(() => {
+      const activeElement = document.activeElement
+      if (activeElement === document.body || activeElement?.id === 'main-content') {
+        readerShellRef.current?.focus({ preventScroll: true })
+      }
+    })
+    return () => window.cancelAnimationFrame(focusFrame)
+  }, [reader])
+
+  useEffect(() => {
+    if (!reader || !chapterBlocks.length) return
+
+    const shouldRestoreBlock = Boolean(location.hash)
+    const requestedBlockId = shouldRestoreBlock
+      ? decodeURIComponent(location.hash.slice(1))
+      : chapterBlocks[0]?.id
+    const requestedNode = requestedBlockId ? blockNodes.current.get(requestedBlockId) : null
+    const restoreFrame = window.requestAnimationFrame(() => {
+      if (shouldRestoreBlock && !didRestoreLocation.current && requestedNode) {
+        didRestoreLocation.current = true
+        requestedNode.scrollIntoView?.({ block: 'start', behavior: 'auto' })
+      }
+      if (requestedBlockId) recordLocation(requestedBlockId)
+    })
+
+    if (typeof IntersectionObserver === 'undefined') {
+      return () => window.cancelAnimationFrame(restoreFrame)
+    }
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0]
+      const blockId = visible?.target.getAttribute('data-reader-block')
+      if (blockId) recordLocation(blockId)
+    }, {
+      rootMargin: '-18% 0px -65% 0px',
+      threshold: [0, 0.1, 0.5],
+    })
+
+    blockNodes.current.forEach(node => observer.observe(node))
+
+    let scrollFrame: number | null = null
+    const recordDocumentEnd = () => {
+      scrollFrame = null
+      if (isDocumentScrollEnd()) {
+        const finalBlock = chapterBlocks.at(-1)
+        if (finalBlock) recordLocation(finalBlock.id)
+      }
+    }
+    const handleScroll = () => {
+      if (scrollFrame !== null) window.cancelAnimationFrame(scrollFrame)
+      scrollFrame = window.requestAnimationFrame(recordDocumentEnd)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.cancelAnimationFrame(restoreFrame)
+      if (scrollFrame !== null) window.cancelAnimationFrame(scrollFrame)
+      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
+    }
+  }, [chapterBlocks, location.hash, reader, recordLocation])
+
+  const registerBlock = useCallback((blockId: string, node: HTMLElement | null) => {
+    if (node) blockNodes.current.set(blockId, node)
+    else blockNodes.current.delete(blockId)
+  }, [])
+
   if (state === 'loading') {
     return (
       <SurfaceStateCard
-        surface="panth-chapter-reader"
+        surface="epub-chapter-reader"
         state="loading"
-        eyebrow="Panth Prakash"
-        title="Loading chapter"
-        body="Opening the EPUB-derived chapter text."
+        eyebrow="Reader"
+        title="Opening this section"
+        body="Preparing the reading edition."
         page="library"
       />
     )
@@ -101,11 +413,11 @@ export default function LibraryChapterReader() {
   if (state === 'error' || !reader) {
     return (
       <SurfaceStateCard
-        surface="panth-chapter-reader"
+        surface="epub-chapter-reader"
         state="degraded"
-        eyebrow="Panth Prakash"
-        title="Chapter unavailable"
-        body="This Panth Prakash chapter could not be loaded yet."
+        eyebrow="Reader"
+        title="Section unavailable"
+        body="This section could not be opened from the publication package."
         page="library"
       />
     )
@@ -114,107 +426,172 @@ export default function LibraryChapterReader() {
   const { work, chapter, chapters } = reader
   const previousChapter = currentIndex > 0 ? chapters[currentIndex - 1] : null
   const nextChapter = currentIndex >= 0 && currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null
-  const nearbyChapters = currentIndex >= 0
-    ? chapters.slice(Math.max(0, currentIndex - 2), Math.min(chapters.length, currentIndex + 3))
-    : []
-  const progressPercent = chapters.length ? Math.min(100, Math.max(0, ((currentIndex + 1) / chapters.length) * 100)) : 0
+  const normalizedTocQuery = tocQuery.trim().toLowerCase()
+  const filteredToc = normalizedTocQuery
+    ? chapters.filter(entry => `${chapterLabel(entry)} ${entry.title}`.toLowerCase().includes(normalizedTocQuery))
+    : chapters
+  const readerStyle = {
+    '--epub-font-scale': String(fontScale),
+  } as CSSProperties
 
   return (
     <div
-      className="page-shell animate-fade-in"
+      ref={readerShellRef}
+      tabIndex={-1}
+      className="epub-reader-shell"
       data-testid="panth-chapter-reader"
       data-page="library-chapter"
-      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
+      data-palette={palette}
+      data-line-height={lineHeight}
+      data-measure={measure}
+      style={readerStyle}
     >
-      <section className="section-shell px-5 py-5 mb-5" data-testid="panth-chapter-compass">
-        <nav className="mb-4 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/78" aria-label="Breadcrumb" data-testid="panth-chapter-breadcrumb">
-          <Link to="/banis" className="interactive-focus inline-flex min-h-[44px] items-center px-1 underline-offset-4 hover:underline">Read</Link>
-          <span aria-hidden="true"> / </span>
-          <Link to="/library" className="interactive-focus inline-flex min-h-[44px] items-center px-1 underline-offset-4 hover:underline">Library</Link>
-          <span aria-hidden="true"> / </span>
-          <Link to={`/library/${work.id}`} className="interactive-focus inline-flex min-h-[44px] items-center px-1 underline-offset-4 hover:underline">{work.shortTitle}</Link>
-          <span aria-hidden="true"> / </span>
-          <span>{chapterLabel(chapter)}</span>
-        </nav>
-
-        <div className="flex flex-wrap gap-2">
-          <span className="chip-pill">{chapterLabel(chapter)}</span>
-          <span className="chip-pill">Volume {chapter.volume}</span>
-          <span className="chip-pill">{sourceRangeLabel(chapter)}</span>
-          <span className="chip-pill">EPUB source</span>
+      <header className="epub-reader-topbar">
+        <Link to={`/library/${work.id}`} className="epub-reader-topbar__back interactive-focus" aria-label={`Back to ${work.shortTitle}`}>
+          <IconArrowLeft size={18} />
+        </Link>
+        <div className="epub-reader-topbar__title">
+          <span>{work.shortTitle}</span>
+          <strong>{chapterLabel(chapter)}</strong>
         </div>
-
-        <h1 className="mt-5 max-w-3xl font-display text-[2.25rem] leading-[0.96] text-ink dark:text-dark-text sm:text-[3rem]">
-          {chapter.title}
-        </h1>
-        <p className="mt-4 max-w-3xl font-sans text-sm leading-7 text-ink/72 dark:text-dark-text/74">
-          {work.title} · {chapter.pages.length} EPUB page{chapter.pages.length === 1 ? '' : 's'} in this chapter.
-        </p>
-
-        <div className="mt-5 h-2 overflow-hidden rounded-full bg-sand/20 dark:bg-dark-text/16" aria-hidden="true" data-testid="panth-chapter-progress-track">
-          <div
-            className="h-full rounded-full bg-accent"
-            style={{ width: `${progressPercent}%` }}
-          />
+        <div className="epub-reader-topbar__actions">
+          <button ref={contentsTriggerRef} type="button" onClick={() => setActivePanel('contents')} aria-label="Open contents">
+            <IconLibrary size={18} />
+          </button>
+          <button ref={settingsTriggerRef} type="button" onClick={() => setActivePanel('display')} aria-label="Open reading settings">
+            <IconMoreHorizontal size={19} />
+          </button>
         </div>
-      </section>
+        <div className="epub-reader-progress" aria-hidden="true">
+          <span style={{ width: `${Math.max(1, progress * 100)}%` }} />
+        </div>
+      </header>
 
-      <article className="hero-surface px-5 py-6 sm:px-7" data-testid="panth-chapter-article">
-        <section className="max-w-3xl" data-testid="panth-chapter-text">
+      <div className="epub-reader-main" data-testid="panth-chapter-article">
+        <header className="epub-reading-title">
+          <p>Volume {chapter.volume} · {chapterLabel(chapter)}</p>
+          <h1>{chapter.title}</h1>
+          <div>
+            <span>{chapter.wordCount ? `${chapter.wordCount.toLocaleString()} words` : `${chapter.pages.length} reading pages`}</span>
+            <span>{Math.round(progress * 100)}% of book</span>
+          </div>
+        </header>
+
+        <article className="epub-reading-body" data-testid="panth-chapter-text">
           {chapter.pages.map(page => (
-            <section key={page.sourcePageNumber} className="border-t border-sand/12 py-6 first:border-t-0 dark:border-dark-text/10">
-              <div className="mb-4 flex flex-wrap items-center gap-2">
-                <span className="chip-pill">EPUB page {page.sourcePageNumber}</span>
-                <span className="chip-pill">{page.fileName.replace('EPUB/', '')}</span>
-              </div>
+            <Fragment key={`${page.sourcePageNumber}-${page.sourceHref ?? page.fileName}`}>
               {page.blocks.map(block => (
-                <p key={block.id} className={blockClassName(block)}>
-                  {block.text}
-                </p>
+                <ReaderBlock key={block.id} block={block} register={registerBlock} />
               ))}
-            </section>
+            </Fragment>
           ))}
-        </section>
+        </article>
 
-        <section className="mt-6 rounded-lg border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-chapter-provenance">
-          <p className="eyebrow">Source</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="chip-pill">{chapter.source.fileName}</span>
-            <span className="chip-pill">{sourceRangeLabel(chapter)}</span>
-            <span className="chip-pill">Converted to app text</span>
-          </div>
-        </section>
-
-        <section className="mt-6 rounded-lg border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-chapter-mini-contents">
-          <p className="eyebrow">Nearby chapters</p>
-          <div className="mt-3 grid gap-2">
-            {nearbyChapters.map(entry => (
-              <Link
-                key={entry.id}
-                to={chapterPath(work.id, entry.id)}
-                className={`interactive-focus rounded-lg border px-3 py-3 font-sans text-sm ${entry.id === chapter.id ? 'border-gold/22 bg-gold/10 text-gold-dark dark:border-gold/20 dark:bg-gold/12 dark:text-gold-light' : 'border-sand/14 bg-parchment-card/70 text-ink dark:border-dark-text/10 dark:bg-dark-card/62 dark:text-dark-text'}`}
-              >
-                {chapterLabel(entry)} · {entry.title}
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <nav className="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Chapter navigation">
+        <nav className="epub-reader-chapter-nav" aria-label="Section navigation">
           {previousChapter ? (
-            <Link to={chapterPath(work.id, previousChapter.id)} className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">Previous</p>
-              <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{chapterLabel(previousChapter)}</p>
+            <Link to={chapterPath(work.id, previousChapter.id)} className="interactive-focus">
+              <IconArrowLeft size={16} />
+              <span><small>Previous</small><strong>{chapterLabel(previousChapter)}</strong></span>
             </Link>
           ) : <span />}
           {nextChapter ? (
-            <Link to={chapterPath(work.id, nextChapter.id)} className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/72 px-4 py-4 text-right dark:border-dark-text/10 dark:bg-dark-card/62">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">Next</p>
-              <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{chapterLabel(nextChapter)}</p>
+            <Link to={chapterPath(work.id, nextChapter.id)} className="interactive-focus">
+              <span><small>Next</small><strong>{chapterLabel(nextChapter)}</strong></span>
+              <IconArrowRight size={16} />
             </Link>
           ) : null}
         </nav>
-      </article>
+
+        <footer className="epub-reader-edition-link">
+          <Link to={`/library/${work.id}`}>About this reading edition</Link>
+        </footer>
+      </div>
+
+      {activePanel === 'contents' ? (
+        <ReaderPanelShell
+          title="Contents"
+          description={`${chapters.length} sections across ${work.publications?.length ?? 1} volumes.`}
+          palette={palette}
+          onClose={closeActivePanel}
+        >
+          <label className="epub-toc-search">
+            <span>Search contents</span>
+            <input value={tocQuery} onChange={event => setTocQuery(event.target.value)} placeholder="Episode or title" />
+          </label>
+          <ol className="epub-reader-toc">
+            {filteredToc.map(entry => (
+              <li key={entry.id}>
+                <Link
+                  to={chapterPath(work.id, entry.id)}
+                  aria-current={entry.id === chapter.id ? 'location' : undefined}
+                  onClick={() => setActivePanel(null)}
+                >
+                  <span>{entry.episodeNumber ?? entry.chapterNumber}</span>
+                  <span><small>Volume {entry.volume}</small><strong>{entry.title}</strong></span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </ReaderPanelShell>
+      ) : null}
+
+      {activePanel === 'display' ? (
+        <ReaderPanelShell
+          title="Reading settings"
+          description="These choices stay with you across books."
+          palette={palette}
+          onClose={closeActivePanel}
+        >
+          <fieldset className="epub-setting-group">
+            <legend>Text size</legend>
+            <label className="epub-font-slider">
+              <span aria-hidden="true">A</span>
+              <input
+                type="range"
+                min="0.85"
+                max="1.3"
+                step="0.05"
+                value={fontScale}
+                onChange={event => setFontScale(Number(event.target.value))}
+                aria-label="Reading text size"
+              />
+              <span aria-hidden="true">A</span>
+              <output>{Math.round(fontScale * 100)}%</output>
+            </label>
+          </fieldset>
+          <SegmentedControl<EpubReaderLineHeight>
+            label="Line spacing"
+            value={lineHeight}
+            options={[
+              { value: 'compact', label: 'Compact' },
+              { value: 'comfortable', label: 'Comfort' },
+              { value: 'spacious', label: 'Spacious' },
+            ]}
+            onChange={setLineHeight}
+          />
+          <SegmentedControl<EpubReaderMeasure>
+            label="Text width"
+            value={measure}
+            options={[
+              { value: 'narrow', label: 'Narrow' },
+              { value: 'standard', label: 'Standard' },
+              { value: 'wide', label: 'Wide' },
+            ]}
+            onChange={setMeasure}
+          />
+          <SegmentedControl<EpubReaderPalette>
+            label="Page color"
+            value={palette}
+            options={[
+              { value: 'paper', label: 'Paper' },
+              { value: 'sepia', label: 'Sepia' },
+              { value: 'night', label: 'Night' },
+            ]}
+            onChange={setPalette}
+          />
+          <button type="button" className="epub-reset-settings" onClick={resetPreferences}>Reset reading settings</button>
+        </ReaderPanelShell>
+      ) : null}
     </div>
   )
 }

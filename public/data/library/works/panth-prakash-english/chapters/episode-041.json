@@ -1,0 +1,184 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-041",
+  "chapterNumber": 41,
+  "episodeNumber": 41,
+  "kind": "episode",
+  "title": "Banda Singh's Entry into Sirhind",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 289,
+  "endSourcePage": 291,
+  "wordCount": 389,
+  "charCount": 2254,
+  "startPosition": 42998,
+  "pages": [
+    {
+      "sourcePageNumber": 289,
+      "fileName": "EPUB/page_289.html",
+      "sourceHref": "EPUB/page_289.html",
+      "printPageNumber": 245,
+      "blocks": [
+        {
+          "id": "episode-041-p289-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-041-p289-b003",
+          "type": "verse",
+          "text": "(After defeating the Mughals at Chhappar Chiri) Singhs entered Sirhind, Their contingents were led under the command of S. Baaj Singh. He belonged to the Bal sub-caste of the Jat Sikhs, And he was a resident of Mirpur Patti village in Amritsar. (1)",
+          "lines": [
+            "(After defeating the Mughals at Chhappar Chiri) Singhs entered Sirhind,",
+            "Their contingents were led under the command of S.",
+            "Baaj Singh.",
+            "He belonged to the Bal sub-caste of the Jat Sikhs,",
+            "And he was a resident of Mirpur Patti village in Amritsar."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-041-p289-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-041-p289-b005",
+          "type": "verse",
+          "text": "He was appointed as the custodian of Sirhind by Banda Singh, And handed over all the captured treasure to him. All the four brothers, including Baaj Singh, were the bravest of the brave, While two of them looked after the police arrangements of Sirhind province, The other two acted as the personal bodyguards of Banda Singh. (2)",
+          "lines": [
+            "He was appointed as the custodian of Sirhind by Banda Singh,",
+            "And handed over all the captured treasure to him.",
+            "All the four brothers, including Baaj Singh, were the bravest of the brave,",
+            "While two of them looked after the police arrangements of Sirhind province,",
+            "The other two acted as the personal bodyguards of Banda Singh."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-041-p289-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-041-p289-b007",
+          "type": "verse",
+          "text": "While the two elder brothers were named Baaj Singh1 and Ram Singh2, The younger two were named Koer Singh3 and Siam Singh4 . They were made incharge of the whole Sirhind Province of fifty-two villages, And instructed to deal with all the administrative affairs of the state. (3)",
+          "lines": [
+            "While the two elder brothers were named Baaj Singh1 and Ram Singh2,",
+            "The younger two were named Koer Singh3 and Siam Singh4 .",
+            "They were made incharge of the whole Sirhind Province of fifty-two villages,",
+            "And instructed to deal with all the administrative affairs of the state."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-041-p289-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-041-p289-b009",
+          "type": "verse",
+          "text": "S. Aali Singh (of Salodi) was appointed as the deputy custodian, And made incharge of the revenue collections from the province. The Banda Singh entered into the precincts of the city of Sirhind, And took possession of the whole treasure of Wazir Khan. (4)",
+          "lines": [
+            "S.",
+            "Aali Singh (of Salodi) was appointed as the deputy custodian,",
+            "And made incharge of the revenue collections from the province.",
+            "The Banda Singh entered into the precincts of the city of Sirhind,",
+            "And took possession of the whole treasure of Wazir Khan."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-041-p289-b010",
+          "type": "paragraph",
+          "text": "He occupied, but he did not ransack the city of Sirhind, For which lapse he had to repent later on,"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 291,
+      "fileName": "EPUB/page_291.html",
+      "sourceHref": "EPUB/page_291.html",
+      "printPageNumber": 247,
+      "blocks": [
+        {
+          "id": "episode-041-p291-b001",
+          "type": "verse",
+          "text": "The Guru had instructed him to demolish the whole city, And raze it to dust after thoroughly ransacking it. (5)",
+          "lines": [
+            "The Guru had instructed him to demolish the whole city,",
+            "And raze it to dust after thoroughly ransacking it."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-041-p291-b002",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-041-p291-b003",
+          "type": "verse",
+          "text": "Banda Singh had forgotten the mandate of the Guru, With which he had been sent by the Guru. He had to bear the consequences for his disobedience. For preserving the cursed city of Sirhind. (6)",
+          "lines": [
+            "Banda Singh had forgotten the mandate of the Guru,",
+            "With which he had been sent by the Guru.",
+            "He had to bear the consequences for his disobedience.",
+            "For preserving the cursed city of Sirhind."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-041-p291-b004",
+          "type": "verse",
+          "text": "While Banda Singh preserved the city of Sirhind, He collected a ransom from its residents. While the Hindus were given various positions in administration, The Muslims managed to save their lives by hiding themselves. (7)",
+          "lines": [
+            "While Banda Singh preserved the city of Sirhind,",
+            "He collected a ransom from its residents.",
+            "While the Hindus were given various positions in administration,",
+            "The Muslims managed to save their lives by hiding themselves."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-041-p291-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-041-p291-b006",
+          "type": "verse",
+          "text": "S. Baaj Singh (the custodian of Sirhind), used to mount his horse, After putting his foot on a Muslim's head for a stepladder. He ordered all the Muslim population to be exiled, From the entire territory of fifty-two villages of Sirhind. (8)",
+          "lines": [
+            "S.",
+            "Baaj Singh (the custodian of Sirhind), used to mount his horse,",
+            "After putting his foot on a Muslim's head for a stepladder.",
+            "He ordered all the Muslim population to be exiled,",
+            "From the entire territory of fifty-two villages of Sirhind."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-041-p291-b007",
+          "type": "verse",
+          "text": "He got the entire Sirhind province liberated in a moment, Which had a human population of thirty six lacs. Then Banda Singh assembled the Khalsa forces and instructed them, That they should rob and kill all the Muslims. (9)",
+          "lines": [
+            "He got the entire Sirhind province liberated in a moment,",
+            "Which had a human population of thirty six lacs.",
+            "Then Banda Singh assembled the Khalsa forces and instructed them,",
+            "That they should rob and kill all the Muslims."
+          ],
+          "number": "9"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-040",
+  "nextChapterId": "episode-042"
+}

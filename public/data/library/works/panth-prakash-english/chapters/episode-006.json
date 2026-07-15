@@ -1,0 +1,257 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-006",
+  "chapterNumber": 6,
+  "episodeNumber": 6,
+  "kind": "episode",
+  "title": "Baba Nanak's Travel to the East",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 83,
+  "endSourcePage": 85,
+  "wordCount": 596,
+  "charCount": 3489,
+  "startPosition": 6086,
+  "pages": [
+    {
+      "sourcePageNumber": 83,
+      "fileName": "EPUB/page_83.html",
+      "sourceHref": "EPUB/page_83.html",
+      "printPageNumber": 39,
+      "blocks": [
+        {
+          "id": "episode-006-p83-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-006-p83-b003",
+          "type": "verse",
+          "text": "Thereafter, Guru Nanak nursed another desire in his heart, That they should undertake another excursion to the east. Wherever falsehood has eclipsed truthfulness, He must endeavour to expose it. (1)",
+          "lines": [
+            "Thereafter,",
+            "Guru Nanak nursed another desire in his heart,",
+            "That they should undertake another excursion to the east.",
+            "Wherever falsehood has eclipsed truthfulness,",
+            "He must endeavour to expose it."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-006-p83-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-006-p83-b005",
+          "type": "verse",
+          "text": "First Satguru (Baba Nanak) had a dip in the Ganga, Then visited Rishikesh, the seat of the ancient rishis. He visited the place of Vallabh1 across the river, Where all the residents were dressed like yogis2 . (2)",
+          "lines": [
+            "First Satguru (Baba Nanak) had a dip in the Ganga,",
+            "Then visited Rishikesh, the seat of the ancient rishis.",
+            "He visited the place of Vallabh1 across the river,",
+            "Where all the residents were dressed like yogis2 ."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-006-p83-b006",
+          "type": "verse",
+          "text": "This region was a seat of eighty four Sidhas, It was known by the name of Gorakh Matta3 . The Kaliyuga had spread its tentacles here widely, As the Sidhas displayed many kinds of their magical feats. (3)",
+          "lines": [
+            "This region was a seat of eighty four Sidhas,",
+            "It was known by the name of Gorakh Matta3 .",
+            "The Kaliyuga had spread its tentacles here widely,",
+            "As the Sidhas displayed many kinds of their magical feats."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-006-p83-b007",
+          "type": "verse",
+          "text": "Here Baba Nanak recited and preached the Name of true God, And thereafter the place came to known as Nanak Matta. He visited Badri Nath4, Kedar Nath5 and the State of Orissa, And went further east even beyond the holy city of Jagan Nath6 . (4)",
+          "lines": [
+            "Here Baba Nanak recited and preached the Name of true God,",
+            "And thereafter the place came to known as Nanak Matta.",
+            "He visited Badri Nath4,",
+            "Kedar Nath5 and the State of Orissa,",
+            "And went further east even beyond the holy city of Jagan Nath6 ."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-006-p83-b008",
+          "type": "verse",
+          "text": "As the artificial odour of a leather packing conceals Asafetida's real flavour, And the real flavour of Asafoetida gets obliterated by the leather stink. So also many fake and fraudulent persons outnumbered the real saints, And they fleeced the people in the guise of saints. (5)",
+          "lines": [
+            "As the artificial odour of a leather packing conceals Asafetida's real flavour,",
+            "And the real flavour of Asafoetida gets obliterated by the leather stink.",
+            "So also many fake and fraudulent persons outnumbered the real saints,",
+            "And they fleeced the people in the guise of saints."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-006-p83-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-006-p83-b010",
+          "type": "verse",
+          "text": "So Satguru (Baba Nanak) made many followers in the East, And made them follow the path of truth and virtue. How innumerable was the number of such followers, No body can keep an exact count of them. (6)",
+          "lines": [
+            "So Satguru (Baba Nanak) made many followers in the East,",
+            "And made them follow the path of truth and virtue.",
+            "How innumerable was the number of such followers,",
+            "No body can keep an exact count of them."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-006-p83-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-006-p83-b012",
+          "type": "verse",
+          "text": "He restrained swindlers from committing frauds, And brought back the prodigals to the path of virtue. He made them the followers of the true word of God, And established many centres of devotional congregations. (7)",
+          "lines": [
+            "He restrained swindlers from committing frauds,",
+            "And brought back the prodigals to the path of virtue.",
+            "He made them the followers of the true word of God,",
+            "And established many centres of devotional congregations."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-006-p83-b013",
+          "type": "verse",
+          "text": "He organised many congregations of his followers, And induced them to meditate upon the name of God. He inculcated the virtue of feeding others before feeding themselves, And made them follow the path of compassion and righteousness. (8)",
+          "lines": [
+            "He organised many congregations of his followers,",
+            "And induced them to meditate upon the name of God.",
+            "He inculcated the virtue of feeding others before feeding themselves,",
+            "And made them follow the path of compassion and righteousness."
+          ],
+          "number": "8"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 85,
+      "fileName": "EPUB/page_85.html",
+      "sourceHref": "EPUB/page_85.html",
+      "printPageNumber": 41,
+      "blocks": [
+        {
+          "id": "episode-006-p85-b001",
+          "type": "verse",
+          "text": "As they admired and eulogized Baba Nanak's reformist role, They expressed their sense of gratitude for his blessings. \"He has restrained us from indulgence in corruption, And he has attuned us to the word of God.\"(9)",
+          "lines": [
+            "As they admired and eulogized Baba Nanak's reformist role,",
+            "They expressed their sense of gratitude for his blessings.",
+            "\"He has restrained us from indulgence in corruption,",
+            "And he has attuned us to the word of God.\""
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-006-p85-b002",
+          "type": "verse",
+          "text": "Then Baba Nanak visited Bengal, Kamrup7, and then crossed over, To a Country ruled over by women alone. And then to an island ruled over by Shiv Nabh8 , Who became a devotee of Guru Nanak. (10)",
+          "lines": [
+            "Then Baba Nanak visited Bengal,",
+            "Kamrup7, and then crossed over,",
+            "To a Country ruled over by women alone.",
+            "And then to an island ruled over by Shiv Nabh8 ,",
+            "Who became a devotee of Guru Nanak."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-006-p85-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-006-p85-b004",
+          "type": "paragraph",
+          "text": "Baba Nanak visited all those places, Which were inhabited by majority of corrupt people. All of them became his devout followers, And they started following the path of God.(ll)"
+        },
+        {
+          "id": "episode-006-p85-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-006-p85-b006",
+          "type": "verse",
+          "text": "The people with Kaliyuga's thoughts and deeds fled away. I restrain myself from mentioning them in detail. If I narrate all the details about these encounters, Then this epic will become extremely voluminous. (12)",
+          "lines": [
+            "The people with Kaliyuga's thoughts and deeds fled away.",
+            "I restrain myself from mentioning them in detail.",
+            "If I narrate all the details about these encounters,",
+            "Then this epic will become extremely voluminous."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-006-p85-b007",
+          "type": "verse",
+          "text": "Then Baba Nanak proceeded further and further, And crossed over to many other islands in the sea, And he visited an uncountable number of Islands beyond Sangaldeep9 . I cannot keep a count of these several Islands. (13)",
+          "lines": [
+            "Then Baba Nanak proceeded further and further,",
+            "And crossed over to many other islands in the sea,",
+            "And he visited an uncountable number of Islands beyond Sangaldeep9 .",
+            "I cannot keep a count of these several Islands."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-006-p85-b008",
+          "type": "verse",
+          "text": "Baba Nanak himself knows his own spiritual worth, How can we evaluate his worth. How can a son know the birth of his father, Baba Nanak alone knows his own powers. (14)",
+          "lines": [
+            "Baba Nanak himself knows his own spiritual worth,",
+            "How can we evaluate his worth.",
+            "How can a son know the birth of his father,",
+            "Baba Nanak alone knows his own powers."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-006-p85-b009",
+          "type": "verse",
+          "text": "Where there were maximum numbersof ignorant, misguided and corrupt people, Baba Nanak made it a point to visit such a country. Whichever country Guru Nanak paid a visit to, He exhorted the people to follow the path of righteousness. (15)",
+          "lines": [
+            "Where there were maximum numbersof ignorant, misguided and corrupt people,",
+            "Baba Nanak made it a point to visit such a country.",
+            "Whichever country Guru Nanak paid a visit to,",
+            "He exhorted the people to follow the path of righteousness."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-006-p85-b010",
+          "type": "verse",
+          "text": "He established centers for religious congregations, And bestowed his grace on the people to follow his path. Whosoever approached Guru Nanak to be blessed with fame, He blessed him with happiness as he wished. (16)",
+          "lines": [
+            "He established centers for religious congregations,",
+            "And bestowed his grace on the people to follow his path.",
+            "Whosoever approached Guru Nanak to be blessed with fame,",
+            "He blessed him with happiness as he wished."
+          ],
+          "number": "16"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-005",
+  "nextChapterId": "episode-007"
+}

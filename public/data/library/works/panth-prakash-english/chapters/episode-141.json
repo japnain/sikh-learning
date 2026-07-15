@@ -1,0 +1,159 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-141",
+  "chapterNumber": 141,
+  "episodeNumber": 141,
+  "kind": "episode",
+  "title": "Robbing of Luxmi Narayan Kshtriya",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 601,
+  "endSourcePage": 603,
+  "wordCount": 343,
+  "charCount": 2124,
+  "startPosition": 180840,
+  "pages": [
+    {
+      "sourcePageNumber": 601,
+      "fileName": "EPUB/page_601.html",
+      "sourceHref": "EPUB/page_601.html",
+      "printPageNumber": 547,
+      "blocks": [
+        {
+          "id": "episode-141-p601-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-141-p601-b003",
+          "type": "verse",
+          "text": "There hailed a man from village Taiwan of Doaba region, Kshtriya Luxmi Narayan was his proper name. The custodian of Sirhind who ruled over Sirhind province, He utilized the services of Kshtriya Luxmi Narayan. (1)",
+          "lines": [
+            "There hailed a man from village Taiwan of Doaba region,",
+            "Kshtriya Luxmi Narayan was his proper name.",
+            "The custodian of Sirhind who ruled over Sirhind province,",
+            "He utilized the services of Kshtriya Luxmi Narayan."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-141-p601-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-141-p601-b005",
+          "type": "verse",
+          "text": "Having been appointed the Dewan by Jain Khan1 , the Sirhind custodian, Luxmi Narayan launched on a revenue collection spree. Having heard about Luxmi Narayan's revenue collection expedition. The Khalsa Panth forces launched an attack on his party. (2)",
+          "lines": [
+            "Having been appointed the Dewan by Jain Khan1 , the Sirhind custodian,",
+            "Luxmi Narayan launched on a revenue collection spree.",
+            "Having heard about Luxmi Narayan's revenue collection expedition.",
+            "The Khalsa Panth forces launched an attack on his party."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-141-p601-b006",
+          "type": "verse",
+          "text": "Having fled after the plundering of his troops by the Khalsa, He sneaked into Kurali2 for seeking some shelter. Having been relieved of all scarcity of food and money, The Khalsa Panth forces felt prosperous after loot and plunder. (3)",
+          "lines": [
+            "Having fled after the plundering of his troops by the Khalsa,",
+            "He sneaked into Kurali2 for seeking some shelter.",
+            "Having been relieved of all scarcity of food and money,",
+            "The Khalsa Panth forces felt prosperous after loot and plunder."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-141-p601-b007",
+          "type": "verse",
+          "text": "After assaulting, would the Singhs retreat to a distant Malwa, Jain Khan's province would the Singhs keep stalking from afar. Jain Khan having been confined to the city of Sirhind, No revenue proceeds from his province poured into his treasury. (4)",
+          "lines": [
+            "After assaulting, would the Singhs retreat to a distant Malwa,",
+            "Jain Khan's province would the Singhs keep stalking from afar.",
+            "Jain Khan having been confined to the city of Sirhind,",
+            "No revenue proceeds from his province poured into his treasury."
+          ],
+          "number": "4"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 603,
+      "fileName": "EPUB/page_603.html",
+      "sourceHref": "EPUB/page_603.html",
+      "printPageNumber": 549,
+      "blocks": [
+        {
+          "id": "episode-141-p603-b001",
+          "type": "verse",
+          "text": "The Singhs having collected most of the revenue from his province, How could anybody pay any revenue to Jain Khan? (But the well-provided) Khalsa kept assembling in congregations, Considering themselves the knights-at-arms appointed by the Divine Guru. (5)",
+          "lines": [
+            "The Singhs having collected most of the revenue from his province,",
+            "How could anybody pay any revenue to Jain Khan?",
+            "(But the well-provided) Khalsa kept assembling in congregations,",
+            "Considering themselves the knights-at-arms appointed by the Divine Guru."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-141-p603-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-141-p603-b003",
+          "type": "verse",
+          "text": "Thereupon Ahmad Shah Abdali3 asked Baba Ala Singh4, That must he arrange a meeting between Abdali and Khalsa Panth. Abdali proposed to grant sovereignty to the Khalsa over their region, Provided they desisted from fighting with the Abdali's troops. (6)",
+          "lines": [
+            "Thereupon Ahmad Shah Abdali3 asked Baba Ala Singh4,",
+            "That must he arrange a meeting between Abdali and Khalsa Panth.",
+            "Abdali proposed to grant sovereignty to the Khalsa over their region,",
+            "Provided they desisted from fighting with the Abdali's troops."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-141-p603-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-141-p603-b005",
+          "type": "verse",
+          "text": "Thereupon, Baba Ala Singh sent a representative to the Khalsa Panth, Who reached the Khalsa Panth with Baba Ala Singh's message. S. Nanu Singh Grewal5 was this designated representative, Who put forth Abdali's proposal before the Khalsa Panth. (7)",
+          "lines": [
+            "Thereupon,",
+            "Baba Ala Singh sent a representative to the Khalsa Panth,",
+            "Who reached the Khalsa Panth with Baba Ala Singh's message.",
+            "S.",
+            "Nanu Singh Grewal5 was this designated representative,",
+            "Who put forth Abdali's proposal before the Khalsa Panth."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-141-p603-b006",
+          "type": "verse",
+          "text": "Thereupon, the Khalsa Panth sent a reply to Ahmed Shah Abdali, Telling him that nobody gets sovereignty merely by asking for it. How can the Muslims and the Singhs be on friendly terms, As there never existed any affinity between fire and explosives. Sovereignty had already been granted to the Khalsa by their Guru, As the Khalsa had achieved it by the sacrifice of their lives. (8)",
+          "lines": [
+            "Thereupon, the Khalsa Panth sent a reply to Ahmed Shah Abdali,",
+            "Telling him that nobody gets sovereignty merely by asking for it.",
+            "How can the Muslims and the Singhs be on friendly terms,",
+            "As there never existed any affinity between fire and explosives.",
+            "Sovereignty had already been granted to the Khalsa by their Guru,",
+            "As the Khalsa had achieved it by the sacrifice of their lives."
+          ],
+          "number": "8"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-140",
+  "nextChapterId": "episode-142"
+}

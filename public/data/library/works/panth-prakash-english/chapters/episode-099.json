@@ -1,0 +1,655 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-099",
+  "chapterNumber": 99,
+  "episodeNumber": 99,
+  "kind": "episode",
+  "title": "Bravery of Bhai Sukha Singh",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 225,
+  "endSourcePage": 235,
+  "wordCount": 1561,
+  "charCount": 8883,
+  "startPosition": 115452,
+  "pages": [
+    {
+      "sourcePageNumber": 225,
+      "fileName": "EPUB/page_225.html",
+      "sourceHref": "EPUB/page_225.html",
+      "printPageNumber": 171,
+      "blocks": [
+        {
+          "id": "episode-099-p225-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p225-b003",
+          "type": "verse",
+          "text": "(Dear readers) now listen with concentration and devotion, The episode about S. Sukha Singh (the brave warrior). Who hailed from the village of Mari Kambo ki2 , And belonged to a (backward) caste of carpenters. (1)",
+          "lines": [
+            "(Dear readers) now listen with concentration and devotion,",
+            "The episode about S.",
+            "Sukha Singh (the brave warrior).",
+            "Who hailed from the village of Mari Kambo ki2 ,",
+            "And belonged to a (backward) caste of carpenters."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-099-p225-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p225-b005",
+          "type": "verse",
+          "text": "As he completed the twelfth year of his life, His parents got him bound in a wedlock. As he felt an upsurge of faith in his heart, He got himself initiated in the Khalsa Panth at Amritsar. (2)",
+          "lines": [
+            "As he completed the twelfth year of his life,",
+            "His parents got him bound in a wedlock.",
+            "As he felt an upsurge of faith in his heart,",
+            "He got himself initiated in the Khalsa Panth at Amritsar."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-099-p225-b006",
+          "type": "verse",
+          "text": "Wherever Sikhs assembled in a religious congregation, He would, somehow, reach and join that assembly. Whenever a Singh paid a visit to his home, He would rejoice to serve him with devotion. (3)",
+          "lines": [
+            "Wherever Sikhs assembled in a religious congregation,",
+            "He would, somehow, reach and join that assembly.",
+            "Whenever a Singh paid a visit to his home,",
+            "He would rejoice to serve him with devotion."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-099-p225-b007",
+          "type": "verse",
+          "text": "As the informers got wind of his religious fervour, They sent a battery of (Mughal) troops to arrest him. Since this devout Sikh was not at home on that day, They could not spot him anywhere (in his village). (4)",
+          "lines": [
+            "As the informers got wind of his religious fervour,",
+            "They sent a battery of (Mughal) troops to arrest him.",
+            "Since this devout Sikh was not at home on that day,",
+            "They could not spot him anywhere (in his village)."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-099-p225-b008",
+          "type": "paragraph",
+          "text": "As the troops retreated without taking him into custody, His parents came to know about his (subversive) activities."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 227,
+      "fileName": "EPUB/page_227.html",
+      "sourceHref": "EPUB/page_227.html",
+      "printPageNumber": 173,
+      "blocks": [
+        {
+          "id": "episode-099-p227-b001",
+          "type": "verse",
+          "text": "Thereafter, he did not enter his house for fear of arrest, Which made his (aged) parents grieve in his absence. (5)",
+          "lines": [
+            "Thereafter, he did not enter his house for fear of arrest,",
+            "Which made his (aged) parents grieve in his absence."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-099-p227-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p227-b003",
+          "type": "verse",
+          "text": "His parents tried to persuade and prevail upon him, That their family had nothing to do with the Singhs. Since their family belonged to low-caste artisans, They had nothing to do with the affairs of the state. (6)",
+          "lines": [
+            "His parents tried to persuade and prevail upon him,",
+            "That their family had nothing to do with the Singhs.",
+            "Since their family belonged to low-caste artisans,",
+            "They had nothing to do with the affairs of the state."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-099-p227-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p227-b005",
+          "type": "verse",
+          "text": "Since the Singhs laid a claim to the power to govern, They would never share it with those from the lower castes. The Jat Sikhs were ambitious to claim sovereignty, As they expected to reap the harvest of their armed struggle. (7)",
+          "lines": [
+            "Since the Singhs laid a claim to the power to govern,",
+            "They would never share it with those from the lower castes.",
+            "The Jat Sikhs were ambitious to claim sovereignty,",
+            "As they expected to reap the harvest of their armed struggle."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-099-p227-b006",
+          "type": "verse",
+          "text": "Since they hailed from a low caste family of artisans, They were content with the wages of their daily labour. Although his parents brought him home with these arguments, They, in fact, wished to play foul with him. (8)",
+          "lines": [
+            "Since they hailed from a low caste family of artisans,",
+            "They were content with the wages of their daily labour.",
+            "Although his parents brought him home with these arguments,",
+            "They, in fact, wished to play foul with him."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-099-p227-b007",
+          "type": "verse",
+          "text": "Administering him an alcoholic drink laced with cannabis, They made him unconscious of his surroundings. As he lost his consciousness under the influence of intoxicants, They got his (sacred) hair shorn from a village barber. (9)",
+          "lines": [
+            "Administering him an alcoholic drink laced with cannabis,",
+            "They made him unconscious of his surroundings.",
+            "As he lost his consciousness under the influence of intoxicants,",
+            "They got his (sacred) hair shorn from a village barber."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-099-p227-b008",
+          "type": "verse",
+          "text": "As the effect of intoxicants waned towards early hours of morning, He moved his hand over his head with hair shorn. Realising that his parents had committed a sin, He wished to murder both of them on first impulse. (10)",
+          "lines": [
+            "As the effect of intoxicants waned towards early hours of morning,",
+            "He moved his hand over his head with hair shorn.",
+            "Realising that his parents had committed a sin,",
+            "He wished to murder both of them on first impulse."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-099-p227-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p227-b010",
+          "type": "verse",
+          "text": "(But on a second thought) Sukha Singh contemplated, That it would be a great sin to kill his own parents. So he rushed and jumped into a deep well, With the intention of taking his own like. (11)",
+          "lines": [
+            "(But on a second thought) Sukha Singh contemplated,",
+            "That it would be a great sin to kill his own parents.",
+            "So he rushed and jumped into a deep well,",
+            "With the intention of taking his own like."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-099-p227-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p227-b012",
+          "type": "verse",
+          "text": "When the people lowered a rope inside the well to save him, He would not catch the rope, being intent upon drowning himself. Everytime he dived up and down to drown himself, Everytime the water would push him towards the surface. (12)",
+          "lines": [
+            "When the people lowered a rope inside the well to save him,",
+            "He would not catch the rope, being intent upon drowning himself.",
+            "Everytime he dived up and down to drown himself,",
+            "Everytime the water would push him towards the surface."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-099-p227-b013",
+          "type": "verse",
+          "text": "When his brother lowered himself into the well, Sukha Singh caught hold of him as well inside. Thereafter, a Singh happened to arrive at the spot, Who addressed Sukha Singh in these words: (13)",
+          "lines": [
+            "When his brother lowered himself into the well,",
+            "Sukha Singh caught hold of him as well inside.",
+            "Thereafter, a Singh happened to arrive at the spot,",
+            "Who addressed Sukha Singh in these words:"
+          ],
+          "number": "13"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 229,
+      "fileName": "EPUB/page_229.html",
+      "sourceHref": "EPUB/page_229.html",
+      "printPageNumber": 175,
+      "blocks": [
+        {
+          "id": "episode-099-p229-b001",
+          "type": "verse",
+          "text": "\"Die if you must, then die while fighting against the Mughals, Why else should you lose your life in vain? Die fighting the Mughals who had persecuted our Gurus, The Mughals who wish to convert all the Hindus to Islam.\" (14)",
+          "lines": [
+            "\"Die if you must, then die while fighting against the Mughals,",
+            "Why else should you lose your life in vain?",
+            "Die fighting the Mughals who had persecuted our Gurus,",
+            "The Mughals who wish to convert all the Hindus to Islam.\""
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-099-p229-b002",
+          "type": "verse",
+          "text": "\"Better to die fighting the Mughals (than dying in vain), Better come out of the well and join the ranks of the Singhs. Be a martyr while fighting against the Mughals, This is the advice that I render unto you.\" (15)",
+          "lines": [
+            "\"Better to die fighting the Mughals (than dying in vain),",
+            "Better come out of the well and join the ranks of the Singhs.",
+            "Be a martyr while fighting against the Mughals,",
+            "This is the advice that I render unto you.\""
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-099-p229-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p229-b004",
+          "type": "verse",
+          "text": "Sukha Singh, accepting the elderly Singh's advice, Came out of the well with this resolution in mind: That Singh's counsel being sound and correct, He must sacrifice his life fighting the Mughals. (16)",
+          "lines": [
+            "Sukha Singh, accepting the elderly Singh's advice,",
+            "Came out of the well with this resolution in mind: That Singh's counsel being sound and correct,",
+            "He must sacrifice his life fighting the Mughals."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-099-p229-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p229-b006",
+          "type": "verse",
+          "text": "Being more firm in his resolution to sacrifice, He decided never to die without a cause. Otherwise also he had not been drowned in the well, Although he was hell-bent on drowning himself. (17)",
+          "lines": [
+            "Being more firm in his resolution to sacrifice,",
+            "He decided never to die without a cause.",
+            "Otherwise also he had not been drowned in the well,",
+            "Although he was hell-bent on drowning himself."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-099-p229-b007",
+          "type": "verse",
+          "text": "Further, Sukha Singh, making a strategy in his mind, Decided not to throw an open challenge to the Mughals. After hitting the Mughals at random through stealth, He would disappear before they could retaliate. (18)",
+          "lines": [
+            "Further,",
+            "Sukha Singh, making a strategy in his mind,",
+            "Decided not to throw an open challenge to the Mughals.",
+            "After hitting the Mughals at random through stealth,",
+            "He would disappear before they could retaliate."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-099-p229-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p229-b009",
+          "type": "verse",
+          "text": "There was a headmen of his own village, Who had in his possession a mare of very fine breed. Sukha Singh, on the pretext of taking the mare for water, Took away the mare in order to join the Khalsa ranks. (19)",
+          "lines": [
+            "There was a headmen of his own village,",
+            "Who had in his possession a mare of very fine breed.",
+            "Sukha Singh, on the pretext of taking the mare for water,",
+            "Took away the mare in order to join the Khalsa ranks."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-099-p229-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p229-b011",
+          "type": "verse",
+          "text": "Sukha Singh, after joining the ranks of the Khalsa, Finally reached the camp office of (general) Sham Singh. Getting himself initiated from the (sacred) hands of Sham Singh3 , The latter developed a filial bond with his disciple. (20)",
+          "lines": [
+            "Sukha Singh, after joining the ranks of the Khalsa,",
+            "Finally reached the camp office of (general) Sham Singh.",
+            "Getting himself initiated from the (sacred) hands of Sham Singh3 ,",
+            "The latter developed a filial bond with his disciple."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-099-p229-b012",
+          "type": "verse",
+          "text": "Then, with a thought crossing Sukha Singh's mind, He decided to compensate his village headman for the mare. With this thought, he proceeded in the direction of Lahore, Disguising himself as a rustic peasant of the area. (21)",
+          "lines": [
+            "Then, with a thought crossing Sukha Singh's mind,",
+            "He decided to compensate his village headman for the mare.",
+            "With this thought, he proceeded in the direction of Lahore,",
+            "Disguising himself as a rustic peasant of the area."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-099-p229-b013",
+          "type": "verse",
+          "text": "With very little hair on his head (after the forced shave), He entered the centre of the sprawling city of Lahore. As he entered the market dealing in Gold and silver, He found traders carrying pouches filled with gold coins. (22)",
+          "lines": [
+            "With very little hair on his head (after the forced shave),",
+            "He entered the centre of the sprawling city of Lahore.",
+            "As he entered the market dealing in Gold and silver,",
+            "He found traders carrying pouches filled with gold coins."
+          ],
+          "number": "22"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 231,
+      "fileName": "EPUB/page_231.html",
+      "sourceHref": "EPUB/page_231.html",
+      "printPageNumber": 177,
+      "blocks": [
+        {
+          "id": "episode-099-p231-b001",
+          "type": "verse",
+          "text": "Spotting out one such pouch on a trader's shoulder, Sukha Singh leapt up and snatched the hefty pouch Spurring his mare, he came out of the city gates, Without caring for the risk to his own life. (23)",
+          "lines": [
+            "Spotting out one such pouch on a trader's shoulder,",
+            "Sukha Singh leapt up and snatched the hefty pouch Spurring his mare, he came out of the city gates,",
+            "Without caring for the risk to his own life."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-099-p231-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p231-b003",
+          "type": "verse",
+          "text": "As the Sun's light was about to fade at dusk time, Sukha Singh fled as fast as the high velocity wind. As the traders and city guards kept on shouting, Sukha Singh headed towards his native place. (24)",
+          "lines": [
+            "As the Sun's light was about to fade at dusk time,",
+            "Sukha Singh fled as fast as the high velocity wind.",
+            "As the traders and city guards kept on shouting,",
+            "Sukha Singh headed towards his native place."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-099-p231-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p231-b005",
+          "type": "verse",
+          "text": "By the time the news spread all around, Sukha Singh had camouflaged himself in the wild. As the Mughal troops ran in hot pursuit of him, They crossed his hideout in another direction. (25)",
+          "lines": [
+            "By the time the news spread all around,",
+            "Sukha Singh had camouflaged himself in the wild.",
+            "As the Mughal troops ran in hot pursuit of him,",
+            "They crossed his hideout in another direction."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-099-p231-b006",
+          "type": "verse",
+          "text": "Sukha Singh, after returning to his contingent of Singhs, Sent money equal to the mare's price to its former owner. Thus paying a compensation of about three hundred rupees, He patched up his strained relations with the village headman. (26)",
+          "lines": [
+            "Sukha Singh, after returning to his contingent of Singhs,",
+            "Sent money equal to the mare's price to its former owner.",
+            "Thus paying a compensation of about three hundred rupees,",
+            "He patched up his strained relations with the village headman."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-099-p231-b007",
+          "type": "verse",
+          "text": "He contributed the remaining amount to the community kitchen, Instead of sending it to his parents at home. In this way, Sukha Singh kept on going on expeditions, And bringing wealth through his acts of waylaying and robbing. (27)",
+          "lines": [
+            "He contributed the remaining amount to the community kitchen,",
+            "Instead of sending it to his parents at home.",
+            "In this way,",
+            "Sukha Singh kept on going on expeditions,",
+            "And bringing wealth through his acts of waylaying and robbing."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-099-p231-b008",
+          "type": "verse",
+          "text": "Being very bold and daunting in his religious zeal, He would decimate all those who dared to chase him. Being quite skilled in wielding all kinds of arms, A mighty muscular warrior alone could dare to grapple with him. (28)",
+          "lines": [
+            "Being very bold and daunting in his religious zeal,",
+            "He would decimate all those who dared to chase him.",
+            "Being quite skilled in wielding all kinds of arms,",
+            "A mighty muscular warrior alone could dare to grapple with him."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-099-p231-b009",
+          "type": "verse",
+          "text": "Whatever he brought through acts of loot and plunder, He contributed the entire booty to the community kitchen. (29)",
+          "lines": [
+            "Whatever he brought through acts of loot and plunder,",
+            "He contributed the entire booty to the community kitchen."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-099-p231-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p231-b011",
+          "type": "verse",
+          "text": "Wherever the Mughal troops launched at attack, Like a mighty lion, he would jump into the fray. After wounding a few enemy soldiers with a dash, He would join the Khalsa ranks in a flash. (30)",
+          "lines": [
+            "Wherever the Mughal troops launched at attack,",
+            "Like a mighty lion, he would jump into the fray.",
+            "After wounding a few enemy soldiers with a dash,",
+            "He would join the Khalsa ranks in a flash."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-099-p231-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p231-b013",
+          "type": "verse",
+          "text": "Not only could he shoot with small fire arms, But he could hit enemy horses with arrows as well. Such was his deft handling of spears, swords and daggers, As would put the enemy to death in an instant. (31)",
+          "lines": [
+            "Not only could he shoot with small fire arms,",
+            "But he could hit enemy horses with arrows as well.",
+            "Such was his deft handling of spears, swords and daggers,",
+            "As would put the enemy to death in an instant."
+          ],
+          "number": "31"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 233,
+      "fileName": "EPUB/page_233.html",
+      "sourceHref": "EPUB/page_233.html",
+      "printPageNumber": 179,
+      "blocks": [
+        {
+          "id": "episode-099-p233-b001",
+          "type": "verse",
+          "text": "So widespread was Sukha Singh's fame as a warrior, That he came to be reckoned among the bravest. Having won victory in every battle he fought, He got honoured in every Sikh congregation. (32)",
+          "lines": [
+            "So widespread was Sukha Singh's fame as a warrior,",
+            "That he came to be reckoned among the bravest.",
+            "Having won victory in every battle he fought,",
+            "He got honoured in every Sikh congregation."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-099-p233-b002",
+          "type": "verse",
+          "text": "He would stand with a hand fan in the midst of congregation, And bring wood for community kitchen's hearth fire. He would fetch water in a leather bag for the thirsty, And bring food for the needy and the starving. (33)",
+          "lines": [
+            "He would stand with a hand fan in the midst of congregation,",
+            "And bring wood for community kitchen's hearth fire.",
+            "He would fetch water in a leather bag for the thirsty,",
+            "And bring food for the needy and the starving."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-099-p233-b003",
+          "type": "verse",
+          "text": "He would massage those who got fatigued and exhausted, And store water for the ablutions of his companions. He would squeeze the undergarments of elders after ablutions, And hold a water-bucket while they brushed their teeth. (34)",
+          "lines": [
+            "He would massage those who got fatigued and exhausted,",
+            "And store water for the ablutions of his companions.",
+            "He would squeeze the undergarments of elders after ablutions,",
+            "And hold a water-bucket while they brushed their teeth."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-099-p233-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p233-b005",
+          "type": "verse",
+          "text": "He would recite gurbani hymns (with devotion), And sing devotional songs to the accompaniment of music. He would remain dressed in Khalsa robes day and night, And remain ever ready for a fight and confrontation. (35)",
+          "lines": [
+            "He would recite gurbani hymns (with devotion),",
+            "And sing devotional songs to the accompaniment of music.",
+            "He would remain dressed in Khalsa robes day and night,",
+            "And remain ever ready for a fight and confrontation."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-099-p233-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p233-b007",
+          "type": "verse",
+          "text": "He would render many services to the Khalsa Singhs, Nor would he feel scared of fighting and rioting. When his parents would come to take him home, They would beg the Singhs to persuade him to go home. (36)",
+          "lines": [
+            "He would render many services to the Khalsa Singhs,",
+            "Nor would he feel scared of fighting and rioting.",
+            "When his parents would come to take him home,",
+            "They would beg the Singhs to persuade him to go home."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-099-p233-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-099-p233-b009",
+          "type": "verse",
+          "text": "His parents came time and again ( to take him home), And begged the Singhs to prevail upon him to go home. Finally, they managed to take him home, And succeeded in solemnising his marriage. (37)",
+          "lines": [
+            "His parents came time and again ( to take him home),",
+            "And begged the Singhs to prevail upon him to go home.",
+            "Finally, they managed to take him home,",
+            "And succeeded in solemnising his marriage."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-099-p233-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-099-p233-b011",
+          "type": "verse",
+          "text": "Sukha Singh would visit his home at odd hours, But would soon return to his contingent for fear of Mughal's raid. After sometime, as his wife gave birth to a girl child, Who died soon either on her own or the mother having killed her. (38)",
+          "lines": [
+            "Sukha Singh would visit his home at odd hours,",
+            "But would soon return to his contingent for fear of Mughal's raid.",
+            "After sometime, as his wife gave birth to a girl child,",
+            "Who died soon either on her own or the mother having killed her."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-099-p233-b012",
+          "type": "verse",
+          "text": "As this news reached (Sukha Singh's) Khalsa contingent, Sukha Singh was ex-communicated by the Khalsa Panth. They accused him of committing female infanticide, And being guilty of violating the Khalsa's glorious tradition. (39)",
+          "lines": [
+            "As this news reached (Sukha Singh's) Khalsa contingent,",
+            "Sukha Singh was ex-communicated by the Khalsa Panth.",
+            "They accused him of committing female infanticide,",
+            "And being guilty of violating the Khalsa's glorious tradition."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-099-p233-b013",
+          "type": "verse",
+          "text": "Since Khalsa Panth did not accept him among his ranks, They would keep him at bay branding him a \"killer of his daughter\". Since the Khalsa Panth did not agree to condone his lapse, Sukha Singh felt extremely concerned about his isolation. (40)",
+          "lines": [
+            "Since Khalsa Panth did not accept him among his ranks,",
+            "They would keep him at bay branding him a \"killer of his daughter\".",
+            "Since the Khalsa Panth did not agree to condone his lapse,",
+            "Sukha Singh felt extremely concerned about his isolation."
+          ],
+          "number": "40"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 235,
+      "fileName": "EPUB/page_235.html",
+      "sourceHref": "EPUB/page_235.html",
+      "printPageNumber": 181,
+      "blocks": [
+        {
+          "id": "episode-099-p235-b001",
+          "type": "verse",
+          "text": "As Sukha Singh's reputation had reached its zenith earlier, It now reached its nadir in the same proportion. Feeling worried and concerned in his own mind, He went into deep silence and remained incommunicado. (41)",
+          "lines": [
+            "As Sukha Singh's reputation had reached its zenith earlier,",
+            "It now reached its nadir in the same proportion.",
+            "Feeling worried and concerned in his own mind,",
+            "He went into deep silence and remained incommunicado."
+          ],
+          "number": "41"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-098",
+  "nextChapterId": "episode-100"
+}

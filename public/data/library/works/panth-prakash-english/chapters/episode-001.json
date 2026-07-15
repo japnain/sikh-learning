@@ -1,0 +1,537 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-001",
+  "chapterNumber": 1,
+  "episodeNumber": 1,
+  "kind": "episode",
+  "title": "Origin of the Khalsa",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 47,
+  "endSourcePage": 53,
+  "wordCount": 1409,
+  "charCount": 8126,
+  "startPosition": 1,
+  "pages": [
+    {
+      "sourcePageNumber": 47,
+      "fileName": "EPUB/page_47.html",
+      "sourceHref": "EPUB/page_47.html",
+      "printPageNumber": 3,
+      "blocks": [
+        {
+          "id": "episode-001-p47-b001",
+          "type": "invocation",
+          "text": "Ik Onkar Satguru Prasad Sri Waheguru ji ki Fateh"
+        },
+        {
+          "id": "episode-001-p47-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p47-b003",
+          "type": "verse",
+          "text": "I bow my head in reverence at the lotus feet of Guru Nanak, As well as I invoke the blessings of Guru Gobind Singh, In order to write the account of the origin of the Khalsa Panth, I beseech the revered Gurus to empower me to accomplish this task. (1)",
+          "lines": [
+            "I bow my head in reverence at the lotus feet of Guru Nanak,",
+            "As well as I invoke the blessings of Guru Gobind Singh,",
+            "In order to write the account of the origin of the Khalsa Panth,",
+            "I beseech the revered Gurus to empower me to accomplish this task."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-001-p47-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p47-b005",
+          "type": "verse",
+          "text": "Now I undertake to write the account of the Sikhs, As narrated by our ancestors and forefathers, And as heard from still earlier and ancient elders, Who had heard it from their own talented peers. (2)",
+          "lines": [
+            "Now I undertake to write the account of the Sikhs,",
+            "As narrated by our ancestors and forefathers,",
+            "And as heard from still earlier and ancient elders,",
+            "Who had heard it from their own talented peers."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-001-p47-b006",
+          "type": "verse",
+          "text": "I also narrate it according to my own understanding and faith, A faith and devotion which eradicates all kinds of fears, I narrate it exactly as I narrated it to the British, It is just an introduction to the whole Account. (3)",
+          "lines": [
+            "I also narrate it according to my own understanding and faith,",
+            "A faith and devotion which eradicates all kinds of fears,",
+            "I narrate it exactly as I narrated it to the British,",
+            "It is just an introduction to the whole Account."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-001-p47-b007",
+          "type": "verse",
+          "text": "There was one French Christian Count Benoit De Boigne3 Whom the Marathas had appointed their Army Commander, He was handed over the charge of one Brigade of Maratha Army, And he served the Marathas for many many years. (4)",
+          "lines": [
+            "There was one French Christian Count Benoit De Boigne3 Whom the Marathas had appointed their Army Commander,",
+            "He was handed over the charge of one Brigade of Maratha Army,",
+            "And he served the Marathas for many many years."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-001-p47-b008",
+          "type": "verse",
+          "text": "As he grew old, he thought of leaving for his own motherland, So he returned home after disposing of all his belongings. It was General Pietre Perron4 , the son of his own sister, Whom he handed over the command of his brigade. (5)",
+          "lines": [
+            "As he grew old, he thought of leaving for his own motherland,",
+            "So he returned home after disposing of all his belongings.",
+            "It was General Pietre Perron4 , the son of his own sister,",
+            "Whom he handed over the command of his brigade."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-001-p47-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p47-b010",
+          "type": "paragraph",
+          "text": "General Pietre Perron raised the strength of his army, From one brigade he increased it to four brigades."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 49,
+      "fileName": "EPUB/page_49.html",
+      "sourceHref": "EPUB/page_49.html",
+      "printPageNumber": 5,
+      "blocks": [
+        {
+          "id": "episode-001-p49-b001",
+          "type": "verse",
+          "text": "He took possession of the whole territory that stretched Over the Gangetic plain between the cities of Agra and Delhi. (6)",
+          "number": "6"
+        },
+        {
+          "id": "episode-001-p49-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p49-b003",
+          "type": "verse",
+          "text": "Being suspicious of the loyalty of General Pietre Perron, The Marathas wished to take back the army command from him. But General Pietre Perron hatched a conspiracy against Marathas, And sold the entire territory to the British for a consideration. (7)",
+          "lines": [
+            "Being suspicious of the loyalty of General Pietre Perron,",
+            "The Marathas wished to take back the army command from him.",
+            "But General Pietre Perron hatched a conspiracy against Marathas,",
+            "And sold the entire territory to the British for a consideration."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-001-p49-b004",
+          "type": "verse",
+          "text": "He hatched and executed this plan in the year 1860 (B.S.), And thus he ruined the house of the Marathas. When the British took possession of the whole territory, The House of the Marathas was plunged into gloom. (8)",
+          "lines": [
+            "He hatched and executed this plan in the year 1860 (B.S.),",
+            "And thus he ruined the house of the Marathas.",
+            "When the British took possession of the whole territory,",
+            "The House of the Marathas was plunged into gloom."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-001-p49-b005",
+          "type": "verse",
+          "text": "Thereafter, the British Commanding officer entered Delhi, Sir David Ochterlony5 was the name of this Commanding Officer. But soon, the Sikh forces attacked and laid a siege to Delhi, Which made the British extremely demoralised and crestfallen. (9)",
+          "lines": [
+            "Thereafter, the British Commanding officer entered Delhi,",
+            "Sir David Ochterlony5 was the name of this Commanding Officer.",
+            "But soon, the Sikh forces attacked and laid a siege to Delhi,",
+            "Which made the British extremely demoralised and crestfallen."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-001-p49-b006",
+          "type": "verse",
+          "text": "The British general felt highly infuriated against the Sikhs, But he did not dare to have confrontation with the Sikhs. So the British made discrete enquiries from the Mughal emperor, About the Sikhs and the country from which they had landed there in Delhi. (10)",
+          "lines": [
+            "The British general felt highly infuriated against the Sikhs,",
+            "But he did not dare to have confrontation with the Sikhs.",
+            "So the British made discrete enquiries from the Mughal emperor,",
+            "About the Sikhs and the country from which they had landed there in Delhi."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-001-p49-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p49-b008",
+          "type": "verse",
+          "text": "Which powerful enemy had they routed in war? What other accomplishments did they have to their credit? Who had bestowed sovereignty and statehood on the Sikhs, He must reveal the name of that (Divine or Temporal) Authority. (11)",
+          "lines": [
+            "Which powerful enemy had they routed in war?",
+            "What other accomplishments did they have to their credit?",
+            "Who had bestowed sovereignty and statehood on the Sikhs,",
+            "He must reveal the name of that (Divine or Temporal) Authority."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-001-p49-b009",
+          "type": "paragraph",
+          "text": "Delhi Ruler's Version44 :"
+        },
+        {
+          "id": "episode-001-p49-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p49-b011",
+          "type": "verse",
+          "text": "Then the Mughal emperor answered the Britishers' query, That No Authority had bestowed any sovereignty or statehood on the Sikhs. They had neither accomplished any deed worthy of praise, Nor had they routed any powerful adversary in war. (12)",
+          "lines": [
+            "Then the Mughal emperor answered the Britishers' query,",
+            "That No Authority had bestowed any sovereignty or statehood on the Sikhs.",
+            "They had neither accomplished any deed worthy of praise,",
+            "Nor had they routed any powerful adversary in war."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-001-p49-b012",
+          "type": "verse",
+          "text": "Nijmal Mughal6 had invited Nadir Shah7 to invade Delhi, And got Delhi plundered from Nadir Shah Durrani. RuhelaNajib-ud-Daula8 invited Ahmad Shah Abdali9 to Delhi, And got the Marathas routed from Ahmad Shah Abdali. (13)",
+          "lines": [
+            "Nijmal Mughal6 had invited Nadir Shah7 to invade Delhi,",
+            "And got Delhi plundered from Nadir Shah Durrani.",
+            "RuhelaNajib-ud-Daula8 invited Ahmad Shah Abdali9 to Delhi,",
+            "And got the Marathas routed from Ahmad Shah Abdali."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-001-p49-b013",
+          "type": "verse",
+          "text": "But he returned after being war-worn and exhausted, Therefore this region (Punjab) remained defiant to their writ. The vicious Mughal ruler made a travesty of the whole truth, When he squarely laid the whole blame on the Sikhs. (14)",
+          "lines": [
+            "But he returned after being war-worn and exhausted,",
+            "Therefore this region (Punjab) remained defiant to their writ.",
+            "The vicious Mughal ruler made a travesty of the whole truth,",
+            "When he squarely laid the whole blame on the Sikhs."
+          ],
+          "number": "14"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 51,
+      "fileName": "EPUB/page_51.html",
+      "sourceHref": "EPUB/page_51.html",
+      "printPageNumber": 7,
+      "blocks": [
+        {
+          "id": "episode-001-p51-b001",
+          "type": "verse",
+          "text": "He branded the Sikhs as mere subjects and ordinary public, He did not project the Sikhs as the Khalsa Panth with a distinct religion. Neither did he relate any account about the Sikh Gurus, Nor did he mention the manner of conflict between the S ikh Gurus and the Mughals .(15)",
+          "lines": [
+            "He branded the Sikhs as mere subjects and ordinary public,",
+            "He did not project the Sikhs as the Khalsa Panth with a distinct religion.",
+            "Neither did he relate any account about the Sikh Gurus,",
+            "Nor did he mention the manner of conflict between the S ikh Gurus and the Mughals ."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-001-p51-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p51-b003",
+          "type": "verse",
+          "text": "Nor did he narrate how Guru Nanak took birth, here, Nor how the House of Nanak expanded and flourished further. Nor how Guru Nanak had given his blessings to Babur, the emperor, Because his heart was filled with malice towards the Sikhs. (16)",
+          "lines": [
+            "Nor did he narrate how Guru Nanak took birth, here,",
+            "Nor how the House of Nanak expanded and flourished further.",
+            "Nor how Guru Nanak had given his blessings to Babur, the emperor,",
+            "Because his heart was filled with malice towards the Sikhs."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-001-p51-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p51-b005",
+          "type": "verse",
+          "text": "He neither narrated how the Mughals oppressed the Hindus, Nor how the Mughals persecuted the Sikh Gurus10 and their followers. Nor how the Sikh Gurus upheld their honour and dignity, Nor how they made the supreme sacrifice without compromising their integrity.(17)",
+          "lines": [
+            "He neither narrated how the Mughals oppressed the Hindus,",
+            "Nor how the Mughals persecuted the Sikh Gurus10 and their followers.",
+            "Nor how the Sikh Gurus upheld their honour and dignity,",
+            "Nor how they made the supreme sacrifice without compromising their integrity."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-001-p51-b006",
+          "type": "verse",
+          "text": "Nor how the conflict and hostility between the Mughals and the Sikh Gurus grew, Nor how the Khalsa Panth\" was created through Divine sanction. Nor how the Sikh Guru12 picked up the sword in defence of the Khalsa Panth, Nor how he sacrificed his (four) sons13 for the same cause. (18)",
+          "lines": [
+            "Nor how the conflict and hostility between the Mughals and the Sikh Gurus grew,",
+            "Nor how the Khalsa Panth\" was created through Divine sanction.",
+            "Nor how the Sikh Guru12 picked up the sword in defence of the Khalsa Panth,",
+            "Nor how he sacrificed his (four) sons13 for the same cause."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-001-p51-b007",
+          "type": "verse",
+          "text": "Nor how he laid down his own life for the cause as well, Nor how the whole blame went to Muslims for these evil deeds. Nor how Guru Gobind Singh made such supreme sacrifice for the Khalsa Panth, The wicked (Mughal emperor) did not make a mention of any of these sacrifices. (19)",
+          "lines": [
+            "Nor how he laid down his own life for the cause as well,",
+            "Nor how the whole blame went to Muslims for these evil deeds.",
+            "Nor how Guru Gobind Singh made such supreme sacrifice for the Khalsa Panth,",
+            "The wicked (Mughal emperor) did not make a mention of any of these sacrifices."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-001-p51-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p51-b009",
+          "type": "verse",
+          "text": "How the four innocent, guiltless sons of the tenth Guru, Who were small infants dependent on others even for their feed. How even these innocent children were executed and beheaded, The Mughal emperor did not mention even these executions. (20)",
+          "lines": [
+            "How the four innocent, guiltless sons of the tenth Guru,",
+            "Who were small infants dependent on others even for their feed.",
+            "How even these innocent children were executed and beheaded,",
+            "The Mughal emperor did not mention even these executions."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-001-p51-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p51-b011",
+          "type": "verse",
+          "text": "How later on, the successor Mughal emperor14 compromised and won his grace, And regained his kingdom through the Guru's grace. How once again the Guru took back his kingdom through Banda Bahadur15 , He did not narrate all these and the legend of the Tatt Khalsa16 . (21)",
+          "lines": [
+            "How later on, the successor Mughal emperor14 compromised and won his grace,",
+            "And regained his kingdom through the Guru's grace.",
+            "How once again the Guru took back his kingdom through Banda Bahadur15 ,",
+            "He did not narrate all these and the legend of the Tatt Khalsa16 ."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-001-p51-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p51-b013",
+          "type": "verse",
+          "text": "He completely obliterated the legends of the Sikh Gurus, Nor did he narrate the sagas of the Sikh Panth. Nor how this conflict kept on raging for many years and, The strife between the emperor and the saintly Sikh Gurus17. (22)",
+          "lines": [
+            "He completely obliterated the legends of the Sikh Gurus,",
+            "Nor did he narrate the sagas of the Sikh Panth.",
+            "Nor how this conflict kept on raging for many years and,",
+            "The strife between the emperor and the saintly Sikh Gurus17."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-001-p51-b014",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-001-p51-b015",
+          "type": "verse",
+          "text": "Nor how the Sikhs sacrificed by getting a mince-meat19 of their bodies made, Nor how they offered their scalps20 to be severed from their heads. Nor how they were hanged from the poles in every village in countryside, Nor how the Mughals finally lost their nerve to carry on these executions. (23)",
+          "lines": [
+            "Nor how the Sikhs sacrificed by getting a mince-meat19 of their bodies made,",
+            "Nor how they offered their scalps20 to be severed from their heads.",
+            "Nor how they were hanged from the poles in every village in countryside,",
+            "Nor how the Mughals finally lost their nerve to carry on these executions."
+          ],
+          "number": "23"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 53,
+      "fileName": "EPUB/page_53.html",
+      "sourceHref": "EPUB/page_53.html",
+      "printPageNumber": 9,
+      "blocks": [
+        {
+          "id": "episode-001-p53-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p53-b002",
+          "type": "verse",
+          "text": "He did not narrate the invasions of Nadir Shah in detail, Who plundered Delhi and massacred its inhabitants. Nor how the Sikhs had been way-laying and robbing Nadir Shah as well, While he was returning to Kabul and Kandhar after committing arson and looting. (24)",
+          "lines": [
+            "He did not narrate the invasions of Nadir Shah in detail,",
+            "Who plundered Delhi and massacred its inhabitants.",
+            "Nor how the Sikhs had been way-laying and robbing Nadir Shah as well,",
+            "While he was returning to Kabul and Kandhar after committing arson and looting."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-001-p53-b003",
+          "type": "verse",
+          "text": "Nor how, thereafter, Ahmad Shah Abdali captured the city of Lahore, And later on captured the whole territory between Delhi and Agra. Nor how the Sikhs even ousted Ahmad Shah Abdali from India, And captured all the provinces under his reign. (25)",
+          "lines": [
+            "Nor how, thereafter,",
+            "Ahmad Shah Abdali captured the city of Lahore,",
+            "And later on captured the whole territory between Delhi and Agra.",
+            "Nor how the Sikhs even ousted Ahmad Shah Abdali from India,",
+            "And captured all the provinces under his reign."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-001-p53-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p53-b005",
+          "type": "verse",
+          "text": "Nor how the Sikhs slaughtered Taimurshah21 , the son of Ahmad Shah Durrani, And dispatched him to death to lie in his grave. Frustrated so much from his confrontation with the Sikhs, he declared, That No one from his progeny would ever set foot on this land. (26)",
+          "lines": [
+            "Nor how the Sikhs slaughtered Taimurshah21 , the son of Ahmad Shah Durrani,",
+            "And dispatched him to death to lie in his grave.",
+            "Frustrated so much from his confrontation with the Sikhs, he declared,",
+            "That No one from his progeny would ever set foot on this land."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-001-p53-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p53-b007",
+          "type": "verse",
+          "text": "Thereafter came the grandsons of Taimurshah and Ahmad Shah, They were also decimated by the Khalsa forces/ warriors. The Sikhs who had been waging a war against the Mughals for ages, They were branded as mere subjects by the spiteful king. (27)",
+          "lines": [
+            "Thereafter came the grandsons of Taimurshah and Ahmad Shah,",
+            "They were also decimated by the Khalsa forces/ warriors.",
+            "The Sikhs who had been waging a war against the Mughals for ages,",
+            "They were branded as mere subjects by the spiteful king."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-001-p53-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p53-b009",
+          "type": "verse",
+          "text": "The wicked adversary never sheds his wickedness and enmity, Much as a venomous snake never sheds its venom. How so often one may feed it with milk, It would never lose an opportunity to sting with its fangs. (28)",
+          "lines": [
+            "The wicked adversary never sheds his wickedness and enmity,",
+            "Much as a venomous snake never sheds its venom.",
+            "How so often one may feed it with milk,",
+            "It would never lose an opportunity to sting with its fangs."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-001-p53-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-001-p53-b011",
+          "type": "verse",
+          "text": "He (the Mughal emperor) did not speak even an iota of truth, And deliberately targeted the Sikhs while telling lies. The British general recorded this as stated by him (the emperor), Without making any effort to sift fact from fiction. (29)",
+          "lines": [
+            "He (the Mughal emperor) did not speak even an iota of truth,",
+            "And deliberately targeted the Sikhs while telling lies.",
+            "The British general recorded this as stated by him (the emperor),",
+            "Without making any effort to sift fact from fiction."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-001-p53-b012",
+          "type": "verse",
+          "text": "There had been a conflict between the Muslims and the Hindus/Sikhs, It had been an ideological/religious conflict between the two. If it harmed the cause of the enemy (the Hindus) by telling lies, Why should a Muslim lose hold of such an opportunity? (30)",
+          "lines": [
+            "There had been a conflict between the Muslims and the Hindus/Sikhs,",
+            "It had been an ideological/religious conflict between the two.",
+            "If it harmed the cause of the enemy (the Hindus) by telling lies,",
+            "Why should a Muslim lose hold of such an opportunity?"
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-001-p53-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-001-p53-b014",
+          "type": "verse",
+          "text": "As One dips one's arm in a vessel filled with oil, And allows as many sesame grains as can stick to one's arm. The Muslims should take so many oaths to slaughter so many (Hindus) infidels, The Muslim Prophet22 , had issued such a injunction to the Muslims. (31)",
+          "lines": [
+            "As One dips one's arm in a vessel filled with oil,",
+            "And allows as many sesame grains as can stick to one's arm.",
+            "The Muslims should take so many oaths to slaughter so many (Hindus) infidels,",
+            "The Muslim Prophet22 , had issued such a injunction to the Muslims."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-001-p53-b015",
+          "type": "verse",
+          "text": "Rattan Singh (the narrator) has narrated it as he had heard the legends, And he had got it recorded (To the British David Murray). He beseeches his readers and patrons to read it with concentration, As he is going to narrate these legends further. (32)",
+          "lines": [
+            "Rattan Singh (the narrator) has narrated it as he had heard the legends,",
+            "And he had got it recorded (To the British David Murray).",
+            "He beseeches his readers and patrons to read it with concentration,",
+            "As he is going to narrate these legends further."
+          ],
+          "number": "32"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "nextChapterId": "episode-002"
+}

@@ -1,0 +1,128 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-122",
+  "chapterNumber": 122,
+  "episodeNumber": 122,
+  "kind": "episode",
+  "title": "Sri Amritsar",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 457,
+  "endSourcePage": 457,
+  "wordCount": 246,
+  "charCount": 1453,
+  "startPosition": 155160,
+  "pages": [
+    {
+      "sourcePageNumber": 457,
+      "fileName": "EPUB/page_457.html",
+      "sourceHref": "EPUB/page_457.html",
+      "printPageNumber": 403,
+      "blocks": [
+        {
+          "id": "episode-122-p457-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-122-p457-b003",
+          "type": "verse",
+          "text": "After ransacking the region would the Singhs reach Amritsar, There would they hold congregations on Diwali1 and Baisakhi2 . Congregating in Harmandir would they listen to the discourse, There would they concentrate on the Guru's sacred words. (1)",
+          "lines": [
+            "After ransacking the region would the Singhs reach Amritsar,",
+            "There would they hold congregations on Diwali1 and Baisakhi2 .",
+            "Congregating in Harmandir would they listen to the discourse,",
+            "There would they concentrate on the Guru's sacred words."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-122-p457-b004",
+          "type": "verse",
+          "text": "Thereafter, would they hold a meeting at Akal Takht3 , There would they pass resolutions after a congregation. All the Khalsa contingents would hold a court there, There would they decide to protect the Sikhs and destroy the wicked. (2)",
+          "lines": [
+            "Thereafter, would they hold a meeting at Akal Takht3 ,",
+            "There would they pass resolutions after a congregation.",
+            "All the Khalsa contingents would hold a court there,",
+            "There would they decide to protect the Sikhs and destroy the wicked."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-122-p457-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-122-p457-b006",
+          "type": "verse",
+          "text": "Whatever sins did the Khalsa commit everyday, As they ransacked, plundered and killed many people. They would get all those sins washed and wiped out, As they did take a dip in the sacred pool at Amritsar. (3)",
+          "lines": [
+            "Whatever sins did the Khalsa commit everyday,",
+            "As they ransacked, plundered and killed many people.",
+            "They would get all those sins washed and wiped out,",
+            "As they did take a dip in the sacred pool at Amritsar."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-122-p457-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-122-p457-b008",
+          "type": "verse",
+          "text": "Thus would all the sins of the Singhs get wiped out, Whatever had they committed even among themselves. Even if these were the sins of robbing others of their hard-earned wealth, All kinds of sins would get condoned with a dip in holy water. (4)",
+          "lines": [
+            "Thus would all the sins of the Singhs get wiped out,",
+            "Whatever had they committed even among themselves.",
+            "Even if these were the sins of robbing others of their hard-earned wealth,",
+            "All kinds of sins would get condoned with a dip in holy water."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-122-p457-b009",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-122-p457-b010",
+          "type": "verse",
+          "text": "Listen to the sanctity of having a dip in the sacred pool, Holy would the place become where a Sikh planted his foot after pilgrimage, Whosoever got robbed and plundered by the devout Singhs, Four times prosperous would the victim become after getting robbed. (5)",
+          "lines": [
+            "Listen to the sanctity of having a dip in the sacred pool,",
+            "Holy would the place become where a Sikh planted his foot after pilgrimage,",
+            "Whosoever got robbed and plundered by the devout Singhs,",
+            "Four times prosperous would the victim become after getting robbed."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-122-p457-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-122-p457-b012",
+          "type": "verse",
+          "text": "Whosoever got robbed and dispossessed by another, Truly would the Khalsa get justice done unto him. Surely would the guilty get penalized by the Khalsa, As the innocent would be cleared of all accusations. (6)",
+          "lines": [
+            "Whosoever got robbed and dispossessed by another,",
+            "Truly would the Khalsa get justice done unto him.",
+            "Surely would the guilty get penalized by the Khalsa,",
+            "As the innocent would be cleared of all accusations."
+          ],
+          "number": "6"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-121",
+  "nextChapterId": "episode-123"
+}

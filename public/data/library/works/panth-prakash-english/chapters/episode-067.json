@@ -1,0 +1,489 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-067",
+  "chapterNumber": 67,
+  "episodeNumber": 67,
+  "kind": "episode",
+  "title": "Banda Singh's Capture",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 451,
+  "endSourcePage": 459,
+  "wordCount": 1128,
+  "charCount": 6602,
+  "startPosition": 72418,
+  "pages": [
+    {
+      "sourcePageNumber": 451,
+      "fileName": "EPUB/page_451.html",
+      "sourceHref": "EPUB/page_451.html",
+      "printPageNumber": 407,
+      "blocks": [
+        {
+          "id": "episode-067-p451-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p451-b003",
+          "type": "paragraph",
+          "text": "Then Banda Singh called all his Bandhayee Singh followers, And announced his policy in this manner."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 453,
+      "fileName": "EPUB/page_453.html",
+      "sourceHref": "EPUB/page_453.html",
+      "printPageNumber": 409,
+      "blocks": [
+        {
+          "id": "episode-067-p453-b001",
+          "type": "verse",
+          "text": "Since he had decided to offer his sacrifice to the Mughals, He asked his followers to surrender as well. (1)",
+          "lines": [
+            "Since he had decided to offer his sacrifice to the Mughals,",
+            "He asked his followers to surrender as well."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-067-p453-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-067-p453-b003",
+          "type": "verse",
+          "text": "The Singhs accepted Banda Singhs orders unanimously, Without contradicting or objecting to his proposal. Whichever Singh soldier had the energy to walk upto Banda Singh, He laid down his arms in front of Banda Singh. (2)",
+          "lines": [
+            "The Singhs accepted Banda Singhs orders unanimously,",
+            "Without contradicting or objecting to his proposal.",
+            "Whichever Singh soldier had the energy to walk upto Banda Singh,",
+            "He laid down his arms in front of Banda Singh."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-067-p453-b004",
+          "type": "verse",
+          "text": "After opening the closed doors of his own abode, He called anyone to come in and kill him (as her pleased). Many Singhs hurled their weapons towards the Mughals, While many others damaged and burnt their own weapons. (3)",
+          "lines": [
+            "After opening the closed doors of his own abode,",
+            "He called anyone to come in and kill him (as her pleased).",
+            "Many Singhs hurled their weapons towards the Mughals,",
+            "While many others damaged and burnt their own weapons."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-067-p453-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p453-b006",
+          "type": "verse",
+          "text": "The Nawab (of Lahore) got wind of the whole announcement, Which had been made by Banda Singh regarding his surrender. The Nawab felt delighted (at the turn of events), And felt very proud for Banda Singh's surrender before him. (4)",
+          "lines": [
+            "The Nawab (of Lahore) got wind of the whole announcement,",
+            "Which had been made by Banda Singh regarding his surrender.",
+            "The Nawab felt delighted (at the turn of events),",
+            "And felt very proud for Banda Singh's surrender before him."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-067-p453-b007",
+          "type": "meter",
+          "text": "Chhand:"
+        },
+        {
+          "id": "episode-067-p453-b008",
+          "type": "verse",
+          "text": "That Banda Singh had laid down arms, The Nawab heard the news of surrender. He felt so proud (of his victory), That he could not contain his happiness. (5)",
+          "lines": [
+            "That Banda Singh had laid down arms,",
+            "The Nawab heard the news of surrender.",
+            "He felt so proud (of his victory),",
+            "That he could not contain his happiness."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-067-p453-b009",
+          "type": "verse",
+          "text": "He called his band of people (soldiers), And despatched them towards Banda Singh. He ordered his soldiers to capture Banda Ssingh, Without wasting any time unnecessarily. (6)",
+          "lines": [
+            "He called his band of people (soldiers),",
+            "And despatched them towards Banda Singh.",
+            "He ordered his soldiers to capture Banda Ssingh,",
+            "Without wasting any time unnecessarily."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-067-p453-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p453-b011",
+          "type": "verse",
+          "text": "Thereafter, the Nawab called all of those, Who were the commanders of his forces. Since Banda Singh had laid down arms unconditionally, It did not behove them to behead Banda Singh. (7)",
+          "lines": [
+            "Thereafter, the Nawab called all of those,",
+            "Who were the commanders of his forces.",
+            "Since Banda Singh had laid down arms unconditionally,",
+            "It did not behove them to behead Banda Singh."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-067-p453-b012",
+          "type": "meter",
+          "text": "Chhand:"
+        },
+        {
+          "id": "episode-067-p453-b013",
+          "type": "verse",
+          "text": "After hearing this news of the surrender, Many Mughal soldiers rushed to plunder. They saw the (half-dead) Singhs lying prostrate, As if they were drowsing and half-asleep. (8)",
+          "lines": [
+            "After hearing this news of the surrender,",
+            "Many Mughal soldiers rushed to plunder.",
+            "They saw the (half-dead) Singhs lying prostrate,",
+            "As if they were drowsing and half-asleep."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-067-p453-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-067-p453-b015",
+          "type": "verse",
+          "text": "Even after surrounding Banda Singh's first floor abode, They found Banda Singh as if a lion was still gasping for breath. Being so scared, nobody dared to go near Banda Singh, And felt very reluctant because of their fear of him. (9)",
+          "lines": [
+            "Even after surrounding Banda Singh's first floor abode,",
+            "They found Banda Singh as if a lion was still gasping for breath.",
+            "Being so scared, nobody dared to go near Banda Singh,",
+            "And felt very reluctant because of their fear of him."
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 455,
+      "fileName": "EPUB/page_455.html",
+      "sourceHref": "EPUB/page_455.html",
+      "printPageNumber": 411,
+      "blocks": [
+        {
+          "id": "episode-067-p455-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p455-b002",
+          "type": "verse",
+          "text": "They stood still even after climbing upto his room, So scared were they of entering his abode. Finding Banda Singh keeping completely silent, They caught hold of him by one of his arms. (10)",
+          "lines": [
+            "They stood still even after climbing upto his room,",
+            "So scared were they of entering his abode.",
+            "Finding Banda Singh keeping completely silent,",
+            "They caught hold of him by one of his arms."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-067-p455-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-067-p455-b004",
+          "type": "verse",
+          "text": "Taking Banda Singh out of his place of confinement, They imprisoned him by putting him inside an iron cage. After tying his whole body with four iron chains, They put fetters in his feet and an iron ring around his neck. (11)",
+          "lines": [
+            "Taking Banda Singh out of his place of confinement,",
+            "They imprisoned him by putting him inside an iron cage.",
+            "After tying his whole body with four iron chains,",
+            "They put fetters in his feet and an iron ring around his neck."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-067-p455-b005",
+          "type": "verse",
+          "text": "With handcuffs around his wrists and a chain around his waist, They chained Banda Singh in such a tough manner. Positioning two Mughal soldiers on both sides of Banda Singh, Both of them were also chained to Banda Singh's body. (12)",
+          "lines": [
+            "With handcuffs around his wrists and a chain around his waist,",
+            "They chained Banda Singh in such a tough manner.",
+            "Positioning two Mughal soldiers on both sides of Banda Singh,",
+            "Both of them were also chained to Banda Singh's body."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-067-p455-b006",
+          "type": "verse",
+          "text": "For fear of Banda Singh flying away into the skies, They locked his chains with the pegs on the wagon's floor. They sent Banda Singh's (Caravan) on its way to Delhi, After fixing a few halting places on the way. (13)",
+          "lines": [
+            "For fear of Banda Singh flying away into the skies,",
+            "They locked his chains with the pegs on the wagon's floor.",
+            "They sent Banda Singh's (Caravan) on its way to Delhi,",
+            "After fixing a few halting places on the way."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-067-p455-b007",
+          "type": "verse",
+          "text": "The other arrested Singhs were also sent along with Banda Singh, By handcuffing two Singhs with a single chain. While one hand of each Singh was handcuffed with the other, The other hand was spared to perform bodily functions. (14)",
+          "lines": [
+            "The other arrested Singhs were also sent along with Banda Singh,",
+            "By handcuffing two Singhs with a single chain.",
+            "While one hand of each Singh was handcuffed with the other,",
+            "The other hand was spared to perform bodily functions."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-067-p455-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p455-b009",
+          "type": "verse",
+          "text": "Even after loading the chained Banda Singh's followers on wagons, The Mughals arranged to feed them on board the wagons. Whatever cooked or uncooked food was served to the Singhs, They accepted and tried to survive on that. (15)",
+          "lines": [
+            "Even after loading the chained Banda Singh's followers on wagons,",
+            "The Mughals arranged to feed them on board the wagons.",
+            "Whatever cooked or uncooked food was served to the Singhs,",
+            "They accepted and tried to survive on that."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-067-p455-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-067-p455-b011",
+          "type": "verse",
+          "text": "All the arrested Singhs were taken together, As they kept reciting Gurbani without any fear. Some with their free single hands played on the Rabab, Although they were too weak to pick up their weapons. (16)",
+          "lines": [
+            "All the arrested Singhs were taken together,",
+            "As they kept reciting Gurbani without any fear.",
+            "Some with their free single hands played on the Rabab,",
+            "Although they were too weak to pick up their weapons."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-067-p455-b012",
+          "type": "verse",
+          "text": "They recited Gurbani hymns about the imminence of death, And those hymns which regarded life as an illusion. The hymns which equated the world with the valley of death, Where no one could stay permanently and eternally. (17)",
+          "lines": [
+            "They recited Gurbani hymns about the imminence of death,",
+            "And those hymns which regarded life as an illusion.",
+            "The hymns which equated the world with the valley of death,",
+            "Where no one could stay permanently and eternally."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-067-p455-b013",
+          "type": "verse",
+          "text": "Those who led a life replete with faith and contentment, They alone reaped a harvest of truthful living. Such persons accepted joys and sorrows with equal magnanimity, And preferred death abandoning the hope of life. (18)",
+          "lines": [
+            "Those who led a life replete with faith and contentment,",
+            "They alone reaped a harvest of truthful living.",
+            "Such persons accepted joys and sorrows with equal magnanimity,",
+            "And preferred death abandoning the hope of life."
+          ],
+          "number": "18"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 457,
+      "fileName": "EPUB/page_457.html",
+      "sourceHref": "EPUB/page_457.html",
+      "printPageNumber": 413,
+      "blocks": [
+        {
+          "id": "episode-067-p457-b001",
+          "type": "verse",
+          "text": "They kept one reciting Gurbani hymns and praying to God, For the decimation of the wicked Mughals (for their tyranny). They prayed that wherever the Khalsa Panth (Singhs) existed, They should die for their religion in the true Khalsa tradition. (19)",
+          "lines": [
+            "They kept one reciting Gurbani hymns and praying to God,",
+            "For the decimation of the wicked Mughals (for their tyranny).",
+            "They prayed that wherever the Khalsa Panth (Singhs) existed,",
+            "They should die for their religion in the true Khalsa tradition."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-067-p457-b002",
+          "type": "verse",
+          "text": "The Mughals felt outraged after hearing these sentiments, That the Singhs were so dauntless as to invite death. Singhs, having faith in God, were not scared of any human-being, As they relied entirely on the only hope of divine protection. (20)",
+          "lines": [
+            "The Mughals felt outraged after hearing these sentiments,",
+            "That the Singhs were so dauntless as to invite death.",
+            "Singhs, having faith in God, were not scared of any human-being,",
+            "As they relied entirely on the only hope of divine protection."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-067-p457-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p457-b004",
+          "type": "verse",
+          "text": "After putting up a camp at Sirhind (on their way to Delhi), The Singhs were paraded through the markets of Sirhind. The people, whose houses were earlier ransacked by the Singhs, Looked at the Singhs and hurled abuses on them. (21)",
+          "lines": [
+            "After putting up a camp at Sirhind (on their way to Delhi),",
+            "The Singhs were paraded through the markets of Sirhind.",
+            "The people, whose houses were earlier ransacked by the Singhs,",
+            "Looked at the Singhs and hurled abuses on them."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-067-p457-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-067-p457-b006",
+          "type": "verse",
+          "text": "As the Singhs passed through streets while reciting Gurbani, The people looked at them and kept hurling abuses on them. The Singhs too being in the habit of using abusing language, Retaliated with ten fold volume of abuses on them. (22)",
+          "lines": [
+            "As the Singhs passed through streets while reciting Gurbani,",
+            "The people looked at them and kept hurling abuses on them.",
+            "The Singhs too being in the habit of using abusing language,",
+            "Retaliated with ten fold volume of abuses on them."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-067-p457-b007",
+          "type": "verse",
+          "text": "Then the residents of Sirhind started pelting stones on the Singhs, Alleging that the Singhs had ransacked their houses earlier. The Singhs retorted that they would do the same again, given a chance, Even as they fell down on their wagons due to their emaciated bodies. (23)",
+          "lines": [
+            "Then the residents of Sirhind started pelting stones on the Singhs,",
+            "Alleging that the Singhs had ransacked their houses earlier.",
+            "The Singhs retorted that they would do the same again, given a chance,",
+            "Even as they fell down on their wagons due to their emaciated bodies."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-067-p457-b008",
+          "type": "verse",
+          "text": "Since the Singhs had voluntarily accepted to die, They would never renounce their habit of indulging in fight. Since fighting was their badge of distinction and identity, Fighting was ingrained in the fibre and texture of their being. (24)",
+          "lines": [
+            "Since the Singhs had voluntarily accepted to die,",
+            "They would never renounce their habit of indulging in fight.",
+            "Since fighting was their badge of distinction and identity,",
+            "Fighting was ingrained in the fibre and texture of their being."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-067-p457-b009",
+          "type": "verse",
+          "text": "How could the Singhs survive without entering into fight, As the Singh's mettle is tested only on the basis of a fight. The lion, the tiger and the wild specie of a falcon, Could never survive without indulging in violence. (25)",
+          "lines": [
+            "How could the Singhs survive without entering into fight,",
+            "As the Singh's mettle is tested only on the basis of a fight.",
+            "The lion, the tiger and the wild specie of a falcon,",
+            "Could never survive without indulging in violence."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-067-p457-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-067-p457-b011",
+          "type": "verse",
+          "text": "Whichever sweet sellers' shop the Singh came across on the streets, They would pounce upon these after jumping over rails. Even as the people kept on beating and thrashing them, The Singhs kept on rioting and shouting on the way. (26)",
+          "lines": [
+            "Whichever sweet sellers' shop the Singh came across on the streets,",
+            "They would pounce upon these after jumping over rails.",
+            "Even as the people kept on beating and thrashing them,",
+            "The Singhs kept on rioting and shouting on the way."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-067-p457-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-067-p457-b013",
+          "type": "verse",
+          "text": "The Mughal soldiers brought them back after severe thrashings, As a result of which many Singhs fell down dead. After departure from here, the Singhs were never paraded through any city, But made to put up camps on the roadside inns. (27)",
+          "lines": [
+            "The Mughal soldiers brought them back after severe thrashings,",
+            "As a result of which many Singhs fell down dead.",
+            "After departure from here, the Singhs were never paraded through any city,",
+            "But made to put up camps on the roadside inns."
+          ],
+          "number": "27"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 459,
+      "fileName": "EPUB/page_459.html",
+      "sourceHref": "EPUB/page_459.html",
+      "printPageNumber": 415,
+      "blocks": [
+        {
+          "id": "episode-067-p459-b001",
+          "type": "verse",
+          "text": "As the Mughal force reached (Delhi) with their prisoners of war, The emperor Farruksiar introspected about his future strategy, As Banda Singh was reported to be a man with great supernatural powers, He might bring about some kind of a catastrophe there at Delhi. (28)",
+          "lines": [
+            "As the Mughal force reached (Delhi) with their prisoners of war,",
+            "The emperor Farruksiar introspected about his future strategy,",
+            "As Banda Singh was reported to be a man with great supernatural powers,",
+            "He might bring about some kind of a catastrophe there at Delhi."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-067-p459-b002",
+          "type": "verse",
+          "text": "(So) The emperor kept himself confined on a river encircled plateau, Till the moment Banda was executed and declared dead. He ordered non-stop recitations from the holy Koran, And made several offerings and performed Islamic Fatiha1 . (29)",
+          "lines": [
+            "(So) The emperor kept himself confined on a river encircled plateau,",
+            "Till the moment Banda was executed and declared dead.",
+            "He ordered non-stop recitations from the holy Koran,",
+            "And made several offerings and performed Islamic Fatiha1 ."
+          ],
+          "number": "29"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-066",
+  "nextChapterId": "episode-068"
+}

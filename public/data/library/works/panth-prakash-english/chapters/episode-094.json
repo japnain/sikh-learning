@@ -1,0 +1,570 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-094",
+  "chapterNumber": 94,
+  "episodeNumber": 94,
+  "kind": "episode",
+  "title": "Nadar Shah",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 175,
+  "endSourcePage": 183,
+  "wordCount": 1392,
+  "charCount": 8012,
+  "startPosition": 106949,
+  "pages": [
+    {
+      "sourcePageNumber": 175,
+      "fileName": "EPUB/page_175.html",
+      "sourceHref": "EPUB/page_175.html",
+      "printPageNumber": 121,
+      "blocks": [
+        {
+          "id": "episode-094-p175-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p175-b003",
+          "type": "verse",
+          "text": "It was the year seventeen hundred and ninety-five2 , When Khan Bahadur3 (Zakariya Khan) was the Nawab of (Lahore). He had persecuted Singhs on a large-scale, As he had been a sinner and a highly diabolical person. (1)",
+          "lines": [
+            "It was the year seventeen hundred and ninety-five2 ,",
+            "When Khan Bahadur3 (Zakariya Khan) was the Nawab of (Lahore).",
+            "He had persecuted Singhs on a large-scale,",
+            "As he had been a sinner and a highly diabolical person."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-094-p175-b004",
+          "type": "verse",
+          "text": "When Bhai Mani Singh4 was executed (by him), His body was ordered to be hacked into pieces. Many other Singhs who perished along with Mani Singh, It is difficult to keep a count of all those. (2)",
+          "lines": [
+            "When Bhai Mani Singh4 was executed (by him),",
+            "His body was ordered to be hacked into pieces.",
+            "Many other Singhs who perished along with Mani Singh,",
+            "It is difficult to keep a count of all those."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-094-p175-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p175-b006",
+          "type": "verse",
+          "text": "While many were crushed between spiked wheels or hanged, Many others were blown up by cannon fire or sliced with knives. While many were crushed to death with conical clubs, Many others were drowned and dragged to death. (3)",
+          "lines": [
+            "While many were crushed between spiked wheels or hanged,",
+            "Many others were blown up by cannon fire or sliced with knives.",
+            "While many were crushed to death with conical clubs,",
+            "Many others were drowned and dragged to death."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-094-p175-b007",
+          "type": "verse",
+          "text": "All those who were buried alive, hanged or blown up, It is difficult to keep a count of thousands of them. Including all those who were made to sit in lines, In order to chopp off their heads with the swords. (4)",
+          "lines": [
+            "All those who were buried alive, hanged or blown up,",
+            "It is difficult to keep a count of thousands of them.",
+            "Including all those who were made to sit in lines,",
+            "In order to chopp off their heads with the swords."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-094-p175-b008",
+          "type": "verse",
+          "text": "While the hands and legs of a few of them were chopped off, Eyes of a few others were gouged and others' skin peeled off. Whosoever was spotted out with the hair unshorn, Was eliminated irrespective of being an infant or an adult. (5)",
+          "lines": [
+            "While the hands and legs of a few of them were chopped off,",
+            "Eyes of a few others were gouged and others' skin peeled off.",
+            "Whosoever was spotted out with the hair unshorn,",
+            "Was eliminated irrespective of being an infant or an adult."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-094-p175-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p175-b010",
+          "type": "verse",
+          "text": "It was on the mistaken identity of being a Singh, That (an innocent Hindu) Hakikat Rai5 too was executed. It was as if a vegetarian trader, in his lust for a meatdish, Relished a spicy roasted preparation of rock pieces. (6)",
+          "lines": [
+            "It was on the mistaken identity of being a Singh,",
+            "That (an innocent Hindu) Hakikat Rai5 too was executed.",
+            "It was as if a vegetarian trader, in his lust for a meatdish,",
+            "Relished a spicy roasted preparation of rock pieces."
+          ],
+          "number": "6"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 177,
+      "fileName": "EPUB/page_177.html",
+      "sourceHref": "EPUB/page_177.html",
+      "printPageNumber": 123,
+      "blocks": [
+        {
+          "id": "episode-094-p177-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p177-b002",
+          "type": "verse",
+          "text": "When there was persecution of the Singhs on a mass-scale, There was a hue and cry of protest from all sides. The voices of this public outcry rose so high, That these reached and knocked at the Divine court. (7)",
+          "lines": [
+            "When there was persecution of the Singhs on a mass-scale,",
+            "There was a hue and cry of protest from all sides.",
+            "The voices of this public outcry rose so high,",
+            "That these reached and knocked at the Divine court."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-094-p177-b003",
+          "type": "verse",
+          "text": "This led to God Almighty's summoning of Prophet Mohammad6 , And being ordered to sit outside the Divine portals. Since the members of his religious order had gone astray, He was refused admittance into the Divine abode. (8)",
+          "lines": [
+            "This led to God Almighty's summoning of Prophet Mohammad6 ,",
+            "And being ordered to sit outside the Divine portals.",
+            "Since the members of his religious order had gone astray,",
+            "He was refused admittance into the Divine abode."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-094-p177-b004",
+          "type": "verse",
+          "text": "Since the twelfth century Muslim era had elapsed, The next century belonged to the Khalsa Panth's dominance. Since his religionists had indulged in so much evil, They must perish through their own internecine feuds. (9)",
+          "lines": [
+            "Since the twelfth century Muslim era had elapsed,",
+            "The next century belonged to the Khalsa Panth's dominance.",
+            "Since his religionists had indulged in so much evil,",
+            "They must perish through their own internecine feuds."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-094-p177-b005",
+          "type": "verse",
+          "text": "So when it came to be ordained by the Divine will, The Mughal rulers of Delhi had to face harassment. Perishing through their own internal dissensions and feuds, They themselves invited (an Afghan invader) Nadar Shah Durrani. (10)",
+          "lines": [
+            "So when it came to be ordained by the Divine will,",
+            "The Mughal rulers of Delhi had to face harassment.",
+            "Perishing through their own internal dissensions and feuds,",
+            "They themselves invited (an Afghan invader) Nadar Shah Durrani."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-094-p177-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p177-b007",
+          "type": "verse",
+          "text": "Thus, with the Divine curse emanating from the heavens, It fell upon the Delhi ruler Mohammad Shah7 . The Divine will, inorder to eliminatic the feuding Mughals, Ordained Nadir Shah (to invade their kingdom). (11)",
+          "lines": [
+            "Thus, with the Divine curse emanating from the heavens,",
+            "It fell upon the Delhi ruler Mohammad Shah7 .",
+            "The Divine will, inorder to eliminatic the feuding Mughals,",
+            "Ordained Nadir Shah (to invade their kingdom)."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-094-p177-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p177-b009",
+          "type": "verse",
+          "text": "The moment Nadir Shah reached Lahore (with his army), Khan Bahadur (Zakariya Khan) too collaborated with him. As he paid a ransom of three crore rupees to the invader, The Singhs felt delighted at such a development. (12)",
+          "lines": [
+            "The moment Nadir Shah reached Lahore (with his army),",
+            "Khan Bahadur (Zakariya Khan) too collaborated with him.",
+            "As he paid a ransom of three crore rupees to the invader,",
+            "The Singhs felt delighted at such a development."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-094-p177-b010",
+          "type": "verse",
+          "text": "As the news of a foreign invader's advent spread around, The Singhs also stepped up their militant activities. Whosoever ventured to enter from the direction of Kabul, The Singhs would rob and dispossess the intruders. (13)",
+          "lines": [
+            "As the news of a foreign invader's advent spread around,",
+            "The Singhs also stepped up their militant activities.",
+            "Whosoever ventured to enter from the direction of Kabul,",
+            "The Singhs would rob and dispossess the intruders."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-094-p177-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p177-b012",
+          "type": "verse",
+          "text": "Whenever the Khalsa Singhs came across an opportunity, They would rob and plunder everyone indiscriminately. They would waylay those on way to Kabul or Kandhar, As well as all those on way to Lahore and Delhi. (14)",
+          "lines": [
+            "Whenever the Khalsa Singhs came across an opportunity,",
+            "They would rob and plunder everyone indiscriminately.",
+            "They would waylay those on way to Kabul or Kandhar,",
+            "As well as all those on way to Lahore and Delhi."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-094-p177-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p177-b014",
+          "type": "verse",
+          "text": "Whosoever was on his way from Delhi to Kandhar, The Singhs would waylay them on the way. Since the Singhs were having good times with the booty, They had given a good account of their exploits. (15)",
+          "lines": [
+            "Whosoever was on his way from Delhi to Kandhar,",
+            "The Singhs would waylay them on the way.",
+            "Since the Singhs were having good times with the booty,",
+            "They had given a good account of their exploits."
+          ],
+          "number": "15"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 179,
+      "fileName": "EPUB/page_179.html",
+      "sourceHref": "EPUB/page_179.html",
+      "printPageNumber": 125,
+      "blocks": [
+        {
+          "id": "episode-094-p179-b001",
+          "type": "verse",
+          "text": "Laying their hands on the invader's cash, horses and valuables, The Guru's beloved Singhs would rob the invaders. The Singhs would say that it was God sent moment for them, Since the Mughals themselves were killing each other. (16)",
+          "lines": [
+            "Laying their hands on the invader's cash, horses and valuables,",
+            "The Guru's beloved Singhs would rob the invaders.",
+            "The Singhs would say that it was God sent moment for them,",
+            "Since the Mughals themselves were killing each other."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-094-p179-b002",
+          "type": "verse",
+          "text": "Since it was a moment of Mughal's decimation on both the sides, It was also a moment for the expansion of Khalsa Panth as well. As a thorn is used to pull out a thorn from the flesh, The second thorn is abandoned after pulling out the first. (17)",
+          "lines": [
+            "Since it was a moment of Mughal's decimation on both the sides,",
+            "It was also a moment for the expansion of Khalsa Panth as well.",
+            "As a thorn is used to pull out a thorn from the flesh,",
+            "The second thorn is abandoned after pulling out the first."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-094-p179-b003",
+          "type": "verse",
+          "text": "The Singhs remarked that the destined moment had arrived, Which the Guru had predicted through his prophetic words. The Guru had ordained the summoning of a hound from Kabul, Who would be instrumental in decimating the Delhi rulers. (18)",
+          "lines": [
+            "The Singhs remarked that the destined moment had arrived,",
+            "Which the Guru had predicted through his prophetic words.",
+            "The Guru had ordained the summoning of a hound from Kabul,",
+            "Who would be instrumental in decimating the Delhi rulers."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-094-p179-b004",
+          "type": "verse",
+          "text": "Thereafter an army would be marching from the South8 , Which would uproot them root and branch. Thereafter, would come the Khalsa troops9 in rugged clothes, Who would get united with the other Khalsa10 troops. (19)",
+          "lines": [
+            "Thereafter an army would be marching from the South8 ,",
+            "Which would uproot them root and branch.",
+            "Thereafter, would come the Khalsa troops9 in rugged clothes,",
+            "Who would get united with the other Khalsa10 troops."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-094-p179-b005",
+          "type": "verse",
+          "text": "Not only would the Delhi empire get dismantled, But the seven hill principalities too would be demolished. Not only would the twenty-two Mughal states be destroyed, But the Mughal rulers and their ministers too would be eliminated. (20)",
+          "lines": [
+            "Not only would the Delhi empire get dismantled,",
+            "But the seven hill principalities too would be demolished.",
+            "Not only would the twenty-two Mughal states be destroyed,",
+            "But the Mughal rulers and their ministers too would be eliminated."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-094-p179-b006",
+          "type": "verse",
+          "text": "Not only would the Mughal war drums cease to beat, But the Khalsa Panth's war slogans of \"Akal! Akal! Would fill the air. Since the prophesied historic moment seemed to have arrived, The Singhs were free to loot and plunder as much as they wished. (21)",
+          "lines": [
+            "Not only would the Mughal war drums cease to beat,",
+            "But the Khalsa Panth's war slogans of \"Akal!",
+            "Akal!",
+            "Would fill the air.",
+            "Since the prophesied historic moment seemed to have arrived,",
+            "The Singhs were free to loot and plunder as much as they wished."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-094-p179-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p179-b008",
+          "type": "verse",
+          "text": "The one who was Nawab among the Khalsa Singhs, He was known by the name of S. Kapoor Singh. He made it known to all the Khalsa Singhs, That that was the most opportune moment for realization of their goal. (22)",
+          "lines": [
+            "The one who was Nawab among the Khalsa Singhs,",
+            "He was known by the name of S.",
+            "Kapoor Singh.",
+            "He made it known to all the Khalsa Singhs,",
+            "That that was the most opportune moment for realization of their goal."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-094-p179-b009",
+          "type": "verse",
+          "text": "When S. Kapoor Singh uttered these words to the Singhs, All of them lent their ears to his prophetic words. Hailing his prophetic words to be absolutely true, They bowed their heads in reverence to his visionary acumen. (23)",
+          "lines": [
+            "When S.",
+            "Kapoor Singh uttered these words to the Singhs,",
+            "All of them lent their ears to his prophetic words.",
+            "Hailing his prophetic words to be absolutely true,",
+            "They bowed their heads in reverence to his visionary acumen."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-094-p179-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p179-b011",
+          "type": "verse",
+          "text": "How much wealth did (Nadir Shah) plunder from Delhi? One reckoning estimates it to be one thousand billion rupees. It included all the valuable artifacts of whole of India, Spread over the territories of twenty-two states. (24)",
+          "lines": [
+            "How much wealth did (Nadir Shah) plunder from Delhi?",
+            "One reckoning estimates it to be one thousand billion rupees.",
+            "It included all the valuable artifacts of whole of India,",
+            "Spread over the territories of twenty-two states."
+          ],
+          "number": "24"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 181,
+      "fileName": "EPUB/page_181.html",
+      "sourceHref": "EPUB/page_181.html",
+      "printPageNumber": 127,
+      "blocks": [
+        {
+          "id": "episode-094-p181-b001",
+          "type": "verse",
+          "text": "It included the famous Takht-e-Tous11 worth nine crore rupees, As well as two hundred grams of purest quality gold coins. One diamond12 since Pandvas' times was a part of it, As well as a mega sized very expensive ruby. (25)",
+          "lines": [
+            "It included the famous Takht-e-Tous11 worth nine crore rupees,",
+            "As well as two hundred grams of purest quality gold coins.",
+            "One diamond12 since Pandvas' times was a part of it,",
+            "As well as a mega sized very expensive ruby."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-094-p181-b002",
+          "type": "verse",
+          "text": "That the Mughal emperor read the holy Koran under its brilliance, Was a part of the folklore through out the country. The rare specie of Shahe-Nakur Fish too was taken away, Whose flesh could be sliced everyday for daily consumption. (26)",
+          "lines": [
+            "That the Mughal emperor read the holy Koran under its brilliance,",
+            "Was a part of the folklore through out the country.",
+            "The rare specie of Shahe-Nakur Fish too was taken away,",
+            "Whose flesh could be sliced everyday for daily consumption."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-094-p181-b003",
+          "type": "verse",
+          "text": "There were pearls as big as the egg of a hen, Each reckoned to be sixty-four carrots in weight. The spherical shape of these pearls being fantastic, Various poets have portrayed it after their own fancy. (27)",
+          "lines": [
+            "There were pearls as big as the egg of a hen,",
+            "Each reckoned to be sixty-four carrots in weight.",
+            "The spherical shape of these pearls being fantastic,",
+            "Various poets have portrayed it after their own fancy."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-094-p181-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p181-b005",
+          "type": "verse",
+          "text": "(Nadir Shah) even robbed the royal poet Tansen13 , Of the two royal gifts given to him by the emperor. Which consisted of a very valuable rosary, And a diamond that emitted a pink hue. (28)",
+          "lines": [
+            "(Nadir Shah) even robbed the royal poet Tansen13 ,",
+            "Of the two royal gifts given to him by the emperor.",
+            "Which consisted of a very valuable rosary,",
+            "And a diamond that emitted a pink hue."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-094-p181-b006",
+          "type": "verse",
+          "text": "This diamond's weight was reduced, By the then Mughal emperor of Delhi. Asking a jeweler to temper with its weight, Its original weight was reduced by two grains. (29)",
+          "lines": [
+            "This diamond's weight was reduced,",
+            "By the then Mughal emperor of Delhi.",
+            "Asking a jeweler to temper with its weight,",
+            "Its original weight was reduced by two grains."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-094-p181-b007",
+          "type": "verse",
+          "text": "This diamond which originally weighed twelve Rattees14 , Was reduced in weight by about two grains. Any object on which this diamond's reflection fell, Made it emit a pink hue after its reflection. (30)",
+          "lines": [
+            "This diamond which originally weighed twelve Rattees14 ,",
+            "Was reduced in weight by about two grains.",
+            "Any object on which this diamond's reflection fell,",
+            "Made it emit a pink hue after its reflection."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-094-p181-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p181-b009",
+          "type": "verse",
+          "text": "Such was the distinction of Tansen's valuable rosary, That it healed all eye infections with a single touch. (Foolish) Nadir Shah brandished this valuable rosary on his quiver, And ruined its intrinsic value by making four holes in it. (31)",
+          "lines": [
+            "Such was the distinction of Tansen's valuable rosary,",
+            "That it healed all eye infections with a single touch.",
+            "(Foolish) Nadir Shah brandished this valuable rosary on his quiver,",
+            "And ruined its intrinsic value by making four holes in it."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-094-p181-b010",
+          "type": "verse",
+          "text": "There were eighty shopkeepers worth crores of merchandise, Whom Nadir Shah rendered homeless without a wick of light. He took away \"Jaura, Bhaura\", two exotic breed horses, Taking a total ransom of twenty crore rupees. (32)",
+          "lines": [
+            "There were eighty shopkeepers worth crores of merchandise,",
+            "Whom Nadir Shah rendered homeless without a wick of light.",
+            "He took away \"Jaura,",
+            "Bhaura\", two exotic breed horses,",
+            "Taking a total ransom of twenty crore rupees."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-094-p181-b011",
+          "type": "verse",
+          "text": "Since the ransom amount fell short of three crore rupees, It was collected by Ahmed Shah Abdali, later on. Annexing the five provinces15 from the Indian state, Nadir Shah got custody of Lahore as well in writing. (33)",
+          "lines": [
+            "Since the ransom amount fell short of three crore rupees,",
+            "It was collected by Ahmed Shah Abdali, later on.",
+            "Annexing the five provinces15 from the Indian state,",
+            "Nadir Shah got custody of Lahore as well in writing."
+          ],
+          "number": "33"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 183,
+      "fileName": "EPUB/page_183.html",
+      "sourceHref": "EPUB/page_183.html",
+      "printPageNumber": 129,
+      "blocks": [
+        {
+          "id": "episode-094-p183-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-094-p183-b002",
+          "type": "verse",
+          "text": "It is difficult to keep a count of the other wealth, That lay heaped in the twenty-two Mughal states. The wealth that these rulers had amassed for long, Was taken away by the invading hordes of Nadir Shah. (34)",
+          "lines": [
+            "It is difficult to keep a count of the other wealth,",
+            "That lay heaped in the twenty-two Mughal states.",
+            "The wealth that these rulers had amassed for long,",
+            "Was taken away by the invading hordes of Nadir Shah."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-094-p183-b003",
+          "type": "verse",
+          "text": "It is also difficult to keep a count of all those, Who died in war during Nadir Shah's invasion. The number of poor defenceless people he had slaughtered, Reached a figure of seventy thousand in Delhi alone. (35)",
+          "lines": [
+            "It is also difficult to keep a count of all those,",
+            "Who died in war during Nadir Shah's invasion.",
+            "The number of poor defenceless people he had slaughtered,",
+            "Reached a figure of seventy thousand in Delhi alone."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-094-p183-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-094-p183-b005",
+          "type": "verse",
+          "text": "So the Mughals themselves ruined the Mughals, Because of their own internecine acrimony. The author (Rattan Singh) desists from elaborating further, For the fear of his epic getting too unwieldy. (36)",
+          "lines": [
+            "So the Mughals themselves ruined the Mughals,",
+            "Because of their own internecine acrimony.",
+            "The author (Rattan Singh) desists from elaborating further,",
+            "For the fear of his epic getting too unwieldy."
+          ],
+          "number": "36"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-093",
+  "nextChapterId": "episode-095"
+}

@@ -1,0 +1,89 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-131",
+  "chapterNumber": 131,
+  "episodeNumber": 131,
+  "kind": "episode",
+  "title": "Bikaner",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 511,
+  "endSourcePage": 511,
+  "wordCount": 149,
+  "charCount": 861,
+  "startPosition": 164670,
+  "pages": [
+    {
+      "sourcePageNumber": 511,
+      "fileName": "EPUB/page_511.html",
+      "sourceHref": "EPUB/page_511.html",
+      "printPageNumber": 457,
+      "blocks": [
+        {
+          "id": "episode-131-p511-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-131-p511-b003",
+          "type": "verse",
+          "text": "For full one year did the Gilj a Pathan chief, Ahmad Shah Abdali stayed put at Lahore. Having drawn revenues from the four provinces, He kept a large number of troops at Lahore. (1)",
+          "lines": [
+            "For full one year did the Gilj a Pathan chief,",
+            "Ahmad Shah Abdali stayed put at Lahore.",
+            "Having drawn revenues from the four provinces,",
+            "He kept a large number of troops at Lahore."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-131-p511-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-131-p511-b005",
+          "type": "verse",
+          "text": "As the Khalsa panth contingents assembled in Malwa, They had no wherewithal to feed themselves. Then, as the Rajput chief of Bikaner invited them, Singhs in thousands did reach Bikaner at his call. (2)",
+          "lines": [
+            "As the Khalsa panth contingents assembled in Malwa,",
+            "They had no wherewithal to feed themselves.",
+            "Then, as the Rajput chief of Bikaner invited them,",
+            "Singhs in thousands did reach Bikaner at his call."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-131-p511-b006",
+          "type": "verse",
+          "text": "Thereafter, raiding Jaisalmer with the support of the Singhs, He completed his mission with the Singh's assistance. Thereafter, forbidding Singhs from any further assault, He did not pay the Singhs even the promised wages. (3)",
+          "lines": [
+            "Thereafter, raiding Jaisalmer with the support of the Singhs,",
+            "He completed his mission with the Singh's assistance.",
+            "Thereafter, forbidding Singhs from any further assault,",
+            "He did not pay the Singhs even the promised wages."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-131-p511-b007",
+          "type": "verse",
+          "text": "Dohra Not only did he decline to pay the promise amount, But he also went back from paying what was due to them. Thereafter, as he thrashed the Singhs by calling his own people, The Khalsa Panth had to bear with extreme adversity. (4)",
+          "lines": [
+            "Dohra Not only did he decline to pay the promise amount,",
+            "But he also went back from paying what was due to them.",
+            "Thereafter, as he thrashed the Singhs by calling his own people,",
+            "The Khalsa Panth had to bear with extreme adversity."
+          ],
+          "number": "4"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-130",
+  "nextChapterId": "episode-132"
+}

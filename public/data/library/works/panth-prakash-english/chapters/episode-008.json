@@ -1,0 +1,200 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-008",
+  "chapterNumber": 8,
+  "episodeNumber": 8,
+  "kind": "episode",
+  "title": "Travel To the North",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 91,
+  "endSourcePage": 95,
+  "wordCount": 385,
+  "charCount": 2306,
+  "startPosition": 7620,
+  "pages": [
+    {
+      "sourcePageNumber": 91,
+      "fileName": "EPUB/page_91.html",
+      "sourceHref": "EPUB/page_91.html",
+      "printPageNumber": 47,
+      "blocks": [
+        {
+          "id": "episode-008-p91-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-008-p91-b003",
+          "type": "paragraph",
+          "text": "Then Satguru Guru Nanak proceeded towards the various mountainous regions, Which were situated in the Northern part of India."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 93,
+      "fileName": "EPUB/page_93.html",
+      "sourceHref": "EPUB/page_93.html",
+      "printPageNumber": 49,
+      "blocks": [
+        {
+          "id": "episode-008-p93-b001",
+          "type": "verse",
+          "text": "These regions were supposed to be inhabited by, Many Sidhas, Saints, Gods, Goddesses and chiefs of gods. (1)",
+          "lines": [
+            "These regions were supposed to be inhabited by,",
+            "Many Sidhas,",
+            "Saints,",
+            "Gods,",
+            "Goddesses and chiefs of gods."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-008-p93-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-008-p93-b003",
+          "type": "verse",
+          "text": "Guru Nanak went on a journey to these regions, To see the merits and demerits, to sift truth from falsehood. First they visited the low-lying sub-mountainous (Trai) regions, And then proceeded towards the snow-covered higher regions. (2)",
+          "lines": [
+            "Guru Nanak went on a journey to these regions,",
+            "To see the merits and demerits, to sift truth from falsehood.",
+            "First they visited the low-lying sub-mountainous (Trai) regions,",
+            "And then proceeded towards the snow-covered higher regions."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-008-p93-b004",
+          "type": "verse",
+          "text": "I restrain myself from giving all the minute details of this journey, In order to restrict the size and volume of this epic. Whosoever is interested in knowing all these details, He may consult many other existing books on this topic. (3)",
+          "lines": [
+            "I restrain myself from giving all the minute details of this journey,",
+            "In order to restrict the size and volume of this epic.",
+            "Whosoever is interested in knowing all these details,",
+            "He may consult many other existing books on this topic."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-008-p93-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-008-p93-b006",
+          "type": "verse",
+          "text": "When Guru Nanak visited these mountainous regions, He did not approve of the practices in these regions. He noticed several Maths' and monasteries of many gods and goddesses, Where the inhabitants were worshippers of phallic stone idols Shivling2 . (4)",
+          "lines": [
+            "When Guru Nanak visited these mountainous regions,",
+            "He did not approve of the practices in these regions.",
+            "He noticed several Maths' and monasteries of many gods and goddesses,",
+            "Where the inhabitants were worshippers of phallic stone idols Shivling2 ."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-008-p93-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-008-p93-b008",
+          "type": "verse",
+          "text": "Whichever region, Baba Nanak paid a visit to, He preached the true Name of God to the inhabitants. Thereupon David Murray enquired of me further, \"How innumerable are the episodes related to Guru Nanak\" (5)",
+          "lines": [
+            "Whichever region,",
+            "Baba Nanak paid a visit to,",
+            "He preached the true Name of God to the inhabitants.",
+            "Thereupon David Murray enquired of me further,",
+            "\"How innumerable are the episodes related to Guru Nanak\""
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-008-p93-b009",
+          "type": "verse",
+          "text": "\"The number of episodes about Guru Nanak are innumerable and profound. The Sidhas, Saints and prophets have failed to keep a Count of these. Baba Nanak has undertaken so many travels (Udasis), That I cannot narrate all those travels and episodes. (6)",
+          "lines": [
+            "\"The number of episodes about Guru Nanak are innumerable and profound.",
+            "The Sidhas,",
+            "Saints and prophets have failed to keep a Count of these.",
+            "Baba Nanak has undertaken so many travels (Udasis),",
+            "That I cannot narrate all those travels and episodes."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-008-p93-b010",
+          "type": "verse",
+          "text": "Guru Nanak has traveled all the regions in the space, He has also traveled all over the various lands as well. He alone knows his powers and his worth, Or else his companions who travelled along with him know him. (7)",
+          "lines": [
+            "Guru Nanak has traveled all the regions in the space,",
+            "He has also traveled all over the various lands as well.",
+            "He alone knows his powers and his worth,",
+            "Or else his companions who travelled along with him know him."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-008-p93-b011",
+          "type": "verse",
+          "text": "If I narrate all the episodes about his travels, The present epic will become too large and voluminous. Had these details not been recorded in other epics (Janam Sakhees), I would have certainly laboured to write all the details. (8)",
+          "lines": [
+            "If I narrate all the episodes about his travels,",
+            "The present epic will become too large and voluminous.",
+            "Had these details not been recorded in other epics (Janam Sakhees),",
+            "I would have certainly laboured to write all the details."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-008-p93-b012",
+          "type": "verse",
+          "text": "Had there not been any earlier records of these events, I would have certainly taken more pains to give all the details. Whatever has not been mentioned earlier, I have endeavoured to narrate only those events.\" (9)",
+          "lines": [
+            "Had there not been any earlier records of these events,",
+            "I would have certainly taken more pains to give all the details.",
+            "Whatever has not been mentioned earlier,",
+            "I have endeavoured to narrate only those events.\""
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 95,
+      "fileName": "EPUB/page_95.html",
+      "sourceHref": "EPUB/page_95.html",
+      "printPageNumber": 51,
+      "blocks": [
+        {
+          "id": "episode-008-p95-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-008-p95-b002",
+          "type": "verse",
+          "text": "\"Whatever has been narrated in great detail earlier, I have only made a mention very briefly. Whatever has gone unnoticed earlier, I have given expression to those events. (10)",
+          "lines": [
+            "\"Whatever has been narrated in great detail earlier,",
+            "I have only made a mention very briefly.",
+            "Whatever has gone unnoticed earlier,",
+            "I have given expression to those events."
+          ],
+          "number": "10"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-007",
+  "nextChapterId": "episode-009"
+}

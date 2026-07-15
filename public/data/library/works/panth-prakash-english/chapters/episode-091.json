@@ -1,0 +1,327 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-091",
+  "chapterNumber": 91,
+  "episodeNumber": 91,
+  "kind": "episode",
+  "title": "Jassa Singh",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 147,
+  "endSourcePage": 151,
+  "wordCount": 699,
+  "charCount": 4179,
+  "startPosition": 102422,
+  "pages": [
+    {
+      "sourcePageNumber": 147,
+      "fileName": "EPUB/page_147.html",
+      "sourceHref": "EPUB/page_147.html",
+      "printPageNumber": 93,
+      "blocks": [
+        {
+          "id": "episode-091-p147-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-091-p147-b003",
+          "type": "verse",
+          "text": "Now follows the episode of Jassa Singh, Which I would now narrate to my readers. Being destitute, he joined the ranks of Khalsa Panth, But rose to be a sovereign among the Khalsa Panth. (1)",
+          "lines": [
+            "Now follows the episode of Jassa Singh,",
+            "Which I would now narrate to my readers.",
+            "Being destitute, he joined the ranks of Khalsa Panth,",
+            "But rose to be a sovereign among the Khalsa Panth."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-091-p147-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-091-p147-b005",
+          "type": "verse",
+          "text": "There was a community known as Ahluwalia, Who inhabited the region between Lahore and Kasur. There lived a poor person belonging to the community of Kalals, Who was a devout Sikh follower of the Sikh Gurus. (2)",
+          "lines": [
+            "There was a community known as Ahluwalia,",
+            "Who inhabited the region between Lahore and Kasur.",
+            "There lived a poor person belonging to the community of Kalals,",
+            "Who was a devout Sikh follower of the Sikh Gurus."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-091-p147-b006",
+          "type": "verse",
+          "text": "He was known by the name of S. Dyal Singh3 , Who took up many odd jobs to earn his livelihood. He was survived, after his death, by his son and wife, Both of whom had great affinity for each other. (3)",
+          "lines": [
+            "He was known by the name of S.",
+            "Dyal Singh3 ,",
+            "Who took up many odd jobs to earn his livelihood.",
+            "He was survived, after his death, by his son and wife,",
+            "Both of whom had great affinity for each other."
+          ],
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 149,
+      "fileName": "EPUB/page_149.html",
+      "sourceHref": "EPUB/page_149.html",
+      "printPageNumber": 95,
+      "blocks": [
+        {
+          "id": "episode-091-p149-b001",
+          "type": "verse",
+          "text": "The wife being the daughter of initiated Sikh parents, She was made literate by her own parents. She had memorized a lot of Gurbani hymns, As she had a Sikh background both from her parental and in-laws side. (4)",
+          "lines": [
+            "The wife being the daughter of initiated Sikh parents,",
+            "She was made literate by her own parents.",
+            "She had memorized a lot of Gurbani hymns,",
+            "As she had a Sikh background both from her parental and in-laws side."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-091-p149-b002",
+          "type": "verse",
+          "text": "Always carrying an abridged version of Gurbani hymns, She would participate in every Sikh congregation. She would recite Gurbani hymns early in the morning, As well as recite the evening prayers in the evenings. (5)",
+          "lines": [
+            "Always carrying an abridged version of Gurbani hymns,",
+            "She would participate in every Sikh congregation.",
+            "She would recite Gurbani hymns early in the morning,",
+            "As well as recite the evening prayers in the evenings."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-091-p149-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-091-p149-b004",
+          "type": "verse",
+          "text": "The infant (Jassa Singh) would accompany her in recitation, By playing on a double-stringed musical instrument with devotion. Thus reciting devotional hymns morning and evening, That was the routine of this mother-son duo. (6)",
+          "lines": [
+            "The infant (Jassa Singh) would accompany her in recitation,",
+            "By playing on a double-stringed musical instrument with devotion.",
+            "Thus reciting devotional hymns morning and evening,",
+            "That was the routine of this mother-son duo."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-091-p149-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-091-p149-b006",
+          "type": "verse",
+          "text": "Wherever the devout Singhs held a congregation, They would never decline an invitation to participate there. Day or night, they would always participate there, And recite Gurbani hymns in a musical chorus. (7)",
+          "lines": [
+            "Wherever the devout Singhs held a congregation,",
+            "They would never decline an invitation to participate there.",
+            "Day or night, they would always participate there,",
+            "And recite Gurbani hymns in a musical chorus."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-091-p149-b007",
+          "type": "verse",
+          "text": "They would visit Gurdwaras on all historical occasions, Thus never shirking from performing service to the Guru. Wherever the Khalsa Panth organized a congregation, They would participate and recite Gurbani hymns. (8)",
+          "lines": [
+            "They would visit Gurdwaras on all historical occasions,",
+            "Thus never shirking from performing service to the Guru.",
+            "Wherever the Khalsa Panth organized a congregation,",
+            "They would participate and recite Gurbani hymns."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-091-p149-b008",
+          "type": "verse",
+          "text": "Once hearing that a Khalsa contingent had arrived at Amritsar, The mother-son duo too wished to pay their obeisance. As they recited Gurbani hymns with great devotion, They created an ambience of piety among the Panthic audience. (9)",
+          "lines": [
+            "Once hearing that a Khalsa contingent had arrived at Amritsar,",
+            "The mother-son duo too wished to pay their obeisance.",
+            "As they recited Gurbani hymns with great devotion,",
+            "They created an ambience of piety among the Panthic audience."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-091-p149-b009",
+          "type": "verse",
+          "text": "They having arrived there at an auspicious moment, The Khalsa contingent felt extremely pleased with their rendering. (Nawab) Kapoor Singh summoning the infant boy, Initiated him into the Khalsa Panth with his own hands. (10)",
+          "lines": [
+            "They having arrived there at an auspicious moment,",
+            "The Khalsa contingent felt extremely pleased with their rendering.",
+            "(Nawab) Kapoor Singh summoning the infant boy,",
+            "Initiated him into the Khalsa Panth with his own hands."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-091-p149-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-091-p149-b011",
+          "type": "verse",
+          "text": "The mother, feeling very elated at her son's initiation, She handed over her son to the Nawab voluntarily. The child being favoured by fortune, He started living under the tutelage of Nawab Kapoor Singh. (11)",
+          "lines": [
+            "The mother, feeling very elated at her son's initiation,",
+            "She handed over her son to the Nawab voluntarily.",
+            "The child being favoured by fortune,",
+            "He started living under the tutelage of Nawab Kapoor Singh."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-091-p149-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-091-p149-b013",
+          "type": "verse",
+          "text": "Nawab Kapoor Singh, feeling compassionate towards the child, Assigned him the duty of distributing feed to the horses. He went on performing this duty for many days, During which he was rebuffed by many people. (12)",
+          "lines": [
+            "Nawab Kapoor Singh, feeling compassionate towards the child,",
+            "Assigned him the duty of distributing feed to the horses.",
+            "He went on performing this duty for many days,",
+            "During which he was rebuffed by many people."
+          ],
+          "number": "12"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 151,
+      "fileName": "EPUB/page_151.html",
+      "sourceHref": "EPUB/page_151.html",
+      "printPageNumber": 97,
+      "blocks": [
+        {
+          "id": "episode-091-p151-b001",
+          "type": "verse",
+          "text": "(One day) crying desperately (at this maltreatment), The boy approached Nawab Kapoor Singh in tears. He told that he could no longer distribute the cattle feed, As he was severely thrashed by everyone. (13)",
+          "lines": [
+            "(One day) crying desperately (at this maltreatment),",
+            "The boy approached Nawab Kapoor Singh in tears.",
+            "He told that he could no longer distribute the cattle feed,",
+            "As he was severely thrashed by everyone."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-091-p151-b002",
+          "type": "verse",
+          "text": "Feeling amused, Nawab Kapoor Singh called him near, And showered his blessings on him with his hands. Addressing the boy the Nawab remarked affectionately, That the boy would be issuing feed to thousands of horses. (14)",
+          "lines": [
+            "Feeling amused,",
+            "Nawab Kapoor Singh called him near,",
+            "And showered his blessings on him with his hands.",
+            "Addressing the boy the Nawab remarked affectionately,",
+            "That the boy would be issuing feed to thousands of horses."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-091-p151-b003",
+          "type": "verse",
+          "text": "The Khalsa Panth which had made Kapoor Singh a Nawab, Would one day make the boy (Jassa Singh) a sovereign. Since that moment, the boy became worthy of Khalsa Panth's grace, And came to be known as Jassa Singh Kalal, the sovereign. (15)",
+          "lines": [
+            "The Khalsa Panth which had made Kapoor Singh a Nawab,",
+            "Would one day make the boy (Jassa Singh) a sovereign.",
+            "Since that moment, the boy became worthy of Khalsa Panth's grace,",
+            "And came to be known as Jassa Singh Kalal, the sovereign."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-091-p151-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-091-p151-b005",
+          "type": "verse",
+          "text": "Rattan Singh (the author) has narrated this episode, As he had heard it from his wise elders. The author may be pardoned for any inadvertent omissions, Considering him a humble servant of the Khalsa Panth. (16)",
+          "lines": [
+            "Rattan Singh (the author) has narrated this episode,",
+            "As he had heard it from his wise elders.",
+            "The author may be pardoned for any inadvertent omissions,",
+            "Considering him a humble servant of the Khalsa Panth."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-091-p151-b006",
+          "type": "paragraph",
+          "text": "Aslam Khan4 Passed Away"
+        },
+        {
+          "id": "episode-091-p151-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-091-p151-b008",
+          "type": "verse",
+          "text": "Within a few days (after the new dispensation), Nawab Aslam Khan4 of Lahore passed away. His place (for the custodianship of Lahore) was taken over, By Abdul Samand Khan5, a warrior in his own right. (1)",
+          "lines": [
+            "Within a few days (after the new dispensation),",
+            "Nawab Aslam Khan4 of Lahore passed away.",
+            "His place (for the custodianship of Lahore) was taken over,",
+            "By Abdul Samand Khan5, a warrior in his own right."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-091-p151-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-091-p151-b010",
+          "type": "verse",
+          "text": "With this started the reign of Abdul Samand Khan, Who was extremely wicked and a wily ruler. Feeling highly arrogant of his elevated position, He discontinued the payment of revenue to the Singhs. (2)",
+          "lines": [
+            "With this started the reign of Abdul Samand Khan,",
+            "Who was extremely wicked and a wily ruler.",
+            "Feeling highly arrogant of his elevated position,",
+            "He discontinued the payment of revenue to the Singhs."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-091-p151-b011",
+          "type": "verse",
+          "text": "Khalsa Panth, being liberated from the royal bondage, Once again started looting and plundering the region. As the Mughal forces launched an attack on the Singhs, They also started combating the Mughals through guerilla warfare. (3)",
+          "lines": [
+            "Khalsa Panth, being liberated from the royal bondage,",
+            "Once again started looting and plundering the region.",
+            "As the Mughal forces launched an attack on the Singhs,",
+            "They also started combating the Mughals through guerilla warfare."
+          ],
+          "number": "3"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-090",
+  "nextChapterId": "episode-092"
+}

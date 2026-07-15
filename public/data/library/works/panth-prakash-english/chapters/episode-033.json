@@ -1,0 +1,294 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-033",
+  "chapterNumber": 33,
+  "episodeNumber": 33,
+  "kind": "episode",
+  "title": "Village Sehar Khand",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 255,
+  "endSourcePage": 259,
+  "wordCount": 728,
+  "charCount": 4277,
+  "startPosition": 37101,
+  "pages": [
+    {
+      "sourcePageNumber": 255,
+      "fileName": "EPUB/page_255.html",
+      "sourceHref": "EPUB/page_255.html",
+      "printPageNumber": 211,
+      "blocks": [
+        {
+          "id": "episode-033-p255-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-033-p255-b003",
+          "type": "paragraph",
+          "text": "(After subduing the Kaithal custodian) Banda Singh proceeded further, And put up his next camp at the village of Sehar Khand."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 257,
+      "fileName": "EPUB/page_257.html",
+      "sourceHref": "EPUB/page_257.html",
+      "printPageNumber": 213,
+      "blocks": [
+        {
+          "id": "episode-033-p257-b001",
+          "type": "verse",
+          "text": "While camping here, he sent written messages to Punjab, Addressing these epistles to the prominent Singhs by name. (1)",
+          "lines": [
+            "While camping here, he sent written messages to Punjab,",
+            "Addressing these epistles to the prominent Singhs by name."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-033-p257-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-033-p257-b003",
+          "type": "verse",
+          "text": "Banda Singh drafted these epistles to the effect, That the Guru had despatched him to occupy their motherland. That he had come to wreck the foundation of the Sirhind state, And to destroy the chiefs of Hill state principalities. (2)",
+          "lines": [
+            "Banda Singh drafted these epistles to the effect,",
+            "That the Guru had despatched him to occupy their motherland.",
+            "That he had come to wreck the foundation of the Sirhind state,",
+            "And to destroy the chiefs of Hill state principalities."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-033-p257-b004",
+          "type": "verse",
+          "text": "That he was the devout humble servant of the same Guru, Who had initiated and founded the Khalsa Panth. That he had come to avenge those who had the audacity, To persecute the Sikh Gurus (and the four Sahibzadas). (3)",
+          "lines": [
+            "That he was the devout humble servant of the same Guru,",
+            "Who had initiated and founded the Khalsa Panth.",
+            "That he had come to avenge those who had the audacity,",
+            "To persecute the Sikh Gurus (and the four Sahibzadas)."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-033-p257-b005",
+          "type": "verse",
+          "text": "That he would claim to be called Guru's chosen servant, Only after decimating all the enemies of the Sikh Panth. After drafting this message and appeal to the Khalsa Singhs, He sent these epistles through the Singhs whom Guru had sent with him. (4)",
+          "lines": [
+            "That he would claim to be called Guru's chosen servant,",
+            "Only after decimating all the enemies of the Sikh Panth.",
+            "After drafting this message and appeal to the Khalsa Singhs,",
+            "He sent these epistles through the Singhs whom Guru had sent with him."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-033-p257-b006",
+          "type": "verse",
+          "text": "He invited all those initiated Khalsa Singhs of the Guru, Who had witnessed and known about the persecution of Sahibzadas. They must come post haste to join him in this great mission, Since all of them were the Guru's Singhs and belonged to the Khalsa fraternity. (5)",
+          "lines": [
+            "He invited all those initiated Khalsa Singhs of the Guru,",
+            "Who had witnessed and known about the persecution of Sahibzadas.",
+            "They must come post haste to join him in this great mission,",
+            "Since all of them were the Guru's Singhs and belonged to the Khalsa fraternity."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-033-p257-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-033-p257-b008",
+          "type": "verse",
+          "text": "At this juncture whosoever joined the Khalsa forces, He would earn a higher status in the Khalsa's sovereignty. And whosoever did not associate himself with the Khalsa fraternity, He would have to repent for the loss of this rare opportunity. (6)",
+          "lines": [
+            "At this juncture whosoever joined the Khalsa forces,",
+            "He would earn a higher status in the Khalsa's sovereignty.",
+            "And whosoever did not associate himself with the Khalsa fraternity,",
+            "He would have to repent for the loss of this rare opportunity."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-033-p257-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-033-p257-b010",
+          "type": "verse",
+          "text": "The trusted Singhs hastened with messages towards Kabul2 and Kandhar3 , As well as towards distant Bhakhar4 at full speed. They took these messages to the Eastern corners in the country, To the Guru's Singhs in the South as well as the North. (7)",
+          "lines": [
+            "The trusted Singhs hastened with messages towards Kabul2 and Kandhar3 ,",
+            "As well as towards distant Bhakhar4 at full speed.",
+            "They took these messages to the Eastern corners in the country,",
+            "To the Guru's Singhs in the South as well as the North."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-033-p257-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-033-p257-b012",
+          "type": "verse",
+          "text": "All those Singhs who had full faith in the Guru's ideology, Must come and join to avenge the death of the Sahibzadas. Whosoever survived this war would share Khalsa's sovereignty, And whosoever attained martyrdom would be blessed in the next life. (8)",
+          "lines": [
+            "All those Singhs who had full faith in the Guru's ideology,",
+            "Must come and join to avenge the death of the Sahibzadas.",
+            "Whosoever survived this war would share Khalsa's sovereignty,",
+            "And whosoever attained martyrdom would be blessed in the next life."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-033-p257-b013",
+          "type": "verse",
+          "text": "Such was the appeal to the Singhs drafted by Banda Singh, And he despatched this message to the majority of Khalsa Singhs. The Khalsa Singhs honoured this Khalsa Panth's edict, And instantly prepared themselves to join the Khalsa force. (9)",
+          "lines": [
+            "Such was the appeal to the Singhs drafted by Banda Singh,",
+            "And he despatched this message to the majority of Khalsa Singhs.",
+            "The Khalsa Singhs honoured this Khalsa Panth's edict,",
+            "And instantly prepared themselves to join the Khalsa force."
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 259,
+      "fileName": "EPUB/page_259.html",
+      "sourceHref": "EPUB/page_259.html",
+      "printPageNumber": 215,
+      "blocks": [
+        {
+          "id": "episode-033-p259-b001",
+          "type": "verse",
+          "text": "The Singhs shared all their provisions and other means, With those who had no means to equip themselves for the mission. But the non-Sikhs did not contribute anything to the Singhs, Believing that all these Singhs would get killed in the war. (10)",
+          "lines": [
+            "The Singhs shared all their provisions and other means,",
+            "With those who had no means to equip themselves for the mission.",
+            "But the non-Sikhs did not contribute anything to the Singhs,",
+            "Believing that all these Singhs would get killed in the war."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-033-p259-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-033-p259-b003",
+          "type": "verse",
+          "text": "The poor Singhs begged for money and means from their neighbours, With solemn promises of returning four times the principal amount, But this solemn promise was subject to their survival in the war, Otherwise they promised to settle their accounts in the next life. (11)",
+          "lines": [
+            "The poor Singhs begged for money and means from their neighbours,",
+            "With solemn promises of returning four times the principal amount,",
+            "But this solemn promise was subject to their survival in the war,",
+            "Otherwise they promised to settle their accounts in the next life."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-033-p259-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-033-p259-b005",
+          "type": "verse",
+          "text": "Many Sikhs contributed to this war kitty in the name of the Guru, Since they had fully accepted the Guru's ideology in their heart of hearts, The Majhail Singhs who were keen to join Banda Singh directly, Were likely to be obstructed by the forces of the Mughals. (12)",
+          "lines": [
+            "Many Sikhs contributed to this war kitty in the name of the Guru,",
+            "Since they had fully accepted the Guru's ideology in their heart of hearts,",
+            "The Majhail Singhs who were keen to join Banda Singh directly,",
+            "Were likely to be obstructed by the forces of the Mughals."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-033-p259-b006",
+          "type": "verse",
+          "text": "Initially some Majhail Singhs mixed with the Caravan of Banjara5 traders, Concealing their weapons in their cargo and posing as their bodyguards. Since Malwa region was adjoining the Bangar area, The Malwa Singhs joined Banda Singh's forces quickly. (13)",
+          "lines": [
+            "Initially some Majhail Singhs mixed with the Caravan of Banjara5 traders,",
+            "Concealing their weapons in their cargo and posing as their bodyguards.",
+            "Since Malwa region was adjoining the Bangar area,",
+            "The Malwa Singhs joined Banda Singh's forces quickly."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-033-p259-b007",
+          "type": "verse",
+          "text": "But the Singhs belonging to the mid-Majha region of Punjab, Could not cross through the Mughal territory without bloodshed. So their contingent started proceeding towards the Hills, Concealing themselves in the forests and hills in the north. (14)",
+          "lines": [
+            "But the Singhs belonging to the mid-Majha region of Punjab,",
+            "Could not cross through the Mughal territory without bloodshed.",
+            "So their contingent started proceeding towards the Hills,",
+            "Concealing themselves in the forests and hills in the north."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-033-p259-b008",
+          "type": "verse",
+          "text": "In this way they managed to reach upto Kiratpur6 Sahib, But found it difficult to cross Ropar (because of Mughal concentration). So they put up a camp in the vicinity of Ropar town, And sent a message of their arrival to Banda Singh. (15)",
+          "lines": [
+            "In this way they managed to reach upto Kiratpur6 Sahib,",
+            "But found it difficult to cross Ropar (because of Mughal concentration).",
+            "So they put up a camp in the vicinity of Ropar town,",
+            "And sent a message of their arrival to Banda Singh."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-033-p259-b009",
+          "type": "verse",
+          "text": "Banda Singh directed them to stay put at that camp, As he would call them when his own force reached that area. So the Majhail Singhs camped at this place for many days, After obeying the instructions from Banda Singh's headquarters. (16)",
+          "lines": [
+            "Banda Singh directed them to stay put at that camp,",
+            "As he would call them when his own force reached that area.",
+            "So the Majhail Singhs camped at this place for many days,",
+            "After obeying the instructions from Banda Singh's headquarters."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-033-p259-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-033-p259-b011",
+          "type": "verse",
+          "text": "All the Majhail Singhs who started from the holy city of Amritsar, And were camping in this hilly region around Ropar, They were provided with all kinds of provisions and rations, By a wealthy Sikh merchant named Sardar Pishora Singh Arora. (17)",
+          "lines": [
+            "All the Majhail Singhs who started from the holy city of Amritsar,",
+            "And were camping in this hilly region around Ropar,",
+            "They were provided with all kinds of provisions and rations,",
+            "By a wealthy Sikh merchant named Sardar Pishora Singh Arora."
+          ],
+          "number": "17"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-032",
+  "nextChapterId": "episode-034"
+}

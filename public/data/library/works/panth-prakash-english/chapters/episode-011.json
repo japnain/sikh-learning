@@ -1,0 +1,177 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-011",
+  "chapterNumber": 11,
+  "episodeNumber": 11,
+  "kind": "episode",
+  "title": "Lineage of the Sikh Gurus",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 99,
+  "endSourcePage": 101,
+  "wordCount": 350,
+  "charCount": 2020,
+  "startPosition": 8763,
+  "pages": [
+    {
+      "sourcePageNumber": 99,
+      "fileName": "EPUB/page_99.html",
+      "sourceHref": "EPUB/page_99.html",
+      "printPageNumber": 55,
+      "blocks": [
+        {
+          "id": "episode-011-p99-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-011-p99-b003",
+          "type": "verse",
+          "text": "Then David Murry enquired of me, That I should reveal the secret of the Sikh Guru's lineage. How other Sikh Gurus succeeded Guru Nanak, I must narrate the whole sequence and detail. (1)",
+          "lines": [
+            "Then David Murry enquired of me,",
+            "That I should reveal the secret of the Sikh Guru's lineage.",
+            "How other Sikh Gurus succeeded Guru Nanak,",
+            "I must narrate the whole sequence and detail."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-011-p99-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-011-p99-b005",
+          "type": "verse",
+          "text": "Then I supplied him with all the details, That Guru Angad Dev succeeded Guru Nanak. If I started narrating the biographical details about Guru Angad, The present volume would never come to its end. (2)",
+          "lines": [
+            "Then I supplied him with all the details,",
+            "That Guru Angad Dev succeeded Guru Nanak.",
+            "If I started narrating the biographical details about Guru Angad,",
+            "The present volume would never come to its end."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-011-p99-b006",
+          "type": "verse",
+          "text": "Guru Angad Dev was succeeded by Guru Amar Das, Who deserved to be an inheritor of the Guru's seat. As he made the rulers of twenty two states his followers, Whosoever claimed to be a ruler, became his follower. (3)",
+          "lines": [
+            "Guru Angad Dev was succeeded by Guru Amar Das,",
+            "Who deserved to be an inheritor of the Guru's seat.",
+            "As he made the rulers of twenty two states his followers,",
+            "Whosoever claimed to be a ruler, became his follower."
+          ],
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 101,
+      "fileName": "EPUB/page_101.html",
+      "sourceHref": "EPUB/page_101.html",
+      "printPageNumber": 57,
+      "blocks": [
+        {
+          "id": "episode-011-p101-b001",
+          "type": "verse",
+          "text": "Guru Ramdas became the perfect Guru thereafter, Since then Guruship remained vested in the Sodhi Dynasty. The succession then passed on to Guru Arjun and Guru Hargobind, And Guru Hargobind had to pick up sword to kill Pandey Khan2 . (4)",
+          "lines": [
+            "Guru Ramdas became the perfect Guru thereafter,",
+            "Since then Guruship remained vested in the Sodhi Dynasty.",
+            "The succession then passed on to Guru Arjun and Guru Hargobind,",
+            "And Guru Hargobind had to pick up sword to kill Pandey Khan2 ."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-011-p101-b002",
+          "type": "verse",
+          "text": "He became an embodiment of both spiritual and temporal qualities, As he even defeated Shahjahan3 in the field of battle. He also vanquished Lalla Beg4 and Kambar Beg5 in battles, But, later on, the emperor patched up with Guru Hargobind. (5)",
+          "lines": [
+            "He became an embodiment of both spiritual and temporal qualities,",
+            "As he even defeated Shahjahan3 in the field of battle.",
+            "He also vanquished Lalla Beg4 and Kambar Beg5 in battles,",
+            "But, later on, the emperor patched up with Guru Hargobind."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-011-p101-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-011-p101-b004",
+          "type": "verse",
+          "text": "Thereafter Guru Harrai and Guru Harkrishan followed, And attained the status and glory of Sikh Gurus. Their blessings fulfilled all the desires of their followers, Who offered their services to the Gurus out of gratitude. (6)",
+          "lines": [
+            "Thereafter Guru Harrai and Guru Harkrishan followed,",
+            "And attained the status and glory of Sikh Gurus.",
+            "Their blessings fulfilled all the desires of their followers,",
+            "Who offered their services to the Gurus out of gratitude."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-011-p101-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-011-p101-b006",
+          "type": "verse",
+          "text": "Then Guru Tegh Bahadur6 was the next successor, Who gave up his life for the protection of others' human rights. He made the supreme sacrifice in this Dark Age (Kaliyuga), And protected the religious rights and rituals of the Hindus. (7)",
+          "lines": [
+            "Then Guru Tegh Bahadur6 was the next successor,",
+            "Who gave up his life for the protection of others' human rights.",
+            "He made the supreme sacrifice in this Dark Age (Kaliyuga),",
+            "And protected the religious rights and rituals of the Hindus."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-011-p101-b007",
+          "type": "verse",
+          "text": "Then Guru Gobind Singh7 succeeded as the sovereign prophet, Who bestowed Sovereignty on the Khalsa Panth. As one lamp lights another lamp and illuminates, So the ten Sikh gurus succeeded one after another. (8)",
+          "lines": [
+            "Then Guru Gobind Singh7 succeeded as the sovereign prophet,",
+            "Who bestowed Sovereignty on the Khalsa Panth.",
+            "As one lamp lights another lamp and illuminates,",
+            "So the ten Sikh gurus succeeded one after another."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-011-p101-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-011-p101-b009",
+          "type": "verse",
+          "text": "Thus, the ten Sikh Gurus who became the Gurus of the Sikhs, I have narrated the names of each one of them. David Murry should get these details included as such, In the history of the Sikhs being written by Bootey Shah. (9)",
+          "lines": [
+            "Thus, the ten Sikh Gurus who became the Gurus of the Sikhs,",
+            "I have narrated the names of each one of them.",
+            "David Murry should get these details included as such,",
+            "In the history of the Sikhs being written by Bootey Shah."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-011-p101-b010",
+          "type": "paragraph",
+          "text": "."
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-010",
+  "nextChapterId": "episode-012"
+}

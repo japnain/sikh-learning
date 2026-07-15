@@ -1,0 +1,708 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-002",
+  "chapterNumber": 2,
+  "episodeNumber": 2,
+  "kind": "episode",
+  "title": "The Second Episode",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 55,
+  "endSourcePage": 65,
+  "wordCount": 1773,
+  "charCount": 10434,
+  "startPosition": 1410,
+  "pages": [
+    {
+      "sourcePageNumber": 55,
+      "fileName": "EPUB/page_55.html",
+      "sourceHref": "EPUB/page_55.html",
+      "printPageNumber": 11,
+      "blocks": [
+        {
+          "id": "episode-002-p55-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p55-b003",
+          "type": "verse",
+          "text": "The Mughal emperor told the British in this way, That no Authority had ever conferred any Sovereignty on the Sikhs. These unruly subjects (the Sikhs) had become defiant to the Mughal rule, When Nadir Shah and Ahmad Shah Abdali came to invade the region. (1)",
+          "lines": [
+            "The Mughal emperor told the British in this way,",
+            "That no Authority had ever conferred any Sovereignty on the Sikhs.",
+            "These unruly subjects (the Sikhs) had become defiant to the Mughal rule,",
+            "When Nadir Shah and Ahmad Shah Abdali came to invade the region."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-002-p55-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p55-b005",
+          "type": "verse",
+          "text": "The British accepted the Mughal version and recorded it as such, That No authority had ever conferred any sovereignty on the Sikhs. Neither had any Divine power bestowed any sovereignty on them, Nor had any Temporal Authority granted them any statehood. (2)",
+          "lines": [
+            "The British accepted the Mughal version and recorded it as such,",
+            "That No authority had ever conferred any sovereignty on the Sikhs.",
+            "Neither had any Divine power bestowed any sovereignty on them,",
+            "Nor had any Temporal Authority granted them any statehood."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-002-p55-b006",
+          "type": "verse",
+          "text": "The British recorded the Mughal version as such in a book, As ordered by their seniors, they recorded this version in great haste. That the Sikh had neither any Divine sanction for any sovereignty, Nor had any Temporal Authority conferred any statehood on them. (3)",
+          "lines": [
+            "The British recorded the Mughal version as such in a book,",
+            "As ordered by their seniors, they recorded this version in great haste.",
+            "That the Sikh had neither any Divine sanction for any sovereignty,",
+            "Nor had any Temporal Authority conferred any statehood on them."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-002-p55-b007",
+          "type": "verse",
+          "text": "How long can mere subjects remain defiant to the rule of Authority, So they (the British) would soon take over the region from the Sikhs. When the British accepted and recorded the Mughal version as such, The wicked Mughal emperor felt extremely elated with his attempt. (4)",
+          "lines": [
+            "How long can mere subjects remain defiant to the rule of Authority,",
+            "So they (the British) would soon take over the region from the Sikhs.",
+            "When the British accepted and recorded the Mughal version as such,",
+            "The wicked Mughal emperor felt extremely elated with his attempt."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-002-p55-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p55-b009",
+          "type": "verse",
+          "text": "Why should a Muslim not gloat over such an event, Why should he desist from indulging in slander and calumny? There had been a conflict between the Muslims and the Hindus, A life-long ideological and religious conflict between the two. (5)",
+          "lines": [
+            "Why should a Muslim not gloat over such an event,",
+            "Why should he desist from indulging in slander and calumny?",
+            "There had been a conflict between the Muslims and the Hindus,",
+            "A life-long ideological and religious conflict between the two."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-002-p55-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p55-b011",
+          "type": "verse",
+          "text": "A period of several years passed in this way. But when Maharaja Ranjit Singh started harassing the rulers of Phulkian States' , They invited the British to seek their protection against the Maharaja And they stationed the British troops at Ludhiana. (6)",
+          "lines": [
+            "A period of several years passed in this way.",
+            "But when Maharaja Ranjit Singh started harassing the rulers of Phulkian States' ,",
+            "They invited the British to seek their protection against the Maharaja And they stationed the British troops at Ludhiana."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-002-p55-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p55-b013",
+          "type": "verse",
+          "text": "It came to happen after the passage of eighteenth century, In the year one thousand eight hundred and sixty four (1864)2. That the British repulsed the attack of Maharaja's forces3 , And chased them away across the river Satluj. (7)",
+          "lines": [
+            "It came to happen after the passage of eighteenth century,",
+            "In the year one thousand eight hundred and sixty four (1864)2.",
+            "That the British repulsed the attack of Maharaja's forces3 ,",
+            "And chased them away across the river Satluj."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-002-p55-b014",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-002-p55-b015",
+          "type": "verse",
+          "text": "Thereafter, the British negotiated a settlement with Maharaja Ranjit Singh, That their forces would never cross the river Satluj (Satdrav)4 . They also gave an assurance of providing protection to the Phulkian rulers, Provided the latter agreed to be their protectorates. (8)",
+          "lines": [
+            "Thereafter, the British negotiated a settlement with Maharaja Ranjit Singh,",
+            "That their forces would never cross the river Satluj (Satdrav)4 .",
+            "They also gave an assurance of providing protection to the Phulkian rulers,",
+            "Provided the latter agreed to be their protectorates."
+          ],
+          "number": "8"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 57,
+      "fileName": "EPUB/page_57.html",
+      "sourceHref": "EPUB/page_57.html",
+      "printPageNumber": 13,
+      "blocks": [
+        {
+          "id": "episode-002-p57-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p57-b002",
+          "type": "verse",
+          "text": "General Sir David Ochterlony still bore it in his mind, (His old obsession of recording the True history of the Sikhs). He started exploring this topic on his arrival at Ludhiana, Where he came into contact with the Sikhs. (9)",
+          "lines": [
+            "General Sir David Ochterlony still bore it in his mind,",
+            "(His old obsession of recording the True history of the Sikhs).",
+            "He started exploring this topic on his arrival at Ludhiana,",
+            "Where he came into contact with the Sikhs."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-002-p57-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p57-b004",
+          "type": "verse",
+          "text": "Then it occurred to the mind of General Sir David Ochterlony, That the Mughal emperor had recorded a (biased) version of Sikh history. He had a junior officer Captain Murray5 under his command. Who knew a large number of people of that region. (10)",
+          "lines": [
+            "Then it occurred to the mind of General Sir David Ochterlony,",
+            "That the Mughal emperor had recorded a (biased) version of Sikh history.",
+            "He had a junior officer Captain Murray5 under his command.",
+            "Who knew a large number of people of that region."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-002-p57-b005",
+          "type": "verse",
+          "text": "So General Ochterlony summoned Captain Murray to come to him, And briefed him thoroughly about the object of his mission. He directed him to get the history of origin of the Sikhs recorded, And how did the Sikhs establish a sovereign Sikh state. (11)",
+          "lines": [
+            "So General Ochterlony summoned Captain Murray to come to him,",
+            "And briefed him thoroughly about the object of his mission.",
+            "He directed him to get the history of origin of the Sikhs recorded,",
+            "And how did the Sikhs establish a sovereign Sikh state."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-002-p57-b006",
+          "type": "verse",
+          "text": "And asked him to verify if Mughal emperor's version was authentic, Or had the Mughal emperor tampered with some facts of history. When there had been no love lost between the Muslims and Hindus, Then how could a Muslim speak the truth and state the real facts? (12)",
+          "lines": [
+            "And asked him to verify if Mughal emperor's version was authentic,",
+            "Or had the Mughal emperor tampered with some facts of history.",
+            "When there had been no love lost between the Muslims and Hindus,",
+            "Then how could a Muslim speak the truth and state the real facts?"
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-002-p57-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p57-b008",
+          "type": "verse",
+          "text": "How did Jat6 peasants wrest the provinces from the Mughals, How did the mighty rulers suffer defeat from the plebeians? The Mughals had been the rulers over twenty two states, And their writ ran over many other Islands as well. (13)",
+          "lines": [
+            "How did Jat6 peasants wrest the provinces from the Mughals,",
+            "How did the mighty rulers suffer defeat from the plebeians?",
+            "The Mughals had been the rulers over twenty two states,",
+            "And their writ ran over many other Islands as well."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-002-p57-b009",
+          "type": "verse",
+          "text": "When the Mughals were ruling over the whole of India, What mysterious force had vanquished their empire? How did the lamb-hearted subjects overpower the lion-hearted rulers? How did the timid quail-like subjects subdue the ferocious hawk-like rulers? (14)",
+          "lines": [
+            "When the Mughals were ruling over the whole of India,",
+            "What mysterious force had vanquished their empire?",
+            "How did the lamb-hearted subjects overpower the lion-hearted rulers?",
+            "How did the timid quail-like subjects subdue the ferocious hawk-like rulers?"
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-002-p57-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p57-b011",
+          "type": "verse",
+          "text": "How did the lambs vanquish the lions? How did the quails kill the falcons? How did mere subjects decimate the rulers? This was, indeed a great miraculous act. (15)",
+          "lines": [
+            "How did the lambs vanquish the lions?",
+            "How did the quails kill the falcons?",
+            "How did mere subjects decimate the rulers?",
+            "This was, indeed a great miraculous act."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-002-p57-b012",
+          "type": "verse",
+          "text": "How much strength did they (the Sikhs) really wield, Which martial or religious sect did they belong to? They must record all the real facts, In order to arrive at a firm conclusion. (16)",
+          "lines": [
+            "How much strength did they (the Sikhs) really wield,",
+            "Which martial or religious sect did they belong to?",
+            "They must record all the real facts,",
+            "In order to arrive at a firm conclusion."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-002-p57-b013",
+          "type": "verse",
+          "text": "David Murray suggested to general Ochterlony, That he was in favour of the earlier Mughal Emperor's version. And he recommended it to general Ochterlony, That they should dispatch the same version to the king in London. (17)",
+          "lines": [
+            "David Murray suggested to general Ochterlony,",
+            "That he was in favour of the earlier Mughal Emperor's version.",
+            "And he recommended it to general Ochterlony,",
+            "That they should dispatch the same version to the king in London."
+          ],
+          "number": "17"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 59,
+      "fileName": "EPUB/page_59.html",
+      "sourceHref": "EPUB/page_59.html",
+      "printPageNumber": 15,
+      "blocks": [
+        {
+          "id": "episode-002-p59-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p59-b002",
+          "type": "verse",
+          "text": "General Ochterlony was very seasoned and well-informed, He did not accept captain Murray's recommendation. If the Mughal emperor's version came out to be false, Then his own reputation would be sullied and tarnished. (18)",
+          "lines": [
+            "General Ochterlony was very seasoned and well-informed,",
+            "He did not accept captain Murray's recommendation.",
+            "If the Mughal emperor's version came out to be false,",
+            "Then his own reputation would be sullied and tarnished."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-002-p59-b003",
+          "type": "verse",
+          "text": "So he contemplated recording another version, As he was quite experienced and very well-enlightened. That there had been a life-long strife between the Sikhs and the Mughals, General Ochterlony was very well aware of their differences. (19)",
+          "lines": [
+            "So he contemplated recording another version,",
+            "As he was quite experienced and very well-enlightened.",
+            "That there had been a life-long strife between the Sikhs and the Mughals,",
+            "General Ochterlony was very well aware of their differences."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-002-p59-b004",
+          "type": "verse",
+          "text": "If the Mughal emperor's version was true to the facts, The people at large would bear a witness to it. But if the Mughal emperor had tampered with the facts, Then he must sift the real facts from fiction. (20)",
+          "lines": [
+            "If the Mughal emperor's version was true to the facts,",
+            "The people at large would bear a witness to it.",
+            "But if the Mughal emperor had tampered with the facts,",
+            "Then he must sift the real facts from fiction."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-002-p59-b005",
+          "type": "verse",
+          "text": "Else, they must discover some old manuscript, Then alone would he be convinced of its authenticity. He must dispatch only the authentic version to London, Which did not contain any trace of untruth. (21)",
+          "lines": [
+            "Else, they must discover some old manuscript,",
+            "Then alone would he be convinced of its authenticity.",
+            "He must dispatch only the authentic version to London,",
+            "Which did not contain any trace of untruth."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-002-p59-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p59-b007",
+          "type": "verse",
+          "text": "How did the Sikhs capture political power and become sovereign? They must describe every event and their exact chronology. Because the strife between the Sikhs and the Mughals, Had been widely known to the people of the whole world. (22)",
+          "lines": [
+            "How did the Sikhs capture political power and become sovereign?",
+            "They must describe every event and their exact chronology.",
+            "Because the strife between the Sikhs and the Mughals,",
+            "Had been widely known to the people of the whole world."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-002-p59-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p59-b009",
+          "type": "verse",
+          "text": "After receiving these orders, Captain Murray made efforts, He summoned the services of Bootey Shah Maulvi7 . He directed him to write a book about the Sikhs, And asked him to record the facts about the origin of the Sikhs. (23)",
+          "lines": [
+            "After receiving these orders,",
+            "Captain Murray made efforts,",
+            "He summoned the services of Bootey Shah Maulvi7 .",
+            "He directed him to write a book about the Sikhs,",
+            "And asked him to record the facts about the origin of the Sikhs."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-002-p59-b010",
+          "type": "verse",
+          "text": "And further instructed him to record the authentic version only, And warned him not to tamper with the facts. Since the version was to be dispatched to the king in London, And its further copies were to be sent to other continents. (24)",
+          "lines": [
+            "And further instructed him to record the authentic version only,",
+            "And warned him not to tamper with the facts.",
+            "Since the version was to be dispatched to the king in London,",
+            "And its further copies were to be sent to other continents."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-002-p59-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p59-b012",
+          "type": "verse",
+          "text": "Giving him all the detailed instructions about his motives, Captain David Murray briefed Bootey Shah thoroughly. That he should write the whole truth about the origin of the Khalsa, And how the Sikhs progressed and expanded their influence. (25)",
+          "lines": [
+            "Giving him all the detailed instructions about his motives,",
+            "Captain David Murray briefed Bootey Shah thoroughly.",
+            "That he should write the whole truth about the origin of the Khalsa,",
+            "And how the Sikhs progressed and expanded their influence."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-002-p59-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p59-b014",
+          "type": "verse",
+          "text": "I (the author) had also gone to attend the court of David Murray, Hearing this conversation, I felt quite concerned. This scribe Maulvi Bootey Shah, being a Muslim, How could he narrate a just and proper account of the Sikhs. (26)",
+          "lines": [
+            "I (the author) had also gone to attend the court of David Murray,",
+            "Hearing this conversation,",
+            "I felt quite concerned.",
+            "This scribe Maulvi Bootey Shah, being a Muslim,",
+            "How could he narrate a just and proper account of the Sikhs."
+          ],
+          "number": "26"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 61,
+      "fileName": "EPUB/page_61.html",
+      "sourceHref": "EPUB/page_61.html",
+      "printPageNumber": 17,
+      "blocks": [
+        {
+          "id": "episode-002-p61-b001",
+          "type": "verse",
+          "text": "After a thorough deliberation, I persuaded Captain Murray, That he should allow me to go through his (Bootey Shah's) version. After a thorough perusal of his narration I told Captain Murray, That he had not given the whole truth about the Sikhs. (27)",
+          "lines": [
+            "After a thorough deliberation,",
+            "I persuaded Captain Murray,",
+            "That he should allow me to go through his (Bootey Shah's) version.",
+            "After a thorough perusal of his narration I told Captain Murray,",
+            "That he had not given the whole truth about the Sikhs."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-002-p61-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p61-b003",
+          "type": "verse",
+          "text": "In this way, I developed a bond of friendship with him, And he invited me to express his desire. That I should get everything recorded to him, As to how the Khalsa originated and came into existence. (28)",
+          "lines": [
+            "In this way,",
+            "I developed a bond of friendship with him,",
+            "And he invited me to express his desire.",
+            "That I should get everything recorded to him,",
+            "As to how the Khalsa originated and came into existence."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-002-p61-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p61-b005",
+          "type": "verse",
+          "text": "Then I told Captain Murray honestly and succinctly, That he had reposed his faith in a Muslim. But there had been a life-long conflict between the Muslims and the Hindus, As they had been in continuous confrontation with each other. (29)",
+          "lines": [
+            "Then I told Captain Murray honestly and succinctly,",
+            "That he had reposed his faith in a Muslim.",
+            "But there had been a life-long conflict between the Muslims and the Hindus,",
+            "As they had been in continuous confrontation with each other."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-002-p61-b006",
+          "type": "verse",
+          "text": "The Muslims had been as much slandering the Hindus, As the Hindus had been condemning the Muslims. Hearing this, Captain Murray made a terse remark, That the Britishers were quite shrewd and sensible. (30)",
+          "lines": [
+            "The Muslims had been as much slandering the Hindus,",
+            "As the Hindus had been condemning the Muslims.",
+            "Hearing this,",
+            "Captain Murray made a terse remark,",
+            "That the Britishers were quite shrewd and sensible."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-002-p61-b007",
+          "type": "verse",
+          "text": "They were as capable of sifting facts from fiction, As a Swan8 would separate the milk content from water. So he (the author) must state the facts unhesitatingly, Because he would not record any thing false. (31)",
+          "lines": [
+            "They were as capable of sifting facts from fiction,",
+            "As a Swan8 would separate the milk content from water.",
+            "So he (the author) must state the facts unhesitatingly,",
+            "Because he would not record any thing false."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-002-p61-b008",
+          "type": "verse",
+          "text": "Whenever the British had ventured into an alien land, They had always recorded the entire history of that region. Whatever they had found authentic and credible, They had despatched its contents to the king in London. (32)",
+          "lines": [
+            "Whenever the British had ventured into an alien land,",
+            "They had always recorded the entire history of that region.",
+            "Whatever they had found authentic and credible,",
+            "They had despatched its contents to the king in London."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-002-p61-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p61-b010",
+          "type": "verse",
+          "text": "Then addressing me Captain Murray asked me the question, That I should disclose him this much of a mystery. How did the Sikhs acquire political power and statehood, And who bestowed sovereignty on the Sikhs? (33)",
+          "lines": [
+            "Then addressing me Captain Murray asked me the question,",
+            "That I should disclose him this much of a mystery.",
+            "How did the Sikhs acquire political power and statehood,",
+            "And who bestowed sovereignty on the Sikhs?"
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-002-p61-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p61-b012",
+          "type": "verse",
+          "text": "Then, I answered Captain Murray in these words, \"The true Lord Divine has conferred sovereignty on the Sikhs.\" Captain Murray asked me who was their true Lord, I replied, \"Guru Nanak is their true Lord.\" (34)",
+          "lines": [
+            "Then,",
+            "I answered Captain Murray in these words,",
+            "\"The true Lord Divine has conferred sovereignty on the Sikhs.\" Captain Murray asked me who was their true Lord,",
+            "I replied,",
+            "\"Guru Nanak is their true Lord.\""
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-002-p61-b013",
+          "type": "verse",
+          "text": "Murray said that Nanak was a mere mendicant, What did he know about political power and sovereignty? I remarked that Guru Nanak was the Lord of Lords, He was a Divine prophet and lord of the whole world. (35)",
+          "lines": [
+            "Murray said that Nanak was a mere mendicant,",
+            "What did he know about political power and sovereignty?",
+            "I remarked that Guru Nanak was the Lord of Lords,",
+            "He was a Divine prophet and lord of the whole world."
+          ],
+          "number": "35"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 63,
+      "fileName": "EPUB/page_63.html",
+      "sourceHref": "EPUB/page_63.html",
+      "printPageNumber": 19,
+      "blocks": [
+        {
+          "id": "episode-002-p63-b001",
+          "type": "verse",
+          "text": "His reprimands turned many kings into paupers, And his blessings turned many paupers into kings. By keeping himself detached from politics and power, He came to acquire the status of a Lord of Lords. (36)",
+          "lines": [
+            "His reprimands turned many kings into paupers,",
+            "And his blessings turned many paupers into kings.",
+            "By keeping himself detached from politics and power,",
+            "He came to acquire the status of a Lord of Lords."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-002-p63-b002",
+          "type": "verse",
+          "text": "Whosoever sought his Divine grace and blessings, They were imbued with power and sovereignty. His blessings made the timid sparrows pounce upon the hawks, And the meek lambs tear apart the lions. (37)",
+          "lines": [
+            "Whosoever sought his Divine grace and blessings,",
+            "They were imbued with power and sovereignty.",
+            "His blessings made the timid sparrows pounce upon the hawks,",
+            "And the meek lambs tear apart the lions."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-002-p63-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-002-p63-b004",
+          "type": "verse",
+          "text": "Whose armies consisted of millions of horse riders, And whose equipage consisted of thousands of canons. Who were the mighty occupants of royal thrones, They were annihilated by the descendents of Guru Nanak. (38)",
+          "lines": [
+            "Whose armies consisted of millions of horse riders,",
+            "And whose equipage consisted of thousands of canons.",
+            "Who were the mighty occupants of royal thrones,",
+            "They were annihilated by the descendents of Guru Nanak."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-002-p63-b005",
+          "type": "verse",
+          "text": "Intoxicated with a dose of Cannabis and the Name of the Lord, His followers (The Sikhs) charged at their adversaries with such ferocity, That their enemies could not bear the brunt of their attack, And they perished instantly under their mighty strokes. (39)",
+          "lines": [
+            "Intoxicated with a dose of Cannabis and the Name of the Lord,",
+            "His followers (The Sikhs) charged at their adversaries with such ferocity,",
+            "That their enemies could not bear the brunt of their attack,",
+            "And they perished instantly under their mighty strokes."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-002-p63-b006",
+          "type": "verse",
+          "text": "Kabit Batisa9 : Dear Murray then asked me to explain, How Guru Nanak was blessed with Divine power? Dear pious readers, I narrated him the following account: Responding to people's prayers, God Himself invited Guru Nanak, And made him a sovereign on His own behalf, And bestowed Nanak with all the Divine powers, Thereafter with a warm hug, God sent him to the world, Naming him Nanak, bade him to take birth in the Bedi10 dynasty. God instructed Guru Nanak to protect the meek and the humble, And crush all those who were evil and wicked. (40)",
+          "lines": [
+            "Kabit Batisa9 : Dear Murray then asked me to explain,",
+            "How Guru Nanak was blessed with Divine power?",
+            "Dear pious readers,",
+            "I narrated him the following account: Responding to people's prayers,",
+            "God Himself invited Guru Nanak,",
+            "And made him a sovereign on His own behalf,",
+            "And bestowed Nanak with all the Divine powers,",
+            "Thereafter with a warm hug,",
+            "God sent him to the world,",
+            "Naming him Nanak, bade him to take birth in the Bedi10 dynasty.",
+            "God instructed Guru Nanak to protect the meek and the humble,",
+            "And crush all those who were evil and wicked."
+          ],
+          "number": "40"
+        },
+        {
+          "id": "episode-002-p63-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-002-p63-b008",
+          "type": "verse",
+          "text": "Murray asked me to narrate all the events, Which led to the bestowal of Divine seal on Nanak/s house. I narrate it to my devout and dear readers, The whole account as I did to Captain Murray. (41)",
+          "lines": [
+            "Murray asked me to narrate all the events,",
+            "Which led to the bestowal of Divine seal on Nanak/s house.",
+            "I narrate it to my devout and dear readers,",
+            "The whole account as I did to Captain Murray."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-002-p63-b009",
+          "type": "verse",
+          "text": "A lot of Chaos had come to prevail during the Kaliyuga, Corruption increased as religion and morality had declined. The rulers had turned greedy and avaricious, They had abandoned their moral duty of just governance. (42)",
+          "lines": [
+            "A lot of Chaos had come to prevail during the Kaliyuga,",
+            "Corruption increased as religion and morality had declined.",
+            "The rulers had turned greedy and avaricious,",
+            "They had abandoned their moral duty of just governance."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-002-p63-b010",
+          "type": "paragraph",
+          "text": "The followers of the earlier religious sects11 who happened to be there, They had also gone astray (from their moral and religious path)."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 65,
+      "fileName": "EPUB/page_65.html",
+      "sourceHref": "EPUB/page_65.html",
+      "printPageNumber": 21,
+      "blocks": [
+        {
+          "id": "episode-002-p65-b001",
+          "type": "verse",
+          "text": "The greed for lucre had corrupted every section of society, Every one wished to enrich one's own family abandoning all sense of morality. (43)",
+          "lines": [
+            "The greed for lucre had corrupted every section of society,",
+            "Every one wished to enrich one's own family abandoning all sense of morality."
+          ],
+          "number": "43"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-001",
+  "nextChapterId": "episode-003"
+}

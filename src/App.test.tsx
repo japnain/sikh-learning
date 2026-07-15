@@ -243,3 +243,22 @@ test('reopening onboarding from more keeps the saved reading intent', async () =
   expect(screen.getByRole('button', { name: /i want to understand/i })).toHaveAttribute('aria-pressed', 'true')
   expect(useOnboardingStore.getState().learningGoal).toBe('understand')
 })
+
+test('uses the focused shell and hides primary navigation on an EPUB chapter route', async () => {
+  window.history.replaceState({}, '', '/library/panth-prakash-english/chapters/episode-001')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  expect(await screen.findByTestId('panth-chapter-reader', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.getByTestId('app-shell')).toHaveAttribute('data-reader-focus', 'true')
+  expect(screen.getByTestId('app-shell')).not.toHaveAttribute('data-navigation')
+  expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
+})

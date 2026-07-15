@@ -1,0 +1,153 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-010",
+  "chapterNumber": 10,
+  "episodeNumber": 10,
+  "kind": "episode",
+  "title": "Emperor Karoon",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 97,
+  "endSourcePage": 99,
+  "wordCount": 347,
+  "charCount": 2041,
+  "startPosition": 8416,
+  "pages": [
+    {
+      "sourcePageNumber": 97,
+      "fileName": "EPUB/page_97.html",
+      "sourceHref": "EPUB/page_97.html",
+      "printPageNumber": 53,
+      "blocks": [
+        {
+          "id": "episode-010-p97-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-010-p97-b003",
+          "type": "verse",
+          "text": "After hearing my narration, David Murry remarked, That all his doubts about Guru Nanak had been removed. But how did Baba Nanak hold a discussion with Emperor Karoon1 , He had certainly his doubts about that dialogue. (1)",
+          "lines": [
+            "After hearing my narration,",
+            "David Murry remarked,",
+            "That all his doubts about Guru Nanak had been removed.",
+            "But how did Baba Nanak hold a discussion with Emperor Karoon1 ,",
+            "He had certainly his doubts about that dialogue."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-010-p97-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-010-p97-b005",
+          "type": "verse",
+          "text": "The Emperor Karoon's empire existed thousands of years ago, How could Baba Nanak have a dialogue with that emperor. Then I gave an explanation to David Murry, That there was an anomaly about this dialogue. (2)",
+          "lines": [
+            "The Emperor Karoon's empire existed thousands of years ago,",
+            "How could Baba Nanak have a dialogue with that emperor.",
+            "Then I gave an explanation to David Murry,",
+            "That there was an anomaly about this dialogue."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-010-p97-b006",
+          "type": "verse",
+          "text": "Baba Nanak himself never narrated this episode in his own words, But some foolish chronicler had written it as a dialogue. Later on another more irresponsible writer further expanded it, And made further interpolations into this episode. (3)",
+          "lines": [
+            "Baba Nanak himself never narrated this episode in his own words,",
+            "But some foolish chronicler had written it as a dialogue.",
+            "Later on another more irresponsible writer further expanded it,",
+            "And made further interpolations into this episode."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-010-p97-b007",
+          "type": "verse",
+          "text": "They neither tallied the chronology of years between the two personages, Nor did they calculate the time lag between the two events. Since such discussions between saints were quite prevalent in those days, Some odd writer had recorded it as a discussion (between Karoon and Nanak). (4)",
+          "lines": [
+            "They neither tallied the chronology of years between the two personages,",
+            "Nor did they calculate the time lag between the two events.",
+            "Since such discussions between saints were quite prevalent in those days,",
+            "Some odd writer had recorded it as a discussion (between Karoon and Nanak)."
+          ],
+          "number": "4"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 99,
+      "fileName": "EPUB/page_99.html",
+      "sourceHref": "EPUB/page_99.html",
+      "printPageNumber": 55,
+      "blocks": [
+        {
+          "id": "episode-010-p99-b001",
+          "type": "verse",
+          "text": "They could not differentiate between an episode and a discussion, As the foolish writers could not ascertain the real facts. I regard the first chronicler as an irresponsible romantic fellow, And count the latter writers in the same category of romantics. As some idiots mistake a dried empty beehive for a worn out moon splinter, Much as some others regard an oil-seed crusher as God's eye lashes' colouting stick. (5)",
+          "lines": [
+            "They could not differentiate between an episode and a discussion,",
+            "As the foolish writers could not ascertain the real facts.",
+            "I regard the first chronicler as an irresponsible romantic fellow,",
+            "And count the latter writers in the same category of romantics.",
+            "As some idiots mistake a dried empty beehive for a worn out moon splinter,",
+            "Much as some others regard an oil-seed crusher as God's eye lashes' colouting stick."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-010-p99-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-010-p99-b003",
+          "type": "verse",
+          "text": "Although there is a gap of thousands of years separating, The times of Muslim emperor and Baba Nanak. But this myth about Karoon's forty heaps of wealth, Had been written time and again by these writers. (6)",
+          "lines": [
+            "Although there is a gap of thousands of years separating,",
+            "The times of Muslim emperor and Baba Nanak.",
+            "But this myth about Karoon's forty heaps of wealth,",
+            "Had been written time and again by these writers."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-010-p99-b004",
+          "type": "verse",
+          "text": "There had been an emperor by the name of karoon, Baba Nanak had just referred to Emperor Karoon's myth. And how he had piled up forty heaps of coins, And how he died empty handed even after amassing such a huge wealth. (7)",
+          "lines": [
+            "There had been an emperor by the name of karoon,",
+            "Baba Nanak had just referred to Emperor Karoon's myth.",
+            "And how he had piled up forty heaps of coins,",
+            "And how he died empty handed even after amassing such a huge wealth."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-010-p99-b005",
+          "type": "verse",
+          "text": "There was an ancient prophet by the name of Amar, Who had met and blessed Emperor Karoon. But the idiotic/foolish writers have attributed this incident, As a dialogue held between Karoon and Baba Nanak. (8)",
+          "lines": [
+            "There was an ancient prophet by the name of Amar,",
+            "Who had met and blessed Emperor Karoon.",
+            "But the idiotic/foolish writers have attributed this incident,",
+            "As a dialogue held between Karoon and Baba Nanak."
+          ],
+          "number": "8"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-009",
+  "nextChapterId": "episode-011"
+}

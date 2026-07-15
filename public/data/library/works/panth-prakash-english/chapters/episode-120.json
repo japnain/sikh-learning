@@ -1,0 +1,955 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-120",
+  "chapterNumber": 120,
+  "episodeNumber": 120,
+  "kind": "episode",
+  "title": "Ram Rauni",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 439,
+  "endSourcePage": 453,
+  "wordCount": 2441,
+  "charCount": 14155,
+  "startPosition": 152079,
+  "pages": [
+    {
+      "sourcePageNumber": 439,
+      "fileName": "EPUB/page_439.html",
+      "sourceHref": "EPUB/page_439.html",
+      "printPageNumber": 385,
+      "blocks": [
+        {
+          "id": "episode-120-p439-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p439-b003",
+          "type": "verse",
+          "text": "Having Passed through several hardships, did the Khalsa Panth feel, That it was impossible to confront the Mughals from the wilds. Thus, did they come to an agreement after confabulations, That must they wage battles from behind a walled cover. (1)",
+          "lines": [
+            "Having Passed through several hardships, did the Khalsa Panth feel,",
+            "That it was impossible to confront the Mughals from the wilds.",
+            "Thus, did they come to an agreement after confabulations,",
+            "That must they wage battles from behind a walled cover."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-120-p439-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p439-b005",
+          "type": "verse",
+          "text": "Thereafter, did the Singhs wish to raise a walled cover, So that they could confront, fight and kill the enemy. Suggested someone that must they occupy an existing fort, Suggested another that wild growth was better than a fort. (2)",
+          "lines": [
+            "Thereafter, did the Singhs wish to raise a walled cover,",
+            "So that they could confront, fight and kill the enemy.",
+            "Suggested someone that must they occupy an existing fort,",
+            "Suggested another that wild growth was better than a fort."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-120-p439-b006",
+          "type": "verse",
+          "text": "Then did the veterans opine after a thorough deliberation, That even a lion did not feel safe without a shelter. Then after arriving at resolution at a religious congregation, The Khalsa Panth felt that even a lion felt protected in a wild. (3)",
+          "lines": [
+            "Then did the veterans opine after a thorough deliberation,",
+            "That even a lion did not feel safe without a shelter.",
+            "Then after arriving at resolution at a religious congregation,",
+            "The Khalsa Panth felt that even a lion felt protected in a wild."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-120-p439-b007",
+          "type": "verse",
+          "text": "Thereafter, did the devout Singhs put forth a proposal, How could they wage a war from a fort outside Amritsar? Why should they leave their Guru's sacred shrine at Amritsar, As even Kauravas and Pandavas2 had selected a secret place for war? (4)",
+          "lines": [
+            "Thereafter, did the devout Singhs put forth a proposal,",
+            "How could they wage a war from a fort outside Amritsar?",
+            "Why should they leave their Guru's sacred shrine at Amritsar,",
+            "As even Kauravas and Pandavas2 had selected a secret place for war?"
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-120-p439-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p439-b009",
+          "type": "paragraph",
+          "text": "The Sikh shrines around Amritsar were as sacred to the Sikhs, As was Kurukshetra sacred to the Kaurvas and Pandvas."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 441,
+      "fileName": "EPUB/page_441.html",
+      "sourceHref": "EPUB/page_441.html",
+      "printPageNumber": 387,
+      "blocks": [
+        {
+          "id": "episode-120-p441-b001",
+          "type": "verse",
+          "text": "It was better to die in war near a sacred Sikh shrine, At it would redeem a Sikh for thousands of next births. (5)",
+          "lines": [
+            "It was better to die in war near a sacred Sikh shrine,",
+            "At it would redeem a Sikh for thousands of next births."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-120-p441-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p441-b003",
+          "type": "verse",
+          "text": "Therefore, should the Singhs search for a suitable site, Thus did say one of the veterans among the Singhs. The five Sikh shrines (at Amritsar) that the Guru had constructed, Were these indeed more sacred than even Kurukshetra. (6)",
+          "lines": [
+            "Therefore, should the Singhs search for a suitable site,",
+            "Thus did say one of the veterans among the Singhs.",
+            "The five Sikh shrines (at Amritsar) that the Guru had constructed,",
+            "Were these indeed more sacred than even Kurukshetra."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-120-p441-b004",
+          "type": "verse",
+          "text": "Must they never depart from this place of sacred shrines, As no other place was more sacred than Amritsar. Must they make supreme sacrifices in the proximity of Gurudwaras, As no other option was better for shedding one's mortal frame. (7)",
+          "lines": [
+            "Must they never depart from this place of sacred shrines,",
+            "As no other place was more sacred than Amritsar.",
+            "Must they make supreme sacrifices in the proximity of Gurudwaras,",
+            "As no other option was better for shedding one's mortal frame."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-120-p441-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p441-b006",
+          "type": "verse",
+          "text": "They must wage a war against the Mughals, After raising a walled fort at their sacred place. While death at that place would take their souls to heavens, Survival in war would make them claimants for sovereignity. (8)",
+          "lines": [
+            "They must wage a war against the Mughals,",
+            "After raising a walled fort at their sacred place.",
+            "While death at that place would take their souls to heavens,",
+            "Survival in war would make them claimants for sovereignity."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-120-p441-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p441-b008",
+          "type": "verse",
+          "text": "Thereupon, a Sikh narrated an incident (about Amritsar), Whereby he had seen a great miracle that happened there. There had he seen a (pregnant) goat separated from the heard, Which did deliver a couple of offsprings at that place. (9)",
+          "lines": [
+            "Thereupon, a Sikh narrated an incident (about Amritsar),",
+            "Whereby he had seen a great miracle that happened there.",
+            "There had he seen a (pregnant) goat separated from the heard,",
+            "Which did deliver a couple of offsprings at that place."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-120-p441-b009",
+          "type": "verse",
+          "text": "As a couple of wolves had spotted out the goat's offsprings, They tried their best to snatch those newly born offsprings. Never did the (brave) goat let the wolves snatch the lambs, As I myself kept on watching this miraculous event. (10)",
+          "lines": [
+            "As a couple of wolves had spotted out the goat's offsprings,",
+            "They tried their best to snatch those newly born offsprings.",
+            "Never did the (brave) goat let the wolves snatch the lambs,",
+            "As I myself kept on watching this miraculous event."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-120-p441-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p441-b011",
+          "type": "verse",
+          "text": "Thereupon, did the Khalsa Panth tell the narrator Sikh, That they would rather not listen to such a narration, Preferring to repose their faith in their own Divine Guru, They would prefer to sacrifice their lives at their Guru's lotus feet. (11)",
+          "lines": [
+            "Thereupon, did the Khalsa Panth tell the narrator Sikh,",
+            "That they would rather not listen to such a narration,",
+            "Preferring to repose their faith in their own Divine Guru,",
+            "They would prefer to sacrifice their lives at their Guru's lotus feet."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-120-p441-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p441-b013",
+          "type": "verse",
+          "text": "Thereupon, an elderly wise Sikh did conjecture, That all good omens had coincided at that place. They must agree to adopt one of the shrines for a fort, Out of the five sacred shrines that the Guru had raised. (12)",
+          "lines": [
+            "Thereupon, an elderly wise Sikh did conjecture,",
+            "That all good omens had coincided at that place.",
+            "They must agree to adopt one of the shrines for a fort,",
+            "Out of the five sacred shrines that the Guru had raised."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-120-p441-b014",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p441-b015",
+          "type": "verse",
+          "text": "These five Sikh shrines founded at Amritsar, Consisted of Harmandar3 , Bibek Sar4 and Kaulsar.5 Added to these were shrines of Santokhsar6 and Ramsar7 , Which were established by Guru Ramdas himself. (13)",
+          "lines": [
+            "These five Sikh shrines founded at Amritsar,",
+            "Consisted of Harmandar3 ,",
+            "Bibek Sar4 and Kaulsar.5 Added to these were shrines of Santokhsar6 and Ramsar7 ,",
+            "Which were established by Guru Ramdas himself."
+          ],
+          "number": "13"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 443,
+      "fileName": "EPUB/page_443.html",
+      "sourceHref": "EPUB/page_443.html",
+      "printPageNumber": 389,
+      "blocks": [
+        {
+          "id": "episode-120-p443-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p443-b002",
+          "type": "verse",
+          "text": "At one of these five Sikh sacred shrines (founded by the Guru), Must the Khalsa Panth construct a fort (for their defence). Let the Mughal forces invade and get themselves killed, Must they raise a fort as formidable as the Ranthambore8 . (14)",
+          "lines": [
+            "At one of these five Sikh sacred shrines (founded by the Guru),",
+            "Must the Khalsa Panth construct a fort (for their defence).",
+            "Let the Mughal forces invade and get themselves killed,",
+            "Must they raise a fort as formidable as the Ranthambore8 ."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-120-p443-b003",
+          "type": "verse",
+          "text": "At a spot where had the Guru got dug a small well, Did the Khalsa Panth lay the foundation for a fort. With Singhs themselves working as Masons and labourers, Were these Singhs so fearless and brave at heart. (15)",
+          "lines": [
+            "At a spot where had the Guru got dug a small well,",
+            "Did the Khalsa Panth lay the foundation for a fort.",
+            "With Singhs themselves working as Masons and labourers,",
+            "Were these Singhs so fearless and brave at heart."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-120-p443-b004",
+          "type": "verse",
+          "text": "The more one worked and served in the community kitchen, The more venerated and higher in status was he reckoned. The greater the amount of hardwork one did put in, The greater the veneration and the applause he earned. (16)",
+          "lines": [
+            "The more one worked and served in the community kitchen,",
+            "The more venerated and higher in status was he reckoned.",
+            "The greater the amount of hardwork one did put in,",
+            "The greater the veneration and the applause he earned."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-120-p443-b005",
+          "type": "verse",
+          "text": "Neither did anyone consider anyone else his rival, Nor did anyone share his individual woe with another. With as much speed and haste did they raise the walls, As had Hanuman's simian force9 raised a bridge over the sea. (17)",
+          "lines": [
+            "Neither did anyone consider anyone else his rival,",
+            "Nor did anyone share his individual woe with another.",
+            "With as much speed and haste did they raise the walls,",
+            "As had Hanuman's simian force9 raised a bridge over the sea."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-120-p443-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p443-b007",
+          "type": "verse",
+          "text": "Did the Singhs keep raising all the four walls at a time, As they never got tired day in and dayout. The more the elders implored them to go slow, The more the Singhs ran faster to complete the job. (18)",
+          "lines": [
+            "Did the Singhs keep raising all the four walls at a time,",
+            "As they never got tired day in and dayout.",
+            "The more the elders implored them to go slow,",
+            "The more the Singhs ran faster to complete the job."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-120-p443-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p443-b009",
+          "type": "verse",
+          "text": "Mighty gates with domes atop did they raise, Truly were they committed to make it a sacrificial monument. Truly did they contribute to its construction whatever they could procure, As also did they bring whatever they could lay their hands on. (19)",
+          "lines": [
+            "Mighty gates with domes atop did they raise,",
+            "Truly were they committed to make it a sacrificial monument.",
+            "Truly did they contribute to its construction whatever they could procure,",
+            "As also did they bring whatever they could lay their hands on."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-120-p443-b010",
+          "type": "verse",
+          "text": "For the digging out of a water channel around its periphery, Did it come to be known by the name of (Ram) Rauni. Digging trenches around the (inner) bank of this water-channel, Did they dig this water-channel upto a great depth. (20)",
+          "lines": [
+            "For the digging out of a water channel around its periphery,",
+            "Did it come to be known by the name of (Ram) Rauni.",
+            "Digging trenches around the (inner) bank of this water-channel,",
+            "Did they dig this water-channel upto a great depth."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-120-p443-b011",
+          "type": "verse",
+          "text": "Themselves did the Singhs dig the earth, themselves did they build, Themselves did these devout Singhs alternate as masons and menials. Working, thus, day and night did they erect a wall, And succeed they did in making a shelter for themselves. (21)",
+          "lines": [
+            "Themselves did the Singhs dig the earth, themselves did they build,",
+            "Themselves did these devout Singhs alternate as masons and menials.",
+            "Working, thus, day and night did they erect a wall,",
+            "And succeed they did in making a shelter for themselves."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-120-p443-b012",
+          "type": "verse",
+          "text": "Five hundred in total strength were these Singhs there, Truly had they taken a vow to make the supreme sacrifice. There having been no more space to accommodate any more. No more than five hundred Singhs did enter into this fort. (22)",
+          "lines": [
+            "Five hundred in total strength were these Singhs there,",
+            "Truly had they taken a vow to make the supreme sacrifice.",
+            "There having been no more space to accommodate any more.",
+            "No more than five hundred Singhs did enter into this fort."
+          ],
+          "number": "22"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 445,
+      "fileName": "EPUB/page_445.html",
+      "sourceHref": "EPUB/page_445.html",
+      "printPageNumber": 391,
+      "blocks": [
+        {
+          "id": "episode-120-p445-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p445-b002",
+          "type": "verse",
+          "text": "No sooner did the Mughals learn about (Khalsa) concentration, Than they invaded this hiding place all of a sudden. Mir Mannu10 did despatch (one of his generals) Dina Beg\" , At the head of a Mughal force to launch an attack. (23)",
+          "lines": [
+            "No sooner did the Mughals learn about (Khalsa) concentration,",
+            "Than they invaded this hiding place all of a sudden.",
+            "Mir Mannu10 did despatch (one of his generals) Dina Beg\" ,",
+            "At the head of a Mughal force to launch an attack."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-120-p445-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p445-b004",
+          "type": "verse",
+          "text": "Dewan Kaura Mai12 and Sadiq Beg13 being the other commanders, This expedition also had Aziz Khan14, another custodian. Many hill chiefs were also made to launch an attack, Who had joined the expedition with enormous artillery guns. (24)",
+          "lines": [
+            "Dewan Kaura Mai12 and Sadiq Beg13 being the other commanders,",
+            "This expedition also had Aziz Khan14, another custodian.",
+            "Many hill chiefs were also made to launch an attack,",
+            "Who had joined the expedition with enormous artillery guns."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-120-p445-b005",
+          "type": "verse",
+          "text": "Thereupon, organizing a contingent of deadly striking force, The Mughal commanders pushed it to towards (Ram) Rauni's enterance. The Khalsa Panth, at that moment of truth, did realize, That had they (the Singhs) been outnumbered by the Mughals. (25)",
+          "lines": [
+            "Thereupon, organizing a contingent of deadly striking force,",
+            "The Mughal commanders pushed it to towards (Ram) Rauni's enterance.",
+            "The Khalsa Panth, at that moment of truth, did realize,",
+            "That had they (the Singhs) been outnumbered by the Mughals."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-120-p445-b006",
+          "type": "verse",
+          "text": "Must then (the Singhs) make such a sacrifice while killing the Mughals, That it should be known very well through out the world. This being a religious war to defend one's faith and ideology, Would he stand redeemed whosoever got wounded or killed. (26)",
+          "lines": [
+            "Must then (the Singhs) make such a sacrifice while killing the Mughals,",
+            "That it should be known very well through out the world.",
+            "This being a religious war to defend one's faith and ideology,",
+            "Would he stand redeemed whosoever got wounded or killed."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-120-p445-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p445-b008",
+          "type": "verse",
+          "text": "Thereafter, a battery of ten (brave) Singh having come out, Did cut through the ranks of the raiding striking force. After slaughtering many Mughal troops did they themselves die, With an odd survivor returning to join the Singhs inside the fort. (27)",
+          "lines": [
+            "Thereafter, a battery of ten (brave) Singh having come out,",
+            "Did cut through the ranks of the raiding striking force.",
+            "After slaughtering many Mughal troops did they themselves die,",
+            "With an odd survivor returning to join the Singhs inside the fort."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-120-p445-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p445-b010",
+          "type": "verse",
+          "text": "Like a lion would the Singhs pounce upon the Mughals, Like a lightening through the clouds would the Singhs strike. Slaughtering here would they rush to another spot, Being though on foot would they speed like a horse. (28)",
+          "lines": [
+            "Like a lion would the Singhs pounce upon the Mughals,",
+            "Like a lightening through the clouds would the Singhs strike.",
+            "Slaughtering here would they rush to another spot,",
+            "Being though on foot would they speed like a horse."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-120-p445-b011",
+          "type": "verse",
+          "text": "In the pitch darkness of the night would the Singhs attack, Thus would the Mughuls get killed instead of Singhs in darkness. A single Singh being dominant over a hundred Mughals, Singhs in a fewer number even would harass the Mughals. (29)",
+          "lines": [
+            "In the pitch darkness of the night would the Singhs attack,",
+            "Thus would the Mughuls get killed instead of Singhs in darkness.",
+            "A single Singh being dominant over a hundred Mughals,",
+            "Singhs in a fewer number even would harass the Mughals."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-120-p445-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p445-b013",
+          "type": "verse",
+          "text": "Were there some odd number of Singhs in hiding, Who might have taken shelter in caves and wilds? Would they pounce upon the Mughals unawares, Thus would they make a supreme sacrifice in this fight. (30)",
+          "lines": [
+            "Were there some odd number of Singhs in hiding,",
+            "Who might have taken shelter in caves and wilds?",
+            "Would they pounce upon the Mughals unawares,",
+            "Thus would they make a supreme sacrifice in this fight."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-120-p445-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p445-b015",
+          "type": "verse",
+          "text": "Then, as the Mughal troops dug a tunnel (to enter the fort), The Singhs deepened the surface of the water channel. As many Singhs kept sitting inside the water-channel, They kept on blocking the Mughal's digging of the tunnel. (31)",
+          "lines": [
+            "Then, as the Mughal troops dug a tunnel (to enter the fort),",
+            "The Singhs deepened the surface of the water channel.",
+            "As many Singhs kept sitting inside the water-channel,",
+            "They kept on blocking the Mughal's digging of the tunnel."
+          ],
+          "number": "31"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 447,
+      "fileName": "EPUB/page_447.html",
+      "sourceHref": "EPUB/page_447.html",
+      "printPageNumber": 393,
+      "blocks": [
+        {
+          "id": "episode-120-p447-b001",
+          "type": "verse",
+          "text": "Though least scared of death while fighting a battle, The Singhs did feel concern at the scarcity of provisions. As the concentration of Mughal troops kept on increasing, The Singhs felt they were destined to die inside the fort. (32)",
+          "lines": [
+            "Though least scared of death while fighting a battle,",
+            "The Singhs did feel concern at the scarcity of provisions.",
+            "As the concentration of Mughal troops kept on increasing,",
+            "The Singhs felt they were destined to die inside the fort."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-120-p447-b002",
+          "type": "verse",
+          "text": "Thereafter, the Khalsa Panth, after a thorough confabulation, felt, That deserting the field, at that stage, would be undignified. It would be far better to perish while fighting on field, As their fight would become a subject for legends. (33)",
+          "lines": [
+            "Thereafter, the Khalsa Panth, after a thorough confabulation, felt,",
+            "That deserting the field, at that stage, would be undignified.",
+            "It would be far better to perish while fighting on field,",
+            "As their fight would become a subject for legends."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-120-p447-b003",
+          "type": "verse",
+          "text": "So must they launch an attack from one of the flanks, Making a supreme sacrifice at the hands of Mughals. Must they perish after killing double the number of Mughals, Such a rare fight must they wage against the Mughals. (34)",
+          "lines": [
+            "So must they launch an attack from one of the flanks,",
+            "Making a supreme sacrifice at the hands of Mughals.",
+            "Must they perish after killing double the number of Mughals,",
+            "Such a rare fight must they wage against the Mughals."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-120-p447-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p447-b005",
+          "type": "verse",
+          "text": "Thus, making a dash did the Singhs make a fierce attack, Truly did they succeed in capturing a Mughal position. The Mughal contingent being under Dina Beg's command, Truly did the Singhs harass and disperse that contingent. (35)",
+          "lines": [
+            "Thus, making a dash did the Singhs make a fierce attack,",
+            "Truly did they succeed in capturing a Mughal position.",
+            "The Mughal contingent being under Dina Beg's command,",
+            "Truly did the Singhs harass and disperse that contingent."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-120-p447-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p447-b007",
+          "type": "verse",
+          "text": "Thereafter, did the Singhs overpower Sadiq Beg's post, Whose Mughal troops failed to fight even against twenty Singhs. Truly were the Majhail Singhs great warriors supreme, As indeed they had been initiated with a double-edged dagger. (36)",
+          "lines": [
+            "Thereafter, did the Singhs overpower Sadiq Beg's post,",
+            "Whose Mughal troops failed to fight even against twenty Singhs.",
+            "Truly were the Majhail Singhs great warriors supreme,",
+            "As indeed they had been initiated with a double-edged dagger."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-120-p447-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p447-b009",
+          "type": "verse",
+          "text": "Thus for days without end did the fight carry on, As the Khalsa Panth continued to wage a war. In no way, could the Mughals eliminate the Khalsa Panth, As two Singhs kept on substituting the one who died. (37)",
+          "lines": [
+            "Thus for days without end did the fight carry on,",
+            "As the Khalsa Panth continued to wage a war.",
+            "In no way, could the Mughals eliminate the Khalsa Panth,",
+            "As two Singhs kept on substituting the one who died."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-120-p447-b010",
+          "type": "verse",
+          "text": "Thus could the Singhs never be eliminated completely, As water never dries up from a waterlogged earth. Would those Singhs as had gone underground nearby, Sneak somehow into fight against the Mughals. (38)",
+          "lines": [
+            "Thus could the Singhs never be eliminated completely,",
+            "As water never dries up from a waterlogged earth.",
+            "Would those Singhs as had gone underground nearby,",
+            "Sneak somehow into fight against the Mughals."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-120-p447-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p447-b012",
+          "type": "verse",
+          "text": "As the news of the Singhs dying in battle kept pouring, More and still more Singhs kept on entering the field. If, perchance, a Singh failed to sneak into the fort, Would he keep encircling the fort in great anger. (39)",
+          "lines": [
+            "As the news of the Singhs dying in battle kept pouring,",
+            "More and still more Singhs kept on entering the field.",
+            "If, perchance, a Singh failed to sneak into the fort,",
+            "Would he keep encircling the fort in great anger."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-120-p447-b013",
+          "type": "verse",
+          "text": "Vow indeed he would take to perish with his companions, So determined would he be to settle scores with the Mughals. Otherwise what face would he show to his Guru after death, If he failed to display his daring in the field of battle. (40)",
+          "lines": [
+            "Vow indeed he would take to perish with his companions,",
+            "So determined would he be to settle scores with the Mughals.",
+            "Otherwise what face would he show to his Guru after death,",
+            "If he failed to display his daring in the field of battle."
+          ],
+          "number": "40"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 449,
+      "fileName": "EPUB/page_449.html",
+      "sourceHref": "EPUB/page_449.html",
+      "printPageNumber": 395,
+      "blocks": [
+        {
+          "id": "episode-120-p449-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p449-b002",
+          "type": "verse",
+          "text": "As the Singhs kept on duplicating in place of each dead, Did the Mughals realize the real strength of the Singhs. Thereafter did they dig another channel and raise towers, Leaving no passage whatsoever for the Singhs' entrance or exist. (41)",
+          "lines": [
+            "As the Singhs kept on duplicating in place of each dead,",
+            "Did the Mughals realize the real strength of the Singhs.",
+            "Thereafter did they dig another channel and raise towers,",
+            "Leaving no passage whatsoever for the Singhs' entrance or exist."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-120-p449-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p449-b004",
+          "type": "verse",
+          "text": "It was through these open spaces that the Singhs entered the fort, As well as managed to bring some sort of ammunition. Now when every kind of entrance was barred and blocked, Did the Singhs realize that was their death imminent then. (42)",
+          "lines": [
+            "It was through these open spaces that the Singhs entered the fort,",
+            "As well as managed to bring some sort of ammunition.",
+            "Now when every kind of entrance was barred and blocked,",
+            "Did the Singhs realize that was their death imminent then."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-120-p449-b005",
+          "type": "verse",
+          "text": "Let the Singhs slaughter those whosoever dared to attack them, Was this indeed a unanimous resolution of the Singhs. Let the Singhs slaughter, kill and make a supreme sacrifice, Let them hunt, hound and kill Dina Beg wherever he was. (43)",
+          "lines": [
+            "Let the Singhs slaughter those whosoever dared to attack them,",
+            "Was this indeed a unanimous resolution of the Singhs.",
+            "Let the Singhs slaughter, kill and make a supreme sacrifice,",
+            "Let them hunt, hound and kill Dina Beg wherever he was."
+          ],
+          "number": "43"
+        },
+        {
+          "id": "episode-120-p449-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p449-b007",
+          "type": "verse",
+          "text": "No sooner did the Khalsa Panth arrive at the above resolution, Than there did arrive a Singh from outside to join their ranks. In the following words did he address the Khalsa Singhs: That the approaching contingent of soldiers consisted of enlisted Singhs. (44)",
+          "lines": [
+            "No sooner did the Khalsa Panth arrive at the above resolution,",
+            "Than there did arrive a Singh from outside to join their ranks.",
+            "In the following words did he address the Khalsa Singhs: That the approaching contingent of soldiers consisted of enlisted Singhs."
+          ],
+          "number": "44"
+        },
+        {
+          "id": "episode-120-p449-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p449-b009",
+          "type": "verse",
+          "text": "There used to be one Jassa Singh15 from the family of carpenters, Whom the Khalsa Panth had turned out for committing female foeticide. (Being an outcast) had he joined the army of Dina Beg, Along with hundreds of his camp followers as well. (45)",
+          "lines": [
+            "There used to be one Jassa Singh15 from the family of carpenters,",
+            "Whom the Khalsa Panth had turned out for committing female foeticide.",
+            "(Being an outcast) had he joined the army of Dina Beg,",
+            "Along with hundreds of his camp followers as well."
+          ],
+          "number": "45"
+        },
+        {
+          "id": "episode-120-p449-b010",
+          "type": "verse",
+          "text": "Thereupon, the messenger Singh conveyed the sentiments of approaching Singhs, That they (Jassa Singh's followers) too would sacrifice along with the Singhs. They too were prepared to join to ranks of the Khalsa, Provided the Khalsa Panth took them back into their fold. (46)",
+          "lines": [
+            "Thereupon, the messenger Singh conveyed the sentiments of approaching Singhs,",
+            "That they (Jassa Singh's followers) too would sacrifice along with the Singhs.",
+            "They too were prepared to join to ranks of the Khalsa,",
+            "Provided the Khalsa Panth took them back into their fold."
+          ],
+          "number": "46"
+        },
+        {
+          "id": "episode-120-p449-b011",
+          "type": "verse",
+          "text": "Khalsa Singhs retorted that it was indeed a moment of truth, Truly was it an opportune moment for coming into the Khalsa fold. Certainly would the Guru reward them for their noble deed, Truly would the Khalsa's prayer be vindicated in their favour. (47)",
+          "lines": [
+            "Khalsa Singhs retorted that it was indeed a moment of truth,",
+            "Truly was it an opportune moment for coming into the Khalsa fold.",
+            "Certainly would the Guru reward them for their noble deed,",
+            "Truly would the Khalsa's prayer be vindicated in their favour."
+          ],
+          "number": "47"
+        },
+        {
+          "id": "episode-120-p449-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p449-b013",
+          "type": "verse",
+          "text": "Thereafter, Jassa Singh's camp followers did tell Jassa Singh, That must he fend for himself without their support. As for them, they would certainly enter the (Rauni) fort, As indeed would they sacrifice with the Khalsa Panth. (48)",
+          "lines": [
+            "Thereafter,",
+            "Jassa Singh's camp followers did tell Jassa Singh,",
+            "That must he fend for himself without their support.",
+            "As for them, they would certainly enter the (Rauni) fort,",
+            "As indeed would they sacrifice with the Khalsa Panth."
+          ],
+          "number": "48"
+        },
+        {
+          "id": "episode-120-p449-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p449-b015",
+          "type": "verse",
+          "text": "Jassa Singh, too, told his companions in the same vein, That he himself never wanted to be separated from the Panth. He, too, would be too glad to enter the Khalsa fold, As the Khalsa had always been forgiving to its errant Singhs. (49)",
+          "lines": [
+            "Jassa Singh, too, told his companions in the same vein,",
+            "That he himself never wanted to be separated from the Panth.",
+            "He, too, would be too glad to enter the Khalsa fold,",
+            "As the Khalsa had always been forgiving to its errant Singhs."
+          ],
+          "number": "49"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 451,
+      "fileName": "EPUB/page_451.html",
+      "sourceHref": "EPUB/page_451.html",
+      "printPageNumber": 397,
+      "blocks": [
+        {
+          "id": "episode-120-p451-b001",
+          "type": "verse",
+          "text": "Thereafter, writing down his petition for his merger, Jassa Singh shot it with an arrow to the Khalsa Panth. He was ready to surrender to the Khalsa Panth, Provided the Khalsa was willing to take him into their fold. (50)",
+          "lines": [
+            "Thereafter, writing down his petition for his merger,",
+            "Jassa Singh shot it with an arrow to the Khalsa Panth.",
+            "He was ready to surrender to the Khalsa Panth,",
+            "Provided the Khalsa was willing to take him into their fold."
+          ],
+          "number": "50"
+        },
+        {
+          "id": "episode-120-p451-b002",
+          "type": "verse",
+          "text": "Accepting his petition, did the Singhs give their consent for merger, Deeming it an opportune moment for a reunion of the separated. Soon after, did Jassa Singh tell his commander Dina Beg, That the latter must relieve him (Jassa Singh) of his services. (51)",
+          "lines": [
+            "Accepting his petition, did the Singhs give their consent for merger,",
+            "Deeming it an opportune moment for a reunion of the separated.",
+            "Soon after, did Jassa Singh tell his commander Dina Beg,",
+            "That the latter must relieve him (Jassa Singh) of his services."
+          ],
+          "number": "51"
+        },
+        {
+          "id": "episode-120-p451-b003",
+          "type": "verse",
+          "text": "Thereafter, winding up his affairs with the Mughal commander, Did Jassa Singh enter the Khalsa Panth's forces inside the fort. No sooner did Jassa Singh enter the Khalsa fold, Than did the Mughals feel extremely let down and exasperated. (52)",
+          "lines": [
+            "Thereafter, winding up his affairs with the Mughal commander,",
+            "Did Jassa Singh enter the Khalsa Panth's forces inside the fort.",
+            "No sooner did Jassa Singh enter the Khalsa fold,",
+            "Than did the Mughals feel extremely let down and exasperated."
+          ],
+          "number": "52"
+        },
+        {
+          "id": "episode-120-p451-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p451-b005",
+          "type": "verse",
+          "text": "There prevailed such a providence as the Divine Satguru willed, That it wished to fulfil Khalsa Panth's mission. Thus was the city of Multan invaded (at the same time), By Shah Nawaz16 , the son of late Nawab Khan Bahadur17 . (53)",
+          "lines": [
+            "There prevailed such a providence as the Divine Satguru willed,",
+            "That it wished to fulfil Khalsa Panth's mission.",
+            "Thus was the city of Multan invaded (at the same time),",
+            "By Shah Nawaz16 , the son of late Nawab Khan Bahadur17 ."
+          ],
+          "number": "53"
+        },
+        {
+          "id": "episode-120-p451-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-120-p451-b007",
+          "type": "verse",
+          "text": "The Mughals getting panicky about their own security, Did Mir Mannu18 order the recall of his forces. Thereafter, Dewan Kaura Mai19 put forth a diplomatic proposal, That the Mughals should seek Singhs' allegiance against (Shah Nawaz). (54)",
+          "lines": [
+            "The Mughals getting panicky about their own security,",
+            "Did Mir Mannu18 order the recall of his forces.",
+            "Thereafter,",
+            "Dewan Kaura Mai19 put forth a diplomatic proposal,",
+            "That the Mughals should seek Singhs' allegiance against (Shah Nawaz)."
+          ],
+          "number": "54"
+        },
+        {
+          "id": "episode-120-p451-b008",
+          "type": "verse",
+          "text": "With Dina Beg also backing up Dewan Kaura Mai's proposal, The proposal was discussed and debated with Mir Mannu. After getting Mir Mannu's approval for seeking Singhs' allegiance, Dewan Kaura Mai got the Singhs aligned with his own force. (55)",
+          "lines": [
+            "With Dina Beg also backing up Dewan Kaura Mai's proposal,",
+            "The proposal was discussed and debated with Mir Mannu.",
+            "After getting Mir Mannu's approval for seeking Singhs' allegiance,",
+            "Dewan Kaura Mai got the Singhs aligned with his own force."
+          ],
+          "number": "55"
+        },
+        {
+          "id": "episode-120-p451-b009",
+          "type": "verse",
+          "text": "Aligning these Singhs from the Patti region of Majha, Dewan got half the revenue of this region sanctioned in favour of the Singhs. The twelve villages which once belonged to Guru Chakk20 , These, too, were attached with Ram Rauni through a written deed. (56)",
+          "lines": [
+            "Aligning these Singhs from the Patti region of Majha,",
+            "Dewan got half the revenue of this region sanctioned in favour of the Singhs.",
+            "The twelve villages which once belonged to Guru Chakk20 ,",
+            "These, too, were attached with Ram Rauni through a written deed."
+          ],
+          "number": "56"
+        },
+        {
+          "id": "episode-120-p451-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-120-p451-b011",
+          "type": "verse",
+          "text": "Since that day did Ram Rauni come to be known as Ramgarh, More and more famous did it become since then. Ramgarhias of Jassa Singh's family were made custodians of Ramgarh, For having entered into the Khalsa Panth in the time of dire need. (57)",
+          "lines": [
+            "Since that day did Ram Rauni come to be known as Ramgarh,",
+            "More and more famous did it become since then.",
+            "Ramgarhias of Jassa Singh's family were made custodians of Ramgarh,",
+            "For having entered into the Khalsa Panth in the time of dire need."
+          ],
+          "number": "57"
+        },
+        {
+          "id": "episode-120-p451-b012",
+          "type": "verse",
+          "text": "Rattan Singh (the author) had narrated as he had heard, The whole narration from the elders of his generation. Now would he narrate, (dear readers) the further account, How did Khan Bahadur's son Shah Nawaz happened to be decimated. (58)",
+          "lines": [
+            "Rattan Singh (the author) had narrated as he had heard,",
+            "The whole narration from the elders of his generation.",
+            "Now would he narrate,",
+            "(dear readers) the further account,",
+            "How did Khan Bahadur's son Shah Nawaz happened to be decimated."
+          ],
+          "number": "58"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 453,
+      "fileName": "EPUB/page_453.html",
+      "sourceHref": "EPUB/page_453.html",
+      "printPageNumber": 399,
+      "blocks": [
+        {
+          "id": "episode-120-p453-b001",
+          "type": "verse",
+          "text": "This was how the Singhs did battle at Ram Rauni, In the year eighteen hundred and five of Bikrami Samvat21 . The way Shah Nawaz happened to meet his end, (My dear readers) listen to the account further. (59)",
+          "lines": [
+            "This was how the Singhs did battle at Ram Rauni,",
+            "In the year eighteen hundred and five of Bikrami Samvat21 .",
+            "The way Shah Nawaz happened to meet his end,",
+            "(My dear readers) listen to the account further."
+          ],
+          "number": "59"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-119",
+  "nextChapterId": "episode-121"
+}

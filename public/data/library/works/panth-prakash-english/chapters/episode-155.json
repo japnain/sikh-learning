@@ -1,0 +1,89 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-155",
+  "chapterNumber": 155,
+  "episodeNumber": 155,
+  "kind": "episode",
+  "title": "Khalsa Panth 's Occupation of Both sides",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 683,
+  "endSourcePage": 683,
+  "wordCount": 160,
+  "charCount": 906,
+  "startPosition": 194309,
+  "pages": [
+    {
+      "sourcePageNumber": 683,
+      "fileName": "EPUB/page_683.html",
+      "sourceHref": "EPUB/page_683.html",
+      "printPageNumber": 629,
+      "blocks": [
+        {
+          "id": "episode-155-p683-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-155-p683-b003",
+          "type": "verse",
+          "text": "Five Khalsa Panth Misls (contingents) stayed on this side, The other five Misls crossed Lahore to the other side. The Majha region was kept as a common territory, As it surrounded the sacred Sikh shrine at Amritsar from all sides. (1)",
+          "lines": [
+            "Five Khalsa Panth Misls (contingents) stayed on this side,",
+            "The other five Misls crossed Lahore to the other side.",
+            "The Majha region was kept as a common territory,",
+            "As it surrounded the sacred Sikh shrine at Amritsar from all sides."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-155-p683-b004",
+          "type": "verse",
+          "text": "Now listen to the account of the Taruna Dal faction, Which had returned in the direction of Lahore. As it surrounded Lahore city from the four sides, There was a great panic and chaos in the city of Lahore. (2)",
+          "lines": [
+            "Now listen to the account of the Taruna Dal faction,",
+            "Which had returned in the direction of Lahore.",
+            "As it surrounded Lahore city from the four sides,",
+            "There was a great panic and chaos in the city of Lahore."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-155-p683-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-155-p683-b006",
+          "type": "verse",
+          "text": "After the Khalsa Panth occupied Zain Khan's territory of Sirhind, There was a great turmoil in the hearts of Lahore residents. Now that the Khalsa Panth would attack their city, Then who would dare to escape from their grip? (3)",
+          "lines": [
+            "After the Khalsa Panth occupied Zain Khan's territory of Sirhind,",
+            "There was a great turmoil in the hearts of Lahore residents.",
+            "Now that the Khalsa Panth would attack their city,",
+            "Then who would dare to escape from their grip?"
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-155-p683-b007",
+          "type": "verse",
+          "text": "Such fear psychosis struck at the hearts of Gilja Pathans, That they decided to desert their city for escape. Without deserting will they not be able to survive, Such were the thoughts which crossed their minds. (4)",
+          "lines": [
+            "Such fear psychosis struck at the hearts of Gilja Pathans,",
+            "That they decided to desert their city for escape.",
+            "Without deserting will they not be able to survive,",
+            "Such were the thoughts which crossed their minds."
+          ],
+          "number": "4"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-154",
+  "nextChapterId": "episode-156"
+}

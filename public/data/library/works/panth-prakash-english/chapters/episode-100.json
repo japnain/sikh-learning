@@ -1,0 +1,918 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-100",
+  "chapterNumber": 100,
+  "episodeNumber": 100,
+  "kind": "episode",
+  "title": "Sukha Singh",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 235,
+  "endSourcePage": 247,
+  "wordCount": 2300,
+  "charCount": 13376,
+  "startPosition": 117013,
+  "pages": [
+    {
+      "sourcePageNumber": 235,
+      "fileName": "EPUB/page_235.html",
+      "sourceHref": "EPUB/page_235.html",
+      "printPageNumber": 181,
+      "blocks": [
+        {
+          "id": "episode-100-p235-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p235-b003",
+          "type": "verse",
+          "text": "Ahmed Shah (Abdali)1 after occupation of Lahore, Proceeded on an expedition towards Delhi. He left behind a sizeable section of his army, For the safety and security of the city of Lahore. (1)",
+          "lines": [
+            "Ahmed Shah (Abdali)1 after occupation of Lahore,",
+            "Proceeded on an expedition towards Delhi.",
+            "He left behind a sizeable section of his army,",
+            "For the safety and security of the city of Lahore."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-100-p235-b004",
+          "type": "verse",
+          "text": "As his troops left Lahore (on their way to Delhi), They consisted of the most muscular giants of men, They boasted, \"where are those so-called brave Singhs, We would like to have a glimpse of them.\" (2)",
+          "lines": [
+            "As his troops left Lahore (on their way to Delhi),",
+            "They consisted of the most muscular giants of men,",
+            "They boasted,",
+            "\"where are those so-called brave Singhs,",
+            "We would like to have a glimpse of them.\""
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-100-p235-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p235-b006",
+          "type": "verse",
+          "text": "Huge horses had they, being themselves very tall, They were being led by the highest Pathan chiefs. With steel helmets on their heads, bodies wrapped in steel armour, They had steel coverings even around their legs. (3)",
+          "lines": [
+            "Huge horses had they, being themselves very tall,",
+            "They were being led by the highest Pathan chiefs.",
+            "With steel helmets on their heads, bodies wrapped in steel armour,",
+            "They had steel coverings even around their legs."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-100-p235-b007",
+          "type": "verse",
+          "text": "Wth feet in steel shoes and hands in steel gloves, They had steel covers even on their horses. These Gilja sect Pathan soldiers launched an expedition, With the assistance of Pathan soldiers of Kasur. (4)",
+          "lines": [
+            "Wth feet in steel shoes and hands in steel gloves,",
+            "They had steel covers even on their horses.",
+            "These Gilja sect Pathan soldiers launched an expedition,",
+            "With the assistance of Pathan soldiers of Kasur."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-100-p235-b008",
+          "type": "meter",
+          "text": "Sortha:"
+        },
+        {
+          "id": "episode-100-p235-b009",
+          "type": "verse",
+          "text": "In a village, that there was, known as \"Buddha Kot2\", Majority of its households belonged to the Singhs. Being informed about its location by the informers, The Mughal troops killed its inhabitants inside their homes. (5)",
+          "lines": [
+            "In a village, that there was, known as \"Buddha Kot2\",",
+            "Majority of its households belonged to the Singhs.",
+            "Being informed about its location by the informers,",
+            "The Mughal troops killed its inhabitants inside their homes."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-100-p235-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p235-b011",
+          "type": "verse",
+          "text": "The Singh contingent camping on this side of the river, Crossed to the other side at the approach of Gilja Pathans. Feeling very proud after making the Singhs retreat to the other bank, These Pathan troops sent an epistle to the Singhs. (6)",
+          "lines": [
+            "The Singh contingent camping on this side of the river,",
+            "Crossed to the other side at the approach of Gilja Pathans.",
+            "Feeling very proud after making the Singhs retreat to the other bank,",
+            "These Pathan troops sent an epistle to the Singhs."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-100-p235-b012",
+          "type": "verse",
+          "text": "Boasting of their bravado, they sent a despatch to the Singhs, That they constituted the elite force of Ahmad Shah Abdali. Since the Singhs proclaimed themselves as Lion-hearted-soldiers of the Guru, They (Pathans) had come to test their mettle with the Singhs. (7)",
+          "lines": [
+            "Boasting of their bravado, they sent a despatch to the Singhs,",
+            "That they constituted the elite force of Ahmad Shah Abdali.",
+            "Since the Singhs proclaimed themselves as Lion-hearted-soldiers of the Guru,",
+            "They (Pathans) had come to test their mettle with the Singhs."
+          ],
+          "number": "7"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 237,
+      "fileName": "EPUB/page_237.html",
+      "sourceHref": "EPUB/page_237.html",
+      "printPageNumber": 183,
+      "blocks": [
+        {
+          "id": "episode-100-p237-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p237-b002",
+          "type": "verse",
+          "text": "They bragged that their mere arrival had made the Singhs run, And forced them to cross over to the river's other bank. Accusing the Singhs of being liars and fake Singh warriors, They branded the Singhs as cowards, slaves and serfs. (8)",
+          "lines": [
+            "They bragged that their mere arrival had made the Singhs run,",
+            "And forced them to cross over to the river's other bank.",
+            "Accusing the Singhs of being liars and fake Singh warriors,",
+            "They branded the Singhs as cowards, slaves and serfs."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-100-p237-b003",
+          "type": "verse",
+          "text": "Challenging the Singhs either to stand face to face before them, Or to return and have a straight fight with them. Inviting the Singhs boastfully to advance in batches of two, And let each pair test their muscles against a single Durrani soldier. (9)",
+          "lines": [
+            "Challenging the Singhs either to stand face to face before them,",
+            "Or to return and have a straight fight with them.",
+            "Inviting the Singhs boastfully to advance in batches of two,",
+            "And let each pair test their muscles against a single Durrani soldier."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-100-p237-b004",
+          "type": "verse",
+          "text": "The Singhs, organizing a (special) religious congregation, Went through the despatch and deliberated upon its contents. Accepting their challenge, the Singhs sent back their resolution, That the Singhs would definitely have a fight with them. (10)",
+          "lines": [
+            "The Singhs, organizing a (special) religious congregation,",
+            "Went through the despatch and deliberated upon its contents.",
+            "Accepting their challenge, the Singhs sent back their resolution,",
+            "That the Singhs would definitely have a fight with them."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-100-p237-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p237-b006",
+          "type": "verse",
+          "text": "The Singhs challenged the Durranis to advance in batches of ten soldiers, And let them be armed with the biggest fire arms they had. Form their side only five young Singhs would confront their ten, And the Singhs would be armed only with swords, shields and small muskets. (11)",
+          "lines": [
+            "The Singhs challenged the Durranis to advance in batches of ten soldiers,",
+            "And let them be armed with the biggest fire arms they had.",
+            "Form their side only five young Singhs would confront their ten,",
+            "And the Singhs would be armed only with swords, shields and small muskets."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-100-p237-b007",
+          "type": "verse",
+          "text": "To this offer of the Singhs, they sent another alternate offer, That they would not use their fire arms in this fight. Their soldiers would be armed only with knives, daggers and swords, Instead of being armed with arrows and firearms. (12)",
+          "lines": [
+            "To this offer of the Singhs, they sent another alternate offer,",
+            "That they would not use their fire arms in this fight.",
+            "Their soldiers would be armed only with knives, daggers and swords,",
+            "Instead of being armed with arrows and firearms."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-100-p237-b008",
+          "type": "verse",
+          "text": "They asked the Singhs also to come armed with swords and daggers, Instead of being armed with bows and firearms. To this offer, the Khalsa Singhs sent their own resolution, That they will fight only when they are armed with their small firearms. (13)",
+          "lines": [
+            "They asked the Singhs also to come armed with swords and daggers,",
+            "Instead of being armed with bows and firearms.",
+            "To this offer, the Khalsa Singhs sent their own resolution,",
+            "That they will fight only when they are armed with their small firearms."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-100-p237-b009",
+          "type": "verse",
+          "text": "They declared that it was ordained by their revered Guru, That Singhs must kill their wicked enemies with the small firearms. As these offers and counter offers regarding mode of confrontation continued, These contradictory proposals created a situation of uncertainty. (14)",
+          "lines": [
+            "They declared that it was ordained by their revered Guru,",
+            "That Singhs must kill their wicked enemies with the small firearms.",
+            "As these offers and counter offers regarding mode of confrontation continued,",
+            "These contradictory proposals created a situation of uncertainty."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-100-p237-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p237-b011",
+          "type": "verse",
+          "text": "The Gilja Pathan soldiers, being used to wearing steel armours, They thought of fighting with the Singhs under the cover of steel armours. But even being covered in steel armours, they were scared, That Singh's small firearms' bullets would pierce through their steely armours. (15)",
+          "lines": [
+            "The Gilja Pathan soldiers, being used to wearing steel armours,",
+            "They thought of fighting with the Singhs under the cover of steel armours.",
+            "But even being covered in steel armours, they were scared,",
+            "That Singh's small firearms' bullets would pierce through their steely armours."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-100-p237-b012",
+          "type": "verse",
+          "text": "So in the early hours of the morning, a Durrani soldier appeared, Who sent a messenger to the Singhs with a new message. He challenged that if there was anyone brave enough among the Singhs, He should come forward and fight single handedly with him. (16)",
+          "lines": [
+            "So in the early hours of the morning, a Durrani soldier appeared,",
+            "Who sent a messenger to the Singhs with a new message.",
+            "He challenged that if there was anyone brave enough among the Singhs,",
+            "He should come forward and fight single handedly with him."
+          ],
+          "number": "16"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 239,
+      "fileName": "EPUB/page_239.html",
+      "sourceHref": "EPUB/page_239.html",
+      "printPageNumber": 185,
+      "blocks": [
+        {
+          "id": "episode-100-p239-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p239-b002",
+          "type": "verse",
+          "text": "He challenged that let any Singh come armed with a sword, dagger and knife, And have it out with a single Durrani soldier. Otherwise Singhs would be branded as cowards, And their appellation \"Singh\" would be considered a fake. (17)",
+          "lines": [
+            "He challenged that let any Singh come armed with a sword, dagger and knife,",
+            "And have it out with a single Durrani soldier.",
+            "Otherwise Singhs would be branded as cowards,",
+            "And their appellation \"Singh\" would be considered a fake."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-100-p239-b003",
+          "type": "verse",
+          "text": "Debunking Singhs as cowards by naming Singhs individually, He chided the Singhs to admit their defeat in writing. Asking the Singhs to swear in the name of their Gurus, That not a single Singh could accept his challenge. (18)",
+          "lines": [
+            "Debunking Singhs as cowards by naming Singhs individually,",
+            "He chided the Singhs to admit their defeat in writing.",
+            "Asking the Singhs to swear in the name of their Gurus,",
+            "That not a single Singh could accept his challenge."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-100-p239-b004",
+          "type": "verse",
+          "text": "Inciting them further he declared that any one who came forward, His parents would be applauded through out the world. Whosoever shirked from accepting his challenge, His parents would feel ashamed of begetting him. (19)",
+          "lines": [
+            "Inciting them further he declared that any one who came forward,",
+            "His parents would be applauded through out the world.",
+            "Whosoever shirked from accepting his challenge,",
+            "His parents would feel ashamed of begetting him."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-100-p239-b005",
+          "type": "verse",
+          "text": "As had been the tradition with the Singhs to participate in the religious crusades, Why were they not forthcoming to uphold their glorious tradition now? \"Cursed be the Singhs and cursed be their Khalsa Panth\", He went back shouting curses towards his own troops. (20)",
+          "lines": [
+            "As had been the tradition with the Singhs to participate in the religious crusades,",
+            "Why were they not forthcoming to uphold their glorious tradition now?",
+            "\"Cursed be the Singhs and cursed be their Khalsa Panth\",",
+            "He went back shouting curses towards his own troops."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-100-p239-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p239-b007",
+          "type": "verse",
+          "text": "As no Singh came forward (to accept Gilja Pathan's challenge), S. Charat Singh3 felt extremely outraged (at this humiliation). Leaving his musket behind he marched forward, Carrying a double-edged sword only in his hand. (21)",
+          "lines": [
+            "As no Singh came forward (to accept Gilja Pathan's challenge),",
+            "S.",
+            "Charat Singh3 felt extremely outraged (at this humiliation).",
+            "Leaving his musket behind he marched forward,",
+            "Carrying a double-edged sword only in his hand."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-100-p239-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p239-b009",
+          "type": "verse",
+          "text": "At this Sukha Singh felt extremely concerned about him, That a boy like Charat Singh could never defeat a Pathan. Since the entire body of a Pathan was covered by a steel armour, That boy would not be able to make a single hole in Pathan's armour. (22)",
+          "lines": [
+            "At this Sukha Singh felt extremely concerned about him,",
+            "That a boy like Charat Singh could never defeat a Pathan.",
+            "Since the entire body of a Pathan was covered by a steel armour,",
+            "That boy would not be able to make a single hole in Pathan's armour."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-100-p239-b010",
+          "type": "verse",
+          "text": "Since that Pathan could eat a whole lamb, being so muscular, The Singh youth just survived on green leafy vegetables. Spurring his horse, Sukha Singh rushed forward, Asking the youth : How could he overpower that Gilja Pathan? (23)",
+          "lines": [
+            "Since that Pathan could eat a whole lamb, being so muscular,",
+            "The Singh youth just survived on green leafy vegetables.",
+            "Spurring his horse,",
+            "Sukha Singh rushed forward,",
+            "Asking the youth : How could he overpower that Gilja Pathan?"
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-100-p239-b011",
+          "type": "verse",
+          "text": "The Pathan being four times heavier than Charat Singh's weight, How could his sword cut through Pathan's hefty constitution? That Pathan's steel armour alone weighed several maunds, As his horse too was protected by a steel armour. (24)",
+          "lines": [
+            "The Pathan being four times heavier than Charat Singh's weight,",
+            "How could his sword cut through Pathan's hefty constitution?",
+            "That Pathan's steel armour alone weighed several maunds,",
+            "As his horse too was protected by a steel armour."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-100-p239-b012",
+          "type": "verse",
+          "text": "He could carry a weight of thirty mounds on his body, As well as he never felt tired even after running for a hundred miles. Being so confident of his strength he was ready to fight with a sword, Why did not you (Charat Singh) take these factors into consideration?\" (25)",
+          "lines": [
+            "He could carry a weight of thirty mounds on his body,",
+            "As well as he never felt tired even after running for a hundred miles.",
+            "Being so confident of his strength he was ready to fight with a sword,",
+            "Why did not you (Charat Singh) take these factors into consideration?\""
+          ],
+          "number": "25"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 241,
+      "fileName": "EPUB/page_241.html",
+      "sourceHref": "EPUB/page_241.html",
+      "printPageNumber": 187,
+      "blocks": [
+        {
+          "id": "episode-100-p241-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p241-b002",
+          "type": "verse",
+          "text": "Hearing these words as spoken by Sukha Singh, Charat Singh acknowledged that that was true about the Pathan. But how could he (Charat Singh) bear to hear those words, From an arrogant Mughal soldier standing in front of him? (26)",
+          "lines": [
+            "Hearing these words as spoken by Sukha Singh,",
+            "Charat Singh acknowledged that that was true about the Pathan.",
+            "But how could he (Charat Singh) bear to hear those words,",
+            "From an arrogant Mughal soldier standing in front of him?"
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-100-p241-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p241-b004",
+          "type": "verse",
+          "text": "\"With that wicked Pathan hurling abuses from his mouth, I cannot bear Khalsa Panth being slandered till I am alive. Since I cannot bear to hear Khalsa Panth being slighted, I have decided to fight till the last breath of my life. (27)",
+          "lines": [
+            "\"With that wicked Pathan hurling abuses from his mouth,",
+            "I cannot bear Khalsa Panth being slandered till I am alive.",
+            "Since I cannot bear to hear Khalsa Panth being slighted,",
+            "I have decided to fight till the last breath of my life."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-100-p241-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p241-b006",
+          "type": "verse",
+          "text": "Since life and death are in the hands of Divine Satguru, Man is privileged to make earnest efforts. Since I cannot bear to see this wicked Pathan standing, I am determined to attack him immediately. (28)",
+          "lines": [
+            "Since life and death are in the hands of Divine Satguru,",
+            "Man is privileged to make earnest efforts.",
+            "Since I cannot bear to see this wicked Pathan standing,",
+            "I am determined to attack him immediately."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-100-p241-b007",
+          "type": "verse",
+          "text": "As One moment of meditation on the sacred name of God, Washes millions of human sins with its benediction, In the same way, I'll destroy this wicked Pathan, With the grace and protection of Divine Satguru.\" (24)",
+          "lines": [
+            "As One moment of meditation on the sacred name of God,",
+            "Washes millions of human sins with its benediction,",
+            "In the same way,",
+            "I'll destroy this wicked Pathan,",
+            "With the grace and protection of Divine Satguru.\""
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-100-p241-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p241-b009",
+          "type": "verse",
+          "text": "Remarked Sukha Singh, \"Blessed are you, my dear boy, Now see how I deal with that audacious Pathan?\" With these words Sukha Singh sent for his steel armour, And covered his head and hands with steel helmet and gloves. (30)",
+          "lines": [
+            "Remarked Sukha Singh,",
+            "\"Blessed are you, my dear boy,",
+            "Now see how I deal with that audacious Pathan?\" With these words Sukha Singh sent for his steel armour,",
+            "And covered his head and hands with steel helmet and gloves."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-100-p241-b010",
+          "type": "verse",
+          "text": "He saddled his horse covering it with a steel armour, Which he had once snatched from a Pathan soldier. Charat Singh helped him in wearing that armour, As well as decorated Sukha Singh's horse for an encounter. (31)",
+          "lines": [
+            "He saddled his horse covering it with a steel armour,",
+            "Which he had once snatched from a Pathan soldier.",
+            "Charat Singh helped him in wearing that armour,",
+            "As well as decorated Sukha Singh's horse for an encounter."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-100-p241-b011",
+          "type": "verse",
+          "text": "Sukha Singh picked up his sharp sword after invocation, And slung his steel shield from his shoulders. He begged the five Singhs to pray for his victory to the Guru, So that the goddess\" Bhagwati's\" grace be on his side. (32)",
+          "lines": [
+            "Sukha Singh picked up his sharp sword after invocation,",
+            "And slung his steel shield from his shoulders.",
+            "He begged the five Singhs to pray for his victory to the Guru,",
+            "So that the goddess\" Bhagwati's\" grace be on his side."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-100-p241-b012",
+          "type": "verse",
+          "text": "As he mounted his stead after a thanksgiving bow, A good Omen came to pass with a person's inadvertent right turn. Observing this good Omen Sukha Singh felt emboldened, As if he had already killed the Gilja Pathan. (33)",
+          "lines": [
+            "As he mounted his stead after a thanksgiving bow,",
+            "A good Omen came to pass with a person's inadvertent right turn.",
+            "Observing this good Omen Sukha Singh felt emboldened,",
+            "As if he had already killed the Gilja Pathan."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-100-p241-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p241-b014",
+          "type": "verse",
+          "text": "As Sukha Singh started on his horse, More good Omens followed his departure. After crossing one half of the flowing river, He stood on a plateau made of accumulated sand. (34)",
+          "lines": [
+            "As Sukha Singh started on his horse,",
+            "More good Omens followed his departure.",
+            "After crossing one half of the flowing river,",
+            "He stood on a plateau made of accumulated sand."
+          ],
+          "number": "34"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 243,
+      "fileName": "EPUB/page_243.html",
+      "sourceHref": "EPUB/page_243.html",
+      "printPageNumber": 189,
+      "blocks": [
+        {
+          "id": "episode-100-p243-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p243-b002",
+          "type": "verse",
+          "text": "Persuading Charat Singh not to accompany him, Sukha Singh instructed other Singhs as well to retreat. Then swearing an oath in the name of Satguru, Sukha Singh took a pledge to kill the (arrogant) Pathan. (35)",
+          "lines": [
+            "Persuading Charat Singh not to accompany him,",
+            "Sukha Singh instructed other Singhs as well to retreat.",
+            "Then swearing an oath in the name of Satguru,",
+            "Sukha Singh took a pledge to kill the (arrogant) Pathan."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-100-p243-b003",
+          "type": "verse",
+          "text": "Thereafter throwing a gauntlet to the defiant Pathan, Sukha Sikh told that the latter would never return home alive. Where else could he go after slandering the Khalsa Panth, Except that he would be hurried in his grave there and then. (36)",
+          "lines": [
+            "Thereafter throwing a gauntlet to the defiant Pathan,",
+            "Sukha Sikh told that the latter would never return home alive.",
+            "Where else could he go after slandering the Khalsa Panth,",
+            "Except that he would be hurried in his grave there and then."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-100-p243-b004",
+          "type": "verse",
+          "text": "Khalsa Panth would eliminate him in such a manner, As truth wipes out every trace of falsehood at last. Had the Pathan become so arrogant when he started, That he considered the Singhs as timid as rabbits? (37)",
+          "lines": [
+            "Khalsa Panth would eliminate him in such a manner,",
+            "As truth wipes out every trace of falsehood at last.",
+            "Had the Pathan become so arrogant when he started,",
+            "That he considered the Singhs as timid as rabbits?"
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-100-p243-b005",
+          "type": "verse",
+          "text": "He would realize how a rabbit becomes as brave as lion, Since he had committed a grave error in challenging the Singhs. After uttering these words Sukha Singh stood firm at his place, While the Gilja Pathan also arrived to confront him. (38)",
+          "lines": [
+            "He would realize how a rabbit becomes as brave as lion,",
+            "Since he had committed a grave error in challenging the Singhs.",
+            "After uttering these words Sukha Singh stood firm at his place,",
+            "While the Gilja Pathan also arrived to confront him."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-100-p243-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p243-b007",
+          "type": "verse",
+          "text": "Both stood face to face exchanging such (hot) words, As if they were exchanging pleasantries with each other. Holding on to their swords in their hands, Each one asked the other to attack first of all. (39)",
+          "lines": [
+            "Both stood face to face exchanging such (hot) words,",
+            "As if they were exchanging pleasantries with each other.",
+            "Holding on to their swords in their hands,",
+            "Each one asked the other to attack first of all."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-100-p243-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p243-b009",
+          "type": "verse",
+          "text": "With both of them exchanging hot words with each other, Both of them started pushing and striking at each other. Sukha Singh warning the Pathan to be ready for the Singh's stroke, Suggested that the Pathan should have brought another supporter. (40)",
+          "lines": [
+            "With both of them exchanging hot words with each other,",
+            "Both of them started pushing and striking at each other.",
+            "Sukha Singh warning the Pathan to be ready for the Singh's stroke,",
+            "Suggested that the Pathan should have brought another supporter."
+          ],
+          "number": "40"
+        },
+        {
+          "id": "episode-100-p243-b010",
+          "type": "verse",
+          "text": "The Pathan retorted that he alone was sufficient to deal with the Singh, As he would pin the Singh down as easily as a lion pins down a goat. Thereafter, both of them after positioning their horses facing each other, Both of them took out their swords in their hands. (41)",
+          "lines": [
+            "The Pathan retorted that he alone was sufficient to deal with the Singh,",
+            "As he would pin the Singh down as easily as a lion pins down a goat.",
+            "Thereafter, both of them after positioning their horses facing each other,",
+            "Both of them took out their swords in their hands."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-100-p243-b011",
+          "type": "verse",
+          "text": "Each one of them asked the other to attack first of all, As if two real brothers were fondly playing together. Both of them, being skilled in wielding arms and weapons, Both of them knew how to duck and protect themselves. (42)",
+          "lines": [
+            "Each one of them asked the other to attack first of all,",
+            "As if two real brothers were fondly playing together.",
+            "Both of them, being skilled in wielding arms and weapons,",
+            "Both of them knew how to duck and protect themselves."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-100-p243-b012",
+          "type": "verse",
+          "text": "Both of them attacked each other from the front, Both of them received each other's stroke on their shields. Both of them cast their (mighty) strokes on each other's shield, As if a black ironsmith's hammer struck hot iron on an iron block. (43)",
+          "lines": [
+            "Both of them attacked each other from the front,",
+            "Both of them received each other's stroke on their shields.",
+            "Both of them cast their (mighty) strokes on each other's shield,",
+            "As if a black ironsmith's hammer struck hot iron on an iron block."
+          ],
+          "number": "43"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 245,
+      "fileName": "EPUB/page_245.html",
+      "sourceHref": "EPUB/page_245.html",
+      "printPageNumber": 191,
+      "blocks": [
+        {
+          "id": "episode-100-p245-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p245-b002",
+          "type": "verse",
+          "text": "With such mighty strokes from both the sides, Shields of both of them fell down after splintering. Thereafter, both of them started damaging each other's steel armours, With each blow of their unmistakable strokes. (44)",
+          "lines": [
+            "With such mighty strokes from both the sides,",
+            "Shields of both of them fell down after splintering.",
+            "Thereafter, both of them started damaging each other's steel armours,",
+            "With each blow of their unmistakable strokes."
+          ],
+          "number": "44"
+        },
+        {
+          "id": "episode-100-p245-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p245-b004",
+          "type": "verse",
+          "text": "As the supporting belts of both were cut with sword strokes, All the dangling daggers and knives from the belts fell down. As the tips and sharp edges of their swords broke down, Both of them started grappling with each other. (45)",
+          "lines": [
+            "As the supporting belts of both were cut with sword strokes,",
+            "All the dangling daggers and knives from the belts fell down.",
+            "As the tips and sharp edges of their swords broke down,",
+            "Both of them started grappling with each other."
+          ],
+          "number": "45"
+        },
+        {
+          "id": "episode-100-p245-b005",
+          "type": "verse",
+          "text": "As all the blood had drained out of the wounds, Their horses also lost their energy to support them. As each one's horse struck against the other's horse, Their riders too came too close to each other. (46)",
+          "lines": [
+            "As all the blood had drained out of the wounds,",
+            "Their horses also lost their energy to support them.",
+            "As each one's horse struck against the other's horse,",
+            "Their riders too came too close to each other."
+          ],
+          "number": "46"
+        },
+        {
+          "id": "episode-100-p245-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p245-b007",
+          "type": "verse",
+          "text": "Thus hitting and grappling with each other, Both of them tumbled down staggering on the ground. Getting seriously wounded due to the gaping head injuries, Both of them fell down and fainted on the ground. (47)",
+          "lines": [
+            "Thus hitting and grappling with each other,",
+            "Both of them tumbled down staggering on the ground.",
+            "Getting seriously wounded due to the gaping head injuries,",
+            "Both of them fell down and fainted on the ground."
+          ],
+          "number": "47"
+        },
+        {
+          "id": "episode-100-p245-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p245-b009",
+          "type": "verse",
+          "text": "As Sukha Singh regained little consciousness after some time, He raised his neck to survey the scene. Picking up a small knife he thrust it into Pathan's belly, Which scraped through the lungs and heart of the Pathan. (48)",
+          "lines": [
+            "As Sukha Singh regained little consciousness after some time,",
+            "He raised his neck to survey the scene.",
+            "Picking up a small knife he thrust it into Pathan's belly,",
+            "Which scraped through the lungs and heart of the Pathan."
+          ],
+          "number": "48"
+        },
+        {
+          "id": "episode-100-p245-b010",
+          "type": "verse",
+          "text": "As he pulled it out of the Pathan's belly with full force, It took out all the intestines and arteries with it. As the great Guru had stood by His Khalsa Singh, Sukha Singh got up and shouted \"Waheguru ji ki Fateh\". (49)",
+          "lines": [
+            "As he pulled it out of the Pathan's belly with full force,",
+            "It took out all the intestines and arteries with it.",
+            "As the great Guru had stood by His Khalsa Singh,",
+            "Sukha Singh got up and shouted \"Waheguru ji ki Fateh\"."
+          ],
+          "number": "49"
+        },
+        {
+          "id": "episode-100-p245-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p245-b012",
+          "type": "verse",
+          "text": "Thus was Mughal Gilja Pathan slaughtered, Who had been extremely arrogant and defiant. Thus has Rattan Singh narrated this episode, As he had heard it from his elderly Singhs. (50)",
+          "lines": [
+            "Thus was Mughal Gilja Pathan slaughtered,",
+            "Who had been extremely arrogant and defiant.",
+            "Thus has Rattan Singh narrated this episode,",
+            "As he had heard it from his elderly Singhs."
+          ],
+          "number": "50"
+        },
+        {
+          "id": "episode-100-p245-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p245-b014",
+          "type": "verse",
+          "text": "Thus shouting slogans of victory Sukha Singh retreated, And ran post haste towards the Khalsa camp. As the Gilja Pathans launched an attack from the otherside, The Singhs confronted them from their own side. (51)",
+          "lines": [
+            "Thus shouting slogans of victory Sukha Singh retreated,",
+            "And ran post haste towards the Khalsa camp.",
+            "As the Gilja Pathans launched an attack from the otherside,",
+            "The Singhs confronted them from their own side."
+          ],
+          "number": "51"
+        },
+        {
+          "id": "episode-100-p245-b015",
+          "type": "verse",
+          "text": "Charat Singh, spurring his horse, leapt forward, And picked up running Sukha Singh on to his horse. As Sukha Singh was carried to the other side of the river, Gilja Pathan troops were pushed to the other bank. (52)",
+          "lines": [
+            "Charat Singh, spurring his horse, leapt forward,",
+            "And picked up running Sukha Singh on to his horse.",
+            "As Sukha Singh was carried to the other side of the river,",
+            "Gilja Pathan troops were pushed to the other bank."
+          ],
+          "number": "52"
+        },
+        {
+          "id": "episode-100-p245-b016",
+          "type": "paragraph",
+          "text": "."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 247,
+      "fileName": "EPUB/page_247.html",
+      "sourceHref": "EPUB/page_247.html",
+      "printPageNumber": 193,
+      "blocks": [
+        {
+          "id": "episode-100-p247-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p247-b002",
+          "type": "verse",
+          "text": "There after developed such a spiritual bond of kinship, Between Sukha Singh and Charat Singh after this encounter, That despite appearing to be two separate entities, They were united at heart in a spiritual bondage. (53)",
+          "lines": [
+            "There after developed such a spiritual bond of kinship,",
+            "Between Sukha Singh and Charat Singh after this encounter,",
+            "That despite appearing to be two separate entities,",
+            "They were united at heart in a spiritual bondage."
+          ],
+          "number": "53"
+        },
+        {
+          "id": "episode-100-p247-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p247-b004",
+          "type": "verse",
+          "text": "The chiefs of all the Khalsa contingents arrived at the camp, And made an offering of one horse each to Sukha Singh, While offering horses they praised him for his brave act, Sukha Singh wished to be exonerated of female infanticide. (54)",
+          "lines": [
+            "The chiefs of all the Khalsa contingents arrived at the camp,",
+            "And made an offering of one horse each to Sukha Singh,",
+            "While offering horses they praised him for his brave act,",
+            "Sukha Singh wished to be exonerated of female infanticide."
+          ],
+          "number": "54"
+        },
+        {
+          "id": "episode-100-p247-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p247-b006",
+          "type": "verse",
+          "text": "With folded hands Sukha Singh prostrated in the Khalsa tradition, In front of the assembly of Sikh congregation. Thereupon, inviting Sukha Singh to be a part of Khalsa commonwealth, The congregation performed a prayer signifying joyous forgiveness. (55)",
+          "lines": [
+            "With folded hands Sukha Singh prostrated in the Khalsa tradition,",
+            "In front of the assembly of Sikh congregation.",
+            "Thereupon, inviting Sukha Singh to be a part of Khalsa commonwealth,",
+            "The congregation performed a prayer signifying joyous forgiveness."
+          ],
+          "number": "55"
+        },
+        {
+          "id": "episode-100-p247-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-100-p247-b008",
+          "type": "verse",
+          "text": "Sukha Singh returned all the horses offered to him, Except that offered by his Godfather S. Sham Singh. Since he happened to be the foster child of Sham Singh, He felt no dearth of horses for himself. (56)",
+          "lines": [
+            "Sukha Singh returned all the horses offered to him,",
+            "Except that offered by his Godfather S.",
+            "Sham Singh.",
+            "Since he happened to be the foster child of Sham Singh,",
+            "He felt no dearth of horses for himself."
+          ],
+          "number": "56"
+        },
+        {
+          "id": "episode-100-p247-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-100-p247-b010",
+          "type": "verse",
+          "text": "I (the author) has narrated the episode of Sukha Singh, As I had heard it narrated by my own elders. Rattan Singh would continue with his narration, And beseaches (Dear readers) to listen with concentration. (57)",
+          "lines": [
+            "I (the author) has narrated the episode of Sukha Singh,",
+            "As I had heard it narrated by my own elders.",
+            "Rattan Singh would continue with his narration,",
+            "And beseaches (Dear readers) to listen with concentration."
+          ],
+          "number": "57"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-099",
+  "nextChapterId": "episode-101"
+}

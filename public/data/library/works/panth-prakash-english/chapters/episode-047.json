@@ -1,0 +1,131 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-047",
+  "chapterNumber": 47,
+  "episodeNumber": 47,
+  "kind": "episode",
+  "title": "The Mughals feel threatened at the Advent of Banda Singh",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 307,
+  "endSourcePage": 309,
+  "wordCount": 288,
+  "charCount": 1699,
+  "startPosition": 46089,
+  "pages": [
+    {
+      "sourcePageNumber": 307,
+      "fileName": "EPUB/page_307.html",
+      "sourceHref": "EPUB/page_307.html",
+      "printPageNumber": 263,
+      "blocks": [
+        {
+          "id": "episode-047-p307-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-047-p307-b003",
+          "type": "verse",
+          "text": "Aslam Khan1 , who was governor of Lahore, (at the time Banda Singh's advent), Was so scared of Banda Singh that he dared not venture out of Lahore. Since he remained apprehensive about Banda Singh's invasion day and night, He felt scared and threatened by Banda Singh's (rumoured attack on Lahore). (1)",
+          "lines": [
+            "Aslam Khan1 , who was governor of Lahore,",
+            "(at the time Banda Singh's advent),",
+            "Was so scared of Banda Singh that he dared not venture out of Lahore.",
+            "Since he remained apprehensive about Banda Singh's invasion day and night,",
+            "He felt scared and threatened by Banda Singh's (rumoured attack on Lahore)."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-047-p307-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-047-p307-b005",
+          "type": "verse",
+          "text": "The rumour mill made out Banda Singh to be a designated prophet2 , Who had been sent to eliminate all the Muslims (from the Indian continent) This rumour made the whole Muslim populace so much scared, That it spread out (like a wild fire) throughout the entire country. (2)",
+          "lines": [
+            "The rumour mill made out Banda Singh to be a designated prophet2 ,",
+            "Who had been sent to eliminate all the Muslims (from the Indian continent) This rumour made the whole Muslim populace so much scared,",
+            "That it spread out (like a wild fire) throughout the entire country."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-047-p307-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-047-p307-b007",
+          "type": "verse",
+          "text": "No sooner did the Muslims hear about Banda Singh's impending invasion, They felt threatened and insecure even while sitting in their own homes. He could kill them even while sitting in their own homes, Since he was reported to be a mysteriously dangerous person. (3)",
+          "lines": [
+            "No sooner did the Muslims hear about Banda Singh's impending invasion,",
+            "They felt threatened and insecure even while sitting in their own homes.",
+            "He could kill them even while sitting in their own homes,",
+            "Since he was reported to be a mysteriously dangerous person."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-047-p307-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-047-p307-b009",
+          "type": "verse",
+          "text": "Even the Mughal emperor at Delhi was as much gripped with panick and fear, As was the prime minister gripped with the advent of Banda Singh. No body was prepared to accept the offer of governorship (of Punjab), As no Mughal Commander volunteered to confront Banda Singh. (4)",
+          "lines": [
+            "Even the Mughal emperor at Delhi was as much gripped with panick and fear,",
+            "As was the prime minister gripped with the advent of Banda Singh.",
+            "No body was prepared to accept the offer of governorship (of Punjab),",
+            "As no Mughal Commander volunteered to confront Banda Singh."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-047-p307-b010",
+          "type": "verse",
+          "text": "The (saffron) Khalsa standards (flags) kept fluttering without any support, Since no Muslim dared to come near these flags (for fear of being burnt alive). The Khalsa forces set up a military cantonment at Amritsar, Since no invader could now uproot their establishment from this site. (5)",
+          "lines": [
+            "The (saffron) Khalsa standards (flags) kept fluttering without any support,",
+            "Since no Muslim dared to come near these flags (for fear of being burnt alive).",
+            "The Khalsa forces set up a military cantonment at Amritsar,",
+            "Since no invader could now uproot their establishment from this site."
+          ],
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 309,
+      "fileName": "EPUB/page_309.html",
+      "sourceHref": "EPUB/page_309.html",
+      "printPageNumber": 265,
+      "blocks": [
+        {
+          "id": "episode-047-p309-b001",
+          "type": "verse",
+          "text": "Banda Singh himself stationed his force at Jaijon3 in the Doaba region, After selecting a huge palatial house and fortifying it from all sides. He would shower blessings from a raised platform, Showering blessings on the good and suffering on the wicked. (6)",
+          "lines": [
+            "Banda Singh himself stationed his force at Jaijon3 in the Doaba region,",
+            "After selecting a huge palatial house and fortifying it from all sides.",
+            "He would shower blessings from a raised platform,",
+            "Showering blessings on the good and suffering on the wicked."
+          ],
+          "number": "6"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-046",
+  "nextChapterId": "episode-048"
+}

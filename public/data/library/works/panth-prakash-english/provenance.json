@@ -1,10 +1,38 @@
 {
   "workId": "panth-prakash-english",
+  "profile": "panth-prakash-english-v6",
+  "generatedAt": "2026-07-15T17:31:46.667Z",
   "generatedFrom": [
-    "sri gur vol 1.epub",
-    "sri gur vol 2.epub"
+    {
+      "publicationId": "volume-1",
+      "sourceFileName": "vol1.epub",
+      "checksumSha256": "f9f801cc84551a8e895df8f9b812c634f5b9ecaf630e10f58ad5a99e90771768",
+      "archivedEpubPath": "/data/library/works/panth-prakash-english/assets/volume-1.epub"
+    },
+    {
+      "publicationId": "volume-2",
+      "sourceFileName": "vol2.epub",
+      "checksumSha256": "243827ebbb3a4152b1252834b5d9a1620bdf52478ce3021f3d1cdbd35d73d5bf",
+      "archivedEpubPath": "/data/library/works/panth-prakash-english/assets/volume-2.epub"
+    }
   ],
-  "sourceType": "epub",
-  "chapterSeedPath": "scripts/library/panth-prakash-episodes.seed.json",
-  "validation": "full-text-reference"
+  "selection": {
+    "purpose": "English reader edition",
+    "rules": [
+      "Volume I retains odd-numbered EPUB source pages 47 through 535 inclusive.",
+      "Volume II retains odd-numbered EPUB source pages 57 through 839 inclusive.",
+      "Preliminary matter, references, indexes, and corrupted source-language/transliteration facing pages are excluded from the default reading sequence.",
+      "Episodes split on sequential in-body Episode 1 through Episode 169 headings; repeated “contd.” headings remain inside their episode."
+    ]
+  },
+  "transformations": [
+    "HTML tags and executable markup removed.",
+    "Whitespace normalized and running Sri Gur Panth Prakash page headers removed.",
+    "Source wording and OCR spellings retained without silent correction.",
+    "Meter labels, numbered verses, headings, notes, and residual prose represented as semantic blocks.",
+    "Long blocks split at punctuation or whitespace for readable layout without changing word order.",
+    "Redundant “Episode about/of” wording removed from display titles; body text remains unchanged.",
+    "Episode 3 has no descriptive heading in the body; its display title is taken from the source volume’s contents page."
+  ],
+  "locatorPolicy": "Chapter startPosition is the one-based cumulative word position. Page locators retain publication ID, EPUB source href, source page number, and printed page number."
 }

@@ -1,0 +1,151 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-132",
+  "chapterNumber": 132,
+  "episodeNumber": 132,
+  "kind": "episode",
+  "title": "Bangar Region",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 511,
+  "endSourcePage": 513,
+  "wordCount": 294,
+  "charCount": 1765,
+  "startPosition": 164819,
+  "pages": [
+    {
+      "sourcePageNumber": 511,
+      "fileName": "EPUB/page_511.html",
+      "sourceHref": "EPUB/page_511.html",
+      "printPageNumber": 457,
+      "blocks": [
+        {
+          "id": "episode-132-p511-b002",
+          "type": "verse",
+          "text": "As the Khalsa Panth could not make both ends meet, They assembled to chalk out a strategy for survival. They must raid some region for their wherewithal, So that they could sit in peace in Malwa thereafter. (1)",
+          "lines": [
+            "As the Khalsa Panth could not make both ends meet,",
+            "They assembled to chalk out a strategy for survival.",
+            "They must raid some region for their wherewithal,",
+            "So that they could sit in peace in Malwa thereafter."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-132-p511-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-132-p511-b004",
+          "type": "paragraph",
+          "text": "Thereafter, the Khalsa Panth called some of Malwa chiefs, Who should identify some territories for Khalsa's raiding."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 513,
+      "fileName": "EPUB/page_513.html",
+      "sourceHref": "EPUB/page_513.html",
+      "printPageNumber": 459,
+      "blocks": [
+        {
+          "id": "episode-132-p513-b001",
+          "type": "verse",
+          "text": "Among those Malwa chiefs were Bhai Alo Singh1 and Bhai Budho Singh2 , Bhai Gurbax Singh3 being another among the invited. (2)",
+          "lines": [
+            "Among those Malwa chiefs were Bhai Alo Singh1 and Bhai Budho Singh2 ,",
+            "Bhai Gurbax Singh3 being another among the invited."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-132-p513-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-132-p513-b003",
+          "type": "verse",
+          "text": "Putting their representatives at the head of Khalsa Panth force, They made them lead the Khalsa Panth expedition. Bringing about settlements between Singhs and those others, They protected those whom they considered their own. (3)",
+          "lines": [
+            "Putting their representatives at the head of Khalsa Panth force,",
+            "They made them lead the Khalsa Panth expedition.",
+            "Bringing about settlements between Singhs and those others,",
+            "They protected those whom they considered their own."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-132-p513-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-132-p513-b005",
+          "type": "verse",
+          "text": "Bringing about settlement between Singhs and chiefs of Kaithal, Alo Singh saved eight villages from plunder by Khalsa Panth. Striking a deal with the chiefs of Jind4 and Safidon5 after a raid, Some amount of ransom was sent to the Singhs through Malwa Singhs. (4)",
+          "lines": [
+            "Bringing about settlement between Singhs and chiefs of Kaithal,",
+            "Alo Singh saved eight villages from plunder by Khalsa Panth.",
+            "Striking a deal with the chiefs of Jind4 and Safidon5 after a raid,",
+            "Some amount of ransom was sent to the Singhs through Malwa Singhs."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-132-p513-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-132-p513-b007",
+          "type": "verse",
+          "text": "With a rush, did the Khalsa Panth ransack the distant Hansi6 , They also plundered the more remote towns of Narnaul7 and Hissar8 , Thereafter, plundering the hill fort Kama9 at the hill top, Khalsa Panth forces sent a message about their arrival to the Jaipur ruler. (5)",
+          "lines": [
+            "With a rush, did the Khalsa Panth ransack the distant Hansi6 ,",
+            "They also plundered the more remote towns of Narnaul7 and Hissar8 ,",
+            "Thereafter, plundering the hill fort Kama9 at the hill top,",
+            "Khalsa Panth forces sent a message about their arrival to the Jaipur ruler."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-132-p513-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-132-p513-b009",
+          "type": "verse",
+          "text": "Thereafter, the Jaipur chief sent his representatives to the Singhs, Professing himself to be as devout a Sikh of the Gurus as the Singhs, When Guru Tegh Bahadur had conquered the southern region, The Rajput ruler had sought Guru Tegh Bahadur's protection. (6)",
+          "lines": [
+            "Thereafter, the Jaipur chief sent his representatives to the Singhs,",
+            "Professing himself to be as devout a Sikh of the Gurus as the Singhs,",
+            "When Guru Tegh Bahadur had conquered the southern region,",
+            "The Rajput ruler had sought Guru Tegh Bahadur's protection."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-132-p513-b010",
+          "type": "verse",
+          "text": "Both Rajputs and Singhs, being followers of the same Guru, The Rajputs begged the Singhs to spare their territory from plunder. Thereupon, the Singhs retracing their steps from there, They put up their camp in the vicinity of river Yamuna. (7)",
+          "lines": [
+            "Both Rajputs and Singhs, being followers of the same Guru,",
+            "The Rajputs begged the Singhs to spare their territory from plunder.",
+            "Thereupon, the Singhs retracing their steps from there,",
+            "They put up their camp in the vicinity of river Yamuna."
+          ],
+          "number": "7"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-131",
+  "nextChapterId": "episode-133"
+}
