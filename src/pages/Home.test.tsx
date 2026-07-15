@@ -127,6 +127,7 @@ test('renders the Home reading surface without old guidance cards', () => {
 
   expect(screen.getByTestId('page-home')).toBeInTheDocument()
   expect(screen.getByTestId('home-hero')).toBeInTheDocument()
+  expect(screen.getByTestId('home-hero-art-stage')).toContainElement(screen.getByTestId('home-hero-artwork'))
   expect(screen.getByRole('heading', { level: 1, name: 'NaamRas' })).toBeInTheDocument()
   expect(screen.getByText('Read. Reflect. Return.')).toBeInTheDocument()
   const readingPreferences = screen.getByRole('button', { name: 'Reading preferences' })

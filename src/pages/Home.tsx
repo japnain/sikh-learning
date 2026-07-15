@@ -759,7 +759,7 @@ export default function Home() {
         </div>
 
         <figure className="home-door-frame">
-          <div className="home-door-artwork">
+          <div className="home-door-artwork" data-testid="home-hero-art-stage">
             {heroImageFailed ? (
               <div
                 className="home-hero-art-fallback"
