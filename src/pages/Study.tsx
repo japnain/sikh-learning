@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
-import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
 import { useProgressStore } from '../store/progress'
@@ -30,7 +30,7 @@ import {
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { findCanonicalBaniById } from '../utils/baniRouteResolver'
-import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled } from '../components/icons'
+import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled, IconMoreHorizontal } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
@@ -249,6 +249,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
 
 export default function Study() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
   const { scriptureId } = useParams<{ scriptureId: string }>()
   const locale = useLocaleStore(s => s.locale)
@@ -991,6 +992,33 @@ export default function Study() {
     akPageParam ? `AK Page ${akPageParam}` : null,
     akItemParam ? `Item ${akItemParam}` : null,
   ].filter(Boolean).join(' · ')
+  const readerOriginCandidate = (location.state as { readerOrigin?: unknown } | null)?.readerOrigin
+  const readerOrigin = typeof readerOriginCandidate === 'string'
+    && readerOriginCandidate.startsWith('/')
+    && !readerOriginCandidate.startsWith('//')
+    && readerOriginCandidate !== '/study'
+    && !readerOriginCandidate.startsWith('/study/')
+      ? readerOriginCandidate
+      : null
+  const handleReaderBack = () => {
+    if (readerOrigin) {
+      navigate(readerOrigin)
+      return
+    }
+
+    if (isAmritKeertanContext) {
+      navigate(`/banis/amrit-keertan/${akHeaderIdParam}`)
+      return
+    }
+
+    navigate('/banis')
+  }
+  const openReaderSettings = () => {
+    setControlsOpen(true)
+    window.requestAnimationFrame(() => {
+      readerControlsRef.current?.scrollIntoView({ block: 'center', behavior: 'auto' })
+    })
+  }
   const entryOutline = useMemo(() => entries.map((entry, index) => {
     const sectionId = `study-entry-${index + 1}`
     const detailBits = [entry.raag, entry.writer, entry.sourceName].filter(Boolean)
@@ -1095,7 +1123,7 @@ export default function Study() {
       >
         <div className="flex items-center justify-between mb-4">
           <button
-            onClick={() => navigate(-1)}
+            onClick={handleReaderBack}
             className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"
             data-ai-action="study-back"
           >
@@ -1131,7 +1159,7 @@ export default function Study() {
           },
           {
             label: 'Back',
-            onClick: () => navigate(-1),
+            onClick: handleReaderBack,
             aiAction: 'study-back',
             emphasis: 'secondary',
           },
@@ -1153,7 +1181,7 @@ export default function Study() {
         actions={[
           {
             label: 'Back',
-            onClick: () => navigate(-1),
+            onClick: handleReaderBack,
             aiAction: 'study-back',
           },
           {
@@ -1176,15 +1204,19 @@ export default function Study() {
       data-ai-state="ready"
       data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="study-reader-topbar">
         <button
-          onClick={() => navigate(-1)}
-          className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"
+          onClick={handleReaderBack}
+          className="study-reader-back"
           data-ai-action="study-back"
         >
           <IconArrowLeft size={18} /> Back
         </button>
-        <div className="flex items-center gap-1">
+        <div className="study-reader-topbar__identity">
+          <p>{isHukamnamaMode ? 'Hukamnama' : 'Gurbani'}</p>
+          <span>{entrySourceDisplay}</span>
+        </div>
+        <div className="study-reader-topbar__actions">
           <button
             onClick={handleShare}
             className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300 active:scale-95 transition-transform duration-150"
@@ -1216,10 +1248,20 @@ export default function Study() {
           >
             {isBookmarked ? <IconBookmarkFilled size={20} /> : <IconBookmark size={20} />}
           </button>
+          <button
+            type="button"
+            onClick={openReaderSettings}
+            aria-label="Open reader settings"
+            title="Reader settings"
+            className="study-reader-settings-action"
+            data-ai-action="open-reader-settings"
+          >
+            <IconMoreHorizontal size={20} />
+          </button>
         </div>
       </div>
 
-      <div aria-live="polite" aria-atomic="true" className="mb-4 min-h-[1.5rem]">
+      <div aria-live="polite" aria-atomic="true" className="study-reader-action-status mb-4 min-h-[1.5rem]">
         {actionNotice ? (
           <div role="status" className="inline-flex rounded-full bg-saffron/10 px-3 py-1.5 font-sans text-xs font-medium text-saffron dark:bg-gold/12 dark:text-gold-light">
             {actionNotice}
@@ -1331,7 +1373,12 @@ export default function Study() {
         </div>
       )}
 
-      <div ref={readerControlsRef} className="study-reader-controls mb-4 section-shell-quiet p-4" data-testid="study-reader-controls">
+      <div
+        ref={readerControlsRef}
+        className="study-reader-controls mb-4 section-shell-quiet p-4"
+        data-testid="study-reader-controls"
+        data-open={controlsOpen ? 'true' : 'false'}
+      >
         <button
           type="button"
           onClick={() => setControlsOpen(open => !open)}

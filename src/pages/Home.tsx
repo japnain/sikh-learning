@@ -1,18 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { CSSProperties } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import type { TouchEvent as ReactTouchEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
-  IconBanis,
   IconBookmark,
   IconBookmarkFilled,
   IconCheck,
-  IconHeart,
   IconLibrary,
-  IconLayers,
   IconMoon,
+  IconMoreHorizontal,
   IconSun,
 } from '../components/icons'
 import NaamRasLogoMark from '../components/NaamRasLogoMark'
@@ -35,9 +32,11 @@ import { getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, rende
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
+import { toLocalDayStamp } from '../utils/localDates'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getEditorialCopy } from '../content/editorialCopy'
-import nitnemPixelMotifSrc from '../assets/home-calm/nitnem-pixel-motif.webp'
+import heroEclipseSrc from '../assets/home-eclipse/hero-eclipse.avif'
+import savedMuralSrc from '../assets/living-library/saved-mural.jpeg'
 
 const HOME_SPOTLIGHT_HIGHLIGHT_CLASSES = [
   'border-gold/45',
@@ -65,222 +64,6 @@ type HomeSavedPreviewItem = {
   detail: string
   path: string
   meta?: string
-}
-
-type HomeHeroRevealStyle = CSSProperties & {
-  '--home-hero-reveal': string
-  '--home-hero-pointer-x': string
-  '--home-hero-pointer-y': string
-  '--home-hero-parallax-x': string
-  '--home-hero-landscape-offset': string
-  '--home-hero-content-offset': string
-  '--home-hero-content-reserve': string
-  '--home-hero-image-lock': string
-  '--home-hero-image-scale': string
-  '--home-hero-image-y': string
-}
-
-const HOME_HERO_CONTENT_OFFSET_REM = 8.5
-const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 16.25
-const HOME_HERO_COMPACT_CONTENT_OFFSET_REM = 3.5
-const HOME_HERO_REVEAL_DISTANCE_PX = 380
-const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
-
-function isHomeHeroMobileViewport(): boolean {
-  return typeof window !== 'undefined' && window.innerWidth <= 560
-}
-
-function isHomeHeroCompactViewport(): boolean {
-  return typeof window !== 'undefined' && window.innerHeight <= 760
-}
-
-function getHomeHeroContentOffsetRem(): number {
-  if (typeof window === 'undefined') return HOME_HERO_CONTENT_OFFSET_REM
-
-  if (isHomeHeroCompactViewport()) return HOME_HERO_COMPACT_CONTENT_OFFSET_REM
-
-  return isHomeHeroMobileViewport()
-    ? HOME_HERO_MOBILE_CONTENT_OFFSET_REM
-    : HOME_HERO_CONTENT_OFFSET_REM
-}
-
-function useHomeHeroReveal() {
-  const rootRef = useRef<HTMLElement | null>(null)
-  const landscapeRef = useRef<HTMLSpanElement | null>(null)
-  const frameRef = useRef<number | null>(null)
-  const touchStartYRef = useRef<number | null>(null)
-  const touchRevealPxRef = useRef(0)
-  const valuesRef = useRef({ reveal: 0, pointerX: 0, pointerY: 0 })
-  const [style, setStyle] = useState<HomeHeroRevealStyle>(() => {
-    const contentOffsetRem = getHomeHeroContentOffsetRem()
-    return {
-      '--home-hero-reveal': '0',
-      '--home-hero-pointer-x': '0',
-      '--home-hero-pointer-y': '0',
-      '--home-hero-parallax-x': '0rem',
-      '--home-hero-landscape-offset': '0.4rem',
-      '--home-hero-content-offset': `${contentOffsetRem}rem`,
-      '--home-hero-content-reserve': `${contentOffsetRem}rem`,
-      '--home-hero-image-lock': '0px',
-      '--home-hero-image-scale': '1',
-      '--home-hero-image-y': '0rem',
-    }
-  })
-
-  const applyStyle = useCallback(() => {
-    frameRef.current = null
-    const scrollY = window.scrollY
-    const contentOffsetRem = getHomeHeroContentOffsetRem()
-    const isMobileHero = isHomeHeroMobileViewport()
-    const reveal = isMobileHero ? 1 : valuesRef.current.reveal
-    const inverseReveal = 1 - reveal
-    const currentContentOffsetRem = isMobileHero
-      ? contentOffsetRem
-      : inverseReveal * contentOffsetRem
-    const imageLock = isMobileHero ? 0 : scrollY * (0.62 + reveal * 0.38)
-    const next: HomeHeroRevealStyle = {
-      '--home-hero-reveal': reveal.toFixed(3),
-      '--home-hero-pointer-x': valuesRef.current.pointerX.toFixed(3),
-      '--home-hero-pointer-y': valuesRef.current.pointerY.toFixed(3),
-      '--home-hero-parallax-x': `${(-valuesRef.current.pointerX * 0.42).toFixed(3)}rem`,
-      '--home-hero-landscape-offset': '0.4rem',
-      '--home-hero-content-offset': `${currentContentOffsetRem.toFixed(3)}rem`,
-      '--home-hero-content-reserve': `${currentContentOffsetRem.toFixed(3)}rem`,
-      '--home-hero-image-lock': `${imageLock.toFixed(1)}px`,
-      '--home-hero-image-scale': `${(isMobileHero ? 1 : 1 + reveal * 0.12).toFixed(3)}`,
-      '--home-hero-image-y': '0rem',
-    }
-    setStyle(current => (
-      current['--home-hero-reveal'] === next['--home-hero-reveal']
-      && current['--home-hero-pointer-x'] === next['--home-hero-pointer-x']
-      && current['--home-hero-pointer-y'] === next['--home-hero-pointer-y']
-      && current['--home-hero-parallax-x'] === next['--home-hero-parallax-x']
-      && current['--home-hero-landscape-offset'] === next['--home-hero-landscape-offset']
-      && current['--home-hero-content-offset'] === next['--home-hero-content-offset']
-      && current['--home-hero-content-reserve'] === next['--home-hero-content-reserve']
-      && current['--home-hero-image-lock'] === next['--home-hero-image-lock']
-      && current['--home-hero-image-scale'] === next['--home-hero-image-scale']
-      && current['--home-hero-image-y'] === next['--home-hero-image-y']
-        ? current
-        : next
-    ))
-  }, [])
-
-  const scheduleStyle = useCallback(() => {
-    if (frameRef.current !== null) return
-    frameRef.current = window.requestAnimationFrame(applyStyle)
-  }, [applyStyle])
-
-  const updateReveal = useCallback((gestureRevealPx = touchRevealPxRef.current) => {
-    if (isHomeHeroMobileViewport()) {
-      touchRevealPxRef.current = 0
-      valuesRef.current.reveal = 1
-      valuesRef.current.pointerX = 0
-      valuesRef.current.pointerY = 0
-      scheduleStyle()
-      return
-    }
-
-    const scrollY = window.scrollY
-    if (scrollY > 4) {
-      touchRevealPxRef.current = 0
-    }
-    const progressPx = scrollY + (scrollY <= 4 ? gestureRevealPx : 0)
-    const rawReveal = Math.max(0, Math.min(1, progressPx / HOME_HERO_REVEAL_DISTANCE_PX))
-    valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 1.45)
-    scheduleStyle()
-  }, [scheduleStyle])
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (reduceMotion.matches) {
-      valuesRef.current.reveal = 1
-      valuesRef.current.pointerX = 0
-      valuesRef.current.pointerY = 0
-      scheduleStyle()
-      return undefined
-    }
-
-    updateReveal()
-    const handleScroll = () => updateReveal()
-    const handleResize = () => updateReveal()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
-      if (frameRef.current !== null) {
-        window.cancelAnimationFrame(frameRef.current)
-        frameRef.current = null
-      }
-    }
-  }, [scheduleStyle, updateReveal])
-
-  const updatePointer = useCallback((clientX: number, clientY: number, target: HTMLElement) => {
-    if (isHomeHeroMobileViewport()) return
-
-    const rect = target.getBoundingClientRect()
-    valuesRef.current.pointerX = Math.max(-1, Math.min(1, ((clientX - rect.left) / rect.width - 0.5) * 2))
-    valuesRef.current.pointerY = Math.max(-1, Math.min(1, ((clientY - rect.top) / rect.height - 0.5) * 2))
-    scheduleStyle()
-  }, [scheduleStyle])
-
-  const handlePointerMove = useCallback((event: ReactPointerEvent<HTMLElement>) => {
-    updatePointer(event.clientX, event.clientY, event.currentTarget)
-  }, [updatePointer])
-
-  const handlePointerLeave = useCallback(() => {
-    valuesRef.current.pointerX = 0
-    valuesRef.current.pointerY = 0
-    scheduleStyle()
-  }, [scheduleStyle])
-
-  const handleTouchMove = useCallback((event: ReactTouchEvent<HTMLElement>) => {
-    if (isHomeHeroMobileViewport()) return
-
-    const touch = event.touches[0]
-    if (!touch) return
-    updatePointer(touch.clientX, touch.clientY, event.currentTarget)
-    if (touchStartYRef.current === null) return
-
-    const dragDistance = Math.max(0, touchStartYRef.current - touch.clientY)
-    if (window.scrollY <= 4 && dragDistance > 2) {
-      touchRevealPxRef.current = Math.min(dragDistance * 1.2, HOME_HERO_TOUCH_REVEAL_DISTANCE_PX)
-      updateReveal(touchRevealPxRef.current)
-      return
-    }
-
-    window.requestAnimationFrame(() => updateReveal())
-  }, [updatePointer, updateReveal])
-
-  const handleTouchStart = useCallback((event: ReactTouchEvent<HTMLElement>) => {
-    if (isHomeHeroMobileViewport()) return
-
-    const touch = event.touches[0]
-    touchStartYRef.current = touch?.clientY ?? null
-    touchRevealPxRef.current = 0
-  }, [])
-
-  const handleTouchEnd = useCallback(() => {
-    if (isHomeHeroMobileViewport()) return
-
-    touchStartYRef.current = null
-    if (window.scrollY > 4) {
-      touchRevealPxRef.current = 0
-    }
-    window.requestAnimationFrame(() => updateReveal())
-  }, [updateReveal])
-
-  return {
-    rootRef,
-    landscapeRef,
-    style,
-    handlePointerMove,
-    handlePointerLeave,
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd,
-  }
 }
 
 const HOME_SAVED_PREVIEW_APPEARANCE: Record<
@@ -327,34 +110,62 @@ function getVocabPreviewDetail(entry: VocabEntry, locale: UiLocale): string {
 }
 
 const HOME_MESSAGES: Record<UiLocale, {
+  pathReceive: string
+  pathPractice: string
+  pathKeep: string
   dailyNitnem: string
   nitnemHeroTitle: string
   nitnemCarouselLabel: (index: number, total: number) => string
+  nitnemPosition: (index: number, total: number) => string
+  nitnemCompletion: (completed: number) => string
+  currentBani: string
   beginNitnem: string
+  customizeNitnemShort: string
   customizeNitnem: string
   chooseNitnemBody: string
 }> = {
   en: {
+    pathReceive: 'Receive',
+    pathPractice: 'Practice',
+    pathKeep: 'Keep',
     dailyNitnem: 'Daily Nitnem',
     nitnemHeroTitle: 'Anchor the day in Nitnem.',
     nitnemCarouselLabel: (index, total) => `Nitnem card ${index} of ${total}`,
+    nitnemPosition: (index, total) => `Bani ${index} of ${total}`,
+    nitnemCompletion: completed => `${completed} complete`,
+    currentBani: 'Current bani',
     beginNitnem: 'Begin Nitnem',
+    customizeNitnemShort: 'Customize',
     customizeNitnem: 'Customize Daily Nitnem',
     chooseNitnemBody: 'Choose the banis that should appear in your daily Nitnem ritual.',
   },
   pa: {
+    pathReceive: 'ਪ੍ਰਾਪਤ',
+    pathPractice: 'ਅਭਿਆਸ',
+    pathKeep: 'ਸੰਭਾਲ',
     dailyNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ',
     nitnemHeroTitle: 'ਨਿਤਨੇਮ ਨਾਲ ਦਿਨ ਨੂੰ ਅਡੋਲ ਕਰੋ।',
     nitnemCarouselLabel: (index, total) => `ਨਿਤਨੇਮ ਕਾਰਡ ${index} / ${total}`,
+    nitnemPosition: (index, total) => `ਬਾਣੀ ${index} / ${total}`,
+    nitnemCompletion: completed => `${completed} ਪੂਰੀਆਂ`,
+    currentBani: 'ਮੌਜੂਦਾ ਬਾਣੀ',
     beginNitnem: 'ਨਿਤਨੇਮ ਸ਼ੁਰੂ ਕਰੋ',
+    customizeNitnemShort: 'ਸੰਵਾਰੋ',
     customizeNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਸੰਵਾਰੋ',
     chooseNitnemBody: 'ਉਹ ਬਾਣੀਆਂ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਵਿੱਚ ਦਿਸਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।',
   },
   hi: {
+    pathReceive: 'ग्रहण',
+    pathPractice: 'अभ्यास',
+    pathKeep: 'सहेजें',
     dailyNitnem: 'दैनिक नितनेम',
     nitnemHeroTitle: 'नितनेम से दिन को स्थिर करो।',
     nitnemCarouselLabel: (index, total) => `नितनेम कार्ड ${index} / ${total}`,
+    nitnemPosition: (index, total) => `बानी ${index} / ${total}`,
+    nitnemCompletion: completed => `${completed} पूर्ण`,
+    currentBani: 'वर्तमान बानी',
     beginNitnem: 'नितनेम शुरू करें',
+    customizeNitnemShort: 'बदलें',
     customizeNitnem: 'दैनिक नितनेम बदलें',
     chooseNitnemBody: 'वे बानियाँ चुनें जो आपके दैनिक नितनेम में दिखाई दें।',
   },
@@ -367,6 +178,9 @@ export default function Home() {
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const locale = useLocaleStore(s => s.locale)
   const {
+    completedDate,
+    completedIds,
+    completionTrackingEnabled,
     selectedIds,
     resetIfNewDay,
   } = useNitemStore()
@@ -465,6 +279,15 @@ export default function Home() {
     ?? selectedNitnemOptions[0]
     ?? null
   const nitnemHasCarousel = selectedNitnemOptions.length > 1
+  const nitnemCompletedCount = useMemo(() => {
+    if (!completionTrackingEnabled || completedDate !== toLocalDayStamp(homeNow)) return 0
+    const completed = new Set(completedIds)
+    return selectedNitnemOptions.filter(option => completed.has(option.id)).length
+  }, [completedDate, completedIds, completionTrackingEnabled, homeNow, selectedNitnemOptions])
+  const nitnemPositionLabel = homeMessages.nitnemPosition(
+    safeNitnemIndex + 1,
+    selectedNitnemOptions.length
+  )
 
   useEffect(() => {
     if (selectedNitnemOptions.length === 0) return
@@ -627,16 +450,6 @@ export default function Home() {
   const savedReviewItems = vocab.length
   const isDarkTheme = useThemeStore(s => s.dark)
   const toggleTheme = useThemeStore(s => s.toggle)
-  const {
-    rootRef: homeHeroRootRef,
-    landscapeRef: homeHeroLandscapeRef,
-    style: homeHeroStyle,
-    handlePointerMove: handleHomeHeroPointerMove,
-    handlePointerLeave: handleHomeHeroPointerLeave,
-    handleTouchStart: handleHomeHeroTouchStart,
-    handleTouchMove: handleHomeHeroTouchMove,
-    handleTouchEnd: handleHomeHeroTouchEnd,
-  } = useHomeHeroReveal()
   const savedShelfNotice = useMemo(() => {
     switch (lastSaved?.kind) {
       case 'bookmark':
@@ -703,14 +516,6 @@ export default function Home() {
   return (
     <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
-        ref={homeHeroRootRef}
-        style={homeHeroStyle}
-        onPointerMove={handleHomeHeroPointerMove}
-        onPointerLeave={handleHomeHeroPointerLeave}
-        onTouchStart={handleHomeHeroTouchStart}
-        onTouchMove={handleHomeHeroTouchMove}
-        onTouchEnd={handleHomeHeroTouchEnd}
-        onTouchCancel={handleHomeHeroTouchEnd}
         className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
@@ -753,7 +558,7 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="mt-3 border-y border-sand/20 py-2.5 dark:border-dark-text/10">
+        <div className="home-day-meta mt-3 border-y border-sand/20 py-2.5 dark:border-dark-text/10">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="font-display text-[1.05rem] leading-none text-ink/78 dark:text-dark-text/82">
               {homeDateLabel}
@@ -765,8 +570,23 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="home-path-marker" data-testid="home-path-receive">
+          <span aria-hidden="true">01</span>
+          <p>{homeMessages.pathReceive}</p>
+        </div>
+
         <div className="home-door-frame" aria-label="Daily reading room">
-          <span ref={homeHeroLandscapeRef} className="home-landscape-reveal" aria-hidden="true" />
+          <img
+            src={heroEclipseSrc}
+            alt=""
+            aria-hidden="true"
+            width={1178}
+            height={1280}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            className="home-hero-art"
+          />
           <h1 id="home-hero-title" className="sr-only">
             NaamRas home
           </h1>
@@ -814,6 +634,7 @@ export default function Home() {
                 </div>
                 <Link
                   to={`/study?hukamnamaDate=${hukamnama.date}`}
+                  state={{ readerOrigin: '/' }}
                   className="home-primary-action interactive-focus interactive-pill-link"
                   data-testid="home-hero-primary-action"
                   data-ai-action="open-hukamnama"
@@ -854,18 +675,12 @@ export default function Home() {
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
-        <img
-          src={nitnemPixelMotifSrc}
-          alt=""
-          aria-hidden="true"
-          className="home-nitnem-motif"
-        />
-        <span className="home-tray-emblem" aria-hidden="true">
-          <IconBanis size={28} />
-        </span>
-        <span className="home-tray-corner home-tray-corner-left" aria-hidden="true" />
-        <span className="home-tray-corner home-tray-corner-right" aria-hidden="true" />
-        <div className="home-nitnem-heading flex flex-wrap items-start justify-between gap-3">
+        <div className="home-path-marker" data-testid="home-path-practice">
+          <span aria-hidden="true">02</span>
+          <p>{homeMessages.pathPractice}</p>
+        </div>
+
+        <div className="home-nitnem-heading">
           <div className="min-w-0">
             <p
               id="home-nitnem-title"
@@ -877,14 +692,68 @@ export default function Home() {
               {homeMessages.nitnemHeroTitle}
             </h2>
           </div>
-          <span className="shrink-0 rounded-full border border-sand/16 bg-parchment-card/78 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/64">
-            {activeNitnemOption?.group ?? homeMessages.dailyNitnem}
-          </span>
+          <Link
+            to="/nitnem/customize"
+            className="home-nitnem-customize interactive-focus"
+            aria-label={homeMessages.customizeNitnem}
+            title={homeMessages.customizeNitnem}
+            data-testid="home-nitnem-manage"
+          >
+            <IconMoreHorizontal size={17} />
+            <span>{homeMessages.customizeNitnemShort}</span>
+          </Link>
         </div>
 
-        <div className="mt-4">
+        <div className="home-nitnem-practice">
           {activeNitnemOption ? (
             <>
+              <div className="home-nitnem-toolbar">
+                <div className="min-w-0">
+                  <p className="home-nitnem-moment">{activeNitnemOption.group}</p>
+                  <p className="home-nitnem-position" aria-live="polite">
+                    {nitnemPositionLabel}
+                    {completionTrackingEnabled ? (
+                      <span>{homeMessages.nitnemCompletion(nitnemCompletedCount)}</span>
+                    ) : null}
+                  </p>
+                </div>
+                {nitnemHasCarousel ? (
+                  <div className="home-nitnem-nav" data-testid="home-nitnem-carousel-controls">
+                    <button
+                      type="button"
+                      onClick={() => setNitnemCarouselIndex(safeNitnemIndex - 1)}
+                      className="interactive-focus"
+                      aria-label="Previous Nitnem bani"
+                    >
+                      <IconArrowRight size={16} className="rotate-180" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setNitnemCarouselIndex(safeNitnemIndex + 1)}
+                      className="interactive-focus"
+                      aria-label="Next Nitnem bani"
+                    >
+                      <IconArrowRight size={16} />
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+
+              {completionTrackingEnabled ? (
+                <div
+                  className="home-nitnem-progress"
+                  role="progressbar"
+                  aria-label="Daily Nitnem completion"
+                  aria-valuemin={0}
+                  aria-valuemax={selectedNitnemOptions.length}
+                  aria-valuenow={nitnemCompletedCount}
+                >
+                  <span
+                    style={{ width: `${selectedNitnemOptions.length > 0 ? (nitnemCompletedCount / selectedNitnemOptions.length) * 100 : 0}%` }}
+                  />
+                </div>
+              ) : null}
+
               <div
                 ref={nitnemCarouselRef}
                 onScroll={handleNitnemCarouselScroll}
@@ -911,7 +780,7 @@ export default function Home() {
                       className="home-nitnem-card"
                     >
                       <div className="home-nitnem-card-grid">
-                        <p className="home-section-label">Today&apos;s Bani</p>
+                        <p className="home-section-label">{homeMessages.currentBani}</p>
                         <p lang={getScriptTextLang(scriptMode)} className={getScriptTextFontClass(scriptMode)}>
                           {renderScriptText(option.gurmukhiTitle, scriptMode)}
                         </p>
@@ -923,6 +792,7 @@ export default function Home() {
 
                       <Link
                         to={buildNitnemStudyPath(option)}
+                        state={{ readerOrigin: '/' }}
                         className="home-primary-action interactive-focus interactive-pill-link"
                         data-testid={active ? 'home-nitnem-primary-action' : undefined}
                         tabIndex={active ? undefined : -1}
@@ -933,54 +803,12 @@ export default function Home() {
                   )
                 })}
               </div>
-
-              {nitnemHasCarousel ? (
-                <div className="mt-3 flex items-center justify-between gap-3" data-testid="home-nitnem-carousel-controls">
-                  <button
-                    type="button"
-                    onClick={() => setNitnemCarouselIndex(safeNitnemIndex - 1)}
-                    className="interactive-focus icon-surface h-11 w-11 disabled:opacity-40"
-                    aria-label="Previous Nitnem bani"
-                  >
-                    <IconArrowRight size={16} className="rotate-180" />
-                  </button>
-                  <p
-                    className="min-w-20 text-center font-sans text-xs font-medium text-ink/68 dark:text-dark-text/64"
-                    aria-live="polite"
-                  >
-                    {safeNitnemIndex + 1} of {selectedNitnemOptions.length}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setNitnemCarouselIndex(safeNitnemIndex + 1)}
-                    className="interactive-focus icon-surface h-11 w-11 disabled:opacity-40"
-                    aria-label="Next Nitnem bani"
-                  >
-                    <IconArrowRight size={16} />
-                  </button>
-                </div>
-              ) : null}
-
-              <Link
-                to="/nitnem/customize"
-                className="home-outline-action interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-transparent px-5 font-sans text-sm font-medium text-ink/65 dark:border-dark-text/10 dark:text-dark-text/70"
-                data-testid="home-nitnem-manage"
-              >
-                {homeMessages.customizeNitnem}
-              </Link>
             </>
           ) : (
-            <div className="rounded-lg border border-dashed border-sand/18 px-4 py-5 dark:border-dark-text/10">
+            <div className="home-nitnem-empty">
               <p className="font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
                 {homeMessages.chooseNitnemBody}
               </p>
-              <Link
-                to="/nitnem/customize"
-                className="interactive-focus interactive-pill-link mt-4 min-h-[48px] rounded-lg bg-ink px-5 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
-                data-testid="home-nitnem-manage"
-              >
-                {homeMessages.customizeNitnem}
-              </Link>
             </div>
           )}
         </div>
@@ -991,7 +819,12 @@ export default function Home() {
         aria-labelledby="home-saved-title"
         data-testid="home-saved-overview"
       >
-        <div className="flex items-start justify-between gap-3">
+        <div className="home-path-marker" data-testid="home-path-keep">
+          <span aria-hidden="true">03</span>
+          <p>{homeMessages.pathKeep}</p>
+        </div>
+
+        <div className="home-saved-heading flex items-start justify-between gap-3">
           <div>
             <p className="eyebrow">{homeCopy.savedEyebrow}</p>
             <h3 id="home-saved-title" className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
@@ -1012,73 +845,94 @@ export default function Home() {
             </p>
           </div>
         ) : null}
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3" data-testid="home-saved-metrics">
-          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
-            <IconLibrary className="home-saved-metric-icon" size={20} />
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedBookmarks}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.bookmarks}</p>
-          </div>
-          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
-            <IconHeart className="home-saved-metric-icon" size={20} />
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedFavorites}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.favorites}</p>
-          </div>
-          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
-            <IconLayers className="home-saved-metric-icon" size={20} />
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedReviewItems}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.reviewBank}</p>
-          </div>
-        </div>
+        <div className="home-saved-layout" data-testid="home-saved-layout">
+          <Link
+            to="/library"
+            className="home-saved-art-band interactive-focus"
+            aria-label="Open Saved"
+            data-testid="home-saved-art"
+          >
+            <img
+              src={savedMuralSrc}
+              alt=""
+              width={1080}
+              height={1920}
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="home-saved-art-caption" aria-hidden="true">
+              <span>{homeCopy.openSaved}</span>
+              <IconArrowRight size={16} />
+            </span>
+          </Link>
 
-        <div className="mt-4 space-y-2" data-testid="home-saved-preview-list">
-          {savedPreviewItems.length > 0 ? (
-            savedPreviewItems.map(item => {
-              const appearance = HOME_SAVED_PREVIEW_APPEARANCE[item.kind]
-              const SavedPreviewIcon = appearance.icon
-              const isHighlighted = lastSaved?.kind === item.feedbackKind && lastSaved.targetId === item.id
-
-              return (
-              <Link
-                key={item.id}
-                to={item.path}
-                className={`section-shell-quiet interactive-focus interactive-card-link flex w-full items-start gap-3 px-4 py-4 text-left transition-colors duration-300 hover:border-gold/18 dark:hover:border-gold/20 ${appearance.surfaceClassName} ${isHighlighted ? 'saved-feedback-highlight' : ''}`}
-                data-testid={`home-saved-preview-${item.kind}`}
-              >
-                <span className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${appearance.badgeClassName}`}>
-                  <SavedPreviewIcon size={16} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="eyebrow">{item.label}</p>
-                    {item.meta ? <span className="chip-pill">{item.meta}</span> : null}
-                    {isHighlighted ? <span className="chip-pill">Saved just now</span> : null}
-                  </div>
-                  <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                    {item.title}
-                  </p>
-                  {item.kind === 'passage' ? (
-                    <p className={`mt-2 font-sans text-[11px] uppercase tracking-[0.18em] ${appearance.detailClassName}`}>
-                      {item.detail}
-                    </p>
-                  ) : (
-                    <p className={`mt-1.5 font-sans text-sm leading-6 ${appearance.detailClassName}`}>
-                      {item.detail}
-                    </p>
-                  )}
-                </div>
-                <span className="mt-1 shrink-0 text-gold-dark dark:text-gold-light">
-                  <IconArrowRight size={16} />
-                </span>
-              </Link>
-            )})
-          ) : (
-            <div className="home-quiet-card home-saved-empty-preview px-4 py-4">
-              <p className="eyebrow">Saved Preview</p>
-              <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                Bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
+          <div className="home-saved-shelf">
+            <div className="home-saved-summary" data-testid="home-saved-metrics">
+              <p className={`home-saved-summary-item ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
+                <strong>{savedBookmarks}</strong>
+                <span>{libraryCopy.bookmarks}</span>
+              </p>
+              <p className={`home-saved-summary-item ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
+                <strong>{savedFavorites}</strong>
+                <span>{libraryCopy.favorites}</span>
+              </p>
+              <p className={`home-saved-summary-item ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
+                <strong>{savedReviewItems}</strong>
+                <span>{libraryCopy.reviewBank}</span>
               </p>
             </div>
-          )}
+
+            <div className="home-saved-preview-list" data-testid="home-saved-preview-list">
+              {savedPreviewItems.length > 0 ? (
+                savedPreviewItems.map(item => {
+                  const appearance = HOME_SAVED_PREVIEW_APPEARANCE[item.kind]
+                  const SavedPreviewIcon = appearance.icon
+                  const isHighlighted = lastSaved?.kind === item.feedbackKind && lastSaved.targetId === item.id
+
+                  return (
+                  <Link
+                    key={item.id}
+                    to={item.path}
+                    className={`section-shell-quiet interactive-focus interactive-card-link flex w-full items-start gap-3 px-4 py-4 text-left transition-colors duration-300 hover:border-gold/18 dark:hover:border-gold/20 ${appearance.surfaceClassName} ${isHighlighted ? 'saved-feedback-highlight' : ''}`}
+                    data-testid={`home-saved-preview-${item.kind}`}
+                  >
+                    <span className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${appearance.badgeClassName}`}>
+                      <SavedPreviewIcon size={16} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="eyebrow">{item.label}</p>
+                        {item.meta ? <span className="chip-pill">{item.meta}</span> : null}
+                        {isHighlighted ? <span className="chip-pill">Saved just now</span> : null}
+                      </div>
+                      <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                        {item.title}
+                      </p>
+                      {item.kind === 'passage' ? (
+                        <p className={`mt-2 font-sans text-[11px] uppercase tracking-[0.18em] ${appearance.detailClassName}`}>
+                          {item.detail}
+                        </p>
+                      ) : (
+                        <p className={`mt-1.5 font-sans text-sm leading-6 ${appearance.detailClassName}`}>
+                          {item.detail}
+                        </p>
+                      )}
+                    </div>
+                    <span className="mt-1 shrink-0 text-gold-dark dark:text-gold-light">
+                      <IconArrowRight size={16} />
+                    </span>
+                  </Link>
+                )})
+              ) : (
+                <div className="home-quiet-card home-saved-empty-preview px-4 py-4">
+                  <p className="eyebrow">Saved Preview</p>
+                  <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+                    Bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
     </div>

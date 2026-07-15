@@ -293,7 +293,7 @@ export default function StudyCard({
                       {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: line.larivaar })}
                     </p>
                     {showTransliteration && line.transliteration && (
-                      <p className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                      <p lang="pa-Latn" className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
@@ -303,7 +303,7 @@ export default function StudyCard({
                           {renderScriptText(introMeaning, scriptMode)}
                         </p>
                       ) : (
-                        <p className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                           {introMeaning}
                         </p>
                       )
@@ -374,7 +374,7 @@ export default function StudyCard({
                     )}
 
                     {showTransliteration && line.transliteration && (
-                      <p className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                      <p lang="pa-Latn" className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
@@ -385,7 +385,7 @@ export default function StudyCard({
                           {renderScriptText(meaningText, scriptMode)}
                         </p>
                       ) : (
-                        <p className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
                           {meaningText}
                         </p>
                       )
