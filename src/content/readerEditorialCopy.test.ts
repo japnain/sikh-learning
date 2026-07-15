@@ -4,6 +4,7 @@ import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   BANNED_READER_EDITORIAL_PHRASES,
   DAILY_HUKAMNAMA_EDITORIAL_COPY,
+  PERSONAL_HUKAMNAMA_EDITORIAL_COPY,
   getReaderEditorialCopyForBani,
   getReaderEditorialCopyForBaniDbId,
 } from './readerEditorialCopy'
@@ -98,5 +99,21 @@ describe('reader editorial copy coverage', () => {
     expect(text).toMatch(/full source shabad/i)
     expect(text).toMatch(/date/i)
     expect(text).not.toMatch(/decorative/i)
+  })
+
+  it('keeps a personal Hukamnama distinct from the dated Harmandir Sahib reading', () => {
+    const text = [
+      PERSONAL_HUKAMNAMA_EDITORIAL_COPY.title,
+      PERSONAL_HUKAMNAMA_EDITORIAL_COPY.dek,
+      PERSONAL_HUKAMNAMA_EDITORIAL_COPY.sourceLine,
+      PERSONAL_HUKAMNAMA_EDITORIAL_COPY.historicalNote,
+      PERSONAL_HUKAMNAMA_EDITORIAL_COPY.practiceNote,
+      PERSONAL_HUKAMNAMA_EDITORIAL_COPY.sourceRefs.map(ref => `${ref.label} ${ref.note}`).join(' '),
+    ].join(' ')
+
+    expect(text).toMatch(/Personal Hukamnama/i)
+    expect(text).toMatch(/Sri Guru Granth Sahib Ji/i)
+    expect(text).not.toMatch(/Harmandir Sahib/i)
+    expect(text).toMatch(/Daily Hukamnama/i)
   })
 })

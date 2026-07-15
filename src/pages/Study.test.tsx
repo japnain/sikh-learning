@@ -13,7 +13,10 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
-import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
+import {
+  ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
+  PERSONAL_HUKAMNAMA_EDITORIAL_COPY,
+} from '../content/readerEditorialCopy'
 import { server } from '../test/msw-server'
 import { MOCK_BANI_RESPONSE } from '../test/msw-handlers'
 
@@ -495,9 +498,10 @@ describe('Study soundscapes and tracking', () => {
         expect(screen.getByText('Take Hukamnama')).toBeInTheDocument()
       })
 
-      expect(screen.queryByText('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ')).not.toBeInTheDocument()
-      expect(screen.queryByText(/Tap any Gurbani word for meaning/i)).not.toBeInTheDocument()
-      expect(screen.queryByText(/SGGS · Ang 119/i)).not.toBeInTheDocument()
+      const ardaasLines = screen.getAllByTestId('study-line')
+      expect(ardaasLines.some(line => line.textContent?.includes('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ'))).toBe(true)
+      expect(ardaasLines.find(line => line.dataset.verseId === '3737')).toHaveTextContent('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')
+      expect(screen.getByText(/SGGS · Ang 119/i)).toBeInTheDocument()
       expect(screen.queryByRole('button', { name: /Ang 118/i })).not.toBeInTheDocument()
       expect(screen.queryByRole('button', { name: /Ang 120/i })).not.toBeInTheDocument()
       expect(useProgressStore.getState().streak).toBe(2)
@@ -512,6 +516,10 @@ describe('Study soundscapes and tracking', () => {
 
       expect(screen.getByText(/Selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
       expect(screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote!)).toBeInTheDocument()
+      expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.sourceLine)).toBeInTheDocument()
+      expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.dek)).toBeInTheDocument()
+      expect(screen.getByText('Personal Hukamnama')).toBeInTheDocument()
+      expect(screen.queryByText(/Harmandir Sahib/i)).not.toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
       expect(screen.queryByText('Hukamnama begins here')).not.toBeInTheDocument()
       expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()

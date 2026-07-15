@@ -38,6 +38,7 @@ import { getEditorialCopy } from '../content/editorialCopy'
 import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   DAILY_HUKAMNAMA_EDITORIAL_COPY,
+  PERSONAL_HUKAMNAMA_EDITORIAL_COPY,
   formatReaderEditorialDate,
   getReaderEditorialCopyForBani,
   getReaderEditorialCopyForBaniDbId,
@@ -1018,8 +1019,10 @@ export default function Study() {
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
     ?? currentEntry?.gurmukhi
     ?? ''
-  const readerEditorialCopy = isHukamnamaMode || isRandomHukamnamaMode
+  const readerEditorialCopy = isHukamnamaMode
     ? DAILY_HUKAMNAMA_EDITORIAL_COPY
+    : isRandomHukamnamaMode
+      ? PERSONAL_HUKAMNAMA_EDITORIAL_COPY
     : isArdaasReaderFlow
       ? ARDAAS_HUKAMNAMA_EDITORIAL_COPY
       : getReaderEditorialCopyForBani(baniIdParam) ?? getReaderEditorialCopyForBaniDbId(baniDbIdParam, currentSource)
@@ -1266,7 +1269,7 @@ export default function Study() {
       data-page="study"
       data-ai-surface="study-reader"
       data-ai-state="ready"
-      data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
+      data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
       <div className="study-reader-topbar">
         <button
@@ -1277,7 +1280,7 @@ export default function Study() {
           <IconArrowLeft size={18} /> Back
         </button>
         <div className="study-reader-topbar__identity">
-          <p>{isHukamnamaMode ? 'Hukamnama' : 'Gurbani'}</p>
+          <p>{isHukamnamaMode || isRandomHukamnamaMode ? 'Hukamnama' : 'Gurbani'}</p>
           <span>{entrySourceDisplay}</span>
         </div>
         <div className="study-reader-topbar__actions">
@@ -1341,7 +1344,9 @@ export default function Study() {
         data-testid="study-reader-header"
       >
         <div className="study-reader-hero__kicker-row">
-          <p className="eyebrow mb-0">{isHukamnamaMode ? 'Daily Hukamnama' : studyCopy.eyebrow}</p>
+          <p className="eyebrow mb-0">
+            {isHukamnamaMode ? 'Daily Hukamnama' : isRandomHukamnamaMode ? 'Personal Hukamnama' : studyCopy.eyebrow}
+          </p>
           {hukamnamaDateLabel ? (
             <p className="study-reader-hero__date">{hukamnamaDateLabel}</p>
           ) : null}
@@ -1751,7 +1756,6 @@ export default function Study() {
               sectionId={entryOutline[entryIndex]?.sectionId}
               sectionEyebrow={showEntryOutline ? entryOutline[entryIndex]?.eyebrow ?? null : null}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
-              hideMainLines={isArdaasReaderFlow}
               showHeaderBlock={entryIndex === 0 || shouldPaginateEntries}
               showAudioPlayer={entryIndex === 0}
               onSavePhrase={handleSavePhrase}

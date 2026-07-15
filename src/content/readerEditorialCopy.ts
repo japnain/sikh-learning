@@ -679,6 +679,27 @@ export const DAILY_HUKAMNAMA_EDITORIAL_COPY: ReaderEditorialCopy = {
   reviewedAt: REVIEWED_AT,
 }
 
+export const PERSONAL_HUKAMNAMA_EDITORIAL_COPY: ReaderEditorialCopy = {
+  id: 'personal-hukamnama',
+  title: 'Personal Hukamnama',
+  dek: 'Read the shabad selected after Ardaas in its full source context, keeping its ang, raag, writer, and surrounding lines in view.',
+  historicalNote: "This Hukamnama is selected from Sri Guru Granth Sahib Ji after the individual Ardaas flow. It is separate from the app's dated Daily Hukamnama.",
+  practiceNote: 'Read the complete shabad with attention and receive its guidance in Gurbani context rather than reducing the selected line to a prediction or isolated answer.',
+  sourceLine: 'Personal Hukamnama after Ardaas · Sri Guru Granth Sahib Ji',
+  sourceRefs: [
+    {
+      label: 'Sri Guru Granth Sahib Ji',
+      note: 'The reader opens the full source shabad containing the verse selected after Ardaas.',
+    },
+    {
+      label: 'Ardaas + Hukamnama flow',
+      note: 'This label distinguishes the personal devotional selection from the separately dated Daily Hukamnama.',
+    },
+  ],
+  reviewed: true,
+  reviewedAt: REVIEWED_AT,
+}
+
 export const READER_EDITORIAL_COPY_BY_BANI_ID: Record<string, ReaderEditorialCopy> = Object.fromEntries(
   READ_EXACT_BANIS.map(bani => [bani.id, buildEditorialCopyForBani(bani)])
 )

@@ -196,13 +196,12 @@ test('opens source layers from the verse actions sheet', async () => {
   expect(screen.getAllByText('Selected').length).toBeGreaterThan(0)
 })
 
-test('can hide non-header lines for devotional readers like Ardaas', () => {
-  render(<StudyCard entry={introOnlyEntry} hideMainLines />)
+test('keeps devotional reader body lines after the structural opening', () => {
+  render(<StudyCard entry={introOnlyEntry} />)
 
   expect(screen.getByText('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')).toBeInTheDocument()
-  expect(screen.queryByText('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ')).not.toBeInTheDocument()
-  expect(screen.queryByText('Intro')).not.toBeInTheDocument()
-  expect(screen.queryByText(/Tap any Gurbani word for meaning/i)).not.toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Open word details for ਪ੍ਰਿਥਮ' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Open word details for ਕੈ' })).toBeInTheDocument()
 })
 
 test('keeps later BaniDB headers in their source sequence instead of hoisting them', () => {
