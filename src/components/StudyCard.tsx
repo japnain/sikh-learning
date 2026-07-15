@@ -13,7 +13,6 @@ import ModalSheet from './ModalSheet'
 interface Props {
   entry: ScriptureEntry
   wordData?: Word[] | null
-  hideMainLines?: boolean
   showHeaderBlock?: boolean
   showAudioPlayer?: boolean
   sectionId?: string
@@ -108,7 +107,6 @@ function handleWordKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
 export default function StudyCard({
   entry,
   wordData,
-  hideMainLines = false,
   showHeaderBlock = true,
   showAudioPlayer = false,
   sectionId,
@@ -156,9 +154,6 @@ export default function StudyCard({
   const leadingHeaderLines = lines.slice(0, leadingHeaderCount)
   const orderedBodyLines = lines.slice(leadingHeaderCount)
   const shouldRenderHeaderBlock = leadingHeaderLines.length > 0
-  const visibleOrderedLines = hideMainLines
-    ? orderedBodyLines.filter(line => line.isHeader)
-    : orderedBodyLines
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -323,10 +318,10 @@ export default function StudyCard({
           </div>
         )}
 
-        {visibleOrderedLines.length > 0 && (
+        {orderedBodyLines.length > 0 && (
           <>
             <div className="space-y-0">
-              {visibleOrderedLines.map((line, index) => {
+              {orderedBodyLines.map((line, index) => {
                 const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
                 const sequenceIndex = leadingHeaderCount + index
                 const isStructuralHeader = Boolean(line.isHeader)

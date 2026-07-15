@@ -231,6 +231,15 @@ describe('reference fetchers', () => {
 })
 
 describe('fetchBani', () => {
+  it('keeps the complete Ardaas body after its structural opening', async () => {
+    const result = await fetchBani(24)
+    const lines = result.entries.flatMap(entry => entry.lines ?? [])
+
+    expect(lines.slice(0, 5).every(line => line.isHeader)).toBe(true)
+    expect(firstVisibleLine(result.entries)).toBe('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥')
+    expect(lines.at(-1)?.gurmukhi).toBe('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')
+  })
+
   it('defaults Rehras Sahib to the short STTM length without producing Ang 0 and keeps later sections', async () => {
     const result = await fetchBani(21)
     expect(result.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
