@@ -9,6 +9,7 @@ import {
 import {
   BANIS,
   DG_CATEGORY_ORDER,
+  READ_BANIDB_CATALOG_COUNT,
   READ_DIRECTORY_DG_BANIS,
   READ_DIRECTORY_SGGS_BANIS,
   READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS,
@@ -30,7 +31,7 @@ import {
 } from '../utils/sundarGutkaLength'
 import { SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
-import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
+import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { hasSearchMatch } from '../utils/searchHighlight'
@@ -73,8 +74,8 @@ interface ResolvedRouteOption {
 }
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
-  SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, categoryOrder: SGGS_CATEGORY_ORDER },
-  DG: { label: 'Dasam Granth', icon: <IconSword size={18} />, categoryOrder: DG_CATEGORY_ORDER },
+  SGGS: { label: SOURCE_READER_META.G.name, icon: <IconLibrary size={18} />, categoryOrder: SGGS_CATEGORY_ORDER },
+  DG: { label: SOURCE_READER_META.D.name, icon: <IconLibrary size={18} />, categoryOrder: DG_CATEGORY_ORDER },
 }
 
 const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; minLength: number }> = {
@@ -140,27 +141,17 @@ function isSearchSourceParam(value: string | null): value is SearchSource {
 }
 
 const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set<string>(READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS)
-const SUNDAR_GUTKA_STANDALONE_BANIDB_IDS = new Set([24])
-
-const NITNEM_SUNDAR_GUTKA_BANI_IDS = new Set([
-  'japji-sahib',
-  'jaap-sahib',
-  'tav-prasad-savaiye',
-  'chaupai-sahib',
-  'anand-sahib',
-  'rehras-sahib',
-  'kirtan-sohila',
-])
-
-const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
-  'asa-di-var',
-  'salok-mahalla-9',
-  'sukhmani-sahib',
-  'aarti',
-  'laavan',
-])
+const NITNEM_SUNDAR_GUTKA_BANIDB_IDS = new Set([2, 4, 6, 9, 10, 20, 21, 23])
+const POPULAR_SUNDAR_GUTKA_BANIDB_IDS = new Set([90, 30, 31, 22])
+const STANDALONE_BANIDB_NAMES = new Map([[24, 'Ardaas']])
 
 const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
+const EXACT_BANI_BY_BANIDB_ID = new Map(
+  [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
+    .flat()
+    .filter(isExactBani)
+    .map(bani => [bani.baniDbId, bani])
+)
 const DIRECTORY_BANIS_BY_SCRIPTURE = {
   SGGS: READ_DIRECTORY_SGGS_BANIS,
   DG: READ_DIRECTORY_DG_BANIS,
@@ -269,10 +260,11 @@ function getNitnemRouteOptionsForBani(item: BaniIndexItem) {
 
 function getSundarGutkaDisplayCopy(item: BaniIndexItem) {
   const canonicalBani = getCanonicalSundarGutkaBani(item)
+  const exactBani = EXACT_BANI_BY_BANIDB_ID.get(item.id)
 
   return {
     label: item.gurmukhi,
-    detail: canonicalBani?.name ?? item.transliteration,
+    detail: canonicalBani?.name ?? exactBani?.name ?? STANDALONE_BANIDB_NAMES.get(item.id) ?? item.transliteration,
   }
 }
 
@@ -364,6 +356,23 @@ function IndexRow({
         </p>
       ) : null}
     </button>
+  )
+}
+
+function DirectoryCount({
+  count,
+  testId,
+}: {
+  count: number | null
+  testId: string
+}) {
+  return (
+    <span
+      className="min-w-[4.75rem] text-right font-sans text-[11px] tabular-nums text-ink/55 dark:text-dark-text/60"
+      data-testid={testId}
+    >
+      {count === null ? '...' : `${count} ${count === 1 ? 'bani' : 'banis'}`}
+    </span>
   )
 }
 
@@ -593,9 +602,14 @@ export default function Banis() {
 
   const openSundarGutkaBani = (item: BaniIndexItem) => {
     const canonicalBani = getCanonicalSundarGutkaBani(item)
+    const exactBani = EXACT_BANI_BY_BANIDB_ID.get(item.id)
     const name = canonicalBani && isSundarGutkaLengthSupportedBaniId(canonicalBani.id)
       ? SUNDAR_GUTKA_SUPPORTED_BANIS[canonicalBani.id].name
-      : canonicalBani?.name ?? item.transliteration ?? item.gurmukhi
+      : canonicalBani?.name
+        ?? exactBani?.name
+        ?? STANDALONE_BANIDB_NAMES.get(item.id)
+        ?? item.transliteration
+        ?? item.gurmukhi
 
     if (canonicalBani) {
       navigate(buildCanonicalBaniStudyPath(canonicalBani, {
@@ -606,19 +620,25 @@ export default function Banis() {
       return
     }
 
+    if (exactBani) {
+      navigate(buildCanonicalBaniStudyPath(exactBani, {
+        baniDbId: item.id,
+        baniId: exactBani.variantOf ?? exactBani.id,
+        baniName: name,
+      }))
+      return
+    }
+
     navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
   }
 
   const sundarGutkaGroups = useMemo(() => {
-    const nitnem = sundarGutkaBanis.filter(item => {
-      const canonicalId = getCanonicalSundarGutkaBani(item)?.id
-      return canonicalId ? NITNEM_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) : false
-    })
-    const popular = sundarGutkaBanis.filter(item => {
-      const canonicalId = getCanonicalSundarGutkaBani(item)?.id
-      return canonicalId ? POPULAR_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) : false
-    })
-    const other = sundarGutkaBanis.filter(item => SUNDAR_GUTKA_STANDALONE_BANIDB_IDS.has(item.id))
+    const nitnem = sundarGutkaBanis.filter(item => NITNEM_SUNDAR_GUTKA_BANIDB_IDS.has(item.id))
+    const popular = sundarGutkaBanis.filter(item => POPULAR_SUNDAR_GUTKA_BANIDB_IDS.has(item.id))
+    const other = sundarGutkaBanis.filter(item => (
+      !NITNEM_SUNDAR_GUTKA_BANIDB_IDS.has(item.id)
+      && !POPULAR_SUNDAR_GUTKA_BANIDB_IDS.has(item.id)
+    ))
 
     return [
       { key: 'nitnem', label: 'Nitnem', items: nitnem },
@@ -1112,14 +1132,18 @@ export default function Banis() {
           </span>
         </button>
 
-        <section className="read-directory-section" aria-labelledby="read-directory-title">
+        <section
+          className="read-directory-section"
+          aria-labelledby="read-directory-title"
+          data-bani-catalog-count={READ_BANIDB_CATALOG_COUNT}
+        >
           <div className="read-section-header">
             <p className="eyebrow">Browse</p>
             <h2 id="read-directory-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
               Bani directories
             </h2>
             <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
-              Open daily prayers, scripture collections, Vaaran, and kirtan.
+              Daily prayers, complete scripture collections, Vaaran, and kirtan.
             </p>
           </div>
 
@@ -1129,13 +1153,20 @@ export default function Banis() {
           onClick={() => toggle('sundar-gutka')}
           className="read-directory-card read-directory-card--featured w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
           data-open={expanded['sundar-gutka'] ? 'true' : 'false'}
+          data-testid="banis-directory-sundar-gutka"
           aria-expanded={Boolean(expanded['sundar-gutka'])}
           aria-controls="banis-sundar-gutka-panel"
         >
-          <div className="text-left">
+          <div className="min-w-0 text-left">
             <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} font-semibold text-base text-saffron dark:text-saffron-light`}>{renderScriptText('ਸੁੰਦਰ ਗੁਟਕਾ', scriptMode)} · Sundar Gutka</p>
           </div>
-          <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+          <span className="ml-3 flex shrink-0 items-center gap-2">
+            <DirectoryCount
+              count={loadingSundarGutka ? null : sundarGutkaBanis.length}
+              testId="banis-directory-sundar-gutka-count"
+            />
+            <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+          </span>
         </button>
 
         {expanded['sundar-gutka'] && (
@@ -1152,9 +1183,19 @@ export default function Banis() {
                     data-open={expanded[groupKey] ? 'true' : 'false'}
                     aria-expanded={Boolean(expanded[groupKey])}
                     aria-controls={`${groupKey}-panel`}
+                    aria-label={`${group.label}, ${group.items.length} banis`}
                   >
                     <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">{group.label}</p>
-                    <span className="icon-surface h-7 w-7 text-ink/68 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                    <span className="ml-3 flex shrink-0 items-center gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="min-w-6 text-right font-sans text-[11px] tabular-nums text-ink/50 dark:text-dark-text/56"
+                        data-testid={`${groupKey}-count`}
+                      >
+                        {group.items.length}
+                      </span>
+                      <span className="icon-surface h-7 w-7 text-ink/68 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                    </span>
                   </button>
                   {expanded[groupKey] && (
                     <div id={`${groupKey}-panel`} className="mt-1 ml-2">
@@ -1206,6 +1247,7 @@ export default function Banis() {
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
         const groups = scriptureGroups[scripture]
+        const baniCount = DIRECTORY_BANIS_BY_SCRIPTURE[scripture].filter(isExactBani).length
 
         return (
           <div key={scripture}>
@@ -1213,13 +1255,17 @@ export default function Banis() {
               onClick={() => toggle(sectionKey)}
               className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
               data-open={isOpen ? 'true' : 'false'}
+              data-testid={`banis-directory-${sectionKey}`}
               aria-expanded={Boolean(isOpen)}
               aria-controls={`banis-${sectionKey}-panel`}
             >
-              <div className="text-left">
-                <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${scripture === 'SGGS' ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
+              <div className="min-w-0 text-left">
+                <p className="flex items-center gap-1.5 font-sans text-base font-semibold text-saffron dark:text-saffron-light">{meta.icon} {meta.label}</p>
               </div>
-              <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+              <span className="ml-3 flex shrink-0 items-center gap-2">
+                <DirectoryCount count={baniCount} testId={`banis-directory-${sectionKey}-count`} />
+                <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+              </span>
             </button>
 
             {isOpen && (
@@ -1234,9 +1280,15 @@ export default function Banis() {
                         data-open={expanded[groupKey] ? 'true' : 'false'}
                         aria-expanded={Boolean(expanded[groupKey])}
                         aria-controls={`${groupKey}-panel`}
+                        aria-label={`${group.category}, ${group.items.length} readings`}
                       >
                         <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">{group.category}</p>
-                        <span className="icon-surface h-7 w-7 text-ink/68 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                        <span className="ml-3 flex shrink-0 items-center gap-2">
+                          <span aria-hidden="true" className="min-w-6 text-right font-sans text-[11px] tabular-nums text-ink/50 dark:text-dark-text/56">
+                            {group.items.length}
+                          </span>
+                          <span className="icon-surface h-7 w-7 text-ink/68 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                        </span>
                       </button>
                       {expanded[groupKey] && (
                         <div id={`${groupKey}-panel`} className="mt-1 ml-2">

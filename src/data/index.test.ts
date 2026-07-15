@@ -18,5 +18,6 @@ describe('SCRIPTURES', () => {
   it('SGGS is first, DG is second', () => {
     expect(SCRIPTURES[0].shortName).toBe('SGGS')
     expect(SCRIPTURES[1].shortName).toBe('DG')
+    expect(SCRIPTURES[1].name).toBe('Sri Dasam Granth Sahib Ji')
   })
 })

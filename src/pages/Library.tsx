@@ -15,6 +15,7 @@ import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import { SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import savedMuralSrc from '../assets/living-library/saved-mural.jpeg'
 import {
   IconBookmarkFilled,
@@ -30,10 +31,10 @@ const SOURCE_SHORT_NAME: Record<string, string> = {
 }
 
 const SOURCE_FULL_NAME: Record<string, string> = {
-  G: 'Sri Guru Granth Sahib Ji',
-  D: 'Dasam Granth',
-  B: 'Bhai Gurdas Ji Vaaran',
-  A: 'Amrit Keertan',
+  G: SOURCE_READER_META.G.name,
+  D: SOURCE_READER_META.D.name,
+  B: SOURCE_READER_META.B.name,
+  A: SOURCE_READER_META.A.name,
 }
 
 const angLabel = (source: string) => source === 'G' || source === 'D' ? 'Ang' : 'Page'

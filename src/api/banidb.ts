@@ -27,6 +27,7 @@ import {
   getSupportedSundarGutkaBaniIdByBaniDbId,
   type SundarGutkaRawLength,
 } from '../utils/sundarGutkaLength'
+import { isSourceReaderId, SOURCE_READER_META } from '../utils/sourceReaderMeta'
 
 const API_PREFIX = '/v2'
 
@@ -481,6 +482,7 @@ function normalizeWriterMeta(value: unknown): ScriptureWriterMeta | null {
 }
 
 function getSourceDisplay(meta: ScriptureSourceMeta | null | undefined, fallback: string): string {
+  if (isSourceReaderId(meta?.sourceId)) return SOURCE_READER_META[meta.sourceId].name
   return meta?.english || meta?.unicode || meta?.gurmukhi || fallback
 }
 

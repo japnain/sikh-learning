@@ -39,7 +39,7 @@ const REVIEWED_AT = '2026-05-06'
 
 const SCRIPTURE_LABELS: Record<Bani['scripture'], string> = {
   SGGS: 'Sri Guru Granth Sahib Ji',
-  DG: 'Dasam Granth',
+  DG: 'Sri Dasam Granth Sahib Ji',
   BGV: 'Bhai Gurdas Ji Vaaran',
   AK: 'Amrit Keertan',
 }

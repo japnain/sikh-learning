@@ -10,7 +10,7 @@ export const SOURCE_READER_META = {
     unit: 'Ang',
   },
   D: {
-    name: 'Dasam Granth',
+    name: 'Sri Dasam Granth Sahib Ji',
     shortName: 'DG',
     scripture: 'DG',
     max: 1428,
