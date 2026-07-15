@@ -1,0 +1,560 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-049",
+  "chapterNumber": 49,
+  "episodeNumber": 49,
+  "kind": "episode",
+  "title": "Hill chief of Kahloor (How the five Singhs broke through the fortified castle of Kahloor 's chief)",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 325,
+  "endSourcePage": 331,
+  "wordCount": 1532,
+  "charCount": 9313,
+  "startPosition": 49436,
+  "pages": [
+    {
+      "sourcePageNumber": 325,
+      "fileName": "EPUB/page_325.html",
+      "sourceHref": "EPUB/page_325.html",
+      "printPageNumber": 281,
+      "blocks": [
+        {
+          "id": "episode-049-p325-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p325-b003",
+          "type": "verse",
+          "text": "Now, dear readers, let us read further the episode of Kahloor, How and what happened to the Kahloor chief (amidst his fortifications)? How thirteen hundred soldiers of \"Mian\" Rajput's martial stock, Were brutally and systematically slaughtered (by the Khalsa). (1)",
+          "lines": [
+            "Now, dear readers, let us read further the episode of Kahloor,",
+            "How and what happened to the Kahloor chief (amidst his fortifications)?",
+            "How thirteen hundred soldiers of \"Mian\" Rajput's martial stock,",
+            "Were brutally and systematically slaughtered (by the Khalsa)."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-049-p325-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p325-b005",
+          "type": "verse",
+          "text": "(After subduing the Mandi Chief), Banda Singh addressed the Kahloor chief, That he must get ready to display the military feats of his forces. He challenged them to make his forts fortified and impregnable, And defend these forts with the troops of twenty-two states of Jalandhar principality. (2)",
+          "lines": [
+            "(After subduing the Mandi Chief),",
+            "Banda Singh addressed the Kahloor chief,",
+            "That he must get ready to display the military feats of his forces.",
+            "He challenged them to make his forts fortified and impregnable,",
+            "And defend these forts with the troops of twenty-two states of Jalandhar principality."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-049-p325-b006",
+          "type": "verse",
+          "text": "In case Banda Singh's five (Nihang) Singhs were able to defeat all his troops, Then the hill chiefs must admit defeat and vacate the hill regions. But in case these five Singhs failed to defeat and drive them away, Then Banda Singh and his forces would withdraw forever from the hill areas. (3)",
+          "lines": [
+            "In case Banda Singh's five (Nihang) Singhs were able to defeat all his troops,",
+            "Then the hill chiefs must admit defeat and vacate the hill regions.",
+            "But in case these five Singhs failed to defeat and drive them away,",
+            "Then Banda Singh and his forces would withdraw forever from the hill areas."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-049-p325-b007",
+          "type": "verse",
+          "text": "He would also pay as much ransom as he (the Kahloor chief) dictated. But they must enter into a firm deal on these terms. (Exercising the second option), the Kahloor chief decided to defy Banda Singh, And fortified his fort in defiance of Banda Singh's dictat. (4)",
+          "lines": [
+            "He would also pay as much ransom as he (the Kahloor chief) dictated.",
+            "But they must enter into a firm deal on these terms.",
+            "(Exercising the second option), the Kahloor chief decided to defy Banda Singh,",
+            "And fortified his fort in defiance of Banda Singh's dictat."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-049-p325-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p325-b009",
+          "type": "verse",
+          "text": "He assembled the forces of the Rajput clans of Darol, Majhailu and Mangloo, As well as those of Nanday1 , Sohal and Jhandwal Rajput clans. These troops also included Kanait, Dichhan and Chihhaley tribes, As well as those of Ballarh, Pammas and Dadwal Rajput troops. (5)",
+          "lines": [
+            "He assembled the forces of the Rajput clans of Darol,",
+            "Majhailu and Mangloo,",
+            "As well as those of Nanday1 ,",
+            "Sohal and Jhandwal Rajput clans.",
+            "These troops also included Kanait,",
+            "Dichhan and Chihhaley tribes,",
+            "As well as those of Ballarh,",
+            "Pammas and Dadwal Rajput troops."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-049-p325-b010",
+          "type": "verse",
+          "text": "Thirteen hundred Muslim convert Rajputs of Mian caste, Were positioned inside the fortified forts. Seven elephants with protective shields mounted on their heads, Were positioned to guard the fortress's enterances. (6)",
+          "lines": [
+            "Thirteen hundred Muslim convert Rajputs of Mian caste,",
+            "Were positioned inside the fortified forts.",
+            "Seven elephants with protective shields mounted on their heads,",
+            "Were positioned to guard the fortress's enterances."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-049-p325-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p325-b012",
+          "type": "verse",
+          "text": "As Kans had positioned a mighty elephant Kubli to guard his palace's entrance, Similarly, Kahloor chief positioned elephants in a highly inebriated state. Asking them to crush the raiding Singhs under the feet of drunken elephants, The Kahloor chief pledged to reward the elephants Mahawats lavishly for this deed. (7)",
+          "lines": [
+            "As Kans had positioned a mighty elephant Kubli to guard his palace's entrance,",
+            "Similarly,",
+            "Kahloor chief positioned elephants in a highly inebriated state.",
+            "Asking them to crush the raiding Singhs under the feet of drunken elephants,",
+            "The Kahloor chief pledged to reward the elephants Mahawats lavishly for this deed."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-049-p325-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p325-b014",
+          "type": "paragraph",
+          "text": "Inviting the troops of Hill chief of Rajauri and several other hill states, He made them take positions around his highly fortified palace."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 327,
+      "fileName": "EPUB/page_327.html",
+      "sourceHref": "EPUB/page_327.html",
+      "printPageNumber": 283,
+      "blocks": [
+        {
+          "id": "episode-049-p327-b001",
+          "type": "verse",
+          "text": "He not only equipped these forces with lots of arms and ammunition. But also paid them large sums of money (for rendering military assistance). (8)",
+          "lines": [
+            "He not only equipped these forces with lots of arms and ammunition.",
+            "But also paid them large sums of money (for rendering military assistance)."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-049-p327-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p327-b003",
+          "type": "verse",
+          "text": "From his side, Banda Singh despatched five of his Singhs, After empowering each one of them with his own spiritual powers. Let me record the names of those five chosen and blessed Singhs, And the kind of prowess with which each one of them had been blessed. (9)",
+          "lines": [
+            "From his side,",
+            "Banda Singh despatched five of his Singhs,",
+            "After empowering each one of them with his own spiritual powers.",
+            "Let me record the names of those five chosen and blessed Singhs,",
+            "And the kind of prowess with which each one of them had been blessed."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-049-p327-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p327-b005",
+          "type": "verse",
+          "text": "While S. Baghar Singh and S. Kehar Singh were the first two among them, S. Ranjit Singh and S. Ranjor Singh held the third and fourth positions. While S. Bajjar Singh was alloted the fifth position among these five, A large number of Singhs accompanied these five Singhs voluntarily. (10)",
+          "lines": [
+            "While S.",
+            "Baghar Singh and S.",
+            "Kehar Singh were the first two among them,",
+            "S.",
+            "Ranjit Singh and S.",
+            "Ranjor Singh held the third and fourth positions.",
+            "While S.",
+            "Bajjar Singh was alloted the fifth position among these five,",
+            "A large number of Singhs accompanied these five Singhs voluntarily."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-049-p327-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p327-b007",
+          "type": "verse",
+          "text": "Showering his blessings on these chosen and beloved Singhs, Banda Singh guaranteed that no weapon could ever hurt them fatally. He invested each one of them with such an effective arrow, Which will definitely hit and destroy their desired and chosen target. (11)",
+          "lines": [
+            "Showering his blessings on these chosen and beloved Singhs,",
+            "Banda Singh guaranteed that no weapon could ever hurt them fatally.",
+            "He invested each one of them with such an effective arrow,",
+            "Which will definitely hit and destroy their desired and chosen target."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-049-p327-b008",
+          "type": "verse",
+          "text": "He directed Baghar Singh (to clear their passage through enemy columns), And shoot his arrow and destroy the forces that blocked their passage. Kehar Singh was directed to deal with the two guarding elephants, And shoot both of these elephants with the shooting of a single arrow. (12)",
+          "lines": [
+            "He directed Baghar Singh (to clear their passage through enemy columns),",
+            "And shoot his arrow and destroy the forces that blocked their passage.",
+            "Kehar Singh was directed to deal with the two guarding elephants,",
+            "And shoot both of these elephants with the shooting of a single arrow."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-049-p327-b009",
+          "type": "verse",
+          "text": "S. Ranjor Singh and S. Ranjit Singh were alloted the task of, Dealing with rest of the five guarding elephants and shooting them down. Each one of them must shoot their individually alloted arrows, And make a display of the miraculous power of these arrows. (13)",
+          "lines": [
+            "S.",
+            "Ranjor Singh and S.",
+            "Ranjit Singh were alloted the task of,",
+            "Dealing with rest of the five guarding elephants and shooting them down.",
+            "Each one of them must shoot their individually alloted arrows,",
+            "And make a display of the miraculous power of these arrows."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-049-p327-b010",
+          "type": "verse",
+          "text": "Finally Banda Singh addressed S. Bajjar Singh in the same vein, As to how he should accomplish the task alloted to him. He must shoot his alloted arrow from such a position, That the four doors of the enemy's fort must get dismantled from their hinges. (14)",
+          "lines": [
+            "Finally Banda Singh addressed S.",
+            "Bajjar Singh in the same vein,",
+            "As to how he should accomplish the task alloted to him.",
+            "He must shoot his alloted arrow from such a position,",
+            "That the four doors of the enemy's fort must get dismantled from their hinges."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-049-p327-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p327-b012",
+          "type": "verse",
+          "text": "So, as these five Banda Singh's empowered Singhs proceeded on their mission. The news of their departure spread throughout the entire Khalsa force, (Feeling agitated) and making a vocal protest against such a partial selection, The Khalsa Panth approached Banda Singh (led by their leading veterans). (15)",
+          "lines": [
+            "So, as these five Banda Singh's empowered Singhs proceeded on their mission.",
+            "The news of their departure spread throughout the entire Khalsa force,",
+            "(Feeling agitated) and making a vocal protest against such a partial selection,",
+            "The Khalsa Panth approached Banda Singh (led by their leading veterans)."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-049-p327-b013",
+          "type": "verse",
+          "text": "Reminding him of his deputing them to fight in the bloody war (at Sirhind), They accused him of favouring outsiders at the time of tasting victory. Blaming him of considering them as unfit and unworthy of honour, They insisted on participating in that mission along with the selected five. (16)",
+          "lines": [
+            "Reminding him of his deputing them to fight in the bloody war (at Sirhind),",
+            "They accused him of favouring outsiders at the time of tasting victory.",
+            "Blaming him of considering them as unfit and unworthy of honour,",
+            "They insisted on participating in that mission along with the selected five."
+          ],
+          "number": "16"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 329,
+      "fileName": "EPUB/page_329.html",
+      "sourceHref": "EPUB/page_329.html",
+      "printPageNumber": 285,
+      "blocks": [
+        {
+          "id": "episode-049-p329-b001",
+          "type": "verse",
+          "text": "So the Khalsa Panth forces also launched an attack on their own, And proceeded towards Kahloor amidst a lot of din and shout. As the group of first five chosen Singhs arrived at the battle site, The outer enemy columns guarding the periphery did not put up any resistance. (Considering discreation to be the better part of valour), they preferred to look away. (17)",
+          "lines": [
+            "So the Khalsa Panth forces also launched an attack on their own,",
+            "And proceeded towards Kahloor amidst a lot of din and shout.",
+            "As the group of first five chosen Singhs arrived at the battle site,",
+            "The outer enemy columns guarding the periphery did not put up any resistance.",
+            "(Considering discreation to be the better part of valour), they preferred to look away."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-049-p329-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p329-b003",
+          "type": "verse",
+          "text": "S. Kehar Singh launched the main attack against the fortified hill chief's fort, Accompanied by the other two companions (Ranjor Singh and Ranjit Singh). As each one of them shot their sharp arrows invested with miraculous powers, They pierced through the heads of seven elephants guarding the fort. (18)",
+          "lines": [
+            "S.",
+            "Kehar Singh launched the main attack against the fortified hill chief's fort,",
+            "Accompanied by the other two companions (Ranjor Singh and Ranjit Singh).",
+            "As each one of them shot their sharp arrows invested with miraculous powers,",
+            "They pierced through the heads of seven elephants guarding the fort."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-049-p329-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p329-b005",
+          "type": "verse",
+          "text": "Then S. Bajjar Singh marched forward (to take an aim), And brought down both the entrance doors with the shooting of a single arrow. As all the four segments of the two doors came out of their hinges, Panick and chaos struck those who were inside this fortified fort. (19)",
+          "lines": [
+            "Then S.",
+            "Bajjar Singh marched forward (to take an aim),",
+            "And brought down both the entrance doors with the shooting of a single arrow.",
+            "As all the four segments of the two doors came out of their hinges,",
+            "Panick and chaos struck those who were inside this fortified fort."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-049-p329-b006",
+          "type": "verse",
+          "text": "In the mean time, the Khalsa Panth contigents also entered the fort, And they made a mince-meat of those who came in their way. They also encircled and withheld those who tried to desert and flee, As these were the troops who had supported the Mughal troops on the banks of Sirsa.(20)",
+          "lines": [
+            "In the mean time, the Khalsa Panth contigents also entered the fort,",
+            "And they made a mince-meat of those who came in their way.",
+            "They also encircled and withheld those who tried to desert and flee,",
+            "As these were the troops who had supported the Mughal troops on the banks of Sirsa."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-049-p329-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p329-b008",
+          "type": "verse",
+          "text": "Thus, the Khalsa forces slaughtered and massacred these hill troops, By brandishing and wielding their mighty swords (and spears). Those who surrendered with folded hands (before the Singhs), Their lives were spared after robbing them (of their weapons and horses). (21)",
+          "lines": [
+            "Thus, the Khalsa forces slaughtered and massacred these hill troops,",
+            "By brandishing and wielding their mighty swords (and spears).",
+            "Those who surrendered with folded hands (before the Singhs),",
+            "Their lives were spared after robbing them (of their weapons and horses)."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-049-p329-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p329-b010",
+          "type": "verse",
+          "text": "Seeing the hill chiefs deserting the fort and the Khalsa Singhs withholding them, Banda Singh also mounted his horse and arrived at the scene. He prohibited the Singhs from withholding those running from the field, But thirteen hundred soldiers of Kahloor's force were already killed. (22)",
+          "lines": [
+            "Seeing the hill chiefs deserting the fort and the Khalsa Singhs withholding them,",
+            "Banda Singh also mounted his horse and arrived at the scene.",
+            "He prohibited the Singhs from withholding those running from the field,",
+            "But thirteen hundred soldiers of Kahloor's force were already killed."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-049-p329-b011",
+          "type": "verse",
+          "text": "He ordered for thirteen mass graves to be dug out at the spot, And burried hundred dead bodies together into each grave. Then Banda Singh marched forward with his force towards Bilaspur. And captured Bilaspur after a large scale arson and plunder. (23)",
+          "lines": [
+            "He ordered for thirteen mass graves to be dug out at the spot,",
+            "And burried hundred dead bodies together into each grave.",
+            "Then Banda Singh marched forward with his force towards Bilaspur.",
+            "And captured Bilaspur after a large scale arson and plunder."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-049-p329-b012",
+          "type": "verse",
+          "text": "Banda Singh's terror spread to such an extent among the seven hill states, That each one of these principalities sent their representatives to negotiate with him. They pleaded that they had always been followers of the Sikh Gurus, But they were involved into confrontation with the Sikh Guru by Kahloor's chief. (24)",
+          "lines": [
+            "Banda Singh's terror spread to such an extent among the seven hill states,",
+            "That each one of these principalities sent their representatives to negotiate with him.",
+            "They pleaded that they had always been followers of the Sikh Gurus,",
+            "But they were involved into confrontation with the Sikh Guru by Kahloor's chief."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-049-p329-b013",
+          "type": "paragraph",
+          "text": "With these pleadings, all of them accepted Banda Singh's sovereignty, And started paying their revenue collections to him (instead to the Mughals),"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 331,
+      "fileName": "EPUB/page_331.html",
+      "sourceHref": "EPUB/page_331.html",
+      "printPageNumber": 287,
+      "blocks": [
+        {
+          "id": "episode-049-p331-b001",
+          "type": "verse",
+          "text": "Whosoever professed to be his follower had to make a token payment, And was immediately rewarded with gold coins by Banda Singh. (25)",
+          "lines": [
+            "Whosoever professed to be his follower had to make a token payment,",
+            "And was immediately rewarded with gold coins by Banda Singh."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-049-p331-b002",
+          "type": "verse",
+          "text": "While those who prayed for prosperity were blessed to be prosperous, Other who prayed for a male issue were blessed with the boon of a son. While those suffering from bodily afflictions got cured of sickness, Others who prayed for money were enriched with wealth and lucrece. (26)",
+          "lines": [
+            "While those who prayed for prosperity were blessed to be prosperous,",
+            "Other who prayed for a male issue were blessed with the boon of a son.",
+            "While those suffering from bodily afflictions got cured of sickness,",
+            "Others who prayed for money were enriched with wealth and lucrece."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-049-p331-b003",
+          "type": "verse",
+          "text": "Whosoever pleaded before five Singhs to pray on his behalf, He was blessed to have his cherished desires duly fulfilled. While all kinds of ghosts and evil spirits disappeared at his sight, Every other kind of malediction also disappeared under his influence. (27)",
+          "lines": [
+            "Whosoever pleaded before five Singhs to pray on his behalf,",
+            "He was blessed to have his cherished desires duly fulfilled.",
+            "While all kinds of ghosts and evil spirits disappeared at his sight,",
+            "Every other kind of malediction also disappeared under his influence."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-049-p331-b004",
+          "type": "verse",
+          "text": "Although the Siddhas exercised their spiritual powers (to neutralise his influence), Banda Singh proved for more superior in wielding his spiritual powers, Whosoever came from a far off place with a secret desire in his mind, Banda Singh could predict his innermost secret desire. (28)",
+          "lines": [
+            "Although the Siddhas exercised their spiritual powers (to neutralise his influence),",
+            "Banda Singh proved for more superior in wielding his spiritual powers,",
+            "Whosoever came from a far off place with a secret desire in his mind,",
+            "Banda Singh could predict his innermost secret desire."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-049-p331-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p331-b006",
+          "type": "verse",
+          "text": "Whosoever surrendered without any conditions to his sovereignty, He was profusely rewarded with material comforts by him, But the one who surrended after a bout of armed confrontation, He was also pardoned after a token penalty and then rewarded.(29)",
+          "lines": [
+            "Whosoever surrendered without any conditions to his sovereignty,",
+            "He was profusely rewarded with material comforts by him,",
+            "But the one who surrended after a bout of armed confrontation,",
+            "He was also pardoned after a token penalty and then rewarded."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-049-p331-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p331-b008",
+          "type": "verse",
+          "text": "After advancing upto the spot of Gurukot among the hills, Banda Singh stationed him (and his forces) at this place. While the hill chief of Suket principality paid his obeisaince personally, The Hill chief of Nadaun sent his representatives (for negotiations). (30)",
+          "lines": [
+            "After advancing upto the spot of Gurukot among the hills,",
+            "Banda Singh stationed him (and his forces) at this place.",
+            "While the hill chief of Suket principality paid his obeisaince personally,",
+            "The Hill chief of Nadaun sent his representatives (for negotiations)."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-049-p331-b009",
+          "type": "verse",
+          "text": "While they deposited their already collected revenue collections in his treasury, Many others made payments on one or the other pretext. While Banda Singh showered his blessings and grace on them, They remained in attendance to carry on any of his errands. (31)",
+          "lines": [
+            "While they deposited their already collected revenue collections in his treasury,",
+            "Many others made payments on one or the other pretext.",
+            "While Banda Singh showered his blessings and grace on them,",
+            "They remained in attendance to carry on any of his errands."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-049-p331-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-049-p331-b011",
+          "type": "verse",
+          "text": "Summoning the services of a public crier every day, He would make several kinds of announcements (in the region). Prohibiting the public from indulging into certain undesirable activities, He would make a public pronouncement against their indulgence. (32)",
+          "lines": [
+            "Summoning the services of a public crier every day,",
+            "He would make several kinds of announcements (in the region).",
+            "Prohibiting the public from indulging into certain undesirable activities,",
+            "He would make a public pronouncement against their indulgence."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-049-p331-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-049-p331-b013",
+          "type": "verse",
+          "text": "People were strictly warned against laying their hands on, A woman who happened to walk wearing jewellery. They were also prohibited from humiliating anybody, By disrobing anybody publically or touching anybody's turban. (33)",
+          "lines": [
+            "People were strictly warned against laying their hands on,",
+            "A woman who happened to walk wearing jewellery.",
+            "They were also prohibited from humiliating anybody,",
+            "By disrobing anybody publically or touching anybody's turban."
+          ],
+          "number": "33"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-048",
+  "nextChapterId": "episode-050"
+}

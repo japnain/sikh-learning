@@ -1,0 +1,541 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-040",
+  "chapterNumber": 40,
+  "episodeNumber": 40,
+  "kind": "episode",
+  "title": "Wazir Khan's Murder",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 281,
+  "endSourcePage": 289,
+  "wordCount": 1473,
+  "charCount": 8425,
+  "startPosition": 41525,
+  "pages": [
+    {
+      "sourcePageNumber": 281,
+      "fileName": "EPUB/page_281.html",
+      "sourceHref": "EPUB/page_281.html",
+      "printPageNumber": 237,
+      "blocks": [
+        {
+          "id": "episode-040-p281-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p281-b003",
+          "type": "verse",
+          "text": "After getting information about the war camp of Banda Singh's forces, Wazir Khan's forces launched an advance attack from the front. His army, led by formations equipped with heavy and medium canons. Was followed by large contingents of infantry formations. (1)",
+          "lines": [
+            "After getting information about the war camp of Banda Singh's forces,",
+            "Wazir Khan's forces launched an advance attack from the front.",
+            "His army, led by formations equipped with heavy and medium canons.",
+            "Was followed by large contingents of infantry formations."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-040-p281-b004",
+          "type": "verse",
+          "text": "Adopting a military strategy to wage this war against the Singhs, The camel-loaded guns and light handguns provided cover from one flank. Approaching Banda Singh's camp they opened such a volley of gun fine, As if a hailstorm was let loose on earth from the skies. (2)",
+          "lines": [
+            "Adopting a military strategy to wage this war against the Singhs,",
+            "The camel-loaded guns and light handguns provided cover from one flank.",
+            "Approaching Banda Singh's camp they opened such a volley of gun fine,",
+            "As if a hailstorm was let loose on earth from the skies."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-040-p281-b005",
+          "type": "verse",
+          "text": "All canons, light guns and long-muzzle guns opened fire all at once, Which formed the total arsenal of Wazir Khan's Mughal army. There was such a chain firing of hand-grenades from their side, That it mutilated and tore through the trunks of big trees. (3)",
+          "lines": [
+            "All canons, light guns and long-muzzle guns opened fire all at once,",
+            "Which formed the total arsenal of Wazir Khan's Mughal army.",
+            "There was such a chain firing of hand-grenades from their side,",
+            "That it mutilated and tore through the trunks of big trees."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-040-p281-b006",
+          "type": "verse",
+          "text": "Bullets were fired with such ferocity of a lashing rain, That one could neither sit, stand nor lie down on earth. So much din and dust was raised by the horse's hoofs, That there was a pitch darkness even during the day time. (4)",
+          "lines": [
+            "Bullets were fired with such ferocity of a lashing rain,",
+            "That one could neither sit, stand nor lie down on earth.",
+            "So much din and dust was raised by the horse's hoofs,",
+            "That there was a pitch darkness even during the day time."
+          ],
+          "number": "4"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 283,
+      "fileName": "EPUB/page_283.html",
+      "sourceHref": "EPUB/page_283.html",
+      "printPageNumber": 239,
+      "blocks": [
+        {
+          "id": "episode-040-p283-b001",
+          "type": "verse",
+          "text": "So many sparks flew out from the firing of canons and guns, As if glow-worms were flitting around in the pitch dark night. The whole battlefield was engulfed in a thick pall of smoke, As the guns sent out balls of smoke and fire after explosion. (5)",
+          "lines": [
+            "So many sparks flew out from the firing of canons and guns,",
+            "As if glow-worms were flitting around in the pitch dark night.",
+            "The whole battlefield was engulfed in a thick pall of smoke,",
+            "As the guns sent out balls of smoke and fire after explosion."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-040-p283-b002",
+          "type": "verse",
+          "text": "The menials and non-combatants started deserting Banda Singh, And started seeking refuge behind the Banda Singh's camp on a hillock. The robbers and plunderers who had joined Bands Singh's force, Also deserted him for fear of being killed by the enemy fire. (6)",
+          "lines": [
+            "The menials and non-combatants started deserting Banda Singh,",
+            "And started seeking refuge behind the Banda Singh's camp on a hillock.",
+            "The robbers and plunderers who had joined Bands Singh's force,",
+            "Also deserted him for fear of being killed by the enemy fire."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-040-p283-b003",
+          "type": "verse",
+          "text": "They cursed the mendicant Banda Singh for landing them in trouble, And felt they were better off while earning their livelihood through labour. So while all these menials and robbers deserted Banda Singh, The brave Singhs did not budge an inch from their positions. (7)",
+          "lines": [
+            "They cursed the mendicant Banda Singh for landing them in trouble,",
+            "And felt they were better off while earning their livelihood through labour.",
+            "So while all these menials and robbers deserted Banda Singh,",
+            "The brave Singhs did not budge an inch from their positions."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-040-p283-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p283-b005",
+          "type": "verse",
+          "text": "So there was a fierce encounter between the two forces, Although Wazir Khan's army was equipped with all kinds of weapons. But all the robbers and dacoits in the Banda Singh's camp, Deserted him without laying their hands on any treasure. (8)",
+          "lines": [
+            "So there was a fierce encounter between the two forces,",
+            "Although Wazir Khan's army was equipped with all kinds of weapons.",
+            "But all the robbers and dacoits in the Banda Singh's camp,",
+            "Deserted him without laying their hands on any treasure."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-040-p283-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p283-b007",
+          "type": "verse",
+          "text": "While Wazir Khan's army was well provided with ammunition and provisions, Banda Singh had not stored anything for fighting this war. Neither had he supplied any weapons and ammunition to his force, Nor had acquired any canons and medium guns to fight this war. (9)",
+          "lines": [
+            "While Wazir Khan's army was well provided with ammunition and provisions,",
+            "Banda Singh had not stored anything for fighting this war.",
+            "Neither had he supplied any weapons and ammunition to his force,",
+            "Nor had acquired any canons and medium guns to fight this war."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-040-p283-b008",
+          "type": "verse",
+          "text": "While the Royal Mughal force was equipped with full provisions, The Singhs did not have provisions even for the next meals. While the Mughal army possessed bags full of gold coins, The Singhs arranged everyday's provisions through loot and plunder. (10)",
+          "lines": [
+            "While the Royal Mughal force was equipped with full provisions,",
+            "The Singhs did not have provisions even for the next meals.",
+            "While the Mughal army possessed bags full of gold coins,",
+            "The Singhs arranged everyday's provisions through loot and plunder."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-040-p283-b009",
+          "type": "verse",
+          "text": "It was indeed a rare miracle of the supreme Divine, That a mendicant stole a victory over a powerful sovereign. God's Divine Will can lift a mountain with a twig of grass, As well as suck up an over brimming ocean totally dry. (11)",
+          "lines": [
+            "It was indeed a rare miracle of the supreme Divine,",
+            "That a mendicant stole a victory over a powerful sovereign.",
+            "God's Divine Will can lift a mountain with a twig of grass,",
+            "As well as suck up an over brimming ocean totally dry."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-040-p283-b010",
+          "type": "verse",
+          "text": "The two veteran Singhs, Aali Singh and Baaj Singh asked Banda Singh humbly: Why was he not mounting his horse to take up the command? Then Banda Singh exhorted all the Khalsa Singh warriors, That they alone should hold the ground for a few more hours. (12)",
+          "lines": [
+            "The two veteran Singhs,",
+            "Aali Singh and Baaj Singh asked Banda Singh humbly: Why was he not mounting his horse to take up the command?",
+            "Then Banda Singh exhorted all the Khalsa Singh warriors,",
+            "That they alone should hold the ground for a few more hours."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-040-p283-b011",
+          "type": "verse",
+          "text": "Thereafter God Almighty would Himself come to protect them, And all the Mughal forces would be defeated and destroyed. Then all the Singhs beseeched Banda Singh once again, That, they, on their own, could not hold on even for moment more. (13)",
+          "lines": [
+            "Thereafter God Almighty would Himself come to protect them,",
+            "And all the Mughal forces would be defeated and destroyed.",
+            "Then all the Singhs beseeched Banda Singh once again,",
+            "That, they, on their own, could not hold on even for moment more."
+          ],
+          "number": "13"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 285,
+      "fileName": "EPUB/page_285.html",
+      "sourceHref": "EPUB/page_285.html",
+      "printPageNumber": 241,
+      "blocks": [
+        {
+          "id": "episode-040-p285-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p285-b002",
+          "type": "verse",
+          "text": "There were two veteran Singhs S. Baaj Singh and S. Sham Singh, Who were sent with Banda Singh by the Guru Himself, They and all other Singhs pleaded with Banda Singh with folded hands, (That Banda Singh must lead and participate in the battle). (14)",
+          "lines": [
+            "There were two veteran Singhs S.",
+            "Baaj Singh and S.",
+            "Sham Singh,",
+            "Who were sent with Banda Singh by the Guru Himself,",
+            "They and all other Singhs pleaded with Banda Singh with folded hands,",
+            "(That Banda Singh must lead and participate in the battle)."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-040-p285-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p285-b004",
+          "type": "verse",
+          "text": "They told him that they could not fight without his leading them, But they would make the highest sacrifice under his command. Since the Khalsa Singhs alone had stood while the mercenaries had deserted, It was upto Banda Singh either to protect them or to get them killed. (15)",
+          "lines": [
+            "They told him that they could not fight without his leading them,",
+            "But they would make the highest sacrifice under his command.",
+            "Since the Khalsa Singhs alone had stood while the mercenaries had deserted,",
+            "It was upto Banda Singh either to protect them or to get them killed."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-040-p285-b005",
+          "type": "verse",
+          "text": "Since they had no other place where they could escape and take refuge, They would prefer to sacrifice their lives at his bidding. (16)",
+          "lines": [
+            "Since they had no other place where they could escape and take refuge,",
+            "They would prefer to sacrifice their lives at his bidding."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-040-p285-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p285-b007",
+          "type": "verse",
+          "text": "Then Banda Singh instructed those pleading Khalsa Singhs, That they should continue to fight alone for a few hours more. After that he would offer a prayer to the Guru to bless them, And seek His blessings for their victory over the Mughals. (17)",
+          "lines": [
+            "Then Banda Singh instructed those pleading Khalsa Singhs,",
+            "That they should continue to fight alone for a few hours more.",
+            "After that he would offer a prayer to the Guru to bless them,",
+            "And seek His blessings for their victory over the Mughals."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-040-p285-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p285-b009",
+          "type": "verse",
+          "text": "The Singhs replied that they could not resist for such a long period, As they found it impossible to hold on even for a minute. Since they had come to make sacrifice at Guru's instructions, How could they survive Mughal's onslaught without His protection? (18)",
+          "lines": [
+            "The Singhs replied that they could not resist for such a long period,",
+            "As they found it impossible to hold on even for a minute.",
+            "Since they had come to make sacrifice at Guru's instructions,",
+            "How could they survive Mughal's onslaught without His protection?"
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-040-p285-b010",
+          "type": "verse",
+          "text": "Since their ship of life had been caught in mid-stream, Now it was upto Banda Singh either to sink them or save their lives. Being Guru's blessed One he alone could offer them protection, Since they were in extreme minority against the Mughal's vast army. (19)",
+          "lines": [
+            "Since their ship of life had been caught in mid-stream,",
+            "Now it was upto Banda Singh either to sink them or save their lives.",
+            "Being Guru's blessed One he alone could offer them protection,",
+            "Since they were in extreme minority against the Mughal's vast army."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-040-p285-b011",
+          "type": "verse",
+          "text": "How could they fight with the Mughals, being in such a minority? As they were likely to be blown up by the enemy's canon fire. What to talk of resisting the Mughal's offensive for a few hours, They could no longer survive even for a minute without him. (20)",
+          "lines": [
+            "How could they fight with the Mughals, being in such a minority?",
+            "As they were likely to be blown up by the enemy's canon fire.",
+            "What to talk of resisting the Mughal's offensive for a few hours,",
+            "They could no longer survive even for a minute without him."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-040-p285-b012",
+          "type": "verse",
+          "text": "Since They could not fight without his command, They would perish in a moment without his protection. Since they lacked the nerve to fight without his protection, They were likely to be blown up by the canon and gunfire. (21)",
+          "lines": [
+            "Since They could not fight without his command,",
+            "They would perish in a moment without his protection.",
+            "Since they lacked the nerve to fight without his protection,",
+            "They were likely to be blown up by the canon and gunfire."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-040-p285-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p285-b014",
+          "type": "verse",
+          "text": "They reminded Banda Singh of his earlier promises of protection, That the Mughals' canons would not be able to hit them. That the fire from Mughals' weapons would hit them back, And that they would be destroyed by their own arms. (22)",
+          "lines": [
+            "They reminded Banda Singh of his earlier promises of protection,",
+            "That the Mughals' canons would not be able to hit them.",
+            "That the fire from Mughals' weapons would hit them back,",
+            "And that they would be destroyed by their own arms."
+          ],
+          "number": "22"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 287,
+      "fileName": "EPUB/page_287.html",
+      "sourceHref": "EPUB/page_287.html",
+      "printPageNumber": 243,
+      "blocks": [
+        {
+          "id": "episode-040-p287-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p287-b002",
+          "type": "verse",
+          "text": "But the bravest Majhail Singhs assured Banda Singh, That they would fight with the Mughals even without his participation. So as Banda Singh's own followers started deserting him, The Majhail Singhs kept on fighting with the Mughals from the front. (23)",
+          "lines": [
+            "But the bravest Majhail Singhs assured Banda Singh,",
+            "That they would fight with the Mughals even without his participation.",
+            "So as Banda Singh's own followers started deserting him,",
+            "The Majhail Singhs kept on fighting with the Mughals from the front."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-040-p287-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p287-b004",
+          "type": "verse",
+          "text": "Selecting a hillock after a thorough surveillance of the battle field, Banda Singh positioned himself atop that hillock. Whereupon Wazir Khan ordered one of his best gunners, That he should target and blow up Banda Singh atop that hill. (24)",
+          "lines": [
+            "Selecting a hillock after a thorough surveillance of the battle field,",
+            "Banda Singh positioned himself atop that hillock.",
+            "Whereupon Wazir Khan ordered one of his best gunners,",
+            "That he should target and blow up Banda Singh atop that hill."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-040-p287-b005",
+          "type": "verse",
+          "text": "But Banda Singh kept sitting silently despite this gunfire, Even as a fierce battle ensued between the two sides, Even in the midst of intense hail of bullets from enemy guns, Banda Singh did not budge an inch from his position. (25)",
+          "lines": [
+            "But Banda Singh kept sitting silently despite this gunfire,",
+            "Even as a fierce battle ensued between the two sides,",
+            "Even in the midst of intense hail of bullets from enemy guns,",
+            "Banda Singh did not budge an inch from his position."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-040-p287-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p287-b007",
+          "type": "verse",
+          "text": "Feeling highly concerned for Banda Singh's life in this situation, They reckoned that he would get killed while sitting there. While his followers kept on running for cover to save themselves, The bullets kept flying past them with hissing sound. (26)",
+          "lines": [
+            "Feeling highly concerned for Banda Singh's life in this situation,",
+            "They reckoned that he would get killed while sitting there.",
+            "While his followers kept on running for cover to save themselves,",
+            "The bullets kept flying past them with hissing sound."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-040-p287-b008",
+          "type": "verse",
+          "text": "While some surmised that Banda Singh would get killed there, Others believed that he, being a saint, would disappear. Some other remarked that they would be the worst sufferers, Since they had large families dependent on them. (27)",
+          "lines": [
+            "While some surmised that Banda Singh would get killed there,",
+            "Others believed that he, being a saint, would disappear.",
+            "Some other remarked that they would be the worst sufferers,",
+            "Since they had large families dependent on them."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-040-p287-b009",
+          "type": "verse",
+          "text": "But the Khalsa Singhs being highly motivated and provoked, Kept up the fight from the front in the true Khalsa tradition. They asked Banda Singh to keep sitting atop the hillock, And assured him of his survival till they were alive. (28)",
+          "lines": [
+            "But the Khalsa Singhs being highly motivated and provoked,",
+            "Kept up the fight from the front in the true Khalsa tradition.",
+            "They asked Banda Singh to keep sitting atop the hillock,",
+            "And assured him of his survival till they were alive."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-040-p287-b010",
+          "type": "verse",
+          "text": "Then a traitor among the Khalsa force tried to betray them, As he prepared to run away after a lot of loot and plunder. But he fell down from his horse and died instantly, As Divine justice struck him for the sins he had committed. (29)",
+          "lines": [
+            "Then a traitor among the Khalsa force tried to betray them,",
+            "As he prepared to run away after a lot of loot and plunder.",
+            "But he fell down from his horse and died instantly,",
+            "As Divine justice struck him for the sins he had committed."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-040-p287-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p287-b012",
+          "type": "verse",
+          "text": "At this Banda Singh smiled and called for his horse, With a remark that God Himself had arrived to protect them, Directing the Singhs to loot, plunder and slaughter the Mughals, Banda Singh shot one (of the Guru's gifted) arrows. (30)",
+          "lines": [
+            "At this Banda Singh smiled and called for his horse,",
+            "With a remark that God Himself had arrived to protect them,",
+            "Directing the Singhs to loot, plunder and slaughter the Mughals,",
+            "Banda Singh shot one (of the Guru's gifted) arrows."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-040-p287-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-040-p287-b014",
+          "type": "verse",
+          "text": "A lot of dust and din arose as this arrow was shot, Which blinded the Mughal army's eyes of their vision. Since they were blinded by the intense dust and smoke, They perished after fighting among their own ranks. (31)",
+          "lines": [
+            "A lot of dust and din arose as this arrow was shot,",
+            "Which blinded the Mughal army's eyes of their vision.",
+            "Since they were blinded by the intense dust and smoke,",
+            "They perished after fighting among their own ranks."
+          ],
+          "number": "31"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 289,
+      "fileName": "EPUB/page_289.html",
+      "sourceHref": "EPUB/page_289.html",
+      "printPageNumber": 245,
+      "blocks": [
+        {
+          "id": "episode-040-p289-b001",
+          "type": "verse",
+          "text": "Soon the Khalsa Singhs roared and attacked the Mughals, As a lion attacks a flock of deer (in a dense forest). Those commanders of the Mughal force who confronted the Singhs, Were slaughtered by the Singhs on the battlefield. (32)",
+          "lines": [
+            "Soon the Khalsa Singhs roared and attacked the Mughals,",
+            "As a lion attacks a flock of deer (in a dense forest).",
+            "Those commanders of the Mughal force who confronted the Singhs,",
+            "Were slaughtered by the Singhs on the battlefield."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-040-p289-b002",
+          "type": "verse",
+          "text": "Nawab Wazir Khan was found grievously wounded and crying, As a Singh warrior had fixed a sharp wooden peg through his body. After dragging his body with a pair of young bullocks in the fields, Banda Singh ordered Muslim tyrant's body to be burnt in fire. (33)",
+          "lines": [
+            "Nawab Wazir Khan was found grievously wounded and crying,",
+            "As a Singh warrior had fixed a sharp wooden peg through his body.",
+            "After dragging his body with a pair of young bullocks in the fields,",
+            "Banda Singh ordered Muslim tyrant's body to be burnt in fire."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-040-p289-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-040-p289-b004",
+          "type": "verse",
+          "text": "So was Wazir Khan (the killer of Guru's son), murdered, In the moonlit night of the Indian month of Jeth1 (June). The year of this tyrant's execution was 1767 CE or 1710 (B.S.), And the place of his execution was Chappar Chiri2 . (34)",
+          "lines": [
+            "So was Wazir Khan (the killer of Guru's son), murdered,",
+            "In the moonlit night of the Indian month of Jeth1 (June).",
+            "The year of this tyrant's execution was 1767 CE or 1710 (B.S.),",
+            "And the place of his execution was Chappar Chiri2 ."
+          ],
+          "number": "34"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-039",
+  "nextChapterId": "episode-041"
+}

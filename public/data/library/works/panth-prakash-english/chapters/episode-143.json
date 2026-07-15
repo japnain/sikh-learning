@@ -1,0 +1,109 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-143",
+  "chapterNumber": 143,
+  "episodeNumber": 143,
+  "kind": "episode",
+  "title": "Dileramian",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 619,
+  "endSourcePage": 621,
+  "wordCount": 193,
+  "charCount": 1164,
+  "startPosition": 184066,
+  "pages": [
+    {
+      "sourcePageNumber": 619,
+      "fileName": "EPUB/page_619.html",
+      "sourceHref": "EPUB/page_619.html",
+      "printPageNumber": 565,
+      "blocks": [
+        {
+          "id": "episode-143-p619-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-143-p619-b003",
+          "type": "verse",
+          "text": "(Dear readers) listen to another tale of tyranny, That is included in this epic of (the Khalsa Panth). It relates to the expansion of the Ramgharia Misl, And the way it disintegrated and destroyed itself. (1)",
+          "lines": [
+            "(Dear readers) listen to another tale of tyranny,",
+            "That is included in this epic of (the Khalsa Panth).",
+            "It relates to the expansion of the Ramgharia Misl,",
+            "And the way it disintegrated and destroyed itself."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-143-p619-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-143-p619-b005",
+          "type": "verse",
+          "text": "Listen to another tale of Ramgharia's tyrannical acts, Which resulted in the complete disintegration of their Misl. All the four Ramgharia brothers were so much brave, That no warrior, howsoever mighty, could brow beat them. (2)",
+          "lines": [
+            "Listen to another tale of Ramgharia's tyrannical acts,",
+            "Which resulted in the complete disintegration of their Misl.",
+            "All the four Ramgharia brothers were so much brave,",
+            "That no warrior, howsoever mighty, could brow beat them."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-143-p619-b006",
+          "type": "verse",
+          "text": "As never had they been seen deserting the battlefield, They had taken over the whole of Kangra1 in a single day. Having established their sovereignty over the seven hill regions, Their territorial rights extended up to the distant Kasur. (3)",
+          "lines": [
+            "As never had they been seen deserting the battlefield,",
+            "They had taken over the whole of Kangra1 in a single day.",
+            "Having established their sovereignty over the seven hill regions,",
+            "Their territorial rights extended up to the distant Kasur."
+          ],
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 621,
+      "fileName": "EPUB/page_621.html",
+      "sourceHref": "EPUB/page_621.html",
+      "printPageNumber": 567,
+      "blocks": [
+        {
+          "id": "episode-143-p621-b001",
+          "type": "verse",
+          "text": "Having settled for one fourth revenue from the Amritsar region, Their revenue proceeds also came from Hansi and Hisar as well. They had the audacity to capture (venerated) Jassa Singh Ahluwalia, Who was believed to have never deserted the battlefield. (4)",
+          "lines": [
+            "Having settled for one fourth revenue from the Amritsar region,",
+            "Their revenue proceeds also came from Hansi and Hisar as well.",
+            "They had the audacity to capture (venerated) Jassa Singh Ahluwalia,",
+            "Who was believed to have never deserted the battlefield."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-143-p621-b002",
+          "type": "verse",
+          "text": "For this despicable act were they so much doomed, That not a single male survived of their dynasty. The whole historiography of their Misl cannot be narrated, As it is likely to make this epic too voluminous. (5)",
+          "lines": [
+            "For this despicable act were they so much doomed,",
+            "That not a single male survived of their dynasty.",
+            "The whole historiography of their Misl cannot be narrated,",
+            "As it is likely to make this epic too voluminous."
+          ],
+          "number": "5"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-142",
+  "nextChapterId": "episode-144"
+}

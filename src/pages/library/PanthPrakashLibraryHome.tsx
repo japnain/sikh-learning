@@ -1,37 +1,57 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import type { LibraryChapterIndexEntry, LibraryChapterPayload, LibrarySearchChapterEntry, LibrarySearchIndex, LibraryWork } from '../../types'
-import { loadLibraryChapter, loadLibraryChapterIndex, loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
+import { IconArrowLeft, IconArrowRight, IconLibrary, IconSearch } from '../../components/icons'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
+import {
+  loadLibraryChapterIndex,
+  loadLibrarySearchIndex,
+  loadLibraryWorkCatalog,
+} from '../../data/libraryRepository'
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
+import type {
+  LibraryChapterIndexEntry,
+  LibrarySearchChapterEntry,
+  LibraryWork,
+} from '../../types'
 
 const DEFAULT_WORK_ID = 'panth-prakash-english'
 const INITIAL_VISIBLE_CHAPTERS = 36
 
-type ChapterSearchResult = Pick<LibrarySearchChapterEntry, 'chapterId' | 'title' | 'snippet' | 'episodeNumber' | 'volume' | 'startSourcePage' | 'endSourcePage'>
+type ChapterSearchResult = Pick<
+  LibrarySearchChapterEntry,
+  'chapterId' | 'title' | 'snippet' | 'episodeNumber' | 'volume'
+>
 
 interface LibraryLoadState {
   key: string
   status: 'loading' | 'ready' | 'error'
   work: LibraryWork | null
   chapters: LibraryChapterIndexEntry[]
-  searchIndex: LibrarySearchIndex | null
 }
 
 function chapterLabel(chapter: Pick<LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
   return chapter.kind === 'episode' && chapter.episodeNumber
     ? `Episode ${chapter.episodeNumber}`
-    : `Chapter ${chapter.chapterNumber}`
-}
-
-function chapterRangeLabel(chapter: Pick<LibraryChapterIndexEntry, 'startSourcePage' | 'endSourcePage'>) {
-  return chapter.startSourcePage === chapter.endSourcePage
-    ? `EPUB page ${chapter.startSourcePage}`
-    : `EPUB pages ${chapter.startSourcePage}-${chapter.endSourcePage}`
+    : `Section ${chapter.chapterNumber}`
 }
 
 function chapterPath(workId: string, chapterId: string) {
   return `/library/${workId}/chapters/${chapterId}`
+}
+
+function estimatedReadingTime(chapter: Pick<LibraryChapterIndexEntry, 'wordCount' | 'pageCount'>) {
+  const minutes = chapter.wordCount
+    ? Math.ceil(chapter.wordCount / 225)
+    : Math.max(1, Math.ceil(chapter.pageCount * 1.6))
+  return `${minutes} min`
+}
+
+function contributorLine(work: LibraryWork) {
+  const author = work.contributors?.find(contributor => contributor.role === 'author')?.name
+  const translator = work.contributors?.find(contributor => contributor.role === 'translator')?.name
+  return [author ? `By ${author}` : null, translator ? `translated by ${translator}` : null]
+    .filter(Boolean)
+    .join(' · ')
 }
 
 export default function PanthPrakashLibraryHome() {
@@ -43,17 +63,12 @@ export default function PanthPrakashLibraryHome() {
     status: 'loading',
     work: null,
     chapters: [],
-    searchIndex: null,
   })
-  const currentLoadState = loadState.key === workId
-    ? loadState
-    : { key: workId, status: 'loading' as const, work: null, chapters: [], searchIndex: null }
-  const { work, chapters, searchIndex, status } = currentLoadState
   const [chapterQuery, setChapterQuery] = useState('')
   const [volumeFilter, setVolumeFilter] = useState<'all' | number>('all')
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_CHAPTERS)
   const [bookSearchQuery, setBookSearchQuery] = useState('')
-  const [bookSearchStatus, setBookSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty'>('idle')
+  const [bookSearchStatus, setBookSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty' | 'error'>('idle')
   const [bookSearchResults, setBookSearchResults] = useState<ChapterSearchResult[]>([])
 
   useEffect(() => {
@@ -62,9 +77,8 @@ export default function PanthPrakashLibraryHome() {
     Promise.all([
       loadLibraryWorkCatalog(),
       loadLibraryChapterIndex(workId),
-      loadLibrarySearchIndex().catch(() => null),
     ])
-      .then(([catalog, loadedChapters, loadedSearchIndex]) => {
+      .then(([catalog, loadedChapters]) => {
         if (cancelled) return
         const loadedWork = catalog.workById[workId] ?? null
         setLoadState({
@@ -72,12 +86,11 @@ export default function PanthPrakashLibraryHome() {
           status: loadedWork ? 'ready' : 'error',
           work: loadedWork,
           chapters: loadedChapters,
-          searchIndex: loadedSearchIndex,
         })
       })
       .catch(() => {
         if (cancelled) return
-        setLoadState({ key: workId, status: 'error', work: null, chapters: [], searchIndex: null })
+        setLoadState({ key: workId, status: 'error', work: null, chapters: [] })
       })
 
     return () => {
@@ -85,26 +98,25 @@ export default function PanthPrakashLibraryHome() {
     }
   }, [workId])
 
-  const volumeSummary = (() => {
-    const counts = new Map<number, number>()
-    for (const chapter of chapters) {
-      counts.set(chapter.volume, (counts.get(chapter.volume) ?? 0) + 1)
-    }
-    return [...counts.entries()].map(([volume, count]) => ({ volume, count }))
-  })()
+  const currentLoadState = loadState.key === workId
+    ? loadState
+    : { key: workId, status: 'loading' as const, work: null, chapters: [] }
+  const { work, chapters, status } = currentLoadState
+  const episodeChapters = useMemo(
+    () => chapters.filter(chapter => chapter.kind === 'episode'),
+    [chapters]
+  )
 
-  const filteredChapters = (() => {
+  const filteredChapters = useMemo(() => {
     const normalizedQuery = chapterQuery.trim().toLowerCase()
     return chapters.filter(chapter => {
       const matchesVolume = volumeFilter === 'all' || chapter.volume === volumeFilter
-      const haystack = `${chapterLabel(chapter)} ${chapter.title} volume ${chapter.volume} ${chapter.startSourcePage} ${chapter.endSourcePage}`.toLowerCase()
+      const haystack = `${chapterLabel(chapter)} ${chapter.title} volume ${chapter.volume}`.toLowerCase()
       return matchesVolume && (!normalizedQuery || haystack.includes(normalizedQuery))
     })
-  })()
+  }, [chapterQuery, chapters, volumeFilter])
 
   const visibleChapters = filteredChapters.slice(0, visibleCount)
-  const firstChapter = chapters[0]
-  const firstVolumeTwoChapter = chapters.find(chapter => chapter.volume === 2)
   const continueReadingPath = currentSession && currentSession.resumePath.startsWith(`/library/${workId}/chapters/`)
     ? buildSessionResumePath(currentSession)
     : null
@@ -119,69 +131,43 @@ export default function PanthPrakashLibraryHome() {
     }
 
     setBookSearchStatus('searching')
-    const indexedChapters = searchIndex?.chapters?.filter(entry => entry.workId === workId)
-
-    if (indexedChapters?.length) {
-      const matches = indexedChapters
+    try {
+      const searchIndex = await loadLibrarySearchIndex(workId)
+      const matches = (searchIndex.chapters ?? [])
+        .filter(entry => entry.workId === workId)
         .map<ChapterSearchResult | null>(entry => {
           const normalizedHaystack = entry.searchText.toLowerCase()
-          const index = normalizedHaystack.indexOf(query)
-          if (index === -1) return null
-          const snippetStart = Math.max(0, index - 90)
-          const snippetEnd = Math.min(entry.searchText.length, index + bookSearchQuery.length + 150)
+          const matchIndex = normalizedHaystack.indexOf(query)
+          if (matchIndex === -1) return null
+          const snippetStart = Math.max(0, matchIndex - 80)
+          const snippetEnd = Math.min(entry.searchText.length, matchIndex + query.length + 150)
           return {
             chapterId: entry.chapterId,
             title: entry.title,
             episodeNumber: entry.episodeNumber,
             volume: entry.volume,
-            startSourcePage: entry.startSourcePage,
-            endSourcePage: entry.endSourcePage,
             snippet: entry.searchText.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
           }
         })
         .filter((result): result is ChapterSearchResult => Boolean(result))
-        .slice(0, 8)
+        .slice(0, 10)
 
       setBookSearchResults(matches)
       setBookSearchStatus(matches.length ? 'ready' : 'empty')
-      return
+    } catch {
+      setBookSearchResults([])
+      setBookSearchStatus('error')
     }
-
-    const loadedChapters = await Promise.all(chapters.map(chapter => loadLibraryChapter(workId, chapter.id).catch(() => null)))
-    const matches = loadedChapters
-      .filter((chapter): chapter is LibraryChapterPayload => Boolean(chapter))
-      .map<ChapterSearchResult | null>(chapter => {
-        const haystack = [chapter.title, ...chapter.pages.flatMap(page => page.blocks.map(block => block.text))].join(' ')
-        const normalizedHaystack = haystack.toLowerCase()
-        const index = normalizedHaystack.indexOf(query)
-        if (index === -1) return null
-        const snippetStart = Math.max(0, index - 90)
-        const snippetEnd = Math.min(haystack.length, index + bookSearchQuery.length + 150)
-        return {
-          chapterId: chapter.id,
-          title: chapter.title,
-          episodeNumber: chapter.episodeNumber,
-          volume: chapter.volume,
-          startSourcePage: chapter.startSourcePage,
-          endSourcePage: chapter.endSourcePage,
-          snippet: haystack.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
-        }
-      })
-      .filter((result): result is ChapterSearchResult => Boolean(result))
-      .slice(0, 8)
-
-    setBookSearchResults(matches)
-    setBookSearchStatus(matches.length ? 'ready' : 'empty')
   }
 
   if (status === 'loading') {
     return (
       <SurfaceStateCard
-        surface="panth-library-home"
+        surface="epub-library-home"
         state="loading"
-        eyebrow="Book Reader"
-        title="Loading Panth Prakash"
-        body="Preparing the EPUB-derived chapter index."
+        eyebrow="Books"
+        title="Opening the collection"
+        body="Preparing volumes and contents."
         page="library"
       />
     )
@@ -190,183 +176,214 @@ export default function PanthPrakashLibraryHome() {
   if (status === 'error' || !work) {
     return (
       <SurfaceStateCard
-        surface="panth-library-home"
+        surface="epub-library-home"
         state="degraded"
-        eyebrow="Book Reader"
-        title="Panth Prakash unavailable"
-        body="The Panth Prakash book reader could not be loaded yet."
+        eyebrow="Books"
+        title="Book unavailable"
+        body="This book could not be loaded from the library catalog."
         page="library"
       />
     )
   }
 
+  const byline = contributorLine(work)
+  const publications = work.publications ?? []
+
   return (
     <div
-      className="page-shell animate-fade-in"
+      className="epub-work-shell page-shell animate-fade-in"
       data-testid="panth-library-home"
       data-page="library-work"
-      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
     >
-      <div className="panth-work-header mb-4">
-        <p className="eyebrow">EPUB book reader</p>
-        <h1 className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
-        <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          Read the supplied Sri Gur Panth Prakash EPUBs as a continuous book, organized by volume and episode chapters.
-        </p>
-      </div>
+      <nav className="epub-work-back" aria-label="Book navigation">
+        <Link to="/banis?collection=books" className="interactive-focus">
+          <IconArrowLeft size={16} />
+          All books
+        </Link>
+      </nav>
 
-      <section className="section-shell-quiet px-4 py-4 mb-4" data-testid="panth-epub-coverage">
-        <p className="eyebrow">Book coverage</p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <span className="chip-pill">{work.totalChapters ?? chapters.length} chapters</span>
-          <span className="chip-pill">{work.totalSourcePages ?? work.totalPages} EPUB pages</span>
-          {volumeSummary.map(entry => (
-            <span key={entry.volume} className="chip-pill">Volume {entry.volume} · {entry.count} chapters</span>
-          ))}
-          <span className="chip-pill">Source: EPUB</span>
+      <header className="epub-work-hero">
+        <div className="epub-book-cover" aria-hidden="true">
+          <span className="epub-book-cover__mark">ੴ</span>
+          <span>{work.shortTitle}</span>
+          <small>English edition</small>
+        </div>
+        <div className="epub-work-hero__copy">
+          <p className="eyebrow">Historical book · {publications.length || 1} volume{publications.length === 1 ? '' : 's'}</p>
+          <h1>{work.title}</h1>
+          {byline ? <p className="epub-work-byline">{byline}</p> : null}
+          <p className="epub-work-description">{work.description}</p>
+          <div className="epub-work-actions">
+            {continueReadingPath ? (
+              <Link to={continueReadingPath} className="epub-primary-action interactive-focus">
+                Continue reading
+                <IconArrowRight size={16} />
+              </Link>
+            ) : episodeChapters[0] ? (
+              <Link to={chapterPath(work.id, episodeChapters[0].id)} className="epub-primary-action interactive-focus">
+                Start reading
+                <IconArrowRight size={16} />
+              </Link>
+            ) : null}
+            <a href="#contents" className="epub-secondary-action interactive-focus">
+              <IconLibrary size={16} />
+              View contents
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <section className="epub-edition-note" data-testid="panth-epub-coverage" aria-labelledby="epub-edition-note-title">
+        <div>
+          <p className="eyebrow">About this edition</p>
+          <h2 id="epub-edition-note-title">A clean reading edition from the supplied EPUBs</h2>
+        </div>
+        <p>
+          {work.editionNote ?? 'The original EPUB files are preserved while their text is organized into accessible reading sections.'}
+        </p>
+        {work.sourceQualityNote ? <p className="epub-source-quality">{work.sourceQualityNote}</p> : null}
+        <div className="epub-edition-stats">
+          <span>{episodeChapters.length} episodes</span>
+          <span>{publications.length || 1} volumes</span>
+          {work.readablePages ? <span>{work.readablePages} readable source pages</span> : null}
         </div>
       </section>
 
-      <section className="section-shell px-5 py-5 mb-4">
-        <p className="eyebrow">Start reading</p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          {firstChapter ? (
-            <Link
-              to={chapterPath(work.id, firstChapter.id)}
-              className="interactive-focus rounded-lg bg-saffron px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
-            >
-              Start Volume I
-            </Link>
-          ) : null}
-          {firstVolumeTwoChapter ? (
-            <Link
-              to={chapterPath(work.id, firstVolumeTwoChapter.id)}
-              className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
-            >
-              Start Volume II
-            </Link>
-          ) : null}
-          {continueReadingPath ? (
-            <Link
-              to={continueReadingPath}
-              className="interactive-focus rounded-full border border-gold/18 bg-gold/10 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
-            >
-              Continue reading
-            </Link>
-          ) : null}
+      <section className="epub-volume-grid" aria-labelledby="epub-volumes-title">
+        <div className="epub-section-heading">
+          <div>
+            <p className="eyebrow">Volumes</p>
+            <h2 id="epub-volumes-title">Choose where to begin</h2>
+          </div>
         </div>
-      </section>
-
-      <section className="section-shell px-5 py-5 mb-4">
-        <p className="eyebrow">Search the book</p>
-        <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          Search the EPUB-derived chapter text across both volumes.
-        </p>
-        <form onSubmit={handleBookSearchSubmit} className="mt-4 flex flex-col gap-2 sm:flex-row">
-          <label htmlFor="panth-book-search" className="sr-only">Search within Panth Prakash chapters</label>
-          <input
-            id="panth-book-search"
-            value={bookSearchQuery}
-            onChange={event => setBookSearchQuery(event.target.value)}
-            className="min-h-[44px] flex-1 rounded-lg border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-            placeholder="Search the book"
-          />
-          <button
-            type="submit"
-            className="interactive-focus rounded-lg bg-ink px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-cream dark:bg-gold-light dark:text-dark-bg"
-          >
-            Search
-          </button>
-        </form>
-        {bookSearchStatus !== 'idle' ? (
-          <div className="mt-4 grid gap-3" data-testid="panth-full-text-results">
-            {bookSearchStatus === 'searching' ? (
-              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/68">Searching chapters...</p>
-            ) : null}
-            {bookSearchStatus === 'empty' ? (
-              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/68">No chapter matches found.</p>
-            ) : null}
-            {bookSearchResults.map(result => (
-              <Link
-                key={result.chapterId}
-                to={chapterPath(work.id, result.chapterId)}
-                className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
-              >
-                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">
-                  {result.episodeNumber ? `Episode ${result.episodeNumber}` : `Volume ${result.volume}`} · EPUB pages {result.startSourcePage}-{result.endSourcePage}
+        <div className="epub-volume-cards">
+          {publications.map(publication => {
+            const firstChapter = chapters.find(chapter => chapter.id === publication.firstChapterId)
+              ?? chapters.find(chapter => chapter.publicationId === publication.id)
+              ?? chapters.find(chapter => chapter.volume === publication.volume)
+            return (
+              <article key={publication.id} className="epub-volume-card">
+                <p className="eyebrow">Volume {publication.volume}</p>
+                <h3>{publication.shortTitle ?? publication.title}</h3>
+                <p>
+                  {publication.episodeRange
+                    ? `Episodes ${publication.episodeRange[0]}–${publication.episodeRange[1]}`
+                    : `${chapters.filter(chapter => chapter.volume === publication.volume).length} sections`}
                 </p>
-                <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">{result.title}</p>
-                <p className="mt-2 line-clamp-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/66">{result.snippet}</p>
+                <div className="epub-volume-card__meta">
+                  {publication.publishedYear ? <span>{publication.publishedYear}</span> : null}
+                  {publication.isbn ? <span>ISBN {publication.isbn}</span> : null}
+                </div>
+                {firstChapter ? (
+                  <Link to={chapterPath(work.id, firstChapter.id)} className="interactive-focus">
+                    Open volume
+                    <IconArrowRight size={15} />
+                  </Link>
+                ) : null}
+              </article>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="epub-search-panel" aria-labelledby="epub-search-title">
+        <div>
+          <p className="eyebrow">Search this book</p>
+          <h2 id="epub-search-title">Find a person, place, or phrase</h2>
+        </div>
+        <form onSubmit={handleBookSearchSubmit} className="epub-search-form" role="search">
+          <label htmlFor="epub-book-search">Search within {work.shortTitle}</label>
+          <div>
+            <IconSearch size={17} />
+            <input
+              id="epub-book-search"
+              value={bookSearchQuery}
+              onChange={event => setBookSearchQuery(event.target.value)}
+              placeholder="Try “origin of the Khalsa”"
+            />
+            <button type="submit" disabled={bookSearchStatus === 'searching'}>
+              {bookSearchStatus === 'searching' ? 'Searching…' : 'Search'}
+            </button>
+          </div>
+        </form>
+
+        {bookSearchStatus === 'empty' ? <p className="epub-search-status">No passages matched that search.</p> : null}
+        {bookSearchStatus === 'error' ? <p className="epub-search-status">Search is temporarily unavailable.</p> : null}
+        {bookSearchResults.length ? (
+          <div className="epub-search-results" data-testid="panth-full-text-results" aria-live="polite">
+            {bookSearchResults.map(result => (
+              <Link key={result.chapterId} to={chapterPath(work.id, result.chapterId)} className="interactive-focus">
+                <span>Volume {result.volume} · {result.episodeNumber ? `Episode ${result.episodeNumber}` : 'Section'}</span>
+                <strong>{result.title}</strong>
+                <p>{result.snippet}</p>
               </Link>
             ))}
           </div>
         ) : null}
       </section>
 
-      <section className="section-shell px-5 py-5" data-testid="panth-chapter-browser">
-        <div className="flex flex-wrap items-end justify-between gap-3">
+      <section id="contents" className="epub-contents" data-testid="panth-chapter-browser" aria-labelledby="epub-contents-title">
+        <div className="epub-section-heading">
           <div>
-            <p className="eyebrow">Table of contents</p>
-            <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">Chapters</h2>
+            <p className="eyebrow">Contents</p>
+            <h2 id="epub-contents-title">Episodes and sections</h2>
           </div>
-          <p className="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/74" data-testid="panth-chapter-count-meta">
-            Showing {visibleChapters.length} of {filteredChapters.length} chapters
-          </p>
+          <span>{filteredChapters.length} entries</span>
         </div>
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto]">
-          <label className="sr-only" htmlFor="panth-chapter-filter">Search chapters</label>
-          <input
-            id="panth-chapter-filter"
-            value={chapterQuery}
-            onChange={event => {
-              setChapterQuery(event.target.value)
-              setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
-            }}
-            className="min-h-[44px] rounded-lg border border-sand/18 bg-parchment-card px-4 py-3 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-            placeholder="Filter chapters"
-          />
-          <div className="flex gap-2">
-            {(['all', 1, 2] as const).map(option => (
+        <div className="epub-contents-tools">
+          <label>
+            <span>Search chapters and episodes</span>
+            <input
+              value={chapterQuery}
+              onChange={event => {
+                setChapterQuery(event.target.value)
+                setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
+              }}
+              placeholder="Episode or title"
+            />
+          </label>
+          <div className="epub-volume-filter" aria-label="Filter contents by volume">
+            <button type="button" aria-pressed={volumeFilter === 'all'} onClick={() => setVolumeFilter('all')}>All</button>
+            {publications.map(publication => (
               <button
-                key={option}
+                key={publication.id}
                 type="button"
-                onClick={() => {
-                  setVolumeFilter(option)
-                  setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
-                }}
-                className={`interactive-focus min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] ${volumeFilter === option ? 'bg-saffron text-white dark:bg-gold-light dark:text-dark-bg' : 'border border-sand/18 bg-parchment-card/82 text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'}`}
+                aria-pressed={volumeFilter === publication.volume}
+                onClick={() => setVolumeFilter(publication.volume)}
               >
-                {option === 'all' ? 'All' : `Vol ${option}`}
+                Vol. {publication.volume}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="panth-chapter-grid mt-5 grid gap-3">
+        <p className="sr-only" aria-live="polite">
+          Showing {visibleChapters.length} of {filteredChapters.length} sections
+        </p>
+        <ol className="epub-chapter-list">
           {visibleChapters.map(chapter => (
-            <Link
-              key={chapter.id}
-              to={chapterPath(work.id, chapter.id)}
-              className="interactive-focus interactive-card-link rounded-lg border border-sand/14 bg-parchment-card/72 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card/62"
-            >
-              <div className="flex flex-wrap gap-2">
-                <span className="chip-pill">{chapterLabel(chapter)}</span>
-                <span className="chip-pill">Volume {chapter.volume}</span>
-                <span className="chip-pill">{chapterRangeLabel(chapter)}</span>
-              </div>
-              <p className="mt-3 font-sans text-sm font-semibold leading-6 text-ink dark:text-dark-text">{chapter.title}</p>
-            </Link>
+            <li key={chapter.id}>
+              <Link to={chapterPath(work.id, chapter.id)} className="interactive-focus">
+                <span className="epub-chapter-number">{chapter.episodeNumber ?? chapter.chapterNumber}</span>
+                <span className="epub-chapter-copy">
+                  <small>Volume {chapter.volume} · {chapterLabel(chapter)}</small>
+                  <strong>{chapter.title}</strong>
+                  <span>{estimatedReadingTime(chapter)} read</span>
+                </span>
+                <IconArrowRight size={17} />
+              </Link>
+            </li>
           ))}
-        </div>
+        </ol>
 
-        {visibleChapters.length < filteredChapters.length ? (
+        {visibleCount < filteredChapters.length ? (
           <button
             type="button"
+            className="epub-load-more interactive-focus"
             onClick={() => setVisibleCount(count => count + INITIAL_VISIBLE_CHAPTERS)}
-            className="interactive-focus mt-5 w-full rounded-lg border border-gold/18 bg-gold/10 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
           >
-            Load more chapters
+            Show more
           </button>
         ) : null}
       </section>

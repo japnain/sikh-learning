@@ -232,7 +232,7 @@ test('opens Bhai Gurdas Ji as a complete 40-Vaar directory', () => {
   expect(within(panel).queryByRole('link', { name: /Open Bhai Gurdas Ji Vaar 41$/i })).not.toBeInTheDocument()
 })
 
-test('keeps scripture sources separate from EPUB books', () => {
+test('keeps scripture sources separate from EPUB books', async () => {
   renderBanis()
   openReadCollection('Sources')
 
@@ -254,15 +254,15 @@ test('keeps scripture sources separate from EPUB books', () => {
   const booksBrowser = screen.getByTestId('read-books-browser-shared')
   expect(within(booksBrowser).queryByRole('button', { name: /Bhai Gurdas Ji Vaaran/i })).not.toBeInTheDocument()
 
-  const panthCard = within(booksBrowser).getByTestId('panth-prakash-source-card')
+  const panthCard = await within(booksBrowser).findByTestId('panth-prakash-source-card')
   const panthBrowseLink = within(panthCard).getByRole('link', { name: /open panth prakash book reader/i })
   expect(panthBrowseLink).toHaveAttribute(
     'href',
     '/library/panth-prakash-english'
   )
-  expect(panthBrowseLink).toHaveClass('text-cream')
-  expect(panthCard).toHaveTextContent(/EPUB-derived book reader/i)
-  expect(panthCard).toHaveTextContent(/171 chapters/i)
+  expect(panthCard).toHaveTextContent(/Curated EPUB/i)
+  expect(panthCard).toHaveTextContent(/169 episodes/i)
+  expect(panthCard).toHaveTextContent(/2 volumes/i)
   expect(within(panthCard).queryByRole('button', { name: /show quick page numbers/i })).not.toBeInTheDocument()
   expect(within(panthCard).queryByRole('link', { name: /^open panth prakash page 1$/i })).not.toBeInTheDocument()
 })
@@ -279,7 +279,7 @@ test('opens the Panth Prakash Read card into the EPUB chapter overview', async (
 
   openReadCollection('Books')
   const booksBrowser = screen.getByTestId('read-books-browser-shared')
-  fireEvent.click(within(booksBrowser).getByRole('link', { name: /open panth prakash book reader/i }))
+  fireEvent.click(await within(booksBrowser).findByRole('link', { name: /open panth prakash book reader/i }))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english')

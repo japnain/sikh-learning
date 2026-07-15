@@ -1,0 +1,395 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-081",
+  "chapterNumber": 81,
+  "episodeNumber": 81,
+  "kind": "episode",
+  "title": "Origin of Gangushahian sect",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 529,
+  "endSourcePage": 535,
+  "wordCount": 935,
+  "charCount": 5665,
+  "startPosition": 85813,
+  "pages": [
+    {
+      "sourcePageNumber": 529,
+      "fileName": "EPUB/page_529.html",
+      "sourceHref": "EPUB/page_529.html",
+      "printPageNumber": 485,
+      "blocks": [
+        {
+          "id": "episode-081-p529-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-081-p529-b003",
+          "type": "verse",
+          "text": "In the vicinity of the Doaba region (of Punjab), In the midst of the hills around that region, Was located a village named as Ghago, Where lived Gangu (Shah), a Kshtri by caste. (1)",
+          "lines": [
+            "In the vicinity of the Doaba region (of Punjab),",
+            "In the midst of the hills around that region,",
+            "Was located a village named as Ghago,",
+            "Where lived Gangu (Shah), a Kshtri by caste."
+          ],
+          "number": "1"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 531,
+      "fileName": "EPUB/page_531.html",
+      "sourceHref": "EPUB/page_531.html",
+      "printPageNumber": 487,
+      "blocks": [
+        {
+          "id": "episode-081-p531-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-081-p531-b002",
+          "type": "verse",
+          "text": "(Being impoverished) and extremely deficient in resources, He was a street hawker vending his wares in streets. As a group of devout Sikhs was travelling to Guru's (Amardas) seat, They came across Gangu Shah during one of his hawking trips. (2)",
+          "lines": [
+            "(Being impoverished) and extremely deficient in resources,",
+            "He was a street hawker vending his wares in streets.",
+            "As a group of devout Sikhs was travelling to Guru's (Amardas) seat,",
+            "They came across Gangu Shah during one of his hawking trips."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-081-p531-b003",
+          "type": "verse",
+          "text": "When Gangu Shah enquired about their destined pilgrimage, They told him about their visit to Guru's (Amardas') seat. When he further enquired about Guru (Amardas), They replied that the Guru was almighty to grant both salvation and prosperity. (3)",
+          "lines": [
+            "When Gangu Shah enquired about their destined pilgrimage,",
+            "They told him about their visit to Guru's (Amardas') seat.",
+            "When he further enquired about Guru (Amardas),",
+            "They replied that the Guru was almighty to grant both salvation and prosperity."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-081-p531-b004",
+          "type": "verse",
+          "text": "Saying that he needed no salvation whatsoever, However he could accompany them if the Guru could grant him prosperity. They remarked that the Guru could grant both the blessings in plenty, And whosoever paid obeisance could become wealthy. (4)",
+          "lines": [
+            "Saying that he needed no salvation whatsoever,",
+            "However he could accompany them if the Guru could grant him prosperity.",
+            "They remarked that the Guru could grant both the blessings in plenty,",
+            "And whosoever paid obeisance could become wealthy."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-081-p531-b005",
+          "type": "verse",
+          "text": "His devout follower himself becomes capable of enriching others, Provided he bows his head before the Guru with faith and confidence. Gangu Shah remarked since he had nothing to make an offering, How could he seek Guru's blessings without making an offering. (5)",
+          "lines": [
+            "His devout follower himself becomes capable of enriching others,",
+            "Provided he bows his head before the Guru with faith and confidence.",
+            "Gangu Shah remarked since he had nothing to make an offering,",
+            "How could he seek Guru's blessings without making an offering."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-081-p531-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-081-p531-b007",
+          "type": "verse",
+          "text": "Moreever, he told the travelling group of Sikh pilgrims, That he had no money for paying for provisions during the journey. To this enquiry, the Sikh pilgrims assured him, That they were prepared to share food and shelter with him. (6)",
+          "lines": [
+            "Moreever, he told the travelling group of Sikh pilgrims,",
+            "That he had no money for paying for provisions during the journey.",
+            "To this enquiry, the Sikh pilgrims assured him,",
+            "That they were prepared to share food and shelter with him."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-081-p531-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-081-p531-b009",
+          "type": "verse",
+          "text": "So joining that group of travelling Sikh pilgrims, He arrived at Goindwal, (the seat of Guru Amardas). These Sikh pilgrims paid an obeisance to the Guru, After making offerings with great devotion and reverence. (7)",
+          "lines": [
+            "So joining that group of travelling Sikh pilgrims,",
+            "He arrived at Goindwal,",
+            "(the seat of Guru Amardas).",
+            "These Sikh pilgrims paid an obeisance to the Guru,",
+            "After making offerings with great devotion and reverence."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-081-p531-b010",
+          "type": "verse",
+          "text": "The Guru addressed the congregation after receiving offerings, And blessed all the Sikhs by fulfilling their wishes. As the Sikh pilgrims were making offerings of money, Gangu Shah felt extremely ashamed of his own poverty. (8)",
+          "lines": [
+            "The Guru addressed the congregation after receiving offerings,",
+            "And blessed all the Sikhs by fulfilling their wishes.",
+            "As the Sikh pilgrims were making offerings of money,",
+            "Gangu Shah felt extremely ashamed of his own poverty."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-081-p531-b011",
+          "type": "verse",
+          "text": "Since he carried a little bit of poor quality jaggery only, He felt embarassed in offering such a poor kind of offering. Satguru (Guru Amardas) being perfectly omniscient, Could easily identify the doubting, wavering follower. (9)",
+          "lines": [
+            "Since he carried a little bit of poor quality jaggery only,",
+            "He felt embarassed in offering such a poor kind of offering.",
+            "Satguru (Guru Amardas) being perfectly omniscient,",
+            "Could easily identify the doubting, wavering follower."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-081-p531-b012",
+          "type": "verse",
+          "text": "Beckoning the wavering follower to step forward, The Guru asked him to make his humble offering without any doubt. The Guru remarked that his humble offering was as precious as Saudama's, Which was as valuable as the most expensive gifts. (10)",
+          "lines": [
+            "Beckoning the wavering follower to step forward,",
+            "The Guru asked him to make his humble offering without any doubt.",
+            "The Guru remarked that his humble offering was as precious as Saudama's,",
+            "Which was as valuable as the most expensive gifts."
+          ],
+          "number": "10"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 533,
+      "fileName": "EPUB/page_533.html",
+      "sourceHref": "EPUB/page_533.html",
+      "printPageNumber": 489,
+      "blocks": [
+        {
+          "id": "episode-081-p533-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-081-p533-b002",
+          "type": "verse",
+          "text": "Placing his humble offering of jaggery Gangu Shah remarked, That the Guru, being Omniscient, knew his plight well. He prayed that he be blessed with some means of livelihood, As well as be assigned some suitable service at Guru's place. (11)",
+          "lines": [
+            "Placing his humble offering of jaggery Gangu Shah remarked,",
+            "That the Guru, being Omniscient, knew his plight well.",
+            "He prayed that he be blessed with some means of livelihood,",
+            "As well as be assigned some suitable service at Guru's place."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-081-p533-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-081-p533-b004",
+          "type": "verse",
+          "text": "Satguru (Guru Amardas) responding to his humble prayer, Assigned him the task in the ongoing digging of Bawali1 . There came a hard crust of impregnable rock during digging, While the devout Sikhs were carrying on these digging operations. (12)",
+          "lines": [
+            "Satguru (Guru Amardas) responding to his humble prayer,",
+            "Assigned him the task in the ongoing digging of Bawali1 .",
+            "There came a hard crust of impregnable rock during digging,",
+            "While the devout Sikhs were carrying on these digging operations."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-081-p533-b005",
+          "type": "verse",
+          "text": "The (long-awaited) moment of crossing this hurdle arrived, When Satguru got this hard crust broken (by Gangu Shah). The moment coincided with Akbar2 lifting the seige of Chittorgarh3 , When Satguru had predicted the simultaneous breaking of crust. (13)",
+          "lines": [
+            "The (long-awaited) moment of crossing this hurdle arrived,",
+            "When Satguru got this hard crust broken (by Gangu Shah).",
+            "The moment coincided with Akbar2 lifting the seige of Chittorgarh3 ,",
+            "When Satguru had predicted the simultaneous breaking of crust."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-081-p533-b006",
+          "type": "verse",
+          "text": "Both the fort's seige and Bauli's crust were broken at the same moment, Which made both the Guru and Gangu Shah share this victory. As the Guru asked Gangu Shah for any wish to be fulfilled, He asked to be blessed with the status of a Hundiwal4 financier. (14)",
+          "lines": [
+            "Both the fort's seige and Bauli's crust were broken at the same moment,",
+            "Which made both the Guru and Gangu Shah share this victory.",
+            "As the Guru asked Gangu Shah for any wish to be fulfilled,",
+            "He asked to be blessed with the status of a Hundiwal4 financier."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-081-p533-b007",
+          "type": "verse",
+          "text": "With Satguru, directing him to proceed towards Delhi, He went there and became a Hundiwal financier. As his Hundi and finance business flourished well, He turned arrogant after becoming affluent. (15)",
+          "lines": [
+            "With Satguru, directing him to proceed towards Delhi,",
+            "He went there and became a Hundiwal financier.",
+            "As his Hundi and finance business flourished well,",
+            "He turned arrogant after becoming affluent."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-081-p533-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-081-p533-b009",
+          "type": "verse",
+          "text": "Once Guru Amardas sent a Hundi to be encashed, But Gangu Shah refused to honour Guru's consignment, (The Guru's displeasure) had an instant adverse effect, As Gangu Shah's business underwent a big loss. (16)",
+          "lines": [
+            "Once Guru Amardas sent a Hundi to be encashed,",
+            "But Gangu Shah refused to honour Guru's consignment,",
+            "(The Guru's displeasure) had an instant adverse effect,",
+            "As Gangu Shah's business underwent a big loss."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-081-p533-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-081-p533-b011",
+          "type": "verse",
+          "text": "As, once again, he returned to serve the Guru, The (benevolent) Guru showered his grace on him again. As preparations for Guru Amardas' daughter were going on, The Guru sent Gangu Shah for bringing butter oil from the hilly areas. (17)",
+          "lines": [
+            "As, once again, he returned to serve the Guru,",
+            "The (benevolent) Guru showered his grace on him again.",
+            "As preparations for Guru Amardas' daughter were going on,",
+            "The Guru sent Gangu Shah for bringing butter oil from the hilly areas."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-081-p533-b012",
+          "type": "verse",
+          "text": "Thereupon, Gangu Shah asked the Guru with folded hands: Was the Guru sending him for making collections for the wedding? He remarked that with the several Gods and Godesses inhabiting the hills, How could he make collection of offerings from that region? (18)",
+          "lines": [
+            "Thereupon,",
+            "Gangu Shah asked the Guru with folded hands: Was the Guru sending him for making collections for the wedding?",
+            "He remarked that with the several Gods and Godesses inhabiting the hills,",
+            "How could he make collection of offerings from that region?"
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-081-p533-b013",
+          "type": "verse",
+          "text": "Since the hills were inhabited with very powerful gods and goddesses, How could anyone trespass into their domain? He pleaded to be empowered with such miraculous powers, That the hilly residents voluntarily made offerings of butter-oil. (19)",
+          "lines": [
+            "Since the hills were inhabited with very powerful gods and goddesses,",
+            "How could anyone trespass into their domain?",
+            "He pleaded to be empowered with such miraculous powers,",
+            "That the hilly residents voluntarily made offerings of butter-oil."
+          ],
+          "number": "19"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 535,
+      "fileName": "EPUB/page_535.html",
+      "sourceHref": "EPUB/page_535.html",
+      "printPageNumber": 491,
+      "blocks": [
+        {
+          "id": "episode-081-p535-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-081-p535-b002",
+          "type": "verse",
+          "text": "At this, Satguru (Amardas) assured Gangu Shah, That the Guru's Will will fully reward Gangushah's words. Whatever Gangu Shah wished would get materialised, Whether he wished to protect or destroy anyone. (20)",
+          "lines": [
+            "At this,",
+            "Satguru (Amardas) assured Gangu Shah,",
+            "That the Guru's Will will fully reward Gangushah's words.",
+            "Whatever Gangu Shah wished would get materialised,",
+            "Whether he wished to protect or destroy anyone."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-081-p535-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-081-p535-b004",
+          "type": "verse",
+          "text": "With these blessings Gangu Shah got rewarded, And became very influential after reaching the hills. Establishing a religious seat he proclaimed himself a Guru, And sent a huge quantity of butter-oil for the Guru. (21)",
+          "lines": [
+            "With these blessings Gangu Shah got rewarded,",
+            "And became very influential after reaching the hills.",
+            "Establishing a religious seat he proclaimed himself a Guru,",
+            "And sent a huge quantity of butter-oil for the Guru."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-081-p535-b005",
+          "type": "verse",
+          "text": "He did not present himself on Bibi Bhani's5 wedding, Lest the Guru should take back his blessing. Feeling outraged at the audacity of Gangu Shah, The Guru cursed that Gangh Shah had blackened his own face. (22)",
+          "lines": [
+            "He did not present himself on Bibi Bhani's5 wedding,",
+            "Lest the Guru should take back his blessing.",
+            "Feeling outraged at the audacity of Gangu Shah,",
+            "The Guru cursed that Gangh Shah had blackened his own face."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-081-p535-b006",
+          "type": "verse",
+          "text": "As Gangu Shah looked at his refection in a mirror after Guru's curse, He noticed that his face had turned blackish. As (revered) Guru's words could not go in vain, Gangu Shah regretted his misdemeanour in his heart. (23)",
+          "lines": [
+            "As Gangu Shah looked at his refection in a mirror after Guru's curse,",
+            "He noticed that his face had turned blackish.",
+            "As (revered) Guru's words could not go in vain,",
+            "Gangu Shah regretted his misdemeanour in his heart."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-081-p535-b007",
+          "type": "verse",
+          "text": "The author would desist from further accout of Gangu Shah, As more details would make his epic unwieldy. Gangu Shah remained invested with both the versions of the Guru's will, Of fulfilment of his wishes as well as his blackened face. (24)",
+          "lines": [
+            "The author would desist from further accout of Gangu Shah,",
+            "As more details would make his epic unwieldy.",
+            "Gangu Shah remained invested with both the versions of the Guru's will,",
+            "Of fulfilment of his wishes as well as his blackened face."
+          ],
+          "number": "24"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-080",
+  "nextChapterId": "episode-082"
+}

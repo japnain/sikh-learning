@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactElement } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
 
@@ -58,8 +58,21 @@ function MoreGlyph({ active }: NavGlyphProps) {
 
 export default function NavBar() {
   const locale = useLocaleStore(s => s.locale)
+  const location = useLocation()
   const copy = getUiCopy(locale)
   const stackRef = useRef<HTMLDivElement | null>(null)
+  const isBookRoute = /^\/library\/[^/]+(?:\/chapters\/[^/]+)?\/?$/.test(location.pathname)
+  const activeTabId = isBookRoute
+    ? 'read'
+    : location.pathname === '/'
+      ? 'home'
+      : location.pathname === '/banis' || location.pathname.startsWith('/banis/')
+        ? 'read'
+        : location.pathname === '/library'
+          ? 'saved'
+          : location.pathname === '/more' || location.pathname.startsWith('/more/')
+            ? 'more'
+            : null
 
   const tabs: Array<{
     id: string
@@ -129,25 +142,21 @@ export default function NavBar() {
         data-ai-surface="primary-nav"
       >
         {tabs.map(tab => (
-          <NavLink
+          <Link
             key={tab.to}
             to={tab.to}
-            end={tab.to === '/'}
             aria-label={tab.ariaLabel}
+            aria-current={tab.id === activeTabId ? 'page' : undefined}
             title={tab.ariaLabel}
             data-testid={`nav-tab-${tab.id}`}
             data-ai-action={`nav-${tab.id}`}
-            className={({ isActive }) => `app-nav-tab ${isActive ? 'is-active' : ''}`}
+            className={`app-nav-tab ${tab.id === activeTabId ? 'is-active' : ''}`}
           >
-            {({ isActive }) => (
-              <>
-                <span className="app-nav-tab__icon" aria-hidden="true">
-                  <tab.Glyph active={isActive} />
-                </span>
-                <span className="app-nav-tab__label">{tab.label}</span>
-              </>
-            )}
-          </NavLink>
+            <span className="app-nav-tab__icon" aria-hidden="true">
+              <tab.Glyph active={tab.id === activeTabId} />
+            </span>
+            <span className="app-nav-tab__label">{tab.label}</span>
+          </Link>
         ))}
       </nav>
     </div>

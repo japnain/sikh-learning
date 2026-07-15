@@ -1,0 +1,65 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-056",
+  "chapterNumber": 56,
+  "episodeNumber": 56,
+  "kind": "episode",
+  "title": "Another Episode",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 367,
+  "endSourcePage": 367,
+  "wordCount": 83,
+  "charCount": 482,
+  "startPosition": 57192,
+  "pages": [
+    {
+      "sourcePageNumber": 367,
+      "fileName": "EPUB/page_367.html",
+      "sourceHref": "EPUB/page_367.html",
+      "printPageNumber": 323,
+      "blocks": [
+        {
+          "id": "episode-056-p367-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-056-p367-b003",
+          "type": "verse",
+          "text": "The backbiters once again came to speak against Banda Singh, That he (Banda Singh) had been harassing them extremely. They opined that Banda Singh wished to eliminate Islam, From the whole territory of the Indian state. (1)",
+          "lines": [
+            "The backbiters once again came to speak against Banda Singh,",
+            "That he (Banda Singh) had been harassing them extremely.",
+            "They opined that Banda Singh wished to eliminate Islam,",
+            "From the whole territory of the Indian state."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-056-p367-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-056-p367-b005",
+          "type": "verse",
+          "text": "They reported that they had received a news about Banda Singh, That he had been arrested by the Hill chief of Kullu. Now the Mughal emperor (Farukhsiar) need not feel any guilt, In invading a region where there was a vacuum of leadership. (2)",
+          "lines": [
+            "They reported that they had received a news about Banda Singh,",
+            "That he had been arrested by the Hill chief of Kullu.",
+            "Now the Mughal emperor (Farukhsiar) need not feel any guilt,",
+            "In invading a region where there was a vacuum of leadership."
+          ],
+          "number": "2"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-055",
+  "nextChapterId": "episode-057"
+}

@@ -1,0 +1,270 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-043",
+  "chapterNumber": 43,
+  "episodeNumber": 43,
+  "kind": "episode",
+  "title": "Malerkotla",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 293,
+  "endSourcePage": 297,
+  "wordCount": 667,
+  "charCount": 3907,
+  "startPosition": 43713,
+  "pages": [
+    {
+      "sourcePageNumber": 293,
+      "fileName": "EPUB/page_293.html",
+      "sourceHref": "EPUB/page_293.html",
+      "printPageNumber": 249,
+      "blocks": [
+        {
+          "id": "episode-043-p293-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-043-p293-b003",
+          "type": "verse",
+          "text": "When Banda Singh prepared to capture Malerkotla (after chastising the Masands), The people panicked throughout the territory of Malerkotla. As the rumours about the plunder and massacre of Malerkotla spread, Many mercenaries and robbers prepared to avail themselves of this opportunity. (1)",
+          "lines": [
+            "When Banda Singh prepared to capture Malerkotla (after chastising the Masands),",
+            "The people panicked throughout the territory of Malerkotla.",
+            "As the rumours about the plunder and massacre of Malerkotla spread,",
+            "Many mercenaries and robbers prepared to avail themselves of this opportunity."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-043-p293-b004",
+          "type": "verse",
+          "text": "Guru's injunction1 in favour of Malerkotla made (after younger Sahibzadas') execution, Prohibited the advance of Khalsa forces intending to ransack Malerkotla. It was indeed the gesture of the Great Guru's magnanity, Which changed what the Khalsa had intended to do (with the Pathans). (2)",
+          "lines": [
+            "Guru's injunction1 in favour of Malerkotla made (after younger Sahibzadas') execution,",
+            "Prohibited the advance of Khalsa forces intending to ransack Malerkotla.",
+            "It was indeed the gesture of the Great Guru's magnanity,",
+            "Which changed what the Khalsa had intended to do (with the Pathans)."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-043-p293-b005",
+          "type": "paragraph",
+          "text": "Dohra Once, earlier, Banda Singh had stayed at Malerkotla, For over a period of four months in this town."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 295,
+      "fileName": "EPUB/page_295.html",
+      "sourceHref": "EPUB/page_295.html",
+      "printPageNumber": 251,
+      "blocks": [
+        {
+          "id": "episode-043-p295-b001",
+          "type": "verse",
+          "text": "A trader named Kishan Das had served him there, During his stay in the main market of the town. (3)",
+          "lines": [
+            "A trader named Kishan Das had served him there,",
+            "During his stay in the main market of the town."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-043-p295-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-043-p295-b003",
+          "type": "verse",
+          "text": "So when this old trader host approached Banda Singh now, Banda Singh extended him an honour as was due to him. When Banda Singh offered to grant him what he deemed to desire, He pleaded for mercy for all the residents of Malerkotla. (4)",
+          "lines": [
+            "So when this old trader host approached Banda Singh now,",
+            "Banda Singh extended him an honour as was due to him.",
+            "When Banda Singh offered to grant him what he deemed to desire,",
+            "He pleaded for mercy for all the residents of Malerkotla."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-043-p295-b004",
+          "type": "verse",
+          "text": "He beseeched him against the massacre of the citizens, But offered to pay as much financial penalty as he demanded, Thus this trader's plea on the basis of his past acquaintance, As well as Guru's injunction avoided the ransacking of Malerkotla. (5)",
+          "lines": [
+            "He beseeched him against the massacre of the citizens,",
+            "But offered to pay as much financial penalty as he demanded,",
+            "Thus this trader's plea on the basis of his past acquaintance,",
+            "As well as Guru's injunction avoided the ransacking of Malerkotla."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-043-p295-b005",
+          "type": "verse",
+          "text": "All those Pathans fled and escaped from the city, Who had survived the battles fought with the Singhs. They had joined the Mughal forces stationed at Delhi and Lahore, Since they had no chance to survive at any other place. (6)",
+          "lines": [
+            "All those Pathans fled and escaped from the city,",
+            "Who had survived the battles fought with the Singhs.",
+            "They had joined the Mughal forces stationed at Delhi and Lahore,",
+            "Since they had no chance to survive at any other place."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-043-p295-b006",
+          "type": "verse",
+          "text": "Banda Singh ordered for the confiscation of all Pathan properties, As well as imposed a heavy fine on all the residents. The collected revenue was distributed among these Singhs, Which enabled them to spend their days in peace and comfort. (7)",
+          "lines": [
+            "Banda Singh ordered for the confiscation of all Pathan properties,",
+            "As well as imposed a heavy fine on all the residents.",
+            "The collected revenue was distributed among these Singhs,",
+            "Which enabled them to spend their days in peace and comfort."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-043-p295-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-043-p295-b008",
+          "type": "verse",
+          "text": "Thus the Khalsa force also came to be provided with money, As more and more collections of revenue came to them. Whosoever put up defiance to the Khalsa's edicts, Was brought under the Khalsa rule through the use of force. (8)",
+          "lines": [
+            "Thus the Khalsa force also came to be provided with money,",
+            "As more and more collections of revenue came to them.",
+            "Whosoever put up defiance to the Khalsa's edicts,",
+            "Was brought under the Khalsa rule through the use of force."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-043-p295-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-043-p295-b010",
+          "type": "verse",
+          "text": "Khawaj a Khijar whom (the Guru) had nicknamed Khwaj a the coward,, Was considered to be the most muscular among the Pathans. His dead body was dug out of his grave (by the Singhs), And propped up against a wall (for public display). (9)",
+          "lines": [
+            "Khawaj a Khijar whom (the Guru) had nicknamed Khwaj a the coward,,",
+            "Was considered to be the most muscular among the Pathans.",
+            "His dead body was dug out of his grave (by the Singhs),",
+            "And propped up against a wall (for public display)."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-043-p295-b011",
+          "type": "verse",
+          "text": "The person whom Banda Singh had considered a great tall warrior, Had been killed like a jackal by the brave Singhs. They burnt his dead body by setting it on fire, As well as of another who used to be called Sheikh Saddo.2(10)",
+          "lines": [
+            "The person whom Banda Singh had considered a great tall warrior,",
+            "Had been killed like a jackal by the brave Singhs.",
+            "They burnt his dead body by setting it on fire,",
+            "As well as of another who used to be called Sheikh Saddo.2"
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-043-p295-b012",
+          "type": "verse",
+          "text": "He used to be worshipped as an ancient Pir of Malerkotla, Whom both men and women used to pay their obesaince. After digging out his dead body and setting it on fire, His tomb was dismantled and levelled up. (11)",
+          "lines": [
+            "He used to be worshipped as an ancient Pir of Malerkotla,",
+            "Whom both men and women used to pay their obesaince.",
+            "After digging out his dead body and setting it on fire,",
+            "His tomb was dismantled and levelled up."
+          ],
+          "number": "11"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 297,
+      "fileName": "EPUB/page_297.html",
+      "sourceHref": "EPUB/page_297.html",
+      "printPageNumber": 253,
+      "blocks": [
+        {
+          "id": "episode-043-p297-b001",
+          "type": "verse",
+          "text": "Collections of revenue were made from the Mughal ruled territories, And handed over to the Malwa Singhs who had joined Banda Singh's force, Bhai Fateh Singh3 was appointed the commander of the Malwa force, And all others were instructed to follow his command. (12)",
+          "lines": [
+            "Collections of revenue were made from the Mughal ruled territories,",
+            "And handed over to the Malwa Singhs who had joined Banda Singh's force,",
+            "Bhai Fateh Singh3 was appointed the commander of the Malwa force,",
+            "And all others were instructed to follow his command."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-043-p297-b002",
+          "type": "verse",
+          "text": "After handing over the custody of Malerkotla to the Malwa Singhs, Banda Singh made Bhai Fateh Singh the Nawab of this province. (13)",
+          "lines": [
+            "After handing over the custody of Malerkotla to the Malwa Singhs,",
+            "Banda Singh made Bhai Fateh Singh the Nawab of this province."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-043-p297-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-043-p297-b004",
+          "type": "verse",
+          "text": "The Hissar4 province with a territorial jurisdiction over fifty-two villages, Was annexed and merged into (the Malerkotla territory). Besides this, territories of Kaithal and Jind5 provinces upto Panipat6, As well as some parts of Moonak7 and Karnal8 were also included. (14)",
+          "lines": [
+            "The Hissar4 province with a territorial jurisdiction over fifty-two villages,",
+            "Was annexed and merged into (the Malerkotla territory).",
+            "Besides this, territories of Kaithal and Jind5 provinces upto Panipat6,",
+            "As well as some parts of Moonak7 and Karnal8 were also included."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-043-p297-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-043-p297-b006",
+          "type": "verse",
+          "text": "Banda Singh got (the Khalsa) standards planted at Panipat, So that no Mughal force could dare to cross the Khalsa territory. Even as some burglar tried to pull out the poles of Khalsa flags, These went still deeper than their earlier positions into the earth. (15)",
+          "lines": [
+            "Banda Singh got (the Khalsa) standards planted at Panipat,",
+            "So that no Mughal force could dare to cross the Khalsa territory.",
+            "Even as some burglar tried to pull out the poles of Khalsa flags,",
+            "These went still deeper than their earlier positions into the earth."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-043-p297-b007",
+          "type": "verse",
+          "text": "If some one tried to cut the supporting ropes with a sharp weapon, His own arms would get amputated with the first contact, No security guards were deputed to guard these Khalsa standards, Since a Muslim intruder's body would get instantly burnt in its proximity. (16)",
+          "lines": [
+            "If some one tried to cut the supporting ropes with a sharp weapon,",
+            "His own arms would get amputated with the first contact,",
+            "No security guards were deputed to guard these Khalsa standards,",
+            "Since a Muslim intruder's body would get instantly burnt in its proximity."
+          ],
+          "number": "16"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-042",
+  "nextChapterId": "episode-044"
+}

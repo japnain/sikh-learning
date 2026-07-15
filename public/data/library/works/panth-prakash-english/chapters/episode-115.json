@@ -1,0 +1,794 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-115",
+  "chapterNumber": 115,
+  "episodeNumber": 115,
+  "kind": "episode",
+  "title": "Slaughter of Jassu",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 379,
+  "endSourcePage": 389,
+  "wordCount": 2015,
+  "charCount": 11711,
+  "startPosition": 141645,
+  "pages": [
+    {
+      "sourcePageNumber": 379,
+      "fileName": "EPUB/page_379.html",
+      "sourceHref": "EPUB/page_379.html",
+      "printPageNumber": 325,
+      "blocks": [
+        {
+          "id": "episode-115-p379-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p379-b003",
+          "type": "verse",
+          "text": "Following the death of Nawab Khan Bahadur Zakariya Khan, Was he succeeded by two of his sons. One becoming the custodian of the province of Lahore, The other became the custodian of the province of Multan. (1)",
+          "lines": [
+            "Following the death of Nawab Khan Bahadur Zakariya Khan,",
+            "Was he succeeded by two of his sons.",
+            "One becoming the custodian of the province of Lahore,",
+            "The other became the custodian of the province of Multan."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-115-p379-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p379-b005",
+          "type": "verse",
+          "text": "Being known by the names of Ahiya Khan2 and Shah Niwaz3 , Did both of them take over the reigns of power. Shah Niwaz after taking his brother Ahiya Khan into custody, Did oust him from power after ransacking his province. (2)",
+          "lines": [
+            "Being known by the names of Ahiya Khan2 and Shah Niwaz3 ,",
+            "Did both of them take over the reigns of power.",
+            "Shah Niwaz after taking his brother Ahiya Khan into custody,",
+            "Did oust him from power after ransacking his province."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-115-p379-b006",
+          "type": "verse",
+          "text": "As some time passed in this internecine strife, Did Shah Nawaz rule as a Nawab of the state. He too started committing oppression on the Singhs, Such being the turn of events at that moment of time. (3)",
+          "lines": [
+            "As some time passed in this internecine strife,",
+            "Did Shah Nawaz rule as a Nawab of the state.",
+            "He too started committing oppression on the Singhs,",
+            "Such being the turn of events at that moment of time."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-115-p379-b007",
+          "type": "verse",
+          "text": "Lakhpat Rai4 and Jaspat Rai became the custodians, Coming as they did from the kshtriya families of Kalanaur. With these two custodians indulging in the massacre of Singhs, Did the Khalsa enter into strife with them as well. (4)",
+          "lines": [
+            "Lakhpat Rai4 and Jaspat Rai became the custodians,",
+            "Coming as they did from the kshtriya families of Kalanaur.",
+            "With these two custodians indulging in the massacre of Singhs,",
+            "Did the Khalsa enter into strife with them as well."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-115-p379-b008",
+          "type": "verse",
+          "text": "With the Singhs staking their claim to sovereignty, Did the Singhs indulge in slaughtering the Mughals aggressively. Receiving information about Singhs putting up a camp any where, Did the Mughal force lay a siege to the Singhs' camp. (5)",
+          "lines": [
+            "With the Singhs staking their claim to sovereignty,",
+            "Did the Singhs indulge in slaughtering the Mughals aggressively.",
+            "Receiving information about Singhs putting up a camp any where,",
+            "Did the Mughal force lay a siege to the Singhs' camp."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-115-p379-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p379-b010",
+          "type": "verse",
+          "text": "Fighting and killing would the Singhs desert the field, But soon would they return after deserting the place. The Mughals too would chase the Singhs upto their sanctuaries, As they too kept on harassing the Singhs in their hideouts. (6)",
+          "lines": [
+            "Fighting and killing would the Singhs desert the field,",
+            "But soon would they return after deserting the place.",
+            "The Mughals too would chase the Singhs upto their sanctuaries,",
+            "As they too kept on harassing the Singhs in their hideouts."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-115-p379-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p379-b012",
+          "type": "verse",
+          "text": "Thus did the Singhs pass their days in great adversity, Deserting one hiding place and moving to another shelter. With the hope of being sovereigns sooner or later, Did they face hardships with such expectations. (7)",
+          "lines": [
+            "Thus did the Singhs pass their days in great adversity,",
+            "Deserting one hiding place and moving to another shelter.",
+            "With the hope of being sovereigns sooner or later,",
+            "Did they face hardships with such expectations."
+          ],
+          "number": "7"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 381,
+      "fileName": "EPUB/page_381.html",
+      "sourceHref": "EPUB/page_381.html",
+      "printPageNumber": 327,
+      "blocks": [
+        {
+          "id": "episode-115-p381-b001",
+          "type": "verse",
+          "text": "Believing in Guru's prophecy about Khalsa's imminent sovereignty, Did they expect to be sovereigns of their land at last. Thus did some of the Singhs seek refuge among the reeds, While some others hid themselves in the Lions' caves. (8)",
+          "lines": [
+            "Believing in Guru's prophecy about Khalsa's imminent sovereignty,",
+            "Did they expect to be sovereigns of their land at last.",
+            "Thus did some of the Singhs seek refuge among the reeds,",
+            "While some others hid themselves in the Lions' caves."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-115-p381-b002",
+          "type": "verse",
+          "text": "Some would take shelter in between the river tributaries, Where also would they be traced by the Mughal forces. Thus would they save their skin by hiding themselves, On a dry patch between the two watery features. (9)",
+          "lines": [
+            "Some would take shelter in between the river tributaries,",
+            "Where also would they be traced by the Mughal forces.",
+            "Thus would they save their skin by hiding themselves,",
+            "On a dry patch between the two watery features."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-115-p381-b003",
+          "type": "verse",
+          "text": "Wth the Mughal forces blocking their way from all sides, Would the Mughals fire shots to kill them. As the Singhs would dive into the water and swim, Would the Mughals shoot them as they surfaced. (10)",
+          "lines": [
+            "Wth the Mughal forces blocking their way from all sides,",
+            "Would the Mughals fire shots to kill them.",
+            "As the Singhs would dive into the water and swim,",
+            "Would the Mughals shoot them as they surfaced."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-115-p381-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p381-b005",
+          "type": "paragraph",
+          "text": "Ousted from their homes Singhs sought refuge in the wilds, Driven out of the wilds would they dive into water. Now with their failing to survive even in the water, Where else could they move to save their lives?"
+        },
+        {
+          "id": "episode-115-p381-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p381-b007",
+          "type": "verse",
+          "text": "With the fall of night would the Singhs get some relief, As the Mughal troops would return to their base camps. Then would the Singhs throw the dead among them into the river, And pick up those lying on earth wounded and maimed. (12)",
+          "lines": [
+            "With the fall of night would the Singhs get some relief,",
+            "As the Mughal troops would return to their base camps.",
+            "Then would the Singhs throw the dead among them into the river,",
+            "And pick up those lying on earth wounded and maimed."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-115-p381-b008",
+          "type": "verse",
+          "text": "Finding no such territory where they could escape, Nor did they find any safe sanctuary for their protection. Someone suggested that they must scatter allover the region, Another opined that scattering would harm their prestige. (13)",
+          "lines": [
+            "Finding no such territory where they could escape,",
+            "Nor did they find any safe sanctuary for their protection.",
+            "Someone suggested that they must scatter allover the region,",
+            "Another opined that scattering would harm their prestige."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-115-p381-b009",
+          "type": "verse",
+          "text": "They must keep up their fight against the Mughals, As no other alternative would solve their problem. Someone else suggested that they must keep chasing the Mughals. As continuous strife and fight alone would set things right. (14)",
+          "lines": [
+            "They must keep up their fight against the Mughals,",
+            "As no other alternative would solve their problem.",
+            "Someone else suggested that they must keep chasing the Mughals.",
+            "As continuous strife and fight alone would set things right."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-115-p381-b010",
+          "type": "verse",
+          "text": "In case they tried to shun fighting with the Mughals, How could they realize their cherished aim of being sovereigns. Thus, did the Khalsa Panth arrive at a unanimous resolution, That they must keep chasing the Mughal troops at all costs. (15)",
+          "lines": [
+            "In case they tried to shun fighting with the Mughals,",
+            "How could they realize their cherished aim of being sovereigns.",
+            "Thus, did the Khalsa Panth arrive at a unanimous resolution,",
+            "That they must keep chasing the Mughal troops at all costs."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-115-p381-b011",
+          "type": "verse",
+          "text": "Must they steal horses from the sleeping Mughals at night, So that the Singh foot soldiers could also mount those horses. Hearing this resolution, many Singhs got ready for the venture, Being desperate to take on the sleeping Mughal troops. (16)",
+          "lines": [
+            "Must they steal horses from the sleeping Mughals at night,",
+            "So that the Singh foot soldiers could also mount those horses.",
+            "Hearing this resolution, many Singhs got ready for the venture,",
+            "Being desperate to take on the sleeping Mughal troops."
+          ],
+          "number": "16"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 383,
+      "fileName": "EPUB/page_383.html",
+      "sourceHref": "EPUB/page_383.html",
+      "printPageNumber": 329,
+      "blocks": [
+        {
+          "id": "episode-115-p383-b001",
+          "type": "verse",
+          "text": "As the brave Singh warriors arrived at this resolute solution, Rest of the Singhs followed their leaders on this expedition. Having thus started on this agreed upon expedition, Did they infiltrate into the ranks of Mughal troops. (17)",
+          "lines": [
+            "As the brave Singh warriors arrived at this resolute solution,",
+            "Rest of the Singhs followed their leaders on this expedition.",
+            "Having thus started on this agreed upon expedition,",
+            "Did they infiltrate into the ranks of Mughal troops."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-115-p383-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p383-b003",
+          "type": "verse",
+          "text": "Spotting out one such night camp of Mughal troops, Did the Singhs sneak into this Mughal camp. Mughal troops having fallen asleep after a day's fatigue, Did the Khalsa Singhs find an opportunity to enter their camp. (18)",
+          "lines": [
+            "Spotting out one such night camp of Mughal troops,",
+            "Did the Singhs sneak into this Mughal camp.",
+            "Mughal troops having fallen asleep after a day's fatigue,",
+            "Did the Khalsa Singhs find an opportunity to enter their camp."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-115-p383-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p383-b005",
+          "type": "verse",
+          "text": "Thereupon, picking up the horses from the Mughals' camp, Did the Singhs mount those horses with God's grace. Holding out more spare horses from their reins, Did they slaughter those Mughal soldiers who blocked their way. (19)",
+          "lines": [
+            "Thereupon, picking up the horses from the Mughals' camp,",
+            "Did the Singhs mount those horses with God's grace.",
+            "Holding out more spare horses from their reins,",
+            "Did they slaughter those Mughal soldiers who blocked their way."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-115-p383-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p383-b007",
+          "type": "verse",
+          "text": "As many as Singh's own horses had perished in fighting, Did the Singhs make up their loss from the Mughals' fleet. As the Singhs continued this practice of stealing horses, Did the Mughal force get weakened and depleted. (20)",
+          "lines": [
+            "As many as Singh's own horses had perished in fighting,",
+            "Did the Singhs make up their loss from the Mughals' fleet.",
+            "As the Singhs continued this practice of stealing horses,",
+            "Did the Mughal force get weakened and depleted."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-115-p383-b008",
+          "type": "verse",
+          "text": "Such being the Divine Will of the Guru, The invaders had to bite the dust. Did the Khalsa Singhs vanquish those Mughals, Who had come in hordes to subdue the Khalsa. (21)",
+          "lines": [
+            "Such being the Divine Will of the Guru,",
+            "The invaders had to bite the dust.",
+            "Did the Khalsa Singhs vanquish those Mughals,",
+            "Who had come in hordes to subdue the Khalsa."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-115-p383-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p383-b010",
+          "type": "verse",
+          "text": "Whenever the Mughal troops attacked in large numbers, Singhs, being in small strength, would escape and hide. Spotting out a large tract of wild growth and cover, They would camouflage themselves among the thick reeds. (22)",
+          "lines": [
+            "Whenever the Mughal troops attacked in large numbers,",
+            "Singhs, being in small strength, would escape and hide.",
+            "Spotting out a large tract of wild growth and cover,",
+            "They would camouflage themselves among the thick reeds."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-115-p383-b011",
+          "type": "verse",
+          "text": "At night would the Singhs come out again furtively, And pounce upon the sleeping Mughal troops. During the day, would the Mughals invade in large numbers, But never would the hibernated Singhs fall into their hands. (23)",
+          "lines": [
+            "At night would the Singhs come out again furtively,",
+            "And pounce upon the sleeping Mughal troops.",
+            "During the day, would the Mughals invade in large numbers,",
+            "But never would the hibernated Singhs fall into their hands."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-115-p383-b012",
+          "type": "verse",
+          "text": "Being scared, the Mughal troops would not enter the wild, As the Singhs would slaughter them in case they entered. As the Singhs emerged out of the wild forest, The Mughal troops would run to a distant place. (24)",
+          "lines": [
+            "Being scared, the Mughal troops would not enter the wild,",
+            "As the Singhs would slaughter them in case they entered.",
+            "As the Singhs emerged out of the wild forest,",
+            "The Mughal troops would run to a distant place."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-115-p383-b013",
+          "type": "verse",
+          "text": "On the main highways to Delhi, Lahore and Peshawar, Would the Singhs waylay and slaughter the Mughals at night. They would also ransack the city of Lahore at odd hours, Thus would the Singhs cause havoc and chaos there. (25)",
+          "lines": [
+            "On the main highways to Delhi,",
+            "Lahore and Peshawar,",
+            "Would the Singhs waylay and slaughter the Mughals at night.",
+            "They would also ransack the city of Lahore at odd hours,",
+            "Thus would the Singhs cause havoc and chaos there."
+          ],
+          "number": "25"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 385,
+      "fileName": "EPUB/page_385.html",
+      "sourceHref": "EPUB/page_385.html",
+      "printPageNumber": 331,
+      "blocks": [
+        {
+          "id": "episode-115-p385-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p385-b002",
+          "type": "verse",
+          "text": "Being driven out of the Majha region of Punj ab, The Singhs sneaked into the wilds around the river Ravi5 . Surviving on what they could lay their hands on, They maintained a good-coordination among their ranks. (26)",
+          "lines": [
+            "Being driven out of the Majha region of Punj ab,",
+            "The Singhs sneaked into the wilds around the river Ravi5 .",
+            "Surviving on what they could lay their hands on,",
+            "They maintained a good-coordination among their ranks."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-115-p385-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p385-b004",
+          "type": "verse",
+          "text": "Thus passing their days in hide and seek with the Mughals, Would the Singhs desert the field being out numbered in strength. Waylaying and robbing the traveling Mughal caravans, Had the Singhs ransacked the suburbs of Lahore. (27)",
+          "lines": [
+            "Thus passing their days in hide and seek with the Mughals,",
+            "Would the Singhs desert the field being out numbered in strength.",
+            "Waylaying and robbing the traveling Mughal caravans,",
+            "Had the Singhs ransacked the suburbs of Lahore."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-115-p385-b005",
+          "type": "verse",
+          "text": "Getting incensed at the sight of militant Singhs, Would the Mughal troops run in hot pursuit of the Singhs. Adopting a strategy of hit and run in their fight, How could a handful of Singhs confront hordes of Mughals directly? (28)",
+          "lines": [
+            "Getting incensed at the sight of militant Singhs,",
+            "Would the Mughal troops run in hot pursuit of the Singhs.",
+            "Adopting a strategy of hit and run in their fight,",
+            "How could a handful of Singhs confront hordes of Mughals directly?"
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-115-p385-b006",
+          "type": "verse",
+          "text": "Having neither an abundance of provisions to feed upon, Nor did the Singhs have any arms and armour of good quality. Being bereft of any provisions to feed and clothes to put on, Nor did they have any arms and ammunition in their possession. (29)",
+          "lines": [
+            "Having neither an abundance of provisions to feed upon,",
+            "Nor did the Singhs have any arms and armour of good quality.",
+            "Being bereft of any provisions to feed and clothes to put on,",
+            "Nor did they have any arms and ammunition in their possession."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-115-p385-b007",
+          "type": "verse",
+          "text": "Having no access to any shopping markets and other facilities, Would the sick among them die for want of treatment. Reposing the faith entirely on the prophetic words of their Guru, Had the Guru's words become the mainstay of their lives. (30)",
+          "lines": [
+            "Having no access to any shopping markets and other facilities,",
+            "Would the sick among them die for want of treatment.",
+            "Reposing the faith entirely on the prophetic words of their Guru,",
+            "Had the Guru's words become the mainstay of their lives."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-115-p385-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p385-b009",
+          "type": "verse",
+          "text": "Despite these odds did the Singhs increase in number, Gaining strength, day in and day out did they flourish. Never did the allow their suffering to have the better of them, During their relentless fight involving life and death. (31)",
+          "lines": [
+            "Despite these odds did the Singhs increase in number,",
+            "Gaining strength, day in and day out did they flourish.",
+            "Never did the allow their suffering to have the better of them,",
+            "During their relentless fight involving life and death."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-115-p385-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p385-b011",
+          "type": "verse",
+          "text": "Thereupon, the Khalsa Panth made another resolution, That must they kill the commanders of the Mughal troops. They must equip themselves by plundering the Mughal forces, And must they get rid of their destitution through loot and plunder. (32)",
+          "lines": [
+            "Thereupon, the Khalsa Panth made another resolution,",
+            "That must they kill the commanders of the Mughal troops.",
+            "They must equip themselves by plundering the Mughal forces,",
+            "And must they get rid of their destitution through loot and plunder."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-115-p385-b012",
+          "type": "verse",
+          "text": "Must they snatch horses and camels from the Mughals, As it was impossible to be sovereigns without the trappings of royalty. Must they occupy land to raise a military fortress, As it was impossible to wage a war without a fort. (33)",
+          "lines": [
+            "Must they snatch horses and camels from the Mughals,",
+            "As it was impossible to be sovereigns without the trappings of royalty.",
+            "Must they occupy land to raise a military fortress,",
+            "As it was impossible to wage a war without a fort."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-115-p385-b013",
+          "type": "verse",
+          "text": "Having resolved thus, did they proceed further, Reaching the outskirts of the town of Emnabad6 . Mughal troops too came in hot pursuit of the Singhs, Being desperate to hunt down the running Singhs. (34)",
+          "lines": [
+            "Having resolved thus, did they proceed further,",
+            "Reaching the outskirts of the town of Emnabad6 .",
+            "Mughal troops too came in hot pursuit of the Singhs,",
+            "Being desperate to hunt down the running Singhs."
+          ],
+          "number": "34"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 387,
+      "fileName": "EPUB/page_387.html",
+      "sourceHref": "EPUB/page_387.html",
+      "printPageNumber": 333,
+      "blocks": [
+        {
+          "id": "episode-115-p387-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p387-b002",
+          "type": "verse",
+          "text": "Territorial custody of Emnabad having been granted to him, Jaspat Rai himself was the custodian of this place. Revenue collections he used to make from this territory, Backed by a large contingent of Mughal troops. (35)",
+          "lines": [
+            "Territorial custody of Emnabad having been granted to him,",
+            "Jaspat Rai himself was the custodian of this place.",
+            "Revenue collections he used to make from this territory,",
+            "Backed by a large contingent of Mughal troops."
+          ],
+          "number": "35"
+        },
+        {
+          "id": "episode-115-p387-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p387-b004",
+          "type": "verse",
+          "text": "He would collect levies on the pain of sufferance, The village chiefs would he arrest and maltreat. With booted kicks and canes would he thrash them, The entire region would he thus ransack with force. (36)",
+          "lines": [
+            "He would collect levies on the pain of sufferance,",
+            "The village chiefs would he arrest and maltreat.",
+            "With booted kicks and canes would he thrash them,",
+            "The entire region would he thus ransack with force."
+          ],
+          "number": "36"
+        },
+        {
+          "id": "episode-115-p387-b005",
+          "type": "verse",
+          "text": "Famished and pauperized would the peasants join the Singhs, They would abandon their homes and hearths to join Singh contingents. Those failing to pay the stipulated levis to the custodian, They would petition the Singhs against their exploitation. (37)",
+          "lines": [
+            "Famished and pauperized would the peasants join the Singhs,",
+            "They would abandon their homes and hearths to join Singh contingents.",
+            "Those failing to pay the stipulated levis to the custodian,",
+            "They would petition the Singhs against their exploitation."
+          ],
+          "number": "37"
+        },
+        {
+          "id": "episode-115-p387-b006",
+          "type": "verse",
+          "text": "Being on the run thus, did they reach the shrine of Rori Sahib7 , As they wished to have a dip in the sacred pool there. The Singh having organized a religious congregation here, They sent the following written proposal to Dewan Jaspat Rai. (38)",
+          "lines": [
+            "Being on the run thus, did they reach the shrine of Rori Sahib7 ,",
+            "As they wished to have a dip in the sacred pool there.",
+            "The Singh having organized a religious congregation here,",
+            "They sent the following written proposal to Dewan Jaspat Rai."
+          ],
+          "number": "38"
+        },
+        {
+          "id": "episode-115-p387-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p387-b008",
+          "type": "verse",
+          "text": "Singhs being without food for the last so many days, They were desperately in need of some sort of victuals. Having drafted a petition to this effect, Singhs did send this petition to Jaspat Rai. (39)",
+          "lines": [
+            "Singhs being without food for the last so many days,",
+            "They were desperately in need of some sort of victuals.",
+            "Having drafted a petition to this effect,",
+            "Singhs did send this petition to Jaspat Rai."
+          ],
+          "number": "39"
+        },
+        {
+          "id": "episode-115-p387-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p387-b010",
+          "type": "verse",
+          "text": "That a Hindu had been made a custodian by the Guru's Will, The Singhs reminded him of it in their written petition. That enmity with the Dewan had Singhs none whatsoever, Their enmity being alone with the (tyrannical) Mughals. (40)",
+          "lines": [
+            "That a Hindu had been made a custodian by the Guru's Will,",
+            "The Singhs reminded him of it in their written petition.",
+            "That enmity with the Dewan had Singhs none whatsoever,",
+            "Their enmity being alone with the (tyrannical) Mughals."
+          ],
+          "number": "40"
+        },
+        {
+          "id": "episode-115-p387-b011",
+          "type": "verse",
+          "text": "That the Singh would like to make a purchase of provisions, From the city of Emnabad falling in the Dewan's territory. That the Singhs being famished for want of food for days, They would not cause any harm to his city. (41)",
+          "lines": [
+            "That the Singh would like to make a purchase of provisions,",
+            "From the city of Emnabad falling in the Dewan's territory.",
+            "That the Singhs being famished for want of food for days,",
+            "They would not cause any harm to his city."
+          ],
+          "number": "41"
+        },
+        {
+          "id": "episode-115-p387-b012",
+          "type": "verse",
+          "text": "That he could keep his territory free from Singhs, As the Singhs would then leave for another region. Hearing this message, Jaspat did take offence, As he declared to hunt the Singhs down and kill. (42)",
+          "lines": [
+            "That he could keep his territory free from Singhs,",
+            "As the Singhs would then leave for another region.",
+            "Hearing this message,",
+            "Jaspat did take offence,",
+            "As he declared to hunt the Singhs down and kill."
+          ],
+          "number": "42"
+        },
+        {
+          "id": "episode-115-p387-b013",
+          "type": "verse",
+          "text": "Since the Singhs had come out of their hideouts in the wilds, The Lord of Death himself had brought them out into the open. Not only would he convert them into Jats with their hair shorn, He would make ropes out of their shorn hair. (43)",
+          "lines": [
+            "Since the Singhs had come out of their hideouts in the wilds,",
+            "The Lord of Death himself had brought them out into the open.",
+            "Not only would he convert them into Jats with their hair shorn,",
+            "He would make ropes out of their shorn hair."
+          ],
+          "number": "43"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 389,
+      "fileName": "EPUB/page_389.html",
+      "sourceHref": "EPUB/page_389.html",
+      "printPageNumber": 335,
+      "blocks": [
+        {
+          "id": "episode-115-p389-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p389-b002",
+          "type": "verse",
+          "text": "As a maid servant demands a nose-ring, From a master who intends to chop off her nose, The Dewan intended to liquidate the Singhs asking for food, While the Singhs expected a generous response from him. (44)",
+          "lines": [
+            "As a maid servant demands a nose-ring,",
+            "From a master who intends to chop off her nose,",
+            "The Dewan intended to liquidate the Singhs asking for food,",
+            "While the Singhs expected a generous response from him."
+          ],
+          "number": "44"
+        },
+        {
+          "id": "episode-115-p389-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p389-b004",
+          "type": "verse",
+          "text": "While the Singhs were expecting a supply of rations from him, He intended to slaughter them in a systematic manner. If, perchance, his brother Lakhpat Rai heard about their congregation, Definitely would he arrest them as he did Bhai Mani Singh8 . (45)",
+          "lines": [
+            "While the Singhs were expecting a supply of rations from him,",
+            "He intended to slaughter them in a systematic manner.",
+            "If, perchance, his brother Lakhpat Rai heard about their congregation,",
+            "Definitely would he arrest them as he did Bhai Mani Singh8 ."
+          ],
+          "number": "45"
+        },
+        {
+          "id": "episode-115-p389-b005",
+          "type": "verse",
+          "text": "Not only would he drag them to the Mughal Nawab's court, But would he get their bodies dismembered as well. Being reminded of (the merciless persecution of Bhai Mani Singh), Did the Singhs resolve to take revenge for the martyr's execution. (46)",
+          "lines": [
+            "Not only would he drag them to the Mughal Nawab's court,",
+            "But would he get their bodies dismembered as well.",
+            "Being reminded of (the merciless persecution of Bhai Mani Singh),",
+            "Did the Singhs resolve to take revenge for the martyr's execution."
+          ],
+          "number": "46"
+        },
+        {
+          "id": "episode-115-p389-b006",
+          "type": "verse",
+          "text": "The impending death of Jaspat Rai had awakened the Singhs, As one awakened a sleeping lion by pulling at his mustachios. Since his brother was instrumental in getting Bhai Mani Singh arrested, Must the Singhs settle scores with this (bragging) enemy. (47)",
+          "lines": [
+            "The impending death of Jaspat Rai had awakened the Singhs,",
+            "As one awakened a sleeping lion by pulling at his mustachios.",
+            "Since his brother was instrumental in getting Bhai Mani Singh arrested,",
+            "Must the Singhs settle scores with this (bragging) enemy."
+          ],
+          "number": "47"
+        },
+        {
+          "id": "episode-115-p389-b007",
+          "type": "verse",
+          "text": "As the Singhs heard about Jaspat Rai's intentions, Were they incensed as if strung by a poisonous scorpion. Thereupon, did the Khalsa Singhs let out a congregational prayer, Might they set things right by slaughtering their kshtriya Dewan. (48)",
+          "lines": [
+            "As the Singhs heard about Jaspat Rai's intentions,",
+            "Were they incensed as if strung by a poisonous scorpion.",
+            "Thereupon, did the Khalsa Singhs let out a congregational prayer,",
+            "Might they set things right by slaughtering their kshtriya Dewan."
+          ],
+          "number": "48"
+        },
+        {
+          "id": "episode-115-p389-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p389-b009",
+          "type": "verse",
+          "text": "Thus, was he himself robbed of his own life, Who had launched a crusade to kill the Singhs. Climbing up the elephant (which Jaspat Rai was riding), Did Nibahoo Singh9 bring him down with a sword's blow. (49)",
+          "lines": [
+            "Thus, was he himself robbed of his own life,",
+            "Who had launched a crusade to kill the Singhs.",
+            "Climbing up the elephant (which Jaspat Rai was riding),",
+            "Did Nibahoo Singh9 bring him down with a sword's blow."
+          ],
+          "number": "49"
+        },
+        {
+          "id": "episode-115-p389-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-115-p389-b011",
+          "type": "verse",
+          "text": "Thus, Nibahoo Singh mounting upon the elephant, Took hold of all the jewellery after beheading the Dewan. Rest of the valuables did he throw down, Which the Singhs did pick up in a large quantity. (50)",
+          "lines": [
+            "Thus,",
+            "Nibahoo Singh mounting upon the elephant,",
+            "Took hold of all the jewellery after beheading the Dewan.",
+            "Rest of the valuables did he throw down,",
+            "Which the Singhs did pick up in a large quantity."
+          ],
+          "number": "50"
+        },
+        {
+          "id": "episode-115-p389-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-115-p389-b013",
+          "type": "verse",
+          "text": "It was in the year eighteen hundred seventy-four10 , As per the Bikrami Samvat of the Indian Calendar, That had the Singhs taken possession of a lot of treasure, After beheading the Kshtriya Dewan (of Emnabad). (51)",
+          "lines": [
+            "It was in the year eighteen hundred seventy-four10 ,",
+            "As per the Bikrami Samvat of the Indian Calendar,",
+            "That had the Singhs taken possession of a lot of treasure,",
+            "After beheading the Kshtriya Dewan (of Emnabad)."
+          ],
+          "number": "51"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-114",
+  "nextChapterId": "episode-116"
+}

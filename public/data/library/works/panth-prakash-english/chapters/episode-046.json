@@ -1,0 +1,113 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-046",
+  "chapterNumber": 46,
+  "episodeNumber": 46,
+  "kind": "episode",
+  "title": "Banda Singh's Blessing Deep Singh with Teeth",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 305,
+  "endSourcePage": 307,
+  "wordCount": 220,
+  "charCount": 1225,
+  "startPosition": 45869,
+  "pages": [
+    {
+      "sourcePageNumber": 305,
+      "fileName": "EPUB/page_305.html",
+      "sourceHref": "EPUB/page_305.html",
+      "printPageNumber": 261,
+      "blocks": [
+        {
+          "id": "episode-046-p305-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-046-p305-b003",
+          "type": "verse",
+          "text": "S. Deep Singh who was known by his surname of Chukohia, Could not partake of the meals consisting of roasted grams. I (the author) would narrate the incident of Banda Singh's blessings, Of his bestowing the boon of teeth to the devout Sikh Deep Singh. (1)",
+          "lines": [
+            "S.",
+            "Deep Singh who was known by his surname of Chukohia,",
+            "Could not partake of the meals consisting of roasted grams.",
+            "I (the author) would narrate the incident of Banda Singh's blessings,",
+            "Of his bestowing the boon of teeth to the devout Sikh Deep Singh."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-046-p305-b004",
+          "type": "verse",
+          "text": "One day, a devout Sikh made an offering of roasted grams, In the congregation of Singhs presided over by Banda Singh. While all the Singhs in the congregation started chewing the grams, One of the Singhs, in the prime of his youth, did not chew these grains. (2)",
+          "lines": [
+            "One day, a devout Sikh made an offering of roasted grams,",
+            "In the congregation of Singhs presided over by Banda Singh.",
+            "While all the Singhs in the congregation started chewing the grams,",
+            "One of the Singhs, in the prime of his youth, did not chew these grains."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-046-p305-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-046-p305-b006",
+          "type": "paragraph",
+          "text": "At this, all the congregated Singhs made the remarks: That Deep Singh had not taken a single grain of grams."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 307,
+      "fileName": "EPUB/page_307.html",
+      "sourceHref": "EPUB/page_307.html",
+      "printPageNumber": 263,
+      "blocks": [
+        {
+          "id": "episode-046-p307-b001",
+          "type": "verse",
+          "text": "Hearing these remarks, Banda Singh asked Deep Singh: As to why he alone could not chew the roasted grams. (3)",
+          "lines": [
+            "Hearing these remarks,",
+            "Banda Singh asked Deep Singh: As to why he alone could not chew the roasted grams."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-046-p307-b002",
+          "type": "verse",
+          "text": "Deep Singh replied that since he had no teeth in his mouth, He could not chew the hard roasted grains of grams. But as soon as Banda Singh blessed him with the boon of teeth, Deep Singh cracked and chewed a handful of roasted grains. (4)",
+          "lines": [
+            "Deep Singh replied that since he had no teeth in his mouth,",
+            "He could not chew the hard roasted grains of grams.",
+            "But as soon as Banda Singh blessed him with the boon of teeth,",
+            "Deep Singh cracked and chewed a handful of roasted grains."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-046-p307-b003",
+          "type": "verse",
+          "text": "Thus, by making a demonstration of such miraculous feats, Banda Singh managed to have a large following of people. Although he had demonstrated countless such miracles, I would narrate only those I have heard (from my ancestors). (5)",
+          "lines": [
+            "Thus, by making a demonstration of such miraculous feats,",
+            "Banda Singh managed to have a large following of people.",
+            "Although he had demonstrated countless such miracles,",
+            "I would narrate only those I have heard (from my ancestors)."
+          ],
+          "number": "5"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-045",
+  "nextChapterId": "episode-047"
+}

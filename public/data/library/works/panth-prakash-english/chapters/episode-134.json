@@ -1,0 +1,396 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-134",
+  "chapterNumber": 134,
+  "episodeNumber": 134,
+  "kind": "episode",
+  "title": "Mir Mannu",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 517,
+  "endSourcePage": 523,
+  "wordCount": 985,
+  "charCount": 5932,
+  "startPosition": 165784,
+  "pages": [
+    {
+      "sourcePageNumber": 517,
+      "fileName": "EPUB/page_517.html",
+      "sourceHref": "EPUB/page_517.html",
+      "printPageNumber": 463,
+      "blocks": [
+        {
+          "id": "episode-134-p517-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-134-p517-b003",
+          "type": "verse",
+          "text": "(Dear readers) listen to the episode about Mir Mannu1 , And the manner in which he met his fatal end. The man who led a crusade to decimate the Khalsa, Himself perished in the attempt in a torturous manner. (1)",
+          "lines": [
+            "(Dear readers) listen to the episode about Mir Mannu1 ,",
+            "And the manner in which he met his fatal end.",
+            "The man who led a crusade to decimate the Khalsa,",
+            "Himself perished in the attempt in a torturous manner."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-134-p517-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-134-p517-b005",
+          "type": "verse",
+          "text": "When Dewan Kaura Mai died (during an Afghan-Singh skirmish), The Khalsa Singhs were deprived of their financial support. When the Mughals stopped paying ransom to the Singhs, The latter started harassing and torturing the Mughals. (2)",
+          "lines": [
+            "When Dewan Kaura Mai died (during an Afghan-Singh skirmish),",
+            "The Khalsa Singhs were deprived of their financial support.",
+            "When the Mughals stopped paying ransom to the Singhs,",
+            "The latter started harassing and torturing the Mughals."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-134-p517-b006",
+          "type": "paragraph",
+          "text": "Spurring their horses, did the Singhs reach Lahore's outskirts, After chasing the Mughals would they sneak into the jungles."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 519,
+      "fileName": "EPUB/page_519.html",
+      "sourceHref": "EPUB/page_519.html",
+      "printPageNumber": 465,
+      "blocks": [
+        {
+          "id": "episode-134-p519-b001",
+          "type": "verse",
+          "text": "Returning soon, would the Singhs attack the smaller Mughal batteries, As well as their larger contingents from the vanguard and the rearguard. (3)",
+          "lines": [
+            "Returning soon, would the Singhs attack the smaller Mughal batteries,",
+            "As well as their larger contingents from the vanguard and the rearguard."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-134-p519-b002",
+          "type": "verse",
+          "text": "Thereupon, the minister (Mir Mannu) felt in his heart of hearts, That he must get all the Singhs eliminated from his region. Despatching his forces in all the four directions forthwith, He did beat the Singhs to turn them out of his province. (4)",
+          "lines": [
+            "Thereupon, the minister (Mir Mannu) felt in his heart of hearts,",
+            "That he must get all the Singhs eliminated from his region.",
+            "Despatching his forces in all the four directions forthwith,",
+            "He did beat the Singhs to turn them out of his province."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-134-p519-b003",
+          "type": "verse",
+          "text": "The foot soldiers among the Singhs sheltered themselves here and there, Surviving purely on what they could lay their hands on. The minister, hearing of these incidents of wayside robberies, Himself led a crusade against these highwaymen. (5)",
+          "lines": [
+            "The foot soldiers among the Singhs sheltered themselves here and there,",
+            "Surviving purely on what they could lay their hands on.",
+            "The minister, hearing of these incidents of wayside robberies,",
+            "Himself led a crusade against these highwaymen."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-134-p519-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-134-p519-b005",
+          "type": "verse",
+          "text": "Mir Mannu would despatch his messengers to a place, From where he got the slightest information about Singhs. Wherever he heard about the settlements of Singh families, There would he order to take them out after laying a siege. (6)",
+          "lines": [
+            "Mir Mannu would despatch his messengers to a place,",
+            "From where he got the slightest information about Singhs.",
+            "Wherever he heard about the settlements of Singh families,",
+            "There would he order to take them out after laying a siege."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-134-p519-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-134-p519-b007",
+          "type": "verse",
+          "text": "Daily would Mir Mannu go on a hunting spree to kill the Singhs, Daily would he kill dragging them out from sugarcane fields and bushes. Even those Singhs who were (peacefully) engaged in agriculture, They, too, were eliminated after searching them out. (7)",
+          "lines": [
+            "Daily would Mir Mannu go on a hunting spree to kill the Singhs,",
+            "Daily would he kill dragging them out from sugarcane fields and bushes.",
+            "Even those Singhs who were (peacefully) engaged in agriculture,",
+            "They, too, were eliminated after searching them out."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-134-p519-b008",
+          "type": "verse",
+          "text": "Such an uprour and panick gripped the Majha region, That Sikh families could not find shelter anywhere. There was a village named Pandori2 in the Majha area, Where lived a famous saint by name of Dadu Ram. (8)",
+          "lines": [
+            "Such an uprour and panick gripped the Majha region,",
+            "That Sikh families could not find shelter anywhere.",
+            "There was a village named Pandori2 in the Majha area,",
+            "Where lived a famous saint by name of Dadu Ram."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-134-p519-b009",
+          "type": "verse",
+          "text": "As my (the author's) mother and grandmother had taken refuge there, Some state informers leaked out their whereabouts to the minister. There itself did the minister himself arrive post haste, Laying a siege to the village after a meticulous planning. (9)",
+          "lines": [
+            "As my (the author's) mother and grandmother had taken refuge there,",
+            "Some state informers leaked out their whereabouts to the minister.",
+            "There itself did the minister himself arrive post haste,",
+            "Laying a siege to the village after a meticulous planning."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-134-p519-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-134-p519-b011",
+          "type": "verse",
+          "text": "The young boy, who was the grandson of saint Dadu Ram, Was he summoned before the minister after arresting him. Accusing him of sheltering those guilty of treachery, The minister ordered him to handover those to the authorities. (10)",
+          "lines": [
+            "The young boy, who was the grandson of saint Dadu Ram,",
+            "Was he summoned before the minister after arresting him.",
+            "Accusing him of sheltering those guilty of treachery,",
+            "The minister ordered him to handover those to the authorities."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-134-p519-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-134-p519-b013",
+          "type": "verse",
+          "text": "As the young mendicant denied having any fugitives, Mir Mannu's minister ordered his monastry to be searched. As author's mother and her Sikh colleagues were inside the monastry, They had disguised themselves in the red robes of that sect. (11)",
+          "lines": [
+            "As the young mendicant denied having any fugitives,",
+            "Mir Mannu's minister ordered his monastry to be searched.",
+            "As author's mother and her Sikh colleagues were inside the monastry,",
+            "They had disguised themselves in the red robes of that sect."
+          ],
+          "number": "11"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 521,
+      "fileName": "EPUB/page_521.html",
+      "sourceHref": "EPUB/page_521.html",
+      "printPageNumber": 467,
+      "blocks": [
+        {
+          "id": "episode-134-p521-b001",
+          "type": "verse",
+          "text": "Declaring someone as his sister and someone his daughter, This monastic head declared rest of the females as his followers. Concealing the true identities of all those Sikh females under his protection, He resolved to endure all the repercussions of his statements. (12)",
+          "lines": [
+            "Declaring someone as his sister and someone his daughter,",
+            "This monastic head declared rest of the females as his followers.",
+            "Concealing the true identities of all those Sikh females under his protection,",
+            "He resolved to endure all the repercussions of his statements."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-134-p521-b002",
+          "type": "verse",
+          "text": "Accusing this monastic head of sheltering those subversives, The minister ordered the young priest to be crushed by an elephant. But instead of crushing and mauling this holy young saint, The blood thirsty elephant bowed and touched his feet with his trunk. (13)",
+          "lines": [
+            "Accusing this monastic head of sheltering those subversives,",
+            "The minister ordered the young priest to be crushed by an elephant.",
+            "But instead of crushing and mauling this holy young saint,",
+            "The blood thirsty elephant bowed and touched his feet with his trunk."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-134-p521-b003",
+          "type": "verse",
+          "text": "Despite being urged and pressed by his aggressive Mahout, The ferocious elephant retreated back after paying obeisance. Feeling extremely outraged against the elephant's Mahout, The minister accused him of having been bribed by the priest. (14)",
+          "lines": [
+            "Despite being urged and pressed by his aggressive Mahout,",
+            "The ferocious elephant retreated back after paying obeisance.",
+            "Feeling extremely outraged against the elephant's Mahout,",
+            "The minister accused him of having been bribed by the priest."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-134-p521-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-134-p521-b005",
+          "type": "verse",
+          "text": "Thereafter, feeling more outraged at his orders' non-compliance, He ordered for summoning the services of another Mahout. Even after this changing of the Mahout and the elephant, The young priest did survive such being the Will of God. (15)",
+          "lines": [
+            "Thereafter, feeling more outraged at his orders' non-compliance,",
+            "He ordered for summoning the services of another Mahout.",
+            "Even after this changing of the Mahout and the elephant,",
+            "The young priest did survive such being the Will of God."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-134-p521-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-134-p521-b007",
+          "type": "verse",
+          "text": "Then did this second mahout vouched before the minister, Truly had the young priest been vested with Divine powers. Thereupon, ordering the elephant to be withdrawn, Finally did the minister put the priest behind bars. (16)",
+          "lines": [
+            "Then did this second mahout vouched before the minister,",
+            "Truly had the young priest been vested with Divine powers.",
+            "Thereupon, ordering the elephant to be withdrawn,",
+            "Finally did the minister put the priest behind bars."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-134-p521-b008",
+          "type": "verse",
+          "text": "Presenting the four Singhs who had been captured by the Mughal troops, The minister was entreated to order for their execution. The minister's better half who had been accompanying her husband, With folded hands did she plead before her husband. (17)",
+          "lines": [
+            "Presenting the four Singhs who had been captured by the Mughal troops,",
+            "The minister was entreated to order for their execution.",
+            "The minister's better half who had been accompanying her husband,",
+            "With folded hands did she plead before her husband."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-134-p521-b009",
+          "type": "verse",
+          "text": "Pretending to have never seen a Singh in her entire life, She called for the Singhs to be presented before her. After having a glimpse of those Singhs she let them be released, Thus did these Singhs get spared by a happy coincidence. (18)",
+          "lines": [
+            "Pretending to have never seen a Singh in her entire life,",
+            "She called for the Singhs to be presented before her.",
+            "After having a glimpse of those Singhs she let them be released,",
+            "Thus did these Singhs get spared by a happy coincidence."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-134-p521-b010",
+          "type": "verse",
+          "text": "Thereafter, did the state informers bring forth an information, That they had spotted the Singhs in hiding to be hunted down. Thereupon, ordering for the summoning of more horses and troops, The minister marched to the spot lead by the state informers. (19)",
+          "lines": [
+            "Thereafter, did the state informers bring forth an information,",
+            "That they had spotted the Singhs in hiding to be hunted down.",
+            "Thereupon, ordering for the summoning of more horses and troops,",
+            "The minister marched to the spot lead by the state informers."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-134-p521-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-134-p521-b012",
+          "type": "verse",
+          "text": "In a large field overgrown with sugarcane crop nearby, Many a Singh had taken shelter there in that field. Among these Singhs being children as well as the elderly, All of them came to be surrounded by the Mughal troops. (20)",
+          "lines": [
+            "In a large field overgrown with sugarcane crop nearby,",
+            "Many a Singh had taken shelter there in that field.",
+            "Among these Singhs being children as well as the elderly,",
+            "All of them came to be surrounded by the Mughal troops."
+          ],
+          "number": "20"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 523,
+      "fileName": "EPUB/page_523.html",
+      "sourceHref": "EPUB/page_523.html",
+      "printPageNumber": 469,
+      "blocks": [
+        {
+          "id": "episode-134-p523-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-134-p523-b002",
+          "type": "verse",
+          "text": "Wailing desperately over the fate of their kins under siege, The hapless mothers and sisters had no one to share their grief. Shuddering at the horrible prospect, and standing as helpless onlookers, People saw no chance of survival for their kith and kin. (21)",
+          "lines": [
+            "Wailing desperately over the fate of their kins under siege,",
+            "The hapless mothers and sisters had no one to share their grief.",
+            "Shuddering at the horrible prospect, and standing as helpless onlookers,",
+            "People saw no chance of survival for their kith and kin."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-134-p523-b003",
+          "type": "verse",
+          "text": "Dreading more about the aftermath of their capture, They apprehended about themselves of being accused of complicity. It was amidst this wailing and shrieking among the people, That a divine dispensation came to prevail thereupon. (22)",
+          "lines": [
+            "Dreading more about the aftermath of their capture,",
+            "They apprehended about themselves of being accused of complicity.",
+            "It was amidst this wailing and shrieking among the people,",
+            "That a divine dispensation came to prevail thereupon."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-134-p523-b004",
+          "type": "verse",
+          "text": "As Mir Mannu's horse getting scared, stood straight on his hind legs, With a bound did Mir Mannu fall upon the ground. As one of his feet got entangled in the stirrup, With an intolerable pain did Mir Mannu shed his mortal frame. (23)",
+          "lines": [
+            "As Mir Mannu's horse getting scared, stood straight on his hind legs,",
+            "With a bound did Mir Mannu fall upon the ground.",
+            "As one of his feet got entangled in the stirrup,",
+            "With an intolerable pain did Mir Mannu shed his mortal frame."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-134-p523-b005",
+          "type": "verse",
+          "text": "Disappeared the thought of preying upon the Singhs with Mir Mannu's demise, Released even were those Singhs whom had they caputured. Such happened to be the fate which Mir Mannu did meet, Eighteen hundred and twenty three3 Bikrami happened to be the year. (24)",
+          "lines": [
+            "Disappeared the thought of preying upon the Singhs with Mir Mannu's demise,",
+            "Released even were those Singhs whom had they caputured.",
+            "Such happened to be the fate which Mir Mannu did meet,",
+            "Eighteen hundred and twenty three3 Bikrami happened to be the year."
+          ],
+          "number": "24"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-133",
+  "nextChapterId": "episode-135"
+}

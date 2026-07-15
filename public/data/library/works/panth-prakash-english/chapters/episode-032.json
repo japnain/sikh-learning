@@ -1,0 +1,505 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-032",
+  "chapterNumber": 32,
+  "episodeNumber": 32,
+  "kind": "episode",
+  "title": "Further Account of Baba Banda Singh",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 249,
+  "endSourcePage": 255,
+  "wordCount": 1323,
+  "charCount": 7744,
+  "startPosition": 35778,
+  "pages": [
+    {
+      "sourcePageNumber": 249,
+      "fileName": "EPUB/page_249.html",
+      "sourceHref": "EPUB/page_249.html",
+      "printPageNumber": 205,
+      "blocks": [
+        {
+          "id": "episode-032-p249-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p249-b003",
+          "type": "verse",
+          "text": "Hearing that Banda Singh had plenty of gold and treasure, A band of dacoits raided Banda Singh's camp on the way. But the brave Singhs overpowered and captured all the dacoits, And killed them after robbing and mercilessly beating them. (1)",
+          "lines": [
+            "Hearing that Banda Singh had plenty of gold and treasure,",
+            "A band of dacoits raided Banda Singh's camp on the way.",
+            "But the brave Singhs overpowered and captured all the dacoits,",
+            "And killed them after robbing and mercilessly beating them."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-032-p249-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p249-b005",
+          "type": "verse",
+          "text": "Whenever at night wayside dacoits would plan to loot his camp, Banda Singh would alert the Singhs of his contingent in advance. Being well prepared in advance the Singhs would kill the robbers, Which endeared the Khalsa further among the local people. (2)",
+          "lines": [
+            "Whenever at night wayside dacoits would plan to loot his camp,",
+            "Banda Singh would alert the Singhs of his contingent in advance.",
+            "Being well prepared in advance the Singhs would kill the robbers,",
+            "Which endeared the Khalsa further among the local people."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-032-p249-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p249-b007",
+          "type": "verse",
+          "text": "Thus rejoicing in the recitation of Guru's Gurbani and his blessings, More and more Singhs felt attracted towards Banda Singh. He declared that he would kill Wazir Khan (the Sirhind ruler), And thus demonstrate his strength to all the people. (3)",
+          "lines": [
+            "Thus rejoicing in the recitation of Guru's Gurbani and his blessings,",
+            "More and more Singhs felt attracted towards Banda Singh.",
+            "He declared that he would kill Wazir Khan (the Sirhind ruler),",
+            "And thus demonstrate his strength to all the people."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-032-p249-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p249-b009",
+          "type": "verse",
+          "text": "Then Banda Singh instructed his Singhs to the effect, That they should send for all the remaining Singhs to join him. They must accomplish the great task assigned by the Guru, And then establish the Khalsa sovereignty over the Punjab territory. (4)",
+          "lines": [
+            "Then Banda Singh instructed his Singhs to the effect,",
+            "That they should send for all the remaining Singhs to join him.",
+            "They must accomplish the great task assigned by the Guru,",
+            "And then establish the Khalsa sovereignty over the Punjab territory."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-032-p249-b010",
+          "type": "verse",
+          "text": "Thereafter Banda Singh's contingent entered the Bangar1 area, And put up his camp for a night shelter at a village. That night, a band of dacoits had planned to raid that village, In order to loot and plunder the inhabitants of their possessions. (5)",
+          "lines": [
+            "Thereafter Banda Singh's contingent entered the Bangar1 area,",
+            "And put up his camp for a night shelter at a village.",
+            "That night, a band of dacoits had planned to raid that village,",
+            "In order to loot and plunder the inhabitants of their possessions."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-032-p249-b011",
+          "type": "verse",
+          "text": "Although Banda Singh assured the villagers to keep patience, Yet they thought that a wandering mendicant could not protect them. So all the men and women deserted the village out of fear, But Banda Singh and his Singhs stayed put there in the village. (6)",
+          "lines": [
+            "Although Banda Singh assured the villagers to keep patience,",
+            "Yet they thought that a wandering mendicant could not protect them.",
+            "So all the men and women deserted the village out of fear,",
+            "But Banda Singh and his Singhs stayed put there in the village."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-032-p249-b012",
+          "type": "paragraph",
+          "text": "Dohra Although Banda Singh gave a lot of verbal assurances to the villagers, They were not convinced of Banda Singh's strength to resist."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 251,
+      "fileName": "EPUB/page_251.html",
+      "sourceHref": "EPUB/page_251.html",
+      "printPageNumber": 207,
+      "blocks": [
+        {
+          "id": "episode-032-p251-b001",
+          "type": "verse",
+          "text": "Then Banda Singh thought of another strategy to face the situation, But he kept it as a secret in his own mind. (7)",
+          "lines": [
+            "Then Banda Singh thought of another strategy to face the situation,",
+            "But he kept it as a secret in his own mind."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-032-p251-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p251-b003",
+          "type": "verse",
+          "text": "Banda Singh captured a few prominent inhabitants of the village, And kept them forcibly confined in a room. When the band of dacoits entered the village to plunder, The imprisoned elders kept on looking at Banda Singh dumb-founded. (8)",
+          "lines": [
+            "Banda Singh captured a few prominent inhabitants of the village,",
+            "And kept them forcibly confined in a room.",
+            "When the band of dacoits entered the village to plunder,",
+            "The imprisoned elders kept on looking at Banda Singh dumb-founded."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-032-p251-b004",
+          "type": "verse",
+          "text": "Banda Singh stood and ordered his Singhs to attack the dacoits, And slaughter all those who had come to loot and plunder. Obeying Banda Singh's order, the Singhs attacked the raiders, And captured the chief of the raiding band of dacoits. (9)",
+          "lines": [
+            "Banda Singh stood and ordered his Singhs to attack the dacoits,",
+            "And slaughter all those who had come to loot and plunder.",
+            "Obeying Banda Singh's order, the Singhs attacked the raiders,",
+            "And captured the chief of the raiding band of dacoits."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-032-p251-b005",
+          "type": "verse",
+          "text": "If any other dacoit came forward to get his chief released, He himself was trapped and captured by the Singhs. While the robbers attacked with their spears and swords, They were killed by pelting of stones by the entrenched Singhs. (10)",
+          "lines": [
+            "If any other dacoit came forward to get his chief released,",
+            "He himself was trapped and captured by the Singhs.",
+            "While the robbers attacked with their spears and swords,",
+            "They were killed by pelting of stones by the entrenched Singhs."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-032-p251-b006",
+          "type": "verse",
+          "text": "It appeared as if a strange miracle had occurred there, That not a single Singh was wounded during this scuffle. This made the inhabitants of the village realise and assured, That Banda Singh was really invested with miraculous powers. (11)",
+          "lines": [
+            "It appeared as if a strange miracle had occurred there,",
+            "That not a single Singh was wounded during this scuffle.",
+            "This made the inhabitants of the village realise and assured,",
+            "That Banda Singh was really invested with miraculous powers."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-032-p251-b007",
+          "type": "verse",
+          "text": "After that these inhabitants also picked up their weapons, And they also killed many dacoits along with the Singhs. The chieftains of the village who had been kept in confinement, Were also released and they, too, captured many dacoits. (12)",
+          "lines": [
+            "After that these inhabitants also picked up their weapons,",
+            "And they also killed many dacoits along with the Singhs.",
+            "The chieftains of the village who had been kept in confinement,",
+            "Were also released and they, too, captured many dacoits."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-032-p251-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p251-b009",
+          "type": "verse",
+          "text": "Some of the raiders were captured, while others were killed, Still some others escaped after leaving their weapons behind. Then Banda Singh exhorted the Singhs and the villagers, That they should raid that village from which the raiders had come. (13)",
+          "lines": [
+            "Some of the raiders were captured, while others were killed,",
+            "Still some others escaped after leaving their weapons behind.",
+            "Then Banda Singh exhorted the Singhs and the villagers,",
+            "That they should raid that village from which the raiders had come."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-032-p251-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p251-b011",
+          "type": "verse",
+          "text": "Then Banda Singh's Singhs chased the raiders after them, Who deserted their village after seeing the Singhs in hot pursuit. The Singhs plundered their village and put up a camp there, Which made Banda Singh's writ run in the Bangar area. (14)",
+          "lines": [
+            "Then Banda Singh's Singhs chased the raiders after them,",
+            "Who deserted their village after seeing the Singhs in hot pursuit.",
+            "The Singhs plundered their village and put up a camp there,",
+            "Which made Banda Singh's writ run in the Bangar area."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-032-p251-b012",
+          "type": "verse",
+          "text": "Banda Singh ordered that all the captives should be released, Which reflected a rare gesture of Banda Singh's magnanimity. Banda Singh also ordered the release of the entire booty, Except that they could take hold of the gold and silver articles alone. (15)",
+          "lines": [
+            "Banda Singh ordered that all the captives should be released,",
+            "Which reflected a rare gesture of Banda Singh's magnanimity.",
+            "Banda Singh also ordered the release of the entire booty,",
+            "Except that they could take hold of the gold and silver articles alone."
+          ],
+          "number": "15"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 253,
+      "fileName": "EPUB/page_253.html",
+      "sourceHref": "EPUB/page_253.html",
+      "printPageNumber": 209,
+      "blocks": [
+        {
+          "id": "episode-032-p253-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p253-b002",
+          "type": "verse",
+          "text": "After that Banda Singh climbed up a wall in one house, And started stamping with his feet as (if spurring a horse). He remarked that he could see horses coming towards him, And instructed the Sikhs to arrange some pegs for tying those horses. (16)",
+          "lines": [
+            "After that Banda Singh climbed up a wall in one house,",
+            "And started stamping with his feet as (if spurring a horse).",
+            "He remarked that he could see horses coming towards him,",
+            "And instructed the Sikhs to arrange some pegs for tying those horses."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-032-p253-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p253-b004",
+          "type": "verse",
+          "text": "Once again he repeated his instructions in a full throated voice, That the Sings must get ready with the pegs and ropes. He declared that since the horses were about to arrive soon, The Singhs should not waste time to catch those horses. (17)",
+          "lines": [
+            "Once again he repeated his instructions in a full throated voice,",
+            "That the Sings must get ready with the pegs and ropes.",
+            "He declared that since the horses were about to arrive soon,",
+            "The Singhs should not waste time to catch those horses."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-032-p253-b005",
+          "type": "verse",
+          "text": "As Banda Singh kept on repeating his instructions to the Singhs, They started making arrangements for taking charge of the horses. He sent his messengers all around in the whole region, And ordered the people to come and negotiate revenue with him. (18)",
+          "lines": [
+            "As Banda Singh kept on repeating his instructions to the Singhs,",
+            "They started making arrangements for taking charge of the horses.",
+            "He sent his messengers all around in the whole region,",
+            "And ordered the people to come and negotiate revenue with him."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-032-p253-b006",
+          "type": "verse",
+          "text": "He asked the people to make offerings of milk products to him, But he would exempt those who join his forces against the Mughals. He guaranteed the people the right of self-governance, If they joined the Khalsa army (in their fight against the Mughals). (19)",
+          "lines": [
+            "He asked the people to make offerings of milk products to him,",
+            "But he would exempt those who join his forces against the Mughals.",
+            "He guaranteed the people the right of self-governance,",
+            "If they joined the Khalsa army (in their fight against the Mughals)."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-032-p253-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p253-b008",
+          "type": "verse",
+          "text": "Since human beings do not get anything unless it is destined, The foolish people appealed to the authorities (against Banda Singh). There was a designated custodian of Mughals stationed at Kaithal, Who came with a force to combat Banda Singh's force. (20)",
+          "lines": [
+            "Since human beings do not get anything unless it is destined,",
+            "The foolish people appealed to the authorities (against Banda Singh).",
+            "There was a designated custodian of Mughals stationed at Kaithal,",
+            "Who came with a force to combat Banda Singh's force."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-032-p253-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p253-b010",
+          "type": "verse",
+          "text": "This Kshtriya custodian who was stationed at Kaithal, Used to collect revenue from people on behalf of the Mughals. The people complained to this Mughal custodian against him, That a mendicant-looking Banda Singh was terrorising them. (21)",
+          "lines": [
+            "This Kshtriya custodian who was stationed at Kaithal,",
+            "Used to collect revenue from people on behalf of the Mughals.",
+            "The people complained to this Mughal custodian against him,",
+            "That a mendicant-looking Banda Singh was terrorising them."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-032-p253-b011",
+          "type": "verse",
+          "text": "Since Banda Singh had prohibited the payment of revenue to him, The custodian launched an attack against Banda Singh immediately. He declared that he would capture Banda Singh and plunder his treasure, And allowed the people as well to capture and loot him. (22)",
+          "lines": [
+            "Since Banda Singh had prohibited the payment of revenue to him,",
+            "The custodian launched an attack against Banda Singh immediately.",
+            "He declared that he would capture Banda Singh and plunder his treasure,",
+            "And allowed the people as well to capture and loot him."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-032-p253-b012",
+          "type": "verse",
+          "text": "After making such a declaration, he launched an attack, And soon arrived near the location of Banda Singh's camp. Banda Singh hid behind the Mud walls of the village houses, As none from the village tried to desert and flee from there. (23)",
+          "lines": [
+            "After making such a declaration, he launched an attack,",
+            "And soon arrived near the location of Banda Singh's camp.",
+            "Banda Singh hid behind the Mud walls of the village houses,",
+            "As none from the village tried to desert and flee from there."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-032-p253-b013",
+          "type": "verse",
+          "text": "The strategy which Banda Singh had adopted to combat the enemy, Was also communicated to the Singhs for adoption. There were four hundred horse riders with the Kaithal custodian, Who were accompanied by dacoits and plunderers of Bangar. (24)",
+          "lines": [
+            "The strategy which Banda Singh had adopted to combat the enemy,",
+            "Was also communicated to the Singhs for adoption.",
+            "There were four hundred horse riders with the Kaithal custodian,",
+            "Who were accompanied by dacoits and plunderers of Bangar."
+          ],
+          "number": "24"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 255,
+      "fileName": "EPUB/page_255.html",
+      "sourceHref": "EPUB/page_255.html",
+      "printPageNumber": 211,
+      "blocks": [
+        {
+          "id": "episode-032-p255-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p255-b002",
+          "type": "verse",
+          "text": "As the custodian entered the place in search of Banda Singh, Banda Singh kept himself hidden from his view. Even when the custodian started shouting and abusing him, Banda Singh observed a discrete silence despite provocation. (25)",
+          "lines": [
+            "As the custodian entered the place in search of Banda Singh,",
+            "Banda Singh kept himself hidden from his view.",
+            "Even when the custodian started shouting and abusing him,",
+            "Banda Singh observed a discrete silence despite provocation."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-032-p255-b003",
+          "type": "verse",
+          "text": "When he assessed that all the enemy soldiers had entered inside, And had no chances of escape from their ambush, He signalled to the entrenched Singhs with a sign of his hands, That they should then loot and plunder the trapped enemy thoroughly. (26)",
+          "lines": [
+            "When he assessed that all the enemy soldiers had entered inside,",
+            "And had no chances of escape from their ambush,",
+            "He signalled to the entrenched Singhs with a sign of his hands,",
+            "That they should then loot and plunder the trapped enemy thoroughly."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-032-p255-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p255-b005",
+          "type": "verse",
+          "text": "Leaping up from their hiding places Singhs caught hold of enemy's horses' reins, And the horses could not move despite spurring from their riders. When the horse riders attacked Singhs with their weapons, Their weapons failed to wound and harm the Singhs. (27)",
+          "lines": [
+            "Leaping up from their hiding places Singhs caught hold of enemy's horses' reins,",
+            "And the horses could not move despite spurring from their riders.",
+            "When the horse riders attacked Singhs with their weapons,",
+            "Their weapons failed to wound and harm the Singhs."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-032-p255-b006",
+          "type": "verse",
+          "text": "But when the Singhs struck the enemy with a stick or a stone, It hit them as grievously as if hit by a sharp spear. When they tried to flee, their feet failed to run and flee, Which rather made them hit against the wall and fall down. (28)",
+          "lines": [
+            "But when the Singhs struck the enemy with a stick or a stone,",
+            "It hit them as grievously as if hit by a sharp spear.",
+            "When they tried to flee, their feet failed to run and flee,",
+            "Which rather made them hit against the wall and fall down."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-032-p255-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-032-p255-b008",
+          "type": "verse",
+          "text": "Finally, the Singhs got hold of Kshtriya custodian of Kaithal, And pulled him down from the horse immediately. As he had been abusing and slandering Banda Singh, He was given a good thrashing for his foul utterances. (29)",
+          "lines": [
+            "Finally, the Singhs got hold of Kshtriya custodian of Kaithal,",
+            "And pulled him down from the horse immediately.",
+            "As he had been abusing and slandering Banda Singh,",
+            "He was given a good thrashing for his foul utterances."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-032-p255-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-032-p255-b010",
+          "type": "verse",
+          "text": "He was given a pardon after teaching him a good lesson, And his powers of custodianship were also restored to him. It was indeed a miraculous feat to overpower this custodian, As he was made to pay the revenue to Banda Singh. (30)",
+          "lines": [
+            "He was given a pardon after teaching him a good lesson,",
+            "And his powers of custodianship were also restored to him.",
+            "It was indeed a miraculous feat to overpower this custodian,",
+            "As he was made to pay the revenue to Banda Singh."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-032-p255-b011",
+          "type": "verse",
+          "text": "This brave act made Banda Singh's writ run over the region, As he started collecting the revenue from that month. The custodian's armed force was made to join the Khalsa Army, And he was deputed to collect revenue for the Khalsa. (31)",
+          "lines": [
+            "This brave act made Banda Singh's writ run over the region,",
+            "As he started collecting the revenue from that month.",
+            "The custodian's armed force was made to join the Khalsa Army,",
+            "And he was deputed to collect revenue for the Khalsa."
+          ],
+          "number": "31"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-031",
+  "nextChapterId": "episode-033"
+}

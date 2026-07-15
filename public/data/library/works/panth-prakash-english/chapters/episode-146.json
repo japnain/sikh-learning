@@ -1,0 +1,147 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-146",
+  "chapterNumber": 146,
+  "episodeNumber": 146,
+  "kind": "episode",
+  "title": "Further occupation of More Territory The way the Doaba region came under Khalsa's occupation",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 643,
+  "endSourcePage": 643,
+  "wordCount": 293,
+  "charCount": 1839,
+  "startPosition": 187859,
+  "pages": [
+    {
+      "sourcePageNumber": 643,
+      "fileName": "EPUB/page_643.html",
+      "sourceHref": "EPUB/page_643.html",
+      "printPageNumber": 589,
+      "blocks": [
+        {
+          "id": "episode-146-p643-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-146-p643-b003",
+          "type": "verse",
+          "text": "With a resolution did Khalsa (Buddha Dal) make a move, After offering a congregational prayer at the Akal Takht. Wherever the public made an approach to the Singhs, There would the Singhs stay at their respective villages. (1)",
+          "lines": [
+            "With a resolution did Khalsa (Buddha Dal) make a move,",
+            "After offering a congregational prayer at the Akal Takht.",
+            "Wherever the public made an approach to the Singhs,",
+            "There would the Singhs stay at their respective villages."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-146-p643-b004",
+          "type": "verse",
+          "text": "As the Singhs returned after ransacking (Bishambhar Dass' camp), They rushed to occupy villages in the Doaba region. Wherever a Singh entered and occupied a village, Nobody evicted him from the place of his occupation. (2)",
+          "lines": [
+            "As the Singhs returned after ransacking (Bishambhar Dass' camp),",
+            "They rushed to occupy villages in the Doaba region.",
+            "Wherever a Singh entered and occupied a village,",
+            "Nobody evicted him from the place of his occupation."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-146-p643-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-146-p643-b006",
+          "type": "verse",
+          "text": "Wherever a Singh planted his foot in a specific place, Nobody pushed anybody else from his occupation. As subordinate Singhs occupied smaller places, The senior contingent chiefs occupied bigger towns. (3)",
+          "lines": [
+            "Wherever a Singh planted his foot in a specific place,",
+            "Nobody pushed anybody else from his occupation.",
+            "As subordinate Singhs occupied smaller places,",
+            "The senior contingent chiefs occupied bigger towns."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-146-p643-b007",
+          "type": "verse",
+          "text": "Some Singhs took over places on the basis of old relationships, Others captured territories with the consent of their residents. Some others, hearing about places without any ruler, They occupied those territories lying unclaimed. (4)",
+          "lines": [
+            "Some Singhs took over places on the basis of old relationships,",
+            "Others captured territories with the consent of their residents.",
+            "Some others, hearing about places without any ruler,",
+            "They occupied those territories lying unclaimed."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-146-p643-b008",
+          "type": "verse",
+          "text": "The places which belonged to the erstwhile big landlords, Those places came under the control of big contingent chiefs. Those who won the people's hearts through persuasion, They came to annex more and more territories under them. (5)",
+          "lines": [
+            "The places which belonged to the erstwhile big landlords,",
+            "Those places came under the control of big contingent chiefs.",
+            "Those who won the people's hearts through persuasion,",
+            "They came to annex more and more territories under them."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-146-p643-b009",
+          "type": "verse",
+          "text": "Those who lost the people's confidence in haste, They came to be turned out of those places quickly. The way the Doaba region came under Khalsa's occupation, So had Rattan Singh narrated the whole sequence. (6)",
+          "lines": [
+            "Those who lost the people's confidence in haste,",
+            "They came to be turned out of those places quickly.",
+            "The way the Doaba region came under Khalsa's occupation,",
+            "So had Rattan Singh narrated the whole sequence."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-146-p643-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-146-p643-b011",
+          "type": "verse",
+          "text": "If someone evicted anybody else from his occupation, The dispute would go for adjudication to the Misl chief. Whosoever had occupied the disputed territory first, The Misl chief would decide in his favour for possession. (7)",
+          "lines": [
+            "If someone evicted anybody else from his occupation,",
+            "The dispute would go for adjudication to the Misl chief.",
+            "Whosoever had occupied the disputed territory first,",
+            "The Misl chief would decide in his favour for possession."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-146-p643-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-146-p643-b013",
+          "type": "verse",
+          "text": "Earlier, the Singhs were scattered and unorganized, After the ransacking of the region, they multiplied in strength. As they earned a lot of money through the revenue collections, They raised their own contingents smaller and bigger in size. (8)",
+          "lines": [
+            "Earlier, the Singhs were scattered and unorganized,",
+            "After the ransacking of the region, they multiplied in strength.",
+            "As they earned a lot of money through the revenue collections,",
+            "They raised their own contingents smaller and bigger in size."
+          ],
+          "number": "8"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-145",
+  "nextChapterId": "episode-147"
+}

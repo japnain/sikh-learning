@@ -1,0 +1,115 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-128",
+  "chapterNumber": 128,
+  "episodeNumber": 128,
+  "kind": "episode",
+  "title": "Whole of India And the Gilja Pathans",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 507,
+  "endSourcePage": 507,
+  "wordCount": 260,
+  "charCount": 1520,
+  "startPosition": 163994,
+  "pages": [
+    {
+      "sourcePageNumber": 507,
+      "fileName": "EPUB/page_507.html",
+      "sourceHref": "EPUB/page_507.html",
+      "printPageNumber": 453,
+      "blocks": [
+        {
+          "id": "episode-128-p507-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-128-p507-b003",
+          "type": "verse",
+          "text": "The Gilja Pathan chiefs having lost their sovereignty over India, They were left with only Attock and Kashmir under their rule. With an aim of restoring their sovereignty over India once again, The Gilga Pathans chalked out new strategies and plans. (1)",
+          "lines": [
+            "The Gilja Pathan chiefs having lost their sovereignty over India,",
+            "They were left with only Attock and Kashmir under their rule.",
+            "With an aim of restoring their sovereignty over India once again,",
+            "The Gilga Pathans chalked out new strategies and plans."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-128-p507-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-128-p507-b005",
+          "type": "verse",
+          "text": "Since the moment Ahmad Shah Abdali's son1 had fled from Lahore, He had been smoldering with the fire to take revenge. So after gathering an army of three lakh Pathan troops. He made another invasion in eighteen hundred and fifteen2 . (2)",
+          "lines": [
+            "Since the moment Ahmad Shah Abdali's son1 had fled from Lahore,",
+            "He had been smoldering with the fire to take revenge.",
+            "So after gathering an army of three lakh Pathan troops.",
+            "He made another invasion in eighteen hundred and fifteen2 ."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-128-p507-b006",
+          "type": "verse",
+          "text": "Putting the Marhatta forces on the run in front of their might, The Pathans crushed the Marathas wherever they chose to confront. Having been left with no other refuge except the city of Delhi, The Mughal Gazdi and Marathas took shelter with the Jat ruler3 . (3)",
+          "lines": [
+            "Putting the Marhatta forces on the run in front of their might,",
+            "The Pathans crushed the Marathas wherever they chose to confront.",
+            "Having been left with no other refuge except the city of Delhi,",
+            "The Mughal Gazdi and Marathas took shelter with the Jat ruler3 ."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-128-p507-b007",
+          "type": "paragraph",
+          "text": "After having decided to get united as a single Muslim force, Both the Mughal and Pathan Muslim forces put up a united front. They decided to evict the Marathas from the entire region, As the latter had been causing a lot of suffering to them."
+        },
+        {
+          "id": "episode-128-p507-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-128-p507-b009",
+          "type": "verse",
+          "text": "After having sworn an oath to accomplish this mission, The entire united Muslim force passed the following resolution: With the three ministers would the whole of Hindustan be ruled, With Ahmad Shah Abdali (Kandhari) as the sole sovereign. (5)",
+          "lines": [
+            "After having sworn an oath to accomplish this mission,",
+            "The entire united Muslim force passed the following resolution: With the three ministers would the whole of Hindustan be ruled,",
+            "With Ahmad Shah Abdali (Kandhari) as the sole sovereign."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-128-p507-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-128-p507-b011",
+          "type": "verse",
+          "text": "Having passed that resolution, they attacked the Jat ruler of Bharatpur, Many a Hindu did they capture after destroying Mathura4 . Wth the wresting of the fort at Koel5 from the Marathas, The Muslim forces humbled and humiliated the Marathas. (6)",
+          "lines": [
+            "Having passed that resolution, they attacked the Jat ruler of Bharatpur,",
+            "Many a Hindu did they capture after destroying Mathura4 .",
+            "Wth the wresting of the fort at Koel5 from the Marathas,",
+            "The Muslim forces humbled and humiliated the Marathas."
+          ],
+          "number": "6"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-127",
+  "nextChapterId": "episode-129"
+}

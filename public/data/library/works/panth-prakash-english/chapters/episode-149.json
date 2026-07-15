@@ -1,0 +1,383 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-149",
+  "chapterNumber": 149,
+  "episodeNumber": 149,
+  "kind": "episode",
+  "title": "Capture of Sar Buland Khan",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 653,
+  "endSourcePage": 657,
+  "wordCount": 879,
+  "charCount": 5000,
+  "startPosition": 189387,
+  "pages": [
+    {
+      "sourcePageNumber": 653,
+      "fileName": "EPUB/page_653.html",
+      "sourceHref": "EPUB/page_653.html",
+      "printPageNumber": 599,
+      "blocks": [
+        {
+          "id": "episode-149-p653-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-149-p653-b003",
+          "type": "verse",
+          "text": "S. Charat Singh, after having crossed the river Jehlum, He gathered intelligence about the Mughal custodian Sarbuland Khan1 . Who having put up a camp sat enconsed, Inside the fort of Rohtas2 (well protected). (1)",
+          "lines": [
+            "S.",
+            "Charat Singh, after having crossed the river Jehlum,",
+            "He gathered intelligence about the Mughal custodian Sarbuland Khan1 .",
+            "Who having put up a camp sat enconsed,",
+            "Inside the fort of Rohtas2 (well protected)."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-149-p653-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-149-p653-b005",
+          "type": "verse",
+          "text": "Highly arrogant and proud did he feel at heart, As he was the bravest among the Gilja Pathans. Extremely carefree and relaxed did he feel, As he reckoned his fort well protected among the hills. (2)",
+          "lines": [
+            "Highly arrogant and proud did he feel at heart,",
+            "As he was the bravest among the Gilja Pathans.",
+            "Extremely carefree and relaxed did he feel,",
+            "As he reckoned his fort well protected among the hills."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-149-p653-b006",
+          "type": "verse",
+          "text": "S. Charat Singh reckoned him to be an easy prey, As he carried out a reconnaissance of the Mughal fort. Sarbuland Khan felt emboldened at heart, As S. Charat Singh retreated soon after approaching the fort.(3)",
+          "lines": [
+            "S.",
+            "Charat Singh reckoned him to be an easy prey,",
+            "As he carried out a reconnaissance of the Mughal fort.",
+            "Sarbuland Khan felt emboldened at heart,",
+            "As S.",
+            "Charat Singh retreated soon after approaching the fort."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-149-p653-b007",
+          "type": "verse",
+          "text": "He sent the Gilja Pathan troops in pursuit of the Singhs, As he reckoned that the Singhs had retreated back. But soon after giving a slip to the Gilja Pathans, S. Charat Singh and his force crossed the river from another point. (4)",
+          "lines": [
+            "He sent the Gilja Pathan troops in pursuit of the Singhs,",
+            "As he reckoned that the Singhs had retreated back.",
+            "But soon after giving a slip to the Gilja Pathans,",
+            "S.",
+            "Charat Singh and his force crossed the river from another point."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-149-p653-b008",
+          "type": "verse",
+          "text": "After climbing up the walls of the fort of Rohtas, S. Charat Singh's troops occupied the domes of the fort. After blocking both the entrance and exit gates of the fort, The Singhs opened a volley of small arms' fire. (5)",
+          "lines": [
+            "After climbing up the walls of the fort of Rohtas,",
+            "S.",
+            "Charat Singh's troops occupied the domes of the fort.",
+            "After blocking both the entrance and exit gates of the fort,",
+            "The Singhs opened a volley of small arms' fire."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-149-p653-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-149-p653-b010",
+          "type": "verse",
+          "text": "Gilja Pathans got wind of the Singhs' approach, Only when the Singhs had already occupied the fort. A great commotion did take place among the Pathans, When they found the Singhs all over their fort. (6)",
+          "lines": [
+            "Gilja Pathans got wind of the Singhs' approach,",
+            "Only when the Singhs had already occupied the fort.",
+            "A great commotion did take place among the Pathans,",
+            "When they found the Singhs all over their fort."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-149-p653-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-149-p653-b012",
+          "type": "verse",
+          "text": "In whatever direction the Gilja troops made a move, In the same direction they returned after getting fired upon. As they wished to rush towards the two fort doors, They were pushed back by the deafening shelling. (7)",
+          "lines": [
+            "In whatever direction the Gilja troops made a move,",
+            "In the same direction they returned after getting fired upon.",
+            "As they wished to rush towards the two fort doors,",
+            "They were pushed back by the deafening shelling."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-149-p653-b013",
+          "type": "verse",
+          "text": "In whatever direction they moved they were fired upon, Desperately did they run here and there failing to escape. Having been exhausted after so much running around, Finally did they go to seek Sarbuland Khan's advice. (8)",
+          "lines": [
+            "In whatever direction they moved they were fired upon,",
+            "Desperately did they run here and there failing to escape.",
+            "Having been exhausted after so much running around,",
+            "Finally did they go to seek Sarbuland Khan's advice."
+          ],
+          "number": "8"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 655,
+      "fileName": "EPUB/page_655.html",
+      "sourceHref": "EPUB/page_655.html",
+      "printPageNumber": 601,
+      "blocks": [
+        {
+          "id": "episode-149-p655-b001",
+          "type": "verse",
+          "text": "Having taken stock of the whole situation at that moment, Sar Buland Khan disarmed and retreated to his chambers. Ordering his menials to spread out a carpet with pillows, He despatched his emissaries to approach S. Charat Singh. (9)",
+          "lines": [
+            "Having taken stock of the whole situation at that moment,",
+            "Sar Buland Khan disarmed and retreated to his chambers.",
+            "Ordering his menials to spread out a carpet with pillows,",
+            "He despatched his emissaries to approach S.",
+            "Charat Singh."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-149-p655-b002",
+          "type": "verse",
+          "text": "Conveying the offer of their custodian to S. Charat Singh, The emissaries begged him to negotiate with the custodian. Agreeing to the proposal of the Pathan emissaries, S. Charat Singh proceeded led by four thousand Singhs. (10)",
+          "lines": [
+            "Conveying the offer of their custodian to S.",
+            "Charat Singh,",
+            "The emissaries begged him to negotiate with the custodian.",
+            "Agreeing to the proposal of the Pathan emissaries,",
+            "S.",
+            "Charat Singh proceeded led by four thousand Singhs."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-149-p655-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-149-p655-b004",
+          "type": "verse",
+          "text": "Soon did S. Charat Singh arrive at the custodian's chambers, After pushing back the Pathans guarding his chamber. Forward did he not come to receive the Singh chief, Pretending as if he was a great warrior (though defeated). (11)",
+          "lines": [
+            "Soon did S.",
+            "Charat Singh arrive at the custodian's chambers,",
+            "After pushing back the Pathans guarding his chamber.",
+            "Forward did he not come to receive the Singh chief,",
+            "Pretending as if he was a great warrior (though defeated)."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-149-p655-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-149-p655-b006",
+          "type": "verse",
+          "text": "Even when S. Charat Singh reached quite close to him, Not even two steps did he move forward to receive him. When S. Charat Singh kept moving more close to him, Only then he stood up after the arrival of S. Charat Singh. (12)",
+          "lines": [
+            "Even when S.",
+            "Charat Singh reached quite close to him,",
+            "Not even two steps did he move forward to receive him.",
+            "When S.",
+            "Charat Singh kept moving more close to him,",
+            "Only then he stood up after the arrival of S.",
+            "Charat Singh."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-149-p655-b007",
+          "type": "verse",
+          "text": "As he asked S. Charat Singh to embrace him, Elderly Singhs advised S. Charat Singh to be beware of a betrayal. Ordering one of his soldiers to embrace him as he wished, He made the Pathan custodian to sit on the floor. (13)",
+          "lines": [
+            "As he asked S.",
+            "Charat Singh to embrace him,",
+            "Elderly Singhs advised S.",
+            "Charat Singh to be beware of a betrayal.",
+            "Ordering one of his soldiers to embrace him as he wished,",
+            "He made the Pathan custodian to sit on the floor."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-149-p655-b008",
+          "type": "verse",
+          "text": "Taking all his treasure into their own possession, S. Charat Singh established his own post inside the fort. Thereafter, the whole populace sought S. Charat Singh's protection, Who were the inhabitants of the district of Rohtas. (14)",
+          "lines": [
+            "Taking all his treasure into their own possession,",
+            "S.",
+            "Charat Singh established his own post inside the fort.",
+            "Thereafter, the whole populace sought S.",
+            "Charat Singh's protection,",
+            "Who were the inhabitants of the district of Rohtas."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-149-p655-b009",
+          "type": "verse",
+          "text": "Since that day, S. Charat Singh acquired a greater status, As the territory on both sides of the river fell under his occupation. Victory did greet S. Charat Singh whichever side he moved, As nobody dared to stand against his might. (15)",
+          "lines": [
+            "Since that day,",
+            "S.",
+            "Charat Singh acquired a greater status,",
+            "As the territory on both sides of the river fell under his occupation.",
+            "Victory did greet S.",
+            "Charat Singh whichever side he moved,",
+            "As nobody dared to stand against his might."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-149-p655-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-149-p655-b011",
+          "type": "verse",
+          "text": "Prisoner of war did S. Charat Singh make a person, Who was an uncle to the mighty Ahmad Shah Abdali3 . So widespread did this news spread through out the province, That hardly did S. Charat Singh care for anybody. (16)",
+          "lines": [
+            "Prisoner of war did S.",
+            "Charat Singh make a person,",
+            "Who was an uncle to the mighty Ahmad Shah Abdali3 .",
+            "So widespread did this news spread through out the province,",
+            "That hardly did S.",
+            "Charat Singh care for anybody."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-149-p655-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-149-p655-b013",
+          "type": "verse",
+          "text": "Carrying Sar Buland Khan in a palanquin as prisoner of war, S. Charat Singh made him stay in his own camp. A ransom of one crore rupees did he demand from the Pathan chief, Even as the latter pleaded for a decent living for himself. (17)",
+          "lines": [
+            "Carrying Sar Buland Khan in a palanquin as prisoner of war,",
+            "S.",
+            "Charat Singh made him stay in his own camp.",
+            "A ransom of one crore rupees did he demand from the Pathan chief,",
+            "Even as the latter pleaded for a decent living for himself."
+          ],
+          "number": "17"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 657,
+      "fileName": "EPUB/page_657.html",
+      "sourceHref": "EPUB/page_657.html",
+      "printPageNumber": 603,
+      "blocks": [
+        {
+          "id": "episode-149-p657-b001",
+          "type": "verse",
+          "text": "Asking S. Charat Singh to appoint him as one of his custodians, Sar Buland Khan also asked for a command of his whole force. Suggesting S. Charat Singh to be an emperor like Ahmad Shah, For himself he begged provincial custodianship under his regime. (18)",
+          "lines": [
+            "Asking S.",
+            "Charat Singh to appoint him as one of his custodians,",
+            "Sar Buland Khan also asked for a command of his whole force.",
+            "Suggesting S.",
+            "Charat Singh to be an emperor like Ahmad Shah,",
+            "For himself he begged provincial custodianship under his regime."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-149-p657-b002",
+          "type": "verse",
+          "text": "Telling him the great Guru had already made the Singhs as sovereigns, He intended to keep the Pathan chief as a prisoner of war. Then alone would the whole world come to know, That S. Charat Singh had made Ahmad Shah's uncle a prisoner. (19)",
+          "lines": [
+            "Telling him the great Guru had already made the Singhs as sovereigns,",
+            "He intended to keep the Pathan chief as a prisoner of war.",
+            "Then alone would the whole world come to know,",
+            "That S.",
+            "Charat Singh had made Ahmad Shah's uncle a prisoner."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-149-p657-b003",
+          "type": "verse",
+          "text": "Upon this Sar Buland Khan made another proposal, That he would suggest a better option than the first. S. Charat Singh would be known as Sovereign among sovereigns, If the magnanimous Sardar granted amnesty to Ahmad Shah's uncle. (20)",
+          "lines": [
+            "Upon this Sar Buland Khan made another proposal,",
+            "That he would suggest a better option than the first.",
+            "S.",
+            "Charat Singh would be known as Sovereign among sovereigns,",
+            "If the magnanimous Sardar granted amnesty to Ahmad Shah's uncle."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-149-p657-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-149-p657-b005",
+          "type": "verse",
+          "text": "Appreciating Sar Buland Khan's proposal for an amnesty, S. Charat Singh released him and made him depart. Providing him with the provisions for his journey, He helped his hostage to cross the Attock river. (21)",
+          "lines": [
+            "Appreciating Sar Buland Khan's proposal for an amnesty,",
+            "S.",
+            "Charat Singh released him and made him depart.",
+            "Providing him with the provisions for his journey,",
+            "He helped his hostage to cross the Attock river."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-149-p657-b006",
+          "type": "verse",
+          "text": "The way I heard this episode about Sar Buland Khan, Truly has Rattan Singh put it in black and white. The way I heard it from several people, Similarly have I described the whole episode. (22)",
+          "lines": [
+            "The way I heard this episode about Sar Buland Khan,",
+            "Truly has Rattan Singh put it in black and white.",
+            "The way I heard it from several people,",
+            "Similarly have I described the whole episode."
+          ],
+          "number": "22"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-148",
+  "nextChapterId": "episode-150"
+}

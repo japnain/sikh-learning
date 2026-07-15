@@ -40,6 +40,9 @@ const SOURCE_FULL_NAME: Record<string, string> = {
 const angLabel = (source: string) => source === 'G' || source === 'D' ? 'Ang' : 'Page'
 
 function formatSessionReference(scriptureId: string): string {
+  const panthEpisode = scriptureId.match(/^panth-prakash-english-episode-(\d{1,3})$/)
+  if (panthEpisode) return `Panth Prakash · Episode ${Number(panthEpisode[1])}`
+
   const [source, ang] = scriptureId.split('-')
   if (!source || !ang) return scriptureId.toUpperCase()
   const sourceLabel = SOURCE_FULL_NAME[source] ?? SOURCE_SHORT_NAME[source] ?? source.toUpperCase()

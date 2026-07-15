@@ -1,0 +1,188 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-030",
+  "chapterNumber": 30,
+  "episodeNumber": 30,
+  "kind": "episode",
+  "title": "Prayer of the Khalsa",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 243,
+  "endSourcePage": 245,
+  "wordCount": 428,
+  "charCount": 2510,
+  "startPosition": 34756,
+  "pages": [
+    {
+      "sourcePageNumber": 243,
+      "fileName": "EPUB/page_243.html",
+      "sourceHref": "EPUB/page_243.html",
+      "printPageNumber": 199,
+      "blocks": [
+        {
+          "id": "episode-030-p243-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-030-p243-b003",
+          "type": "verse",
+          "text": "(After Guru's blessings to Banda Singh), the Khalsa Singhs approached the Guru, And with folded hands they prayed before the Guru, That the Guru had bestowed the sovereignty on the Khalsa Panth, As He had repeatedly declared His Will and testament before the Khalsa. (1)",
+          "lines": [
+            "(After Guru's blessings to Banda Singh), the Khalsa Singhs approached the Guru,",
+            "And with folded hands they prayed before the Guru,",
+            "That the Guru had bestowed the sovereignty on the Khalsa Panth,",
+            "As He had repeatedly declared His Will and testament before the Khalsa."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-030-p243-b004",
+          "type": "verse",
+          "text": "The Singhs admitted that they would vanquish the Mughals with Guru's blessings, And the Mughals would perish due to the express Will of the Divine. (But after the Mughal's fall) if Banda Singh laid a claim to sovereignty, Then in that eventuality, the Khalsa Panth would not support him. (2)",
+          "lines": [
+            "The Singhs admitted that they would vanquish the Mughals with Guru's blessings,",
+            "And the Mughals would perish due to the express Will of the Divine.",
+            "(But after the Mughal's fall) if Banda Singh laid a claim to sovereignty,",
+            "Then in that eventuality, the Khalsa Panth would not support him."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-030-p243-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-030-p243-b006",
+          "type": "verse",
+          "text": "Hearing this assertion of the Khalsa, the Guru felt delighted, And directed Banda Singh to honour Guru's Will and testament. The Guru warned Banda Singh against defying the Will of the Khalsa, Otherwise he would come to grief and face humiliation. (3)",
+          "lines": [
+            "Hearing this assertion of the Khalsa, the Guru felt delighted,",
+            "And directed Banda Singh to honour Guru's Will and testament.",
+            "The Guru warned Banda Singh against defying the Will of the Khalsa,",
+            "Otherwise he would come to grief and face humiliation."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-030-p243-b007",
+          "type": "verse",
+          "text": "If he kept the Khalsa Singhs satisfied and well looked after, Then he would also prosper and flourish as well. But if he ever neglected and maltreated the Khalsa Singhs, Then he would come to grief and face tribulation. (4)",
+          "lines": [
+            "If he kept the Khalsa Singhs satisfied and well looked after,",
+            "Then he would also prosper and flourish as well.",
+            "But if he ever neglected and maltreated the Khalsa Singhs,",
+            "Then he would come to grief and face tribulation."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-030-p243-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-030-p243-b009",
+          "type": "verse",
+          "text": "Banda Singh agreed to and accepted all the Guru's commands, And the Khalsa Singhs, under his command, marched immediately. Banda Singh got several letters written by the revered Guru, In the names of all those prominent Singhs who lived in Punjab. (5)",
+          "lines": [
+            "Banda Singh agreed to and accepted all the Guru's commands,",
+            "And the Khalsa Singhs, under his command, marched immediately.",
+            "Banda Singh got several letters written by the revered Guru,",
+            "In the names of all those prominent Singhs who lived in Punjab."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-030-p243-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-030-p243-b011",
+          "type": "paragraph",
+          "text": "Whosoever would join and assist the Khalsa forces, He would stand benefitted and rewarded in every respect."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 245,
+      "fileName": "EPUB/page_245.html",
+      "sourceHref": "EPUB/page_245.html",
+      "printPageNumber": 201,
+      "blocks": [
+        {
+          "id": "episode-030-p245-b001",
+          "type": "verse",
+          "text": "But those who do not join and defy the Khalsa Panth, They would be treated as mere subjects and ordinary public. (6)",
+          "lines": [
+            "But those who do not join and defy the Khalsa Panth,",
+            "They would be treated as mere subjects and ordinary public."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-030-p245-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-030-p245-b003",
+          "type": "verse",
+          "text": "Banda Singh prayed with folded hands to the Guru, That he would abide by the collective Will of the Khalsa. But during the period of extreme crisis and exigency, The Guru's blessings must shield and protect the Khalsa. (7)",
+          "lines": [
+            "Banda Singh prayed with folded hands to the Guru,",
+            "That he would abide by the collective Will of the Khalsa.",
+            "But during the period of extreme crisis and exigency,",
+            "The Guru's blessings must shield and protect the Khalsa."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-030-p245-b004",
+          "type": "verse",
+          "text": "He also entreated the Guru to bestow him with certain miraculous powers, So that he might also win some fame and reputation. But if he ever betrayed and defied the Will of the Khalsa, Then the Guru had every right to withdraw His pleasure. (8)",
+          "lines": [
+            "He also entreated the Guru to bestow him with certain miraculous powers,",
+            "So that he might also win some fame and reputation.",
+            "But if he ever betrayed and defied the Will of the Khalsa,",
+            "Then the Guru had every right to withdraw His pleasure."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-030-p245-b005",
+          "type": "verse",
+          "text": "Hearing this, the guru repeated his earlier declaration, That he had handed over all the powers to the Khalsa Panth. Since the Guru had admitted Banda Singh into the Khalsa Panth, Banda Singh was equally entitled to share those powers. (9)",
+          "lines": [
+            "Hearing this, the guru repeated his earlier declaration,",
+            "That he had handed over all the powers to the Khalsa Panth.",
+            "Since the Guru had admitted Banda Singh into the Khalsa Panth,",
+            "Banda Singh was equally entitled to share those powers."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-030-p245-b006",
+          "type": "verse",
+          "text": "Whenever the need arose, he should gather an assembly of five Singhs, And make a joint prayer for the fulfilment of his wish. Receiving these instructions, Banda Singh launched on his mission, And marched with his contingent towards Sirhind. (10)",
+          "lines": [
+            "Whenever the need arose, he should gather an assembly of five Singhs,",
+            "And make a joint prayer for the fulfilment of his wish.",
+            "Receiving these instructions,",
+            "Banda Singh launched on his mission,",
+            "And marched with his contingent towards Sirhind."
+          ],
+          "number": "10"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-029",
+  "nextChapterId": "episode-031"
+}

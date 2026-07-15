@@ -7,6 +7,7 @@ import {
   loadLibraryManifest,
   loadLibraryPage,
   loadLibraryPageIndex,
+  loadLibrarySearchIndex,
   loadLibraryWorkCatalog,
   resetLibraryRepositoryCache,
 } from './libraryRepository'
@@ -25,28 +26,71 @@ beforeEach(() => {
   resetLibraryRepositoryCache()
 })
 
-test('loads the published library manifest and EPUB work catalog', async () => {
+test('loads the catalog as one EPUB work with two publications', async () => {
   const manifest = await loadLibraryManifest()
   const catalog = await loadLibraryWorkCatalog()
   const work = catalog.workById['panth-prakash-english']
 
   expect(manifest.searchIndexPath).toBe('/data/library/search-index.json')
-  expect(work?.title).toMatch(/Panth Prakash/i)
-  expect(work?.source).toBe('epub')
-  expect(work?.chapterIndexPath).toBe('/data/library/works/panth-prakash-english/chapters.json')
+  expect(work).toEqual(expect.objectContaining({
+    title: expect.stringMatching(/Panth Prakash/i),
+    source: 'epub',
+    totalChapters: 169,
+    readablePages: 637,
+    chapterIndexPath: '/data/library/works/panth-prakash-english/chapters.json',
+    searchIndexPath: '/data/library/works/panth-prakash-english/search-index.json',
+  }))
+  expect(work?.publications).toHaveLength(2)
+  expect(work?.publications?.map(publication => publication.firstChapterId)).toEqual([
+    'episode-001',
+    'episode-082',
+  ])
   expect(work?.pageIndexPath).toBeUndefined()
 })
 
-test('loads a Panth Prakash chapter payload from the EPUB corpus', async () => {
+test('loads stable episode chapter payloads from the cleaned EPUB corpus', async () => {
   const chapters = await loadLibraryChapterIndex('panth-prakash-english')
-  const chapter = await loadLibraryChapter('panth-prakash-english', 'episode-001-the-episode-about-the-origin-of-the-khalsa')
+  const chapter = await loadLibraryChapter('panth-prakash-english', 'episode-001')
 
-  expect(chapters).toHaveLength(171)
-  expect(chapter).not.toBeNull()
-  expect(chapter?.workId).toBe('panth-prakash-english')
-  expect(chapter?.id).toBe('episode-001-the-episode-about-the-origin-of-the-khalsa')
+  expect(chapters).toHaveLength(169)
+  expect(chapters[0]?.id).toBe('episode-001')
+  expect(chapters[168]?.id).toBe('episode-169')
+  expect(chapter).toEqual(expect.objectContaining({
+    workId: 'panth-prakash-english',
+    id: 'episode-001',
+    episodeNumber: 1,
+    publicationId: 'volume-1',
+  }))
   expect(chapter?.pages.length).toBeGreaterThan(0)
   expect(chapter?.pages[0]?.blocks.some(block => block.text.includes('lotus feet of Guru Nanak'))).toBe(true)
+})
+
+test('resolves retired episode slugs and front-matter aliases to stable episode IDs', async () => {
+  const legacyEpisode = await loadLibraryChapter(
+    'panth-prakash-english',
+    'episode-001-the-episode-about-the-origin-of-the-khalsa'
+  )
+  const volumeOneFrontMatter = await loadLibraryChapter('panth-prakash-english', 'vol-1-front-matter')
+  const volumeTwoFrontMatter = await loadLibraryChapter('panth-prakash-english', 'vol-2-front-matter')
+
+  expect(legacyEpisode?.id).toBe('episode-001')
+  expect(volumeOneFrontMatter?.id).toBe('episode-001')
+  expect(volumeTwoFrontMatter?.id).toBe('episode-082')
+})
+
+test('loads full text from the work-specific index while the catalog index stays lightweight', async () => {
+  const catalogSearch = await loadLibrarySearchIndex()
+  const workSearch = await loadLibrarySearchIndex('panth-prakash-english')
+
+  expect(catalogSearch.works).toHaveLength(1)
+  expect(catalogSearch.chapters).toBeUndefined()
+  expect(workSearch.chapters).toHaveLength(169)
+  expect(workSearch.chapters?.[0]).toEqual(expect.objectContaining({
+    workId: 'panth-prakash-english',
+    chapterId: 'episode-001',
+    episodeNumber: 1,
+  }))
+  expect(workSearch.chapters?.[0]?.searchText).toContain('origin of the Khalsa')
 })
 
 test('does not expose the retired Panth Prakash page index or page payloads', async () => {
@@ -54,12 +98,17 @@ test('does not expose the retired Panth Prakash page index or page payloads', as
   await expect(loadLibraryPage('panth-prakash-english', 565)).resolves.toBeNull()
 })
 
-test('published Panth chapter index paths resolve to existing JSON files', () => {
-  const chapters = readPublicLibraryJson<Array<{ path: string }>>('/data/library/works/panth-prakash-english/chapters.json')
+test('all stable chapter index paths resolve to existing JSON files', () => {
+  const chapters = readPublicLibraryJson<Array<{ id: string; path: string }>>(
+    '/data/library/works/panth-prakash-english/chapters.json'
+  )
 
-  expect(chapters).toHaveLength(171)
+  expect(chapters).toHaveLength(169)
+  expect(chapters.map(chapter => chapter.id)).toEqual(
+    Array.from({ length: 169 }, (_value, index) => `episode-${String(index + 1).padStart(3, '0')}`)
+  )
   for (const chapter of chapters) {
     const filePath = path.join(PROJECT_ROOT, 'public', chapter.path.replace(/^\//, ''))
-    expect(fs.existsSync(filePath)).toBe(true)
+    expect(fs.existsSync(filePath), chapter.id).toBe(true)
   }
 })

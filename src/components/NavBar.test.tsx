@@ -15,12 +15,13 @@ test('renders the 4-tab product nav', () => {
   expect(screen.getByRole('link', { name: 'More' })).toBeInTheDocument()
 })
 
-test('keeps the Saved nav tab active on nested library routes', () => {
+test('keeps curated book routes inside the Read navigation flow', () => {
   render(
     <MemoryRouter initialEntries={['/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa']}>
       <NavBar />
     </MemoryRouter>
   )
 
-  expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('aria-current', 'page')
+  expect(screen.getByTestId('nav-tab-read')).toHaveAttribute('aria-current', 'page')
+  expect(screen.getByTestId('nav-tab-saved')).not.toHaveAttribute('aria-current')
 })

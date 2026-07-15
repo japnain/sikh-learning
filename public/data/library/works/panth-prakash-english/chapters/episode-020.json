@@ -1,0 +1,341 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-020",
+  "chapterNumber": 20,
+  "episodeNumber": 20,
+  "kind": "episode",
+  "title": "Machhiwara",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 175,
+  "endSourcePage": 179,
+  "wordCount": 889,
+  "charCount": 5149,
+  "startPosition": 22242,
+  "pages": [
+    {
+      "sourcePageNumber": 175,
+      "fileName": "EPUB/page_175.html",
+      "sourceHref": "EPUB/page_175.html",
+      "printPageNumber": 131,
+      "blocks": [
+        {
+          "id": "episode-020-p175-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-020-p175-b003",
+          "type": "verse",
+          "text": "When Satguru proceeded further after coming out of Chamkaur Sahib, He arrived at a place near the village of Machhiwara1 . Leaving Satguru on the outskirts of this town, The two Pathan brothers called out a Kshtriya Gulab Chand. (1)",
+          "lines": [
+            "When Satguru proceeded further after coming out of Chamkaur Sahib,",
+            "He arrived at a place near the village of Machhiwara1 .",
+            "Leaving Satguru on the outskirts of this town,",
+            "The two Pathan brothers called out a Kshtriya Gulab Chand."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-020-p175-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-020-p175-b005",
+          "type": "verse",
+          "text": "Now, Dear readers, listen to the episode of Machhiwara, How the Guru had entered the house of this Kshtriya house hold. How the Pathan brothers had rendered a yeoman's service to the Guru, By carrying the Guru almost on their heads. (2)",
+          "lines": [
+            "Now,",
+            "Dear readers, listen to the episode of Machhiwara,",
+            "How the Guru had entered the house of this Kshtriya house hold.",
+            "How the Pathan brothers had rendered a yeoman's service to the Guru,",
+            "By carrying the Guru almost on their heads."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-020-p175-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-020-p175-b007",
+          "type": "verse",
+          "text": "Kshtriya Gulab Chand brought some food for the Guru, Which he partook after uttering a prayer of thanks giving. He brought the Guru into his house at night, And made him stay in the central most part of his Mansion. (3)",
+          "lines": [
+            "Kshtriya Gulab Chand brought some food for the Guru,",
+            "Which he partook after uttering a prayer of thanks giving.",
+            "He brought the Guru into his house at night,",
+            "And made him stay in the central most part of his Mansion."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-020-p175-b008",
+          "type": "paragraph",
+          "text": "One or two more Singhs joined the Guru at this place, Whom the Guru asked to stay with him in hiding."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 177,
+      "fileName": "EPUB/page_177.html",
+      "sourceHref": "EPUB/page_177.html",
+      "printPageNumber": 133,
+      "blocks": [
+        {
+          "id": "episode-020-p177-b001",
+          "type": "verse",
+          "text": "One day the Guru ordered for some goats to be brought, And ordered the Singhs to slaughter these animals. (4)",
+          "lines": [
+            "One day the Guru ordered for some goats to be brought,",
+            "And ordered the Singhs to slaughter these animals."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-020-p177-b002",
+          "type": "verse",
+          "text": "As the Guru partook the meat of these slaughtered animals, He kept on throwing the bones into the neighbouring Muslim's household, At this, the Muslim started abusing his Kshtriya neighbour, For throwing the left over bones into his house. (5)",
+          "lines": [
+            "As the Guru partook the meat of these slaughtered animals,",
+            "He kept on throwing the bones into the neighbouring Muslim's household,",
+            "At this, the Muslim started abusing his Kshtriya neighbour,",
+            "For throwing the left over bones into his house."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-020-p177-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-020-p177-b004",
+          "type": "verse",
+          "text": "Thereupon the Guru's host Gulab Chand prayed to the Guru, That he was a very poor and powerless citizen. If the Mughals came to know about this sheltering the Guru, They would, undoubtedly, kill him and his family. (6)",
+          "lines": [
+            "Thereupon the Guru's host Gulab Chand prayed to the Guru,",
+            "That he was a very poor and powerless citizen.",
+            "If the Mughals came to know about this sheltering the Guru,",
+            "They would, undoubtedly, kill him and his family."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-020-p177-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-020-p177-b006",
+          "type": "verse",
+          "text": "Then Satguru started throwing coins into the Muslim's house, Which made him keep silent after picking up those coins. After staying there for ten days in his manner, The Guru wished to move out of this place. (7)",
+          "lines": [
+            "Then Satguru started throwing coins into the Muslim's house,",
+            "Which made him keep silent after picking up those coins.",
+            "After staying there for ten days in his manner,",
+            "The Guru wished to move out of this place."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-020-p177-b007",
+          "type": "verse",
+          "text": "Then Satguru called one Sayyad to join his two Pathan followers, And ordered for different kinds of dresses to be made. Thereafter, they changed their apparels to look like Haj2 pilgrims, By wearing long blue robes and throwing loose their hair upon their backs. (8)",
+          "lines": [
+            "Then Satguru called one Sayyad to join his two Pathan followers,",
+            "And ordered for different kinds of dresses to be made.",
+            "Thereafter, they changed their apparels to look like Haj2 pilgrims,",
+            "By wearing long blue robes and throwing loose their hair upon their backs."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-020-p177-b008",
+          "type": "verse",
+          "text": "The accompanying Singhs also changed into similar robes, With the Pathans leading the contingent with Astavas3 in their hands. (9)",
+          "lines": [
+            "The accompanying Singhs also changed into similar robes,",
+            "With the Pathans leading the contingent with Astavas3 in their hands."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-020-p177-b009",
+          "type": "verse",
+          "text": "Proclaiming that Uchh da Pir4 was on his religious pilgrimage, The two Pathan brothers Nabi khan, Gani Khan accompanied the Guru. Marching towards the Pir's seat in the western province of Multan, This small caravan reached the village named Kanaich5 . (10)",
+          "lines": [
+            "Proclaiming that Uchh da Pir4 was on his religious pilgrimage,",
+            "The two Pathan brothers Nabi khan,",
+            "Gani Khan accompanied the Guru.",
+            "Marching towards the Pir's seat in the western province of Multan,",
+            "This small caravan reached the village named Kanaich5 ."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-020-p177-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-020-p177-b011",
+          "type": "verse",
+          "text": "There used to live one Masand6 in this village, Who was known by the name Fateh,, the Masand. Satguru sent for this Masand to meet him, And asked him to get him (the Guru) out of this Muslim territory. (11)",
+          "lines": [
+            "There used to live one Masand6 in this village,",
+            "Who was known by the name Fateh,, the Masand.",
+            "Satguru sent for this Masand to meet him,",
+            "And asked him to get him (the Guru) out of this Muslim territory."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-020-p177-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-020-p177-b013",
+          "type": "verse",
+          "text": "The Guru asked this Masand to lend his horse to him, For which he would be adequately compensated with money. The cursed Masand, having fallen under the influence of evil stars, Remarked that he did not wish to be hanged for the offence of lending his horse. (12)",
+          "lines": [
+            "The Guru asked this Masand to lend his horse to him,",
+            "For which he would be adequately compensated with money.",
+            "The cursed Masand, having fallen under the influence of evil stars,",
+            "Remarked that he did not wish to be hanged for the offence of lending his horse."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-020-p177-b014",
+          "type": "paragraph",
+          "text": "Hearing this, Satguru said to him in prophetic words, That he could not escape the gallows even after this refusal."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 179,
+      "fileName": "EPUB/page_179.html",
+      "sourceHref": "EPUB/page_179.html",
+      "printPageNumber": 135,
+      "blocks": [
+        {
+          "id": "episode-020-p179-b001",
+          "type": "verse",
+          "text": "Soon thereafter, he was hanged from the gallows at Lahore, Thus fulfilling the prophetic words of the Guru about him. (13)",
+          "lines": [
+            "Soon thereafter, he was hanged from the gallows at Lahore,",
+            "Thus fulfilling the prophetic words of the Guru about him."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-020-p179-b002",
+          "type": "verse",
+          "text": "When the Satguru proceeded further on his disguised journey, His caravan was taken over by the Muslims at an inn at Doraha7 . The Muslims reventially invited the Pir (the Guru) for a dinner, And for a night's stay with them in the roadside inn. (14)",
+          "lines": [
+            "When the Satguru proceeded further on his disguised journey,",
+            "His caravan was taken over by the Muslims at an inn at Doraha7 .",
+            "The Muslims reventially invited the Pir (the Guru) for a dinner,",
+            "And for a night's stay with them in the roadside inn."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-020-p179-b003",
+          "type": "verse",
+          "text": "Thereupon, the Sayyad and the two Pathans advanced an argument, That their revered Pir was observing indefinite Rozas8 . That he broke his fast every night after partaking only one grain of oats, And observed silence during meditation by telling on rosary beads. (15)",
+          "lines": [
+            "Thereupon, the Sayyad and the two Pathans advanced an argument,",
+            "That their revered Pir was observing indefinite Rozas8 .",
+            "That he broke his fast every night after partaking only one grain of oats,",
+            "And observed silence during meditation by telling on rosary beads."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-020-p179-b004",
+          "type": "verse",
+          "text": "That the rest of the Pir's followers would be glad to break bread with them, Such was the argument they advanced to their Muslims hosts. (16)",
+          "lines": [
+            "That the rest of the Pir's followers would be glad to break bread with them,",
+            "Such was the argument they advanced to their Muslims hosts."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-020-p179-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-020-p179-b006",
+          "type": "paragraph",
+          "text": "Hearing this argument of the Pathans, the accompanying Singhs felt worried, At the prospect of partaking food with the forbidden Muslims. How could they protect the sanctity of their religious injunctions? How could they keep their religious vows given to the Guru and the Khalsa Panth? ( 1 7)"
+        },
+        {
+          "id": "episode-020-p179-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-020-p179-b008",
+          "type": "verse",
+          "text": "Then Satguru suggested a solution by way of allaying their fears, That they should sanctify the proffered food with the touch of a steel dagger. The Guru clarified that a Singh could not be converted to Islam under duress, Unless he had established a conjugal relationship with a Muslim woman. (18)",
+          "lines": [
+            "Then Satguru suggested a solution by way of allaying their fears,",
+            "That they should sanctify the proffered food with the touch of a steel dagger.",
+            "The Guru clarified that a Singh could not be converted to Islam under duress,",
+            "Unless he had established a conjugal relationship with a Muslim woman."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-020-p179-b009",
+          "type": "verse",
+          "text": "In order to prove the veracity of the Guru's instructions to the Singhs, The Guru asked them to bring back a small portion of the Muslim's food. If they still had doubts about their religious contamination after the dinner, They should imaginatively have five dips in the sacred tank at Amritsar. (19)",
+          "lines": [
+            "In order to prove the veracity of the Guru's instructions to the Singhs,",
+            "The Guru asked them to bring back a small portion of the Muslim's food.",
+            "If they still had doubts about their religious contamination after the dinner,",
+            "They should imaginatively have five dips in the sacred tank at Amritsar."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-020-p179-b010",
+          "type": "verse",
+          "text": "Accepting Guru's instructions, the Singhs touched the food with a steel dagger, But their Muslims hosts questioned their touching the food with a steel dagger. The quick-witted Pathans remarked that that was the latest Islamic practice, Which was being practised by the Haj pilgrims at Mecca. (20)",
+          "lines": [
+            "Accepting Guru's instructions, the Singhs touched the food with a steel dagger,",
+            "But their Muslims hosts questioned their touching the food with a steel dagger.",
+            "The quick-witted Pathans remarked that that was the latest Islamic practice,",
+            "Which was being practised by the Haj pilgrims at Mecca."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-020-p179-b011",
+          "type": "verse",
+          "text": "Next morning, when the Singhs unpacked the last night's left over food, They were delighted to find it has turned into a pudding and rice dish. Departing from there the Guru's entourage reached village Mohi, And then halted at at Bhagta9 after crossing Mohi10 and Jaitpur\" . (21)",
+          "lines": [
+            "Next morning, when the Singhs unpacked the last night's left over food,",
+            "They were delighted to find it has turned into a pudding and rice dish.",
+            "Departing from there the Guru's entourage reached village Mohi,",
+            "And then halted at at Bhagta9 after crossing Mohi10 and Jaitpur\" ."
+          ],
+          "number": "21"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-019",
+  "nextChapterId": "episode-021"
+}

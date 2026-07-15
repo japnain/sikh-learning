@@ -1,0 +1,328 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-102",
+  "chapterNumber": 102,
+  "episodeNumber": 102,
+  "kind": "episode",
+  "title": "Sukha Singh's Brave Act",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 251,
+  "endSourcePage": 255,
+  "wordCount": 751,
+  "charCount": 4239,
+  "startPosition": 119910,
+  "pages": [
+    {
+      "sourcePageNumber": 251,
+      "fileName": "EPUB/page_251.html",
+      "sourceHref": "EPUB/page_251.html",
+      "printPageNumber": 197,
+      "blocks": [
+        {
+          "id": "episode-102-p251-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-102-p251-b003",
+          "type": "verse",
+          "text": "Since the day Bhai Mani Singh1 was taken into custody (by the Mughals), No Singh could enter the precincts of the holy Harimandir. So the Singhs would either take a dip in the sacred pool at night, Or they would go for ablutions at odd hours of the day. (1)",
+          "lines": [
+            "Since the day Bhai Mani Singh1 was taken into custody (by the Mughals),",
+            "No Singh could enter the precincts of the holy Harimandir.",
+            "So the Singhs would either take a dip in the sacred pool at night,",
+            "Or they would go for ablutions at odd hours of the day."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-102-p251-b004",
+          "type": "verse",
+          "text": "At this the Muslim cleric made a surmise that, The Amritsar's holy influence was responsible for Khalsa's growth. That was why despite the untiring repression on the Singhs, They could not be eliminated by any means. (2)",
+          "lines": [
+            "At this the Muslim cleric made a surmise that,",
+            "The Amritsar's holy influence was responsible for Khalsa's growth.",
+            "That was why despite the untiring repression on the Singhs,",
+            "They could not be eliminated by any means."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-102-p251-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-102-p251-b006",
+          "type": "verse",
+          "text": "Then the Mughals set up a police post at the shrine, Which kept on killing the Akali Singhs day and night. Thereafter, the Mughals raised towers and minarets, Positioning their sharp shooters on these all around. (3)",
+          "lines": [
+            "Then the Mughals set up a police post at the shrine,",
+            "Which kept on killing the Akali Singhs day and night.",
+            "Thereafter, the Mughals raised towers and minarets,",
+            "Positioning their sharp shooters on these all around."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-102-p251-b007",
+          "type": "verse",
+          "text": "The moment they observed a little movement in the sacred pool, They fired a volley of shots from their muskets. After this, the Singhs would take a dip without any noise, Without being spotted by the Mughals in the darkness. (4)",
+          "lines": [
+            "The moment they observed a little movement in the sacred pool,",
+            "They fired a volley of shots from their muskets.",
+            "After this, the Singhs would take a dip without any noise,",
+            "Without being spotted by the Mughals in the darkness."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-102-p251-b008",
+          "type": "paragraph",
+          "text": "The Muslim cleric, being more infuriated by these furtive visits, Ordered for an army picket to be set up at the shrine."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 253,
+      "fileName": "EPUB/page_253.html",
+      "sourceHref": "EPUB/page_253.html",
+      "printPageNumber": 199,
+      "blocks": [
+        {
+          "id": "episode-102-p253-b001",
+          "type": "verse",
+          "text": "Thereafter, the army commander, out of shere arrogance, Despatched an open challenge to the entire Khalsa Panth. (5)",
+          "lines": [
+            "Thereafter, the army commander, out of shere arrogance,",
+            "Despatched an open challenge to the entire Khalsa Panth."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-102-p253-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-102-p253-b003",
+          "type": "verse",
+          "text": "He insinuated the Singhs for claiming themselves to be great warriors, And being the most beloved sons of their Guru. He would acknowledge them to be really brave, If they dared taking a dip in the sacred pool at Amritsar. (6)",
+          "lines": [
+            "He insinuated the Singhs for claiming themselves to be great warriors,",
+            "And being the most beloved sons of their Guru.",
+            "He would acknowledge them to be really brave,",
+            "If they dared taking a dip in the sacred pool at Amritsar."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-102-p253-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-102-p253-b005",
+          "type": "verse",
+          "text": "Hearing this insinuation the whole Khalsa Panth kept silent, Nor did any body respond to his threat. Then Sukha Singh declared publically to the Mughal commander, That he should gird up his loins as the Khalsa would surely come. (7)",
+          "lines": [
+            "Hearing this insinuation the whole Khalsa Panth kept silent,",
+            "Nor did any body respond to his threat.",
+            "Then Sukha Singh declared publically to the Mughal commander,",
+            "That he should gird up his loins as the Khalsa would surely come."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-102-p253-b006",
+          "type": "verse",
+          "text": "As the intelligence agents informed the Mughal authorities, They felt alarmed about their own security. They positioned their observers at the highest vantage points, Lest the Singhs sneaked into their fortifications. (8)",
+          "lines": [
+            "As the intelligence agents informed the Mughal authorities,",
+            "They felt alarmed about their own security.",
+            "They positioned their observers at the highest vantage points,",
+            "Lest the Singhs sneaked into their fortifications."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-102-p253-b007",
+          "type": "verse",
+          "text": "Majority of them opined that nobody could dare to enter there, As it was impossible to impregnate their defences. How could anyone sneak into the pool at night, When even the birds were scared to take a dip during the day. (9)",
+          "lines": [
+            "Majority of them opined that nobody could dare to enter there,",
+            "As it was impossible to impregnate their defences.",
+            "How could anyone sneak into the pool at night,",
+            "When even the birds were scared to take a dip during the day."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-102-p253-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-102-p253-b009",
+          "type": "verse",
+          "text": "The Mughals increased their vigil ten times, And strengthened their defences many many more times. Now, dear readers, listen to the narration further, The way the Sukha Singh planned to enter the shrine. (10)",
+          "lines": [
+            "The Mughals increased their vigil ten times,",
+            "And strengthened their defences many many more times.",
+            "Now, dear readers, listen to the narration further,",
+            "The way the Sukha Singh planned to enter the shrine."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-102-p253-b010",
+          "type": "verse",
+          "text": "Sukha Singh confabulated within his own mind, That he would feel guilty if he took a dip in the darkness of night. Therefore, he would bathe in the broad daylight, With the grace and Divine power of Satguru. (11)",
+          "lines": [
+            "Sukha Singh confabulated within his own mind,",
+            "That he would feel guilty if he took a dip in the darkness of night.",
+            "Therefore, he would bathe in the broad daylight,",
+            "With the grace and Divine power of Satguru."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-102-p253-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-102-p253-b012",
+          "type": "verse",
+          "text": "The whole Khalsa Panth, acknowledging Sukha Singh's daring, Prayed to the great Guru to empower his devout Sikh. Since this was an ordeal involving life and death, Who else could match Sukha Singh in such a daring act. (12)",
+          "lines": [
+            "The whole Khalsa Panth, acknowledging Sukha Singh's daring,",
+            "Prayed to the great Guru to empower his devout Sikh.",
+            "Since this was an ordeal involving life and death,",
+            "Who else could match Sukha Singh in such a daring act."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-102-p253-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-102-p253-b014",
+          "type": "verse",
+          "text": "Wrapping a Mughal style turban around his head, Sukha Singh picked up a bow and arrows in his hand. As the sun went down three hours before sunset, Sukha Singh rode on the road from Lahore to Amritsar. (13)",
+          "lines": [
+            "Wrapping a Mughal style turban around his head,",
+            "Sukha Singh picked up a bow and arrows in his hand.",
+            "As the sun went down three hours before sunset,",
+            "Sukha Singh rode on the road from Lahore to Amritsar."
+          ],
+          "number": "13"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 255,
+      "fileName": "EPUB/page_255.html",
+      "sourceHref": "EPUB/page_255.html",
+      "printPageNumber": 201,
+      "blocks": [
+        {
+          "id": "episode-102-p255-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-102-p255-b002",
+          "type": "verse",
+          "text": "Entering the lane to the sacred pool from the \"Sarai2 \" side, He pretended to take his horse to the water. Stepping forth as he put his horse to drink sacred water, He jumped down to take a dip in the sacred pool. (14)",
+          "lines": [
+            "Entering the lane to the sacred pool from the \"Sarai2 \" side,",
+            "He pretended to take his horse to the water.",
+            "Stepping forth as he put his horse to drink sacred water,",
+            "He jumped down to take a dip in the sacred pool."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-102-p255-b003",
+          "type": "verse",
+          "text": "As he removed the Mughal style wrapping from his head, The Mughals were dumbfounded to witness such a scene. Since he had washed himself along with his horse, He seemed to be a Hindu (Sikh)3 rather than a Muslim. (15)",
+          "lines": [
+            "As he removed the Mughal style wrapping from his head,",
+            "The Mughals were dumbfounded to witness such a scene.",
+            "Since he had washed himself along with his horse,",
+            "He seemed to be a Hindu (Sikh)3 rather than a Muslim."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-102-p255-b004",
+          "type": "verse",
+          "text": "By this time Sukha Singh shouted a Khalsa slogan of victory, As he had a dip again with his turbaned head. As Sukha Singh came out of the sacred pool, He threw a challenge to the guarding Mughal guards. (16)",
+          "lines": [
+            "By this time Sukha Singh shouted a Khalsa slogan of victory,",
+            "As he had a dip again with his turbaned head.",
+            "As Sukha Singh came out of the sacred pool,",
+            "He threw a challenge to the guarding Mughal guards."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-102-p255-b005",
+          "type": "verse",
+          "text": "Either let anyone of them come forward and confront him, Or they should clear the passage for his exist. As Sukha Singh drew his sword and brandished it, Everyone took to his heals, deserting their positions. (17)",
+          "lines": [
+            "Either let anyone of them come forward and confront him,",
+            "Or they should clear the passage for his exist.",
+            "As Sukha Singh drew his sword and brandished it,",
+            "Everyone took to his heals, deserting their positions."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-102-p255-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-102-p255-b007",
+          "type": "verse",
+          "text": "Running helter shelter to save their skins, They gave way to Sukha Singh's steed. As Sukha Singh turned his back to escape, They let out a shower of bullets and arrows. (18)",
+          "lines": [
+            "Running helter shelter to save their skins,",
+            "They gave way to Sukha Singh's steed.",
+            "As Sukha Singh turned his back to escape,",
+            "They let out a shower of bullets and arrows."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-102-p255-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-102-p255-b009",
+          "type": "verse",
+          "text": "Not a single arrow or bullet did hit Sukha Singh, As his horse galloped past their positions. Those who came in hot pursuit failed to reach him, Such was the (wonderous) feat displayed by a Singh. (19)",
+          "lines": [
+            "Not a single arrow or bullet did hit Sukha Singh,",
+            "As his horse galloped past their positions.",
+            "Those who came in hot pursuit failed to reach him,",
+            "Such was the (wonderous) feat displayed by a Singh."
+          ],
+          "number": "19"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-101",
+  "nextChapterId": "episode-103"
+}

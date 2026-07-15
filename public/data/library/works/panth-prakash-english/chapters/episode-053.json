@@ -1,0 +1,100 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-053",
+  "chapterNumber": 53,
+  "episodeNumber": 53,
+  "kind": "episode",
+  "title": "Further Account About (Banda Singh's visit) to Chamba",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 347,
+  "endSourcePage": 349,
+  "wordCount": 149,
+  "charCount": 878,
+  "startPosition": 53542,
+  "pages": [
+    {
+      "sourcePageNumber": 347,
+      "fileName": "EPUB/page_347.html",
+      "sourceHref": "EPUB/page_347.html",
+      "printPageNumber": 303,
+      "blocks": [
+        {
+          "id": "episode-053-p347-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-053-p347-b003",
+          "type": "verse",
+          "text": "After entering the hill state of Chamba, Banda Singh had an interaction with its chief. After the Chamba Hill chief's becoming his follower, Banda Singh had a good excursion all over Chamba. (1)",
+          "lines": [
+            "After entering the hill state of Chamba,",
+            "Banda Singh had an interaction with its chief.",
+            "After the Chamba Hill chief's becoming his follower,",
+            "Banda Singh had a good excursion all over Chamba."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-053-p347-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-053-p347-b005",
+          "type": "verse",
+          "text": "The hill chief, winning Banda Singh's heart (through his obedience), Maneuvered Banda Singh to enter into two wed-locks. He also got a Mansion raised for Banda Singh's stay, Where people came to pay their obeisance to him. (2)",
+          "lines": [
+            "The hill chief, winning Banda Singh's heart (through his obedience),",
+            "Maneuvered Banda Singh to enter into two wed-locks.",
+            "He also got a Mansion raised for Banda Singh's stay,",
+            "Where people came to pay their obeisance to him."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-053-p347-b006",
+          "type": "paragraph",
+          "text": "Banda Singh fame and reputation skyrocketed here, As the Hill chief also started worshipping him intensely,"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 349,
+      "fileName": "EPUB/page_349.html",
+      "sourceHref": "EPUB/page_349.html",
+      "printPageNumber": 305,
+      "blocks": [
+        {
+          "id": "episode-053-p349-b001",
+          "type": "verse",
+          "text": "When a son was born to him (during his stay here), Banda Singh's thought of making a departure from this place. (3)",
+          "lines": [
+            "When a son was born to him (during his stay here),",
+            "Banda Singh's thought of making a departure from this place."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-053-p349-b002",
+          "type": "verse",
+          "text": "As Banda Singh stayed put in the hills for three years, The Khalsa forces occupied Doon valley and Doaba region. The Mughals fled and were nowhere to be seen, Throughout the foothills and the entire Doaba region. (4)",
+          "lines": [
+            "As Banda Singh stayed put in the hills for three years,",
+            "The Khalsa forces occupied Doon valley and Doaba region.",
+            "The Mughals fled and were nowhere to be seen,",
+            "Throughout the foothills and the entire Doaba region."
+          ],
+          "number": "4"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-052",
+  "nextChapterId": "episode-054"
+}

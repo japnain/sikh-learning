@@ -1,0 +1,436 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-051",
+  "chapterNumber": 51,
+  "episodeNumber": 51,
+  "kind": "episode",
+  "title": "Kullu (Banda asked the spirits.... they lifted up the cage))",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 337,
+  "endSourcePage": 343,
+  "wordCount": 1055,
+  "charCount": 5925,
+  "startPosition": 51928,
+  "pages": [
+    {
+      "sourcePageNumber": 337,
+      "fileName": "EPUB/page_337.html",
+      "sourceHref": "EPUB/page_337.html",
+      "printPageNumber": 293,
+      "blocks": [
+        {
+          "id": "episode-051-p337-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-051-p337-b003",
+          "type": "paragraph",
+          "text": "Then Banda Singh felt an urge in his heart, That he should see the sights of Kullu,"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 339,
+      "fileName": "EPUB/page_339.html",
+      "sourceHref": "EPUB/page_339.html",
+      "printPageNumber": 295,
+      "blocks": [
+        {
+          "id": "episode-051-p339-b001",
+          "type": "verse",
+          "text": "He should visit the shrine of Mahesh2 , As well as pay a visit to the various Sidhas. (1)",
+          "lines": [
+            "He should visit the shrine of Mahesh2 ,",
+            "As well as pay a visit to the various Sidhas."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-051-p339-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-051-p339-b003",
+          "type": "verse",
+          "text": "Then Banda Singh did the same thing, What he had decided to do at night. As Banda Singh entered the Kullu territory, The Hill chief of Kullu put him under arrest. (2)",
+          "lines": [
+            "Then Banda Singh did the same thing,",
+            "What he had decided to do at night.",
+            "As Banda Singh entered the Kullu territory,",
+            "The Hill chief of Kullu put him under arrest."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-051-p339-b004",
+          "type": "verse",
+          "text": "Banda Singh told that he could not be kept in captivity, Whatever means (and tactics) the hill chief might adopt. Banda Singh told that (since) he was a handful of feathers, He could take flight as and when he wished. (3)",
+          "lines": [
+            "Banda Singh told that he could not be kept in captivity,",
+            "Whatever means (and tactics) the hill chief might adopt.",
+            "Banda Singh told that (since) he was a handful of feathers,",
+            "He could take flight as and when he wished."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-051-p339-b005",
+          "type": "verse",
+          "text": "As Banda Singh kept on making these remarks (about himself), They kept on tightening the security ring around him. First, he got himself put under house arrest, As he had put himself voluntarily into this trap. (4)",
+          "lines": [
+            "As Banda Singh kept on making these remarks (about himself),",
+            "They kept on tightening the security ring around him.",
+            "First, he got himself put under house arrest,",
+            "As he had put himself voluntarily into this trap."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-051-p339-b006",
+          "type": "verse",
+          "text": "Although they ordered an iron-cage to be manufactured, But Banda Singh remarked that he could not be kept into a cage. (When) Banda Singh threatened to flyaway along with the cage, They placed the iron-cage inside a (concrete) room. (5)",
+          "lines": [
+            "Although they ordered an iron-cage to be manufactured,",
+            "But Banda Singh remarked that he could not be kept into a cage.",
+            "(When) Banda Singh threatened to flyaway along with the cage,",
+            "They placed the iron-cage inside a (concrete) room."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-051-p339-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-051-p339-b008",
+          "type": "verse",
+          "text": "When the Singhs heard (the news) about Banda Singh's arrest, They felt extremely concerned (at this development). The Mughal forces felt highly elated (after this news), As they longed to liberate their territory (from the Singhs). (6)",
+          "lines": [
+            "When the Singhs heard (the news) about Banda Singh's arrest,",
+            "They felt extremely concerned (at this development).",
+            "The Mughal forces felt highly elated (after this news),",
+            "As they longed to liberate their territory (from the Singhs)."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-051-p339-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-051-p339-b010",
+          "type": "verse",
+          "text": "(Emperor) Bahadur Shah called an assembly of his army commanders, And they launched an attack on the (various) forts of Banda Singh. They remarked that Banda Singh had lost his power of miracles, Otherwise how could he be kept in custody if he had miraculous powers? (7)",
+          "lines": [
+            "(Emperor) Bahadur Shah called an assembly of his army commanders,",
+            "And they launched an attack on the (various) forts of Banda Singh.",
+            "They remarked that Banda Singh had lost his power of miracles,",
+            "Otherwise how could he be kept in custody if he had miraculous powers?"
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-051-p339-b011",
+          "type": "verse",
+          "text": "When the Mughal forces launched an attack on the Singhs, They escaped away after deserting their own country. When the Singhs came to face a moment of great crisis, Then Banda Singh made a strategy to (resolve that crisis). (8)",
+          "lines": [
+            "When the Mughal forces launched an attack on the Singhs,",
+            "They escaped away after deserting their own country.",
+            "When the Singhs came to face a moment of great crisis,",
+            "Then Banda Singh made a strategy to (resolve that crisis)."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-051-p339-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-051-p339-b013",
+          "type": "verse",
+          "text": "When Sudh Sain (the hill chief of Mandi) heard the news, He felt outraged at (the arrest of Banda Singh). He felt that his Guru had gone on a pilgrimage, How could he (the hill chief of Kullu) dare to (kidnap) him. (9)",
+          "lines": [
+            "When Sudh Sain (the hill chief of Mandi) heard the news,",
+            "He felt outraged at (the arrest of Banda Singh).",
+            "He felt that his Guru had gone on a pilgrimage,",
+            "How could he (the hill chief of Kullu) dare to (kidnap) him."
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 341,
+      "fileName": "EPUB/page_341.html",
+      "sourceHref": "EPUB/page_341.html",
+      "printPageNumber": 297,
+      "blocks": [
+        {
+          "id": "episode-051-p341-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-051-p341-b002",
+          "type": "verse",
+          "text": "Thereafter, Sudh Sain made some efforts, And launched a campaign for Banda Singh's release. At this Banda Singh thought over the whole thing and felt, That his release through Mandi chiefs' efforts would lower his own reputation. (10)",
+          "lines": [
+            "Thereafter,",
+            "Sudh Sain made some efforts,",
+            "And launched a campaign for Banda Singh's release.",
+            "At this Banda Singh thought over the whole thing and felt,",
+            "That his release through Mandi chiefs' efforts would lower his own reputation."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-051-p341-b003",
+          "type": "verse",
+          "text": "Then neither his own reputation as a Siddha could remain intact, Nor could his Guru's prestige be maintained in any way. He would first get himself released through his own efforts, And thereafter teach a lesson to the hill chief of Kullu himself. (11)",
+          "lines": [
+            "Then neither his own reputation as a Siddha could remain intact,",
+            "Nor could his Guru's prestige be maintained in any way.",
+            "He would first get himself released through his own efforts,",
+            "And thereafter teach a lesson to the hill chief of Kullu himself."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-051-p341-b004",
+          "type": "verse",
+          "text": "Lest his name/own reputation should stand tarnished, He made efforts to (restore his reputation), Then he challenged the hill chief of Kullu in these words: That Banda Singh would walk out in front of their own eyes. (12)",
+          "lines": [
+            "Lest his name/own reputation should stand tarnished,",
+            "He made efforts to (restore his reputation),",
+            "Then he challenged the hill chief of Kullu in these words: That Banda Singh would walk out in front of their own eyes."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-051-p341-b005",
+          "type": "verse",
+          "text": "Seeing this threat, they locked the iron cage more strongly, And placed the cage inside a small cellar. Then Banda Singh summoned the Birs3 (at his command), Who arrived (instantly) and stoood around him. (13)",
+          "lines": [
+            "Seeing this threat, they locked the iron cage more strongly,",
+            "And placed the cage inside a small cellar.",
+            "Then Banda Singh summoned the Birs3 (at his command),",
+            "Who arrived (instantly) and stoood around him."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-051-p341-b006",
+          "type": "verse",
+          "text": "Banda Singh ordered the Birs to take him to Mandi, And then proceed to Doaba region where war swords were shining. Let him go and assist the Singhs who were fighting a war, And crush and destroy the Mughal forces. (14)",
+          "lines": [
+            "Banda Singh ordered the Birs to take him to Mandi,",
+            "And then proceed to Doaba region where war swords were shining.",
+            "Let him go and assist the Singhs who were fighting a war,",
+            "And crush and destroy the Mughal forces."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-051-p341-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-051-p341-b008",
+          "type": "verse",
+          "text": "Then Banda Singh commanded the Birs (at his command) That they should lift the (iron) cage (from there). They must lower the cage on the borders of Mandi state, Within the territorial boundaries of Sudh Sain. (15)",
+          "lines": [
+            "Then Banda Singh commanded the Birs (at his command) That they should lift the (iron) cage (from there).",
+            "They must lower the cage on the borders of Mandi state,",
+            "Within the territorial boundaries of Sudh Sain."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-051-p341-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-051-p341-b010",
+          "type": "verse",
+          "text": "The Birs carried out what they had been commanded to do, And the iron cage flew away from there the same instant. The hill chief of Kullu's face turned bloodless pale, As the iron cage flew into the skies with a hissing sound. (16)",
+          "lines": [
+            "The Birs carried out what they had been commanded to do,",
+            "And the iron cage flew away from there the same instant.",
+            "The hill chief of Kullu's face turned bloodless pale,",
+            "As the iron cage flew into the skies with a hissing sound."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-051-p341-b011",
+          "type": "verse",
+          "text": "At this the Kullu Chief rushed inside (so astonished), As if a whole mountain had climbed up into the sky. Every (piece) of brick and mortar of that cellar was blown away, God alone knows where those bricks had landed. (17)",
+          "lines": [
+            "At this the Kullu Chief rushed inside (so astonished),",
+            "As if a whole mountain had climbed up into the sky.",
+            "Every (piece) of brick and mortar of that cellar was blown away,",
+            "God alone knows where those bricks had landed."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-051-p341-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-051-p341-b013",
+          "type": "verse",
+          "text": "(Banda Singh) prophesied that the Khalsa would arrive, And commit arson in the (whole) state of Kullu. Thereafter, the people of Kullu would live like subjects. Such was the curse meted out to them by Banda Singh. (18)",
+          "lines": [
+            "(Banda Singh) prophesied that the Khalsa would arrive,",
+            "And commit arson in the (whole) state of Kullu.",
+            "Thereafter, the people of Kullu would live like subjects.",
+            "Such was the curse meted out to them by Banda Singh."
+          ],
+          "number": "18"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 343,
+      "fileName": "EPUB/page_343.html",
+      "sourceHref": "EPUB/page_343.html",
+      "printPageNumber": 299,
+      "blocks": [
+        {
+          "id": "episode-051-p343-b001",
+          "type": "verse",
+          "text": "Where there started the boundary of the Mandi State, And started the sovereign rule of (hill chief) Sudh Sain, (Banda Singh) landed there comfortably along with his iron cage, Whose advent resolved all the problems of the Singhs. (19)",
+          "lines": [
+            "Where there started the boundary of the Mandi State,",
+            "And started the sovereign rule of (hill chief) Sudh Sain,",
+            "(Banda Singh) landed there comfortably along with his iron cage,",
+            "Whose advent resolved all the problems of the Singhs."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-051-p343-b002",
+          "type": "paragraph",
+          "text": "."
+        },
+        {
+          "id": "episode-051-p343-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-051-p343-b004",
+          "type": "verse",
+          "text": "Hearing this, Sudh Sain arrived (at the scene) instantly, And spotted out Banda Singh along with the (iron) cage. He ordered the locks of the cage to be broken, And welcomed Banda Singh) by showering rose petals on him. (20)",
+          "lines": [
+            "Hearing this,",
+            "Sudh Sain arrived (at the scene) instantly,",
+            "And spotted out Banda Singh along with the (iron) cage.",
+            "He ordered the locks of the cage to be broken,",
+            "And welcomed Banda Singh) by showering rose petals on him."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-051-p343-b005",
+          "type": "verse",
+          "text": "The Mandi chief felt extremely delighted in his heart, And the common masses declared Banda Singh to be a prophet. Banda Singh then put up his camp at that Mandi palace, And people started making offerings and seeking his blessings. (21)",
+          "lines": [
+            "The Mandi chief felt extremely delighted in his heart,",
+            "And the common masses declared Banda Singh to be a prophet.",
+            "Banda Singh then put up his camp at that Mandi palace,",
+            "And people started making offerings and seeking his blessings."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-051-p343-b006",
+          "type": "verse",
+          "text": "After this, Banda Singh came to be called as a Guru, And established his shrine at Gurukot in the midst of hills. While the worship of all the Sidhas4 came to an end, All the people started worshipping Banda Singh. (22)",
+          "lines": [
+            "After this,",
+            "Banda Singh came to be called as a Guru,",
+            "And established his shrine at Gurukot in the midst of hills.",
+            "While the worship of all the Sidhas4 came to an end,",
+            "All the people started worshipping Banda Singh."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-051-p343-b007",
+          "type": "verse",
+          "text": "Banda Singh could walk alone at any place (of his choice), And raise an armed force there if he so desired. He could take out and give a gold coin out of his pocket, Nobody knew from here it used to materialise. (23)",
+          "lines": [
+            "Banda Singh could walk alone at any place (of his choice),",
+            "And raise an armed force there if he so desired.",
+            "He could take out and give a gold coin out of his pocket,",
+            "Nobody knew from here it used to materialise."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-051-p343-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-051-p343-b009",
+          "type": "verse",
+          "text": "He would sit at any place or go into hiding at his own will, Or he would fly away to any region/country of his choice. He would appear at any place of his own liking, Despite the fact that the place remained barred and locked. (24)",
+          "lines": [
+            "He would sit at any place or go into hiding at his own will,",
+            "Or he would fly away to any region/country of his choice.",
+            "He would appear at any place of his own liking,",
+            "Despite the fact that the place remained barred and locked."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-051-p343-b010",
+          "type": "verse",
+          "text": "After a short trip to the lower regions in the foot hills, He went up the hills once again after sorting out all the issues. He was fascinated by the hilly environment of the mountains, For their being the living abode of Siddhas and saintly persons. (25)",
+          "lines": [
+            "After a short trip to the lower regions in the foot hills,",
+            "He went up the hills once again after sorting out all the issues.",
+            "He was fascinated by the hilly environment of the mountains,",
+            "For their being the living abode of Siddhas and saintly persons."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-051-p343-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-051-p343-b012",
+          "type": "verse",
+          "text": "Then Banda Singh again went up the mountains, As the northern part of these mountains fascinated him. He put up his camp in these very same mountains, Since his heart felt delighted while sitting there. (26)",
+          "lines": [
+            "Then Banda Singh again went up the mountains,",
+            "As the northern part of these mountains fascinated him.",
+            "He put up his camp in these very same mountains,",
+            "Since his heart felt delighted while sitting there."
+          ],
+          "number": "26"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-050",
+  "nextChapterId": "episode-052"
+}

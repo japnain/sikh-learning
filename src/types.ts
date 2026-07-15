@@ -239,8 +239,28 @@ export interface WordFamily {
 
 export interface LibraryTextBlock {
   id: string
-  type: 'line' | 'heading' | 'paragraph'
+  type: 'line' | 'heading' | 'invocation' | 'meter' | 'verse' | 'paragraph' | 'note'
   text: string
+  lines?: string[]
+  number?: string
+}
+
+export interface LibraryReaderLocator {
+  revision?: string
+  href: string
+  type: 'application/xhtml+xml' | 'text/html'
+  title?: string
+  locations: {
+    progression: number
+    totalProgression: number
+    position: number
+    blockId?: string
+  }
+  text?: {
+    before?: string
+    highlight?: string
+    after?: string
+  }
 }
 
 export type LibraryPageQuality = 'clean' | 'readable' | 'fragment' | 'unreadable'
@@ -291,10 +311,37 @@ export interface LibraryChapterIndexEntry {
   kind: 'front-matter' | 'episode' | 'back-matter'
   title: string
   volume: number
+  publicationId?: string
   startSourcePage: number
   endSourcePage: number
   pageCount: number
+  wordCount?: number
+  charCount?: number
+  startPosition?: number
   path: string
+}
+
+export interface LibraryContributor {
+  name: string
+  role: 'author' | 'translator' | 'editor' | 'publisher' | 'contributor'
+}
+
+export interface LibraryPublication {
+  id: string
+  title: string
+  shortTitle?: string
+  volume: number
+  episodeRange?: [number, number]
+  sourceFileName: string
+  epubPath?: string
+  checksumSha256?: string
+  isbn?: string
+  publishedYear?: number
+  sourcePageCount: number
+  readablePageCount?: number
+  firstChapterId?: string
+  mediaType?: 'application/epub+zip'
+  byteLength?: number
 }
 
 export interface LibraryWork {
@@ -304,11 +351,20 @@ export interface LibraryWork {
   description: string
   language: string
   source?: 'epub' | 'page-json'
+  revision?: string
+  contributors?: LibraryContributor[]
+  publications?: LibraryPublication[]
+  editionNote?: string
+  sourceQualityNote?: string
   totalPages: number
   totalChapters?: number
   totalSourcePages?: number
+  readablePages?: number
+  totalCharacters?: number
   pageIndexPath?: string
   provenancePath: string
+  validationPath?: string
+  searchIndexPath?: string
   pagePathTemplate?: string
   episodeIndexPath?: string
   chapterIndexPath?: string
@@ -357,6 +413,7 @@ export interface LibrarySearchChapterEntry {
   episodeNumber?: number
   kind: 'front-matter' | 'episode' | 'back-matter'
   volume: number
+  publicationId?: string
   title: string
   startSourcePage: number
   endSourcePage: number
@@ -410,11 +467,14 @@ export interface LibraryEpisodeIndexEntry {
   startPage: number
   endPage: number
   volume: number
+  chapterId?: string
 }
 
 export interface LibraryChapterPagePayload {
   sourcePageNumber: number
   fileName: string
+  sourceHref?: string
+  printPageNumber?: number
   blocks: LibraryTextBlock[]
 }
 
@@ -426,8 +486,12 @@ export interface LibraryChapterPayload {
   kind: 'front-matter' | 'episode' | 'back-matter'
   title: string
   volume: number
+  publicationId?: string
   startSourcePage: number
   endSourcePage: number
+  wordCount?: number
+  charCount?: number
+  startPosition?: number
   pages: LibraryChapterPagePayload[]
   previousChapterId?: string
   nextChapterId?: string

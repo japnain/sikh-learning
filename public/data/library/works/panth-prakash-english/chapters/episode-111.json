@@ -1,0 +1,563 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-111",
+  "chapterNumber": 111,
+  "episodeNumber": 111,
+  "kind": "episode",
+  "title": "Bhai Taru Singh",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 341,
+  "endSourcePage": 349,
+  "wordCount": 1440,
+  "charCount": 8227,
+  "startPosition": 135161,
+  "pages": [
+    {
+      "sourcePageNumber": 341,
+      "fileName": "EPUB/page_341.html",
+      "sourceHref": "EPUB/page_341.html",
+      "printPageNumber": 287,
+      "blocks": [
+        {
+          "id": "episode-111-p341-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p341-b003",
+          "type": "verse",
+          "text": "As the narrative, once again, returns to Bhai Taru Singh, Dear devout readers must listen to it with concentration. As Bhai Taru Singh wished to call on the Nawab, The court official arranged a meeting between the two. (1)",
+          "lines": [
+            "As the narrative, once again, returns to Bhai Taru Singh,",
+            "Dear devout readers must listen to it with concentration.",
+            "As Bhai Taru Singh wished to call on the Nawab,",
+            "The court official arranged a meeting between the two."
+          ],
+          "number": "1"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 343,
+      "fileName": "EPUB/page_343.html",
+      "sourceHref": "EPUB/page_343.html",
+      "printPageNumber": 289,
+      "blocks": [
+        {
+          "id": "episode-111-p343-b001",
+          "type": "verse",
+          "text": "Bhai Taru Singh entered the court with traditional Singh greetings, Shouting Akal! Akal! And \"Waheguru ji ki Fateh\" loudly. So incensed felt the Nawab hearing these Sikh greetings, As if somebody had rubbed salt after slicing his fingers. (2)",
+          "lines": [
+            "Bhai Taru Singh entered the court with traditional Singh greetings,",
+            "Shouting Akal!",
+            "Akal!",
+            "And \"Waheguru ji ki Fateh\" loudly.",
+            "So incensed felt the Nawab hearing these Sikh greetings,",
+            "As if somebody had rubbed salt after slicing his fingers."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-111-p343-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p343-b003",
+          "type": "verse",
+          "text": "Bhai Taru Singh, facing the Nawab in his royal court, Asked the latter to pay attention to his (Taru Singh's) words. On what pretext was the Nawab torturing Bhai Taru Singh, When the latter had done no harm to the Nawab. (3)",
+          "lines": [
+            "Bhai Taru Singh, facing the Nawab in his royal court,",
+            "Asked the latter to pay attention to his (Taru Singh's) words.",
+            "On what pretext was the Nawab torturing Bhai Taru Singh,",
+            "When the latter had done no harm to the Nawab."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-111-p343-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p343-b005",
+          "type": "verse",
+          "text": "Whatever state agricultural land did Bhai Taru Singh cultivate, He had been paying the land revenue for it to the state. Whatever additional business did he transact, He had been paying the prescribed tax on it as well. (4)",
+          "lines": [
+            "Whatever state agricultural land did Bhai Taru Singh cultivate,",
+            "He had been paying the land revenue for it to the state.",
+            "Whatever additional business did he transact,",
+            "He had been paying the prescribed tax on it as well."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-111-p343-b006",
+          "type": "verse",
+          "text": "Whatever legitimate income he earned after paying taxes, He had been sustaining his family on that income. Whatever little he saved out of his own meager nutritional needs, He had been sharing those provisions with others in need. (5)",
+          "lines": [
+            "Whatever legitimate income he earned after paying taxes,",
+            "He had been sustaining his family on that income.",
+            "Whatever little he saved out of his own meager nutritional needs,",
+            "He had been sharing those provisions with others in need."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-111-p343-b007",
+          "type": "verse",
+          "text": "What did the Nawab lose by the latter's austerity, That he (Nawab) was bent on persecuting the latter? Being incensed and outraged by Bhai Taru Singh's argument, The Nawab used unparliamentary words against the latter. (6)",
+          "lines": [
+            "What did the Nawab lose by the latter's austerity,",
+            "That he (Nawab) was bent on persecuting the latter?",
+            "Being incensed and outraged by Bhai Taru Singh's argument,",
+            "The Nawab used unparliamentary words against the latter."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-111-p343-b008",
+          "type": "verse",
+          "text": "The Nawab asked Bhai Taru Singh to get converted to Islam, Otherwise the former would not spare the latter's life. Bhai Taru Singh retorted that he, being a stranger to fear, Would never convert to Islam under any circumstances. (7)",
+          "lines": [
+            "The Nawab asked Bhai Taru Singh to get converted to Islam,",
+            "Otherwise the former would not spare the latter's life.",
+            "Bhai Taru Singh retorted that he, being a stranger to fear,",
+            "Would never convert to Islam under any circumstances."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-111-p343-b009",
+          "type": "verse",
+          "text": "Could conversion to Islam save him from death, If not, why should he disown his own professed faith? He must keep his faith rather than pandering to Nawab's offer, And must uphold his faith till his last breath. (8)",
+          "lines": [
+            "Could conversion to Islam save him from death,",
+            "If not, why should he disown his own professed faith?",
+            "He must keep his faith rather than pandering to Nawab's offer,",
+            "And must uphold his faith till his last breath."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-111-p343-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p343-b011",
+          "type": "verse",
+          "text": "Thereafter, the Nawab repeated his proposal once again, The latter must convert to Islam if he wished to live. The latter could also ask for any favours he wished, In terms of financial package or landed property. (9)",
+          "lines": [
+            "Thereafter, the Nawab repeated his proposal once again,",
+            "The latter must convert to Islam if he wished to live.",
+            "The latter could also ask for any favours he wished,",
+            "In terms of financial package or landed property."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-111-p343-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p343-b013",
+          "type": "verse",
+          "text": "He could also ask for a Mughal Pathan bride, As well as live in comfort in a palatial mansion. Upon this, Bhai Taru Singh made these remarks: The Nawab must grant what was dearest to the latter's heart. (10)",
+          "lines": [
+            "He could also ask for a Mughal Pathan bride,",
+            "As well as live in comfort in a palatial mansion.",
+            "Upon this,",
+            "Bhai Taru Singh made these remarks: The Nawab must grant what was dearest to the latter's heart."
+          ],
+          "number": "10"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 345,
+      "fileName": "EPUB/page_345.html",
+      "sourceHref": "EPUB/page_345.html",
+      "printPageNumber": 291,
+      "blocks": [
+        {
+          "id": "episode-111-p345-b001",
+          "type": "verse",
+          "text": "If it pleased the Nawab to be compassionate towards him, He must not ask Taru Singh to convert to Islam. The Nawab must suggest such a way out to Taru Singh, As would enable the latter to keep his faith till his last breath. (11)",
+          "lines": [
+            "If it pleased the Nawab to be compassionate towards him,",
+            "He must not ask Taru Singh to convert to Islam.",
+            "The Nawab must suggest such a way out to Taru Singh,",
+            "As would enable the latter to keep his faith till his last breath."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-111-p345-b002",
+          "type": "verse",
+          "text": "Feeling highly enraged at these words of Bhai Taru Singh, The Nawab started using abusive language against the latter. Ordering his minions to give severe shoe beatings to the latter, He ordered the barbers to shave off his sacred hair. (12)",
+          "lines": [
+            "Feeling highly enraged at these words of Bhai Taru Singh,",
+            "The Nawab started using abusive language against the latter.",
+            "Ordering his minions to give severe shoe beatings to the latter,",
+            "He ordered the barbers to shave off his sacred hair."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-111-p345-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p345-b004",
+          "type": "verse",
+          "text": "Thereupon, Bhai Taru Singh said (in a prophetic vein) to the Nawab, That this ordered shoe-beatings would recoil upon his own head. The Sikhs who were perfect in their faith in their Gurus, They would sacrifice their lives with their sacred hair intact. (13)",
+          "lines": [
+            "Thereupon,",
+            "Bhai Taru Singh said (in a prophetic vein) to the Nawab,",
+            "That this ordered shoe-beatings would recoil upon his own head.",
+            "The Sikhs who were perfect in their faith in their Gurus,",
+            "They would sacrifice their lives with their sacred hair intact."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-111-p345-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p345-b006",
+          "type": "verse",
+          "text": "As the Nawab ordered the barbers to shave off his head, Their shaving blades failed to shave the Singh's (sacred) hair. As the barbers tried again and again to do their job, Their hands became numb and bereft of energy. (14)",
+          "lines": [
+            "As the Nawab ordered the barbers to shave off his head,",
+            "Their shaving blades failed to shave the Singh's (sacred) hair.",
+            "As the barbers tried again and again to do their job,",
+            "Their hands became numb and bereft of energy."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-111-p345-b007",
+          "type": "verse",
+          "text": "The more the Nawab threatened the shaving barbers, The more they felt their hands trembling with fear. So great was the impact of the devout Sikh's spiritual power, That the barbers felt the loss of their eyesight. (15)",
+          "lines": [
+            "The more the Nawab threatened the shaving barbers,",
+            "The more they felt their hands trembling with fear.",
+            "So great was the impact of the devout Sikh's spiritual power,",
+            "That the barbers felt the loss of their eyesight."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-111-p345-b008",
+          "type": "verse",
+          "text": "The Nawab felt either Bhai Taru Singh had cast a magic spell, Or had he offered the barbers some gratification. Asking for the summoning of a couple of cobblers, He ordered them to scrape Taru Singh's scalp along with the hair. (16)",
+          "lines": [
+            "The Nawab felt either Bhai Taru Singh had cast a magic spell,",
+            "Or had he offered the barbers some gratification.",
+            "Asking for the summoning of a couple of cobblers,",
+            "He ordered them to scrape Taru Singh's scalp along with the hair."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-111-p345-b009",
+          "type": "verse",
+          "text": "Upon this, Bhai Taru Singh rejoiced at such an order, As his scalp would go off with his sacred hair intact. As he was going to keep both his word and faith, He felt the great Guru had stood by his devout Sikh. (17)",
+          "lines": [
+            "Upon this,",
+            "Bhai Taru Singh rejoiced at such an order,",
+            "As his scalp would go off with his sacred hair intact.",
+            "As he was going to keep both his word and faith,",
+            "He felt the great Guru had stood by his devout Sikh."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-111-p345-b010",
+          "type": "verse",
+          "text": "As Bhai Taru Singh burst out in joyous words Akal! Akal! The Nawab plugged his ears in disgust and despair. Thereafter, feeling enraged at Bhai Taru Singh's audacity, He ordered the cobblers to peel off the latter 's scalp. (18)",
+          "lines": [
+            "As Bhai Taru Singh burst out in joyous words Akal!",
+            "Akal!",
+            "The Nawab plugged his ears in disgust and despair.",
+            "Thereafter, feeling enraged at Bhai Taru Singh's audacity,",
+            "He ordered the cobblers to peel off the latter 's scalp."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-111-p345-b011",
+          "type": "verse",
+          "text": "Ordering to remove the latter's scalp along with the hair, The Nawab ordered the cobblers to ply their tools. Following whatever they were ordered to carry on, The cobblers placed their sharpened scrapers on Taru Singh's head. (19)",
+          "lines": [
+            "Ordering to remove the latter's scalp along with the hair,",
+            "The Nawab ordered the cobblers to ply their tools.",
+            "Following whatever they were ordered to carry on,",
+            "The cobblers placed their sharpened scrapers on Taru Singh's head."
+          ],
+          "number": "19"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 347,
+      "fileName": "EPUB/page_347.html",
+      "sourceHref": "EPUB/page_347.html",
+      "printPageNumber": 293,
+      "blocks": [
+        {
+          "id": "episode-111-p347-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p347-b002",
+          "type": "verse",
+          "text": "Placing a sharpened scraper on Taru Singh's head, They pressed its sharp edge from the forehead side. Then scraping from the forehead upto the ears, They scraped Taru Singh's scalp from the rear end. (20)",
+          "lines": [
+            "Placing a sharpened scraper on Taru Singh's head,",
+            "They pressed its sharp edge from the forehead side.",
+            "Then scraping from the forehead upto the ears,",
+            "They scraped Taru Singh's scalp from the rear end."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-111-p347-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p347-b004",
+          "type": "verse",
+          "text": "Not a single cry did escape from brave Taru Singh's lips, Praise be to the noble deed done by a great Sikh. Dumfounded and breathless felt the onlookers, Pitifully cried those who heard about this evil deed. (21)",
+          "lines": [
+            "Not a single cry did escape from brave Taru Singh's lips,",
+            "Praise be to the noble deed done by a great Sikh.",
+            "Dumfounded and breathless felt the onlookers,",
+            "Pitifully cried those who heard about this evil deed."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-111-p347-b005",
+          "type": "verse",
+          "text": "The wiser among the populace cried in a prophetic vein, The (tyrannical) rule of the Mughals would not last long. It was in the year eighteen hundred and two in Bikrami Samvat1 , That Bhai Taru Singh had made this supreme sacrifice. (22)",
+          "lines": [
+            "The wiser among the populace cried in a prophetic vein,",
+            "The (tyrannical) rule of the Mughals would not last long.",
+            "It was in the year eighteen hundred and two in Bikrami Samvat1 ,",
+            "That Bhai Taru Singh had made this supreme sacrifice."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-111-p347-b006",
+          "type": "verse",
+          "text": "It was in the year Seventeen hundred and ninety-one in Bikrami Samvat, That Hakikat Rai2 had met a similar fate. The latter's sacrifice having made no impact, The Nawab had rather become more vain and arrogant. (23)",
+          "lines": [
+            "It was in the year Seventeen hundred and ninety-one in Bikrami Samvat,",
+            "That Hakikat Rai2 had met a similar fate.",
+            "The latter's sacrifice having made no impact,",
+            "The Nawab had rather become more vain and arrogant."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-111-p347-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p347-b008",
+          "type": "verse",
+          "text": "With the treatment that the (bigoted) Nawab meted out to Taru Singh, His fame spread far and wide (in the Islamic world). While the Singhs mourned (the torture of Bhai Taru Singh), The Muslims rejoiced at the prowess of their Nawab. (24)",
+          "lines": [
+            "With the treatment that the (bigoted) Nawab meted out to Taru Singh,",
+            "His fame spread far and wide (in the Islamic world).",
+            "While the Singhs mourned (the torture of Bhai Taru Singh),",
+            "The Muslims rejoiced at the prowess of their Nawab."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-111-p347-b009",
+          "type": "verse",
+          "text": "There existed a place where the Sikhs congregated, Where Bhai Taru Singh disfigured body was placed. The Nawab asked the devout followers of Taru Singh, That his body be consigned to the flames after his death. (25)",
+          "lines": [
+            "There existed a place where the Sikhs congregated,",
+            "Where Bhai Taru Singh disfigured body was placed.",
+            "The Nawab asked the devout followers of Taru Singh,",
+            "That his body be consigned to the flames after his death."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-111-p347-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p347-b011",
+          "type": "verse",
+          "text": "Allowing not a single cry to escape from his lips, Bhai Taru Singh kept on meditating on God's Name. So thoroughly was his head splattered with blood, As if he had immersed himself in the sacred Ganges. (26)",
+          "lines": [
+            "Allowing not a single cry to escape from his lips,",
+            "Bhai Taru Singh kept on meditating on God's Name.",
+            "So thoroughly was his head splattered with blood,",
+            "As if he had immersed himself in the sacred Ganges."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-111-p347-b012",
+          "type": "verse",
+          "text": "So had Mansoor3 got both his hands chopped off, Letting his arms awash with his own sacred blood. As Mansoor's prayers and sacrifice had reached the Divine Court, Highly exasperated had felt the executing Muslim clerics. (27)",
+          "lines": [
+            "So had Mansoor3 got both his hands chopped off,",
+            "Letting his arms awash with his own sacred blood.",
+            "As Mansoor's prayers and sacrifice had reached the Divine Court,",
+            "Highly exasperated had felt the executing Muslim clerics."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-111-p347-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p347-b014",
+          "type": "verse",
+          "text": "The same day (after getting Bhai Taru Singh's scalp scraped), The Nawab of Lahore put forth a poser to Bhai Taru Singh. How could Taru Singh justify his much touted claim, That he would not part with his hair without his head? (28)",
+          "lines": [
+            "The same day (after getting Bhai Taru Singh's scalp scraped),",
+            "The Nawab of Lahore put forth a poser to Bhai Taru Singh.",
+            "How could Taru Singh justify his much touted claim,",
+            "That he would not part with his hair without his head?"
+          ],
+          "number": "28"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 349,
+      "fileName": "EPUB/page_349.html",
+      "sourceHref": "EPUB/page_349.html",
+      "printPageNumber": 295,
+      "blocks": [
+        {
+          "id": "episode-111-p349-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p349-b002",
+          "type": "verse",
+          "text": "Rejecting the Nawab's claim of removing his (Taru Singh's) hair as false, Bhai Taru Singh explained that his hair had gone along with his scalp. Since his body alone had been dispossessed of his hair, Nawab's claim on both these counts had been proved false. (29)",
+          "lines": [
+            "Rejecting the Nawab's claim of removing his (Taru Singh's) hair as false,",
+            "Bhai Taru Singh explained that his hair had gone along with his scalp.",
+            "Since his body alone had been dispossessed of his hair,",
+            "Nawab's claim on both these counts had been proved false."
+          ],
+          "number": "29"
+        },
+        {
+          "id": "episode-111-p349-b003",
+          "type": "verse",
+          "text": "Explaining his remarks further to the (arrogant) Nawab, He told the Nawab that the latter had not understood his words. Since his (Taru Singh's)(sacred) hair remained intact on his scalp, Nawab's claim about both Bhai Tari Singh's hair and skull were false. (30)",
+          "lines": [
+            "Explaining his remarks further to the (arrogant) Nawab,",
+            "He told the Nawab that the latter had not understood his words.",
+            "Since his (Taru Singh's)(sacred) hair remained intact on his scalp,",
+            "Nawab's claim about both Bhai Tari Singh's hair and skull were false."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-111-p349-b004",
+          "type": "verse",
+          "text": "Bhai Taru Singh had deliberately not shed his mortal frame, So that he could thrash the Nawab with shoe -beatings. Since nobody had ever taught the arrogant Nawab a lesson, The Nawab had gone scot free with Hakikat Rai's murder. (31)",
+          "lines": [
+            "Bhai Taru Singh had deliberately not shed his mortal frame,",
+            "So that he could thrash the Nawab with shoe -beatings.",
+            "Since nobody had ever taught the arrogant Nawab a lesson,",
+            "The Nawab had gone scot free with Hakikat Rai's murder."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-111-p349-b005",
+          "type": "verse",
+          "text": "Now Bhai Taru Singh would thrash the Nawab with shoe beatings, And chase him to the seat of his Islamic spiritual prophet. Bhai Taru Singh would not spare the Nawab in any case, Otherwise the Nawab would claim himself as the mightiest. (32)",
+          "lines": [
+            "Now Bhai Taru Singh would thrash the Nawab with shoe beatings,",
+            "And chase him to the seat of his Islamic spiritual prophet.",
+            "Bhai Taru Singh would not spare the Nawab in any case,",
+            "Otherwise the Nawab would claim himself as the mightiest."
+          ],
+          "number": "32"
+        },
+        {
+          "id": "episode-111-p349-b006",
+          "type": "verse",
+          "text": "He would let go off the Nawab only after presenting him before the prophet, Thereafter, he would present the Nawab in the Divine Court. If, in the Divine Court, the prophet still vouched for the (tyrant) Nawab, The prophet, himself would get chastised along with the Nawab. (33)",
+          "lines": [
+            "He would let go off the Nawab only after presenting him before the prophet,",
+            "Thereafter, he would present the Nawab in the Divine Court.",
+            "If, in the Divine Court, the prophet still vouched for the (tyrant) Nawab,",
+            "The prophet, himself would get chastised along with the Nawab."
+          ],
+          "number": "33"
+        },
+        {
+          "id": "episode-111-p349-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-111-p349-b008",
+          "type": "verse",
+          "text": "The Nawab had, somehow, been acquitted of Hakikat Rai's murder, But this time, he would not be spared of Divine retribution, His spiritual prophet too would be damned into hell, If he ever made an attempt to vouch for the wicked Nawab. (34)",
+          "lines": [
+            "The Nawab had, somehow, been acquitted of Hakikat Rai's murder,",
+            "But this time, he would not be spared of Divine retribution,",
+            "His spiritual prophet too would be damned into hell,",
+            "If he ever made an attempt to vouch for the wicked Nawab."
+          ],
+          "number": "34"
+        },
+        {
+          "id": "episode-111-p349-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-111-p349-b010",
+          "type": "verse",
+          "text": "Warning the Nawab to get ready to meet his nemesis atlast, He would kill him by getting his urinary and intestinal tract blocked. Warning him to be ready for being damned forever in hell, He would chase the Nawab with shoe beatings to the doors of hell. (35)",
+          "lines": [
+            "Warning the Nawab to get ready to meet his nemesis atlast,",
+            "He would kill him by getting his urinary and intestinal tract blocked.",
+            "Warning him to be ready for being damned forever in hell,",
+            "He would chase the Nawab with shoe beatings to the doors of hell."
+          ],
+          "number": "35"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-110",
+  "nextChapterId": "episode-112"
+}

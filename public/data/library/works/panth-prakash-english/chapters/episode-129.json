@@ -1,0 +1,104 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-129",
+  "chapterNumber": 129,
+  "episodeNumber": 129,
+  "kind": "episode",
+  "title": "Maneuvers of the Gilja Pathans and the Singhs",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 507,
+  "endSourcePage": 509,
+  "wordCount": 163,
+  "charCount": 981,
+  "startPosition": 164254,
+  "pages": [
+    {
+      "sourcePageNumber": 507,
+      "fileName": "EPUB/page_507.html",
+      "sourceHref": "EPUB/page_507.html",
+      "printPageNumber": 453,
+      "blocks": [
+        {
+          "id": "episode-129-p507-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-129-p507-b003",
+          "type": "verse",
+          "text": "(After defeating Marathas and Suraj Mai) Abdali stayed at Lahore. Exercising his control over the five (nearby) provinces. These were the provinces of Kashmir, Multan, Bhakhar and Attock, Being ruled by Abdali from his safe sanctuary at Lahore. (1)",
+          "lines": [
+            "(After defeating Marathas and Suraj Mai) Abdali stayed at Lahore.",
+            "Exercising his control over the five (nearby) provinces.",
+            "These were the provinces of Kashmir,",
+            "Multan,",
+            "Bhakhar and Attock,",
+            "Being ruled by Abdali from his safe sanctuary at Lahore."
+          ],
+          "number": "1"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 509,
+      "fileName": "EPUB/page_509.html",
+      "sourceHref": "EPUB/page_509.html",
+      "printPageNumber": 455,
+      "blocks": [
+        {
+          "id": "episode-129-p509-b001",
+          "type": "verse",
+          "text": "Thereafter, he nursed a desire to crash the Khalsa Panth Singhs, As his commander Jahan Khan1 kept chasing the Khalsa Singhs. He would kill an odd Singh who fell into his hands, Though he would desist attacking the Singhs when in strength. (2)",
+          "lines": [
+            "Thereafter, he nursed a desire to crash the Khalsa Panth Singhs,",
+            "As his commander Jahan Khan1 kept chasing the Khalsa Singhs.",
+            "He would kill an odd Singh who fell into his hands,",
+            "Though he would desist attacking the Singhs when in strength."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-129-p509-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-129-p509-b003",
+          "type": "verse",
+          "text": "The Singhs, too, would loot and plunder Jahan Khan's force, Sometime in the vanguard, sometime from the rearguard. As Jahan Khan would attack the Singhs with a large force, The Singhs would kill them through a strategy of single encounters. (3)",
+          "lines": [
+            "The Singhs, too, would loot and plunder Jahan Khan's force,",
+            "Sometime in the vanguard, sometime from the rearguard.",
+            "As Jahan Khan would attack the Singhs with a large force,",
+            "The Singhs would kill them through a strategy of single encounters."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-129-p509-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-129-p509-b005",
+          "type": "verse",
+          "text": "As some Singhs took shelter in the countryside, Some others found a safe sanctuary in the forest wilds. Many other Singhs sneaked into the Malwa region for safety. Where they organized themselves into a united force. (4)",
+          "lines": [
+            "As some Singhs took shelter in the countryside,",
+            "Some others found a safe sanctuary in the forest wilds.",
+            "Many other Singhs sneaked into the Malwa region for safety.",
+            "Where they organized themselves into a united force."
+          ],
+          "number": "4"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-128",
+  "nextChapterId": "episode-130"
+}

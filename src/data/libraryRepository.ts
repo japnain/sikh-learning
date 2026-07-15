@@ -35,7 +35,7 @@ function createIndexMap<T extends { id: string }>(items: T[]) {
 let jsonLoader: LibraryJsonLoader = defaultFetchJson
 let manifestPromise: Promise<LibraryManifest> | null = null
 let workCatalogPromise: Promise<LibraryWorkCatalog> | null = null
-let searchIndexPromise: Promise<LibrarySearchIndex> | null = null
+const searchIndexPromises = new Map<string, Promise<LibrarySearchIndex>>()
 const pageIndexPromises = new Map<string, Promise<LibraryPageIndexEntry[]>>()
 const episodeIndexPromises = new Map<string, Promise<LibraryEpisodeIndexEntry[]>>()
 const pagePromises = new Map<string, Promise<LibraryPagePayload | null>>()
@@ -50,7 +50,7 @@ export function configureLibraryRepositoryLoader(loader: LibraryJsonLoader | nul
 export function resetLibraryRepositoryCache() {
   manifestPromise = null
   workCatalogPromise = null
-  searchIndexPromise = null
+  searchIndexPromises.clear()
   pageIndexPromises.clear()
   episodeIndexPromises.clear()
   pagePromises.clear()
@@ -80,13 +80,21 @@ export async function loadLibraryWorkCatalog() {
   return workCatalogPromise
 }
 
-export async function loadLibrarySearchIndex() {
-  if (!searchIndexPromise) {
-    searchIndexPromise = loadLibraryManifest()
-      .then(manifest => jsonLoader<LibrarySearchIndex>(manifest.searchIndexPath))
+export async function loadLibrarySearchIndex(workId?: string) {
+  const key = workId ?? '__catalog__'
+  if (!searchIndexPromises.has(key)) {
+    const promise = workId
+      ? loadLibraryWorkCatalog().then(catalog => {
+          const work = catalog.workById[workId]
+          if (!work) throw new Error(`Unknown library work: ${workId}`)
+          return jsonLoader<LibrarySearchIndex>(work.searchIndexPath ?? `/data/library/works/${workId}/search-index.json`)
+        })
+      : loadLibraryManifest().then(manifest => jsonLoader<LibrarySearchIndex>(manifest.searchIndexPath))
+
+    searchIndexPromises.set(key, promise)
   }
 
-  return searchIndexPromise
+  return searchIndexPromises.get(key)!
 }
 
 export async function loadLibraryPageIndex(workId: string) {
@@ -150,11 +158,27 @@ export async function loadLibraryChapterIndex(workId: string) {
 export async function loadLibraryChapter(workId: string, chapterId: string) {
   const key = `${workId}:${chapterId}`
   if (!chapterPromises.has(key)) {
-    const promise = loadLibraryWorkCatalog()
-      .then(async catalog => {
+    const promise = Promise.all([
+      loadLibraryWorkCatalog(),
+      loadLibraryChapterIndex(workId),
+    ])
+      .then(async ([catalog, chapters]) => {
         const work = catalog.workById[workId]
         if (!work?.chapterPathTemplate) return null
-        const chapterPath = work.chapterPathTemplate.replace(':chapterId', chapterId)
+
+        const exactChapter = chapters.find(chapter => chapter.id === chapterId)
+        const legacyEpisodeNumber = chapterId.match(/^episode-(\d{1,3})(?:-|$)/)?.[1]
+        const legacyChapter = legacyEpisodeNumber
+          ? chapters.find(chapter => chapter.episodeNumber === Number(legacyEpisodeNumber))
+          : null
+        const retiredFrontMatterVolume = chapterId.match(/^vol-(\d+)-front-matter$/)?.[1]
+        const firstPublicationChapter = retiredFrontMatterVolume
+          ? chapters.find(chapter => chapter.volume === Number(retiredFrontMatterVolume) && chapter.kind === 'episode')
+          : null
+        const resolvedChapter = exactChapter ?? legacyChapter ?? firstPublicationChapter
+
+        if (!resolvedChapter) return null
+        const chapterPath = work.chapterPathTemplate.replace(':chapterId', resolvedChapter.id)
         return jsonLoader<LibraryChapterPayload>(chapterPath)
       })
     chapterPromises.set(key, promise)

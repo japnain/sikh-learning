@@ -2,13 +2,77 @@
   "id": "panth-prakash-english",
   "title": "Sri Gur Panth Prakash",
   "shortTitle": "Panth Prakash",
-  "description": "English translation of Sri Gur Panth Prakash by Rattan Singh Bhangoo, converted from the supplied EPUB volumes for a continuous chapter reader.",
+  "description": "The English translation of Rattan Singh Bhangoo’s Sri Gur Panth Prakash, presented as one continuous 169-episode work across two source volumes.",
   "language": "en",
   "source": "epub",
+  "revision": "panth-prakash-english-v6-f9f801cc-243827eb",
+  "contributors": [
+    {
+      "name": "Rattan Singh Bhangoo",
+      "role": "author"
+    },
+    {
+      "name": "Kulwant Singh",
+      "role": "translator"
+    },
+    {
+      "name": "Institute of Sikh Studies",
+      "role": "publisher"
+    }
+  ],
+  "publications": [
+    {
+      "id": "volume-1",
+      "title": "Sri Gur Panth Prakash — Volume I",
+      "shortTitle": "Volume I",
+      "volume": 1,
+      "episodeRange": [
+        1,
+        81
+      ],
+      "sourceFileName": "vol1.epub",
+      "epubPath": "/data/library/works/panth-prakash-english/assets/volume-1.epub",
+      "checksumSha256": "f9f801cc84551a8e895df8f9b812c634f5b9ecaf630e10f58ad5a99e90771768",
+      "isbn": "81-85815-28-3",
+      "publishedYear": 2006,
+      "sourcePageCount": 573,
+      "readablePageCount": 245,
+      "firstChapterId": "episode-001",
+      "mediaType": "application/epub+zip",
+      "byteLength": 808551
+    },
+    {
+      "id": "volume-2",
+      "title": "Sri Gur Panth Prakash — Volume II",
+      "shortTitle": "Volume II",
+      "volume": 2,
+      "episodeRange": [
+        82,
+        169
+      ],
+      "sourceFileName": "vol2.epub",
+      "epubPath": "/data/library/works/panth-prakash-english/assets/volume-2.epub",
+      "checksumSha256": "243827ebbb3a4152b1252834b5d9a1620bdf52478ce3021f3d1cdbd35d73d5bf",
+      "isbn": "81-85815-31-3",
+      "publishedYear": 2010,
+      "sourcePageCount": 840,
+      "readablePageCount": 392,
+      "firstChapterId": "episode-082",
+      "mediaType": "application/epub+zip",
+      "byteLength": 1172546
+    }
+  ],
+  "editionNote": "Reader edition generated from the English-facing pages in the supplied bilingual EPUB volumes. Episode boundaries come from the numbered headings in the body text.",
+  "sourceQualityNote": "The source EPUBs were generated with automated character recognition and contain OCR errors. This reader preserves the source wording, removes running headers, and excludes the corrupted source-language/transliteration pages from the default English reading sequence.",
   "totalPages": 1413,
   "totalSourcePages": 1413,
-  "totalChapters": 171,
+  "readablePages": 637,
+  "totalCharacters": 1287254,
+  "totalChapters": 169,
   "provenancePath": "/data/library/works/panth-prakash-english/provenance.json",
+  "searchIndexPath": "/data/library/works/panth-prakash-english/search-index.json",
+  "episodeIndexPath": "/data/library/works/panth-prakash-english/episodes.json",
   "chapterIndexPath": "/data/library/works/panth-prakash-english/chapters.json",
-  "chapterPathTemplate": "/data/library/works/panth-prakash-english/chapters/:chapterId.json"
+  "chapterPathTemplate": "/data/library/works/panth-prakash-english/chapters/:chapterId.json",
+  "validationPath": "/data/library/works/panth-prakash-english/validation.json"
 }

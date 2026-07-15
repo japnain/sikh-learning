@@ -1,0 +1,540 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-087",
+  "chapterNumber": 87,
+  "episodeNumber": 87,
+  "kind": "episode",
+  "title": "Randhawa (Singhs) of Chamunday and Kairon Nanglian",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 97,
+  "endSourcePage": 105,
+  "wordCount": 1246,
+  "charCount": 7524,
+  "startPosition": 93853,
+  "pages": [
+    {
+      "sourcePageNumber": 97,
+      "fileName": "EPUB/page_97.html",
+      "sourceHref": "EPUB/page_97.html",
+      "printPageNumber": 43,
+      "blocks": [
+        {
+          "id": "episode-087-p97-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p97-b003",
+          "type": "verse",
+          "text": "(Dear readers) listen further to the episode of those Singhs, Who sacrificed and held the Mughals guilty of their execution. Reposing their faith in the (prophetic) words of the Guru, They sacrificed their lives in the true spirit of their faith. (1)",
+          "lines": [
+            "(Dear readers) listen further to the episode of those Singhs,",
+            "Who sacrificed and held the Mughals guilty of their execution.",
+            "Reposing their faith in the (prophetic) words of the Guru,",
+            "They sacrificed their lives in the true spirit of their faith."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-087-p97-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p97-b005",
+          "type": "verse",
+          "text": "After narrating their names, domicile, castes and sub-castes, I shall narrate their (deep) association with their faith. I shall narrate their deeds with as much faith as, I had heard about them from my veteran ancestors. (2)",
+          "lines": [
+            "After narrating their names, domicile, castes and sub-castes,",
+            "I shall narrate their (deep) association with their faith.",
+            "I shall narrate their deeds with as much faith as,",
+            "I had heard about them from my veteran ancestors."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-087-p97-b006",
+          "type": "paragraph",
+          "text": "Among the cluster of twenty two villages of Randhawas near Chamunda, There was a village Kairon Nangal in the midst of this cluster."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 99,
+      "fileName": "EPUB/page_99.html",
+      "sourceHref": "EPUB/page_99.html",
+      "printPageNumber": 45,
+      "blocks": [
+        {
+          "id": "episode-087-p99-b001",
+          "type": "verse",
+          "text": "A few among these Randhawas joined the Khalsa Panth, After initiating themselves and ordaining the Khalsa armour. (3)",
+          "lines": [
+            "A few among these Randhawas joined the Khalsa Panth,",
+            "After initiating themselves and ordaining the Khalsa armour."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-087-p99-b002",
+          "type": "verse",
+          "text": "As was ordained by Satguru (Guru Gobind Singh), They resolved to follow the Guru's ordained path. Joining the Khalsa Panth, they resorted to the path of fighting, And started waylaying (the Mughals) on the Lahore-Delhi highway. (4)",
+          "lines": [
+            "As was ordained by Satguru (Guru Gobind Singh),",
+            "They resolved to follow the Guru's ordained path.",
+            "Joining the Khalsa Panth, they resorted to the path of fighting,",
+            "And started waylaying (the Mughals) on the Lahore-Delhi highway."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-087-p99-b003",
+          "type": "verse",
+          "text": "Adopting the same tactics as followed by the Khalsa Singhs, They also raised the pitch of their fighting (against the Mughals). Hearing the news of their daily skirmishes and fights, The Mughals launched an attack to eliminate them. (5)",
+          "lines": [
+            "Adopting the same tactics as followed by the Khalsa Singhs,",
+            "They also raised the pitch of their fighting (against the Mughals).",
+            "Hearing the news of their daily skirmishes and fights,",
+            "The Mughals launched an attack to eliminate them."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-087-p99-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p99-b005",
+          "type": "verse",
+          "text": "These Singhs did not have any fortified fortress, Where they could find shelter to protect themselves. So they would escape and hide themselves in the wilds, And in the swamps and ravines in their surroundings. (6)",
+          "lines": [
+            "These Singhs did not have any fortified fortress,",
+            "Where they could find shelter to protect themselves.",
+            "So they would escape and hide themselves in the wilds,",
+            "And in the swamps and ravines in their surroundings."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-087-p99-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p99-b007",
+          "type": "verse",
+          "text": "Whenever they heard about the impending invasion of the Mughals, They would desert their homes and hide in the wilds. Their families which were left behind in their village, Would somehow survive by mixing with the other people. (7)",
+          "lines": [
+            "Whenever they heard about the impending invasion of the Mughals,",
+            "They would desert their homes and hide in the wilds.",
+            "Their families which were left behind in their village,",
+            "Would somehow survive by mixing with the other people."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-087-p99-b008",
+          "type": "verse",
+          "text": "The Singhs would not stay at their homes during day time, But they would return home with the fall of night. So during the first Mughal raid the Singhs survived, And the Mughal force had to return empty-handed. (8)",
+          "lines": [
+            "The Singhs would not stay at their homes during day time,",
+            "But they would return home with the fall of night.",
+            "So during the first Mughal raid the Singhs survived,",
+            "And the Mughal force had to return empty-handed."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-087-p99-b009",
+          "type": "verse",
+          "text": "The raiding Mughal force felt extremely frustrated, As they had to return empty handed from their expedition. Feeling crestfallen like a hunting tiger missing his prey, They stepped up their efforts to eliminate the Singhs. (9)",
+          "lines": [
+            "The raiding Mughal force felt extremely frustrated,",
+            "As they had to return empty handed from their expedition.",
+            "Feeling crestfallen like a hunting tiger missing his prey,",
+            "They stepped up their efforts to eliminate the Singhs."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-087-p99-b010",
+          "type": "verse",
+          "text": "As the Mughal troops were on the prowl to kill the Singhs, The Singhs, somehow, tried to mark their time. The Singhs fantasized that a time would come, When the Mughals too would have to run for their lives. (10)",
+          "lines": [
+            "As the Mughal troops were on the prowl to kill the Singhs,",
+            "The Singhs, somehow, tried to mark their time.",
+            "The Singhs fantasized that a time would come,",
+            "When the Mughals too would have to run for their lives."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-087-p99-b011",
+          "type": "verse",
+          "text": "They (Singhs) too would have sovereignty over their land, And would collect revenue from their own territory. Since the Guru's words about (Khalsa's sovereignty) would never go in vain, They were facing hardships in anticipation of that hour. (11)",
+          "lines": [
+            "They (Singhs) too would have sovereignty over their land,",
+            "And would collect revenue from their own territory.",
+            "Since the Guru's words about (Khalsa's sovereignty) would never go in vain,",
+            "They were facing hardships in anticipation of that hour."
+          ],
+          "number": "11"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 101,
+      "fileName": "EPUB/page_101.html",
+      "sourceHref": "EPUB/page_101.html",
+      "printPageNumber": 47,
+      "blocks": [
+        {
+          "id": "episode-087-p101-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p101-b002",
+          "type": "verse",
+          "text": "The Singhs, having relatives and friends throughout the country, They stayed with them (away from their own homes). Thus, they passed their time somehow and kept surviving, By taking refuge yet keeping their dress code and identity intact. (12)",
+          "lines": [
+            "The Singhs, having relatives and friends throughout the country,",
+            "They stayed with them (away from their own homes).",
+            "Thus, they passed their time somehow and kept surviving,",
+            "By taking refuge yet keeping their dress code and identity intact."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-087-p101-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p101-b004",
+          "type": "verse",
+          "text": "Now, dear readers, listen to the episode of those Singhs, Whom the enemies of (Sikh Panth) got massacred. There was a village Shahzada3 of Sultani4 residents, Who, though claiming to be Hindus, behaved like Muslims. (13)",
+          "lines": [
+            "Now, dear readers, listen to the episode of those Singhs,",
+            "Whom the enemies of (Sikh Panth) got massacred.",
+            "There was a village Shahzada3 of Sultani4 residents,",
+            "Who, though claiming to be Hindus, behaved like Muslims."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-087-p101-b005",
+          "type": "verse",
+          "text": "These Sultanis contrived with the Muslims Kalals5 , Who happened to be in service of the Mughals. Both of them conspired to agree on a resolution, That they should get the Randhawa Singhs massacred. (14)",
+          "lines": [
+            "These Sultanis contrived with the Muslims Kalals5 ,",
+            "Who happened to be in service of the Mughals.",
+            "Both of them conspired to agree on a resolution,",
+            "That they should get the Randhawa Singhs massacred."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-087-p101-b006",
+          "type": "verse",
+          "text": "Since these Randhawa Singhs have fallen into their trap, They should first get the Singhs' land transferred to their names. (After getting this landed property entitlement, transferred)*, They should get the Singhs' progeny eliminated even to the extent of foeticide. (15)",
+          "lines": [
+            "Since these Randhawa Singhs have fallen into their trap,",
+            "They should first get the Singhs' land transferred to their names.",
+            "(After getting this landed property entitlement, transferred)*,",
+            "They should get the Singhs' progeny eliminated even to the extent of foeticide."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-087-p101-b007",
+          "type": "verse",
+          "text": "In this way, they would earn the pleasure of the Mughals, And they would receive robes of honour from the Mughals. Thus, contemplating the commission of both these crimes secretly, They unfolded their (evil) plan before the Mughals. (16)",
+          "lines": [
+            "In this way, they would earn the pleasure of the Mughals,",
+            "And they would receive robes of honour from the Mughals.",
+            "Thus, contemplating the commission of both these crimes secretly,",
+            "They unfolded their (evil) plan before the Mughals."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-087-p101-b008",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p101-b009",
+          "type": "verse",
+          "text": "So whatever proposals they made to the Mughals, The latter accepted their proposal ad verbatim. It not only included great honours and foeticide of Singh females, But transfer of ownership of (Singh) lands to their names as well. (17)",
+          "lines": [
+            "So whatever proposals they made to the Mughals,",
+            "The latter accepted their proposal ad verbatim.",
+            "It not only included great honours and foeticide of Singh females,",
+            "But transfer of ownership of (Singh) lands to their names as well."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-087-p101-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p101-b011",
+          "type": "verse",
+          "text": "The Mughals were already looking for such an opportunity, Whereby they could carryout a massacre of the Singhs. So as this Sultani-Kalal duo kept on spotting the Singhs, They wished to seek more concessions from the Mughals. (18)",
+          "lines": [
+            "The Mughals were already looking for such an opportunity,",
+            "Whereby they could carryout a massacre of the Singhs.",
+            "So as this Sultani-Kalal duo kept on spotting the Singhs,",
+            "They wished to seek more concessions from the Mughals."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-087-p101-b012",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p101-b013",
+          "type": "verse",
+          "text": "The Singhs did not receive any information, That their own neighbours were informing against them. So they kept on hiding in the wilds during the day, And returning to their homes at night. (19)",
+          "lines": [
+            "The Singhs did not receive any information,",
+            "That their own neighbours were informing against them.",
+            "So they kept on hiding in the wilds during the day,",
+            "And returning to their homes at night."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-087-p101-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p101-b015",
+          "type": "verse",
+          "text": "Whichever night or day was fixed for the Singhs' assembly, The Singhs would assemble at a place on the fixed night. A wicked informer sent an information against the Singhs' assembly, Who happened to be a Sultani from their own village. (20)",
+          "lines": [
+            "Whichever night or day was fixed for the Singhs' assembly,",
+            "The Singhs would assemble at a place on the fixed night.",
+            "A wicked informer sent an information against the Singhs' assembly,",
+            "Who happened to be a Sultani from their own village."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-087-p101-b016",
+          "type": "paragraph",
+          "text": "* This Couplet is incomplete in handwritten Manuscripts."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 103,
+      "fileName": "EPUB/page_103.html",
+      "sourceHref": "EPUB/page_103.html",
+      "printPageNumber": 49,
+      "blocks": [
+        {
+          "id": "episode-087-p103-b001",
+          "type": "verse",
+          "text": "As he had been planted as an informer by the Mughals, He reported about the Singhs' assembly to the neighbouring Jats. These (non-Sikhs) peasants further informed the Mughals, With the motive of getting the Singhs eliminated. (21)",
+          "lines": [
+            "As he had been planted as an informer by the Mughals,",
+            "He reported about the Singhs' assembly to the neighbouring Jats.",
+            "These (non-Sikhs) peasants further informed the Mughals,",
+            "With the motive of getting the Singhs eliminated."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-087-p103-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p103-b003",
+          "type": "verse",
+          "text": "Although these Jat peasants claimed themselves to be Hindus, But their deed were worse than those of the Muslims. Being Hindus, they became instrumental in the capture of Hindus, And getting their own brethren/Hindus/Sikhs slaughtered. (22)",
+          "lines": [
+            "Although these Jat peasants claimed themselves to be Hindus,",
+            "But their deed were worse than those of the Muslims.",
+            "Being Hindus, they became instrumental in the capture of Hindus,",
+            "And getting their own brethren/Hindus/Sikhs slaughtered."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-087-p103-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p103-b005",
+          "type": "verse",
+          "text": "With death looming large over their heads, Where could the Singhs seek shelter on such a night? The wicked informer having reported the Singhs's assembly, The Mughal troops laid a siege to the village. (23)",
+          "lines": [
+            "With death looming large over their heads,",
+            "Where could the Singhs seek shelter on such a night?",
+            "The wicked informer having reported the Singhs's assembly,",
+            "The Mughal troops laid a siege to the village."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-087-p103-b006",
+          "type": "verse",
+          "text": "As the Mughal troops took positions all around the village, The wicked Hindu Jat peasants too reached there. They laid such a formidable siege all around, That not even a dog could escape through the siege. (24)",
+          "lines": [
+            "As the Mughal troops took positions all around the village,",
+            "The wicked Hindu Jat peasants too reached there.",
+            "They laid such a formidable siege all around,",
+            "That not even a dog could escape through the siege."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-087-p103-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p103-b008",
+          "type": "verse",
+          "text": "As the wicked Sultani Jats directed the Mughals, Their troops kept on following their directions. So both the Sultanis and the Mughals massacred the Singhs, Sparing none whosoever they spotted there. (25)",
+          "lines": [
+            "As the wicked Sultani Jats directed the Mughals,",
+            "Their troops kept on following their directions.",
+            "So both the Sultanis and the Mughals massacred the Singhs,",
+            "Sparing none whosoever they spotted there."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-087-p103-b009",
+          "type": "verse",
+          "text": "Laying their hands on the fourteen Sikh elders, They massacred all of them (on the spot). Whosoever else they came across from their families, They slaughtered those taking them to be Singh's progeny. (26)",
+          "lines": [
+            "Laying their hands on the fourteen Sikh elders,",
+            "They massacred all of them (on the spot).",
+            "Whosoever else they came across from their families,",
+            "They slaughtered those taking them to be Singh's progeny."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-087-p103-b010",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p103-b011",
+          "type": "verse",
+          "text": "Whichever Singh or their progeny came into sight, They slaughtered him there and then with their swords. Had some odd person among Singhs gone away from village, He might have survived out of their progeny. (27)",
+          "lines": [
+            "Whichever Singh or their progeny came into sight,",
+            "They slaughtered him there and then with their swords.",
+            "Had some odd person among Singhs gone away from village,",
+            "He might have survived out of their progeny."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-087-p103-b012",
+          "type": "verse",
+          "text": "In this way, the Majhail Singhs had endured all these ordeals, In the hope that their defiance would establish Khalsa Panth's sovereignty. They had hoped for a sovereignty at the cost of their lives, That is why they achieved sovereignty in due course of time. (28)",
+          "lines": [
+            "In this way, the Majhail Singhs had endured all these ordeals,",
+            "In the hope that their defiance would establish Khalsa Panth's sovereignty.",
+            "They had hoped for a sovereignty at the cost of their lives,",
+            "That is why they achieved sovereignty in due course of time."
+          ],
+          "number": "28"
+        },
+        {
+          "id": "episode-087-p103-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p103-b014",
+          "type": "verse",
+          "text": "Somebody might raise this question (about those Singhs), Did anybody survive this ordeal out of their progeny? Did they get back their landed property and political power? I would try to give a hint about their survival. (29)",
+          "lines": [
+            "Somebody might raise this question (about those Singhs),",
+            "Did anybody survive this ordeal out of their progeny?",
+            "Did they get back their landed property and political power?",
+            "I would try to give a hint about their survival."
+          ],
+          "number": "29"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 105,
+      "fileName": "EPUB/page_105.html",
+      "sourceHref": "EPUB/page_105.html",
+      "printPageNumber": 51,
+      "blocks": [
+        {
+          "id": "episode-087-p105-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-087-p105-b002",
+          "type": "verse",
+          "text": "A person named Sahib Singh survived that massacre, As he had gone away to some other village. He was fortunate to get into service of (the Divine) at Sri Amritsar, As he was appointed the Ardasia6 at the holy shrine. (30)",
+          "lines": [
+            "A person named Sahib Singh survived that massacre,",
+            "As he had gone away to some other village.",
+            "He was fortunate to get into service of (the Divine) at Sri Amritsar,",
+            "As he was appointed the Ardasia6 at the holy shrine."
+          ],
+          "number": "30"
+        },
+        {
+          "id": "episode-087-p105-b003",
+          "type": "verse",
+          "text": "He was conferred with the highest position (in the Guru's survice), As even monarchs and dignitaries bowed to touch his feet. As he was fortunate to be worthy of God's grace, He was honoured with greater honours than temporal gains. (31)",
+          "lines": [
+            "He was conferred with the highest position (in the Guru's survice),",
+            "As even monarchs and dignitaries bowed to touch his feet.",
+            "As he was fortunate to be worthy of God's grace,",
+            "He was honoured with greater honours than temporal gains."
+          ],
+          "number": "31"
+        },
+        {
+          "id": "episode-087-p105-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-087-p105-b005",
+          "type": "verse",
+          "text": "He had a long family line of several sons and grandsons, Who took possession of their confiscated farm lands. They also avenged the death of their ancestors from the Mughals, With the regained strength of the Khalsa Panth forces. (32)",
+          "lines": [
+            "He had a long family line of several sons and grandsons,",
+            "Who took possession of their confiscated farm lands.",
+            "They also avenged the death of their ancestors from the Mughals,",
+            "With the regained strength of the Khalsa Panth forces."
+          ],
+          "number": "32"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-086",
+  "nextChapterId": "episode-088"
+}

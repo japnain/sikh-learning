@@ -1,0 +1,493 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-069",
+  "chapterNumber": 69,
+  "episodeNumber": 69,
+  "kind": "episode",
+  "title": "Disappearance of Banda Singh",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 463,
+  "endSourcePage": 469,
+  "wordCount": 1223,
+  "charCount": 7083,
+  "startPosition": 74274,
+  "pages": [
+    {
+      "sourcePageNumber": 463,
+      "fileName": "EPUB/page_463.html",
+      "sourceHref": "EPUB/page_463.html",
+      "printPageNumber": 419,
+      "blocks": [
+        {
+          "id": "episode-069-p463-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p463-b003",
+          "type": "verse",
+          "text": "Now I would venture to narrate this episode further, How Banda Singh is reported to have disappeared. How he resurrected after having been dead, And how he remained incommunicado/untraced for some time. (1)",
+          "lines": [
+            "Now I would venture to narrate this episode further,",
+            "How Banda Singh is reported to have disappeared.",
+            "How he resurrected after having been dead,",
+            "And how he remained incommunicado/untraced for some time."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-069-p463-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-069-p463-b005",
+          "type": "paragraph",
+          "text": "I (the author) would get the same version recorded further, And mention the place (of resurrected Banda Singh's stay) that I found. There is a definite village near Jassu1 (in Jammu State), Where Fateh Singh and Bhag Singh of Sodhi-Bawa dynasty lived."
+        },
+        {
+          "id": "episode-069-p463-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-069-p463-b007",
+          "type": "verse",
+          "text": "The Hindu residents of Delhi were heard as saying, That Banda Singh did not die and had flown away somewhere. He, being possessed with certain spiritual powers, Had disappeared alive and proceeded to an unknown place. (2)",
+          "lines": [
+            "The Hindu residents of Delhi were heard as saying,",
+            "That Banda Singh did not die and had flown away somewhere.",
+            "He, being possessed with certain spiritual powers,",
+            "Had disappeared alive and proceeded to an unknown place."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-069-p463-b008",
+          "type": "verse",
+          "text": "Now (I (the author) have succeeded in locating this place, And have come across his grandsons at their native place. These two grandsons were named Fateh Singh and Bhag Singh, With whom I had entered into a dialogue at Amritsar. (3)",
+          "lines": [
+            "Now (I (the author) have succeeded in locating this place,",
+            "And have come across his grandsons at their native place.",
+            "These two grandsons were named Fateh Singh and Bhag Singh,",
+            "With whom I had entered into a dialogue at Amritsar."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-069-p463-b009",
+          "type": "verse",
+          "text": "This (uncanny) problem which had highly perturbed me, Was resolved during my meeting with Bhag Singh. I heard about the incident as he had narrated to me, Which took place in the vicinity of a town Nanera. (4)",
+          "lines": [
+            "This (uncanny) problem which had highly perturbed me,",
+            "Was resolved during my meeting with Bhag Singh.",
+            "I heard about the incident as he had narrated to me,",
+            "Which took place in the vicinity of a town Nanera."
+          ],
+          "number": "4"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 465,
+      "fileName": "EPUB/page_465.html",
+      "sourceHref": "EPUB/page_465.html",
+      "printPageNumber": 421,
+      "blocks": [
+        {
+          "id": "episode-069-p465-b001",
+          "type": "verse",
+          "text": "Banda Singh had sacrificed and put the blame squarely on the Mughals, And the Mughals beheaded him the way they liked. After beheading him they wished to scatter his limbs over the whole country, And laid down his dead body after cutting into pieces. (5)",
+          "lines": [
+            "Banda Singh had sacrificed and put the blame squarely on the Mughals,",
+            "And the Mughals beheaded him the way they liked.",
+            "After beheading him they wished to scatter his limbs over the whole country,",
+            "And laid down his dead body after cutting into pieces."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-069-p465-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p465-b003",
+          "type": "verse",
+          "text": "(They selected) those regions through out the whole country, Where Banda Singh was dreaded most during his life time. They planned to remove his fear from those regions, By scattering his severed limbs over those parts. (6)",
+          "lines": [
+            "(They selected) those regions through out the whole country,",
+            "Where Banda Singh was dreaded most during his life time.",
+            "They planned to remove his fear from those regions,",
+            "By scattering his severed limbs over those parts."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-069-p465-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-069-p465-b005",
+          "type": "verse",
+          "text": "The Emperor passed a royal decree to effect this plan, By packing and locking those parts in different boxes. After appointing police inspectors to keep a watch over those boxes, They were despatched to various parts of the country. (7)",
+          "lines": [
+            "The Emperor passed a royal decree to effect this plan,",
+            "By packing and locking those parts in different boxes.",
+            "After appointing police inspectors to keep a watch over those boxes,",
+            "They were despatched to various parts of the country."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-069-p465-b006",
+          "type": "verse",
+          "text": "Now listen to what Banda Singh decided at night, And the way he instructed the police instructors. He told them that the closed boxes would break forth, So that they could reconstruct his body from his organs. (8)",
+          "lines": [
+            "Now listen to what Banda Singh decided at night,",
+            "And the way he instructed the police instructors.",
+            "He told them that the closed boxes would break forth,",
+            "So that they could reconstruct his body from his organs."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-069-p465-b007",
+          "type": "verse",
+          "text": "They would turn blind, if they did not reconstruct his body, And would lose their lives after a lot of suffering. But as they displayed some arrogance after listening to his voice, They soon shed their arrogance the moment they turned blind. (9)",
+          "lines": [
+            "They would turn blind, if they did not reconstruct his body,",
+            "And would lose their lives after a lot of suffering.",
+            "But as they displayed some arrogance after listening to his voice,",
+            "They soon shed their arrogance the moment they turned blind."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-069-p465-b008",
+          "type": "verse",
+          "text": "Then the police inspectors begged Banda Singh to restore their eyesight, And make them invisible (while reconstructing his body). When Banda Singh restored their eyesight and made them invisible, They felt convinced of his power of performing miracles. (10)",
+          "lines": [
+            "Then the police inspectors begged Banda Singh to restore their eyesight,",
+            "And make them invisible (while reconstructing his body).",
+            "When Banda Singh restored their eyesight and made them invisible,",
+            "They felt convinced of his power of performing miracles."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-069-p465-b009",
+          "type": "verse",
+          "text": "The way Banda Singh instructed them to follow, They reconstructed his body by putting his severed limbs together. Since nothing was visible in the darkness of night, They joined his hands and felt in the reverse order. (11)",
+          "lines": [
+            "The way Banda Singh instructed them to follow,",
+            "They reconstructed his body by putting his severed limbs together.",
+            "Since nothing was visible in the darkness of night,",
+            "They joined his hands and felt in the reverse order."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-069-p465-b010",
+          "type": "verse",
+          "text": "Then Banda Singh remarked that it was better, That they had not reconstructed his body in perfect order. Since the people would have regarded his real body as counterfeit, So he displayed his deformed and fragmented body as such. (12)",
+          "lines": [
+            "Then Banda Singh remarked that it was better,",
+            "That they had not reconstructed his body in perfect order.",
+            "Since the people would have regarded his real body as counterfeit,",
+            "So he displayed his deformed and fragmented body as such."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-069-p465-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p465-b012",
+          "type": "verse",
+          "text": "Banda Singh felt reassured in his heart of hearts, That he had accomplished the task assigned by the Guru. Since the Jammu region had not seen his charisma, He decided to spread his fame in that region. (13)",
+          "lines": [
+            "Banda Singh felt reassured in his heart of hearts,",
+            "That he had accomplished the task assigned by the Guru.",
+            "Since the Jammu region had not seen his charisma,",
+            "He decided to spread his fame in that region."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-069-p465-b013",
+          "type": "paragraph",
+          "text": "Dohra"
+        },
+        {
+          "id": "episode-069-p465-b014",
+          "type": "meter",
+          "text": "Chaupai:"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 467,
+      "fileName": "EPUB/page_467.html",
+      "sourceHref": "EPUB/page_467.html",
+      "printPageNumber": 423,
+      "blocks": [
+        {
+          "id": "episode-069-p467-b001",
+          "type": "verse",
+          "text": "So taking a flight from the place of his body's restoration, He got down to arrive at a place near Jammu. Finding a scenic spot that attracted his fancy the most, He decided to settle at that spot instantly. (14)",
+          "lines": [
+            "So taking a flight from the place of his body's restoration,",
+            "He got down to arrive at a place near Jammu.",
+            "Finding a scenic spot that attracted his fancy the most,",
+            "He decided to settle at that spot instantly."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-069-p467-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-069-p467-b003",
+          "type": "verse",
+          "text": "Remaining incommunicado for some time at that place, He sent for some of the old acquaintances and confidants. After entering into a verbal dual with some of them, He fulfilled their every wish as they had desired. (15)",
+          "lines": [
+            "Remaining incommunicado for some time at that place,",
+            "He sent for some of the old acquaintances and confidants.",
+            "After entering into a verbal dual with some of them,",
+            "He fulfilled their every wish as they had desired."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-069-p467-b004",
+          "type": "verse",
+          "text": "He brought out many of his miraculous feats, In order to win the hearts of a large number of people. Even those who had been addressed by the (tenth) Guru, Their cherished wishes were also fulfilled by Banda Singh. (16)",
+          "lines": [
+            "He brought out many of his miraculous feats,",
+            "In order to win the hearts of a large number of people.",
+            "Even those who had been addressed by the (tenth) Guru,",
+            "Their cherished wishes were also fulfilled by Banda Singh."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-069-p467-b005",
+          "type": "verse",
+          "text": "At places, Banda Singh claimed himself to be the incarnation of the Guru, While at other places, he claimed himself to be (Sahibzada) Zorawar Singh. The episodes which were related to the life of the Guru, Banda Singh narrated those episodes in imitation of the Guru. (17)",
+          "lines": [
+            "At places,",
+            "Banda Singh claimed himself to be the incarnation of the Guru,",
+            "While at other places, he claimed himself to be (Sahibzada) Zorawar Singh.",
+            "The episodes which were related to the life of the Guru,",
+            "Banda Singh narrated those episodes in imitation of the Guru."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-069-p467-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p467-b007",
+          "type": "verse",
+          "text": "Whatever happened in the past and was likely to happen in future, Banda Singh endeavoured to disclose in detail. Thus, having made so many predictions and miracles, He went to the extent of claiming himself to be the Guru. (18)",
+          "lines": [
+            "Whatever happened in the past and was likely to happen in future,",
+            "Banda Singh endeavoured to disclose in detail.",
+            "Thus, having made so many predictions and miracles,",
+            "He went to the extent of claiming himself to be the Guru."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-069-p467-b008",
+          "type": "note",
+          "text": "(Banda Singh's progeny)"
+        },
+        {
+          "id": "episode-069-p467-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p467-b010",
+          "type": "verse",
+          "text": "Now (dear readers) listen to another episode, The way Banda Singh entered into a wedlock. The way two sons were born to Banda Singh, Who claimed their lineage from Sodhi dynasty. (1)",
+          "lines": [
+            "Now (dear readers) listen to another episode,",
+            "The way Banda Singh entered into a wedlock.",
+            "The way two sons were born to Banda Singh,",
+            "Who claimed their lineage from Sodhi dynasty."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-069-p467-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-069-p467-b012",
+          "type": "verse",
+          "text": "There was located a village near his chosen seat, Where Banda Singh happened to pay a visit once. There lived a respectable family in that village, In which Banda Singh happened to spot a beautiful daughter. (2)",
+          "lines": [
+            "There was located a village near his chosen seat,",
+            "Where Banda Singh happened to pay a visit once.",
+            "There lived a respectable family in that village,",
+            "In which Banda Singh happened to spot a beautiful daughter."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-069-p467-b013",
+          "type": "verse",
+          "text": "Calling her parents, Banda Singh asked them, To give their daughter (in marriage) to him. Hearing this proposal, they felt outraged at Banda Singh, And remarked : How could they marry their daughter to a mendicant? (3)",
+          "lines": [
+            "Calling her parents,",
+            "Banda Singh asked them,",
+            "To give their daughter (in marriage) to him.",
+            "Hearing this proposal, they felt outraged at Banda Singh,",
+            "And remarked : How could they marry their daughter to a mendicant?"
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-069-p467-b014",
+          "type": "paragraph",
+          "text": "Thereupon, Banda Singh told them in a threatening tone, That they would turn blind if they did not heed his words."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 469,
+      "fileName": "EPUB/page_469.html",
+      "sourceHref": "EPUB/page_469.html",
+      "printPageNumber": 425,
+      "blocks": [
+        {
+          "id": "episode-069-p469-b001",
+          "type": "verse",
+          "text": "He further told them that they would not get back their eyesight, Till they agreed to accept his proposal for a matrimony. (4)",
+          "lines": [
+            "He further told them that they would not get back their eyesight,",
+            "Till they agreed to accept his proposal for a matrimony."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-069-p469-b002",
+          "type": "verse",
+          "text": "The whole family having been subjected to such a trouble, Had to agree, (perforce), to his matrimonial proposal. Then Banda Singh directed the girl's parents, To walk along with Banda Singh's bride upto his seat. (5)",
+          "lines": [
+            "The whole family having been subjected to such a trouble,",
+            "Had to agree,",
+            "(perforce), to his matrimonial proposal.",
+            "Then Banda Singh directed the girl's parents,",
+            "To walk along with Banda Singh's bride upto his seat."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-069-p469-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p469-b004",
+          "type": "verse",
+          "text": "Since then, it was resolved amongst the members of this family, That their male members would not take the wedding party to a bride's home. Even among the future generations of their family, It became customary to call the bride's wedding party to their homes. (6)",
+          "lines": [
+            "Since then, it was resolved amongst the members of this family,",
+            "That their male members would not take the wedding party to a bride's home.",
+            "Even among the future generations of their family,",
+            "It became customary to call the bride's wedding party to their homes."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-069-p469-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-069-p469-b006",
+          "type": "verse",
+          "text": "The children who were born out of this wedlock, Started calling themselves as members of a Sodhi dynasty2 . They claimed that since they were descendants of Guru Gobind Singh, Therefore, they also belonged to the (illustrious) Sodhi dynasty. (7)",
+          "lines": [
+            "The children who were born out of this wedlock,",
+            "Started calling themselves as members of a Sodhi dynasty2 .",
+            "They claimed that since they were descendants of Guru Gobind Singh,",
+            "Therefore, they also belonged to the (illustrious) Sodhi dynasty."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-069-p469-b007",
+          "type": "verse",
+          "text": "Thereafter, a son was born to Banda Singh out of this wedlock, As well as a son was born to his maid servant (at the same time). When this maid servant born son went out for a play, Banda Singh addressed the child in this manner : (8)",
+          "lines": [
+            "Thereafter, a son was born to Banda Singh out of this wedlock,",
+            "As well as a son was born to his maid servant (at the same time).",
+            "When this maid servant born son went out for a play,",
+            "Banda Singh addressed the child in this manner :"
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-069-p469-b008",
+          "type": "verse",
+          "text": "That he should also go out and play with his brothers, Hearing these words of Banda Singh, the maid servant remarked: That the whole congregation should pay attention to her words, That Banda Singh had himself allowed her son to play with his brothers. (9)",
+          "lines": [
+            "That he should also go out and play with his brothers,",
+            "Hearing these words of Banda Singh, the maid servant remarked: That the whole congregation should pay attention to her words,",
+            "That Banda Singh had himself allowed her son to play with his brothers."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-069-p469-b009",
+          "type": "verse",
+          "text": "Henceforth, no one should doubt the legitimacy of her son, Since her master had put his seal of legitimacy on his birth. So this made servant's son after getting a stamp of approval, Also acquired the reputation of being Banda Singh's son. (10)",
+          "lines": [
+            "Henceforth, no one should doubt the legitimacy of her son,",
+            "Since her master had put his seal of legitimacy on his birth.",
+            "So this made servant's son after getting a stamp of approval,",
+            "Also acquired the reputation of being Banda Singh's son."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-069-p469-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-069-p469-b011",
+          "type": "verse",
+          "text": "Whatever account (the author) have heard about this incident, He has got it recorded (before his British patron). Part of it he had heard it from others and his resources, While part of it has come from the narration of his forefathers. (11)",
+          "lines": [
+            "Whatever account (the author) have heard about this incident,",
+            "He has got it recorded (before his British patron).",
+            "Part of it he had heard it from others and his resources,",
+            "While part of it has come from the narration of his forefathers."
+          ],
+          "number": "11"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-068",
+  "nextChapterId": "episode-070"
+}

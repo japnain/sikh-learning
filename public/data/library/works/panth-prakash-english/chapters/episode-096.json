@@ -1,0 +1,464 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-096",
+  "chapterNumber": 96,
+  "episodeNumber": 96,
+  "kind": "episode",
+  "title": "Khanu Nawab (Nawab) Zakariya Khan",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 187,
+  "endSourcePage": 193,
+  "wordCount": 1105,
+  "charCount": 6526,
+  "startPosition": 108874,
+  "pages": [
+    {
+      "sourcePageNumber": 187,
+      "fileName": "EPUB/page_187.html",
+      "sourceHref": "EPUB/page_187.html",
+      "printPageNumber": 133,
+      "blocks": [
+        {
+          "id": "episode-096-p187-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p187-b003",
+          "type": "verse",
+          "text": "After Nadar Shah made his departure for Kabul, (Dear readers) listen to the (evil) deeds of Khan Bahadur. He reiterated that within the bounds of his own country, He would not allow any one of the Singhs to stay. (1)",
+          "lines": [
+            "After Nadar Shah made his departure for Kabul,",
+            "(Dear readers) listen to the (evil) deeds of Khan Bahadur.",
+            "He reiterated that within the bounds of his own country,",
+            "He would not allow any one of the Singhs to stay."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-096-p187-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p187-b005",
+          "type": "verse",
+          "text": "As the Nawab felt humiliated by the admonitions of Nadar Shah, He started committing more and more atrocities. Launching on a witch-hunt for the Singhs in the State, He started killing Singhs as a hunter killed his prey. (2)",
+          "lines": [
+            "As the Nawab felt humiliated by the admonitions of Nadar Shah,",
+            "He started committing more and more atrocities.",
+            "Launching on a witch-hunt for the Singhs in the State,",
+            "He started killing Singhs as a hunter killed his prey."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-096-p187-b006",
+          "type": "verse",
+          "text": "Whosoever brought any information about the Singhs, He would get instantly rewarded by the Nawab. Whosoever named a village inhabited by the Singhs, He would give a large reward to such an informer. (3)",
+          "lines": [
+            "Whosoever brought any information about the Singhs,",
+            "He would get instantly rewarded by the Nawab.",
+            "Whosoever named a village inhabited by the Singhs,",
+            "He would give a large reward to such an informer."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-096-p187-b007",
+          "type": "verse",
+          "text": "As people started getting Singhs captured out of greed, The Singhs started seeking shelter for their survival. He sent written messages to the neighbouring states, That every informer against Singhs would get a five -rupee reward. (4)",
+          "lines": [
+            "As people started getting Singhs captured out of greed,",
+            "The Singhs started seeking shelter for their survival.",
+            "He sent written messages to the neighbouring states,",
+            "That every informer against Singhs would get a five -rupee reward."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-096-p187-b008",
+          "type": "verse",
+          "text": "After this, many Singhs came to be killed by the people, Who themselves carried killed Singh's severed heads to Lahore. Each informer, either Single or in the company of another, Started spying on the Singhs (for getting rewards). (5)",
+          "lines": [
+            "After this, many Singhs came to be killed by the people,",
+            "Who themselves carried killed Singh's severed heads to Lahore.",
+            "Each informer, either Single or in the company of another,",
+            "Started spying on the Singhs (for getting rewards)."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-096-p187-b009",
+          "type": "verse",
+          "text": "Travelling during night and hibernating during day, Many Singhs dug underground bunkers for shelter. While many Singhs sought shelter in the houses of strangers, Many started staying in other states outside their state. (6)",
+          "lines": [
+            "Travelling during night and hibernating during day,",
+            "Many Singhs dug underground bunkers for shelter.",
+            "While many Singhs sought shelter in the houses of strangers,",
+            "Many started staying in other states outside their state."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-096-p187-b010",
+          "type": "paragraph",
+          "text": "While many Singh sought refuge in the wild growth, Many other Singhs hid themselves in the forests."
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 189,
+      "fileName": "EPUB/page_189.html",
+      "sourceHref": "EPUB/page_189.html",
+      "printPageNumber": 135,
+      "blocks": [
+        {
+          "id": "episode-096-p189-b001",
+          "type": "verse",
+          "text": "While many started cultivating fields as humble rustics, Many others sought shelters in the deep ravines. (7)",
+          "lines": [
+            "While many started cultivating fields as humble rustics,",
+            "Many others sought shelters in the deep ravines."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-096-p189-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p189-b003",
+          "type": "verse",
+          "text": "The Singhs had to go without food for days together, Since they could feed themselves every second or fourth day. Even when they laid their hands on a tasteless food, They would gorge themselves on it with great relish. (8)",
+          "lines": [
+            "The Singhs had to go without food for days together,",
+            "Since they could feed themselves every second or fourth day.",
+            "Even when they laid their hands on a tasteless food,",
+            "They would gorge themselves on it with great relish."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-096-p189-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p189-b005",
+          "type": "verse",
+          "text": "If a Singh carried a pinch of salt in his pocket, He was branded as a man of great taste. Otherwise they fed themselves on raw or boiled mustard leaves, As well as on diverse kinds of flowers, fruit and bark of trees. (9)",
+          "lines": [
+            "If a Singh carried a pinch of salt in his pocket,",
+            "He was branded as a man of great taste.",
+            "Otherwise they fed themselves on raw or boiled mustard leaves,",
+            "As well as on diverse kinds of flowers, fruit and bark of trees."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-096-p189-b006",
+          "type": "verse",
+          "text": "Even though they were not able to feed themselves everyday, Still they could not stay put at one place for long. So a very small number of Singhs were left (in the Majha region), Since majority of them escaped to distant places on their horses. (10)",
+          "lines": [
+            "Even though they were not able to feed themselves everyday,",
+            "Still they could not stay put at one place for long.",
+            "So a very small number of Singhs were left (in the Majha region),",
+            "Since majority of them escaped to distant places on their horses."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-096-p189-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p189-b008",
+          "type": "verse",
+          "text": "The day they succeeded in laying their hands on a wicked Muslim, They could feed themselves to their fill on that day. Otherwise, they would go without food for days together, And kept alive somehow even without food. (11)",
+          "lines": [
+            "The day they succeeded in laying their hands on a wicked Muslim,",
+            "They could feed themselves to their fill on that day.",
+            "Otherwise, they would go without food for days together,",
+            "And kept alive somehow even without food."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-096-p189-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p189-b010",
+          "type": "verse",
+          "text": "Since the informers were on the prowl to watch their movements, They would bring the Mughal army as they spotted the Singhs. Whenever Singhs were spotted out in any of the villages, The informers would get the Singhs' relatives and friends arrested. (12)",
+          "lines": [
+            "Since the informers were on the prowl to watch their movements,",
+            "They would bring the Mughal army as they spotted the Singhs.",
+            "Whenever Singhs were spotted out in any of the villages,",
+            "The informers would get the Singhs' relatives and friends arrested."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-096-p189-b011",
+          "type": "verse",
+          "text": "The Mughal Nawab had issued a written proclamation, That people could ransack a house which harboured a Singh. And that anyone having unshorn hair on his head, Was not allowed to stay in the territory of Lahore State. (13)",
+          "lines": [
+            "The Mughal Nawab had issued a written proclamation,",
+            "That people could ransack a house which harboured a Singh.",
+            "And that anyone having unshorn hair on his head,",
+            "Was not allowed to stay in the territory of Lahore State."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-096-p189-b012",
+          "type": "verse",
+          "text": "That anyone whosoever had information about Singhs whereabouts, He could approach the Nawab and get rewarded. That anyone who could shave off a Singh's hair, He would be honoured by the royal robes of honour. (14)",
+          "lines": [
+            "That anyone whosoever had information about Singhs whereabouts,",
+            "He could approach the Nawab and get rewarded.",
+            "That anyone who could shave off a Singh's hair,",
+            "He would be honoured by the royal robes of honour."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-096-p189-b013",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p189-b014",
+          "type": "verse",
+          "text": "While every informer against a Singh was entitled to a ten-rupee reward, Every successful killer of a Singh was entitled to rupees fifty. With such a big temptation thrown by the Mughal rulers, The result was the extermination of Singhs on a large scale. (15)",
+          "lines": [
+            "While every informer against a Singh was entitled to a ten-rupee reward,",
+            "Every successful killer of a Singh was entitled to rupees fifty.",
+            "With such a big temptation thrown by the Mughal rulers,",
+            "The result was the extermination of Singhs on a large scale."
+          ],
+          "number": "15"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 191,
+      "fileName": "EPUB/page_191.html",
+      "sourceHref": "EPUB/page_191.html",
+      "printPageNumber": 137,
+      "blocks": [
+        {
+          "id": "episode-096-p191-b001",
+          "type": "verse",
+          "text": "Even those Singhs who were engaged in agriculture, In their respective villages in the countryside, They were also killed by the Mughal authorities, As they were seen to be supporting hair on their heads. (16)",
+          "lines": [
+            "Even those Singhs who were engaged in agriculture,",
+            "In their respective villages in the countryside,",
+            "They were also killed by the Mughal authorities,",
+            "As they were seen to be supporting hair on their heads."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-096-p191-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p191-b003",
+          "type": "verse",
+          "text": "The Nawab, issuing forth such a written proclamation, He got it proclaimed throughout the territory around Lahore. Even those who were engaged in agriculture and business, Were not to be spared if they supported hair on their heads. (17)",
+          "lines": [
+            "The Nawab, issuing forth such a written proclamation,",
+            "He got it proclaimed throughout the territory around Lahore.",
+            "Even those who were engaged in agriculture and business,",
+            "Were not to be spared if they supported hair on their heads."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-096-p191-b004",
+          "type": "verse",
+          "text": "Since the murder of a Singh was exempted from any penal sentence, People were free to hunt and kill as many Singhs as they could. Ransacking and bludgeoning of Singhs were given a free hand, Since these were allowed through a written proclamation. (18)",
+          "lines": [
+            "Since the murder of a Singh was exempted from any penal sentence,",
+            "People were free to hunt and kill as many Singhs as they could.",
+            "Ransacking and bludgeoning of Singhs were given a free hand,",
+            "Since these were allowed through a written proclamation."
+          ],
+          "number": "18"
+        },
+        {
+          "id": "episode-096-p191-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p191-b006",
+          "type": "verse",
+          "text": "Thus, the Nawab of Lahore held out such a temptation, After calling an assembly of the Hindu peasants of the region. Many of them started catching hold of the Singhs, And dispatching their hostages to Lahore for getting rewards. (19)",
+          "lines": [
+            "Thus, the Nawab of Lahore held out such a temptation,",
+            "After calling an assembly of the Hindu peasants of the region.",
+            "Many of them started catching hold of the Singhs,",
+            "And dispatching their hostages to Lahore for getting rewards."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-096-p191-b007",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p191-b008",
+          "type": "verse",
+          "text": "(Niranjanias/Hindalias1 ) of Jandiala got many Singhs arrested, Although they themselves claimed to be Guru's Sikhs. One of these Niranjanias calling himself to be Harbhagat2 , Became a leading informer to get the Singhs arrested. (20)",
+          "lines": [
+            "(Niranjanias/Hindalias1 ) of Jandiala got many Singhs arrested,",
+            "Although they themselves claimed to be Guru's Sikhs.",
+            "One of these Niranjanias calling himself to be Harbhagat2 ,",
+            "Became a leading informer to get the Singhs arrested."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-096-p191-b009",
+          "type": "verse",
+          "text": "He was instrumental in getting the author's village3 ransacked twice, As well as in getting the author's father4 executed, Since (the Hindu) Jats of Majitha5 were inimical to his family, They were responsible for handing over his grandfather6 to Lahore Nawab. (21)",
+          "lines": [
+            "He was instrumental in getting the author's village3 ransacked twice,",
+            "As well as in getting the author's father4 executed,",
+            "Since (the Hindu) Jats of Majitha5 were inimical to his family,",
+            "They were responsible for handing over his grandfather6 to Lahore Nawab."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-096-p191-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p191-b011",
+          "type": "verse",
+          "text": "His grandfather was crushed between the spiked7 wheels, Along with another Sikh martyr Bhai Taru Singh8 . After this the Nawab of Lahore was stricken with a gastronomical disorder, And died after a prolonged excruciating stomach ache. (22)",
+          "lines": [
+            "His grandfather was crushed between the spiked7 wheels,",
+            "Along with another Sikh martyr Bhai Taru Singh8 .",
+            "After this the Nawab of Lahore was stricken with a gastronomical disorder,",
+            "And died after a prolonged excruciating stomach ache."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-096-p191-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p191-b013",
+          "type": "verse",
+          "text": "There lived a Jat Karamachhina in Chhina9 village, Who kept on killing many innocent Singhs. As he also killed many Singhs of village Raja Sansi10 , They pleaded before the Khalsa Panth for protection. (23)",
+          "lines": [
+            "There lived a Jat Karamachhina in Chhina9 village,",
+            "Who kept on killing many innocent Singhs.",
+            "As he also killed many Singhs of village Raja Sansi10 ,",
+            "They pleaded before the Khalsa Panth for protection."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-096-p191-b014",
+          "type": "verse",
+          "text": "Another wicked Jat there was named Rama Randhawa1 1 , Who had got his own private fort constructed. He also harassed and tortured the Singhs very much, As he used to capture and kill the Singhs on his own. (24)",
+          "lines": [
+            "Another wicked Jat there was named Rama Randhawa1 1 ,",
+            "Who had got his own private fort constructed.",
+            "He also harassed and tortured the Singhs very much,",
+            "As he used to capture and kill the Singhs on his own."
+          ],
+          "number": "24"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 193,
+      "fileName": "EPUB/page_193.html",
+      "sourceHref": "EPUB/page_193.html",
+      "printPageNumber": 139,
+      "blocks": [
+        {
+          "id": "episode-096-p193-b001",
+          "type": "verse",
+          "text": "His senseless killings gave birth to a popular folk song, Which stated that nobody should venture into Rama's territory. That instead of venturing into Rama Randhawa's territory, It was better to feed oneself on local wild nuts and berries. (25)",
+          "lines": [
+            "His senseless killings gave birth to a popular folk song,",
+            "Which stated that nobody should venture into Rama's territory.",
+            "That instead of venturing into Rama Randhawa's territory,",
+            "It was better to feed oneself on local wild nuts and berries."
+          ],
+          "number": "25"
+        },
+        {
+          "id": "episode-096-p193-b002",
+          "type": "verse",
+          "text": "Another person Dharam Dass12, a resident of Jodh Nagar, Also was bent upon the extermination of Khalsa Singhs. A Muslim convert Massa Ranghar13 , a resident of Mandiala, Indulged in acts of sacrilege at the Holy Darbar Sahib. (26)",
+          "lines": [
+            "Another person Dharam Dass12, a resident of Jodh Nagar,",
+            "Also was bent upon the extermination of Khalsa Singhs.",
+            "A Muslim convert Massa Ranghar13 , a resident of Mandiala,",
+            "Indulged in acts of sacrilege at the Holy Darbar Sahib."
+          ],
+          "number": "26"
+        },
+        {
+          "id": "episode-096-p193-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-096-p193-b004",
+          "type": "verse",
+          "text": "Another tyrant of Singhs was a Sandhu Jat Sahib Rai 14 , Who happened to be an inhabitant of villege Naushehra. He killed a large number of Singhs after capturing them, And dispatched their severed heads to Lahore. (27)",
+          "lines": [
+            "Another tyrant of Singhs was a Sandhu Jat Sahib Rai 14 ,",
+            "Who happened to be an inhabitant of villege Naushehra.",
+            "He killed a large number of Singhs after capturing them,",
+            "And dispatched their severed heads to Lahore."
+          ],
+          "number": "27"
+        },
+        {
+          "id": "episode-096-p193-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-096-p193-b006",
+          "type": "verse",
+          "text": "Becoming an informer against Bhai Taru Singh, He was responsible for Mughal troops raid on Taru Singh. These troops, after a raid, arrested Bhai Taru Singh, And took him to Lahore for executing him. (28)",
+          "lines": [
+            "Becoming an informer against Bhai Taru Singh,",
+            "He was responsible for Mughal troops raid on Taru Singh.",
+            "These troops, after a raid, arrested Bhai Taru Singh,",
+            "And took him to Lahore for executing him."
+          ],
+          "number": "28"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-095",
+  "nextChapterId": "episode-097"
+}

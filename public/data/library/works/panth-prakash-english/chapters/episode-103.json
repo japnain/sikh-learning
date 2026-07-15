@@ -1,0 +1,440 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-103",
+  "chapterNumber": 103,
+  "episodeNumber": 103,
+  "kind": "episode",
+  "title": "Matab Kot",
+  "volume": 2,
+  "publicationId": "volume-2",
+  "startSourcePage": 255,
+  "endSourcePage": 261,
+  "wordCount": 1079,
+  "charCount": 6179,
+  "startPosition": 120661,
+  "pages": [
+    {
+      "sourcePageNumber": 255,
+      "fileName": "EPUB/page_255.html",
+      "sourceHref": "EPUB/page_255.html",
+      "printPageNumber": 201,
+      "blocks": [
+        {
+          "id": "episode-103-p255-b002",
+          "type": "meter",
+          "text": "Kundliya Chhand:"
+        },
+        {
+          "id": "episode-103-p255-b003",
+          "type": "paragraph",
+          "text": "Nawab of Lahore, sending his messagers all around, Called an assembly of all the people of his area. (Dear readers) listen to Rattan Singh's account of royal declaration, Which the Nawab had made before this gathering. So atrocious was this proclamation in its wording, That it was impossible to narrate it in all detail. Himself having fed up with oppressing and torturing the Singhs, The Nawab had now the audacity to incite the people. Since the Singhs had ransacked Bahawalpur2 and Punjab,"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 257,
+      "fileName": "EPUB/page_257.html",
+      "sourceHref": "EPUB/page_257.html",
+      "printPageNumber": 203,
+      "blocks": [
+        {
+          "id": "episode-103-p257-b001",
+          "type": "verse",
+          "text": "As well as the whole of Kashmir and adjoining hills, The Nawab made a written proclamation to the people, That they should not spare anyone with unshorn hair on his head. (1)",
+          "lines": [
+            "As well as the whole of Kashmir and adjoining hills,",
+            "The Nawab made a written proclamation to the people,",
+            "That they should not spare anyone with unshorn hair on his head."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-103-p257-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p257-b003",
+          "type": "verse",
+          "text": "As all the people agreed to abide by Nawab's proclamation, The Singhs realized that it portended ill for them. Since the Singhs deserted whole of this region, They had no place where they could seek shelter. (2)",
+          "lines": [
+            "As all the people agreed to abide by Nawab's proclamation,",
+            "The Singhs realized that it portended ill for them.",
+            "Since the Singhs deserted whole of this region,",
+            "They had no place where they could seek shelter."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-103-p257-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p257-b005",
+          "type": "verse",
+          "text": "There was some area not devastated by the river (Beas), Which was known by the name of Matabkot. A small number of Singhs took shelter in this area, In the swampy wild on the bank of the river. (3)",
+          "lines": [
+            "There was some area not devastated by the river (Beas),",
+            "Which was known by the name of Matabkot.",
+            "A small number of Singhs took shelter in this area,",
+            "In the swampy wild on the bank of the river."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-103-p257-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p257-b007",
+          "type": "verse",
+          "text": "Mughal spies, after spotting out the Singhs in this wild, Informed the Mughal custodian about an easy game. They told that Singhs were famished, unclad and unarmed, As they were fatigued and drained of energy after being on the run. (4)",
+          "lines": [
+            "Mughal spies, after spotting out the Singhs in this wild,",
+            "Informed the Mughal custodian about an easy game.",
+            "They told that Singhs were famished, unclad and unarmed,",
+            "As they were fatigued and drained of energy after being on the run."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-103-p257-b008",
+          "type": "verse",
+          "text": "They asked the custodian to capture these fugitive Singhs, And despatch all of them to the Nawab at Lahore. Since they could get rewarded heavily from the Nawab, They must mount their horses without any loss of time. (5)",
+          "lines": [
+            "They asked the custodian to capture these fugitive Singhs,",
+            "And despatch all of them to the Nawab at Lahore.",
+            "Since they could get rewarded heavily from the Nawab,",
+            "They must mount their horses without any loss of time."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-103-p257-b009",
+          "type": "verse",
+          "text": "The custodian, receiving this information from the informers, Prepared to launch on an expedition post haste. He reached the spot being obsessed with the thought, As if he was going on a merry go hunting of killing rabbits. (6)",
+          "lines": [
+            "The custodian, receiving this information from the informers,",
+            "Prepared to launch on an expedition post haste.",
+            "He reached the spot being obsessed with the thought,",
+            "As if he was going on a merry go hunting of killing rabbits."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-103-p257-b010",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p257-b011",
+          "type": "verse",
+          "text": "Observing the Singhs to be very small in number, He felt very proud of a large body of his own troops. He regretted having come armed with such a large equipage, To overpower such a handful of famished outlaws. (7)",
+          "lines": [
+            "Observing the Singhs to be very small in number,",
+            "He felt very proud of a large body of his own troops.",
+            "He regretted having come armed with such a large equipage,",
+            "To overpower such a handful of famished outlaws."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-103-p257-b012",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p257-b013",
+          "type": "verse",
+          "text": "(Puffed with pride) the custodian made a declaration, That not a single Singh out of those should be allowed to escape. Surrounding the Singhs from all the four sides simultaneously, His troops should launch an attack from all the four sides. (8)",
+          "lines": [
+            "(Puffed with pride) the custodian made a declaration,",
+            "That not a single Singh out of those should be allowed to escape.",
+            "Surrounding the Singhs from all the four sides simultaneously,",
+            "His troops should launch an attack from all the four sides."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-103-p257-b014",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p257-b015",
+          "type": "verse",
+          "text": "He warned his troops that he would not spare anyone, Who allowed any Singh to escape from his operational territory. Holding such a Mughal soldier guilty of grave dereliction of duty, He would shoot him after burying him waist deep in the earth. (9)",
+          "lines": [
+            "He warned his troops that he would not spare anyone,",
+            "Who allowed any Singh to escape from his operational territory.",
+            "Holding such a Mughal soldier guilty of grave dereliction of duty,",
+            "He would shoot him after burying him waist deep in the earth."
+          ],
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 259,
+      "fileName": "EPUB/page_259.html",
+      "sourceHref": "EPUB/page_259.html",
+      "printPageNumber": 205,
+      "blocks": [
+        {
+          "id": "episode-103-p259-b001",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p259-b002",
+          "type": "verse",
+          "text": "Hearing these orders, Mughal troops ran in all the four directions, As they also noticed that the Singhs were too small in number. While someone among the Singhs was still lying asleep, Someone else had gone out to answer the call of nature. (10)",
+          "lines": [
+            "Hearing these orders,",
+            "Mughal troops ran in all the four directions,",
+            "As they also noticed that the Singhs were too small in number.",
+            "While someone among the Singhs was still lying asleep,",
+            "Someone else had gone out to answer the call of nature."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-103-p259-b003",
+          "type": "verse",
+          "text": "While someone had gone out to fetch fodder for the horses, Another had gone to collect wood and cow dung cakes for kitchen fires. A few among them were lying prostrate on the ground, Waiting for a drink of cannabis to get charged. (11)",
+          "lines": [
+            "While someone had gone out to fetch fodder for the horses,",
+            "Another had gone to collect wood and cow dung cakes for kitchen fires.",
+            "A few among them were lying prostrate on the ground,",
+            "Waiting for a drink of cannabis to get charged."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-103-p259-b004",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p259-b005",
+          "type": "verse",
+          "text": "Observing the Singhs in a state of utter destitution, The Mughal soldiers felt elated with (the unequal match). They attacked the Singhs from four directions so cheerfully, As if they were participating in a wedding procession. (12)",
+          "lines": [
+            "Observing the Singhs in a state of utter destitution,",
+            "The Mughal soldiers felt elated with (the unequal match).",
+            "They attacked the Singhs from four directions so cheerfully,",
+            "As if they were participating in a wedding procession."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-103-p259-b006",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p259-b007",
+          "type": "verse",
+          "text": "First, firing bullets from their loaded muskets, Their second flank shot arrows thereafter at the Singhs. Then brandishing their spears and swords, They killed a number of Singhs in the first round. (13)",
+          "lines": [
+            "First, firing bullets from their loaded muskets,",
+            "Their second flank shot arrows thereafter at the Singhs.",
+            "Then brandishing their spears and swords,",
+            "They killed a number of Singhs in the first round."
+          ],
+          "number": "13"
+        },
+        {
+          "id": "episode-103-p259-b008",
+          "type": "verse",
+          "text": "The Singhs were at their wits' ends for a moment, As the Mughal attack was as sudden as a bolt from the blue. Although it came in a flash as a lightening from the skies, Even then the Singhs gave a good account of themselves. (14)",
+          "lines": [
+            "The Singhs were at their wits' ends for a moment,",
+            "As the Mughal attack was as sudden as a bolt from the blue.",
+            "Although it came in a flash as a lightening from the skies,",
+            "Even then the Singhs gave a good account of themselves."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-103-p259-b009",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p259-b010",
+          "type": "verse",
+          "text": "The Singhs who were caught unawares in the first round, They were, no doubt, killed by the Mughal troops. But those Singhs who fought stood their ground, Since they were not scared of death while fighting. (15)",
+          "lines": [
+            "The Singhs who were caught unawares in the first round,",
+            "They were, no doubt, killed by the Mughal troops.",
+            "But those Singhs who fought stood their ground,",
+            "Since they were not scared of death while fighting."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-103-p259-b011",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p259-b012",
+          "type": "verse",
+          "text": "Wherever a single Singh stood his ground, He would obstruct all the Mughal soldiers in front. Since he never expected any support from any other quarter, Nobody dared to confront such a diehard fighter. (16)",
+          "lines": [
+            "Wherever a single Singh stood his ground,",
+            "He would obstruct all the Mughal soldiers in front.",
+            "Since he never expected any support from any other quarter,",
+            "Nobody dared to confront such a diehard fighter."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-103-p259-b013",
+          "type": "verse",
+          "text": "The Singhs who happened to remain outside the Mughal siege, These daredevils like lions, pounced with their swords. They would rush to help a Singh thick in the battle, Setting him free at the cost of their own lives. (17)",
+          "lines": [
+            "The Singhs who happened to remain outside the Mughal siege,",
+            "These daredevils like lions, pounced with their swords.",
+            "They would rush to help a Singh thick in the battle,",
+            "Setting him free at the cost of their own lives."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-103-p259-b014",
+          "type": "verse",
+          "text": "Whichever enemy soldier rushed to save his comrade, The Singhs would rush at him after shouting a prayer. Since whosoever turned his back would be branded a coward, The one fighting from the front would be honoured in the Divine Court. (18)",
+          "lines": [
+            "Whichever enemy soldier rushed to save his comrade,",
+            "The Singhs would rush at him after shouting a prayer.",
+            "Since whosoever turned his back would be branded a coward,",
+            "The one fighting from the front would be honoured in the Divine Court."
+          ],
+          "number": "18"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 261,
+      "fileName": "EPUB/page_261.html",
+      "sourceHref": "EPUB/page_261.html",
+      "printPageNumber": 207,
+      "blocks": [
+        {
+          "id": "episode-103-p261-b001",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p261-b002",
+          "type": "verse",
+          "text": "Those who had gone out on various errands, They heard the sound of muskets being fired. They returned posthaste feeling no scare at all, As they were determined to sacrifice their lives. (19)",
+          "lines": [
+            "Those who had gone out on various errands,",
+            "They heard the sound of muskets being fired.",
+            "They returned posthaste feeling no scare at all,",
+            "As they were determined to sacrifice their lives."
+          ],
+          "number": "19"
+        },
+        {
+          "id": "episode-103-p261-b003",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p261-b004",
+          "type": "verse",
+          "text": "As darkness descended on the scene during this fight, The Singhs greeted the night as one greets a sunrise. While the Mughals felt exhausted and scared to be in darkness, The Singhs felt as if they had regained their youth at night. (20)",
+          "lines": [
+            "As darkness descended on the scene during this fight,",
+            "The Singhs greeted the night as one greets a sunrise.",
+            "While the Mughals felt exhausted and scared to be in darkness,",
+            "The Singhs felt as if they had regained their youth at night."
+          ],
+          "number": "20"
+        },
+        {
+          "id": "episode-103-p261-b005",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-103-p261-b006",
+          "type": "verse",
+          "text": "As a Singh spotted out the Mughal custodian alone, (Without being guarded by any of his security guards). He took out his sword out of its sheath, And beheaded him (with a single mighty stroke). (21)",
+          "lines": [
+            "As a Singh spotted out the Mughal custodian alone,",
+            "(Without being guarded by any of his security guards).",
+            "He took out his sword out of its sheath,",
+            "And beheaded him (with a single mighty stroke)."
+          ],
+          "number": "21"
+        },
+        {
+          "id": "episode-103-p261-b007",
+          "type": "verse",
+          "text": "One who came to slaughter got himself slaughtered, As the great Guru had stood by his devout Singhs. While some Mughal soldiers deserted, others hid themselves, The Singhs robbed and plundered most of them. (22)",
+          "lines": [
+            "One who came to slaughter got himself slaughtered,",
+            "As the great Guru had stood by his devout Singhs.",
+            "While some Mughal soldiers deserted, others hid themselves,",
+            "The Singhs robbed and plundered most of them."
+          ],
+          "number": "22"
+        },
+        {
+          "id": "episode-103-p261-b008",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-103-p261-b009",
+          "type": "verse",
+          "text": "The Singhs rejoiced at this unexpected success, As they had amassed wealth without much effort. As they floated the corpses of the Singhs killed in battle, Double the number of Singhs arrived by the morning. (23)",
+          "lines": [
+            "The Singhs rejoiced at this unexpected success,",
+            "As they had amassed wealth without much effort.",
+            "As they floated the corpses of the Singhs killed in battle,",
+            "Double the number of Singhs arrived by the morning."
+          ],
+          "number": "23"
+        },
+        {
+          "id": "episode-103-p261-b010",
+          "type": "verse",
+          "text": "Khalsa Panth is as eternal as an ever flowing river, Such is the legend of the inexhaustible Khalsa. For an each one Singh dead ten more arrive to replace him, As they rejoice even when frustration stares them in the face. (24)",
+          "lines": [
+            "Khalsa Panth is as eternal as an ever flowing river,",
+            "Such is the legend of the inexhaustible Khalsa.",
+            "For an each one Singh dead ten more arrive to replace him,",
+            "As they rejoice even when frustration stares them in the face."
+          ],
+          "number": "24"
+        },
+        {
+          "id": "episode-103-p261-b011",
+          "type": "verse",
+          "text": "They relish food with bare onion as a most dainty dish, As they regard a pot of baked clay a golden bowl. They consider their community kitchen has closed while starving with hunger, As they make caves, wilds and ditches their dwelling place. (25)",
+          "lines": [
+            "They relish food with bare onion as a most dainty dish,",
+            "As they regard a pot of baked clay a golden bowl.",
+            "They consider their community kitchen has closed while starving with hunger,",
+            "As they make caves, wilds and ditches their dwelling place."
+          ],
+          "number": "25"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol2.epub"
+  },
+  "previousChapterId": "episode-102",
+  "nextChapterId": "episode-104"
+}

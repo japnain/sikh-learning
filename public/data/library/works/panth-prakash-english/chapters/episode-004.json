@@ -1,0 +1,110 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-004",
+  "chapterNumber": 4,
+  "episodeNumber": 4,
+  "kind": "episode",
+  "title": "An Account of the Dialogue Between the Kaliyuga And Baba Nanak",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 79,
+  "endSourcePage": 81,
+  "wordCount": 186,
+  "charCount": 1094,
+  "startPosition": 5731,
+  "pages": [
+    {
+      "sourcePageNumber": 79,
+      "fileName": "EPUB/page_79.html",
+      "sourceHref": "EPUB/page_79.html",
+      "printPageNumber": 35,
+      "blocks": [
+        {
+          "id": "episode-004-p79-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-004-p79-b003",
+          "type": "verse",
+          "text": "How there took place a dialogue and debate, Between the Kaliyuga and Satguru, Guru Nanak, I would narrate the account of this debate, After consulting the narration of my predecessors. (1)",
+          "lines": [
+            "How there took place a dialogue and debate,",
+            "Between the Kaliyuga and Satguru,",
+            "Guru Nanak,",
+            "I would narrate the account of this debate,",
+            "After consulting the narration of my predecessors."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-004-p79-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-004-p79-b005",
+          "type": "verse",
+          "text": "How (Baba Nanak) deliberated upon and inseminated the word of God, I would narrate through illustrations from Sri Guru Granth Sahib. The Kaliyuga wanted the sinners to be cast into hell, The Satguru wished the sinners to be saved from hell. (2)",
+          "lines": [
+            "How (Baba Nanak) deliberated upon and inseminated the word of God,",
+            "I would narrate through illustrations from Sri Guru Granth Sahib.",
+            "The Kaliyuga wanted the sinners to be cast into hell,",
+            "The Satguru wished the sinners to be saved from hell."
+          ],
+          "number": "2"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 81,
+      "fileName": "EPUB/page_81.html",
+      "sourceHref": "EPUB/page_81.html",
+      "printPageNumber": 37,
+      "blocks": [
+        {
+          "id": "episode-004-p81-b001",
+          "type": "verse",
+          "text": "The Kaliyuga wanted the sinners to be damned, Baba Nanak wished the sinners to be redeemed. Baba Nanak would never abandon his mission, He wished to redeem the whole mankind. (3)",
+          "lines": [
+            "The Kaliyuga wanted the sinners to be damned,",
+            "Baba Nanak wished the sinners to be redeemed.",
+            "Baba Nanak would never abandon his mission,",
+            "He wished to redeem the whole mankind."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-004-p81-b002",
+          "type": "verse",
+          "text": "The Kaliyuga felt outraged at this intrusion, That Baba Nanak had encroached upon his jurisdiction. While the Kaliyuga wanted to implement his own penal code of conduct, Baba Nanak wished to spread the message of righteousness. (4)",
+          "lines": [
+            "The Kaliyuga felt outraged at this intrusion,",
+            "That Baba Nanak had encroached upon his jurisdiction.",
+            "While the Kaliyuga wanted to implement his own penal code of conduct,",
+            "Baba Nanak wished to spread the message of righteousness."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-004-p81-b003",
+          "type": "verse",
+          "text": "Since they did not agree with each other's approach, So the Kaliyuga wished to make a show of his powers. Whosoever is keen to know of this conflict in more detail, He may go through the other recorded sources (the Janam Sakhis). (5)",
+          "lines": [
+            "Since they did not agree with each other's approach,",
+            "So the Kaliyuga wished to make a show of his powers.",
+            "Whosoever is keen to know of this conflict in more detail,",
+            "He may go through the other recorded sources (the Janam Sakhis)."
+          ],
+          "number": "5"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-003",
+  "nextChapterId": "episode-005"
+}

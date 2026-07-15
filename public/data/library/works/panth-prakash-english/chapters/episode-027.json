@@ -1,0 +1,319 @@
+{
+  "workId": "panth-prakash-english",
+  "id": "episode-027",
+  "chapterNumber": 27,
+  "episodeNumber": 27,
+  "kind": "episode",
+  "title": "Banda Bahadur",
+  "volume": 1,
+  "publicationId": "volume-1",
+  "startSourcePage": 219,
+  "endSourcePage": 223,
+  "wordCount": 855,
+  "charCount": 4912,
+  "startPosition": 30114,
+  "pages": [
+    {
+      "sourcePageNumber": 219,
+      "fileName": "EPUB/page_219.html",
+      "sourceHref": "EPUB/page_219.html",
+      "printPageNumber": 175,
+      "blocks": [
+        {
+          "id": "episode-027-p219-b002",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-027-p219-b003",
+          "type": "verse",
+          "text": "When Satguru Guru Gobind Singh proceeded towards the South, There lay a seat of Saint Dadu at Dadu Duar on the way. The Guru put up his camp at the spot of Dadu Duar, Along with a force of five to seven thousand Singh followers. (1)",
+          "lines": [
+            "When Satguru Guru Gobind Singh proceeded towards the South,",
+            "There lay a seat of Saint Dadu at Dadu Duar on the way.",
+            "The Guru put up his camp at the spot of Dadu Duar,",
+            "Along with a force of five to seven thousand Singh followers."
+          ],
+          "number": "1"
+        },
+        {
+          "id": "episode-027-p219-b004",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-027-p219-b005",
+          "type": "verse",
+          "text": "It was marked by beating of drums and unfurling of Khalsa flags, And a loud recitation of Gurbani without any kind of fear. The Guru's Singhs were heard reciting \"Chandi Chritar2\" and \"Chandi di Var3\", As well as the recitation of Guru's composition, ' Akal Ustat\"4 . (2)",
+          "lines": [
+            "It was marked by beating of drums and unfurling of Khalsa flags,",
+            "And a loud recitation of Gurbani without any kind of fear.",
+            "The Guru's Singhs were heard reciting \"Chandi Chritar2\" and \"Chandi di Var3\",",
+            "As well as the recitation of Guru's composition,",
+            "' Akal Ustat\"4 ."
+          ],
+          "number": "2"
+        },
+        {
+          "id": "episode-027-p219-b006",
+          "type": "verse",
+          "text": "This recitation created an environment of soothing rain in mid June, And crocking of frogs out of joy during monsoon rains. And the cooing and dancing of peackocks at the sight of thundering dark clouds, Such was the ambience created by the recitation of Gurbani by the Singhs. (3)",
+          "lines": [
+            "This recitation created an environment of soothing rain in mid June,",
+            "And crocking of frogs out of joy during monsoon rains.",
+            "And the cooing and dancing of peackocks at the sight of thundering dark clouds,",
+            "Such was the ambience created by the recitation of Gurbani by the Singhs."
+          ],
+          "number": "3"
+        },
+        {
+          "id": "episode-027-p219-b007",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-027-p219-b008",
+          "type": "verse",
+          "text": "Some Singhs were seen reading and reciting scriptures in one corner, While a few others were found reciting the Guru's composition \"Sri Mukhwalk\"5 . At another spot, a few Singhs were singing Gurbani to the accompaniment of Rabab6 , Which created an atmosphere of God Indira's majestic Divine Court. (4)",
+          "lines": [
+            "Some Singhs were seen reading and reciting scriptures in one corner,",
+            "While a few others were found reciting the Guru's composition \"Sri Mukhwalk\"5 .",
+            "At another spot, a few Singhs were singing Gurbani to the accompaniment of Rabab6 ,",
+            "Which created an atmosphere of God Indira's majestic Divine Court."
+          ],
+          "number": "4"
+        },
+        {
+          "id": "episode-027-p219-b009",
+          "type": "paragraph",
+          "text": "Swaiya : If a melody of trinkets, percussion and water stringed instruments emanated from oneside, The sound of double percussion and string7 instruments was heard from the other side. If a perfect melody produced by a wind instrument was reverberating from one place,"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 221,
+      "fileName": "EPUB/page_221.html",
+      "sourceHref": "EPUB/page_221.html",
+      "printPageNumber": 177,
+      "blocks": [
+        {
+          "id": "episode-027-p221-b001",
+          "type": "verse",
+          "text": "The delightful melody by string instruments was audible from another direction. As if it was the creation of mythological gods like Yaksha8 , Kinnar9 , and Narda10 . Combined harmoniously with the musical compositions of Tomar11 and ulook. Such was the splendour and majesty of the Guru's Divine Musical concerts, That even God Indira would feel envious of the Guru's Divine presence. (5)",
+          "lines": [
+            "The delightful melody by string instruments was audible from another direction.",
+            "As if it was the creation of mythological gods like Yaksha8 ,",
+            "Kinnar9 , and Narda10 .",
+            "Combined harmoniously with the musical compositions of Tomar11 and ulook.",
+            "Such was the splendour and majesty of the Guru's Divine Musical concerts,",
+            "That even God Indira would feel envious of the Guru's Divine presence."
+          ],
+          "number": "5"
+        },
+        {
+          "id": "episode-027-p221-b002",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-027-p221-b003",
+          "type": "verse",
+          "text": "While some devoted Singhs touched Guru's feet out of reverence, Other beseeched the Guru to set up a camp nearby. Some others burnt incense sticks and circled around the Guru, As the stars revolved round the polestar at night. (6)",
+          "lines": [
+            "While some devoted Singhs touched Guru's feet out of reverence,",
+            "Other beseeched the Guru to set up a camp nearby.",
+            "Some others burnt incense sticks and circled around the Guru,",
+            "As the stars revolved round the polestar at night."
+          ],
+          "number": "6"
+        },
+        {
+          "id": "episode-027-p221-b004",
+          "type": "verse",
+          "text": "Some prostrated themselves before the Guru out of veneration, As the gods are believed to prostrate before Chief of gods Indira. Some stood as still in Guru's service while sheltering Guru's head with a canopy, As a planted tree stood still and steady on the earth. (7)",
+          "lines": [
+            "Some prostrated themselves before the Guru out of veneration,",
+            "As the gods are believed to prostrate before Chief of gods Indira.",
+            "Some stood as still in Guru's service while sheltering Guru's head with a canopy,",
+            "As a planted tree stood still and steady on the earth."
+          ],
+          "number": "7"
+        },
+        {
+          "id": "episode-027-p221-b005",
+          "type": "verse",
+          "text": "They kept standing around the Guru like permanently fixed poles, Even in the midst of scorching heat and blistering winds. (8)",
+          "lines": [
+            "They kept standing around the Guru like permanently fixed poles,",
+            "Even in the midst of scorching heat and blistering winds."
+          ],
+          "number": "8"
+        },
+        {
+          "id": "episode-027-p221-b006",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-027-p221-b007",
+          "type": "verse",
+          "text": "Guru's Khalsa's standards shone like a brilliantly shining sun, Likewise shone the sparkling majestic waving hand fans. The canopy over Guru's head sheltered his face like a dark cloud, Under a vast outstretched tent like a thick huge cloud. (9)",
+          "lines": [
+            "Guru's Khalsa's standards shone like a brilliantly shining sun,",
+            "Likewise shone the sparkling majestic waving hand fans.",
+            "The canopy over Guru's head sheltered his face like a dark cloud,",
+            "Under a vast outstretched tent like a thick huge cloud."
+          ],
+          "number": "9"
+        },
+        {
+          "id": "episode-027-p221-b008",
+          "type": "verse",
+          "text": "The Guru sat on his royal throne like the God Indira, Armed with weapons like the mighty Indira with his bow. The flywhisk was being waved around his majestic face, As a if a peacock was dancing in joyful delight. (10)",
+          "lines": [
+            "The Guru sat on his royal throne like the God Indira,",
+            "Armed with weapons like the mighty Indira with his bow.",
+            "The flywhisk was being waved around his majestic face,",
+            "As a if a peacock was dancing in joyful delight."
+          ],
+          "number": "10"
+        },
+        {
+          "id": "episode-027-p221-b009",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-027-p221-b010",
+          "type": "verse",
+          "text": "The news of the Guru's arrival spread in the whole town, Hearing which people rushed to have a glimpse of Guru's face. After the people felt blessed and convinced of his Divine mien, They made generous, abundant offerings to the Guru. (11)",
+          "lines": [
+            "The news of the Guru's arrival spread in the whole town,",
+            "Hearing which people rushed to have a glimpse of Guru's face.",
+            "After the people felt blessed and convinced of his Divine mien,",
+            "They made generous, abundant offerings to the Guru."
+          ],
+          "number": "11"
+        },
+        {
+          "id": "episode-027-p221-b011",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-027-p221-b012",
+          "type": "verse",
+          "text": "Guru's arrival was indeed a great miraculous event, As all the people felt wondrously struck with Guru's appearance. Even the holy saints came to pay their obeisance to the Guru, Leaving the holy portals of saint Dadu's Dadu Dwar. (12)",
+          "lines": [
+            "Guru's arrival was indeed a great miraculous event,",
+            "As all the people felt wondrously struck with Guru's appearance.",
+            "Even the holy saints came to pay their obeisance to the Guru,",
+            "Leaving the holy portals of saint Dadu's Dadu Dwar."
+          ],
+          "number": "12"
+        },
+        {
+          "id": "episode-027-p221-b013",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-027-p221-b014",
+          "type": "verse",
+          "text": "The saints of Dadu Dwara heard the news from the people, That the tenth Nanak had arrived at their place. In order to invite and provide shelter to the Tenth Guru, The Chief saint of Dadu Dwara came along with his followers to the Guru. (13)",
+          "lines": [
+            "The saints of Dadu Dwara heard the news from the people,",
+            "That the tenth Nanak had arrived at their place.",
+            "In order to invite and provide shelter to the Tenth Guru,",
+            "The Chief saint of Dadu Dwara came along with his followers to the Guru."
+          ],
+          "number": "13"
+        }
+      ]
+    },
+    {
+      "sourcePageNumber": 223,
+      "fileName": "EPUB/page_223.html",
+      "sourceHref": "EPUB/page_223.html",
+      "printPageNumber": 179,
+      "blocks": [
+        {
+          "id": "episode-027-p223-b001",
+          "type": "verse",
+          "text": "The Guru received this great saint with great respect and honour, As was the tradition among Indian saints to receive a new saint, Touching the Guru's sacred feet, the saint felt extremely delighted, And congratulated the Guru for being the incarnation of Guru Nanak. (14)",
+          "lines": [
+            "The Guru received this great saint with great respect and honour,",
+            "As was the tradition among Indian saints to receive a new saint,",
+            "Touching the Guru's sacred feet, the saint felt extremely delighted,",
+            "And congratulated the Guru for being the incarnation of Guru Nanak."
+          ],
+          "number": "14"
+        },
+        {
+          "id": "episode-027-p223-b002",
+          "type": "verse",
+          "text": "The Guru remarked that all the saints were part of the same Divine, As water lost its individual identity after mixing with milk. Shri Jait Ram was the name of this chief of saints, Who was indeed a noble and virtuous saint of this great order. (15)",
+          "lines": [
+            "The Guru remarked that all the saints were part of the same Divine,",
+            "As water lost its individual identity after mixing with milk.",
+            "Shri Jait Ram was the name of this chief of saints,",
+            "Who was indeed a noble and virtuous saint of this great order."
+          ],
+          "number": "15"
+        },
+        {
+          "id": "episode-027-p223-b003",
+          "type": "meter",
+          "text": "Dohra:"
+        },
+        {
+          "id": "episode-027-p223-b004",
+          "type": "verse",
+          "text": "Saint Jait Ram stood before the Guru with folded hands, And made a humble request to the Guru on his arrival. He remarked that he and his followers felt blessed, That the Great Guru had come to visit their place. (16)",
+          "lines": [
+            "Saint Jait Ram stood before the Guru with folded hands,",
+            "And made a humble request to the Guru on his arrival.",
+            "He remarked that he and his followers felt blessed,",
+            "That the Great Guru had come to visit their place."
+          ],
+          "number": "16"
+        },
+        {
+          "id": "episode-027-p223-b005",
+          "type": "meter",
+          "text": "Chaupai:"
+        },
+        {
+          "id": "episode-027-p223-b006",
+          "type": "verse",
+          "text": "He pleaded that he be allowed to serve one meal to the Guru, As it was a religious tradition to serve food to the Guru's congregation. Upon this request, the Guru informed this chief of saints, That he would not be able to feed all the Guru's force. (17)",
+          "lines": [
+            "He pleaded that he be allowed to serve one meal to the Guru,",
+            "As it was a religious tradition to serve food to the Guru's congregation.",
+            "Upon this request, the Guru informed this chief of saints,",
+            "That he would not be able to feed all the Guru's force."
+          ],
+          "number": "17"
+        },
+        {
+          "id": "episode-027-p223-b007",
+          "type": "verse",
+          "text": "The Guru told that many among his force being non-vegetarians, Would not be able to feed themselves with his vegetarian food. To this objection of the Guru, Saint Jait Ram made a remark: With the blessings of Saint Dadu even Non- vegetarian would accept a vegetarian meal.(18)",
+          "lines": [
+            "The Guru told that many among his force being non-vegetarians,",
+            "Would not be able to feed themselves with his vegetarian food.",
+            "To this objection of the Guru,",
+            "Saint Jait Ram made a remark: With the blessings of Saint Dadu even Non- vegetarian would accept a vegetarian meal."
+          ],
+          "number": "18"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "type": "epub",
+    "fileName": "vol1.epub"
+  },
+  "previousChapterId": "episode-026",
+  "nextChapterId": "episode-028"
+}
