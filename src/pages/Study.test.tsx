@@ -646,7 +646,7 @@ describe('Study soundscapes and tracking', () => {
     expect(useMusicStore.getState().isPlaying).toBe(false)
   })
 
-  it('updates reading progress with a compositor transform instead of layout width', async () => {
+  it('updates reading progress only after scrolling settles and avoids layout width writes', async () => {
     const scrollYSpy = vi.spyOn(window, 'scrollY', 'get').mockReturnValue(600)
     const innerHeightSpy = vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(800)
 
@@ -676,14 +676,26 @@ describe('Study soundscapes and tracking', () => {
     const progressBar = progress.firstElementChild as HTMLElement
     await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '38'))
 
-    expect(progressBar.style.transform).toMatch(/^scaleX\(0\.37/)
+    const settledTransform = progressBar.style.transform
+    expect(settledTransform).toMatch(/^scaleX\(0\.37/)
     expect(progressBar.style.width).toBe('')
+
+    scrollYSpy.mockReturnValue(700)
+    for (let index = 0; index < 12; index += 1) {
+      fireEvent.scroll(window)
+    }
+
+    expect(progress).toHaveAttribute('aria-valuenow', '38')
+    expect(progressBar.style.transform).toBe(settledTransform)
+
+    fireEvent(document, new Event('scrollend'))
+    await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '45'))
 
     scrollYSpy.mockRestore()
     innerHeightSpy.mockRestore()
   })
 
-  it('persists the visible verse once after a burst of scroll events settles', async () => {
+  it('persists the visible verse on scroll end without work during active scrolling', async () => {
     const originalUpdateSession = useProgressStore.getState().updateSession
     const updateSessionSpy = vi.fn(originalUpdateSession)
     useProgressStore.setState({ updateSession: updateSessionSpy })
@@ -714,22 +726,32 @@ describe('Study soundscapes and tracking', () => {
         })
       })
       updateSessionSpy.mockClear()
-      vi.useFakeTimers()
 
       for (let index = 0; index < 12; index += 1) {
         fireEvent.scroll(window)
       }
 
-      act(() => vi.advanceTimersByTime(179))
       expect(updateSessionSpy).not.toHaveBeenCalled()
 
-      act(() => vi.advanceTimersByTime(1))
+      fireEvent(document, new Event('scrollend'))
       expect(updateSessionSpy).toHaveBeenCalledTimes(1)
       expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2)
     } finally {
-      vi.useRealTimers()
       act(() => useProgressStore.setState({ updateSession: originalUpdateSession }))
     }
+  })
+
+  it('does not retain entrance-transform layers on long reader cards', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const cards = await screen.findAllByTestId('study-card')
+    expect(cards.length).toBeGreaterThan(0)
+    cards.forEach(card => expect(card).not.toHaveClass('animate-scale-in'))
+    expect(screen.getByTestId('page-study')).not.toHaveClass('animate-fade-in')
   })
 
   it('credits streak once per day for standard Study reading routes', async () => {
