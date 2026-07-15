@@ -396,6 +396,23 @@ describe('Study renders all shabads on an ang', () => {
 
     expect(screen.queryByText('Japji Sahib starts here')).not.toBeInTheDocument()
   })
+
+  it('labels Bhai Gurdas navigation as Vaars and stops at Vaar 40', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=B&ang=40']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
+    })
+
+    expect(screen.getByTestId('study-reader-header')).toHaveTextContent('Vaar 40')
+    expect(screen.getByRole('button', { name: /Vaar 39/i })).toBeEnabled()
+    expect(screen.getByRole('button', { name: /Vaar 40/i })).toBeDisabled()
+    expect(screen.queryByRole('button', { name: /Ang 39/i })).not.toBeInTheDocument()
+  })
 })
 
 describe('Study soundscapes and tracking', () => {

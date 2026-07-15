@@ -1,3 +1,5 @@
+import { SOURCE_READER_META } from '../utils/sourceReaderMeta'
+
 export interface Bani {
   id: string
   name: string
@@ -148,7 +150,7 @@ const READ_ONLY_DG_EXACT_BANIS: Bani[] = [
 ]
 
 const BROWSE_ONLY_BANIS: Bani[] = [
-  browseOnlyBani({ id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: 628, category: 'Vars', description: 'Poetic vaaran by Bhai Gurdas Ji.', type: 'browse-only' }),
+  browseOnlyBani({ id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: SOURCE_READER_META.B.max, category: 'Vars', description: 'Forty poetic Vaaran by Bhai Gurdas Ji.', type: 'browse-only' }),
   browseOnlyBani({ id: 'amrit-keertan', name: 'Amrit Keertan', scripture: 'AK', source: 'A', startAng: 1, endAng: 1430, category: 'Keertan', description: 'Songbook-style shabad collection for keertan.', type: 'browse-only' }),
 ]
 

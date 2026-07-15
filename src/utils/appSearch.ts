@@ -2,6 +2,7 @@ import type { SearchResult } from '../api/banidb'
 import { READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
+import { SOURCE_READER_META } from './sourceReaderMeta'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
@@ -64,9 +65,9 @@ export const SEARCH_SOURCE_LABELS: Record<SearchSource, string> = {
 }
 
 export const ANG_SOURCE_META = {
-  G: { label: 'SGGS', max: 1430, kind: 'Ang' },
-  D: { label: 'DG', max: 1428, kind: 'Ang' },
-  B: { label: 'BGV', max: 628, kind: 'Page' },
+  G: { label: SOURCE_READER_META.G.shortName, max: SOURCE_READER_META.G.max, kind: SOURCE_READER_META.G.unit },
+  D: { label: SOURCE_READER_META.D.shortName, max: SOURCE_READER_META.D.max, kind: SOURCE_READER_META.D.unit },
+  B: { label: SOURCE_READER_META.B.shortName, max: SOURCE_READER_META.B.max, kind: SOURCE_READER_META.B.unit },
 } as const
 
 const ROUTABLE_EXACT_BANIS = READ_EXACT_BANIS

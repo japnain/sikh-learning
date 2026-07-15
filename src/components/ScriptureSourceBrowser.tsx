@@ -1,6 +1,10 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DG_ANG_COUNT, SGGS_ANG_COUNT } from '../utils/dailyPick'
+import {
+  SOURCE_READER_META,
+  type SourceReaderId,
+  type SourceReaderUnit,
+} from '../utils/sourceReaderMeta'
 import {
   IconArrowLeft,
   IconArrowRight,
@@ -13,8 +17,9 @@ import {
 type ScriptureSourceSection = {
   id: string
   name: string
-  source?: string
+  source?: SourceReaderId
   totalAngs?: number
+  unit?: SourceReaderUnit
   pagePathTemplate?: string
   overviewPath?: string
   overviewEyebrow?: string
@@ -30,9 +35,9 @@ type ScriptureSourceBrowserProps = {
 }
 
 const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
-  { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', source: 'G', totalAngs: SGGS_ANG_COUNT },
-  { id: 'dasam-granth', name: 'Dasam Granth', source: 'D', totalAngs: DG_ANG_COUNT },
-  { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
+  { id: 'sggs', name: SOURCE_READER_META.G.name, source: 'G', totalAngs: SOURCE_READER_META.G.max, unit: SOURCE_READER_META.G.unit },
+  { id: 'dasam-granth', name: SOURCE_READER_META.D.name, source: 'D', totalAngs: SOURCE_READER_META.D.max, unit: SOURCE_READER_META.D.unit },
+  { id: 'bhai-gurdas-vaaran', name: SOURCE_READER_META.B.name, source: 'B', totalAngs: SOURCE_READER_META.B.max, unit: SOURCE_READER_META.B.unit },
   {
     id: 'panth-prakash-english',
     name: 'Panth Prakash (English)',
@@ -47,7 +52,7 @@ const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
 const PAGE_SIZE = 50
 
 function angLabel(section: ScriptureSourceSection) {
-  return section.pagePathTemplate ? 'Page' : section.source === 'G' || section.source === 'D' ? 'Ang' : 'Page'
+  return section.unit ?? (section.pagePathTemplate ? 'Page' : 'Ang')
 }
 
 function buildPagePath(section: ScriptureSourceSection, ang: number) {

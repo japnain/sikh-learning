@@ -85,15 +85,17 @@ test('hydrates the read search from the url so home can hand off the same query'
 test('renders the main content sections including Rehat', () => {
   renderBanis()
   expect(screen.getByRole('heading', { name: /Bani directories/i })).toBeInTheDocument()
-  expect(screen.getByText(/Open named banis and daily prayers/i)).toBeInTheDocument()
+  expect(screen.getByText(/Open daily prayers, scripture collections, Vaaran, and kirtan/i)).toBeInTheDocument()
   expect(screen.getByText(/Sundar Gutka/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).length).toBeGreaterThan(0)
   expect(screen.getAllByText(/Dasam Granth/i).length).toBeGreaterThan(0)
+  expect(screen.getByRole('button', { name: /Bhai Gurdas Ji Vaaran/i })).toBeInTheDocument()
+  expect(screen.getByTestId('banis-open-amrit-keertan')).toHaveAttribute('href', '/banis/amrit-keertan')
 
   openReadCollection('Sources & Books')
   expect(screen.getByText(/Companion readers/i)).toBeInTheDocument()
   expect(screen.getByText('Rehat')).toBeInTheDocument()
-  expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
+  expect(screen.queryByTestId('banis-open-amrit-keertan')).not.toBeInTheDocument()
   expect(screen.getByRole('heading', { name: /Source and book browser/i })).toBeInTheDocument()
   expect(screen.getByText(/Open scripture by ang or continue into historical works/i)).toBeInTheDocument()
 })
@@ -110,23 +112,45 @@ test('uses Read-specific directory cards with open-state hooks', () => {
   expect(sundarGutkaCard).toHaveAttribute('data-open', 'true')
 })
 
-test('keeps secondary Read source cards readable in dark mode', () => {
+test('keeps catalog and secondary source cards readable in dark mode', () => {
   renderBanis()
+  const amritKeertanCard = screen.getByTestId('banis-open-amrit-keertan')
+  expect(amritKeertanCard).toHaveClass('read-directory-card')
+  expect(within(amritKeertanCard).getByText(/complete section index/i)).toHaveClass(
+    'dark:text-dark-text/64'
+  )
+
   openReadCollection('Sources & Books')
 
   const rehatCard = screen.getByTestId('banis-open-rehat')
-  const amritKeertanCard = screen.getByTestId('banis-open-amrit-keertan')
 
   expect(rehatCard).toHaveClass('read-extra-source-card')
-  expect(amritKeertanCard).toHaveClass('read-extra-source-card')
   expect(within(rehatCard).getByText(/Conduct, practice/i)).toHaveClass(
     'read-extra-source-card__body',
     'dark:text-dark-text/82'
   )
-  expect(within(amritKeertanCard).getByText(/Shabads organized by section/i)).toHaveClass(
-    'read-extra-source-card__body',
-    'dark:text-dark-text/82'
+})
+
+test('opens Bhai Gurdas Ji as a complete 40-Vaar directory', () => {
+  renderBanis()
+
+  const directoryButton = screen.getByRole('button', { name: /Bhai Gurdas Ji Vaaran/i })
+  fireEvent.click(directoryButton)
+
+  const panel = document.querySelector('#banis-bhai-gurdas-vaaran-panel') as HTMLElement
+  const vaarLinks = within(panel).getAllByRole('link')
+
+  expect(directoryButton).toHaveAttribute('aria-expanded', 'true')
+  expect(vaarLinks).toHaveLength(40)
+  expect(within(panel).getByRole('link', { name: /Open Bhai Gurdas Ji Vaar 1$/i })).toHaveAttribute(
+    'href',
+    '/study?source=B&ang=1'
   )
+  expect(within(panel).getByRole('link', { name: /Open Bhai Gurdas Ji Vaar 40$/i })).toHaveAttribute(
+    'href',
+    '/study?source=B&ang=40'
+  )
+  expect(within(panel).queryByRole('link', { name: /Open Bhai Gurdas Ji Vaar 41$/i })).not.toBeInTheDocument()
 })
 
 test('keeps source browsing at the bottom of Read while featuring Panth Prakash as an EPUB book page', () => {
@@ -149,6 +173,13 @@ test('keeps source browsing at the bottom of Read while featuring Panth Prakash 
   expect(panthCard).toHaveTextContent(/171 chapters/i)
   expect(within(panthCard).queryByRole('button', { name: /show quick page numbers/i })).not.toBeInTheDocument()
   expect(within(panthCard).queryByRole('link', { name: /^open panth prakash page 1$/i })).not.toBeInTheDocument()
+
+  fireEvent.click(within(sourceBrowser).getByRole('button', { name: /Bhai Gurdas Ji Vaaran/i }))
+  expect(within(sourceBrowser).getByText('Vaar 1–40 of 40')).toBeInTheDocument()
+  expect(within(sourceBrowser).getByRole('link', { name: /open Bhai Gurdas Ji Vaaran vaar 40/i })).toHaveAttribute(
+    'href',
+    '/study?source=B&ang=40'
+  )
 })
 
 test('opens the Panth Prakash Read card into the EPUB chapter overview', async () => {
@@ -381,7 +412,6 @@ test('links Amrit Keertan to its directory page instead of opening a dropdown pa
     </MemoryRouter>
   )
 
-  openReadCollection('Sources & Books')
   const link = screen.getByTestId('banis-open-amrit-keertan')
   expect(link).toHaveAttribute('href', '/banis/amrit-keertan')
   expect(screen.queryByText('Loading Amrit Keertan…')).not.toBeInTheDocument()
@@ -415,12 +445,13 @@ test('links Rehat to its route-driven reader instead of opening a dropdown panel
 test('supports direct ang lookup mode', async () => {
   renderBanis()
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
-  fireEvent.click(screen.getByRole('button', { name: /ang \/ page/i }))
+  fireEvent.click(screen.getByRole('button', { name: /ang \/ vaar \/ page/i }))
   fireEvent.change(screen.getByRole('searchbox', { name: /search gurbani, meanings, or direct routes/i }), { target: { value: '12' } })
 
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /open dg ang 12/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /open bgv vaar 12/i })).toBeInTheDocument()
   })
 })
 
@@ -533,6 +564,7 @@ test('keeps the nav-safe page shell while lower sections still open after other 
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Raag Sections'))
 
-  openReadCollection('Sources & Books')
   expect(screen.getByTestId('banis-open-amrit-keertan')).toHaveAttribute('href', '/banis/amrit-keertan')
+  openReadCollection('Sources & Books')
+  expect(screen.getByTestId('banis-open-rehat')).toHaveAttribute('href', '/banis/rehat')
 })

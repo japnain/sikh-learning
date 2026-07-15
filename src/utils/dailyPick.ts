@@ -1,4 +1,5 @@
 import type { ScriptureEntry } from '../types'
+import { SOURCE_READER_META } from './sourceReaderMeta'
 
 function dayOfYear(date: Date): number {
   const start = new Date(date.getFullYear(), 0, 0)
@@ -12,8 +13,8 @@ export function getDailyPick(entries: ScriptureEntry[], date: Date = new Date())
   return entries[index]
 }
 
-export const SGGS_ANG_COUNT = 1430
-export const DG_ANG_COUNT = 1428
+export const SGGS_ANG_COUNT = SOURCE_READER_META.G.max
+export const DG_ANG_COUNT = SOURCE_READER_META.D.max
 
 type BaniSource = 'G' | 'D'
 
