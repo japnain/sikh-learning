@@ -42,7 +42,6 @@
   }
 
   .study-reader-hero--hukamnama .eyebrow,
-  .study-reader-hero--hukamnama h1,
   .study-reader-hero--hukamnama .study-reader-hero__meta,
   .study-reader-hero--hukamnama .study-reader-hero__body,
   .study-reader-hero--hukamnama .study-reader-hero__date {
@@ -621,7 +620,7 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 759px) {
   .read-room-stack {
     gap: 0.82rem;
   }
@@ -1706,17 +1705,20 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 
 .study-reader-topbar__progress > span {
   display: block;
+  width: 100%;
   height: 100%;
   background: rgb(var(--color-accent-strong));
-  transition: width 160ms ease-out;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
 }
 
 .study-reader-back,
 .study-reader-topbar__actions > button,
 .study-reader-settings-action {
   display: inline-flex;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
+  min-width: 44px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -1738,7 +1740,7 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   text-align: center;
 }
 
-.study-reader-topbar__identity p,
+.study-reader-topbar__identity h1,
 .study-reader-topbar__identity span {
   display: block;
   overflow: hidden;
@@ -1746,12 +1748,17 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   white-space: nowrap;
 }
 
-.study-reader-topbar__identity p {
+.study-reader-topbar__identity h1 {
+  margin: 0;
   color: rgb(var(--color-text));
-  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.1;
+}
+
+.study-reader-topbar__identity h1:is(.font-gurmukhi, .font-devanagari) {
+  padding-block: 0.05rem;
+  line-height: 1.35;
 }
 
 .study-reader-topbar__identity span {
@@ -1769,14 +1776,14 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 }
 
 .study-reader-topbar__state-spacer {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 44px;
+  height: 44px;
 }
 
 .study-reader-topbar__actions > button,
 .study-reader-settings-action {
-  width: 2.75rem;
-  flex: 0 0 2.75rem;
+  width: 44px;
+  flex: 0 0 44px;
   border-radius: 50%;
 }
 
@@ -1853,7 +1860,6 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 
 .study-reader-hero--hukamnama,
 .study-reader-hero--hukamnama .eyebrow,
-.study-reader-hero--hukamnama h1,
 .study-reader-hero--hukamnama .study-reader-hero__meta,
 .study-reader-hero--hukamnama .study-reader-hero__body,
 .study-reader-hero--hukamnama .study-reader-hero__date {
@@ -1869,11 +1875,6 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   border-radius: 4px !important;
   background: rgb(var(--color-accent-strong) / 0.09) !important;
   color: rgb(var(--color-accent-strong)) !important;
-}
-
-.study-reader-hero h1 {
-  font-size: 1.6rem !important;
-  line-height: 1.25 !important;
 }
 
 .study-reader-hero__meta {
@@ -2189,9 +2190,8 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   padding: 0.4rem;
   border: 1px solid rgb(var(--color-border) / 0.38);
   border-radius: 12px;
-  background: rgb(var(--color-surface) / 0.96);
+  background: rgb(var(--color-surface));
   box-shadow: 0 14px 34px rgb(20 26 23 / 0.2);
-  backdrop-filter: blur(14px);
 }
 
 .study-reader-ang-navigation__button {
@@ -2294,9 +2294,9 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   margin-bottom: 0.75rem !important;
   padding: 0.6rem !important;
   position: sticky;
-  top: calc(var(--safe-area-top) + 4rem);
+  top: calc(var(--safe-area-top) + var(--study-reader-topbar-offset, 4rem));
   z-index: 30;
-  backdrop-filter: blur(14px);
+  background: rgb(var(--color-surface)) !important;
 }
 
 .study-entry-navigator--top .study-entry-navigator__heading {
@@ -2317,9 +2317,9 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 }
 
 .study-entry-navigator--top .study-entry-navigator__button {
-  width: 2.75rem;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0 !important;
   border-radius: 50% !important;
 }
@@ -2382,7 +2382,11 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 759px) {
+  .page-shell[data-page='study'] {
+    --study-reader-topbar-offset: 6.125rem;
+  }
+
   .study-reader-topbar__identity {
     display: block;
     grid-column: 1 / -1;

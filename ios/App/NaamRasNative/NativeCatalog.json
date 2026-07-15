@@ -75,7 +75,7 @@
     {
       "id": "ghorian",
       "title": "Ghorian",
-      "subtitle": "SGGS Ang 573-577 · Wedding songs on the soul's union with the Divine.",
+      "subtitle": "SGGS Ang 575 · Four-stanza wedding-mare composition in Raag Vadahans by Guru Ram Das Ji.",
       "category": "Long Compositions",
       "source": "SGGS · BaniDB #40",
       "baniDbId": 40,
@@ -111,7 +111,7 @@
     {
       "id": "var-majh",
       "title": "Vaar Manjh Ki",
-      "subtitle": "SGGS Ang 137-150 · Vaar in Majh raag by Guru Nanak Dev Ji.",
+      "subtitle": "SGGS Ang 137-151 · Vaar in Majh raag by Guru Nanak Dev Ji.",
       "category": "Vars",
       "source": "SGGS · BaniDB #87",
       "baniDbId": 87,
@@ -281,8 +281,8 @@
     },
     {
       "id": "thiiti-majh",
-      "title": "Thiiti (Majh)",
-      "subtitle": "SGGS Ang 296-300 · Lunar-calendar composition in Majh raag.",
+      "title": "Thiti Mahalla 5 (Gauri)",
+      "subtitle": "SGGS Ang 296-300 · Lunar-date composition in Raag Gauri by Guru Arjan Dev Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #49",
       "baniDbId": 49,
@@ -291,7 +291,7 @@
     {
       "id": "birhade",
       "title": "Birhade",
-      "subtitle": "SGGS Ang 557-558 · Short songs of longing and separation.",
+      "subtitle": "SGGS Ang 431-432 · Eight-stanza chhant in Raag Asa by Guru Arjan Dev Ji.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #42",
       "baniDbId": 42,
@@ -354,7 +354,7 @@
     {
       "id": "salok-farid",
       "title": "Salok Sheikh Farid Ji",
-      "subtitle": "SGGS Ang 1377-1385 · Sheikh Farid Ji's saloks collected in SGGS.",
+      "subtitle": "SGGS Ang 1377-1384 · Sheikh Farid Ji's saloks collected in SGGS.",
       "category": "Saloks & Short Banis",
       "source": "SGGS · BaniDB #78",
       "baniDbId": 78,
@@ -390,7 +390,7 @@
     {
       "id": "tav-prasad-savaiye",
       "title": "Tav Prasad Savaiye",
-      "subtitle": "DG Ang 10 · Nitnem swaiyas rejecting empty ritual.",
+      "subtitle": "DG Ang 11-13 · Ten morning Nitnem Savaiyye beginning Sraavag Suddh.",
       "category": "Daily Prayers",
       "source": "DG · BaniDB #6",
       "baniDbId": 6,
@@ -408,7 +408,7 @@
     {
       "id": "ugardanti",
       "title": "Ugardanti",
-      "subtitle": "DG Ang 55-64 · Fierce devotional composition invoking the Divine protector.",
+      "subtitle": "DG Ang 55-64 · Traditional selected recension with bir-ras praise; pagination varies by edition.",
       "category": "Bir Ras",
       "source": "DG · BaniDB #53",
       "baniDbId": 53,

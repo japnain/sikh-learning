@@ -8,8 +8,12 @@ import {
   type ShareHighlightNormalizedPoint,
   type ShareHighlightNormalizedRect,
   type ShareHighlightObjectCoverPlacement,
+  type ShareHighlightPassageInput,
+  type ShareHighlightPassageLine,
   type ShareHighlightPixelRect,
   type ShareHighlightPngExport,
+  type ShareHighlightPngSetExport,
+  type ShareHighlightPngSetPage,
   type ShareHighlightTextRole,
   type ShareHighlightTextSection,
   type ShareHighlightTextPosition,
@@ -36,6 +40,54 @@ const TEXT_REGION_MINIMUM_TOP = 78
 const TEXT_REGION_MAXIMUM_BOTTOM = 1180
 const FOOTER_BASELINE = 1294
 const FOOTER_HORIZONTAL_MARGIN = 62
+
+const PASSAGE_MINIMUM_SCALE = 0.72
+const PASSAGE_SCALE_STEP = 0.02
+const PASSAGE_WASH_RECT: ShareHighlightPixelRect = {
+  x: 34,
+  y: 38,
+  width: SHARE_HIGHLIGHT_CARD_WIDTH - 68,
+  height: 1184,
+}
+const PASSAGE_TEXT_X = 86
+const PASSAGE_TEXT_WIDTH = SHARE_HIGHLIGHT_CARD_WIDTH - (PASSAGE_TEXT_X * 2)
+const PASSAGE_BODY_TOP = 196
+const PASSAGE_BODY_BOTTOM = 1152
+const PASSAGE_BODY_HEIGHT = PASSAGE_BODY_BOTTOM - PASSAGE_BODY_TOP
+const PASSAGE_SECTION_GAP = 8
+const PASSAGE_LINE_GAP = 28
+const PASSAGE_HEADER_GAP = 14
+
+const PASSAGE_TEXT_SPECS = {
+  header: {
+    maximumFontSize: 40,
+    lineHeightRatio: 1.38,
+    fontFamily: '"Noto Serif Gurmukhi", serif',
+    fontStyle: 'normal' as const,
+    fontWeight: 600 as const,
+  },
+  gurmukhi: {
+    maximumFontSize: 54,
+    lineHeightRatio: 1.42,
+    fontFamily: '"Noto Serif Gurmukhi", serif',
+    fontStyle: 'normal' as const,
+    fontWeight: 600 as const,
+  },
+  transliteration: {
+    maximumFontSize: 24,
+    lineHeightRatio: 1.46,
+    fontFamily: '"Plus Jakarta Sans", sans-serif',
+    fontStyle: 'italic' as const,
+    fontWeight: 500 as const,
+  },
+  meaning: {
+    maximumFontSize: 27,
+    lineHeightRatio: 1.46,
+    fontFamily: '"Plus Jakarta Sans", "Noto Serif Gurmukhi", sans-serif',
+    fontStyle: 'normal' as const,
+    fontWeight: 500 as const,
+  },
+}
 
 const TEXT_SPECS: Record<ShareHighlightTextRole, {
   maximumFontSize: number
@@ -398,6 +450,238 @@ export function wrapShareHighlightText(
   ))
 }
 
+export interface ShareHighlightPassagePagePlan {
+  pageNumber: number
+  pageCount: number
+  contentScale: number
+  lines: ShareHighlightPassageLine[]
+}
+
+export interface ShareHighlightPassagePageLayout {
+  contentScale: number
+  requiredHeight: number
+  sections: ShareHighlightTextSection[]
+}
+
+interface ShareHighlightPassageSectionDraft {
+  role: Extract<ShareHighlightTextRole, 'gurmukhi' | 'transliteration' | 'meaning'>
+  lines: string[]
+  style: ShareHighlightTextStyle
+  height: number
+}
+
+interface ShareHighlightPassageLineDraft {
+  line: ShareHighlightPassageLine
+  sections: ShareHighlightPassageSectionDraft[]
+  height: number
+}
+
+function normalizePassageLines(rawLines: readonly ShareHighlightPassageLine[]) {
+  const lines = rawLines
+    .map(line => ({
+      ...line,
+      gurmukhi: line.gurmukhi.trim(),
+      transliteration: line.transliteration?.trim() || null,
+      meaning: line.meaning?.trim() || null,
+      isHeader: Boolean(line.isHeader),
+    }))
+    .filter(line => Boolean(line.gurmukhi))
+
+  if (lines.length === 0) throw new TypeError('At least one Gurbani passage line is required.')
+  return lines
+}
+
+function makePassageStyle(
+  role: ShareHighlightPassageSectionDraft['role'],
+  isHeader: boolean,
+  scale: number,
+  palette: ShareHighlightOverlayPalette
+): ShareHighlightTextStyle {
+  const spec = role === 'gurmukhi' && isHeader
+    ? PASSAGE_TEXT_SPECS.header
+    : PASSAGE_TEXT_SPECS[role]
+  const fontSize = Math.round(spec.maximumFontSize * scale)
+  return {
+    fontFamily: spec.fontFamily,
+    fontSize,
+    fontStyle: spec.fontStyle,
+    fontWeight: spec.fontWeight,
+    lineHeight: Math.ceil(fontSize * spec.lineHeightRatio),
+    color: role === 'gurmukhi' ? palette.primaryText : palette.secondaryText,
+  }
+}
+
+function draftPassageLine(
+  line: ShareHighlightPassageLine,
+  measure: ShareHighlightTextMeasure,
+  scale: number,
+  palette: ShareHighlightOverlayPalette
+): ShareHighlightPassageLineDraft {
+  const values: Array<[ShareHighlightPassageSectionDraft['role'], string]> = [
+    ['gurmukhi', line.gurmukhi],
+  ]
+  if (line.transliteration) values.push(['transliteration', line.transliteration])
+  if (line.meaning) values.push(['meaning', line.meaning])
+
+  const sections = values.map(([role, value]) => {
+    const style = makePassageStyle(role, Boolean(line.isHeader), scale, palette)
+    const lines = wrapShareHighlightText(value, PASSAGE_TEXT_WIDTH, style, measure)
+    return {
+      role,
+      lines,
+      style,
+      height: lines.length * style.lineHeight,
+    }
+  })
+  const height = sections.reduce((total, section, index) => (
+    total + section.height + (index < sections.length - 1 ? PASSAGE_SECTION_GAP : 0)
+  ), 0)
+
+  return { line, sections, height }
+}
+
+export function layoutShareHighlightPassagePage(
+  rawLines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  contentScale = 1,
+  overlayTone?: string
+): ShareHighlightPassagePageLayout {
+  const lines = normalizePassageLines(rawLines)
+  const scale = clamp(contentScale, PASSAGE_MINIMUM_SCALE, 1)
+  const palette = resolveShareHighlightOverlayPalette(overlayTone)
+  const drafts = lines.map(line => draftPassageLine(line, measure, scale, palette))
+  const requiredHeight = drafts.reduce((total, draft, index) => (
+    total
+    + draft.height
+    + (index < drafts.length - 1
+      ? (draft.line.isHeader ? PASSAGE_HEADER_GAP : PASSAGE_LINE_GAP)
+      : 0)
+  ), 0)
+  let cursorY = PASSAGE_BODY_TOP
+  const sections: ShareHighlightTextSection[] = []
+
+  drafts.forEach((draft, draftIndex) => {
+    draft.sections.forEach((section, sectionIndex) => {
+      sections.push({
+        role: section.role,
+        lines: section.lines,
+        style: section.style,
+        x: PASSAGE_TEXT_X,
+        y: cursorY,
+        width: PASSAGE_TEXT_WIDTH,
+        height: section.height,
+      })
+      cursorY += section.height
+      if (sectionIndex < draft.sections.length - 1) cursorY += PASSAGE_SECTION_GAP
+    })
+    if (draftIndex < drafts.length - 1) {
+      cursorY += draft.line.isHeader ? PASSAGE_HEADER_GAP : PASSAGE_LINE_GAP
+    }
+  })
+
+  return { contentScale: scale, requiredHeight, sections }
+}
+
+function makePassageUnits(lines: readonly ShareHighlightPassageLine[]) {
+  const units: ShareHighlightPassageLine[][] = []
+  let index = 0
+
+  while (index < lines.length) {
+    if (!lines[index]?.isHeader) {
+      units.push([lines[index]!])
+      index += 1
+      continue
+    }
+
+    const unit: ShareHighlightPassageLine[] = []
+    while (lines[index]?.isHeader) {
+      unit.push(lines[index]!)
+      index += 1
+    }
+    if (index < lines.length) {
+      unit.push(lines[index]!)
+      index += 1
+    }
+    units.push(unit)
+  }
+
+  return units
+}
+
+function passageLinesFit(
+  lines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  scale: number
+) {
+  return layoutShareHighlightPassagePage(lines, measure, scale).requiredHeight <= PASSAGE_BODY_HEIGHT
+}
+
+function largestPassageScale(
+  lines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure
+) {
+  for (
+    let scalePercent = 100;
+    scalePercent >= PASSAGE_MINIMUM_SCALE * 100;
+    scalePercent -= PASSAGE_SCALE_STEP * 100
+  ) {
+    const scale = scalePercent / 100
+    if (passageLinesFit(lines, measure, scale)) return scale
+  }
+  return PASSAGE_MINIMUM_SCALE
+}
+
+/**
+ * Greedily fills readable folio pages without ever splitting a source line.
+ * Header units are kept with the following verse unless that combined unit is
+ * itself too tall, in which case line integrity takes precedence.
+ */
+export function paginateShareHighlightPassage(
+  rawLines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure
+): ShareHighlightPassagePagePlan[] {
+  const lines = normalizePassageLines(rawLines)
+  const pendingUnits = makePassageUnits(lines)
+  const pages: ShareHighlightPassageLine[][] = []
+  let currentPage: ShareHighlightPassageLine[] = []
+
+  while (pendingUnits.length > 0) {
+    const unit = pendingUnits.shift()!
+    const candidate = [...currentPage, ...unit]
+
+    if (passageLinesFit(candidate, measure, PASSAGE_MINIMUM_SCALE)) {
+      currentPage = candidate
+      continue
+    }
+
+    if (currentPage.length > 0) {
+      pages.push(currentPage)
+      currentPage = []
+      pendingUnits.unshift(unit)
+      continue
+    }
+
+    if (unit.length > 1) {
+      pendingUnits.unshift(...unit.map(line => [line]))
+      continue
+    }
+
+    const layout = layoutShareHighlightPassagePage(unit, measure, PASSAGE_MINIMUM_SCALE)
+    throw new ShareHighlightContentOverflowError(layout.requiredHeight, PASSAGE_BODY_HEIGHT)
+  }
+
+  if (currentPage.length > 0) pages.push(currentPage)
+  const commonScale = Math.min(...pages.map(page => largestPassageScale(page, measure)))
+  const pageCount = pages.length
+
+  return pages.map((pageLines, index) => ({
+    pageNumber: index + 1,
+    pageCount,
+    contentScale: commonScale,
+    lines: pageLines,
+  }))
+}
+
 function makeStyle(
   role: ShareHighlightTextRole,
   scale: number,
@@ -697,6 +981,59 @@ function drawLocalizedTextWash(
   context.restore()
 }
 
+function drawPassageWash(
+  context: CanvasRenderingContext2D,
+  palette: ShareHighlightOverlayPalette
+) {
+  const gradient = context.createLinearGradient(
+    PASSAGE_WASH_RECT.x,
+    0,
+    PASSAGE_WASH_RECT.x + PASSAGE_WASH_RECT.width,
+    0
+  )
+  gradient.addColorStop(0, palette.washFeather)
+  gradient.addColorStop(0.035, palette.washShoulder)
+  gradient.addColorStop(0.075, palette.denseWash)
+  gradient.addColorStop(0.925, palette.denseWash)
+  gradient.addColorStop(0.965, palette.washShoulder)
+  gradient.addColorStop(1, palette.washFeather)
+
+  context.save()
+  context.shadowColor = palette.denseWash
+  context.shadowBlur = 74
+  context.shadowOffsetX = 0
+  context.shadowOffsetY = 0
+  roundedRectanglePath(context, PASSAGE_WASH_RECT, 82)
+  context.fillStyle = gradient
+  context.fill()
+  context.restore()
+}
+
+function drawPassageHeader(
+  context: CanvasRenderingContext2D,
+  seriesLabel: string,
+  dateLabel: string | null,
+  palette: ShareHighlightOverlayPalette
+) {
+  context.save()
+  context.shadowColor = palette.shadow
+  context.shadowBlur = 7
+  context.shadowOffsetX = 0
+  context.shadowOffsetY = 2
+  context.textAlign = 'left'
+  context.textBaseline = 'top'
+  context.font = 'normal 700 25px "Plus Jakarta Sans", sans-serif'
+  context.fillStyle = palette.primaryText
+  context.fillText(seriesLabel, PASSAGE_TEXT_X, 74, PASSAGE_TEXT_WIDTH)
+
+  if (dateLabel) {
+    context.font = 'normal 600 22px "Plus Jakarta Sans", sans-serif'
+    context.fillStyle = palette.secondaryText
+    context.fillText(dateLabel, PASSAGE_TEXT_X, 112, PASSAGE_TEXT_WIDTH)
+  }
+  context.restore()
+}
+
 function drawTextSection(
   context: CanvasRenderingContext2D,
   section: ShareHighlightTextSection,
@@ -726,7 +1063,11 @@ function drawFooterWash(context: CanvasRenderingContext2D) {
   context.fillRect(0, 1160, SHARE_HIGHLIGHT_CARD_WIDTH, SHARE_HIGHLIGHT_CARD_HEIGHT - 1160)
 }
 
-function drawFooter(context: CanvasRenderingContext2D, sourceLabel: string) {
+function drawFooter(
+  context: CanvasRenderingContext2D,
+  sourceLabel: string,
+  pageMeta?: Pick<ShareHighlightPngSetPage, 'pageNumber' | 'pageCount'>
+) {
   context.save()
   context.shadowColor = 'rgba(0, 0, 0, 0.72)'
   context.shadowBlur = 7
@@ -736,7 +1077,23 @@ function drawFooter(context: CanvasRenderingContext2D, sourceLabel: string) {
   context.fillStyle = 'rgba(255, 250, 240, 0.9)'
   context.textAlign = 'left'
   context.textBaseline = 'alphabetic'
-  context.fillText(sourceLabel, FOOTER_HORIZONTAL_MARGIN, FOOTER_BASELINE)
+  context.fillText(
+    sourceLabel,
+    FOOTER_HORIZONTAL_MARGIN,
+    FOOTER_BASELINE,
+    pageMeta ? 500 : SHARE_HIGHLIGHT_CARD_WIDTH - (FOOTER_HORIZONTAL_MARGIN * 2)
+  )
+
+  if (pageMeta) {
+    context.font = 'normal 700 24px "Plus Jakarta Sans", sans-serif'
+    context.fillStyle = 'rgba(255, 250, 240, 0.9)'
+    context.textAlign = 'center'
+    context.fillText(
+      `${pageMeta.pageNumber} / ${pageMeta.pageCount}`,
+      SHARE_HIGHLIGHT_CARD_WIDTH / 2,
+      FOOTER_BASELINE
+    )
+  }
 
   context.font = 'normal 700 28px "Plus Jakarta Sans", sans-serif'
   context.fillStyle = 'rgba(255, 250, 240, 0.94)'
@@ -847,5 +1204,140 @@ export async function exportShareHighlightPng(
     file,
     width: SHARE_HIGHLIGHT_CARD_WIDTH,
     height: SHARE_HIGHLIGHT_CARD_HEIGHT,
+  }
+}
+
+function drawPassageArtworkBackground(
+  context: CanvasRenderingContext2D,
+  artwork: ShareHighlightDecodedImage | null,
+  input: ShareHighlightPassageInput
+) {
+  if (!artwork) {
+    drawNoArtworkBackground(context)
+    return
+  }
+
+  const placement = computeShareHighlightObjectCover(
+    artwork.width,
+    artwork.height,
+    SHARE_HIGHLIGHT_CARD_WIDTH,
+    SHARE_HIGHLIGHT_CARD_HEIGHT,
+    input.artwork?.focalPosition
+  )
+  context.imageSmoothingEnabled = true
+  context.imageSmoothingQuality = 'high'
+  context.drawImage(
+    artwork.source,
+    placement.sourceX,
+    placement.sourceY,
+    placement.sourceWidth,
+    placement.sourceHeight,
+    placement.destinationX,
+    placement.destinationY,
+    placement.destinationWidth,
+    placement.destinationHeight
+  )
+}
+
+function normalizePassageFileBase(value?: string) {
+  const normalized = normalizePngFileName(value?.trim() || 'naamras-hukamnama')
+  return normalized.replace(/\.png$/i, '') || 'naamras-hukamnama'
+}
+
+function makePassagePageFileName(base: string, pageNumber: number, pageCount: number) {
+  const digits = Math.max(2, String(pageCount).length)
+  return `${base}-${String(pageNumber).padStart(digits, '0')}-of-${String(pageCount).padStart(digits, '0')}.png`
+}
+
+/**
+ * Exports a complete reading as an ordered image set. Artwork and fonts are
+ * prepared once, then pages are rendered and encoded sequentially so a failed
+ * page rejects the whole operation instead of exposing a partial set.
+ */
+export async function exportShareHighlightPngSet(
+  input: ShareHighlightPassageInput,
+  options: ShareHighlightRendererOptions = {}
+): Promise<ShareHighlightPngSetExport> {
+  const sourceLabel = input.content.sourceLabel.trim()
+  const seriesLabel = input.content.seriesLabel.trim()
+  const dateLabel = input.content.dateLabel?.trim() || null
+  if (!sourceLabel) throw new TypeError('A passage source label is required.')
+  if (!seriesLabel) throw new TypeError('A passage series label is required.')
+
+  const firstCanvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
+  firstCanvas.width = SHARE_HIGHLIGHT_CARD_WIDTH
+  firstCanvas.height = SHARE_HIGHLIGHT_CARD_HEIGHT
+  const firstContext = firstCanvas.getContext('2d')
+  if (!firstContext) throw new Error('A Canvas 2D rendering context is required.')
+
+  const artworkSrc = input.artwork?.src?.trim()
+  const [artwork] = await Promise.all([
+    artworkSrc
+      ? (options.loadImage ?? loadDecodedImage)(artworkSrc)
+      : Promise.resolve(null),
+    awaitShareHighlightFonts(resolveFontSet(options.fontSet)),
+  ])
+  const measure: ShareHighlightTextMeasure = (text, style) => {
+    firstContext.font = fontString(style)
+    return firstContext.measureText(text).width
+  }
+  const plans = paginateShareHighlightPassage(input.content.lines, measure)
+  const pageCount = plans.length
+  const fileBase = normalizePassageFileBase(input.fileNameBase)
+  const overlayTone = artwork ? input.artwork?.overlayTone : 'dark'
+  const palette = resolveShareHighlightOverlayPalette(overlayTone)
+  const pages: ShareHighlightPngSetPage[] = []
+
+  for (const plan of plans) {
+    const canvas = plan.pageNumber === 1
+      ? firstCanvas
+      : options.createCanvas?.() ?? createDefaultCanvas()
+    canvas.width = SHARE_HIGHLIGHT_CARD_WIDTH
+    canvas.height = SHARE_HIGHLIGHT_CARD_HEIGHT
+    const context = canvas.getContext('2d')
+    if (!context) throw new Error('A Canvas 2D rendering context is required.')
+
+    context.clearRect(0, 0, SHARE_HIGHLIGHT_CARD_WIDTH, SHARE_HIGHLIGHT_CARD_HEIGHT)
+    drawPassageArtworkBackground(context, artwork, input)
+    drawPassageWash(context, palette)
+    drawPassageHeader(context, seriesLabel, dateLabel, palette)
+    const layout = layoutShareHighlightPassagePage(
+      plan.lines,
+      (text, style) => {
+        context.font = fontString(style)
+        return context.measureText(text).width
+      },
+      plan.contentScale,
+      overlayTone
+    )
+    if (layout.requiredHeight > PASSAGE_BODY_HEIGHT) {
+      throw new ShareHighlightContentOverflowError(layout.requiredHeight, PASSAGE_BODY_HEIGHT)
+    }
+    layout.sections.forEach(section => drawTextSection(context, section, palette))
+    drawFooterWash(context)
+    drawFooter(context, sourceLabel, {
+      pageNumber: plan.pageNumber,
+      pageCount,
+    })
+
+    const blob = await canvasToPngBlob(canvas)
+    const file = new File([
+      blob,
+    ], makePassagePageFileName(fileBase, plan.pageNumber, pageCount), { type: 'image/png' })
+    pages.push({
+      canvas,
+      blob,
+      file,
+      width: SHARE_HIGHLIGHT_CARD_WIDTH,
+      height: SHARE_HIGHLIGHT_CARD_HEIGHT,
+      pageNumber: plan.pageNumber,
+      pageCount,
+    })
+  }
+
+  return {
+    pages,
+    files: pages.map(page => page.file),
+    totalPages: pages.length,
   }
 }

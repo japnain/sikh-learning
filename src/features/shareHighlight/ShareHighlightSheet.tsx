@@ -1,13 +1,20 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { shareHighlightAssets } from '../../assets/share-highlights/manifest'
-import { IconCheck, IconClose, IconShare } from '../../components/icons'
+import { IconArrowLeft, IconArrowRight, IconCheck, IconClose, IconShare } from '../../components/icons'
 import ModalSheet from '../../components/ModalSheet'
 import type { UiLocale } from '../../types'
-import { exportShareHighlightPng } from './renderer'
-import { downloadShareHighlightFile, shareHighlightFile } from './share'
+import { exportShareHighlightPng, exportShareHighlightPngSet } from './renderer'
+import {
+  downloadShareHighlightFile,
+  downloadShareHighlightFiles,
+  shareHighlightFile,
+  shareHighlightFiles,
+} from './share'
 import type {
   ShareHighlightArtwork,
   ShareHighlightCardInput,
+  ShareHighlightPassageInput,
+  ShareHighlightPassageLine,
   ShareHighlightPngExport,
   ShareHighlightTextPosition,
 } from './types'
@@ -26,6 +33,10 @@ export interface ShareHighlightContent {
   selectedExcerpt?: boolean
   initialShowTransliteration?: boolean
   initialShowMeaning?: boolean
+  /** Ordered, line-safe content for a full Hukamnama or other long passage. */
+  passageLines?: ShareHighlightPassageLine[]
+  seriesLabel?: string
+  dateLabel?: string
 }
 
 export interface ShareHighlightSheetProps {
@@ -67,6 +78,17 @@ interface ShareHighlightSheetCopy {
   socialNoteHelp: string
   socialPlaceholder: string
   selectedExcerpt: string
+  passagePreface: string
+  passageTitle: string
+  passageTextLayersHelp: string
+  pagePosition: (page: number, total: number) => string
+  previousPage: string
+  nextPage: string
+  shareImages: (count: number) => string
+  saveSet: string
+  setReady: (count: number) => string
+  shareSetTitle: string
+  setDownloaded: string
   shareImage: string
   saveImage: string
   copyText: string
@@ -113,6 +135,17 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     socialNoteHelp: 'Shared alongside the image. It never changes the Gurbani.',
     socialPlaceholder: 'Add a short reflection…',
     selectedExcerpt: 'This card contains only the Gurmukhi words you selected.',
+    passagePreface: 'Share the full Hukamnama',
+    passageTitle: 'Create a share set',
+    passageTextLayersHelp: 'Every Gurbani line stays in order. NaamRas creates as many readable pages as needed.',
+    pagePosition: (page, total) => `Page ${page} of ${total}`,
+    previousPage: 'Previous image',
+    nextPage: 'Next image',
+    shareImages: count => count === 1 ? 'Share image' : `Share ${count} images`,
+    saveSet: 'Save set',
+    setReady: count => count === 1 ? 'Image ready.' : `${count} images ready.`,
+    shareSetTitle: 'Hukamnama from NaamRas',
+    setDownloaded: 'The full set was downloaded as a ZIP.',
     shareImage: 'Share image',
     saveImage: 'Save image',
     copyText: 'Copy text',
@@ -157,6 +190,17 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     socialNoteHelp: 'ਇਹ ਤਸਵੀਰ ਦੇ ਨਾਲ ਸਾਂਝਾ ਹੁੰਦਾ ਹੈ। ਗੁਰਬਾਣੀ ਕਦੇ ਨਹੀਂ ਬਦਲਦੀ।',
     socialPlaceholder: 'ਛੋਟਾ ਵਿਚਾਰ ਲਿਖੋ…',
     selectedExcerpt: 'ਇਸ ਕਾਰਡ ਵਿੱਚ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਚੁਣੇ ਗੁਰਮੁਖੀ ਸ਼ਬਦ ਹਨ।',
+    passagePreface: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
+    passageTitle: 'ਸਾਂਝੀਆਂ ਤਸਵੀਰਾਂ ਬਣਾਓ',
+    passageTextLayersHelp: 'ਹਰ ਗੁਰਬਾਣੀ ਪੰਕਤੀ ਕ੍ਰਮ ਵਿੱਚ ਰਹਿੰਦੀ ਹੈ। ਨਾਮਰਸ ਪੜ੍ਹਨਯੋਗ ਸਫ਼ੇ ਆਪਣੇ ਆਪ ਬਣਾਉਂਦਾ ਹੈ।',
+    pagePosition: (page, total) => `ਸਫ਼ਾ ${page} / ${total}`,
+    previousPage: 'ਪਿਛਲੀ ਤਸਵੀਰ',
+    nextPage: 'ਅਗਲੀ ਤਸਵੀਰ',
+    shareImages: count => count === 1 ? 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ' : `${count} ਤਸਵੀਰਾਂ ਸਾਂਝੀਆਂ ਕਰੋ`,
+    saveSet: 'ਸੈੱਟ ਸੰਭਾਲੋ',
+    setReady: count => count === 1 ? 'ਤਸਵੀਰ ਤਿਆਰ ਹੈ।' : `${count} ਤਸਵੀਰਾਂ ਤਿਆਰ ਹਨ।`,
+    shareSetTitle: 'ਨਾਮਰਸ ਤੋਂ ਹੁਕਮਨਾਮਾ',
+    setDownloaded: 'ਪੂਰਾ ਸੈੱਟ ZIP ਵਜੋਂ ਡਾਊਨਲੋਡ ਹੋ ਗਿਆ।',
     shareImage: 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ',
     saveImage: 'ਤਸਵੀਰ ਸੰਭਾਲੋ',
     copyText: 'ਲਿਖਤ ਕਾਪੀ ਕਰੋ',
@@ -201,6 +245,17 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     socialNoteHelp: 'यह छवि के साथ साझा होता है। यह गुरबाणी को कभी नहीं बदलता।',
     socialPlaceholder: 'एक छोटा विचार लिखें…',
     selectedExcerpt: 'इस कार्ड में केवल आपके चुने हुए गुरमुखी शब्द हैं।',
+    passagePreface: 'पूरा हुकमनामा साझा करें',
+    passageTitle: 'साझा छवियों का सेट बनाएँ',
+    passageTextLayersHelp: 'हर गुरबाणी पंक्ति क्रम में रहती है। नामरस अपने आप पढ़ने योग्य पृष्ठ बनाता है।',
+    pagePosition: (page, total) => `पृष्ठ ${page} / ${total}`,
+    previousPage: 'पिछली छवि',
+    nextPage: 'अगली छवि',
+    shareImages: count => count === 1 ? 'छवि साझा करें' : `${count} छवियाँ साझा करें`,
+    saveSet: 'सेट सेव करें',
+    setReady: count => count === 1 ? 'छवि तैयार है।' : `${count} छवियाँ तैयार हैं।`,
+    shareSetTitle: 'नामरस से हुकमनामा',
+    setDownloaded: 'पूरा सेट ZIP के रूप में डाउनलोड हो गया।',
     shareImage: 'छवि साझा करें',
     saveImage: 'छवि सेव करें',
     copyText: 'पाठ कॉपी करें',
@@ -231,11 +286,21 @@ function buildCopiedText(
   showMeaning: boolean,
   socialNote: string
 ) {
+  const passageText = content.passageLines?.length
+    ? content.passageLines.flatMap(line => [
+        line.gurmukhi.trim(),
+        showTransliteration ? line.transliteration?.trim() : '',
+        showMeaning ? line.meaning?.trim() : '',
+      ].filter(Boolean)).join('\n')
+    : ''
+
   return [
     socialNote.trim(),
-    content.gurmukhi.trim(),
-    showTransliteration ? content.transliteration?.trim() : '',
-    showMeaning ? content.meaning?.trim() : '',
+    content.seriesLabel?.trim(),
+    content.dateLabel?.trim(),
+    passageText || content.gurmukhi.trim(),
+    passageText ? '' : (showTransliteration ? content.transliteration?.trim() : ''),
+    passageText ? '' : (showMeaning ? content.meaning?.trim() : ''),
     `— ${content.sourceLabel.trim()}`,
     'naamras.xyz',
   ].filter(Boolean).join('\n')
@@ -256,10 +321,16 @@ export default function ShareHighlightSheet({
   const copy = SHEET_COPY[locale]
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const renderSequenceRef = useRef(0)
+  const previewTouchStartXRef = useRef<number | null>(null)
   const artworkGroupId = useId()
   const positionGroupId = useId()
   const captionId = useId()
   const previewDescriptionId = useId()
+  const passageLines = useMemo(
+    () => content.passageLines?.filter(line => line.gurmukhi.trim()) ?? [],
+    [content.passageLines]
+  )
+  const isPassage = passageLines.length > 0
   const [selectedArtworkId, setSelectedArtworkId] = useState(() => resolveInitialArtworkId(initialArtworkId))
   const [textPosition, setTextPosition] = useState<ShareHighlightTextPosition>('auto')
   const [showTransliteration, setShowTransliteration] = useState(() => (
@@ -273,14 +344,23 @@ export default function ShareHighlightSheet({
     && (content.initialShowMeaning ?? true)
   ))
   const [socialNote, setSocialNote] = useState(() => (content.caption ?? '').slice(0, SOCIAL_NOTE_LIMIT))
-  const [pngExport, setPngExport] = useState<ShareHighlightPngExport | null>(null)
+  const [pngExports, setPngExports] = useState<ShareHighlightPngExport[]>([])
+  const [activePageIndex, setActivePageIndex] = useState(0)
   const [status, setStatus] = useState(copy.preparing)
   const [renderFailed, setRenderFailed] = useState(false)
   const [canvasElement, setCanvasElement] = useState<HTMLCanvasElement | null>(null)
   const [busyAction, setBusyAction] = useState<'share' | 'save' | 'copy' | null>(null)
 
-  const hasTransliteration = Boolean(content.transliteration?.trim()) && !content.selectedExcerpt
-  const hasMeaning = Boolean(content.meaning?.trim()) && !content.selectedExcerpt
+  const hasTransliteration = (
+    isPassage
+      ? passageLines.some(line => Boolean(line.transliteration?.trim()))
+      : Boolean(content.transliteration?.trim())
+  ) && !content.selectedExcerpt
+  const hasMeaning = (
+    isPassage
+      ? passageLines.some(line => Boolean(line.meaning?.trim()))
+      : Boolean(content.meaning?.trim())
+  ) && !content.selectedExcerpt
   const selectedArtwork = useMemo<ShareHighlightArtwork | null>(() => (
     selectedArtworkId === NO_ARTWORK_ID
       ? null
@@ -303,12 +383,16 @@ export default function ShareHighlightSheet({
     )
     setSocialNote((content.caption ?? '').slice(0, SOCIAL_NOTE_LIMIT))
     setBusyAction(null)
+    setActivePageIndex(0)
   }, [
     content.caption,
     content.gurmukhi,
     content.initialShowMeaning,
     content.initialShowTransliteration,
     content.meaning,
+    content.passageLines,
+    content.seriesLabel,
+    content.dateLabel,
     content.selectedExcerpt,
     content.sourceLabel,
     content.transliteration,
@@ -339,23 +423,61 @@ export default function ShareHighlightSheet({
     textPosition,
   ])
 
+  const passageInput = useMemo<ShareHighlightPassageInput | null>(() => {
+    if (!isPassage) return null
+    return {
+      artwork: selectedArtwork,
+      content: {
+        lines: passageLines.map(line => ({
+          ...line,
+          transliteration: showTransliteration ? line.transliteration : null,
+          meaning: showMeaning ? line.meaning : null,
+        })),
+        sourceLabel: content.sourceLabel,
+        seriesLabel: content.seriesLabel?.trim() || 'Hukamnama',
+        dateLabel: content.dateLabel?.trim() || null,
+      },
+      fileNameBase: content.dateLabel?.trim()
+        ? `naamras-hukamnama-${content.dateLabel}`
+        : 'naamras-hukamnama',
+    }
+  }, [
+    content.dateLabel,
+    content.seriesLabel,
+    content.sourceLabel,
+    isPassage,
+    passageLines,
+    selectedArtwork,
+    showMeaning,
+    showTransliteration,
+  ])
+
   useEffect(() => {
     if (!open || !canvasElement) return
 
     const renderSequence = ++renderSequenceRef.current
-    setPngExport(null)
+    setPngExports([])
+    setActivePageIndex(0)
     setRenderFailed(false)
     setStatus(copy.preparing)
 
-    void exportShareHighlightPng(cardInput, { canvas: canvasElement })
+    const exportPromise = passageInput
+      ? exportShareHighlightPngSet(passageInput)
+      : exportShareHighlightPng(cardInput, { canvas: canvasElement }).then(result => ({
+          pages: [result],
+          files: [result.file],
+          totalPages: 1,
+        }))
+
+    void exportPromise
       .then(result => {
         if (renderSequenceRef.current !== renderSequence) return
-        setPngExport(result)
-        setStatus(copy.ready)
+        setPngExports(result.pages)
+        setStatus(passageInput ? copy.setReady(result.pages.length) : copy.ready)
       })
       .catch(() => {
         if (renderSequenceRef.current !== renderSequence) return
-        setPngExport(null)
+        setPngExports([])
         setRenderFailed(true)
         setStatus(copy.renderError)
       })
@@ -363,7 +485,18 @@ export default function ShareHighlightSheet({
     return () => {
       if (renderSequenceRef.current === renderSequence) renderSequenceRef.current += 1
     }
-  }, [canvasElement, cardInput, copy.preparing, copy.ready, copy.renderError, open])
+  }, [canvasElement, cardInput, copy, open, passageInput])
+
+  const activeExport = pngExports[activePageIndex] ?? null
+  const exportFiles = useMemo(() => pngExports.map(item => item.file), [pngExports])
+
+  useEffect(() => {
+    if (!canvasElement || !activeExport?.canvas || activeExport.canvas === canvasElement) return
+    const context = canvasElement.getContext('2d')
+    if (!context) return
+    context.clearRect(0, 0, canvasElement.width, canvasElement.height)
+    context.drawImage(activeExport.canvas, 0, 0, canvasElement.width, canvasElement.height)
+  }, [activeExport, canvasElement])
 
   const announce = (message: string) => {
     setStatus(message)
@@ -371,16 +504,24 @@ export default function ShareHighlightSheet({
   }
 
   const handleShare = async () => {
-    if (!pngExport || busyAction) return
+    if (!activeExport || exportFiles.length === 0 || busyAction) return
     setBusyAction('share')
     try {
-      const result = await shareHighlightFile(pngExport.file, {
-        title: copy.shareTitle,
-        text: socialNote,
-      })
+      const result = isPassage
+        ? await shareHighlightFiles(exportFiles, {
+            title: copy.shareSetTitle,
+            text: socialNote,
+            archiveName: 'naamras-hukamnama.zip',
+          })
+        : await shareHighlightFile(activeExport.file, {
+            title: copy.shareTitle,
+            text: socialNote,
+          })
       if (result.status === 'shared') announce(copy.shared)
       if (result.status === 'cancelled') announce(copy.cancelled)
-      if (result.status === 'downloaded') announce(copy.downloaded)
+      if (result.status === 'downloaded') {
+        announce(isPassage && exportFiles.length > 1 ? copy.setDownloaded : copy.downloaded)
+      }
     } catch {
       announce(copy.actionError)
     } finally {
@@ -388,12 +529,17 @@ export default function ShareHighlightSheet({
     }
   }
 
-  const handleSave = () => {
-    if (!pngExport || busyAction) return
+  const handleSave = async () => {
+    if (!activeExport || exportFiles.length === 0 || busyAction) return
     setBusyAction('save')
     try {
-      downloadShareHighlightFile(pngExport.file)
-      announce(copy.downloaded)
+      if (isPassage) {
+        await downloadShareHighlightFiles(exportFiles, { archiveName: 'naamras-hukamnama.zip' })
+        announce(exportFiles.length > 1 ? copy.setDownloaded : copy.downloaded)
+      } else {
+        downloadShareHighlightFile(activeExport.file)
+        announce(copy.downloaded)
+      }
     } catch {
       announce(copy.actionError)
     } finally {
@@ -416,11 +562,19 @@ export default function ShareHighlightSheet({
   }
 
   const previewSupportingDescription = [
-    showTransliteration ? content.transliteration : '',
-    showMeaning ? content.meaning : '',
+    isPassage
+      ? passageLines.map(line => line.gurmukhi).join('. ')
+      : content.gurmukhi,
     content.sourceLabel,
     'naamras.xyz',
   ].filter(Boolean).join('. ')
+
+  const movePreviewPage = (direction: -1 | 1) => {
+    setActivePageIndex(current => Math.min(
+      Math.max(current + direction, 0),
+      Math.max(pngExports.length - 1, 0)
+    ))
+  }
 
   return (
     <ModalSheet
@@ -434,8 +588,8 @@ export default function ShareHighlightSheet({
     >
       <header className="share-highlight__header">
         <div>
-          <p className="share-highlight__preface">{copy.preface}</p>
-          <h2 className="share-highlight__title">{copy.title}</h2>
+          <p className="share-highlight__preface">{isPassage ? copy.passagePreface : copy.preface}</p>
+          <h2 className="share-highlight__title">{isPassage ? copy.passageTitle : copy.title}</h2>
         </div>
         <button
           ref={closeButtonRef}
@@ -451,7 +605,19 @@ export default function ShareHighlightSheet({
       <div className="share-highlight__scroll">
         <div className="share-highlight__workspace">
           <section className="share-highlight__preview-column" aria-label={copy.preview}>
-            <div className="share-highlight__preview-frame">
+            <div
+              className="share-highlight__preview-frame"
+              onTouchStart={event => {
+                previewTouchStartXRef.current = event.changedTouches[0]?.clientX ?? null
+              }}
+              onTouchEnd={event => {
+                const startX = previewTouchStartXRef.current
+                const endX = event.changedTouches[0]?.clientX
+                previewTouchStartXRef.current = null
+                if (startX == null || endX == null || Math.abs(endX - startX) < 40) return
+                movePreviewPage(endX < startX ? 1 : -1)
+              }}
+            >
               <canvas
                 ref={setCanvasElement}
                 role="img"
@@ -460,7 +626,7 @@ export default function ShareHighlightSheet({
                 width={1080}
                 height={1350}
               />
-              {!pngExport ? (
+              {!activeExport ? (
                 <div
                   className={`share-highlight__preview-pending${renderFailed ? ' share-highlight__preview-pending--error' : ''}`}
                   aria-hidden="true"
@@ -469,9 +635,46 @@ export default function ShareHighlightSheet({
                 </div>
               ) : null}
             </div>
+            {isPassage && pngExports.length > 0 ? (
+              <nav
+                className="share-highlight__page-navigation"
+                aria-label={copy.pagePosition(activePageIndex + 1, pngExports.length)}
+              >
+                <button
+                  type="button"
+                  className="share-highlight__page-button"
+                  aria-label={copy.previousPage}
+                  disabled={activePageIndex === 0}
+                  onClick={() => movePreviewPage(-1)}
+                >
+                  <IconArrowLeft size={16} />
+                </button>
+                <div className="share-highlight__page-position" aria-live="polite">
+                  <span>{copy.pagePosition(activePageIndex + 1, pngExports.length)}</span>
+                  {pngExports.length <= 8 ? (
+                    <span className="share-highlight__page-dots" aria-hidden="true">
+                      {pngExports.map((page, index) => (
+                        <span
+                          key={page.file.name}
+                          className={`share-highlight__page-dot${index === activePageIndex ? ' share-highlight__page-dot--active' : ''}`}
+                        />
+                      ))}
+                    </span>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  className="share-highlight__page-button"
+                  aria-label={copy.nextPage}
+                  disabled={activePageIndex === pngExports.length - 1}
+                  onClick={() => movePreviewPage(1)}
+                >
+                  <IconArrowRight size={16} />
+                </button>
+              </nav>
+            ) : null}
             <p id={previewDescriptionId} className="sr-only">
-              <span lang="pa-Guru">{content.gurmukhi}</span>
-              <span>{`. ${previewSupportingDescription}`}</span>
+              <span lang="pa-Guru">{previewSupportingDescription}</span>
             </p>
             <div className="share-highlight__provenance">
               <span>
@@ -487,7 +690,9 @@ export default function ShareHighlightSheet({
           <div className="share-highlight__controls-column">
             <section className="share-highlight__control-group" aria-labelledby={`${artworkGroupId}-layers`}>
               <p id={`${artworkGroupId}-layers`} className="share-highlight__control-label">{copy.textLayers}</p>
-              <p className="share-highlight__control-help">{copy.textLayersHelp}</p>
+              <p className="share-highlight__control-help">
+                {isPassage ? copy.passageTextLayersHelp : copy.textLayersHelp}
+              </p>
               {content.selectedExcerpt ? (
                 <p className="share-highlight__control-help">{copy.selectedExcerpt}</p>
               ) : null}
@@ -572,7 +777,7 @@ export default function ShareHighlightSheet({
                   </div>
                 ))}
               </div>
-              {selectedArtwork ? (
+              {selectedArtwork && !isPassage ? (
                 <div className="share-highlight__position-control">
                   <p id={`${positionGroupId}-label`} className="share-highlight__control-label">
                     {copy.textPosition}
@@ -643,20 +848,20 @@ export default function ShareHighlightSheet({
           <button
             type="button"
             className="share-highlight__action share-highlight__action--primary"
-            disabled={!pngExport || busyAction !== null}
+            disabled={!activeExport || busyAction !== null}
             onClick={() => { void handleShare() }}
           >
             <IconShare size={17} />
-            {copy.shareImage}
+            {isPassage ? copy.shareImages(pngExports.length) : copy.shareImage}
           </button>
           <button
             type="button"
             className="share-highlight__action share-highlight__action--secondary"
-            disabled={!pngExport || busyAction !== null}
-            onClick={handleSave}
+            disabled={!activeExport || busyAction !== null}
+            onClick={() => { void handleSave() }}
           >
             <span aria-hidden="true">↓</span>
-            {copy.saveImage}
+            {isPassage && pngExports.length > 1 ? copy.saveSet : copy.saveImage}
           </button>
         </div>
         <button

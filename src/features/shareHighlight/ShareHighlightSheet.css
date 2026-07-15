@@ -52,6 +52,7 @@
 .share-highlight__pill:focus-visible,
 .share-highlight__art-input:focus-visible + .share-highlight__art-option,
 .share-highlight__position-input:focus-visible + .share-highlight__position-choice,
+.share-highlight__page-button:focus-visible,
 .share-highlight__caption:focus-visible,
 .share-highlight__action:focus-visible,
 .share-highlight__copy:focus-visible {
@@ -89,6 +90,7 @@
   background: rgb(var(--color-surface-muted));
   box-shadow: var(--shadow-elevated);
   isolation: isolate;
+  touch-action: pan-y;
 }
 
 .share-highlight__preview-frame canvas {
@@ -125,6 +127,61 @@
 
 .share-highlight__preview-pending--error::before {
   display: none;
+}
+
+.share-highlight__page-navigation {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  width: min(100%, 31rem);
+  margin: 0.65rem auto 0;
+}
+
+.share-highlight__page-button {
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid rgb(var(--color-border) / 0.3);
+  border-radius: 999px;
+  background: rgb(var(--color-surface-muted) / 0.62);
+  color: rgb(var(--color-text));
+}
+
+.share-highlight__page-button:disabled {
+  cursor: default;
+  opacity: 0.34;
+}
+
+.share-highlight__page-position {
+  min-width: 0;
+  color: rgb(var(--color-text-muted));
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.share-highlight__page-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+}
+
+.share-highlight__page-dot {
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 999px;
+  background: rgb(var(--color-border) / 0.55);
+}
+
+.share-highlight__page-dot--active {
+  width: 0.9rem;
+  background: rgb(var(--color-accent));
 }
 
 @keyframes share-highlight-spin {
