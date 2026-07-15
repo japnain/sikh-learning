@@ -177,14 +177,12 @@ test('opens the Panth Prakash Read card into the EPUB chapter overview', async (
   expect(screen.queryByLabelText(/jump to page/i)).not.toBeInTheDocument()
 })
 
-test('keeps the SGGS directory free of Sundar Gutka duplicate rows while preserving source-only content', () => {
+test('keeps the SGGS directory free of Sundar Gutka duplicates and the non-canonical standalone Sodar row', () => {
   renderBanis()
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
-  fireEvent.click(screen.getByText('Daily Prayers'))
 
-  const sodarRow = screen.getByText('Sodar').closest('button') as HTMLButtonElement
-  expect(sodarRow).toHaveClass('read-index-row')
-  expect(screen.getByText('Sodar')).toHaveClass('read-index-row__title')
+  expect(screen.queryByText('Daily Prayers')).not.toBeInTheDocument()
+  expect(screen.queryByText('Sodar')).not.toBeInTheDocument()
   expect(screen.queryByText('Japji Sahib')).not.toBeInTheDocument()
   expect(screen.queryByText('Rehras Sahib')).not.toBeInTheDocument()
   expect(screen.queryByText('Anand Sahib')).not.toBeInTheDocument()

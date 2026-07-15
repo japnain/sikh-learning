@@ -148,19 +148,21 @@ export default function StudyCard({
     () => (entry.lines && entry.lines.length > 0 ? entry.lines : [fallbackLine(entry)]),
     [entry]
   )
-  const introLines = lines.filter(line => line.isHeader)
-  const mainLines = lines.filter(line => !line.isHeader)
-  const shouldRenderHeaderBlock = showHeaderBlock && introLines.length > 0
-  const visibleMainLines = hideMainLines
-    ? []
-    : shouldRenderHeaderBlock
-    ? (mainLines.length > 0 ? mainLines : (introLines.length > 0 ? [] : lines))
-    : lines
+  const firstNonHeaderIndex = lines.findIndex(line => !line.isHeader)
+  const leadingHeaderCount = showHeaderBlock && lines[0]?.isHeader
+    ? (firstNonHeaderIndex === -1 ? lines.length : firstNonHeaderIndex)
+    : 0
+  const leadingHeaderLines = lines.slice(0, leadingHeaderCount)
+  const orderedBodyLines = lines.slice(leadingHeaderCount)
+  const shouldRenderHeaderBlock = leadingHeaderLines.length > 0
+  const visibleOrderedLines = hideMainLines
+    ? orderedBodyLines.filter(line => line.isHeader)
+    : orderedBodyLines
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
 
-  const scriptAlignmentClass = textAlign === 'center' ? 'text-center items-center' : 'text-left items-start'
+  const scriptAlignmentClass = textAlign === 'center' ? 'text-center items-center justify-center' : 'text-left items-start'
   const meaningAlignmentClass = textAlign === 'center' ? 'text-center' : 'text-left'
   const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
   const actionMeaning = actionLine ? getLineMeaningText(actionLine, meaningLanguage, englishSource) : ''
@@ -281,29 +283,34 @@ export default function StudyCard({
         {shouldRenderHeaderBlock && (
           <div data-testid="study-header-block" className="mb-5 section-shell-quiet rounded-lg px-4 py-4">
             <div className="space-y-3">
-              {introLines.map((line, index) => {
+              {leadingHeaderLines.map((line, index) => {
                 const introMeaning = getLineMeaningText(line, meaningLanguage, englishSource)
+                const introAlignmentClass = line.headerLevel === 6 ? 'text-right' : 'text-center'
+                const introFontScale = line.headerLevel === 6 ? 0.82 : line.headerLevel === 1 ? 1.15 : 1.08
                 return (
-                  <div key={`intro-${line.verseId}-${index}`}>
+                  <div
+                    key={`intro-${line.verseId}-${index}`}
+                    data-header-level={line.headerLevel ?? 0}
+                  >
                     <p
                       lang={getScriptTextLang(scriptMode)}
-                      className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
-                      style={{ fontSize: `${fontSize}px` }}
+                      className={`${getScriptTextFontClass(scriptMode)} font-semibold text-ink dark:text-dark-text ${lineSpacingClass} ${introAlignmentClass}`}
+                      style={{ fontSize: `${fontSize * introFontScale}px` }}
                     >
                       {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: line.larivaar })}
                     </p>
                     {showTransliteration && line.transliteration && (
-                      <p lang="pa-Latn" className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                      <p lang="pa-Latn" className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-2 leading-relaxed ${introAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
                     {introMeaning && (
                       meaningLanguage === 'pa' ? (
-                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${introAlignmentClass}`}>
                           {renderScriptText(introMeaning, scriptMode)}
                         </p>
                       ) : (
-                        <p lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${introAlignmentClass}`}>
                           {introMeaning}
                         </p>
                       )
@@ -315,18 +322,38 @@ export default function StudyCard({
           </div>
         )}
 
-        {visibleMainLines.length > 0 && (
+        {visibleOrderedLines.length > 0 && (
           <>
             <div className="space-y-0">
-              {visibleMainLines.map((line, index) => {
+              {visibleOrderedLines.map((line, index) => {
                 const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
+                const sequenceIndex = leadingHeaderCount + index
+                const isStructuralHeader = Boolean(line.isHeader)
+                const lineScriptAlignmentClass = isStructuralHeader
+                  ? line.headerLevel === 6
+                    ? 'text-right items-end justify-end'
+                    : 'text-center items-center justify-center'
+                  : scriptAlignmentClass
+                const lineMeaningAlignmentClass = isStructuralHeader
+                  ? line.headerLevel === 6 ? 'text-right' : 'text-center'
+                  : meaningAlignmentClass
+                const lineFontScale = !isStructuralHeader
+                  ? 1
+                  : line.headerLevel === 6
+                    ? 0.82
+                    : line.headerLevel === 1
+                      ? 1.15
+                      : 1.08
 
                 return (
                   <article
                     key={`${line.verseId}-${index}`}
                     data-testid="study-line"
                     data-verse-id={line.verseId}
-                    className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass}`}
+                    data-line-kind={isStructuralHeader ? 'header' : 'verse'}
+                    data-header-level={line.headerLevel ?? 0}
+                    data-sequence-index={sequenceIndex}
+                    className={`reader-divider relative px-1 pr-10 py-5 ${lineMeaningAlignmentClass} ${isStructuralHeader ? 'study-structural-line' : ''}`}
                   >
                     <button
                       type="button"
@@ -335,7 +362,7 @@ export default function StudyCard({
                         setActionLine(line)
                         setSourceLayersOpen(false)
                       }}
-                      aria-label={`Open verse actions for line ${index + 1}`}
+                      aria-label={`Open verse actions for line ${sequenceIndex + 1}`}
                       className={`absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-transparent text-ink/68 transition-colors duration-300 hover:border-sand/20 hover:text-ink/65 dark:text-dark-text/64 dark:hover:border-dark-text/10 dark:hover:text-dark-text/65 ${
                         isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
                       }`}
@@ -346,13 +373,13 @@ export default function StudyCard({
                     {larivaar ? (
                       <p
                         lang={getScriptTextLang(scriptMode)}
-                        className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
-                        style={{ fontSize: `${fontSize}px` }}
+                        className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text ${lineSpacingClass} ${lineMeaningAlignmentClass} ${isStructuralHeader ? 'font-semibold' : ''}`}
+                        style={{ fontSize: `${fontSize * lineFontScale}px` }}
                       >
                         {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar: true, showVishraam, larivaarText: line.larivaar })}
                       </p>
                     ) : (
-                      <div className={`flex flex-wrap gap-x-2 gap-y-3 ${scriptAlignmentClass}`}>
+                      <div className={`flex flex-wrap gap-x-2 gap-y-3 ${lineScriptAlignmentClass}`}>
                         {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
                           <button
                             key={`${line.verseId}-${wordIndex}`}
@@ -361,8 +388,8 @@ export default function StudyCard({
                             tabIndex={wordIndex === 0 ? 0 : -1}
                             data-reader-word
                             aria-label={`Open word details for ${renderScriptText(word, scriptMode)}`}
-                            className={`${getScriptTextFontClass(scriptMode)} mr-[0.1em] min-h-11 min-w-6 rounded-sm border-0 bg-transparent px-1 py-0 text-ink transition-colors duration-300 hover:text-gold-dark active:text-gold-dark dark:text-dark-text dark:hover:text-gold-light dark:active:text-gold-light ${lineSpacingClass}`}
-                            style={{ fontSize: `${fontSize}px` }}
+                            className={`${getScriptTextFontClass(scriptMode)} mr-[0.1em] min-h-11 min-w-6 rounded-sm border-0 bg-transparent px-1 py-0 text-ink transition-colors duration-300 hover:text-gold-dark active:text-gold-dark dark:text-dark-text dark:hover:text-gold-light dark:active:text-gold-light ${lineSpacingClass} ${isStructuralHeader ? 'font-semibold' : ''}`}
+                            style={{ fontSize: `${fontSize * lineFontScale}px` }}
                             onPointerDown={event => event.stopPropagation()}
                             onKeyDown={handleWordKeyDown}
                             onClick={event => handleWordTap(event, word, line)}
@@ -374,18 +401,18 @@ export default function StudyCard({
                     )}
 
                     {showTransliteration && line.transliteration && (
-                      <p lang="pa-Latn" className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                      <p lang="pa-Latn" className={`font-sans text-sm italic text-ink/68 dark:text-dark-text/64 mt-3 leading-relaxed ${lineMeaningAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
 
                     {meaningText && (
                       meaningLanguage === 'pa' ? (
-                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${lineMeaningAlignmentClass}`}>
                           {renderScriptText(meaningText, scriptMode)}
                         </p>
                       ) : (
-                        <p lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${lineMeaningAlignmentClass}`}>
                           {meaningText}
                         </p>
                       )

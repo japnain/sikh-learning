@@ -247,6 +247,36 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   },
 }
 
+const BANI_SEQUENCE_COPY: Record<UiLocale, {
+  entryOutlineEyebrow: string
+  entryOutlineBody: string
+  sectionLabel: (index: number, total: number) => string
+  previousSection: string
+  nextSection: string
+}> = {
+  en: {
+    entryOutlineEyebrow: 'Reading Parts',
+    entryOutlineBody: 'Move between the ordered parts of this bani while preserving the source sequence.',
+    sectionLabel: (index, total) => `Part ${index} of ${total}`,
+    previousSection: 'Previous part',
+    nextSection: 'Next part',
+  },
+  pa: {
+    entryOutlineEyebrow: 'ਪਾਠ ਦੇ ਭਾਗ',
+    entryOutlineBody: 'ਇਸ ਬਾਣੀ ਦੇ ਮੂਲ ਕ੍ਰਮ ਨੂੰ ਕਾਇਮ ਰੱਖਦਿਆਂ ਇਸ ਦੇ ਭਾਗਾਂ ਵਿਚ ਜਾਓ।',
+    sectionLabel: (index, total) => `ਭਾਗ ${index} / ${total}`,
+    previousSection: 'ਪਿਛਲਾ ਭਾਗ',
+    nextSection: 'ਅਗਲਾ ਭਾਗ',
+  },
+  hi: {
+    entryOutlineEyebrow: 'पाठ के भाग',
+    entryOutlineBody: 'स्रोत क्रम को बनाए रखते हुए इस बाणी के अलग-अलग भागों में जाएँ।',
+    sectionLabel: (index, total) => `भाग ${index} / ${total}`,
+    previousSection: 'पिछला भाग',
+    nextSection: 'अगला भाग',
+  },
+}
+
 export default function Study() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -496,6 +526,7 @@ export default function Study() {
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
   const studyExperienceCopy = STUDY_EXPERIENCE_COPY[locale]
+  const entrySequenceCopy = isBaniDbMode ? BANI_SEQUENCE_COPY[locale] : studyExperienceCopy
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
   const [actionNotice, setActionNotice] = useState<string | null>(null)
@@ -1029,9 +1060,9 @@ export default function Study() {
       title: findStudyEntryTitle(entry),
       lineCount: getStudyEntryLineCount(entry),
       detail: detailBits[0] ?? `${entry.scripture} · ${entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} ${entry.ang}`,
-      eyebrow: studyExperienceCopy.sectionLabel(index + 1, entries.length),
+      eyebrow: entrySequenceCopy.sectionLabel(index + 1, entries.length),
     }
-  }), [entries, studyExperienceCopy])
+  }), [entries, entrySequenceCopy])
   const showEntryOutline = entries.length > 1
 
   const rangeEntries = isBaniDbMode ? baniResult.entries : entries
@@ -1089,10 +1120,10 @@ export default function Study() {
   const entryNavigatorProps = shouldPaginateEntries && currentEntry ? {
     currentIndex: safeActiveEntryIndex,
     total: entries.length,
-    currentLabel: studyExperienceCopy.sectionLabel(safeActiveEntryIndex + 1, entries.length),
+    currentLabel: entrySequenceCopy.sectionLabel(safeActiveEntryIndex + 1, entries.length),
     currentTitle: renderScriptText(entryOutline[safeActiveEntryIndex]?.title ?? currentEntry.gurmukhi, scriptMode),
-    previousLabel: studyExperienceCopy.previousSection,
-    nextLabel: studyExperienceCopy.nextSection,
+    previousLabel: entrySequenceCopy.previousSection,
+    nextLabel: entrySequenceCopy.nextSection,
     previousTitle: entryOutline[safeActiveEntryIndex - 1]?.title
       ? renderScriptText(entryOutline[safeActiveEntryIndex - 1]!.title, scriptMode)
       : null,
@@ -1102,7 +1133,7 @@ export default function Study() {
     beginningLabel: studyExperienceCopy.beginningOfReading,
     endLabel: studyExperienceCopy.endOfReading,
     continueLabel: studyExperienceCopy.continueReading,
-    navLabel: studyExperienceCopy.entryOutlineEyebrow,
+    navLabel: entrySequenceCopy.entryOutlineEyebrow,
     titleLang: getScriptTextLang(scriptMode),
     titleClassName: getScriptTextFontClass(scriptMode),
     onPrevious: () => jumpToEntry(safeActiveEntryIndex - 1),
@@ -1712,8 +1743,8 @@ export default function Study() {
         {showEntryOutline && (
           <DisclosureSection
             storageKey="study-entry-outline"
-            title={studyExperienceCopy.entryOutlineEyebrow}
-            summary={studyExperienceCopy.entryOutlineBody}
+            title={entrySequenceCopy.entryOutlineEyebrow}
+            summary={entrySequenceCopy.entryOutlineBody}
             defaultOpen={false}
             className="section-shell-quiet p-4"
             bodyClassName="mt-4"

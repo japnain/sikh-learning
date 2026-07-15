@@ -24,7 +24,6 @@ function browseOnlyBani(bani: Omit<Bani, 'baniDbId'> & { type: 'browse-only' }):
 
 const EXACT_SGGS_BANIS: Bani[] = [
   exactBani({ id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of Sri Guru Granth Sahib Ji recited at amrit vela.', baniDbId: 2 }),
-  browseOnlyBani({ id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, startVerseId: 386, category: 'Daily Prayers', description: 'The So Dar section that opens Rehras Sahib.', type: 'browse-only' }),
   exactBani({ id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, startVerseId: 386, category: 'Daily Prayers', description: 'Evening Nitnem composition with adjustable STTM length support.', baniDbId: 21 }),
   exactBani({ id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, startVerseId: 534, category: 'Daily Prayers', description: 'Night prayer recited before sleep.', baniDbId: 23 }),
   exactBani({ id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, startVerseId: 39128, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji.', baniDbId: 10 }),

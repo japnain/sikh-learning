@@ -558,6 +558,7 @@ export const MOCK_CHAUPAI_BANI_RESPONSE = {
       unicode: 'ਦੋਹਰਾ ॥',
       transliteration: 'dhoharaa ||',
       pageNo: null,
+      header: 2,
       existsBuddhaDal: 1,
     }),
     createStructuredBaniVerse({
@@ -605,6 +606,7 @@ export const MOCK_AARTI_BANI_RESPONSE = {
       unicode: 'ਆਰਤੀ-ਆਰਤਾ',
       transliteration: 'aaratee aarataa',
       pageNo: null,
+      header: 1,
       existsBuddhaDal: 1,
     }),
     createStructuredBaniVerse({
@@ -659,7 +661,7 @@ export const MOCK_SOHILA_BANI_RESPONSE = {
       unicode: 'ਰਾਗੁ ਗਉੜੀ ਦੀਪਕੀ ਮਹਲਾ ੧ ॥',
       transliteration: 'raag gauRee dheepakee mahalaa pehilaa ||',
       pageNo: null,
-      header: 1,
+      header: 2,
       existsTaksal: 1,
       existsBuddhaDal: 1,
     }),

@@ -252,10 +252,20 @@ describe('fetchBani', () => {
     expect(firstVisibleLine(result.entries)).toBe('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')
   })
 
-  it('keeps the extra-long Rehras intro lines available for the reader intro block', async () => {
+  it('keeps extra-long Rehras opening lines ordered and only marks real BaniDB headers', async () => {
     const result = await fetchBani(21, 'extralong')
     expect(result.resolvedLength).toBe('extralong')
-    expect(introLines(result.entries)).toContain('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥')
+    const openingLines = result.entries[0].lines ?? []
+
+    expect(openingLines.slice(0, 4).map(line => line.gurmukhi)).toEqual([
+      'ਰਹਰਾਸਿ ਸਾਹਿਬ',
+      'ਸਲੋਕ ਮਃ ੧ ॥',
+      'ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥',
+      'ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥',
+    ])
+    expect(openingLines[0]).toMatchObject({ isHeader: true, headerLevel: 1 })
+    expect(openingLines[1]?.isHeader).toBe(false)
+    expect(introLines(result.entries)).not.toContain('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥')
   })
 
   it('normalizes Benati Chaupai Sahib to three distinct ordered bands', async () => {
