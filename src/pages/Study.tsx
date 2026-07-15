@@ -804,6 +804,7 @@ export default function Study() {
 
     let initialSyncFrame: number | null = null
     let scrollIdleTimeout: number | null = null
+    const supportsScrollEnd = 'onscrollend' in document
 
     const syncVisibleVerse = () => {
       const verseElements = Array.from(document.querySelectorAll<HTMLElement>('[data-testid="study-line"][data-verse-id]'))
@@ -834,17 +835,29 @@ export default function Study() {
       }, 180)
     }
 
+    const handleScrollEnd = () => {
+      syncVisibleVerse()
+    }
+
     initialSyncFrame = window.requestAnimationFrame(() => {
       initialSyncFrame = null
       syncVisibleVerse()
     })
-    window.addEventListener('scroll', syncAfterScrollSettles, { passive: true })
+    if (supportsScrollEnd) {
+      document.addEventListener('scrollend', handleScrollEnd, { passive: true })
+    } else {
+      window.addEventListener('scroll', syncAfterScrollSettles, { passive: true })
+    }
     window.addEventListener('resize', syncAfterScrollSettles)
 
     return () => {
       if (initialSyncFrame !== null) window.cancelAnimationFrame(initialSyncFrame)
       if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
-      window.removeEventListener('scroll', syncAfterScrollSettles)
+      if (supportsScrollEnd) {
+        document.removeEventListener('scrollend', handleScrollEnd)
+      } else {
+        window.removeEventListener('scroll', syncAfterScrollSettles)
+      }
       window.removeEventListener('resize', syncAfterScrollSettles)
     }
   }, [baseSession, loading, updateSession, searchParamsString])
@@ -925,12 +938,13 @@ export default function Study() {
     const progressBar = readerProgressBarRef.current
     if (!reading || !progressTrack || !progressBar) return
 
-    let frameId: number | null = null
+    let scrollIdleTimeout: number | null = null
+    let resizeIdleTimeout: number | null = null
     let readingTop = 0
     let readableDistance = 1
+    const supportsScrollEnd = 'onscrollend' in document
 
     const updateReaderProgress = () => {
-      frameId = null
       const localProgress = Math.max(0, Math.min(1, (window.scrollY - readingTop + 96) / readableDistance))
       const overallProgress = shouldPaginateEntries && entries.length > 0
         ? (safeActiveEntryIndex + localProgress) / entries.length
@@ -950,25 +964,45 @@ export default function Study() {
       updateReaderProgress()
     }
 
-    const scheduleUpdate = () => {
-      if (frameId !== null) return
-      frameId = window.requestAnimationFrame(updateReaderProgress)
+    const updateAfterScrollSettles = () => {
+      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
+      scrollIdleTimeout = window.setTimeout(() => {
+        scrollIdleTimeout = null
+        updateReaderProgress()
+      }, 180)
+    }
+
+    const measureAfterResizeSettles = () => {
+      if (resizeIdleTimeout !== null) window.clearTimeout(resizeIdleTimeout)
+      resizeIdleTimeout = window.setTimeout(() => {
+        resizeIdleTimeout = null
+        measureReading()
+      }, 180)
     }
 
     measureReading()
-    window.addEventListener('scroll', scheduleUpdate, { passive: true })
-    window.addEventListener('resize', measureReading)
+    if (supportsScrollEnd) {
+      document.addEventListener('scrollend', updateReaderProgress, { passive: true })
+    } else {
+      window.addEventListener('scroll', updateAfterScrollSettles, { passive: true })
+    }
+    window.addEventListener('resize', measureAfterResizeSettles)
 
     const resizeObserver = typeof ResizeObserver === 'undefined'
       ? null
-      : new ResizeObserver(measureReading)
+      : new ResizeObserver(measureAfterResizeSettles)
     resizeObserver?.observe(reading)
 
     return () => {
-      if (frameId !== null) window.cancelAnimationFrame(frameId)
+      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
+      if (resizeIdleTimeout !== null) window.clearTimeout(resizeIdleTimeout)
       resizeObserver?.disconnect()
-      window.removeEventListener('scroll', scheduleUpdate)
-      window.removeEventListener('resize', measureReading)
+      if (supportsScrollEnd) {
+        document.removeEventListener('scrollend', updateReaderProgress)
+      } else {
+        window.removeEventListener('scroll', updateAfterScrollSettles)
+      }
+      window.removeEventListener('resize', measureAfterResizeSettles)
     }
   }, [entries.length, loading, safeActiveEntryIndex, searchParamsString, shouldPaginateEntries])
 
@@ -1524,7 +1558,7 @@ export default function Study() {
 
   if (readerStatus === 'degraded') {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="degraded">
+      <div className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="degraded">
         {readerStateTopbar}
         <SurfaceStateCard
           surface="study-reader"
@@ -1555,7 +1589,7 @@ export default function Study() {
 
   if (readerStatus === 'empty' || entries.length === 0) {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="empty">
+      <div className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="empty">
         {readerStateTopbar}
         <SurfaceStateCard
           surface="study-reader"
@@ -1585,7 +1619,7 @@ export default function Study() {
 
   return (
     <div
-      className="page-shell animate-fade-in"
+      className="page-shell"
       data-testid="page-study"
       data-page="study"
       data-ai-surface="study-reader"

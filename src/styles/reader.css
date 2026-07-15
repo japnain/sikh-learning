@@ -1710,7 +1710,6 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   background: rgb(var(--color-accent-strong));
   transform: scaleX(0);
   transform-origin: left center;
-  will-change: transform;
 }
 
 .study-reader-back,
@@ -2383,10 +2382,6 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 }
 
 @media (max-width: 759px) {
-  .page-shell[data-page='study'] {
-    --study-reader-topbar-offset: 6.125rem;
-  }
-
   .study-reader-topbar__identity {
     display: block;
     grid-column: 1 / -1;
@@ -2401,6 +2396,12 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 
   .study-reader-topbar__actions {
     justify-self: end;
+  }
+
+  .study-entry-navigator--top {
+    position: static;
+    top: auto;
+    z-index: auto;
   }
 }
 
