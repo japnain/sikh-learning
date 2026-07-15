@@ -15,6 +15,7 @@ import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import savedMuralSrc from '../assets/living-library/saved-mural.jpeg'
 import {
   IconBookmarkFilled,
   IconChevronDown,
@@ -103,13 +104,24 @@ export default function Library() {
 
   return (
     <div className="page-shell animate-fade-in" data-testid="page-library" data-page="library" data-ai-surface="library" data-ai-state="ready">
-      <div className="mb-5">
+      <div className="library-page-header mb-5">
         <p className="eyebrow">{libraryCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.title}</h1>
         <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
           {editorial?.library.body ?? libraryCopy.body}
         </p>
       </div>
+
+      <figure className="library-art-band" aria-hidden="true">
+        <img
+          src={savedMuralSrc}
+          alt=""
+          width={1080}
+          height={1920}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
 
       <div className="library-adaptive-layout">
         <aside className="library-shelf-rail" aria-label="Saved overview">

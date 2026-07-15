@@ -48,9 +48,18 @@ import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   getReaderEditorialCopyForBani,
 } from '../content/readerEditorialCopy'
+import readHarmandirSrc from '../assets/living-library/read-harmandir.jpeg'
+import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.jpeg'
+import booksCourtSrc from '../assets/living-library/books-court.jpeg'
 
 type Scripture = 'SGGS' | 'DG'
+type ReadCollection = 'banis' | 'library'
 type ExactBani = Bani & { baniDbId: number }
+
+const READ_COLLECTIONS: Array<{ id: ReadCollection; label: string }> = [
+  { id: 'banis', label: 'Banis' },
+  { id: 'library', label: 'Sources & Books' },
+]
 
 function isExactBani(bani: Bani): bani is ExactBani {
   return typeof bani.baniDbId === 'number'
@@ -75,15 +84,6 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   transliteration: { type: 4, placeholder: 'Transliteration', minLength: 2 },
   ang: { type: -1, placeholder: 'Open an ang or page', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
-}
-const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
-  'first-letters': 'Search by first letters and slip into the right bani with less hunting.',
-  'first-letters-anywhere': 'Catch first letters even when they appear later in the line.',
-  gurmukhi: 'Search the Gurbani itself when the line is already in your mind.',
-  english: 'Search by meaning when the thought arrives before the words.',
-  transliteration: 'Search by pronunciation when that is what you remember first.',
-  ang: 'Open an ang or page directly without running a word search.',
-  'auto-detect': 'Let the app read what you typed and choose the most likely search style.',
 }
 const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
 const LATIN_SEARCH_PATTERN = /[A-Za-z]/
@@ -416,6 +416,7 @@ export default function Banis() {
   ))
   const [raagFilter, setRaagFilter] = useState<string>('all')
   const [writerFilter, setWriterFilter] = useState<string>('all')
+  const [activeCollection, setActiveCollection] = useState<ReadCollection>('banis')
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
@@ -658,6 +659,20 @@ export default function Banis() {
     searchMode === 'ang' ? '' : searchQuery.trim(),
     searchSource
   )
+  const hasActiveSearch = searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength
+  const searchStatusMessage = useMemo(() => {
+    if (!hasActiveSearch) return ''
+    if (searching) return 'Searching'
+    if (searchIssue) return getSearchIssueCopy(searchIssue)
+    if (searchMode === 'ang') {
+      return angTargets.length === 1
+        ? '1 direct page destination available'
+        : `${angTargets.length} direct page destinations available`
+    }
+
+    const resultCount = appSearchMatches.length + groupedSearchResults.length
+    return resultCount === 1 ? '1 result found' : `${resultCount} results found`
+  }, [angTargets.length, appSearchMatches.length, groupedSearchResults.length, hasActiveSearch, searchIssue, searchMode, searching])
 
   return (
     <div
@@ -670,14 +685,25 @@ export default function Banis() {
       <div className="read-room-stack">
         <section className="read-room-hero" aria-labelledby="read-room-title">
           <div className="read-room-hero__copy">
-            <p className="eyebrow">{editorial?.read.eyebrow ?? 'Read'}</p>
+            <p className="eyebrow">NaamRas library</p>
             <h1 id="read-room-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
-              {editorial?.read.title ?? 'Move directly into Gurbani.'}
+              Read
             </h1>
             <p className="read-room-hero__body mt-3 max-w-[32ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
-              {editorial?.read.body}
+              Gurbani, daily banis, source editions, and books.
             </p>
           </div>
+          <figure className="read-room-hero__art">
+            <img
+              src={readHarmandirSrc}
+              alt="Historical painting of Sri Harmandir Sahib and the surrounding sarovar."
+              width={1200}
+              height={1500}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </figure>
 
           <div
             className="read-quick-find-card"
@@ -701,12 +727,9 @@ export default function Banis() {
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="eyebrow">{editorial?.read.quickFindEyebrow ?? 'Quick Find'}</p>
+            <p className="eyebrow">Find</p>
             <p id="banis-quick-find-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-              {editorial?.read.quickFindTitle ?? 'Search by the shape you remember first.'}
-            </p>
-            <p className="read-quick-find-card__body mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
-              {editorial?.read.quickFindBody ?? SEARCH_OPTION_SUMMARY[searchMode]}
+              Search Gurbani and the library
             </p>
           </div>
           <button
@@ -741,6 +764,9 @@ export default function Banis() {
             className="read-search-input w-full rounded-lg border border-sand/15 bg-parchment-card py-4 pl-11 pr-4 font-sans text-base text-ink outline-none transition-colors duration-300 placeholder:text-ink/36 focus:border-saffron/45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text dark:placeholder:text-dark-text/38"
             data-ai-action="read-smart-search"
           />
+          <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+            {searchStatusMessage}
+          </p>
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <MetadataChip>{searchMode === 'auto-detect' ? 'Auto detect' : SEARCH_MODE_LABELS[searchMode]}</MetadataChip>
@@ -979,6 +1005,76 @@ export default function Banis() {
           </div>
         </section>
 
+        <div className="read-collection-tabs" role="tablist" aria-label="Read collections">
+          {READ_COLLECTIONS.map((collection, index) => {
+            const selected = activeCollection === collection.id
+            return (
+              <button
+                key={collection.id}
+                id={`read-tab-${collection.id}`}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                aria-controls={`read-panel-${collection.id}`}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setActiveCollection(collection.id)}
+                onKeyDown={event => {
+                  let nextIndex = index
+                  if (event.key === 'ArrowRight') nextIndex = (index + 1) % READ_COLLECTIONS.length
+                  else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + READ_COLLECTIONS.length) % READ_COLLECTIONS.length
+                  else if (event.key === 'Home') nextIndex = 0
+                  else if (event.key === 'End') nextIndex = READ_COLLECTIONS.length - 1
+                  else return
+
+                  event.preventDefault()
+                  const nextCollection = READ_COLLECTIONS[nextIndex]
+                  setActiveCollection(nextCollection.id)
+                  window.requestAnimationFrame(() => {
+                    document.getElementById(`read-tab-${nextCollection.id}`)?.focus()
+                  })
+                }}
+                className="read-collection-tab"
+              >
+                {collection.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {hasActiveSearch ? (
+          <div
+            id={`read-panel-${activeCollection}`}
+            role="tabpanel"
+            aria-labelledby={`read-tab-${activeCollection}`}
+            className="read-search-active-note"
+          >
+            Search results are shown above.
+          </div>
+        ) : null}
+
+        {!hasActiveSearch && activeCollection === 'banis' ? (
+          <div
+            id="read-panel-banis"
+            role="tabpanel"
+            aria-labelledby="read-tab-banis"
+            className="read-collection-panel"
+          >
+            <div className="read-collection-intro">
+              <img
+                src={banisGuruNanakSrc}
+                alt="Traditional painted scene of Guru Nanak with companions and visitors."
+                width={1080}
+                height={1367}
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <p className="eyebrow">Daily practice</p>
+                <h2>Banis for every part of the day</h2>
+                <p className="read-collection-intro__body">Morning, evening, and complete daily readings.</p>
+              </div>
+            </div>
+
         <button
           type="button"
           onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
@@ -1202,77 +1298,105 @@ export default function Banis() {
           </div>
         </section>
 
-        <section className="read-companion-section" aria-labelledby="read-companion-title">
-          <div className="read-section-header">
-            <p className="eyebrow">Companion readers</p>
-            <h2 id="read-companion-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
-              Source-backed companions
-            </h2>
-            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
-              Open complementary readers with search, source context, and page navigation.
-            </p>
           </div>
+        ) : null}
 
-          <div className="mt-4 grid gap-3">
-      <Link
-        to="/banis/rehat"
-        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
-        data-testid="banis-open-rehat"
-      >
-        <span className="min-w-0">
-          <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</span>
-          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
-            Open the Rehat reader with list search, chapter filtering, source context, and chapter text search.
-          </span>
-        </span>
-        <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
-          <IconArrowRight size={15} />
-        </span>
-      </Link>
+        {!hasActiveSearch && activeCollection === 'library' ? (
+          <div
+            id="read-panel-library"
+            role="tabpanel"
+            aria-labelledby="read-tab-library"
+            className="read-collection-panel"
+          >
+            <div className="read-collection-intro read-collection-intro--library">
+              <img
+                src={booksCourtSrc}
+                alt="Historical painting showing a large gathering in an architectural courtyard."
+                width={736}
+                height={920}
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <p className="eyebrow">Sources &amp; books</p>
+                <h2>A library of context and memory</h2>
+                <p className="read-collection-intro__body">Guidance, source editions, and Sikh history.</p>
+              </div>
+            </div>
 
-      <Link
-        to="/banis/amrit-keertan"
-        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
-        data-testid="banis-open-amrit-keertan"
-      >
-        <span className="min-w-0">
-          <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</span>
-          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
-            Open the Amrit Keertan directory with section search, source metadata, English, and page navigation.
-          </span>
-        </span>
-        <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
-          <IconArrowRight size={15} />
-        </span>
-      </Link>
+            <section className="read-companion-section" aria-labelledby="read-companion-title">
+              <div className="read-section-header">
+                <p className="eyebrow">Companion readers</p>
+                <h2 id="read-companion-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+                  Guidance and songbooks
+                </h2>
+                <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
+                  Read Rehat or browse Amrit Keertan with source context.
+                </p>
+              </div>
+
+              <div className="mt-4 grid gap-3">
+                <Link
+                  to="/banis/rehat"
+                  className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+                  data-testid="banis-open-rehat"
+                >
+                  <span className="min-w-0">
+                    <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</span>
+                    <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
+                      Conduct, practice, and chapter-level reading.
+                    </span>
+                  </span>
+                  <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
+                    <IconArrowRight size={15} />
+                  </span>
+                </Link>
+
+                <Link
+                  to="/banis/amrit-keertan"
+                  className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+                  data-testid="banis-open-amrit-keertan"
+                >
+                  <span className="min-w-0">
+                    <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</span>
+                    <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
+                      Shabads organized by section with page navigation.
+                    </span>
+                  </span>
+                  <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
+                    <IconArrowRight size={15} />
+                  </span>
+                </Link>
+              </div>
+            </section>
+
+            <section
+              className="read-source-section"
+              aria-labelledby="read-source-browser-title"
+              data-testid="read-source-browser"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="eyebrow">Scripture &amp; history</p>
+                  <h2 id="read-source-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+                    Source and book browser
+                  </h2>
+                  <p className="read-section-copy mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/76">
+                    Open scripture by ang or continue into historical works.
+                  </p>
+                </div>
+                <span className="chip-pill shrink-0">Read</span>
+              </div>
+
+              <div className="mt-4">
+                <ScriptureSourceBrowser
+                  dataTestId="read-source-browser-shared"
+                  sectionClassName="read-source-browser-card surface-primary px-4 py-4"
+                />
+              </div>
+            </section>
           </div>
-        </section>
-
-        <section
-        className="read-source-section"
-        aria-labelledby="read-source-browser-title"
-        data-testid="read-source-browser"
-      >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <p className="eyebrow">Browse by source</p>
-            <h2 id="read-source-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
-              Source / page browser
-            </h2>
-            <p className="read-section-copy mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/76">
-              Open by ang, page, or source edition.
-            </p>
-          </div>
-          <span className="chip-pill shrink-0">Read</span>
-        </div>
-
-        <div className="mt-4">
-          <ScriptureSourceBrowser
-            dataTestId="read-source-browser-shared"
-            sectionClassName="read-source-browser-card surface-primary px-4 py-4"
-          />
-        </div>
-      </section>
+        ) : null}
       </div>
     </div>
   )

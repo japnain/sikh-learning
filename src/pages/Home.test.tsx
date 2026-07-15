@@ -121,8 +121,34 @@ test('renders the Home reading surface without old guidance cards', () => {
   expect(screen.getByTestId('page-home')).toBeInTheDocument()
   expect(screen.getByTestId('home-hero')).toBeInTheDocument()
   expect(screen.getByText('Reading Profile')).toBeInTheDocument()
+  const receiveMarker = screen.getByTestId('home-path-receive')
+  const practiceMarker = screen.getByTestId('home-path-practice')
+  const keepMarker = screen.getByTestId('home-path-keep')
+  expect(within(receiveMarker).getByText('Receive')).toBeInTheDocument()
+  expect(within(practiceMarker).getByText('Practice')).toBeInTheDocument()
+  expect(within(keepMarker).getByText('Keep')).toBeInTheDocument()
+  expect(receiveMarker.compareDocumentPosition(practiceMarker) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  expect(practiceMarker.compareDocumentPosition(keepMarker) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  const nitnem = screen.getByTestId('home-nitnem-spotlight')
+  expect(within(nitnem).getByText(new RegExp(`Bani \\d of ${DEFAULT_NITNEM_OPTION_IDS.length}`))).toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-carousel-controls')).toHaveClass('home-nitnem-nav')
+  expect(screen.getByTestId('home-nitnem-manage')).toHaveTextContent('Customize')
+  expect(within(nitnem).queryByRole('progressbar')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-guidance-hero')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-read-today-featured-shabad')).not.toBeInTheDocument()
+})
+
+test('shows completion progress only when Nitnem tracking is enabled', () => {
+  useNitemStore.setState({
+    completionTrackingEnabled: true,
+    completedDate: todayStamp(),
+    completedIds: [DEFAULT_NITNEM_OPTION_IDS[0]],
+  })
+
+  renderHome()
+
+  expect(screen.getByText('1 complete')).toBeInTheDocument()
+  expect(screen.getByRole('progressbar', { name: /Daily Nitnem completion/i })).toHaveAttribute('aria-valuenow', '1')
 })
 
 test('saved overview shows only reading, favorites, and review metrics', () => {
@@ -140,6 +166,10 @@ test('saved overview shows only reading, favorites, and review metrics', () => {
   renderHome()
 
   const metrics = screen.getByTestId('home-saved-metrics')
+  expect(screen.getByTestId('home-saved-layout')).toContainElement(metrics)
+  const savedArt = screen.getByTestId('home-saved-art')
+  expect(savedArt).toHaveAttribute('href', '/library')
+  expect(savedArt.querySelector('img')).toHaveAttribute('src', expect.stringContaining('saved-mural'))
   expect(within(metrics).getByText('Bookmarks').parentElement).toHaveTextContent('1')
   expect(within(metrics).getByText('Favorites').parentElement).toHaveTextContent('0')
   expect(within(metrics).getByText('Review Bank').parentElement).toHaveTextContent('0')
