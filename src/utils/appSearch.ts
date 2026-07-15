@@ -52,8 +52,8 @@ export interface GroupedSearchResult {
 }
 
 const SCRIPTURE_META = {
-  SGGS: { label: 'Sri Guru Granth Sahib Ji' },
-  DG: { label: 'Dasam Granth' },
+  SGGS: { label: SOURCE_READER_META.G.name },
+  DG: { label: SOURCE_READER_META.D.name },
 } as const
 
 export const SEARCH_SOURCE_LABELS: Record<SearchSource, string> = {

@@ -175,6 +175,15 @@ export const READ_EXACT_BANIS: Bani[] = [
   ...READ_EXACT_DG_BANIS,
 ]
 
+const READ_STANDALONE_BANIDB_IDS = [24] as const
+
+export const READ_BANIDB_CATALOG_IDS = Array.from(new Set([
+  ...READ_EXACT_BANIS.flatMap(bani => typeof bani.baniDbId === 'number' ? [bani.baniDbId] : []),
+  ...READ_STANDALONE_BANIDB_IDS,
+])).sort((left, right) => left - right)
+
+export const READ_BANIDB_CATALOG_COUNT = READ_BANIDB_CATALOG_IDS.length
+
 export const READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS = [
   'japji-sahib',
   'jaap-sahib',
@@ -190,38 +199,9 @@ export const READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS = [
   'laavan',
 ] as const
 
-const READ_DIRECTORY_SUNDAR_GUTKA_BANI_ID_SET = new Set<string>(READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS)
-const READ_DIRECTORY_SUNDAR_GUTKA_EXACT_BANIDB_IDS = new Set<number>([
-  2,
-  4,
-  6,
-  9,
-  10,
-  21,
-  23,
-  30,
-  31,
-  90,
-  22,
-  11,
-])
+export const READ_DIRECTORY_SGGS_BANIS: Bani[] = [...READ_EXACT_SGGS_BANIS]
 
-function overlapsSundarGutkaDirectory(bani: Bani) {
-  const baseId = bani.variantOf ?? bani.id
-  if (!READ_DIRECTORY_SUNDAR_GUTKA_BANI_ID_SET.has(baseId)) return false
-
-  return typeof bani.baniDbId === 'number'
-    ? READ_DIRECTORY_SUNDAR_GUTKA_EXACT_BANIDB_IDS.has(bani.baniDbId)
-    : true
-}
-
-export const READ_DIRECTORY_SGGS_BANIS: Bani[] = READ_EXACT_SGGS_BANIS.filter(
-  bani => !overlapsSundarGutkaDirectory(bani)
-)
-
-export const READ_DIRECTORY_DG_BANIS: Bani[] = READ_EXACT_DG_BANIS.filter(
-  bani => !overlapsSundarGutkaDirectory(bani)
-)
+export const READ_DIRECTORY_DG_BANIS: Bani[] = [...READ_EXACT_DG_BANIS]
 
 export const SGGS_CATEGORY_ORDER = ['Daily Prayers', 'Long Compositions', 'Vars', 'Raag Sections', 'Saloks & Short Banis', 'Swaiye'] as const
 export const DG_CATEGORY_ORDER = ['Daily Prayers', 'Bir Ras', 'Major Compositions', 'Supplemental Banis', 'Shorter Banis'] as const
