@@ -9,6 +9,10 @@
   --nr-reading-rail: 18.5rem;
   --nr-layout-gap: 1.25rem;
   --nr-radius-control: 0.5rem;
+  --nr-nav-dock-max: 25rem;
+  --nr-nav-rail-width: 5.5rem;
+  --nr-nav-content-offset: 6.5rem;
+  --nr-target-min: 2.75rem;
 
   --theme-color: #f2f1e9;
 

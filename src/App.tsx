@@ -139,7 +139,10 @@ function AppShell() {
   const [isCompletingOnboarding, setIsCompletingOnboarding] = useState(false)
   const [pendingOnboardingViewportReset, setPendingOnboardingViewportReset] = useState(false)
   const isPublicDocument = isPublicDocumentPath(location.pathname)
-  const isFocusedReader = location.pathname === '/study' || location.pathname.startsWith('/study/')
+  const isFocusedReader = location.pathname === '/study'
+    || location.pathname.startsWith('/study/')
+    || /^\/library\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
+  const showPrimaryNavigation = !isPublicDocument && !isFocusedReader
   const showFirstRun = !isPublicDocument && !hasCompletedOnboarding && presentationMode === 'first-run'
   const showOverlay = !isPublicDocument && hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
 
@@ -265,6 +268,7 @@ function AppShell() {
           data-ai-surface="app-shell"
           data-ai-state="ready"
           data-reader-focus={isFocusedReader ? 'true' : undefined}
+          data-navigation={showPrimaryNavigation ? 'primary' : undefined}
         >
           <main
             ref={mainContentRef}
@@ -320,7 +324,7 @@ function AppShell() {
             />
           )}
 
-          {!isPublicDocument && !isFocusedReader && <NavBar />}
+          {showPrimaryNavigation && <NavBar />}
         </div>
       )}
     </>

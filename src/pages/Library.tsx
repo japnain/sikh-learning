@@ -16,7 +16,7 @@ import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { SOURCE_READER_META } from '../utils/sourceReaderMeta'
-import savedMuralSrc from '../assets/living-library/saved-mural.jpeg'
+import savedMuralSrc from '../assets/living-library/saved-mural-landscape.avif'
 import {
   IconBookmarkFilled,
   IconChevronDown,
@@ -117,8 +117,8 @@ export default function Library() {
         <img
           src={savedMuralSrc}
           alt=""
-          width={1080}
-          height={1920}
+          width={1920}
+          height={1080}
           loading="lazy"
           decoding="async"
         />

@@ -2,6 +2,7 @@ import { render, screen, fireEvent, within } from '@testing-library/react'
 import StudyCard from './StudyCard'
 import type { ScriptureEntry } from '../types'
 import { useLanguageStore } from '../store/language'
+import { useLocaleStore } from '../store/locale'
 
 const entry: ScriptureEntry = {
   id: 'test-1', scripture: 'SGGS', ang: 1, shabadId: 1,
@@ -113,6 +114,7 @@ const orderedHeaderEntry: ScriptureEntry = {
 }
 
 beforeEach(() => {
+  useLocaleStore.setState({ locale: 'en' })
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
     showTransliteration: false,
@@ -130,6 +132,27 @@ beforeEach(() => {
 test('shows Gurmukhi text on front', () => {
   render(<StudyCard entry={entry} />)
   expect(screen.getByText(/ੴ/)).toBeInTheDocument()
+})
+
+test('keeps Gurbani as one selectable semantic line with one explicit keyboard word explorer', () => {
+  useLanguageStore.setState({ showVishraam: false })
+  render(<StudyCard entry={entry} />)
+
+  const line = screen.getByTestId('study-gurbani-line')
+  const inlineWords = line.querySelectorAll<HTMLElement>('[data-reader-word]')
+
+  expect(line.tagName).toBe('P')
+  expect(line).toHaveTextContent('ੴ ਸਤਿ')
+  expect(inlineWords).toHaveLength(2)
+  expect(inlineWords[0]?.tagName).toBe('SPAN')
+  expect(inlineWords[0]).not.toHaveAttribute('role')
+  expect(inlineWords[0]).not.toHaveAttribute('tabindex')
+  expect(screen.queryByRole('button', { name: 'Open word details for ੴ' })).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByLabelText(/open verse actions for line 1/i))
+  fireEvent.click(screen.getByRole('button', { name: /explore words/i }))
+  const explorer = screen.getByTestId('study-word-explorer')
+  expect(within(explorer).getByRole('button', { name: 'Open word details for ੴ' })).toBeInTheDocument()
 })
 
 test('shows translation inline without flipping', () => {
@@ -169,12 +192,14 @@ test('uses the provided larivaar text when larivaar is enabled', () => {
   useLanguageStore.setState({ larivaar: true })
   render(<StudyCard entry={entry} />)
   expect(screen.getByText('ੴ-ਸਤਿ')).toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: 'Open word details for ੴ' })).not.toBeInTheDocument()
+  expect(document.querySelector('[data-reader-word]')).not.toBeInTheDocument()
 })
 
 test('opens word popover on word tap and shows Mahankosh context', async () => {
   render(<StudyCard entry={entry} />)
-  fireEvent.click(screen.getByRole('button', { name: 'Open word details for ੴ' }))
+  const firstWord = screen.getByTestId('study-gurbani-line').querySelector<HTMLElement>('[data-reader-word]')
+  expect(firstWord).not.toBeNull()
+  fireEvent.click(firstWord!)
   expect(screen.getByText('One Creator')).toBeInTheDocument()
   expect(await screen.findByText('Mahankosh')).toBeInTheDocument()
   expect(await screen.findByText('ਇੱਕ ਅਕਾਲ ਪੁਰਖ.')).toBeInTheDocument()
@@ -200,8 +225,11 @@ test('keeps devotional reader body lines after the structural opening', () => {
   render(<StudyCard entry={introOnlyEntry} />)
 
   expect(screen.getByText('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: 'Open word details for ਪ੍ਰਿਥਮ' })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: 'Open word details for ਕੈ' })).toBeInTheDocument()
+  const inlineWords = screen.getAllByTestId('study-gurbani-line')
+    .flatMap(line => Array.from(line.querySelectorAll<HTMLElement>('[data-reader-word]')))
+    .map(word => word.textContent)
+  expect(inlineWords).toContain('ਪ੍ਰਿਥਮ')
+  expect(inlineWords).toContain('ਕੈ')
 })
 
 test('keeps later BaniDB headers in their source sequence instead of hoisting them', () => {

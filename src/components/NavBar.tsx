@@ -103,7 +103,9 @@ export default function NavBar() {
     if (!element) return
 
     const updateHeight = () => {
-      document.documentElement.style.setProperty('--nav-stack-height', `${Math.ceil(element.getBoundingClientRect().height)}px`)
+      const isDesktopRail = window.matchMedia?.('(min-width: 1024px)').matches ?? window.innerWidth >= 1024
+      const reservedHeight = isDesktopRail ? 0 : Math.ceil(element.getBoundingClientRect().height)
+      document.documentElement.style.setProperty('--nav-stack-height', `${reservedHeight}px`)
     }
 
     updateHeight()
@@ -114,6 +116,7 @@ export default function NavBar() {
     return () => {
       observer.disconnect()
       window.removeEventListener('resize', updateHeight)
+      document.documentElement.style.setProperty('--nav-stack-height', '0px')
     }
   }, [])
 
