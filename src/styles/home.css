@@ -742,6 +742,40 @@
   }
 }
 
+/* Give compact screens a real artwork stage instead of letting the reading
+   panel consume the image's intrinsic-ratio spacer. */
+@media (max-width: 759px) {
+  .home-door-frame {
+    grid-template-rows: auto auto;
+  }
+
+  .home-door-artwork {
+    grid-row: 1;
+    height: clamp(240px, 72vw, 304px);
+  }
+
+  .home-door-artwork::before {
+    display: none;
+    padding-top: 0;
+  }
+
+  .home-door-artwork::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 18%;
+    background: linear-gradient(180deg, transparent, rgb(10 16 15 / 0.2));
+    content: '';
+    pointer-events: none;
+  }
+
+  .home-door-content {
+    grid-row: 2;
+  }
+}
+
 @media (min-width: 760px) {
   .home-stack.page-shell {
     grid-template-columns: minmax(0, 1fr);
@@ -822,10 +856,6 @@
 @media (max-width: 380px) {
   .home-door-shell [data-testid='home-brand-header'] .font-display {
     font-size: 1.8rem;
-  }
-
-  .home-door-artwork::before {
-    padding-top: 128.21%;
   }
 
   .home-hukam-card {
