@@ -20,6 +20,15 @@ import {
 import { server } from '../test/msw-server'
 import { MOCK_BANI_RESPONSE } from '../test/msw-handlers'
 
+vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
+  default: ({ content }: { content: { gurmukhi: string; sourceLabel: string } }) => (
+    <div role="dialog" aria-label="Share highlight" data-testid="share-highlight-sheet-test-double">
+      <p>{content.gurmukhi}</p>
+      <p>{content.sourceLabel}</p>
+    </div>
+  ),
+}))
+
 function LocationSpy() {
   const location = useLocation()
   return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
@@ -152,9 +161,9 @@ describe('Study bookmark button', () => {
     expect(screen.getByText(/removed from favorites/i)).toBeInTheDocument()
   })
 
-  test('share falls back to clipboard with visible feedback when native share fails', async () => {
-    const share = vi.fn().mockRejectedValue(new Error('dismissed'))
-    const writeText = vi.fn().mockResolvedValue(undefined)
+  test('opens the visual share composer before invoking a native share target', async () => {
+    const share = vi.fn()
+    const writeText = vi.fn()
 
     Object.defineProperty(window.navigator, 'share', {
       configurable: true,
@@ -174,11 +183,11 @@ describe('Study bookmark button', () => {
     await waitFor(() => expect(screen.getByLabelText(/^share$/i)).toBeInTheDocument())
     fireEvent.click(screen.getByLabelText(/^share$/i))
 
-    await waitFor(() => {
-      expect(share).toHaveBeenCalled()
-      expect(writeText).toHaveBeenCalled()
-      expect(screen.getByText(/copied to clipboard instead/i)).toBeInTheDocument()
-    })
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    expect(composer).toHaveTextContent(/ੴ/)
+    expect(composer).toHaveTextContent(/Ang 1/i)
+    expect(share).not.toHaveBeenCalled()
+    expect(writeText).not.toHaveBeenCalled()
   })
 
 })

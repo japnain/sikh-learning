@@ -19,7 +19,7 @@ interface Props {
   sectionEyebrow?: string | null
   onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
-  onShareLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
+  onShareLine?: (line: ScriptureLine, entry: ScriptureEntry, selectedText?: string) => void
   onBookmarkLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   isLineBookmarked?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
   isPhraseSaved?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
@@ -34,6 +34,8 @@ const STUDY_CARD_COPY: Record<UiLocale, {
   savePhrase: string
   copy: string
   share: string
+  shareSelection: string
+  selectedForSharing: string
   bookmark: string
   removeBookmark: string
   exploreWords: string
@@ -55,6 +57,8 @@ const STUDY_CARD_COPY: Record<UiLocale, {
     savePhrase: 'Save phrase',
     copy: 'Copy',
     share: 'Share',
+    shareSelection: 'Share selection',
+    selectedForSharing: 'Selected for sharing',
     bookmark: 'Bookmark',
     removeBookmark: 'Remove bookmark',
     exploreWords: 'Explore words',
@@ -76,6 +80,8 @@ const STUDY_CARD_COPY: Record<UiLocale, {
     savePhrase: 'ਪੰਕਤੀ ਸੰਭਾਲੋ',
     copy: 'ਕਾਪੀ ਕਰੋ',
     share: 'ਸਾਂਝਾ ਕਰੋ',
+    shareSelection: 'ਚੁਣਿਆ ਹਿੱਸਾ ਸਾਂਝਾ ਕਰੋ',
+    selectedForSharing: 'ਸਾਂਝਾ ਕਰਨ ਲਈ ਚੁਣਿਆ',
     bookmark: 'ਬੁੱਕਮਾਰਕ ਕਰੋ',
     removeBookmark: 'ਬੁੱਕਮਾਰਕ ਹਟਾਓ',
     exploreWords: 'ਸ਼ਬਦ ਵੇਖੋ',
@@ -97,6 +103,8 @@ const STUDY_CARD_COPY: Record<UiLocale, {
     savePhrase: 'पंक्ति सेव करें',
     copy: 'कॉपी करें',
     share: 'शेयर करें',
+    shareSelection: 'चुना हुआ अंश शेयर करें',
+    selectedForSharing: 'शेयर करने के लिए चुना गया',
     bookmark: 'बुकमार्क करें',
     removeBookmark: 'बुकमार्क हटाएँ',
     exploreWords: 'शब्द देखें',
@@ -191,12 +199,14 @@ export default function StudyCard({
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
   const [actionLine, setActionLine] = useState<ScriptureLine | null>(null)
+  const [shareSelection, setShareSelection] = useState<{ verseId: number; text: string } | null>(null)
   const [sourceLayersOpen, setSourceLayersOpen] = useState(false)
   const [wordListOpen, setWordListOpen] = useState(false)
   const wordTriggerRef = useRef<HTMLElement | null>(null)
   const actionTriggerRef = useRef<HTMLButtonElement | null>(null)
   const restoreWordFocusRef = useRef(false)
   const restoreActionFocusRef = useRef(false)
+  const cardRef = useRef<HTMLElement | null>(null)
   const locale = useLocaleStore(s => s.locale)
   const cardCopy = STUDY_CARD_COPY[locale]
   const scriptMode = useLanguageStore(s => s.scriptMode)
@@ -267,6 +277,45 @@ export default function StudyCard({
     actionTriggerRef.current?.focus()
   }, [actionLine])
 
+  useEffect(() => {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return
+
+    const captureSelection = () => {
+      const selection = window.getSelection()
+      if (!selection || selection.isCollapsed || selection.rangeCount === 0) return
+
+      const range = selection.getRangeAt(0)
+      const startElement = range.startContainer instanceof Element
+        ? range.startContainer
+        : range.startContainer.parentElement
+      const endElement = range.endContainer instanceof Element
+        ? range.endContainer
+        : range.endContainer.parentElement
+      const startLine = startElement?.closest<HTMLElement>('[data-testid="study-line"]') ?? null
+      const endLine = endElement?.closest<HTMLElement>('[data-testid="study-line"]') ?? null
+
+      if (!startLine || startLine !== endLine || !cardRef.current?.contains(startLine)) {
+        setShareSelection(null)
+        return
+      }
+
+      const verseId = Number(startLine.dataset.verseId)
+      if (!Number.isFinite(verseId)) return
+
+      const selectedWords = Array.from(startLine.querySelectorAll<HTMLElement>('[data-share-gurmukhi]'))
+        .filter(word => selection.containsNode(word, true))
+        .map(word => word.dataset.shareGurmukhi?.trim() ?? '')
+        .filter(Boolean)
+      const text = selectedWords.join(' ').replace(/\s+/g, ' ').trim()
+
+      if (!text) return
+      setShareSelection({ verseId, text })
+    }
+
+    document.addEventListener('selectionchange', captureSelection)
+    return () => document.removeEventListener('selectionchange', captureSelection)
+  }, [])
+
   const handleWordTap = (
     event: MouseEvent<HTMLElement>,
     originalGurmukhi: string,
@@ -334,6 +383,7 @@ export default function StudyCard({
   return (
     <>
       <section
+        ref={cardRef}
         id={sectionId}
         data-testid="study-card"
         className="animate-scale-in scroll-mt-24 section-shell rounded-lg px-4 py-5 sm:px-5"
@@ -467,6 +517,7 @@ export default function StudyCard({
                             {wordIndex > 0 ? ' ' : null}
                             <span
                               data-reader-word
+                              data-share-gurmukhi={word}
                               className="study-gurbani-word"
                               onClick={event => handleWordTap(event, word, line)}
                             >
@@ -542,6 +593,16 @@ export default function StudyCard({
                       {actionLine.transliteration}
                     </p>
                   )}
+                  {shareSelection?.verseId === actionLine.verseId ? (
+                    <div className="mt-3 rounded-lg border border-saffron/20 bg-saffron/[0.07] px-3 py-2 text-left dark:bg-saffron/10">
+                      <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-saffron dark:text-saffron-light">
+                        {cardCopy.selectedForSharing}
+                      </p>
+                      <p lang="pa-Guru" className="font-gurmukhi mt-1 text-sm leading-relaxed text-ink dark:text-dark-text">
+                        {shareSelection.text}
+                      </p>
+                    </div>
+                  ) : null}
                   {actionMeaning && (
                     <p
                       lang={meaningLanguage === 'pa' ? getScriptTextLang('gurmukhi') : undefined}
@@ -574,8 +635,18 @@ export default function StudyCard({
                   onClick={() => handleLineAction(actionLine, onCopyLine)}
                 />
                 <LineActionItem
-                  label={cardCopy.share}
-                  onClick={() => handleLineAction(actionLine, onShareLine)}
+                  label={shareSelection?.verseId === actionLine.verseId ? cardCopy.shareSelection : cardCopy.share}
+                  onClick={() => {
+                    const selectedText = shareSelection?.verseId === actionLine.verseId
+                      ? shareSelection.text
+                      : undefined
+                    restoreActionFocusRef.current = false
+                    setActionLine(null)
+                    setSourceLayersOpen(false)
+                    setWordListOpen(false)
+                    setShareSelection(null)
+                    window.setTimeout(() => onShareLine?.(actionLine, entry, selectedText), 0)
+                  }}
                   icon={<IconShare size={16} />}
                 />
                 <LineActionItem
