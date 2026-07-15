@@ -35,6 +35,7 @@ import { getSearchModeLabels } from '../utils/translations'
 import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
+import LibraryBookBrowser from '../components/LibraryBookBrowser'
 import { hasSearchMatch } from '../utils/searchHighlight'
 import {
   getAngTargets,
@@ -2054,11 +2055,7 @@ export default function Banis() {
               </div>
 
               <div className="mt-4">
-                <ScriptureSourceBrowser
-                  dataTestId="read-books-browser-shared"
-                  sectionIds={['panth-prakash-english']}
-                  sectionClassName="read-source-browser-card surface-primary px-4 py-4"
-                />
+                <LibraryBookBrowser dataTestId="read-books-browser-shared" />
               </div>
             </section>
           </div>
