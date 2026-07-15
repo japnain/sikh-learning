@@ -46,7 +46,7 @@ const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
     overviewEyebrow: 'EPUB book reader',
     overviewDescription:
       'Open the EPUB-derived book reader for volume navigation, chapter reading, and full-text search across both supplied volumes.',
-    overviewStats: ['169 episodes', '2 EPUB volumes', 'English reading edition'],
+    overviewStats: ['171 chapters', '169 episodes', '2 EPUB volumes'],
   },
 ]
 
