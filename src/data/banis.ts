@@ -34,12 +34,12 @@ const EXACT_SGGS_BANIS: Bani[] = [
   exactBani({ id: 'bavan-akhri', name: 'Bavan Akhri', scripture: 'SGGS', source: 'G', startAng: 250, endAng: 262, category: 'Long Compositions', description: 'Acrostic bani covering the Gurmukhi letters.', baniDbId: 33 }),
   exactBani({ id: 'sukhmani-sahib', name: 'Sukhmani Sahib', scripture: 'SGGS', source: 'G', startAng: 262, endAng: 296, startVerseId: 11494, category: 'Long Compositions', description: 'Pearl of peace by Guru Arjan Dev Ji.', baniDbId: 31 }),
   exactBani({ id: 'asa-di-var', name: 'Asa Di Var', scripture: 'SGGS', source: 'G', startAng: 462, endAng: 475, startVerseId: 20756, category: 'Long Compositions', description: 'Morning ballad traditionally sung in Asa raag.', baniDbId: 90 }),
-  exactBani({ id: 'ghorian', name: 'Ghorian', scripture: 'SGGS', source: 'G', startAng: 573, endAng: 577, category: 'Long Compositions', description: 'Wedding songs on the soul\'s union with the Divine.', baniDbId: 40 }),
+  exactBani({ id: 'ghorian', name: 'Ghorian', scripture: 'SGGS', source: 'G', startAng: 575, endAng: 575, category: 'Long Compositions', description: 'Four-stanza wedding-mare composition in Raag Vadahans by Guru Ram Das Ji.', baniDbId: 40 }),
   exactBani({ id: 'onkar', name: 'Onkar', scripture: 'SGGS', source: 'G', startAng: 929, endAng: 938, category: 'Long Compositions', description: 'Guru Nanak Dev Ji\'s reflection on the One Creator.', baniDbId: 35 }),
   exactBani({ id: 'sidh-gosht', name: 'Sidh Gosht', scripture: 'SGGS', source: 'G', startAng: 938, endAng: 946, category: 'Long Compositions', description: 'Dialogue between Guru Nanak Dev Ji and the Siddhas.', baniDbId: 34 }),
 
   exactBani({ id: 'sri-raag-ki-vaar', name: 'Sri Raag Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 83, endAng: 91, category: 'Vars', description: 'Vaar within Sri Raag.', baniDbId: 86 }),
-  exactBani({ id: 'var-majh', name: 'Vaar Manjh Ki', scripture: 'SGGS', source: 'G', startAng: 137, endAng: 150, category: 'Vars', description: 'Vaar in Majh raag by Guru Nanak Dev Ji.', baniDbId: 87 }),
+  exactBani({ id: 'var-majh', name: 'Vaar Manjh Ki', scripture: 'SGGS', source: 'G', startAng: 137, endAng: 151, category: 'Vars', description: 'Vaar in Majh raag by Guru Nanak Dev Ji.', baniDbId: 87 }),
   exactBani({ id: 'gauri-ki-vaar-m4', name: 'Gauri Ki Vaar M4', scripture: 'SGGS', source: 'G', startAng: 300, endAng: 317, category: 'Vars', description: 'Vaar in Gauri raag associated with Guru Ram Das Ji.', baniDbId: 88 }),
   exactBani({ id: 'gauri-ki-vaar-m5', name: 'Gauri Ki Vaar M5', scripture: 'SGGS', source: 'G', startAng: 318, endAng: 323, category: 'Vars', description: 'Vaar in Gauri raag associated with Guru Arjan Dev Ji.', baniDbId: 89 }),
   exactBani({ id: 'var-gujri', name: 'Gujari Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 508, endAng: 517, category: 'Vars', description: 'Vaar in Gujari raag.', baniDbId: 91 }),
@@ -59,25 +59,25 @@ const EXACT_SGGS_BANIS: Bani[] = [
   exactBani({ id: 'kanare-ki-vaar', name: 'Kanare Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 1312, endAng: 1318, category: 'Vars', description: 'Vaar in Kanara raag.', baniDbId: 107 }),
 
   exactBani({ id: 'dukh-bhanjani', name: 'Dukh Bhanjani Sahib', scripture: 'SGGS', source: 'G', startAng: 218, endAng: 220, category: 'Saloks & Short Banis', description: 'Healing bani often read for comfort and recovery.', baniDbId: 36 }),
-  exactBani({ id: 'thiiti-majh', name: 'Thiiti (Majh)', scripture: 'SGGS', source: 'G', startAng: 296, endAng: 300, category: 'Saloks & Short Banis', description: 'Lunar-calendar composition in Majh raag.', baniDbId: 49 }),
-  exactBani({ id: 'birhade', name: 'Birhade', scripture: 'SGGS', source: 'G', startAng: 557, endAng: 558, category: 'Saloks & Short Banis', description: 'Short songs of longing and separation.', baniDbId: 42 }),
+  exactBani({ id: 'thiiti-majh', name: 'Thiti Mahalla 5 (Gauri)', scripture: 'SGGS', source: 'G', startAng: 296, endAng: 300, category: 'Saloks & Short Banis', description: 'Lunar-date composition in Raag Gauri by Guru Arjan Dev Ji.', baniDbId: 49 }),
+  exactBani({ id: 'birhade', name: 'Birhade', scripture: 'SGGS', source: 'G', startAng: 431, endAng: 432, category: 'Saloks & Short Banis', description: 'Eight-stanza chhant in Raag Asa by Guru Arjan Dev Ji.', baniDbId: 42 }),
   exactBani({ id: 'aarti', name: 'Aarti', scripture: 'SGGS', source: 'G', startAng: 663, endAng: 663, startVerseId: 28685, category: 'Saloks & Short Banis', description: 'Guru Nanak Dev Ji\'s cosmic aarti.', baniDbId: 22 }),
   exactBani({ id: 'laavan', name: 'Laavan', scripture: 'SGGS', source: 'G', startAng: 773, endAng: 774, startVerseId: 32936, category: 'Saloks & Short Banis', description: 'The four laavaan of Anand Karaj.', baniDbId: 11 }),
   exactBani({ id: 'ramkali-sadd', name: 'Ramkali Sadd', scripture: 'SGGS', source: 'G', startAng: 923, endAng: 924, category: 'Saloks & Short Banis', description: 'Short Ramkali composition on spiritual departure.', baniDbId: 46 }),
   exactBani({ id: 'funehe', name: 'Funehe Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1361, endAng: 1363, category: 'Saloks & Short Banis', description: 'Short poetic composition by Guru Arjan Dev Ji.', baniDbId: 17 }),
   exactBani({ id: 'choubole', name: 'Choubole Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1363, endAng: 1364, category: 'Saloks & Short Banis', description: 'Four-line verses by Guru Arjan Dev Ji.', baniDbId: 18 }),
   exactBani({ id: 'salok-bhagat-kabir', name: 'Salok Bhagat Kabir Jio Ke', scripture: 'SGGS', source: 'G', startAng: 1364, endAng: 1377, category: 'Saloks & Short Banis', description: 'Kabir Ji\'s saloks collected in SGGS.', baniDbId: 77 }),
-  exactBani({ id: 'salok-farid', name: 'Salok Sheikh Farid Ji', scripture: 'SGGS', source: 'G', startAng: 1377, endAng: 1385, category: 'Saloks & Short Banis', description: 'Sheikh Farid Ji\'s saloks collected in SGGS.', baniDbId: 78 }),
+  exactBani({ id: 'salok-farid', name: 'Salok Sheikh Farid Ji', scripture: 'SGGS', source: 'G', startAng: 1377, endAng: 1384, category: 'Saloks & Short Banis', description: 'Sheikh Farid Ji\'s saloks collected in SGGS.', baniDbId: 78 }),
   exactBani({ id: 'salok-mahalla-9', name: 'Salok Mahalla 9', scripture: 'SGGS', source: 'G', startAng: 1426, endAng: 1429, startVerseId: 60214, category: 'Saloks & Short Banis', description: 'Saloks of Guru Tegh Bahadur Ji.', baniDbId: 30 }),
   exactBani({ id: 'raag-maala', name: 'Raag Maala', scripture: 'SGGS', source: 'G', startAng: 1429, endAng: 1430, category: 'Saloks & Short Banis', description: 'Closing raag garland at the end of SGGS.', baniDbId: 38 }),
 ]
 
 const EXACT_DG_BANIS: Bani[] = [
   exactBani({ id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji.', baniDbId: 4 }),
-  exactBani({ id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, startVerseId: 74956, category: 'Daily Prayers', description: 'Nitnem swaiyas rejecting empty ritual.', baniDbId: 6, variantLabel: 'Sraavag Suddh' }),
+  exactBani({ id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 11, endAng: 13, startVerseId: 74956, category: 'Daily Prayers', description: 'Ten morning Nitnem Savaiyye beginning Sraavag Suddh.', baniDbId: 6, variantLabel: 'Sraavag Suddh' }),
   exactBani({ id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 1386, endAng: 1388, category: 'Daily Prayers', description: 'Benati Chaupai Sahib with adjustable STTM length support.', baniDbId: 9 }),
 
-  exactBani({ id: 'ugardanti', name: 'Ugardanti', scripture: 'DG', source: 'D', startAng: 55, endAng: 64, category: 'Bir Ras', description: 'Fierce devotional composition invoking the Divine protector.', baniDbId: 53 }),
+  exactBani({ id: 'ugardanti', name: 'Ugardanti', scripture: 'DG', source: 'D', startAng: 55, endAng: 64, category: 'Bir Ras', description: 'Traditional selected recension with bir-ras praise; pagination varies by edition.', baniDbId: 53 }),
   exactBani({ id: 'vaar-sri-bhagauti-ji-ki', name: 'Vaar Sri Bhagauti Ji Ki', scripture: 'DG', source: 'D', startAng: 119, endAng: 127, category: 'Bir Ras', description: 'Also known as Chandi Di Vaar.', baniDbId: 13 }),
 
   exactBani({ id: 'akal-ustat', name: 'Akal Ustat', scripture: 'DG', source: 'D', startAng: 11, endAng: 38, category: 'Major Compositions', description: 'Praise of the Timeless One.', baniDbId: 29 }),

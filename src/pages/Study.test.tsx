@@ -1,5 +1,5 @@
 import { describe, it, test, expect, beforeEach, vi } from 'vitest'
-import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
+import { act, render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { http, HttpResponse } from 'msw'
 import Study from './Study'
@@ -15,16 +15,41 @@ import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
 import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
+  DAILY_HUKAMNAMA_EDITORIAL_COPY,
   PERSONAL_HUKAMNAMA_EDITORIAL_COPY,
+  getReaderEditorialCopyForBani,
 } from '../content/readerEditorialCopy'
 import { server } from '../test/msw-server'
-import { MOCK_BANI_RESPONSE } from '../test/msw-handlers'
+import { MOCK_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handlers'
 
 vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
-  default: ({ content }: { content: { gurmukhi: string; sourceLabel: string } }) => (
+  default: ({ content }: {
+    content: {
+      gurmukhi: string
+      sourceLabel: string
+      passageLines?: Array<{
+        id: string | number
+        gurmukhi: string
+        isHeader?: boolean
+      }>
+      seriesLabel?: string
+      dateLabel?: string
+    }
+  }) => (
     <div role="dialog" aria-label="Share highlight" data-testid="share-highlight-sheet-test-double">
-      <p>{content.gurmukhi}</p>
+      <p data-testid="share-flattened-gurmukhi">{content.gurmukhi}</p>
       <p>{content.sourceLabel}</p>
+      {content.seriesLabel ? <p data-testid="share-series-label">{content.seriesLabel}</p> : null}
+      {content.dateLabel ? <p data-testid="share-date-label">{content.dateLabel}</p> : null}
+      {content.passageLines?.map(line => (
+        <p
+          key={line.id}
+          data-testid="share-passage-line"
+          data-is-header={line.isHeader ? 'true' : 'false'}
+        >
+          {line.gurmukhi}
+        </p>
+      ))}
     </div>
   ),
 }))
@@ -207,16 +232,161 @@ describe('Study source browsing', () => {
   })
 
   test('keeps regular Ang navigation available as a compact persistent control', async () => {
+    const scrollToSpy = vi.spyOn(window, 'scrollTo')
+
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
-        <Routes><Route path="/study" element={<Study />} /></Routes>
+        <Routes>
+          <Route
+            path="/study"
+            element={(
+              <main id="main-content" tabIndex={-1}>
+                <Study />
+                <LocationSpy />
+              </main>
+            )}
+          />
+        </Routes>
       </MemoryRouter>
     )
 
     const navigation = await screen.findByTestId('study-ang-navigation')
     expect(navigation).toHaveClass('study-reader-ang-navigation')
     expect(within(navigation).getByRole('button', { name: /Ang 1/i })).toBeDisabled()
-    expect(within(navigation).getByRole('button', { name: /Ang 2/i })).toBeEnabled()
+    const nextAngButton = within(navigation).getByRole('button', { name: /Ang 2/i })
+    expect(nextAngButton).toBeEnabled()
+
+    fireEvent.click(nextAngButton)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location')).toHaveTextContent('/study?source=G&ang=2')
+      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
+      expect(document.getElementById('main-content')).toHaveFocus()
+    })
+  })
+})
+
+describe('Study reader title hierarchy', () => {
+  it('keeps a named bani as the single page heading in the sticky topbar from loading through ready', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    expect(within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+      level: 1,
+      name: 'Japji Sahib',
+    })).toBeInTheDocument()
+
+    await screen.findAllByTestId('study-card')
+
+    const headings = screen.getAllByRole('heading', { level: 1 })
+    expect(headings).toHaveLength(1)
+    expect(headings[0]).toHaveTextContent('Japji Sahib')
+    expect(screen.getByTestId('study-reader-topbar')).toContainElement(headings[0]!)
+  })
+
+  it('keeps a direct Ang route stable instead of replacing it with the first shabad line', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    expect(within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+      level: 1,
+      name: 'Ang 1',
+    })).toBeInTheDocument()
+
+    await screen.findAllByTestId('study-card')
+
+    const topbar = screen.getByTestId('study-reader-topbar')
+    expect(within(topbar).getByRole('heading', { level: 1 })).toHaveTextContent('Ang 1')
+    expect(within(topbar).queryByRole('heading', { level: 1, name: /ੴ ਸਤਿ ਨਾਮੁ/i })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+  })
+
+  it('uses the loaded exact-shabad line as a correctly identified Gurmukhi heading', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findAllByTestId('study-card')
+
+    const heading = within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+      level: 1,
+      name: 'ੴ ਸਤਿ ਨਾਮੁ',
+    })
+    expect(heading).toHaveAttribute('lang', 'pa-Guru')
+    expect(heading).toHaveClass('script-text-safe', 'font-gurmukhi')
+    expect(screen.getAllByRole('heading', { level: 1 })).toEqual([heading])
+  })
+
+  it('keeps Personal Hukamnama stable after its exact shabad loads', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&flow=ardaas-hukamnama&randomHukamnamaAng=1&resumeVerseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findAllByTestId('study-card')
+
+    const heading = within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+      level: 1,
+      name: 'Personal Hukamnama',
+    })
+    expect(heading).toHaveClass('font-display')
+    expect(heading).not.toHaveAttribute('lang')
+    expect(screen.getAllByRole('heading', { level: 1 })).toEqual([heading])
+  })
+
+  it.each([
+    {
+      baniDbId: 7,
+      path: '/study?source=D&ang=11&startAng=11&endAng=37&baniDbId=7&exactBani=1&baniId=tav-prasad-savaiye',
+      title: 'Tav Prasad Savaiye (Dheenan Ki)',
+    },
+    {
+      baniDbId: 26,
+      path: '/study?source=D&ang=1428&startAng=1428&endAng=1428&baniDbId=26&exactBani=1&baniId=sri-bhagauti-astotr',
+      title: 'Sri Bhagauti Astotr (Hazur Sahib)',
+    },
+  ])('resolves BaniDB $baniDbId to its exact variant title', async ({ path, title }) => {
+    render(
+      <MemoryRouter initialEntries={[path]}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findAllByTestId('study-card')
+
+    const heading = within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+      level: 1,
+      name: title,
+    })
+    expect(screen.getAllByRole('heading', { level: 1 })).toEqual([heading])
+  })
+
+  it('keeps an empty-state message subordinate to the opened reading title', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=9999&startAng=9999&endAng=9999&bani=Empty%20Reading']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const stateHeading = await screen.findByRole('heading', {
+      level: 2,
+      name: 'Nothing landed on this route yet.',
+    })
+    const pageHeadings = screen.getAllByRole('heading', { level: 1 })
+
+    expect(pageHeadings).toHaveLength(1)
+    expect(pageHeadings[0]).toHaveTextContent('Empty Reading')
+    expect(screen.getByTestId('study-reader-topbar')).toContainElement(pageHeadings[0]!)
+    expect(stateHeading).toBeInTheDocument()
   })
 })
 
@@ -476,6 +646,92 @@ describe('Study soundscapes and tracking', () => {
     expect(useMusicStore.getState().isPlaying).toBe(false)
   })
 
+  it('updates reading progress with a compositor transform instead of layout width', async () => {
+    const scrollYSpy = vi.spyOn(window, 'scrollY', 'get').mockReturnValue(600)
+    const innerHeightSpy = vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(800)
+
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const reading = await screen.findByTestId('study-entry-list')
+    Object.defineProperty(reading, 'scrollHeight', { configurable: true, value: 2000 })
+    vi.spyOn(reading, 'getBoundingClientRect').mockReturnValue({
+      x: 0,
+      y: -400,
+      top: -400,
+      right: 390,
+      bottom: 400,
+      left: 0,
+      width: 390,
+      height: 800,
+      toJSON: () => ({}),
+    })
+
+    fireEvent(window, new Event('resize'))
+
+    const progress = screen.getByRole('progressbar', { name: /reading progress/i })
+    const progressBar = progress.firstElementChild as HTMLElement
+    await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '38'))
+
+    expect(progressBar.style.transform).toMatch(/^scaleX\(0\.37/)
+    expect(progressBar.style.width).toBe('')
+
+    scrollYSpy.mockRestore()
+    innerHeightSpy.mockRestore()
+  })
+
+  it('persists the visible verse once after a burst of scroll events settles', async () => {
+    const originalUpdateSession = useProgressStore.getState().updateSession
+    const updateSessionSpy = vi.fn(originalUpdateSession)
+    useProgressStore.setState({ updateSession: updateSessionSpy })
+
+    try {
+      render(
+        <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+          <Routes><Route path="/study" element={<Study />} /></Routes>
+        </MemoryRouter>
+      )
+
+      const lines = await screen.findAllByTestId('study-line')
+      await waitFor(() => {
+        expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(1)
+      })
+
+      lines.forEach((line, index) => {
+        vi.spyOn(line, 'getBoundingClientRect').mockReturnValue({
+          x: 0,
+          y: index === 1 ? 200 : -100,
+          top: index === 1 ? 200 : -100,
+          right: 390,
+          bottom: index === 1 ? 260 : -40,
+          left: 0,
+          width: 390,
+          height: 60,
+          toJSON: () => ({}),
+        })
+      })
+      updateSessionSpy.mockClear()
+      vi.useFakeTimers()
+
+      for (let index = 0; index < 12; index += 1) {
+        fireEvent.scroll(window)
+      }
+
+      act(() => vi.advanceTimersByTime(179))
+      expect(updateSessionSpy).not.toHaveBeenCalled()
+
+      act(() => vi.advanceTimersByTime(1))
+      expect(updateSessionSpy).toHaveBeenCalledTimes(1)
+      expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2)
+    } finally {
+      vi.useRealTimers()
+      act(() => useProgressStore.setState({ updateSession: originalUpdateSession }))
+    }
+  })
+
   it('credits streak once per day for standard Study reading routes', async () => {
     const firstRender = render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
@@ -550,7 +806,10 @@ describe('Study soundscapes and tracking', () => {
       expect(screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote!)).toBeInTheDocument()
       expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.sourceLine)).toBeInTheDocument()
       expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.dek)).toBeInTheDocument()
-      expect(screen.getByText('Personal Hukamnama')).toBeInTheDocument()
+      expect(within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+        level: 1,
+        name: 'Personal Hukamnama',
+      })).toBeInTheDocument()
       expect(screen.queryByText(/Harmandir Sahib/i)).not.toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
       expect(screen.queryByText('Hukamnama begins here')).not.toBeInTheDocument()
@@ -736,7 +995,8 @@ describe('Study exact shabad mode', () => {
       })
     )
 
-    const scrollSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
+    const scrollIntoViewSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
+    const scrollToSpy = vi.spyOn(window, 'scrollTo')
 
     render(
       <MemoryRouter initialEntries={['/study?baniDbId=99&bani=Test%20Reading']}>
@@ -754,6 +1014,7 @@ describe('Study exact shabad mode', () => {
     expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1')
     expect(previousButton).toBeDisabled()
     expect(nextButton).toBeEnabled()
+    scrollIntoViewSpy.mockClear()
 
     fireEvent.click(nextButton)
 
@@ -761,9 +1022,10 @@ describe('Study exact shabad mode', () => {
       expect(within(topNavigator).getByText('Part 2 of 5')).toBeInTheDocument()
       expect(within(bottomNavigator).getByText('Part 2 of 5')).toBeInTheDocument()
       expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '2')
-      expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' })
+      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
     })
 
+    expect(scrollIntoViewSpy).not.toHaveBeenCalled()
     expect(within(bottomNavigator).getByRole('button', { name: /Previous part: ਪਹਿਲਾ ਸ਼ਬਦ/i })).toBeEnabled()
     expect(within(bottomNavigator).getByRole('button', { name: /Next part: ਤੀਜਾ ਸ਼ਬਦ/i })).toBeEnabled()
   })
@@ -778,7 +1040,16 @@ describe('Study hukamnama mode', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getAllByText(/Daily Hukamnama Sri Harmandir Sahib, Amritsar/i)).toHaveLength(1)
+      expect(within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
+        level: 1,
+        name: DAILY_HUKAMNAMA_EDITORIAL_COPY.title,
+      })).toBeInTheDocument()
+      expect(within(screen.getByTestId('study-reader-header')).getByText(
+        DAILY_HUKAMNAMA_EDITORIAL_COPY.sourceLine
+      )).toBeInTheDocument()
+      expect(within(screen.getByTestId('study-reader-header')).getByText(
+        DAILY_HUKAMNAMA_EDITORIAL_COPY.dek
+      )).toBeInTheDocument()
       expect(screen.getByText(/April 5, 2026/i)).toBeInTheDocument()
       expect(screen.getAllByText(/Raag Dhanaasree/i).length).toBeGreaterThan(0)
       expect(screen.getByText(/Go to source shabad/i)).toBeInTheDocument()
@@ -788,7 +1059,87 @@ describe('Study hukamnama mode', () => {
     expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
   })
 
+  it("passes every ordered Daily/Today's Hukamnama line, including headers, to top Share", async () => {
+    const firstShabad = MOCK_HUKAMNAMA_RESPONSE.shabads[0]
+    const firstVerse = firstShabad.verses[0]
+    const headerText = 'ਸਲੋਕ ॥'
+    const response = {
+      ...MOCK_HUKAMNAMA_RESPONSE,
+      shabads: [{
+        ...firstShabad,
+        verses: [
+          {
+            ...firstVerse,
+            verseId: 29343,
+            verse: { unicode: headerText },
+            transliteration: { english: 'salok ||' },
+            isHeader: true,
+            headerLevel: 1,
+          },
+          ...firstShabad.verses,
+        ],
+      }],
+    }
+
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path?.startsWith('/v2/hukamnamas/')) return HttpResponse.json(response)
+        if (body.path === '/v2/shabads/2591') return HttpResponse.json({ verses: [] })
+        return HttpResponse.json({ error: 'Unexpected BaniDB test path.' }, { status: 404 })
+      })
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const topbar = await screen.findByTestId('study-reader-topbar')
+    await waitFor(() => expect(within(topbar).getByRole('button', { name: /^Share$/i })).toBeEnabled())
+    fireEvent.click(within(topbar).getByRole('button', { name: /^Share$/i }))
+
+    const expectedLines = [
+      headerText,
+      'ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥',
+      'ਉਤ ਤਾਕੈ ਉਤ ਤੇ ਉਤ ਪੇਖੈ ਆਵੈ ਲੋਭੀ ਫੇਰਿ ॥ ਰਹਾਉ ॥',
+    ]
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    const sharedLines = within(composer).getAllByTestId('share-passage-line')
+
+    expect(sharedLines.map(line => line.textContent)).toEqual(expectedLines)
+    expect(sharedLines[0]).toHaveAttribute('data-is-header', 'true')
+    expect(sharedLines[1]).toHaveAttribute('data-is-header', 'false')
+    expect(within(composer).getByTestId('share-flattened-gurmukhi').textContent).toBe(expectedLines.join('\n'))
+    expect(within(composer).getByTestId('share-series-label')).toHaveTextContent('Daily Hukamnama')
+    expect(within(composer).getByTestId('share-date-label')).toHaveTextContent('April 5, 2026')
+  })
+
+  it('passes the complete ordered Personal Hukamnama shabad to top Share', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&flow=ardaas-hukamnama&randomHukamnamaAng=1&resumeVerseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const topbar = await screen.findByTestId('study-reader-topbar')
+    await waitFor(() => expect(within(topbar).getByRole('button', { name: /^Share$/i })).toBeEnabled())
+    fireEvent.click(within(topbar).getByRole('button', { name: /^Share$/i }))
+
+    const expectedLines = ['ੴ ਸਤਿ ਨਾਮੁ', 'ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ']
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    const sharedLines = within(composer).getAllByTestId('share-passage-line')
+
+    expect(sharedLines.map(line => line.textContent)).toEqual(expectedLines)
+    expect(within(composer).getByTestId('share-flattened-gurmukhi').textContent).toBe(expectedLines.join('\n'))
+    expect(within(composer).getByTestId('share-series-label')).toHaveTextContent('Personal Hukamnama')
+    expect(within(composer).queryByTestId('share-date-label')).not.toBeInTheDocument()
+  })
+
   it('uses bani-specific editorial copy for Japji Sahib instead of generic reader product copy', async () => {
+    const japjiCopy = getReaderEditorialCopyForBani('japji-sahib')!
+
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -797,11 +1148,15 @@ describe('Study hukamnama mode', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Japji Sahib' })).toBeInTheDocument()
-      expect(screen.getByText(/opens Sri Guru Granth Sahib Ji on Ang 1/i)).toBeInTheDocument()
+      expect(within(screen.getByTestId('study-reader-topbar')).getByText('Japji Sahib')).toBeInTheDocument()
+      expect(screen.getByText(japjiCopy.dek)).toBeInTheDocument()
     })
 
+    expect(within(screen.getByTestId('study-reader-topbar')).queryByText(/^Gurbani$/i)).not.toBeInTheDocument()
+
     fireEvent.click(within(screen.getByTestId('study-reader-context')).getByRole('button'))
-    expect(screen.getAllByText(/Guru Nanak Sahib Ji/i).length).toBeGreaterThan(1)
+    expect(screen.getByText(japjiCopy.historicalNote!)).toBeInTheDocument()
+    expect(screen.getByText(japjiCopy.practiceNote!)).toBeInTheDocument()
 
     expect(screen.queryByText(/Comfortable reading first/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/controls stay close/i)).not.toBeInTheDocument()

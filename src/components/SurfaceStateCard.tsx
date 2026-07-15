@@ -20,6 +20,7 @@ interface SurfaceStateCardProps {
   page?: string
   errorCode?: string | null
   pageShell?: boolean
+  headingLevel?: 1 | 2
 }
 
 export default function SurfaceStateCard({
@@ -33,7 +34,9 @@ export default function SurfaceStateCard({
   page,
   errorCode = null,
   pageShell = true,
+  headingLevel = 1,
 }: SurfaceStateCardProps) {
+  const Heading = headingLevel === 2 ? 'h2' : 'h1'
   const content = (
     <section
       className="section-shell border border-gold/12 bg-parchment-card p-5 shadow-card dark:border-gold/10 dark:bg-dark-card"
@@ -42,7 +45,7 @@ export default function SurfaceStateCard({
       data-ai-error={state === 'degraded' && errorCode ? errorCode : undefined}
     >
       <p className="eyebrow">{eyebrow}</p>
-      <h1 className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{title}</h1>
+      <Heading className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{title}</Heading>
       <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/72">{body}</p>
       {actions.length > 0 ? (
         <div className="mt-5 flex flex-wrap gap-2">

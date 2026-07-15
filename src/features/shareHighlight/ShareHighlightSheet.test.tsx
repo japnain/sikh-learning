@@ -1,20 +1,26 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import ShareHighlightSheet, { type ShareHighlightContent } from './ShareHighlightSheet'
 
 const mocks = vi.hoisted(() => ({
   exportPng: vi.fn(),
+  exportPngSet: vi.fn(),
   shareFile: vi.fn(),
+  shareFiles: vi.fn(),
   downloadFile: vi.fn(),
+  downloadFiles: vi.fn(),
 }))
 
 vi.mock('./renderer', () => ({
   exportShareHighlightPng: mocks.exportPng,
+  exportShareHighlightPngSet: mocks.exportPngSet,
 }))
 
 vi.mock('./share', () => ({
   shareHighlightFile: mocks.shareFile,
+  shareHighlightFiles: mocks.shareFiles,
   downloadShareHighlightFile: mocks.downloadFile,
+  downloadShareHighlightFiles: mocks.downloadFiles,
 }))
 
 const content: ShareHighlightContent = {
@@ -28,10 +34,36 @@ const content: ShareHighlightContent = {
   initialShowMeaning: true,
 }
 
-function makePngExport(canvas?: HTMLCanvasElement) {
+const passageContent: ShareHighlightContent = {
+  gurmukhi: 'ਸਲੋਕ ॥\nਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ॥\nਨਿਰਮਲ ਸੰਤ ਸੰਗੇਣ ॥',
+  transliteration: 'salok\nsant udharan daiaalang\nnirmal sant sangen',
+  meaning: 'Salok.\nThe Merciful Lord saves the Saints.\nOne becomes immaculate with the Saints.',
+  sourceLabel: 'SGGS · Ang 709',
+  seriesLabel: 'Daily Hukamnama',
+  dateLabel: 'July 15, 2026',
+  passageLines: [
+    { id: 'header', gurmukhi: 'ਸਲੋਕ ॥', transliteration: 'salok', meaning: 'Salok.', isHeader: true },
+    {
+      id: 'verse-1',
+      gurmukhi: 'ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ॥',
+      transliteration: 'sant udharan daiaalang',
+      meaning: 'The Merciful Lord saves the Saints.',
+    },
+    {
+      id: 'verse-2',
+      gurmukhi: 'ਨਿਰਮਲ ਸੰਤ ਸੰਗੇਣ ॥',
+      transliteration: 'nirmal sant sangen',
+      meaning: 'One becomes immaculate with the Saints.',
+    },
+  ],
+  initialShowTransliteration: true,
+  initialShowMeaning: true,
+}
+
+function makePngExport(canvas?: HTMLCanvasElement, fileName = 'naamras-highlight-101.png') {
   const resolvedCanvas = canvas ?? document.createElement('canvas')
   const blob = new Blob(['png'], { type: 'image/png' })
-  const file = new File([blob], 'naamras-highlight-101.png', { type: 'image/png' })
+  const file = new File([blob], fileName, { type: 'image/png' })
   return {
     canvas: resolvedCanvas,
     blob,
@@ -41,16 +73,40 @@ function makePngExport(canvas?: HTMLCanvasElement) {
   }
 }
 
+beforeAll(() => {
+  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
+    clearRect: vi.fn(),
+    drawImage: vi.fn(),
+  } as unknown as CanvasRenderingContext2D)
+})
+
 beforeEach(() => {
   mocks.exportPng.mockReset()
   mocks.exportPng.mockImplementation(async (_input, options) => makePngExport(options?.canvas))
+  mocks.exportPngSet.mockReset()
+  mocks.exportPngSet.mockImplementation(async () => {
+    const pages = [1, 2, 3].map(pageNumber => ({
+      ...makePngExport(undefined, `naamras-hukamnama-${pageNumber}-of-3.png`),
+      pageNumber,
+      pageCount: 3,
+    }))
+    return { pages, files: pages.map(page => page.file), totalPages: pages.length }
+  })
   mocks.shareFile.mockReset()
   mocks.shareFile.mockResolvedValue({ status: 'shared', method: 'web-share' })
+  mocks.shareFiles.mockReset()
+  mocks.shareFiles.mockResolvedValue({ status: 'shared', method: 'web-share' })
   mocks.downloadFile.mockReset()
+  mocks.downloadFiles.mockReset()
+  mocks.downloadFiles.mockResolvedValue(new File([], 'naamras-hukamnama.zip', { type: 'application/zip' }))
   Object.defineProperty(window.navigator, 'clipboard', {
     configurable: true,
     value: { writeText: vi.fn().mockResolvedValue(undefined) },
   })
+})
+
+afterAll(() => {
+  vi.restoreAllMocks()
 })
 
 describe('ShareHighlightSheet', () => {
@@ -76,6 +132,103 @@ describe('ShareHighlightSheet', () => {
     expect(within(dialog).getByRole('status')).toHaveTextContent('Image ready.')
     expect(within(dialog).getByRole('button', { name: 'Share image' })).toBeEnabled()
     expect(within(dialog).getByRole('button', { name: 'Save image' })).toBeEnabled()
+  })
+
+  it('builds the full Hukamnama as an ordered, readable image set with page navigation', async () => {
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+
+    expect(within(dialog).getByText('Share the full Hukamnama')).toBeInTheDocument()
+    expect(within(dialog).getByRole('heading', { name: 'Create a share set' })).toBeInTheDocument()
+    expect(within(dialog).queryByRole('radiogroup', { name: 'Text position' })).not.toBeInTheDocument()
+
+    await waitFor(() => expect(mocks.exportPngSet).toHaveBeenCalled())
+    const initialInput = mocks.exportPngSet.mock.calls.at(-1)?.[0]
+    expect(initialInput.content.lines.map((line: { id: string }) => line.id)).toEqual([
+      'header',
+      'verse-1',
+      'verse-2',
+    ])
+    expect(initialInput.content.lines[0]).toMatchObject({ isHeader: true, meaning: 'Salok.' })
+    expect(initialInput.content).toMatchObject({
+      sourceLabel: 'SGGS · Ang 709',
+      seriesLabel: 'Daily Hukamnama',
+      dateLabel: 'July 15, 2026',
+    })
+    expect(mocks.exportPng).not.toHaveBeenCalled()
+
+    expect(within(dialog).getByText('Page 1 of 3')).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: 'Previous image' })).toBeDisabled()
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Next image' }))
+    expect(within(dialog).getByText('Page 2 of 3')).toBeInTheDocument()
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Next image' }))
+    expect(within(dialog).getByText('Page 3 of 3')).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: 'Next image' })).toBeDisabled()
+  })
+
+  it('uses singular image language when the full Hukamnama fits on one page', async () => {
+    const page = {
+      ...makePngExport(undefined, 'naamras-hukamnama-1-of-1.png'),
+      pageNumber: 1,
+      pageCount: 1,
+    }
+    mocks.exportPngSet.mockResolvedValueOnce({ pages: [page], files: [page.file], totalPages: 1 })
+
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+
+    await waitFor(() => {
+      expect(within(dialog).getByRole('button', { name: 'Share image' })).toBeEnabled()
+      expect(within(dialog).getByRole('button', { name: 'Save image' })).toBeEnabled()
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Image ready.')
+    })
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Save image' }))
+    await waitFor(() => {
+      expect(mocks.downloadFiles).toHaveBeenCalledWith([page.file], {
+        archiveName: 'naamras-hukamnama.zip',
+      })
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Image saved.')
+    })
+  })
+
+  it('shares every generated Hukamnama image in one action and saves one ZIP fallback', async () => {
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+
+    await waitFor(() => {
+      expect(within(dialog).getByRole('button', { name: 'Share 3 images' })).toBeEnabled()
+    })
+    const shareButton = within(dialog).getByRole('button', { name: 'Share 3 images' })
+    fireEvent.click(shareButton)
+
+    await waitFor(() => {
+      expect(mocks.shareFiles).toHaveBeenCalledTimes(1)
+      expect(mocks.shareFiles.mock.calls[0][0].map((file: File) => file.name)).toEqual([
+        'naamras-hukamnama-1-of-3.png',
+        'naamras-hukamnama-2-of-3.png',
+        'naamras-hukamnama-3-of-3.png',
+      ])
+      expect(mocks.shareFiles.mock.calls[0][1]).toMatchObject({
+        title: 'Hukamnama from NaamRas',
+        archiveName: 'naamras-hukamnama.zip',
+      })
+    })
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Save set' }))
+    await waitFor(() => {
+      expect(mocks.downloadFiles).toHaveBeenCalledWith(
+        expect.arrayContaining([expect.objectContaining({ type: 'image/png' })]),
+        { archiveName: 'naamras-hukamnama.zip' }
+      )
+      expect(within(dialog).getByRole('status')).toHaveTextContent('downloaded as a ZIP')
+    })
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Meaning' }))
+    await waitFor(() => {
+      const lastInput = mocks.exportPngSet.mock.calls.at(-1)?.[0]
+      expect(lastInput.content.lines.every((line: { meaning: null }) => line.meaning === null)).toBe(true)
+    })
   })
 
   it('uses pill and artwork controls to update the exact renderer input', async () => {

@@ -43,6 +43,7 @@ import {
   formatReaderEditorialDate,
   getReaderEditorialCopyForBani,
   getReaderEditorialCopyForBaniDbId,
+  getReaderEditorialCopyForSource,
 } from '../content/readerEditorialCopy'
 import DisclosureSection from '../components/DisclosureSection'
 import ModalSheet from '../components/ModalSheet'
@@ -68,6 +69,15 @@ type ShareHighlightSheetContent = {
   transliteration?: string
   meaning?: string
   sourceLabel: string
+  passageLines?: Array<{
+    id: string | number
+    gurmukhi: string
+    transliteration?: string
+    meaning?: string
+    isHeader?: boolean
+  }>
+  seriesLabel?: string
+  dateLabel?: string
   caption?: string
   verseId?: number
   selectedExcerpt?: boolean
@@ -720,11 +730,11 @@ export default function Study() {
   const [shareHighlightContent, setShareHighlightContent] = useState<ShareHighlightSheetContent | null>(null)
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
-  const [readerProgress, setReaderProgress] = useState(0)
   const bookmarkInputRef = useRef<HTMLInputElement | null>(null)
   const actionNoticeTimeoutRef = useRef<number | null>(null)
   const latestResumeVerseIdRef = useRef<number | null>(null)
-  const resumeSyncFrameRef = useRef<number | null>(null)
+  const readerProgressTrackRef = useRef<HTMLDivElement | null>(null)
+  const readerProgressBarRef = useRef<HTMLSpanElement | null>(null)
   const canonicalResumePath = useMemo(() => {
     if (!shouldTrackProgress) return null
 
@@ -792,9 +802,10 @@ export default function Study() {
   useEffect(() => {
     if (!baseSession || loading || typeof window === 'undefined') return
 
-    const syncVisibleVerse = () => {
-      resumeSyncFrameRef.current = null
+    let initialSyncFrame: number | null = null
+    let scrollIdleTimeout: number | null = null
 
+    const syncVisibleVerse = () => {
       const verseElements = Array.from(document.querySelectorAll<HTMLElement>('[data-testid="study-line"][data-verse-id]'))
       if (verseElements.length === 0) return
 
@@ -815,22 +826,26 @@ export default function Study() {
       })
     }
 
-    const scheduleSync = () => {
-      if (resumeSyncFrameRef.current !== null) return
-      resumeSyncFrameRef.current = window.requestAnimationFrame(syncVisibleVerse)
+    const syncAfterScrollSettles = () => {
+      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
+      scrollIdleTimeout = window.setTimeout(() => {
+        scrollIdleTimeout = null
+        syncVisibleVerse()
+      }, 180)
     }
 
-    scheduleSync()
-    window.addEventListener('scroll', scheduleSync, { passive: true })
-    window.addEventListener('resize', scheduleSync)
+    initialSyncFrame = window.requestAnimationFrame(() => {
+      initialSyncFrame = null
+      syncVisibleVerse()
+    })
+    window.addEventListener('scroll', syncAfterScrollSettles, { passive: true })
+    window.addEventListener('resize', syncAfterScrollSettles)
 
     return () => {
-      if (resumeSyncFrameRef.current !== null) {
-        window.cancelAnimationFrame(resumeSyncFrameRef.current)
-        resumeSyncFrameRef.current = null
-      }
-      window.removeEventListener('scroll', scheduleSync)
-      window.removeEventListener('resize', scheduleSync)
+      if (initialSyncFrame !== null) window.cancelAnimationFrame(initialSyncFrame)
+      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
+      window.removeEventListener('scroll', syncAfterScrollSettles)
+      window.removeEventListener('resize', syncAfterScrollSettles)
     }
   }, [baseSession, loading, updateSession, searchParamsString])
 
@@ -905,20 +920,34 @@ export default function Study() {
   useEffect(() => {
     if (loading || typeof window === 'undefined') return
 
+    const reading = document.querySelector<HTMLElement>('[data-testid="study-entry-list"]')
+    const progressTrack = readerProgressTrackRef.current
+    const progressBar = readerProgressBarRef.current
+    if (!reading || !progressTrack || !progressBar) return
+
     let frameId: number | null = null
+    let readingTop = 0
+    let readableDistance = 1
+
     const updateReaderProgress = () => {
       frameId = null
-      const reading = document.querySelector<HTMLElement>('[data-testid="study-entry-list"]')
-      if (!reading) return
-
-      const rect = reading.getBoundingClientRect()
-      const readingTop = window.scrollY + rect.top
-      const readableDistance = Math.max(1, reading.scrollHeight - window.innerHeight + 120)
       const localProgress = Math.max(0, Math.min(1, (window.scrollY - readingTop + 96) / readableDistance))
       const overallProgress = shouldPaginateEntries && entries.length > 0
         ? (safeActiveEntryIndex + localProgress) / entries.length
         : localProgress
-      setReaderProgress(overallProgress)
+      const progressValue = String(Math.round(overallProgress * 100))
+
+      progressBar.style.transform = `scaleX(${overallProgress})`
+      if (progressTrack.getAttribute('aria-valuenow') !== progressValue) {
+        progressTrack.setAttribute('aria-valuenow', progressValue)
+      }
+    }
+
+    const measureReading = () => {
+      const rect = reading.getBoundingClientRect()
+      readingTop = window.scrollY + rect.top
+      readableDistance = Math.max(1, reading.scrollHeight - window.innerHeight + 120)
+      updateReaderProgress()
     }
 
     const scheduleUpdate = () => {
@@ -926,14 +955,20 @@ export default function Study() {
       frameId = window.requestAnimationFrame(updateReaderProgress)
     }
 
-    scheduleUpdate()
+    measureReading()
     window.addEventListener('scroll', scheduleUpdate, { passive: true })
-    window.addEventListener('resize', scheduleUpdate)
+    window.addEventListener('resize', measureReading)
+
+    const resizeObserver = typeof ResizeObserver === 'undefined'
+      ? null
+      : new ResizeObserver(measureReading)
+    resizeObserver?.observe(reading)
 
     return () => {
       if (frameId !== null) window.cancelAnimationFrame(frameId)
+      resizeObserver?.disconnect()
       window.removeEventListener('scroll', scheduleUpdate)
-      window.removeEventListener('resize', scheduleUpdate)
+      window.removeEventListener('resize', measureReading)
     }
   }, [entries.length, loading, safeActiveEntryIndex, searchParamsString, shouldPaginateEntries])
 
@@ -962,6 +997,54 @@ export default function Study() {
 
   const handleShare = () => {
     if (!currentEntry) return
+
+    if (isHukamnamaMode || isRandomHukamnamaMode) {
+      const passageLines = (currentEntry.lines ?? [])
+        .map((line, index) => {
+          const gurmukhi = line.gurmukhi.trim()
+          if (!gurmukhi) return null
+
+          const transliteration = line.transliteration.trim()
+          const meaning = getLineMeaningText(line, meaningLanguage, englishSource).trim()
+          return {
+            id: `${line.shabadId}-${line.verseId}-${index}`,
+            gurmukhi,
+            transliteration: transliteration || undefined,
+            meaning: meaning || undefined,
+            isHeader: line.isHeader || undefined,
+          }
+        })
+        .filter((line): line is NonNullable<typeof line> => line !== null)
+
+      if (passageLines.length > 0) {
+        const transliteration = passageLines
+          .map(line => line.transliteration)
+          .filter(Boolean)
+          .join('\n')
+        const meaning = passageLines
+          .map(line => line.meaning)
+          .filter(Boolean)
+          .join('\n')
+        const sourceLabel = `${currentEntry.scripture} · ${currentReadingUnit} ${currentEntry.ang}`
+        const dateLabel = isHukamnamaMode
+          ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam)
+          : null
+
+        setShareHighlightContent({
+          gurmukhi: passageLines.map(line => line.gurmukhi).join('\n'),
+          transliteration: transliteration || undefined,
+          meaning: meaning || undefined,
+          sourceLabel,
+          passageLines,
+          seriesLabel: isHukamnamaMode ? 'Daily Hukamnama' : 'Personal Hukamnama',
+          dateLabel: dateLabel || undefined,
+          initialShowTransliteration: showTransliteration && Boolean(transliteration),
+          initialShowMeaning: Boolean(meaning),
+        })
+        return
+      }
+    }
+
     const line = findFirstRenderableLine([currentEntry])
     if (line) {
       setShareHighlightContent(buildShareHighlightContent(line, currentEntry))
@@ -1198,23 +1281,37 @@ export default function Study() {
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
     ?? currentEntry?.gurmukhi
     ?? ''
-  const readerEditorialCopy = isHukamnamaMode
+  const mappedReaderEditorialCopy = isHukamnamaMode
     ? DAILY_HUKAMNAMA_EDITORIAL_COPY
     : isRandomHukamnamaMode
       ? PERSONAL_HUKAMNAMA_EDITORIAL_COPY
     : isArdaasReaderFlow
       ? ARDAAS_HUKAMNAMA_EDITORIAL_COPY
-      : getReaderEditorialCopyForBani(baniIdParam) ?? getReaderEditorialCopyForBaniDbId(baniDbIdParam, currentSource)
+      : getReaderEditorialCopyForBaniDbId(baniDbIdParam, currentSource) ?? getReaderEditorialCopyForBani(baniIdParam)
+  const readerEditorialCopy = mappedReaderEditorialCopy
+    ?? (fromParam === 'amrit-keertan' ? getReaderEditorialCopyForBani('amrit-keertan') : null)
+    ?? getReaderEditorialCopyForSource(currentSource, currentAng, { exactShabad: isExactShabadMode })
   const hukamnamaDateLabel = isHukamnamaMode
     ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam)
     : null
-  const readerTitleUsesScript = Boolean(titleLine) && !baniName && !isHukamnamaMode
-  const readerTitle = isHukamnamaMode
+  const stableReaderTitle = isHukamnamaMode
     ? DAILY_HUKAMNAMA_EDITORIAL_COPY.title
-    : readerTitleUsesScript
-      ? renderScriptText(buildReaderTitle(titleLine), scriptMode)
-      : (readerEditorialCopy?.title ?? baniName ?? currentEntry?.scripture ?? 'Reader')
-  const entrySourceDisplay = getEntrySourceDisplay(currentEntry, currentSource)
+    : isRandomHukamnamaMode
+      ? PERSONAL_HUKAMNAMA_EDITORIAL_COPY.title
+      : isArdaasReaderFlow
+        ? ARDAAS_HUKAMNAMA_EDITORIAL_COPY.title
+        : (baniName ?? mappedReaderEditorialCopy?.title ?? null)
+  const readerTitleUsesScript = !stableReaderTitle && isExactShabadMode && Boolean(titleLine)
+  const readerTitle = stableReaderTitle
+    ?? (readerTitleUsesScript ? renderScriptText(buildReaderTitle(titleLine), scriptMode) : null)
+    ?? (currentAng ? `${currentReadingUnit} ${currentAng}` : null)
+    ?? currentEntry?.scripture
+    ?? focusedReaderCopy.gurbani
+  const entrySourceDisplay = isHukamnamaMode
+    ? 'Sri Harmandir Sahib, Amritsar · Sri Guru Granth Sahib Ji'
+    : fromParam === 'amrit-keertan'
+      ? `Amrit Keertan · ${getEntrySourceDisplay(currentEntry, currentSource)}`
+      : getEntrySourceDisplay(currentEntry, currentSource)
   const readerMeta = readerEditorialCopy?.sourceLine ?? [
     currentSundarGutkaLengthLabel,
     entrySourceDisplay,
@@ -1304,6 +1401,15 @@ export default function Study() {
       ? Math.min(navMaxAng, currentAng + 1)
       : null
 
+  const resetReaderViewport = () => {
+    if (typeof window === 'undefined') return
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.getElementById('main-content')?.focus({ preventScroll: true })
+    })
+  }
+
   const navTo = (newAng: number) => {
     if (isBaniDbMode) {
       const params: Record<string, string> = {
@@ -1314,6 +1420,7 @@ export default function Study() {
       if (baniIdParam) params.baniId = baniIdParam
       if (effectiveSgLength) params.sgLength = effectiveSgLength
       setSearchParams(params)
+      resetReaderViewport()
       return
     }
 
@@ -1323,14 +1430,21 @@ export default function Study() {
     if (isBaniRangeMode) params.startAng = String(startAngParam ?? angParam!)
     if (endAngParam) params.endAng = String(endAngParam)
     setSearchParams(params)
+    resetReaderViewport()
   }
 
   const jumpToEntry = (entryIndex: number) => {
     const nextIndex = Math.max(0, Math.min(entryIndex, entries.length - 1))
+
+    if (!shouldPaginateEntries) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(`study-entry-${nextIndex + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+      return
+    }
+
     setActiveEntryIndex(nextIndex)
-    window.requestAnimationFrame(() => {
-      document.getElementById(`study-entry-${nextIndex + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    })
+    resetReaderViewport()
   }
   const entryNavigatorProps = shouldPaginateEntries && currentEntry ? {
     currentIndex: safeActiveEntryIndex,
@@ -1362,7 +1476,7 @@ export default function Study() {
     && navMinAng !== null
     && navMaxAng !== null
   const readerStateTopbar = (
-    <div className="study-reader-topbar">
+    <div className="study-reader-topbar" data-testid="study-reader-topbar">
       <button
         onClick={handleReaderBack}
         className="study-reader-back"
@@ -1371,7 +1485,14 @@ export default function Study() {
         <IconArrowLeft size={18} /> {commonCopy.back}
       </button>
       <div className="study-reader-topbar__identity">
-        <p>{isHukamnamaMode || isRandomHukamnamaMode ? focusedReaderCopy.hukamnama : focusedReaderCopy.gurbani}</p>
+        <h1
+          id="study-reader-title"
+          lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
+          className={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : 'font-display'}
+          title={readerTitle}
+        >
+          {readerTitle}
+        </h1>
         <span>{entrySourceDisplay}</span>
       </div>
       <div className="study-reader-topbar__state-spacer" aria-hidden="true" />
@@ -1412,6 +1533,7 @@ export default function Study() {
           title="This reading view needs another pass."
           body="The passage did not settle this time. Reload the reader or step back and open a different route."
           pageShell={false}
+          headingLevel={2}
           errorCode={error ?? 'unavailable'}
           actions={[
             {
@@ -1442,6 +1564,7 @@ export default function Study() {
           title="Nothing landed on this route yet."
           body={`Try another ang, bani, or saved passage${baniName ? ` instead of ${baniName}` : ''}.`}
           pageShell={false}
+          headingLevel={2}
           actions={[
             {
               label: 'Back',
@@ -1470,7 +1593,7 @@ export default function Study() {
       data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
       data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
-      <div className="study-reader-topbar">
+      <div className="study-reader-topbar" data-testid="study-reader-topbar">
         <button
           onClick={handleReaderBack}
           className="study-reader-back"
@@ -1479,7 +1602,14 @@ export default function Study() {
           <IconArrowLeft size={18} /> {commonCopy.back}
         </button>
         <div className="study-reader-topbar__identity">
-          <p>{isHukamnamaMode || isRandomHukamnamaMode ? focusedReaderCopy.hukamnama : focusedReaderCopy.gurbani}</p>
+          <h1
+            id="study-reader-title"
+            lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
+            className={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : 'font-display'}
+            title={readerTitle}
+          >
+            {readerTitle}
+          </h1>
           <span>{entrySourceDisplay}</span>
         </div>
         <div className="study-reader-topbar__actions">
@@ -1528,14 +1658,15 @@ export default function Study() {
           </button>
         </div>
         <div
+          ref={readerProgressTrackRef}
           className="study-reader-topbar__progress"
           role="progressbar"
           aria-label={focusedReaderCopy.readingProgress}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-valuenow={Math.round(readerProgress * 100)}
+          aria-valuenow={0}
         >
-          <span style={{ width: `${readerProgress * 100}%` }} />
+          <span ref={readerProgressBarRef} />
         </div>
       </div>
 
@@ -1580,17 +1711,6 @@ export default function Study() {
             <p className="study-reader-hero__date">{hukamnamaDateLabel}</p>
           ) : null}
         </div>
-        <h1
-          id="study-reader-title"
-          lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
-          className={`text-ink dark:text-dark-text ${
-            readerTitleUsesScript
-              ? `${getScriptTextFontClass(scriptMode)} ${scriptMode === 'devanagari' ? 'text-[1.75rem]' : 'text-[2.05rem]'}`
-              : 'font-display text-3xl leading-tight'
-          }`}
-        >
-          {readerTitle}
-        </h1>
         {readerMeta ? (
           <p className="study-reader-hero__meta">
             {readerMeta}
@@ -1638,7 +1758,19 @@ export default function Study() {
                 <ul className="mt-1 list-disc space-y-1 pl-4">
                   {readerEditorialCopy.sourceRefs.map(ref => (
                     <li key={`${ref.label}-${ref.note}`}>
-                      <span className="font-medium">{ref.label}: </span>
+                      {ref.url ? (
+                        <a
+                          href={ref.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="interactive-focus rounded-sm font-medium text-gold-dark underline decoration-gold/35 underline-offset-2 dark:text-gold-light"
+                        >
+                          {ref.label}
+                        </a>
+                      ) : (
+                        <span className="font-medium">{ref.label}</span>
+                      )}
+                      {': '}
                       {ref.note}
                     </li>
                   ))}
@@ -2099,14 +2231,11 @@ export default function Study() {
         </div>
       )}
 
-      {baniName && !isExactShabadMode && !isBaniDbMode && (
-        <div className="section-shell p-4 mb-4">
-          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
-          {isBaniRangeMode && (
-            <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
-              {currentReadingUnit} {currentAng} of {startAngParam ?? angParam}–{endAngParam}
-            </p>
-          )}
+      {baniName && !isExactShabadMode && !isBaniDbMode && isBaniRangeMode && (
+        <div className="section-shell p-4 mb-4" aria-label="Reading range">
+          <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
+            {currentReadingUnit} {currentAng} of {startAngParam ?? angParam}–{endAngParam}
+          </p>
         </div>
       )}
 

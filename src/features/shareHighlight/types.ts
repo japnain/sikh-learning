@@ -50,6 +50,35 @@ export interface ShareHighlightCardInput {
   fileName?: string
 }
 
+/**
+ * One atomic line in a longer Gurbani reading. Passage pagination never moves
+ * part of a line onto another image; wrapping may occur only inside its fields.
+ */
+export interface ShareHighlightPassageLine {
+  id: string | number
+  gurmukhi: string
+  transliteration?: string | null
+  meaning?: string | null
+  /** Structural labels such as “ਸਲੋਕ ॥” should stay with the next line when space permits. */
+  isHeader?: boolean
+}
+
+export interface ShareHighlightPassageContent {
+  lines: ShareHighlightPassageLine[]
+  sourceLabel: string
+  seriesLabel: string
+  dateLabel?: string | null
+}
+
+/** A multi-image reading set. The existing single-card input remains unchanged. */
+export interface ShareHighlightPassageInput {
+  /** `null` renders the deterministic solid-background option on every page. */
+  artwork?: ShareHighlightArtwork | null
+  content: ShareHighlightPassageContent
+  /** Defaults to `naamras-hukamnama`; ordered page metadata is appended automatically. */
+  fileNameBase?: string
+}
+
 export type ShareHighlightTextRole = 'source' | 'gurmukhi' | 'transliteration' | 'meaning'
 
 export interface ShareHighlightTextStyle {
@@ -105,6 +134,17 @@ export interface ShareHighlightPngExport {
   file: File
   width: typeof SHARE_HIGHLIGHT_CARD_WIDTH
   height: typeof SHARE_HIGHLIGHT_CARD_HEIGHT
+}
+
+export interface ShareHighlightPngSetPage extends ShareHighlightPngExport {
+  pageNumber: number
+  pageCount: number
+}
+
+export interface ShareHighlightPngSetExport {
+  pages: ShareHighlightPngSetPage[]
+  files: File[]
+  totalPages: number
 }
 
 export type ShareHighlightShareResult =

@@ -3,8 +3,11 @@ import {
   ShareHighlightContentOverflowError,
   computeShareHighlightObjectCover,
   exportShareHighlightPng,
+  exportShareHighlightPngSet,
   layoutShareHighlightCardText,
+  layoutShareHighlightPassagePage,
   mapShareHighlightArtworkSafeZone,
+  paginateShareHighlightPassage,
   renderShareHighlightCard,
   resolveShareHighlightOverlayPalette,
   resolveShareHighlightTextPanel,
@@ -15,6 +18,8 @@ import {
   SHARE_HIGHLIGHT_CARD_HEIGHT,
   SHARE_HIGHLIGHT_CARD_WIDTH,
   type ShareHighlightCardInput,
+  type ShareHighlightPassageInput,
+  type ShareHighlightPassageLine,
   type ShareHighlightTextStyle,
 } from './types'
 
@@ -45,6 +50,46 @@ const input: ShareHighlightCardInput = {
     meaning: 'One Universal Creator God. Truth is the Name.',
     sourceLabel: 'Sri Guru Granth Sahib Ji · Ang 1',
   },
+}
+
+const passageLines: ShareHighlightPassageLine[] = [
+  {
+    id: 'salok',
+    gurmukhi: 'ਸਲੋਕ ॥',
+    transliteration: 'salok',
+    meaning: 'Salok.',
+    isHeader: true,
+  },
+  ...Array.from({ length: 5 }, (_, index) => ({
+    id: `salok-${index + 1}`,
+    gurmukhi: `ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ॥ ${index + 1}`,
+    transliteration: `sant udharan dayaalan aasaran gopaal keeratanah ${index + 1}`,
+    meaning: `The Merciful Lord is the Savior of the Saints; their support is to sing the Lord's praises. ${index + 1}`,
+  })),
+  {
+    id: 'pauree',
+    gurmukhi: 'ਪਉੜੀ ॥',
+    transliteration: 'pauree',
+    meaning: 'Pauree.',
+    isHeader: true,
+  },
+  ...Array.from({ length: 5 }, (_, index) => ({
+    id: `pauree-${index + 1}`,
+    gurmukhi: `ਚਰਨ ਕਮਲ ਕੀ ਓਟ ਉਧਰੇ ਸਗਲ ਜਨ ॥ ${index + 1}`,
+    transliteration: `charan kamal kee ott udhare sagal jan ${index + 1}`,
+    meaning: `All are saved in the shelter of the Lord's lotus feet, held in remembrance. ${index + 1}`,
+  })),
+]
+
+const passageInput: ShareHighlightPassageInput = {
+  artwork: input.artwork,
+  content: {
+    lines: passageLines,
+    sourceLabel: 'Sri Guru Granth Sahib Ji · Ang 709',
+    seriesLabel: "Today's Hukamnama",
+    dateLabel: 'July 15, 2026',
+  },
+  fileNameBase: 'naamras-hukamnama-2026-07-15',
 }
 
 function makeFakeRendererEnvironment() {
@@ -112,6 +157,24 @@ function makeFakeRendererEnvironment() {
   }
 
   return { canvas, context, drawnText, drawnTextCalls, encodedBlob, fontSet, gradients, options }
+}
+
+function makeFakePassageRendererEnvironment() {
+  const first = makeFakeRendererEnvironment()
+  const renders = [first]
+  const createCanvas = vi.fn(() => {
+    const next = makeFakeRendererEnvironment()
+    renders.push(next)
+    return next.canvas
+  })
+  const options: ShareHighlightRendererOptions = {
+    canvas: first.canvas,
+    createCanvas,
+    fontSet: first.fontSet,
+    loadImage: first.options.loadImage,
+  }
+
+  return { first, renders, createCanvas, options }
 }
 
 describe('computeShareHighlightObjectCover', () => {
@@ -292,6 +355,58 @@ describe('layoutShareHighlightCardText', () => {
   })
 })
 
+describe('full-passage pagination', () => {
+  it('keeps every source line intact, ordered, and present exactly once', () => {
+    const pages = paginateShareHighlightPassage(passageLines, measureByCharacter)
+
+    expect(pages.length).toBeGreaterThan(1)
+    expect(pages.flatMap(page => page.lines.map(line => line.id))).toEqual(
+      passageLines.map(line => line.id)
+    )
+    expect(pages.every((page, index) => (
+      page.pageNumber === index + 1
+      && page.pageCount === pages.length
+      && page.contentScale >= 0.72
+    ))).toBe(true)
+  })
+
+  it('keeps structural headers with their following verse when the pair can fit', () => {
+    const pages = paginateShareHighlightPassage(passageLines, measureByCharacter)
+
+    for (const headerId of ['salok', 'pauree']) {
+      const sourceIndex = passageLines.findIndex(line => line.id === headerId)
+      const page = pages.find(candidate => candidate.lines.some(line => line.id === headerId))
+      expect(page?.lines.map(line => line.id)).toContain(passageLines[sourceIndex + 1]?.id)
+    }
+  })
+
+  it('uses additional pages for reading supports instead of shrinking below the readable floor', () => {
+    const full = paginateShareHighlightPassage(passageLines, measureByCharacter)
+    const gurmukhiOnly = paginateShareHighlightPassage(
+      passageLines.map(line => ({ ...line, transliteration: null, meaning: null })),
+      measureByCharacter
+    )
+
+    expect(full.length).toBeGreaterThan(gurmukhiOnly.length)
+    expect(full.every(page => page.contentScale >= 0.72)).toBe(true)
+  })
+
+  it('lays out each line as its own Gurmukhi and optional support sequence', () => {
+    const layout = layoutShareHighlightPassagePage([
+      { id: 1, gurmukhi: 'ਪਹਿਲੀ ਪੰਕਤੀ', transliteration: 'first line', meaning: 'First meaning.' },
+      { id: 2, gurmukhi: 'ਦੂਜੀ ਪੰਕਤੀ', transliteration: 'second line', meaning: 'Second meaning.' },
+    ], measureByCharacter, 0.8)
+
+    expect(layout.sections.map(section => section.role)).toEqual([
+      'gurmukhi', 'transliteration', 'meaning',
+      'gurmukhi', 'transliteration', 'meaning',
+    ])
+    expect(layout.sections.every((section, index) => (
+      index === 0 || section.y > layout.sections[index - 1]!.y
+    ))).toBe(true)
+  })
+})
+
 describe('overlay composition helpers', () => {
   it('maps manifest tones to parchment, warm ink, cool ink, and neutral ink palettes', () => {
     expect(resolveShareHighlightOverlayPalette('light').kind).toBe('parchment')
@@ -394,6 +509,51 @@ describe('Canvas rendering and export', () => {
     expect(result.file.type).toBe('image/png')
     expect(result.width).toBe(1080)
     expect(result.height).toBe(1350)
+  })
+
+  it('exports a complete ordered folio with shared artwork, page footers, and stable filenames', async () => {
+    const environment = makeFakePassageRendererEnvironment()
+    const result = await exportShareHighlightPngSet(passageInput, environment.options)
+
+    expect(result.totalPages).toBeGreaterThan(1)
+    expect(result.pages).toHaveLength(result.totalPages)
+    expect(result.files).toEqual(result.pages.map(page => page.file))
+    expect(result.pages.map(page => page.pageNumber)).toEqual(
+      Array.from({ length: result.totalPages }, (_, index) => index + 1)
+    )
+    expect(result.files.map(file => file.name)).toEqual(
+      Array.from({ length: result.totalPages }, (_, index) => (
+        `naamras-hukamnama-2026-07-15-${String(index + 1).padStart(2, '0')}-of-${String(result.totalPages).padStart(2, '0')}.png`
+      ))
+    )
+    expect(environment.first.options.loadImage).toHaveBeenCalledTimes(1)
+    expect(environment.first.fontSet.load).toHaveBeenCalledTimes(3)
+    expect(environment.renders).toHaveLength(result.totalPages)
+    expect(environment.renders.every(render => render.context.drawImage.mock.calls.length === 1)).toBe(true)
+
+    const drawnText = environment.renders.flatMap(render => render.drawnText)
+    expect(drawnText).toContain("Today's Hukamnama")
+    expect(drawnText).toContain('July 15, 2026')
+    expect(drawnText).toContain(passageInput.content.sourceLabel)
+    expect(drawnText).toContain('naamras.xyz')
+    expect(drawnText).toContain(`1 / ${result.totalPages}`)
+    expect(drawnText).toContain(`${result.totalPages} / ${result.totalPages}`)
+  })
+
+  it('rejects the full folio when any sequential page fails to encode', async () => {
+    const first = makeFakeRendererEnvironment()
+    const failed = makeFakeRendererEnvironment()
+    vi.mocked(failed.canvas.toBlob).mockImplementation(callback => callback(null))
+
+    await expect(exportShareHighlightPngSet(passageInput, {
+      canvas: first.canvas,
+      createCanvas: vi.fn(() => failed.canvas),
+      fontSet: first.fontSet,
+      loadImage: first.options.loadImage,
+    })).rejects.toThrow('could not be encoded')
+
+    expect(first.canvas.toBlob).toHaveBeenCalledTimes(1)
+    expect(failed.canvas.toBlob).toHaveBeenCalledTimes(1)
   })
 
   it('renders the no-artwork option as a solid card without loading an image', async () => {
