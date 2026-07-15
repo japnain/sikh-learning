@@ -28,8 +28,9 @@ import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
 } from '../utils/sundarGutkaLength'
+import { SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
-import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
+import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { hasSearchMatch } from '../utils/searchHighlight'
@@ -82,7 +83,7 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   gurmukhi: { type: 2, placeholder: 'Full Gurbani words', minLength: 2 },
   english: { type: 3, placeholder: 'English meanings', minLength: 2 },
   transliteration: { type: 4, placeholder: 'Transliteration', minLength: 2 },
-  ang: { type: -1, placeholder: 'Open an ang or page', minLength: 1 },
+  ang: { type: -1, placeholder: 'Open an ang, Vaar, or page', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
 }
 const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
@@ -164,6 +165,11 @@ const DIRECTORY_BANIS_BY_SCRIPTURE = {
   SGGS: READ_DIRECTORY_SGGS_BANIS,
   DG: READ_DIRECTORY_DG_BANIS,
 } satisfies Record<Scripture, Bani[]>
+
+const BHAI_GURDAS_VAARS = Array.from(
+  { length: SOURCE_READER_META.B.max },
+  (_, index) => index + 1
+)
 
 const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
   .flat()
@@ -666,8 +672,8 @@ export default function Banis() {
     if (searchIssue) return getSearchIssueCopy(searchIssue)
     if (searchMode === 'ang') {
       return angTargets.length === 1
-        ? '1 direct page destination available'
-        : `${angTargets.length} direct page destinations available`
+        ? '1 direct reading destination available'
+        : `${angTargets.length} direct reading destinations available`
     }
 
     const resultCount = appSearchMatches.length + groupedSearchResults.length
@@ -835,11 +841,11 @@ export default function Banis() {
                   <SearchHighlight text={searchQuery.trim()} query={searchQuery.trim()} />
                 </p>
                 <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-1">
-                  Direct page lookup without running a word search.
+                  Direct source lookup without running a word search.
                 </p>
               </button>
             )) : (
-              <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">No matching source can open that ang/page.</p>
+              <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">No matching source can open that ang, Vaar, or page.</p>
             )}
           </div>
           )}
@@ -1113,7 +1119,7 @@ export default function Banis() {
               Bani directories
             </h2>
             <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
-              Open named banis and daily prayers.
+              Open daily prayers, scripture collections, Vaaran, and kirtan.
             </p>
           </div>
 
@@ -1295,6 +1301,72 @@ export default function Banis() {
           </div>
         )
       })}
+
+      <div>
+        <button
+          type="button"
+          onClick={() => toggle('bhai-gurdas-vaaran')}
+          className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+          data-open={expanded['bhai-gurdas-vaaran'] ? 'true' : 'false'}
+          aria-expanded={Boolean(expanded['bhai-gurdas-vaaran'])}
+          aria-controls="banis-bhai-gurdas-vaaran-panel"
+        >
+          <span className="min-w-0 text-left">
+            <span className="flex items-center gap-1.5 font-sans text-base font-semibold text-ink dark:text-dark-text">
+              <IconLibrary size={18} />
+              Bhai Gurdas Ji Vaaran
+            </span>
+            <span className="mt-1 block font-sans text-xs text-ink/60 dark:text-dark-text/64">
+              {SOURCE_READER_META.B.max} complete Vaars
+            </span>
+          </span>
+          <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">
+            {expanded['bhai-gurdas-vaaran'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}
+          </span>
+        </button>
+
+        {expanded['bhai-gurdas-vaaran'] ? (
+          <div id="banis-bhai-gurdas-vaaran-panel" className="read-vaar-panel">
+            <p className="read-vaar-panel__intro">
+              Choose a Vaar to open its complete sequence of Pauris.
+            </p>
+            <nav className="read-vaar-grid" aria-label="Bhai Gurdas Ji Vaaran">
+              {BHAI_GURDAS_VAARS.map(vaar => (
+                <Link
+                  key={vaar}
+                  to={`/study?source=B&ang=${vaar}`}
+                  state={{ readerOrigin: '/banis' }}
+                  className="read-vaar-link"
+                  aria-label={`Open Bhai Gurdas Ji Vaar ${vaar}`}
+                >
+                  <span className="read-vaar-link__label">Vaar</span>
+                  <span className="read-vaar-link__number">{vaar}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        ) : null}
+      </div>
+
+      <Link
+        to="/banis/amrit-keertan"
+        className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+        data-testid="banis-open-amrit-keertan"
+        aria-label="Open Amrit Keertan section index"
+      >
+        <span className="min-w-0 text-left">
+          <span className="flex items-center gap-1.5 font-sans text-base font-semibold text-ink dark:text-dark-text">
+            <IconMusic size={18} />
+            Amrit Keertan
+          </span>
+          <span className="mt-1 block font-sans text-xs text-ink/60 dark:text-dark-text/64">
+            Browse the complete section index
+          </span>
+        </span>
+        <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">
+          <IconArrowRight size={14} />
+        </span>
+      </Link>
           </div>
         </section>
 
@@ -1328,10 +1400,10 @@ export default function Banis() {
               <div className="read-section-header">
                 <p className="eyebrow">Companion readers</p>
                 <h2 id="read-companion-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
-                  Guidance and songbooks
+                  Guidance and practice
                 </h2>
                 <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
-                  Read Rehat or browse Amrit Keertan with source context.
+                  Read Rehat through its complete chapter index.
                 </p>
               </div>
 
@@ -1345,22 +1417,6 @@ export default function Banis() {
                     <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</span>
                     <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
                       Conduct, practice, and chapter-level reading.
-                    </span>
-                  </span>
-                  <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
-                    <IconArrowRight size={15} />
-                  </span>
-                </Link>
-
-                <Link
-                  to="/banis/amrit-keertan"
-                  className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
-                  data-testid="banis-open-amrit-keertan"
-                >
-                  <span className="min-w-0">
-                    <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</span>
-                    <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/82">
-                      Shabads organized by section with page navigation.
                     </span>
                   </span>
                   <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">

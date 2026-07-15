@@ -52,21 +52,20 @@ import {
   inferLegacySundarGutkaLength,
   normalizeSundarGutkaLength,
 } from '../utils/sundarGutkaLength'
+import {
+  SOURCE_READER_META,
+  getSourceReaderUnit,
+  type SourceReaderId,
+} from '../utils/sourceReaderMeta'
 
-type BaniSource = 'G' | 'D' | 'B' | 'A'
-
-const SOURCE_DISPLAY_NAMES: Record<BaniSource, string> = {
-  G: 'Sri Guru Granth Sahib Ji',
-  D: 'Dasam Granth',
-  B: 'Bhai Gurdas Ji Vaaran',
-  A: 'Amrit Keertan',
-}
+type BaniSource = SourceReaderId
 
 const PAGINATED_ENTRY_THRESHOLD = 4
 
 function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: BaniSource) {
   if (entry?.sourceName && entry.sourceName !== entry.scripture) return entry.sourceName
-  return SOURCE_DISPLAY_NAMES[(entry?.source ?? fallbackSource) as BaniSource] ?? entry?.scripture ?? SOURCE_DISPLAY_NAMES.G
+  const source = (entry?.source ?? fallbackSource) as BaniSource
+  return SOURCE_READER_META[source]?.name ?? entry?.scripture ?? SOURCE_READER_META.G.name
 }
 
 function readerControlOptionClass(selected: boolean, extra = '') {
@@ -80,7 +79,10 @@ function readerControlOptionClass(selected: boolean, extra = '') {
 }
 
 const MAX_ANG: Record<string, number> = {
-  G: 1430, D: 1428, B: 628, A: 1430,
+  G: SOURCE_READER_META.G.max,
+  D: SOURCE_READER_META.D.max,
+  B: SOURCE_READER_META.B.max,
+  A: SOURCE_READER_META.A.max,
 }
 
 function getRandomSggsAng(randomValue: number): number {
@@ -274,6 +276,30 @@ const BANI_SEQUENCE_COPY: Record<UiLocale, {
     sectionLabel: (index, total) => `भाग ${index} / ${total}`,
     previousSection: 'पिछला भाग',
     nextSection: 'अगला भाग',
+  },
+}
+
+const VAAR_SEQUENCE_COPY: typeof BANI_SEQUENCE_COPY = {
+  en: {
+    entryOutlineEyebrow: 'On This Vaar',
+    entryOutlineBody: 'Move between the Pauris in this Vaar without working through one long continuous scroll.',
+    sectionLabel: (index, total) => `Pauri ${index} of ${total}`,
+    previousSection: 'Previous Pauri',
+    nextSection: 'Next Pauri',
+  },
+  pa: {
+    entryOutlineEyebrow: 'ਇਸ ਵਾਰ ਵਿੱਚ',
+    entryOutlineBody: 'ਲੰਬੀ ਲਗਾਤਾਰ ਸਕ੍ਰੋਲ ਦੀ ਥਾਂ ਇਸ ਵਾਰ ਦੀਆਂ ਪਉੜੀਆਂ ਵਿਚਕਾਰ ਜਾਓ।',
+    sectionLabel: (index, total) => `ਪਉੜੀ ${index} / ${total}`,
+    previousSection: 'ਪਿਛਲੀ ਪਉੜੀ',
+    nextSection: 'ਅਗਲੀ ਪਉੜੀ',
+  },
+  hi: {
+    entryOutlineEyebrow: 'इस वार में',
+    entryOutlineBody: 'एक लंबी लगातार स्क्रॉल के बजाय इस वार की पौड़ियों के बीच जाएँ।',
+    sectionLabel: (index, total) => `पौड़ी ${index} / ${total}`,
+    previousSection: 'पिछली पौड़ी',
+    nextSection: 'अगली पौड़ी',
   },
 }
 
@@ -496,6 +522,7 @@ export default function Study() {
 
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
+  const currentReadingUnit = getSourceReaderUnit(currentSource, currentEntry?.scripture)
   const currentShabadId = currentEntry ? (parseShabadId(currentEntry) ?? undefined) : undefined
   const englishSource = useLanguageStore(s => s.englishSource)
   const punjabiSource = useLanguageStore(s => s.punjabiSource)
@@ -526,7 +553,11 @@ export default function Study() {
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
   const studyExperienceCopy = STUDY_EXPERIENCE_COPY[locale]
-  const entrySequenceCopy = isBaniDbMode ? BANI_SEQUENCE_COPY[locale] : studyExperienceCopy
+  const entrySequenceCopy = isBaniDbMode
+    ? BANI_SEQUENCE_COPY[locale]
+    : currentSource === 'B'
+      ? VAAR_SEQUENCE_COPY[locale]
+      : studyExperienceCopy
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
   const [actionNotice, setActionNotice] = useState<string | null>(null)
@@ -779,7 +810,9 @@ export default function Study() {
       currentEntry.gurmukhi,
       currentEntry.transliteration,
       getEntryMeaningText(currentEntry, meaningLanguage, englishSource),
-      baniName ? `— ${baniName} · Ang ${currentEntry.ang}` : `— ${currentEntry.scripture} · Ang ${currentEntry.ang}`,
+      baniName
+        ? `— ${baniName} · ${currentReadingUnit} ${currentEntry.ang}`
+        : `— ${currentEntry.scripture} · ${currentReadingUnit} ${currentEntry.ang}`,
       editorial?.brand.attribution ?? 'via NaamRas',
     ].filter(Boolean).join('\n')
     await shareTextWithFallback(text)
@@ -830,8 +863,8 @@ export default function Study() {
     addBookmark({
       type: 'shabad',
       title: baniName
-        ? `${baniName} · Ang ${currentAng}`
-        : `${currentEntry.scripture} · Ang ${currentAng}`,
+        ? `${baniName} · ${currentReadingUnit} ${currentAng}`
+        : `${currentEntry.scripture} · ${currentReadingUnit} ${currentAng}`,
       source: currentSource,
       ang: currentAng,
       description: bookmarkText || undefined,
@@ -850,8 +883,8 @@ export default function Study() {
     }
     addFavorite({
       title: baniName
-        ? `${baniName} · Ang ${currentAng}`
-        : `${currentEntry.scripture} · Ang ${currentAng}`,
+        ? `${baniName} · ${currentReadingUnit} ${currentAng}`
+        : `${currentEntry.scripture} · ${currentReadingUnit} ${currentAng}`,
       source: currentSource,
       ang: currentAng,
       shabadId: currentFavoriteRouteMode === 'canonical' ? undefined : currentShabadId,
@@ -866,7 +899,7 @@ export default function Study() {
     line.gurmukhi,
     showTransliteration ? line.transliteration : '',
     getLineMeaningText(line, meaningLanguage, englishSource),
-    `— ${entry.scripture} · Ang ${line.ang}`,
+    `— ${entry.scripture} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${line.ang}`,
     editorial?.brand.attribution ?? 'via NaamRas',
   ].filter(Boolean).join('\n')
 
@@ -888,7 +921,7 @@ export default function Study() {
     }
     addBookmark({
       type: 'verse',
-      title: `${entry.scripture} · Ang ${line.ang}`,
+      title: `${entry.scripture} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${line.ang}`,
       source: entrySource,
       ang: line.ang,
       shabadId: line.shabadId,
@@ -1003,7 +1036,7 @@ export default function Study() {
   const readerMeta = readerEditorialCopy?.sourceLine ?? [
     currentSundarGutkaLengthLabel,
     entrySourceDisplay,
-    currentAng ? `${currentEntry?.scripture === 'SGGS' || currentEntry?.scripture === 'DG' ? 'Ang' : 'Page'} ${currentAng}` : null,
+    currentAng ? `${currentReadingUnit} ${currentAng}` : null,
     currentEntry?.raag,
     currentEntry?.writer,
   ].filter(Boolean).join(' · ')
@@ -1059,7 +1092,7 @@ export default function Study() {
       sectionId,
       title: findStudyEntryTitle(entry),
       lineCount: getStudyEntryLineCount(entry),
-      detail: detailBits[0] ?? `${entry.scripture} · ${entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} ${entry.ang}`,
+      detail: detailBits[0] ?? `${entry.scripture} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${entry.ang}`,
       eyebrow: entrySequenceCopy.sectionLabel(index + 1, entries.length),
     }
   }), [entries, entrySequenceCopy])
@@ -1677,7 +1710,7 @@ export default function Study() {
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{studyCopy.exactSearchResult}</p>
           <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
-            {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · ${studyCopy.verse} ${verseIdParam}` : ''}
+            {currentEntry.scripture} · {getSourceReaderUnit(currentEntry.source, currentEntry.scripture)} {currentEntry.ang}{verseIdParam ? ` · ${studyCopy.verse} ${verseIdParam}` : ''}
           </p>
           {verseIdParam && fullShabadEntry && (currentEntry.lines?.length ?? 0) < (fullShabadEntry.lines?.length ?? 0) && (
             <button
@@ -1695,7 +1728,7 @@ export default function Study() {
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
           {isBaniRangeMode && (
             <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
-              Ang {currentAng} of {startAngParam ?? angParam}–{endAngParam}
+              {currentReadingUnit} {currentAng} of {startAngParam ?? angParam}–{endAngParam}
             </p>
           )}
         </div>
@@ -1805,12 +1838,12 @@ export default function Study() {
             onClick={() => navTo(currentAng - 1)}
             disabled={currentAng <= navMinAng}
             className="flex-1 py-3 rounded-lg section-shell-quiet text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
-          >&#8592; Ang {previousNavAng ?? navMinAng}</button>
+          >&#8592; {currentReadingUnit} {previousNavAng ?? navMinAng}</button>
           <button
             onClick={() => navTo(currentAng + 1)}
             disabled={currentAng >= navMaxAng}
             className="flex-1 py-3 rounded-lg bg-saffron text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
-          >Ang {nextNavAng ?? navMaxAng} &#8594;</button>
+          >{currentReadingUnit} {nextNavAng ?? navMaxAng} &#8594;</button>
         </div>
       )}
 

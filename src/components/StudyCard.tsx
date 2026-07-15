@@ -4,6 +4,7 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { getHindiSourceLabels, getPunjabiSourceLabels, getVisraamSourceLabels } from '../utils/translations'
+import { getSourceReaderUnit } from '../utils/sourceReaderMeta'
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
 import { IconBookmark, IconBookmarkFilled, IconClose, IconMoreHorizontal, IconShare } from './icons'
@@ -263,7 +264,7 @@ export default function StudyCard({
             </p>
           ) : null}
           <p className="font-sans text-[11px] text-gold-dark dark:text-gold-light uppercase tracking-[0.2em]">
-            {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
+            {entry.scripture} · {getSourceReaderUnit(entry.source, entry.scripture)} {entry.ang}
           </p>
           {(entry.raag || entry.writer || entry.sourceName) && (
             <div className="mt-2 flex flex-wrap gap-1.5">
