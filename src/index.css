@@ -340,8 +340,8 @@ html[data-motion='reduce'] *::after {
 html.dark .app-shell,
 html[data-theme='dark'] .app-shell {
   background:
-    radial-gradient(circle at 50% -8rem, rgb(255 255 255 / 0.08), transparent 30rem),
-    linear-gradient(180deg, #15101d 0%, #1d1725 58%, #15101d 100%);
+    radial-gradient(circle at 50% -8rem, rgb(var(--color-accent-strong) / 0.08), transparent 30rem),
+    linear-gradient(180deg, rgb(7 12 14) 0%, rgb(14 23 25) 58%, rgb(7 12 14) 100%);
 }
 
 html.dark .home-door-icon-button,
@@ -353,7 +353,7 @@ html[data-theme='dark'] .app-nav-stack::before,
 html.dark .home-saved-cabinet [data-testid='home-saved-metrics'] .home-quiet-card,
 html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .home-quiet-card {
   border-color: rgb(255 255 255 / 0.1);
-  background: rgb(39 31 48 / 0.88);
+  background: rgb(var(--color-surface) / 0.92);
 }
 
 /* Home shell refinement: keep the reveal art, but make the page read as one surface. */
@@ -400,7 +400,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .
   }
 
   .eyebrow {
-    letter-spacing: 0 !important;
+    letter-spacing: 0.16em;
     color: rgb(var(--color-accent-strong));
     font-weight: 700;
   }
@@ -409,7 +409,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .
     border-color: rgb(var(--color-accent-strong) / 0.22);
     background: rgb(var(--color-accent-strong) / 0.1);
     color: rgb(var(--color-text));
-    letter-spacing: 0 !important;
+    letter-spacing: 0.08em;
   }
 
   .interactive-card-link,

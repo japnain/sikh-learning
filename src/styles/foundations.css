@@ -8,8 +8,8 @@
   text-wrap: pretty;
 }
 
-[data-page] * {
-  letter-spacing: 0 !important;
+[data-page] :where(.font-gurmukhi, .font-devanagari, [lang='pa'], [lang='hi']) {
+  letter-spacing: 0;
 }
 
 [data-page]:not([data-page='home']):not([data-page='onboarding']) .section-shell,

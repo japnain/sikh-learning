@@ -12,10 +12,8 @@
     padding-top: max(0.75rem, var(--safe-area-top));
   }
 
-  .home-stack *,
-  .home-stack *::before,
-  .home-stack *::after {
-    letter-spacing: 0 !important;
+  .home-stack :where(.font-gurmukhi, .font-devanagari, [lang='pa'], [lang='hi']) {
+    letter-spacing: 0;
   }
 
   .home-stack h1,
@@ -36,6 +34,7 @@
 
   .home-door-shell [data-testid='home-brand-header'] {
     min-height: 3.5rem;
+    flex-wrap: wrap;
   }
 
   .home-door-shell [data-testid='home-brand-header'] .font-display {
@@ -65,6 +64,8 @@
 
   .home-door-icon-button:focus-visible,
   .home-primary-action:focus-visible,
+  .home-secondary-action:focus-visible,
+  .home-hukam-refresh:focus-visible,
   .home-nitnem-customize:focus-visible,
   .home-nitnem-tray button:focus-visible,
   .home-saved-cabinet a:focus-visible {
@@ -124,15 +125,32 @@
   .home-door-frame {
     position: relative;
     display: grid;
-    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
     margin-top: 0;
     overflow: hidden;
-    aspect-ratio: 4 / 5;
     border: 1px solid rgb(var(--color-border) / 0.4);
     border-radius: 8px;
     background: rgb(14 20 19);
     box-shadow: 0 18px 42px rgb(27 31 26 / 0.15);
     isolation: isolate;
+  }
+
+  .home-door-artwork {
+    position: relative;
+    z-index: 0;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .home-door-artwork::before {
+    display: block;
+    padding-top: 125%;
+    content: '';
   }
 
   .home-hero-art {
@@ -142,14 +160,61 @@
     height: 100%;
     object-fit: cover;
     object-position: center 18%;
-    z-index: -1;
+  }
+
+  .home-hero-art-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 50% 28%, rgb(232 190 117 / 0.2), transparent 24%),
+      linear-gradient(155deg, #23352e, #0e1413 68%);
+    color: rgb(245 228 197 / 0.78);
+  }
+
+  .home-hero-art-fallback-landscape {
+    position: relative;
+    display: block;
+    width: clamp(4rem, 18vw, 7rem);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid currentColor;
+    border-radius: 8px;
+  }
+
+  .home-hero-art-fallback-landscape::before {
+    position: absolute;
+    top: 18%;
+    right: 17%;
+    width: 18%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: currentColor;
+    content: '';
+  }
+
+  .home-hero-art-fallback-landscape::after {
+    position: absolute;
+    right: 8%;
+    bottom: -4%;
+    left: 8%;
+    height: 62%;
+    background:
+      linear-gradient(135deg, transparent 0 34%, currentColor 35% 56%, transparent 57%),
+      linear-gradient(45deg, transparent 0 39%, currentColor 40% 67%, transparent 68%);
+    content: '';
   }
 
   .home-door-content {
-    align-self: end;
+    position: relative;
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: stretch;
     width: 100%;
     min-width: 0;
-    background: rgb(10 16 15 / 0.88);
+    background: rgb(10 16 15 / 0.96);
     color: #fffaf0;
   }
 
@@ -162,9 +227,9 @@
     box-shadow: none;
   }
 
-  .home-card-heading-row,
-  .home-hukam-meta-row {
+  .home-card-heading-row {
     display: flex;
+    flex-wrap: wrap;
     min-width: 0;
     align-items: center;
     justify-content: space-between;
@@ -187,7 +252,7 @@
 
   .home-soft-pill {
     display: inline-flex;
-    max-width: 52%;
+    max-width: 100%;
     min-height: 1.75rem;
     align-items: center;
     padding: 0.3rem 0.55rem;
@@ -202,16 +267,50 @@
     white-space: nowrap;
   }
 
+  .home-state-pill--degraded {
+    border-color: rgb(232 190 117 / 0.48);
+    background: rgb(232 190 117 / 0.08);
+  }
+
+  .home-hukam-source-state {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.45rem 0.8rem;
+    margin-top: 0.55rem;
+    color: rgb(255 250 240 / 0.72);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .home-hukam-refresh {
+    min-height: 2.25rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgb(232 190 117 / 0.32);
+    border-radius: 6px;
+    color: #f5dfba;
+    font-weight: 700;
+  }
+
+  .home-hukam-refresh:disabled {
+    cursor: wait;
+    opacity: 0.64;
+  }
+
   .home-hukam-line {
     margin-top: 0.75rem;
     color: #fffaf0;
-    font-size: 1.2rem;
-    line-height: 1.55;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
   }
 
-  .home-hukam-meta-row {
-    margin-top: 0.6rem;
-    align-items: flex-end;
+  .home-hukam-support {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.65rem;
   }
 
   .home-hukam-transliteration {
@@ -222,14 +321,59 @@
     line-height: 1.45;
   }
 
-  .home-hukam-time {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 0.35rem;
-    color: rgb(255 250 240 / 0.72);
+  .home-hukam-meaning {
+    color: rgb(255 250 240 / 0.88);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .home-hukam-provenance {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.45rem;
+    margin-top: 0.75rem;
+    color: rgb(245 223 186 / 0.82);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .home-hukam-error-body {
+    margin-top: 0.75rem;
+    color: rgb(255 250 240 / 0.8);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .home-hukam-error-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    margin-top: 0.9rem;
+  }
+
+  .home-hukam-error-actions .home-primary-action {
+    margin-top: 0;
+  }
+
+  .home-secondary-action {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid currentColor;
+    border-radius: 8px;
+    color: inherit;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
   }
 
   .home-primary-action {
@@ -437,7 +581,7 @@
     border-radius: 8px;
   }
 
-  .home-saved-heading h3 {
+  .home-saved-heading h2 {
     color: rgb(var(--color-text));
     font-size: 2rem;
     line-height: 1;
@@ -467,15 +611,10 @@
   }
 
   .home-saved-art-band img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
     display: block;
-    width: 56.25%;
-    height: 177.78%;
-    max-width: none;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    transform: translate(-50%, -50%) rotate(-90deg);
   }
 
   .home-saved-art-caption {
@@ -563,6 +702,40 @@
     padding-left: 1rem !important;
   }
 
+  .home-saved-compact-empty {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-width: 0;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 1rem;
+    padding: 0.95rem 0;
+    border-block: 1px solid rgb(var(--color-border) / 0.3);
+  }
+
+  .home-saved-empty-icon {
+    display: inline-flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgb(var(--color-accent-strong) / 0.1);
+    color: rgb(var(--color-accent-strong));
+  }
+
+  .home-saved-compact-empty p:not(.home-section-label) {
+    margin-top: 0.25rem;
+    color: rgb(var(--color-text-muted));
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .home-saved-compact-empty .home-secondary-action {
+    color: rgb(var(--color-accent-strong));
+  }
+
   .saved-feedback-highlight {
     outline: 2px solid rgb(var(--color-focus) / 0.7);
     outline-offset: 2px;
@@ -581,9 +754,12 @@
     grid-column: auto;
   }
 
-  .home-door-frame {
+  .home-door-artwork {
     min-height: 30rem;
-    aspect-ratio: 16 / 7;
+  }
+
+  .home-door-artwork::before {
+    padding-top: 43.75%;
   }
 
   .home-hero-art {
@@ -601,7 +777,7 @@
   }
 
   .home-hukam-line {
-    font-size: 1.45rem;
+    font-size: 1.5rem;
   }
 
   .home-nitnem-tray,
@@ -648,8 +824,8 @@
     font-size: 1.8rem;
   }
 
-  .home-door-frame {
-    aspect-ratio: 0.78;
+  .home-door-artwork::before {
+    padding-top: 128.21%;
   }
 
   .home-hukam-card {
@@ -657,7 +833,15 @@
   }
 
   .home-hukam-line {
-    font-size: 1.06rem;
+    font-size: 1.4rem;
+  }
+
+  .home-saved-compact-empty {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .home-saved-compact-empty .home-secondary-action {
+    grid-column: 1 / -1;
   }
 }
 

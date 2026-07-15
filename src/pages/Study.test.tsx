@@ -104,6 +104,7 @@ describe('Study bookmark button', () => {
       </MemoryRouter>
     )
     await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
+    const scrollCallsBeforeOpen = scrollSpy.mock.calls.length
     fireEvent.click(screen.getByLabelText(/add bookmark/i))
 
     const bookmarkForm = await screen.findByTestId('study-bookmark-form')
@@ -113,7 +114,7 @@ describe('Study bookmark button', () => {
     expect(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' })).toBeInTheDocument()
     await waitFor(() => {
       expect(bookmarkInput).toHaveFocus()
-      expect(scrollSpy).toHaveBeenCalled()
+      expect(scrollSpy).toHaveBeenCalledTimes(scrollCallsBeforeOpen)
     })
   })
 
@@ -129,6 +130,10 @@ describe('Study bookmark button', () => {
     fireEvent.click(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' }))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
     expect(screen.getByText(/bookmark saved/i)).toBeInTheDocument()
+
+    fireEvent.click(screen.getByLabelText(/remove bookmark/i))
+    expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(false)
+    expect(screen.getByText(/bookmark removed/i)).toBeInTheDocument()
   })
 
   test('favoriting the current passage shows explicit feedback', async () => {
@@ -142,6 +147,9 @@ describe('Study bookmark button', () => {
     fireEvent.click(screen.getByLabelText(/add favorite/i))
 
     expect(screen.getByText(/added to favorites/i)).toBeInTheDocument()
+    fireEvent.click(screen.getByLabelText(/remove favorite/i))
+    expect(useFavoritesStore.getState().favorites).toHaveLength(0)
+    expect(screen.getByText(/removed from favorites/i)).toBeInTheDocument()
   })
 
   test('share falls back to clipboard with visible feedback when native share fails', async () => {
@@ -187,6 +195,19 @@ describe('Study source browsing', () => {
 
     expect(screen.queryByTestId('study-source-browser-shell')).not.toBeInTheDocument()
     expect(screen.queryByTestId('study-source-browser')).not.toBeInTheDocument()
+  })
+
+  test('keeps regular Ang navigation available as a compact persistent control', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const navigation = await screen.findByTestId('study-ang-navigation')
+    expect(navigation).toHaveClass('study-reader-ang-navigation')
+    expect(within(navigation).getByRole('button', { name: /Ang 1/i })).toBeDisabled()
+    expect(within(navigation).getByRole('button', { name: /Ang 2/i })).toBeEnabled()
   })
 })
 
@@ -269,7 +290,9 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    fireEvent.click(within(screen.getAllByTestId('study-card')[0]!).getAllByRole('button', { name: 'Open word details for ੴ' })[0]!)
+    const firstInlineWord = screen.getAllByTestId('study-card')[0]!.querySelector<HTMLElement>('[data-reader-word]')
+    expect(firstInlineWord).not.toBeNull()
+    fireEvent.click(firstInlineWord!)
 
     expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=1')
   })
@@ -783,19 +806,39 @@ describe('Study hukamnama mode', () => {
     )
 
     const controls = await screen.findByTestId('study-reader-controls')
-    expect(within(controls).getByText(/Reader settings/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/Reader Controls/i)).toBeInTheDocument()
     expect(within(controls).getByText(/^Gurmukhi$/i)).toBeInTheDocument()
     expect(within(controls).getByText(/^English$/i)).toBeInTheDocument()
     expect(within(controls).getByText(/Translit Off/i)).toBeInTheDocument()
 
     fireEvent.click(within(controls).getByRole('button', { name: /show reader controls/i }))
 
-    expect(within(controls).getByText(/^Script$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^Reading layers$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^Meaning$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^Punjabi teeka\/source$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^Hindi source$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^Layout$/i)).toBeInTheDocument()
+    const settingsSheet = screen.getByTestId('study-reader-settings-sheet')
+    expect(settingsSheet).toHaveAttribute('role', 'dialog')
+    expect(within(settingsSheet).getByText(/^Script$/i)).toBeInTheDocument()
+    expect(within(settingsSheet).getByRole('button', { name: /^Devanagari$/i })).toBeInTheDocument()
+    expect(within(settingsSheet).getByText(/^Reading layers$/i)).toBeInTheDocument()
+    expect(within(settingsSheet).getByText(/^Meaning$/i)).toBeInTheDocument()
+    expect(within(settingsSheet).getByText(/^Quick reading presets$/i)).toBeInTheDocument()
+    expect(within(settingsSheet).getByRole('button', { name: /^Text only$/i })).toBeInTheDocument()
+    expect(within(settingsSheet).getByRole('button', { name: /^Study support$/i })).toBeInTheDocument()
+    expect(within(settingsSheet).getByRole('button', { name: /^Large type$/i })).toBeInTheDocument()
+    expect(within(settingsSheet).getByText(/^English translation source$/i)).toBeInTheDocument()
+    const fontSizeControl = within(settingsSheet).getByRole('slider', { name: /Gurbani text size/i })
+    expect(fontSizeControl).toHaveValue('22')
+    fireEvent.change(fontSizeControl, { target: { value: '28' } })
+    expect(useLanguageStore.getState().fontSize).toBe(28)
+    const englishSourceGroup = within(settingsSheet).getByRole('group', { name: /English translation source/i })
+    fireEvent.click(within(englishSourceGroup).getByRole('button', { name: /Manmohan Singh/i }))
+    expect(useLanguageStore.getState().englishSource).toBe('ms')
+    expect(within(settingsSheet).queryByText(/^Punjabi teeka\/source$/i)).not.toBeInTheDocument()
+    expect(within(settingsSheet).queryByText(/^Hindi source$/i)).not.toBeInTheDocument()
+
+    fireEvent.click(within(settingsSheet).getByRole('button', { name: /^Punjabi$/i }))
+    expect(within(settingsSheet).queryByText(/^English translation source$/i)).not.toBeInTheDocument()
+    expect(within(settingsSheet).getByText(/^Punjabi teeka\/source$/i)).toBeInTheDocument()
+    expect(within(settingsSheet).queryByText(/^Hindi source$/i)).not.toBeInTheDocument()
+    expect(within(settingsSheet).getByText(/^Layout$/i)).toBeInTheDocument()
   })
 
   it('renders short Rehras without the legacy extra intro block or Ang 0', async () => {

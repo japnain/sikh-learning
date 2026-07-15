@@ -31,6 +31,7 @@ type ScriptureSourceSection = {
 type ScriptureSourceBrowserProps = {
   dataTestId?: string
   defaultOpenSections?: string[]
+  sectionIds?: string[]
   sectionClassName?: string
 }
 
@@ -45,7 +46,7 @@ const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
     overviewEyebrow: 'EPUB book reader',
     overviewDescription:
       'Open the EPUB-derived book reader for volume navigation, chapter reading, and full-text search across both supplied volumes.',
-    overviewStats: ['171 chapters', '169 episodes', '2 EPUB volumes'],
+    overviewStats: ['169 episodes', '2 EPUB volumes', 'English reading edition'],
   },
 ]
 
@@ -199,13 +200,19 @@ function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
 export default function ScriptureSourceBrowser({
   dataTestId,
   defaultOpenSections = [],
+  sectionIds,
   sectionClassName = 'section-shell px-4 py-4',
 }: ScriptureSourceBrowserProps) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(defaultOpenSections.map(sectionId => [sectionId, true]))
   )
 
-  const sections = useMemo(() => SCRIPTURE_SOURCE_SECTIONS, [])
+  const sections = useMemo(
+    () => sectionIds
+      ? SCRIPTURE_SOURCE_SECTIONS.filter(section => sectionIds.includes(section.id))
+      : SCRIPTURE_SOURCE_SECTIONS,
+    [sectionIds]
+  )
 
   return (
     <div className="space-y-3" data-component="scripture-source-browser" data-testid={dataTestId}>

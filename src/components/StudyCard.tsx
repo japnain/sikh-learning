@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react'
-import type { ScriptureEntry, ScriptureLine, ScriptureVisraamMarker, Word } from '../types'
+import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import type { ScriptureEntry, ScriptureLine, ScriptureVisraamMarker, UiLocale, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
@@ -23,6 +23,92 @@ interface Props {
   onBookmarkLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   isLineBookmarked?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
   isPhraseSaved?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
+}
+
+const STUDY_CARD_COPY: Record<UiLocale, {
+  openActions: (line: number) => string
+  actionsTitle: string
+  actionsDescription: string
+  dismissActions: string
+  phraseSaved: string
+  savePhrase: string
+  copy: string
+  share: string
+  bookmark: string
+  removeBookmark: string
+  exploreWords: string
+  hideWords: string
+  wordDetails: (word: string) => string
+  showSources: string
+  hideSources: string
+  punjabi: string
+  hindi: string
+  visraamSets: string
+  selected: string
+}> = {
+  en: {
+    openActions: line => `Open verse actions for line ${line}`,
+    actionsTitle: 'Verse actions',
+    actionsDescription: 'Save, copy, share, bookmark, explore words, or inspect source layers for this verse.',
+    dismissActions: 'Dismiss verse actions',
+    phraseSaved: 'Phrase saved',
+    savePhrase: 'Save phrase',
+    copy: 'Copy',
+    share: 'Share',
+    bookmark: 'Bookmark',
+    removeBookmark: 'Remove bookmark',
+    exploreWords: 'Explore words',
+    hideWords: 'Hide words',
+    wordDetails: word => `Open word details for ${word}`,
+    showSources: 'Show source layers',
+    hideSources: 'Hide source layers',
+    punjabi: 'Punjabi',
+    hindi: 'Hindi',
+    visraamSets: 'Visraam sets',
+    selected: 'Selected',
+  },
+  pa: {
+    openActions: line => `ਪੰਕਤੀ ${line} ਦੀਆਂ ਕਾਰਵਾਈਆਂ ਖੋਲ੍ਹੋ`,
+    actionsTitle: 'ਪੰਕਤੀ ਕਾਰਵਾਈਆਂ',
+    actionsDescription: 'ਇਸ ਪੰਕਤੀ ਨੂੰ ਸੰਭਾਲੋ, ਕਾਪੀ ਜਾਂ ਸਾਂਝਾ ਕਰੋ, ਬੁੱਕਮਾਰਕ ਕਰੋ, ਸ਼ਬਦ ਵੇਖੋ ਜਾਂ ਸਰੋਤ ਪਰਤਾਂ ਖੋਲ੍ਹੋ।',
+    dismissActions: 'ਪੰਕਤੀ ਕਾਰਵਾਈਆਂ ਬੰਦ ਕਰੋ',
+    phraseSaved: 'ਪੰਕਤੀ ਸੰਭਾਲੀ ਹੋਈ ਹੈ',
+    savePhrase: 'ਪੰਕਤੀ ਸੰਭਾਲੋ',
+    copy: 'ਕਾਪੀ ਕਰੋ',
+    share: 'ਸਾਂਝਾ ਕਰੋ',
+    bookmark: 'ਬੁੱਕਮਾਰਕ ਕਰੋ',
+    removeBookmark: 'ਬੁੱਕਮਾਰਕ ਹਟਾਓ',
+    exploreWords: 'ਸ਼ਬਦ ਵੇਖੋ',
+    hideWords: 'ਸ਼ਬਦ ਲੁਕਾਓ',
+    wordDetails: word => `${word} ਦੇ ਅਰਥ ਖੋਲ੍ਹੋ`,
+    showSources: 'ਸਰੋਤ ਪਰਤਾਂ ਦਿਖਾਓ',
+    hideSources: 'ਸਰੋਤ ਪਰਤਾਂ ਲੁਕਾਓ',
+    punjabi: 'ਪੰਜਾਬੀ',
+    hindi: 'ਹਿੰਦੀ',
+    visraamSets: 'ਵਿਸ਼ਰਾਮ ਸਮੂਹ',
+    selected: 'ਚੁਣਿਆ ਹੋਇਆ',
+  },
+  hi: {
+    openActions: line => `पंक्ति ${line} की कार्रवाइयाँ खोलें`,
+    actionsTitle: 'पंक्ति कार्रवाइयाँ',
+    actionsDescription: 'इस पंक्ति को सेव, कॉपी, शेयर या बुकमार्क करें, शब्द देखें या स्रोत परतें खोलें।',
+    dismissActions: 'पंक्ति कार्रवाइयाँ बंद करें',
+    phraseSaved: 'पंक्ति सेव है',
+    savePhrase: 'पंक्ति सेव करें',
+    copy: 'कॉपी करें',
+    share: 'शेयर करें',
+    bookmark: 'बुकमार्क करें',
+    removeBookmark: 'बुकमार्क हटाएँ',
+    exploreWords: 'शब्द देखें',
+    hideWords: 'शब्द छिपाएँ',
+    wordDetails: word => `${word} का विवरण खोलें`,
+    showSources: 'स्रोत परतें दिखाएँ',
+    hideSources: 'स्रोत परतें छिपाएँ',
+    punjabi: 'पंजाबी',
+    hindi: 'हिंदी',
+    visraamSets: 'विश्राम समूह',
+    selected: 'चुना हुआ',
+  },
 }
 
 function fallbackLine(entry: ScriptureEntry): ScriptureLine {
@@ -88,22 +174,6 @@ function LineActionItem({
   )
 }
 
-function handleWordKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
-  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
-
-  const group = event.currentTarget.parentElement
-  if (!group) return
-
-  const words = Array.from(group.querySelectorAll<HTMLButtonElement>('[data-reader-word]'))
-  const currentIndex = words.indexOf(event.currentTarget)
-  if (currentIndex < 0) return
-
-  const direction = event.key === 'ArrowRight' ? 1 : -1
-  const nextIndex = (currentIndex + direction + words.length) % words.length
-  event.preventDefault()
-  words[nextIndex]?.focus()
-}
-
 export default function StudyCard({
   entry,
   wordData,
@@ -122,11 +192,13 @@ export default function StudyCard({
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
   const [actionLine, setActionLine] = useState<ScriptureLine | null>(null)
   const [sourceLayersOpen, setSourceLayersOpen] = useState(false)
-  const wordTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const [wordListOpen, setWordListOpen] = useState(false)
+  const wordTriggerRef = useRef<HTMLElement | null>(null)
   const actionTriggerRef = useRef<HTMLButtonElement | null>(null)
   const restoreWordFocusRef = useRef(false)
   const restoreActionFocusRef = useRef(false)
   const locale = useLocaleStore(s => s.locale)
+  const cardCopy = STUDY_CARD_COPY[locale]
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
@@ -158,7 +230,6 @@ export default function StudyCard({
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
 
-  const scriptAlignmentClass = textAlign === 'center' ? 'text-center items-center justify-center' : 'text-left items-start'
   const meaningAlignmentClass = textAlign === 'center' ? 'text-center' : 'text-left'
   const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
   const actionMeaning = actionLine ? getLineMeaningText(actionLine, meaningLanguage, englishSource) : ''
@@ -197,13 +268,15 @@ export default function StudyCard({
   }, [actionLine])
 
   const handleWordTap = (
-    event: MouseEvent<HTMLButtonElement>,
+    event: MouseEvent<HTMLElement>,
     originalGurmukhi: string,
     line: ScriptureLine
   ) => {
-    event.preventDefault()
+    const selection = typeof window !== 'undefined' ? window.getSelection() : null
+    if (selection && !selection.isCollapsed && selection.toString().trim()) return
+
     event.stopPropagation()
-    wordTriggerRef.current = event.currentTarget
+    wordTriggerRef.current = event.currentTarget.tabIndex >= 0 ? event.currentTarget : null
 
     const wordsToSearch = wordData ?? entry.words ?? []
     const cleaned = cleanGurmukhi(originalGurmukhi)
@@ -232,6 +305,7 @@ export default function StudyCard({
     restoreActionFocusRef.current = true
     setActionLine(null)
     setSourceLayersOpen(false)
+    setWordListOpen(false)
   }
 
   const closeWordPopover = () => {
@@ -243,6 +317,18 @@ export default function StudyCard({
   const handleLineAction = (line: ScriptureLine, action?: (line: ScriptureLine, entry: ScriptureEntry) => void) => {
     action?.(line, entry)
     closeActionSheet()
+  }
+
+  const handleExploredWord = (
+    event: MouseEvent<HTMLElement>,
+    word: string,
+    line: ScriptureLine
+  ) => {
+    handleWordTap(event, word, line)
+    restoreActionFocusRef.current = false
+    setActionLine(null)
+    setSourceLayersOpen(false)
+    setWordListOpen(false)
   }
 
   return (
@@ -325,11 +411,6 @@ export default function StudyCard({
                 const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
                 const sequenceIndex = leadingHeaderCount + index
                 const isStructuralHeader = Boolean(line.isHeader)
-                const lineScriptAlignmentClass = isStructuralHeader
-                  ? line.headerLevel === 6
-                    ? 'text-right items-end justify-end'
-                    : 'text-center items-center justify-center'
-                  : scriptAlignmentClass
                 const lineMeaningAlignmentClass = isStructuralHeader
                   ? line.headerLevel === 6 ? 'text-right' : 'text-center'
                   : meaningAlignmentClass
@@ -358,7 +439,7 @@ export default function StudyCard({
                         setActionLine(line)
                         setSourceLayersOpen(false)
                       }}
-                      aria-label={`Open verse actions for line ${sequenceIndex + 1}`}
+                      aria-label={cardCopy.openActions(sequenceIndex + 1)}
                       className={`absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-transparent text-ink/68 transition-colors duration-300 hover:border-sand/20 hover:text-ink/65 dark:text-dark-text/64 dark:hover:border-dark-text/10 dark:hover:text-dark-text/65 ${
                         isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
                       }`}
@@ -375,25 +456,25 @@ export default function StudyCard({
                         {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar: true, showVishraam, larivaarText: line.larivaar })}
                       </p>
                     ) : (
-                      <div className={`flex flex-wrap gap-x-2 gap-y-3 ${lineScriptAlignmentClass}`}>
+                      <p
+                        lang={getScriptTextLang(scriptMode)}
+                        data-testid="study-gurbani-line"
+                        className={`study-gurbani-line ${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text ${lineSpacingClass} ${lineMeaningAlignmentClass} ${isStructuralHeader ? 'font-semibold' : ''}`}
+                        style={{ fontSize: `${fontSize * lineFontScale}px` }}
+                      >
                         {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
-                          <button
-                            key={`${line.verseId}-${wordIndex}`}
-                            type="button"
-                            lang={getScriptTextLang(scriptMode)}
-                            tabIndex={wordIndex === 0 ? 0 : -1}
-                            data-reader-word
-                            aria-label={`Open word details for ${renderScriptText(word, scriptMode)}`}
-                            className={`${getScriptTextFontClass(scriptMode)} mr-[0.1em] min-h-11 min-w-6 rounded-sm border-0 bg-transparent px-1 py-0 text-ink transition-colors duration-300 hover:text-gold-dark active:text-gold-dark dark:text-dark-text dark:hover:text-gold-light dark:active:text-gold-light ${lineSpacingClass} ${isStructuralHeader ? 'font-semibold' : ''}`}
-                            style={{ fontSize: `${fontSize * lineFontScale}px` }}
-                            onPointerDown={event => event.stopPropagation()}
-                            onKeyDown={handleWordKeyDown}
-                            onClick={event => handleWordTap(event, word, line)}
-                          >
-                            {formatGurbaniWord(word, { scriptMode, showVishraam })}
-                          </button>
+                          <span key={`${line.verseId}-${wordIndex}`}>
+                            {wordIndex > 0 ? ' ' : null}
+                            <span
+                              data-reader-word
+                              className="study-gurbani-word"
+                              onClick={event => handleWordTap(event, word, line)}
+                            >
+                              {formatGurbaniWord(word, { scriptMode, showVishraam })}
+                            </span>
+                          </span>
                         ))}
-                      </div>
+                      </p>
                     )}
 
                     {showTransliteration && line.transliteration && (
@@ -439,8 +520,8 @@ export default function StudyCard({
         <ModalSheet
           open
           onClose={closeActionSheet}
-          title="Verse actions"
-          description="Save, copy, share, bookmark, or inspect source layers for this verse."
+          title={cardCopy.actionsTitle}
+          description={cardCopy.actionsDescription}
           testId="study-verse-actions-sheet"
           className="max-h-[min(72vh,38rem)] overflow-y-auto rounded-lg px-4 pb-5 pt-3"
         >
@@ -448,7 +529,7 @@ export default function StudyCard({
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div>
                   <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                    Verse Actions
+                    {cardCopy.actionsTitle}
                   </p>
                   <p
                     lang={getScriptTextLang(scriptMode)}
@@ -475,7 +556,7 @@ export default function StudyCard({
                 <button
                   type="button"
                   onClick={closeActionSheet}
-                  aria-label="Dismiss verse actions"
+                  aria-label={cardCopy.dismissActions}
                   className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-parchment-low text-ink/68 dark:bg-dark-surface dark:text-dark-text/64"
                 >
                   <IconClose size={16} />
@@ -484,33 +565,66 @@ export default function StudyCard({
 
               <div className="space-y-2">
                 <LineActionItem
-                  label={isPhraseSaved?.(actionLine, entry) ? 'Phrase Saved' : 'Save Phrase'}
+                  label={isPhraseSaved?.(actionLine, entry) ? cardCopy.phraseSaved : cardCopy.savePhrase}
                   onClick={() => handleLineAction(actionLine, onSavePhrase)}
                   active={Boolean(isPhraseSaved?.(actionLine, entry))}
                 />
                 <LineActionItem
-                  label="Copy"
+                  label={cardCopy.copy}
                   onClick={() => handleLineAction(actionLine, onCopyLine)}
                 />
                 <LineActionItem
-                  label="Share"
+                  label={cardCopy.share}
                   onClick={() => handleLineAction(actionLine, onShareLine)}
                   icon={<IconShare size={16} />}
                 />
                 <LineActionItem
-                  label={isLineBookmarked?.(actionLine, entry) ? 'Bookmarked' : 'Bookmark'}
+                  label={isLineBookmarked?.(actionLine, entry) ? cardCopy.removeBookmark : cardCopy.bookmark}
                   onClick={() => handleLineAction(actionLine, onBookmarkLine)}
                   active={Boolean(isLineBookmarked?.(actionLine, entry))}
                   icon={isLineBookmarked?.(actionLine, entry) ? <IconBookmarkFilled size={16} /> : <IconBookmark size={16} />}
                 />
+                <LineActionItem
+                  label={wordListOpen ? cardCopy.hideWords : cardCopy.exploreWords}
+                  onClick={() => {
+                    setWordListOpen(open => !open)
+                    setSourceLayersOpen(false)
+                  }}
+                  active={wordListOpen}
+                />
                 {actionSourceLayers.hasExpandedSurface ? (
                   <LineActionItem
-                    label={sourceLayersOpen ? 'Hide Source Layers' : 'Show Source Layers'}
-                    onClick={() => setSourceLayersOpen(open => !open)}
+                    label={sourceLayersOpen ? cardCopy.hideSources : cardCopy.showSources}
+                    onClick={() => {
+                      setSourceLayersOpen(open => !open)
+                      setWordListOpen(false)
+                    }}
                     active={sourceLayersOpen}
                   />
                 ) : null}
               </div>
+
+              {wordListOpen ? (
+                <div className="mt-3 rounded-lg border border-sand/12 bg-parchment-low/75 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-surface/70" data-testid="study-word-explorer">
+                  <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
+                    {cardCopy.exploreWords}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {actionLine.gurmukhi.split(' ').filter(Boolean).map((word, index) => (
+                      <button
+                        key={`${actionLine.verseId}-explore-${index}`}
+                        type="button"
+                        lang={getScriptTextLang(scriptMode)}
+                        aria-label={cardCopy.wordDetails(renderScriptText(word, scriptMode))}
+                        onClick={event => handleExploredWord(event, word, actionLine)}
+                        className={`${getScriptTextFontClass(scriptMode)} min-h-[44px] rounded-lg border border-sand/15 bg-white/65 px-3 py-2 text-lg text-ink dark:border-dark-text/10 dark:bg-dark-card/60 dark:text-dark-text`}
+                      >
+                        {formatGurbaniWord(word, { scriptMode, showVishraam })}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
 
               {actionSourceLayers.hasExpandedSurface && sourceLayersOpen ? (
                 <div
@@ -520,7 +634,7 @@ export default function StudyCard({
                   {actionSourceLayers.punjabiVariants.length > 0 ? (
                     <div>
                       <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                        Punjabi
+                        {cardCopy.punjabi}
                       </p>
                       <div className="space-y-2">
                         {actionSourceLayers.punjabiVariants.map(([sourceKey, text]) => (
@@ -529,7 +643,7 @@ export default function StudyCard({
                               <ReaderChip active={sourceKey === punjabiSource}>
                                 {punjabiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
                               </ReaderChip>
-                              {sourceKey === punjabiSource ? <ReaderChip active>Selected</ReaderChip> : null}
+                              {sourceKey === punjabiSource ? <ReaderChip active>{cardCopy.selected}</ReaderChip> : null}
                             </div>
                             <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm leading-relaxed text-ink dark:text-dark-text`}>
                               {renderScriptText(text, scriptMode)}
@@ -543,7 +657,7 @@ export default function StudyCard({
                   {actionSourceLayers.hindiVariants.length > 0 ? (
                     <div>
                       <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                        Hindi
+                        {cardCopy.hindi}
                       </p>
                       <div className="space-y-2">
                         {actionSourceLayers.hindiVariants.map(([sourceKey, text]) => (
@@ -552,7 +666,7 @@ export default function StudyCard({
                               <ReaderChip active={sourceKey === hindiSource}>
                                 {hindiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
                               </ReaderChip>
-                              {sourceKey === hindiSource ? <ReaderChip active>Selected</ReaderChip> : null}
+                              {sourceKey === hindiSource ? <ReaderChip active>{cardCopy.selected}</ReaderChip> : null}
                             </div>
                             <p className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">
                               {text}
@@ -566,7 +680,7 @@ export default function StudyCard({
                   {actionSourceLayers.visraamVariants.length > 0 ? (
                     <div>
                       <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                        Visraam Sets
+                        {cardCopy.visraamSets}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {actionSourceLayers.visraamVariants.map(([sourceKey, markers]) => (

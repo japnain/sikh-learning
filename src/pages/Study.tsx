@@ -17,6 +17,7 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import type { ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
 import {
+  getEnglishSourceLabels,
   getHindiSourceLabel,
   getHindiSourceLabels,
   getLineSpacingLabels,
@@ -30,7 +31,7 @@ import {
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { findCanonicalBaniById } from '../utils/baniRouteResolver'
-import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled, IconMoreHorizontal } from '../components/icons'
+import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconClose, IconHeart, IconHeartFilled, IconMoreHorizontal } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
@@ -44,6 +45,7 @@ import {
   getReaderEditorialCopyForBaniDbId,
 } from '../content/readerEditorialCopy'
 import DisclosureSection from '../components/DisclosureSection'
+import ModalSheet from '../components/ModalSheet'
 import {
   SUNDAR_GUTKA_LENGTH_LABELS,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -153,6 +155,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   shareOpened: string
   shareUnavailable: string
   bookmarkSaved: string
+  bookmarkRemoved: string
   bookmarkExists: string
   favoriteAdded: string
   favoriteRemoved: string
@@ -178,6 +181,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     shareOpened: 'Share sheet opened.',
     shareUnavailable: 'Unable to open the share sheet. Copied to clipboard instead.',
     bookmarkSaved: 'Bookmark saved.',
+    bookmarkRemoved: 'Bookmark removed.',
     bookmarkExists: 'This passage is already bookmarked.',
     favoriteAdded: 'Added to favorites.',
     favoriteRemoved: 'Removed from favorites.',
@@ -203,6 +207,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     shareOpened: 'ਸ਼ੇਅਰ ਸ਼ੀਟ ਖੁਲ੍ਹ ਗਈ ਹੈ।',
     shareUnavailable: 'ਸ਼ੇਅਰ ਸ਼ੀਟ ਨਹੀਂ ਖੁੱਲੀ। ਇਸ ਦੀ ਥਾਂ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕੀਤਾ ਗਿਆ ਹੈ।',
     bookmarkSaved: 'ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।',
+    bookmarkRemoved: 'ਬੁੱਕਮਾਰਕ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
     bookmarkExists: 'ਇਹ ਪਾਠ ਪਹਿਲਾਂ ਹੀ ਬੁੱਕਮਾਰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ।',
     favoriteAdded: 'ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜਿਆ ਗਿਆ ਹੈ।',
     favoriteRemoved: 'ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
@@ -228,6 +233,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     shareOpened: 'शेयर शीट खुल गई है।',
     shareUnavailable: 'शेयर शीट नहीं खुली। इसकी जगह क्लिपबोर्ड में कॉपी किया गया है।',
     bookmarkSaved: 'बुकमार्क सेव हो गया।',
+    bookmarkRemoved: 'बुकमार्क हटा दिया गया।',
     bookmarkExists: 'यह अंश पहले से बुकमार्क किया हुआ है।',
     favoriteAdded: 'पसंदीदा में जोड़ दिया गया।',
     favoriteRemoved: 'पसंदीदा से हटा दिया गया।',
@@ -304,6 +310,132 @@ const VAAR_SEQUENCE_COPY: typeof BANI_SEQUENCE_COPY = {
   },
 }
 
+const FOCUSED_READER_COPY: Record<UiLocale, {
+  openSettings: string
+  closeSettings: string
+  settingsDescription: string
+  customize: string
+  currentSettings: string
+  length: string
+  script: string
+  readingLayers: string
+  meaning: string
+  punjabiSource: string
+  hindiSource: string
+  layout: string
+  fontSize: string
+  englishSource: string
+  bookmarkDescription: string
+  bookmarkNote: string
+  cancel: string
+  readingProgress: string
+  gurbani: string
+  hukamnama: string
+  share: string
+  addFavorite: string
+  removeFavorite: string
+  addBookmark: string
+  removeBookmark: string
+  presets: string
+  textOnly: string
+  studySupport: string
+  largeType: string
+}> = {
+  en: {
+    openSettings: 'Show reader controls',
+    closeSettings: 'Close reader settings',
+    settingsDescription: 'Adjust text size, script, translations, reading layers, and layout without leaving your place.',
+    customize: 'Customize',
+    currentSettings: 'Current reader settings',
+    length: 'Length',
+    script: 'Script',
+    readingLayers: 'Reading layers',
+    meaning: 'Meaning',
+    punjabiSource: 'Punjabi teeka/source',
+    hindiSource: 'Hindi source',
+    layout: 'Layout',
+    fontSize: 'Gurbani text size',
+    englishSource: 'English translation source',
+    bookmarkDescription: 'Add an optional note and save this passage without losing your reading position.',
+    bookmarkNote: 'Bookmark note',
+    cancel: 'Cancel',
+    readingProgress: 'Reading progress',
+    gurbani: 'Gurbani',
+    hukamnama: 'Hukamnama',
+    share: 'Share',
+    addFavorite: 'Add favorite',
+    removeFavorite: 'Remove favorite',
+    addBookmark: 'Add bookmark',
+    removeBookmark: 'Remove bookmark',
+    presets: 'Quick reading presets',
+    textOnly: 'Text only',
+    studySupport: 'Study support',
+    largeType: 'Large type',
+  },
+  pa: {
+    openSettings: 'ਪਾਠਕ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ',
+    closeSettings: 'ਪਾਠਕ ਸੈਟਿੰਗਾਂ ਬੰਦ ਕਰੋ',
+    settingsDescription: 'ਆਪਣੀ ਥਾਂ ਗੁਆਏ ਬਿਨਾਂ ਲਿਖਤ ਦਾ ਆਕਾਰ, ਲਿਪੀ, ਅਰਥ, ਪਾਠ ਪਰਤਾਂ ਅਤੇ ਬਣਤਰ ਬਦਲੋ।',
+    customize: 'ਬਦਲੋ',
+    currentSettings: 'ਮੌਜੂਦਾ ਪਾਠਕ ਸੈਟਿੰਗਾਂ',
+    length: 'ਲੰਬਾਈ',
+    script: 'ਲਿਪੀ',
+    readingLayers: 'ਪਾਠ ਪਰਤਾਂ',
+    meaning: 'ਅਰਥ',
+    punjabiSource: 'ਪੰਜਾਬੀ ਟੀਕਾ/ਸਰੋਤ',
+    hindiSource: 'ਹਿੰਦੀ ਸਰੋਤ',
+    layout: 'ਬਣਤਰ',
+    fontSize: 'ਗੁਰਬਾਣੀ ਲਿਖਤ ਦਾ ਆਕਾਰ',
+    englishSource: 'ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ ਸਰੋਤ',
+    bookmarkDescription: 'ਆਪਣੀ ਪੜ੍ਹਨ ਵਾਲੀ ਥਾਂ ਗੁਆਏ ਬਿਨਾਂ ਚਾਹੋ ਤਾਂ ਨੋਟ ਲਿਖ ਕੇ ਇਹ ਪਾਠ ਸੰਭਾਲੋ।',
+    bookmarkNote: 'ਬੁੱਕਮਾਰਕ ਨੋਟ',
+    cancel: 'ਰੱਦ ਕਰੋ',
+    readingProgress: 'ਪਾਠ ਦੀ ਤਰੱਕੀ',
+    gurbani: 'ਗੁਰਬਾਣੀ',
+    hukamnama: 'ਹੁਕਮਨਾਮਾ',
+    share: 'ਪਾਠ ਸਾਂਝਾ ਕਰੋ',
+    addFavorite: 'ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜੋ',
+    removeFavorite: 'ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਓ',
+    addBookmark: 'ਬੁੱਕਮਾਰਕ ਜੋੜੋ',
+    removeBookmark: 'ਬੁੱਕਮਾਰਕ ਹਟਾਓ',
+    presets: 'ਝਟਪਟ ਪਾਠ ਚੋਣਾਂ',
+    textOnly: 'ਸਿਰਫ਼ ਪਾਠ',
+    studySupport: 'ਸਿੱਖਣ ਸਹਾਇਤਾ',
+    largeType: 'ਵੱਡੀ ਲਿਖਤ',
+  },
+  hi: {
+    openSettings: 'रीडर सेटिंग खोलें',
+    closeSettings: 'रीडर सेटिंग बंद करें',
+    settingsDescription: 'अपनी जगह खोए बिना टेक्स्ट का आकार, लिपि, अनुवाद, पढ़ने की परतें और लेआउट बदलें।',
+    customize: 'बदलें',
+    currentSettings: 'मौजूदा रीडर सेटिंग',
+    length: 'लंबाई',
+    script: 'लिपि',
+    readingLayers: 'पढ़ने की परतें',
+    meaning: 'अर्थ',
+    punjabiSource: 'पंजाबी टीका/स्रोत',
+    hindiSource: 'हिंदी स्रोत',
+    layout: 'लेआउट',
+    fontSize: 'गुरबाणी टेक्स्ट का आकार',
+    englishSource: 'अंग्रेज़ी अनुवाद स्रोत',
+    bookmarkDescription: 'अपनी पढ़ने की जगह खोए बिना चाहें तो नोट जोड़कर यह अंश सेव करें।',
+    bookmarkNote: 'बुकमार्क नोट',
+    cancel: 'रद्द करें',
+    readingProgress: 'पढ़ने की प्रगति',
+    gurbani: 'गुरबाणी',
+    hukamnama: 'हुकमनामा',
+    share: 'पाठ शेयर करें',
+    addFavorite: 'पसंदीदा जोड़ें',
+    removeFavorite: 'पसंदीदा हटाएँ',
+    addBookmark: 'बुकमार्क जोड़ें',
+    removeBookmark: 'बुकमार्क हटाएँ',
+    presets: 'त्वरित पढ़ने के विकल्प',
+    textOnly: 'केवल पाठ',
+    studySupport: 'अध्ययन सहायता',
+    largeType: 'बड़ा टेक्स्ट',
+  },
+}
+
 export default function Study() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -315,12 +447,18 @@ export default function Study() {
   const commonCopy = copy.common
   const studyCopy = copy.study
   const lineSpacingLabels = getLineSpacingLabels(locale)
+  const englishSourceLabels = getEnglishSourceLabels(locale)
   const meaningLanguageLabels = getMeaningLanguageLabels(locale)
   const punjabiSourceLabels = getPunjabiSourceLabels(locale)
   const hindiSourceLabels = getHindiSourceLabels(locale)
   const scriptModeLabels = getScriptModeLabels(locale)
+  const readerScriptModeLabels = {
+    ...scriptModeLabels,
+    devanagari: locale === 'pa' ? 'ਦੇਵਨਾਗਰੀ' : locale === 'hi' ? 'देवनागरी' : 'Devanagari',
+  }
   const textAlignmentLabels = getTextAlignmentLabels(locale)
   const visraamSourceLabels = getVisraamSourceLabels(locale)
+  const focusedReaderCopy = FOCUSED_READER_COPY[locale]
 
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
@@ -526,6 +664,9 @@ export default function Study() {
   const currentReadingUnit = getSourceReaderUnit(currentSource, currentEntry?.scripture)
   const currentShabadId = currentEntry ? (parseShabadId(currentEntry) ?? undefined) : undefined
   const englishSource = useLanguageStore(s => s.englishSource)
+  const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
+  const fontSize = useLanguageStore(s => s.fontSize)
+  const setFontSize = useLanguageStore(s => s.setFontSize)
   const punjabiSource = useLanguageStore(s => s.punjabiSource)
   const setPunjabiSource = useLanguageStore(s => s.setPunjabiSource)
   const hindiSource = useLanguageStore(s => s.hindiSource)
@@ -549,7 +690,7 @@ export default function Study() {
 
   const updateSession = useProgressStore(state => state.updateSession)
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
-  const { addBookmark, hasBookmark } = useBookmarksStore()
+  const { addBookmark, removeBookmark, bookmarks, hasBookmark } = useBookmarksStore()
   const { addFavorite, removeFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
@@ -564,8 +705,7 @@ export default function Study() {
   const [actionNotice, setActionNotice] = useState<string | null>(null)
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
-  const readerControlsRef = useRef<HTMLDivElement | null>(null)
-  const bookmarkFormRef = useRef<HTMLDivElement | null>(null)
+  const [readerProgress, setReaderProgress] = useState(0)
   const bookmarkInputRef = useRef<HTMLInputElement | null>(null)
   const actionNoticeTimeoutRef = useRef<number | null>(null)
   const latestResumeVerseIdRef = useRef<number | null>(null)
@@ -770,40 +910,39 @@ export default function Study() {
   }, [entries.length, error, loading, recordSwipeToday, shouldTrackProgress])
 
   useEffect(() => {
-    if (!controlsOpen || typeof window === 'undefined' || window.innerWidth > 640) return
+    if (loading || typeof window === 'undefined') return
 
-    const frame = window.requestAnimationFrame(() => {
-      const container = readerControlsRef.current
-      if (!container) return
+    let frameId: number | null = null
+    const updateReaderProgress = () => {
+      frameId = null
+      const reading = document.querySelector<HTMLElement>('[data-testid="study-entry-list"]')
+      if (!reading) return
 
-      const nav = document.querySelector('.app-nav')
-      const navPadding = nav instanceof HTMLElement
-        ? nav.getBoundingClientRect().height + 28
-        : 120
-      const visibleBottom = window.innerHeight - navPadding
-      const rect = container.getBoundingClientRect()
+      const rect = reading.getBoundingClientRect()
+      const readingTop = window.scrollY + rect.top
+      const readableDistance = Math.max(1, reading.scrollHeight - window.innerHeight + 120)
+      const localProgress = Math.max(0, Math.min(1, (window.scrollY - readingTop + 96) / readableDistance))
+      const overallProgress = shouldPaginateEntries && entries.length > 0
+        ? (safeActiveEntryIndex + localProgress) / entries.length
+        : localProgress
+      setReaderProgress(overallProgress)
+    }
 
-      if (rect.bottom > visibleBottom) {
-        window.scrollBy({
-          top: rect.bottom - visibleBottom,
-          behavior: 'smooth',
-        })
-      }
-    })
+    const scheduleUpdate = () => {
+      if (frameId !== null) return
+      frameId = window.requestAnimationFrame(updateReaderProgress)
+    }
 
-    return () => window.cancelAnimationFrame(frame)
-  }, [controlsOpen])
+    scheduleUpdate()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
 
-  useEffect(() => {
-    if (!showBookmarkForm || typeof window === 'undefined') return
-
-    const frame = window.requestAnimationFrame(() => {
-      bookmarkInputRef.current?.focus()
-      bookmarkFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    })
-
-    return () => window.cancelAnimationFrame(frame)
-  }, [showBookmarkForm])
+    return () => {
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+    }
+  }, [entries.length, loading, safeActiveEntryIndex, searchParamsString, shouldPaginateEntries])
 
   const handleShare = async () => {
     if (!currentEntry) return
@@ -831,9 +970,17 @@ export default function Study() {
       ? 'shabad'
       : 'canonical'
 
-  const isBookmarked = currentAng
-    ? hasBookmark(currentSource, currentAng)
-    : false
+  const currentBookmark = currentEntry && currentAng
+    ? bookmarks.find(bookmark => {
+      if (bookmark.source !== currentSource || bookmark.ang !== currentAng) return false
+      if (isExactSearchResult) return bookmark.verseId === verseIdParam
+      if (isExactShabadMode) {
+        return !bookmark.verseId && bookmark.shabadId === currentShabadId
+      }
+      return !bookmark.verseId && !bookmark.shabadId
+    }) ?? null
+    : null
+  const isBookmarked = Boolean(currentBookmark)
   const currentFavorite = currentEntry && currentAng
     ? favorites.find(favorite => {
       const routeMode = favorite.routeMode ?? 'canonical'
@@ -862,12 +1009,15 @@ export default function Study() {
   const handleSaveBookmark = () => {
     if (!currentEntry || !currentAng) return
     addBookmark({
-      type: 'shabad',
+      type: isExactSearchResult ? 'verse' : 'shabad',
       title: baniName
         ? `${baniName} · ${currentReadingUnit} ${currentAng}`
         : `${currentEntry.scripture} · ${currentReadingUnit} ${currentAng}`,
       source: currentSource,
       ang: currentAng,
+      shabadId: currentFavoriteRouteMode === 'canonical' ? undefined : currentShabadId,
+      verseId: isExactSearchResult ? verseIdParam ?? undefined : undefined,
+      excerpt: isExactSearchResult ? currentEntry.gurmukhi : undefined,
       description: bookmarkText || undefined,
     })
     setShowBookmarkForm(false)
@@ -916,8 +1066,14 @@ export default function Study() {
 
   const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {
     const entrySource = (entry.source ?? currentSource) as BaniSource
-    if (hasBookmark(entrySource, line.ang, line.verseId)) {
-      announceAction(studyExperienceCopy.bookmarkExists)
+    const existingBookmark = bookmarks.find(bookmark =>
+      bookmark.source === entrySource
+      && bookmark.ang === line.ang
+      && bookmark.verseId === line.verseId
+    )
+    if (existingBookmark) {
+      removeBookmark(existingBookmark.id)
+      announceAction(studyExperienceCopy.bookmarkRemoved)
       return
     }
     addBookmark({
@@ -1046,8 +1202,10 @@ export default function Study() {
   const readerIntroBody = readerEditorialCopy?.dek ?? studyCopy.introBody
   const readerControlSummaryChips = [
     currentSundarGutkaLengthLabel,
-    scriptModeLabels[scriptMode],
+    readerScriptModeLabels[scriptMode],
+    `${fontSize}px`,
     meaningLanguageLabels[meaningLanguage],
+    meaningLanguage === 'en' ? englishSourceLabels[englishSource] : null,
     meaningLanguage === 'pa' ? getPunjabiSourceLabel(locale, punjabiSource) : null,
     meaningLanguage === 'hi' ? getHindiSourceLabel(locale, hindiSource) : null,
     showVishraam ? visraamSourceLabels[visraamSource] : null,
@@ -1081,10 +1239,8 @@ export default function Study() {
     navigate('/banis')
   }
   const openReaderSettings = () => {
+    setShowBookmarkForm(false)
     setControlsOpen(true)
-    window.requestAnimationFrame(() => {
-      readerControlsRef.current?.scrollIntoView({ block: 'center', behavior: 'auto' })
-    })
   }
   const entryOutline = useMemo(() => entries.map((entry, index) => {
     const sectionId = `study-entry-${index + 1}`
@@ -1175,6 +1331,29 @@ export default function Study() {
     onPrevious: () => jumpToEntry(safeActiveEntryIndex - 1),
     onNext: () => jumpToEntry(safeActiveEntryIndex + 1),
   } : null
+  const showAngNavigation = !isExactShabadMode
+    && !isHukamnamaMode
+    && !isArdaasHukamnamaFlow
+    && !isBaniDbMode
+    && Boolean(currentAng)
+    && navMinAng !== null
+    && navMaxAng !== null
+  const readerStateTopbar = (
+    <div className="study-reader-topbar">
+      <button
+        onClick={handleReaderBack}
+        className="study-reader-back"
+        data-ai-action="study-back"
+      >
+        <IconArrowLeft size={18} /> {commonCopy.back}
+      </button>
+      <div className="study-reader-topbar__identity">
+        <p>{isHukamnamaMode || isRandomHukamnamaMode ? focusedReaderCopy.hukamnama : focusedReaderCopy.gurbani}</p>
+        <span>{entrySourceDisplay}</span>
+      </div>
+      <div className="study-reader-topbar__state-spacer" aria-hidden="true" />
+    </div>
+  )
 
   if (!isApiMode) return null
 
@@ -1188,15 +1367,7 @@ export default function Study() {
         data-ai-state="loading"
         data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
       >
-        <div className="flex items-center justify-between mb-4">
-          <button
-            onClick={handleReaderBack}
-            className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"
-            data-ai-action="study-back"
-          >
-            <IconArrowLeft size={18} /> Back
-          </button>
-        </div>
+        {readerStateTopbar}
         <div className="section-shell p-6 min-h-[300px] animate-pulse" data-ai-surface="study-reader-body" data-ai-state="loading">
           <div className="h-3 bg-sand/30 dark:bg-dark-text/10 rounded w-1/4 mb-4" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-full mb-3" />
@@ -1209,56 +1380,60 @@ export default function Study() {
 
   if (readerStatus === 'degraded') {
     return (
-      <SurfaceStateCard
-        surface="study-reader"
-        state="degraded"
-        eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
-        title="This reading view needs another pass."
-        body="The passage did not settle this time. Reload the reader or step back and open a different route."
-        testId="page-study"
-        page="study"
-        errorCode={error ?? 'unavailable'}
-        actions={[
-          {
-            label: 'Reload Reader',
-            onClick: () => window.location.reload(),
-            aiAction: 'reload-study',
-          },
-          {
-            label: 'Back',
-            onClick: handleReaderBack,
-            aiAction: 'study-back',
-            emphasis: 'secondary',
-          },
-        ]}
-      />
+      <div className="page-shell animate-fade-in" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="degraded">
+        {readerStateTopbar}
+        <SurfaceStateCard
+          surface="study-reader"
+          state="degraded"
+          eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
+          title="This reading view needs another pass."
+          body="The passage did not settle this time. Reload the reader or step back and open a different route."
+          pageShell={false}
+          errorCode={error ?? 'unavailable'}
+          actions={[
+            {
+              label: 'Reload Reader',
+              onClick: () => window.location.reload(),
+              aiAction: 'reload-study',
+            },
+            {
+              label: 'Back',
+              onClick: handleReaderBack,
+              aiAction: 'study-back',
+              emphasis: 'secondary',
+            },
+          ]}
+        />
+      </div>
     )
   }
 
   if (readerStatus === 'empty' || entries.length === 0) {
     return (
-      <SurfaceStateCard
-        surface="study-reader"
-        state="empty"
-        eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
-        title="Nothing landed on this route yet."
-        body={`Try another ang, bani, or saved passage${baniName ? ` instead of ${baniName}` : ''}.`}
-        testId="page-study"
-        page="study"
-        actions={[
-          {
-            label: 'Back',
-            onClick: handleReaderBack,
-            aiAction: 'study-back',
-          },
-          {
-            label: 'Browse Read',
-            onClick: () => navigate('/banis'),
-            aiAction: 'browse-read',
-            emphasis: 'secondary',
-          },
-        ]}
-      />
+      <div className="page-shell animate-fade-in" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="empty">
+        {readerStateTopbar}
+        <SurfaceStateCard
+          surface="study-reader"
+          state="empty"
+          eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
+          title="Nothing landed on this route yet."
+          body={`Try another ang, bani, or saved passage${baniName ? ` instead of ${baniName}` : ''}.`}
+          pageShell={false}
+          actions={[
+            {
+              label: 'Back',
+              onClick: handleReaderBack,
+              aiAction: 'study-back',
+            },
+            {
+              label: 'Browse Read',
+              onClick: () => navigate('/banis'),
+              aiAction: 'browse-read',
+              emphasis: 'secondary',
+            },
+          ]}
+        />
+      </div>
     )
   }
 
@@ -1269,6 +1444,7 @@ export default function Study() {
       data-page="study"
       data-ai-surface="study-reader"
       data-ai-state="ready"
+      data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
       data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
       <div className="study-reader-topbar">
@@ -1277,24 +1453,24 @@ export default function Study() {
           className="study-reader-back"
           data-ai-action="study-back"
         >
-          <IconArrowLeft size={18} /> Back
+          <IconArrowLeft size={18} /> {commonCopy.back}
         </button>
         <div className="study-reader-topbar__identity">
-          <p>{isHukamnamaMode || isRandomHukamnamaMode ? 'Hukamnama' : 'Gurbani'}</p>
+          <p>{isHukamnamaMode || isRandomHukamnamaMode ? focusedReaderCopy.hukamnama : focusedReaderCopy.gurbani}</p>
           <span>{entrySourceDisplay}</span>
         </div>
         <div className="study-reader-topbar__actions">
           <button
             onClick={handleShare}
             className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300 active:scale-95 transition-transform duration-150"
-            aria-label="Share"
+            aria-label={focusedReaderCopy.share}
             data-ai-action="study-share"
           >
             <IconShare size={20} />
           </button>
           <button
             onClick={toggleFavorite}
-            aria-label={isFavorited ? 'Remove favorite' : 'Add favorite'}
+            aria-label={isFavorited ? focusedReaderCopy.removeFavorite : focusedReaderCopy.addFavorite}
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isFavorited ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
             data-ai-action="toggle-favorite"
           >
@@ -1303,13 +1479,15 @@ export default function Study() {
           <button
             onClick={() => {
               if (isBookmarked) {
-                announceAction(studyExperienceCopy.bookmarkExists)
+                if (currentBookmark) removeBookmark(currentBookmark.id)
+                announceAction(studyExperienceCopy.bookmarkRemoved)
                 return
               }
 
-              setShowBookmarkForm(v => !v)
+              setControlsOpen(false)
+              setShowBookmarkForm(true)
             }}
-            aria-label={isBookmarked ? 'Bookmark saved' : 'Add bookmark'}
+            aria-label={isBookmarked ? focusedReaderCopy.removeBookmark : focusedReaderCopy.addBookmark}
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
             data-ai-action="toggle-bookmark"
           >
@@ -1318,17 +1496,27 @@ export default function Study() {
           <button
             type="button"
             onClick={openReaderSettings}
-            aria-label="Open reader settings"
-            title="Reader settings"
+            aria-label={studyCopy.readerControls}
+            title={studyCopy.readerControls}
             className="study-reader-settings-action"
             data-ai-action="open-reader-settings"
           >
             <IconMoreHorizontal size={20} />
           </button>
         </div>
+        <div
+          className="study-reader-topbar__progress"
+          role="progressbar"
+          aria-label={focusedReaderCopy.readingProgress}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(readerProgress * 100)}
+        >
+          <span style={{ width: `${readerProgress * 100}%` }} />
+        </div>
       </div>
 
-      <div aria-live="polite" aria-atomic="true" className="study-reader-action-status mb-4 min-h-[1.5rem]">
+      <div aria-live="polite" aria-atomic="true" className="study-reader-action-status">
         {actionNotice ? (
           <div role="status" className="inline-flex rounded-full bg-saffron/10 px-3 py-1.5 font-sans text-xs font-medium text-saffron dark:bg-gold/12 dark:text-gold-light">
             {actionNotice}
@@ -1443,25 +1631,24 @@ export default function Study() {
       )}
 
       <div
-        ref={readerControlsRef}
         className="study-reader-controls mb-4 section-shell-quiet p-4"
         data-testid="study-reader-controls"
-        data-open={controlsOpen ? 'true' : 'false'}
       >
         <button
           type="button"
-          onClick={() => setControlsOpen(open => !open)}
+          onClick={openReaderSettings}
           className="study-reader-controls__summary"
           aria-expanded={controlsOpen}
+          aria-haspopup="dialog"
           aria-controls="study-reader-controls-panel"
-          aria-label={controlsOpen ? 'Hide reader controls' : 'Show reader controls'}
+          aria-label={focusedReaderCopy.openSettings}
         >
           <div className="min-w-0 text-left">
-            <p className="eyebrow">Reader settings</p>
+            <p className="eyebrow">{studyCopy.readerControls}</p>
             <p className="study-reader-controls__summary-line">
-              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ${scriptModeLabels[scriptMode]}` : ''}
+              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ${readerScriptModeLabels[scriptMode]}` : ''}
             </p>
-            <div className="study-reader-controls__chips" aria-label="Current reader settings">
+            <div className="study-reader-controls__chips" aria-label={focusedReaderCopy.currentSettings}>
               {readerControlSummaryChips.map(chip => (
                 <span key={String(chip)} className="study-reader-controls__chip">
                   {chip}
@@ -1470,15 +1657,98 @@ export default function Study() {
             </div>
           </div>
           <span className="study-reader-controls__toggle-label">
-            {controlsOpen ? 'Done' : 'Customize'}
+            {focusedReaderCopy.customize}
           </span>
         </button>
+      </div>
 
-        {controlsOpen && (
+      <ModalSheet
+        open={controlsOpen}
+        onClose={() => setControlsOpen(false)}
+        title={studyCopy.readerControls}
+        description={focusedReaderCopy.settingsDescription}
+        testId="study-reader-settings-sheet"
+        className="study-reader-settings-sheet max-h-[min(88dvh,48rem)] rounded-lg"
+      >
+        <div className="mx-auto mt-3 h-1.5 w-12 rounded-full bg-sand/25 dark:bg-dark-text/15" />
+        <div className="study-reader-sheet__header">
+          <div>
+            <p className="eyebrow">{studyCopy.readerControls}</p>
+            <p className="study-reader-sheet__description">{focusedReaderCopy.settingsDescription}</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setControlsOpen(false)}
+            aria-label={focusedReaderCopy.closeSettings}
+            className="study-reader-sheet__close"
+          >
+            <IconClose size={17} />
+          </button>
+        </div>
+
+        <div className="study-reader-settings-sheet__scroll">
           <div id="study-reader-controls-panel" className="study-reader-controls__panel">
+            <fieldset className="study-reader-controls__group">
+              <legend>{focusedReaderCopy.presets}</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--three">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowTransliteration(false)
+                    setMeaningLanguage('none')
+                  }}
+                  aria-pressed={!showTransliteration && meaningLanguage === 'none'}
+                  className={readerControlOptionClass(!showTransliteration && meaningLanguage === 'none')}
+                >
+                  {focusedReaderCopy.textOnly}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowTransliteration(true)
+                    if (meaningLanguage === 'none') setMeaningLanguage('en')
+                  }}
+                  aria-pressed={showTransliteration && meaningLanguage !== 'none'}
+                  className={readerControlOptionClass(showTransliteration && meaningLanguage !== 'none')}
+                >
+                  {focusedReaderCopy.studySupport}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFontSize(30)
+                    setLineSpacing('relaxed')
+                  }}
+                  aria-pressed={fontSize >= 28 && lineSpacing === 'relaxed'}
+                  className={readerControlOptionClass(fontSize >= 28 && lineSpacing === 'relaxed')}
+                >
+                  {focusedReaderCopy.largeType}
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset className="study-reader-controls__group">
+              <legend>{focusedReaderCopy.fontSize}</legend>
+              <div className="study-reader-controls__font-size">
+                <span aria-hidden="true">A</span>
+                <input
+                  type="range"
+                  min="18"
+                  max="34"
+                  step="1"
+                  value={fontSize}
+                  onChange={event => setFontSize(Number(event.target.value))}
+                  aria-label={focusedReaderCopy.fontSize}
+                  aria-valuetext={`${fontSize}px`}
+                />
+                <span className="study-reader-controls__font-size-large" aria-hidden="true">A</span>
+                <output>{fontSize}px</output>
+              </div>
+            </fieldset>
+
             {supportedSundarGutkaBaniId && availableSundarGutkaLengths.length > 0 && (
               <fieldset className="study-reader-controls__group">
-                <legend>Length</legend>
+                <legend>{focusedReaderCopy.length}</legend>
                 <div className="study-reader-controls__grid study-reader-controls__grid--two">
                   {availableSundarGutkaLengths.map(length => {
                     const selected = effectiveSgLength === length
@@ -1499,7 +1769,7 @@ export default function Study() {
             )}
 
             <fieldset className="study-reader-controls__group">
-              <legend>Script</legend>
+              <legend>{focusedReaderCopy.script}</legend>
               <div className="study-reader-controls__grid study-reader-controls__grid--two">
                 {(['gurmukhi', 'devanagari'] as const).map(mode => {
                   const selected = scriptMode === mode
@@ -1511,7 +1781,7 @@ export default function Study() {
                       aria-pressed={selected}
                       className={readerControlOptionClass(selected)}
                     >
-                      {scriptModeLabels[mode]}
+                      {readerScriptModeLabels[mode]}
                     </button>
                   )
                 })}
@@ -1519,7 +1789,7 @@ export default function Study() {
             </fieldset>
 
             <fieldset className="study-reader-controls__group">
-              <legend>Reading layers</legend>
+              <legend>{focusedReaderCopy.readingLayers}</legend>
               <div className="study-reader-controls__grid study-reader-controls__grid--three">
                 <button
                   type="button"
@@ -1527,7 +1797,7 @@ export default function Study() {
                   aria-pressed={showTransliteration}
                   className={readerControlOptionClass(showTransliteration)}
                 >
-                  Transliteration {showTransliteration ? commonCopy.on : commonCopy.off}
+                  {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
                 </button>
                 <button
                   type="button"
@@ -1567,7 +1837,7 @@ export default function Study() {
             </fieldset>
 
             <fieldset className="study-reader-controls__group">
-              <legend>Meaning</legend>
+              <legend>{focusedReaderCopy.meaning}</legend>
               <div className="study-reader-controls__grid study-reader-controls__grid--four">
                 {(['none', 'en', 'pa', 'hi'] as const).map(option => {
                   const selected = meaningLanguage === option
@@ -1586,48 +1856,74 @@ export default function Study() {
               </div>
             </fieldset>
 
-            <fieldset className="study-reader-controls__group">
-              <legend>Punjabi teeka/source</legend>
-              <div className="study-reader-controls__grid study-reader-controls__grid--two">
-                {Object.entries(punjabiSourceLabels).map(([key, label]) => {
-                  const selected = punjabiSource === key
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => setPunjabiSource(key as typeof punjabiSource)}
-                      aria-pressed={selected}
-                      className={readerControlOptionClass(selected)}
-                    >
-                      {label}
-                    </button>
-                  )
-                })}
-              </div>
-            </fieldset>
+            {meaningLanguage === 'en' ? (
+              <fieldset className="study-reader-controls__group">
+                <legend>{focusedReaderCopy.englishSource}</legend>
+                <div className="study-reader-controls__grid study-reader-controls__grid--three">
+                  {Object.entries(englishSourceLabels).map(([key, label]) => {
+                    const selected = englishSource === key
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setEnglishSource(key as typeof englishSource)}
+                        aria-pressed={selected}
+                        className={readerControlOptionClass(selected)}
+                      >
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </fieldset>
+            ) : null}
+
+            {meaningLanguage === 'pa' ? (
+              <fieldset className="study-reader-controls__group">
+                <legend>{focusedReaderCopy.punjabiSource}</legend>
+                <div className="study-reader-controls__grid study-reader-controls__grid--two">
+                  {Object.entries(punjabiSourceLabels).map(([key, label]) => {
+                    const selected = punjabiSource === key
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setPunjabiSource(key as typeof punjabiSource)}
+                        aria-pressed={selected}
+                        className={readerControlOptionClass(selected)}
+                      >
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </fieldset>
+            ) : null}
+
+            {meaningLanguage === 'hi' ? (
+              <fieldset className="study-reader-controls__group">
+                <legend>{focusedReaderCopy.hindiSource}</legend>
+                <div className="study-reader-controls__grid study-reader-controls__grid--two">
+                  {Object.entries(hindiSourceLabels).map(([key, label]) => {
+                    const selected = hindiSource === key
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setHindiSource(key as typeof hindiSource)}
+                        aria-pressed={selected}
+                        className={readerControlOptionClass(selected)}
+                      >
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </fieldset>
+            ) : null}
 
             <fieldset className="study-reader-controls__group">
-              <legend>Hindi source</legend>
-              <div className="study-reader-controls__grid study-reader-controls__grid--two">
-                {Object.entries(hindiSourceLabels).map(([key, label]) => {
-                  const selected = hindiSource === key
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => setHindiSource(key as typeof hindiSource)}
-                      aria-pressed={selected}
-                      className={readerControlOptionClass(selected)}
-                    >
-                      {label}
-                    </button>
-                  )
-                })}
-              </div>
-            </fieldset>
-
-            <fieldset className="study-reader-controls__group">
-              <legend>Layout</legend>
+              <legend>{focusedReaderCopy.layout}</legend>
               <div className="study-reader-controls__grid study-reader-controls__grid--two">
                 {(['compact', 'relaxed'] as const).map(option => {
                   const selected = lineSpacing === option
@@ -1660,35 +1956,69 @@ export default function Study() {
               </div>
             </fieldset>
           </div>
-        )}
-      </div>
+        </div>
+      </ModalSheet>
 
-      {showBookmarkForm && (
-        <div
-          ref={bookmarkFormRef}
-          className="mb-4 section-shell rounded-lg border border-saffron/18 bg-parchment-card p-4 shadow-gold-strong transition-colors duration-300 dark:border-gold/18 dark:bg-dark-card"
-          data-testid="study-bookmark-form"
-        >
-          <p className="eyebrow">{studyCopy.saveBookmark}</p>
+      <ModalSheet
+        open={showBookmarkForm}
+        onClose={() => setShowBookmarkForm(false)}
+        title={studyCopy.saveBookmark}
+        description={focusedReaderCopy.bookmarkDescription}
+        testId="study-bookmark-form"
+        initialFocusRef={bookmarkInputRef}
+        className="study-reader-bookmark-sheet rounded-lg p-4"
+      >
+        <form onSubmit={event => {
+          event.preventDefault()
+          handleSaveBookmark()
+        }}>
+          <div className="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-ink dark:text-dark-text">{studyCopy.saveBookmark}</h2>
+              <p className="mt-1 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/68">
+                {focusedReaderCopy.bookmarkDescription}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowBookmarkForm(false)}
+              aria-label={commonCopy.close}
+              className="study-reader-sheet__close"
+            >
+              <IconClose size={17} />
+            </button>
+          </div>
+          <label htmlFor="study-bookmark-note" className="font-sans text-xs font-semibold text-ink dark:text-dark-text">
+            {focusedReaderCopy.bookmarkNote}
+          </label>
           <input
             ref={bookmarkInputRef}
             id="study-bookmark-note"
             name="study-bookmark-note"
             type="text"
-            aria-label="Bookmark note"
+            aria-label={focusedReaderCopy.bookmarkNote}
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
             placeholder={studyCopy.addNote}
-            className="mt-3 w-full rounded-lg border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/30 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            className="mt-2 w-full rounded-lg border border-sand/15 bg-parchment-low px-3 py-2 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/30 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text"
           />
-          <button
-            onClick={handleSaveBookmark}
-            className="mt-3 w-full rounded-lg bg-saffron py-2 text-sm font-semibold text-white transition-colors duration-300 min-h-[44px]"
-          >
-            {studyCopy.saveBookmark}
-          </button>
-        </div>
-      )}
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => setShowBookmarkForm(false)}
+              className="min-h-[44px] rounded-lg border border-sand/15 font-sans text-sm font-semibold text-ink dark:border-dark-text/10 dark:text-dark-text"
+            >
+              {focusedReaderCopy.cancel}
+            </button>
+            <button
+              type="submit"
+              className="min-h-[44px] rounded-lg bg-saffron py-2 font-sans text-sm font-semibold text-white transition-colors duration-300"
+            >
+              {studyCopy.saveBookmark}
+            </button>
+          </div>
+        </form>
+      </ModalSheet>
 
         </aside>
 
@@ -1757,7 +2087,7 @@ export default function Study() {
               sectionEyebrow={showEntryOutline ? entryOutline[entryIndex]?.eyebrow ?? null : null}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
               showHeaderBlock={entryIndex === 0 || shouldPaginateEntries}
-              showAudioPlayer={entryIndex === 0}
+              showAudioPlayer={shouldPaginateEntries || entryIndex === 0}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
               onShareLine={handleShareLine}
@@ -1836,19 +2166,19 @@ export default function Study() {
         </div>
       )}
 
-      {!isExactShabadMode && !isHukamnamaMode && !isArdaasHukamnamaFlow && !isBaniDbMode && currentAng && navMinAng !== null && navMaxAng !== null && (
-        <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
+      {showAngNavigation && currentAng && navMinAng !== null && navMaxAng !== null && (
+        <nav className="study-reader-ang-navigation" aria-label={`${currentReadingUnit} navigation`} data-testid="study-ang-navigation">
           <button
             onClick={() => navTo(currentAng - 1)}
             disabled={currentAng <= navMinAng}
-            className="flex-1 py-3 rounded-lg section-shell-quiet text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+            className="study-reader-ang-navigation__button"
           >&#8592; {currentReadingUnit} {previousNavAng ?? navMinAng}</button>
           <button
             onClick={() => navTo(currentAng + 1)}
             disabled={currentAng >= navMaxAng}
-            className="flex-1 py-3 rounded-lg bg-saffron text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+            className="study-reader-ang-navigation__button study-reader-ang-navigation__button--next"
           >{currentReadingUnit} {nextNavAng ?? navMaxAng} &#8594;</button>
-        </div>
+        </nav>
       )}
 
         </div>

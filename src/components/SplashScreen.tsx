@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getEditorialCopy } from '../content/editorialCopy'
+import NaamRasLogoMark from './NaamRasLogoMark'
 
 const editorial = getEditorialCopy('en')
 
@@ -27,15 +28,15 @@ export default function SplashScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0f0a1e] ${exiting ? 'splash-fade-out' : ''}`}
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070c0e] ${exiting ? 'splash-fade-out' : ''}`}
       onClick={() => setExiting(true)}
       role="status"
       aria-live="polite"
       aria-label="Loading NaamRas"
       data-testid="splash-screen"
     >
-      <div className="animate-glow-pulse rounded-full p-8">
-        <p className="font-gurmukhi text-7xl text-gold splash-glow select-none">ੴ</p>
+      <div className="animate-glow-pulse p-8" aria-hidden="true">
+        <NaamRasLogoMark className="splash-glow" size={84} testId="splash-wordmark" />
       </div>
       <p className="font-sans font-semibold text-xl text-gold-light mt-6 tracking-widest uppercase animate-fade-in">
         {editorial?.brand.name ?? 'NaamRas'}

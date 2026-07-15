@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import type { ReactNode } from 'react'
+import type { ReactNode, RefObject } from 'react'
 
 export default function ModalSheet({
   open,
@@ -9,6 +9,7 @@ export default function ModalSheet({
   children,
   className = '',
   testId,
+  initialFocusRef,
 }: {
   open: boolean
   onClose: () => void
@@ -17,6 +18,7 @@ export default function ModalSheet({
   children: ReactNode
   className?: string
   testId?: string
+  initialFocusRef?: RefObject<HTMLElement | null>
 }) {
   return (
     <Dialog.Root open={open} onOpenChange={nextOpen => {
@@ -31,6 +33,11 @@ export default function ModalSheet({
             bottom: 'calc(var(--nav-stack-height, 0px) + 0.75rem + env(safe-area-inset-bottom))',
           }}
           data-testid={testId}
+          onOpenAutoFocus={event => {
+            if (!initialFocusRef?.current) return
+            event.preventDefault()
+            initialFocusRef.current.focus()
+          }}
         >
           <Dialog.Title className="sr-only">{title}</Dialog.Title>
           <Dialog.Description className="sr-only">{description}</Dialog.Description>
