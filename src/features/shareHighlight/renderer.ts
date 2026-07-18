@@ -101,23 +101,29 @@ const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionS
   },
 }
 
-// The diptych uses more of the Story-safe page than the single-column
-// manuscript. That extra width and height keeps the English translation
-// useful on real daily readings without sacrificing the artwork's top hero or
-// the citation footer.
+// A full bilingual Hukamnama is treated as one illuminated manuscript. The
+// artwork remains visible as a narrow side keyline plus a top and bottom
+// frame, while scripture and meaning receive the Story-safe reading area.
 const DIPTYCH_BODY: ShareHighlightPixelRect = {
-  x: 58,
-  y: 340,
-  width: 964,
-  height: 1270,
+  x: 48,
+  y: 296,
+  width: 984,
+  height: 1314,
 }
 const DIPTYCH_READING_SURFACE: ShareHighlightPixelRect = {
-  x: 34,
-  y: 314,
-  width: 1012,
-  height: 1396,
+  x: 20,
+  y: 186,
+  width: 1040,
+  height: 1524,
 }
-const DIPTYCH_GUTTER = 28
+const DIPTYCH_GUTTER = 20
+const DIPTYCH_HEADER_CENTER_Y = 226
+const DIPTYCH_HEADER_RULE_Y = 266
+const DIPTYCH_HEADER_GAP = 32
+const DIPTYCH_TITLE_MAX_SIZE = 38
+const DIPTYCH_TITLE_MIN_SIZE = 24
+const DIPTYCH_DATE_MAX_SIZE = 28
+const DIPTYCH_DATE_MIN_SIZE = 20
 const DIPTYCH_COLUMN_RATIOS = [0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.48] as const
 const DIPTYCH_GURMUKHI_SIZES = [42, 40, 38, 36, 34, 32] as const
 const DIPTYCH_MEANING_SIZES = [32, 30, 28, 27, 26] as const
@@ -889,7 +895,11 @@ function measureDiptychColumn(
     if (!value) return []
     const baseStyle = makeStoryStyle(role, Boolean(line.isHeader), fontSizes, palette)
     const style = role === 'meaning'
-      ? { ...baseStyle, lineHeight: Math.ceil(fontSize * 1.24) }
+      ? {
+          ...baseStyle,
+          fontWeight: 400 as const,
+          lineHeight: Math.ceil(fontSize * 1.24),
+        }
       : baseStyle
     const wrapped = wrapShareHighlightText(value, rect.width, style, measure)
     return [{
@@ -1324,7 +1334,9 @@ export async function awaitShareHighlightFonts(fontSet?: ShareHighlightFontSet |
   await Promise.all([
     resolved.load('600 76px "Noto Serif Gurmukhi"', 'ੴ ਸਤਿ ਨਾਮੁ'),
     resolved.load('700 25px "Plus Jakarta Sans"', `${SHARE_HIGHLIGHT_BRAND_DOMAIN} SOURCE`),
+    resolved.load('400 32px "Plus Jakarta Sans"', 'Complete English meaning'),
     resolved.load('500 34px "Plus Jakarta Sans"', 'Read. Reflect. Return.'),
+    resolved.load('650 38px "Cormorant Garamond"', 'Daily Hukamnama'),
   ])
 }
 
@@ -1456,15 +1468,16 @@ function drawStoryReadingSurface(
   layout: ShareHighlightStoryLayout,
   palette: ShareHighlightOverlayPalette
 ) {
+  const isDiptych = layout.composition === 'bilingual-diptych'
   context.save()
   context.shadowColor = 'rgba(8, 5, 3, 0.28)'
-  context.shadowBlur = layout.composition !== 'expressive' ? 34 : 24
+  context.shadowBlur = isDiptych ? 24 : layout.composition !== 'expressive' ? 34 : 24
   context.shadowOffsetX = 0
-  context.shadowOffsetY = 12
+  context.shadowOffsetY = isDiptych ? 8 : 12
   roundedRectanglePath(
     context,
     layout.readingSurface,
-    layout.composition !== 'expressive' ? 42 : 54
+    isDiptych ? 32 : layout.composition !== 'expressive' ? 42 : 54
   )
   if (layout.composition !== 'expressive' && palette.kind === 'parchment') {
     const parchment = context.createLinearGradient(
@@ -1486,6 +1499,19 @@ function drawStoryReadingSurface(
     ? 'rgba(91, 63, 37, 0.22)'
     : 'rgba(245, 224, 188, 0.22)'
   context.stroke()
+
+  if (isDiptych) {
+    const keylineInset = 10
+    roundedRectanglePath(context, {
+      x: layout.readingSurface.x + keylineInset,
+      y: layout.readingSurface.y + keylineInset,
+      width: layout.readingSurface.width - (keylineInset * 2),
+      height: layout.readingSurface.height - (keylineInset * 2),
+    }, 22)
+    context.lineWidth = 1
+    context.strokeStyle = 'rgba(117, 82, 45, 0.12)'
+    context.stroke()
+  }
   context.restore()
 }
 
@@ -1496,15 +1522,23 @@ function drawStoryDiptychDivider(
   if (!layout.columns) return
 
   context.save()
-  context.beginPath()
-  context.moveTo(layout.columns.dividerX, layout.body.y + 4)
-  context.lineTo(
-    layout.columns.dividerX,
-    layout.body.y + layout.body.height - 4
+  const divider = context.createLinearGradient(
+    0,
+    layout.body.y,
+    0,
+    layout.body.y + layout.body.height
   )
-  context.lineWidth = 2
-  context.strokeStyle = 'rgba(105, 75, 43, 0.24)'
-  context.stroke()
+  divider.addColorStop(0, 'rgba(105, 75, 43, 0)')
+  divider.addColorStop(0.08, 'rgba(105, 75, 43, 0.2)')
+  divider.addColorStop(0.92, 'rgba(105, 75, 43, 0.2)')
+  divider.addColorStop(1, 'rgba(105, 75, 43, 0)')
+  context.fillStyle = divider
+  context.fillRect(
+    layout.columns.dividerX,
+    layout.body.y + 4,
+    1,
+    layout.body.height - 8
+  )
   context.restore()
 }
 
@@ -1515,6 +1549,22 @@ function drawStoryMetadataSurfaces(
 ) {
   const surfaceFill = storySurfaceFill(palette, layout.composition === 'expressive')
   context.save()
+
+  if (layout.composition === 'bilingual-diptych') {
+    // The title and date live inside the manuscript instead of occupying a
+    // second floating card. A hairline keeps the header distinct without
+    // taking meaningful space from either language column.
+    context.fillStyle = 'rgba(105, 75, 43, 0.2)'
+    context.fillRect(
+      DIPTYCH_BODY.x,
+      DIPTYCH_HEADER_RULE_Y,
+      DIPTYCH_BODY.width,
+      2
+    )
+    context.restore()
+    return
+  }
+
   context.fillStyle = surfaceFill
   roundedRectanglePath(context, {
     x: 46,
@@ -1538,11 +1588,47 @@ function drawStoryMetadataSurfaces(
   context.restore()
 }
 
+function resolveDiptychHeaderTypography(
+  context: CanvasRenderingContext2D,
+  seriesLabel: string,
+  dateLabel: string | null
+) {
+  const maximumSteps = Math.max(
+    DIPTYCH_TITLE_MAX_SIZE - DIPTYCH_TITLE_MIN_SIZE,
+    DIPTYCH_DATE_MAX_SIZE - DIPTYCH_DATE_MIN_SIZE
+  )
+
+  for (let step = 0; step <= maximumSteps; step += 1) {
+    const progress = maximumSteps === 0 ? 1 : step / maximumSteps
+    const titleSize = Math.round(
+      DIPTYCH_TITLE_MAX_SIZE
+      - ((DIPTYCH_TITLE_MAX_SIZE - DIPTYCH_TITLE_MIN_SIZE) * progress)
+    )
+    const dateSize = Math.round(
+      DIPTYCH_DATE_MAX_SIZE
+      - ((DIPTYCH_DATE_MAX_SIZE - DIPTYCH_DATE_MIN_SIZE) * progress)
+    )
+    context.font = `normal 650 ${titleSize}px "Cormorant Garamond", serif`
+    const titleWidth = context.measureText(seriesLabel).width
+    context.font = `normal 600 ${dateSize}px "Plus Jakarta Sans", sans-serif`
+    const dateWidth = dateLabel ? context.measureText(dateLabel).width : 0
+    const requiredWidth = titleWidth + (dateLabel ? DIPTYCH_HEADER_GAP + dateWidth : 0)
+
+    if (requiredWidth <= DIPTYCH_BODY.width) return { titleSize, dateSize }
+  }
+
+  return {
+    titleSize: DIPTYCH_TITLE_MIN_SIZE,
+    dateSize: DIPTYCH_DATE_MIN_SIZE,
+  }
+}
+
 function drawStoryHeader(
   context: CanvasRenderingContext2D,
   seriesLabel: string,
   dateLabel: string | null,
-  palette: ShareHighlightOverlayPalette
+  palette: ShareHighlightOverlayPalette,
+  layout: ShareHighlightStoryLayout
 ) {
   context.save()
   context.shadowColor = palette.shadow
@@ -1553,6 +1639,27 @@ function drawStoryHeader(
   context.textBaseline = 'top'
   context.font = 'normal 700 32px "Plus Jakarta Sans", sans-serif'
   context.fillStyle = palette.primaryText
+
+  if (layout.composition === 'bilingual-diptych') {
+    const headerRight = DIPTYCH_BODY.x + DIPTYCH_BODY.width
+    const typography = resolveDiptychHeaderTypography(context, seriesLabel, dateLabel)
+
+    context.textBaseline = 'middle'
+    context.font = `normal 650 ${typography.titleSize}px "Cormorant Garamond", serif`
+    context.fillStyle = palette.primaryText
+    context.textAlign = 'left'
+    context.fillText(seriesLabel, DIPTYCH_BODY.x, DIPTYCH_HEADER_CENTER_Y)
+
+    if (dateLabel) {
+      context.font = `normal 600 ${typography.dateSize}px "Plus Jakarta Sans", sans-serif`
+      context.fillStyle = palette.secondaryText
+      context.textAlign = 'right'
+      context.fillText(dateLabel, headerRight, DIPTYCH_HEADER_CENTER_Y)
+    }
+    context.restore()
+    return
+  }
+
   context.fillText(seriesLabel, STORY_METADATA_X, STORY_SAFE_TOP, STORY_METADATA_WIDTH)
 
   if (dateLabel) {
@@ -1892,11 +1999,12 @@ function drawStoryArtworkBackground(
     context.fillStyle = gradient
     context.fillRect(0, destinationHeight - fadeHeight, SHARE_HIGHLIGHT_STORY_WIDTH, fadeHeight)
   } else if (profile.mode === 'pattern-frame') {
+    const frameInset = composition === 'bilingual-diptych' ? 10 : 24
     context.save()
     roundedRectanglePath(context, {
-      x: 24,
+      x: frameInset,
       y: 156,
-      width: SHARE_HIGHLIGHT_STORY_WIDTH - 48,
+      width: SHARE_HIGHLIGHT_STORY_WIDTH - (frameInset * 2),
       height: 1578,
     }, 48)
     context.strokeStyle = 'rgba(245, 222, 178, 0.5)'
@@ -1958,7 +2066,7 @@ export async function renderShareHighlightStory(
   drawStoryArtworkBackground(context, artwork, storyProfile, layout.composition)
   drawStoryReadingSurface(context, layout, palette)
   drawStoryMetadataSurfaces(context, layout, palette)
-  drawStoryHeader(context, seriesLabel, dateLabel, palette)
+  drawStoryHeader(context, seriesLabel, dateLabel, palette, layout)
   drawStoryDiptychDivider(context, layout)
   layout.sections.forEach(section => drawTextSection(context, section, palette))
   drawStoryFooter(context, sourceLabel, palette, layout)

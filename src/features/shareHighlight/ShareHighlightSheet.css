@@ -93,9 +93,9 @@
 }
 
 .share-highlight__preview-frame--story {
-  /* Keep enough of the first mobile viewport for the simple controls below.
-     The export remains a full-resolution 1080 × 1920 canvas. */
-  width: min(100%, 17rem);
+  /* Dense Hukamnamas need a legible proofing view on phones. This only scales
+     the composer preview; the export remains a native 1080 × 1920 canvas. */
+  width: min(100%, 21rem);
   aspect-ratio: 9 / 16;
 }
 

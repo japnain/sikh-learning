@@ -205,7 +205,17 @@ const fortyTwoLineBilingualReading: ShareHighlightPassageLine[] = Array.from(
 
 function makeFakeRendererEnvironment() {
   const drawnText: string[] = []
-  const drawnTextCalls: Array<{ text: string; x: number; y: number; shadowBlur: number; fontSize: number }> = []
+  const drawnTextCalls: Array<{
+    text: string
+    x: number
+    y: number
+    shadowBlur: number
+    fontSize: number
+    fontWeight: number
+    textAlign: string
+    textBaseline: string
+    maxWidth?: number
+  }> = []
   const imageDrawStates: Array<{ filter: string; globalAlpha: number }> = []
   const gradients: Array<{ addColorStop: ReturnType<typeof vi.fn> }> = []
   const context = {
@@ -249,7 +259,7 @@ function makeFakeRendererEnvironment() {
       const size = Number(context.font.match(/(\d+)px/)?.[1] ?? 16)
       return { width: Array.from(text).length * size * 0.52 }
     }),
-    fillText: vi.fn((text: string, x: number, y: number) => {
+    fillText: vi.fn((text: string, x: number, y: number, maxWidth?: number) => {
       drawnText.push(text)
       drawnTextCalls.push({
         text,
@@ -257,6 +267,10 @@ function makeFakeRendererEnvironment() {
         y,
         shadowBlur: context.shadowBlur,
         fontSize: Number(context.font.match(/(\d+)px/)?.[1] ?? 16),
+        fontWeight: Number(context.font.match(/\s(\d{3})\s+\d+px/)?.[1] ?? 400),
+        textAlign: context.textAlign,
+        textBaseline: context.textBaseline,
+        ...(maxWidth === undefined ? {} : { maxWidth }),
       })
     }),
   }
@@ -535,9 +549,11 @@ describe('single-frame full-passage Story layout', () => {
         supportRoles: ['meaning'],
       },
     })
+    expect(layout.readingSurface).toEqual({ x: 20, y: 186, width: 1040, height: 1524 })
+    expect(layout.body).toEqual({ x: 48, y: 296, width: 984, height: 1314 })
     expect(layout.columns).toBeDefined()
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(34)
-    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(28)
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(40)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(32)
     expect(layout.sourceLineIds).toEqual(july18Ang683Reading.map(line => line.id))
 
     const columns = layout.columns!
@@ -774,7 +790,7 @@ describe('Canvas rendering and export', () => {
 
     expect(canvas.width).toBe(1080)
     expect(canvas.height).toBe(1350)
-    expect(environment.fontSet.load).toHaveBeenCalledTimes(3)
+    expect(environment.fontSet.load).toHaveBeenCalledTimes(5)
     expect(environment.options.loadImage).toHaveBeenCalledWith('/test-art.png')
     expect(environment.context.drawImage).toHaveBeenCalledTimes(1)
     expect(environment.drawnText).toContain('naamras.xyz')
@@ -857,7 +873,7 @@ describe('Canvas rendering and export', () => {
     expect(environment.canvas.width).toBe(1080)
     expect(environment.canvas.height).toBe(1920)
     expect(environment.options.loadImage).toHaveBeenCalledTimes(1)
-    expect(environment.fontSet.load).toHaveBeenCalledTimes(3)
+    expect(environment.fontSet.load).toHaveBeenCalledTimes(5)
     expect(environment.context.drawImage).toHaveBeenCalledTimes(2)
     expect(environment.drawnText).toContain("Today's Hukamnama")
     expect(environment.drawnText).toContain('July 15, 2026')
@@ -877,6 +893,11 @@ describe('Canvas rendering and export', () => {
 
   it('renders the complete Ang 683 diptych with a subtle divider on one canvas', async () => {
     const environment = makeFakeRendererEnvironment()
+    const expectedLayout = layoutShareHighlightStory(
+      july18Ang683Reading,
+      measureStoryByCharacter,
+      'light'
+    )
     const canvas = await renderShareHighlightStory({
       ...passageInput,
       content: {
@@ -891,10 +912,34 @@ describe('Canvas rendering and export', () => {
     expect(canvas.width).toBe(1080)
     expect(canvas.height).toBe(1920)
     expect(environment.context.stroke).toHaveBeenCalledTimes(2)
+    expect(environment.context.fillRect).toHaveBeenCalledWith(48, 266, 984, 2)
+    expect(environment.context.fillRect).toHaveBeenCalledWith(
+      expectedLayout.columns!.dividerX,
+      expectedLayout.body.y + 4,
+      1,
+      expectedLayout.body.height - 8
+    )
 
-    const dividerMove = environment.context.moveTo.mock.calls.find(([, y]) => y === 344)
-    expect(dividerMove).toBeDefined()
-    expect(environment.context.lineTo).toHaveBeenCalledWith(dividerMove![0], 1606)
+    const title = environment.drawnTextCalls.find(call => call.text === "Today's Hukamnama")
+    const date = environment.drawnTextCalls.find(call => call.text === 'July 18, 2026')
+    const meaning = environment.drawnTextCalls.find(call => call.text.includes('Dhanaasaree'))
+    expect(title).toMatchObject({
+      x: 48,
+      y: 226,
+      fontSize: 38,
+      fontWeight: 650,
+      textAlign: 'left',
+      textBaseline: 'middle',
+    })
+    expect(date).toMatchObject({
+      x: 1032,
+      y: 226,
+      fontSize: 28,
+      fontWeight: 600,
+      textAlign: 'right',
+      textBaseline: 'middle',
+    })
+    expect(meaning).toMatchObject({ fontWeight: 400 })
 
     const renderedText = environment.drawnText.join(' ')
     for (const line of july18Ang683Reading) {
@@ -902,6 +947,31 @@ describe('Canvas rendering and export', () => {
       expect(renderedText).toContain(line.meaning)
     }
     expect(renderedText).not.toMatch(/…|\.\.\./)
+  })
+
+  it('auto-fits long diptych metadata without horizontally squeezing it', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const seriesLabel = 'Daily Hukamnama from Sri Harmandir Sahib'
+    const dateLabel = 'Saturday, July 18, 2026'
+
+    await renderShareHighlightStory({
+      ...passageInput,
+      content: {
+        ...passageInput.content,
+        lines: july18Ang683Reading,
+        seriesLabel,
+        dateLabel,
+      },
+    }, environment.options)
+
+    const title = environment.drawnTextCalls.find(call => call.text === seriesLabel)
+    const date = environment.drawnTextCalls.find(call => call.text === dateLabel)
+    expect(title?.fontSize).toBeGreaterThanOrEqual(24)
+    expect(title?.fontSize).toBeLessThan(38)
+    expect(title?.maxWidth).toBeUndefined()
+    expect(date?.fontSize).toBeGreaterThanOrEqual(20)
+    expect(date?.fontSize).toBeLessThan(28)
+    expect(date?.maxWidth).toBeUndefined()
   })
 
   it('keeps the ambient artwork luminous for a short landscape Story', async () => {
@@ -955,7 +1025,14 @@ describe('Canvas rendering and export', () => {
 
     for (const artwork of artworks) {
       const environment = makeFakeRendererEnvironment()
-      const canvas = await renderShareHighlightStory({ ...passageInput, artwork }, environment.options)
+      const canvas = await renderShareHighlightStory({
+        ...passageInput,
+        artwork,
+        content: {
+          ...passageInput.content,
+          lines: july18Ang683Reading,
+        },
+      }, environment.options)
 
       expect(canvas.width).toBe(1080)
       expect(canvas.height).toBe(1920)
@@ -965,7 +1042,11 @@ describe('Canvas rendering and export', () => {
         || artwork.storyProfile?.protectedSubject?.intent === 'keep-clear-of-text'
       )
       expect(environment.context.drawImage).toHaveBeenCalledTimes(usesAmbientArtwork ? 2 : 1)
-      expect(environment.drawnTextCalls.some(call => call.text.includes('ਸੰਤ'))).toBe(true)
+      const renderedText = environment.drawnText.join(' ')
+      expect(renderedText).toContain(july18Ang683Reading[0].gurmukhi)
+      expect(renderedText).toContain(july18Ang683Reading[0].meaning)
+      expect(renderedText).toContain(july18Ang683Reading.at(-1)!.gurmukhi)
+      expect(renderedText).toContain(july18Ang683Reading.at(-1)!.meaning)
       const drawCall = environment.context.drawImage.mock.calls.at(-1)!
       const destinationHeight = Number(drawCall[8])
       if (
