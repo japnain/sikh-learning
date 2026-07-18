@@ -3,12 +3,12 @@ import {
   ShareHighlightContentOverflowError,
   computeShareHighlightObjectCover,
   exportShareHighlightPng,
-  exportShareHighlightPngSet,
+  exportShareHighlightStoryPng,
   layoutShareHighlightCardText,
-  layoutShareHighlightPassagePage,
+  layoutShareHighlightStory,
   mapShareHighlightArtworkSafeZone,
-  paginateShareHighlightPassage,
   renderShareHighlightCard,
+  renderShareHighlightStory,
   resolveShareHighlightOverlayPalette,
   resolveShareHighlightTextPanel,
   wrapShareHighlightText,
@@ -17,6 +17,9 @@ import {
 import {
   SHARE_HIGHLIGHT_CARD_HEIGHT,
   SHARE_HIGHLIGHT_CARD_WIDTH,
+  SHARE_HIGHLIGHT_STORY_HEIGHT,
+  SHARE_HIGHLIGHT_STORY_WIDTH,
+  type ShareHighlightArtwork,
   type ShareHighlightCardInput,
   type ShareHighlightPassageInput,
   type ShareHighlightPassageLine,
@@ -60,7 +63,7 @@ const passageLines: ShareHighlightPassageLine[] = [
     meaning: 'Salok.',
     isHeader: true,
   },
-  ...Array.from({ length: 5 }, (_, index) => ({
+  ...Array.from({ length: 6 }, (_, index) => ({
     id: `salok-${index + 1}`,
     gurmukhi: `ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ॥ ${index + 1}`,
     transliteration: `sant udharan dayaalan aasaran gopaal keeratanah ${index + 1}`,
@@ -73,7 +76,7 @@ const passageLines: ShareHighlightPassageLine[] = [
     meaning: 'Pauree.',
     isHeader: true,
   },
-  ...Array.from({ length: 5 }, (_, index) => ({
+  ...Array.from({ length: 6 }, (_, index) => ({
     id: `pauree-${index + 1}`,
     gurmukhi: `ਚਰਨ ਕਮਲ ਕੀ ਓਟ ਉਧਰੇ ਸਗਲ ਜਨ ॥ ${index + 1}`,
     transliteration: `charan kamal kee ott udhare sagal jan ${index + 1}`,
@@ -84,7 +87,11 @@ const passageLines: ShareHighlightPassageLine[] = [
 const passageInput: ShareHighlightPassageInput = {
   artwork: input.artwork,
   content: {
-    lines: passageLines,
+    lines: passageLines.map(line => ({
+      ...line,
+      transliteration: null,
+      meaning: null,
+    })),
     sourceLabel: 'Sri Guru Granth Sahib Ji · Ang 709',
     seriesLabel: "Today's Hukamnama",
     dateLabel: 'July 15, 2026',
@@ -92,9 +99,21 @@ const passageInput: ShareHighlightPassageInput = {
   fileNameBase: 'naamras-hukamnama-2026-07-15',
 }
 
+const fourteenLineReading: ShareHighlightPassageLine[] = Array.from({ length: 14 }, (_, index) => ({
+  id: `line-${index + 1}`,
+  gurmukhi: `ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ਨਿਰਮਲ ਸੰਤ ਸੰਗੇਣ ਓਟ ਨਾਨਕ ਪਰਮੇਸੁਰਹ ॥ ${index + 1} ॥`,
+  meaning: `The Merciful Lord is the Savior and support of the Saints; in their immaculate company, O Nanak, one takes the protection of the Transcendent Lord. ${index + 1}`,
+}))
+
+const fourteenLineGurmukhiOnly = fourteenLineReading.map(line => ({
+  ...line,
+  meaning: null,
+}))
+
 function makeFakeRendererEnvironment() {
   const drawnText: string[] = []
-  const drawnTextCalls: Array<{ text: string; x: number; y: number; shadowBlur: number }> = []
+  const drawnTextCalls: Array<{ text: string; x: number; y: number; shadowBlur: number; fontSize: number }> = []
+  const imageDrawStates: Array<{ filter: string; globalAlpha: number }> = []
   const gradients: Array<{ addColorStop: ReturnType<typeof vi.fn> }> = []
   const context = {
     fillStyle: '',
@@ -109,9 +128,16 @@ function makeFakeRendererEnvironment() {
     shadowBlur: 0,
     shadowOffsetX: 0,
     shadowOffsetY: 0,
+    filter: 'none',
+    globalAlpha: 1,
     clearRect: vi.fn(),
     fillRect: vi.fn(),
-    drawImage: vi.fn(),
+    drawImage: vi.fn(() => {
+      imageDrawStates.push({
+        filter: context.filter,
+        globalAlpha: context.globalAlpha,
+      })
+    }),
     createLinearGradient: vi.fn(() => {
       const gradient = { addColorStop: vi.fn() }
       gradients.push(gradient)
@@ -132,7 +158,13 @@ function makeFakeRendererEnvironment() {
     }),
     fillText: vi.fn((text: string, x: number, y: number) => {
       drawnText.push(text)
-      drawnTextCalls.push({ text, x, y, shadowBlur: context.shadowBlur })
+      drawnTextCalls.push({
+        text,
+        x,
+        y,
+        shadowBlur: context.shadowBlur,
+        fontSize: Number(context.font.match(/(\d+)px/)?.[1] ?? 16),
+      })
     }),
   }
   const encodedBlob = new Blob(['png'], { type: 'image/png' })
@@ -156,25 +188,17 @@ function makeFakeRendererEnvironment() {
     }),
   }
 
-  return { canvas, context, drawnText, drawnTextCalls, encodedBlob, fontSet, gradients, options }
-}
-
-function makeFakePassageRendererEnvironment() {
-  const first = makeFakeRendererEnvironment()
-  const renders = [first]
-  const createCanvas = vi.fn(() => {
-    const next = makeFakeRendererEnvironment()
-    renders.push(next)
-    return next.canvas
-  })
-  const options: ShareHighlightRendererOptions = {
-    canvas: first.canvas,
-    createCanvas,
-    fontSet: first.fontSet,
-    loadImage: first.options.loadImage,
+  return {
+    canvas,
+    context,
+    drawnText,
+    drawnTextCalls,
+    imageDrawStates,
+    encodedBlob,
+    fontSet,
+    gradients,
+    options,
   }
-
-  return { first, renders, createCanvas, options }
 }
 
 describe('computeShareHighlightObjectCover', () => {
@@ -355,52 +379,169 @@ describe('layoutShareHighlightCardText', () => {
   })
 })
 
-describe('full-passage pagination', () => {
-  it('keeps every source line intact, ordered, and present exactly once', () => {
-    const pages = paginateShareHighlightPassage(passageLines, measureByCharacter)
+describe('single-frame full-passage Story layout', () => {
+  it('fits fourteen complete Gurmukhi lines at the hard readability floor inside one Story', () => {
+    const layout = layoutShareHighlightStory(fourteenLineGurmukhiOnly, measureByCharacter, 'light')
 
-    expect(pages.length).toBeGreaterThan(1)
-    expect(pages.flatMap(page => page.lines.map(line => line.id))).toEqual(
-      passageLines.map(line => line.id)
-    )
-    expect(pages.every((page, index) => (
-      page.pageNumber === index + 1
-      && page.pageCount === pages.length
-      && page.contentScale >= 0.72
+    expect(layout.width).toBe(1080)
+    expect(layout.height).toBe(1920)
+    expect(layout.composition).toBe('manuscript')
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(34)
+    expect(layout.sourceLineIds).toEqual(fourteenLineGurmukhiOnly.map(line => line.id))
+    expect(layout.sourceLineIds).toHaveLength(14)
+    expect(layout.sections.every(section => (
+      section.y >= layout.body.y
+      && section.y + section.height <= layout.body.y + layout.body.height
     ))).toBe(true)
   })
 
-  it('keeps structural headers with their following verse when the pair can fit', () => {
-    const pages = paginateShareHighlightPassage(passageLines, measureByCharacter)
+  it('preserves every non-empty source line without ellipsis or reordering', () => {
+    const layout = layoutShareHighlightStory([
+      { id: 'blank', gurmukhi: '   ' },
+      ...fourteenLineGurmukhiOnly,
+    ], measureByCharacter)
 
-    for (const headerId of ['salok', 'pauree']) {
-      const sourceIndex = passageLines.findIndex(line => line.id === headerId)
-      const page = pages.find(candidate => candidate.lines.some(line => line.id === headerId))
-      expect(page?.lines.map(line => line.id)).toContain(passageLines[sourceIndex + 1]?.id)
+    expect(layout.sourceLineIds).toEqual(fourteenLineGurmukhiOnly.map(line => line.id))
+    for (const line of fourteenLineGurmukhiOnly) {
+      const sections = layout.sections.filter(section => section.sourceLineId === line.id)
+      expect(sections.map(section => section.role)).toEqual(['gurmukhi'])
+      expect(sections.find(section => section.role === 'gurmukhi')?.lines.join(' ')).toBe(line.gurmukhi)
+      expect(sections.flatMap(section => section.lines).join(' ')).not.toContain('…')
+      expect(sections.flatMap(section => section.lines).join(' ')).not.toContain('...')
     }
   })
 
-  it('uses additional pages for reading supports instead of shrinking below the readable floor', () => {
-    const full = paginateShareHighlightPassage(passageLines, measureByCharacter)
-    const gurmukhiOnly = paginateShareHighlightPassage(
-      passageLines.map(line => ({ ...line, transliteration: null, meaning: null })),
-      measureByCharacter
-    )
+  it('rejects optional support instead of shrinking it below a readable size', () => {
+    let caught: unknown
+    try {
+      layoutShareHighlightStory(fourteenLineReading, measureByCharacter, 'light')
+    } catch (error) {
+      caught = error
+    }
 
-    expect(full.length).toBeGreaterThan(gurmukhiOnly.length)
-    expect(full.every(page => page.contentScale >= 0.72)).toBe(true)
+    expect(caught).toBeInstanceOf(ShareHighlightContentOverflowError)
+    expect(caught).toMatchObject({
+      reason: 'support-overflow',
+      supportRoles: ['meaning'],
+    })
+    expect(layoutShareHighlightStory(
+      fourteenLineGurmukhiOnly,
+      measureByCharacter,
+      'light'
+    ).sourceLineIds).toHaveLength(14)
   })
 
-  it('lays out each line as its own Gurmukhi and optional support sequence', () => {
-    const layout = layoutShareHighlightPassagePage([
+  it('uses expressive art for a short reading and a manuscript for a long reading', () => {
+    const short = layoutShareHighlightStory([
+      { id: 1, gurmukhi: 'ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ॥', meaning: 'The Merciful Lord is the Savior of the Saints.' },
+      { id: 2, gurmukhi: 'ਚਰਨ ਕਮਲ ਕੀ ਓਟ ਉਧਰੇ ਸਗਲ ਜਨ ॥', meaning: 'All are saved in the shelter of the Lord.' },
+    ], measureByCharacter, 'warm-dark', { mode: 'portrait-bleed' })
+    const long = layoutShareHighlightStory(
+      fourteenLineGurmukhiOnly,
+      measureByCharacter,
+      'light',
+      { mode: 'pattern-frame' }
+    )
+
+    expect(short.composition).toBe('expressive')
+    expect(short.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
+    expect(short.fit.fontSizes.meaning).toBeGreaterThanOrEqual(30)
+    expect(short.artworkMode).toBe('portrait-bleed')
+    expect(short.readingSurface.height).toBeLessThan(SHARE_HIGHLIGHT_STORY_HEIGHT * 0.35)
+    expect(short.readingSurface.y).toBeGreaterThanOrEqual(318)
+    expect(long.composition).toBe('manuscript')
+    expect(long.artworkMode).toBe('pattern-frame')
+  })
+
+  it('centers a short reading beneath a landscape hero instead of crowding its artwork', () => {
+    const lines = [{ id: 1, gurmukhi: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' }]
+    const portrait = layoutShareHighlightStory(lines, measureByCharacter, 'warm-dark', {
+      mode: 'portrait-bleed',
+    })
+    const landscape = layoutShareHighlightStory(lines, measureByCharacter, 'warm-dark', {
+      mode: 'landscape-hero',
+      heroHeightFraction: 0.34,
+    })
+
+    expect(landscape.composition).toBe('expressive')
+    expect(landscape.sections[0]!.y).toBeGreaterThan(portrait.sections[0]!.y + 250)
+  })
+
+  it('keeps reading surfaces and all text inside the Story-safe editorial region', () => {
+    const layout = layoutShareHighlightStory(
+      fourteenLineGurmukhiOnly,
+      measureByCharacter,
+      'light'
+    )
+
+    expect(layout.readingSurface.y).toBeGreaterThanOrEqual(300)
+    expect(layout.readingSurface.y + layout.readingSurface.height).toBeLessThanOrEqual(1712)
+    expect(layout.sections.every(section => section.y >= layout.body.y)).toBe(true)
+    expect(layout.sections.every(section => section.y + section.height <= 1568)).toBe(true)
+  })
+
+  it('sizes a manuscript page to its reading instead of leaving a mostly empty fixed sheet', () => {
+    const compactLongReading = Array.from({ length: 10 }, (_, index) => ({
+      id: index,
+      gurmukhi: `ਚਰਨ ਕਮਲ ਕੀ ਓਟ ਉਧਰੇ ਸਗਲ ਜਨ ॥ ${index + 1}`,
+    }))
+    const layout = layoutShareHighlightStory(compactLongReading, measureByCharacter, 'light', {
+      mode: 'portrait-bleed',
+    })
+
+    expect(layout.composition).toBe('manuscript')
+    expect(layout.readingSurface.height).toBeLessThan(1372)
+    expect(layout.readingSurface.height).toBeGreaterThanOrEqual(780)
+  })
+
+  it('places a short expressive reading away from a protected portrait subject', () => {
+    const lines = [{ id: 1, gurmukhi: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ', meaning: 'One Creator. Truth is the Name.' }]
+    const protectedTop = layoutShareHighlightStory(lines, measureByCharacter, 'warm-dark', {
+      mode: 'portrait-bleed',
+      protectedSubject: {
+        bounds: { x: 0.1, y: 0.1, width: 0.8, height: 0.3 },
+        intent: 'keep-clear-of-text',
+      },
+    })
+    const protectedBottom = layoutShareHighlightStory(lines, measureByCharacter, 'warm-dark', {
+      mode: 'portrait-bleed',
+      protectedSubject: {
+        bounds: { x: 0.1, y: 0.62, width: 0.8, height: 0.3 },
+        intent: 'keep-clear-of-text',
+      },
+    })
+
+    expect(protectedTop.sections[0]!.y).toBeGreaterThan(protectedBottom.sections[0]!.y)
+    expect(protectedTop.readingSurface.y).toBeGreaterThan(protectedBottom.readingSurface.y)
+  })
+
+  it('keeps a structural header visually attached to its following verse', () => {
+    const layout = layoutShareHighlightStory([
+      { id: 'before', gurmukhi: 'ਪਹਿਲੀ ਪੰਕਤੀ', meaning: 'First meaning.' },
+      { id: 'header', gurmukhi: 'ਸਲੋਕ ॥', isHeader: true },
+      { id: 'verse', gurmukhi: 'ਦੂਜੀ ਪੰਕਤੀ', meaning: 'Second meaning.' },
+    ], measureByCharacter)
+    const before = layout.sections.filter(section => section.sourceLineId === 'before').at(-1)!
+    const header = layout.sections.filter(section => section.sourceLineId === 'header').at(-1)!
+    const verse = layout.sections.find(section => section.sourceLineId === 'verse')!
+    const beforeHeaderGap = header.y - (before.y + before.height)
+    const headerVerseGap = verse.y - (header.y + header.height)
+
+    expect(layout.sourceLineIds).toEqual(['before', 'header', 'verse'])
+    expect(headerVerseGap).toBeLessThan(beforeHeaderGap)
+  })
+
+  it('lays each source line as its own ordered Gurmukhi and optional support sequence', () => {
+    const layout = layoutShareHighlightStory([
       { id: 1, gurmukhi: 'ਪਹਿਲੀ ਪੰਕਤੀ', transliteration: 'first line', meaning: 'First meaning.' },
       { id: 2, gurmukhi: 'ਦੂਜੀ ਪੰਕਤੀ', transliteration: 'second line', meaning: 'Second meaning.' },
-    ], measureByCharacter, 0.8)
+    ], measureByCharacter)
 
     expect(layout.sections.map(section => section.role)).toEqual([
       'gurmukhi', 'transliteration', 'meaning',
       'gurmukhi', 'transliteration', 'meaning',
     ])
+    expect(layout.sections.map(section => section.sourceLineId)).toEqual([1, 1, 1, 2, 2, 2])
     expect(layout.sections.every((section, index) => (
       index === 0 || section.y > layout.sections[index - 1]!.y
     ))).toBe(true)
@@ -511,49 +652,143 @@ describe('Canvas rendering and export', () => {
     expect(result.height).toBe(1350)
   })
 
-  it('exports a complete ordered folio with shared artwork, page footers, and stable filenames', async () => {
-    const environment = makeFakePassageRendererEnvironment()
-    const result = await exportShareHighlightPngSet(passageInput, environment.options)
+  it('exports the entire reading as one stable 1080x1920 PNG', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const result = await exportShareHighlightStoryPng(passageInput, environment.options)
 
-    expect(result.totalPages).toBeGreaterThan(1)
-    expect(result.pages).toHaveLength(result.totalPages)
-    expect(result.files).toEqual(result.pages.map(page => page.file))
-    expect(result.pages.map(page => page.pageNumber)).toEqual(
-      Array.from({ length: result.totalPages }, (_, index) => index + 1)
-    )
-    expect(result.files.map(file => file.name)).toEqual(
-      Array.from({ length: result.totalPages }, (_, index) => (
-        `naamras-hukamnama-2026-07-15-${String(index + 1).padStart(2, '0')}-of-${String(result.totalPages).padStart(2, '0')}.png`
-      ))
-    )
-    expect(environment.first.options.loadImage).toHaveBeenCalledTimes(1)
-    expect(environment.first.fontSet.load).toHaveBeenCalledTimes(3)
-    expect(environment.renders).toHaveLength(result.totalPages)
-    expect(environment.renders.every(render => render.context.drawImage.mock.calls.length === 1)).toBe(true)
-
-    const drawnText = environment.renders.flatMap(render => render.drawnText)
-    expect(drawnText).toContain("Today's Hukamnama")
-    expect(drawnText).toContain('July 15, 2026')
-    expect(drawnText).toContain(passageInput.content.sourceLabel)
-    expect(drawnText).toContain('naamras.xyz')
-    expect(drawnText).toContain(`1 / ${result.totalPages}`)
-    expect(drawnText).toContain(`${result.totalPages} / ${result.totalPages}`)
+    expect(result.canvas).toBe(environment.canvas)
+    expect(result.blob).toBe(environment.encodedBlob)
+    expect(result.file.name).toBe('naamras-hukamnama-2026-07-15.png')
+    expect(result.file.type).toBe('image/png')
+    expect(result.width).toBe(SHARE_HIGHLIGHT_STORY_WIDTH)
+    expect(result.height).toBe(SHARE_HIGHLIGHT_STORY_HEIGHT)
+    expect(environment.canvas.width).toBe(1080)
+    expect(environment.canvas.height).toBe(1920)
+    expect(environment.options.loadImage).toHaveBeenCalledTimes(1)
+    expect(environment.fontSet.load).toHaveBeenCalledTimes(3)
+    expect(environment.context.drawImage).toHaveBeenCalledTimes(2)
+    expect(environment.drawnText).toContain("Today's Hukamnama")
+    expect(environment.drawnText).toContain('July 15, 2026')
+    expect(environment.drawnText).toContain(passageInput.content.sourceLabel)
+    expect(environment.drawnText).toContain('naamras.xyz')
+    expect(environment.drawnText.join(' ')).not.toContain(' / ')
+    const safeMetadata = environment.drawnTextCalls.filter(call => (
+      call.text === "Today's Hukamnama"
+      || call.text === 'July 15, 2026'
+      || call.text === passageInput.content.sourceLabel
+      || call.text === 'naamras.xyz'
+    ))
+    expect(safeMetadata).toHaveLength(4)
+    expect(safeMetadata.every(call => call.y >= 204 && call.y <= 1712)).toBe(true)
+    expect(safeMetadata.every(call => call.fontSize >= 30)).toBe(true)
   })
 
-  it('rejects the full folio when any sequential page fails to encode', async () => {
-    const first = makeFakeRendererEnvironment()
-    const failed = makeFakeRendererEnvironment()
-    vi.mocked(failed.canvas.toBlob).mockImplementation(callback => callback(null))
+  it('keeps the ambient artwork luminous for a short landscape Story', async () => {
+    const environment = makeFakeRendererEnvironment()
+    await renderShareHighlightStory({
+      ...passageInput,
+      artwork: {
+        ...passageInput.artwork!,
+        storyProfile: {
+          mode: 'landscape-hero',
+          focalPosition: { x: 0.5, y: 0.5 },
+          heroHeightFraction: 0.35,
+        },
+      },
+      content: {
+        ...passageInput.content,
+        lines: [
+          { id: 1, gurmukhi: 'ਸਲੋਕ ॥', isHeader: true },
+          { id: 2, gurmukhi: 'ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ॥' },
+          { id: 3, gurmukhi: 'ਨਿਰਮਲ ਸੰਤ ਸੰਗੇਣ ਓਟ ਨਾਨਕ ਪਰਮੇਸੁਰਹ ॥੧॥' },
+        ],
+      },
+    }, environment.options)
 
-    await expect(exportShareHighlightPngSet(passageInput, {
-      canvas: first.canvas,
-      createCanvas: vi.fn(() => failed.canvas),
-      fontSet: first.fontSet,
-      loadImage: first.options.loadImage,
-    })).rejects.toThrow('could not be encoded')
+    expect(environment.context.drawImage).toHaveBeenCalledTimes(2)
+    expect(environment.imageDrawStates[0]).toEqual({
+      filter: 'blur(22px) saturate(0.88) brightness(0.72)',
+      globalAlpha: 0.84,
+    })
+  })
 
-    expect(first.canvas.toBlob).toHaveBeenCalledTimes(1)
-    expect(failed.canvas.toBlob).toHaveBeenCalledTimes(1)
+  it('uses the same one-frame Story contract with all fourteen artwork shapes', async () => {
+    const artworks: ShareHighlightArtwork[] = Array.from({ length: 14 }, (_, index) => ({
+      id: `art-${index + 1}`,
+      src: `/share/art-${index + 1}.jpg`,
+      focalPosition: { x: (index % 3) / 2, y: (index % 5) / 4 },
+      textSafeZone: { x: 0.05, y: 0.1, width: 0.2, height: 0.18 },
+      overlayTone: index % 2 === 0 ? 'light' : 'warm-dark',
+      storyProfile: {
+        mode: index % 3 === 0
+          ? 'portrait-bleed'
+          : index % 3 === 1 ? 'landscape-hero' : 'pattern-frame',
+        focalPosition: { x: (index % 4) / 3, y: (index % 5) / 4 },
+        heroHeightFraction: 0.3 + ((index % 3) * 0.05),
+        protectedSubject: {
+          bounds: { x: 0.2, y: 0.15, width: 0.35, height: 0.45 },
+          intent: index % 2 === 0 ? 'keep-visible' : 'keep-clear-of-text',
+        },
+      },
+    }))
+
+    for (const artwork of artworks) {
+      const environment = makeFakeRendererEnvironment()
+      const canvas = await renderShareHighlightStory({ ...passageInput, artwork }, environment.options)
+
+      expect(canvas.width).toBe(1080)
+      expect(canvas.height).toBe(1920)
+      expect(environment.options.loadImage).toHaveBeenCalledWith(artwork.src)
+      const usesAmbientArtwork = (
+        artwork.storyProfile?.mode === 'landscape-hero'
+        || artwork.storyProfile?.protectedSubject?.intent === 'keep-clear-of-text'
+      )
+      expect(environment.context.drawImage).toHaveBeenCalledTimes(usesAmbientArtwork ? 2 : 1)
+      expect(environment.drawnTextCalls.some(call => call.text.includes('ਸੰਤ'))).toBe(true)
+      const drawCall = environment.context.drawImage.mock.calls.at(-1)!
+      const destinationHeight = Number(drawCall[8])
+      if (
+        artwork.storyProfile?.mode === 'landscape-hero'
+        || artwork.storyProfile?.protectedSubject?.intent === 'keep-clear-of-text'
+      ) {
+        expect(destinationHeight).toBeLessThan(1000)
+      } else {
+        expect(destinationHeight).toBe(1920)
+      }
+    }
+  })
+
+  it('uses a protected subject as the crop focus when a Story profile omits a focal point', async () => {
+    const environment = makeFakeRendererEnvironment()
+    await renderShareHighlightStory({
+      ...passageInput,
+      artwork: {
+        ...passageInput.artwork!,
+        focalPosition: { x: 0.1, y: 0.5 },
+        storyProfile: {
+          mode: 'portrait-bleed',
+          protectedSubject: {
+            bounds: { x: 0.8, y: 0.2, width: 0.18, height: 0.5 },
+            intent: 'keep-visible',
+          },
+        },
+      },
+    }, environment.options)
+
+    const drawCall = environment.context.drawImage.mock.calls[0]!
+    expect(Number(drawCall[1])).toBeGreaterThan(900)
+    expect(Number(drawCall[7])).toBe(1080)
+    expect(Number(drawCall[8])).toBe(1920)
+  })
+
+  it('rejects when the one Story PNG cannot be encoded', async () => {
+    const environment = makeFakeRendererEnvironment()
+    vi.mocked(environment.canvas.toBlob).mockImplementation(callback => callback(null))
+
+    await expect(exportShareHighlightStoryPng(passageInput, environment.options)).rejects.toThrow(
+      'could not be encoded'
+    )
+    expect(environment.canvas.toBlob).toHaveBeenCalledTimes(1)
   })
 
   it('renders the no-artwork option as a solid card without loading an image', async () => {

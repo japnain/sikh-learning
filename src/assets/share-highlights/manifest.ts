@@ -35,6 +35,35 @@ export type ShareHighlightOrientation = 'portrait' | 'landscape' | 'square'
  */
 export type ShareHighlightOverlayTone = 'light' | 'dark' | 'warm-dark' | 'cool-dark'
 
+/** Editorial treatment used when an artwork is composed into a 9:16 Story. */
+export type ShareHighlightStoryCompositionMode =
+  | 'portrait-bleed'
+  | 'landscape-hero'
+  | 'pattern-frame'
+
+export type ShareHighlightProtectedSubjectIntent = 'keep-visible' | 'keep-clear-of-text'
+
+export interface ShareHighlightStoryProfile {
+  mode: ShareHighlightStoryCompositionMode
+  /** Story-specific crop anchor, measured against the orientation-corrected image. */
+  focalPosition?: {
+    x: number
+    y: number
+  }
+  /** Fraction of the 9:16 canvas reserved for artwork in landscape-hero mode. */
+  heroHeightFraction?: number
+  /** Important subject matter that automatic crops and reading surfaces should respect. */
+  protectedSubject?: {
+    bounds: {
+      x: number
+      y: number
+      width: number
+      height: number
+    }
+    intent: ShareHighlightProtectedSubjectIntent
+  }
+}
+
 export interface ShareHighlightAsset {
   id: string
   src: string
@@ -62,6 +91,7 @@ export interface ShareHighlightAsset {
     width: number
     height: number
   }
+  storyProfile: ShareHighlightStoryProfile
   overlayTone: ShareHighlightOverlayTone
   /** Neutral description of only the content visible in the supplied artwork. */
   description: string
@@ -77,6 +107,15 @@ export const shareHighlightAssets = [
     orientationCorrection: 'rotate-90-ccw',
     focalPosition: { x: 0.53, y: 0.5 },
     textSafeZone: { x: 0.44, y: 0.25, width: 0.3, height: 0.38 },
+    storyProfile: {
+      mode: 'landscape-hero',
+      focalPosition: { x: 0.53, y: 0.5 },
+      heroHeightFraction: 0.35,
+      protectedSubject: {
+        bounds: { x: 0.03, y: 0.08, width: 0.94, height: 0.86 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'light',
     description:
       'Ornate painted mural of a rider and a dense procession, framed by red floral borders and smaller scenes.',
@@ -90,6 +129,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.42, y: 0.55 },
     textSafeZone: { x: 0.1, y: 0.63, width: 0.8, height: 0.23 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.42, y: 0.49 },
+      protectedSubject: {
+        bounds: { x: 0.02, y: 0.38, width: 0.96, height: 0.34 },
+        intent: 'keep-clear-of-text',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Tall interior painting with a kneeling figure, an audience, and broad areas of maroon canopy and carpet.',
@@ -103,6 +150,15 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.39, y: 0.46 },
     textSafeZone: { x: 0.13, y: 0.64, width: 0.5, height: 0.3 },
+    storyProfile: {
+      mode: 'landscape-hero',
+      focalPosition: { x: 0.43, y: 0.48 },
+      heroHeightFraction: 0.36,
+      protectedSubject: {
+        bounds: { x: 0.02, y: 0.06, width: 0.94, height: 0.88 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Large painted gathering around a seated figure beneath a gold parasol, with riders, attendants, and a white horse.',
@@ -116,6 +172,15 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.54, y: 0.52 },
     textSafeZone: { x: 0.32, y: 0.05, width: 0.42, height: 0.32 },
+    storyProfile: {
+      mode: 'landscape-hero',
+      focalPosition: { x: 0.52, y: 0.5 },
+      heroHeightFraction: 0.34,
+      protectedSubject: {
+        bounds: { x: 0.03, y: 0.08, width: 0.91, height: 0.84 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Warm-toned procession painting with elephants, mounted riders, and a red sandstone complex.',
@@ -129,6 +194,15 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.5, y: 0.52 },
     textSafeZone: { x: 0.39, y: 0.04, width: 0.36, height: 0.34 },
+    storyProfile: {
+      mode: 'landscape-hero',
+      focalPosition: { x: 0.49, y: 0.5 },
+      heroHeightFraction: 0.34,
+      protectedSubject: {
+        bounds: { x: 0.08, y: 0.05, width: 0.84, height: 0.86 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'cool-dark',
     description:
       'Two seated musicians playing a bowed string instrument and tabla inside a curtained room.',
@@ -142,6 +216,15 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.57, y: 0.57 },
     textSafeZone: { x: 0.39, y: 0.03, width: 0.44, height: 0.31 },
+    storyProfile: {
+      mode: 'landscape-hero',
+      focalPosition: { x: 0.57, y: 0.54 },
+      heroHeightFraction: 0.35,
+      protectedSubject: {
+        bounds: { x: 0.02, y: 0.06, width: 0.96, height: 0.88 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Painted interior congregation seated around a covered platform beneath an ornate canopy.',
@@ -155,6 +238,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.49, y: 0.43 },
     textSafeZone: { x: 0.08, y: 0.04, width: 0.84, height: 0.28 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.49, y: 0.43 },
+      protectedSubject: {
+        bounds: { x: 0.05, y: 0.03, width: 0.9, height: 0.93 },
+        intent: 'keep-clear-of-text',
+      },
+    },
     overlayTone: 'cool-dark',
     description:
       'Detailed overhead painting of a waterside temple complex surrounded by crowds and scenes of conflict.',
@@ -168,6 +259,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.51, y: 0.47 },
     textSafeZone: { x: 0.08, y: 0.57, width: 0.84, height: 0.22 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.51, y: 0.47 },
+      protectedSubject: {
+        bounds: { x: 0.04, y: 0.03, width: 0.92, height: 0.94 },
+        intent: 'keep-clear-of-text',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Vertical collage of miniature paintings with riders, attendants, a waterside temple, and a domed building.',
@@ -181,6 +280,15 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.53, y: 0.49 },
     textSafeZone: { x: 0.38, y: 0.65, width: 0.3, height: 0.3 },
+    storyProfile: {
+      mode: 'landscape-hero',
+      focalPosition: { x: 0.53, y: 0.49 },
+      heroHeightFraction: 0.31,
+      protectedSubject: {
+        bounds: { x: 0.03, y: 0.04, width: 0.94, height: 0.92 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'cool-dark',
     description:
       'Miniature painting of a mounted figure with attendants, a white horse, and falcons.',
@@ -194,6 +302,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.51, y: 0.51 },
     textSafeZone: { x: 0.08, y: 0.68, width: 0.84, height: 0.24 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.51, y: 0.49 },
+      protectedSubject: {
+        bounds: { x: 0.07, y: 0.07, width: 0.86, height: 0.8 },
+        intent: 'keep-clear-of-text',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Miniature painting of a green-robed rider holding a falcon on a black-and-white horse beneath a patterned parasol.',
@@ -207,6 +323,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.5, y: 0.49 },
     textSafeZone: { x: 0.1, y: 0.05, width: 0.8, height: 0.28 },
+    storyProfile: {
+      mode: 'pattern-frame',
+      focalPosition: { x: 0.5, y: 0.49 },
+      protectedSubject: {
+        bounds: { x: 0.23, y: 0.18, width: 0.55, height: 0.52 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'light',
     description: 'Floral-framed mural of a seated elder beneath a tree with two attendants.',
   },
@@ -219,6 +343,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.5, y: 0.56 },
     textSafeZone: { x: 0.08, y: 0.03, width: 0.84, height: 0.3 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.5, y: 0.51 },
+      protectedSubject: {
+        bounds: { x: 0.05, y: 0.2, width: 0.9, height: 0.72 },
+        intent: 'keep-clear-of-text',
+      },
+    },
     overlayTone: 'cool-dark',
     description:
       'Symmetrical court painting with a seated elder, musicians, two flanking figures, a golden pavilion, and a sun above.',
@@ -232,6 +364,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.5, y: 0.48 },
     textSafeZone: { x: 0.08, y: 0.15, width: 0.84, height: 0.22 },
+    storyProfile: {
+      mode: 'pattern-frame',
+      focalPosition: { x: 0.5, y: 0.43 },
+      protectedSubject: {
+        bounds: { x: 0.2, y: 0.19, width: 0.6, height: 0.34 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'light',
     description:
       'Close view of an orange-and-cream floral pattern surrounding a dark circular Gurmukhi medallion.',
@@ -245,6 +385,14 @@ export const shareHighlightAssets = [
     orientationCorrection: 'none',
     focalPosition: { x: 0.5, y: 0.51 },
     textSafeZone: { x: 0.08, y: 0.03, width: 0.84, height: 0.28 },
+    storyProfile: {
+      mode: 'pattern-frame',
+      focalPosition: { x: 0.5, y: 0.5 },
+      protectedSubject: {
+        bounds: { x: 0.22, y: 0.15, width: 0.56, height: 0.75 },
+        intent: 'keep-visible',
+      },
+    },
     overlayTone: 'warm-dark',
     description:
       'Golden-lit display of shields, curved swords, and a framed miniature of a rider on horseback.',

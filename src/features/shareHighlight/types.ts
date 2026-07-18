@@ -1,5 +1,8 @@
 export const SHARE_HIGHLIGHT_CARD_WIDTH = 1080
 export const SHARE_HIGHLIGHT_CARD_HEIGHT = 1350
+/** Native 9:16 canvas for Instagram, WhatsApp, and other Story surfaces. */
+export const SHARE_HIGHLIGHT_STORY_WIDTH = 1080
+export const SHARE_HIGHLIGHT_STORY_HEIGHT = 1920
 export const SHARE_HIGHLIGHT_BRAND_DOMAIN = 'naamras.xyz' as const
 
 export interface ShareHighlightNormalizedPoint {
@@ -16,6 +19,29 @@ export interface ShareHighlightNormalizedRect extends ShareHighlightNormalizedPo
   height: number
 }
 
+export type ShareHighlightStoryArtworkMode =
+  | 'portrait-bleed'
+  | 'landscape-hero'
+  | 'pattern-frame'
+
+export interface ShareHighlightStoryProtectedSubject {
+  bounds: ShareHighlightNormalizedRect
+  intent: 'keep-visible' | 'keep-clear-of-text'
+}
+
+/**
+ * Optional, hand-authored Story treatment for an artwork. These cues stay out
+ * of the composer UI: the selected image simply arrives with a good crop and
+ * an appropriate amount of visual breathing room.
+ */
+export interface ShareHighlightStoryArtworkProfile {
+  mode: ShareHighlightStoryArtworkMode
+  focalPosition?: ShareHighlightNormalizedPoint
+  /** Height of a landscape hero as a fraction of the 9:16 frame. */
+  heroHeightFraction?: number
+  protectedSubject?: ShareHighlightStoryProtectedSubject
+}
+
 /**
  * Artwork metadata is deliberately structural so a bundled asset manifest can
  * be passed directly to the renderer without coupling the renderer to it.
@@ -29,6 +55,7 @@ export interface ShareHighlightArtwork {
   textSafeZone?: ShareHighlightNormalizedRect
   overlayTone?: string
   description?: string
+  storyProfile?: ShareHighlightStoryArtworkProfile
 }
 
 export interface ShareHighlightCardContent {
@@ -51,8 +78,8 @@ export interface ShareHighlightCardInput {
 }
 
 /**
- * One atomic line in a longer Gurbani reading. Passage pagination never moves
- * part of a line onto another image; wrapping may occur only inside its fields.
+ * One atomic line in a longer Gurbani reading. The one-frame Story renderer
+ * wraps inside these fields while preserving their order and complete text.
  */
 export interface ShareHighlightPassageLine {
   id: string | number
@@ -70,12 +97,12 @@ export interface ShareHighlightPassageContent {
   dateLabel?: string | null
 }
 
-/** A multi-image reading set. The existing single-card input remains unchanged. */
+/** A complete reading rendered onto one 9:16 Story image. */
 export interface ShareHighlightPassageInput {
-  /** `null` renders the deterministic solid-background option on every page. */
+  /** `null` renders the deterministic solid-background option. */
   artwork?: ShareHighlightArtwork | null
   content: ShareHighlightPassageContent
-  /** Defaults to `naamras-hukamnama`; ordered page metadata is appended automatically. */
+  /** Defaults to `naamras-hukamnama.png`. */
   fileNameBase?: string
 }
 
@@ -136,15 +163,46 @@ export interface ShareHighlightPngExport {
   height: typeof SHARE_HIGHLIGHT_CARD_HEIGHT
 }
 
-export interface ShareHighlightPngSetPage extends ShareHighlightPngExport {
-  pageNumber: number
-  pageCount: number
+export interface ShareHighlightStoryTextSection extends ShareHighlightTextSection {
+  sourceLineId: ShareHighlightPassageLine['id']
+  isHeader: boolean
 }
 
-export interface ShareHighlightPngSetExport {
-  pages: ShareHighlightPngSetPage[]
-  files: File[]
-  totalPages: number
+export type ShareHighlightStoryComposition = 'expressive' | 'manuscript'
+
+export interface ShareHighlightStoryFit {
+  supportRoles: Array<'transliteration' | 'meaning'>
+  fontSizes: {
+    gurmukhi: number
+    transliteration?: number
+    meaning?: number
+  }
+  /** True when one or more roles are using their readability floor. */
+  atReadabilityFloor: boolean
+}
+
+export interface ShareHighlightStoryLayout {
+  width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
+  height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
+  body: ShareHighlightPixelRect
+  /** Opaque or near-opaque field that guarantees contrast behind the reading. */
+  readingSurface: ShareHighlightPixelRect
+  contentScale: number
+  density: 'comfortable' | 'compact' | 'dense'
+  composition: ShareHighlightStoryComposition
+  artworkMode: ShareHighlightStoryArtworkMode
+  fit: ShareHighlightStoryFit
+  /** IDs in their exact rendered order, one entry for each non-empty source line. */
+  sourceLineIds: ShareHighlightPassageLine['id'][]
+  sections: ShareHighlightStoryTextSection[]
+}
+
+export interface ShareHighlightStoryPngExport {
+  canvas: HTMLCanvasElement
+  blob: Blob
+  file: File
+  width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
+  height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
 }
 
 export type ShareHighlightShareResult =
