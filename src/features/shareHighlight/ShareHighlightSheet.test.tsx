@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import ShareHighlightSheet, { type ShareHighlightContent } from './ShareHighlightSheet'
 
@@ -146,6 +146,7 @@ describe('ShareHighlightSheet', () => {
 
     expect(within(dialog).getByText('Share the full Hukamnama')).toBeInTheDocument()
     expect(within(dialog).getByRole('heading', { name: 'Create a Story image' })).toBeInTheDocument()
+    expect(within(dialog).getByText(/Choose Meaning for a bilingual Story with the complete English translation beside it/i)).toBeInTheDocument()
     expect(within(dialog).queryByRole('radiogroup', { name: 'Text position' })).not.toBeInTheDocument()
     expect(within(dialog).queryByText(/Page \d+ of \d+/i)).not.toBeInTheDocument()
     expect(within(dialog).queryByRole('button', { name: /Previous image|Next image/i })).not.toBeInTheDocument()
@@ -229,11 +230,65 @@ describe('ShareHighlightSheet', () => {
       expect(lastInput.content.lines.every((line: { transliteration: null; meaning?: string }) => (
         line.transliteration === null && Boolean(line.meaning)
       ))).toBe(true)
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Bilingual Story ready.')
     })
     expect(transliteration).toHaveAttribute('aria-pressed', 'false')
     expect(meaning).toHaveAttribute('aria-pressed', 'true')
 
     expect(storyExport).toMatchObject({ height: 1920 })
+  })
+
+  it('retains the valid preview but pauses Share and Save while preparing bilingual mode', async () => {
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+    const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
+    const saveButton = within(dialog).getByRole('button', { name: 'Save image' })
+    const copyButton = within(dialog).getByRole('button', { name: 'Copy text' })
+
+    await waitFor(() => expect(shareButton).toBeEnabled())
+    let resolveBilingual!: (value: ReturnType<typeof makePngExport>) => void
+    const bilingualRender = new Promise<ReturnType<typeof makePngExport>>(resolve => {
+      resolveBilingual = resolve
+    })
+    mocks.exportStoryPng.mockReturnValueOnce(bilingualRender)
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Meaning' }))
+
+    expect(within(dialog).getByRole('status')).toHaveTextContent('Preparing bilingual Story…')
+    expect(shareButton).toBeDisabled()
+    expect(saveButton).toBeDisabled()
+    expect(copyButton).toBeEnabled()
+    expect(dialog.querySelector('.share-highlight__preview-pending')).not.toBeInTheDocument()
+
+    fireEvent.click(copyButton)
+    await waitFor(() => {
+      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
+        expect.stringContaining('The Merciful Lord saves the Saints.')
+      )
+    })
+
+    const bilingualExport = makePngExport(
+      undefined,
+      'naamras-hukamnama-July-15-2026.png',
+      1920
+    )
+    await act(async () => {
+      resolveBilingual(bilingualExport)
+      await bilingualRender
+    })
+
+    await waitFor(() => {
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Bilingual Story ready.')
+      expect(shareButton).toBeEnabled()
+      expect(saveButton).toBeEnabled()
+    })
+    fireEvent.click(shareButton)
+    await waitFor(() => {
+      expect(mocks.shareFile).toHaveBeenCalledWith(
+        bilingualExport.file,
+        expect.objectContaining({ title: 'Hukamnama from NaamRas' })
+      )
+    })
   })
 
   it('falls back to a valid Gurmukhi-only Story when a reading support overflows', async () => {
@@ -247,11 +302,11 @@ describe('ShareHighlightSheet', () => {
     mocks.exportStoryPng.mockRejectedValueOnce(new mocks.ContentOverflowError())
 
     fireEvent.click(meaning)
-    expect(shareButton).toBeEnabled()
+    expect(shareButton).toBeDisabled()
 
     const fitNote = await within(dialog).findByRole('note')
-    expect(fitNote).toHaveTextContent('Meaning cannot fit readably')
-    expect(fitNote).toHaveTextContent('returned to Gurmukhi only')
+    expect(fitNote).toHaveTextContent('Meaning is too long to fit readably')
+    expect(fitNote).toHaveTextContent('Showing Gurmukhi only')
     expect(fitNote).toHaveTextContent('Copy text')
     expect(meaning).toHaveAttribute('aria-pressed', 'false')
 
@@ -284,6 +339,13 @@ describe('ShareHighlightSheet', () => {
       )
     })
     expect(within(dialog).getByRole('note')).toBe(fitNote)
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Transliteration' }))
+    await waitFor(() => {
+      expect(within(dialog).queryByRole('note')).not.toBeInTheDocument()
+      expect(within(dialog).getByRole('button', { name: 'Transliteration' })).toHaveAttribute('aria-pressed', 'true')
+      expect(shareButton).toBeEnabled()
+    })
   })
 
   it('uses pill and artwork controls to update the exact renderer input', async () => {
