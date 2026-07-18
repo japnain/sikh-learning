@@ -39,6 +39,12 @@ const measureByCharacter = (text: string, style: ShareHighlightTextStyle) => (
   Array.from(text).length * style.fontSize * 0.56
 )
 
+// Mirrors the browser fixture used by the canvas tests and the measured width
+// of the loaded Story fonts more closely than the conservative generic helper.
+const measureStoryByCharacter = (text: string, style: ShareHighlightTextStyle) => (
+  Array.from(text).length * style.fontSize * 0.52
+)
+
 const input: ShareHighlightCardInput = {
   artwork: {
     id: 'test-art',
@@ -109,6 +115,93 @@ const fourteenLineGurmukhiOnly = fourteenLineReading.map(line => ({
   ...line,
   meaning: null,
 }))
+
+const july18Ang683Reading: ShareHighlightPassageLine[] = [
+  {
+    id: 'ang-683-1',
+    gurmukhi: 'ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੧੨',
+    meaning: 'Dhanaasaree, Fifth Mehl, Twelfth House:',
+    isHeader: true,
+  },
+  {
+    id: 'ang-683-2',
+    gurmukhi: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',
+    meaning: 'One Universal Creator God. By The Grace Of The True Guru:',
+  },
+  {
+    id: 'ang-683-3',
+    gurmukhi: 'ਬੰਦਨਾ ਹਰਿ ਬੰਦਨਾ ਗੁਣ ਗਾਵਹੁ ਗੋਪਾਲ ਰਾਇ ॥ ਰਹਾਉ ॥',
+    meaning: 'I bow in reverence to the Lord, I bow in reverence. I sing the Glorious Praises of the Lord, my King. ||Pause||',
+  },
+  {
+    id: 'ang-683-4',
+    gurmukhi: 'ਵਡੈ ਭਾਗਿ ਭੇਟੇ ਗੁਰਦੇਵਾ ॥',
+    meaning: 'By great good fortune, one meets the Divine Guru.',
+  },
+  {
+    id: 'ang-683-5',
+    gurmukhi: 'ਕੋਟਿ ਪਰਾਧ ਮਿਟੇ ਹਰਿ ਸੇਵਾ ॥੧॥',
+    meaning: 'Millions of sins are erased by serving the Lord. ||1||',
+  },
+  {
+    id: 'ang-683-6',
+    gurmukhi: 'ਚਰਨ ਕਮਲ ਜਾ ਕਾ ਮਨੁ ਰਾਪੈ ॥',
+    meaning: "One whose mind is imbued with the Lord's lotus feet",
+  },
+  {
+    id: 'ang-683-7',
+    gurmukhi: 'ਸੋਗ ਅਗਨਿ ਤਿਸੁ ਜਨ ਨ ਬਿਆਪੈ ॥੨॥',
+    meaning: 'is not afflicted by the fire of sorrow. ||2||',
+  },
+  {
+    id: 'ang-683-8',
+    gurmukhi: 'ਸਾਗਰੁ ਤਰਿਆ ਸਾਧੂ ਸੰਗੇ ॥',
+    meaning: 'He crosses over the world-ocean in the Saadh Sangat, the Company of the Holy.',
+  },
+  {
+    id: 'ang-683-9',
+    gurmukhi: 'ਨਿਰਭਉ ਨਾਮੁ ਜਪਹੁ ਹਰਿ ਰੰਗੇ ॥੩॥',
+    meaning: "He chants the Name of the Fearless Lord, and is imbued with the Lord's Love. ||3||",
+  },
+  {
+    id: 'ang-683-10',
+    gurmukhi: 'ਪਰ ਧਨ ਦੋਖ ਕਿਛੁ ਪਾਪ ਨ ਫੇੜੇ ॥',
+    meaning: 'One who does not steal the wealth of others, who does not commit evil deeds or sinful acts',
+  },
+  {
+    id: 'ang-683-11',
+    gurmukhi: 'ਜਮ ਜੰਦਾਰੁ ਨ ਆਵੈ ਨੇੜੇ ॥੪॥',
+    meaning: '- the Messenger of Death does not even approach him. ||4||',
+  },
+  {
+    id: 'ang-683-12',
+    gurmukhi: 'ਤ੍ਰਿਸਨਾ ਅਗਨਿ ਪ੍ਰਭਿ ਆਪਿ ਬੁਝਾਈ ॥',
+    meaning: 'God Himself quenches the fires of desire.',
+  },
+  {
+    id: 'ang-683-13',
+    gurmukhi: 'ਨਾਨਕ ਉਧਰੇ ਪ੍ਰਭ ਸਰਣਾਈ ॥੫॥੧॥੫੫॥',
+    meaning: "O Nanak, in God's Sanctuary, one is saved. ||5||1||55||",
+  },
+]
+
+const twentyLineBilingualReading: ShareHighlightPassageLine[] = Array.from(
+  { length: 20 },
+  (_, index) => ({
+    id: `stress-${index + 1}`,
+    gurmukhi: 'ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥',
+    meaning: 'Remember the True Name.',
+  })
+)
+
+const fortyTwoLineBilingualReading: ShareHighlightPassageLine[] = Array.from(
+  { length: 42 },
+  (_, index) => ({
+    id: `overflow-${index + 1}`,
+    gurmukhi: 'ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥',
+    meaning: 'Remember the True Name.',
+  })
+)
 
 function makeFakeRendererEnvironment() {
   const drawnText: string[] = []
@@ -431,6 +524,101 @@ describe('single-frame full-passage Story layout', () => {
     ).sourceLineIds).toHaveLength(14)
   })
 
+  it('fits the exact July 18 Ang 683 Hukamnama as one complete bilingual diptych', () => {
+    const layout = layoutShareHighlightStory(july18Ang683Reading, measureStoryByCharacter, 'light')
+
+    expect(layout).toMatchObject({
+      width: 1080,
+      height: 1920,
+      composition: 'bilingual-diptych',
+      fit: {
+        supportRoles: ['meaning'],
+      },
+    })
+    expect(layout.columns).toBeDefined()
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(34)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(28)
+    expect(layout.sourceLineIds).toEqual(july18Ang683Reading.map(line => line.id))
+
+    const columns = layout.columns!
+    const contentRatio = columns.gurmukhi.width / (
+      columns.gurmukhi.width + columns.meaning.width
+    )
+    expect(contentRatio).toBeGreaterThanOrEqual(0.319)
+    expect(contentRatio).toBeLessThanOrEqual(0.48)
+    expect(columns.gurmukhi.x + columns.gurmukhi.width).toBeLessThan(columns.dividerX)
+    expect(columns.dividerX).toBeLessThan(columns.meaning.x)
+    expect(columns.meaning.x + columns.meaning.width).toBe(layout.body.x + layout.body.width)
+
+    expect(layout.sections.map(section => section.role)).toEqual([
+      ...Array.from({ length: 13 }, () => 'gurmukhi'),
+      ...Array.from({ length: 13 }, () => 'meaning'),
+    ])
+    for (const line of july18Ang683Reading) {
+      const gurmukhi = layout.sections.find(section => (
+        section.sourceLineId === line.id && section.role === 'gurmukhi'
+      ))
+      const meaning = layout.sections.find(section => (
+        section.sourceLineId === line.id && section.role === 'meaning'
+      ))
+      expect(gurmukhi?.lines.join(' ')).toBe(line.gurmukhi)
+      expect(meaning?.lines.join(' ')).toBe(line.meaning)
+      expect([...gurmukhi!.lines, ...meaning!.lines].join(' ')).not.toMatch(/…|\.\.\./)
+    }
+    expect(layout.sections.every(section => (
+      section.y >= layout.body.y
+      && section.y + section.height <= layout.body.y + layout.body.height
+    ))).toBe(true)
+  })
+
+  it('keeps a twenty-line bilingual reading legible when the two columns can fit', () => {
+    const layout = layoutShareHighlightStory(
+      twentyLineBilingualReading,
+      measureByCharacter,
+      'light'
+    )
+
+    expect(layout.composition).toBe('bilingual-diptych')
+    expect(layout.sourceLineIds).toEqual(twentyLineBilingualReading.map(line => line.id))
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(32)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(26)
+    expect(layout.sections).toHaveLength(40)
+  })
+
+  it('prefers the bilingual manuscript for a longer reading even when stacked text could fit', () => {
+    const nineLineReading = Array.from({ length: 9 }, (_, index) => ({
+      id: `diptych-preference-${index + 1}`,
+      gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥${index + 1}॥`,
+      meaning: `Remember the True Name. ||${index + 1}||`,
+    }))
+
+    const layout = layoutShareHighlightStory(
+      nineLineReading,
+      measureByCharacter,
+      'light'
+    )
+
+    expect(layout.composition).toBe('bilingual-diptych')
+    expect(layout.sections.filter(section => section.role === 'gurmukhi')).toHaveLength(9)
+    expect(layout.sections.filter(section => section.role === 'meaning')).toHaveLength(9)
+  })
+
+  it('reports a true overflow for forty-two lines instead of using microscopic type', () => {
+    let caught: unknown
+    try {
+      layoutShareHighlightStory(
+        fortyTwoLineBilingualReading,
+        measureByCharacter,
+        'light'
+      )
+    } catch (error) {
+      caught = error
+    }
+
+    expect(caught).toBeInstanceOf(ShareHighlightContentOverflowError)
+    expect(caught).toMatchObject({ reason: 'gurmukhi-overflow' })
+  })
+
   it('uses expressive art for a short reading and a manuscript for a long reading', () => {
     const short = layoutShareHighlightStory([
       { id: 1, gurmukhi: 'ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ॥', meaning: 'The Merciful Lord is the Savior of the Saints.' },
@@ -444,6 +632,10 @@ describe('single-frame full-passage Story layout', () => {
     )
 
     expect(short.composition).toBe('expressive')
+    expect(short.columns).toBeUndefined()
+    expect(short.sections.map(section => section.role)).toEqual([
+      'gurmukhi', 'meaning', 'gurmukhi', 'meaning',
+    ])
     expect(short.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
     expect(short.fit.fontSizes.meaning).toBeGreaterThanOrEqual(30)
     expect(short.artworkMode).toBe('portrait-bleed')
@@ -681,6 +873,35 @@ describe('Canvas rendering and export', () => {
     expect(safeMetadata).toHaveLength(4)
     expect(safeMetadata.every(call => call.y >= 204 && call.y <= 1712)).toBe(true)
     expect(safeMetadata.every(call => call.fontSize >= 30)).toBe(true)
+  })
+
+  it('renders the complete Ang 683 diptych with a subtle divider on one canvas', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const canvas = await renderShareHighlightStory({
+      ...passageInput,
+      content: {
+        ...passageInput.content,
+        lines: july18Ang683Reading,
+        sourceLabel: 'Sri Guru Granth Sahib Ji · Ang 683',
+        dateLabel: 'July 18, 2026',
+      },
+    }, environment.options)
+
+    expect(canvas).toBe(environment.canvas)
+    expect(canvas.width).toBe(1080)
+    expect(canvas.height).toBe(1920)
+    expect(environment.context.stroke).toHaveBeenCalledTimes(2)
+
+    const dividerMove = environment.context.moveTo.mock.calls.find(([, y]) => y === 344)
+    expect(dividerMove).toBeDefined()
+    expect(environment.context.lineTo).toHaveBeenCalledWith(dividerMove![0], 1606)
+
+    const renderedText = environment.drawnText.join(' ')
+    for (const line of july18Ang683Reading) {
+      expect(renderedText).toContain(line.gurmukhi)
+      expect(renderedText).toContain(line.meaning)
+    }
+    expect(renderedText).not.toMatch(/…|\.\.\./)
   })
 
   it('keeps the ambient artwork luminous for a short landscape Story', async () => {

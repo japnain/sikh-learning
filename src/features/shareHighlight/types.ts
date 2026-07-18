@@ -168,7 +168,16 @@ export interface ShareHighlightStoryTextSection extends ShareHighlightTextSectio
   isHeader: boolean
 }
 
-export type ShareHighlightStoryComposition = 'expressive' | 'manuscript'
+export type ShareHighlightStoryComposition =
+  | 'expressive'
+  | 'manuscript'
+  | 'bilingual-diptych'
+
+export interface ShareHighlightStoryColumns {
+  gurmukhi: ShareHighlightPixelRect
+  meaning: ShareHighlightPixelRect
+  dividerX: number
+}
 
 export interface ShareHighlightStoryFit {
   supportRoles: Array<'transliteration' | 'meaning'>
@@ -190,6 +199,8 @@ export interface ShareHighlightStoryLayout {
   contentScale: number
   density: 'comfortable' | 'compact' | 'dense'
   composition: ShareHighlightStoryComposition
+  /** Present only when two independent language flows share the manuscript. */
+  columns?: ShareHighlightStoryColumns
   artworkMode: ShareHighlightStoryArtworkMode
   fit: ShareHighlightStoryFit
   /** IDs in their exact rendered order, one entry for each non-empty source line. */

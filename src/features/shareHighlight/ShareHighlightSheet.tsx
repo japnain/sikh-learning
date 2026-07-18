@@ -83,7 +83,9 @@ interface ShareHighlightSheetCopy {
   passagePreface: string
   passageTitle: string
   passageTextLayersHelp: string
-  passageSupportOverflow: (support: string) => string
+  passageSupportOverflow: (support: PassageSupport) => string
+  preparingBilingual: string
+  bilingualReady: string
   passageShareTitle: string
   shareImage: string
   saveImage: string
@@ -133,8 +135,12 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     selectedExcerpt: 'This card contains only the Gurmukhi words you selected.',
     passagePreface: 'Share the full Hukamnama',
     passageTitle: 'Create a Story image',
-    passageTextLayersHelp: 'The Story starts with Gurmukhi only. Add either transliteration or meaning when it fits readably.',
-    passageSupportOverflow: support => `${support} cannot fit readably with the full Hukamnama on one Story image, so the image has returned to Gurmukhi only. The full text remains available through Copy text.`,
+    passageTextLayersHelp: 'Gurmukhi is always included. Choose Meaning for a bilingual Story with the complete English translation beside it, or Transliteration for pronunciation.',
+    passageSupportOverflow: support => support === 'meaning'
+      ? 'Meaning is too long to fit readably on one Story. Showing Gurmukhi only — the full translation is still available in Copy text.'
+      : 'Transliteration is too long to fit readably on one Story. Showing Gurmukhi only — the full transliteration is still available in Copy text.',
+    preparingBilingual: 'Preparing bilingual Story…',
+    bilingualReady: 'Bilingual Story ready.',
     passageShareTitle: 'Hukamnama from NaamRas',
     shareImage: 'Share image',
     saveImage: 'Save image',
@@ -182,8 +188,12 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     selectedExcerpt: 'ਇਸ ਕਾਰਡ ਵਿੱਚ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਚੁਣੇ ਗੁਰਮੁਖੀ ਸ਼ਬਦ ਹਨ।',
     passagePreface: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
     passageTitle: 'ਸਟੋਰੀ ਤਸਵੀਰ ਬਣਾਓ',
-    passageTextLayersHelp: 'ਸਟੋਰੀ ਪਹਿਲਾਂ ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਨਾਲ ਬਣਦੀ ਹੈ। ਜੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਵੇ ਤਾਂ ਲਿਪੀਅੰਤਰਨ ਜਾਂ ਅਰਥ ਵਿੱਚੋਂ ਇੱਕ ਜੋੜੋ।',
-    passageSupportOverflow: support => `${support} ਪੂਰੇ ਹੁਕਮਨਾਮੇ ਨਾਲ ਇੱਕ ਸਟੋਰੀ ਤਸਵੀਰ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਨਹੀਂ ਹੋ ਸਕਦਾ, ਇਸ ਲਈ ਤਸਵੀਰ ਮੁੜ ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਉੱਤੇ ਆ ਗਈ ਹੈ। ਪੂਰੀ ਲਿਖਤ “ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਰਾਹੀਂ ਉਪਲਬਧ ਹੈ।`,
+    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਪੂਰਾ ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ ਨਾਲੇ ਦਿਖਾਉਣ ਵਾਲੀ ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਲਈ ਅਰਥ ਚੁਣੋ, ਜਾਂ ਉਚਾਰਨ ਲਈ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
+    passageSupportOverflow: support => support === 'meaning'
+      ? 'ਅਰਥ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮੇ ਹਨ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਅਨੁਵਾਦ “ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।'
+      : 'ਲਿਪੀਅੰਤਰਨ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮਾ ਹੈ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਲਿਪੀਅੰਤਰਨ “ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।',
+    preparingBilingual: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
+    bilingualReady: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੈ।',
     passageShareTitle: 'ਨਾਮਰਸ ਤੋਂ ਹੁਕਮਨਾਮਾ',
     shareImage: 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ',
     saveImage: 'ਤਸਵੀਰ ਸੰਭਾਲੋ',
@@ -231,8 +241,12 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     selectedExcerpt: 'इस कार्ड में केवल आपके चुने हुए गुरमुखी शब्द हैं।',
     passagePreface: 'पूरा हुकमनामा साझा करें',
     passageTitle: 'स्टोरी छवि बनाएँ',
-    passageTextLayersHelp: 'स्टोरी पहले केवल गुरमुखी के साथ बनती है। पढ़ने योग्य रूप में फिट होने पर लिप्यंतरण या अर्थ में से एक जोड़ें।',
-    passageSupportOverflow: support => `${support} पूरे हुकमनामे के साथ एक स्टोरी छवि पर पढ़ने योग्य रूप में फिट नहीं हो सकता, इसलिए छवि फिर केवल गुरमुखी पर लौट आई है। पूरा पाठ “पाठ कॉपी करें” से उपलब्ध है।`,
+    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। पूरे अंग्रेज़ी अनुवाद को साथ दिखाने वाली द्विभाषी स्टोरी के लिए अर्थ चुनें, या उच्चारण के लिए लिप्यंतरण चुनें।',
+    passageSupportOverflow: support => support === 'meaning'
+      ? 'अर्थ एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा अनुवाद “पाठ कॉपी करें” में उपलब्ध है।'
+      : 'लिप्यंतरण एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा लिप्यंतरण “पाठ कॉपी करें” में उपलब्ध है।',
+    preparingBilingual: 'द्विभाषी स्टोरी तैयार हो रही है…',
+    bilingualReady: 'द्विभाषी स्टोरी तैयार है।',
     passageShareTitle: 'नामरस से हुकमनामा',
     shareImage: 'छवि साझा करें',
     saveImage: 'छवि सेव करें',
@@ -326,6 +340,7 @@ export default function ShareHighlightSheet({
   const [pngExport, setPngExport] = useState<ShareHighlightPngExport | ShareHighlightStoryPngExport | null>(null)
   const [status, setStatus] = useState(copy.preparing)
   const [renderFailed, setRenderFailed] = useState(false)
+  const [rendering, setRendering] = useState(true)
   const [canvasElement, setCanvasElement] = useState<HTMLCanvasElement | null>(null)
   const [busyAction, setBusyAction] = useState<'share' | 'save' | 'copy' | null>(null)
   const [passageSupportOverflow, setPassageSupportOverflow] = useState<PassageSupport | null>(null)
@@ -366,6 +381,7 @@ export default function ShareHighlightSheet({
     setBusyAction(null)
     setPngExport(null)
     setRenderFailed(false)
+    setRendering(true)
     setPassageSupportOverflow(null)
     setStatus(copy.preparing)
   }, [
@@ -449,7 +465,10 @@ export default function ShareHighlightSheet({
     const renderSequence = ++renderSequenceRef.current
     if (!passageInput) setPngExport(null)
     setRenderFailed(false)
-    setStatus(copy.preparing)
+    setRendering(true)
+    setStatus(passageInput && activePassageSupport === 'meaning'
+      ? copy.preparingBilingual
+      : copy.preparing)
 
     const exportPromise = passageInput
       ? exportShareHighlightStoryPng(passageInput)
@@ -459,7 +478,11 @@ export default function ShareHighlightSheet({
       .then(result => {
         if (renderSequenceRef.current !== renderSequence) return
         setPngExport(result)
-        setStatus(copy.ready)
+        setRendering(false)
+        if (passageInput && activePassageSupport) setPassageSupportOverflow(null)
+        setStatus(passageInput && activePassageSupport === 'meaning'
+          ? copy.bilingualReady
+          : copy.ready)
       })
       .catch(error => {
         if (renderSequenceRef.current !== renderSequence) return
@@ -473,13 +496,12 @@ export default function ShareHighlightSheet({
           setShowTransliteration(false)
           setShowMeaning(false)
           setRenderFailed(false)
-          setStatus(copy.passageSupportOverflow(
-            activePassageSupport === 'meaning' ? copy.meaning : copy.transliteration
-          ))
+          setStatus(copy.passageSupportOverflow(activePassageSupport))
           return
         }
         setPngExport(null)
         setRenderFailed(true)
+        setRendering(false)
         setStatus(copy.renderError)
       })
 
@@ -546,6 +568,7 @@ export default function ShareHighlightSheet({
     }
 
     const nextValue = !showTransliteration
+    setRendering(true)
     setShowTransliteration(nextValue)
     if (nextValue) setShowMeaning(false)
   }
@@ -557,6 +580,7 @@ export default function ShareHighlightSheet({
     }
 
     const nextValue = !showMeaning
+    setRendering(true)
     setShowMeaning(nextValue)
     if (nextValue) setShowTransliteration(false)
   }
@@ -699,9 +723,7 @@ export default function ShareHighlightSheet({
               </div>
               {isPassage && passageSupportOverflow ? (
                 <p className="share-highlight__fit-note" role="note" aria-live="polite">
-                  {copy.passageSupportOverflow(
-                    passageSupportOverflow === 'meaning' ? copy.meaning : copy.transliteration
-                  )}
+                  {copy.passageSupportOverflow(passageSupportOverflow)}
                 </p>
               ) : null}
             </section>
@@ -719,6 +741,7 @@ export default function ShareHighlightSheet({
                     value={NO_ARTWORK_ID}
                     checked={selectedArtworkId === NO_ARTWORK_ID}
                     onChange={() => {
+                      setRendering(true)
                       setSelectedArtworkId(NO_ARTWORK_ID)
                       setTextPosition('auto')
                     }}
@@ -737,7 +760,10 @@ export default function ShareHighlightSheet({
                       name={artworkGroupId}
                       value={asset.id}
                       checked={selectedArtworkId === asset.id}
-                      onChange={() => setSelectedArtworkId(asset.id)}
+                      onChange={() => {
+                        setRendering(true)
+                        setSelectedArtworkId(asset.id)
+                      }}
                     />
                     <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-${asset.id}`}>
                       <span className="share-highlight__art-thumb">
@@ -775,7 +801,10 @@ export default function ShareHighlightSheet({
                           name={positionGroupId}
                           value={position}
                           checked={textPosition === position}
-                          onChange={() => setTextPosition(position)}
+                          onChange={() => {
+                            setRendering(true)
+                            setTextPosition(position)
+                          }}
                         />
                         <span className="share-highlight__position-choice">
                           <span
@@ -819,7 +848,7 @@ export default function ShareHighlightSheet({
           <button
             type="button"
             className="share-highlight__action share-highlight__action--primary"
-            disabled={!pngExport || busyAction !== null}
+            disabled={!pngExport || rendering || busyAction !== null}
             onClick={() => { void handleShare() }}
           >
             <IconShare size={17} />
@@ -828,7 +857,7 @@ export default function ShareHighlightSheet({
           <button
             type="button"
             className="share-highlight__action share-highlight__action--secondary"
-            disabled={!pngExport || busyAction !== null}
+            disabled={!pngExport || rendering || busyAction !== null}
             onClick={() => { void handleSave() }}
           >
             <span aria-hidden="true">↓</span>
