@@ -43,12 +43,13 @@ The initial App Store build is local-first. `.env.production` does not configure
 - Capacitor sync: passed; `dist` copied into `ios/App/App/public`.
 - Debug iPhone simulator build: passed.
 - Release iPhone simulator build: passed.
-- Unsigned generic iOS archive on Capacitor 8.4.2: passed; 17 MB, arm64, iOS 17+, bundle `com.naamras.app`, version `1.0 (1)`, built with the iOS 26.4 SDK.
+- Final unsigned generic iOS archive on Capacitor 8.4.2: passed; 66 MB archive / 59 MB app bundle, arm64, iOS 17+, bundle `com.naamras.app`, version `1.0 (1)`, built with the iOS 26.4 SDK.
 - App privacy manifest: present and conservatively declares BaniDB Search History, Product Interaction, and Other Data Types as linked, used for App Functionality and Analytics, and not used for tracking.
 - Capacitor and Cordova privacy manifests: present in the final bundle and declare no tracking, collected data, tracking domains, or required-reason APIs.
 - Capacitor and Cordova XCFramework origins: both signatures validate as the official Capacitor publisher, Drifty Co. Team `9YN2HU59K8`.
 - Archive dependency audit: only Capacitor, Cordova, and Apple system libraries are linked.
 - Archive web audit: every production asset is byte-for-byte identical to `dist`; Capacitor adds only its generated `cordova.js` and `cordova_plugins.js` bridge shims.
+- Vercel branch preview: commit `b914a83` reached `READY`; its entry JavaScript, Privacy JavaScript, and CSS SHA-256 values matched the local/iOS bundle, and the corrected July 18 BaniDB disclosure was present. Production promotion remains deliberately pending.
 - App icon: 1024 x 1024 PNG, no alpha.
 - iPhone screenshot: 1206 x 2622 JPEG, no alpha, which is an accepted 6.3-inch App Store size.
 - Live DOM: `https://naamras.xyz/privacy` and `https://naamras.xyz/support` both render their intended standalone documents before onboarding.
