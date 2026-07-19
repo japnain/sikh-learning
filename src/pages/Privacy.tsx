@@ -21,7 +21,7 @@ export default function Privacy() {
           You can use the app as a guest. Cloud backup is optional and should only be connected when you want saved progress available across devices.
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective July 10, 2026
+          Effective July 18, 2026
         </p>
       </section>
 
@@ -46,7 +46,7 @@ export default function Privacy() {
           <div className="section-shell-quiet px-4 py-4">
             <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Scripture lookup</p>
             <p className="mt-1 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/66">
-              Scripture and translation requests use BaniDB-backed lookup flows. Reader screens show source context where the app can identify it.
+              Scripture and translation requests are sent over HTTPS to BaniDB. Search terms and requested content are included in the API request. Khalis Foundation's published policy says its services may record the requesting IP address and requested page or path in server logs.
             </p>
           </div>
           <div className="section-shell-quiet px-4 py-4">
@@ -74,7 +74,7 @@ export default function Privacy() {
           Providers and diagnostics
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          BaniDB-backed services provide scripture lookup. A configured Supabase project may provide optional sign-in and sync. A release may also configure the minimal diagnostics described above. Each provider processes only the requests needed for the feature you choose to use and is governed by its own service terms.
+          BaniDB-backed services provide scripture lookup. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. The current App Store 1.0 build does not configure Supabase sign-in, cloud sync, or diagnostics. If a later release enables them, this notice and the App Store disclosures must be updated first.
         </p>
       </section>
 

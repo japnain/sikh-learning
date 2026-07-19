@@ -24,7 +24,8 @@ The reader keeps Gurbani primary while making transliteration, meanings, source 
 - Zustand
 - Supabase Auth and Edge Functions
 - BaniDB v2
-- SwiftUI native iOS target
+- Capacitor 8 iOS wrapper for the same React/Vite product shipped at `naamras.xyz`
+- An experimental SwiftUI target remains in the Xcode project, but it is not the App Store product
 
 ## Local Development
 
@@ -35,7 +36,7 @@ npm run dev
 
 ## Release Configuration
 
-Public Support and Privacy URLs are committed in `.env.production` for web and native production builds. Use `.env.example` when configuring another environment:
+Public Support and Privacy URLs are committed in `.env.production` for web and packaged iOS production builds. Use `.env.example` when configuring another environment:
 
 - `VITE_APP_VERSION`: release version included in anonymous diagnostics
 - `VITE_SUPPORT_URL`: verified public HTTPS support page
@@ -52,12 +53,19 @@ Any release that enables Supabase sign-in must deploy both `merge-local-state` a
 npm run lint
 npm run build
 npm test
-npm run native:generate-catalog
-npm run native:build
+npm run ios:sync
+npm run ios:build
+npm run qa:app-store -- --live
 ```
 
-`native:build` requires an installed iOS Simulator platform matching the local Xcode installation.
+`ios:sync` builds the same production assets served by `naamras.xyz` and copies them into the Capacitor `App` target. `ios:build` requires an installed iOS Simulator platform matching the local Xcode installation.
+
+`qa:app-store` rebuilds the Release app and verifies the shipping target, versions, export and privacy declarations, signed third-party SDK artifacts, icon, screenshot, metadata limits, and web-to-iOS asset parity. Add `-- --live` before upload to compare the bundled entry assets with the current `naamras.xyz` deployment and recheck the public Support and Privacy routes.
+
+For App Store work, use the shared `App` scheme in `ios/App/App.xcodeproj`. The launch configuration is iPhone-only, iOS 17+, bundle id `com.naamras.app`, version `1.0` build `1`.
 
 ## Data
 
-Scripture and translation data is sourced from BaniDB. The native catalog contains metadata for 103 unique BaniDB readings and loads their scripture lines on demand; it does not bundle synthetic catalog lines.
+Scripture and translation data is sourced from BaniDB-backed lookup flows. Direct production requests disclose search terms or requested content paths and the requesting IP address to BaniDB/Khalis Foundation as described on the Privacy page. NaamRas also bundles its curated local library content and stores guest preferences, bookmarks, vocabulary, and progress on the device.
+
+The App Store release gates for third-party content rights, BaniDB terms/privacy confirmation, and the bundled Panth Prakash age rating are documented in `docs/app-store/content-rights-and-provider-audit.md` and `docs/app-store/age-rating-evidence.md`. Do not submit the binary until those owner/provider decisions are complete.

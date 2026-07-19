@@ -943,7 +943,9 @@ async function main() {
       run: async ({ page, notes }) => {
         notes.push('Expected a word tap inside the exact-result reader to open the word popover without routing away.')
         await ensureVisible(page, '[data-page="study"][data-ai-flow="exact-shabad"][data-ai-state="ready"]', 'the exact-result study surface')
-        await page.locator('[data-testid="study-line"]').first().locator('button[lang]').first().click()
+        await page.locator('[data-testid="study-line"]').first().getByRole('button', { name: /open verse actions/i }).click()
+        await page.getByTestId('study-verse-actions-sheet').getByRole('button', { name: /explore words/i }).click()
+        await page.getByTestId('study-word-explorer').locator('button[lang]').first().click()
         await ensureVisible(page, '[data-ai-surface="word-popover"]', 'the word popover')
       },
     },
@@ -956,7 +958,9 @@ async function main() {
       run: async ({ page, notes }) => {
         notes.push('Expected Mahankosh lookup failures to stay inside the word popover and render a degraded sub-surface.')
         await ensureVisible(page, '[data-page="study"][data-ai-flow="exact-shabad"][data-ai-state="ready"]', 'the exact-result study surface')
-        await page.locator('[data-testid="study-line"]').first().locator('button[lang]').first().click()
+        await page.locator('[data-testid="study-line"]').first().getByRole('button', { name: /open verse actions/i }).click()
+        await page.getByTestId('study-verse-actions-sheet').getByRole('button', { name: /explore words/i }).click()
+        await page.getByTestId('study-word-explorer').locator('button[lang]').first().click()
         await ensureVisible(page, '[data-ai-surface="mahankosh-popover"][data-ai-state="degraded"]', 'the Mahankosh degraded state')
       },
     },

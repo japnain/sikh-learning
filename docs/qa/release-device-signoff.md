@@ -1,12 +1,12 @@
 # NaamRas Release Device Sign-off
 
-Use this checklist on the final signed native build. Recitation and audio-file behavior are outside this pass.
+Use this checklist on the final signed Capacitor `App` build. Recitation and audio-file behavior are outside this pass.
 
 ## Prerequisites
 
 - Connect and trust a physical iPhone supported by the deployment target.
-- Install the iOS simulator runtime requested by Xcode and create current iPhone and iPad simulators.
-- Configure production-like Supabase values plus verified public Support and Privacy HTTPS URLs.
+- Install the iOS simulator runtime requested by Xcode and create a current iPhone simulator.
+- Use the committed local-first production configuration plus the verified public Support and Privacy HTTPS URLs. Do not enable Supabase or diagnostics for 1.0 without repeating privacy and account-deletion sign-off.
 - Decide whether diagnostics are enabled. If enabled, verify the endpoint stores only the documented allow-listed payload.
 - Start from a clean install and retain a second install with representative bookmarks, progress, and vocabulary.
 
@@ -27,7 +27,7 @@ Record device model, iOS version, build number, tester, and date with the result
 ## Display And Resume
 
 - Test default, largest accessibility Dynamic Type, Bold Text, Increase Contrast, Reduce Motion, and Light/Dark appearance.
-- Check portrait on iPhone and portrait/landscape on iPad for clipping, overlap, horizontal scrolling, and obscured controls.
+- Check portrait and landscape on iPhone for clipping, overlap, horizontal scrolling, and obscured controls.
 - Background and foreground the app from Home, Reader, Saved, and an open modal. Focus and reading position must return predictably.
 - Relaunch offline after previously opening a reading; local bookmarks, preferences, and progress must remain intact.
 

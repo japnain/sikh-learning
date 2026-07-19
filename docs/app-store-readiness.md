@@ -1,92 +1,91 @@
 # NaamRas App Store Readiness
 
-This checklist reflects the React/Vite reference app and the SwiftUI App Store target as of 2026-07-11.
+Status as of 2026-07-18. This document is the launch source of truth.
 
-## Current Build Status
+## Product Decision
 
-- `NaamRasNative` is the SwiftUI target in `ios/App/App.xcodeproj`; the React/Vite app remains the product reference.
-- The native target uses bundle id `com.naamras.app`, app version `1.0`, build `1`, iOS 17+, and a shared Xcode scheme.
-- `PrivacyInfo.xcprivacy` declares user id and user content collection for app functionality, with no tracking.
-- Guest reading works without an account. Supabase backup appears only in builds with valid configuration.
-- Configured sign-in builds expose sync, sign-out, and confirmed account deletion. The repository includes an authenticated `delete-account` Edge Function; it still must be deployed and provider-tested before cloud backup can ship.
-- `NativeCatalog.json` is generated deterministically from product data and contains 103 unique, exact BaniDB reading routes. Scripture lines are fetched on demand; no placeholder catalog lines are bundled.
-- System, Light, and Dark appearance modes are user-selectable and persisted.
-- The web reference app has optional, privacy-safe release diagnostics. Reporting is off without `VITE_DIAGNOSTICS_ENDPOINT`; enabled events use an allow-listed payload without messages, stacks, scripture, saved content, account identifiers, query strings, or local-storage data.
-- Standalone Support and Privacy routes bypass first-run onboarding and app navigation. Production builds use `https://naamras.xyz/support` and `https://naamras.xyz/privacy` from `.env.production`; More keeps same-origin fallbacks for unconfigured builds.
-- The canonical domain resolves over HTTPS, but the production deployment inspected on 2026-07-11 still serves the older onboarding flow at both direct document paths. Do not submit these URLs to App Store Connect until the current release candidate is published and the live DOM is reverified.
+- The App Store product is the Capacitor `App` scheme in `ios/App/App.xcodeproj`.
+- It packages the same React/Vite production bundle served at `https://naamras.xyz`; the local and live JavaScript and CSS asset hashes were verified identical.
+- The separate `NaamRasNative` SwiftUI scheme is experimental and must not be selected for archive or submission.
+- No product redesign is part of the launch. The native launch frame uses NaamRas's existing light and dark background colors, then hands off to the unchanged web UI.
+
+## Submission Build
+
+- Display name: `NaamRas`
+- Bundle id: `com.naamras.app`
+- Marketing version: `1.0`
+- Build number: `1`
+- Minimum OS: iOS 17.0
+- Device family: iPhone only for 1.0
+- App Store scheme: `App`
+- Capacitor runtime/CLI/Swift package: `8.4.2`, pinned consistently
+- Build SDK verified: iOS 26.4
+- Architecture verified: arm64
+- Signing style: automatic; Apple Team is not configured in the repository
+- Export compliance: `ITSAppUsesNonExemptEncryption = false`; the app uses only exempt system transport such as HTTPS
+- Tracking: disabled; BaniDB request/server-log data is conservatively declared as collected and linked
+- In-app purchases/subscriptions: none
+
+The initial App Store build is local-first. `.env.production` does not configure Supabase or diagnostics, so sign-in, cloud sync, account collection, and diagnostics are not active in the submitted bundle. Direct BaniDB requests still transmit search terms, requested content paths, and an IP address to the provider. Do not add backend environment values without redoing App Privacy answers and deploying/provider-testing account deletion.
 
 ## Verified On This Machine
 
-- The production web build compiles after extracting authoritative tokens plus focused Home, Reader, Navigation, Catalog, Library, and Settings stylesheets. Dead-rule, hidden-pseudo, and contrast-token consolidation reduced the production CSS asset from 165.72 kB (29.43 kB gzip) to 146.62 kB (26.04 kB gzip), including the responsive end-of-shabad navigator.
-- `npm run qa:css-selectors` verifies all nine style modules against source usage, including individual branches in comma-separated selectors; the same audit runs in CI before the build and test gates.
-- A 52-check browser matrix covers 13 routes at 320px and 390px phone widths plus 834px tablet in light and dark appearance. It reports no horizontal overflow, unnamed interactive controls, active CSS gradients, route errors, error boundaries, or console errors.
-- `npm run qa:a11y` uses Axe 4.12.1 and reports zero automated WCAG 2.2 AA violations across 51 scans: 17 route and reader-detail states at 390px light, 1440px light, and 834px dark. CI runs the sweep after the production build. Five additional light-mode onboarding states pass, and a keyboard pass across 11 core routes confirms that the skip link is the first visible Tab target, moves focus to the main landmark, and continues through named, onscreen controls.
-- The isolated AI browser sweep passes all 22 scenarios, including Home Nitnem link activation, loading, empty, degraded, first-run, navigation, and pre-onboarding public-document states.
-- ESLint, the production build, `git diff --check`, and all 291 Vitest tests pass on 2026-07-11.
-- Amrit Keertan initially mounts 18 of 113 section rows and exposes progressive loading, reducing the tablet document from 15,729px to 1,833px.
-- Native catalog generation completes with 103 exact readings, and `xcrun swiftc -parse ios/App/NaamRasNative/*.swift` passes.
-- Xcode command-line inspection on 2026-07-11 finds no installed iOS runtime, no eligible iOS simulator, and no connected iPhone. Physical VoiceOver testing and final native screenshots therefore remain external sign-off items.
-- `npm run native:build` regenerates the 103-reading native catalog and resolves packages, but stops before compilation because Xcode cannot find an eligible iOS Simulator destination and reports that iOS 26.4 is not installed.
+- `npm run build`: passed; the production output matches the currently deployed `naamras.xyz` asset hashes.
+- `npm run lint`: passed.
+- `npm test`: 418 tests passed in the repository's batched test runner.
+- Focused Study/word-flow retest: 67 tests passed.
+- `npm run qa:css-selectors`: passed for 9 style files.
+- `npm run qa:a11y`: 51 automated WCAG 2.2 AA route checks passed across phone, desktop, and tablet viewports in light and dark appearances.
+- `npm run qa:ai-bug-sweep`: 22/22 launch scenarios passed on the final rebuilt candidate, including first-run onboarding, persistent navigation, degraded states, public Support/Privacy, and the accessible word-explorer flow.
+- `npm run library:verify`: passed.
+- `npm audit --omit=dev --audit-level=high`: 0 vulnerabilities.
+- Final local `npm run qa:app-store`: 100 release checks passed with 0 failures and 5 explicit owner/release warnings. It must be rerun with `-- --live` after the corrected privacy build is deployed; live parity is intentionally open until then.
+- Capacitor sync: passed; `dist` copied into `ios/App/App/public`.
+- Debug iPhone simulator build: passed.
+- Release iPhone simulator build: passed.
+- Unsigned generic iOS archive on Capacitor 8.4.2: passed; 17 MB, arm64, iOS 17+, bundle `com.naamras.app`, version `1.0 (1)`, built with the iOS 26.4 SDK.
+- App privacy manifest: present and conservatively declares BaniDB Search History, Product Interaction, and Other Data Types as linked, used for App Functionality and Analytics, and not used for tracking.
+- Capacitor and Cordova privacy manifests: present in the final bundle and declare no tracking, collected data, tracking domains, or required-reason APIs.
+- Capacitor and Cordova XCFramework origins: both signatures validate as the official Capacitor publisher, Drifty Co. Team `9YN2HU59K8`.
+- Archive dependency audit: only Capacitor, Cordova, and Apple system libraries are linked.
+- Archive web audit: every production asset is byte-for-byte identical to `dist`; Capacitor adds only its generated `cordova.js` and `cordova_plugins.js` bridge shims.
+- App icon: 1024 x 1024 PNG, no alpha.
+- iPhone screenshot: 1206 x 2622 JPEG, no alpha, which is an accepted 6.3-inch App Store size.
+- Live DOM: `https://naamras.xyz/privacy` and `https://naamras.xyz/support` both render their intended standalone documents before onboarding.
 
-## Store Metadata Draft
+## Store Assets
 
-- App name: `NaamRas`
-- Subtitle: `Gurbani reading companion`
-- Primary category: `Reference`
-- Secondary category: `Education`
-- Promotional text: `Open Gurbani with calm reader controls, save your place, and return to daily reading.`
-- Keywords: `gurbani,sikh,naam,nitnem,banis,gutka,scripture,paath,shabad,panjabi`
-- Description:
+- App icon: `ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png`
+- Required iPhone screenshot: `docs/app-store/screenshots/naamras-iphone-6.3-onboarding.jpg`
+- Metadata: `docs/app-store/metadata-en-US.md`
+- App Store Connect answers: `docs/app-store/app-store-connect-answers.md`
+- Content-rights/provider audit: `docs/app-store/content-rights-and-provider-audit.md`
+- Age-rating evidence: `docs/app-store/age-rating-evidence.md`
+- Final submission checklist: `docs/app-store/submission-checklist.md`
 
-```text
-NaamRas is a calm Gurbani reading companion for daily use.
+One screenshot is Apple's technical minimum. Additional Home, Read, Reader, Saved, and More screenshots are recommended for conversion, but are not required to create the 1.0 submission.
 
-Browse complete banis, choose Gurmukhi or Devanagari display, adjust transliteration and meaning language, save readings, and keep your reading progress on your device.
+## External Sign-off Still Required
 
-NaamRas works without an account. Cloud backup is optional when available, and scripture is presented with clear source context.
-```
+These items cannot be completed from source control:
 
-## App Review Notes Draft
+1. Add the correct Apple Developer Team in Xcode and confirm the bundle id is registered to that team.
+2. Create or select the App Store Connect app record and confirm the legal developer name, SKU, copyright owner, support contact, DSA trader status, tax/banking agreements, territories, and price.
+3. Obtain written Panth Prakash redistribution rights and documented BaniDB/Khalis Foundation terms compliance. The exact missing evidence and provider obligations are in `docs/app-store/content-rights-and-provider-audit.md`.
+4. Resolve the current conservative `Unrated` age-rating result. The bundled historical text contains detailed torture and dismemberment; written Apple classification guidance or an owner-authorized content change is required before submission. See `docs/app-store/age-rating-evidence.md`.
+5. Confirm BaniDB/Khalis Foundation retention, linkage, and IP-use practices, then finalize the conservative App Privacy answers.
+6. Deploy the corrected Privacy policy to `naamras.xyz` and restore byte-for-byte live parity with the packaged app.
+7. Run the signed Release build on a physical iPhone using `docs/qa/release-device-signoff.md`, including VoiceOver, largest Dynamic Type, offline/retry, background/resume, and clean-install onboarding.
+8. Archive with the configured Team, upload through Xcode Organizer, resolve any App Store Connect validation result, attach the build, and submit for review.
 
-```text
-NaamRas does not require an account. Reviewers can complete onboarding and begin reading as a guest.
+## Official Apple References
 
-Cloud backup is optional and appears only when the build contains valid Supabase configuration. The app has no subscriptions, in-app purchases, trial prompts, paid locks, or restore-purchase flow.
-
-The native reading catalog contains exact BaniDB routes. Network access is required to load a reading for the first time. Bookmarks, reader preferences, and reading progress are stored locally; configured builds can optionally sync that user-owned state.
-```
-
-## Required Before Submission
-
-- Confirm the Apple Developer Team and final bundle id.
-- Verify the final icon and launch artwork on physical devices.
-- Archive, sign, and upload the native target through Xcode.
-- Publish this release candidate to the canonical `naamras.xyz` Vercel project, verify the new standalone Support and Privacy content at the production URLs, and add those same URLs in App Store Connect.
-- If Supabase sign-in is enabled, deploy `delete-account`, verify complete auth-user and synced-row deletion for each provider, and confirm Sign in with Apple token revocation. Otherwise ship with Supabase account configuration disabled.
-- Complete App Privacy answers after confirming production Supabase, BaniDB, and diagnostics configuration. Declare diagnostics if the endpoint is enabled in the submitted build.
-- Install an iOS simulator runtime that matches Xcode, then capture final iPhone and iPad screenshots in both appearance modes.
-- Connect a physical iPhone and complete the VoiceOver, Dynamic Type, first-launch, guest onboarding, configured/unconfigured backup, reading load/retry, saved state, offline/degraded behavior, and app-resume pass in `docs/qa/release-device-signoff.md`.
-
-## Screenshot Artifacts
-
-- Existing simulator capture: `docs/app-store/screenshots/naamras-native-onboarding-iphone17.jpg`
-- This existing image is reference-only, not a complete submission set.
-- Final set still required: onboarding, Home, Read catalog, Reader, Saved, and More in the approved visual direction, captured from the final signed native build.
-
-## Native Commands
-
-- `npm run ios:open`: open the Xcode project
-- `npm run native:generate-catalog`: regenerate exact native reading metadata
-- `npm run native:build`: compile the SwiftUI target without signing
-- `npm run native:test`: run the native unit-test scheme
-
-## Official Apple Checks
-
-- App Review Guideline 2.1 requires final, tested builds without placeholder or temporary content.
-- App privacy details and a public privacy policy URL are required in App Store Connect.
-
-Sources:
-- https://developer.apple.com/app-store/review/guidelines/
-- https://developer.apple.com/app-store/app-privacy-details/
-- https://developer.apple.com/help/app-store-connect/reference/app-privacy/
-- https://developer.apple.com/support/offering-account-deletion-in-your-app
+- App Review Guidelines: https://developer.apple.com/app-store/review/guidelines/
+- Submission SDK requirements: https://developer.apple.com/app-store/submitting/
+- Screenshot specifications: https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications
+- App privacy details: https://developer.apple.com/app-store/app-privacy-details/
+- Age-rating definitions: https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions
+- Set an age rating: https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating
+- Export compliance: https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations
+- Third-party SDK requirements: https://developer.apple.com/support/third-party-SDK-requirements/
+- XCFramework origin verification: https://developer.apple.com/documentation/xcode/verifying-the-origin-of-your-xcframeworks

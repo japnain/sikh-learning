@@ -9,12 +9,14 @@
     "ios:sync": "npm run build && npx cap sync ios",
     "ios:open": "npx cap open ios",
     "ios:build": "npm run ios:sync && xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",
+    "ios:build:release": "npm run ios:sync && xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",
     "native:generate-catalog": "node ./scripts/native/generate-native-catalog.mjs",
     "native:build": "npm run native:generate-catalog && xcodebuild -project ios/App/App.xcodeproj -scheme NaamRasNative -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",
     "native:test": "npm run native:generate-catalog && xcodebuild test -project ios/App/App.xcodeproj -scheme NaamRasNative -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO",
     "lint": "eslint .",
     "qa:a11y": "node ./scripts/qa/accessibility-sweep.mjs",
     "qa:css-selectors": "node ./scripts/qa/css-selector-audit.mjs",
+    "qa:app-store": "npm run ios:build:release && node ./scripts/qa/app-store-readiness.mjs",
     "library:import": "node ./scripts/library/import-curated-epub.mjs",
     "library:build": "node ./scripts/library/import-panth-prakash-epubs.mjs --vol1-epub ./public/data/library/works/panth-prakash-english/assets/volume-1.epub --vol2-epub ./public/data/library/works/panth-prakash-english/assets/volume-2.epub",
     "library:verify": "node ./scripts/library/verify-library.mjs",
@@ -24,8 +26,8 @@
     "qa:ai-bug-sweep": "node ./scripts/qa/ai-bug-sweep.mjs"
   },
   "dependencies": {
-    "@capacitor/core": "^8.3.1",
-    "@capacitor/ios": "^8.3.1",
+    "@capacitor/core": "8.4.2",
+    "@capacitor/ios": "8.4.2",
     "@radix-ui/react-dialog": "^1.1.19",
     "@supabase/supabase-js": "^2.105.3",
     "react": "^19.2.4",
@@ -34,7 +36,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
-    "@capacitor/cli": "^8.3.1",
+    "@capacitor/cli": "8.4.2",
     "@eslint/js": "^9.39.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
