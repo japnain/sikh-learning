@@ -23,6 +23,7 @@ import './ShareHighlightSheet.css'
 
 const NO_ARTWORK_ID = 'none'
 const SOCIAL_NOTE_LIMIT = 280
+const EXPRESSIVE_PASSAGE_LIMIT = 8
 type PassageSupport = 'transliteration' | 'meaning'
 
 export interface ShareHighlightContent {
@@ -83,6 +84,7 @@ interface ShareHighlightSheetCopy {
   passagePreface: string
   passageTitle: string
   passageTextLayersHelp: string
+  quietPassageArtworkNote: string
   passageSupportOverflow: (support: PassageSupport) => string
   preparingBilingual: string
   bilingualReady: string
@@ -136,6 +138,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passagePreface: 'Share the full Hukamnama',
     passageTitle: 'Create a Story image',
     passageTextLayersHelp: 'Gurmukhi is always included. Choose Meaning for a bilingual Story with the complete English translation beside it, or Transliteration for pronunciation.',
+    quietPassageArtworkNote: 'Long Hukamnamas use a quiet manuscript background so the complete reading stays balanced and legible.',
     passageSupportOverflow: support => support === 'meaning'
       ? 'Meaning is too long to fit readably on one Story. Showing Gurmukhi only — the full translation is still available in Copy text.'
       : 'Transliteration is too long to fit readably on one Story. Showing Gurmukhi only — the full transliteration is still available in Copy text.',
@@ -189,6 +192,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passagePreface: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
     passageTitle: 'ਸਟੋਰੀ ਤਸਵੀਰ ਬਣਾਓ',
     passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਪੂਰਾ ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ ਨਾਲੇ ਦਿਖਾਉਣ ਵਾਲੀ ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਲਈ ਅਰਥ ਚੁਣੋ, ਜਾਂ ਉਚਾਰਨ ਲਈ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
+    quietPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਲਈ ਸਾਦਾ ਹੱਥ-ਲਿਖਤ ਪਿਛੋਕੜ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਜੋ ਪੂਰਾ ਪਾਠ ਸੰਤੁਲਿਤ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹੇ।',
     passageSupportOverflow: support => support === 'meaning'
       ? 'ਅਰਥ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮੇ ਹਨ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਅਨੁਵਾਦ “ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।'
       : 'ਲਿਪੀਅੰਤਰਨ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮਾ ਹੈ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਲਿਪੀਅੰਤਰਨ “ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।',
@@ -242,6 +246,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passagePreface: 'पूरा हुकमनामा साझा करें',
     passageTitle: 'स्टोरी छवि बनाएँ',
     passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। पूरे अंग्रेज़ी अनुवाद को साथ दिखाने वाली द्विभाषी स्टोरी के लिए अर्थ चुनें, या उच्चारण के लिए लिप्यंतरण चुनें।',
+    quietPassageArtworkNote: 'लंबे हुकमनामों में शांत पांडुलिपि पृष्ठभूमि रहती है, ताकि पूरा पाठ संतुलित और पढ़ने योग्य रहे।',
     passageSupportOverflow: support => support === 'meaning'
       ? 'अर्थ एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा अनुवाद “पाठ कॉपी करें” में उपलब्ध है।'
       : 'लिप्यंतरण एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा लिप्यंतरण “पाठ कॉपी करें” में उपलब्ध है।',
@@ -322,6 +327,10 @@ export default function ShareHighlightSheet({
     [content.passageLines]
   )
   const isPassage = passageLines.length > 0
+  const usesQuietPassageLayout = (
+    isPassage
+    && passageLines.filter(line => !line.isHeader).length > EXPRESSIVE_PASSAGE_LIMIT
+  )
   const [selectedArtworkId, setSelectedArtworkId] = useState(() => resolveInitialArtworkId(initialArtworkId))
   const [textPosition, setTextPosition] = useState<ShareHighlightTextPosition>('auto')
   const [showTransliteration, setShowTransliteration] = useState(() => (
@@ -428,7 +437,7 @@ export default function ShareHighlightSheet({
   const passageInput = useMemo<ShareHighlightPassageInput | null>(() => {
     if (!isPassage) return null
     return {
-      artwork: selectedArtwork,
+      artwork: usesQuietPassageLayout ? null : selectedArtwork,
       content: {
         lines: passageLines.map(line => ({
           ...line,
@@ -452,6 +461,7 @@ export default function ShareHighlightSheet({
     selectedArtwork,
     showMeaning,
     showTransliteration,
+    usesQuietPassageLayout,
   ])
   const activePassageSupport: PassageSupport | null = showMeaning
     ? 'meaning'
@@ -618,7 +628,7 @@ export default function ShareHighlightSheet({
       onClose={onClose}
       title={copy.dialogTitle}
       description={copy.dialogDescription}
-      className="share-highlight-sheet"
+      className={`share-highlight-sheet${isPassage ? ' share-highlight-sheet--passage' : ''}`}
       testId="share-highlight-sheet"
       initialFocusRef={closeButtonRef}
     >
@@ -728,6 +738,12 @@ export default function ShareHighlightSheet({
               ) : null}
             </section>
 
+            {usesQuietPassageLayout ? (
+              <section className="share-highlight__quiet-layout-note" role="note">
+                <p className="share-highlight__control-label">{copy.noArtwork}</p>
+                <p className="share-highlight__control-help">{copy.quietPassageArtworkNote}</p>
+              </section>
+            ) : (
             <fieldset className="share-highlight__control-group">
               <legend className="share-highlight__control-label">{copy.artwork}</legend>
               <p className="share-highlight__control-help">{copy.artworkHelp}</p>
@@ -821,6 +837,7 @@ export default function ShareHighlightSheet({
                 </div>
               ) : null}
             </fieldset>
+            )}
 
             <section className="share-highlight__control-group">
               <label className="share-highlight__caption-label" htmlFor={captionId}>

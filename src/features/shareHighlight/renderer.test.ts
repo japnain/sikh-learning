@@ -872,9 +872,9 @@ describe('Canvas rendering and export', () => {
     expect(result.height).toBe(SHARE_HIGHLIGHT_STORY_HEIGHT)
     expect(environment.canvas.width).toBe(1080)
     expect(environment.canvas.height).toBe(1920)
-    expect(environment.options.loadImage).toHaveBeenCalledTimes(1)
+    expect(environment.options.loadImage).not.toHaveBeenCalled()
     expect(environment.fontSet.load).toHaveBeenCalledTimes(5)
-    expect(environment.context.drawImage).toHaveBeenCalledTimes(2)
+    expect(environment.context.drawImage).not.toHaveBeenCalled()
     expect(environment.drawnText).toContain("Today's Hukamnama")
     expect(environment.drawnText).toContain('July 15, 2026')
     expect(environment.drawnText).toContain(passageInput.content.sourceLabel)
@@ -911,7 +911,7 @@ describe('Canvas rendering and export', () => {
     expect(canvas).toBe(environment.canvas)
     expect(canvas.width).toBe(1080)
     expect(canvas.height).toBe(1920)
-    expect(environment.context.stroke).toHaveBeenCalledTimes(2)
+    expect(environment.context.stroke).toHaveBeenCalledTimes(3)
     expect(environment.context.fillRect).toHaveBeenCalledWith(48, 266, 984, 2)
     expect(environment.context.fillRect).toHaveBeenCalledWith(
       expectedLayout.columns!.dividerX,
@@ -1003,7 +1003,7 @@ describe('Canvas rendering and export', () => {
     })
   })
 
-  it('uses the same one-frame Story contract with all fourteen artwork shapes', async () => {
+  it('keeps long Stories quiet across all fourteen configured artwork choices', async () => {
     const artworks: ShareHighlightArtwork[] = Array.from({ length: 14 }, (_, index) => ({
       id: `art-${index + 1}`,
       src: `/share/art-${index + 1}.jpg`,
@@ -1036,27 +1036,13 @@ describe('Canvas rendering and export', () => {
 
       expect(canvas.width).toBe(1080)
       expect(canvas.height).toBe(1920)
-      expect(environment.options.loadImage).toHaveBeenCalledWith(artwork.src)
-      const usesAmbientArtwork = (
-        artwork.storyProfile?.mode === 'landscape-hero'
-        || artwork.storyProfile?.protectedSubject?.intent === 'keep-clear-of-text'
-      )
-      expect(environment.context.drawImage).toHaveBeenCalledTimes(usesAmbientArtwork ? 2 : 1)
+      expect(environment.options.loadImage).not.toHaveBeenCalled()
+      expect(environment.context.drawImage).not.toHaveBeenCalled()
       const renderedText = environment.drawnText.join(' ')
       expect(renderedText).toContain(july18Ang683Reading[0].gurmukhi)
       expect(renderedText).toContain(july18Ang683Reading[0].meaning)
       expect(renderedText).toContain(july18Ang683Reading.at(-1)!.gurmukhi)
       expect(renderedText).toContain(july18Ang683Reading.at(-1)!.meaning)
-      const drawCall = environment.context.drawImage.mock.calls.at(-1)!
-      const destinationHeight = Number(drawCall[8])
-      if (
-        artwork.storyProfile?.mode === 'landscape-hero'
-        || artwork.storyProfile?.protectedSubject?.intent === 'keep-clear-of-text'
-      ) {
-        expect(destinationHeight).toBeLessThan(1000)
-      } else {
-        expect(destinationHeight).toBe(1920)
-      }
     }
   })
 
@@ -1074,6 +1060,14 @@ describe('Canvas rendering and export', () => {
             intent: 'keep-visible',
           },
         },
+      },
+      content: {
+        ...passageInput.content,
+        lines: [
+          { id: 1, gurmukhi: 'ਸਲੋਕ ॥', isHeader: true },
+          { id: 2, gurmukhi: 'ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ਆਸਰੰ ਗੋਪਾਲ ਕੀਰਤਨਹ ॥' },
+          { id: 3, gurmukhi: 'ਨਿਰਮਲ ਸੰਤ ਸੰਗੇਣ ਓਟ ਨਾਨਕ ਪਰਮੇਸੁਰਹ ॥੧॥' },
+        ],
       },
     }, environment.options)
 

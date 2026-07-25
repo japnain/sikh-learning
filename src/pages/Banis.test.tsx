@@ -649,6 +649,38 @@ test('auto search queries both English meanings and romanized text for Roman-let
   fetchSpy.mockRestore()
 })
 
+test('removes fuzzy romanized noise when an English query has direct meaning matches', async () => {
+  const meaningMatch: banidbApi.SearchResult = {
+    ...SEARCH_RESULT_FIXTURE,
+    verseId: 920,
+    translation_en: 'Remember death while you are still alive.',
+    transliteration: 'maran yaad rakho',
+  }
+  const fuzzyRomanizedMatch: banidbApi.SearchResult = {
+    ...SEARCH_RESULT_FIXTURE,
+    shabadId: 930,
+    verseId: 931,
+    gurmukhi: 'ਗੁਰਾ ਇਕ ਦੇਹਿ ਬੁਝਾਈ ॥',
+    transliteration: 'guraa ik dheh bujhaiee',
+    translation_en: 'The Guru has given me this one understanding.',
+  }
+  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (_query, searchType) => (
+    searchType === 3
+      ? [meaningMatch]
+      : searchType === 4
+        ? [fuzzyRomanizedMatch]
+        : []
+  ))
+
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'death' } })
+
+  expect(await screen.findByTestId('banis-search-gurbani-results')).toHaveTextContent(
+    'Remember death while you are still alive.'
+  )
+  expect(screen.queryByText('The Guru has given me this one understanding.')).not.toBeInTheDocument()
+})
+
 test('auto search keeps Latin and Gurmukhi search modes for mixed-script queries', async () => {
   const fetchSpy = vi.spyOn(globalThis, 'fetch')
   renderBanis()
@@ -707,7 +739,7 @@ test('offers useful examples and a clear action when search has no matches', asy
   await waitFor(() => expect(searchInput).toHaveFocus())
 })
 
-test('localizes Read controls and honors transliteration and meaning preferences', async () => {
+test('localizes Read controls while English searches always include the matching meaning', async () => {
   useLocaleStore.setState({ locale: 'pa' })
   useLanguageStore.setState({ showTransliteration: false, meaningLanguage: 'none' })
   vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
@@ -722,7 +754,8 @@ test('localizes Read controls and honors transliteration and meaning preferences
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'preferenceprobe' } })
   expect(await screen.findByText('ਸਤਿਨਾਮੁ')).toBeInTheDocument()
   expect(screen.queryByText('sat naam')).not.toBeInTheDocument()
-  expect(screen.queryByText('The Name is truth.')).not.toBeInTheDocument()
+  expect(screen.getByText('The Name is truth.')).toBeInTheDocument()
+  expect(screen.getByText('Meaning')).toBeInTheDocument()
 
   act(() => {
     useLanguageStore.setState({ showTransliteration: true, meaningLanguage: 'en' })

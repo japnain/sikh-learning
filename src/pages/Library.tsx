@@ -376,7 +376,7 @@ export default function Library() {
             {recentStudy.map(entry => (
               <Link
                 key={entry!.id}
-                to={`/study?source=${entry!.id.split('-')[0]}&ang=${entry!.id.split('-')[1]}`}
+                to={`/study?source=${entry!.source}&ang=${entry!.ang}`}
                 className="w-full section-shell-quiet interactive-focus interactive-card-link px-4 py-4 text-left"
               >
                 <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">

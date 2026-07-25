@@ -185,6 +185,28 @@ describe('ShareHighlightSheet', () => {
     expect(mocks.exportPng).not.toHaveBeenCalled()
   })
 
+  it('removes artwork controls from long Hukamnamas and uses the quiet manuscript', async () => {
+    const longPassageContent: ShareHighlightContent = {
+      ...passageContent,
+      passageLines: [
+        passageContent.passageLines![0],
+        ...Array.from({ length: 9 }, (_, index) => ({
+          id: `long-verse-${index + 1}`,
+          gurmukhi: `ਸੰਤ ਉਧਰਣ ਦਇਆਲੰ ॥ ${index + 1}`,
+          meaning: `The Merciful Lord saves the Saints. ${index + 1}`,
+        })),
+      ],
+    }
+
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={longPassageContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+
+    expect(within(dialog).queryByRole('radiogroup', { name: 'Artwork' })).not.toBeInTheDocument()
+    expect(within(dialog).getByText(/quiet manuscript background/i)).toBeInTheDocument()
+    await waitFor(() => expect(mocks.exportStoryPng).toHaveBeenCalled())
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork).toBeNull()
+  })
+
   it('shares and downloads one Story PNG and allows at most one reading support', async () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })

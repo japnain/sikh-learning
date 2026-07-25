@@ -29,7 +29,7 @@ import {
   type EpubReaderMeasure,
   type EpubReaderPalette,
 } from '../../store/epubReader'
-import { useProgressStore } from '../../store/progress'
+import { useProgressStore, type Session } from '../../store/progress'
 import type {
   LibraryChapterIndexEntry,
   LibraryChapterPayload,
@@ -206,13 +206,16 @@ export default function LibraryChapterReader() {
   const [loadState, setLoadState] = useState<ChapterLoadState>({ key: requestKey, status: 'loading', reader: null })
   const [activePanel, setActivePanel] = useState<ReaderPanel>(null)
   const [tocQuery, setTocQuery] = useState('')
-  const [progress, setProgress] = useState(0)
   const blockNodes = useRef(new Map<string, HTMLElement>())
   const currentBlockId = useRef<string | null>(null)
   const didRestoreLocation = useRef(false)
   const readerShellRef = useRef<HTMLDivElement | null>(null)
   const contentsTriggerRef = useRef<HTMLButtonElement | null>(null)
   const settingsTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const progressBarRef = useRef<HTMLSpanElement | null>(null)
+  const progressLabelRef = useRef<HTMLSpanElement | null>(null)
+  const pendingSessionRef = useRef<Session | null>(null)
+  const sessionTimerRef = useRef<number | null>(null)
 
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
@@ -264,27 +267,49 @@ export default function LibraryChapterReader() {
     [reader]
   )
 
-  const createLocator = useCallback((blockId: string): LibraryReaderLocator | null => {
+  const locatorMetrics = useMemo(() => {
     if (!reader) return null
-    const blockIndex = Math.max(0, chapterBlocks.findIndex(block => block.id === blockId))
-    const block = chapterBlocks[blockIndex]
-    if (!block) return null
-    const chapterProgression = chapterBlocks.length > 1 ? blockIndex / (chapterBlocks.length - 1) : 0
+
+    let charactersBefore = 0
+    let wordsBefore = 0
+    const byBlockId = new Map<string, {
+      index: number
+      charactersBefore: number
+      wordsBefore: number
+    }>()
+
+    chapterBlocks.forEach((block, index) => {
+      byBlockId.set(block.id, { index, charactersBefore, wordsBefore })
+      const text = readerBlockText(block)
+      charactersBefore += text.length
+      wordsBefore += text.split(/\s+/).filter(Boolean).length
+    })
+
     const chapterCharactersBefore = reader.chapters
       .slice(0, Math.max(0, currentIndex))
       .reduce((total, chapter) => total + (chapter.charCount ?? 0), 0)
-    const blockCharactersBefore = chapterBlocks
-      .slice(0, blockIndex)
-      .reduce((total, entry) => total + readerBlockText(entry).length, 0)
-    const blockWordsBefore = chapterBlocks
-      .slice(0, blockIndex)
-      .reduce((total, entry) => total + readerBlockText(entry).split(/\s+/).filter(Boolean).length, 0)
-    const chapterCharacters = reader.chapter.charCount
-      ?? chapterBlocks.reduce((total, entry) => total + readerBlockText(entry).length, 0)
+    const chapterCharacters = reader.chapter.charCount ?? charactersBefore
     const knownTotalCharacters = reader.work.totalCharacters
       ?? reader.chapters.reduce((total, chapter) => total + (chapter.charCount ?? 0), 0)
-    const totalCharacters = Math.max(knownTotalCharacters, chapterCharacters, 1)
-    const totalProgression = Math.min(1, Math.max(0, (chapterCharactersBefore + blockCharactersBefore) / totalCharacters))
+
+    return {
+      byBlockId,
+      chapterCharactersBefore,
+      totalCharacters: Math.max(knownTotalCharacters, chapterCharacters, 1),
+    }
+  }, [chapterBlocks, currentIndex, reader])
+
+  const createLocator = useCallback((blockId: string): LibraryReaderLocator | null => {
+    if (!reader || !locatorMetrics) return null
+    const metrics = locatorMetrics.byBlockId.get(blockId)
+    if (!metrics) return null
+    const block = chapterBlocks[metrics.index]
+    if (!block) return null
+    const chapterProgression = chapterBlocks.length > 1 ? metrics.index / (chapterBlocks.length - 1) : 0
+    const totalProgression = Math.min(1, Math.max(
+      0,
+      (locatorMetrics.chapterCharactersBefore + metrics.charactersBefore) / locatorMetrics.totalCharacters
+    ))
 
     return {
       revision: reader.work.revision,
@@ -294,14 +319,48 @@ export default function LibraryChapterReader() {
       locations: {
         progression: chapterProgression,
         totalProgression,
-        position: (reader.chapter.startPosition ?? 1) + blockWordsBefore,
+        position: (reader.chapter.startPosition ?? 1) + metrics.wordsBefore,
         blockId,
       },
       text: {
         highlight: readerBlockText(block).slice(0, 180),
       },
     }
-  }, [chapterBlocks, currentIndex, reader])
+  }, [chapterBlocks, locatorMetrics, reader])
+
+  const flushPendingSession = useCallback(() => {
+    if (sessionTimerRef.current !== null) {
+      window.clearTimeout(sessionTimerRef.current)
+      sessionTimerRef.current = null
+    }
+    const pendingSession = pendingSessionRef.current
+    if (!pendingSession) return
+    pendingSessionRef.current = null
+    updateSession(pendingSession)
+  }, [updateSession])
+
+  const queueSessionUpdate = useCallback((session: Session) => {
+    pendingSessionRef.current = session
+    if (sessionTimerRef.current !== null) {
+      window.clearTimeout(sessionTimerRef.current)
+    }
+    sessionTimerRef.current = window.setTimeout(flushPendingSession, 280)
+  }, [flushPendingSession])
+
+  useEffect(() => {
+    const handlePageHide = () => flushPendingSession()
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') flushPendingSession()
+    }
+
+    window.addEventListener('pagehide', handlePageHide)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => {
+      window.removeEventListener('pagehide', handlePageHide)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      flushPendingSession()
+    }
+  }, [flushPendingSession])
 
   const recordLocation = useCallback((blockId: string) => {
     if (!reader) return
@@ -311,15 +370,21 @@ export default function LibraryChapterReader() {
     if (currentBlockId.current === resolvedBlockId) return
     const locator = createLocator(resolvedBlockId)
     if (!locator) return
-    currentBlockId.current = blockId
-    setProgress(locator.locations.totalProgression)
-    updateSession({
+    currentBlockId.current = resolvedBlockId
+    const progressPercent = Math.max(1, locator.locations.totalProgression * 100)
+    if (progressBarRef.current) {
+      progressBarRef.current.style.transform = `scaleX(${progressPercent / 100})`
+    }
+    if (progressLabelRef.current) {
+      progressLabelRef.current.textContent = `${Math.round(locator.locations.totalProgression * 100)}% of book`
+    }
+    queueSessionUpdate({
       scriptureId: `${reader.work.id}-${reader.chapter.id}`,
       resumePath: chapterPath(reader.work.id, reader.chapter.id),
       readerLocator: locator,
       updatedAt: new Date().toISOString(),
     })
-  }, [chapterBlocks, createLocator, reader, updateSession])
+  }, [chapterBlocks, createLocator, queueSessionUpdate, reader])
 
   const closeActivePanel = useCallback(() => {
     const trigger = activePanel === 'contents' ? contentsTriggerRef.current : settingsTriggerRef.current
@@ -463,7 +528,7 @@ export default function LibraryChapterReader() {
           </button>
         </div>
         <div className="epub-reader-progress" aria-hidden="true">
-          <span style={{ width: `${Math.max(1, progress * 100)}%` }} />
+          <span ref={progressBarRef} />
         </div>
       </header>
 
@@ -473,7 +538,7 @@ export default function LibraryChapterReader() {
           <h1>{chapter.title}</h1>
           <div>
             <span>{chapter.wordCount ? `${chapter.wordCount.toLocaleString()} words` : `${chapter.pages.length} reading pages`}</span>
-            <span>{Math.round(progress * 100)}% of book</span>
+            <span ref={progressLabelRef}>0% of book</span>
           </div>
         </header>
 

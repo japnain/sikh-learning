@@ -554,7 +554,7 @@ export default function Study() {
   const searchParamsString = searchParams.toString()
 
   useEffect(() => {
-    if (!isApiMode) navigate('/library', { replace: true })
+    if (!isApiMode) navigate('/banis', { replace: true })
   }, [isApiMode, navigate])
 
   const angResult = useAng(
@@ -1150,14 +1150,18 @@ export default function Study() {
   const handleSaveBookmark = () => {
     if (!currentEntry || !currentAng) return
     addBookmark({
-      type: isExactSearchResult ? 'verse' : 'shabad',
+      type: currentFavoriteRouteMode === 'verse'
+        ? 'verse'
+        : currentFavoriteRouteMode === 'shabad'
+          ? 'shabad'
+          : 'bani',
       title: baniName
         ? `${baniName} · ${currentReadingUnit} ${currentAng}`
         : `${currentEntry.scripture} · ${currentReadingUnit} ${currentAng}`,
       source: currentSource,
       ang: currentAng,
       shabadId: currentFavoriteRouteMode === 'canonical' ? undefined : currentShabadId,
-      verseId: isExactSearchResult ? verseIdParam ?? undefined : undefined,
+      verseId: currentFavoriteRouteMode === 'verse' ? verseIdParam ?? undefined : undefined,
       excerpt: isExactSearchResult ? currentEntry.gurmukhi : undefined,
       description: bookmarkText || undefined,
     })

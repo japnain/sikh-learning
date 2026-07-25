@@ -14,9 +14,9 @@ function LocationSpy() {
 
 function renderLibraryRoutes() {
   return render(
-    <MemoryRouter initialEntries={['/library']}>
+    <MemoryRouter initialEntries={['/saved']}>
       <Routes>
-        <Route path="/library" element={<><Library /><LocationSpy /></>} />
+        <Route path="/saved" element={<><Library /><LocationSpy /></>} />
         <Route path="/study" element={<LocationSpy />} />
       </Routes>
     </MemoryRouter>
@@ -63,7 +63,7 @@ describe('Library saved shelf', () => {
     expect(useBookmarksStore.getState().bookmarks).toHaveLength(0)
   })
 
-  test('bookmarks reopen canonical study paths', async () => {
+  test('bookmarks reopen the exact saved shabad', async () => {
     useBookmarksStore.setState({
       bookmarks: [{
         id: 'bookmark-1',
@@ -81,7 +81,7 @@ describe('Library saved shelf', () => {
     fireEvent.click(within(screen.getByTestId('library-bookmarks')).getByRole('link'))
 
     await waitFor(() => {
-      expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=2')
+      expect(screen.getByTestId('location').textContent).toBe('/study?shabadId=50')
     })
   })
 

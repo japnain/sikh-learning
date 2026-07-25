@@ -68,7 +68,7 @@ export default function NavBar() {
       ? 'home'
       : location.pathname === '/banis' || location.pathname.startsWith('/banis/')
         ? 'read'
-        : location.pathname === '/library'
+        : location.pathname === '/saved' || location.pathname.startsWith('/saved/')
           ? 'saved'
           : location.pathname === '/more' || location.pathname.startsWith('/more/')
             ? 'more'
@@ -97,7 +97,7 @@ export default function NavBar() {
     },
     {
       id: 'saved',
-      to: '/library',
+      to: '/saved',
       label: copy.nav.saved,
       ariaLabel: copy.nav.saved,
       Glyph: SavedGlyph,

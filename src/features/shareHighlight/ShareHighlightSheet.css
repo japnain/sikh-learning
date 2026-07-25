@@ -1,10 +1,10 @@
 .share-highlight-sheet {
-  bottom: max(0.5rem, env(safe-area-inset-bottom)) !important;
+  bottom: max(0.375rem, env(safe-area-inset-bottom)) !important;
   display: grid;
   max-height: calc(100dvh - max(1rem, env(safe-area-inset-top)) - max(1rem, env(safe-area-inset-bottom)));
-  max-width: min(62rem, calc(100vw - 1.5rem));
+  max-width: min(62rem, calc(100vw - 0.75rem));
   grid-template-rows: auto minmax(0, 1fr) auto;
-  border-radius: 0.5rem;
+  border-radius: 0.9rem;
 }
 
 .share-highlight__header {
@@ -13,7 +13,7 @@
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid rgb(var(--color-border) / 0.22);
-  padding: 1rem 1rem 0.9rem;
+  padding: 0.9rem 0.85rem 0.82rem;
 }
 
 .share-highlight__preface {
@@ -64,7 +64,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 1rem;
+  padding: 0.8rem;
   scrollbar-gutter: stable;
 }
 
@@ -95,7 +95,7 @@
 .share-highlight__preview-frame--story {
   /* Dense Hukamnamas need a legible proofing view on phones. This only scales
      the composer preview; the export remains a native 1080 × 1920 canvas. */
-  width: min(100%, 21rem);
+  width: min(100%, 23rem);
   aspect-ratio: 9 / 16;
 }
 
@@ -177,6 +177,14 @@
   border: 1px solid rgb(var(--color-border) / 0.22);
   border-radius: 0.5rem;
   background: rgb(var(--color-surface-muted) / 0.34);
+  padding: 0.82rem;
+}
+
+.share-highlight__quiet-layout-note {
+  min-width: 0;
+  border: 1px solid rgb(var(--color-accent) / 0.28);
+  border-radius: 0.7rem;
+  background: rgb(var(--color-accent) / 0.08);
   padding: 0.82rem;
 }
 
@@ -494,7 +502,7 @@
   z-index: 2;
   border-top: 1px solid rgb(var(--color-border) / 0.24);
   background: rgb(var(--color-surface) / 0.96);
-  padding: 0.82rem 1rem max(0.82rem, env(safe-area-inset-bottom));
+  padding: 0.75rem 0.8rem max(0.75rem, env(safe-area-inset-bottom));
   box-shadow: 0 -12px 26px rgb(16 20 18 / 0.07);
   backdrop-filter: blur(14px);
 }

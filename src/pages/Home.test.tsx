@@ -266,7 +266,7 @@ test('saved overview shows only reading, favorites, and review metrics', () => {
   const metrics = screen.getByTestId('home-saved-metrics')
   expect(screen.getByTestId('home-saved-layout')).toContainElement(metrics)
   const savedArt = screen.getByTestId('home-saved-art')
-  expect(savedArt).toHaveAttribute('href', '/library')
+  expect(savedArt).toHaveAttribute('href', '/saved')
   expect(savedArt.querySelector('img')).toHaveAttribute('src', expect.stringContaining('saved-mural'))
   expect(within(metrics).getByText('Bookmarks').parentElement).toHaveTextContent('1')
   expect(within(metrics).getByText('Favorites').parentElement).toHaveTextContent('0')

@@ -284,7 +284,8 @@ function AppShell() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/study" element={<StudyPage />} />
                 <Route path="/study/:scriptureId" element={<StudyPage />} />
-                <Route path="/library" element={<LibraryPage />} />
+                <Route path="/saved" element={<LibraryPage />} />
+                <Route path="/library" element={<Navigate to="/saved" replace />} />
                 <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
                 <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
                 <Route path="/nitnem/customize" element={<NitnemCustomizePage />} />
