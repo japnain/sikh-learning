@@ -25,3 +25,15 @@ test('keeps curated book routes inside the Read navigation flow', () => {
   expect(screen.getByTestId('nav-tab-read')).toHaveAttribute('aria-current', 'page')
   expect(screen.getByTestId('nav-tab-saved')).not.toHaveAttribute('aria-current')
 })
+
+test('uses Saved as the canonical shelf destination', () => {
+  render(
+    <MemoryRouter initialEntries={['/saved']}>
+      <NavBar />
+    </MemoryRouter>
+  )
+
+  expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('href', '/saved')
+  expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('aria-current', 'page')
+  expect(screen.getByTestId('nav-tab-read')).not.toHaveAttribute('aria-current')
+})

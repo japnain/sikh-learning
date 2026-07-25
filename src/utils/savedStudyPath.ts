@@ -12,6 +12,10 @@ function getSavedRouteMode(item: SavedStudyItem) {
     return 'verse'
   }
 
+  if ('type' in item && item.type === 'shabad' && item.shabadId) {
+    return 'shabad'
+  }
+
   return 'canonical'
 }
 

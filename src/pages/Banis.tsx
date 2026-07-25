@@ -468,6 +468,48 @@ function dedupeSearchResults(resultSets: SearchResult[][]): SearchResult[] {
   return Array.from(seen.values())
 }
 
+function normalizeSearchMatchText(value: string) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function refineLatinSearchResults(results: SearchResult[], query: string, mode: SearchMode) {
+  const shouldRefine = (
+    mode === 'english'
+    || (
+      mode === 'auto-detect'
+      && LATIN_SEARCH_PATTERN.test(query)
+      && !GURMUKHI_SEARCH_PATTERN.test(query)
+    )
+  )
+  if (!shouldRefine) return results
+
+  const normalizedQuery = normalizeSearchMatchText(query)
+  if (!normalizedQuery) return results
+
+  const meaningMatches = results.filter(result => (
+    normalizeSearchMatchText(result.translation_en).includes(normalizedQuery)
+  ))
+  const transliterationMatches = results.filter(result => (
+    normalizeSearchMatchText(result.transliteration).includes(normalizedQuery)
+  ))
+
+  if (meaningMatches.length === 0 && transliterationMatches.length === 0) {
+    return results
+  }
+
+  const exactMatches = new Map<string, SearchResult>()
+  for (const result of [...meaningMatches, ...transliterationMatches]) {
+    exactMatches.set(`${result.source}-${result.shabadId}-${result.verseId}`, result)
+  }
+  return Array.from(exactMatches.values())
+}
+
 function isSearchModeParam(value: string | null): value is SearchMode {
   return value !== null && value in SEARCH_MODE_META
 }
@@ -845,6 +887,7 @@ export default function Banis() {
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const searchSequenceRef = useRef(0)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
   const searchFeedbackRef = useRef<HTMLElement | null>(null)
   const setSearchFeedbackElement = useCallback((element: HTMLElement | null) => {
@@ -914,6 +957,7 @@ export default function Banis() {
 
   useEffect(() => {
     return () => {
+      searchSequenceRef.current += 1
       if (debounceRef.current) clearTimeout(debounceRef.current)
     }
   }, [])
@@ -979,6 +1023,7 @@ export default function Banis() {
   }, [location.pathname, location.search, location.state, navigate])
 
   const handleSearch = useCallback((query: string, mode: SearchMode = searchMode, source: SearchSource = searchSource) => {
+    const requestSequence = ++searchSequenceRef.current
     setSearchQuery(query)
     setRaagFilter('all')
     setWriterFilter('all')
@@ -1020,18 +1065,26 @@ export default function Banis() {
         }
 
         const resultSets = fulfilledResults.map(result => result.value)
-        const results = dedupeSearchResults(resultSets)
+        const results = refineLatinSearchResults(
+          dedupeSearchResults(resultSets),
+          trimmed,
+          mode
+        )
+        if (searchSequenceRef.current !== requestSequence) return
         setSearchResults(results)
         setSearchIssue(null)
         setSearchPartialIssue(rejectedResult ? resolveAsyncIssue(rejectedResult.reason).code : null)
         addRecent(trimmed, mode)
       } catch (error) {
+        if (searchSequenceRef.current !== requestSequence) return
         setSearchResults([])
         setSearchIssue(resolveAsyncIssue(error).code)
         setSearchPartialIssue(null)
       } finally {
-        setSearching(false)
-        revealSearchFeedback()
+        if (searchSequenceRef.current === requestSequence) {
+          setSearching(false)
+          revealSearchFeedback()
+        }
       }
       }, 300)
     }, [addRecent, revealSearchFeedback, searchMode, searchSource])
@@ -1144,6 +1197,14 @@ export default function Banis() {
   const appSearchMatches = useAppSearchMatches(
     searchMode === 'ang' ? '' : searchQuery.trim(),
     searchSource
+  )
+  const isEnglishMeaningSearch = (
+    searchMode === 'english'
+    || (
+      searchMode === 'auto-detect'
+      && LATIN_SEARCH_PATTERN.test(searchQuery)
+      && !GURMUKHI_SEARCH_PATTERN.test(searchQuery)
+    )
   )
   const hasActiveSearch = searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength
   const searchStatusMessage = useMemo(() => {
@@ -1452,8 +1513,11 @@ export default function Banis() {
                   {showTransliteration && r.transliteration ? (
                     <p className="font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-0.5"><SearchHighlight text={r.transliteration} query={searchQuery.trim()} /></p>
                   ) : null}
-                  {meaningLanguage === 'en' && r.translation_en ? (
-                    <p className="font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-0.5"><SearchHighlight text={r.translation_en} query={searchQuery.trim()} /></p>
+                  {(meaningLanguage === 'en' || isEnglishMeaningSearch) && r.translation_en ? (
+                    <p className="read-search-result__meaning font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-1">
+                      {isEnglishMeaningSearch ? <span>Meaning</span> : null}
+                      <SearchHighlight text={r.translation_en} query={searchQuery.trim()} />
+                    </p>
                   ) : null}
                 </button>
                 <div className="flex flex-wrap gap-1.5 mt-2">

@@ -47,7 +47,7 @@
   overflow: hidden;
   aspect-ratio: 16 / 9;
   border: 1px solid rgb(var(--color-border) / 0.34);
-  border-radius: 8px;
+  border-radius: 1rem;
   background: rgb(var(--color-surface-muted));
 }
 

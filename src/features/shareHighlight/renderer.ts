@@ -2020,9 +2020,9 @@ function normalizePassageFileBase(value?: string) {
 }
 
 /**
- * Renders a complete Hukamnama to one native 9:16 Story canvas. The artwork's
- * focal point and overlay tone are honored, while the long-form wash deliberately
- * spans the safe reading area instead of relying on a small card text-safe zone.
+ * Renders a complete Hukamnama to one native 9:16 Story canvas. Short readings
+ * may use artwork; manuscript and diptych layouts deliberately switch to a
+ * quiet background so decoration never competes with a complete reading.
  */
 export async function renderShareHighlightStory(
   input: ShareHighlightPassageInput,
@@ -2040,7 +2040,10 @@ export async function renderShareHighlightStory(
   const context = canvas.getContext('2d')
   if (!context) throw new Error('A Canvas 2D rendering context is required.')
 
-  const artworkSrc = input.artwork?.src?.trim()
+  const canUseArtwork = input.content.lines.filter(line => (
+    !line.isHeader && line.gurmukhi.trim()
+  )).length <= 8
+  const artworkSrc = canUseArtwork ? input.artwork?.src?.trim() : null
   const [artwork] = await Promise.all([
     artworkSrc
       ? (options.loadImage ?? loadDecodedImage)(artworkSrc)
@@ -2063,7 +2066,12 @@ export async function renderShareHighlightStory(
   )
 
   context.clearRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
-  drawStoryArtworkBackground(context, artwork, storyProfile, layout.composition)
+  drawStoryArtworkBackground(
+    context,
+    layout.composition === 'expressive' ? artwork : null,
+    storyProfile,
+    layout.composition
+  )
   drawStoryReadingSurface(context, layout, palette)
   drawStoryMetadataSurfaces(context, layout, palette)
   drawStoryHeader(context, seriesLabel, dateLabel, palette, layout)

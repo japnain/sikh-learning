@@ -182,8 +182,27 @@ test('refreshes the skip link target on each route', async () => {
 
   await renderAtPath('/', 'page-home')
   await renderAtPath('/banis', 'page-banis')
-  await renderAtPath('/library', 'page-library')
+  await renderAtPath('/saved', 'page-library')
   await renderAtPath('/more', 'page-more')
+})
+
+test('redirects the legacy Saved route to its canonical path', async () => {
+  window.history.replaceState({}, '', '/library')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  expect(await screen.findByTestId('page-library', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  await waitFor(() => {
+    expect(window.location.pathname).toBe('/saved')
+  }, APP_TEST_WAIT)
 })
 
 test('redirects retired article routes home', async () => {

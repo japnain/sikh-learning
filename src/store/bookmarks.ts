@@ -83,7 +83,13 @@ export const useBookmarksStore = create<BookmarksState>()((set, get) => ({
     setBookmarks(set, bookmarks)
   },
   addBookmark: (b) => {
-    if (get().hasBookmark(b.source, b.ang, b.verseId)) return
+    const alreadySaved = get().bookmarks.some(bookmark => {
+      if (bookmark.source !== b.source || bookmark.ang !== b.ang) return false
+      if (b.verseId) return bookmark.verseId === b.verseId
+      if (b.shabadId) return !bookmark.verseId && bookmark.shabadId === b.shabadId
+      return !bookmark.verseId && !bookmark.shabadId
+    })
+    if (alreadySaved) return
 
     const bookmark = {
       ...b,

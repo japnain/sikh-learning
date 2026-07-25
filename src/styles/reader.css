@@ -1037,8 +1037,13 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   align-self: end;
   min-width: 0;
   width: 100%;
-  padding: 0.9rem 1rem 1rem;
-  background: rgb(10 16 15 / 0.88);
+  padding: clamp(3.5rem, 18vw, 6rem) 1rem 1rem;
+  background: linear-gradient(
+    180deg,
+    rgb(10 16 15 / 0) 0%,
+    rgb(10 16 15 / 0.68) 42%,
+    rgb(10 16 15 / 0.94) 100%
+  );
 }
 
 .read-room-hero__copy .eyebrow {
@@ -1065,7 +1070,7 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   overflow: hidden;
   aspect-ratio: 16 / 9;
   border: 1px solid rgb(var(--color-border) / 0.35);
-  border-radius: 8px;
+  border-radius: 1rem;
   background: rgb(var(--color-surface-muted));
 }
 
@@ -1231,9 +1236,24 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   color: rgb(var(--color-surface));
 }
 
+.read-search-result__meaning {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.45rem;
+  line-height: 1.55;
+}
+
+.read-search-result__meaning > span {
+  color: rgb(var(--color-accent-strong));
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .read-collection-tabs {
-  position: sticky;
-  top: var(--safe-area-top);
+  position: relative;
   z-index: 20;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1291,11 +1311,11 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   min-height: max-content;
   padding: 0;
   border: 1px solid rgb(var(--color-border) / 0.32);
-  border-radius: 8px;
+  border-radius: 1rem;
   background: rgb(var(--color-surface-muted));
   isolation: isolate;
 }
@@ -1333,8 +1353,13 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   grid-row: 1;
   align-self: end;
   width: 100%;
-  padding: 0.9rem 1rem 1rem;
-  background: rgb(10 16 15 / 0.86);
+  padding: clamp(2.75rem, 14vw, 5rem) 1rem 1rem;
+  background: linear-gradient(
+    180deg,
+    rgb(10 16 15 / 0) 0%,
+    rgb(10 16 15 / 0.66) 38%,
+    rgb(10 16 15 / 0.94) 100%
+  );
 }
 
 .read-collection-intro .eyebrow {
@@ -1558,7 +1583,7 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
 
   .read-collection-intro img {
     position: relative;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     height: auto;
   }
 
@@ -1587,16 +1612,21 @@ html[data-theme='dark'] .read-room-shell .read-directory-card--featured {
   }
 
   .read-room-hero__copy {
-    width: min(31rem, calc(100% - 2rem));
-    margin: 1rem;
-    padding: 1.1rem 1.25rem 1.2rem;
+    width: 100%;
+    margin: 0;
+    padding: clamp(8rem, 22vw, 15rem) 1.5rem 1.5rem;
   }
 
   .read-room-hero__art {
     grid-column: 1;
     grid-row: 1;
     width: 100%;
-    aspect-ratio: 16 / 5.5;
+    aspect-ratio: 16 / 9;
+  }
+
+  .read-collection-tabs {
+    position: sticky;
+    top: var(--safe-area-top);
   }
 
   .read-quick-find-card {

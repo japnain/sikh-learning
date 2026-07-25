@@ -706,15 +706,17 @@
   position: sticky;
   top: 0;
   z-index: 60;
-  display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  display: flex;
   min-height: calc(var(--safe-area-top) + 3.7rem);
   align-items: end;
+  justify-content: space-between;
   gap: 0.45rem;
   border-bottom: 1px solid rgb(var(--epub-rule) / 0.45);
-  background: rgb(var(--epub-page-raised) / 0.94);
+  background: rgb(var(--epub-page-raised));
   padding: var(--safe-area-top) max(0.65rem, var(--safe-area-right)) 0.45rem max(0.65rem, var(--safe-area-left));
-  backdrop-filter: blur(18px);
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .epub-reader-topbar__back,
@@ -731,9 +733,19 @@
 }
 
 .epub-reader-topbar__title {
+  position: absolute;
+  top: var(--safe-area-top);
+  bottom: 0.45rem;
+  left: 50%;
+  display: flex;
+  width: min(12rem, calc(100% - 11.5rem));
   min-width: 0;
-  align-self: center;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  pointer-events: none;
 }
 
 .epub-reader-topbar__title > * {
@@ -776,9 +788,12 @@
 
 .epub-reader-progress span {
   display: block;
+  width: 100%;
   height: 100%;
   background: rgb(var(--epub-accent));
-  transition: width 160ms ease-out;
+  transform: scaleX(0.01);
+  transform-origin: left center;
+  will-change: transform;
 }
 
 .epub-reader-main {

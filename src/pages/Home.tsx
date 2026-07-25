@@ -715,7 +715,7 @@ export default function Home() {
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <Link
-              to="/library"
+              to="/saved"
               aria-label={homeCopy.openSaved}
               className="home-door-icon-button"
               data-testid="home-header-saved"
@@ -1081,7 +1081,7 @@ export default function Home() {
           </div>
           {hasSavedContent ? (
             <Link
-              to="/library"
+              to="/saved"
               className="interactive-focus inline-flex min-h-11 shrink-0 items-center gap-1 whitespace-nowrap px-2 font-sans text-sm text-gold-dark dark:text-gold-light"
             >
               {homeCopy.openSaved} <IconArrowRight size={14} />
@@ -1098,7 +1098,7 @@ export default function Home() {
         {hasSavedContent ? (
           <div className="home-saved-layout" data-testid="home-saved-layout">
           <Link
-            to="/library"
+            to="/saved"
             className="home-saved-art-band interactive-focus"
             aria-label={`${homeCopy.openSaved}. ${homeMessages.savedArtworkAlt}`}
             data-testid="home-saved-art"
