@@ -715,8 +715,6 @@
   background: rgb(var(--epub-page-raised));
   padding: var(--safe-area-top) max(0.65rem, var(--safe-area-right)) 0.45rem max(0.65rem, var(--safe-area-left));
   isolation: isolate;
-  transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
 .epub-reader-topbar__back,
@@ -793,7 +791,6 @@
   background: rgb(var(--epub-accent));
   transform: scaleX(0.01);
   transform-origin: left center;
-  will-change: transform;
 }
 
 .epub-reader-main {

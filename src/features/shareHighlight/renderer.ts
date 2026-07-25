@@ -52,9 +52,18 @@ const STORY_SAFE_TOP = 204
 const STORY_SAFE_BOTTOM = 1712
 const STORY_METADATA_X = 72
 const STORY_METADATA_WIDTH = SHARE_HIGHLIGHT_STORY_WIDTH - (STORY_METADATA_X * 2)
-const STORY_FOOTER_BASELINE = STORY_SAFE_BOTTOM - 44
+const STORY_FOOTER_BASELINE = STORY_SAFE_BOTTOM - 18
 const STORY_FOOTER_HORIZONTAL_MARGIN = 72
 const STORY_SCALE_STEP = 0.02
+const MANUSCRIPT_HEADER_CENTER_Y = 220
+const MANUSCRIPT_HEADER_RULE_Y = 258
+const MANUSCRIPT_FOOTER_RULE_Y = 1658
+const MANUSCRIPT_HEADER_GAP = 28
+const MANUSCRIPT_TITLE_MAX_SIZE = 32
+const MANUSCRIPT_TITLE_MIN_SIZE = 23
+const MANUSCRIPT_DATE_MAX_SIZE = 25
+const MANUSCRIPT_DATE_MIN_SIZE = 19
+const MANUSCRIPT_MAX_DISTRIBUTED_GAP = 18
 
 interface StoryCompositionSpec {
   body: ShareHighlightPixelRect
@@ -73,10 +82,7 @@ interface StoryRoleFontSizes {
   meaning: number
 }
 
-type SingleColumnStoryComposition = Exclude<
-  ShareHighlightStoryComposition,
-  'bilingual-diptych'
->
+type SingleColumnStoryComposition = ShareHighlightStoryComposition
 
 const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionSpec> = {
   expressive: {
@@ -91,44 +97,18 @@ const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionS
     headerGap: 8,
   },
   manuscript: {
-    body: { x: 70, y: 378, width: 940, height: 1190 },
-    readingSurface: { x: 42, y: 326, width: 996, height: 1372 },
+    // The parchment itself nearly fills the Story. Text remains inside the
+    // platform-safe editorial region, while the full-height paper removes the
+    // dark dead bands that made long readings feel stranded in the canvas.
+    body: { x: 64, y: 282, width: 952, height: 1362 },
+    readingSurface: { x: 18, y: 72, width: 1044, height: 1776 },
     maximum: { header: 38, gurmukhi: 48, transliteration: 32, meaning: 34 },
-    minimum: { header: 34, gurmukhi: 34, transliteration: 30, meaning: 30 },
-    sectionGap: 5,
-    lineGap: 4,
-    headerGap: 4,
+    minimum: { header: 28, gurmukhi: 28, transliteration: 22, meaning: 22 },
+    sectionGap: 4,
+    lineGap: 5,
+    headerGap: 3,
   },
 }
-
-// A full bilingual Hukamnama is treated as one illuminated manuscript. The
-// artwork remains visible as a narrow side keyline plus a top and bottom
-// frame, while scripture and meaning receive the Story-safe reading area.
-const DIPTYCH_BODY: ShareHighlightPixelRect = {
-  x: 48,
-  y: 296,
-  width: 984,
-  height: 1314,
-}
-const DIPTYCH_READING_SURFACE: ShareHighlightPixelRect = {
-  x: 20,
-  y: 186,
-  width: 1040,
-  height: 1524,
-}
-const DIPTYCH_GUTTER = 20
-const DIPTYCH_HEADER_CENTER_Y = 226
-const DIPTYCH_HEADER_RULE_Y = 266
-const DIPTYCH_HEADER_GAP = 32
-const DIPTYCH_TITLE_MAX_SIZE = 38
-const DIPTYCH_TITLE_MIN_SIZE = 24
-const DIPTYCH_DATE_MAX_SIZE = 28
-const DIPTYCH_DATE_MIN_SIZE = 20
-const DIPTYCH_COLUMN_RATIOS = [0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.48] as const
-const DIPTYCH_GURMUKHI_SIZES = [42, 40, 38, 36, 34, 32] as const
-const DIPTYCH_MEANING_SIZES = [32, 30, 28, 27, 26] as const
-const DIPTYCH_GURMUKHI_GAP = 2
-const DIPTYCH_MEANING_GAP = 4
 
 const STORY_ROLE_SPECS = {
   header: {
@@ -568,17 +548,27 @@ function makeStoryStyle(
   role: ShareHighlightStorySectionDraft['role'],
   isHeader: boolean,
   fontSizes: StoryRoleFontSizes,
-  palette: ShareHighlightOverlayPalette
+  palette: ShareHighlightOverlayPalette,
+  composition: SingleColumnStoryComposition
 ): ShareHighlightTextStyle {
   const storyRole = role === 'gurmukhi' && isHeader ? 'header' : role
   const spec = STORY_ROLE_SPECS[storyRole]
   const fontSize = fontSizes[storyRole]
+  const manuscriptLineHeightRatio = role === 'meaning'
+    ? 1.18
+    : role === 'transliteration'
+      ? 1.2
+      : 1.16
   return {
     fontFamily: spec.fontFamily,
     fontSize,
     fontStyle: spec.fontStyle,
-    fontWeight: spec.fontWeight,
-    lineHeight: Math.ceil(fontSize * spec.lineHeightRatio),
+    fontWeight: composition === 'manuscript' && role === 'meaning'
+      ? 400
+      : spec.fontWeight,
+    lineHeight: Math.ceil(fontSize * (
+      composition === 'manuscript' ? manuscriptLineHeightRatio : spec.lineHeightRatio
+    )),
     color: role === 'gurmukhi' ? palette.primaryText : palette.secondaryText,
   }
 }
@@ -599,7 +589,13 @@ function draftStoryLine(
 
   const spec = STORY_COMPOSITIONS[composition]
   const sections = values.map(([role, value]) => {
-    const style = makeStoryStyle(role, Boolean(line.isHeader), fontSizes, palette)
+    const style = makeStoryStyle(
+      role,
+      Boolean(line.isHeader),
+      fontSizes,
+      palette,
+      composition
+    )
     const lines = wrapShareHighlightText(value, spec.body.width, style, measure)
     return {
       role,
@@ -693,10 +689,23 @@ function buildStoryLayout(
   contentScale: number
 ): ShareHighlightStoryLayout {
   const spec = STORY_COMPOSITIONS[composition]
-  const verticalInset = Math.min(
-    composition === 'expressive' ? 52 : 48,
-    Math.max(0, (spec.body.height - measured.requiredHeight) / 2)
+  const expandableGapCount = composition === 'manuscript'
+    ? measured.drafts.slice(0, -1).filter(draft => !draft.line.isHeader).length
+    : 0
+  const availableAfterText = Math.max(0, spec.body.height - measured.requiredHeight)
+  const distributedLineGap = expandableGapCount > 0
+    ? Math.min(
+        MANUSCRIPT_MAX_DISTRIBUTED_GAP,
+        Math.max(0, availableAfterText - 36) / expandableGapCount
+      )
+    : 0
+  const laidOutContentHeight = (
+    measured.requiredHeight
+    + (distributedLineGap * expandableGapCount)
   )
+  const verticalInset = composition === 'expressive'
+    ? Math.min(52, Math.max(0, (spec.body.height - measured.requiredHeight) / 2))
+    : Math.max(0, (spec.body.height - laidOutContentHeight) / 2)
   const protectedSubject = storyProfile?.protectedSubject
   const protectedCenterY = protectedSubject
     ? protectedSubject.bounds.y + (protectedSubject.bounds.height / 2)
@@ -739,6 +748,9 @@ function buildStoryLayout(
     })
     if (draftIndex < measured.drafts.length - 1) {
       cursorY += storyLineGap(draft.line, composition, measured.gapScale)
+      if (composition === 'manuscript' && !draft.line.isHeader) {
+        cursorY += distributedLineGap
+      }
     }
   })
 
@@ -761,16 +773,7 @@ function buildStoryLayout(
           measured.requiredHeight + 84
         ),
       }
-    : {
-        ...spec.readingSurface,
-        // A manuscript should feel like a deliberately sized page, not a
-        // mostly empty sheet. The maximum still supports genuinely long
-        // Hukamnamas, while shorter dense readings reveal more of the art.
-        height: Math.min(
-          spec.readingSurface.height,
-          Math.max(780, Math.ceil(measured.requiredHeight + 280))
-        ),
-      }
+    : { ...spec.readingSurface }
 
   return {
     width: SHARE_HIGHLIGHT_STORY_WIDTH,
@@ -851,218 +854,6 @@ function tryStoryComposition(
   }
 }
 
-type DiptychRole = 'gurmukhi' | 'meaning'
-
-interface DiptychSectionDraft {
-  sourceLineId: ShareHighlightPassageLine['id']
-  isHeader: boolean
-  lines: string[]
-  style: ShareHighlightTextStyle
-  height: number
-}
-
-interface DiptychColumnMeasurement {
-  role: DiptychRole
-  fontSize: number
-  requiredHeight: number
-  sections: DiptychSectionDraft[]
-}
-
-interface DiptychCandidate {
-  gurmukhiRect: ShareHighlightPixelRect
-  meaningRect: ShareHighlightPixelRect
-  dividerX: number
-  gurmukhi: DiptychColumnMeasurement
-  meaning: DiptychColumnMeasurement
-}
-
-function measureDiptychColumn(
-  lines: readonly ShareHighlightPassageLine[],
-  role: DiptychRole,
-  rect: ShareHighlightPixelRect,
-  fontSize: number,
-  measure: ShareHighlightTextMeasure
-): DiptychColumnMeasurement {
-  const palette = resolveShareHighlightOverlayPalette('light')
-  const fontSizes: StoryRoleFontSizes = {
-    header: fontSize,
-    gurmukhi: fontSize,
-    transliteration: DIPTYCH_MEANING_SIZES[0],
-    meaning: fontSize,
-  }
-  const sections = lines.flatMap<DiptychSectionDraft>(line => {
-    const value = role === 'gurmukhi' ? line.gurmukhi : line.meaning
-    if (!value) return []
-    const baseStyle = makeStoryStyle(role, Boolean(line.isHeader), fontSizes, palette)
-    const style = role === 'meaning'
-      ? {
-          ...baseStyle,
-          fontWeight: 400 as const,
-          lineHeight: Math.ceil(fontSize * 1.24),
-        }
-      : baseStyle
-    const wrapped = wrapShareHighlightText(value, rect.width, style, measure)
-    return [{
-      sourceLineId: line.id,
-      isHeader: Boolean(line.isHeader),
-      lines: wrapped,
-      style,
-      height: wrapped.length * style.lineHeight,
-    }]
-  })
-  const gap = role === 'gurmukhi' ? DIPTYCH_GURMUKHI_GAP : DIPTYCH_MEANING_GAP
-  const requiredHeight = sections.reduce((total, section, index) => (
-    total + section.height + (index < sections.length - 1 ? gap : 0)
-  ), 0)
-
-  return { role, fontSize, requiredHeight, sections }
-}
-
-function findDiptychColumnFit(
-  lines: readonly ShareHighlightPassageLine[],
-  role: DiptychRole,
-  rect: ShareHighlightPixelRect,
-  sizes: readonly number[],
-  measure: ShareHighlightTextMeasure
-) {
-  for (const size of sizes) {
-    const candidate = measureDiptychColumn(lines, role, rect, size, measure)
-    if (candidate.requiredHeight <= rect.height) return candidate
-  }
-  return null
-}
-
-function isBetterDiptychCandidate(
-  candidate: DiptychCandidate,
-  current: DiptychCandidate | null
-) {
-  if (!current) return true
-  if (candidate.meaning.fontSize !== current.meaning.fontSize) {
-    return candidate.meaning.fontSize > current.meaning.fontSize
-  }
-  if (candidate.gurmukhi.fontSize !== current.gurmukhi.fontSize) {
-    return candidate.gurmukhi.fontSize > current.gurmukhi.fontSize
-  }
-  return Math.max(candidate.gurmukhi.requiredHeight, candidate.meaning.requiredHeight)
-    < Math.max(current.gurmukhi.requiredHeight, current.meaning.requiredHeight)
-}
-
-function layOutDiptychSections(
-  measurement: DiptychColumnMeasurement,
-  rect: ShareHighlightPixelRect
-): ShareHighlightStoryTextSection[] {
-  const gap = measurement.role === 'gurmukhi'
-    ? DIPTYCH_GURMUKHI_GAP
-    : DIPTYCH_MEANING_GAP
-  // Both language columns share a strong top edge. Their line breaks remain
-  // independent, so neither language inherits awkward gaps from the other.
-  let cursorY = rect.y
-
-  return measurement.sections.map((section, index) => {
-    const laidOut: ShareHighlightStoryTextSection = {
-      role: measurement.role,
-      lines: section.lines,
-      style: section.style,
-      sourceLineId: section.sourceLineId,
-      isHeader: section.isHeader,
-      x: rect.x,
-      y: cursorY,
-      width: rect.width,
-      height: section.height,
-    }
-    cursorY += section.height + (index < measurement.sections.length - 1 ? gap : 0)
-    return laidOut
-  })
-}
-
-function tryBilingualDiptych(
-  lines: readonly ShareHighlightPassageLine[],
-  measure: ShareHighlightTextMeasure,
-  storyProfile?: ShareHighlightStoryArtworkProfile
-): ShareHighlightStoryLayout | null {
-  const usableWidth = DIPTYCH_BODY.width - DIPTYCH_GUTTER
-  let best: DiptychCandidate | null = null
-
-  for (const ratio of DIPTYCH_COLUMN_RATIOS) {
-    const gurmukhiWidth = Math.round(usableWidth * ratio)
-    const meaningWidth = usableWidth - gurmukhiWidth
-    const gurmukhiRect: ShareHighlightPixelRect = {
-      x: DIPTYCH_BODY.x,
-      y: DIPTYCH_BODY.y,
-      width: gurmukhiWidth,
-      height: DIPTYCH_BODY.height,
-    }
-    const meaningRect: ShareHighlightPixelRect = {
-      x: DIPTYCH_BODY.x + gurmukhiWidth + DIPTYCH_GUTTER,
-      y: DIPTYCH_BODY.y,
-      width: meaningWidth,
-      height: DIPTYCH_BODY.height,
-    }
-    const gurmukhi = findDiptychColumnFit(
-      lines,
-      'gurmukhi',
-      gurmukhiRect,
-      DIPTYCH_GURMUKHI_SIZES,
-      measure
-    )
-    const meaning = findDiptychColumnFit(
-      lines,
-      'meaning',
-      meaningRect,
-      DIPTYCH_MEANING_SIZES,
-      measure
-    )
-    if (!gurmukhi || !meaning) continue
-
-    const candidate: DiptychCandidate = {
-      gurmukhiRect,
-      meaningRect,
-      dividerX: gurmukhiRect.x + gurmukhiRect.width + (DIPTYCH_GUTTER / 2),
-      gurmukhi,
-      meaning,
-    }
-    if (isBetterDiptychCandidate(candidate, best)) best = candidate
-  }
-
-  if (!best) return null
-  const sections = [
-    ...layOutDiptychSections(best.gurmukhi, best.gurmukhiRect),
-    ...layOutDiptychSections(best.meaning, best.meaningRect),
-  ]
-
-  return {
-    width: SHARE_HIGHLIGHT_STORY_WIDTH,
-    height: SHARE_HIGHLIGHT_STORY_HEIGHT,
-    body: { ...DIPTYCH_BODY },
-    readingSurface: { ...DIPTYCH_READING_SURFACE },
-    contentScale: Math.min(
-      best.gurmukhi.fontSize / DIPTYCH_GURMUKHI_SIZES[0],
-      best.meaning.fontSize / DIPTYCH_MEANING_SIZES[0]
-    ),
-    density: 'dense',
-    composition: 'bilingual-diptych',
-    columns: {
-      gurmukhi: best.gurmukhiRect,
-      meaning: best.meaningRect,
-      dividerX: best.dividerX,
-    },
-    artworkMode: storyProfile?.mode ?? 'portrait-bleed',
-    fit: {
-      supportRoles: ['meaning'],
-      fontSizes: {
-        gurmukhi: best.gurmukhi.fontSize,
-        meaning: best.meaning.fontSize,
-      },
-      atReadabilityFloor: (
-        best.gurmukhi.fontSize === DIPTYCH_GURMUKHI_SIZES.at(-1)
-        || best.meaning.fontSize === DIPTYCH_MEANING_SIZES.at(-1)
-      ),
-    },
-    sourceLineIds: lines.map(line => line.id),
-    sections,
-  }
-}
-
 /**
  * Lays out the complete ordered reading on one native 9:16 Story canvas.
  * Type and rhythm adapt together; text is wrapped but never elided, truncated,
@@ -1093,7 +884,6 @@ export function layoutShareHighlightStory(
   }
 
   const supportRoles = storySupportRoles(lines)
-  const meaningOnly = supportRoles.length === 1 && supportRoles[0] === 'meaning'
   const manuscript = tryStoryComposition(
     lines,
     measure,
@@ -1101,15 +891,6 @@ export function layoutShareHighlightStory(
     storyProfile,
     overlayTone
   )
-
-  // Once a reading grows beyond the short-form card, prefer the facing-page
-  // manuscript even when a tightly stacked fallback could technically fit.
-  // A short but unusually wordy passage may also reach this branch after its
-  // stacked manuscript fails.
-  if (meaningOnly && (verseCount > 8 || !manuscript.layout)) {
-    const diptych = tryBilingualDiptych(lines, measure, storyProfile)
-    if (diptych) return diptych
-  }
 
   if (manuscript.layout) return manuscript.layout
 
@@ -1468,16 +1249,16 @@ function drawStoryReadingSurface(
   layout: ShareHighlightStoryLayout,
   palette: ShareHighlightOverlayPalette
 ) {
-  const isDiptych = layout.composition === 'bilingual-diptych'
+  const isManuscript = layout.composition === 'manuscript'
   context.save()
   context.shadowColor = 'rgba(8, 5, 3, 0.28)'
-  context.shadowBlur = isDiptych ? 24 : layout.composition !== 'expressive' ? 34 : 24
+  context.shadowBlur = isManuscript ? 24 : 24
   context.shadowOffsetX = 0
-  context.shadowOffsetY = isDiptych ? 8 : 12
+  context.shadowOffsetY = isManuscript ? 8 : 12
   roundedRectanglePath(
     context,
     layout.readingSurface,
-    isDiptych ? 32 : layout.composition !== 'expressive' ? 42 : 54
+    isManuscript ? 40 : 54
   )
   if (layout.composition !== 'expressive' && palette.kind === 'parchment') {
     const parchment = context.createLinearGradient(
@@ -1500,7 +1281,7 @@ function drawStoryReadingSurface(
     : 'rgba(245, 224, 188, 0.22)'
   context.stroke()
 
-  if (isDiptych) {
+  if (isManuscript) {
     const keylineInset = 10
     roundedRectanglePath(context, {
       x: layout.readingSurface.x + keylineInset,
@@ -1515,33 +1296,6 @@ function drawStoryReadingSurface(
   context.restore()
 }
 
-function drawStoryDiptychDivider(
-  context: CanvasRenderingContext2D,
-  layout: ShareHighlightStoryLayout
-) {
-  if (!layout.columns) return
-
-  context.save()
-  const divider = context.createLinearGradient(
-    0,
-    layout.body.y,
-    0,
-    layout.body.y + layout.body.height
-  )
-  divider.addColorStop(0, 'rgba(105, 75, 43, 0)')
-  divider.addColorStop(0.08, 'rgba(105, 75, 43, 0.2)')
-  divider.addColorStop(0.92, 'rgba(105, 75, 43, 0.2)')
-  divider.addColorStop(1, 'rgba(105, 75, 43, 0)')
-  context.fillStyle = divider
-  context.fillRect(
-    layout.columns.dividerX,
-    layout.body.y + 4,
-    1,
-    layout.body.height - 8
-  )
-  context.restore()
-}
-
 function drawStoryMetadataSurfaces(
   context: CanvasRenderingContext2D,
   layout: ShareHighlightStoryLayout,
@@ -1550,15 +1304,21 @@ function drawStoryMetadataSurfaces(
   const surfaceFill = storySurfaceFill(palette, layout.composition === 'expressive')
   context.save()
 
-  if (layout.composition === 'bilingual-diptych') {
-    // The title and date live inside the manuscript instead of occupying a
-    // second floating card. A hairline keeps the header distinct without
-    // taking meaningful space from either language column.
+  if (layout.composition === 'manuscript') {
+    // Metadata and footer are part of the same sheet, separated by hairlines
+    // rather than floating cards. This gives the complete reading almost the
+    // whole 9:16 canvas without sacrificing Story-safe text placement.
     context.fillStyle = 'rgba(105, 75, 43, 0.2)'
     context.fillRect(
-      DIPTYCH_BODY.x,
-      DIPTYCH_HEADER_RULE_Y,
-      DIPTYCH_BODY.width,
+      STORY_COMPOSITIONS.manuscript.body.x,
+      MANUSCRIPT_HEADER_RULE_Y,
+      STORY_COMPOSITIONS.manuscript.body.width,
+      2
+    )
+    context.fillRect(
+      STORY_COMPOSITIONS.manuscript.body.x,
+      MANUSCRIPT_FOOTER_RULE_Y,
+      STORY_COMPOSITIONS.manuscript.body.width,
       2
     )
     context.restore()
@@ -1588,38 +1348,42 @@ function drawStoryMetadataSurfaces(
   context.restore()
 }
 
-function resolveDiptychHeaderTypography(
+function resolveManuscriptHeaderTypography(
   context: CanvasRenderingContext2D,
   seriesLabel: string,
   dateLabel: string | null
 ) {
   const maximumSteps = Math.max(
-    DIPTYCH_TITLE_MAX_SIZE - DIPTYCH_TITLE_MIN_SIZE,
-    DIPTYCH_DATE_MAX_SIZE - DIPTYCH_DATE_MIN_SIZE
+    MANUSCRIPT_TITLE_MAX_SIZE - MANUSCRIPT_TITLE_MIN_SIZE,
+    MANUSCRIPT_DATE_MAX_SIZE - MANUSCRIPT_DATE_MIN_SIZE
   )
 
   for (let step = 0; step <= maximumSteps; step += 1) {
     const progress = maximumSteps === 0 ? 1 : step / maximumSteps
     const titleSize = Math.round(
-      DIPTYCH_TITLE_MAX_SIZE
-      - ((DIPTYCH_TITLE_MAX_SIZE - DIPTYCH_TITLE_MIN_SIZE) * progress)
+      MANUSCRIPT_TITLE_MAX_SIZE
+      - ((MANUSCRIPT_TITLE_MAX_SIZE - MANUSCRIPT_TITLE_MIN_SIZE) * progress)
     )
     const dateSize = Math.round(
-      DIPTYCH_DATE_MAX_SIZE
-      - ((DIPTYCH_DATE_MAX_SIZE - DIPTYCH_DATE_MIN_SIZE) * progress)
+      MANUSCRIPT_DATE_MAX_SIZE
+      - ((MANUSCRIPT_DATE_MAX_SIZE - MANUSCRIPT_DATE_MIN_SIZE) * progress)
     )
     context.font = `normal 650 ${titleSize}px "Cormorant Garamond", serif`
     const titleWidth = context.measureText(seriesLabel).width
     context.font = `normal 600 ${dateSize}px "Plus Jakarta Sans", sans-serif`
     const dateWidth = dateLabel ? context.measureText(dateLabel).width : 0
-    const requiredWidth = titleWidth + (dateLabel ? DIPTYCH_HEADER_GAP + dateWidth : 0)
+    const requiredWidth = titleWidth + (
+      dateLabel ? MANUSCRIPT_HEADER_GAP + dateWidth : 0
+    )
 
-    if (requiredWidth <= DIPTYCH_BODY.width) return { titleSize, dateSize }
+    if (requiredWidth <= STORY_COMPOSITIONS.manuscript.body.width) {
+      return { titleSize, dateSize }
+    }
   }
 
   return {
-    titleSize: DIPTYCH_TITLE_MIN_SIZE,
-    dateSize: DIPTYCH_DATE_MIN_SIZE,
+    titleSize: MANUSCRIPT_TITLE_MIN_SIZE,
+    dateSize: MANUSCRIPT_DATE_MIN_SIZE,
   }
 }
 
@@ -1640,21 +1404,22 @@ function drawStoryHeader(
   context.font = 'normal 700 32px "Plus Jakarta Sans", sans-serif'
   context.fillStyle = palette.primaryText
 
-  if (layout.composition === 'bilingual-diptych') {
-    const headerRight = DIPTYCH_BODY.x + DIPTYCH_BODY.width
-    const typography = resolveDiptychHeaderTypography(context, seriesLabel, dateLabel)
+  if (layout.composition === 'manuscript') {
+    const manuscriptBody = STORY_COMPOSITIONS.manuscript.body
+    const headerRight = manuscriptBody.x + manuscriptBody.width
+    const typography = resolveManuscriptHeaderTypography(context, seriesLabel, dateLabel)
 
     context.textBaseline = 'middle'
     context.font = `normal 650 ${typography.titleSize}px "Cormorant Garamond", serif`
     context.fillStyle = palette.primaryText
     context.textAlign = 'left'
-    context.fillText(seriesLabel, DIPTYCH_BODY.x, DIPTYCH_HEADER_CENTER_Y)
+    context.fillText(seriesLabel, manuscriptBody.x, MANUSCRIPT_HEADER_CENTER_Y)
 
     if (dateLabel) {
       context.font = `normal 600 ${typography.dateSize}px "Plus Jakarta Sans", sans-serif`
       context.fillStyle = palette.secondaryText
       context.textAlign = 'right'
-      context.fillText(dateLabel, headerRight, DIPTYCH_HEADER_CENTER_Y)
+      context.fillText(dateLabel, headerRight, MANUSCRIPT_HEADER_CENTER_Y)
     }
     context.restore()
     return
@@ -1736,18 +1501,20 @@ function drawStoryFooter(
   palette: ShareHighlightOverlayPalette,
   layout: ShareHighlightStoryLayout
 ) {
-  const baseline = layout.composition !== 'expressive'
+  const isManuscript = layout.composition === 'manuscript'
+  const baseline = isManuscript
     ? Math.min(
         STORY_FOOTER_BASELINE,
         layout.readingSurface.y + layout.readingSurface.height - 34
       )
     : STORY_FOOTER_BASELINE
+  const fontSize = isManuscript ? 24 : 30
   context.save()
   context.shadowColor = palette.shadow
   context.shadowBlur = 4
   context.shadowOffsetX = 0
   context.shadowOffsetY = 1
-  context.font = 'normal 600 30px "Plus Jakarta Sans", sans-serif'
+  context.font = `normal 600 ${fontSize}px "Plus Jakarta Sans", sans-serif`
   context.fillStyle = palette.secondaryText
   context.textAlign = 'left'
   context.textBaseline = 'alphabetic'
@@ -1757,7 +1524,7 @@ function drawStoryFooter(
     baseline,
     650
   )
-  context.font = 'normal 700 30px "Plus Jakarta Sans", sans-serif'
+  context.font = `normal 700 ${fontSize}px "Plus Jakarta Sans", sans-serif`
   context.fillStyle = palette.primaryText
   context.textAlign = 'right'
   context.fillText(
@@ -1999,7 +1766,7 @@ function drawStoryArtworkBackground(
     context.fillStyle = gradient
     context.fillRect(0, destinationHeight - fadeHeight, SHARE_HIGHLIGHT_STORY_WIDTH, fadeHeight)
   } else if (profile.mode === 'pattern-frame') {
-    const frameInset = composition === 'bilingual-diptych' ? 10 : 24
+    const frameInset = 24
     context.save()
     roundedRectanglePath(context, {
       x: frameInset,
@@ -2021,8 +1788,8 @@ function normalizePassageFileBase(value?: string) {
 
 /**
  * Renders a complete Hukamnama to one native 9:16 Story canvas. Short readings
- * may use artwork; manuscript and diptych layouts deliberately switch to a
- * quiet background so decoration never competes with a complete reading.
+ * may use artwork; manuscript layouts deliberately switch to a quiet
+ * full-height parchment so decoration never competes with a complete reading.
  */
 export async function renderShareHighlightStory(
   input: ShareHighlightPassageInput,
@@ -2075,7 +1842,6 @@ export async function renderShareHighlightStory(
   drawStoryReadingSurface(context, layout, palette)
   drawStoryMetadataSurfaces(context, layout, palette)
   drawStoryHeader(context, seriesLabel, dateLabel, palette, layout)
-  drawStoryDiptychDivider(context, layout)
   layout.sections.forEach(section => drawTextSection(context, section, palette))
   drawStoryFooter(context, sourceLabel, palette, layout)
   return canvas

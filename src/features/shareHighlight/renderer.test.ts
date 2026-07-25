@@ -185,6 +185,27 @@ const july18Ang683Reading: ShareHighlightPassageLine[] = [
   },
 ]
 
+// Exact BaniDB line pairs shown in the July 24 screenshot from the report.
+const july24Ang555Reading: ShareHighlightPassageLine[] = [
+  { id: 'jul24-24439', gurmukhi: 'ਸਲੋਕ ਮਃ ੩ ॥', meaning: 'Shalok, Third Mehla:' },
+  { id: 'jul24-24440', gurmukhi: 'ਹਉਮੈ ਵਿਚਿ ਜਗਤੁ ਮੁਆ ਮਰਦੋ ਮਰਦਾ ਜਾਇ ॥', meaning: 'In egotism, the world is dead; it dies and dies, again and again.' },
+  { id: 'jul24-24441', gurmukhi: 'ਜਿਚਰੁ ਵਿਚਿ ਦੰਮੁ ਹੈ ਤਿਚਰੁ ਨ ਚੇਤਈ ਕਿ ਕਰੇਗੁ ਅਗੈ ਜਾਇ ॥', meaning: 'As long as there is breath in the body, he does not remember the Lord; what will he do in the world hereafter?' },
+  { id: 'jul24-24442', gurmukhi: 'ਗਿਆਨੀ ਹੋਇ ਸੁ ਚੇਤੰਨੁ ਹੋਇ ਅਗਿਆਨੀ ਅੰਧੁ ਕਮਾਇ ॥', meaning: 'One who remembers the Lord is a spiritual teacher; the ignorant one acts blindly.' },
+  { id: 'jul24-24443', gurmukhi: 'ਨਾਨਕ ਏਥੈ ਕਮਾਵੈ ਸੋ ਮਿਲੈ ਅਗੈ ਪਾਏ ਜਾਇ ॥੧॥', meaning: 'O Nanak, whatever one does in this world, determines what he shall receive in the world hereafter. ||1||' },
+  { id: 'jul24-24444', gurmukhi: 'ਮਃ ੩ ॥', meaning: 'Third Mehla:' },
+  { id: 'jul24-24445', gurmukhi: 'ਧੁਰਿ ਖਸਮੈ ਕਾ ਹੁਕਮੁ ਪਇਆ ਵਿਣੁ ਸਤਿਗੁਰ ਚੇਤਿਆ ਨ ਜਾਇ ॥', meaning: 'From the very beginning, it has been the Will of the Lord Master, that He cannot be remembered without the True Guru.' },
+  { id: 'jul24-24446', gurmukhi: 'ਸਤਿਗੁਰਿ ਮਿਲਿਐ ਅੰਤਰਿ ਰਵਿ ਰਹਿਆ ਸਦਾ ਰਹਿਆ ਲਿਵ ਲਾਇ ॥', meaning: "Meeting the True Guru, he realizes that the Lord is permeating and pervading deep within him; he remains forever absorbed in the Lord's Love." },
+  { id: 'jul24-24447', gurmukhi: 'ਦਮਿ ਦਮਿ ਸਦਾ ਸਮਾਲਦਾ ਦੰਮੁ ਨ ਬਿਰਥਾ ਜਾਇ ॥', meaning: 'With each and every breath, he constantly remembers the Lord in meditation; not a single breath passes in vain.' },
+  { id: 'jul24-24448', gurmukhi: 'ਜਨਮ ਮਰਨ ਕਾ ਭਉ ਗਇਆ ਜੀਵਨ ਪਦਵੀ ਪਾਇ ॥', meaning: 'His fears of birth and death depart, and he obtains the honored state of eternal life.' },
+  { id: 'jul24-24449', gurmukhi: 'ਨਾਨਕ ਇਹੁ ਮਰਤਬਾ ਤਿਸ ਨੋ ਦੇਇ ਜਿਸ ਨੋ ਕਿਰਪਾ ਕਰੇ ਰਜਾਇ ॥੨॥', meaning: 'O Nanak, He bestows this rank upon that mortal, upon whom He showers His Mercy. ||2||' },
+  { id: 'jul24-24450', gurmukhi: 'ਪਉੜੀ ॥', meaning: 'Pauree:' },
+  { id: 'jul24-24451', gurmukhi: 'ਆਪੇ ਦਾਨਾਂ ਬੀਨਿਆ ਆਪੇ ਪਰਧਾਨਾਂ ॥', meaning: 'He Himself is all-wise and all-knowing; He Himself is supreme.' },
+  { id: 'jul24-24452', gurmukhi: 'ਆਪੇ ਰੂਪ ਦਿਖਾਲਦਾ ਆਪੇ ਲਾਇ ਧਿਆਨਾਂ ॥', meaning: 'He Himself reveals His form, and He Himself enjoins us to His meditation.' },
+  { id: 'jul24-24453', gurmukhi: 'ਆਪੇ ਮੋਨੀ ਵਰਤਦਾ ਆਪੇ ਕਥੈ ਗਿਆਨਾਂ ॥', meaning: 'He Himself poses as a silent sage, and He Himself speaks spiritual wisdom.' },
+  { id: 'jul24-24454', gurmukhi: 'ਕਉੜਾ ਕਿਸੈ ਨ ਲਗਈ ਸਭਨਾ ਹੀ ਭਾਨਾ ॥', meaning: 'He does not seem bitter to anyone; He is pleasing to all.' },
+  { id: 'jul24-24455', gurmukhi: 'ਉਸਤਤਿ ਬਰਨਿ ਨ ਸਕੀਐ ਸਦ ਸਦ ਕੁਰਬਾਨਾ ॥੧੯॥', meaning: 'His Praises cannot be described; forever and ever, I am a sacrifice to Him. ||19||' },
+]
+
 const twentyLineBilingualReading: ShareHighlightPassageLine[] = Array.from(
   { length: 20 },
   (_, index) => ({
@@ -538,38 +559,25 @@ describe('single-frame full-passage Story layout', () => {
     ).sourceLineIds).toHaveLength(14)
   })
 
-  it('fits the exact July 18 Ang 683 Hukamnama as one complete bilingual diptych', () => {
+  it('fits the exact July 18 Ang 683 Hukamnama as one complete interleaved manuscript', () => {
     const layout = layoutShareHighlightStory(july18Ang683Reading, measureStoryByCharacter, 'light')
 
     expect(layout).toMatchObject({
       width: 1080,
       height: 1920,
-      composition: 'bilingual-diptych',
+      composition: 'manuscript',
       fit: {
         supportRoles: ['meaning'],
       },
     })
-    expect(layout.readingSurface).toEqual({ x: 20, y: 186, width: 1040, height: 1524 })
-    expect(layout.body).toEqual({ x: 48, y: 296, width: 984, height: 1314 })
-    expect(layout.columns).toBeDefined()
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(40)
-    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(32)
+    expect(layout.readingSurface).toEqual({ x: 18, y: 72, width: 1044, height: 1776 })
+    expect(layout.body).toEqual({ x: 64, y: 282, width: 952, height: 1362 })
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(28)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(22)
     expect(layout.sourceLineIds).toEqual(july18Ang683Reading.map(line => line.id))
-
-    const columns = layout.columns!
-    const contentRatio = columns.gurmukhi.width / (
-      columns.gurmukhi.width + columns.meaning.width
+    expect(layout.sections.map(section => section.role)).toEqual(
+      july18Ang683Reading.flatMap(() => ['gurmukhi', 'meaning'])
     )
-    expect(contentRatio).toBeGreaterThanOrEqual(0.319)
-    expect(contentRatio).toBeLessThanOrEqual(0.48)
-    expect(columns.gurmukhi.x + columns.gurmukhi.width).toBeLessThan(columns.dividerX)
-    expect(columns.dividerX).toBeLessThan(columns.meaning.x)
-    expect(columns.meaning.x + columns.meaning.width).toBe(layout.body.x + layout.body.width)
-
-    expect(layout.sections.map(section => section.role)).toEqual([
-      ...Array.from({ length: 13 }, () => 'gurmukhi'),
-      ...Array.from({ length: 13 }, () => 'meaning'),
-    ])
     for (const line of july18Ang683Reading) {
       const gurmukhi = layout.sections.find(section => (
         section.sourceLineId === line.id && section.role === 'gurmukhi'
@@ -579,31 +587,76 @@ describe('single-frame full-passage Story layout', () => {
       ))
       expect(gurmukhi?.lines.join(' ')).toBe(line.gurmukhi)
       expect(meaning?.lines.join(' ')).toBe(line.meaning)
+      expect(gurmukhi).toMatchObject({ x: layout.body.x, width: layout.body.width })
+      expect(meaning).toMatchObject({ x: layout.body.x, width: layout.body.width })
+      expect(meaning!.y).toBeGreaterThanOrEqual(gurmukhi!.y + gurmukhi!.height)
       expect([...gurmukhi!.lines, ...meaning!.lines].join(' ')).not.toMatch(/…|\.\.\./)
     }
     expect(layout.sections.every(section => (
       section.y >= layout.body.y
       && section.y + section.height <= layout.body.y + layout.body.height
     ))).toBe(true)
+    const usedTop = layout.sections[0]!.y
+    const usedBottom = layout.sections.at(-1)!.y + layout.sections.at(-1)!.height
+    expect((usedBottom - usedTop) / layout.body.height).toBeGreaterThan(0.8)
   })
 
-  it('keeps a twenty-line bilingual reading legible when the two columns can fit', () => {
+  it('fits every July 24 Ang 555 line and meaning in screenshot order at full width', () => {
+    const layout = layoutShareHighlightStory(
+      july24Ang555Reading,
+      measureStoryByCharacter,
+      'light'
+    )
+
+    expect(layout.composition).toBe('manuscript')
+    expect(layout.sourceLineIds).toEqual(july24Ang555Reading.map(line => line.id))
+    expect(layout.sections.map(section => section.role)).toEqual(
+      july24Ang555Reading.flatMap(() => ['gurmukhi', 'meaning'])
+    )
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(28)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(22)
+
+    for (const [index, line] of july24Ang555Reading.entries()) {
+      const gurmukhi = layout.sections[index * 2]!
+      const meaning = layout.sections[(index * 2) + 1]!
+      expect(gurmukhi).toMatchObject({
+        role: 'gurmukhi',
+        sourceLineId: line.id,
+        x: layout.body.x,
+        width: layout.body.width,
+      })
+      expect(meaning).toMatchObject({
+        role: 'meaning',
+        sourceLineId: line.id,
+        x: layout.body.x,
+        width: layout.body.width,
+      })
+      expect(gurmukhi.lines.join(' ')).toBe(line.gurmukhi)
+      expect(meaning.lines.join(' ')).toBe(line.meaning)
+      expect(meaning.y).toBeGreaterThanOrEqual(gurmukhi.y + gurmukhi.height)
+    }
+  })
+
+  it('keeps a twenty-line bilingual reading interleaved at the readability floor', () => {
     const layout = layoutShareHighlightStory(
       twentyLineBilingualReading,
       measureByCharacter,
       'light'
     )
 
-    expect(layout.composition).toBe('bilingual-diptych')
+    expect(layout.composition).toBe('manuscript')
     expect(layout.sourceLineIds).toEqual(twentyLineBilingualReading.map(line => line.id))
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(32)
-    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(26)
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(28)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(22)
     expect(layout.sections).toHaveLength(40)
+    expect(layout.sections.map(section => section.role)).toEqual(
+      twentyLineBilingualReading.flatMap(() => ['gurmukhi', 'meaning'])
+    )
   })
 
-  it('prefers the bilingual manuscript for a longer reading even when stacked text could fit', () => {
+  it('uses the full-width paired manuscript for a longer reading that fits comfortably', () => {
     const nineLineReading = Array.from({ length: 9 }, (_, index) => ({
-      id: `diptych-preference-${index + 1}`,
+      id: `interleaved-preference-${index + 1}`,
       gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥${index + 1}॥`,
       meaning: `Remember the True Name. ||${index + 1}||`,
     }))
@@ -614,9 +667,12 @@ describe('single-frame full-passage Story layout', () => {
       'light'
     )
 
-    expect(layout.composition).toBe('bilingual-diptych')
+    expect(layout.composition).toBe('manuscript')
     expect(layout.sections.filter(section => section.role === 'gurmukhi')).toHaveLength(9)
     expect(layout.sections.filter(section => section.role === 'meaning')).toHaveLength(9)
+    expect(layout.sections.map(section => section.sourceLineId)).toEqual(
+      nineLineReading.flatMap(line => [line.id, line.id])
+    )
   })
 
   it('reports a true overflow for forty-two lines instead of using microscopic type', () => {
@@ -648,7 +704,6 @@ describe('single-frame full-passage Story layout', () => {
     )
 
     expect(short.composition).toBe('expressive')
-    expect(short.columns).toBeUndefined()
     expect(short.sections.map(section => section.role)).toEqual([
       'gurmukhi', 'meaning', 'gurmukhi', 'meaning',
     ])
@@ -675,20 +730,27 @@ describe('single-frame full-passage Story layout', () => {
     expect(landscape.sections[0]!.y).toBeGreaterThan(portrait.sections[0]!.y + 250)
   })
 
-  it('keeps reading surfaces and all text inside the Story-safe editorial region', () => {
+  it('fills the canvas with parchment while keeping all text Story-safe', () => {
     const layout = layoutShareHighlightStory(
       fourteenLineGurmukhiOnly,
       measureByCharacter,
       'light'
     )
 
-    expect(layout.readingSurface.y).toBeGreaterThanOrEqual(300)
-    expect(layout.readingSurface.y + layout.readingSurface.height).toBeLessThanOrEqual(1712)
+    const surfaceArea = layout.readingSurface.width * layout.readingSurface.height
+    expect(layout.readingSurface.y).toBeLessThanOrEqual(72)
+    expect(layout.readingSurface.y + layout.readingSurface.height).toBeGreaterThanOrEqual(1848)
+    expect(surfaceArea / (SHARE_HIGHLIGHT_STORY_WIDTH * SHARE_HIGHLIGHT_STORY_HEIGHT))
+      .toBeGreaterThan(0.88)
     expect(layout.sections.every(section => section.y >= layout.body.y)).toBe(true)
-    expect(layout.sections.every(section => section.y + section.height <= 1568)).toBe(true)
+    expect(layout.sections.every(section => (
+      section.y + section.height <= layout.body.y + layout.body.height
+    ))).toBe(true)
+    expect(layout.body.y).toBeGreaterThanOrEqual(204)
+    expect(layout.body.y + layout.body.height).toBeLessThanOrEqual(1712)
   })
 
-  it('sizes a manuscript page to its reading instead of leaving a mostly empty fixed sheet', () => {
+  it('uses the same proportional full-height sheet for a compact long reading', () => {
     const compactLongReading = Array.from({ length: 10 }, (_, index) => ({
       id: index,
       gurmukhi: `ਚਰਨ ਕਮਲ ਕੀ ਓਟ ਉਧਰੇ ਸਗਲ ਜਨ ॥ ${index + 1}`,
@@ -698,8 +760,12 @@ describe('single-frame full-passage Story layout', () => {
     })
 
     expect(layout.composition).toBe('manuscript')
-    expect(layout.readingSurface.height).toBeLessThan(1372)
-    expect(layout.readingSurface.height).toBeGreaterThanOrEqual(780)
+    expect(layout.readingSurface).toEqual({ x: 18, y: 72, width: 1044, height: 1776 })
+    const first = layout.sections[0]!
+    const last = layout.sections.at(-1)!
+    const leadingSpace = first.y - layout.body.y
+    const trailingSpace = layout.body.y + layout.body.height - (last.y + last.height)
+    expect(Math.abs(leadingSpace - trailingSpace)).toBeLessThanOrEqual(2)
   })
 
   it('places a short expressive reading away from a protected portrait subject', () => {
@@ -888,10 +954,10 @@ describe('Canvas rendering and export', () => {
     ))
     expect(safeMetadata).toHaveLength(4)
     expect(safeMetadata.every(call => call.y >= 204 && call.y <= 1712)).toBe(true)
-    expect(safeMetadata.every(call => call.fontSize >= 30)).toBe(true)
+    expect(safeMetadata.every(call => call.fontSize >= 23)).toBe(true)
   })
 
-  it('renders the complete Ang 683 diptych with a subtle divider on one canvas', async () => {
+  it('renders the complete Ang 683 reading as full-width paired lines on one canvas', async () => {
     const environment = makeFakeRendererEnvironment()
     const expectedLayout = layoutShareHighlightStory(
       july18Ang683Reading,
@@ -912,29 +978,27 @@ describe('Canvas rendering and export', () => {
     expect(canvas.width).toBe(1080)
     expect(canvas.height).toBe(1920)
     expect(environment.context.stroke).toHaveBeenCalledTimes(3)
-    expect(environment.context.fillRect).toHaveBeenCalledWith(48, 266, 984, 2)
-    expect(environment.context.fillRect).toHaveBeenCalledWith(
-      expectedLayout.columns!.dividerX,
-      expectedLayout.body.y + 4,
-      1,
-      expectedLayout.body.height - 8
+    expect(environment.context.fillRect).toHaveBeenCalledWith(64, 258, 952, 2)
+    expect(environment.context.fillRect).toHaveBeenCalledWith(64, 1658, 952, 2)
+    expect(expectedLayout.sections.map(section => section.role)).toEqual(
+      july18Ang683Reading.flatMap(() => ['gurmukhi', 'meaning'])
     )
 
     const title = environment.drawnTextCalls.find(call => call.text === "Today's Hukamnama")
     const date = environment.drawnTextCalls.find(call => call.text === 'July 18, 2026')
     const meaning = environment.drawnTextCalls.find(call => call.text.includes('Dhanaasaree'))
     expect(title).toMatchObject({
-      x: 48,
-      y: 226,
-      fontSize: 38,
+      x: 64,
+      y: 220,
+      fontSize: 32,
       fontWeight: 650,
       textAlign: 'left',
       textBaseline: 'middle',
     })
     expect(date).toMatchObject({
-      x: 1032,
-      y: 226,
-      fontSize: 28,
+      x: 1016,
+      y: 220,
+      fontSize: 25,
       fontWeight: 600,
       textAlign: 'right',
       textBaseline: 'middle',
@@ -949,7 +1013,7 @@ describe('Canvas rendering and export', () => {
     expect(renderedText).not.toMatch(/…|\.\.\./)
   })
 
-  it('auto-fits long diptych metadata without horizontally squeezing it', async () => {
+  it('auto-fits long manuscript metadata without horizontally squeezing it', async () => {
     const environment = makeFakeRendererEnvironment()
     const seriesLabel = 'Daily Hukamnama from Sri Harmandir Sahib'
     const dateLabel = 'Saturday, July 18, 2026'
@@ -966,11 +1030,11 @@ describe('Canvas rendering and export', () => {
 
     const title = environment.drawnTextCalls.find(call => call.text === seriesLabel)
     const date = environment.drawnTextCalls.find(call => call.text === dateLabel)
-    expect(title?.fontSize).toBeGreaterThanOrEqual(24)
-    expect(title?.fontSize).toBeLessThan(38)
+    expect(title?.fontSize).toBeGreaterThanOrEqual(23)
+    expect(title?.fontSize).toBeLessThan(32)
     expect(title?.maxWidth).toBeUndefined()
-    expect(date?.fontSize).toBeGreaterThanOrEqual(20)
-    expect(date?.fontSize).toBeLessThan(28)
+    expect(date?.fontSize).toBeGreaterThanOrEqual(19)
+    expect(date?.fontSize).toBeLessThan(25)
     expect(date?.maxWidth).toBeUndefined()
   })
 

@@ -137,7 +137,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     selectedExcerpt: 'This card contains only the Gurmukhi words you selected.',
     passagePreface: 'Share the full Hukamnama',
     passageTitle: 'Create a Story image',
-    passageTextLayersHelp: 'Gurmukhi is always included. Choose Meaning for a bilingual Story with the complete English translation beside it, or Transliteration for pronunciation.',
+    passageTextLayersHelp: 'Gurmukhi is always included. Meaning places each complete English translation directly below its matching Gurbani line. Choose Transliteration instead for pronunciation.',
     quietPassageArtworkNote: 'Long Hukamnamas use a quiet manuscript background so the complete reading stays balanced and legible.',
     passageSupportOverflow: support => support === 'meaning'
       ? 'Meaning is too long to fit readably on one Story. Showing Gurmukhi only — the full translation is still available in Copy text.'
@@ -191,7 +191,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     selectedExcerpt: 'ਇਸ ਕਾਰਡ ਵਿੱਚ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਚੁਣੇ ਗੁਰਮੁਖੀ ਸ਼ਬਦ ਹਨ।',
     passagePreface: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
     passageTitle: 'ਸਟੋਰੀ ਤਸਵੀਰ ਬਣਾਓ',
-    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਪੂਰਾ ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ ਨਾਲੇ ਦਿਖਾਉਣ ਵਾਲੀ ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਲਈ ਅਰਥ ਚੁਣੋ, ਜਾਂ ਉਚਾਰਨ ਲਈ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
+    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਅਰਥ ਹਰ ਗੁਰਬਾਣੀ ਪੰਕਤੀ ਦੇ ਬਿਲਕੁਲ ਹੇਠਾਂ ਉਸ ਦਾ ਪੂਰਾ ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ ਦਿਖਾਉਂਦਾ ਹੈ। ਉਚਾਰਨ ਲਈ ਇਸ ਦੀ ਥਾਂ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
     quietPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਲਈ ਸਾਦਾ ਹੱਥ-ਲਿਖਤ ਪਿਛੋਕੜ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਜੋ ਪੂਰਾ ਪਾਠ ਸੰਤੁਲਿਤ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹੇ।',
     passageSupportOverflow: support => support === 'meaning'
       ? 'ਅਰਥ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮੇ ਹਨ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਅਨੁਵਾਦ “ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।'
@@ -245,7 +245,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     selectedExcerpt: 'इस कार्ड में केवल आपके चुने हुए गुरमुखी शब्द हैं।',
     passagePreface: 'पूरा हुकमनामा साझा करें',
     passageTitle: 'स्टोरी छवि बनाएँ',
-    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। पूरे अंग्रेज़ी अनुवाद को साथ दिखाने वाली द्विभाषी स्टोरी के लिए अर्थ चुनें, या उच्चारण के लिए लिप्यंतरण चुनें।',
+    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। अर्थ हर गुरबाणी पंक्ति के ठीक नीचे उसका पूरा अंग्रेज़ी अनुवाद दिखाता है। उच्चारण के लिए इसकी जगह लिप्यंतरण चुनें।',
     quietPassageArtworkNote: 'लंबे हुकमनामों में शांत पांडुलिपि पृष्ठभूमि रहती है, ताकि पूरा पाठ संतुलित और पढ़ने योग्य रहे।',
     passageSupportOverflow: support => support === 'meaning'
       ? 'अर्थ एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा अनुवाद “पाठ कॉपी करें” में उपलब्ध है।'
