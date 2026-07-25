@@ -30,6 +30,7 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
       passageLines?: Array<{
         id: string | number
         gurmukhi: string
+        meaning?: string
         isHeader?: boolean
       }>
       seriesLabel?: string
@@ -42,13 +43,17 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
       {content.seriesLabel ? <p data-testid="share-series-label">{content.seriesLabel}</p> : null}
       {content.dateLabel ? <p data-testid="share-date-label">{content.dateLabel}</p> : null}
       {content.passageLines?.map(line => (
-        <p
-          key={line.id}
-          data-testid="share-passage-line"
-          data-is-header={line.isHeader ? 'true' : 'false'}
-        >
-          {line.gurmukhi}
-        </p>
+        <div key={line.id}>
+          <p
+            data-testid="share-passage-line"
+            data-is-header={line.isHeader ? 'true' : 'false'}
+          >
+            {line.gurmukhi}
+          </p>
+          {line.meaning ? (
+            <p data-testid="share-passage-meaning">{line.meaning}</p>
+          ) : null}
+        </div>
       ))}
     </div>
   ),
@@ -1081,7 +1086,8 @@ describe('Study hukamnama mode', () => {
     expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
   })
 
-  it("passes every ordered Daily/Today's Hukamnama line, including headers, to top Share", async () => {
+  it("passes every ordered Daily/Today's Hukamnama line with English meanings even when reader meaning is off", async () => {
+    useLanguageStore.setState({ meaningLanguage: 'none', englishSource: 'ms' })
     const firstShabad = MOCK_HUKAMNAMA_RESPONSE.shabads[0]
     const firstVerse = firstShabad.verses[0]
     const headerText = 'ਸਲੋਕ ॥'
@@ -1095,6 +1101,7 @@ describe('Study hukamnama mode', () => {
             verseId: 29343,
             verse: { unicode: headerText },
             transliteration: { english: 'salok ||' },
+            translation: { en: { bdb: '', ms: '', ssk: '' } },
             isHeader: true,
             headerLevel: 1,
           },
@@ -1133,6 +1140,12 @@ describe('Study hukamnama mode', () => {
     expect(sharedLines.map(line => line.textContent)).toEqual(expectedLines)
     expect(sharedLines[0]).toHaveAttribute('data-is-header', 'true')
     expect(sharedLines[1]).toHaveAttribute('data-is-header', 'false')
+    expect(
+      within(composer).getAllByTestId('share-passage-meaning').map(line => line.textContent)
+    ).toEqual([
+      'The man makes efforts to deceive others, but the Lord knows everything.',
+      'The greedy man looks all around and returns again. Pause.',
+    ])
     expect(within(composer).getByTestId('share-flattened-gurmukhi').textContent).toBe(expectedLines.join('\n'))
     expect(within(composer).getByTestId('share-series-label')).toHaveTextContent('Daily Hukamnama')
     expect(within(composer).getByTestId('share-date-label')).toHaveTextContent('April 5, 2026')

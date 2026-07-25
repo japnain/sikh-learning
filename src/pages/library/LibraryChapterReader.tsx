@@ -364,13 +364,10 @@ export default function LibraryChapterReader() {
 
   const recordLocation = useCallback((blockId: string) => {
     if (!reader) return
-    const resolvedBlockId = isDocumentScrollEnd()
-      ? chapterBlocks.at(-1)?.id ?? blockId
-      : blockId
-    if (currentBlockId.current === resolvedBlockId) return
-    const locator = createLocator(resolvedBlockId)
+    if (currentBlockId.current === blockId) return
+    const locator = createLocator(blockId)
     if (!locator) return
-    currentBlockId.current = resolvedBlockId
+    currentBlockId.current = blockId
     const progressPercent = Math.max(1, locator.locations.totalProgression * 100)
     if (progressBarRef.current) {
       progressBarRef.current.style.transform = `scaleX(${progressPercent / 100})`
@@ -384,7 +381,7 @@ export default function LibraryChapterReader() {
       readerLocator: locator,
       updatedAt: new Date().toISOString(),
     })
-  }, [chapterBlocks, createLocator, queueSessionUpdate, reader])
+  }, [createLocator, queueSessionUpdate, reader])
 
   const closeActivePanel = useCallback(() => {
     const trigger = activePanel === 'contents' ? contentsTriggerRef.current : settingsTriggerRef.current
@@ -435,24 +432,32 @@ export default function LibraryChapterReader() {
 
     blockNodes.current.forEach(node => observer.observe(node))
 
-    let scrollFrame: number | null = null
-    const recordDocumentEnd = () => {
-      scrollFrame = null
-      if (isDocumentScrollEnd()) {
-        const finalBlock = chapterBlocks.at(-1)
-        if (finalBlock) recordLocation(finalBlock.id)
-      }
+    let scrollIdleTimer: number | null = null
+    const recordSettledDocumentEnd = () => {
+      scrollIdleTimer = null
+      if (!isDocumentScrollEnd()) return
+      const finalBlock = chapterBlocks.at(-1)
+      if (finalBlock) recordLocation(finalBlock.id)
     }
     const handleScroll = () => {
-      if (scrollFrame !== null) window.cancelAnimationFrame(scrollFrame)
-      scrollFrame = window.requestAnimationFrame(recordDocumentEnd)
+      if (scrollIdleTimer !== null) window.clearTimeout(scrollIdleTimer)
+      scrollIdleTimer = window.setTimeout(recordSettledDocumentEnd, 180)
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    const supportsScrollEnd = 'onscrollend' in document
+    if (supportsScrollEnd) {
+      document.addEventListener('scrollend', recordSettledDocumentEnd, { passive: true })
+    } else {
+      window.addEventListener('scroll', handleScroll, { passive: true })
+    }
 
     return () => {
       window.cancelAnimationFrame(restoreFrame)
-      if (scrollFrame !== null) window.cancelAnimationFrame(scrollFrame)
-      window.removeEventListener('scroll', handleScroll)
+      if (scrollIdleTimer !== null) window.clearTimeout(scrollIdleTimer)
+      if (supportsScrollEnd) {
+        document.removeEventListener('scrollend', recordSettledDocumentEnd)
+      } else {
+        window.removeEventListener('scroll', handleScroll)
+      }
       observer.disconnect()
     }
   }, [chapterBlocks, location.hash, reader, recordLocation])

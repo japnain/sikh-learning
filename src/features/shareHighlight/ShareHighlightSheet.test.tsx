@@ -146,7 +146,7 @@ describe('ShareHighlightSheet', () => {
 
     expect(within(dialog).getByText('Share the full Hukamnama')).toBeInTheDocument()
     expect(within(dialog).getByRole('heading', { name: 'Create a Story image' })).toBeInTheDocument()
-    expect(within(dialog).getByText(/Choose Meaning for a bilingual Story with the complete English translation beside it/i)).toBeInTheDocument()
+    expect(within(dialog).getByText(/Meaning places each complete English translation directly below its matching Gurbani line/i)).toBeInTheDocument()
     expect(within(dialog).queryByRole('radiogroup', { name: 'Text position' })).not.toBeInTheDocument()
     expect(within(dialog).queryByText(/Page \d+ of \d+/i)).not.toBeInTheDocument()
     expect(within(dialog).queryByRole('button', { name: /Previous image|Next image/i })).not.toBeInTheDocument()

@@ -1039,7 +1039,9 @@ export default function Study() {
           if (!gurmukhi) return null
 
           const transliteration = line.transliteration.trim()
-          const meaning = getLineMeaningText(line, meaningLanguage, englishSource).trim()
+          // The share composer always offers a complete English Meaning layer,
+          // independent of which reading supports are currently visible.
+          const meaning = getLineMeaningText(line, 'en', englishSource).trim()
           return {
             id: `${line.shabadId}-${line.verseId}-${index}`,
             gurmukhi,

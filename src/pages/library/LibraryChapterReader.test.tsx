@@ -111,14 +111,26 @@ describe('LibraryChapterReader', () => {
   test('records the final content block when the document reaches its end', async () => {
     vi.spyOn(window, 'scrollY', 'get').mockReturnValue(1200)
     vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(800)
-    vi.spyOn(document.documentElement, 'scrollHeight', 'get').mockReturnValue(2000)
-    vi.spyOn(document.body, 'scrollHeight', 'get').mockReturnValue(2000)
+    const rootHeight = vi.spyOn(document.documentElement, 'scrollHeight', 'get').mockReturnValue(2000)
+    const bodyHeight = vi.spyOn(document.body, 'scrollHeight', 'get').mockReturnValue(2000)
     renderReader()
 
     await screen.findByTestId('panth-chapter-reader')
+    await waitFor(() => {
+      expect(useProgressStore.getState().currentSession?.readerLocator?.locations.blockId).toBe(
+        'episode-001-p47-b001'
+      )
+    })
+    fireEvent.scroll(window)
     fireEvent.scroll(window)
 
+    expect(rootHeight).not.toHaveBeenCalled()
+    expect(bodyHeight).not.toHaveBeenCalled()
+    fireEvent(document, new Event('scrollend'))
+
     await waitFor(() => {
+      expect(rootHeight).toHaveBeenCalledTimes(1)
+      expect(bodyHeight).toHaveBeenCalledTimes(1)
       expect(useProgressStore.getState().currentSession?.readerLocator?.locations).toEqual(
         expect.objectContaining({
           blockId: 'episode-001-p53-b015',

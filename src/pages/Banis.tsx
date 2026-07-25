@@ -51,9 +51,9 @@ import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   getReaderEditorialCopyForBani,
 } from '../content/readerEditorialCopy'
-import readHarmandirSrc from '../assets/living-library/read-harmandir.avif'
-import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.avif'
-import booksCourtSrc from '../assets/living-library/books-court.avif'
+import readHarmandirSrc from '../assets/living-library/read-harmandir.jpeg'
+import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.jpeg'
+import booksCourtSrc from '../assets/living-library/books-court.jpeg'
 
 type Scripture = 'SGGS' | 'DG'
 type ReadCollection = 'banis' | 'sources' | 'books'
@@ -757,7 +757,7 @@ function DirectoryCount({
 
   return (
     <span
-      className="min-w-[4.75rem] text-right font-sans text-[11px] tabular-nums text-ink/75 dark:text-dark-text/76"
+      className="min-w-[4.25rem] text-right font-sans text-[11px] tabular-nums text-ink/75 dark:text-dark-text/76"
       data-testid={testId}
     >
       {label}
@@ -1274,8 +1274,8 @@ export default function Banis() {
         }
         data-ai-error={searchIssue || searchPartialIssue ? 'read-search' : undefined}
       >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
+        <div className="read-quick-find-card__heading">
+          <div className="read-quick-find-card__title">
             <p className="eyebrow">{copy.find}</p>
             <h2 id="banis-quick-find-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
               {copy.searchTitle}
@@ -1701,7 +1701,7 @@ export default function Banis() {
             </p>
           </div>
 
-          <div className="mt-4 space-y-3">
+          <div className="read-directory-list mt-4">
             <div>
         <button
           onClick={() => toggle('sundar-gutka')}
