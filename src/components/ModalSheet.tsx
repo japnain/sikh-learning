@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import type { ReactNode, RefObject } from 'react'
+import { useEffect, type ReactNode, type RefObject } from 'react'
+import { lockAppScroll } from '../utils/appScroll'
 
 export default function ModalSheet({
   open,
@@ -20,6 +21,11 @@ export default function ModalSheet({
   testId?: string
   initialFocusRef?: RefObject<HTMLElement | null>
 }) {
+  useEffect(() => {
+    if (!open) return
+    return lockAppScroll()
+  }, [open])
+
   return (
     <Dialog.Root open={open} onOpenChange={nextOpen => {
       if (!nextOpen) onClose()

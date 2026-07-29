@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { IconArrowLeft, IconArrowRight, IconLibrary, IconSearch } from '../../components/icons'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
 import {
@@ -8,6 +8,10 @@ import {
   loadLibraryWorkCatalog,
 } from '../../data/libraryRepository'
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
+import {
+  buildLibraryReaderNavigationState,
+  getLibraryReaderOrigin,
+} from '../../utils/libraryReaderNavigation'
 import type {
   LibraryChapterIndexEntry,
   LibrarySearchChapterEntry,
@@ -56,7 +60,15 @@ function contributorLine(work: LibraryWork) {
 
 export default function PanthPrakashLibraryHome() {
   const { workId: routeWorkId } = useParams<{ workId: string }>()
+  const location = useLocation()
   const workId = routeWorkId ?? DEFAULT_WORK_ID
+  const readerOrigin = getLibraryReaderOrigin(location.state, '/banis?collection=books')
+  const readerNavigationState = buildLibraryReaderNavigationState(readerOrigin)
+  const readerOriginLabel = readerOrigin.startsWith('/saved')
+    ? 'Saved'
+    : readerOrigin.startsWith('/banis')
+      ? 'All books'
+      : 'Back'
   const currentSession = useProgressStore(state => state.currentSession)
   const [loadState, setLoadState] = useState<LibraryLoadState>({
     key: workId,
@@ -70,6 +82,7 @@ export default function PanthPrakashLibraryHome() {
   const [bookSearchQuery, setBookSearchQuery] = useState('')
   const [bookSearchStatus, setBookSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty' | 'error'>('idle')
   const [bookSearchResults, setBookSearchResults] = useState<ChapterSearchResult[]>([])
+  const [loadAttempt, setLoadAttempt] = useState(0)
 
   useEffect(() => {
     let cancelled = false
@@ -96,7 +109,7 @@ export default function PanthPrakashLibraryHome() {
     return () => {
       cancelled = true
     }
-  }, [workId])
+  }, [loadAttempt, workId])
 
   const currentLoadState = loadState.key === workId
     ? loadState
@@ -160,6 +173,16 @@ export default function PanthPrakashLibraryHome() {
     }
   }
 
+  function handleRetryLoad() {
+    setLoadState({
+      key: workId,
+      status: 'loading',
+      work: null,
+      chapters: [],
+    })
+    setLoadAttempt(attempt => attempt + 1)
+  }
+
   if (status === 'loading') {
     return (
       <SurfaceStateCard
@@ -182,6 +205,11 @@ export default function PanthPrakashLibraryHome() {
         title="Book unavailable"
         body="This book could not be loaded from the library catalog."
         page="library"
+        actions={[{
+          label: 'Retry',
+          onClick: handleRetryLoad,
+          aiAction: 'retry-library-work',
+        }]}
       />
     )
   }
@@ -196,9 +224,9 @@ export default function PanthPrakashLibraryHome() {
       data-page="library-work"
     >
       <nav className="epub-work-back" aria-label="Book navigation">
-        <Link to="/banis?collection=books" className="interactive-focus">
+        <Link to={readerOrigin} className="interactive-focus">
           <IconArrowLeft size={16} />
-          All books
+          {readerOriginLabel}
         </Link>
       </nav>
 
@@ -215,12 +243,20 @@ export default function PanthPrakashLibraryHome() {
           <p className="epub-work-description">{work.description}</p>
           <div className="epub-work-actions">
             {continueReadingPath ? (
-              <Link to={continueReadingPath} className="epub-primary-action interactive-focus">
+              <Link
+                to={continueReadingPath}
+                state={readerNavigationState}
+                className="epub-primary-action interactive-focus"
+              >
                 Continue reading
                 <IconArrowRight size={16} />
               </Link>
             ) : episodeChapters[0] ? (
-              <Link to={chapterPath(work.id, episodeChapters[0].id)} className="epub-primary-action interactive-focus">
+              <Link
+                to={chapterPath(work.id, episodeChapters[0].id)}
+                state={readerNavigationState}
+                className="epub-primary-action interactive-focus"
+              >
                 Start reading
                 <IconArrowRight size={16} />
               </Link>
@@ -275,7 +311,11 @@ export default function PanthPrakashLibraryHome() {
                   {publication.isbn ? <span>ISBN {publication.isbn}</span> : null}
                 </div>
                 {firstChapter ? (
-                  <Link to={chapterPath(work.id, firstChapter.id)} className="interactive-focus">
+                  <Link
+                    to={chapterPath(work.id, firstChapter.id)}
+                    state={readerNavigationState}
+                    className="interactive-focus"
+                  >
                     Open volume
                     <IconArrowRight size={15} />
                   </Link>
@@ -312,7 +352,12 @@ export default function PanthPrakashLibraryHome() {
         {bookSearchResults.length ? (
           <div className="epub-search-results" data-testid="panth-full-text-results" aria-live="polite">
             {bookSearchResults.map(result => (
-              <Link key={result.chapterId} to={chapterPath(work.id, result.chapterId)} className="interactive-focus">
+              <Link
+                key={result.chapterId}
+                to={chapterPath(work.id, result.chapterId)}
+                state={readerNavigationState}
+                className="interactive-focus"
+              >
                 <span>Volume {result.volume} · {result.episodeNumber ? `Episode ${result.episodeNumber}` : 'Section'}</span>
                 <strong>{result.title}</strong>
                 <p>{result.snippet}</p>
@@ -364,7 +409,11 @@ export default function PanthPrakashLibraryHome() {
         <ol className="epub-chapter-list">
           {visibleChapters.map(chapter => (
             <li key={chapter.id}>
-              <Link to={chapterPath(work.id, chapter.id)} className="interactive-focus">
+              <Link
+                to={chapterPath(work.id, chapter.id)}
+                state={readerNavigationState}
+                className="interactive-focus"
+              >
                 <span className="epub-chapter-number">{chapter.episodeNumber ?? chapter.chapterNumber}</span>
                 <span className="epub-chapter-copy">
                   <small>Volume {chapter.volume} · {chapterLabel(chapter)}</small>

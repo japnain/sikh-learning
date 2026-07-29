@@ -19,18 +19,43 @@ export interface Bookmark {
 const BOOKMARK_STORAGE_KEY = 'sikh-bookmarks'
 
 function canUseStorage() {
-  return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
+  if (typeof window === 'undefined') return false
+
+  try {
+    return typeof window.localStorage !== 'undefined'
+  } catch {
+    return false
+  }
+}
+
+function isStoredBookmark(value: unknown): value is Bookmark {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false
+
+  const candidate = value as Partial<Bookmark>
+  return typeof candidate.id === 'string'
+    && candidate.id.length > 0
+    && ['shabad', 'bani', 'verse'].includes(candidate.type ?? '')
+    && typeof candidate.title === 'string'
+    && ['G', 'D', 'B', 'A'].includes(candidate.source ?? '')
+    && Number.isSafeInteger(candidate.ang)
+    && Number(candidate.ang) > 0
+    && (candidate.shabadId === undefined || (Number.isSafeInteger(candidate.shabadId) && Number(candidate.shabadId) > 0))
+    && (candidate.verseId === undefined || (Number.isSafeInteger(candidate.verseId) && Number(candidate.verseId) > 0))
+    && (candidate.excerpt === undefined || typeof candidate.excerpt === 'string')
+    && (candidate.description === undefined || typeof candidate.description === 'string')
+    && typeof candidate.savedAt === 'string'
+    && Number.isFinite(Date.parse(candidate.savedAt))
 }
 
 function normalizeStoredBookmarks(value: unknown): Bookmark[] {
   if (Array.isArray(value)) {
-    return value as Bookmark[]
+    return value.filter(isStoredBookmark)
   }
 
   if (value && typeof value === 'object' && 'state' in value) {
     const state = (value as { state?: { bookmarks?: unknown } }).state
     if (Array.isArray(state?.bookmarks)) {
-      return state.bookmarks as Bookmark[]
+      return state.bookmarks.filter(isStoredBookmark)
     }
   }
 

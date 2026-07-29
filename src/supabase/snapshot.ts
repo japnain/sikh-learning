@@ -1,3 +1,4 @@
+import type { VocabEntry } from '../types'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
@@ -13,37 +14,94 @@ import { useVocabStore } from '../store/vocab'
 import { getNaamrasDeviceId } from './device'
 import { buildBookmarkNaturalKey, buildFavoriteNaturalKey } from './savedItemKeys'
 import type {
+  CloudActivityEvent,
   CloudBookmarkPayload,
   CloudFavoritePayload,
   CloudLearningProgressRecord,
   CloudLocalSnapshot,
   CloudProfileRecord,
   CloudRemoteSnapshot,
+  CloudSavedItemKind,
   CloudSavedItemRecord,
   CloudVocabRecord,
 } from './types'
 
+export const CLOUD_SNAPSHOT_VERSION = 2 as const
+
 const SNAPSHOT_METADATA_STORAGE_KEY = 'naamras-cloud-sync-export-metadata'
+
+type SnapshotRecordType = 'profile' | 'saved-item' | 'vocab-entry' | 'learning-progress'
+type SnapshotBackedRecord =
+  | CloudProfileRecord
+  | CloudSavedItemRecord
+  | CloudVocabRecord
+  | CloudLearningProgressRecord
 
 type SnapshotMetadataRecord = {
   hash: string
   clientUpdatedAt: string
+  baseUpdatedAt: string | null
+  recordType: SnapshotRecordType
+  naturalKey: string
+  record: SnapshotBackedRecord
 }
 
-type SnapshotMetadataMap = Record<string, SnapshotMetadataRecord>
+type SnapshotMetadataMap = Record<string, SnapshotMetadataRecord | {
+  hash?: unknown
+  clientUpdatedAt?: unknown
+}>
 
-function createMetadata(id: string, clientUpdatedAt: string, deletedAt: string | null = null) {
+type RecordClock = {
+  hash: string
+  clientUpdatedAt: string
+  baseUpdatedAt: string | null
+}
+
+function isIsoTimestamp(value: unknown): value is string {
+  return typeof value === 'string' && Number.isFinite(Date.parse(value))
+}
+
+function isSnapshotMetadataRecord(value: unknown): value is SnapshotMetadataRecord {
+  if (!value || typeof value !== 'object') return false
+  const candidate = value as Partial<SnapshotMetadataRecord>
+  return typeof candidate.hash === 'string'
+    && isIsoTimestamp(candidate.clientUpdatedAt)
+    && (candidate.baseUpdatedAt === null || isIsoTimestamp(candidate.baseUpdatedAt))
+    && (
+      candidate.recordType === 'profile'
+      || candidate.recordType === 'saved-item'
+      || candidate.recordType === 'vocab-entry'
+      || candidate.recordType === 'learning-progress'
+    )
+    && typeof candidate.naturalKey === 'string'
+    && Boolean(candidate.record && typeof candidate.record === 'object')
+}
+
+function metadataKey(recordType: SnapshotRecordType, naturalKey: string) {
+  return `${recordType}:${naturalKey}`
+}
+
+function createMetadata(
+  id: string,
+  clock: Pick<RecordClock, 'clientUpdatedAt' | 'baseUpdatedAt'>,
+  deletedAt: string | null = null
+) {
   return {
     id,
     userId: null,
     deviceId: getNaamrasDeviceId(),
-    clientUpdatedAt,
+    clientUpdatedAt: clock.clientUpdatedAt,
+    baseUpdatedAt: clock.baseUpdatedAt,
     deletedAt,
   }
 }
 
 function canUseStorage() {
-  return typeof globalThis !== 'undefined' && typeof globalThis.localStorage !== 'undefined'
+  try {
+    return typeof globalThis !== 'undefined' && typeof globalThis.localStorage !== 'undefined'
+  } catch {
+    return false
+  }
 }
 
 function readSnapshotMetadata(): SnapshotMetadataMap {
@@ -66,7 +124,7 @@ function writeSnapshotMetadata(metadata: SnapshotMetadataMap) {
   try {
     globalThis.localStorage.setItem(SNAPSHOT_METADATA_STORAGE_KEY, JSON.stringify(metadata))
   } catch {
-    // Ignore storage pressure and keep the snapshot export responsive.
+    // Local reading remains usable when browser storage is under pressure.
   }
 }
 
@@ -74,32 +132,51 @@ function serializeMetadataPayload(payload: unknown) {
   return JSON.stringify(payload)
 }
 
-function resolveGeneratedTimestamp(metadata: SnapshotMetadataMap, key: string, payload: unknown) {
-  const hash = serializeMetadataPayload(payload)
-  const previous = metadata[key]
-  if (previous?.hash === hash) {
-    return previous.clientUpdatedAt
-  }
-
-  const clientUpdatedAt = new Date().toISOString()
-  metadata[key] = {
-    hash,
-    clientUpdatedAt,
-  }
-  return clientUpdatedAt
-}
-
-function syncAuthoritativeTimestamp(
+function resolveRecordClock(
   metadata: SnapshotMetadataMap,
   key: string,
-  payload: unknown,
-  clientUpdatedAt: string
+  semanticPayload: unknown,
+  now: string,
+  initialTimestamp?: string | null
+): RecordClock {
+  const hash = serializeMetadataPayload(semanticPayload)
+  const previous = metadata[key]
+
+  if (isSnapshotMetadataRecord(previous) && previous.hash === hash && !previous.record.deletedAt) {
+    return {
+      hash,
+      clientUpdatedAt: previous.clientUpdatedAt,
+      baseUpdatedAt: previous.baseUpdatedAt,
+    }
+  }
+
+  return {
+    hash,
+    clientUpdatedAt: isSnapshotMetadataRecord(previous)
+      ? now
+      : (isIsoTimestamp(initialTimestamp) ? initialTimestamp : now),
+    baseUpdatedAt: isSnapshotMetadataRecord(previous)
+      ? previous.baseUpdatedAt
+      : null,
+  }
+}
+
+function rememberRecord(
+  metadata: SnapshotMetadataMap,
+  key: string,
+  recordType: SnapshotRecordType,
+  naturalKey: string,
+  hash: string,
+  record: SnapshotBackedRecord
 ) {
   metadata[key] = {
-    hash: serializeMetadataPayload(payload),
-    clientUpdatedAt,
+    hash,
+    clientUpdatedAt: record.clientUpdatedAt,
+    baseUpdatedAt: record.baseUpdatedAt,
+    recordType,
+    naturalKey,
+    record,
   }
-  return clientUpdatedAt
 }
 
 function normalizeVocabWord(value: string) {
@@ -111,11 +188,14 @@ function normalizeVocabWord(value: string) {
     .toLowerCase()
 }
 
-function buildVocabNaturalKey(record: CloudVocabRecord['payload']) {
+function buildVocabNaturalKey(record: Pick<VocabEntry, 'kind' | 'word'>) {
   return `${record.kind ?? 'word'}:${normalizeVocabWord(record.word)}`
 }
 
-function extractProfileRecord(metadata: SnapshotMetadataMap): CloudProfileRecord {
+function extractProfileRecord(
+  metadata: SnapshotMetadataMap,
+  now: string
+): CloudProfileRecord {
   const locale = useLocaleStore.getState().locale
   const darkMode = useThemeStore.getState().dark
   const language = useLanguageStore.getState()
@@ -144,168 +224,408 @@ function extractProfileRecord(metadata: SnapshotMetadataMap): CloudProfileRecord
     learningGoal: onboarding.learningGoal,
     presentationMode: onboarding.presentationMode,
   }
-  const clientUpdatedAt = resolveGeneratedTimestamp(metadata, 'profile', {
-    locale,
-    darkMode,
-    reader,
-    onboarding: onboardingState,
-  })
-
-  return {
-    ...createMetadata('profile', clientUpdatedAt),
+  const semanticPayload = {
     locale,
     darkMode,
     reader,
     onboarding: onboardingState,
   }
+  const key = metadataKey('profile', 'profile')
+  const clock = resolveRecordClock(metadata, key, semanticPayload, now)
+  const record: CloudProfileRecord = {
+    ...createMetadata('profile', clock),
+    ...semanticPayload,
+  }
+
+  rememberRecord(metadata, key, 'profile', 'profile', clock.hash, record)
+  return record
 }
 
-function extractSavedItems(metadata: SnapshotMetadataMap): CloudSavedItemRecord[] {
-  const bookmarkRecords = useBookmarksStore.getState().bookmarks.map((bookmark) => {
-    const payload: CloudBookmarkPayload = {
-      ...bookmark,
-    }
-    const clientUpdatedAt = syncAuthoritativeTimestamp(metadata, bookmark.id, payload, bookmark.savedAt)
+function createSavedItemTombstone(
+  metadata: SnapshotMetadataMap,
+  kind: CloudSavedItemKind,
+  naturalKey: string,
+  id: string,
+  deletedAt: string,
+  baseUpdatedAt: string | null
+): CloudSavedItemRecord {
+  const key = metadataKey('saved-item', naturalKey)
+  const hash = serializeMetadataPayload({ deletedAt })
+  const record: CloudSavedItemRecord = {
+    ...createMetadata(id, {
+      clientUpdatedAt: deletedAt,
+      baseUpdatedAt,
+    }, deletedAt),
+    kind,
+    naturalKey,
+    payload: null,
+  }
 
-    return {
-      ...createMetadata(bookmark.id, clientUpdatedAt),
-      kind: 'bookmark' as const,
-      naturalKey: buildBookmarkNaturalKey(payload),
-      payload,
-    }
-  })
-
-  const favoriteRecords = useFavoritesStore.getState().favorites.map((favorite) => {
-    const payload: CloudFavoritePayload = {
-      ...favorite,
-    }
-    const clientUpdatedAt = syncAuthoritativeTimestamp(metadata, favorite.id, payload, favorite.savedAt)
-
-    return {
-      ...createMetadata(favorite.id, clientUpdatedAt),
-      kind: 'favorite' as const,
-      naturalKey: buildFavoriteNaturalKey(payload),
-      payload,
-    }
-  })
-
-  return [...bookmarkRecords, ...favoriteRecords]
+  rememberRecord(metadata, key, 'saved-item', naturalKey, hash, record)
+  return record
 }
 
-function extractVocabEntries(metadata: SnapshotMetadataMap): CloudVocabRecord[] {
-  return useVocabStore.getState().vocab.map(entry => {
-    const naturalKey = buildVocabNaturalKey(entry)
-    const clientUpdatedAt = syncAuthoritativeTimestamp(
-      metadata,
+function asSavedSource(value: unknown): CloudBookmarkPayload['source'] | null {
+  return value === 'G' || value === 'D' || value === 'B' || value === 'A'
+    ? value
+    : null
+}
+
+function asPositiveNumber(value: unknown) {
+  return typeof value === 'number' && Number.isFinite(value) && value > 0
+    ? value
+    : undefined
+}
+
+function getRemovalSavedItemTombstones(
+  metadata: SnapshotMetadataMap,
+  events: CloudActivityEvent[],
+  occupiedNaturalKeys: Set<string>
+) {
+  const tombstones: CloudSavedItemRecord[] = []
+
+  for (const event of events) {
+    const source = asSavedSource(event.payload.source)
+    const ang = asPositiveNumber(event.payload.ang)
+    if (!source || !ang) continue
+
+    if (event.eventType === 'saved-item.bookmark.removed') {
+      const verseId = asPositiveNumber(event.payload.verseId)
+      const shabadId = asPositiveNumber(event.payload.shabadId)
+      const naturalKey = buildBookmarkNaturalKey({ source, ang, verseId, shabadId })
+      if (occupiedNaturalKeys.has(naturalKey)) continue
+
+      const id = typeof event.payload.bookmarkId === 'string'
+        ? event.payload.bookmarkId
+        : event.id
+      const legacyMetadata = metadata[id]
+      tombstones.push(createSavedItemTombstone(
+        metadata,
+        'bookmark',
+        naturalKey,
+        id,
+        event.occurredAt,
+        isIsoTimestamp(legacyMetadata?.clientUpdatedAt) ? legacyMetadata.clientUpdatedAt : null
+      ))
+      occupiedNaturalKeys.add(naturalKey)
+    }
+
+    if (event.eventType === 'saved-item.favorite.removed') {
+      const verseId = asPositiveNumber(event.payload.verseId)
+      const shabadId = asPositiveNumber(event.payload.shabadId)
+      const routeMode = event.payload.routeMode === 'verse'
+        || event.payload.routeMode === 'shabad'
+        || event.payload.routeMode === 'canonical'
+        ? event.payload.routeMode
+        : undefined
+      const naturalKey = buildFavoriteNaturalKey({
+        source,
+        ang,
+        shabadId,
+        verseId,
+        routeMode,
+      })
+      if (occupiedNaturalKeys.has(naturalKey)) continue
+
+      const id = typeof event.payload.favoriteId === 'string'
+        ? event.payload.favoriteId
+        : event.id
+      const legacyMetadata = metadata[id]
+      tombstones.push(createSavedItemTombstone(
+        metadata,
+        'favorite',
+        naturalKey,
+        id,
+        event.occurredAt,
+        isIsoTimestamp(legacyMetadata?.clientUpdatedAt) ? legacyMetadata.clientUpdatedAt : null
+      ))
+      occupiedNaturalKeys.add(naturalKey)
+    }
+  }
+
+  return tombstones
+}
+
+function extractSavedItems(
+  metadata: SnapshotMetadataMap,
+  events: CloudActivityEvent[],
+  now: string
+): CloudSavedItemRecord[] {
+  const activeRecords = new Map<string, CloudSavedItemRecord>()
+
+  for (const bookmark of useBookmarksStore.getState().bookmarks) {
+    const payload: CloudBookmarkPayload = { ...bookmark }
+    const naturalKey = buildBookmarkNaturalKey(payload)
+    const key = metadataKey('saved-item', naturalKey)
+    const clock = resolveRecordClock(metadata, key, payload, now, bookmark.savedAt)
+    const record: CloudSavedItemRecord = {
+      ...createMetadata(bookmark.id, clock),
+      kind: 'bookmark',
       naturalKey,
+      payload,
+    }
+    activeRecords.set(naturalKey, record)
+    rememberRecord(metadata, key, 'saved-item', naturalKey, clock.hash, record)
+  }
+
+  for (const favorite of useFavoritesStore.getState().favorites) {
+    const payload: CloudFavoritePayload = { ...favorite }
+    const naturalKey = buildFavoriteNaturalKey(payload)
+    const key = metadataKey('saved-item', naturalKey)
+    const clock = resolveRecordClock(metadata, key, payload, now, favorite.savedAt)
+    const record: CloudSavedItemRecord = {
+      ...createMetadata(favorite.id, clock),
+      kind: 'favorite',
+      naturalKey,
+      payload,
+    }
+    activeRecords.set(naturalKey, record)
+    rememberRecord(metadata, key, 'saved-item', naturalKey, clock.hash, record)
+  }
+
+  const records = [...activeRecords.values()]
+  const occupiedNaturalKeys = new Set(activeRecords.keys())
+
+  for (const previous of Object.values(metadata)) {
+    if (!isSnapshotMetadataRecord(previous) || previous.recordType !== 'saved-item') continue
+    if (occupiedNaturalKeys.has(previous.naturalKey)) continue
+
+    const previousRecord = previous.record as CloudSavedItemRecord
+    if (previousRecord.deletedAt) {
+      records.push(previousRecord)
+    } else {
+      records.push(createSavedItemTombstone(
+        metadata,
+        previousRecord.kind,
+        previous.naturalKey,
+        previousRecord.id,
+        now,
+        previous.baseUpdatedAt
+      ))
+    }
+    occupiedNaturalKeys.add(previous.naturalKey)
+  }
+
+  records.push(...getRemovalSavedItemTombstones(metadata, events, occupiedNaturalKeys))
+  return records
+}
+
+function createVocabTombstone(
+  metadata: SnapshotMetadataMap,
+  naturalKey: string,
+  id: string,
+  deletedAt: string,
+  baseUpdatedAt: string | null
+): CloudVocabRecord {
+  const key = metadataKey('vocab-entry', naturalKey)
+  const hash = serializeMetadataPayload({ deletedAt })
+  const record: CloudVocabRecord = {
+    ...createMetadata(id, {
+      clientUpdatedAt: deletedAt,
+      baseUpdatedAt,
+    }, deletedAt),
+    naturalKey,
+    payload: null,
+  }
+
+  rememberRecord(metadata, key, 'vocab-entry', naturalKey, hash, record)
+  return record
+}
+
+function extractVocabEntries(
+  metadata: SnapshotMetadataMap,
+  events: CloudActivityEvent[],
+  now: string
+): CloudVocabRecord[] {
+  const activeRecords = new Map<string, CloudVocabRecord>()
+
+  for (const entry of useVocabStore.getState().vocab) {
+    const naturalKey = buildVocabNaturalKey(entry)
+    const key = metadataKey('vocab-entry', naturalKey)
+    const clock = resolveRecordClock(
+      metadata,
+      key,
       entry,
+      now,
       entry.review?.lastReviewedAt ?? entry.savedAt
     )
-
-    return {
-      ...createMetadata(naturalKey, clientUpdatedAt),
+    const record: CloudVocabRecord = {
+      ...createMetadata(naturalKey, clock),
       naturalKey,
       payload: entry,
     }
-  })
+    activeRecords.set(naturalKey, record)
+    rememberRecord(metadata, key, 'vocab-entry', naturalKey, clock.hash, record)
+  }
+
+  const records = [...activeRecords.values()]
+  const occupiedNaturalKeys = new Set(activeRecords.keys())
+
+  for (const previous of Object.values(metadata)) {
+    if (!isSnapshotMetadataRecord(previous) || previous.recordType !== 'vocab-entry') continue
+    if (occupiedNaturalKeys.has(previous.naturalKey)) continue
+
+    const previousRecord = previous.record as CloudVocabRecord
+    if (previousRecord.deletedAt) {
+      records.push(previousRecord)
+    } else {
+      records.push(createVocabTombstone(
+        metadata,
+        previous.naturalKey,
+        previousRecord.id,
+        now,
+        previous.baseUpdatedAt
+      ))
+    }
+    occupiedNaturalKeys.add(previous.naturalKey)
+  }
+
+  for (const event of events) {
+    if (event.eventType !== 'vocab.entry.removed') continue
+    if (typeof event.payload.word !== 'string') continue
+
+    const kind = event.payload.kind === 'phrase' ? 'phrase' : 'word'
+    const naturalKey = buildVocabNaturalKey({ kind, word: event.payload.word })
+    if (occupiedNaturalKeys.has(naturalKey)) continue
+
+    const legacyMetadata = metadata[naturalKey]
+    records.push(createVocabTombstone(
+      metadata,
+      naturalKey,
+      naturalKey,
+      event.occurredAt,
+      isIsoTimestamp(legacyMetadata?.clientUpdatedAt) ? legacyMetadata.clientUpdatedAt : null
+    ))
+    occupiedNaturalKeys.add(naturalKey)
+  }
+
+  return records
 }
 
-function extractLearningProgress(metadata: SnapshotMetadataMap): CloudLearningProgressRecord[] {
+function createLearningProgressRecord(
+  metadata: SnapshotMetadataMap,
+  scope: CloudLearningProgressRecord['scope'],
+  payload: Record<string, unknown>,
+  now: string
+): CloudLearningProgressRecord {
+  const key = metadataKey('learning-progress', scope)
+  const clock = resolveRecordClock(metadata, key, payload, now)
+  const record: CloudLearningProgressRecord = {
+    ...createMetadata(scope, clock),
+    scope,
+    payload,
+  }
+
+  rememberRecord(metadata, key, 'learning-progress', scope, clock.hash, record)
+  return record
+}
+
+function extractLearningProgress(
+  metadata: SnapshotMetadataMap,
+  now: string
+): CloudLearningProgressRecord[] {
   const progress = useProgressStore.getState()
   const readingProgress = useReadingProgressStore.getState()
   const nitnem = useNitemStore.getState()
 
-  const studyProgressPayload = {
-    studied: progress.studied,
-    reviewQueue: progress.reviewQueue,
-    lastStudied: progress.lastStudied,
-    currentSession: progress.currentSession,
-  }
-  const readingProgressPayload = {
-    progress: readingProgress.progress,
-  }
-  const nitnemStatePayload = {
-    completedDate: nitnem.completedDate,
-    completedIds: nitnem.completedIds,
-    selectedIds: nitnem.selectedIds,
-  }
-
-  const studyProgressUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:study-progress', studyProgressPayload)
-  const readingProgressUpdatedAt = resolveGeneratedTimestamp(
-    metadata,
-    'learning-progress:reading-progress',
-    readingProgressPayload
-  )
-  const nitnemUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:nitnem-state', nitnemStatePayload)
-
   return [
-    {
-      ...createMetadata('study-progress', studyProgressUpdatedAt),
-      scope: 'study-progress',
-      payload: studyProgressPayload,
-    },
-    {
-      ...createMetadata('reading-progress', readingProgressUpdatedAt),
-      scope: 'reading-progress',
-      payload: readingProgressPayload,
-    },
-    {
-      ...createMetadata('nitnem-state', nitnemUpdatedAt),
-      scope: 'nitnem-state',
-      payload: nitnemStatePayload,
-    },
+    createLearningProgressRecord(metadata, 'study-progress', {
+      studied: progress.studied,
+      reviewQueue: progress.reviewQueue,
+      lastStudied: progress.lastStudied,
+      currentSession: progress.currentSession,
+    }, now),
+    createLearningProgressRecord(metadata, 'reading-progress', {
+      // Completed Angs are arrays by design and stay in JSONB end to end.
+      progress: readingProgress.progress,
+    }, now),
+    createLearningProgressRecord(metadata, 'nitnem-state', {
+      completedDate: nitnem.completedDate,
+      completedIds: nitnem.completedIds,
+      selectedIds: nitnem.selectedIds,
+    }, now),
   ]
 }
 
 export function exportLocalSnapshot(): CloudLocalSnapshot {
   const metadata = readSnapshotMetadata()
+  const now = new Date().toISOString()
+  const activityEvents = useActivityEventsStore.getState().pendingEvents
   const snapshot: CloudLocalSnapshot = {
-    version: 1,
+    version: CLOUD_SNAPSHOT_VERSION,
     deviceId: getNaamrasDeviceId(),
-    profile: extractProfileRecord(metadata),
-    savedItems: extractSavedItems(metadata),
-    vocabEntries: extractVocabEntries(metadata),
-    learningProgress: extractLearningProgress(metadata),
-    activityEvents: useActivityEventsStore.getState().pendingEvents,
+    profile: extractProfileRecord(metadata, now),
+    savedItems: extractSavedItems(metadata, activityEvents, now),
+    vocabEntries: extractVocabEntries(metadata, activityEvents, now),
+    learningProgress: extractLearningProgress(metadata, now),
+    activityEvents,
   }
   writeSnapshotMetadata(metadata)
   return snapshot
 }
 
+function semanticRecordPayload(record: SnapshotBackedRecord) {
+  if ('locale' in record) {
+    return {
+      locale: record.locale,
+      darkMode: record.darkMode,
+      reader: record.reader,
+      onboarding: record.onboarding,
+    }
+  }
+
+  if ('scope' in record) return record.payload
+  return record.deletedAt ? { deletedAt: record.deletedAt } : record.payload
+}
+
 function syncRemoteSnapshotMetadata(snapshot: CloudRemoteSnapshot) {
   const metadata = readSnapshotMetadata()
 
+  for (const [key, value] of Object.entries(metadata)) {
+    if (isSnapshotMetadataRecord(value)) delete metadata[key]
+  }
+
+  const storeRemoteRecord = (
+    recordType: SnapshotRecordType,
+    naturalKey: string,
+    incomingRecord: SnapshotBackedRecord
+  ) => {
+    const record = {
+      ...incomingRecord,
+      baseUpdatedAt: incomingRecord.clientUpdatedAt,
+    } as SnapshotBackedRecord
+    const key = metadataKey(recordType, naturalKey)
+    rememberRecord(
+      metadata,
+      key,
+      recordType,
+      naturalKey,
+      serializeMetadataPayload(semanticRecordPayload(record)),
+      record
+    )
+  }
+
   if (snapshot.profile) {
-    syncAuthoritativeTimestamp(metadata, snapshot.profile.id, {
-      locale: snapshot.profile.locale,
-      darkMode: snapshot.profile.darkMode,
-      reader: snapshot.profile.reader,
-      onboarding: snapshot.profile.onboarding,
-    }, snapshot.profile.clientUpdatedAt)
+    storeRemoteRecord('profile', 'profile', snapshot.profile)
   }
 
   for (const record of snapshot.savedItems ?? []) {
-    syncAuthoritativeTimestamp(metadata, record.id, record.payload, record.clientUpdatedAt)
+    storeRemoteRecord('saved-item', record.naturalKey, record)
   }
 
   for (const record of snapshot.vocabEntries ?? []) {
-    syncAuthoritativeTimestamp(metadata, record.naturalKey, record.payload, record.clientUpdatedAt)
+    storeRemoteRecord('vocab-entry', record.naturalKey, record)
   }
 
   for (const record of snapshot.learningProgress ?? []) {
-    syncAuthoritativeTimestamp(
-      metadata,
-      `learning-progress:${record.scope}`,
-      record.payload,
-      record.clientUpdatedAt
-    )
+    storeRemoteRecord('learning-progress', record.scope, record)
   }
 
   writeSnapshotMetadata(metadata)
 }
 
 function applyProfileRecord(profile: CloudProfileRecord | null | undefined) {
-  if (!profile) return
+  if (!profile || profile.deletedAt) return
 
   useLocaleStore.setState({ locale: profile.locale })
   useThemeStore.getState().setDark(profile.darkMode)
@@ -343,11 +663,15 @@ function applySavedItems(savedItems: CloudSavedItemRecord[] | undefined) {
   if (!savedItems) return
 
   const bookmarks = savedItems
-    .filter(record => record.kind === 'bookmark' && !record.deletedAt)
-    .map(record => record.payload as CloudBookmarkPayload)
+    .filter((record): record is CloudSavedItemRecord & { payload: CloudBookmarkPayload } => (
+      record.kind === 'bookmark' && !record.deletedAt && record.payload !== null
+    ))
+    .map(record => record.payload)
   const favorites = savedItems
-    .filter(record => record.kind === 'favorite' && !record.deletedAt)
-    .map(record => record.payload as CloudFavoritePayload)
+    .filter((record): record is CloudSavedItemRecord & { payload: CloudFavoritePayload } => (
+      record.kind === 'favorite' && !record.deletedAt && record.payload !== null
+    ))
+    .map(record => record.payload)
 
   useBookmarksStore.getState().replaceBookmarks(bookmarks)
   useFavoritesStore.setState({ favorites })
@@ -358,7 +682,9 @@ function applyVocabEntries(vocabEntries: CloudVocabRecord[] | undefined) {
 
   useVocabStore.setState({
     vocab: vocabEntries
-      .filter(record => !record.deletedAt)
+      .filter((record): record is CloudVocabRecord & { payload: VocabEntry } => (
+        !record.deletedAt && record.payload !== null
+      ))
       .map(record => record.payload),
   })
 }
@@ -385,6 +711,9 @@ function applyLearningProgress(records: CloudLearningProgressRecord[] | undefine
 
 export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undefined) {
   if (!snapshot) return
+  if (snapshot.version !== CLOUD_SNAPSHOT_VERSION) {
+    throw new Error(`Unsupported cloud snapshot version: ${String(snapshot.version)}`)
+  }
 
   applyProfileRecord(snapshot.profile)
   applySavedItems(snapshot.savedItems)

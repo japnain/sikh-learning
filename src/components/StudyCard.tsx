@@ -386,6 +386,7 @@ export default function StudyCard({
         ref={cardRef}
         id={sectionId}
         data-testid="study-card"
+        data-study-entry-id={entry.id}
         className="scroll-mt-24 section-shell rounded-lg px-4 py-5 sm:px-5"
       >
         <div className="mb-5">

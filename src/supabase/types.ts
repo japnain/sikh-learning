@@ -20,6 +20,11 @@ export interface CloudSyncMetadata {
   userId: string | null
   deviceId: string
   clientUpdatedAt: string
+  /**
+   * The last server version observed by this device. A null value marks a
+   * record that has never been reconciled with the account.
+   */
+  baseUpdatedAt: string | null
   deletedAt: string | null
 }
 
@@ -69,7 +74,9 @@ export interface CloudFavoritePayload {
   source: 'G' | 'D' | 'B' | 'A'
   ang: number
   shabadId?: number
+  verseId?: number
   type: 'ang' | 'shabad' | 'bani'
+  routeMode?: 'canonical' | 'shabad' | 'verse'
   savedAt: string
 }
 
@@ -78,12 +85,12 @@ export type CloudSavedItemKind = 'bookmark' | 'favorite'
 export interface CloudSavedItemRecord extends CloudSyncMetadata {
   kind: CloudSavedItemKind
   naturalKey: string
-  payload: CloudBookmarkPayload | CloudFavoritePayload
+  payload: CloudBookmarkPayload | CloudFavoritePayload | null
 }
 
 export interface CloudVocabRecord extends CloudSyncMetadata {
   naturalKey: string
-  payload: VocabEntry
+  payload: VocabEntry | null
 }
 
 export type CloudLearningProgressScope =
@@ -108,7 +115,7 @@ export interface CloudActivityEvent {
 }
 
 export interface CloudLocalSnapshot {
-  version: 1
+  version: 2
   deviceId: string
   profile: CloudProfileRecord
   savedItems: CloudSavedItemRecord[]
@@ -118,6 +125,8 @@ export interface CloudLocalSnapshot {
 }
 
 export interface CloudRemoteSnapshot {
+  version: 2
+  generatedAt: string
   profile?: CloudProfileRecord | null
   savedItems?: CloudSavedItemRecord[]
   vocabEntries?: CloudVocabRecord[]
@@ -126,6 +135,8 @@ export interface CloudRemoteSnapshot {
 }
 
 export interface MergeLocalStateResult {
+  version?: 2
+  complete?: boolean
   acknowledgedEventIds?: string[]
   mergedAt?: string | null
   snapshot?: CloudRemoteSnapshot | null

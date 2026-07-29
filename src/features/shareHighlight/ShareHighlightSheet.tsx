@@ -9,6 +9,7 @@ import {
   ShareHighlightContentOverflowError,
 } from './renderer'
 import { downloadShareHighlightFile, shareHighlightFile } from './share'
+import { getCanonicalSourceUrl } from './sourceUrl'
 import type {
   ShareHighlightArtwork,
   ShareHighlightCardInput,
@@ -40,6 +41,8 @@ export interface ShareHighlightContent {
   passageLines?: ShareHighlightPassageLine[]
   seriesLabel?: string
   dateLabel?: string
+  /** App-relative route that reopens this exact passage. Defaults to the current route. */
+  sourcePath?: string
 }
 
 export interface ShareHighlightSheetProps {
@@ -281,7 +284,8 @@ function buildCopiedText(
   content: ShareHighlightContent,
   showTransliteration: boolean,
   showMeaning: boolean,
-  socialNote: string
+  socialNote: string,
+  sourceUrl: string,
 ) {
   const passageText = content.passageLines?.length
     ? content.passageLines.flatMap(line => [
@@ -299,7 +303,7 @@ function buildCopiedText(
     passageText ? '' : (showTransliteration ? content.transliteration?.trim() : ''),
     passageText ? '' : (showMeaning ? content.meaning?.trim() : ''),
     `— ${content.sourceLabel.trim()}`,
-    'naamras.xyz',
+    sourceUrl,
   ].filter(Boolean).join('\n')
 }
 
@@ -322,6 +326,10 @@ export default function ShareHighlightSheet({
   const positionGroupId = useId()
   const captionId = useId()
   const previewDescriptionId = useId()
+  const sourceUrl = useMemo(
+    () => getCanonicalSourceUrl(content.sourcePath),
+    [content.sourcePath],
+  )
   const passageLines = useMemo(
     () => content.passageLines?.filter(line => line.gurmukhi.trim()) ?? [],
     [content.passageLines]
@@ -546,7 +554,11 @@ export default function ShareHighlightSheet({
     try {
       const result = await shareHighlightFile(pngExport.file, {
         title: isPassage ? copy.passageShareTitle : copy.shareTitle,
-        text: socialNote,
+        text: [
+          socialNote.trim(),
+          content.sourceLabel.trim(),
+          sourceUrl,
+        ].filter(Boolean).join('\n'),
       })
       if (result.status === 'shared') announce(copy.shared)
       if (result.status === 'cancelled') announce(copy.cancelled)
@@ -604,7 +616,8 @@ export default function ShareHighlightSheet({
         content,
         isPassage ? hasTransliteration : showTransliteration,
         isPassage ? hasMeaning : showMeaning,
-        socialNote
+        socialNote,
+        sourceUrl,
       ))
       announce(copy.copied)
     } catch {

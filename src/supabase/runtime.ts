@@ -73,26 +73,59 @@ function getAvailableProviders() {
   return config.enabled ? ['apple', 'email'] : []
 }
 
-function toSupabaseMergeSnapshot(snapshot: CloudLocalSnapshot) {
-  const readingProgressRecord = snapshot.learningProgress.find(record => record.scope === 'reading-progress')
-  const readingProgressPayload = readingProgressRecord?.payload as { progress?: Record<string, number> } | undefined
-
+export function toSupabaseMergeSnapshot(snapshot: CloudLocalSnapshot) {
   return {
     version: snapshot.version,
     deviceId: snapshot.deviceId,
-    profile: {
-      locale: snapshot.profile.locale,
-      darkMode: snapshot.profile.darkMode,
-      onboarding: snapshot.profile.onboarding,
-    },
-    readerPreferences: snapshot.profile.reader,
-    bookmarks: snapshot.savedItems
-      .filter(record => record.kind === 'bookmark')
-      .map(record => record.payload),
+    profile: snapshot.profile,
+    savedItems: snapshot.savedItems,
     vocabEntries: snapshot.vocabEntries,
     learningProgress: snapshot.learningProgress,
-    readingProgress: readingProgressPayload?.progress ?? {},
     activityEvents: snapshot.activityEvents,
+  }
+}
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return Boolean(value && typeof value === 'object' && !Array.isArray(value))
+}
+
+function isTimestamp(value: unknown): value is string {
+  return typeof value === 'string' && Number.isFinite(Date.parse(value))
+}
+
+function validateCompleteMergeResult(
+  result: MergeLocalStateResult | null | undefined,
+  localSnapshot: CloudLocalSnapshot
+): asserts result is Required<
+  Pick<MergeLocalStateResult, 'version' | 'complete' | 'acknowledgedEventIds' | 'mergedAt' | 'snapshot'>
+> & {
+  version: 2
+  complete: true
+  mergedAt: string
+  snapshot: CloudRemoteSnapshot
+} {
+  if (
+    !result
+    || result.version !== 2
+    || result.complete !== true
+    || !isTimestamp(result.mergedAt)
+    || !Array.isArray(result.acknowledgedEventIds)
+    || !result.acknowledgedEventIds.every(id => typeof id === 'string')
+    || !isObject(result.snapshot)
+    || result.snapshot.version !== 2
+    || !isTimestamp(result.snapshot.generatedAt)
+    || !isObject(result.snapshot.profile)
+    || !Array.isArray(result.snapshot.savedItems)
+    || !Array.isArray(result.snapshot.vocabEntries)
+    || !Array.isArray(result.snapshot.learningProgress)
+  ) {
+    throw new Error('Cloud sync returned an incomplete snapshot.')
+  }
+
+  const acknowledgedIds = new Set(result.acknowledgedEventIds)
+  const hasUnacknowledgedEvent = localSnapshot.activityEvents.some(event => !acknowledgedIds.has(event.id))
+  if (hasUnacknowledgedEvent) {
+    throw new Error('Cloud sync did not acknowledge every pending activity event.')
   }
 }
 
@@ -214,20 +247,20 @@ export async function syncNow(reason = 'manual') {
     }
 
     const result = functionResponse.data
+    validateCompleteMergeResult(result, snapshot)
 
     applyingRemoteSnapshot = true
     try {
-      applyRemoteSnapshot(result?.snapshot as CloudRemoteSnapshot | null | undefined)
+      applyRemoteSnapshot(result.snapshot)
+      if (result.acknowledgedEventIds.length) {
+        useActivityEventsStore.getState().acknowledgeEvents(result.acknowledgedEventIds)
+      }
     } finally {
       applyingRemoteSnapshot = false
     }
 
-    if (result?.acknowledgedEventIds?.length) {
-      useActivityEventsStore.getState().acknowledgeEvents(result.acknowledgedEventIds)
-    }
-
     syncStore.setStatus('ready')
-    syncStore.setLastSyncedAt(result?.mergedAt ?? new Date().toISOString())
+    syncStore.setLastSyncedAt(result.mergedAt)
     syncStore.setLastError(null)
     syncStore.setSyncQueued(false)
 
@@ -386,4 +419,17 @@ export async function deleteCloudAccount() {
     syncStore.setLastError(getCloudSyncFailureMessage('account'))
     return { ok: false, error }
   }
+}
+
+export function resetCloudSyncRuntimeForTests() {
+  if (syncTimer !== null && typeof window !== 'undefined') {
+    window.clearTimeout(syncTimer)
+  }
+  syncTimer = null
+  currentUserId = null
+  applyingRemoteSnapshot = false
+  bootstrapPromise = null
+  cleanupSubscriptions.forEach(cleanup => cleanup())
+  cleanupSubscriptions = []
+  onlineListenerBound = false
 }

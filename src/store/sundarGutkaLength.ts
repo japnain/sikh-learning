@@ -56,8 +56,6 @@ export const useSundarGutkaLengthStore = create<SundarGutkaLengthState>()(
 
         return {
           lengths: nextLengths,
-          setLength: () => undefined,
-          reset: () => undefined,
         }
       },
     }

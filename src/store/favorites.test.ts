@@ -42,3 +42,38 @@ test('prevents duplicate favorites for the same location', () => {
 
   expect(useFavoritesStore.getState().favorites).toHaveLength(1)
 })
+
+test('keeps exact verses in the same shabad as distinct favorites', () => {
+  const state = useFavoritesStore.getState()
+  state.addFavorite({
+    title: 'Shabad · Verse 100',
+    source: 'G',
+    ang: 1,
+    shabadId: 10,
+    verseId: 100,
+    type: 'shabad',
+    routeMode: 'verse',
+  })
+  state.addFavorite({
+    title: 'Shabad · Verse 101',
+    source: 'G',
+    ang: 1,
+    shabadId: 10,
+    verseId: 101,
+    type: 'shabad',
+    routeMode: 'verse',
+  })
+  state.addFavorite({
+    title: 'Shabad · Verse 101 duplicate',
+    source: 'G',
+    ang: 1,
+    shabadId: 10,
+    verseId: 101,
+    type: 'shabad',
+    routeMode: 'verse',
+  })
+
+  expect(useFavoritesStore.getState().favorites).toHaveLength(2)
+  expect(useFavoritesStore.getState().isFavorite('G', 1, 10, 100, 'verse')).toBe(true)
+  expect(useFavoritesStore.getState().isFavorite('G', 1, 10, 101, 'verse')).toBe(true)
+})

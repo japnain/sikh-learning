@@ -22,9 +22,9 @@ function normalizeSearch(text: unknown): string {
 }
 
 function parseNumericParam(value: string | undefined): number | null {
-  if (!value) return null
+  if (!value || !/^\d+$/.test(value)) return null
   const parsed = Number(value)
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : null
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : null
 }
 
 function buildRehatSearchText(rehat: RehatSummary) {
@@ -244,8 +244,11 @@ export default function Rehat() {
   const setCachedRehatChapters = useScriptureCacheStore(state => state.setRehatChapters)
   const setCachedRehatChapter = useScriptureCacheStore(state => state.setRehatChapter)
   const [rehatIssue, setRehatIssue] = useState(false)
+  const [rehatLoadAttempt, setRehatLoadAttempt] = useState(0)
   const [chapterListIssueRehatId, setChapterListIssueRehatId] = useState<number | null>(null)
+  const [chapterListLoadAttempts, setChapterListLoadAttempts] = useState<Record<number, number>>({})
   const [chapterIssueKey, setChapterIssueKey] = useState<string | null>(null)
+  const [chapterLoadAttempts, setChapterLoadAttempts] = useState<Record<string, number>>({})
   const [rehatQuery, setRehatQuery] = useState('')
   const [chapterQuery, setChapterQuery] = useState('')
   const [chapterTextSearch, setChapterTextSearch] = useState({ key: '', value: '' })
@@ -287,7 +290,7 @@ export default function Rehat() {
     return () => {
       cancelled = true
     }
-  }, [rehats.length, setCachedRehats])
+  }, [rehatLoadAttempt, rehats.length, setCachedRehats])
 
   useEffect(() => {
     if (!selectedRehatId || cachedSelectedChapters) return
@@ -307,7 +310,7 @@ export default function Rehat() {
     return () => {
       cancelled = true
     }
-  }, [cachedSelectedChapters, selectedRehatId, setCachedRehatChapters])
+  }, [cachedSelectedChapters, chapterListLoadAttempts, selectedRehatId, setCachedRehatChapters])
 
   useEffect(() => {
     if (!selectedRehatId || !selectedChapterId || !selectedChapterKey || selectedChapter) return
@@ -331,7 +334,30 @@ export default function Rehat() {
     return () => {
       cancelled = true
     }
-  }, [selectedChapter, selectedChapterId, selectedChapterKey, selectedRehatId, setCachedRehatChapter])
+  }, [chapterLoadAttempts, selectedChapter, selectedChapterId, selectedChapterKey, selectedRehatId, setCachedRehatChapter])
+
+  const retryRehats = () => {
+    setRehatIssue(false)
+    setRehatLoadAttempt(attempt => attempt + 1)
+  }
+
+  const retryChapterList = () => {
+    if (!selectedRehatId) return
+    setChapterListIssueRehatId(current => current === selectedRehatId ? null : current)
+    setChapterListLoadAttempts(current => ({
+      ...current,
+      [selectedRehatId]: (current[selectedRehatId] ?? 0) + 1,
+    }))
+  }
+
+  const retryChapter = () => {
+    if (!selectedChapterKey) return
+    setChapterIssueKey(current => current === selectedChapterKey ? null : current)
+    setChapterLoadAttempts(current => ({
+      ...current,
+      [selectedChapterKey]: (current[selectedChapterKey] ?? 0) + 1,
+    }))
+  }
 
   const selectedRehat = selectedRehatId
     ? rehats.find(rehat => rehat.rehatId === selectedRehatId) ?? null
@@ -466,17 +492,26 @@ export default function Rehat() {
               Loading chapter...
             </p>
           ) : chapterIssue || !selectedChapter ? (
-            <section className="section-shell-quiet px-4 py-5" data-testid="rehat-error-state">
+            <section className="section-shell-quiet px-4 py-5" role="alert" data-testid="rehat-error-state">
               <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
                 This Rehat chapter could not be loaded right now.
               </p>
-              <Link
-                to={selectedRehatId ? `/banis/rehat/${selectedRehatId}` : '/banis/rehat'}
-                className="interactive-focus interactive-pill-link mt-4 min-h-[44px] gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
-              >
-                <IconArrowLeft size={14} />
-                Back to chapters
-              </Link>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={retryChapter}
+                  className="interactive-focus min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+                >
+                  Retry
+                </button>
+                <Link
+                  to={selectedRehatId ? `/banis/rehat/${selectedRehatId}` : '/banis/rehat'}
+                  className="interactive-focus interactive-pill-link min-h-[44px] gap-2 rounded-lg border border-sand/15 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/20 dark:text-dark-text"
+                >
+                  <IconArrowLeft size={14} />
+                  Back to chapters
+                </Link>
+              </div>
             </section>
           ) : (
             <>
@@ -536,10 +571,17 @@ export default function Rehat() {
               Loading chapters...
             </p>
           ) : chapterListIssue ? (
-            <section className="section-shell-quiet px-4 py-5" data-testid="rehat-error-state">
+            <section className="section-shell-quiet px-4 py-5" role="alert" data-testid="rehat-error-state">
               <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
                 Rehat chapters could not load right now.
               </p>
+              <button
+                type="button"
+                onClick={retryChapterList}
+                className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+              >
+                Retry
+              </button>
             </section>
           ) : filteredChapters.length === 0 ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
@@ -576,10 +618,17 @@ export default function Rehat() {
               Loading rehats...
             </p>
           ) : rehatIssue ? (
-            <section className="section-shell-quiet px-4 py-5" data-testid="rehat-error-state">
+            <section className="section-shell-quiet px-4 py-5" role="alert" data-testid="rehat-error-state">
               <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
                 Rehat could not load right now.
               </p>
+              <button
+                type="button"
+                onClick={retryRehats}
+                className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+              >
+                Retry
+              </button>
             </section>
           ) : filteredRehats.length === 0 ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">

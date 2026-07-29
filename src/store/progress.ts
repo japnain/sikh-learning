@@ -25,6 +25,8 @@ interface ProgressState {
   recordSwipeToday: () => void
 }
 
+const READING_HISTORY_LIMIT = 50
+
 type LegacySession = {
   scriptureId: string
   lastCardIndex: number
@@ -140,7 +142,8 @@ export const useProgressStore = create<ProgressState>()(
       currentSession: null,
 
       markStudied: (id) => set(state => ({
-        studied: [...state.studied.filter(s => s.id !== id), { id, swipedAt: new Date().toISOString() }],
+        studied: [...state.studied.filter(s => s.id !== id), { id, swipedAt: new Date().toISOString() }]
+          .slice(-READING_HISTORY_LIMIT),
         reviewQueue: state.reviewQueue.filter(r => r !== id),
       })),
 
@@ -171,12 +174,15 @@ export const useProgressStore = create<ProgressState>()(
     }),
     {
       name: 'sikh-progress',
-      version: 2,
+      version: 3,
       migrate: (persistedState) => {
         const state = (persistedState as Partial<ProgressState> | undefined) ?? {}
 
         return {
           ...state,
+          studied: Array.isArray(state.studied)
+            ? state.studied.slice(-READING_HISTORY_LIMIT)
+            : [],
           currentSession: normalizeSession(state.currentSession as Session | LegacySession | null | undefined),
         }
       },

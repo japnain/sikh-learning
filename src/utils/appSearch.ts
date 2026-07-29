@@ -319,8 +319,20 @@ export function getAppSearchMatches(
 }
 
 export function getAngTargets(query: string, searchSource: SearchSource): DirectAngTarget[] {
-  const angLookup = Number(query.trim())
-  if (!Number.isFinite(angLookup) || angLookup <= 0) return []
+  const normalizedQuery = Array.from(query.trim(), character => {
+    const codePoint = character.codePointAt(0) ?? 0
+    if (codePoint >= 0x0A66 && codePoint <= 0x0A6F) {
+      return String(codePoint - 0x0A66)
+    }
+    if (codePoint >= 0x0966 && codePoint <= 0x096F) {
+      return String(codePoint - 0x0966)
+    }
+    return character
+  }).join('')
+  if (!/^\d+$/.test(normalizedQuery)) return []
+
+  const angLookup = Number(normalizedQuery)
+  if (!Number.isSafeInteger(angLookup) || angLookup <= 0) return []
 
   const sources = searchSource === 'all'
     ? (Object.keys(ANG_SOURCE_META) as Array<keyof typeof ANG_SOURCE_META>)

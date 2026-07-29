@@ -19,6 +19,23 @@ const engineState: {
   nextSessionId: 0,
 }
 
+export interface SoundPlaybackFailure {
+  soundId: string
+}
+
+const playbackFailureListeners = new Set<(failure: SoundPlaybackFailure) => void>()
+
+export function subscribeToSoundPlaybackFailures(
+  listener: (failure: SoundPlaybackFailure) => void,
+): () => void {
+  playbackFailureListeners.add(listener)
+  return () => playbackFailureListeners.delete(listener)
+}
+
+function reportPlaybackFailure(soundId: string) {
+  playbackFailureListeners.forEach(listener => listener({ soundId }))
+}
+
 function clampVolume(value: number) {
   return Math.max(0, Math.min(1, value))
 }
@@ -141,6 +158,7 @@ function startSoundPlayback(id: string, commandToken: number) {
 
         session.audio = null
         engineState.session = null
+        reportPlaybackFailure(id)
       })
   }
 

@@ -5,6 +5,7 @@ import {
   playSound,
   setMasterVolume,
   stopSound,
+  subscribeToSoundPlaybackFailures,
   syncSoundPlayback,
 } from './soundEngine'
 
@@ -86,6 +87,8 @@ test('stopping playback does not let stale sessions revive after timers settle',
 })
 
 test('fallback failure leaves the engine fully stopped', async () => {
+  const onPlaybackFailure = vi.fn()
+  const unsubscribe = subscribeToSoundPlaybackFailures(onPlaybackFailure)
   const RejectingAudio = class {
     src = ''
     preload = 'auto'
@@ -117,7 +120,10 @@ test('fallback failure leaves the engine fully stopped', async () => {
     const snapshot = __getSoundEngineSnapshotForTests()
     expect(snapshot.activeSoundId).toBe(null)
     expect(snapshot.activeAudio).toBe(null)
+    expect(onPlaybackFailure).toHaveBeenCalledOnce()
+    expect(onPlaybackFailure).toHaveBeenCalledWith({ soundId: 'gentle-rain' })
   } finally {
+    unsubscribe()
     Object.defineProperty(globalThis, 'Audio', {
       value: originalAudio,
       configurable: true,

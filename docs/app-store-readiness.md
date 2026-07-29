@@ -1,6 +1,9 @@
 # NaamRas App Store Readiness
 
-Status as of 2026-07-18. This document is the launch source of truth.
+Historical release snapshot as of 2026-07-18. The current source-audit and
+verification status is maintained in
+[`docs/qa/2026-07-29-comprehensive-app-audit.md`](qa/2026-07-29-comprehensive-app-audit.md);
+do not reuse the test counts or live-parity claims below for changed source.
 
 ## Product Decision
 

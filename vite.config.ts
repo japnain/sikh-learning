@@ -16,6 +16,10 @@ const initialVendorChunkGroups = [
     name: 'vendor-backend',
     test: /node_modules[\\/](?:@insforge|@supabase|@socket\.io|socket\.io-client|socket\.io-parser|engine\.io-client|engine\.io-parser|graphql)[\\/]/,
     priority: 20,
+    // Keep shared helpers used by the initial UI in their own vendor group.
+    // Recursively capturing them here makes a lazy Supabase chunk an eager
+    // dependency of vendor-misc, even when every cloud entry point is dynamic.
+    includeDependenciesRecursively: false,
   },
   {
     name: 'vendor-misc',

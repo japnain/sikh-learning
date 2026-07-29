@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { beforeEach, expect, test } from 'vitest'
 import {
+  configureLibraryRepositoryLoader,
   loadLibraryChapter,
   loadLibraryChapterIndex,
   loadLibraryManifest,
@@ -96,6 +97,45 @@ test('loads full text from the work-specific index while the catalog index stays
 test('does not expose the retired Panth Prakash page index or page payloads', async () => {
   await expect(loadLibraryPageIndex('panth-prakash-english')).rejects.toThrow(/Unknown page-indexed library work/)
   await expect(loadLibraryPage('panth-prakash-english', 565)).resolves.toBeNull()
+})
+
+test('evicts rejected manifest promises so a reconnect can retry', async () => {
+  let manifestAttempts = 0
+  configureLibraryRepositoryLoader(async resourcePath => {
+    if (resourcePath === '/data/library/manifest.json') {
+      manifestAttempts += 1
+      if (manifestAttempts === 1) {
+        throw new Error('offline')
+      }
+    }
+    return readPublicLibraryJson(resourcePath)
+  })
+
+  await expect(loadLibraryManifest()).rejects.toThrow('offline')
+  await expect(loadLibraryManifest()).resolves.toEqual(expect.objectContaining({
+    workCatalogPath: '/data/library/works.json',
+  }))
+  expect(manifestAttempts).toBe(2)
+})
+
+test('evicts rejected keyed promises so the same search index can retry', async () => {
+  const searchIndexPath = '/data/library/works/panth-prakash-english/search-index.json'
+  let searchAttempts = 0
+  configureLibraryRepositoryLoader(async resourcePath => {
+    if (resourcePath === searchIndexPath) {
+      searchAttempts += 1
+      if (searchAttempts === 1) {
+        throw new Error('connection interrupted')
+      }
+    }
+    return readPublicLibraryJson(resourcePath)
+  })
+
+  await expect(loadLibrarySearchIndex('panth-prakash-english')).rejects.toThrow('connection interrupted')
+  await expect(loadLibrarySearchIndex('panth-prakash-english')).resolves.toEqual(expect.objectContaining({
+    chapters: expect.any(Array),
+  }))
+  expect(searchAttempts).toBe(2)
 })
 
 test('all stable chapter index paths resolve to existing JSON files', () => {

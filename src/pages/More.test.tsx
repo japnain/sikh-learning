@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from '@testing-library/react'
+import { act, render, screen, fireEvent, within } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import More from './More'
@@ -31,6 +31,7 @@ beforeEach(() => {
   useMusicStore.setState({
     selectedSoundId: null,
     isPlaying: false,
+    playbackError: null,
     volume: 0.6,
   })
   useNitemStore.setState({
@@ -148,6 +149,26 @@ test('pause button stops playback without clearing the selected sound', () => {
   fireEvent.click(screen.getByRole('button', { name: /pause soundscape/i }))
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(false)
+})
+
+test('reports ambient playback failure and lets the user retry', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  act(() => {
+    useMusicStore.setState({
+      selectedSoundId: 'gentle-rain',
+      isPlaying: true,
+    })
+    useMusicStore.getState().reportPlaybackFailure()
+  })
+
+  expect(screen.getByRole('alert')).toHaveTextContent(/could not be played/i)
+  expect(useMusicStore.getState().isPlaying).toBe(false)
+
+  fireEvent.click(screen.getByRole('button', { name: /play soundscape/i }))
+
+  expect(useMusicStore.getState().isPlaying).toBe(true)
+  expect(useMusicStore.getState().playbackError).toBe(null)
 })
 
 test('heavy More sections start collapsed while About stays visible', () => {

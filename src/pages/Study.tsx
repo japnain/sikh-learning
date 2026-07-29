@@ -14,6 +14,7 @@ import StudyEntryNavigator from '../components/StudyEntryNavigator'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import type { ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
 import {
@@ -61,6 +62,14 @@ import {
   getSourceReaderUnit,
   type SourceReaderId,
 } from '../utils/sourceReaderMeta'
+import {
+  addAppScrollSettledListener,
+  getAppScrollTop,
+  getAppViewportBounds,
+  getAppViewportHeight,
+  scrollAppTo,
+  scrollElementIntoAppView,
+} from '../utils/appScroll'
 
 type BaniSource = SourceReaderId
 
@@ -80,6 +89,7 @@ type ShareHighlightSheetContent = {
   dateLabel?: string
   caption?: string
   verseId?: number
+  sourcePath?: string
   selectedExcerpt?: boolean
   initialShowTransliteration?: boolean
   initialShowMeaning?: boolean
@@ -714,6 +724,7 @@ export default function Study() {
 
   const updateSession = useProgressStore(state => state.updateSession)
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
+  const markStudied = useProgressStore(state => state.markStudied)
   const { addBookmark, removeBookmark, bookmarks, hasBookmark } = useBookmarksStore()
   const { addFavorite, removeFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
@@ -803,8 +814,7 @@ export default function Study() {
     if (!baseSession || loading || typeof window === 'undefined') return
 
     let initialSyncFrame: number | null = null
-    let scrollIdleTimeout: number | null = null
-    const supportsScrollEnd = 'onscrollend' in document
+    let resizeIdleTimeout: number | null = null
 
     const syncVisibleVerse = () => {
       const verseElements = Array.from(document.querySelectorAll<HTMLElement>('[data-testid="study-line"][data-verse-id]'))
@@ -819,48 +829,51 @@ export default function Study() {
 
       if (!nextVerseId || nextVerseId === latestResumeVerseIdRef.current) return
 
+      const previousVerseId = latestResumeVerseIdRef.current
       latestResumeVerseIdRef.current = nextVerseId
       updateSession({
         ...baseSession,
         resumeVerseId: nextVerseId,
         updatedAt: new Date().toISOString(),
       })
+
+      if (previousVerseId !== null) {
+        const entryId = target.closest<HTMLElement>('[data-study-entry-id]')?.dataset.studyEntryId
+        const studiedEntry = entries.find(entry => entry.id === entryId)
+        if (studiedEntry) {
+          const cache = useScriptureCacheStore.getState()
+          const entrySource = studiedEntry.source ?? currentSource
+          const existingEntries = cache.getAng(entrySource, studiedEntry.ang) ?? []
+          if (!existingEntries.some(entry => entry.id === studiedEntry.id)) {
+            cache.setAng(entrySource, studiedEntry.ang, [...existingEntries, studiedEntry])
+          }
+          markStudied(studiedEntry.id)
+        }
+      }
     }
 
-    const syncAfterScrollSettles = () => {
-      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
-      scrollIdleTimeout = window.setTimeout(() => {
-        scrollIdleTimeout = null
+    const syncAfterResizeSettles = () => {
+      if (resizeIdleTimeout !== null) window.clearTimeout(resizeIdleTimeout)
+      resizeIdleTimeout = window.setTimeout(() => {
+        resizeIdleTimeout = null
         syncVisibleVerse()
       }, 180)
-    }
-
-    const handleScrollEnd = () => {
-      syncVisibleVerse()
     }
 
     initialSyncFrame = window.requestAnimationFrame(() => {
       initialSyncFrame = null
       syncVisibleVerse()
     })
-    if (supportsScrollEnd) {
-      document.addEventListener('scrollend', handleScrollEnd, { passive: true })
-    } else {
-      window.addEventListener('scroll', syncAfterScrollSettles, { passive: true })
-    }
-    window.addEventListener('resize', syncAfterScrollSettles)
+    const removeSettledScrollListener = addAppScrollSettledListener(syncVisibleVerse)
+    window.addEventListener('resize', syncAfterResizeSettles)
 
     return () => {
       if (initialSyncFrame !== null) window.cancelAnimationFrame(initialSyncFrame)
-      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
-      if (supportsScrollEnd) {
-        document.removeEventListener('scrollend', handleScrollEnd)
-      } else {
-        window.removeEventListener('scroll', syncAfterScrollSettles)
-      }
-      window.removeEventListener('resize', syncAfterScrollSettles)
+      if (resizeIdleTimeout !== null) window.clearTimeout(resizeIdleTimeout)
+      removeSettledScrollListener()
+      window.removeEventListener('resize', syncAfterResizeSettles)
     }
-  }, [baseSession, loading, updateSession, searchParamsString])
+  }, [baseSession, currentSource, entries, loading, markStudied, searchParamsString, updateSession])
 
   useEffect(() => {
     if (!resumeVerseIdParam || loading || typeof window === 'undefined') return
@@ -870,7 +883,7 @@ export default function Study() {
       const target = document.querySelector<HTMLElement>(`[data-verse-id="${resumeVerseIdParam}"]`)
       if (!target) return false
 
-      target.scrollIntoView({ behavior: 'auto', block: 'start' })
+      scrollElementIntoAppView(target, { behavior: 'auto', block: 'start' })
       return true
     }
 
@@ -938,14 +951,12 @@ export default function Study() {
     const progressBar = readerProgressBarRef.current
     if (!reading || !progressTrack || !progressBar) return
 
-    let scrollIdleTimeout: number | null = null
     let resizeIdleTimeout: number | null = null
     let readingTop = 0
     let readableDistance = 1
-    const supportsScrollEnd = 'onscrollend' in document
 
     const updateReaderProgress = () => {
-      const localProgress = Math.max(0, Math.min(1, (window.scrollY - readingTop + 96) / readableDistance))
+      const localProgress = Math.max(0, Math.min(1, (getAppScrollTop() - readingTop + 96) / readableDistance))
       const overallProgress = shouldPaginateEntries && entries.length > 0
         ? (safeActiveEntryIndex + localProgress) / entries.length
         : localProgress
@@ -959,17 +970,9 @@ export default function Study() {
 
     const measureReading = () => {
       const rect = reading.getBoundingClientRect()
-      readingTop = window.scrollY + rect.top
-      readableDistance = Math.max(1, reading.scrollHeight - window.innerHeight + 120)
+      readingTop = getAppScrollTop() + rect.top - getAppViewportBounds().top
+      readableDistance = Math.max(1, reading.scrollHeight - getAppViewportHeight() + 120)
       updateReaderProgress()
-    }
-
-    const updateAfterScrollSettles = () => {
-      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
-      scrollIdleTimeout = window.setTimeout(() => {
-        scrollIdleTimeout = null
-        updateReaderProgress()
-      }, 180)
     }
 
     const measureAfterResizeSettles = () => {
@@ -981,11 +984,7 @@ export default function Study() {
     }
 
     measureReading()
-    if (supportsScrollEnd) {
-      document.addEventListener('scrollend', updateReaderProgress, { passive: true })
-    } else {
-      window.addEventListener('scroll', updateAfterScrollSettles, { passive: true })
-    }
+    const removeSettledScrollListener = addAppScrollSettledListener(updateReaderProgress)
     window.addEventListener('resize', measureAfterResizeSettles)
 
     const resizeObserver = typeof ResizeObserver === 'undefined'
@@ -994,14 +993,9 @@ export default function Study() {
     resizeObserver?.observe(reading)
 
     return () => {
-      if (scrollIdleTimeout !== null) window.clearTimeout(scrollIdleTimeout)
       if (resizeIdleTimeout !== null) window.clearTimeout(resizeIdleTimeout)
       resizeObserver?.disconnect()
-      if (supportsScrollEnd) {
-        document.removeEventListener('scrollend', updateReaderProgress)
-      } else {
-        window.removeEventListener('scroll', updateAfterScrollSettles)
-      }
+      removeSettledScrollListener()
       window.removeEventListener('resize', measureAfterResizeSettles)
     }
   }, [entries.length, loading, safeActiveEntryIndex, searchParamsString, shouldPaginateEntries])
@@ -1017,12 +1011,19 @@ export default function Study() {
     const meaning = selectedExcerpt ? '' : getLineMeaningText(line, meaningLanguage, englishSource).trim()
     const sourceName = baniName || entry.scripture
     const sourceLabel = `${sourceName} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${line.ang}`
+    const exactPassageParams = new URLSearchParams({
+      shabadId: String(line.shabadId),
+      verseId: String(line.verseId),
+    })
+    if (baniName?.trim()) exactPassageParams.set('baniName', baniName.trim())
+
     return {
       gurmukhi,
       transliteration: transliteration || undefined,
       meaning: meaning || undefined,
       sourceLabel,
       verseId: line.verseId,
+      sourcePath: `/study?${exactPassageParams.toString()}`,
       selectedExcerpt,
       initialShowTransliteration: !selectedExcerpt && showTransliteration && Boolean(transliteration),
       initialShowMeaning: !selectedExcerpt && Boolean(meaning),
@@ -1074,6 +1075,7 @@ export default function Study() {
           passageLines,
           seriesLabel: isHukamnamaMode ? 'Daily Hukamnama' : 'Personal Hukamnama',
           dateLabel: dateLabel || undefined,
+          sourcePath: `${location.pathname}${location.search}${location.hash}`,
           initialShowTransliteration: showTransliteration && Boolean(transliteration),
           initialShowMeaning: Boolean(meaning),
         })
@@ -1445,7 +1447,7 @@ export default function Study() {
     if (typeof window === 'undefined') return
 
     window.requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      scrollAppTo({ top: 0, left: 0, behavior: 'auto' })
       document.getElementById('main-content')?.focus({ preventScroll: true })
     })
   }
@@ -1478,7 +1480,8 @@ export default function Study() {
 
     if (!shouldPaginateEntries) {
       window.requestAnimationFrame(() => {
-        document.getElementById(`study-entry-${nextIndex + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        const target = document.getElementById(`study-entry-${nextIndex + 1}`)
+        if (target) scrollElementIntoAppView(target, { behavior: 'smooth', block: 'start' })
       })
       return
     }
@@ -1515,6 +1518,13 @@ export default function Study() {
     && Boolean(currentAng)
     && navMinAng !== null
     && navMaxAng !== null
+  const retryReader = isHukamnamaMode
+    ? hukamnamaResult.retry
+    : isExactShabadMode
+      ? shabadResult.retry
+      : isBaniDbMode
+        ? baniResult.retry
+        : angResult.refetch
   const readerStateTopbar = (
     <div className="study-reader-topbar" data-testid="study-reader-topbar">
       <button
@@ -1541,7 +1551,7 @@ export default function Study() {
 
   if (!isApiMode) return null
 
-  if (loading) {
+  if (loading && entries.length === 0) {
     return (
       <div
         className="page-shell"
@@ -1562,7 +1572,7 @@ export default function Study() {
     )
   }
 
-  if (readerStatus === 'degraded') {
+  if (readerStatus === 'degraded' && entries.length === 0) {
     return (
       <div className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="degraded">
         {readerStateTopbar}
@@ -1571,15 +1581,15 @@ export default function Study() {
           state="degraded"
           eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
           title="This reading view needs another pass."
-          body="The passage did not settle this time. Reload the reader or step back and open a different route."
+          body="The passage did not settle this time. Try the request again or step back and open a different route."
           pageShell={false}
           headingLevel={2}
           errorCode={error ?? 'unavailable'}
           actions={[
             {
-              label: 'Reload Reader',
-              onClick: () => window.location.reload(),
-              aiAction: 'reload-study',
+              label: 'Try Again',
+              onClick: retryReader,
+              aiAction: 'retry-study',
             },
             {
               label: 'Back',
@@ -1629,7 +1639,7 @@ export default function Study() {
       data-testid="page-study"
       data-page="study"
       data-ai-surface="study-reader"
-      data-ai-state="ready"
+      data-ai-state={readerStatus === 'degraded' ? 'degraded' : 'ready'}
       data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
       data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
@@ -1709,6 +1719,28 @@ export default function Study() {
           <span ref={readerProgressBarRef} />
         </div>
       </div>
+
+      {readerStatus === 'degraded' ? (
+        <div
+          role="status"
+          className="section-shell-quiet mb-4 flex items-start justify-between gap-3 px-4 py-3"
+          data-testid="study-reader-saved-copy"
+          data-ai-surface="study-reader-saved-copy"
+          data-ai-state="degraded"
+        >
+          <p className="font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
+            Showing the passage already saved on this device because the live source is unavailable.
+          </p>
+          <button
+            type="button"
+            onClick={retryReader}
+            className="shrink-0 rounded-full border border-saffron/30 px-3 py-2 font-sans text-xs font-medium text-saffron dark:text-saffron-light"
+            data-ai-action="retry-study"
+          >
+            Try live copy
+          </button>
+        </div>
+      ) : null}
 
       <div aria-live="polite" aria-atomic="true" className="study-reader-action-status">
         {actionNotice ? (

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node ./scripts/copy-public.mjs",
+    "build": "tsc -b && vite build && npm run qa:startup-bundle && node ./scripts/copy-public.mjs",
     "ios:sync": "npm run build && npx cap sync ios",
     "ios:open": "npx cap open ios",
     "ios:build": "npm run ios:sync && xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",
@@ -15,6 +15,7 @@
     "native:test": "npm run native:generate-catalog && xcodebuild test -project ios/App/App.xcodeproj -scheme NaamRasNative -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO",
     "lint": "eslint .",
     "qa:a11y": "node ./scripts/qa/accessibility-sweep.mjs",
+    "qa:startup-bundle": "node ./scripts/qa/startup-bundle-audit.mjs",
     "qa:css-selectors": "node ./scripts/qa/css-selector-audit.mjs",
     "qa:app-store": "npm run ios:build:release && node ./scripts/qa/app-store-readiness.mjs",
     "library:import": "node ./scripts/library/import-curated-epub.mjs",

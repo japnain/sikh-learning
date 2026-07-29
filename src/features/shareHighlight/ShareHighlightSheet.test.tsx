@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import ShareHighlightSheet, { type ShareHighlightContent } from './ShareHighlightSheet'
+import { getCanonicalSourceUrl } from './sourceUrl'
 
 const mocks = vi.hoisted(() => {
   class ContentOverflowError extends Error {
@@ -41,6 +42,7 @@ const content: ShareHighlightContent = {
   sourceLabel: 'Sri Guru Granth Sahib Ji · Ang 1',
   caption: 'A line I am carrying today.',
   verseId: 101,
+  sourcePath: '/study?source=G&ang=1&verseId=101',
   initialShowTransliteration: true,
   initialShowMeaning: true,
 }
@@ -50,6 +52,7 @@ const passageContent: ShareHighlightContent = {
   transliteration: 'salok\nsant udharan daiaalang\nnirmal sant sangen',
   meaning: 'Salok.\nThe Merciful Lord saves the Saints.\nOne becomes immaculate with the Saints.',
   sourceLabel: 'SGGS · Ang 709',
+  sourcePath: '/study?hukamnama=daily&ang=709',
   seriesLabel: 'Daily Hukamnama',
   dateLabel: 'July 15, 2026',
   passageLines: [
@@ -109,6 +112,18 @@ beforeEach(() => {
     configurable: true,
     value: { writeText: vi.fn().mockResolvedValue(undefined) },
   })
+})
+
+it('keeps generated source links on the canonical NaamRas origin', () => {
+  expect(getCanonicalSourceUrl('/study?shabadId=1&verseId=1')).toBe(
+    'https://naamras.xyz/study?shabadId=1&verseId=1'
+  )
+  expect(getCanonicalSourceUrl('https://attacker.example/passage')).toBe(
+    'https://naamras.xyz/'
+  )
+  expect(getCanonicalSourceUrl('/\\attacker.example/passage')).toBe(
+    'https://naamras.xyz/'
+  )
 })
 
 afterAll(() => {
@@ -224,7 +239,7 @@ describe('ShareHighlightSheet', () => {
       expect(mocks.shareFile.mock.calls[0][0]).toBe(storyExport.file)
       expect(mocks.shareFile.mock.calls[0][1]).toEqual({
         title: 'Hukamnama from NaamRas',
-        text: '',
+        text: 'SGGS · Ang 709\nhttps://naamras.xyz/study?hukamnama=daily&ang=709',
       })
     })
 
@@ -486,7 +501,12 @@ describe('ShareHighlightSheet', () => {
     await waitFor(() => {
       expect(mocks.shareFile).toHaveBeenCalledWith(
         expect.objectContaining({ name: 'naamras-highlight-101.png' }),
-        expect.objectContaining({ text: content.caption })
+        expect.objectContaining({
+          text: expect.stringContaining(content.caption!),
+        })
+      )
+      expect(mocks.shareFile.mock.calls.at(-1)?.[1]?.text).toContain(
+        'https://naamras.xyz/study?source=G&ang=1&verseId=101',
       )
       expect(within(dialog).getByRole('status')).toHaveTextContent('Share sheet opened.')
     })
@@ -498,7 +518,9 @@ describe('ShareHighlightSheet', () => {
     fireEvent.click(within(dialog).getByRole('button', { name: 'Copy text' }))
     await waitFor(() => {
       expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(expect.stringContaining(content.gurmukhi))
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(expect.stringContaining('naamras.xyz'))
+      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
+        expect.stringContaining('https://naamras.xyz/study?source=G&ang=1&verseId=101'),
+      )
       expect(onNotice).toHaveBeenCalledWith('Text copied.')
     })
   })

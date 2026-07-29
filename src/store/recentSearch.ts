@@ -23,13 +23,14 @@ export const useRecentSearchStore = create<RecentSearchState>()(
       addRecent: (query, mode) => {
         const trimmed = query.trim()
         if (!trimmed || trimmed.length < 2) return
+        const existing = get().recent.find(item => item.query === trimmed && item.mode === mode)
         const current = get().recent.filter(item => !(item.query === trimmed && item.mode === mode))
         set({
           recent: [
             {
               query: trimmed,
               mode,
-              pinned: false,
+              pinned: existing?.pinned ?? false,
               savedAt: new Date().toISOString(),
             },
             ...current,

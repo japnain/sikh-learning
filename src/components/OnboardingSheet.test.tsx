@@ -9,6 +9,7 @@ import type {
   UiLocale,
 } from '../types'
 import { useCloudSyncStore } from '../store/cloudSync'
+import { APP_SCROLL_VIEWPORT_ID } from '../utils/appScroll'
 import OnboardingSheet from './OnboardingSheet'
 
 const { sendMagicLinkMock, signInWithProviderMock } = vi.hoisted(() => ({
@@ -206,18 +207,25 @@ test('localizes the script setup step in Punjabi', () => {
   expect(screen.getByText('ਇਹ ਚੋਣ ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲੇ ਪਾਠਾਂ ਦੀ ਮੂਲ ਲਿਪੀ ਬਦਲਦੀ ਹੈ।')).toBeInTheDocument()
 })
 
-test('overlay onboarding still locks document scrolling and restores it on unmount', () => {
-  const { unmount } = render(<Harness presentation="overlay" />)
+test('overlay onboarding locks the app scroll viewport and restores it on unmount', () => {
+  const { unmount } = render(
+    <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
+      <Harness presentation="overlay" />
+    </div>
+  )
+  const scrollViewport = screen.getByTestId('app-scroll-viewport')
 
-  expect(document.body.style.overflow).toBe('hidden')
-  expect(document.body.style.overscrollBehavior).toBe('none')
-  expect(document.documentElement.style.overflow).toBe('hidden')
+  expect(scrollViewport.style.overflow).toBe('hidden')
+  expect(scrollViewport.style.overflowY).toBe('hidden')
+  expect(scrollViewport.style.overscrollBehavior).toBe('none')
+  expect(document.body.style.overflow).toBe('')
+  expect(document.documentElement.style.overflow).toBe('')
 
   unmount()
 
-  expect(document.body.style.overflow).toBe('')
-  expect(document.body.style.overscrollBehavior).toBe('')
-  expect(document.documentElement.style.overflow).toBe('')
+  expect(scrollViewport.style.overflow).toBe('')
+  expect(scrollViewport.style.overflowY).toBe('')
+  expect(scrollViewport.style.overscrollBehavior).toBe('')
 })
 
 test('preview step offers configured sign-in providers only after backup drawer is expanded', async () => {
@@ -287,4 +295,30 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
   expect(screen.getByText(/backup is unavailable right now/i)).toBeInTheDocument()
   expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
   expect(screen.getByTestId('onboarding-preview-primary-action')).toBeEnabled()
+})
+
+test('keeps onboarding local-first when the lazy sign-in runtime fails', async () => {
+  const onComplete = vi.fn()
+  signInWithProviderMock.mockRejectedValueOnce(new Error('chunk unavailable'))
+  useCloudSyncStore.setState({
+    configured: true,
+    status: 'signed-out',
+    currentUser: null,
+    availableProviders: ['apple'],
+    lastSyncedAt: null,
+    lastError: null,
+    syncQueued: false,
+  })
+
+  render(<Harness onComplete={onComplete} />)
+  advanceToPreview()
+  fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
+  fireEvent.click(screen.getByRole('button', { name: /continue with apple/i }))
+
+  await waitFor(() => {
+    expect(useCloudSyncStore.getState()).toMatchObject({
+      status: 'error',
+      lastError: expect.stringMatching(/keep reading locally/i),
+    })
+  })
 })

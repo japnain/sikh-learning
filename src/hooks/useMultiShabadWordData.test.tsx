@@ -5,6 +5,7 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useMultiShabadWordData } from './useMultiShabadWordData'
 
 beforeEach(() => {
+  vi.restoreAllMocks()
   useScriptureCacheStore.getState().clearAll()
 })
 
@@ -35,5 +36,37 @@ describe('useMultiShabadWordData', () => {
     expect(fetchSpy).toHaveBeenCalledTimes(2)
     expect(fetchSpy).toHaveBeenNthCalledWith(1, 1)
     expect(fetchSpy).toHaveBeenNthCalledWith(2, 2)
+  })
+
+  it('does not persist a failed request as an empty successful response', async () => {
+    const words = [{
+      gurmukhi: 'ਨਾਮ',
+      transliteration: 'naam',
+      meaning_en: 'Name',
+      meaning_hi: 'नाम',
+      meaning_pa: 'ਨਾਮ',
+    }]
+    const fetchSpy = vi.spyOn(banidb, 'fetchShabadWords')
+      .mockRejectedValueOnce(new Error('temporary failure'))
+
+    const firstRender = renderHook(() => useMultiShabadWordData([42]))
+
+    await waitFor(() => {
+      expect(firstRender.result.current.loading).toBe(false)
+    })
+
+    expect(firstRender.result.current.wordDataMap).toEqual({})
+    expect(useScriptureCacheStore.getState().getWords(42)).toBeUndefined()
+    firstRender.unmount()
+
+    fetchSpy.mockResolvedValueOnce(words)
+    const secondRender = renderHook(() => useMultiShabadWordData([42]))
+
+    await waitFor(() => {
+      expect(secondRender.result.current.wordDataMap[42]).toEqual(words)
+    })
+
+    expect(fetchSpy).toHaveBeenCalledTimes(2)
+    expect(useScriptureCacheStore.getState().getWords(42)).toEqual(words)
   })
 })

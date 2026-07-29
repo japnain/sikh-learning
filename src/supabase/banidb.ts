@@ -56,11 +56,16 @@ function buildDevProxyBanidbUrl(path: string, query?: Record<string, string>) {
   return url
 }
 
-export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
+export async function requestBanidb<T>(
+  path: string,
+  query?: BanidbProxyQuery,
+  options?: { signal?: AbortSignal }
+) {
   const config = getNaamrasSupabaseConfig()
   const normalizedQuery = normalizeQuery(query)
 
   if (config.banidbMockEnabled) {
+    options?.signal?.throwIfAborted()
     const data = getMockBanidbResponse(path, normalizedQuery)
     return {
       response: new Response(JSON.stringify(data ?? { error: 'Not found.' }), {
@@ -79,7 +84,8 @@ export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
     }
 
     const response = await fetch(
-      (buildDevProxyBanidbUrl(path, normalizedQuery) ?? buildPublicBanidbUrl(config.banidbPublicOrigin, path, normalizedQuery)).toString()
+      (buildDevProxyBanidbUrl(path, normalizedQuery) ?? buildPublicBanidbUrl(config.banidbPublicOrigin, path, normalizedQuery)).toString(),
+      { signal: options?.signal }
     )
     const text = await response.text()
     return {
@@ -99,6 +105,7 @@ export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
   const response = await fetch(endpoint, {
     method: 'POST',
     headers,
+    signal: options?.signal,
     body: JSON.stringify({
       path,
       query: normalizedQuery,

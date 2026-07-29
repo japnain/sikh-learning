@@ -41,6 +41,7 @@ import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
 import { toLocalDayStamp } from '../utils/localDates'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
+import { scrollElementIntoAppView } from '../utils/appScroll'
 import { getEditorialCopy } from '../content/editorialCopy'
 import heroEclipseSrc from '../assets/home-eclipse/hero-eclipse.avif'
 import savedMuralSrc from '../assets/living-library/saved-mural-landscape.avif'
@@ -393,7 +394,9 @@ export default function Home() {
     if (state.highlightTodayPath) {
       globalThis.requestAnimationFrame(() => {
         nitnemSpotlightRef.current?.classList.add(...HOME_SPOTLIGHT_HIGHLIGHT_CLASSES)
-        nitnemSpotlightRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        if (nitnemSpotlightRef.current) {
+          scrollElementIntoAppView(nitnemSpotlightRef.current, { behavior: 'smooth', block: 'center' })
+        }
       })
       highlightTimer = window.setTimeout(() => {
         nitnemSpotlightRef.current?.classList.remove(...HOME_SPOTLIGHT_HIGHLIGHT_CLASSES)

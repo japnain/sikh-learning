@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { useMusicStore } from '../store/music'
-import { syncSoundPlayback } from '../utils/soundEngine'
+import {
+  subscribeToSoundPlaybackFailures,
+  syncSoundPlayback,
+} from '../utils/soundEngine'
 
 export default function MusicControllerBridge() {
   const selectedSoundId = useMusicStore(state => state.selectedSoundId)
@@ -10,6 +13,10 @@ export default function MusicControllerBridge() {
   useEffect(() => {
     syncSoundPlayback({ selectedSoundId, isPlaying, volume })
   }, [isPlaying, selectedSoundId, volume])
+
+  useEffect(() => subscribeToSoundPlaybackFailures(() => {
+    useMusicStore.getState().reportPlaybackFailure()
+  }), [])
 
   return null
 }
