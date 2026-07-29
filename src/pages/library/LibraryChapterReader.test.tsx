@@ -7,16 +7,19 @@ import {
   useEpubReaderStore,
 } from '../../store/epubReader'
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
+import { APP_SCROLL_VIEWPORT_ID } from '../../utils/appScroll'
 
 const FIRST_EPISODE_PATH = '/library/panth-prakash-english/chapters/episode-001'
 
-function renderReader(path = FIRST_EPISODE_PATH) {
+function renderReader(path = FIRST_EPISODE_PATH, state?: unknown) {
   return render(
-    <MemoryRouter initialEntries={[path]}>
-      <Routes>
-        <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
-      </Routes>
-    </MemoryRouter>
+    <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
+      <MemoryRouter initialEntries={[state === undefined ? path : { pathname: path, state }]}>
+        <Routes>
+          <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
+        </Routes>
+      </MemoryRouter>
+    </div>
   )
 }
 
@@ -35,6 +38,7 @@ describe('LibraryChapterReader', () => {
 
   afterEach(() => {
     vi.restoreAllMocks()
+    vi.unstubAllGlobals()
   })
 
   test('renders the cleaned EPUB as semantic verse without exposing source internals', async () => {
@@ -108,29 +112,71 @@ describe('LibraryChapterReader', () => {
     expect(screen.getByRole('link', { name: /back to panth prakash/i })).toHaveFocus()
   })
 
-  test('records the final content block when the document reaches its end', async () => {
-    vi.spyOn(window, 'scrollY', 'get').mockReturnValue(1200)
-    vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(800)
-    const rootHeight = vi.spyOn(document.documentElement, 'scrollHeight', 'get').mockReturnValue(2000)
-    const bodyHeight = vi.spyOn(document.body, 'scrollHeight', 'get').mockReturnValue(2000)
-    renderReader()
+  test('preserves Saved as the reader origin across chapter navigation', async () => {
+    const user = userEvent.setup()
+    renderReader(FIRST_EPISODE_PATH, { libraryReaderOrigin: '/saved' })
 
-    await screen.findByTestId('panth-chapter-reader')
-    await waitFor(() => {
-      expect(useProgressStore.getState().currentSession?.readerLocator?.locations.blockId).toBe(
-        'episode-001-p47-b001'
-      )
+    expect(await screen.findByRole('link', { name: /back to saved/i })).toHaveAttribute('href', '/saved')
+    await user.click(screen.getByRole('link', { name: /next.*episode 2/i }))
+
+    expect(await screen.findByRole('link', { name: /back to saved/i })).toHaveAttribute('href', '/saved')
+  })
+
+  test('preserves an exact Read search origin', async () => {
+    renderReader(FIRST_EPISODE_PATH, {
+      libraryReaderOrigin: '/banis?collection=books&query=khalsa',
     })
-    fireEvent.scroll(window)
-    fireEvent.scroll(window)
 
-    expect(rootHeight).not.toHaveBeenCalled()
-    expect(bodyHeight).not.toHaveBeenCalled()
-    fireEvent(document, new Event('scrollend'))
+    expect(await screen.findByRole('link', { name: /back to read/i })).toHaveAttribute(
+      'href',
+      '/banis?collection=books&query=khalsa'
+    )
+  })
+
+  test('does not crash when the block hash is malformed', async () => {
+    renderReader(`${FIRST_EPISODE_PATH}#%E0%A4%A`)
+
+    expect(await screen.findByTestId('panth-chapter-reader')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1, name: /Origin of the Khalsa/i })).toBeInTheDocument()
+  })
+
+  test('observes reader blocks against the app scroll viewport', async () => {
+    const observedRoots: Array<Element | Document | null> = []
+    class CapturingIntersectionObserver {
+      constructor(_callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+        observedRoots.push(options?.root ?? null)
+      }
+      disconnect() {}
+      observe() {}
+      unobserve() {}
+      takeRecords() { return [] }
+    }
+    vi.stubGlobal('IntersectionObserver', CapturingIntersectionObserver)
+
+    renderReader()
+    const scrollViewport = screen.getByTestId('app-scroll-viewport')
+    await screen.findByTestId('panth-chapter-reader')
+
+    expect(observedRoots).toContain(scrollViewport)
+  })
+
+  test('records the final content block only after viewport scrolling settles', async () => {
+    renderReader()
+    const scrollViewport = screen.getByTestId('app-scroll-viewport')
+    Object.defineProperties(scrollViewport, {
+      clientHeight: { configurable: true, value: 800 },
+      scrollHeight: { configurable: true, value: 2000 },
+    })
+    scrollViewport.scrollTop = 1200
+    await screen.findByTestId('panth-chapter-reader')
+
+    fireEvent.scroll(scrollViewport)
+    fireEvent.scroll(scrollViewport)
+    expect(useProgressStore.getState().currentSession).toBeNull()
+
+    fireEvent(scrollViewport, new Event('scrollend'))
 
     await waitFor(() => {
-      expect(rootHeight).toHaveBeenCalledTimes(1)
-      expect(bodyHeight).toHaveBeenCalledTimes(1)
       expect(useProgressStore.getState().currentSession?.readerLocator?.locations).toEqual(
         expect.objectContaining({
           blockId: 'episode-001-p53-b015',
@@ -140,12 +186,16 @@ describe('LibraryChapterReader', () => {
     })
   })
 
-  test('restores and records an exact block locator in the resume URL', async () => {
+  test('restores an exact block and flushes its locator on pagehide', async () => {
     const scrollSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView')
     const blockId = 'episode-001-p47-b003'
     renderReader(`${FIRST_EPISODE_PATH}#${blockId}`)
 
     await screen.findByTestId('panth-chapter-reader')
+    await waitFor(() => expect(scrollSpy).toHaveBeenCalled())
+    expect(useProgressStore.getState().currentSession).toBeNull()
+
+    fireEvent(window, new Event('pagehide'))
     await waitFor(() => {
       expect(useProgressStore.getState().currentSession).toEqual(expect.objectContaining({
         scriptureId: 'panth-prakash-english-episode-001',
@@ -157,7 +207,6 @@ describe('LibraryChapterReader', () => {
       }))
     })
 
-    expect(scrollSpy).toHaveBeenCalled()
     expect(buildSessionResumePath(useProgressStore.getState().currentSession)).toBe(
       `${FIRST_EPISODE_PATH}#${blockId}`
     )

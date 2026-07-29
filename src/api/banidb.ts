@@ -798,10 +798,15 @@ function resolveNormalizedSundarGutkaLengthOption({
 
 export async function fetchBani(
   baniDbId: number,
-  sgLength?: SundarGutkaLength | null
+  sgLength?: SundarGutkaLength | null,
+  signal?: AbortSignal
 ): Promise<BaniFetchResult> {
   return withQaControl('study-bani', async () => {
-    const { response: res, data } = await requestBanidb<Record<string, unknown>>(`${API_PREFIX}/banis/${baniDbId}`)
+    const { response: res, data } = await requestBanidb<Record<string, unknown>>(
+      `${API_PREFIX}/banis/${baniDbId}`,
+      undefined,
+      { signal }
+    )
     if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
 
     const rawArray = (data.verses ?? []) as BaniResponseVerse[]
@@ -934,18 +939,19 @@ export async function fetchSearch(
   query: string,
   searchType: number = 0,
   source: SearchSource = 'all',
-  context: 'home-search' | 'read-search' = 'read-search'
+  context: 'home-search' | 'read-search' = 'read-search',
+  signal?: AbortSignal
 ): Promise<SearchResult[]> {
   return withQaControl(context, async () => {
     const encoded = encodeURIComponent(query)
     const { response: res, data } = await requestBanidb<{ verses?: BaniVerse[] }>(`${API_PREFIX}/search/${encoded}`, {
       searchtype: searchType,
       source,
-    })
+    }, { signal })
     if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
     const verses = data.verses ?? []
 
-    return verses.slice(0, 30).map(v => ({
+    return verses.map(v => ({
       shabadId: v.shabadId,
       verseId: v.verseId,
       source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',

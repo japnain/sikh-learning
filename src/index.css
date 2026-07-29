@@ -41,20 +41,18 @@
   html,
   body,
   #root {
-    min-height: 100dvh;
+    height: 100%;
+    min-height: 0;
     width: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 
   html {
-    overflow-x: hidden;
-    overflow-y: auto;
     background: rgb(var(--color-bg));
   }
 
   body {
-    min-height: 100dvh;
-    overflow-x: clip;
-    overflow-y: visible;
     background:
       linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-bg)) 42%, rgb(var(--color-surface-muted)) 100%);
     color: rgb(var(--color-text));
@@ -84,8 +82,7 @@
   }
 
   #root {
-    overflow-x: clip;
-    overflow-y: visible;
+    position: relative;
   }
 
   a {
@@ -127,9 +124,25 @@
 }
 
 @layer components {
+  .app-scroll-viewport {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto;
+  }
+
+  html[data-motion='reduce'] .app-scroll-viewport {
+    scroll-behavior: auto;
+  }
+
   .page-shell {
     @apply mx-auto max-w-md;
-    min-height: 100dvh;
+    min-height: 100%;
     width: 100%;
     overflow-x: clip;
     overflow-y: visible;
@@ -143,7 +156,7 @@
   .app-shell {
     position: relative;
     isolation: isolate;
-    min-height: 100dvh;
+    min-height: 100%;
     overflow-x: clip;
     overflow-y: visible;
     padding-bottom: 0;

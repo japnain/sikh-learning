@@ -10,6 +10,12 @@ interface ActivityEventsState {
   clearPendingEvents: () => void
 }
 
+export const MAX_PENDING_ACTIVITY_EVENTS = 250
+
+function retainNewestEvents(events: CloudActivityEvent[]) {
+  return events.slice(-MAX_PENDING_ACTIVITY_EVENTS)
+}
+
 export const useActivityEventsStore = create<ActivityEventsState>()(
   persist(
     (set) => ({
@@ -27,7 +33,7 @@ export const useActivityEventsStore = create<ActivityEventsState>()(
         }
 
         set(state => ({
-          pendingEvents: [...state.pendingEvents, event],
+          pendingEvents: retainNewestEvents([...state.pendingEvents, event]),
         }))
 
         return event
@@ -39,6 +45,15 @@ export const useActivityEventsStore = create<ActivityEventsState>()(
     }),
     {
       name: 'naamras-cloud-activity-events',
+      merge: (persistedState, currentState) => {
+        const persisted = persistedState as Partial<ActivityEventsState> | undefined
+        return {
+          ...currentState,
+          pendingEvents: retainNewestEvents(
+            Array.isArray(persisted?.pendingEvents) ? persisted.pendingEvents : []
+          ),
+        }
+      },
     }
   )
 )

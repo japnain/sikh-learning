@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { vi } from 'vitest'
 import ErrorBoundary from './ErrorBoundary'
 
@@ -16,14 +16,15 @@ test('renders fallback UI when child throws', () => {
   expect(screen.getByText('This view needs a clean reset.')).toBeInTheDocument()
   expect(screen.getByText(/Your reading state is still on this device/i)).toBeInTheDocument()
   expect(screen.getByTestId('page-app-error')).toHaveAttribute('data-ai-state', 'degraded')
+  expect(screen.getByTestId('app-error-scroll-viewport')).toHaveClass('app-scroll-viewport')
+  expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content')
   spy.mockRestore()
 })
 
-test('try again button resets error state', () => {
+test('offers a full reload instead of retrying a rejected render tree in place', () => {
   const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
   render(<ErrorBoundary><ThrowError /></ErrorBoundary>)
-  fireEvent.click(screen.getByRole('button', { name: /Try again/i }))
-  // After reset, boundary re-renders children — will throw again and show fallback
-  expect(screen.getByText('This view needs a clean reset.')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Reload app/i })).toHaveAttribute('data-ai-action', 'reload-app')
+  expect(screen.queryByRole('button', { name: /Try again/i })).not.toBeInTheDocument()
   spy.mockRestore()
 })

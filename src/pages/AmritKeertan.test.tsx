@@ -1,6 +1,9 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { StrictMode } from 'react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { afterEach, vi } from 'vitest'
+import * as banidb from '../api/banidb'
 import AmritKeertan from './AmritKeertan'
 
 function LocationSpy() {
@@ -21,6 +24,10 @@ function renderAmritKeertan(path = '/banis/amrit-keertan') {
     </StrictMode>
   )
 }
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 test('renders Amrit Keertan sections and filters section search', async () => {
   renderAmritKeertan()
@@ -83,4 +90,38 @@ test('renders section breadcrumbs, true metadata, English, search, and study nav
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe('/study?shabadId=817&from=amrit-keertan&akHeaderId=1&akSection=1&akItem=2&akPage=65')
   })
+})
+
+test('retries the section index after a transient connection failure', async () => {
+  const user = userEvent.setup()
+  const recoveredHeaders = await banidb.fetchAmritKeertanIndex()
+  const fetchHeaders = vi.spyOn(banidb, 'fetchAmritKeertanIndex')
+    .mockRejectedValueOnce(new Error('offline'))
+    .mockRejectedValueOnce(new Error('offline'))
+    .mockResolvedValue(recoveredHeaders)
+
+  renderAmritKeertan()
+
+  expect(await screen.findByTestId('amrit-keertan-header-error')).toHaveTextContent(/could not load/i)
+  await user.click(within(screen.getByTestId('amrit-keertan-header-error')).getByRole('button', { name: /retry/i }))
+
+  expect(await screen.findByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument()
+  expect(fetchHeaders).toHaveBeenCalledTimes(3)
+})
+
+test('does not cache a failed shabad section as an empty result', async () => {
+  const user = userEvent.setup()
+  const recoveredShabads = await banidb.fetchAmritKeertanShabads(1)
+  const fetchShabads = vi.spyOn(banidb, 'fetchAmritKeertanShabads')
+    .mockRejectedValueOnce(new Error('offline'))
+    .mockResolvedValue(recoveredShabads)
+
+  renderAmritKeertan('/banis/amrit-keertan/1')
+
+  expect(await screen.findByTestId('amrit-keertan-shabad-error')).toHaveTextContent(/could not load/i)
+  expect(screen.queryByText(/no shabads match/i)).not.toBeInTheDocument()
+  await user.click(within(screen.getByTestId('amrit-keertan-shabad-error')).getByRole('button', { name: /retry/i }))
+
+  expect(await screen.findByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()
+  expect(fetchShabads).toHaveBeenCalledTimes(2)
 })

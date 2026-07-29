@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
+import { http, HttpResponse } from 'msw'
 import {
   fetchAng,
   fetchBani,
@@ -16,6 +17,7 @@ import {
   fetchSearch,
 } from './banidb'
 import type { ScriptureEntry } from '../types'
+import { server } from '../test/msw-server'
 
 function firstVisibleLine(entries: ScriptureEntry[]) {
   return entries
@@ -144,6 +146,43 @@ describe('fetchSearch', () => {
     expect(results[0].raagMeta?.english).toBe('Raag Asa')
     expect(results[0].writerMeta?.english).toBe('Guru Arjan Dev Ji')
     expect(results[0].larivaar).toBe('ਵਾਹਿਗੁਰੂਵਾਹਿਗੁਰੂ')
+  })
+
+  it('returns the complete upstream result set so the UI can paginate without truncating matches', async () => {
+    const verses = Array.from({ length: 35 }, (_, index) => ({
+      verseId: index + 1,
+      shabadId: index + 100,
+      verse: { unicode: `ਗੁਰਬਾਣੀ ${index + 1}` },
+      transliteration: { english: `gurbani ${index + 1}` },
+      translation: { en: { bdb: `Meaning ${index + 1}` } },
+      pageNo: index + 1,
+      source: { id: 'G', english: 'Sri Guru Granth Sahib Ji' },
+      raag: { english: 'Raag Asa' },
+      writer: { english: 'Guru Nanak Dev Ji' },
+    }))
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path === '/v2/search/fullsetprobe') {
+          return HttpResponse.json({ verses })
+        }
+        return
+      })
+    )
+
+    const results = await fetchSearch('fullsetprobe', 3, 'all')
+    expect(results).toHaveLength(35)
+    expect(results.at(-1)?.verseId).toBe(35)
+  })
+
+  it('forwards the caller cancellation signal to the BaniDB request', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    const controller = new AbortController()
+
+    await fetchSearch('waheguru', 3, 'all', 'read-search', controller.signal)
+
+    expect(fetchSpy.mock.calls[0]?.[1]?.signal).toBe(controller.signal)
+    fetchSpy.mockRestore()
   })
 })
 

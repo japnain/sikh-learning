@@ -21,6 +21,7 @@ import {
 } from '../content/readerEditorialCopy'
 import { server } from '../test/msw-server'
 import { MOCK_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handlers'
+import { APP_SCROLL_VIEWPORT_ID } from '../utils/appScroll'
 
 vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
   default: ({ content }: {
@@ -35,11 +36,13 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
       }>
       seriesLabel?: string
       dateLabel?: string
+      sourcePath?: string
     }
   }) => (
     <div role="dialog" aria-label="Share highlight" data-testid="share-highlight-sheet-test-double">
       <p data-testid="share-flattened-gurmukhi">{content.gurmukhi}</p>
       <p>{content.sourceLabel}</p>
+      {content.sourcePath ? <p data-testid="share-source-path">{content.sourcePath}</p> : null}
       {content.seriesLabel ? <p data-testid="share-series-label">{content.seriesLabel}</p> : null}
       {content.dateLabel ? <p data-testid="share-date-label">{content.dateLabel}</p> : null}
       {content.passageLines?.map(line => (
@@ -216,6 +219,9 @@ describe('Study bookmark button', () => {
     const composer = await screen.findByTestId('share-highlight-sheet-test-double')
     expect(composer).toHaveTextContent(/ੴ/)
     expect(composer).toHaveTextContent(/Ang 1/i)
+    expect(within(composer).getByTestId('share-source-path')).toHaveTextContent(
+      '/study?shabadId=1&verseId=1'
+    )
     expect(share).not.toHaveBeenCalled()
     expect(writeText).not.toHaveBeenCalled()
   })
@@ -652,15 +658,31 @@ describe('Study soundscapes and tracking', () => {
   })
 
   it('updates reading progress only after scrolling settles and avoids layout width writes', async () => {
-    const scrollYSpy = vi.spyOn(window, 'scrollY', 'get').mockReturnValue(600)
-    const innerHeightSpy = vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(800)
-
     render(
-      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
-        <Routes><Route path="/study" element={<Study />} /></Routes>
-      </MemoryRouter>
+      <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
+        <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+          <Routes><Route path="/study" element={<Study />} /></Routes>
+        </MemoryRouter>
+      </div>
     )
 
+    const scrollViewport = screen.getByTestId('app-scroll-viewport')
+    Object.defineProperties(scrollViewport, {
+      clientHeight: { configurable: true, value: 800 },
+      scrollHeight: { configurable: true, value: 2400 },
+    })
+    scrollViewport.scrollTop = 600
+    vi.spyOn(scrollViewport, 'getBoundingClientRect').mockReturnValue({
+      x: 0,
+      y: 0,
+      top: 0,
+      right: 390,
+      bottom: 800,
+      left: 0,
+      width: 390,
+      height: 800,
+      toJSON: () => ({}),
+    })
     const reading = await screen.findByTestId('study-entry-list')
     Object.defineProperty(reading, 'scrollHeight', { configurable: true, value: 2000 })
     vi.spyOn(reading, 'getBoundingClientRect').mockReturnValue({
@@ -685,19 +707,16 @@ describe('Study soundscapes and tracking', () => {
     expect(settledTransform).toMatch(/^scaleX\(0\.37/)
     expect(progressBar.style.width).toBe('')
 
-    scrollYSpy.mockReturnValue(700)
+    scrollViewport.scrollTop = 700
     for (let index = 0; index < 12; index += 1) {
-      fireEvent.scroll(window)
+      fireEvent.scroll(scrollViewport)
     }
 
     expect(progress).toHaveAttribute('aria-valuenow', '38')
     expect(progressBar.style.transform).toBe(settledTransform)
 
-    fireEvent(document, new Event('scrollend'))
+    fireEvent(scrollViewport, new Event('scrollend'))
     await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '45'))
-
-    scrollYSpy.mockRestore()
-    innerHeightSpy.mockRestore()
   })
 
   it('persists the visible verse on scroll end without work during active scrolling', async () => {
@@ -707,11 +726,14 @@ describe('Study soundscapes and tracking', () => {
 
     try {
       render(
-        <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
-          <Routes><Route path="/study" element={<Study />} /></Routes>
-        </MemoryRouter>
+        <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
+          <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+            <Routes><Route path="/study" element={<Study />} /></Routes>
+          </MemoryRouter>
+        </div>
       )
 
+      const scrollViewport = screen.getByTestId('app-scroll-viewport')
       const lines = await screen.findAllByTestId('study-line')
       await waitFor(() => {
         expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(1)
@@ -733,14 +755,20 @@ describe('Study soundscapes and tracking', () => {
       updateSessionSpy.mockClear()
 
       for (let index = 0; index < 12; index += 1) {
-        fireEvent.scroll(window)
+        fireEvent.scroll(scrollViewport)
       }
 
       expect(updateSessionSpy).not.toHaveBeenCalled()
 
-      fireEvent(document, new Event('scrollend'))
+      fireEvent(scrollViewport, new Event('scrollend'))
       expect(updateSessionSpy).toHaveBeenCalledTimes(1)
       expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2)
+      expect(useProgressStore.getState().studied).toEqual([
+        expect.objectContaining({ id: expect.any(String) }),
+      ])
+      expect(
+        useScriptureCacheStore.getState().getEntryById(useProgressStore.getState().studied[0]!.id)
+      ).toBeDefined()
     } finally {
       act(() => useProgressStore.setState({ updateSession: originalUpdateSession }))
     }
@@ -1059,6 +1087,77 @@ describe('Study exact shabad mode', () => {
 })
 
 describe('Study hukamnama mode', () => {
+  it('keeps a cached Hukamnama readable during an outage and retries the live source in place', async () => {
+    const cachedHukamnama = {
+      date: '2026-04-05',
+      ang: 688,
+      source: 'G',
+      shabadId: 2591,
+      entry: {
+        id: 'hukamnama-2026-04-05',
+        scripture: 'SGGS',
+        source: 'G',
+        sourceName: 'Sri Guru Granth Sahib Ji',
+        ang: 688,
+        shabadId: 2591,
+        raag: 'Raag Dhanaasree',
+        gurmukhi: 'ਮੇਰਾ ਪ੍ਰਭੁ ਰਾਂਗਿ ਘਣਉ ਅਤਿ ਰੂੜਉ ॥',
+        transliteration: 'meraa prabh raang ghanau at rooRau',
+        translation_en: 'My God is imbued with the deepest love.',
+        translation_hi: '',
+        translation_pa: '',
+        words: [],
+        lines: [{
+          verseId: 29343,
+          shabadId: 2591,
+          ang: 688,
+          gurmukhi: 'ਮੇਰਾ ਪ੍ਰਭੁ ਰਾਂਗਿ ਘਣਉ ਅਤਿ ਰੂੜਉ ॥',
+          transliteration: 'meraa prabh raang ghanau at rooRau',
+          translation_en: 'My God is imbued with the deepest love.',
+          translations_en: { bdb: 'My God is imbued with the deepest love.' },
+          translation_hi: '',
+          translation_pa: '',
+        }],
+      },
+    }
+    localStorage.setItem('naamras-hukamnama-cache-v1', JSON.stringify({
+      data: cachedHukamnama,
+      cachedAt: '2026-04-05T08:00:00.000Z',
+    }))
+
+    let liveAvailable = false
+    let hukamnamaRequests = 0
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (!body.path?.startsWith('/v2/hukamnamas/')) return
+        hukamnamaRequests += 1
+        return liveAvailable
+          ? HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+          : HttpResponse.json({ error: 'offline' }, { status: 503 })
+      })
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    expect(await screen.findByTestId('study-reader-saved-copy')).toHaveTextContent(
+      'Showing the passage already saved on this device'
+    )
+    expect(screen.getByTestId('study-entry-list')).toHaveTextContent('ਮੇਰਾ ਪ੍ਰਭੁ ਰਾਂਗਿ ਘਣਉ ਅਤਿ ਰੂੜਉ')
+    expect(screen.getByTestId('page-study')).toHaveAttribute('data-ai-state', 'degraded')
+
+    liveAvailable = true
+    fireEvent.click(screen.getByRole('button', { name: 'Try live copy' }))
+
+    await waitFor(() => expect(hukamnamaRequests).toBe(2))
+    await waitFor(() => expect(screen.queryByTestId('study-reader-saved-copy')).not.toBeInTheDocument())
+    expect(screen.getByTestId('page-study')).toHaveAttribute('data-ai-state', 'ready')
+  })
+
   it('renders one editorial Daily Hukamnama hero with date, source metadata, and source shabad action', async () => {
     render(
       <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>

@@ -208,7 +208,7 @@ export default function Vocab() {
 
   const handleReview = (rating: 'again' | 'good' | 'easy') => {
     if (!activeCard) return
-    reviewWord(activeCard.word, rating)
+    reviewWord(activeCard.word, rating, activeCard.kind ?? 'word')
     setCardIdx(index => index + 1)
     setRevealed(false)
   }

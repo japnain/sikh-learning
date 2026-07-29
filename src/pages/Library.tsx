@@ -12,6 +12,7 @@ import { useLanguageStore } from '../store/language'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
+import { buildLibraryReaderNavigationState } from '../utils/libraryReaderNavigation'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
@@ -250,6 +251,9 @@ export default function Library() {
 
         <Link
           to={resumePath ?? '/banis'}
+          state={resumePath?.startsWith('/library/')
+            ? buildLibraryReaderNavigationState('/saved')
+            : undefined}
           className="section-shell interactive-focus interactive-card-link p-4 text-left"
           data-testid="library-resume-reading"
         >

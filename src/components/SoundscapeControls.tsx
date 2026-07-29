@@ -192,6 +192,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
   pause: string
   playing: string
   selected: string
+  playbackUnavailable: string
   shipped: (count: number, target: number) => string
 }> = {
   en: {
@@ -211,6 +212,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     pause: 'Pause soundscape',
     playing: 'Playing',
     selected: 'Selected',
+    playbackUnavailable: 'This sound could not be played. Check your connection and try again.',
     shipped: (count, target) => `${count}/${target} shipped`,
   },
   pa: {
@@ -230,6 +232,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     pause: 'ਸਾਊਂਡਸਕੇਪ ਰੋਕੋ',
     playing: 'ਚੱਲ ਰਿਹਾ',
     selected: 'ਚੁਣਿਆ',
+    playbackUnavailable: 'ਇਹ ਧੁਨ ਨਹੀਂ ਚੱਲ ਸਕੀ। ਆਪਣਾ ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਜਾਂਚੋ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
     shipped: (count, target) => `${count}/${target} ਸ਼ਾਮਲ`,
   },
   hi: {
@@ -249,6 +252,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     pause: 'साउंडस्केप रोकें',
     playing: 'चल रहा',
     selected: 'चुना गया',
+    playbackUnavailable: 'यह ध्वनि नहीं चल सकी। अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।',
     shipped: (count, target) => `${count}/${target} शामिल`,
   },
 }
@@ -286,6 +290,7 @@ export default function SoundscapeControls({
   const selectedSoundId = useMusicStore(state => state.selectedSoundId)
   const selectedPresetId = useMusicStore(state => state.selectedPresetId)
   const isPlaying = useMusicStore(state => state.isPlaying)
+  const playbackError = useMusicStore(state => state.playbackError)
   const volume = useMusicStore(state => state.volume)
   const activatePreset = useMusicStore(state => state.activatePreset)
   const playSelected = useMusicStore(state => state.playSelected)
@@ -530,6 +535,14 @@ export default function SoundscapeControls({
             {isPlaying ? <IconPause size={14} /> : <IconPlay size={14} />}
           </button>
         </div>
+        {playbackError ? (
+          <p
+            role="alert"
+            className="mt-3 font-sans text-xs leading-5 text-red-700 dark:text-red-300"
+          >
+            {copy.playbackUnavailable}
+          </p>
+        ) : null}
       </div>
 
       {details}

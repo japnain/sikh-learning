@@ -10,6 +10,7 @@ const FIXED_APP_NOW = '2026-04-11T09:00:00.000Z'
 const FIXED_APP_DATE = '2026-04-11'
 const BASE_URL = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4173'
 const QA_SUPABASE_URL = 'https://naamras-qa.supabase.co'
+const QA_SUPABASE_ANON_KEY = 'naamras-local-qa-anon-key'
 const QA_SUPABASE_FUNCTIONS_URL = 'https://naamras-qa.supabase.co/functions/v1'
 const QA_BANIDB_PROXY_URL = `${QA_SUPABASE_FUNCTIONS_URL}/banidb-proxy`
 const REPORT_DATE = new Intl.DateTimeFormat('en-CA', {
@@ -425,6 +426,7 @@ async function startDevServer() {
       ...process.env,
       FORCE_COLOR: '0',
       VITE_SUPABASE_URL: QA_SUPABASE_URL,
+      VITE_SUPABASE_ANON_KEY: QA_SUPABASE_ANON_KEY,
       VITE_SUPABASE_FUNCTIONS_URL: QA_SUPABASE_FUNCTIONS_URL,
       VITE_SUPABASE_BANIDB_FUNCTION: 'banidb-proxy',
       VITE_NAAMRAS_BANIDB_MOCK: 'true',
@@ -588,6 +590,23 @@ async function ensureVisible(page, selector, description, timeout = 12_000) {
   }
 }
 
+async function advanceOnboardingToPreview(page) {
+  for (const nextStep of [2, 3]) {
+    await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
+    await page.getByText(`Step ${nextStep} of 4`, { exact: true }).waitFor({
+      state: 'visible',
+      timeout: 12_000,
+    })
+  }
+
+  await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
+  await ensureVisible(
+    page,
+    '[data-testid="onboarding-preview-primary-action"]',
+    'the onboarding preview action'
+  )
+}
+
 async function assertNoGenericFailureCopy(page) {
   const text = await page.locator('body').innerText().catch(() => '')
   for (const pattern of GENERIC_FAILURE_PATTERNS) {
@@ -608,6 +627,15 @@ function shouldRecordConsoleMessage(message) {
 function shouldRecordRequestFailure(request) {
   const url = request.url()
   if (/\/@vite\/client|__vite_ping|favicon\.ico/i.test(url)) return false
+  if (request.failure()?.errorText === 'net::ERR_ABORTED') {
+    try {
+      const requestUrl = new URL(url)
+      const qaUrl = new URL(BASE_URL)
+      if (requestUrl.origin === qaUrl.origin && requestUrl.pathname.startsWith('/src/')) return false
+    } catch {
+      // Keep malformed URLs visible as failures.
+    }
+  }
   return ['document', 'script', 'xhr', 'fetch'].includes(request.resourceType())
 }
 
@@ -1016,10 +1044,7 @@ async function main() {
       run: async ({ page, notes }) => {
         notes.push('Expected first-run onboarding to keep optional backup hidden until the preview drawer is opened.')
         await ensureVisible(page, '[data-page="onboarding"][data-ai-surface="onboarding"][data-ai-state="ready"]', 'the first-run onboarding shell')
-        for (let step = 0; step < 3; step += 1) {
-          await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
-        }
-        await ensureVisible(page, '[data-testid="onboarding-preview-primary-action"]', 'the onboarding preview action')
+        await advanceOnboardingToPreview(page)
         if (await page.locator('[data-ai-surface="onboarding-auth"]').count() > 0) {
           throw createAssertionError('Expected optional backup controls to stay hidden before the backup drawer is opened.')
         }
@@ -1036,10 +1061,7 @@ async function main() {
       run: async ({ page, notes }) => {
         notes.push('Expected overlay onboarding to preserve the same progressive optional-backup flow.')
         await ensureVisible(page, '[data-page="onboarding-overlay"][data-ai-surface="onboarding-overlay"][data-ai-state="ready"]', 'the onboarding overlay shell')
-        for (let step = 0; step < 3; step += 1) {
-          await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
-        }
-        await ensureVisible(page, '[data-testid="onboarding-preview-primary-action"]', 'the onboarding preview action')
+        await advanceOnboardingToPreview(page)
         if (await page.locator('[data-ai-surface="onboarding-auth"]').count() > 0) {
           throw createAssertionError('Expected optional backup controls to stay hidden before the backup drawer is opened.')
         }

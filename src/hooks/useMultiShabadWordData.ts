@@ -43,14 +43,15 @@ export function useMultiShabadWordData(shabadIds: (number | null)[]) {
     Promise.all(
       idsToFetch.map(id =>
         fetchShabadWords(id)
-          .then(words => ({ id, words }))
-          .catch(() => ({ id, words: [] as Word[] }))
+          .then(words => ({ id, words, succeeded: true as const }))
+          .catch(() => ({ id, words: [] as Word[], succeeded: false as const }))
       )
     ).then(results => {
       if (cancelled) return
 
       const nextWordDataMap = { ...cachedMap }
-      for (const { id, words } of results) {
+      for (const { id, words, succeeded } of results) {
+        if (!succeeded) continue
         setWords(id, words)
         nextWordDataMap[id] = words
       }

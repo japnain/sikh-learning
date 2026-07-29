@@ -722,6 +722,82 @@ test('keeps fulfilled search results when another search source fails', async ()
   expect(screen.getByTestId('banis-quick-find')).toHaveAttribute('data-ai-state', 'degraded')
 })
 
+test('retries a failed search in place with the current query and filters', async () => {
+  let unavailable = true
+  const fetchSearch = vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async () => {
+    if (unavailable) throw new Error('search unavailable')
+    return [SEARCH_RESULT_FIXTURE]
+  })
+
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'recoveryprobe' } })
+
+  const alert = await screen.findByRole('alert')
+  expect(alert).toHaveTextContent(/search is unavailable/i)
+  unavailable = false
+  fireEvent.click(within(alert).getByRole('button', { name: 'Retry' }))
+
+  expect(await screen.findByTestId('banis-search-gurbani-results')).toHaveTextContent('ਸਤਿਨਾਮੁ')
+  expect(fetchSearch.mock.calls.some(([query]) => query === 'recoveryprobe')).toBe(true)
+})
+
+test('aborts stale backend searches when the query changes', async () => {
+  const firstRequestSignals: AbortSignal[] = []
+  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (query, _searchType, _source, _context, signal) => {
+    if (query !== 'firstprobe') return []
+    if (signal) firstRequestSignals.push(signal)
+
+    return new Promise((resolve, reject) => {
+      signal?.addEventListener('abort', () => {
+        reject(new DOMException('Search superseded', 'AbortError'))
+      }, { once: true })
+      void resolve
+    })
+  })
+
+  renderBanis()
+  const searchInput = screen.getByRole('searchbox')
+  fireEvent.change(searchInput, { target: { value: 'firstprobe' } })
+
+  await waitFor(() => expect(firstRequestSignals.length).toBeGreaterThan(0))
+  fireEvent.change(searchInput, { target: { value: 'secondprobe' } })
+
+  await waitFor(() => {
+    expect(firstRequestSignals.every(signal => signal.aborted)).toBe(true)
+  })
+  expect(await screen.findByRole('heading', { name: /No matches yet/i })).toBeInTheDocument()
+})
+
+test('paginates large Gurbani result sets and explains filter combinations with no matches', async () => {
+  const manyResults = Array.from({ length: 15 }, (_, index): banidbApi.SearchResult => ({
+    ...SEARCH_RESULT_FIXTURE,
+    shabadId: 1000 + index,
+    verseId: 2000 + index,
+    gurmukhi: `ਗੁਰਬਾਣੀ ਪਾਠ ${index + 1}`,
+    raag: index % 2 === 0 ? 'Raag Asa' : 'Raag Gauri',
+    writer: index % 2 === 0 ? 'Guru Nanak Dev Ji' : 'Guru Arjan Dev Ji',
+  }))
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue(manyResults)
+
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'paginationprobe' } })
+
+  await waitFor(() => {
+    expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(12)
+  })
+  expect(screen.getByText('Showing 12 of 15 Gurbani matches.')).toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: 'Show more matches' }))
+  expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(15)
+
+  fireEvent.click(screen.getAllByRole('button', { name: 'Raag Asa' })[0]!)
+  fireEvent.click(screen.getAllByRole('button', { name: 'Guru Arjan Dev Ji' })[0]!)
+
+  expect(screen.getByText('No matches use both of these filters.')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Clear filters' }))
+  expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(12)
+})
+
 test('offers useful examples and a clear action when search has no matches', async () => {
   vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
 

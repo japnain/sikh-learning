@@ -10,9 +10,9 @@ import PanthPrakashLibraryHome from './PanthPrakashLibraryHome'
 const PROJECT_ROOT = process.cwd()
 const WORK_PATH = '/library/panth-prakash-english'
 
-function renderLibraryHome() {
+function renderLibraryHome(state?: unknown) {
   return render(
-    <MemoryRouter initialEntries={[WORK_PATH]}>
+    <MemoryRouter initialEntries={[state === undefined ? WORK_PATH : { pathname: WORK_PATH, state }]}>
       <Routes>
         <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
       </Routes>
@@ -67,6 +67,17 @@ describe('PanthPrakashLibraryHome', () => {
     expect(screen.queryByLabelText(/jump to page/i)).not.toBeInTheDocument()
   })
 
+  test('keeps the originating Saved shelf through the work home', async () => {
+    renderLibraryHome({ libraryReaderOrigin: '/saved' })
+
+    await screen.findByTestId('panth-library-home')
+    expect(screen.getByRole('link', { name: /^Saved$/i })).toHaveAttribute('href', '/saved')
+    expect(screen.getByRole('link', { name: /start reading/i })).toHaveAttribute(
+      'href',
+      '/library/panth-prakash-english/chapters/episode-001'
+    )
+  })
+
   test('filters the stable episode catalog and links directly to episode IDs', async () => {
     const user = userEvent.setup()
     renderLibraryHome()
@@ -101,6 +112,30 @@ describe('PanthPrakashLibraryHome', () => {
       .getAllByRole('link')
       .find(link => link.getAttribute('href') === '/library/panth-prakash-english/chapters/episode-001')
     expect(episodeOneResult).toHaveAttribute('href', '/library/panth-prakash-english/chapters/episode-001')
+  })
+
+  test('offers a working retry after the library connection recovers', async () => {
+    const user = userEvent.setup()
+    let manifestAttempts = 0
+    configureLibraryRepositoryLoader(async resourcePath => {
+      if (resourcePath === '/data/library/manifest.json') {
+        manifestAttempts += 1
+        if (manifestAttempts === 1) {
+          throw new Error('offline')
+        }
+      }
+      const normalizedPath = resourcePath.replace(/^\//, '')
+      return JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'public', normalizedPath), 'utf8'))
+    })
+
+    renderLibraryHome()
+
+    expect(await screen.findByRole('heading', { name: /book unavailable/i })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /^retry$/i }))
+
+    expect(await screen.findByTestId('panth-library-home')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Sri Gur Panth Prakash/i })).toBeInTheDocument()
+    expect(manifestAttempts).toBe(2)
   })
 
   test('ignores retired page sessions and resumes stable chapter locators', async () => {

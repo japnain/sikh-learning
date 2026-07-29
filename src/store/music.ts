@@ -140,11 +140,13 @@ interface MusicState {
   selectedSoundId: string | null
   selectedPresetId: FocusPresetId | null
   isPlaying: boolean
+  playbackError: 'unavailable' | null
   volume: number
   selectSound: (id: string | null) => void
   toggleSound: (id: string) => void
   playSelected: () => void
   stopPlayback: () => void
+  reportPlaybackFailure: () => void
   activatePreset: (presetId: FocusPresetId) => void
   setPreset: (presetId: FocusPresetId | null) => void
   setVolume: (v: number) => void
@@ -158,24 +160,38 @@ export const useMusicStore = create<MusicState>()(
       selectedSoundId: null,
       selectedPresetId: null,
       isPlaying: false,
+      playbackError: null,
       volume: 0.6,
       selectSound: (id) => set(() => ({
         selectedSoundId: id,
         selectedPresetId: id ? findPresetBySoundId(id)?.id ?? null : null,
+        playbackError: null,
       })),
       toggleSound: (id) => set(state => {
         if (state.selectedSoundId === id) {
-          return { isPlaying: !state.isPlaying }
+          return {
+            isPlaying: !state.isPlaying,
+            playbackError: null,
+          }
         }
 
         return {
           selectedSoundId: id,
           selectedPresetId: findPresetBySoundId(id)?.id ?? null,
           isPlaying: true,
+          playbackError: null,
         }
       }),
-      playSelected: () => set(state => (state.selectedSoundId ? { isPlaying: true } : state)),
-      stopPlayback: () => set({ isPlaying: false }),
+      playSelected: () => set(state => (
+        state.selectedSoundId
+          ? { isPlaying: true, playbackError: null }
+          : state
+      )),
+      stopPlayback: () => set({ isPlaying: false, playbackError: null }),
+      reportPlaybackFailure: () => set({
+        isPlaying: false,
+        playbackError: 'unavailable',
+      }),
       activatePreset: (presetId) => {
         const preset = FOCUS_PRESETS.find(entry => entry.id === presetId)
         if (!preset) return
@@ -185,11 +201,12 @@ export const useMusicStore = create<MusicState>()(
           selectedSoundId: preset.soundId,
           volume: preset.defaultVolume,
           isPlaying: true,
+          playbackError: null,
         })
       },
       setPreset: (presetId) => {
         if (!presetId) {
-          set({ selectedPresetId: null })
+          set({ selectedPresetId: null, playbackError: null })
           return
         }
 
@@ -199,6 +216,7 @@ export const useMusicStore = create<MusicState>()(
         set({
           selectedPresetId: presetId,
           selectedSoundId: preset.soundId,
+          playbackError: null,
         })
       },
       setVolume: (v) => set({ volume: v }),
@@ -210,6 +228,7 @@ export const useMusicStore = create<MusicState>()(
         ...currentState,
         ...(persistedState as PersistedMusicState | undefined),
         isPlaying: false,
+        playbackError: null,
       }),
       partialize: (state) => ({
         selectedSoundId: state.selectedSoundId,

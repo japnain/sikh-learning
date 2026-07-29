@@ -73,3 +73,16 @@ test('builds an exact EPUB resume hash from a persisted block locator', () => {
     updatedAt: '2026-07-15T16:00:00.000Z',
   })).toBe('/library/panth-prakash-english/chapters/episode-001#episode-001-p47-b003')
 })
+
+test('bounds Reading History while keeping the most recent reading units', () => {
+  const { markStudied } = useProgressStore.getState()
+
+  for (let index = 1; index <= 55; index += 1) {
+    markStudied(`entry-${index}`)
+  }
+
+  const history = useProgressStore.getState().studied
+  expect(history).toHaveLength(50)
+  expect(history[0]?.id).toBe('entry-6')
+  expect(history.at(-1)?.id).toBe('entry-55')
+})

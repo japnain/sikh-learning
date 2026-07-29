@@ -165,7 +165,10 @@ export default function AmritKeertan() {
   const [headers, setHeaders] = useState<AmritKeertanHeader[]>([])
   const [loadingHeaders, setLoadingHeaders] = useState(true)
   const [headerIssue, setHeaderIssue] = useState(false)
+  const [headerLoadAttempt, setHeaderLoadAttempt] = useState(0)
   const [shabadsByHeader, setShabadsByHeader] = useState<Record<number, AmritKeertanShabad[]>>({})
+  const [shabadIssuesByHeader, setShabadIssuesByHeader] = useState<Record<number, boolean>>({})
+  const [shabadLoadAttempts, setShabadLoadAttempts] = useState<Record<number, number>>({})
   const fetchingHeaderIdsRef = useRef(new Set<number>())
   const [query, setQuery] = useState('')
   const [visibleHeaderCount, setVisibleHeaderCount] = useState(AMRIT_KEERTAN_HEADER_PAGE_SIZE)
@@ -193,7 +196,7 @@ export default function AmritKeertan() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [headerLoadAttempt])
 
   useEffect(() => {
     if (!selectedHeaderId || !Number.isFinite(selectedHeaderId)) return
@@ -204,14 +207,15 @@ export default function AmritKeertan() {
     fetchAmritKeertanShabads(selectedHeaderId)
       .then(shabads => {
         setShabadsByHeader(current => ({ ...current, [selectedHeaderId]: shabads }))
+        setShabadIssuesByHeader(current => ({ ...current, [selectedHeaderId]: false }))
       })
       .catch(() => {
-        setShabadsByHeader(current => ({ ...current, [selectedHeaderId]: [] }))
+        setShabadIssuesByHeader(current => ({ ...current, [selectedHeaderId]: true }))
       })
       .finally(() => {
         fetchingHeaderIdsRef.current.delete(selectedHeaderId)
       })
-  }, [selectedHeaderId, shabadsByHeader])
+  }, [selectedHeaderId, shabadLoadAttempts, shabadsByHeader])
 
   const normalizedQuery = query.trim().toLowerCase()
   const selectedHeader = selectedHeaderId
@@ -222,6 +226,9 @@ export default function AmritKeertan() {
     : -1
   const selectedHeaderLoaded = selectedHeaderId
     ? Object.prototype.hasOwnProperty.call(shabadsByHeader, selectedHeaderId)
+    : false
+  const selectedHeaderIssue = selectedHeaderId
+    ? Boolean(shabadIssuesByHeader[selectedHeaderId])
     : false
   const selectedShabads = useMemo(() => (
     selectedHeaderId && selectedHeaderLoaded ? (shabadsByHeader[selectedHeaderId] ?? []) : []
@@ -295,6 +302,21 @@ export default function AmritKeertan() {
     if (shabad.amritPageNo) params.set('akPage', String(shabad.amritPageNo))
 
     navigate(`/study?${params.toString()}`)
+  }
+
+  const retryHeaders = () => {
+    setLoadingHeaders(true)
+    setHeaderIssue(false)
+    setHeaderLoadAttempt(attempt => attempt + 1)
+  }
+
+  const retrySelectedHeader = () => {
+    if (!selectedHeaderId) return
+    setShabadIssuesByHeader(current => ({ ...current, [selectedHeaderId]: false }))
+    setShabadLoadAttempts(current => ({
+      ...current,
+      [selectedHeaderId]: (current[selectedHeaderId] ?? 0) + 1,
+    }))
   }
 
   const searchPlaceholder = selectedHeader
@@ -470,7 +492,24 @@ export default function AmritKeertan() {
                 )}
               </div>
 
-              {!selectedHeaderLoaded ? (
+              {selectedHeaderIssue ? (
+                <div
+                  className="section-shell-quiet px-4 py-5"
+                  role="alert"
+                  data-testid="amrit-keertan-shabad-error"
+                >
+                  <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
+                    This section could not load right now.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={retrySelectedHeader}
+                    className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+                  >
+                    Retry
+                  </button>
+                </div>
+              ) : !selectedHeaderLoaded ? (
                 <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
                   Loading shabads...
                 </p>
@@ -560,6 +599,23 @@ export default function AmritKeertan() {
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               Loading section...
             </p>
+          ) : headerIssue ? (
+            <div
+              className="section-shell-quiet px-4 py-5"
+              role="alert"
+              data-testid="amrit-keertan-header-error"
+            >
+              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
+                Amrit Keertan could not load right now.
+              </p>
+              <button
+                type="button"
+                onClick={retryHeaders}
+                className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+              >
+                Retry
+              </button>
+            </div>
           ) : (
             <div className="section-shell-quiet px-4 py-5">
               <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
@@ -581,9 +637,22 @@ export default function AmritKeertan() {
               Loading sections...
             </p>
           ) : headerIssue ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
-              Amrit Keertan could not load right now.
-            </p>
+            <div
+              className="section-shell-quiet px-4 py-5"
+              role="alert"
+              data-testid="amrit-keertan-header-error"
+            >
+              <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
+                Amrit Keertan could not load right now.
+              </p>
+              <button
+                type="button"
+                onClick={retryHeaders}
+                className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+              >
+                Retry
+              </button>
+            </div>
           ) : filteredHeaders.length === 0 ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
               No sections match this search yet.

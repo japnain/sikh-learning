@@ -1,5 +1,8 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { vi } from 'vitest'
+import * as banidb from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import Rehat from './Rehat'
 
@@ -28,6 +31,7 @@ beforeEach(() => {
 
 afterEach(() => {
   document.documentElement.classList.remove('dark')
+  vi.restoreAllMocks()
 })
 
 test('renders the Rehat list with breadcrumbs and list search', async () => {
@@ -139,4 +143,52 @@ test('renders invalid route errors and dark mode', () => {
   expect(document.documentElement.classList.contains('dark')).toBe(true)
   expect(screen.getByTestId('page-rehat')).toHaveAttribute('data-ai-state', 'degraded')
   expect(screen.getByTestId('rehat-error-state')).toHaveTextContent(/not valid/i)
+})
+
+test.each([
+  '/banis/rehat/1.5',
+  '/banis/rehat/1e2',
+  '/banis/rehat/+1',
+])('rejects non-decimal-integer route identifiers: %s', path => {
+  renderRehat(path)
+
+  expect(screen.getByTestId('page-rehat')).toHaveAttribute('data-ai-state', 'degraded')
+  expect(screen.getByTestId('rehat-error-state')).toHaveTextContent(/not valid/i)
+})
+
+test('retries the Rehat list after a transient load failure', async () => {
+  const user = userEvent.setup()
+  const recoveredRehats = await banidb.fetchRehats()
+  const fetchRehats = vi.spyOn(banidb, 'fetchRehats')
+    .mockRejectedValueOnce(new Error('offline'))
+    .mockResolvedValue(recoveredRehats)
+
+  renderRehat()
+
+  const errorState = await screen.findByTestId('rehat-error-state')
+  expect(errorState).toHaveTextContent(/could not load/i)
+  await user.click(within(errorState).getByRole('button', { name: /retry/i }))
+
+  expect(await screen.findByText('Sikh Rehat Maryada')).toBeInTheDocument()
+  expect(fetchRehats).toHaveBeenCalledTimes(2)
+})
+
+test('retries an exact Rehat chapter instead of leaving a dead end', async () => {
+  const user = userEvent.setup()
+  const cache = useScriptureCacheStore.getState()
+  cache.setRehats([{ rehatId: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' }])
+  cache.setRehatChapters(1, [{ chapterId: 11, chapterName: 'Daily Discipline', alphabet: 'D' }])
+  const recoveredChapter = await banidb.fetchRehatChapter(1, 11)
+  const fetchChapter = vi.spyOn(banidb, 'fetchRehatChapter')
+    .mockRejectedValueOnce(new Error('offline'))
+    .mockResolvedValue(recoveredChapter)
+
+  renderRehat('/banis/rehat/1/chapters/11')
+
+  const errorState = await screen.findByTestId('rehat-error-state')
+  expect(errorState).toHaveTextContent(/chapter could not be loaded/i)
+  await user.click(within(errorState).getByRole('button', { name: /retry/i }))
+
+  expect(await screen.findByTestId('rehat-chapter-content')).toHaveTextContent(/amritvela/i)
+  expect(fetchChapter).toHaveBeenCalledTimes(2)
 })

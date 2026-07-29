@@ -665,7 +665,7 @@
   --epub-rule: 198 188 168;
   --epub-accent: 137 91 35;
   --epub-measure: 42rem;
-  min-height: 100dvh;
+  min-height: 100%;
   background: rgb(var(--epub-page));
   color: rgb(var(--epub-ink));
   transition: background-color 160ms ease, color 160ms ease;

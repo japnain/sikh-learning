@@ -85,3 +85,31 @@ test('hydrateCachedBookmarks restores bookmarks from the legacy persisted shape'
   expect(useBookmarksStore.getState().bookmarks).toHaveLength(1)
   expect(useBookmarksStore.getState().bookmarks[0].id).toBe('bookmark-legacy')
 })
+
+test('hydrateCachedBookmarks drops malformed persisted records without breaking valid saves', () => {
+  window.localStorage.setItem('sikh-bookmarks', JSON.stringify([
+    {
+      id: 'bookmark-valid',
+      type: 'verse',
+      title: 'SGGS · Ang 1',
+      source: 'G',
+      ang: 1,
+      verseId: 100,
+      savedAt: '2026-07-29T12:00:00.000Z',
+    },
+    {
+      id: 'bookmark-invalid',
+      type: 'verse',
+      title: null,
+      source: 'G',
+      ang: -1,
+      savedAt: 'not-a-date',
+    },
+  ]))
+
+  useBookmarksStore.getState().hydrateCachedBookmarks()
+
+  expect(useBookmarksStore.getState().bookmarks).toEqual([
+    expect.objectContaining({ id: 'bookmark-valid', verseId: 100 }),
+  ])
+})

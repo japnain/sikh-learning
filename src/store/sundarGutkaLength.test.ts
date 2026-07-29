@@ -38,4 +38,10 @@ test('migrates legacy normalized Sundar Gutka lengths onto the current ordered b
     aarti: 'medium',
     'kirtan-sohila': 'extralong',
   })
+
+  useSundarGutkaLengthStore.getState().setLength('chaupai-sahib', 'long')
+  expect(useSundarGutkaLengthStore.getState().lengths['chaupai-sahib']).toBe('long')
+
+  useSundarGutkaLengthStore.getState().reset()
+  expect(useSundarGutkaLengthStore.getState().lengths).toEqual(DEFAULT_SUNDAR_GUTKA_LENGTHS)
 })

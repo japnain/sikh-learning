@@ -1,4 +1,3 @@
-import { getNaamrasSupabaseClient } from './client'
 import { getNaamrasSupabaseConfig } from './config'
 
 const LOCAL_AMBIENT_ROOT = '/audio/ambient'
@@ -13,6 +12,20 @@ function joinStoragePath(prefix: string | undefined, fileName: string) {
   return `${trimSlashes(prefix)}/${normalizedFileName}`
 }
 
+function getPublicStorageUrl(
+  projectUrl: string,
+  bucket: string,
+  objectPath: string
+) {
+  const normalizedProjectUrl = projectUrl.replace(/\/+$/, '')
+  const normalizedBucket = trimSlashes(bucket)
+  const normalizedObjectPath = objectPath.replace(/^\/+/, '')
+
+  return encodeURI(
+    `${normalizedProjectUrl}/storage/v1/object/public/${normalizedBucket}/${normalizedObjectPath}`
+  )
+}
+
 export function getLocalAmbientSoundSrc(fileName: string) {
   return `${LOCAL_AMBIENT_ROOT}/${trimSlashes(fileName)}`
 }
@@ -21,16 +34,13 @@ export function resolveAmbientSoundSrc(fileName: string) {
   const config = getNaamrasSupabaseConfig()
   const localSrc = getLocalAmbientSoundSrc(fileName)
 
-  if (!config.enabled || !config.audioBucket) {
+  if (!config.enabled || !config.url || !config.audioBucket) {
     return localSrc
   }
 
-  const client = getNaamrasSupabaseClient()
-  if (!client) {
-    return localSrc
-  }
-
-  return client.storage
-    .from(config.audioBucket)
-    .getPublicUrl(joinStoragePath(config.audioPrefix, fileName)).data.publicUrl
+  return getPublicStorageUrl(
+    config.url,
+    config.audioBucket,
+    joinStoragePath(config.audioPrefix, fileName)
+  )
 }

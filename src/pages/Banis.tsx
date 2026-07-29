@@ -48,6 +48,11 @@ import {
 import { buildReadSearchPath } from '../utils/searchRoutes'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import {
+  getAppScrollTop,
+  getAppViewportBounds,
+  scrollAppTo,
+} from '../utils/appScroll'
+import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   getReaderEditorialCopyForBani,
 } from '../content/readerEditorialCopy'
@@ -86,6 +91,10 @@ type ReadPageCopy = {
   directDestination: string
   directDestinations: string
   partialSearch: string
+  showingResults: (visible: number, total: number) => string
+  showMoreResults: string
+  noFilteredResults: string
+  clearFilters: string
   noResultsTitle: string
   noResultsBody: string
   tryExamples: string
@@ -171,6 +180,10 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directDestination: 'direct reading destination available',
     directDestinations: 'direct reading destinations available',
     partialSearch: 'Some sources could not be searched. Showing the results that are available.',
+    showingResults: (visible, total) => `Showing ${visible} of ${total} Gurbani matches.`,
+    showMoreResults: 'Show more matches',
+    noFilteredResults: 'No matches use both of these filters.',
+    clearFilters: 'Clear filters',
     noResultsTitle: 'No matches yet',
     noResultsBody: 'Try a full bani name, a Gurmukhi phrase, or a simpler spelling.',
     tryExamples: 'Try an example',
@@ -254,6 +267,10 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directDestination: 'ਸਿੱਧਾ ਪੜ੍ਹਨ ਵਾਲਾ ਰਸਤਾ ਉਪਲਬਧ',
     directDestinations: 'ਸਿੱਧੇ ਪੜ੍ਹਨ ਵਾਲੇ ਰਸਤੇ ਉਪਲਬਧ',
     partialSearch: 'ਕੁਝ ਸਰੋਤ ਖੋਜੇ ਨਹੀਂ ਜਾ ਸਕੇ। ਉਪਲਬਧ ਨਤੀਜੇ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ।',
+    showingResults: (visible, total) => `${total} ਵਿੱਚੋਂ ${visible} ਗੁਰਬਾਣੀ ਮੇਲ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ।`,
+    showMoreResults: 'ਹੋਰ ਮੇਲ ਦਿਖਾਓ',
+    noFilteredResults: 'ਇਹਨਾਂ ਦੋਵੇਂ ਫਿਲਟਰਾਂ ਨਾਲ ਕੋਈ ਮੇਲ ਨਹੀਂ ਹੈ।',
+    clearFilters: 'ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ',
     noResultsTitle: 'ਹਾਲੇ ਕੋਈ ਮੇਲ ਨਹੀਂ',
     noResultsBody: 'ਪੂਰਾ ਬਾਣੀ ਨਾਮ, ਗੁਰਮੁਖੀ ਵਾਕ ਜਾਂ ਸਧਾਰਨ ਲਿਖਤ ਅਜ਼ਮਾਓ।',
     tryExamples: 'ਉਦਾਹਰਨ ਅਜ਼ਮਾਓ',
@@ -337,6 +354,10 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directDestination: 'सीधा पढ़ने का रास्ता उपलब्ध',
     directDestinations: 'सीधे पढ़ने के रास्ते उपलब्ध',
     partialSearch: 'कुछ स्रोत खोजे नहीं जा सके। उपलब्ध नतीजे दिखाए जा रहे हैं।',
+    showingResults: (visible, total) => `${total} में से ${visible} गुरबाणी मिलान दिखाए जा रहे हैं।`,
+    showMoreResults: 'और मिलान दिखाएँ',
+    noFilteredResults: 'इन दोनों फ़िल्टरों के साथ कोई मिलान नहीं है।',
+    clearFilters: 'फ़िल्टर साफ़ करें',
     noResultsTitle: 'अभी कोई मिलान नहीं',
     noResultsBody: 'पूरा बाणी नाम, गुरमुखी वाक्य या सरल वर्तनी आज़माएँ।',
     tryExamples: 'उदाहरण आज़माएँ',
@@ -423,6 +444,7 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
 }
 const READ_SEARCH_EXAMPLES = ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam']
+const SEARCH_RESULTS_PAGE_SIZE = 12
 const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
 const LATIN_SEARCH_PATTERN = /[A-Za-z]/
 
@@ -878,6 +900,7 @@ export default function Banis() {
   ))
   const [raagFilter, setRaagFilter] = useState<string>('all')
   const [writerFilter, setWriterFilter] = useState<string>('all')
+  const [visibleSearchResultCount, setVisibleSearchResultCount] = useState(SEARCH_RESULTS_PAGE_SIZE)
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
   const [sundarGutkaIssue, setSundarGutkaIssue] = useState<AsyncIssueCode | null>(null)
@@ -888,6 +911,7 @@ export default function Banis() {
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const searchSequenceRef = useRef(0)
+  const searchAbortRef = useRef<AbortController | null>(null)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
   const searchFeedbackRef = useRef<HTMLElement | null>(null)
   const setSearchFeedbackElement = useCallback((element: HTMLElement | null) => {
@@ -906,21 +930,23 @@ export default function Banis() {
           getComputedStyle(document.documentElement).getPropertyValue('--nav-stack-height')
         ) || 0
         const rect = element.getBoundingClientRect()
-        const visibleTop = 18
-        const visibleBottom = window.innerHeight - navHeight - 26
-        let nextScrollY = window.scrollY
+        const viewportBounds = getAppViewportBounds()
+        const visibleTop = viewportBounds.top + 18
+        const visibleBottom = viewportBounds.bottom - navHeight - 26
+        const currentScrollTop = getAppScrollTop()
+        let nextScrollTop = currentScrollTop
 
         if (rect.bottom > visibleBottom) {
-          nextScrollY += rect.bottom - visibleBottom
+          nextScrollTop += rect.bottom - visibleBottom
         }
 
         if (rect.top < visibleTop) {
-          nextScrollY += rect.top - visibleTop
+          nextScrollTop += rect.top - visibleTop
         }
 
-        if (Math.abs(nextScrollY - window.scrollY) > 1) {
-          window.scrollTo({
-            top: Math.max(nextScrollY, 0),
+        if (Math.abs(nextScrollTop - currentScrollTop) > 1) {
+          scrollAppTo({
+            top: Math.max(nextScrollTop, 0),
             behavior: 'auto',
           })
         }
@@ -959,6 +985,7 @@ export default function Banis() {
     return () => {
       searchSequenceRef.current += 1
       if (debounceRef.current) clearTimeout(debounceRef.current)
+      searchAbortRef.current?.abort()
     }
   }, [])
 
@@ -1024,9 +1051,12 @@ export default function Banis() {
 
   const handleSearch = useCallback((query: string, mode: SearchMode = searchMode, source: SearchSource = searchSource) => {
     const requestSequence = ++searchSequenceRef.current
+    searchAbortRef.current?.abort()
+    searchAbortRef.current = null
     setSearchQuery(query)
     setRaagFilter('all')
     setWriterFilter('all')
+    setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE)
     if (debounceRef.current) clearTimeout(debounceRef.current)
     const trimmed = query.trim()
     if (trimmed.length < SEARCH_MODE_META[mode].minLength) {
@@ -1047,10 +1077,12 @@ export default function Banis() {
     setSearchIssue(null)
     setSearchPartialIssue(null)
     debounceRef.current = setTimeout(async () => {
+      const controller = new AbortController()
+      searchAbortRef.current = controller
       try {
         const settledResults = await Promise.allSettled(
           getBackendSearchTypes(trimmed, mode).map(searchType => (
-            fetchSearch(trimmed, searchType, source, 'read-search')
+            fetchSearch(trimmed, searchType, source, 'read-search', controller.signal)
           ))
         )
         const fulfilledResults = settledResults.filter(
@@ -1081,6 +1113,9 @@ export default function Banis() {
         setSearchIssue(resolveAsyncIssue(error).code)
         setSearchPartialIssue(null)
       } finally {
+        if (searchAbortRef.current === controller) {
+          searchAbortRef.current = null
+        }
         if (searchSequenceRef.current === requestSequence) {
           setSearching(false)
           revealSearchFeedback()
@@ -1183,6 +1218,12 @@ export default function Banis() {
     () => groupSearchResults(searchResults, { raag: raagFilter, writer: writerFilter }),
     [raagFilter, searchResults, writerFilter]
   )
+  const visibleGroupedSearchResults = groupedSearchResults.slice(0, visibleSearchResultCount)
+  const hasActiveMetadataFilters = raagFilter !== 'all' || writerFilter !== 'all'
+
+  useEffect(() => {
+    setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE)
+  }, [raagFilter, writerFilter])
 
   const { raags: availableRaags, writers: availableWriters } = useMemo(
     () => getAvailableSearchMeta(searchResults),
@@ -1224,7 +1265,7 @@ export default function Banis() {
 
   return (
     <div
-      className="read-room-shell page-shell max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
+      className="read-room-shell page-shell max-w-md mx-auto bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
       data-testid="page-banis"
       data-page="banis"
       data-ai-surface="read"
@@ -1395,7 +1436,14 @@ export default function Banis() {
           {searching && <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-2 ml-1">{copy.searching}…</p>}
           {searchIssue && !searching && searchMode !== 'ang' && (
             <div ref={setSearchFeedbackElement} role="alert" className="nav-safe-results mt-3 rounded-lg border border-[#b4553d]/25 bg-[#b4553d]/10 px-4 py-3 text-sm text-[#7a2f1b] dark:border-[#ffb29d]/28 dark:bg-[#ffb29d]/10 dark:text-[#ffd0c4]">
-              {getSearchIssueCopy(searchIssue, locale)}
+              <p>{getSearchIssueCopy(searchIssue, locale)}</p>
+              <button
+                type="button"
+                className="read-search-clear mt-3"
+                onClick={() => handleSearch(searchQuery, searchMode, searchSource)}
+              >
+                {copy.retry}
+              </button>
             </div>
           )}
           {searchPartialIssue && !searching && !searchIssue && searchMode !== 'ang' && (
@@ -1499,9 +1547,27 @@ export default function Banis() {
                 )}
               </div>
             )}
-            {groupedSearchResults.map(r => (
+            {hasActiveMetadataFilters && groupedSearchResults.length === 0 ? (
+              <div className="rounded-lg border border-sand/15 bg-parchment-card px-4 py-3 dark:border-dark-text/10 dark:bg-dark-card">
+                <p role="status" className="font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
+                  {copy.noFilteredResults}
+                </p>
+                <button
+                  type="button"
+                  className="read-search-clear mt-3"
+                  onClick={() => {
+                    setRaagFilter('all')
+                    setWriterFilter('all')
+                  }}
+                >
+                  {copy.clearFilters}
+                </button>
+              </div>
+            ) : null}
+            {visibleGroupedSearchResults.map(r => (
               <div
                 key={r.key}
+                data-testid="banis-search-gurbani-result"
                 className="rounded-lg border border-sand/15 bg-parchment-card px-3 py-3 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card"
               >
                 <button
@@ -1531,6 +1597,22 @@ export default function Banis() {
                 </div>
               </div>
             ))}
+            {groupedSearchResults.length > 0 ? (
+              <div className="flex flex-col items-center gap-2 pt-2">
+                <p role="status" className="font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
+                  {copy.showingResults(visibleGroupedSearchResults.length, groupedSearchResults.length)}
+                </p>
+                {visibleGroupedSearchResults.length < groupedSearchResults.length ? (
+                  <button
+                    type="button"
+                    className="read-search-clear"
+                    onClick={() => setVisibleSearchResultCount(current => current + SEARCH_RESULTS_PAGE_SIZE)}
+                  >
+                    {copy.showMoreResults}
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         )}
         {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && !searchIssue && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (

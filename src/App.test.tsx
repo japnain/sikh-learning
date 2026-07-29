@@ -54,8 +54,9 @@ function advanceFirstRunOnboardingToPreview() {
 }
 
 test('shows onboarding above the app shell and lands home after first-run setup', async () => {
-  const scrollToSpy = vi.spyOn(window, 'scrollTo')
   render(<App />)
+  const scrollViewport = screen.getByTestId('app-scroll-viewport')
+  scrollViewport.scrollTop = 320
 
   expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
@@ -77,11 +78,29 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   }, APP_TEST_WAIT)
 
   await waitFor(() => {
-    expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
+    expect(scrollViewport.scrollTop).toBe(0)
     expect(screen.getByTestId('main-content')).toHaveFocus()
   }, APP_TEST_WAIT)
 
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+})
+
+test('preserves the originally requested deep link through first-run onboarding', async () => {
+  window.history.replaceState({}, '', '/more?from=shared-link#daily-nitnem')
+  const scrollIntoView = vi.spyOn(HTMLElement.prototype, 'scrollIntoView')
+  render(<App />)
+
+  fireEvent.click(screen.getByTestId('onboarding-intent-understand'))
+  advanceFirstRunOnboardingToPreview()
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+
+  expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(window.location.pathname).toBe('/more')
+  expect(window.location.search).toBe('?from=shared-link')
+  expect(window.location.hash).toBe('#daily-nitnem')
+  await waitFor(() => {
+    expect(scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })
+  }, APP_TEST_WAIT)
 })
 
 test('wraps routed content in the main landmark once onboarding is complete', async () => {
@@ -98,6 +117,7 @@ test('wraps routed content in the main landmark once onboarding is complete', as
 
   expect(await screen.findByRole('main', undefined, APP_TEST_WAIT)).toBeInTheDocument()
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.getByTestId('app-scroll-viewport')).toContainElement(screen.getByTestId('main-content'))
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
@@ -223,6 +243,24 @@ test('redirects retired article routes home', async () => {
   }, APP_TEST_WAIT)
 })
 
+test('keeps unknown routes visible as an honest not-found state', async () => {
+  window.history.replaceState({}, '', '/this-route-does-not-exist')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  expect(await screen.findByTestId('page-not-found', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /this path does not exist/i })).toBeInTheDocument()
+  expect(window.location.pathname).toBe('/this-route-does-not-exist')
+})
+
 test('habit onboarding completion returns home after the premium onboarding flow', async () => {
   render(<App />)
 
@@ -280,4 +318,68 @@ test('uses the focused shell and hides primary navigation on an EPUB chapter rou
   expect(screen.getByTestId('app-shell')).toHaveAttribute('data-reader-focus', 'true')
   expect(screen.getByTestId('app-shell')).not.toHaveAttribute('data-navigation')
   expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
+})
+
+test('restores explicit viewport positions through browser Back and Forward navigation', async () => {
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+
+  const viewport = screen.getByTestId('app-scroll-viewport')
+  Object.defineProperties(viewport, {
+    clientHeight: { configurable: true, value: 800 },
+    scrollHeight: { configurable: true, value: 2400 },
+    scrollTo: {
+      configurable: true,
+      value: vi.fn((options: ScrollToOptions) => {
+        viewport.scrollTop = options.top ?? viewport.scrollTop
+      }),
+    },
+  })
+
+  viewport.scrollTop = 640
+  fireEvent.click(screen.getByTestId('nav-tab-more'))
+
+  expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  await waitFor(() => expect(viewport.scrollTop).toBe(0), APP_TEST_WAIT)
+
+  viewport.scrollTop = 280
+  window.history.back()
+
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  await waitFor(() => expect(viewport.scrollTop).toBe(640), APP_TEST_WAIT)
+
+  window.history.forward()
+
+  expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  await waitFor(() => expect(viewport.scrollTop).toBe(280), APP_TEST_WAIT)
+})
+
+test('finds a lazy-rendered hash target on a direct book deep link', async () => {
+  window.history.replaceState({}, '', '/library/panth-prakash-english#contents')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+  const scrollIntoView = vi.spyOn(HTMLElement.prototype, 'scrollIntoView')
+
+  render(<App />)
+
+  const contents = await screen.findByTestId('panth-chapter-browser', undefined, APP_TEST_WAIT)
+  await waitFor(() => {
+    expect(scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })
+  }, APP_TEST_WAIT)
+  expect(contents).toHaveAttribute('id', 'contents')
 })

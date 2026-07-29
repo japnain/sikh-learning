@@ -29,7 +29,7 @@ import {
   type EpubReaderMeasure,
   type EpubReaderPalette,
 } from '../../store/epubReader'
-import { useProgressStore, type Session } from '../../store/progress'
+import { useProgressStore } from '../../store/progress'
 import type {
   LibraryChapterIndexEntry,
   LibraryChapterPayload,
@@ -37,6 +37,16 @@ import type {
   LibraryTextBlock,
   LibraryWork,
 } from '../../types'
+import {
+  addAppScrollSettledListener,
+  getAppScrollViewport,
+  isAppScrollAtEnd,
+  scrollElementIntoAppView,
+} from '../../utils/appScroll'
+import {
+  buildLibraryReaderNavigationState,
+  getLibraryReaderOrigin,
+} from '../../utils/libraryReaderNavigation'
 
 interface ChapterReaderState {
   work: LibraryWork
@@ -62,17 +72,18 @@ function chapterPath(workId: string, chapterId: string) {
   return `/library/${workId}/chapters/${chapterId}`
 }
 
-function readerBlockText(block: LibraryTextBlock) {
-  return block.lines?.join(' ') || block.text
+function decodeReaderBlockHash(hash: string): string | null {
+  if (!hash || hash === '#') return null
+
+  try {
+    return decodeURIComponent(hash.slice(1)) || null
+  } catch {
+    return null
+  }
 }
 
-function isDocumentScrollEnd() {
-  const root = document.documentElement
-  const scrollTop = window.scrollY || root.scrollTop
-  const documentHeight = Math.max(root.scrollHeight, document.body?.scrollHeight ?? 0)
-  return scrollTop > 0
-    && documentHeight > 0
-    && scrollTop + window.innerHeight >= documentHeight - 4
+function readerBlockText(block: LibraryTextBlock) {
+  return block.lines?.join(' ') || block.text
 }
 
 function ReaderInlineText({ text }: { text: string }) {
@@ -202,20 +213,21 @@ export default function LibraryChapterReader() {
   const updateSession = useProgressStore(state => state.updateSession)
   const { workId = 'panth-prakash-english', chapterId = '' } = useParams<{ workId: string; chapterId: string }>()
   const location = useLocation()
+  const readerOrigin = getLibraryReaderOrigin(location.state, `/library/${workId}`)
+  const readerNavigationState = buildLibraryReaderNavigationState(readerOrigin)
   const requestKey = `${workId}:${chapterId}`
   const [loadState, setLoadState] = useState<ChapterLoadState>({ key: requestKey, status: 'loading', reader: null })
   const [activePanel, setActivePanel] = useState<ReaderPanel>(null)
   const [tocQuery, setTocQuery] = useState('')
   const blockNodes = useRef(new Map<string, HTMLElement>())
-  const currentBlockId = useRef<string | null>(null)
+  const visibleBlockIdRef = useRef<string | null>(null)
+  const committedBlockIdRef = useRef<string | null>(null)
   const didRestoreLocation = useRef(false)
   const readerShellRef = useRef<HTMLDivElement | null>(null)
   const contentsTriggerRef = useRef<HTMLButtonElement | null>(null)
   const settingsTriggerRef = useRef<HTMLButtonElement | null>(null)
   const progressBarRef = useRef<HTMLSpanElement | null>(null)
   const progressLabelRef = useRef<HTMLSpanElement | null>(null)
-  const pendingSessionRef = useRef<Session | null>(null)
-  const sessionTimerRef = useRef<number | null>(null)
 
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
@@ -234,7 +246,8 @@ export default function LibraryChapterReader() {
     let cancelled = false
     didRestoreLocation.current = false
     blockNodes.current.clear()
-    currentBlockId.current = null
+    visibleBlockIdRef.current = null
+    committedBlockIdRef.current = null
 
     Promise.all([
       loadLibraryWorkCatalog(),
@@ -328,46 +341,9 @@ export default function LibraryChapterReader() {
     }
   }, [chapterBlocks, locatorMetrics, reader])
 
-  const flushPendingSession = useCallback(() => {
-    if (sessionTimerRef.current !== null) {
-      window.clearTimeout(sessionTimerRef.current)
-      sessionTimerRef.current = null
-    }
-    const pendingSession = pendingSessionRef.current
-    if (!pendingSession) return
-    pendingSessionRef.current = null
-    updateSession(pendingSession)
-  }, [updateSession])
-
-  const queueSessionUpdate = useCallback((session: Session) => {
-    pendingSessionRef.current = session
-    if (sessionTimerRef.current !== null) {
-      window.clearTimeout(sessionTimerRef.current)
-    }
-    sessionTimerRef.current = window.setTimeout(flushPendingSession, 280)
-  }, [flushPendingSession])
-
-  useEffect(() => {
-    const handlePageHide = () => flushPendingSession()
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') flushPendingSession()
-    }
-
-    window.addEventListener('pagehide', handlePageHide)
-    document.addEventListener('visibilitychange', handleVisibilityChange)
-    return () => {
-      window.removeEventListener('pagehide', handlePageHide)
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
-      flushPendingSession()
-    }
-  }, [flushPendingSession])
-
-  const recordLocation = useCallback((blockId: string) => {
-    if (!reader) return
-    if (currentBlockId.current === blockId) return
+  const renderLocationProgress = useCallback((blockId: string) => {
     const locator = createLocator(blockId)
     if (!locator) return
-    currentBlockId.current = blockId
     const progressPercent = Math.max(1, locator.locations.totalProgression * 100)
     if (progressBarRef.current) {
       progressBarRef.current.style.transform = `scaleX(${progressPercent / 100})`
@@ -375,19 +351,33 @@ export default function LibraryChapterReader() {
     if (progressLabelRef.current) {
       progressLabelRef.current.textContent = `${Math.round(locator.locations.totalProgression * 100)}% of book`
     }
-    queueSessionUpdate({
+  }, [createLocator])
+
+  const commitLocation = useCallback((blockId: string) => {
+    if (!reader || committedBlockIdRef.current === blockId) return
+    const locator = createLocator(blockId)
+    if (!locator) return
+    committedBlockIdRef.current = blockId
+    renderLocationProgress(blockId)
+    updateSession({
       scriptureId: `${reader.work.id}-${reader.chapter.id}`,
       resumePath: chapterPath(reader.work.id, reader.chapter.id),
       readerLocator: locator,
       updatedAt: new Date().toISOString(),
     })
-  }, [createLocator, queueSessionUpdate, reader])
+  }, [createLocator, reader, renderLocationProgress, updateSession])
+
+  const commitVisibleLocation = useCallback(() => {
+    const finalBlock = isAppScrollAtEnd() ? chapterBlocks.at(-1) : null
+    const blockId = finalBlock?.id ?? visibleBlockIdRef.current
+    if (blockId) commitLocation(blockId)
+  }, [chapterBlocks, commitLocation])
 
   const closeActivePanel = useCallback(() => {
     const trigger = activePanel === 'contents' ? contentsTriggerRef.current : settingsTriggerRef.current
     setActivePanel(null)
     window.requestAnimationFrame(() => trigger?.focus({ preventScroll: true }))
-  }, [activePanel])
+  }, [activePanel, setActivePanel])
 
   useEffect(() => {
     if (!reader) return
@@ -403,64 +393,65 @@ export default function LibraryChapterReader() {
   useEffect(() => {
     if (!reader || !chapterBlocks.length) return
 
-    const shouldRestoreBlock = Boolean(location.hash)
-    const requestedBlockId = shouldRestoreBlock
-      ? decodeURIComponent(location.hash.slice(1))
-      : chapterBlocks[0]?.id
-    const requestedNode = requestedBlockId ? blockNodes.current.get(requestedBlockId) : null
+    const decodedBlockId = decodeReaderBlockHash(location.hash)
+    const requestedNode = decodedBlockId ? blockNodes.current.get(decodedBlockId) : null
+    const shouldRestoreBlock = Boolean(decodedBlockId && requestedNode)
+    const requestedBlockId = shouldRestoreBlock ? decodedBlockId : chapterBlocks[0]?.id
     const restoreFrame = window.requestAnimationFrame(() => {
       if (shouldRestoreBlock && !didRestoreLocation.current && requestedNode) {
         didRestoreLocation.current = true
-        requestedNode.scrollIntoView?.({ block: 'start', behavior: 'auto' })
+        scrollElementIntoAppView(requestedNode, { block: 'start', behavior: 'auto' })
       }
-      if (requestedBlockId) recordLocation(requestedBlockId)
+      if (requestedBlockId) {
+        visibleBlockIdRef.current = requestedBlockId
+        renderLocationProgress(requestedBlockId)
+      }
     })
 
+    const removeSettledScrollListener = addAppScrollSettledListener(commitVisibleLocation)
     if (typeof IntersectionObserver === 'undefined') {
-      return () => window.cancelAnimationFrame(restoreFrame)
+      return () => {
+        window.cancelAnimationFrame(restoreFrame)
+        removeSettledScrollListener()
+      }
     }
     const observer = new IntersectionObserver(entries => {
       const visible = entries
         .filter(entry => entry.isIntersecting)
         .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0]
       const blockId = visible?.target.getAttribute('data-reader-block')
-      if (blockId) recordLocation(blockId)
+      if (blockId) visibleBlockIdRef.current = blockId
     }, {
+      root: getAppScrollViewport(),
       rootMargin: '-18% 0px -65% 0px',
       threshold: [0, 0.1, 0.5],
     })
 
     blockNodes.current.forEach(node => observer.observe(node))
 
-    let scrollIdleTimer: number | null = null
-    const recordSettledDocumentEnd = () => {
-      scrollIdleTimer = null
-      if (!isDocumentScrollEnd()) return
-      const finalBlock = chapterBlocks.at(-1)
-      if (finalBlock) recordLocation(finalBlock.id)
-    }
-    const handleScroll = () => {
-      if (scrollIdleTimer !== null) window.clearTimeout(scrollIdleTimer)
-      scrollIdleTimer = window.setTimeout(recordSettledDocumentEnd, 180)
-    }
-    const supportsScrollEnd = 'onscrollend' in document
-    if (supportsScrollEnd) {
-      document.addEventListener('scrollend', recordSettledDocumentEnd, { passive: true })
-    } else {
-      window.addEventListener('scroll', handleScroll, { passive: true })
-    }
-
     return () => {
       window.cancelAnimationFrame(restoreFrame)
-      if (scrollIdleTimer !== null) window.clearTimeout(scrollIdleTimer)
-      if (supportsScrollEnd) {
-        document.removeEventListener('scrollend', recordSettledDocumentEnd)
-      } else {
-        window.removeEventListener('scroll', handleScroll)
-      }
+      removeSettledScrollListener()
       observer.disconnect()
     }
-  }, [chapterBlocks, location.hash, reader, recordLocation])
+  }, [chapterBlocks, commitVisibleLocation, location.hash, reader, renderLocationProgress])
+
+  useEffect(() => {
+    if (!reader) return
+
+    const handlePageHide = () => commitVisibleLocation()
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') commitVisibleLocation()
+    }
+
+    window.addEventListener('pagehide', handlePageHide)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => {
+      window.removeEventListener('pagehide', handlePageHide)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      commitVisibleLocation()
+    }
+  }, [commitVisibleLocation, reader])
 
   const registerBlock = useCallback((blockId: string, node: HTMLElement | null) => {
     if (node) blockNodes.current.set(blockId, node)
@@ -503,6 +494,11 @@ export default function LibraryChapterReader() {
   const readerStyle = {
     '--epub-font-scale': String(fontScale),
   } as CSSProperties
+  const backLabel = readerOrigin.startsWith('/saved')
+    ? 'Back to Saved'
+    : readerOrigin.startsWith('/banis')
+      ? 'Back to Read'
+      : `Back to ${work.shortTitle}`
 
   return (
     <div
@@ -517,7 +513,11 @@ export default function LibraryChapterReader() {
       style={readerStyle}
     >
       <header className="epub-reader-topbar">
-        <Link to={`/library/${work.id}`} className="epub-reader-topbar__back interactive-focus" aria-label={`Back to ${work.shortTitle}`}>
+        <Link
+          to={readerOrigin}
+          className="epub-reader-topbar__back interactive-focus"
+          aria-label={backLabel}
+        >
           <IconArrowLeft size={18} />
         </Link>
         <div className="epub-reader-topbar__title">
@@ -559,13 +559,21 @@ export default function LibraryChapterReader() {
 
         <nav className="epub-reader-chapter-nav" aria-label="Section navigation">
           {previousChapter ? (
-            <Link to={chapterPath(work.id, previousChapter.id)} className="interactive-focus">
+            <Link
+              to={chapterPath(work.id, previousChapter.id)}
+              state={readerNavigationState}
+              className="interactive-focus"
+            >
               <IconArrowLeft size={16} />
               <span><small>Previous</small><strong>{chapterLabel(previousChapter)}</strong></span>
             </Link>
           ) : <span />}
           {nextChapter ? (
-            <Link to={chapterPath(work.id, nextChapter.id)} className="interactive-focus">
+            <Link
+              to={chapterPath(work.id, nextChapter.id)}
+              state={readerNavigationState}
+              className="interactive-focus"
+            >
               <span><small>Next</small><strong>{chapterLabel(nextChapter)}</strong></span>
               <IconArrowRight size={16} />
             </Link>
@@ -573,7 +581,7 @@ export default function LibraryChapterReader() {
         </nav>
 
         <footer className="epub-reader-edition-link">
-          <Link to={`/library/${work.id}`}>About this reading edition</Link>
+          <Link to={`/library/${work.id}`} state={readerNavigationState}>About this reading edition</Link>
         </footer>
       </div>
 
@@ -593,6 +601,7 @@ export default function LibraryChapterReader() {
               <li key={entry.id}>
                 <Link
                   to={chapterPath(work.id, entry.id)}
+                  state={readerNavigationState}
                   aria-current={entry.id === chapter.id ? 'location' : undefined}
                   onClick={() => setActivePanel(null)}
                 >

@@ -9,7 +9,18 @@ export function buildBookmarkNaturalKey(
 }
 
 export function buildFavoriteNaturalKey(
-  payload: Pick<CloudFavoritePayload, 'source' | 'ang' | 'shabadId'>
+  payload: Pick<CloudFavoritePayload, 'source' | 'ang' | 'shabadId' | 'verseId' | 'routeMode'>
 ) {
-  return `favorite:${payload.source}:${payload.ang}:shabad:${payload.shabadId ?? 'ang'}`
+  const routeMode = payload.routeMode
+    ?? (payload.verseId ? 'verse' : payload.shabadId ? 'shabad' : 'canonical')
+
+  if (routeMode === 'verse' && payload.verseId) {
+    return `favorite:${payload.source}:${payload.ang}:verse:${payload.verseId}`
+  }
+
+  if (routeMode === 'shabad' && payload.shabadId) {
+    return `favorite:${payload.source}:${payload.ang}:shabad:${payload.shabadId}`
+  }
+
+  return `favorite:${payload.source}:${payload.ang}:canonical`
 }

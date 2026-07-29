@@ -17,7 +17,7 @@ import {
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
-import { sendMagicLink, signInWithProvider } from '../supabase/runtime'
+import { lockAppScroll } from '../utils/appScroll'
 import { useCloudSyncStore } from '../store/cloudSync'
 import NaamRasLogoMark from './NaamRasLogoMark'
 import { IconHeart, IconLibrary, IconUsers } from './icons'
@@ -357,6 +357,8 @@ export default function OnboardingSheet({
     currentUser,
     availableProviders,
     lastError,
+    setStatus: setCloudStatus,
+    setLastError: setCloudError,
   } = useCloudSyncStore()
   const editorial = getEditorialCopy(locale)
   const englishSourceLabels = getEnglishSourceLabels(locale)
@@ -446,19 +448,11 @@ export default function OnboardingSheet({
   useEffect(() => {
     if (presentation !== 'overlay') return
 
-    const previousBodyOverflow = document.body.style.overflow
-    const previousBodyOverscroll = document.body.style.overscrollBehavior
-    const previousHtmlOverflow = document.documentElement.style.overflow
     const returnFocusElement = overlayReturnFocusRef.current
-
-    document.body.style.overflow = 'hidden'
-    document.body.style.overscrollBehavior = 'none'
-    document.documentElement.style.overflow = 'hidden'
+    const unlockScroll = lockAppScroll()
 
     return () => {
-      document.body.style.overflow = previousBodyOverflow
-      document.body.style.overscrollBehavior = previousBodyOverscroll
-      document.documentElement.style.overflow = previousHtmlOverflow
+      unlockScroll()
       window.requestAnimationFrame(() => returnFocusElement?.focus())
     }
   }, [presentation])
@@ -499,12 +493,20 @@ export default function OnboardingSheet({
     if (isCompleting || isCloudBusy) return
 
     await onComplete()
-    if (provider === 'email') {
-      await sendMagicLink(magicLinkEmail)
-      return
-    }
 
-    await signInWithProvider(provider)
+    try {
+      if (provider === 'email') {
+        const { sendMagicLink } = await import('../supabase/runtime')
+        await sendMagicLink(magicLinkEmail)
+        return
+      }
+
+      const { signInWithProvider } = await import('../supabase/runtime')
+      await signInWithProvider(provider)
+    } catch {
+      setCloudStatus('error')
+      setCloudError('Sign-in could not start right now. You can keep reading locally and try again in a moment.')
+    }
   }
 
   function goToPreviousStep() {
@@ -1200,7 +1202,7 @@ export default function OnboardingSheet({
 
   return (
     <main
-      className="app-shell app-shell--first-run bg-parchment transition-colors duration-300 dark:bg-dark-bg overflow-y-auto"
+      className="app-shell app-shell--first-run bg-parchment transition-colors duration-300 dark:bg-dark-bg"
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
       data-testid="onboarding-first-run"

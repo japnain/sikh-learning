@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { loadLibraryWorkCatalog } from '../data/libraryRepository'
 import type { LibraryWork } from '../types'
+import {
+  buildCurrentAppPath,
+  buildLibraryReaderNavigationState,
+} from '../utils/libraryReaderNavigation'
 import { IconArrowRight, IconLibrary } from './icons'
 
 type LibraryBookBrowserProps = {
@@ -10,6 +14,8 @@ type LibraryBookBrowserProps = {
 }
 
 export default function LibraryBookBrowser({ dataTestId, className = '' }: LibraryBookBrowserProps) {
+  const location = useLocation()
+  const readerNavigationState = buildLibraryReaderNavigationState(buildCurrentAppPath(location))
   const [state, setState] = useState<{
     status: 'loading' | 'ready' | 'error'
     works: LibraryWork[]
@@ -57,7 +63,12 @@ export default function LibraryBookBrowser({ dataTestId, className = '' }: Libra
               {work.language ? <span>{work.language.toUpperCase()}</span> : null}
             </div>
           </div>
-          <Link to={`/library/${work.id}`} className="interactive-focus" aria-label={`Open ${work.shortTitle} book reader`}>
+          <Link
+            to={`/library/${work.id}`}
+            state={readerNavigationState}
+            className="interactive-focus"
+            aria-label={`Open ${work.shortTitle} book reader`}
+          >
             Open book
             <IconArrowRight size={16} />
           </Link>

@@ -19,7 +19,20 @@ interface FavoritesState {
   favorites: FavoriteItem[]
   addFavorite: (item: Omit<FavoriteItem, 'id' | 'savedAt'>) => void
   removeFavorite: (id: string) => void
-  isFavorite: (source: FavoriteItem['source'], ang: number, shabadId?: number) => boolean
+  isFavorite: (
+    source: FavoriteItem['source'],
+    ang: number,
+    shabadId?: number,
+    verseId?: number,
+    routeMode?: FavoriteItem['routeMode']
+  ) => boolean
+}
+
+function resolveFavoriteRouteMode(
+  favorite: Pick<FavoriteItem, 'shabadId' | 'verseId' | 'routeMode'>
+) {
+  return favorite.routeMode
+    ?? (favorite.verseId ? 'verse' : favorite.shabadId ? 'shabad' : 'canonical')
 }
 
 export const useFavoritesStore = create<FavoritesState>()(
@@ -27,7 +40,13 @@ export const useFavoritesStore = create<FavoritesState>()(
     (set, get) => ({
       favorites: [],
       addFavorite: (item) => {
-        if (get().isFavorite(item.source, item.ang, item.shabadId)) return
+        if (get().isFavorite(
+          item.source,
+          item.ang,
+          item.shabadId,
+          item.verseId,
+          item.routeMode
+        )) return
         const favorite = {
           ...item,
           id: `favorite-${Date.now()}`,
@@ -71,11 +90,33 @@ export const useFavoritesStore = create<FavoritesState>()(
           })
         }
       },
-      isFavorite: (source, ang, shabadId) => get().favorites.some(item =>
-        item.source === source
-        && item.ang === ang
-        && (shabadId ? item.shabadId === shabadId : !item.shabadId)
-      ),
+      isFavorite: (source, ang, shabadId, verseId, routeMode) => {
+        const requestedRouteMode = resolveFavoriteRouteMode({
+          shabadId,
+          verseId,
+          routeMode,
+        })
+
+        return get().favorites.some(item => {
+          if (
+            item.source !== source
+            || item.ang !== ang
+            || resolveFavoriteRouteMode(item) !== requestedRouteMode
+          ) {
+            return false
+          }
+
+          if (requestedRouteMode === 'verse') {
+            return item.shabadId === shabadId && item.verseId === verseId
+          }
+
+          if (requestedRouteMode === 'shabad') {
+            return item.shabadId === shabadId
+          }
+
+          return true
+        })
+      },
     }),
     { name: 'sikh-favorites' }
   )
