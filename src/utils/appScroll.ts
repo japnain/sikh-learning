@@ -243,6 +243,8 @@ export function addAppScrollSettledListener(
   const scrollTarget: EventTarget = viewport ?? window
   const scrollEndTarget: EventTarget = viewport ?? document
   let idleTimer: number | null = null
+  let settleFrame: number | null = null
+  let postPaintFrame: number | null = null
 
   const clearIdleTimer = () => {
     if (idleTimer === null) return
@@ -250,17 +252,36 @@ export function addAppScrollSettledListener(
     idleTimer = null
   }
 
+  const cancelScheduledListener = () => {
+    if (settleFrame !== null) window.cancelAnimationFrame(settleFrame)
+    if (postPaintFrame !== null) window.cancelAnimationFrame(postPaintFrame)
+    settleFrame = null
+    postPaintFrame = null
+  }
+
+  const scheduleListenerAfterPaint = () => {
+    cancelScheduledListener()
+    settleFrame = window.requestAnimationFrame(() => {
+      settleFrame = null
+      postPaintFrame = window.requestAnimationFrame(() => {
+        postPaintFrame = null
+        listener()
+      })
+    })
+  }
+
   const handleScroll = () => {
+    cancelScheduledListener()
     clearIdleTimer()
     idleTimer = window.setTimeout(() => {
       idleTimer = null
-      listener()
+      scheduleListenerAfterPaint()
     }, idleMs)
   }
 
   const handleScrollEnd = () => {
     clearIdleTimer()
-    listener()
+    scheduleListenerAfterPaint()
   }
 
   scrollTarget.addEventListener('scroll', handleScroll, { passive: true })
@@ -268,6 +289,7 @@ export function addAppScrollSettledListener(
 
   return () => {
     clearIdleTimer()
+    cancelScheduledListener()
     scrollTarget.removeEventListener('scroll', handleScroll)
     scrollEndTarget.removeEventListener('scrollend', handleScrollEnd)
   }

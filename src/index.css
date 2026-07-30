@@ -132,7 +132,6 @@
     overflow-y: auto;
     overscroll-behavior-x: none;
     overscroll-behavior-y: none;
-    -webkit-overflow-scrolling: touch;
     scroll-behavior: auto;
   }
 

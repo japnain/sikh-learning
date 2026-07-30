@@ -665,6 +665,7 @@
   --epub-rule: 198 188 168;
   --epub-accent: 137 91 35;
   --epub-measure: 42rem;
+  --epub-reader-topbar-height: calc(var(--safe-area-top) + 3.7rem);
   min-height: 100%;
   background: rgb(var(--epub-page));
   color: rgb(var(--epub-ink));
@@ -703,18 +704,24 @@
 }
 
 .epub-reader-topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: 60;
-  display: flex;
-  min-height: calc(var(--safe-area-top) + 3.7rem);
+  display: grid;
+  height: var(--epub-reader-topbar-height);
+  grid-template-columns: minmax(5.85rem, 1fr) minmax(0, 11rem) minmax(5.85rem, 1fr);
   align-items: end;
-  justify-content: space-between;
   gap: 0.45rem;
   border-bottom: 1px solid rgb(var(--epub-rule) / 0.45);
   background: rgb(var(--epub-page-raised));
   padding: var(--safe-area-top) max(0.65rem, var(--safe-area-right)) 0.45rem max(0.65rem, var(--safe-area-left));
+  backface-visibility: hidden;
+  contain: paint;
   isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .epub-reader-topbar__back,
@@ -730,15 +737,15 @@
   color: rgb(var(--epub-ink));
 }
 
+.epub-reader-topbar__back {
+  justify-self: start;
+}
+
 .epub-reader-topbar__title {
-  position: absolute;
-  top: var(--safe-area-top);
-  bottom: 0.45rem;
-  left: 50%;
   display: flex;
-  width: min(12rem, calc(100% - 11.5rem));
+  width: 100%;
+  height: 2.75rem;
   min-width: 0;
-  transform: translateX(-50%);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -771,13 +778,14 @@
 
 .epub-reader-topbar__actions {
   display: flex;
+  justify-self: end;
   gap: 0.35rem;
 }
 
 .epub-reader-progress {
   position: absolute;
   right: 0;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   height: 2px;
   overflow: hidden;
@@ -796,7 +804,7 @@
 .epub-reader-main {
   width: 100%;
   min-width: 0;
-  padding: clamp(1.5rem, 5vw, 4.5rem) max(1.15rem, calc(var(--safe-area-right) + 1.15rem)) calc(var(--safe-area-bottom) + 4rem) max(1.15rem, calc(var(--safe-area-left) + 1.15rem));
+  padding: calc(var(--epub-reader-topbar-height) + clamp(1.5rem, 5vw, 4.5rem)) max(1.15rem, calc(var(--safe-area-right) + 1.15rem)) calc(var(--safe-area-bottom) + 4rem) max(1.15rem, calc(var(--safe-area-left) + 1.15rem));
 }
 
 .epub-reading-title,
@@ -848,7 +856,7 @@
 }
 
 .epub-reading-body > [data-reader-block] {
-  scroll-margin-top: calc(var(--safe-area-top) + 5rem);
+  scroll-margin-top: calc(var(--epub-reader-topbar-height) + 1rem);
 }
 
 .epub-reading-heading {

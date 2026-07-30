@@ -3,7 +3,7 @@
   --safe-area-right: env(safe-area-inset-right, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
   --safe-area-left: env(safe-area-inset-left, 0px);
-  --nav-stack-height: 8rem;
+  --nav-stack-height: 4.25rem;
 
   --nr-page-max: 76rem;
   --nr-reading-rail: 18.5rem;

@@ -125,40 +125,45 @@ export default function NavBar() {
     const observer = new ResizeObserver(() => updateHeight())
     observer.observe(element)
     window.addEventListener('resize', updateHeight)
+    window.visualViewport?.addEventListener('resize', updateHeight)
 
     return () => {
       observer.disconnect()
       window.removeEventListener('resize', updateHeight)
+      window.visualViewport?.removeEventListener('resize', updateHeight)
       document.documentElement.style.setProperty('--nav-stack-height', '0px')
     }
   }, [])
 
   return (
-    <div className="app-nav-stack z-50" ref={stackRef} data-testid="nav-stack" data-ai-surface="nav-stack">
-      <nav
-        className="app-nav"
-        aria-label={copy.nav.primaryNavigation}
-        data-testid="primary-nav"
-        data-ai-surface="primary-nav"
-      >
-        {tabs.map(tab => (
-          <Link
-            key={tab.to}
-            to={tab.to}
-            aria-label={tab.ariaLabel}
-            aria-current={tab.id === activeTabId ? 'page' : undefined}
-            title={tab.ariaLabel}
-            data-testid={`nav-tab-${tab.id}`}
-            data-ai-action={`nav-${tab.id}`}
-            className={`app-nav-tab ${tab.id === activeTabId ? 'is-active' : ''}`}
-          >
-            <span className="app-nav-tab__icon" aria-hidden="true">
-              <tab.Glyph active={tab.id === activeTabId} />
-            </span>
-            <span className="app-nav-tab__label">{tab.label}</span>
-          </Link>
-        ))}
-      </nav>
-    </div>
+    <>
+      <div className="app-nav-scrim" aria-hidden="true" />
+      <div className="app-nav-stack" ref={stackRef} data-testid="nav-stack" data-ai-surface="nav-stack">
+        <nav
+          className="app-nav"
+          aria-label={copy.nav.primaryNavigation}
+          data-testid="primary-nav"
+          data-ai-surface="primary-nav"
+        >
+          {tabs.map(tab => (
+            <Link
+              key={tab.to}
+              to={tab.to}
+              aria-label={tab.ariaLabel}
+              aria-current={tab.id === activeTabId ? 'page' : undefined}
+              title={tab.ariaLabel}
+              data-testid={`nav-tab-${tab.id}`}
+              data-ai-action={`nav-${tab.id}`}
+              className={`app-nav-tab ${tab.id === activeTabId ? 'is-active' : ''}`}
+            >
+              <span className="app-nav-tab__icon" aria-hidden="true">
+                <tab.Glyph active={tab.id === activeTabId} />
+              </span>
+              <span className="app-nav-tab__label">{tab.label}</span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </>
   )
 }

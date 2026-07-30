@@ -1677,8 +1677,9 @@
 }
 
 .page-shell[data-page='study'] {
+  --study-reader-topbar-height: calc(var(--safe-area-top) + 3.5rem);
   max-width: 76rem;
-  padding-top: max(0.35rem, var(--safe-area-top));
+  padding-top: calc(var(--study-reader-topbar-height) + 0.65rem);
   padding-bottom: max(2rem, calc(var(--safe-area-bottom) + 1.5rem));
   scroll-padding-bottom: max(2rem, calc(var(--safe-area-bottom) + 1.5rem));
   background: rgb(var(--color-bg));
@@ -1699,24 +1700,31 @@
 }
 
 .study-reader-topbar {
-  position: sticky;
-  top: var(--safe-area-top);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 40;
   display: grid;
+  width: min(100%, 76rem);
+  height: var(--study-reader-topbar-height);
   grid-template-columns: auto minmax(0, 1fr) auto;
-  min-height: 3.5rem;
   align-items: center;
   gap: 0.4rem;
-  margin: 0 -0.35rem 0.65rem;
-  padding: 0.35rem;
+  margin: 0 auto;
+  padding: var(--safe-area-top) max(0.35rem, var(--safe-area-right)) 0.35rem max(0.35rem, var(--safe-area-left));
   border-bottom: 1px solid rgb(var(--color-border) / 0.34);
   background: rgb(var(--color-bg));
+  backface-visibility: hidden;
+  contain: paint;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .study-reader-topbar__progress {
   position: absolute;
   right: 0;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   height: 2px;
   overflow: hidden;
@@ -2358,10 +2366,6 @@
     padding-left: max(1.5rem, calc(var(--safe-area-left) + 1.5rem));
   }
 
-  .study-reader-topbar {
-    margin-inline: 0;
-  }
-
   .study-reader-layout {
     display: grid !important;
     grid-template-columns: 18rem minmax(0, 1fr) !important;
@@ -2402,6 +2406,10 @@
 }
 
 @media (max-width: 759px) {
+  .page-shell[data-page='study'] {
+    --study-reader-topbar-height: calc(var(--safe-area-top) + 6.25rem);
+  }
+
   .study-reader-topbar__identity {
     display: block;
     grid-column: 1 / -1;

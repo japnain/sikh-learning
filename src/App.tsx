@@ -357,11 +357,10 @@ function AppShell() {
                 isCompleting={isCompletingOnboarding}
               />
             )}
-
-            {showPrimaryNavigation && <NavBar />}
           </div>
         )}
       </div>
+      {!showFirstRun && showPrimaryNavigation ? <NavBar /> : null}
     </>
   )
 }
