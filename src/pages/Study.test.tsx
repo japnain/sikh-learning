@@ -761,7 +761,8 @@ describe('Study soundscapes and tracking', () => {
       expect(updateSessionSpy).not.toHaveBeenCalled()
 
       fireEvent(scrollViewport, new Event('scrollend'))
-      expect(updateSessionSpy).toHaveBeenCalledTimes(1)
+      expect(updateSessionSpy).not.toHaveBeenCalled()
+      await waitFor(() => expect(updateSessionSpy).toHaveBeenCalledTimes(1))
       expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2)
       expect(useProgressStore.getState().studied).toEqual([
         expect.objectContaining({ id: expect.any(String) }),

@@ -54,7 +54,7 @@ describe('app scroll viewport', () => {
 
     viewport.dispatchEvent(new Event('scroll'))
     viewport.dispatchEvent(new Event('scrollend'))
-    expect(onSettled).toHaveBeenCalledTimes(1)
+    expect(onSettled).not.toHaveBeenCalled()
 
     vi.runAllTimers()
     expect(onSettled).toHaveBeenCalledTimes(1)

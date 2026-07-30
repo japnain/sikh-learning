@@ -512,7 +512,7 @@ export default function LibraryChapterReader() {
       data-measure={measure}
       style={readerStyle}
     >
-      <header className="epub-reader-topbar">
+      <header className="epub-reader-topbar" data-testid="panth-reader-topbar">
         <Link
           to={readerOrigin}
           className="epub-reader-topbar__back interactive-focus"

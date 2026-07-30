@@ -120,6 +120,7 @@ test('wraps routed content in the main landmark once onboarding is complete', as
   expect(screen.getByTestId('app-scroll-viewport')).toContainElement(screen.getByTestId('main-content'))
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
+  expect(screen.getByTestId('app-scroll-viewport')).not.toContainElement(screen.getByTestId('nav-stack'))
 })
 
 test('keeps the skip link as the first keyboard target on initial load', async () => {
