@@ -16,7 +16,7 @@ test('renders fallback UI when child throws', () => {
   expect(screen.getByText('This view needs a clean reset.')).toBeInTheDocument()
   expect(screen.getByText(/Your reading state is still on this device/i)).toBeInTheDocument()
   expect(screen.getByTestId('page-app-error')).toHaveAttribute('data-ai-state', 'degraded')
-  expect(screen.getByTestId('app-error-scroll-viewport')).toHaveClass('app-scroll-viewport')
+  expect(document.querySelector('.app-scroll-viewport')).toBeNull()
   expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content')
   spy.mockRestore()
 })

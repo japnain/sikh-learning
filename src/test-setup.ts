@@ -161,7 +161,13 @@ Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
 Object.defineProperty(window, 'scrollTo', {
   configurable: true,
   writable: true,
-  value: () => {},
+  value: (optionsOrX: ScrollToOptions | number, y?: number) => {
+    const nextTop = typeof optionsOrX === 'number'
+      ? (y ?? document.documentElement.scrollTop)
+      : (optionsOrX.top ?? document.documentElement.scrollTop)
+    document.documentElement.scrollTop = nextTop
+    document.body.scrollTop = nextTop
+  },
 })
 
 class MockIntersectionObserver {

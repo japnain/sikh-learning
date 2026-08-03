@@ -273,7 +273,6 @@
   padding: 0.1rem 0.82rem 0.7rem;
   scroll-padding-inline: 0.82rem;
   scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
 }
 
 .share-highlight__art-choice {

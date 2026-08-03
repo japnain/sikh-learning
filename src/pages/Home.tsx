@@ -693,7 +693,7 @@ export default function Home() {
     return previewItems.slice(0, 3)
   }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, vocab])
   return (
-    <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
+    <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--nav-bottom-offset)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
         className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hukamnama-title"

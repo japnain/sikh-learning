@@ -1,8 +1,7 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+import { mockDocumentScroll } from '../test/documentScroll'
 import {
-  APP_SCROLL_VIEWPORT_ID,
   addAppScrollSettledListener,
-  getAppScrollViewport,
   getAppScrollTop,
   isAppScrollAtEnd,
   lockAppScroll,
@@ -11,49 +10,61 @@ import {
   scrollAppTo,
 } from './appScroll'
 
-function createScrollViewport() {
-  const viewport = document.createElement('div')
-  viewport.id = APP_SCROLL_VIEWPORT_ID
-  document.body.append(viewport)
-  return viewport
+type DocumentScrollMock = ReturnType<typeof mockDocumentScroll>
+
+let documentScroll: DocumentScrollMock | null = null
+
+function createContentRoot() {
+  const root = document.createElement('div')
+  root.id = 'root'
+  document.body.append(root)
+  return root
 }
 
-describe('app scroll viewport', () => {
+describe('native app document scrolling', () => {
   beforeEach(() => {
     document.body.replaceChildren()
+    createContentRoot()
   })
 
   afterEach(() => {
+    documentScroll?.restore()
+    documentScroll = null
     vi.useRealTimers()
     vi.restoreAllMocks()
+    document.documentElement.removeAttribute('style')
     document.body.replaceChildren()
+    window.history.replaceState({}, '', '/')
   })
 
-  test('routes scroll reads and writes through the explicit viewport', () => {
-    const viewport = createScrollViewport()
-    const scrollTo = vi.fn()
-    Object.defineProperty(viewport, 'scrollTo', { configurable: true, value: scrollTo })
-    viewport.scrollTop = 420
+  test('reads and writes through the document scrolling root', () => {
+    documentScroll = mockDocumentScroll({ top: 420 })
 
     expect(getAppScrollTop()).toBe(420)
 
     const options = { top: 0, left: 0, behavior: 'auto' as const }
     scrollAppTo(options)
-    expect(scrollTo).toHaveBeenCalledWith(options)
+    expect(documentScroll.scrollTo).toHaveBeenCalledWith(options)
+    expect(documentScroll.getTop()).toBe(0)
+  })
+
+  test('clamps negative iOS rubber-band positions', () => {
+    documentScroll = mockDocumentScroll({ top: -18 })
+    expect(getAppScrollTop()).toBe(0)
   })
 
   test('does no settled work during active scrolling and cancels the idle fallback on scrollend', () => {
     vi.useFakeTimers()
-    const viewport = createScrollViewport()
+    documentScroll = mockDocumentScroll()
     const onSettled = vi.fn()
     const removeListener = addAppScrollSettledListener(onSettled)
 
-    viewport.dispatchEvent(new Event('scroll'))
+    window.dispatchEvent(new Event('scroll'))
     vi.advanceTimersByTime(179)
     expect(onSettled).not.toHaveBeenCalled()
 
-    viewport.dispatchEvent(new Event('scroll'))
-    viewport.dispatchEvent(new Event('scrollend'))
+    window.dispatchEvent(new Event('scroll'))
+    document.dispatchEvent(new Event('scrollend'))
     expect(onSettled).not.toHaveBeenCalled()
 
     vi.runAllTimers()
@@ -61,65 +72,88 @@ describe('app scroll viewport', () => {
     removeListener()
   })
 
-  test('computes the end boundary from the app viewport instead of the document root', () => {
-    const viewport = createScrollViewport()
-    Object.defineProperties(viewport, {
-      clientHeight: { configurable: true, value: 800 },
-      scrollHeight: { configurable: true, value: 2000 },
+  test('computes the end boundary from document metrics', () => {
+    documentScroll = mockDocumentScroll({
+      top: 1195,
+      viewportHeight: 800,
+      scrollHeight: 2000,
     })
-    viewport.scrollTop = 1195
     expect(isAppScrollAtEnd()).toBe(false)
 
-    viewport.scrollTop = 1200
+    documentScroll.setTop(1200)
     expect(isAppScrollAtEnd()).toBe(true)
   })
 
-  test('locks nested overlays without losing the viewport scroll styles', () => {
-    const viewport = createScrollViewport()
-    viewport.style.overflowY = 'auto'
-    viewport.style.overscrollBehavior = 'contain'
+  test('locks nested overlays on the root and restores styles and position once', () => {
+    vi.useFakeTimers()
+    documentScroll = mockDocumentScroll({ top: 420 })
+    const root = document.documentElement
+    root.style.overflowY = 'auto'
+    root.style.overscrollBehavior = 'contain'
 
     const releaseFirst = lockAppScroll()
     const releaseSecond = lockAppScroll()
-    expect(viewport.style.overflowY).toBe('hidden')
-    expect(viewport.style.overscrollBehavior).toBe('none')
+    expect(root.style.overflow).toBe('hidden')
+    expect(root.style.overflowY).toBe('hidden')
+    expect(root.style.overscrollBehavior).toBe('none')
 
     releaseFirst()
-    expect(viewport.style.overflowY).toBe('hidden')
+    expect(root.style.overflowY).toBe('hidden')
 
     releaseSecond()
-    expect(viewport.style.overflowY).toBe('auto')
-    expect(viewport.style.overscrollBehavior).toBe('contain')
+    expect(root.style.overflow).toBe('')
+    expect(root.style.overflowY).toBe('auto')
+    expect(root.style.overscrollBehavior).toBe('contain')
+    expect(documentScroll.scrollTo).not.toHaveBeenCalled()
+
+    vi.runAllTimers()
+    expect(documentScroll.scrollTo).toHaveBeenCalledWith({
+      left: 0,
+      top: 420,
+      behavior: 'auto',
+    })
   })
 
-  test('waits for lazy route content before restoring a saved scroll position', async () => {
+  test('does not restore a locked route position after navigation', () => {
     vi.useFakeTimers()
-    const viewport = createScrollViewport()
-    const scrollTo = vi.fn((options: ScrollToOptions) => {
-      viewport.scrollTop = options.top ?? viewport.scrollTop
-    })
-    Object.defineProperty(viewport, 'scrollTo', { configurable: true, value: scrollTo })
-    Object.defineProperties(viewport, {
-      clientHeight: { configurable: true, value: 800 },
-      scrollHeight: { configurable: true, value: 900 },
+    documentScroll = mockDocumentScroll({ top: 420 })
+    const release = lockAppScroll()
+
+    window.history.pushState({}, '', '/next')
+    release()
+    vi.runAllTimers()
+
+    expect(documentScroll.scrollTo).not.toHaveBeenCalled()
+  })
+
+  test('waits for lazy document content before restoring a saved scroll position', async () => {
+    vi.useFakeTimers()
+    documentScroll = mockDocumentScroll({
+      viewportHeight: 800,
+      scrollHeight: 900,
     })
 
     const cancelRestore = restoreAppScrollTopWhenReady(700)
     vi.advanceTimersByTime(0)
-    expect(scrollTo).not.toHaveBeenCalled()
+    expect(documentScroll.scrollTo).not.toHaveBeenCalled()
 
-    Object.defineProperty(viewport, 'scrollHeight', { configurable: true, value: 1800 })
-    viewport.append(document.createElement('main'))
+    documentScroll.setScrollHeight(1800)
+    document.getElementById('root')?.append(document.createElement('main'))
+    await Promise.resolve()
     await Promise.resolve()
 
-    expect(scrollTo).toHaveBeenCalledWith({ top: 700, left: 0, behavior: 'auto' })
-    expect(viewport.scrollTop).toBe(700)
+    expect(documentScroll.scrollTo).toHaveBeenCalledWith({
+      top: 700,
+      left: 0,
+      behavior: 'auto',
+    })
+    expect(documentScroll.getTop()).toBe(700)
     cancelRestore()
   })
 
   test('resolves a hash target that appears after a lazy route renders', async () => {
     vi.useFakeTimers()
-    createScrollViewport()
+    documentScroll = mockDocumentScroll()
     const scrollIntoView = vi.spyOn(HTMLElement.prototype, 'scrollIntoView')
 
     const cancelRestore = scrollAppHashIntoView('#contents')
@@ -128,7 +162,8 @@ describe('app scroll viewport', () => {
 
     const target = document.createElement('section')
     target.id = 'contents'
-    getAppScrollViewport()?.append(target)
+    document.getElementById('root')?.append(target)
+    await Promise.resolve()
     await Promise.resolve()
 
     expect(scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })

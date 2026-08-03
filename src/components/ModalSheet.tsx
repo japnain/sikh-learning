@@ -36,7 +36,7 @@ export default function ModalSheet({
           className={`fixed inset-x-3 z-[71] mx-auto w-auto max-w-md overflow-hidden border border-sand/15 bg-parchment-card shadow-gold-strong outline-none dark:border-dark-text/10 dark:bg-dark-card ${className}`}
           style={{
             position: 'fixed',
-            bottom: 'calc(var(--nav-stack-height, 0px) + 0.75rem + env(safe-area-inset-bottom))',
+            bottom: 'calc(var(--nav-stack-height, 0px) + 0.75rem + var(--fixed-ui-safe-bottom))',
           }}
           data-testid={testId}
           onOpenAutoFocus={event => {

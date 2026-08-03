@@ -42,19 +42,21 @@ Evidence rules used in this record:
 
 ### 1. Panth Prakash and app-wide scroll hitch
 
-Audit input: the user-provided `ScreenRecording_07-25-2026 09-38-19_1.MP4` (local audit artifact, not committed), HEVC at 886 × 1920, approximately 60 fps, 10.481587 seconds. Frame review showed a repeatable hitch when the reader returned to the top edge.
+Audit input: the user-provided `ScreenRecording_07-25-2026 09-38-19_1.MP4` and follow-up physical-iPhone recordings (local audit artifacts, not committed). Frame review showed a repeatable hitch when the reader returned to the top edge. A later physical-device retest disproved the first nested-viewport mitigation even though desktop and Chromium emulation were smooth.
 
-The fault crossed three layers: the document root and reader could participate in competing scroll/overscroll behavior, sticky reader UI could be composited during iOS rubber-band handoff, and reader progress persistence ran from the scrolling path. The fix is architectural rather than Panth-Prakash-specific:
+The remaining fault was the viewport-sized `overflow-y: auto` element itself. Modern iOS keeps overflow elements on an asynchronous compositor scroll layer, so a fixed reader bar inside that element can still be sampled against the moving layer. The permanent fix is architectural rather than Panth-Prakash-specific:
 
-- `html`, `body`, and `#root` are fixed-height, non-scrolling roots with overscroll disabled.
-- `#app-scroll-viewport` is the single vertical application scroll surface with momentum scrolling and no vertical scroll chaining.
-- All shared reads, writes, end checks, hash navigation, deferred restoration, settled-scroll work, and nested scroll locks go through [`src/utils/appScroll.ts`](../../src/utils/appScroll.ts).
-- [`src/pages/library/LibraryChapterReader.tsx`](../../src/pages/library/LibraryChapterReader.tsx) roots `IntersectionObserver` in the app viewport, tracks the visible block in refs, and commits the locator only at `scrollend`/idle, `pagehide`, hidden visibility, or unmount.
+- The native document root is the only primary vertical scroll surface on every platform; no viewport-sized overflow child owns route scrolling.
+- All shared reads, writes, end checks, hash navigation, deferred restoration, settled-scroll work, and nested root locks still go through [`src/utils/appScroll.ts`](../../src/utils/appScroll.ts).
+- Panth Prakash and Study keep opaque fixed headers with reserved content space, but no forced `translateZ`, `will-change`, `contain`, or backface layer promotion.
+- [`src/pages/library/LibraryChapterReader.tsx`](../../src/pages/library/LibraryChapterReader.tsx) observes the native viewport (`root: null`), tracks the visible block in refs, and commits the locator only at `scrollend`/idle, `pagehide`, hidden visibility, or unmount.
 - [`src/pages/Study.tsx`](../../src/pages/Study.tsx) likewise updates resume/history/progress after scrolling settles rather than writing persisted state during every scroll event.
 - [`src/hooks/useAppScrollRestoration.ts`](../../src/hooks/useAppScrollRestoration.ts) keeps at most 50 session positions, distinguishes history entries by router key plus path/query/hash, waits for lazy content height, and restores same-path Back/Forward entries.
-- [`src/components/ModalSheet.tsx`](../../src/components/ModalSheet.tsx) locks the explicit viewport with a nested-lock counter so opening reader controls does not hand scroll back to the document.
+- [`src/components/ModalSheet.tsx`](../../src/components/ModalSheet.tsx) locks the document element with a nested-lock counter. Unlock restores the prior position only when the URL is unchanged, so chapter navigation cannot be overwritten by stale modal position.
 
-Regression evidence covers the CSS invariant, viewport-routed reads/writes, zero work during active scrolling, lazy-height restoration, delayed hash targets, nested locks, app-viewport observer root, settled Panth Prakash location commits, `pagehide` flushing, and Back/Forward restoration. The architecture test also rejects new production `window`/`document` scroll listeners, direct window scroll reads/writes, and direct `scrollIntoView` calls outside the centralized utility. Physical iPhone smoothness is deliberately still a device gate in [`release-device-signoff.md`](release-device-signoff.md).
+Regression evidence covers the native-root CSS invariant, centralized document reads/writes, negative rubber-band clamping, zero work during active scrolling, lazy-height restoration, delayed hash targets, URL-safe nested locks, native observer root, settled Panth Prakash location commits, `pagehide` flushing, and Back/Forward restoration. The architecture test also rejects new production `window`/`document` scroll listeners, direct window scroll reads/writes, and direct `scrollIntoView` calls outside the centralized utility. Physical iPhone smoothness remains the authoritative device gate in [`release-device-signoff.md`](release-device-signoff.md).
+
+The Home Screen dock has a separate iOS 26.5.2 platform defect: the supplied 393 × 852 screenshot shows WebKit ending its drawable viewport at 793 CSS px, leaving a 59px system-owned strip. NaamRas now measures that loss only when `navigator.standalone === true`, preserves the raw safe-area token for content, and subtracts the loss from fixed-chrome placement. On the reported phone this lowers the dock from a 34px internal inset to the 6.4px visual minimum; the unreachable system strip cannot be painted by web content ([WebKit 301994](https://bugs.webkit.org/show_bug.cgi?id=301994)).
 
 ### 2. Search correctness, completeness, and recovery
 

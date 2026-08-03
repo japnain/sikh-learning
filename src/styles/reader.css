@@ -200,7 +200,7 @@
   .study-reader-secondary-tools {
     display: grid;
     gap: 1rem;
-    scroll-margin-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 2rem);
+    scroll-margin-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 2rem);
   }
 
   .study-entry-navigator {
@@ -594,7 +594,7 @@
 
 @media (max-height: 760px) {
   .read-room-shell {
-    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 5rem);
+    padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 5rem);
   }
 
   .read-room-stack {
@@ -616,7 +616,7 @@
 
 @media (max-height: 700px) {
   .read-room-shell {
-    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 5.75rem);
+    padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 5.75rem);
   }
 }
 
@@ -1715,10 +1715,6 @@
   padding: var(--safe-area-top) max(0.35rem, var(--safe-area-right)) 0.35rem max(0.35rem, var(--safe-area-left));
   border-bottom: 1px solid rgb(var(--color-border) / 0.34);
   background: rgb(var(--color-bg));
-  backface-visibility: hidden;
-  contain: paint;
-  transform: translateZ(0);
-  will-change: transform;
 }
 
 .study-reader-topbar__progress {
@@ -1831,7 +1827,7 @@
 .study-reader-action-status {
   position: fixed;
   right: max(1rem, var(--safe-area-right));
-  bottom: max(1rem, calc(var(--safe-area-bottom) + 1rem));
+  bottom: max(1rem, calc(var(--fixed-ui-safe-bottom) + 1rem));
   z-index: 85;
   max-width: min(24rem, calc(100vw - 2rem));
   min-height: 0 !important;
@@ -1976,7 +1972,7 @@
 
 .study-reader-settings-sheet,
 .study-reader-bookmark-sheet {
-  bottom: max(0.75rem, var(--safe-area-bottom)) !important;
+  bottom: max(0.75rem, var(--fixed-ui-safe-bottom)) !important;
   background: rgb(var(--color-surface)) !important;
 }
 
@@ -2208,7 +2204,7 @@
 .study-reader-ang-navigation {
   position: fixed;
   right: max(1rem, var(--safe-area-right));
-  bottom: max(1rem, calc(var(--safe-area-bottom) + 1rem));
+  bottom: max(1rem, calc(var(--fixed-ui-safe-bottom) + 1rem));
   z-index: 35;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

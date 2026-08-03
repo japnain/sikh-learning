@@ -453,7 +453,7 @@ export default function OnboardingSheet({
 
     return () => {
       unlockScroll()
-      window.requestAnimationFrame(() => returnFocusElement?.focus())
+      window.requestAnimationFrame(() => returnFocusElement?.focus({ preventScroll: true }))
     }
   }, [presentation])
 

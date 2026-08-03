@@ -1,4 +1,4 @@
-import { describe, it, test, expect, beforeEach, vi } from 'vitest'
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest'
 import { act, render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { http, HttpResponse } from 'msw'
@@ -21,7 +21,7 @@ import {
 } from '../content/readerEditorialCopy'
 import { server } from '../test/msw-server'
 import { MOCK_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handlers'
-import { APP_SCROLL_VIEWPORT_ID } from '../utils/appScroll'
+import { mockDocumentScroll } from '../test/documentScroll'
 
 vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
   default: ({ content }: {
@@ -66,6 +66,8 @@ function LocationSpy() {
   const location = useLocation()
   return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
 }
+
+let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
 
 beforeEach(() => {
   localStorage.clear()
@@ -114,6 +116,11 @@ beforeEach(() => {
       'kirtan-sohila': 'short',
     },
   })
+})
+
+afterEach(() => {
+  documentScroll?.restore()
+  documentScroll = null
 })
 
 describe('Study bookmark button', () => {
@@ -658,31 +665,17 @@ describe('Study soundscapes and tracking', () => {
   })
 
   it('updates reading progress only after scrolling settles and avoids layout width writes', async () => {
+    documentScroll = mockDocumentScroll({
+      top: 600,
+      viewportHeight: 800,
+      scrollHeight: 2400,
+    })
     render(
-      <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
-        <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
-          <Routes><Route path="/study" element={<Study />} /></Routes>
-        </MemoryRouter>
-      </div>
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
     )
 
-    const scrollViewport = screen.getByTestId('app-scroll-viewport')
-    Object.defineProperties(scrollViewport, {
-      clientHeight: { configurable: true, value: 800 },
-      scrollHeight: { configurable: true, value: 2400 },
-    })
-    scrollViewport.scrollTop = 600
-    vi.spyOn(scrollViewport, 'getBoundingClientRect').mockReturnValue({
-      x: 0,
-      y: 0,
-      top: 0,
-      right: 390,
-      bottom: 800,
-      left: 0,
-      width: 390,
-      height: 800,
-      toJSON: () => ({}),
-    })
     const reading = await screen.findByTestId('study-entry-list')
     Object.defineProperty(reading, 'scrollHeight', { configurable: true, value: 2000 })
     vi.spyOn(reading, 'getBoundingClientRect').mockReturnValue({
@@ -707,15 +700,15 @@ describe('Study soundscapes and tracking', () => {
     expect(settledTransform).toMatch(/^scaleX\(0\.37/)
     expect(progressBar.style.width).toBe('')
 
-    scrollViewport.scrollTop = 700
+    documentScroll.setTop(700)
     for (let index = 0; index < 12; index += 1) {
-      fireEvent.scroll(scrollViewport)
+      fireEvent.scroll(window)
     }
 
     expect(progress).toHaveAttribute('aria-valuenow', '38')
     expect(progressBar.style.transform).toBe(settledTransform)
 
-    fireEvent(scrollViewport, new Event('scrollend'))
+    fireEvent(document, new Event('scrollend'))
     await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '45'))
   })
 
@@ -725,15 +718,17 @@ describe('Study soundscapes and tracking', () => {
     useProgressStore.setState({ updateSession: updateSessionSpy })
 
     try {
+      documentScroll = mockDocumentScroll({
+        top: 700,
+        viewportHeight: 800,
+        scrollHeight: 2400,
+      })
       render(
-        <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
-          <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
-            <Routes><Route path="/study" element={<Study />} /></Routes>
-          </MemoryRouter>
-        </div>
+        <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+          <Routes><Route path="/study" element={<Study />} /></Routes>
+        </MemoryRouter>
       )
 
-      const scrollViewport = screen.getByTestId('app-scroll-viewport')
       const lines = await screen.findAllByTestId('study-line')
       await waitFor(() => {
         expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(1)
@@ -755,12 +750,12 @@ describe('Study soundscapes and tracking', () => {
       updateSessionSpy.mockClear()
 
       for (let index = 0; index < 12; index += 1) {
-        fireEvent.scroll(scrollViewport)
+        fireEvent.scroll(window)
       }
 
       expect(updateSessionSpy).not.toHaveBeenCalled()
 
-      fireEvent(scrollViewport, new Event('scrollend'))
+      fireEvent(document, new Event('scrollend'))
       expect(updateSessionSpy).not.toHaveBeenCalled()
       await waitFor(() => expect(updateSessionSpy).toHaveBeenCalledTimes(1))
       expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2)

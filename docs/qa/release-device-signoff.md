@@ -29,7 +29,8 @@ Record device model, iOS version, build number, tester, and date with the result
 - Test default, largest accessibility Dynamic Type, Bold Text, Increase Contrast, Reduce Motion, and Light/Dark appearance.
 - Check portrait and landscape on iPhone for clipping, overlap, horizontal scrolling, and obscured controls.
 - Background and foreground the app from Home, Reader, Saved, and an open modal. Focus and reading position must return predictably.
-- Open Panth Prakash Episode 1, repeatedly drag and fling through the first screen and back to the exact top, then open and close Contents and Display. The page must remain on one scroll surface with no top-edge hitch, rubber-band handoff, jump, or lost position; Back and Forward must restore the prior viewport.
+- Open Panth Prakash Episode 1, repeatedly drag and fling through the first screen and back to the exact top, then open and close Contents and Display. `document.scrollingElement` must remain the sole primary vertical scroller, with no viewport-sized `overflow-y: auto` route container, top-edge hitch, rubber-band handoff, jump, or lost position; Back and Forward must restore the prior document position.
+- Add the production site to the iPhone Home Screen, cold-launch it, and compare Home with a regular Safari tab. Record `screen.height`, `innerHeight`, `documentElement.clientHeight`, `data-ios-standalone-viewport`, the measured viewport-loss variable, and the nav rectangle. On affected iOS versions the dock must end within 7 CSS px of WebKit's drawable viewport bottom and must not retain a second 34px safe-area lift.
 - Relaunch offline after previously opening a reading; local bookmarks, preferences, and progress must remain intact.
 
 ## App Store Screenshots
