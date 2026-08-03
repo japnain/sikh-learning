@@ -211,13 +211,21 @@ export type ShareHighlightShareResult =
   | {
       status: 'shared'
       method: 'web-share'
+      /** The richest payload accepted by the browser/selected share target. */
+      payload: 'full' | 'without-url' | 'file-only'
     }
   | {
       status: 'cancelled'
       method: 'web-share'
     }
   | {
-      status: 'downloaded'
-      method: 'download'
-      shareError?: unknown
+      status: 'unsupported'
+      method: 'web-share'
+      reason: 'api-unavailable' | 'file-share-unsupported'
+      error?: unknown
+    }
+  | {
+      status: 'failed'
+      method: 'web-share'
+      error: unknown
     }

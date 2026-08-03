@@ -10,10 +10,17 @@ import {
   READER_EDITORIAL_BANIS,
   READER_EDITORIAL_COPY_BY_BANI_ID,
   READER_EDITORIAL_REVIEWED_AT,
+  formatReaderEditorialDate,
   getReaderEditorialCopyForBani,
   getReaderEditorialCopyForBaniDbId,
   getReaderEditorialCopyForSource,
 } from './readerEditorialCopy'
+
+it('formats Hukamnama display dates in the active interface language', () => {
+  expect(formatReaderEditorialDate('2026-04-05', 'en')).toBe('April 5, 2026')
+  expect(formatReaderEditorialDate('2026-04-05', 'pa')).not.toBe('April 5, 2026')
+  expect(formatReaderEditorialDate('2026-04-05', 'hi')).not.toBe('April 5, 2026')
+})
 
 const expectedCatalog = Array.from(
   new Map([...READ_EXACT_BANIS, ...BANIS].map(bani => [bani.id, bani])).values()

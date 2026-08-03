@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { mockDocumentScroll } from '../test/documentScroll'
 import {
   addAppScrollSettledListener,
+  focusElementWithoutAppScroll,
   getAppScrollTop,
   isAppScrollAtEnd,
   lockAppScroll,
@@ -51,6 +52,29 @@ describe('native app document scrolling', () => {
   test('clamps negative iOS rubber-band positions', () => {
     documentScroll = mockDocumentScroll({ top: -18 })
     expect(getAppScrollTop()).toBe(0)
+  })
+
+  test('restores document position if legacy focus ignores preventScroll', () => {
+    documentScroll = mockDocumentScroll({ top: 420 })
+    const button = document.createElement('button')
+    document.body.append(button)
+    const focus = vi.spyOn(button, 'focus')
+      .mockImplementationOnce(() => {
+        throw new TypeError('preventScroll is unsupported')
+      })
+      .mockImplementationOnce(() => {
+        documentScroll?.setTop(0)
+      })
+
+    focusElementWithoutAppScroll(button)
+
+    expect(focus).toHaveBeenNthCalledWith(1, { preventScroll: true })
+    expect(focus).toHaveBeenCalledTimes(2)
+    expect(documentScroll.scrollTo).toHaveBeenCalledWith({
+      left: 0,
+      top: 420,
+      behavior: 'auto',
+    })
   })
 
   test('does no settled work during active scrolling and cancels the idle fallback on scrollend', () => {
