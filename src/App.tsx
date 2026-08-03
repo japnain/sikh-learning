@@ -7,6 +7,7 @@ import SplashScreen from './components/SplashScreen'
 import SurfaceStateCard from './components/SurfaceStateCard'
 import { useAppScrollRestoration } from './hooks/useAppScrollRestoration'
 import { useDisplayMode } from './hooks/useDisplayMode'
+import { useIosStandaloneViewportMetrics } from './hooks/useIosStandaloneViewportMetrics'
 import { useSupabaseBootstrap } from './hooks/useSupabaseBootstrap'
 import { useNitemOfflineCache } from './hooks/useNitemOfflineCache'
 import { useRouteDocumentTitle } from './hooks/useRouteDocumentTitle'
@@ -14,7 +15,7 @@ import { useLanguageStore } from './store/language'
 import { useLocaleStore } from './store/locale'
 import { useOnboardingStore } from './store/onboarding'
 import { applyThemeToDocument, useThemeStore } from './store/theme'
-import { APP_SCROLL_VIEWPORT_ID, scrollAppTo } from './utils/appScroll'
+import { scrollAppTo } from './utils/appScroll'
 import { getRouterBasename } from './utils/basePath'
 
 const HomePage = lazy(() => import('./pages/Home'))
@@ -180,6 +181,7 @@ function AppShell() {
   const showFirstRun = !isPublicDocument && !hasCompletedOnboarding && presentationMode === 'first-run'
   const showOverlay = !isPublicDocument && hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
 
+  useIosStandaloneViewportMetrics()
   useAppScrollRestoration({
     mainContentRef,
     enabled: !showFirstRun,
@@ -271,95 +273,89 @@ function AppShell() {
       <SplashScreen />
       <MusicControllerBridge />
 
-      <div
-        id={APP_SCROLL_VIEWPORT_ID}
-        className="app-scroll-viewport"
-        data-testid="app-scroll-viewport"
-      >
-        {showFirstRun ? (
-          <OnboardingSheet
-            presentation="first-run"
-            locale={locale}
-            scriptMode={scriptMode}
-            setScriptMode={setScriptMode}
-            showTransliteration={showTransliteration}
-            setShowTransliteration={setShowTransliteration}
-            meaningLanguage={meaningLanguage}
-            setMeaningLanguage={setMeaningLanguage}
-            englishSource={englishSource}
-            setEnglishSource={setEnglishSource}
-            learningGoal={learningGoal}
-            setLearningGoal={setLearningGoal}
-            onComplete={handleOnboardingComplete}
-            isCompleting={isCompletingOnboarding}
-          />
-        ) : (
-          <div
-            className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
-            data-display-mode={displayMode}
-            data-testid="app-shell"
-            data-ai-surface="app-shell"
+      {showFirstRun ? (
+        <OnboardingSheet
+          presentation="first-run"
+          locale={locale}
+          scriptMode={scriptMode}
+          setScriptMode={setScriptMode}
+          showTransliteration={showTransliteration}
+          setShowTransliteration={setShowTransliteration}
+          meaningLanguage={meaningLanguage}
+          setMeaningLanguage={setMeaningLanguage}
+          englishSource={englishSource}
+          setEnglishSource={setEnglishSource}
+          learningGoal={learningGoal}
+          setLearningGoal={setLearningGoal}
+          onComplete={handleOnboardingComplete}
+          isCompleting={isCompletingOnboarding}
+        />
+      ) : (
+        <div
+          className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
+          data-display-mode={displayMode}
+          data-testid="app-shell"
+          data-ai-surface="app-shell"
+          data-ai-state="ready"
+          data-reader-focus={isFocusedReader ? 'true' : undefined}
+          data-navigation={showPrimaryNavigation ? 'primary' : undefined}
+        >
+          <main
+            ref={mainContentRef}
+            id="main-content"
+            tabIndex={-1}
+            className="min-h-full"
+            data-testid="main-content"
+            data-ai-surface="main-content"
             data-ai-state="ready"
-            data-reader-focus={isFocusedReader ? 'true' : undefined}
-            data-navigation={showPrimaryNavigation ? 'primary' : undefined}
           >
-            <main
-              ref={mainContentRef}
-              id="main-content"
-              tabIndex={-1}
-              className="min-h-full"
-              data-testid="main-content"
-              data-ai-surface="main-content"
-              data-ai-state="ready"
-            >
-              <Suspense fallback={<RouteFallback />}>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/study" element={<StudyPage />} />
-                  <Route path="/study/:scriptureId" element={<StudyPage />} />
-                  <Route path="/saved" element={<LibraryPage />} />
-                  <Route path="/library" element={<Navigate to="/saved" replace />} />
-                  <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
-                  <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
-                  <Route path="/nitnem/customize" element={<NitnemCustomizePage />} />
-                  <Route path="/banis/amrit-keertan" element={<AmritKeertanPage />} />
-                  <Route path="/banis/amrit-keertan/:headerId" element={<AmritKeertanPage />} />
-                  <Route path="/banis/rehat" element={<RehatPage />} />
-                  <Route path="/banis/rehat/:rehatId" element={<RehatPage />} />
-                  <Route path="/banis/rehat/:rehatId/chapters/:chapterId" element={<RehatPage />} />
-                  <Route path="/banis" element={<BanisPage />} />
-                  <Route path="/more" element={<MorePage />} />
-                  <Route path="/learn/*" element={<Navigate to="/" replace />} />
-                  <Route path="/vocab" element={<VocabPage />} />
-                  <Route path="/privacy" element={<PrivacyPage />} />
-                  <Route path="/support" element={<SupportPage />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </Suspense>
-            </main>
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/study" element={<StudyPage />} />
+                <Route path="/study/:scriptureId" element={<StudyPage />} />
+                <Route path="/saved" element={<LibraryPage />} />
+                <Route path="/library" element={<Navigate to="/saved" replace />} />
+                <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
+                <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
+                <Route path="/nitnem/customize" element={<NitnemCustomizePage />} />
+                <Route path="/banis/amrit-keertan" element={<AmritKeertanPage />} />
+                <Route path="/banis/amrit-keertan/:headerId" element={<AmritKeertanPage />} />
+                <Route path="/banis/rehat" element={<RehatPage />} />
+                <Route path="/banis/rehat/:rehatId" element={<RehatPage />} />
+                <Route path="/banis/rehat/:rehatId/chapters/:chapterId" element={<RehatPage />} />
+                <Route path="/banis" element={<BanisPage />} />
+                <Route path="/more" element={<MorePage />} />
+                <Route path="/learn/*" element={<Navigate to="/" replace />} />
+                <Route path="/vocab" element={<VocabPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </main>
 
-            {showOverlay && (
-              <OnboardingSheet
-                presentation="overlay"
-                locale={locale}
-                scriptMode={scriptMode}
-                setScriptMode={setScriptMode}
-                showTransliteration={showTransliteration}
-                setShowTransliteration={setShowTransliteration}
-                meaningLanguage={meaningLanguage}
-                setMeaningLanguage={setMeaningLanguage}
-                englishSource={englishSource}
-                setEnglishSource={setEnglishSource}
-                learningGoal={learningGoal}
-                setLearningGoal={setLearningGoal}
-                onComplete={handleOnboardingComplete}
-                onDismiss={closeOnboarding}
-                isCompleting={isCompletingOnboarding}
-              />
-            )}
-          </div>
-        )}
-      </div>
+          {showOverlay && (
+            <OnboardingSheet
+              presentation="overlay"
+              locale={locale}
+              scriptMode={scriptMode}
+              setScriptMode={setScriptMode}
+              showTransliteration={showTransliteration}
+              setShowTransliteration={setShowTransliteration}
+              meaningLanguage={meaningLanguage}
+              setMeaningLanguage={setMeaningLanguage}
+              englishSource={englishSource}
+              setEnglishSource={setEnglishSource}
+              learningGoal={learningGoal}
+              setLearningGoal={setLearningGoal}
+              onComplete={handleOnboardingComplete}
+              onDismiss={closeOnboarding}
+              isCompleting={isCompletingOnboarding}
+            />
+          )}
+        </div>
+      )}
       {!showFirstRun && showPrimaryNavigation ? <NavBar /> : null}
     </>
   )

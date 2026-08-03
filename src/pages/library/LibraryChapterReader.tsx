@@ -39,7 +39,6 @@ import type {
 } from '../../types'
 import {
   addAppScrollSettledListener,
-  getAppScrollViewport,
   isAppScrollAtEnd,
   scrollElementIntoAppView,
 } from '../../utils/appScroll'
@@ -422,7 +421,7 @@ export default function LibraryChapterReader() {
       const blockId = visible?.target.getAttribute('data-reader-block')
       if (blockId) visibleBlockIdRef.current = blockId
     }, {
-      root: getAppScrollViewport(),
+      root: null,
       rootMargin: '-18% 0px -65% 0px',
       threshold: [0, 0.1, 0.5],
     })

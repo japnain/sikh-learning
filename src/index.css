@@ -38,14 +38,21 @@
     scroll-behavior: auto;
   }
 
-  html,
+  html {
+    min-height: 100%;
+    width: 100%;
+    overflow-x: clip;
+    overflow-y: auto;
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+  }
+
   body,
   #root {
-    height: 100%;
-    min-height: 0;
+    min-height: 100dvh;
     width: 100%;
-    overflow: hidden;
-    overscroll-behavior: none;
+    overflow-x: clip;
+    overflow-y: visible;
   }
 
   html {
@@ -124,38 +131,23 @@
 }
 
 @layer components {
-  .app-scroll-viewport {
-    position: relative;
-    height: 100%;
-    min-height: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior-x: none;
-    overscroll-behavior-y: none;
-    scroll-behavior: auto;
-  }
-
-  html[data-motion='reduce'] .app-scroll-viewport {
-    scroll-behavior: auto;
-  }
-
   .page-shell {
     @apply mx-auto max-w-md;
-    min-height: 100%;
+    min-height: 100dvh;
     width: 100%;
     overflow-x: clip;
     overflow-y: visible;
     padding-top: calc(var(--safe-area-top) + 0.8rem);
     padding-right: max(1rem, calc(var(--safe-area-right) + 1rem));
-    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 2rem);
+    padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 2rem);
     padding-left: max(1rem, calc(var(--safe-area-left) + 1rem));
-    scroll-padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 2rem);
+    scroll-padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 2rem);
   }
 
   .app-shell {
     position: relative;
     isolation: isolate;
-    min-height: 100%;
+    min-height: 100dvh;
     overflow-x: clip;
     overflow-y: visible;
     padding-bottom: 0;
@@ -228,8 +220,8 @@
   }
 
   .page-shell[data-page='study'] {
-    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 3rem);
-    scroll-padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 3rem);
+    padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 3rem);
+    scroll-padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 3rem);
   }
 
   .eyebrow {
@@ -281,12 +273,12 @@
 }
 
 .nav-safe-results {
-  scroll-margin-bottom: calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 2rem);
+  scroll-margin-bottom: calc(var(--nav-stack-height, 7rem) + var(--nav-bottom-offset) + 2rem);
 }
 
 @media (max-height: 760px) {
   .page-shell {
-    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 4.25rem);
+    padding-bottom: calc(var(--nav-stack-height) + var(--nav-bottom-offset) + 4.25rem);
   }
 }
 

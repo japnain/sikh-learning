@@ -7,19 +7,18 @@ import {
   useEpubReaderStore,
 } from '../../store/epubReader'
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
-import { APP_SCROLL_VIEWPORT_ID } from '../../utils/appScroll'
+import { mockDocumentScroll } from '../../test/documentScroll'
 
 const FIRST_EPISODE_PATH = '/library/panth-prakash-english/chapters/episode-001'
+let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
 
 function renderReader(path = FIRST_EPISODE_PATH, state?: unknown) {
   return render(
-    <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
-      <MemoryRouter initialEntries={[state === undefined ? path : { pathname: path, state }]}>
-        <Routes>
-          <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
-        </Routes>
-      </MemoryRouter>
-    </div>
+    <MemoryRouter initialEntries={[state === undefined ? path : { pathname: path, state }]}>
+      <Routes>
+        <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
+      </Routes>
+    </MemoryRouter>
   )
 }
 
@@ -37,6 +36,8 @@ describe('LibraryChapterReader', () => {
   })
 
   afterEach(() => {
+    documentScroll?.restore()
+    documentScroll = null
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
   })
@@ -140,7 +141,7 @@ describe('LibraryChapterReader', () => {
     expect(screen.getByRole('heading', { level: 1, name: /Origin of the Khalsa/i })).toBeInTheDocument()
   })
 
-  test('observes reader blocks against the app scroll viewport', async () => {
+  test('observes reader blocks against the native document viewport', async () => {
     const observedRoots: Array<Element | Document | null> = []
     class CapturingIntersectionObserver {
       constructor(_callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
@@ -154,27 +155,25 @@ describe('LibraryChapterReader', () => {
     vi.stubGlobal('IntersectionObserver', CapturingIntersectionObserver)
 
     renderReader()
-    const scrollViewport = screen.getByTestId('app-scroll-viewport')
     await screen.findByTestId('panth-chapter-reader')
 
-    expect(observedRoots).toContain(scrollViewport)
+    expect(observedRoots).toContain(null)
   })
 
-  test('records the final content block only after viewport scrolling settles', async () => {
-    renderReader()
-    const scrollViewport = screen.getByTestId('app-scroll-viewport')
-    Object.defineProperties(scrollViewport, {
-      clientHeight: { configurable: true, value: 800 },
-      scrollHeight: { configurable: true, value: 2000 },
+  test('records the final content block only after document scrolling settles', async () => {
+    documentScroll = mockDocumentScroll({
+      top: 1200,
+      viewportHeight: 800,
+      scrollHeight: 2000,
     })
-    scrollViewport.scrollTop = 1200
+    renderReader()
     await screen.findByTestId('panth-chapter-reader')
 
-    fireEvent.scroll(scrollViewport)
-    fireEvent.scroll(scrollViewport)
+    fireEvent.scroll(window)
+    fireEvent.scroll(window)
     expect(useProgressStore.getState().currentSession).toBeNull()
 
-    fireEvent(scrollViewport, new Event('scrollend'))
+    fireEvent(document, new Event('scrollend'))
 
     await waitFor(() => {
       expect(useProgressStore.getState().currentSession?.readerLocator?.locations).toEqual(

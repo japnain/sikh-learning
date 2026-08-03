@@ -1,5 +1,3 @@
-export const APP_SCROLL_VIEWPORT_ID = 'app-scroll-viewport'
-
 type ScrollListener = () => void
 
 interface SettledScrollOptions {
@@ -15,58 +13,78 @@ interface LockedScrollStyles {
   overflow: string
   overflowY: string
   overscrollBehavior: string
+  scrollX: number
+  scrollY: number
+  href: string
 }
 
 let scrollLockCount = 0
 let lockedScrollStyles: LockedScrollStyles | null = null
+let pendingUnlockRestoreFrame: number | null = null
 
-function getFallbackScrollTop() {
-  if (typeof window === 'undefined') return 0
-  return window.scrollY || document.documentElement?.scrollTop || 0
+function getScrollingElement(): HTMLElement | null {
+  if (typeof document === 'undefined') return null
+  return (document.scrollingElement as HTMLElement | null) ?? document.documentElement ?? null
 }
 
-export function getAppScrollViewport(): HTMLElement | null {
+function getContentObservationRoot(): HTMLElement | null {
   if (typeof document === 'undefined') return null
-  return document.getElementById(APP_SCROLL_VIEWPORT_ID)
+  return document.getElementById('root') ?? document.body ?? document.documentElement ?? null
+}
+
+function getLayoutViewportHeight() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return 0
+  return document.documentElement?.clientHeight || window.innerHeight || 0
+}
+
+function getDocumentScrollHeight() {
+  if (typeof document === 'undefined') return 0
+  const root = document.documentElement
+  const body = document.body
+  const scrollingElement = getScrollingElement()
+
+  return Math.max(
+    scrollingElement?.scrollHeight ?? 0,
+    root?.scrollHeight ?? 0,
+    root?.offsetHeight ?? 0,
+    root?.clientHeight ?? 0,
+    body?.scrollHeight ?? 0,
+    body?.offsetHeight ?? 0,
+    body?.clientHeight ?? 0
+  )
 }
 
 export function getAppScrollTop() {
-  return getAppScrollViewport()?.scrollTop ?? getFallbackScrollTop()
+  if (typeof window === 'undefined' || typeof document === 'undefined') return 0
+  const scrollingElement = getScrollingElement()
+  const top = window.scrollY
+    || scrollingElement?.scrollTop
+    || document.documentElement?.scrollTop
+    || document.body?.scrollTop
+    || 0
+  return Math.max(0, top)
 }
 
 export function getAppViewportHeight() {
-  const viewport = getAppScrollViewport()
-  if (viewport?.clientHeight) return viewport.clientHeight
-  return typeof window === 'undefined' ? 0 : window.innerHeight
+  if (typeof window === 'undefined') return 0
+  return window.visualViewport?.height || getLayoutViewportHeight()
 }
 
 export function getAppViewportBounds() {
-  const viewport = getAppScrollViewport()
-  if (!viewport) {
-    const height = getAppViewportHeight()
-    return { top: 0, bottom: height, height }
+  if (typeof window === 'undefined') {
+    return { top: 0, bottom: 0, height: 0 }
   }
 
-  const rect = viewport.getBoundingClientRect()
-  const height = viewport.clientHeight || rect.height
+  const top = window.visualViewport?.offsetTop ?? 0
+  const height = getAppViewportHeight()
   return {
-    top: rect.top,
-    bottom: rect.top + height,
+    top,
+    bottom: top + height,
     height,
   }
 }
 
 export function scrollAppTo(options: ScrollToOptions) {
-  const viewport = getAppScrollViewport()
-  if (viewport) {
-    if (typeof viewport.scrollTo === 'function') {
-      viewport.scrollTo(options)
-    } else if (typeof options.top === 'number') {
-      viewport.scrollTop = options.top
-    }
-    return
-  }
-
   if (typeof window !== 'undefined') {
     window.scrollTo(options)
   }
@@ -118,11 +136,12 @@ export function scrollAppHashIntoView(
     tryScroll()
   })
 
-  if (typeof MutationObserver !== 'undefined') {
+  const contentRoot = getContentObservationRoot()
+  if (contentRoot && typeof MutationObserver !== 'undefined') {
     observer = new MutationObserver(() => {
       tryScroll()
     })
-    observer.observe(getAppScrollViewport() ?? document.body, {
+    observer.observe(contentRoot, {
       childList: true,
       subtree: true,
     })
@@ -143,7 +162,7 @@ export function restoreAppScrollTopWhenReady(
   if (typeof window === 'undefined' || typeof document === 'undefined') return () => {}
 
   const requestedTop = Number.isFinite(top) ? Math.max(0, top) : 0
-  const viewport = getAppScrollViewport()
+  const contentRoot = getContentObservationRoot()
   let cancelled = false
   let frame: number | null = null
   let timeout: number | null = null
@@ -163,13 +182,7 @@ export function restoreAppScrollTopWhenReady(
 
   const tryRestore = (force = false) => {
     if (cancelled) return false
-    if (!viewport || requestedTop === 0) {
-      scrollAppTo({ top: requestedTop, left: 0, behavior: 'auto' })
-      cleanup()
-      return true
-    }
-
-    const maxScrollTop = Math.max(0, viewport.scrollHeight - viewport.clientHeight)
+    const maxScrollTop = Math.max(0, getDocumentScrollHeight() - getLayoutViewportHeight())
     if (!force && requestedTop > maxScrollTop + 1) return false
 
     scrollAppTo({
@@ -186,12 +199,12 @@ export function restoreAppScrollTopWhenReady(
     tryRestore()
   })
 
-  if (viewport && requestedTop > 0) {
+  if (contentRoot && requestedTop > 0) {
     if (typeof MutationObserver !== 'undefined') {
       mutationObserver = new MutationObserver(() => {
         tryRestore()
       })
-      mutationObserver.observe(viewport, {
+      mutationObserver.observe(contentRoot, {
         childList: true,
         subtree: true,
       })
@@ -201,7 +214,7 @@ export function restoreAppScrollTopWhenReady(
       resizeObserver = new ResizeObserver(() => {
         tryRestore()
       })
-      resizeObserver.observe(viewport.firstElementChild ?? viewport)
+      resizeObserver.observe(contentRoot)
     }
   }
 
@@ -217,20 +230,12 @@ export function restoreAppScrollTopWhenReady(
 }
 
 export function isAppScrollAtEnd(threshold = 4) {
-  const viewport = getAppScrollViewport()
-  if (viewport) {
-    return viewport.scrollTop > 0
-      && viewport.scrollHeight > 0
-      && viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - threshold
-  }
-
   if (typeof document === 'undefined' || typeof window === 'undefined') return false
-  const root = document.documentElement
-  const scrollTop = getFallbackScrollTop()
-  const documentHeight = Math.max(root.scrollHeight, document.body?.scrollHeight ?? 0)
+  const scrollTop = getAppScrollTop()
+  const documentHeight = getDocumentScrollHeight()
   return scrollTop > 0
     && documentHeight > 0
-    && scrollTop + window.innerHeight >= documentHeight - threshold
+    && scrollTop + getLayoutViewportHeight() >= documentHeight - threshold
 }
 
 export function addAppScrollSettledListener(
@@ -239,9 +244,6 @@ export function addAppScrollSettledListener(
 ) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return () => {}
 
-  const viewport = getAppScrollViewport()
-  const scrollTarget: EventTarget = viewport ?? window
-  const scrollEndTarget: EventTarget = viewport ?? document
   let idleTimer: number | null = null
   let settleFrame: number | null = null
   let postPaintFrame: number | null = null
@@ -284,27 +286,35 @@ export function addAppScrollSettledListener(
     scheduleListenerAfterPaint()
   }
 
-  scrollTarget.addEventListener('scroll', handleScroll, { passive: true })
-  scrollEndTarget.addEventListener('scrollend', handleScrollEnd, { passive: true })
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  document.addEventListener('scrollend', handleScrollEnd, { passive: true })
 
   return () => {
     clearIdleTimer()
     cancelScheduledListener()
-    scrollTarget.removeEventListener('scroll', handleScroll)
-    scrollEndTarget.removeEventListener('scrollend', handleScrollEnd)
+    window.removeEventListener('scroll', handleScroll)
+    document.removeEventListener('scrollend', handleScrollEnd)
   }
 }
 
 export function lockAppScroll() {
-  if (typeof document === 'undefined') return () => {}
+  if (typeof window === 'undefined' || typeof document === 'undefined') return () => {}
 
-  const target = getAppScrollViewport() ?? document.documentElement
+  const target = document.documentElement
   if (scrollLockCount === 0) {
+    if (pendingUnlockRestoreFrame !== null) {
+      window.cancelAnimationFrame(pendingUnlockRestoreFrame)
+      pendingUnlockRestoreFrame = null
+    }
+
     lockedScrollStyles = {
       target,
       overflow: target.style.overflow,
       overflowY: target.style.overflowY,
       overscrollBehavior: target.style.overscrollBehavior,
+      scrollX: Math.max(0, window.scrollX || 0),
+      scrollY: getAppScrollTop(),
+      href: window.location.href,
     }
     target.style.overflow = 'hidden'
     target.style.overflowY = 'hidden'
@@ -324,5 +334,15 @@ export function lockAppScroll() {
     previous.target.style.overflow = previous.overflow
     previous.target.style.overflowY = previous.overflowY
     previous.target.style.overscrollBehavior = previous.overscrollBehavior
+
+    pendingUnlockRestoreFrame = window.requestAnimationFrame(() => {
+      pendingUnlockRestoreFrame = null
+      if (scrollLockCount > 0 || window.location.href !== previous.href) return
+      window.scrollTo({
+        left: previous.scrollX,
+        top: previous.scrollY,
+        behavior: 'auto',
+      })
+    })
   }
 }

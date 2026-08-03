@@ -6,7 +6,11 @@ const indexCss = fs.readFileSync(path.join(process.cwd(), 'src/index.css'), 'utf
 const navigationCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/navigation.css'), 'utf8')
 const catalogCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/catalog.css'), 'utf8')
 const readerCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/reader.css'), 'utf8')
+const tokensCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/tokens.css'), 'utf8')
 const navBarSource = fs.readFileSync(path.join(process.cwd(), 'src/components/NavBar.tsx'), 'utf8')
+const appSource = fs.readFileSync(path.join(process.cwd(), 'src/App.tsx'), 'utf8')
+const appScrollSource = fs.readFileSync(path.join(process.cwd(), 'src/utils/appScroll.ts'), 'utf8')
+const indexHtml = fs.readFileSync(path.join(process.cwd(), 'index.html'), 'utf8')
 const sourceRoot = path.join(process.cwd(), 'src')
 
 function listProductionSourceFiles(directory: string): string[] {
@@ -19,37 +23,58 @@ function listProductionSourceFiles(directory: string): string[] {
   })
 }
 
-test('keeps the document root fixed and delegates scrolling to the app viewport', () => {
+test('uses the native document as the sole primary vertical scroller', () => {
   expect(indexCss).toMatch(
-    /html,\s*body,\s*#root\s*\{[^}]*overflow:\s*hidden;[^}]*overscroll-behavior:\s*none;/s
+    /html\s*\{[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior-y:\s*none;/s
   )
   expect(indexCss).toMatch(
-    /\.app-scroll-viewport\s*\{[^}]*height:\s*100%;[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior-y:\s*none;/s
+    /body,\s*#root\s*\{[^}]*min-height:\s*100dvh;[^}]*overflow-y:\s*visible;/s
   )
+  expect(indexCss).not.toContain('.app-scroll-viewport')
+  expect(appSource).not.toContain('APP_SCROLL_VIEWPORT_ID')
+  expect(appSource).not.toContain('app-scroll-viewport')
+  expect(appScrollSource).not.toContain('APP_SCROLL_VIEWPORT_ID')
+  expect(appScrollSource).not.toContain('getAppScrollViewport')
   expect(indexCss).not.toContain('-webkit-overflow-scrolling')
 })
 
-test('keeps persistent mobile chrome outside WebKit sticky and additive-safe-area failure modes', () => {
-  expect(navigationCss).toMatch(
-    /\.app-nav-stack\s*\{[^}]*position:\s*fixed;[^}]*bottom:\s*max\(var\(--safe-area-bottom\),\s*0\.4rem\);/s
+test('keeps persistent mobile chrome out of WebKit sticky, layer-promotion, and duplicate-safe-area failure modes', () => {
+  expect(indexHtml).toContain(
+    '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />'
   )
-  expect(navigationCss).not.toMatch(
-    /\.app-nav-stack\s*\{[^}]*bottom:\s*calc\(var\(--safe-area-bottom\)\s*\+/s
+  expect(tokensCss).toContain('--fixed-ui-safe-bottom: var(--safe-area-bottom);')
+  expect(tokensCss).toMatch(
+    /html\[data-ios-standalone-viewport='short'\]\s*\{[^}]*--fixed-ui-safe-bottom:\s*max\(/s
+  )
+  expect(tokensCss).not.toMatch(
+    /html\[data-ios-standalone-viewport='short'\]\s*\{[^}]*--safe-area-bottom:/s
+  )
+  expect(navigationCss).toMatch(
+    /\.app-nav-stack\s*\{[^}]*position:\s*fixed;[^}]*bottom:\s*var\(--nav-bottom-offset\);/s
+  )
+  expect(navigationCss).toMatch(
+    /\.app-nav-scrim\s*\{[^}]*height:\s*calc\(var\(--nav-stack-height,\s*4\.25rem\)\s*\+\s*var\(--nav-bottom-offset\)\s*\+\s*2rem\);/s
   )
   expect(navBarSource).not.toContain('app-nav-stack z-50')
 
   expect(catalogCss).toMatch(
-    /\.epub-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--epub-reader-topbar-height\);[^}]*transform:\s*translateZ\(0\);/s
+    /\.epub-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--epub-reader-topbar-height\);/s
   )
   expect(catalogCss).toMatch(
     /\.epub-reader-main\s*\{[^}]*padding:\s*calc\(var\(--epub-reader-topbar-height\)\s*\+/s
   )
   expect(catalogCss).not.toMatch(/\.epub-reader-topbar\s*\{[^}]*position:\s*sticky;/s)
+  expect(catalogCss).not.toMatch(
+    /\.epub-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
+  )
 
   expect(readerCss).toMatch(
-    /\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--study-reader-topbar-height\);[^}]*transform:\s*translateZ\(0\);/s
+    /\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--study-reader-topbar-height\);/s
   )
   expect(readerCss).not.toMatch(/\.study-reader-topbar\s*\{[^}]*position:\s*sticky;/s)
+  expect(readerCss).not.toMatch(
+    /\.study-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
+  )
 })
 
 test('keeps global scroll APIs behind the app-scroll utility', () => {

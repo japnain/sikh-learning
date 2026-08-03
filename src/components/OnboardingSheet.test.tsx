@@ -9,7 +9,7 @@ import type {
   UiLocale,
 } from '../types'
 import { useCloudSyncStore } from '../store/cloudSync'
-import { APP_SCROLL_VIEWPORT_ID } from '../utils/appScroll'
+import { mockDocumentScroll } from '../test/documentScroll'
 import OnboardingSheet from './OnboardingSheet'
 
 const { sendMagicLinkMock, signInWithProviderMock } = vi.hoisted(() => ({
@@ -207,25 +207,24 @@ test('localizes the script setup step in Punjabi', () => {
   expect(screen.getByText('ਇਹ ਚੋਣ ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲੇ ਪਾਠਾਂ ਦੀ ਮੂਲ ਲਿਪੀ ਬਦਲਦੀ ਹੈ।')).toBeInTheDocument()
 })
 
-test('overlay onboarding locks the app scroll viewport and restores it on unmount', () => {
-  const { unmount } = render(
-    <div id={APP_SCROLL_VIEWPORT_ID} data-testid="app-scroll-viewport">
-      <Harness presentation="overlay" />
-    </div>
-  )
-  const scrollViewport = screen.getByTestId('app-scroll-viewport')
+test('overlay onboarding locks the document root and restores it on unmount', () => {
+  const documentScroll = mockDocumentScroll({ top: 280 })
+  const root = document.documentElement
+  const { unmount } = render(<Harness presentation="overlay" />)
 
-  expect(scrollViewport.style.overflow).toBe('hidden')
-  expect(scrollViewport.style.overflowY).toBe('hidden')
-  expect(scrollViewport.style.overscrollBehavior).toBe('none')
+  expect(root.style.overflow).toBe('hidden')
+  expect(root.style.overflowY).toBe('hidden')
+  expect(root.style.overscrollBehavior).toBe('none')
   expect(document.body.style.overflow).toBe('')
-  expect(document.documentElement.style.overflow).toBe('')
 
   unmount()
 
-  expect(scrollViewport.style.overflow).toBe('')
-  expect(scrollViewport.style.overflowY).toBe('')
-  expect(scrollViewport.style.overscrollBehavior).toBe('')
+  expect(root.style.overflow).toBe('')
+  expect(root.style.overflowY).toBe('')
+  expect(root.style.overscrollBehavior).toBe('')
+
+  documentScroll.restore()
+  root.removeAttribute('style')
 })
 
 test('preview step offers configured sign-in providers only after backup drawer is expanded', async () => {

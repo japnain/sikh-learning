@@ -10,7 +10,7 @@
     position: fixed;
     z-index: 70;
     right: auto;
-    bottom: max(var(--safe-area-bottom), 0.4rem);
+    bottom: var(--nav-bottom-offset);
     left: 50%;
     width: min(var(--nr-nav-dock-max), calc(100% - var(--safe-area-left) - var(--safe-area-right) - 1rem));
     transform: translateX(-50%);
@@ -23,7 +23,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    height: calc(var(--nav-stack-height, 4.25rem) + var(--safe-area-bottom) + 2rem);
+    height: calc(var(--nav-stack-height, 4.25rem) + var(--nav-bottom-offset) + 2rem);
     background: linear-gradient(
       to bottom,
       rgb(var(--color-bg) / 0),
@@ -154,13 +154,13 @@
   }
 }
 
-.app-scroll-viewport {
-  scroll-padding-bottom: calc(var(--nav-stack-height, 5rem) + var(--safe-area-bottom) + 1.5rem);
+html {
+  scroll-padding-bottom: calc(var(--nav-stack-height, 5rem) + var(--nav-bottom-offset) + 1.5rem);
 }
 
 .page-shell :where(a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])) {
   scroll-margin-top: 1.25rem;
-  scroll-margin-bottom: calc(var(--nav-stack-height, 5rem) + var(--safe-area-bottom) + 1.5rem);
+  scroll-margin-bottom: calc(var(--nav-stack-height, 5rem) + var(--nav-bottom-offset) + 1.5rem);
 }
 
 @media (max-width: 399px) {

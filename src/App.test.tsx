@@ -5,12 +5,14 @@ import App from './App'
 import { useCloudSyncStore } from './store/cloudSync'
 import { useLanguageStore } from './store/language'
 import { useOnboardingStore } from './store/onboarding'
+import { mockDocumentScroll } from './test/documentScroll'
 
 vi.mock('./hooks/useSupabaseBootstrap', () => ({
   useSupabaseBootstrap: () => undefined,
 }))
 
 const APP_TEST_WAIT = { timeout: 30000 }
+let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
 
 beforeEach(() => {
   window.history.replaceState({}, '', '/')
@@ -43,6 +45,8 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  documentScroll?.restore()
+  documentScroll = null
   vi.restoreAllMocks()
   sessionStorage.clear()
 })
@@ -54,9 +58,8 @@ function advanceFirstRunOnboardingToPreview() {
 }
 
 test('shows onboarding above the app shell and lands home after first-run setup', async () => {
+  documentScroll = mockDocumentScroll({ top: 320 })
   render(<App />)
-  const scrollViewport = screen.getByTestId('app-scroll-viewport')
-  scrollViewport.scrollTop = 320
 
   expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
@@ -78,7 +81,7 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   }, APP_TEST_WAIT)
 
   await waitFor(() => {
-    expect(scrollViewport.scrollTop).toBe(0)
+    expect(documentScroll?.getTop()).toBe(0)
     expect(screen.getByTestId('main-content')).toHaveFocus()
   }, APP_TEST_WAIT)
 
@@ -117,10 +120,11 @@ test('wraps routed content in the main landmark once onboarding is complete', as
 
   expect(await screen.findByRole('main', undefined, APP_TEST_WAIT)).toBeInTheDocument()
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
-  expect(screen.getByTestId('app-scroll-viewport')).toContainElement(screen.getByTestId('main-content'))
+  expect(screen.getByTestId('app-shell')).toContainElement(screen.getByTestId('main-content'))
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
-  expect(screen.getByTestId('app-scroll-viewport')).not.toContainElement(screen.getByTestId('nav-stack'))
+  expect(screen.getByTestId('app-shell')).not.toContainElement(screen.getByTestId('nav-stack'))
+  expect(document.querySelector('.app-scroll-viewport')).toBeNull()
 })
 
 test('keeps the skip link as the first keyboard target on initial load', async () => {
@@ -321,7 +325,7 @@ test('uses the focused shell and hides primary navigation on an EPUB chapter rou
   expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
 })
 
-test('restores explicit viewport positions through browser Back and Forward navigation', async () => {
+test('restores document positions through browser Back and Forward navigation', async () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
     isOnboardingOpen: false,
@@ -334,34 +338,27 @@ test('restores explicit viewport positions through browser Back and Forward navi
   render(<App />)
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
 
-  const viewport = screen.getByTestId('app-scroll-viewport')
-  Object.defineProperties(viewport, {
-    clientHeight: { configurable: true, value: 800 },
-    scrollHeight: { configurable: true, value: 2400 },
-    scrollTo: {
-      configurable: true,
-      value: vi.fn((options: ScrollToOptions) => {
-        viewport.scrollTop = options.top ?? viewport.scrollTop
-      }),
-    },
+  documentScroll = mockDocumentScroll({
+    viewportHeight: 800,
+    scrollHeight: 2400,
   })
 
-  viewport.scrollTop = 640
+  documentScroll.setTop(640)
   fireEvent.click(screen.getByTestId('nav-tab-more'))
 
   expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
-  await waitFor(() => expect(viewport.scrollTop).toBe(0), APP_TEST_WAIT)
+  await waitFor(() => expect(documentScroll?.getTop()).toBe(0), APP_TEST_WAIT)
 
-  viewport.scrollTop = 280
+  documentScroll.setTop(280)
   window.history.back()
 
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
-  await waitFor(() => expect(viewport.scrollTop).toBe(640), APP_TEST_WAIT)
+  await waitFor(() => expect(documentScroll?.getTop()).toBe(640), APP_TEST_WAIT)
 
   window.history.forward()
 
   expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
-  await waitFor(() => expect(viewport.scrollTop).toBe(280), APP_TEST_WAIT)
+  await waitFor(() => expect(documentScroll?.getTop()).toBe(280), APP_TEST_WAIT)
 })
 
 test('finds a lazy-rendered hash target on a direct book deep link', async () => {
