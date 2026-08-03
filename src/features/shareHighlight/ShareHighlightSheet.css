@@ -1,7 +1,12 @@
 .share-highlight-sheet {
-  bottom: max(0.375rem, env(safe-area-inset-bottom)) !important;
+  --modal-sheet-bottom: max(0.375rem, var(--fixed-ui-safe-bottom, 0px));
+
   display: grid;
-  max-height: calc(100dvh - max(1rem, env(safe-area-inset-top)) - max(1rem, env(safe-area-inset-bottom)));
+  max-height: calc(
+    100dvh
+    - max(1rem, var(--safe-area-top, 0px))
+    - max(0.375rem, var(--fixed-ui-safe-bottom, 0px))
+  );
   max-width: min(62rem, calc(100vw - 0.75rem));
   grid-template-rows: auto minmax(0, 1fr) auto;
   border-radius: 0.9rem;
@@ -13,7 +18,11 @@
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid rgb(var(--color-border) / 0.22);
-  padding: 0.9rem 0.85rem 0.82rem;
+  padding: 14px 13px 13px;
+}
+
+.share-highlight__header > div {
+  min-width: 0;
 }
 
 .share-highlight__preface {
@@ -37,8 +46,10 @@
 
 .share-highlight__close {
   display: inline-flex;
-  min-height: 2.75rem;
-  min-width: 2.75rem;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  min-width: 44px;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
@@ -54,8 +65,10 @@
 .share-highlight__position-input:focus-visible + .share-highlight__position-choice,
 .share-highlight__caption:focus-visible,
 .share-highlight__action:focus-visible,
-.share-highlight__copy:focus-visible {
-  outline: 3px solid rgb(var(--color-focus) / 0.58);
+.share-highlight__copy:focus-visible,
+.share-highlight__retry:focus-visible,
+.share-highlight__recovery button:focus-visible {
+  outline: 3px solid rgb(var(--color-accent-strong));
   outline-offset: 2px;
 }
 
@@ -64,7 +77,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 0.8rem;
+  padding: 13px;
   scrollbar-gutter: stable;
 }
 
@@ -135,12 +148,31 @@
   display: none;
 }
 
+.share-highlight__preview-pending--error {
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.share-highlight__retry {
+  min-height: 44px;
+  border: 1px solid rgb(var(--color-accent-strong));
+  border-radius: 0.5rem;
+  background: rgb(var(--color-surface));
+  padding: 0.65rem 0.9rem;
+  color: rgb(var(--color-accent-strong));
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
 @keyframes share-highlight-spin {
   to { transform: rotate(360deg); }
 }
 
 .share-highlight__provenance {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
@@ -226,7 +258,7 @@
 
 .share-highlight__pill {
   display: inline-flex;
-  min-height: 2.65rem;
+  min-height: 44px;
   align-items: center;
   gap: 0.4rem;
   border: 1px solid rgb(var(--color-border) / 0.3);
@@ -337,15 +369,14 @@
 .share-highlight__art-name {
   display: block;
   margin-top: 0.4rem;
-  overflow: hidden;
   color: rgb(var(--color-text-muted));
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.62rem;
   font-weight: 650;
   line-height: 1.3;
   text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .share-highlight__position-control {
@@ -381,7 +412,7 @@
 
 .share-highlight__position-choice {
   display: flex;
-  min-height: 3.55rem;
+  min-height: 44px;
   cursor: pointer;
   flex-direction: column;
   align-items: center;
@@ -449,14 +480,13 @@
 
 .share-highlight__position-name {
   max-width: 100%;
-  overflow: hidden;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.61rem;
   font-weight: 700;
   line-height: 1.15;
   text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .share-highlight__caption-label {
@@ -484,7 +514,7 @@
 }
 
 .share-highlight__caption::placeholder {
-  color: rgb(var(--color-text-muted) / 0.68);
+  color: rgb(var(--color-text-muted));
 }
 
 .share-highlight__caption-count {
@@ -501,7 +531,7 @@
   z-index: 2;
   border-top: 1px solid rgb(var(--color-border) / 0.24);
   background: rgb(var(--color-surface) / 0.96);
-  padding: 0.75rem 0.8rem max(0.75rem, env(safe-area-inset-bottom));
+  padding: 12px 13px;
   box-shadow: 0 -12px 26px rgb(16 20 18 / 0.07);
   backdrop-filter: blur(14px);
 }
@@ -509,26 +539,55 @@
 .share-highlight__primary-actions {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.58rem;
+  gap: 9px;
+}
+
+.share-highlight__recovery {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+  border: 1px solid rgb(var(--color-warning) / 0.45);
+  border-radius: 0.5rem;
+  background: rgb(var(--color-warning) / 0.1);
+  padding: 0.65rem;
+  color: rgb(var(--color-text));
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.share-highlight__recovery button {
+  min-height: 44px;
+  flex: 0 0 auto;
+  border: 1px solid rgb(var(--color-accent-strong));
+  border-radius: 0.45rem;
+  padding: 0.55rem 0.7rem;
+  color: rgb(var(--color-accent-strong));
+  font-weight: 700;
 }
 
 .share-highlight__action {
   display: inline-flex;
-  min-height: 3rem;
+  min-width: 0;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   gap: 0.48rem;
   border-radius: 0.5rem;
-  padding: 0.7rem 0.82rem;
+  padding: 11px 13px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.76rem;
   font-weight: 700;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .share-highlight__action--primary {
   border: 1px solid rgb(var(--color-accent));
   background: rgb(var(--color-accent));
-  color: white;
+  color: rgb(var(--color-bg));
   box-shadow: var(--shadow-glow);
 }
 
@@ -545,7 +604,7 @@
 
 .share-highlight__copy {
   display: block;
-  min-height: 2.4rem;
+  min-height: 44px;
   margin: 0.32rem auto -0.25rem;
   border-radius: 0.55rem;
   padding: 0.45rem 0.72rem;
@@ -572,6 +631,47 @@
 @media (max-width: 25rem) {
   .share-highlight__title {
     font-size: 1.65rem;
+  }
+}
+
+/* At a narrow width the controls need room to grow with large user text. */
+@media (max-width: 22rem) {
+  .share-highlight__header {
+    gap: 8px;
+  }
+
+  .share-highlight__primary-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .share-highlight__position-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .share-highlight__recovery {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+/* A single scroll container prevents fixed header/action rows from consuming
+   the whole workspace on small landscape phones and at 200% text. */
+@media (max-width: 22rem), (max-height: 36rem) {
+  .share-highlight-sheet {
+    display: block;
+    overflow-x: clip;
+    overflow-y: auto;
+  }
+
+  .share-highlight__scroll {
+    min-height: auto;
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+
+  .share-highlight__action-bar {
+    position: relative;
   }
 }
 
@@ -605,7 +705,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .share-highlight__preview-pending::before {
-    animation-duration: 1.8s;
+    animation: none;
   }
 
   .share-highlight__art-thumb {
@@ -615,4 +715,8 @@
   .share-highlight__position-choice {
     transition: none;
   }
+}
+
+html[data-motion='reduce'] .share-highlight__preview-pending::before {
+  animation: none;
 }

@@ -19,7 +19,12 @@ interface Props {
   sectionEyebrow?: string | null
   onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
-  onShareLine?: (line: ScriptureLine, entry: ScriptureEntry, selectedText?: string) => void
+  onShareLine?: (
+    line: ScriptureLine,
+    entry: ScriptureEntry,
+    selectedText?: string,
+    returnFocusTarget?: HTMLElement | null,
+  ) => void
   onBookmarkLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   isLineBookmarked?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
   isPhraseSaved?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
@@ -641,12 +646,15 @@ export default function StudyCard({
                     const selectedText = shareSelection?.verseId === actionLine.verseId
                       ? shareSelection.text
                       : undefined
+                    const returnFocusTarget = actionTriggerRef.current
                     restoreActionFocusRef.current = false
                     setActionLine(null)
                     setSourceLayersOpen(false)
                     setWordListOpen(false)
                     setShareSelection(null)
-                    window.setTimeout(() => onShareLine?.(actionLine, entry, selectedText), 0)
+                    window.setTimeout(() => {
+                      onShareLine?.(actionLine, entry, selectedText, returnFocusTarget)
+                    }, 0)
                   }}
                   icon={<IconShare size={16} />}
                 />

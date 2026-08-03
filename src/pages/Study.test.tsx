@@ -24,7 +24,7 @@ import { MOCK_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handler
 import { mockDocumentScroll } from '../test/documentScroll'
 
 vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
-  default: ({ content }: {
+  default: ({ content, onClose }: {
     content: {
       gurmukhi: string
       sourceLabel: string
@@ -37,12 +37,25 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
       seriesLabel?: string
       dateLabel?: string
       sourcePath?: string
+      provenance?: {
+        ceremonyLocation?: string
+        scripture?: string
+        raag?: string
+        writer?: string
+        translationLabel?: string
+        dateIso?: string
+      }
     }
+    onClose: () => void
   }) => (
     <div role="dialog" aria-label="Share highlight" data-testid="share-highlight-sheet-test-double">
+      <button type="button" onClick={onClose}>Close share image</button>
       <p data-testid="share-flattened-gurmukhi">{content.gurmukhi}</p>
       <p>{content.sourceLabel}</p>
       {content.sourcePath ? <p data-testid="share-source-path">{content.sourcePath}</p> : null}
+      {content.provenance ? (
+        <pre data-testid="share-provenance">{JSON.stringify(content.provenance)}</pre>
+      ) : null}
       {content.seriesLabel ? <p data-testid="share-series-label">{content.seriesLabel}</p> : null}
       {content.dateLabel ? <p data-testid="share-date-label">{content.dateLabel}</p> : null}
       {content.passageLines?.map(line => (
@@ -1221,8 +1234,10 @@ describe('Study hukamnama mode', () => {
     )
 
     const topbar = await screen.findByTestId('study-reader-topbar')
-    await waitFor(() => expect(within(topbar).getByRole('button', { name: /^Share$/i })).toBeEnabled())
-    fireEvent.click(within(topbar).getByRole('button', { name: /^Share$/i }))
+    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    await waitFor(() => expect(shareButton).toBeEnabled())
+    shareButton.focus()
+    fireEvent.click(shareButton)
 
     const expectedLines = [
       headerText,
@@ -1244,6 +1259,18 @@ describe('Study hukamnama mode', () => {
     expect(within(composer).getByTestId('share-flattened-gurmukhi').textContent).toBe(expectedLines.join('\n'))
     expect(within(composer).getByTestId('share-series-label')).toHaveTextContent('Daily Hukamnama')
     expect(within(composer).getByTestId('share-date-label')).toHaveTextContent('April 5, 2026')
+    expect(within(composer).getByTestId('share-source-path')).toHaveTextContent(
+      '/study?hukamnamaDate=2026-04-05'
+    )
+    expect(within(composer).getByText(/Sri Guru Granth Sahib Ji · Ang/i)).toBeInTheDocument()
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(
+      'Sri Harmandir Sahib, Amritsar'
+    )
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent('Manmohan Singh')
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent('2026-04-05')
+
+    fireEvent.click(within(composer).getByRole('button', { name: 'Close share image' }))
+    await waitFor(() => expect(shareButton).toHaveFocus())
   })
 
   it('passes the complete ordered Personal Hukamnama shabad to top Share', async () => {
@@ -1265,6 +1292,9 @@ describe('Study hukamnama mode', () => {
     expect(within(composer).getByTestId('share-flattened-gurmukhi').textContent).toBe(expectedLines.join('\n'))
     expect(within(composer).getByTestId('share-series-label')).toHaveTextContent('Personal Hukamnama')
     expect(within(composer).queryByTestId('share-date-label')).not.toBeInTheDocument()
+    expect(within(composer).getByTestId('share-source-path')).toHaveTextContent(
+      '/study?shabadId=50&flow=ardaas-hukamnama&randomHukamnamaAng=1&resumeVerseId=100'
+    )
   })
 
   it('uses bani-specific editorial copy for Japji Sahib instead of generic reader product copy', async () => {

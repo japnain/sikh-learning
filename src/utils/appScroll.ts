@@ -94,6 +94,23 @@ export function scrollElementIntoAppView(element: HTMLElement, options: ScrollIn
   element.scrollIntoView(options)
 }
 
+export function focusElementWithoutAppScroll(element: HTMLElement) {
+  if (typeof window === 'undefined') return
+
+  const scrollX = window.scrollX
+  const scrollY = getAppScrollTop()
+
+  try {
+    element.focus({ preventScroll: true })
+  } catch {
+    element.focus()
+  }
+
+  if (window.scrollX !== scrollX || getAppScrollTop() !== scrollY) {
+    scrollAppTo({ left: scrollX, top: scrollY, behavior: 'auto' })
+  }
+}
+
 export function scrollAppHashIntoView(
   hash: string,
   { timeoutMs = 15000 }: DeferredScrollOptions = {}

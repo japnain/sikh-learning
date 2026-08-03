@@ -1,4 +1,5 @@
 import { BANIS, READ_EXACT_BANIS, type Bani } from '../data/banis'
+import type { UiLocale } from '../types'
 import {
   getReaderEditorialResearchForBani,
   type ReaderEditorialResearch,
@@ -343,7 +344,7 @@ export function getReaderEditorialCopyForSource(
   }
 }
 
-export function formatReaderEditorialDate(date?: string | null) {
+export function formatReaderEditorialDate(date?: string | null, locale: UiLocale = 'en') {
   if (!date) return null
   const parsed = /^\d{4}-\d{2}-\d{2}$/.test(date)
     ? new Date(`${date}T00:00:00`)
@@ -351,7 +352,13 @@ export function formatReaderEditorialDate(date?: string | null) {
 
   if (Number.isNaN(parsed.getTime())) return date
 
-  return new Intl.DateTimeFormat('en-US', {
+  const dateLocale: Record<UiLocale, string> = {
+    en: 'en-US',
+    pa: 'pa-IN',
+    hi: 'hi-IN',
+  }
+
+  return new Intl.DateTimeFormat(dateLocale[locale], {
     month: 'long',
     day: 'numeric',
     year: 'numeric',

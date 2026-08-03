@@ -16,7 +16,7 @@ import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import type { ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
+import type { EnglishSource, ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
 import {
   getEnglishSourceLabels,
   getHindiSourceLabel,
@@ -93,11 +93,40 @@ type ShareHighlightSheetContent = {
   selectedExcerpt?: boolean
   initialShowTransliteration?: boolean
   initialShowMeaning?: boolean
+  provenance?: {
+    ceremonyLocation?: string
+    scripture?: string
+    raag?: string
+    writer?: string
+    translationLabel?: string
+    dateIso?: string
+  }
 }
 
 const ShareHighlightSheet = lazy(() => import('../features/shareHighlight/ShareHighlightSheet'))
 
 const PAGINATED_ENTRY_THRESHOLD = 4
+
+const HUKAMNAMA_SHARE_SERIES: Record<UiLocale, { daily: string; personal: string }> = {
+  en: { daily: 'Daily Hukamnama', personal: 'Personal Hukamnama' },
+  pa: { daily: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮਾ', personal: 'ਨਿੱਜੀ ਹੁਕਮਨਾਮਾ' },
+  hi: { daily: 'दैनिक हुकमनामा', personal: 'व्यक्तिगत हुकमनामा' },
+}
+
+const HUKAMNAMA_CEREMONY_LOCATION: Record<UiLocale, string> = {
+  en: 'Sri Harmandir Sahib, Amritsar',
+  pa: 'ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ, ਅੰਮ੍ਰਿਤਸਰ',
+  hi: 'श्री हरमंदिर साहिब, अमृतसर',
+}
+
+function getResolvedEnglishSource(line: ScriptureLine, preferred: EnglishSource): EnglishSource | null {
+  const translations = line.translations_en
+  if (translations?.[preferred]?.trim()) return preferred
+  if (translations?.bdb?.trim()) return 'bdb'
+  if (translations?.ms?.trim()) return 'ms'
+  if (translations?.ssk?.trim()) return 'ssk'
+  return null
+}
 
 function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: BaniSource) {
   if (entry?.sourceName && entry.sourceName !== entry.scripture) return entry.sourceName
@@ -742,6 +771,7 @@ export default function Study() {
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
   const bookmarkInputRef = useRef<HTMLInputElement | null>(null)
+  const shareHighlightReturnFocusRef = useRef<HTMLElement | null>(null)
   const actionNoticeTimeoutRef = useRef<number | null>(null)
   const latestResumeVerseIdRef = useRef<number | null>(null)
   const readerProgressTrackRef = useRef<HTMLDivElement | null>(null)
@@ -1030,8 +1060,35 @@ export default function Study() {
     }
   }
 
-  const handleShare = () => {
+  const rememberShareHighlightOpener = () => {
+    const activeElement = document.activeElement
+    if (activeElement instanceof HTMLElement && activeElement !== document.body) {
+      shareHighlightReturnFocusRef.current = activeElement
+    }
+  }
+
+  const closeShareHighlight = () => {
+    const returnTarget = shareHighlightReturnFocusRef.current
+    setShareHighlightContent(null)
+    if (!returnTarget?.isConnected) return
+
+    window.requestAnimationFrame(() => {
+      if (!returnTarget.isConnected) return
+      try {
+        returnTarget.focus({ preventScroll: true })
+      } catch {
+        returnTarget.focus()
+      }
+    })
+  }
+
+  const handleShare = (returnFocusTarget?: HTMLElement | null) => {
     if (!currentEntry) return
+    if (returnFocusTarget) {
+      shareHighlightReturnFocusRef.current = returnFocusTarget
+    } else {
+      rememberShareHighlightOpener()
+    }
 
     if (isHukamnamaMode || isRandomHukamnamaMode) {
       const passageLines = (currentEntry.lines ?? [])
@@ -1062,10 +1119,31 @@ export default function Study() {
           .map(line => line.meaning)
           .filter(Boolean)
           .join('\n')
-        const sourceLabel = `${currentEntry.scripture} · ${currentReadingUnit} ${currentEntry.ang}`
-        const dateLabel = isHukamnamaMode
-          ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam)
+        const scriptureLabel = getEntrySourceDisplay(currentEntry, currentSource)
+        const sourceLabel = `${scriptureLabel} · ${currentReadingUnit} ${currentEntry.ang}`
+        const dateIso = isHukamnamaMode
+          ? (hukamnamaResult.data?.date ?? hukamnamaDateParam)
           : null
+        const dateLabel = isHukamnamaMode
+          ? formatReaderEditorialDate(dateIso, locale)
+          : null
+        const translationSources = Array.from(new Set(
+          (currentEntry.lines ?? [])
+            .map(line => getResolvedEnglishSource(line, englishSource))
+            .filter((source): source is EnglishSource => source !== null)
+        ))
+        const exactSourcePath = isHukamnamaMode && dateIso
+          ? `/study?hukamnamaDate=${encodeURIComponent(dateIso)}`
+          : (() => {
+              const exactParams = new URLSearchParams()
+              if (shabadIdParam) exactParams.set('shabadId', String(shabadIdParam))
+              exactParams.set('flow', 'ardaas-hukamnama')
+              if (randomHukamnamaAngParam) {
+                exactParams.set('randomHukamnamaAng', String(randomHukamnamaAngParam))
+              }
+              if (resumeVerseIdParam) exactParams.set('resumeVerseId', String(resumeVerseIdParam))
+              return `/study?${exactParams.toString()}`
+            })()
 
         setShareHighlightContent({
           gurmukhi: passageLines.map(line => line.gurmukhi).join('\n'),
@@ -1073,11 +1151,25 @@ export default function Study() {
           meaning: meaning || undefined,
           sourceLabel,
           passageLines,
-          seriesLabel: isHukamnamaMode ? 'Daily Hukamnama' : 'Personal Hukamnama',
+          seriesLabel: isHukamnamaMode
+            ? HUKAMNAMA_SHARE_SERIES[locale].daily
+            : HUKAMNAMA_SHARE_SERIES[locale].personal,
           dateLabel: dateLabel || undefined,
-          sourcePath: `${location.pathname}${location.search}${location.hash}`,
+          sourcePath: exactSourcePath,
           initialShowTransliteration: showTransliteration && Boolean(transliteration),
           initialShowMeaning: Boolean(meaning),
+          provenance: {
+            ceremonyLocation: isHukamnamaMode
+              ? HUKAMNAMA_CEREMONY_LOCATION[locale]
+              : undefined,
+            scripture: scriptureLabel,
+            raag: currentEntry.raag || undefined,
+            writer: currentEntry.writer || undefined,
+            translationLabel: translationSources.length > 0
+              ? translationSources.map(source => englishSourceLabels[source]).join(' / ')
+              : undefined,
+            dateIso: dateIso || undefined,
+          },
         })
         return
       }
@@ -1208,7 +1300,17 @@ export default function Study() {
     announceAction(studyExperienceCopy.lineCopied)
   }
 
-  const handleShareLine = (line: ScriptureLine, entry: ScriptureEntry, selectedText?: string) => {
+  const handleShareLine = (
+    line: ScriptureLine,
+    entry: ScriptureEntry,
+    selectedText?: string,
+    returnFocusTarget?: HTMLElement | null,
+  ) => {
+    if (returnFocusTarget) {
+      shareHighlightReturnFocusRef.current = returnFocusTarget
+    } else {
+      rememberShareHighlightOpener()
+    }
     setShareHighlightContent(buildShareHighlightContent(line, entry, selectedText))
   }
 
@@ -1334,7 +1436,7 @@ export default function Study() {
     ?? (fromParam === 'amrit-keertan' ? getReaderEditorialCopyForBani('amrit-keertan') : null)
     ?? getReaderEditorialCopyForSource(currentSource, currentAng, { exactShabad: isExactShabadMode })
   const hukamnamaDateLabel = isHukamnamaMode
-    ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam)
+    ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam, locale)
     : null
   const stableReaderTitle = isHukamnamaMode
     ? DAILY_HUKAMNAMA_EDITORIAL_COPY.title
@@ -1664,7 +1766,7 @@ export default function Study() {
         </div>
         <div className="study-reader-topbar__actions">
           <button
-            onClick={handleShare}
+            onClick={event => handleShare(event.currentTarget)}
             className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300 active:scale-95 transition-transform duration-150"
             aria-label={focusedReaderCopy.share}
             data-ai-action="study-share"
@@ -1760,7 +1862,7 @@ export default function Study() {
         >
           <ShareHighlightSheet
             open
-            onClose={() => setShareHighlightContent(null)}
+            onClose={closeShareHighlight}
             content={shareHighlightContent}
             locale={locale}
             onNotice={announceAction}

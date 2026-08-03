@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
+import { act, render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { vi } from 'vitest'
 import StudyCard from './StudyCard'
 import type { ScriptureEntry } from '../types'
@@ -166,16 +166,19 @@ test('carries a selected Gurmukhi phrase into the share action', async () => {
   range.setStart(words[0]!.firstChild!, 0)
   range.setEnd(words[1]!.firstChild!, words[1]!.textContent!.length)
   const selection = window.getSelection()!
-  selection.removeAllRanges()
-  selection.addRange(range)
-  document.dispatchEvent(new Event('selectionchange'))
+  act(() => {
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.dispatchEvent(new Event('selectionchange'))
+  })
 
-  fireEvent.click(screen.getByLabelText(/open verse actions for line 1/i))
+  const actionTrigger = screen.getByLabelText(/open verse actions for line 1/i)
+  fireEvent.click(actionTrigger)
   expect(await screen.findByText('Selected for sharing')).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Share selection' }))
 
   await waitFor(() => {
-    expect(onShareLine).toHaveBeenCalledWith(entry.lines![0], entry, 'ੴ ਸਤਿ')
+    expect(onShareLine).toHaveBeenCalledWith(entry.lines![0], entry, 'ੴ ਸਤਿ', actionTrigger)
   })
 })
 
