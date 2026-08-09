@@ -1,22 +1,11 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import ShareHighlightSheet, { type ShareHighlightContent } from './ShareHighlightSheet'
-import { getCanonicalSourceUrl } from './sourceUrl'
+import { getCanonicalSourceUrl, getHukamnamaShareUrl } from './sourceUrl'
+import type { ShareHighlightStorySelection } from './types'
 
 const mocks = vi.hoisted(() => {
-  class ContentOverflowError extends Error {
-    readonly code = 'share-highlight-content-overflow'
-    readonly reason = 'support-overflow'
-    readonly supportRoles = ['meaning']
-
-    constructor() {
-      super('The Story content does not fit.')
-      this.name = 'ShareHighlightContentOverflowError'
-    }
-  }
-
   return {
-    ContentOverflowError,
     exportPng: vi.fn(),
     exportStoryPng: vi.fn(),
     shareFile: vi.fn(),
@@ -26,7 +15,6 @@ const mocks = vi.hoisted(() => {
 })
 
 vi.mock('./renderer', () => ({
-  ShareHighlightContentOverflowError: mocks.ContentOverflowError,
   exportShareHighlightPng: mocks.exportPng,
   exportShareHighlightStoryPng: mocks.exportStoryPng,
 }))
@@ -63,6 +51,7 @@ const passageContent: ShareHighlightContent = {
   meaning: 'Salok.\nThe Merciful Lord saves the Saints.\nOne becomes immaculate with the Saints.',
   sourceLabel: 'SGGS · Ang 709',
   sourcePath: '/study?hukamnama=daily&ang=709',
+  passageKind: 'daily-hukamnama',
   seriesLabel: 'Daily Hukamnama',
   dateLabel: 'July 15, 2026',
   passageLines: [
@@ -92,21 +81,54 @@ const passageContent: ShareHighlightContent = {
   },
 }
 
+function makeStorySelection(
+  includedSourceLineIds: Array<string | number> = ['header', 'verse-1', 'verse-2'],
+  overrides: Partial<ShareHighlightStorySelection> = {},
+): ShareHighlightStorySelection {
+  const firstSourceLineId = includedSourceLineIds[0] ?? 'line-1'
+  const lastSourceLineId = includedSourceLineIds.at(-1) ?? firstSourceLineId
+  return {
+    mode: 'complete',
+    anchorSourceLineId: firstSourceLineId,
+    includedLineCount: includedSourceLineIds.length,
+    totalLineCount: includedSourceLineIds.length,
+    includedSourceLineIds,
+    firstSourceLineId,
+    lastSourceLineId,
+    previousSourceLineId: null,
+    nextSourceLineId: null,
+    ...overrides,
+  }
+}
+
 function makePngExport(
   canvas?: HTMLCanvasElement,
   fileName = 'naamras-highlight-101.png',
-  height: 1350 | 1920 = 1350
+  height: 1350 | 1920 = 1350,
+  selection = makeStorySelection(),
 ) {
   const resolvedCanvas = canvas ?? document.createElement('canvas')
   const blob = new Blob(['png'], { type: 'image/png' })
   const file = new File([blob], fileName, { type: 'image/png' })
-  return {
+  const baseExport = {
     canvas: resolvedCanvas,
     blob,
     file,
     width: 1080 as const,
     height,
   }
+  return height === 1920
+    ? {
+        ...baseExport,
+        layout: {
+          selection,
+          composition: selection.mode === 'excerpt' || selection.totalLineCount > 8
+            ? 'manuscript' as const
+            : 'expressive' as const,
+        },
+        selection,
+      }
+    : baseExport
 }
 
 beforeAll(() => {
@@ -120,9 +142,17 @@ beforeEach(() => {
   mocks.exportPng.mockReset()
   mocks.exportPng.mockImplementation(async (_input, options) => makePngExport(options?.canvas))
   mocks.exportStoryPng.mockReset()
-  mocks.exportStoryPng.mockImplementation(async () => (
-    makePngExport(undefined, 'naamras-hukamnama-July-15-2026.png', 1920)
-  ))
+  mocks.exportStoryPng.mockImplementation(async (input: {
+    content: { lines: Array<{ id: string | number }> }
+  }) => {
+    const sourceLineIds = input.content.lines.map(line => line.id)
+    return makePngExport(
+      undefined,
+      'naamras-hukamnama-July-15-2026.png',
+      1920,
+      makeStorySelection(sourceLineIds),
+    )
+  })
   mocks.shareFile.mockReset()
   mocks.shareFile.mockResolvedValue({ status: 'shared', method: 'web-share', payload: 'full' })
   mocks.downloadFile.mockReset()
@@ -151,6 +181,10 @@ it('keeps generated source links on the canonical NaamRas origin', () => {
   expect(getCanonicalSourceUrl('/\\attacker.example/passage')).toBe(
     'https://naamras.xyz/'
   )
+  expect(getHukamnamaShareUrl('2026-08-03')).toBe(
+    'https://naamras.xyz/h/2026-08-03'
+  )
+  expect(getHukamnamaShareUrl('2026-02-30')).toBeNull()
 })
 
 afterAll(() => {
@@ -166,7 +200,7 @@ describe('ShareHighlightSheet', () => {
     expect(within(dialog).getByRole('img', { name: 'Share image preview' })).toHaveAttribute('width', '1080')
     expect(within(dialog).getAllByText(content.sourceLabel).length).toBeGreaterThanOrEqual(1)
     expect(within(dialog).getByText('naamras.xyz')).toBeInTheDocument()
-    expect(within(dialog).getByRole('region', { name: 'Complete text shown in the image' }))
+    expect(within(dialog).getByRole('region', { name: 'Text shown in the image' }))
       .toHaveTextContent(content.gurmukhi)
     expect(within(dialog).getByRole('radio', { name: /Court Mural.*procession/i })).toBeInTheDocument()
     const note = within(dialog).getByRole('textbox', { name: /Social note/i })
@@ -193,9 +227,9 @@ describe('ShareHighlightSheet', () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
 
-    expect(within(dialog).getByText('Share the full Hukamnama')).toBeInTheDocument()
+    expect(within(dialog).getByText("Share today's Hukamnama")).toBeInTheDocument()
     expect(within(dialog).getByRole('heading', { name: 'Create a Story image' })).toBeInTheDocument()
-    expect(within(dialog).getByText(/Meaning places each complete English translation directly below its matching Gurbani line/i)).toBeInTheDocument()
+    expect(within(dialog).getByText(/Meaning places each complete selected translation directly below its matching Gurbani line/i)).toBeInTheDocument()
     expect(within(dialog).queryByRole('radiogroup', { name: 'Text position' })).not.toBeInTheDocument()
     expect(within(dialog).queryByText(/Page \d+ of \d+/i)).not.toBeInTheDocument()
     expect(within(dialog).queryByRole('button', { name: /Previous image|Next image/i })).not.toBeInTheDocument()
@@ -211,6 +245,11 @@ describe('ShareHighlightSheet', () => {
     expect(within(dialog).getByRole('button', { name: 'Meaning' })).toHaveAttribute('aria-pressed', 'true')
 
     await waitFor(() => expect(mocks.exportStoryPng).toHaveBeenCalled())
+    expect(await within(dialog).findByText('Complete Hukamnama')).toBeInTheDocument()
+    expect(within(dialog).getByText('3 of 3 lines in this image')).toBeInTheDocument()
+    expect(within(dialog).getByRole('link', {
+      name: /Read this exact passage on NaamRas.*https:\/\/naamras\.xyz\/h\/2026-07-15/i,
+    })).toHaveAttribute('href', 'https://naamras.xyz/h/2026-07-15')
     const initialInput = mocks.exportStoryPng.mock.calls.at(-1)?.[0]
     expect(initialInput.content.lines.map((line: { id: string }) => line.id)).toEqual([
       'header',
@@ -229,13 +268,45 @@ describe('ShareHighlightSheet', () => {
       sourceLabel: 'SGGS · Ang 709',
       seriesLabel: 'Daily Hukamnama',
       dateLabel: 'July 15, 2026',
+      shareUrl: 'https://naamras.xyz/h/2026-07-15',
+      supportLabel: 'Manmohan Singh',
+      scopeCopy: expect.objectContaining({
+        complete: 'Complete Hukamnama',
+        excerpt: "Excerpt from today's Hukamnama",
+        coverageTemplate: '{included} of {total} lines',
+      }),
     })
     expect(initialInput.fileNameBase).toBe('naamras-hukamnama-2026-07-15')
     expect(mocks.exportStoryPng.mock.calls.at(-1)?.[1]).toBeUndefined()
     expect(mocks.exportPng).not.toHaveBeenCalled()
   })
 
-  it('removes artwork controls from long Hukamnamas and uses the quiet manuscript', async () => {
+  it('falls back to the exact reading route when dated short-link metadata is invalid', async () => {
+    const exactPath = '/study?hukamnamaDate=2026-07-15'
+    render(
+      <ShareHighlightSheet
+        open
+        onClose={vi.fn()}
+        content={{
+          ...passageContent,
+          sourcePath: exactPath,
+          provenance: {
+            ...passageContent.provenance,
+            dateIso: '2026-02-30',
+          },
+        }}
+      />
+    )
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+
+    await waitFor(() => expect(mocks.exportStoryPng).toHaveBeenCalled())
+    expect(within(dialog).getByRole('link', { name: /Read this exact passage/i }))
+      .toHaveAttribute('href', `https://naamras.xyz${exactPath}`)
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.shareUrl)
+      .toBe(`https://naamras.xyz${exactPath}`)
+  })
+
+  it('hides artwork controls after renderer preflight chooses the quiet manuscript', async () => {
     const longPassageContent: ShareHighlightContent = {
       ...passageContent,
       passageLines: [
@@ -251,10 +322,11 @@ describe('ShareHighlightSheet', () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={longPassageContent} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
 
-    expect(within(dialog).queryByRole('radiogroup', { name: 'Artwork' })).not.toBeInTheDocument()
-    expect(within(dialog).getByText(/quiet manuscript background/i)).toBeInTheDocument()
-    await waitFor(() => expect(mocks.exportStoryPng).toHaveBeenCalled())
-    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork).toBeNull()
+    await waitFor(() => {
+      expect(within(dialog).queryByRole('radiogroup', { name: 'Artwork' })).not.toBeInTheDocument()
+      expect(within(dialog).getByText(/quiet manuscript background/i)).toBeInTheDocument()
+    })
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork).not.toBeNull()
   })
 
   it('reports incomplete supports instead of silently presenting a partial visual layer', async () => {
@@ -267,10 +339,10 @@ describe('ShareHighlightSheet', () => {
     }
     render(<ShareHighlightSheet open onClose={vi.fn()} content={partialPassage} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
-    const meaning = within(dialog).getByRole('button', { name: /Meaning.*2 of 3 lines available/i })
+    const meaning = within(dialog).getByRole('button', { name: /Meaning.*1 of 2 lines available/i })
 
     expect(meaning).toBeDisabled()
-    expect(within(dialog).getByRole('note')).toHaveTextContent('Meaning: 2 of 3 lines available')
+    expect(within(dialog).getByRole('note')).toHaveTextContent('Meaning: 1 of 2 lines available')
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Copy full text' }))
     await waitFor(() => {
@@ -302,7 +374,7 @@ describe('ShareHighlightSheet', () => {
       expect(mocks.shareFile.mock.calls[0][0]).toBe(storyExport.file)
       expect(mocks.shareFile.mock.calls[0][1]).toMatchObject({
         title: 'Hukamnama from NaamRas',
-        url: 'https://naamras.xyz/study?hukamnama=daily&ang=709',
+        url: 'https://naamras.xyz/h/2026-07-15',
         text: expect.stringContaining('Daily Hukamnama'),
       })
       expect(mocks.shareFile.mock.calls[0][1].text).toContain('The attached image contains the complete Hukamnama')
@@ -323,6 +395,7 @@ describe('ShareHighlightSheet', () => {
       expect(lastInput.content.lines.every((line: { transliteration?: string; meaning: null }) => (
         Boolean(line.transliteration) && line.meaning === null
       ))).toBe(true)
+      expect(lastInput.content.supportLabel).toBe('Transliteration')
     })
     expect(transliteration).toHaveAttribute('aria-pressed', 'true')
     expect(meaning).toHaveAttribute('aria-pressed', 'false')
@@ -333,6 +406,7 @@ describe('ShareHighlightSheet', () => {
       expect(lastInput.content.lines.every((line: { transliteration: null; meaning?: string }) => (
         line.transliteration === null && Boolean(line.meaning)
       ))).toBe(true)
+      expect(lastInput.content.supportLabel).toBe('Manmohan Singh')
       expect(within(dialog).getByRole('status')).toHaveTextContent('Bilingual Story ready.')
     })
     expect(transliteration).toHaveAttribute('aria-pressed', 'false')
@@ -404,70 +478,149 @@ describe('ShareHighlightSheet', () => {
     })
   })
 
-  it('falls back to a valid Gurmukhi-only Story when a reading support overflows', async () => {
+  it('keeps Meaning selected, labels a long Story as an excerpt, and changes passage accessibly', async () => {
+    const longPassageLines = [
+      passageContent.passageLines![0],
+      ...Array.from({ length: 6 }, (_, index) => ({
+        id: `verse-${index + 1}`,
+        gurmukhi: `ਗੁਰਬਾਣੀ ਪੰਕਤੀ ${index + 1} ॥`,
+        transliteration: `gurbani line ${index + 1}`,
+        meaning: `Meaning line ${index + 1}.`,
+      })),
+    ]
+    mocks.exportStoryPng.mockImplementation(async (input: {
+      content: {
+        anchorLineId?: string | number | null
+        lines: Array<{ id: string | number; meaning?: string | null }>
+      }
+    }) => {
+      const changedPassage = input.content.anchorLineId === 'verse-3'
+      const includedIds = changedPassage
+        ? ['verse-3', 'verse-4', 'verse-5']
+        : ['header', 'verse-1', 'verse-2']
+      return makePngExport(
+        undefined,
+        'naamras-hukamnama-2026-07-15.png',
+        1920,
+        makeStorySelection(includedIds, {
+          mode: 'excerpt',
+          anchorSourceLineId: changedPassage ? 'verse-3' : 'header',
+          includedLineCount: includedIds.length,
+          totalLineCount: longPassageLines.length,
+          previousSourceLineId: changedPassage ? 'header' : null,
+          nextSourceLineId: changedPassage ? 'verse-6' : 'verse-3',
+        }),
+      )
+    })
+
     render(
       <ShareHighlightSheet
         open
         onClose={vi.fn()}
         content={{
           ...passageContent,
-          initialShowMeaning: false,
+          passageLines: longPassageLines,
+          initialShowMeaning: true,
           initialShowTransliteration: false,
         }}
       />
     )
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
-    const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
     const meaning = within(dialog).getByRole('button', { name: 'Meaning' })
+    const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
 
     await waitFor(() => expect(shareButton).toBeEnabled())
-    const initialExport = await mocks.exportStoryPng.mock.results.at(-1)?.value
-    mocks.exportStoryPng.mockRejectedValueOnce(new mocks.ContentOverflowError())
+    expect(meaning).toHaveAttribute('aria-pressed', 'true')
+    expect(within(dialog).getByText("Excerpt from today's Hukamnama")).toBeInTheDocument()
+    expect(within(dialog).getByText('3 of 7 lines in this image')).toBeInTheDocument()
+    expect(within(dialog).queryByText('Complete Hukamnama')).not.toBeInTheDocument()
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.lines.every(
+      (line: { meaning?: string | null }) => Boolean(line.meaning)
+    )).toBe(true)
 
-    fireEvent.click(meaning)
-    expect(shareButton).toBeDisabled()
-
-    const fitNote = await within(dialog).findByRole('note')
-    expect(fitNote).toHaveTextContent('Meaning is too long to fit readably')
-    expect(fitNote).toHaveTextContent('Showing Gurmukhi only')
-    expect(fitNote).toHaveTextContent('Copy full text')
-    expect(meaning).toHaveAttribute('aria-pressed', 'false')
+    const previousButton = within(dialog).getByRole('button', { name: 'Previous passage' })
+    const nextButton = within(dialog).getByRole('button', { name: 'Next passage' })
+    expect(previousButton).toBeDisabled()
+    expect(nextButton).toBeEnabled()
+    fireEvent.click(nextButton)
 
     await waitFor(() => {
-      const attemptedInput = mocks.exportStoryPng.mock.calls.find(call => (
-        call[0].content.lines.some((line: { meaning?: string }) => Boolean(line.meaning))
-      ))?.[0]
-      expect(attemptedInput).toBeDefined()
-      const restoredInput = mocks.exportStoryPng.mock.calls.at(-1)?.[0]
-      expect(restoredInput.content.lines.every((line: { transliteration: null; meaning: null }) => (
-        line.transliteration === null && line.meaning === null
-      ))).toBe(true)
-      expect(shareButton).toBeEnabled()
+      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.anchorLineId).toBe('verse-3')
+      expect(previousButton).toBeEnabled()
+      expect(meaning).toHaveAttribute('aria-pressed', 'true')
     })
-
-    const restoredExport = await mocks.exportStoryPng.mock.results.at(-1)?.value
-    expect(restoredExport.file).not.toBe(initialExport.file)
-    fireEvent.click(shareButton)
-    await waitFor(() => {
-      expect(mocks.shareFile).toHaveBeenCalledWith(
-        restoredExport.file,
-        expect.objectContaining({ title: 'Hukamnama from NaamRas' })
-      )
-    })
+    const imageText = within(dialog).getByRole('region', { name: 'Text shown in the image' })
+    expect(imageText).toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 3 ॥')
+    expect(imageText).not.toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 1 ॥')
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Copy full text' }))
     await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
-        expect.stringContaining('The Merciful Lord saves the Saints.')
-      )
+      const copiedText = vi.mocked(window.navigator.clipboard.writeText).mock.calls.at(-1)?.[0]
+      expect(copiedText).toContain("Excerpt from today's Hukamnama · 3 of 7 lines in this image")
+      expect(copiedText).toContain('The complete Hukamnama text follows.')
+      expect(copiedText).toContain('Meaning line 6.')
+      expect(copiedText).toContain('https://naamras.xyz/h/2026-07-15')
     })
-    expect(within(dialog).getByRole('note')).toBe(fitNote)
 
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Transliteration' }))
+    fireEvent.click(shareButton)
     await waitFor(() => {
-      expect(within(dialog).queryByRole('note')).not.toBeInTheDocument()
-      expect(within(dialog).getByRole('button', { name: 'Transliteration' })).toHaveAttribute('aria-pressed', 'true')
-      expect(shareButton).toBeEnabled()
+      const shareData = mocks.shareFile.mock.calls.at(-1)?.[1]
+      expect(shareData.text).toContain("Excerpt from today's Hukamnama · 3 of 7 lines in this image")
+      expect(shareData.text).toContain('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 3 ॥')
+      expect(shareData.text).not.toContain('The attached image contains the complete Hukamnama')
+      expect(shareData.text).toContain("The attached image contains an excerpt from today's Hukamnama")
+      expect(shareData.url).toBe('https://naamras.xyz/h/2026-07-15')
+    })
+  })
+
+  it('labels a personal Hukamnama and its exact companion text without calling it today\'s reading', async () => {
+    const personalContent: ShareHighlightContent = {
+      ...passageContent,
+      passageKind: 'personal-hukamnama',
+      seriesLabel: 'Personal Hukamnama',
+      dateLabel: undefined,
+      sourcePath: '/study?shabadId=2591&flow=ardaas-hukamnama&randomHukamnamaAng=680',
+      sharePath: '/p/2591/680',
+      provenance: {
+        ...passageContent.provenance,
+        dateIso: undefined,
+      },
+    }
+    mocks.exportStoryPng.mockImplementationOnce(async () => makePngExport(
+      undefined,
+      'naamras-hukamnama.png',
+      1920,
+      makeStorySelection(['header', 'verse-1'], {
+        mode: 'excerpt',
+        includedLineCount: 2,
+        totalLineCount: 3,
+        nextSourceLineId: 'verse-2',
+      }),
+    ))
+
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={personalContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+
+    expect(within(dialog).getByText('Share this personal Hukamnama')).toBeInTheDocument()
+    await within(dialog).findByText('Personal Hukamnama excerpt')
+    expect(within(dialog).queryByText(/today's Hukamnama/i)).not.toBeInTheDocument()
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.scopeCopy.excerpt)
+      .toBe('Personal Hukamnama excerpt')
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Copy full text' }))
+    await waitFor(() => {
+      const copiedText = mocks.copyText.mock.calls.at(-1)?.[0] as string
+      expect(copiedText).toContain('Personal Hukamnama excerpt · 2 of 3 lines in this image')
+      expect(copiedText).not.toContain("today's Hukamnama")
+      expect(copiedText).toContain('https://naamras.xyz/p/2591/680')
+    })
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Share image' }))
+    await waitFor(() => {
+      const shareData = mocks.shareFile.mock.calls.at(-1)?.[1]
+      expect(shareData.text).toContain('The attached image contains an excerpt from this personal Hukamnama.')
+      expect(shareData.text).not.toContain("today's Hukamnama")
+      expect(shareData.url).toBe('https://naamras.xyz/p/2591/680')
     })
   })
 
@@ -601,7 +754,7 @@ describe('ShareHighlightSheet', () => {
         'Personal reflection:\nA line I am carrying today.\n——'
       )
       expect(mocks.shareFile.mock.calls.at(-1)?.[1]?.text).toContain('Sri Harmandir Sahib, Amritsar')
-      expect(mocks.shareFile.mock.calls.at(-1)?.[1]?.text).toContain('English translation: Manmohan Singh')
+      expect(mocks.shareFile.mock.calls.at(-1)?.[1]?.text).toContain('Translation: Manmohan Singh')
       expect(within(dialog).getByRole('status')).toHaveTextContent('Shared successfully.')
     })
 

@@ -106,6 +106,20 @@ test('preserves the originally requested deep link through first-run onboarding'
   }, APP_TEST_WAIT)
 })
 
+test('preserves a compact Hukamnama link through first-run onboarding before resolving it', async () => {
+  window.history.replaceState({}, '', '/h/2026-08-03')
+  render(<App />)
+
+  fireEvent.click(screen.getByTestId('onboarding-intent-understand'))
+  advanceFirstRunOnboardingToPreview()
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+
+  await waitFor(() => {
+    expect(window.location.pathname).toBe('/study')
+    expect(window.location.search).toBe('?hukamnamaDate=2026-08-03')
+  }, APP_TEST_WAIT)
+})
+
 test('wraps routed content in the main landmark once onboarding is complete', async () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
@@ -228,6 +242,84 @@ test('redirects the legacy Saved route to its canonical path', async () => {
   await waitFor(() => {
     expect(window.location.pathname).toBe('/saved')
   }, APP_TEST_WAIT)
+})
+
+test('redirects a short Hukamnama share link to the exact dated reading', async () => {
+  window.history.replaceState({}, '', '/h/2026-08-03')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  await waitFor(() => {
+    expect(window.location.pathname).toBe('/study')
+    expect(window.location.search).toBe('?hukamnamaDate=2026-08-03')
+  }, APP_TEST_WAIT)
+})
+
+test('rejects an invalid short Hukamnama date', async () => {
+  window.history.replaceState({}, '', '/h/2026-02-30')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  await waitFor(() => {
+    expect(window.location.pathname).toBe('/')
+  }, APP_TEST_WAIT)
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+})
+
+test('redirects a compact personal Hukamnama link to the exact Ardaas reading', async () => {
+  window.history.replaceState({}, '', '/p/2591/680/10101')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  await waitFor(() => {
+    expect(window.location.pathname).toBe('/study')
+    expect(window.location.search).toBe(
+      '?shabadId=2591&flow=ardaas-hukamnama&randomHukamnamaAng=680&resumeVerseId=10101'
+    )
+  }, APP_TEST_WAIT)
+})
+
+test('rejects malformed compact personal Hukamnama identifiers', async () => {
+  window.history.replaceState({}, '', '/p/not-a-shabad/680')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  await waitFor(() => {
+    expect(window.location.pathname).toBe('/')
+  }, APP_TEST_WAIT)
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
 })
 
 test('redirects retired article routes home', async () => {

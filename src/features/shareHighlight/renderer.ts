@@ -19,12 +19,18 @@ import {
   type ShareHighlightStoryArtworkProfile,
   type ShareHighlightStoryComposition,
   type ShareHighlightStoryPngExport,
+  type ShareHighlightStorySelection,
+  type ShareHighlightStoryScopeCopy,
   type ShareHighlightStoryTextSection,
   type ShareHighlightTextRole,
   type ShareHighlightTextSection,
   type ShareHighlightTextPosition,
   type ShareHighlightTextStyle,
 } from './types'
+import {
+  drawShareHighlightQrCode,
+  SHARE_HIGHLIGHT_QR_RENDER_SIZE,
+} from './qrCode'
 
 const DEFAULT_FOCAL_POSITION: ShareHighlightNormalizedPoint = { x: 0.5, y: 0.5 }
 const DEFAULT_TEXT_SAFE_ZONE: ShareHighlightNormalizedRect = {
@@ -54,10 +60,15 @@ const STORY_METADATA_X = 72
 const STORY_METADATA_WIDTH = SHARE_HIGHLIGHT_STORY_WIDTH - (STORY_METADATA_X * 2)
 const STORY_FOOTER_BASELINE = STORY_SAFE_BOTTOM - 18
 const STORY_FOOTER_HORIZONTAL_MARGIN = 72
+const STORY_LINK_FOOTER_TOP = 1544
+const STORY_LINK_QR_SIZE = SHARE_HIGHLIGHT_QR_RENDER_SIZE
+const STORY_LINK_QR_X = SHARE_HIGHLIGHT_STORY_WIDTH - STORY_FOOTER_HORIZONTAL_MARGIN - STORY_LINK_QR_SIZE
+const STORY_LINK_QR_Y = STORY_SAFE_BOTTOM - STORY_LINK_QR_SIZE
 const STORY_SCALE_STEP = 0.02
 const MANUSCRIPT_HEADER_CENTER_Y = 220
 const MANUSCRIPT_HEADER_RULE_Y = 258
-const MANUSCRIPT_FOOTER_RULE_Y = 1658
+const MANUSCRIPT_PLAIN_FOOTER_RULE_Y = 1658
+const MANUSCRIPT_LINK_FOOTER_RULE_Y = 1532
 const MANUSCRIPT_HEADER_GAP = 28
 const MANUSCRIPT_TITLE_MAX_SIZE = 32
 const MANUSCRIPT_TITLE_MIN_SIZE = 23
@@ -83,6 +94,12 @@ interface StoryRoleFontSizes {
 }
 
 type SingleColumnStoryComposition = ShareHighlightStoryComposition
+export type ShareHighlightStoryFooterMode = 'plain' | 'linked'
+
+const LINKED_STORY_BODY_HEIGHTS: Record<SingleColumnStoryComposition, number> = {
+  expressive: 1160,
+  manuscript: 1238,
+}
 
 const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionSpec> = {
   expressive: {
@@ -91,7 +108,7 @@ const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionS
     body: { x: 82, y: 360, width: 916, height: 1192 },
     readingSurface: { x: 46, y: 318, width: 988, height: 1278 },
     maximum: { header: 42, gurmukhi: 54, transliteration: 34, meaning: 36 },
-    minimum: { header: 34, gurmukhi: 42, transliteration: 30, meaning: 30 },
+    minimum: { header: 34, gurmukhi: 42, transliteration: 32, meaning: 32 },
     sectionGap: 8,
     lineGap: 18,
     headerGap: 8,
@@ -102,12 +119,28 @@ const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionS
     // dark dead bands that made long readings feel stranded in the canvas.
     body: { x: 64, y: 282, width: 952, height: 1362 },
     readingSurface: { x: 18, y: 72, width: 1044, height: 1776 },
-    maximum: { header: 38, gurmukhi: 48, transliteration: 32, meaning: 34 },
-    minimum: { header: 28, gurmukhi: 28, transliteration: 22, meaning: 22 },
+    maximum: { header: 38, gurmukhi: 48, transliteration: 34, meaning: 34 },
+    minimum: { header: 28, gurmukhi: 42, transliteration: 32, meaning: 32 },
     sectionGap: 4,
     lineGap: 5,
     headerGap: 3,
   },
+}
+
+function resolveStoryCompositionSpec(
+  composition: SingleColumnStoryComposition,
+  footerMode: ShareHighlightStoryFooterMode
+): StoryCompositionSpec {
+  const spec = STORY_COMPOSITIONS[composition]
+  if (footerMode === 'plain') return spec
+
+  return {
+    ...spec,
+    body: {
+      ...spec.body,
+      height: LINKED_STORY_BODY_HEIGHTS[composition],
+    },
+  }
 }
 
 const STORY_ROLE_SPECS = {
@@ -675,10 +708,45 @@ function measureStoryDrafts(
 }
 
 function storySupportRoles(lines: readonly ShareHighlightPassageLine[]) {
-  const roles: Array<'transliteration' | 'meaning'> = []
-  if (lines.some(line => Boolean(line.transliteration))) roles.push('transliteration')
-  if (lines.some(line => Boolean(line.meaning))) roles.push('meaning')
-  return roles
+  const hasTransliteration = lines.some(line => Boolean(line.transliteration))
+  const hasMeaning = lines.some(line => Boolean(line.meaning))
+
+  if (hasTransliteration && hasMeaning) {
+    throw new TypeError(
+      'A passage Story may include either transliteration or meaning, but not both.'
+    )
+  }
+
+  const selectedRole: 'transliteration' | 'meaning' | null = hasMeaning
+    ? 'meaning'
+    : hasTransliteration
+      ? 'transliteration'
+      : null
+
+  if (selectedRole && lines.some(line => !line.isHeader && !line[selectedRole])) {
+    throw new TypeError(
+      `The selected ${selectedRole} support must be present for every non-header passage line.`
+    )
+  }
+
+  return selectedRole ? [selectedRole] : []
+}
+
+function makeDefaultStorySelection(
+  lines: readonly ShareHighlightPassageLine[]
+): ShareHighlightStorySelection {
+  const sourceLineIds = lines.map(line => line.id)
+  return {
+    mode: 'complete',
+    anchorSourceLineId: null,
+    includedLineCount: sourceLineIds.length,
+    totalLineCount: sourceLineIds.length,
+    includedSourceLineIds: sourceLineIds,
+    firstSourceLineId: sourceLineIds[0]!,
+    lastSourceLineId: sourceLineIds.at(-1)!,
+    previousSourceLineId: null,
+    nextSourceLineId: null,
+  }
 }
 
 function buildStoryLayout(
@@ -686,9 +754,10 @@ function buildStoryLayout(
   composition: SingleColumnStoryComposition,
   storyProfile: ShareHighlightStoryArtworkProfile | undefined,
   measured: ShareHighlightStoryMeasurement,
-  contentScale: number
+  contentScale: number,
+  footerMode: ShareHighlightStoryFooterMode
 ): ShareHighlightStoryLayout {
-  const spec = STORY_COMPOSITIONS[composition]
+  const spec = resolveStoryCompositionSpec(composition, footerMode)
   const expandableGapCount = composition === 'manuscript'
     ? measured.drafts.slice(0, -1).filter(draft => !draft.line.isHeader).length
     : 0
@@ -799,6 +868,7 @@ function buildStoryLayout(
       },
       atReadabilityFloor: activeFontSizes.some((size, index) => size <= activeMinimums[index]!),
     },
+    selection: makeDefaultStorySelection(lines),
     sourceLineIds: lines.map(line => line.id),
     sections,
   }
@@ -809,14 +879,20 @@ interface StoryLayoutAttempt {
   lastMeasurement: ShareHighlightStoryMeasurement
 }
 
+interface StoryAtomicBlock {
+  startLineIndex: number
+  endLineIndex: number
+}
+
 function tryStoryComposition(
   lines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
   composition: SingleColumnStoryComposition,
   storyProfile?: ShareHighlightStoryArtworkProfile,
-  overlayTone?: string
+  overlayTone?: string,
+  footerMode: ShareHighlightStoryFooterMode = 'plain'
 ): StoryLayoutAttempt {
-  const availableHeight = STORY_COMPOSITIONS[composition].body.height
+  const availableHeight = resolveStoryCompositionSpec(composition, footerMode).body.height
   const maximumStep = Math.round(1 / STORY_SCALE_STEP)
   const floorMeasurement = measureStoryDrafts(lines, measure, composition, 0, overlayTone)
   if (floorMeasurement.requiredHeight > availableHeight) {
@@ -849,77 +925,320 @@ function tryStoryComposition(
 
   const contentScale = Math.round(bestStep * STORY_SCALE_STEP * 100) / 100
   return {
-    layout: buildStoryLayout(lines, composition, storyProfile, bestMeasurement, contentScale),
+    layout: buildStoryLayout(
+      lines,
+      composition,
+      storyProfile,
+      bestMeasurement,
+      contentScale,
+      footerMode
+    ),
     lastMeasurement: bestMeasurement,
   }
 }
 
+function buildStoryAtomicBlocks(
+  lines: readonly ShareHighlightPassageLine[]
+): StoryAtomicBlock[] {
+  const blocks: StoryAtomicBlock[] = []
+  let pendingHeaderStart: number | null = null
+
+  lines.forEach((line, lineIndex) => {
+    if (line.isHeader) {
+      if (pendingHeaderStart === null) pendingHeaderStart = lineIndex
+      return
+    }
+
+    blocks.push({
+      startLineIndex: pendingHeaderStart ?? lineIndex,
+      endLineIndex: lineIndex,
+    })
+    pendingHeaderStart = null
+  })
+
+  if (pendingHeaderStart !== null) {
+    blocks.push({
+      startLineIndex: pendingHeaderStart,
+      endLineIndex: lines.length - 1,
+    })
+  }
+
+  return blocks
+}
+
+function sourceLineIdMatches(
+  candidate: ShareHighlightPassageLine['id'],
+  requested: ShareHighlightPassageLine['id'] | null | undefined
+) {
+  return requested !== null && requested !== undefined && candidate === requested
+}
+
+function makeCompleteStorySelection(
+  lines: readonly ShareHighlightPassageLine[],
+  anchorLineId?: ShareHighlightPassageLine['id'] | null
+): ShareHighlightStorySelection {
+  const includedSourceLineIds = lines.map(line => line.id)
+  const anchorSourceLineId = lines.find(line => sourceLineIdMatches(line.id, anchorLineId))?.id ?? null
+  return {
+    mode: 'complete',
+    anchorSourceLineId,
+    includedLineCount: includedSourceLineIds.length,
+    totalLineCount: includedSourceLineIds.length,
+    includedSourceLineIds,
+    firstSourceLineId: includedSourceLineIds[0]!,
+    lastSourceLineId: includedSourceLineIds.at(-1)!,
+    previousSourceLineId: null,
+    nextSourceLineId: null,
+  }
+}
+
+function applyStorySelection(
+  layout: ShareHighlightStoryLayout,
+  selection: ShareHighlightStorySelection
+): ShareHighlightStoryLayout {
+  return {
+    ...layout,
+    selection,
+    sourceLineIds: [...selection.includedSourceLineIds],
+  }
+}
+
+function selectStoryExcerpt(
+  lines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  storyProfile: ShareHighlightStoryArtworkProfile | undefined,
+  overlayTone: string | undefined,
+  anchorLineId: ShareHighlightPassageLine['id'] | null | undefined,
+  footerMode: ShareHighlightStoryFooterMode
+): ShareHighlightStoryLayout {
+  const blocks = buildStoryAtomicBlocks(lines)
+  const manuscriptBodyHeight = resolveStoryCompositionSpec('manuscript', footerMode).body.height
+  const anchorLineIndex = lines.findIndex(line => sourceLineIdMatches(line.id, anchorLineId))
+  const requestedBlockIndex = anchorLineIndex >= 0
+    ? blocks.findIndex(block => (
+        anchorLineIndex >= block.startLineIndex && anchorLineIndex <= block.endLineIndex
+      ))
+    : -1
+  const startBlockIndex = requestedBlockIndex >= 0 ? requestedBlockIndex : 0
+  const floorMeasurementCache = new Map<string, ShareHighlightStoryMeasurement>()
+
+  const linesForBlockRange = (rangeStartBlockIndex: number, rangeEndBlockIndex: number) => {
+    const rangeStartLineIndex = blocks[rangeStartBlockIndex]!.startLineIndex
+    const rangeEndLineIndex = blocks[rangeEndBlockIndex]!.endLineIndex
+    return lines.slice(rangeStartLineIndex, rangeEndLineIndex + 1)
+  }
+
+  const measureBlockRangeAtFloor = (
+    rangeStartBlockIndex: number,
+    rangeEndBlockIndex: number
+  ) => {
+    const cacheKey = `${rangeStartBlockIndex}:${rangeEndBlockIndex}`
+    const cached = floorMeasurementCache.get(cacheKey)
+    if (cached) return cached
+
+    const measurement = measureStoryDrafts(
+      linesForBlockRange(rangeStartBlockIndex, rangeEndBlockIndex),
+      measure,
+      'manuscript',
+      0,
+      overlayTone
+    )
+    floorMeasurementCache.set(cacheKey, measurement)
+    return measurement
+  }
+
+  const findLargestFittingRange = (
+    rangeStartBlockIndex: number,
+    maximumEndBlockIndex = blocks.length - 1
+  ) => {
+    const firstMeasurement = measureBlockRangeAtFloor(
+      rangeStartBlockIndex,
+      rangeStartBlockIndex
+    )
+    if (firstMeasurement.requiredHeight > manuscriptBodyHeight) {
+      return null
+    }
+
+    let bestEndBlockIndex = rangeStartBlockIndex
+    let firstUnfitBlockIndex: number | null = null
+    let blockOffset = 1
+
+    // Most pages contain only a small fraction of a long Hukamnama. Grow the
+    // candidate exponentially before binary-searching the first failure so a
+    // 399-line reading never begins by measuring half of the entire source.
+    while (bestEndBlockIndex < maximumEndBlockIndex) {
+      const candidateEndBlockIndex = Math.min(
+        rangeStartBlockIndex + blockOffset,
+        maximumEndBlockIndex
+      )
+      const measurement = measureBlockRangeAtFloor(
+        rangeStartBlockIndex,
+        candidateEndBlockIndex
+      )
+
+      if (measurement.requiredHeight <= manuscriptBodyHeight) {
+        bestEndBlockIndex = candidateEndBlockIndex
+        if (candidateEndBlockIndex === maximumEndBlockIndex) break
+        blockOffset *= 2
+      } else {
+        firstUnfitBlockIndex = candidateEndBlockIndex
+        break
+      }
+    }
+
+    let lowerBlockIndex = bestEndBlockIndex + 1
+    let upperBlockIndex = (firstUnfitBlockIndex ?? maximumEndBlockIndex + 1) - 1
+    while (lowerBlockIndex <= upperBlockIndex) {
+      const candidateEndBlockIndex = Math.floor((lowerBlockIndex + upperBlockIndex) / 2)
+      const measurement = measureBlockRangeAtFloor(
+        rangeStartBlockIndex,
+        candidateEndBlockIndex
+      )
+      if (measurement.requiredHeight <= manuscriptBodyHeight) {
+        bestEndBlockIndex = candidateEndBlockIndex
+        lowerBlockIndex = candidateEndBlockIndex + 1
+      } else {
+        upperBlockIndex = candidateEndBlockIndex - 1
+      }
+    }
+
+    return { endBlockIndex: bestEndBlockIndex, firstMeasurement }
+  }
+
+  const selectedRange = findLargestFittingRange(startBlockIndex)
+  if (!selectedRange) {
+    const firstBlockLines = linesForBlockRange(startBlockIndex, startBlockIndex)
+    const firstMeasurement = measureBlockRangeAtFloor(startBlockIndex, startBlockIndex)
+    const supportRoles = storySupportRoles(firstBlockLines)
+    throw new ShareHighlightContentOverflowError(
+      firstMeasurement.requiredHeight,
+      manuscriptBodyHeight,
+      {
+        reason: supportRoles.length > 0 ? 'support-overflow' : 'gurmukhi-overflow',
+        supportRoles,
+      }
+    )
+  }
+
+  // Replaying the same deterministic, maximal page boundaries from the start
+  // recovers the actual prior page rather than merely the preceding source
+  // block. Capping each replay at the requested block detects an overlapping
+  // page without measuring any content beyond the current anchor.
+  const findPreviousPageStartBlockIndex = () => {
+    if (startBlockIndex === 0) return null
+
+    let pageStartBlockIndex = 0
+    let lastNonOverlappingPageStartBlockIndex: number | null = null
+    while (pageStartBlockIndex < startBlockIndex) {
+      const pageRange = findLargestFittingRange(pageStartBlockIndex, startBlockIndex)
+      if (!pageRange || pageRange.endBlockIndex >= startBlockIndex) {
+        return lastNonOverlappingPageStartBlockIndex
+      }
+
+      lastNonOverlappingPageStartBlockIndex = pageStartBlockIndex
+      const nextPageStartBlockIndex = pageRange.endBlockIndex + 1
+      if (nextPageStartBlockIndex === startBlockIndex) {
+        return pageStartBlockIndex
+      }
+      pageStartBlockIndex = nextPageStartBlockIndex
+    }
+
+    return lastNonOverlappingPageStartBlockIndex
+  }
+
+  const previousPageStartBlockIndex = findPreviousPageStartBlockIndex()
+  const endLineIndex = blocks[selectedRange.endBlockIndex]!.endLineIndex
+  const startLineIndex = blocks[startBlockIndex]!.startLineIndex
+  const includedLines = lines.slice(startLineIndex, endLineIndex + 1)
+  const selectedAttempt = tryStoryComposition(
+    includedLines,
+    measure,
+    'manuscript',
+    storyProfile,
+    overlayTone,
+    footerMode
+  )
+  if (!selectedAttempt.layout) {
+    const supportRoles = storySupportRoles(includedLines)
+    throw new ShareHighlightContentOverflowError(
+      selectedAttempt.lastMeasurement.requiredHeight,
+      manuscriptBodyHeight,
+      {
+        reason: supportRoles.length > 0 ? 'support-overflow' : 'gurmukhi-overflow',
+        supportRoles,
+      }
+    )
+  }
+
+  const includedSourceLineIds = includedLines.map(line => line.id)
+  const matchedAnchor = anchorLineIndex >= 0 ? lines[anchorLineIndex]!.id : includedSourceLineIds[0]!
+  const previousPageStartBlock = previousPageStartBlockIndex === null
+    ? null
+    : blocks[previousPageStartBlockIndex]!
+  const nextBlock = blocks[selectedRange.endBlockIndex + 1]
+  const selection: ShareHighlightStorySelection = {
+    mode: 'excerpt',
+    anchorSourceLineId: matchedAnchor,
+    includedLineCount: includedSourceLineIds.length,
+    totalLineCount: lines.length,
+    includedSourceLineIds,
+    firstSourceLineId: includedSourceLineIds[0]!,
+    lastSourceLineId: includedSourceLineIds.at(-1)!,
+    previousSourceLineId: previousPageStartBlock
+      ? lines[previousPageStartBlock.startLineIndex]!.id
+      : null,
+    nextSourceLineId: nextBlock ? lines[nextBlock.startLineIndex]!.id : null,
+  }
+
+  return applyStorySelection(selectedAttempt.layout, selection)
+}
+
 /**
- * Lays out the complete ordered reading on one native 9:16 Story canvas.
- * Type and rhythm adapt together; text is wrapped but never elided, truncated,
- * split into pages, or reordered. A structural header uses a tighter following
- * gap so it remains visually attached to the verse it introduces.
+ * Lays out an ordered reading on one native 9:16 Story canvas. Complete content
+ * is preferred whenever it fits at the role-specific readability floors. When
+ * it does not, the largest contiguous whole-line excerpt is selected without
+ * dropping the chosen reading support. Structural headers form an atomic block
+ * with their following line and are therefore never stranded at an edge.
  */
 export function layoutShareHighlightStory(
   rawLines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
   overlayTone?: string,
-  storyProfile?: ShareHighlightStoryArtworkProfile
+  storyProfile?: ShareHighlightStoryArtworkProfile,
+  anchorLineId?: ShareHighlightPassageLine['id'] | null,
+  footerMode: ShareHighlightStoryFooterMode = 'plain'
 ): ShareHighlightStoryLayout {
   const lines = normalizePassageLines(rawLines)
-  const verseCount = lines.filter(line => !line.isHeader).length
+  storySupportRoles(lines)
+  const selection = makeCompleteStorySelection(lines, anchorLineId)
+  const expressive = tryStoryComposition(
+    lines,
+    measure,
+    'expressive',
+    storyProfile,
+    overlayTone,
+    footerMode
+  )
+  if (expressive.layout) return applyStorySelection(expressive.layout, selection)
 
-  // Short and medium readings first receive the more expressive, art-forward
-  // composition. Longer readings move directly to the manuscript treatment so
-  // the artwork becomes an elegant hero/frame instead of competing with text.
-  if (verseCount <= 8) {
-    const expressive = tryStoryComposition(
-      lines,
-      measure,
-      'expressive',
-      storyProfile,
-      overlayTone
-    )
-    if (expressive.layout) return expressive.layout
-  }
-
-  const supportRoles = storySupportRoles(lines)
   const manuscript = tryStoryComposition(
     lines,
     measure,
     'manuscript',
     storyProfile,
-    overlayTone
+    overlayTone,
+    footerMode
   )
 
-  if (manuscript.layout) return manuscript.layout
+  if (manuscript.layout) return applyStorySelection(manuscript.layout, selection)
 
-  if (supportRoles.length > 0) {
-    const gurmukhiOnly = lines.map(line => ({
-      ...line,
-      transliteration: null,
-      meaning: null,
-    }))
-    const gurmukhiAttempt = tryStoryComposition(
-      gurmukhiOnly,
-      measure,
-      'manuscript',
-      storyProfile,
-      overlayTone
-    )
-    if (gurmukhiAttempt.layout) {
-      throw new ShareHighlightContentOverflowError(
-        manuscript.lastMeasurement.requiredHeight,
-        STORY_COMPOSITIONS.manuscript.body.height,
-        { reason: 'support-overflow', supportRoles }
-      )
-    }
-  }
-
-  throw new ShareHighlightContentOverflowError(
-    manuscript.lastMeasurement.requiredHeight,
-    STORY_COMPOSITIONS.manuscript.body.height,
-    { reason: 'gurmukhi-overflow' }
+  return selectStoryExcerpt(
+    lines,
+    measure,
+    storyProfile,
+    overlayTone,
+    anchorLineId,
+    footerMode
   )
 }
 
@@ -1299,7 +1618,8 @@ function drawStoryReadingSurface(
 function drawStoryMetadataSurfaces(
   context: CanvasRenderingContext2D,
   layout: ShareHighlightStoryLayout,
-  palette: ShareHighlightOverlayPalette
+  palette: ShareHighlightOverlayPalette,
+  footerMode: ShareHighlightStoryFooterMode
 ) {
   const surfaceFill = storySurfaceFill(palette, layout.composition === 'expressive')
   context.save()
@@ -1310,15 +1630,17 @@ function drawStoryMetadataSurfaces(
     // whole 9:16 canvas without sacrificing Story-safe text placement.
     context.fillStyle = 'rgba(105, 75, 43, 0.2)'
     context.fillRect(
-      STORY_COMPOSITIONS.manuscript.body.x,
+      layout.body.x,
       MANUSCRIPT_HEADER_RULE_Y,
-      STORY_COMPOSITIONS.manuscript.body.width,
+      layout.body.width,
       2
     )
     context.fillRect(
-      STORY_COMPOSITIONS.manuscript.body.x,
-      MANUSCRIPT_FOOTER_RULE_Y,
-      STORY_COMPOSITIONS.manuscript.body.width,
+      layout.body.x,
+      footerMode === 'linked'
+        ? MANUSCRIPT_LINK_FOOTER_RULE_Y
+        : MANUSCRIPT_PLAIN_FOOTER_RULE_Y,
+      layout.body.width,
       2
     )
     context.restore()
@@ -1336,12 +1658,12 @@ function drawStoryMetadataSurfaces(
 
   // In expressive mode the footer sits outside the central reading field. A
   // separate quiet capsule keeps both citation and brand contrast guaranteed.
-  if (layout.composition === 'expressive') {
+  if (footerMode === 'linked') {
     roundedRectanglePath(context, {
       x: 46,
-      y: 1604,
+      y: STORY_LINK_FOOTER_TOP - 10,
       width: 988,
-      height: 98,
+      height: 178,
     }, 36)
     context.fill()
   }
@@ -1495,13 +1817,98 @@ function drawFooter(
   context.restore()
 }
 
+const DEFAULT_STORY_SCOPE_COPY: ShareHighlightStoryScopeCopy = {
+  complete: 'Complete Hukamnama',
+  excerpt: 'Hukamnama excerpt',
+  coverageTemplate: '{included} of {total} lines',
+  readComplete: 'Read the complete Hukamnama',
+  openInNaamras: 'Open this Hukamnama in NaamRas',
+}
+
+function formatStoryCoverage(
+  template: string,
+  selection: ShareHighlightStorySelection
+) {
+  return template
+    .replaceAll('{included}', String(selection.includedLineCount))
+    .replaceAll('{total}', String(selection.totalLineCount))
+}
+
+function formatStoryShareUrl(value: string) {
+  const url = new URL(value)
+  const path = url.pathname === '/' ? '' : url.pathname.replace(/\/$/, '')
+  return `${url.host}${path}${url.search}`
+}
+
 function drawStoryFooter(
   context: CanvasRenderingContext2D,
   sourceLabel: string,
   palette: ShareHighlightOverlayPalette,
-  layout: ShareHighlightStoryLayout
+  layout: ShareHighlightStoryLayout,
+  shareUrl?: string | null,
+  supportLabel?: string | null,
+  scopeCopy?: ShareHighlightStoryScopeCopy | null
 ) {
   const isManuscript = layout.composition === 'manuscript'
+  const normalizedShareUrl = shareUrl?.trim() || null
+
+  if (normalizedShareUrl) {
+    const copy = scopeCopy ?? DEFAULT_STORY_SCOPE_COPY
+    const scopeLabel = layout.selection.mode === 'complete' ? copy.complete : copy.excerpt
+    const coverage = formatStoryCoverage(copy.coverageTemplate, layout.selection)
+    const actionLabel = layout.selection.mode === 'complete'
+      ? copy.openInNaamras
+      : copy.readComplete
+    const textX = STORY_FOOTER_HORIZONTAL_MARGIN
+    const textMaxWidth = STORY_LINK_QR_X - textX - 34
+
+    context.save()
+    context.shadowColor = palette.shadow
+    context.shadowBlur = 3
+    context.shadowOffsetX = 0
+    context.shadowOffsetY = 1
+    context.textAlign = 'left'
+    context.textBaseline = 'top'
+
+    context.font = 'normal 750 22px "Plus Jakarta Sans", sans-serif'
+    context.fillStyle = palette.primaryText
+    context.fillText(`${scopeLabel} · ${coverage}`, textX, STORY_LINK_FOOTER_TOP, textMaxWidth)
+
+    if (supportLabel?.trim()) {
+      context.font = 'normal 600 18px "Plus Jakarta Sans", sans-serif'
+      context.fillStyle = palette.secondaryText
+      context.fillText(supportLabel.trim(), textX, STORY_LINK_FOOTER_TOP + 34, textMaxWidth)
+    }
+
+    context.font = 'normal 700 23px "Plus Jakarta Sans", sans-serif'
+    context.fillStyle = palette.primaryText
+    context.fillText(actionLabel, textX, STORY_LINK_FOOTER_TOP + 68, textMaxWidth)
+
+    context.font = 'normal 650 20px "Plus Jakarta Sans", sans-serif'
+    context.fillStyle = palette.secondaryText
+    context.fillText(
+      formatStoryShareUrl(normalizedShareUrl),
+      textX,
+      STORY_LINK_FOOTER_TOP + 101,
+      textMaxWidth
+    )
+
+    context.font = 'normal 600 18px "Plus Jakarta Sans", sans-serif'
+    context.fillStyle = palette.secondaryText
+    context.fillText(sourceLabel, textX, STORY_LINK_FOOTER_TOP + 137, textMaxWidth)
+
+    context.shadowColor = 'transparent'
+    context.shadowBlur = 0
+    drawShareHighlightQrCode(
+      context,
+      normalizedShareUrl,
+      { x: STORY_LINK_QR_X, y: STORY_LINK_QR_Y, size: STORY_LINK_QR_SIZE },
+      { dark: '#14231d', light: '#fffdf7' }
+    )
+    context.restore()
+    return
+  }
+
   const baseline = isManuscript
     ? Math.min(
         STORY_FOOTER_BASELINE,
@@ -1786,18 +2193,22 @@ function normalizePassageFileBase(value?: string) {
   return normalized || 'naamras-hukamnama.png'
 }
 
-/**
- * Renders a complete Hukamnama to one native 9:16 Story canvas. Short readings
- * may use artwork; manuscript layouts deliberately switch to a quiet
- * full-height parchment so decoration never competes with a complete reading.
- */
-export async function renderShareHighlightStory(
+interface RenderedShareHighlightStory {
+  canvas: HTMLCanvasElement
+  layout: ShareHighlightStoryLayout
+}
+
+/** Renders the adaptive complete reading or contiguous excerpt with metadata. */
+async function renderShareHighlightStoryWithLayout(
   input: ShareHighlightPassageInput,
   options: ShareHighlightRendererOptions = {}
-): Promise<HTMLCanvasElement> {
+): Promise<RenderedShareHighlightStory> {
   const sourceLabel = input.content.sourceLabel.trim()
   const seriesLabel = input.content.seriesLabel.trim()
   const dateLabel = input.content.dateLabel?.trim() || null
+  const footerMode: ShareHighlightStoryFooterMode = input.content.shareUrl?.trim()
+    ? 'linked'
+    : 'plain'
   if (!sourceLabel) throw new TypeError('A passage source label is required.')
   if (!seriesLabel) throw new TypeError('A passage series label is required.')
 
@@ -1807,27 +2218,44 @@ export async function renderShareHighlightStory(
   const context = canvas.getContext('2d')
   if (!context) throw new Error('A Canvas 2D rendering context is required.')
 
-  const canUseArtwork = input.content.lines.filter(line => (
-    !line.isHeader && line.gurmukhi.trim()
-  )).length <= 8
-  const artworkSrc = canUseArtwork ? input.artwork?.src?.trim() : null
-  const [artwork] = await Promise.all([
-    artworkSrc
-      ? (options.loadImage ?? loadDecodedImage)(artworkSrc)
-      : Promise.resolve(null),
-    awaitShareHighlightFonts(resolveFontSet(options.fontSet)),
-  ])
-  const overlayTone = artwork ? input.artwork?.overlayTone : 'dark'
-  const storyProfile = resolveStoryArtworkProfile(input, artwork)
-  const layout = layoutShareHighlightStory(
+  await awaitShareHighlightFonts(resolveFontSet(options.fontSet))
+
+  const artworkSrc = input.artwork?.src?.trim() || null
+  let artwork: ShareHighlightDecodedImage | null = null
+  let overlayTone = artworkSrc ? input.artwork?.overlayTone : 'dark'
+  let storyProfile = resolveStoryArtworkProfile(input, null)
+  let layout = layoutShareHighlightStory(
     input.content.lines,
     (text, style) => {
       context.font = fontString(style)
       return context.measureText(text).width
     },
     overlayTone,
-    storyProfile
+    storyProfile,
+    input.content.anchorLineId,
+    footerMode
   )
+
+  // Artwork is relevant only to an expressive complete layout. Exact text
+  // preflight therefore prevents a long manuscript/excerpt from decoding an
+  // image it will never draw, without relying on a brittle source-line count.
+  if (layout.composition === 'expressive' && artworkSrc) {
+    artwork = await (options.loadImage ?? loadDecodedImage)(artworkSrc)
+    overlayTone = input.artwork?.overlayTone
+    storyProfile = resolveStoryArtworkProfile(input, artwork)
+    layout = layoutShareHighlightStory(
+      input.content.lines,
+      (text, style) => {
+        context.font = fontString(style)
+        return context.measureText(text).width
+      },
+      overlayTone,
+      storyProfile,
+      input.content.anchorLineId,
+      footerMode
+    )
+  }
+
   const palette = resolveShareHighlightOverlayPalette(
     layout.composition !== 'expressive' ? 'light' : overlayTone
   )
@@ -1840,19 +2268,38 @@ export async function renderShareHighlightStory(
     layout.composition
   )
   drawStoryReadingSurface(context, layout, palette)
-  drawStoryMetadataSurfaces(context, layout, palette)
+  drawStoryMetadataSurfaces(context, layout, palette, footerMode)
   drawStoryHeader(context, seriesLabel, dateLabel, palette, layout)
   layout.sections.forEach(section => drawTextSection(context, section, palette))
-  drawStoryFooter(context, sourceLabel, palette, layout)
-  return canvas
+  drawStoryFooter(
+    context,
+    sourceLabel,
+    palette,
+    layout,
+    input.content.shareUrl,
+    input.content.supportLabel,
+    input.content.scopeCopy
+  )
+  return { canvas, layout }
 }
 
-/** Exports the complete reading as one downloadable/shareable PNG file. */
+/**
+ * Renders one native 9:16 Story canvas. Callers that need exact source coverage
+ * should use `exportShareHighlightStoryPng`, which also returns layout metadata.
+ */
+export async function renderShareHighlightStory(
+  input: ShareHighlightPassageInput,
+  options: ShareHighlightRendererOptions = {}
+): Promise<HTMLCanvasElement> {
+  return (await renderShareHighlightStoryWithLayout(input, options)).canvas
+}
+
+/** Exports one complete or excerpted reading as a downloadable/shareable PNG. */
 export async function exportShareHighlightStoryPng(
   input: ShareHighlightPassageInput,
   options: ShareHighlightRendererOptions = {}
 ): Promise<ShareHighlightStoryPngExport> {
-  const canvas = await renderShareHighlightStory(input, options)
+  const { canvas, layout } = await renderShareHighlightStoryWithLayout(input, options)
   const blob = await canvasToPngBlob(canvas)
   const file = new File([blob], normalizePassageFileBase(input.fileNameBase), { type: 'image/png' })
   return {
@@ -1861,5 +2308,7 @@ export async function exportShareHighlightStoryPng(
     file,
     width: SHARE_HIGHLIGHT_STORY_WIDTH,
     height: SHARE_HIGHLIGHT_STORY_HEIGHT,
+    layout,
+    selection: layout.selection,
   }
 }

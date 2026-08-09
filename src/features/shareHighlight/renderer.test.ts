@@ -14,6 +14,7 @@ import {
   wrapShareHighlightText,
   type ShareHighlightRendererOptions,
 } from './renderer'
+import { SHARE_HIGHLIGHT_QR_RENDER_SIZE } from './qrCode'
 import {
   SHARE_HIGHLIGHT_CARD_HEIGHT,
   SHARE_HIGHLIGHT_CARD_WIDTH,
@@ -508,29 +509,79 @@ describe('layoutShareHighlightCardText', () => {
 })
 
 describe('single-frame full-passage Story layout', () => {
-  it('fits fourteen complete Gurmukhi lines at the hard readability floor inside one Story', () => {
+  it('reserves link-footer space only when that footer will be rendered', () => {
+    const shortReading = [{ id: 'short', gurmukhi: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' }]
+    const plainExpressive = layoutShareHighlightStory(shortReading, measureByCharacter, 'light')
+    const linkedExpressive = layoutShareHighlightStory(
+      shortReading,
+      measureByCharacter,
+      'light',
+      undefined,
+      undefined,
+      'linked'
+    )
+    const plainManuscript = layoutShareHighlightStory(
+      fortyTwoLineBilingualReading,
+      measureByCharacter,
+      'light'
+    )
+    const linkedManuscript = layoutShareHighlightStory(
+      fortyTwoLineBilingualReading,
+      measureByCharacter,
+      'light',
+      undefined,
+      undefined,
+      'linked'
+    )
+
+    expect(plainExpressive).toMatchObject({
+      composition: 'expressive',
+      body: { height: 1192 },
+    })
+    expect(linkedExpressive).toMatchObject({
+      composition: 'expressive',
+      body: { height: 1160 },
+    })
+    expect(plainManuscript).toMatchObject({
+      composition: 'manuscript',
+      body: { height: 1362 },
+    })
+    expect(linkedManuscript).toMatchObject({
+      composition: 'manuscript',
+      body: { height: 1238 },
+    })
+    expect(plainManuscript.selection.includedLineCount)
+      .toBeGreaterThanOrEqual(linkedManuscript.selection.includedLineCount)
+  })
+
+  it('keeps a fourteen-line Gurmukhi reading at the raised floor via a truthful excerpt', () => {
     const layout = layoutShareHighlightStory(fourteenLineGurmukhiOnly, measureByCharacter, 'light')
 
     expect(layout.width).toBe(1080)
     expect(layout.height).toBe(1920)
     expect(layout.composition).toBe('manuscript')
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(34)
-    expect(layout.sourceLineIds).toEqual(fourteenLineGurmukhiOnly.map(line => line.id))
-    expect(layout.sourceLineIds).toHaveLength(14)
+    expect(layout.selection.mode).toBe('excerpt')
+    expect(layout.selection.totalLineCount).toBe(14)
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
+    expect(layout.sourceLineIds).toEqual(
+      fourteenLineGurmukhiOnly.slice(0, layout.selection.includedLineCount).map(line => line.id)
+    )
+    expect(layout.sourceLineIds.length).toBeLessThan(14)
     expect(layout.sections.every(section => (
       section.y >= layout.body.y
       && section.y + section.height <= layout.body.y + layout.body.height
     ))).toBe(true)
   })
 
-  it('preserves every non-empty source line without ellipsis or reordering', () => {
+  it('preserves every included source line without ellipsis or reordering', () => {
     const layout = layoutShareHighlightStory([
       { id: 'blank', gurmukhi: '   ' },
       ...fourteenLineGurmukhiOnly,
     ], measureByCharacter)
 
-    expect(layout.sourceLineIds).toEqual(fourteenLineGurmukhiOnly.map(line => line.id))
-    for (const line of fourteenLineGurmukhiOnly) {
+    const includedLines = fourteenLineGurmukhiOnly.slice(0, layout.selection.includedLineCount)
+    expect(layout.sourceLineIds).toEqual(includedLines.map(line => line.id))
+    for (const line of includedLines) {
       const sections = layout.sections.filter(section => section.sourceLineId === line.id)
       expect(sections.map(section => section.role)).toEqual(['gurmukhi'])
       expect(sections.find(section => section.role === 'gurmukhi')?.lines.join(' ')).toBe(line.gurmukhi)
@@ -539,46 +590,51 @@ describe('single-frame full-passage Story layout', () => {
     }
   })
 
-  it('rejects optional support instead of shrinking it below a readable size', () => {
-    let caught: unknown
-    try {
-      layoutShareHighlightStory(fourteenLineReading, measureByCharacter, 'light')
-    } catch (error) {
-      caught = error
-    }
+  it('creates a readable bilingual excerpt instead of dropping an overflowing support', () => {
+    const layout = layoutShareHighlightStory(fourteenLineReading, measureByCharacter, 'light')
 
-    expect(caught).toBeInstanceOf(ShareHighlightContentOverflowError)
-    expect(caught).toMatchObject({
-      reason: 'support-overflow',
-      supportRoles: ['meaning'],
+    expect(layout.selection).toMatchObject({
+      mode: 'excerpt',
+      totalLineCount: fourteenLineReading.length,
+      previousSourceLineId: null,
     })
-    expect(layoutShareHighlightStory(
-      fourteenLineGurmukhiOnly,
-      measureByCharacter,
-      'light'
-    ).sourceLineIds).toHaveLength(14)
+    expect(layout.selection.includedLineCount).toBeGreaterThan(0)
+    expect(layout.selection.includedLineCount).toBeLessThan(fourteenLineReading.length)
+    expect(layout.fit.supportRoles).toEqual(['meaning'])
+    expect(layout.sourceLineIds).toEqual(
+      fourteenLineReading.slice(0, layout.selection.includedLineCount).map(line => line.id)
+    )
+    for (const sourceLineId of layout.sourceLineIds) {
+      expect(layout.sections.filter(section => section.sourceLineId === sourceLineId).map(section => section.role))
+        .toEqual(['gurmukhi', 'meaning'])
+    }
   })
 
-  it('fits the exact July 18 Ang 683 Hukamnama as one complete interleaved manuscript', () => {
+  it('keeps the exact July 18 Ang 683 excerpt interleaved at true phone-readable floors', () => {
     const layout = layoutShareHighlightStory(july18Ang683Reading, measureStoryByCharacter, 'light')
 
     expect(layout).toMatchObject({
       width: 1080,
       height: 1920,
       composition: 'manuscript',
+      selection: {
+        mode: 'excerpt',
+        totalLineCount: july18Ang683Reading.length,
+      },
       fit: {
         supportRoles: ['meaning'],
       },
     })
     expect(layout.readingSurface).toEqual({ x: 18, y: 72, width: 1044, height: 1776 })
     expect(layout.body).toEqual({ x: 64, y: 282, width: 952, height: 1362 })
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(28)
-    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(22)
-    expect(layout.sourceLineIds).toEqual(july18Ang683Reading.map(line => line.id))
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(32)
+    const includedLines = july18Ang683Reading.slice(0, layout.selection.includedLineCount)
+    expect(layout.sourceLineIds).toEqual(includedLines.map(line => line.id))
     expect(layout.sections.map(section => section.role)).toEqual(
-      july18Ang683Reading.flatMap(() => ['gurmukhi', 'meaning'])
+      includedLines.flatMap(() => ['gurmukhi', 'meaning'])
     )
-    for (const line of july18Ang683Reading) {
+    for (const line of includedLines) {
       const gurmukhi = layout.sections.find(section => (
         section.sourceLineId === line.id && section.role === 'gurmukhi'
       ))
@@ -601,7 +657,7 @@ describe('single-frame full-passage Story layout', () => {
     expect((usedBottom - usedTop) / layout.body.height).toBeGreaterThan(0.8)
   })
 
-  it('fits every July 24 Ang 555 line and meaning in screenshot order at full width', () => {
+  it('keeps the July 24 Ang 555 opening excerpt paired and in screenshot order', () => {
     const layout = layoutShareHighlightStory(
       july24Ang555Reading,
       measureStoryByCharacter,
@@ -609,14 +665,17 @@ describe('single-frame full-passage Story layout', () => {
     )
 
     expect(layout.composition).toBe('manuscript')
-    expect(layout.sourceLineIds).toEqual(july24Ang555Reading.map(line => line.id))
+    expect(layout.selection.mode).toBe('excerpt')
+    expect(layout.selection.totalLineCount).toBe(july24Ang555Reading.length)
+    const includedLines = july24Ang555Reading.slice(0, layout.selection.includedLineCount)
+    expect(layout.sourceLineIds).toEqual(includedLines.map(line => line.id))
     expect(layout.sections.map(section => section.role)).toEqual(
-      july24Ang555Reading.flatMap(() => ['gurmukhi', 'meaning'])
+      includedLines.flatMap(() => ['gurmukhi', 'meaning'])
     )
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(28)
-    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(22)
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(32)
 
-    for (const [index, line] of july24Ang555Reading.entries()) {
+    for (const [index, line] of includedLines.entries()) {
       const gurmukhi = layout.sections[index * 2]!
       const meaning = layout.sections[(index * 2) + 1]!
       expect(gurmukhi).toMatchObject({
@@ -637,7 +696,7 @@ describe('single-frame full-passage Story layout', () => {
     }
   })
 
-  it('keeps a twenty-line bilingual reading interleaved at the readability floor', () => {
+  it('keeps a twenty-line bilingual excerpt interleaved at the raised readability floor', () => {
     const layout = layoutShareHighlightStory(
       twentyLineBilingualReading,
       measureByCharacter,
@@ -645,16 +704,18 @@ describe('single-frame full-passage Story layout', () => {
     )
 
     expect(layout.composition).toBe('manuscript')
-    expect(layout.sourceLineIds).toEqual(twentyLineBilingualReading.map(line => line.id))
-    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(28)
-    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(22)
-    expect(layout.sections).toHaveLength(40)
+    expect(layout.selection.mode).toBe('excerpt')
+    const includedLines = twentyLineBilingualReading.slice(0, layout.selection.includedLineCount)
+    expect(layout.sourceLineIds).toEqual(includedLines.map(line => line.id))
+    expect(layout.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
+    expect(layout.fit.fontSizes.meaning).toBeGreaterThanOrEqual(32)
+    expect(layout.sections).toHaveLength(includedLines.length * 2)
     expect(layout.sections.map(section => section.role)).toEqual(
-      twentyLineBilingualReading.flatMap(() => ['gurmukhi', 'meaning'])
+      includedLines.flatMap(() => ['gurmukhi', 'meaning'])
     )
   })
 
-  it('uses the full-width paired manuscript for a longer reading that fits comfortably', () => {
+  it('uses exact fit rather than a line-count threshold for a compact nine-line reading', () => {
     const nineLineReading = Array.from({ length: 9 }, (_, index) => ({
       id: `interleaved-preference-${index + 1}`,
       gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥${index + 1}॥`,
@@ -667,7 +728,8 @@ describe('single-frame full-passage Story layout', () => {
       'light'
     )
 
-    expect(layout.composition).toBe('manuscript')
+    expect(layout.composition).toBe('expressive')
+    expect(layout.selection.mode).toBe('complete')
     expect(layout.sections.filter(section => section.role === 'gurmukhi')).toHaveLength(9)
     expect(layout.sections.filter(section => section.role === 'meaning')).toHaveLength(9)
     expect(layout.sections.map(section => section.sourceLineId)).toEqual(
@@ -675,20 +737,279 @@ describe('single-frame full-passage Story layout', () => {
     )
   })
 
-  it('reports a true overflow for forty-two lines instead of using microscopic type', () => {
-    let caught: unknown
-    try {
-      layoutShareHighlightStory(
-        fortyTwoLineBilingualReading,
-        measureByCharacter,
-        'light'
-      )
-    } catch (error) {
-      caught = error
+  it('turns forty-two bilingual lines into an unabridged, ordered opening excerpt', () => {
+    const layout = layoutShareHighlightStory(
+      fortyTwoLineBilingualReading,
+      measureByCharacter,
+      'light'
+    )
+
+    expect(layout.selection.mode).toBe('excerpt')
+    expect(layout.selection.totalLineCount).toBe(42)
+    expect(layout.selection.includedLineCount).toBeGreaterThan(0)
+    expect(layout.selection.includedLineCount).toBeLessThan(42)
+    expect(layout.selection.previousSourceLineId).toBeNull()
+    expect(layout.selection.nextSourceLineId).toBe(
+      fortyTwoLineBilingualReading[layout.selection.includedLineCount]!.id
+    )
+    expect(layout.sourceLineIds).toEqual(
+      fortyTwoLineBilingualReading
+        .slice(0, layout.selection.includedLineCount)
+        .map(line => line.id)
+    )
+    expect(layout.sections.map(section => section.role)).toEqual(
+      layout.sourceLineIds.flatMap(() => ['gurmukhi', 'meaning'])
+    )
+
+    const includedSourceLines = fortyTwoLineBilingualReading.slice(
+      0,
+      layout.selection.includedLineCount
+    )
+    expect(layoutShareHighlightStory(includedSourceLines, measureByCharacter).selection.mode)
+      .toBe('complete')
+    expect(layoutShareHighlightStory(
+      fortyTwoLineBilingualReading.slice(0, layout.selection.includedLineCount + 1),
+      measureByCharacter
+    ).selection.mode).toBe('excerpt')
+  })
+
+  it('moves between non-overlapping bilingual pages and returns to the exact prior page', () => {
+    const opening = layoutShareHighlightStory(
+      fortyTwoLineBilingualReading,
+      measureByCharacter,
+      'light'
+    )
+    const nextAnchor = opening.selection.nextSourceLineId
+    expect(nextAnchor).not.toBeNull()
+
+    const next = layoutShareHighlightStory(
+      fortyTwoLineBilingualReading,
+      measureByCharacter,
+      'light',
+      undefined,
+      nextAnchor
+    )
+    const nextAnchorIndex = fortyTwoLineBilingualReading.findIndex(line => line.id === nextAnchor)
+    const expectedIds = fortyTwoLineBilingualReading
+      .slice(nextAnchorIndex, nextAnchorIndex + next.selection.includedLineCount)
+      .map(line => line.id)
+
+    expect(next.selection).toMatchObject({
+      mode: 'excerpt',
+      anchorSourceLineId: nextAnchor,
+      firstSourceLineId: nextAnchor,
+      previousSourceLineId: opening.selection.firstSourceLineId,
+      totalLineCount: 42,
+    })
+    expect(next.selection.includedSourceLineIds).toEqual(expectedIds)
+    expect(next.sourceLineIds).toEqual(expectedIds)
+    expect(next.selection.includedSourceLineIds.some(sourceLineId => (
+      opening.selection.includedSourceLineIds.includes(sourceLineId)
+    ))).toBe(false)
+    expect(nextAnchorIndex).toBe(opening.selection.includedLineCount)
+
+    for (const sourceLineId of next.sourceLineIds) {
+      const source = fortyTwoLineBilingualReading.find(line => line.id === sourceLineId)!
+      const sections = next.sections.filter(section => section.sourceLineId === sourceLineId)
+      expect(sections.map(section => section.role)).toEqual(['gurmukhi', 'meaning'])
+      expect(sections[0]!.lines.join(' ')).toBe(source.gurmukhi)
+      expect(sections[1]!.lines.join(' ')).toBe(source.meaning)
     }
 
-    expect(caught).toBeInstanceOf(ShareHighlightContentOverflowError)
-    expect(caught).toMatchObject({ reason: 'gurmukhi-overflow' })
+    const previous = layoutShareHighlightStory(
+      fortyTwoLineBilingualReading,
+      measureByCharacter,
+      'light',
+      undefined,
+      next.selection.previousSourceLineId
+    )
+    expect(previous.selection.includedSourceLineIds).toEqual(
+      opening.selection.includedSourceLineIds
+    )
+    expect(previous.selection.nextSourceLineId).toBe(nextAnchor)
+    expect(previous.sourceLineIds).toEqual(opening.sourceLineIds)
+  })
+
+  it('keeps consecutive structural headers atomic with their following supported line', () => {
+    const headerBlocks: ShareHighlightPassageLine[] = Array.from(
+      { length: 80 },
+      (_, index) => [
+        {
+          id: `header-a-${index}`,
+          gurmukhi: 'ਸਲੋਕ ॥',
+          isHeader: true,
+        },
+        {
+          id: `header-b-${index}`,
+          gurmukhi: 'ਮਃ ੫ ॥',
+          isHeader: true,
+        },
+        {
+          id: `header-verse-${index}`,
+          gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥ ${index + 1}`,
+          meaning: `Remember the True Name. ${index + 1}`,
+        },
+      ]
+    ).flat()
+    const anchorLineId = 'header-verse-31'
+    const layout = layoutShareHighlightStory(
+      headerBlocks,
+      measureByCharacter,
+      'light',
+      undefined,
+      anchorLineId
+    )
+
+    expect(layout.selection.mode).toBe('excerpt')
+    expect(layout.selection.anchorSourceLineId).toBe(anchorLineId)
+    expect(layout.selection.includedSourceLineIds.slice(0, 3)).toEqual([
+      'header-a-31',
+      'header-b-31',
+      'header-verse-31',
+    ])
+    expect(layout.selection.includedLineCount % 3).toBe(0)
+    for (let index = 0; index < layout.selection.includedSourceLineIds.length; index += 3) {
+      expect(layout.selection.includedSourceLineIds.slice(index, index + 3)).toEqual([
+        `header-a-${31 + (index / 3)}`,
+        `header-b-${31 + (index / 3)}`,
+        `header-verse-${31 + (index / 3)}`,
+      ])
+    }
+
+    const opening = layoutShareHighlightStory(headerBlocks, measureByCharacter, 'light')
+    const next = layoutShareHighlightStory(
+      headerBlocks,
+      measureByCharacter,
+      'light',
+      undefined,
+      opening.selection.nextSourceLineId
+    )
+    expect(next.selection.includedSourceLineIds.slice(0, 3)).toEqual([
+      opening.selection.nextSourceLineId,
+      `header-b-${opening.selection.includedLineCount / 3}`,
+      `header-verse-${opening.selection.includedLineCount / 3}`,
+    ])
+    expect(next.selection.includedSourceLineIds.length % 3).toBe(0)
+    expect(next.selection.includedSourceLineIds.some(sourceLineId => (
+      opening.selection.includedSourceLineIds.includes(sourceLineId)
+    ))).toBe(false)
+
+    const previous = layoutShareHighlightStory(
+      headerBlocks,
+      measureByCharacter,
+      'light',
+      undefined,
+      next.selection.previousSourceLineId
+    )
+    expect(previous.selection.includedSourceLineIds).toEqual(
+      opening.selection.includedSourceLineIds
+    )
+  })
+
+  it('preserves a selected transliteration on every line of an adaptive excerpt', () => {
+    const transliterated = fortyTwoLineBilingualReading.map(({ id, gurmukhi }, index) => ({
+      id,
+      gurmukhi,
+      transliteration: `sat naam vaahiguroo ${index + 1}`,
+    }))
+    const layout = layoutShareHighlightStory(transliterated, measureByCharacter, 'light')
+
+    expect(layout.selection.mode).toBe('excerpt')
+    expect(layout.fit.supportRoles).toEqual(['transliteration'])
+    for (const [index, sourceLineId] of layout.sourceLineIds.entries()) {
+      const source = transliterated[index]!
+      const sections = layout.sections.filter(section => section.sourceLineId === sourceLineId)
+      expect(sections.map(section => section.role)).toEqual(['gurmukhi', 'transliteration'])
+      expect(sections[0]!.lines.join(' ')).toBe(source.gurmukhi)
+      expect(sections[1]!.lines.join(' ')).toBe(source.transliteration)
+    }
+  })
+
+  it('handles 399 Gurmukhi lines as a maximal ordered excerpt without truncation', () => {
+    const enormousReading: ShareHighlightPassageLine[] = Array.from(
+      { length: 399 },
+      (_, index) => ({
+        id: `enormous-${index + 1}`,
+        gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥ ${index + 1}`,
+      })
+    )
+    const layout = layoutShareHighlightStory(enormousReading, measureByCharacter, 'light')
+    const includedLines = enormousReading.slice(0, layout.selection.includedLineCount)
+
+    expect(layout.selection).toMatchObject({
+      mode: 'excerpt',
+      totalLineCount: 399,
+      previousSourceLineId: null,
+      firstSourceLineId: 'enormous-1',
+    })
+    expect(layout.selection.includedLineCount).toBeGreaterThan(0)
+    expect(layout.selection.includedLineCount).toBeLessThan(399)
+    expect(layout.selection.includedSourceLineIds).toEqual(includedLines.map(line => line.id))
+    expect(layout.sourceLineIds).toEqual(includedLines.map(line => line.id))
+    expect(layout.sections).toHaveLength(includedLines.length)
+    for (const [index, section] of layout.sections.entries()) {
+      expect(section.sourceLineId).toBe(includedLines[index]!.id)
+      expect(section.role).toBe('gurmukhi')
+      expect(section.lines.join(' ')).toBe(includedLines[index]!.gurmukhi)
+      expect(section.lines.join(' ')).not.toMatch(/…|\.\.\./)
+    }
+
+    let currentPage = layout
+    for (let pageIndex = 0; pageIndex < 4; pageIndex += 1) {
+      const nextAnchor = currentPage.selection.nextSourceLineId
+      expect(nextAnchor).not.toBeNull()
+      const nextPage = layoutShareHighlightStory(
+        enormousReading,
+        measureByCharacter,
+        'light',
+        undefined,
+        nextAnchor
+      )
+      expect(nextPage.selection.firstSourceLineId).toBe(nextAnchor)
+      expect(nextPage.selection.previousSourceLineId).toBe(
+        currentPage.selection.firstSourceLineId
+      )
+      expect(nextPage.selection.includedSourceLineIds.some(sourceLineId => (
+        currentPage.selection.includedSourceLineIds.includes(sourceLineId)
+      ))).toBe(false)
+
+      const previousPage = layoutShareHighlightStory(
+        enormousReading,
+        measureByCharacter,
+        'light',
+        undefined,
+        nextPage.selection.previousSourceLineId
+      )
+      expect(previousPage.selection.includedSourceLineIds).toEqual(
+        currentPage.selection.includedSourceLineIds
+      )
+      currentPage = nextPage
+    }
+  })
+
+  it('throws only when one indivisible atomic block cannot fit at the readability floor', () => {
+    const enormousGurmukhi = 'ਗੁਰਬਾਣੀ '.repeat(1_000).trim()
+    let gurmukhiError: unknown
+    try {
+      layoutShareHighlightStory([{ id: 'atomic-gurmukhi', gurmukhi: enormousGurmukhi }], measureByCharacter)
+    } catch (error) {
+      gurmukhiError = error
+    }
+    expect(gurmukhiError).toBeInstanceOf(ShareHighlightContentOverflowError)
+    expect(gurmukhiError).toMatchObject({ reason: 'gurmukhi-overflow', supportRoles: [] })
+
+    let supportError: unknown
+    try {
+      layoutShareHighlightStory([{
+        id: 'atomic-meaning',
+        gurmukhi: 'ਸਤਿ ਨਾਮੁ ॥',
+        meaning: 'Complete translation '.repeat(1_000).trim(),
+      }], measureByCharacter)
+    } catch (error) {
+      supportError = error
+    }
+    expect(supportError).toBeInstanceOf(ShareHighlightContentOverflowError)
+    expect(supportError).toMatchObject({ reason: 'support-overflow', supportRoles: ['meaning'] })
   })
 
   it('uses expressive art for a short reading and a manuscript for a long reading', () => {
@@ -708,7 +1029,7 @@ describe('single-frame full-passage Story layout', () => {
       'gurmukhi', 'meaning', 'gurmukhi', 'meaning',
     ])
     expect(short.fit.fontSizes.gurmukhi).toBeGreaterThanOrEqual(42)
-    expect(short.fit.fontSizes.meaning).toBeGreaterThanOrEqual(30)
+    expect(short.fit.fontSizes.meaning).toBeGreaterThanOrEqual(32)
     expect(short.artworkMode).toBe('portrait-bleed')
     expect(short.readingSurface.height).toBeLessThan(SHARE_HIGHLIGHT_STORY_HEIGHT * 0.35)
     expect(short.readingSurface.y).toBeGreaterThanOrEqual(318)
@@ -750,11 +1071,8 @@ describe('single-frame full-passage Story layout', () => {
     expect(layout.body.y + layout.body.height).toBeLessThanOrEqual(1712)
   })
 
-  it('uses the same proportional full-height sheet for a compact long reading', () => {
-    const compactLongReading = Array.from({ length: 10 }, (_, index) => ({
-      id: index,
-      gurmukhi: `ਚਰਨ ਕਮਲ ਕੀ ਓਟ ਉਧਰੇ ਸਗਲ ਜਨ ॥ ${index + 1}`,
-    }))
+  it('uses the proportional full-height sheet when measured copy needs it', () => {
+    const compactLongReading = fourteenLineGurmukhiOnly
     const layout = layoutShareHighlightStory(compactLongReading, measureByCharacter, 'light', {
       mode: 'portrait-bleed',
     })
@@ -805,20 +1123,11 @@ describe('single-frame full-passage Story layout', () => {
     expect(headerVerseGap).toBeLessThan(beforeHeaderGap)
   })
 
-  it('lays each source line as its own ordered Gurmukhi and optional support sequence', () => {
-    const layout = layoutShareHighlightStory([
+  it('rejects an ambiguous request for two reading supports instead of dropping either one', () => {
+    expect(() => layoutShareHighlightStory([
       { id: 1, gurmukhi: 'ਪਹਿਲੀ ਪੰਕਤੀ', transliteration: 'first line', meaning: 'First meaning.' },
       { id: 2, gurmukhi: 'ਦੂਜੀ ਪੰਕਤੀ', transliteration: 'second line', meaning: 'Second meaning.' },
-    ], measureByCharacter)
-
-    expect(layout.sections.map(section => section.role)).toEqual([
-      'gurmukhi', 'transliteration', 'meaning',
-      'gurmukhi', 'transliteration', 'meaning',
-    ])
-    expect(layout.sections.map(section => section.sourceLineId)).toEqual([1, 1, 1, 2, 2, 2])
-    expect(layout.sections.every((section, index) => (
-      index === 0 || section.y > layout.sections[index - 1]!.y
-    ))).toBe(true)
+    ], measureByCharacter)).toThrow(/either transliteration or meaning, but not both/i)
   })
 })
 
@@ -936,11 +1245,19 @@ describe('Canvas rendering and export', () => {
     expect(result.file.type).toBe('image/png')
     expect(result.width).toBe(SHARE_HIGHLIGHT_STORY_WIDTH)
     expect(result.height).toBe(SHARE_HIGHLIGHT_STORY_HEIGHT)
+    expect(result.layout.body.height).toBe(1192)
+    expect(result.layout.selection.mode).toBe('complete')
+    expect(result.selection).toBe(result.layout.selection)
+    expect(result.selection.includedLineCount).toBe(passageInput.content.lines.length)
+    expect(result.selection.totalLineCount).toBe(passageInput.content.lines.length)
+    expect(result.selection.includedSourceLineIds).toEqual(
+      passageInput.content.lines.map(line => line.id)
+    )
     expect(environment.canvas.width).toBe(1080)
     expect(environment.canvas.height).toBe(1920)
-    expect(environment.options.loadImage).not.toHaveBeenCalled()
+    expect(environment.options.loadImage).toHaveBeenCalledWith('/test-art.png')
     expect(environment.fontSet.load).toHaveBeenCalledTimes(5)
-    expect(environment.context.drawImage).not.toHaveBeenCalled()
+    expect(environment.context.drawImage).toHaveBeenCalled()
     expect(environment.drawnText).toContain("Today's Hukamnama")
     expect(environment.drawnText).toContain('July 15, 2026')
     expect(environment.drawnText).toContain(passageInput.content.sourceLabel)
@@ -957,7 +1274,116 @@ describe('Canvas rendering and export', () => {
     expect(safeMetadata.every(call => call.fontSize >= 23)).toBe(true)
   })
 
-  it('renders the complete Ang 683 reading as full-width paired lines on one canvas', async () => {
+  it('exports adaptive excerpt coverage and anchor metadata with the PNG', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const anchorLineId = 'overflow-11'
+    const anchoredLines = fortyTwoLineBilingualReading.map((line, index) => ({
+      ...line,
+      gurmukhi: `${line.gurmukhi} ${index + 1}`,
+      meaning: `${line.meaning} ${index + 1}`,
+    }))
+    const result = await exportShareHighlightStoryPng({
+      ...passageInput,
+      artwork: null,
+      content: {
+        ...passageInput.content,
+        lines: anchoredLines,
+        anchorLineId,
+      },
+    }, environment.options)
+
+    expect(result.selection).toBe(result.layout.selection)
+    expect(result.selection).toMatchObject({
+      mode: 'excerpt',
+      anchorSourceLineId: anchorLineId,
+      firstSourceLineId: anchorLineId,
+      totalLineCount: 42,
+    })
+    expect(result.selection.includedLineCount).toBeGreaterThan(0)
+    expect(result.selection.includedLineCount).toBeLessThan(32)
+    expect(result.layout.sourceLineIds).toEqual(result.selection.includedSourceLineIds)
+    expect(result.selection.includedSourceLineIds[0]).toBe(anchorLineId)
+    expect(environment.options.loadImage).not.toHaveBeenCalled()
+
+    const firstIncluded = anchoredLines[10]!
+    expect(environment.drawnText).toContain(firstIncluded.gurmukhi)
+    expect(environment.drawnText).toContain(firstIncluded.meaning)
+    if (result.selection.nextSourceLineId) {
+      const firstExcluded = anchoredLines.find(
+        line => line.id === result.selection.nextSourceLineId
+      )!
+      expect(environment.drawnText).not.toContain(firstExcluded.gurmukhi)
+      expect(environment.drawnText).not.toContain(firstExcluded.meaning)
+    }
+  })
+
+  it('prints truthful excerpt scope, support credit, and a scannable exact-reading QR footer', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const result = await exportShareHighlightStoryPng({
+      ...passageInput,
+      artwork: null,
+      content: {
+        ...passageInput.content,
+        lines: fortyTwoLineBilingualReading,
+        shareUrl: 'https://naamras.xyz/h/2026-07-15',
+        supportLabel: 'English · Standard',
+        scopeCopy: {
+          complete: 'Complete Hukamnama',
+          excerpt: 'Opening excerpt',
+          coverageTemplate: '{included} of {total} lines',
+          readComplete: 'Read the complete Hukamnama',
+          openInNaamras: 'Open in NaamRas',
+        },
+      },
+    }, environment.options)
+
+    expect(result.selection.mode).toBe('excerpt')
+    expect(result.layout.body.height).toBe(1238)
+    expect(environment.drawnText).toContain(
+      `Opening excerpt · ${result.selection.includedLineCount} of 42 lines`
+    )
+    expect(environment.drawnText).toContain('English · Standard')
+    expect(environment.drawnText).toContain('Read the complete Hukamnama')
+    expect(environment.drawnText).toContain('naamras.xyz/h/2026-07-15')
+    expect(environment.context.fillRect).toHaveBeenCalledWith(64, 1532, 952, 2)
+
+    const qrModuleCalls = environment.context.fillRect.mock.calls.filter(([, , width, height]) => (
+      width === height && width >= 3 && width <= 4
+    ))
+    expect(qrModuleCalls.length).toBeGreaterThan(100)
+    const qrRectLeft = SHARE_HIGHLIGHT_STORY_WIDTH
+      - 72
+      - SHARE_HIGHLIGHT_QR_RENDER_SIZE
+    const qrRectTop = 1712 - SHARE_HIGHLIGHT_QR_RENDER_SIZE
+    expect(qrModuleCalls.every(([x, y, width, height]) => (
+      x >= qrRectLeft
+      && y >= qrRectTop
+      && x + width <= SHARE_HIGHLIGHT_STORY_WIDTH - 72
+      && y + height <= 1712
+    ))).toBe(true)
+  })
+
+  it('prints every search parameter when a linked footer receives a query URL', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const shareUrl = 'https://naamras.xyz/study?shabadId=50&flow=ardaas-hukamnama'
+    const result = await exportShareHighlightStoryPng({
+      ...passageInput,
+      content: {
+        ...passageInput.content,
+        shareUrl,
+      },
+    }, environment.options)
+
+    expect(result.layout).toMatchObject({
+      composition: 'expressive',
+      body: { height: 1160 },
+    })
+    expect(environment.drawnText).toContain(
+      'naamras.xyz/study?shabadId=50&flow=ardaas-hukamnama'
+    )
+  })
+
+  it('renders the readable Ang 683 excerpt as full-width paired lines on one canvas', async () => {
     const environment = makeFakeRendererEnvironment()
     const expectedLayout = layoutShareHighlightStory(
       july18Ang683Reading,
@@ -980,8 +1406,13 @@ describe('Canvas rendering and export', () => {
     expect(environment.context.stroke).toHaveBeenCalledTimes(3)
     expect(environment.context.fillRect).toHaveBeenCalledWith(64, 258, 952, 2)
     expect(environment.context.fillRect).toHaveBeenCalledWith(64, 1658, 952, 2)
+    const includedLines = july18Ang683Reading.slice(
+      0,
+      expectedLayout.selection.includedLineCount
+    )
+    expect(expectedLayout.selection.mode).toBe('excerpt')
     expect(expectedLayout.sections.map(section => section.role)).toEqual(
-      july18Ang683Reading.flatMap(() => ['gurmukhi', 'meaning'])
+      includedLines.flatMap(() => ['gurmukhi', 'meaning'])
     )
 
     const title = environment.drawnTextCalls.find(call => call.text === "Today's Hukamnama")
@@ -1006,10 +1437,14 @@ describe('Canvas rendering and export', () => {
     expect(meaning).toMatchObject({ fontWeight: 400 })
 
     const renderedText = environment.drawnText.join(' ')
-    for (const line of july18Ang683Reading) {
+    for (const line of includedLines) {
       expect(renderedText).toContain(line.gurmukhi)
       expect(renderedText).toContain(line.meaning)
     }
+    const firstExcluded = july18Ang683Reading[expectedLayout.selection.includedLineCount]
+    expect(firstExcluded).toBeDefined()
+    expect(renderedText).not.toContain(firstExcluded!.gurmukhi)
+    expect(renderedText).not.toContain(firstExcluded!.meaning)
     expect(renderedText).not.toMatch(/…|\.\.\./)
   })
 
@@ -1086,6 +1521,16 @@ describe('Canvas rendering and export', () => {
         },
       },
     }))
+    const expectedLayout = layoutShareHighlightStory(
+      july18Ang683Reading,
+      measureStoryByCharacter,
+      'light'
+    )
+    const includedLines = july18Ang683Reading.slice(
+      0,
+      expectedLayout.selection.includedLineCount
+    )
+    const firstExcluded = july18Ang683Reading[expectedLayout.selection.includedLineCount]
 
     for (const artwork of artworks) {
       const environment = makeFakeRendererEnvironment()
@@ -1103,10 +1548,14 @@ describe('Canvas rendering and export', () => {
       expect(environment.options.loadImage).not.toHaveBeenCalled()
       expect(environment.context.drawImage).not.toHaveBeenCalled()
       const renderedText = environment.drawnText.join(' ')
-      expect(renderedText).toContain(july18Ang683Reading[0].gurmukhi)
-      expect(renderedText).toContain(july18Ang683Reading[0].meaning)
-      expect(renderedText).toContain(july18Ang683Reading.at(-1)!.gurmukhi)
-      expect(renderedText).toContain(july18Ang683Reading.at(-1)!.meaning)
+      expect(renderedText).toContain(includedLines[0]!.gurmukhi)
+      expect(renderedText).toContain(includedLines[0]!.meaning)
+      expect(renderedText).toContain(includedLines.at(-1)!.gurmukhi)
+      expect(renderedText).toContain(includedLines.at(-1)!.meaning)
+      if (firstExcluded) {
+        expect(renderedText).not.toContain(firstExcluded.gurmukhi)
+        expect(renderedText).not.toContain(firstExcluded.meaning)
+      }
     }
   })
 

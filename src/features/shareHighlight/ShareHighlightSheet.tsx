@@ -7,10 +7,9 @@ import { focusElementWithoutAppScroll } from '../../utils/appScroll'
 import {
   exportShareHighlightPng,
   exportShareHighlightStoryPng,
-  ShareHighlightContentOverflowError,
 } from './renderer'
 import { copyShareHighlightText, downloadShareHighlightFile, shareHighlightFile } from './share'
-import { getCanonicalSourceUrl } from './sourceUrl'
+import { getCanonicalSourceUrl, getHukamnamaShareUrl } from './sourceUrl'
 import type {
   ShareHighlightArtwork,
   ShareHighlightCardInput,
@@ -18,6 +17,8 @@ import type {
   ShareHighlightPassageLine,
   ShareHighlightPngExport,
   ShareHighlightStoryPngExport,
+  ShareHighlightStoryScopeCopy,
+  ShareHighlightStorySelection,
   ShareHighlightTextPosition,
 } from './types'
 import { SHARE_HIGHLIGHT_CARD_HEIGHT, SHARE_HIGHLIGHT_STORY_HEIGHT } from './types'
@@ -25,10 +26,8 @@ import './ShareHighlightSheet.css'
 
 const NO_ARTWORK_ID = 'none'
 const SOCIAL_NOTE_LIMIT = 280
-const EXPRESSIVE_PASSAGE_LIMIT = 8
 const RENDER_DEBOUNCE_MS = 90
 const SHARE_ACTION_TIMEOUT_MS = 45_000
-type PassageSupport = 'transliteration' | 'meaning'
 
 export interface ShareHighlightContent {
   gurmukhi: string
@@ -42,16 +41,21 @@ export interface ShareHighlightContent {
   initialShowMeaning?: boolean
   /** Ordered, line-safe content for a full Hukamnama or other long passage. */
   passageLines?: ShareHighlightPassageLine[]
+  /** Distinguishes a dated daily Hukamnama from one received after Ardaas. */
+  passageKind?: 'daily-hukamnama' | 'personal-hukamnama'
   seriesLabel?: string
   dateLabel?: string
   /** App-relative route that reopens this exact passage. Defaults to the current route. */
   sourcePath?: string
+  /** Optional compact app-relative route that redirects to `sourcePath`. */
+  sharePath?: string
   provenance?: {
     ceremonyLocation?: string
     scripture?: string
     raag?: string
     writer?: string
     translationLabel?: string
+    translationLanguage?: 'en' | 'pa' | 'hi'
     dateIso?: string
   }
 }
@@ -96,10 +100,21 @@ interface ShareHighlightSheetCopy {
   socialPlaceholder: string
   selectedExcerpt: string
   passagePreface: string
+  personalPassagePreface: string
   passageTitle: string
   passageTextLayersHelp: string
   quietPassageArtworkNote: string
-  passageSupportOverflow: (support: PassageSupport) => string
+  passageComplete: string
+  passageExcerpt: string
+  personalPassageExcerpt: string
+  passageImageCoverage: (included: number, total: number) => string
+  passageFullTextFollows: string
+  changePassage: string
+  previousPassage: string
+  nextPassage: string
+  passageNavigationHelp: string
+  storyScopeCopy: ShareHighlightStoryScopeCopy
+  personalStoryScopeCopy: ShareHighlightStoryScopeCopy
   preparingBilingual: string
   bilingualReady: string
   passageShareTitle: string
@@ -110,6 +125,8 @@ interface ShareHighlightSheetCopy {
   reflectionLabel: string
   imageTextAlternative: string
   completeImageNote: string
+  excerptImageNote: string
+  personalExcerptImageNote: string
   readOnline: string
   raagCredit: (value: string) => string
   writerCredit: (value: string) => string
@@ -167,13 +184,34 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     socialNoteHelp: 'Included with Share and copied text, but never printed on the image or mixed with Gurbani.',
     socialPlaceholder: 'Add a short reflection…',
     selectedExcerpt: 'This card contains only the Gurmukhi words you selected.',
-    passagePreface: 'Share the full Hukamnama',
+    passagePreface: "Share today's Hukamnama",
+    personalPassagePreface: 'Share this personal Hukamnama',
     passageTitle: 'Create a Story image',
-    passageTextLayersHelp: 'Gurmukhi is always included. Meaning places each complete English translation directly below its matching Gurbani line. Choose Transliteration instead for pronunciation.',
-    quietPassageArtworkNote: 'Long Hukamnamas use a quiet manuscript background so the complete reading stays balanced and legible.',
-    passageSupportOverflow: support => support === 'meaning'
-      ? 'Meaning is too long to fit readably on one Story. Showing Gurmukhi only — the full translation is still available in Copy full text.'
-      : 'Transliteration is too long to fit readably on one Story. Showing Gurmukhi only — the full transliteration is still available in Copy full text.',
+    passageTextLayersHelp: 'Gurmukhi is always included. Meaning places each complete selected translation directly below its matching Gurbani line. Choose Transliteration instead for pronunciation.',
+    quietPassageArtworkNote: 'Long Hukamnamas use a quiet manuscript background so the selected passage stays balanced and legible.',
+    passageComplete: 'Complete Hukamnama',
+    passageExcerpt: "Excerpt from today's Hukamnama",
+    personalPassageExcerpt: 'Personal Hukamnama excerpt',
+    passageImageCoverage: (included, total) => `${included} of ${total} lines in this image`,
+    passageFullTextFollows: 'The complete Hukamnama text follows.',
+    changePassage: 'Change passage',
+    previousPassage: 'Previous passage',
+    nextPassage: 'Next passage',
+    passageNavigationHelp: 'Choose another contiguous passage. Copy full text always includes the complete Hukamnama.',
+    storyScopeCopy: {
+      complete: 'Complete Hukamnama',
+      excerpt: "Excerpt from today's Hukamnama",
+      coverageTemplate: '{included} of {total} lines',
+      readComplete: 'Read complete Hukamnama',
+      openInNaamras: 'Open in NaamRas',
+    },
+    personalStoryScopeCopy: {
+      complete: 'Complete Hukamnama',
+      excerpt: 'Personal Hukamnama excerpt',
+      coverageTemplate: '{included} of {total} lines',
+      readComplete: 'Read complete Hukamnama',
+      openInNaamras: 'Open in NaamRas',
+    },
     preparingBilingual: 'Preparing bilingual Story…',
     bilingualReady: 'Bilingual Story ready.',
     passageShareTitle: 'Hukamnama from NaamRas',
@@ -182,12 +220,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     copyText: 'Copy text',
     copyFullText: 'Copy full text',
     reflectionLabel: 'Personal reflection',
-    imageTextAlternative: 'Complete text shown in the image',
-    completeImageNote: 'The attached image contains the complete Hukamnama in Gurmukhi.',
+    imageTextAlternative: 'Text shown in the image',
+    completeImageNote: 'The attached image contains the complete Hukamnama.',
+    excerptImageNote: "The attached image contains an excerpt from today's Hukamnama.",
+    personalExcerptImageNote: 'The attached image contains an excerpt from this personal Hukamnama.',
     readOnline: 'Read this exact passage on NaamRas',
     raagCredit: value => `Raag: ${value}`,
     writerCredit: value => `Writer: ${value}`,
-    translationCredit: value => `English translation: ${value}`,
+    translationCredit: value => `Translation: ${value}`,
     previewSummary: (kind, layers) => `${kind === 'passage' ? 'Hukamnama Story' : 'Gurbani card'} preview. Includes ${layers}`,
     supportCoverage: (available, total) => `${available} of ${total} lines available`,
     preparing: 'Preparing image…',
@@ -239,13 +279,34 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     socialNoteHelp: 'ਇਹ ਸਾਂਝਾ ਕਰਨ ਅਤੇ ਕਾਪੀ ਲਿਖਤ ਨਾਲ ਜਾਂਦਾ ਹੈ, ਪਰ ਤਸਵੀਰ ਉੱਤੇ ਨਹੀਂ ਲਿਖਿਆ ਜਾਂਦਾ ਅਤੇ ਗੁਰਬਾਣੀ ਨਾਲ ਨਹੀਂ ਮਿਲਾਇਆ ਜਾਂਦਾ।',
     socialPlaceholder: 'ਛੋਟਾ ਵਿਚਾਰ ਲਿਖੋ…',
     selectedExcerpt: 'ਇਸ ਕਾਰਡ ਵਿੱਚ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਚੁਣੇ ਗੁਰਮੁਖੀ ਸ਼ਬਦ ਹਨ।',
-    passagePreface: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
+    passagePreface: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
+    personalPassagePreface: 'ਇਹ ਨਿੱਜੀ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
     passageTitle: 'ਸਟੋਰੀ ਤਸਵੀਰ ਬਣਾਓ',
-    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਅਰਥ ਹਰ ਗੁਰਬਾਣੀ ਪੰਕਤੀ ਦੇ ਬਿਲਕੁਲ ਹੇਠਾਂ ਉਸ ਦਾ ਪੂਰਾ ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ ਦਿਖਾਉਂਦਾ ਹੈ। ਉਚਾਰਨ ਲਈ ਇਸ ਦੀ ਥਾਂ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
-    quietPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਲਈ ਸਾਦਾ ਹੱਥ-ਲਿਖਤ ਪਿਛੋਕੜ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਜੋ ਪੂਰਾ ਪਾਠ ਸੰਤੁਲਿਤ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹੇ।',
-    passageSupportOverflow: support => support === 'meaning'
-      ? 'ਅਰਥ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮੇ ਹਨ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਅਨੁਵਾਦ “ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।'
-      : 'ਲਿਪੀਅੰਤਰਨ ਇੱਕ ਸਟੋਰੀ ਉੱਤੇ ਪੜ੍ਹਨਯੋਗ ਢੰਗ ਨਾਲ ਫਿੱਟ ਹੋਣ ਲਈ ਬਹੁਤ ਲੰਮਾ ਹੈ। ਸਿਰਫ਼ ਗੁਰਮੁਖੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ — ਪੂਰਾ ਲਿਪੀਅੰਤਰਨ “ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਉਪਲਬਧ ਹੈ।',
+    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਅਰਥ ਹਰ ਗੁਰਬਾਣੀ ਪੰਕਤੀ ਦੇ ਬਿਲਕੁਲ ਹੇਠਾਂ ਉਸ ਦਾ ਪੂਰਾ ਚੁਣਿਆ ਅਨੁਵਾਦ ਦਿਖਾਉਂਦਾ ਹੈ। ਉਚਾਰਨ ਲਈ ਇਸ ਦੀ ਥਾਂ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
+    quietPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਲਈ ਸਾਦਾ ਹੱਥ-ਲਿਖਤ ਪਿਛੋਕੜ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਜੋ ਚੁਣਿਆ ਪਾਠ ਸੰਤੁਲਿਤ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹੇ।',
+    passageComplete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
+    passageExcerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
+    personalPassageExcerpt: 'ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
+    passageImageCoverage: (included, total) => `${total} ਵਿੱਚੋਂ ${included} ਪੰਕਤੀਆਂ ਇਸ ਤਸਵੀਰ ਵਿੱਚ`,
+    passageFullTextFollows: 'ਪੂਰੇ ਹੁਕਮਨਾਮੇ ਦੀ ਲਿਖਤ ਹੇਠਾਂ ਹੈ।',
+    changePassage: 'ਅੰਸ਼ ਬਦਲੋ',
+    previousPassage: 'ਪਿਛਲਾ ਅੰਸ਼',
+    nextPassage: 'ਅਗਲਾ ਅੰਸ਼',
+    passageNavigationHelp: 'ਨਾਲ ਲੱਗਦਾ ਹੋਰ ਅੰਸ਼ ਚੁਣੋ। “ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਹਮੇਸ਼ਾ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਹੁੰਦਾ ਹੈ।',
+    storyScopeCopy: {
+      complete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
+      excerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
+      coverageTemplate: '{total} ਵਿੱਚੋਂ {included} ਪੰਕਤੀਆਂ',
+      readComplete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਪੜ੍ਹੋ',
+      openInNaamras: 'ਨਾਮਰਸ ਵਿੱਚ ਖੋਲ੍ਹੋ',
+    },
+    personalStoryScopeCopy: {
+      complete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
+      excerpt: 'ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
+      coverageTemplate: '{total} ਵਿੱਚੋਂ {included} ਪੰਕਤੀਆਂ',
+      readComplete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਪੜ੍ਹੋ',
+      openInNaamras: 'ਨਾਮਰਸ ਵਿੱਚ ਖੋਲ੍ਹੋ',
+    },
     preparingBilingual: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
     bilingualReady: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੈ।',
     passageShareTitle: 'ਨਾਮਰਸ ਤੋਂ ਹੁਕਮਨਾਮਾ',
@@ -254,12 +315,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     copyText: 'ਲਿਖਤ ਕਾਪੀ ਕਰੋ',
     copyFullText: 'ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ',
     reflectionLabel: 'ਨਿੱਜੀ ਵਿਚਾਰ',
-    imageTextAlternative: 'ਤਸਵੀਰ ਵਿੱਚ ਦਿਖਾਈ ਪੂਰੀ ਲਿਖਤ',
-    completeImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਗੁਰਮੁਖੀ ਵਿੱਚ ਹੈ।',
+    imageTextAlternative: 'ਤਸਵੀਰ ਵਿੱਚ ਦਿਖਾਈ ਲਿਖਤ',
+    completeImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਹੈ।',
+    excerptImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਇੱਕ ਅੰਸ਼ ਹੈ।',
+    personalExcerptImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਇੱਕ ਅੰਸ਼ ਹੈ।',
     readOnline: 'ਨਾਮਰਸ ਉੱਤੇ ਇਹੀ ਪਾਠ ਪੜ੍ਹੋ',
     raagCredit: value => `ਰਾਗ: ${value}`,
     writerCredit: value => `ਰਚਨਾਕਾਰ: ${value}`,
-    translationCredit: value => `ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ: ${value}`,
+    translationCredit: value => `ਅਨੁਵਾਦ: ${value}`,
     previewSummary: (kind, layers) => `${kind === 'passage' ? 'ਹੁਕਮਨਾਮਾ ਸਟੋਰੀ' : 'ਗੁਰਬਾਣੀ ਕਾਰਡ'} ਦੀ ਝਲਕ। ਇਸ ਵਿੱਚ ${layers} ਸ਼ਾਮਲ ਹੈ`,
     supportCoverage: (available, total) => `${total} ਵਿੱਚੋਂ ${available} ਪੰਕਤੀਆਂ ਉਪਲਬਧ`,
     preparing: 'ਤਸਵੀਰ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
@@ -311,13 +374,34 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     socialNoteHelp: 'यह शेयर और कॉपी किए पाठ के साथ जाता है, पर छवि पर नहीं छपता और गुरबाणी में नहीं मिलता।',
     socialPlaceholder: 'एक छोटा विचार लिखें…',
     selectedExcerpt: 'इस कार्ड में केवल आपके चुने हुए गुरमुखी शब्द हैं।',
-    passagePreface: 'पूरा हुकमनामा साझा करें',
+    passagePreface: 'आज का हुकमनामा साझा करें',
+    personalPassagePreface: 'यह व्यक्तिगत हुकमनामा साझा करें',
     passageTitle: 'स्टोरी छवि बनाएँ',
-    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। अर्थ हर गुरबाणी पंक्ति के ठीक नीचे उसका पूरा अंग्रेज़ी अनुवाद दिखाता है। उच्चारण के लिए इसकी जगह लिप्यंतरण चुनें।',
-    quietPassageArtworkNote: 'लंबे हुकमनामों में शांत पांडुलिपि पृष्ठभूमि रहती है, ताकि पूरा पाठ संतुलित और पढ़ने योग्य रहे।',
-    passageSupportOverflow: support => support === 'meaning'
-      ? 'अर्थ एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा अनुवाद “पूरा पाठ कॉपी करें” में उपलब्ध है।'
-      : 'लिप्यंतरण एक स्टोरी पर पढ़ने योग्य रूप में फिट होने के लिए बहुत लंबा है। केवल गुरमुखी दिखाई जा रही है — पूरा लिप्यंतरण “पूरा पाठ कॉपी करें” में उपलब्ध है।',
+    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। अर्थ हर गुरबाणी पंक्ति के ठीक नीचे उसका पूरा चुना हुआ अनुवाद दिखाता है। उच्चारण के लिए इसकी जगह लिप्यंतरण चुनें।',
+    quietPassageArtworkNote: 'लंबे हुकमनामों में शांत पांडुलिपि पृष्ठभूमि रहती है, ताकि चुना हुआ अंश संतुलित और पढ़ने योग्य रहे।',
+    passageComplete: 'पूरा हुकमनामा',
+    passageExcerpt: 'आज के हुकमनामे का अंश',
+    personalPassageExcerpt: 'व्यक्तिगत हुकमनामे का अंश',
+    passageImageCoverage: (included, total) => `${total} में से ${included} पंक्तियाँ इस छवि में`,
+    passageFullTextFollows: 'पूरा हुकमनामा पाठ नीचे है।',
+    changePassage: 'अंश बदलें',
+    previousPassage: 'पिछला अंश',
+    nextPassage: 'अगला अंश',
+    passageNavigationHelp: 'साथ वाला दूसरा अंश चुनें। “पूरा पाठ कॉपी करें” में हमेशा पूरा हुकमनामा होता है।',
+    storyScopeCopy: {
+      complete: 'पूरा हुकमनामा',
+      excerpt: 'आज के हुकमनामे का अंश',
+      coverageTemplate: '{total} में से {included} पंक्तियाँ',
+      readComplete: 'पूरा हुकमनामा पढ़ें',
+      openInNaamras: 'नामरस में खोलें',
+    },
+    personalStoryScopeCopy: {
+      complete: 'पूरा हुकमनामा',
+      excerpt: 'व्यक्तिगत हुकमनामे का अंश',
+      coverageTemplate: '{total} में से {included} पंक्तियाँ',
+      readComplete: 'पूरा हुकमनामा पढ़ें',
+      openInNaamras: 'नामरस में खोलें',
+    },
     preparingBilingual: 'द्विभाषी स्टोरी तैयार हो रही है…',
     bilingualReady: 'द्विभाषी स्टोरी तैयार है।',
     passageShareTitle: 'नामरस से हुकमनामा',
@@ -326,12 +410,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     copyText: 'पाठ कॉपी करें',
     copyFullText: 'पूरा पाठ कॉपी करें',
     reflectionLabel: 'व्यक्तिगत विचार',
-    imageTextAlternative: 'छवि में दिखाया गया पूरा पाठ',
-    completeImageNote: 'संलग्न छवि में पूरा हुकमनामा गुरमुखी में है।',
+    imageTextAlternative: 'छवि में दिखाया गया पाठ',
+    completeImageNote: 'संलग्न छवि में पूरा हुकमनामा है।',
+    excerptImageNote: 'संलग्न छवि में आज के हुकमनामे का एक अंश है।',
+    personalExcerptImageNote: 'संलग्न छवि में व्यक्तिगत हुकमनामे का एक अंश है।',
     readOnline: 'नामरस पर यही पाठ पढ़ें',
     raagCredit: value => `राग: ${value}`,
     writerCredit: value => `रचनाकार: ${value}`,
-    translationCredit: value => `अंग्रेज़ी अनुवाद: ${value}`,
+    translationCredit: value => `अनुवाद: ${value}`,
     previewSummary: (kind, layers) => `${kind === 'passage' ? 'हुकमनामा स्टोरी' : 'गुरबाणी कार्ड'} का पूर्वावलोकन। इसमें ${layers} शामिल है`,
     supportCoverage: (available, total) => `${total} में से ${available} पंक्तियाँ उपलब्ध`,
     preparing: 'छवि तैयार हो रही है…',
@@ -438,6 +524,41 @@ function getProvenanceLines(content: ShareHighlightContent, copy: ShareHighlight
   ].filter(Boolean)
 }
 
+function getPassagePresentationCopy(
+  content: ShareHighlightContent,
+  copy: ShareHighlightSheetCopy,
+) {
+  const isPersonal = content.passageKind === 'personal-hukamnama'
+  return {
+    preface: isPersonal ? copy.personalPassagePreface : copy.passagePreface,
+    excerpt: isPersonal ? copy.personalPassageExcerpt : copy.passageExcerpt,
+    excerptImageNote: isPersonal ? copy.personalExcerptImageNote : copy.excerptImageNote,
+    storyScopeCopy: isPersonal ? copy.personalStoryScopeCopy : copy.storyScopeCopy,
+  }
+}
+
+function getPassageStatusLines(
+  selection: ShareHighlightStorySelection,
+  content: ShareHighlightContent,
+  copy: ShareHighlightSheetCopy,
+) {
+  const passageCopy = getPassagePresentationCopy(content, copy)
+  return [
+    selection.mode === 'complete' ? copy.passageComplete : passageCopy.excerpt,
+    copy.passageImageCoverage(selection.includedLineCount, selection.totalLineCount),
+  ]
+}
+
+function getPassageImageLines(
+  content: ShareHighlightContent,
+  selection?: ShareHighlightStorySelection | null,
+) {
+  const sourceLines = content.passageLines?.filter(line => line.gurmukhi.trim()) ?? []
+  if (!selection) return sourceLines
+  const includedIds = new Set(selection.includedSourceLineIds)
+  return sourceLines.filter(line => includedIds.has(line.id))
+}
+
 function buildCopiedText(
   content: ShareHighlightContent,
   showTransliteration: boolean,
@@ -445,6 +566,7 @@ function buildCopiedText(
   socialNote: string,
   sourceUrl: string,
   copy: ShareHighlightSheetCopy,
+  passageSelection?: ShareHighlightStorySelection | null,
 ) {
   const passageText = content.passageLines?.length
     ? content.passageLines.flatMap(line => [
@@ -458,6 +580,8 @@ function buildCopiedText(
     socialNote.trim() ? `${copy.reflectionLabel}:\n${socialNote.trim()}\n——` : '',
     content.seriesLabel?.trim(),
     content.dateLabel?.trim(),
+    passageSelection ? getPassageStatusLines(passageSelection, content, copy).join(' · ') : '',
+    passageSelection?.mode === 'excerpt' ? copy.passageFullTextFollows : '',
     passageText || content.gurmukhi.trim(),
     passageText ? '' : (showTransliteration ? content.transliteration?.trim() : ''),
     passageText ? '' : (showMeaning ? content.meaning?.trim() : ''),
@@ -472,9 +596,10 @@ function buildShareCompanionText(
   socialNote: string,
   sourceUrl: string,
   copy: ShareHighlightSheetCopy,
+  passageSelection?: ShareHighlightStorySelection | null,
 ) {
   const lines = (content.passageLines?.length
-    ? content.passageLines.map(line => line.gurmukhi)
+    ? getPassageImageLines(content, passageSelection).map(line => line.gurmukhi)
     : content.gurmukhi.split('\n'))
     .map(line => line.trim())
     .filter(Boolean)
@@ -485,8 +610,13 @@ function buildShareCompanionText(
     socialNote.trim() ? `${copy.reflectionLabel}:\n${socialNote.trim()}\n——` : '',
     content.seriesLabel?.trim(),
     content.dateLabel?.trim(),
+    passageSelection ? getPassageStatusLines(passageSelection, content, copy).join(' · ') : '',
     excerpt ? `${excerpt}${hasMore ? '\n…' : ''}` : '',
-    content.passageLines?.length ? copy.completeImageNote : '',
+    passageSelection
+      ? passageSelection.mode === 'complete'
+        ? copy.completeImageNote
+        : getPassagePresentationCopy(content, copy).excerptImageNote
+      : '',
     `— ${content.sourceLabel.trim()}`,
     ...getProvenanceLines(content, copy),
     `${copy.readOnline}: ${sourceUrl}`,
@@ -513,6 +643,12 @@ export default function ShareHighlightSheet({
   onNotice,
 }: ShareHighlightSheetProps) {
   const copy = SHEET_COPY[locale]
+  const passageCopy = getPassagePresentationCopy(content, copy)
+  const meaningLanguage = content.provenance?.translationLanguage === 'pa'
+    ? 'pa-Guru'
+    : content.provenance?.translationLanguage === 'hi'
+      ? 'hi'
+      : 'en'
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const renderSequenceRef = useRef(0)
   const busyActionRef = useRef<'share' | 'save' | 'copy' | null>(null)
@@ -526,19 +662,39 @@ export default function ShareHighlightSheet({
   const previewDescriptionId = useId()
   const previewTextAlternativeId = useId()
   const sourceUrl = useMemo(
-    () => getCanonicalSourceUrl(content.sourcePath),
-    [content.sourcePath],
+    () => {
+      const exactSourceUrl = getCanonicalSourceUrl(content.sourcePath)
+      const compactSourceUrl = content.sharePath?.trim()
+        ? getCanonicalSourceUrl(content.sharePath)
+        : exactSourceUrl
+      return content.passageLines?.length && content.provenance?.dateIso
+        ? getHukamnamaShareUrl(content.provenance.dateIso) ?? exactSourceUrl
+        : compactSourceUrl
+    },
+    [
+      content.passageLines?.length,
+      content.provenance?.dateIso,
+      content.sharePath,
+      content.sourcePath,
+    ],
   )
   const passageLines = useMemo(
     () => content.passageLines?.filter(line => line.gurmukhi.trim()) ?? [],
     [content.passageLines]
   )
   const isPassage = passageLines.length > 0
-  const passageLineCount = passageLines.length
-  const passageTransliterationCount = passageLines.filter(line => Boolean(line.transliteration?.trim())).length
-  const passageMeaningCount = passageLines.filter(line => Boolean(line.meaning?.trim())).length
-  const hasCompletePassageTransliteration = isPassage && passageTransliterationCount === passageLineCount
-  const hasCompletePassageMeaning = isPassage && passageMeaningCount === passageLineCount
+  const passageSupportLines = passageLines.filter(line => !line.isHeader)
+  const passageSupportLineCount = passageSupportLines.length
+  const passageTransliterationCount = passageSupportLines.filter(line => Boolean(line.transliteration?.trim())).length
+  const passageMeaningCount = passageSupportLines.filter(line => Boolean(line.meaning?.trim())).length
+  const hasCompletePassageTransliteration = (
+    passageSupportLineCount > 0
+    && passageTransliterationCount === passageSupportLineCount
+  )
+  const hasCompletePassageMeaning = (
+    passageSupportLineCount > 0
+    && passageMeaningCount === passageSupportLineCount
+  )
   const initiallyShowPassageMeaning = (
     hasCompletePassageMeaning
     && !content.selectedExcerpt
@@ -549,10 +705,6 @@ export default function ShareHighlightSheet({
     && !content.selectedExcerpt
     && !initiallyShowPassageMeaning
     && Boolean(content.initialShowTransliteration)
-  )
-  const usesQuietPassageLayout = (
-    isPassage
-    && passageLines.filter(line => !line.isHeader).length > EXPRESSIVE_PASSAGE_LIMIT
   )
   const [selectedArtworkId, setSelectedArtworkId] = useState(() => resolveInitialArtworkId(initialArtworkId))
   const [textPosition, setTextPosition] = useState<ShareHighlightTextPosition>('auto')
@@ -578,7 +730,7 @@ export default function ShareHighlightSheet({
   const [rendering, setRendering] = useState(true)
   const [canvasElement, setCanvasElement] = useState<HTMLCanvasElement | null>(null)
   const [busyAction, setBusyAction] = useState<'share' | 'save' | 'copy' | null>(null)
-  const [passageSupportOverflow, setPassageSupportOverflow] = useState<PassageSupport | null>(null)
+  const [passageAnchorLineId, setPassageAnchorLineId] = useState<ShareHighlightPassageLine['id'] | null>(null)
   const [renderRetryNonce, setRenderRetryNonce] = useState(0)
 
   const hasTransliteration = (
@@ -636,7 +788,7 @@ export default function ShareHighlightSheet({
     setPngExport(null)
     setRenderFailed(false)
     setRendering(true)
-    setPassageSupportOverflow(null)
+    setPassageAnchorLineId(null)
     setRenderRetryNonce(0)
     setRenderStatus(copy.preparing)
     setActionStatus(null)
@@ -646,8 +798,14 @@ export default function ShareHighlightSheet({
     content.initialShowMeaning,
     content.initialShowTransliteration,
     content.meaning,
+    content.passageKind,
     content.passageLines,
+    content.provenance?.dateIso,
+    content.provenance?.translationLanguage,
+    content.provenance?.translationLabel,
     content.seriesLabel,
+    content.sharePath,
+    content.sourcePath,
     content.dateLabel,
     content.selectedExcerpt,
     content.sourceLabel,
@@ -686,7 +844,7 @@ export default function ShareHighlightSheet({
   const passageInput = useMemo<ShareHighlightPassageInput | null>(() => {
     if (!isPassage) return null
     return {
-      artwork: usesQuietPassageLayout ? null : selectedArtwork,
+      artwork: selectedArtwork,
       content: {
         lines: passageLines.map(line => ({
           ...line,
@@ -696,6 +854,14 @@ export default function ShareHighlightSheet({
         sourceLabel: content.sourceLabel,
         seriesLabel: content.seriesLabel?.trim() || 'Hukamnama',
         dateLabel: content.dateLabel?.trim() || null,
+        shareUrl: sourceUrl,
+        supportLabel: showMeaning
+          ? content.provenance?.translationLabel?.trim() || null
+          : showTransliteration
+            ? copy.transliteration
+            : null,
+        scopeCopy: passageCopy.storyScopeCopy,
+        anchorLineId: passageAnchorLineId,
       },
       fileNameBase: content.provenance?.dateIso?.trim()
         ? `naamras-hukamnama-${content.provenance.dateIso.trim()}`
@@ -704,16 +870,20 @@ export default function ShareHighlightSheet({
   }, [
     content.dateLabel,
     content.provenance?.dateIso,
+    content.provenance?.translationLabel,
     content.seriesLabel,
     content.sourceLabel,
     isPassage,
+    passageAnchorLineId,
     passageLines,
+    copy.transliteration,
+    passageCopy.storyScopeCopy,
     selectedArtwork,
     showMeaning,
     showTransliteration,
-    usesQuietPassageLayout,
+    sourceUrl,
   ])
-  const activePassageSupport: PassageSupport | null = showMeaning
+  const activePassageSupport = showMeaning
     ? 'meaning'
     : showTransliteration
       ? 'transliteration'
@@ -723,15 +893,12 @@ export default function ShareHighlightSheet({
     if (!open || !canvasElement) return
 
     const renderSequence = ++renderSequenceRef.current
-    const isOverflowRecovery = Boolean(passageSupportOverflow) && !activePassageSupport
     setRenderFailed(false)
     setRendering(true)
     setActionStatus(null)
-    setRenderStatus(isOverflowRecovery && passageSupportOverflow
-      ? copy.passageSupportOverflow(passageSupportOverflow)
-      : passageInput && activePassageSupport === 'meaning'
-        ? copy.preparingBilingual
-        : copy.preparing)
+    setRenderStatus(passageInput && activePassageSupport === 'meaning'
+      ? copy.preparingBilingual
+      : copy.preparing)
 
     const renderTimeout = window.setTimeout(() => {
       const exportPromise = passageInput
@@ -743,28 +910,12 @@ export default function ShareHighlightSheet({
           if (renderSequenceRef.current !== renderSequence) return
           setPngExport(result)
           setRendering(false)
-          if (passageInput && activePassageSupport) setPassageSupportOverflow(null)
-          setRenderStatus(isOverflowRecovery && passageSupportOverflow
-            ? copy.passageSupportOverflow(passageSupportOverflow)
-            : passageInput && activePassageSupport === 'meaning'
-              ? copy.bilingualReady
-              : copy.ready)
+          setRenderStatus(passageInput && activePassageSupport === 'meaning'
+            ? copy.bilingualReady
+            : copy.ready)
         })
-        .catch(error => {
+        .catch(() => {
           if (renderSequenceRef.current !== renderSequence) return
-          if (
-            passageInput
-            && activePassageSupport
-            && error instanceof ShareHighlightContentOverflowError
-            && error.reason === 'support-overflow'
-          ) {
-            setPassageSupportOverflow(activePassageSupport)
-            setShowTransliteration(false)
-            setShowMeaning(false)
-            setRenderFailed(false)
-            setRenderStatus(copy.passageSupportOverflow(activePassageSupport))
-            return
-          }
           setRenderFailed(true)
           setRendering(false)
           setRenderStatus(copy.renderError)
@@ -782,7 +933,6 @@ export default function ShareHighlightSheet({
     copy,
     open,
     passageInput,
-    passageSupportOverflow,
     renderRetryNonce,
   ])
 
@@ -798,6 +948,28 @@ export default function ShareHighlightSheet({
     context.clearRect(0, 0, canvasElement.width, canvasElement.height)
     context.drawImage(pngExport.canvas, 0, 0, canvasElement.width, canvasElement.height)
   }, [canvasElement, pngExport])
+
+  const passageExport: ShareHighlightStoryPngExport | null = (
+    isPassage
+    && pngExport
+    && 'selection' in pngExport
+  ) ? pngExport : null
+  const passageSelection = passageExport?.selection ?? null
+  const usesQuietPassageLayout = passageExport?.layout.composition === 'manuscript'
+  const imagePassageLines = isPassage
+    ? getPassageImageLines(content, passageSelection)
+    : []
+  const passageStatusTitle = passageSelection?.mode === 'complete'
+    ? copy.passageComplete
+    : passageSelection?.mode === 'excerpt'
+      ? passageCopy.excerpt
+      : null
+  const passageCoverage = passageSelection
+    ? copy.passageImageCoverage(
+        passageSelection.includedLineCount,
+        passageSelection.totalLineCount,
+      )
+    : null
 
   const announce = (message: string) => {
     setActionStatus(message)
@@ -823,7 +995,7 @@ export default function ShareHighlightSheet({
     const actionGeneration = ++shareActionGenerationRef.current
     const timedAction = withActionTimeout(shareHighlightFile(pngExport.file, {
       title: isPassage ? copy.passageShareTitle : copy.shareTitle,
-      text: buildShareCompanionText(content, socialNote, sourceUrl, copy),
+      text: buildShareCompanionText(content, socialNote, sourceUrl, copy, passageSelection),
       url: sourceUrl,
     }))
     shareActionCancelRef.current = timedAction.cancel
@@ -888,6 +1060,13 @@ export default function ShareHighlightSheet({
     if (nextValue) setShowTransliteration(false)
   }
 
+  const handlePassageNavigation = (anchorLineId: ShareHighlightPassageLine['id'] | null) => {
+    if (anchorLineId === null || rendering) return
+    setRendering(true)
+    setActionStatus(null)
+    setPassageAnchorLineId(anchorLineId)
+  }
+
   const handleCopy = async (event: ReactMouseEvent<HTMLButtonElement>) => {
     const returnFocusTarget = event.currentTarget
     if (!beginAction('copy', copy.copying)) return
@@ -899,6 +1078,7 @@ export default function ShareHighlightSheet({
         socialNote,
         sourceUrl,
         copy,
+        passageSelection,
       ), { focusTarget: returnFocusTarget })
       announce(copy.copied)
     } catch {
@@ -919,6 +1099,8 @@ export default function ShareHighlightSheet({
   const status = actionStatus ?? renderStatus
   const previewSupportingDescription = [
     copy.previewSummary(isPassage ? 'passage' : 'line', visibleLayers),
+    passageStatusTitle,
+    passageCoverage,
     content.dateLabel,
     content.sourceLabel,
   ].filter(Boolean).join('. ')
@@ -935,7 +1117,7 @@ export default function ShareHighlightSheet({
     >
       <header className="share-highlight__header">
         <div>
-          <p className="share-highlight__preface">{isPassage ? copy.passagePreface : copy.preface}</p>
+          <p className="share-highlight__preface">{isPassage ? passageCopy.preface : copy.preface}</p>
           <h2 className="share-highlight__title">{isPassage ? copy.passageTitle : copy.title}</h2>
         </div>
         <button
@@ -982,18 +1164,68 @@ export default function ShareHighlightSheet({
                 </div>
               ) : null}
             </div>
+            {passageSelection ? (
+              <section
+                className={`share-highlight__passage-status share-highlight__passage-status--${passageSelection.mode}`}
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <div className="share-highlight__passage-status-copy">
+                  <strong>{passageStatusTitle}</strong>
+                  <span>{passageCoverage}</span>
+                </div>
+                {passageSelection.mode === 'excerpt' && (
+                  passageSelection.previousSourceLineId !== null
+                  || passageSelection.nextSourceLineId !== null
+                ) ? (
+                  <>
+                    <div
+                      className="share-highlight__passage-navigation"
+                      role="group"
+                      aria-label={copy.changePassage}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handlePassageNavigation(passageSelection.previousSourceLineId)}
+                        disabled={
+                          passageSelection.previousSourceLineId === null
+                          || rendering
+                          || busyAction !== null
+                        }
+                      >
+                        <span aria-hidden="true">←</span>
+                        {copy.previousPassage}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handlePassageNavigation(passageSelection.nextSourceLineId)}
+                        disabled={
+                          passageSelection.nextSourceLineId === null
+                          || rendering
+                          || busyAction !== null
+                        }
+                      >
+                        {copy.nextPassage}
+                        <span aria-hidden="true">→</span>
+                      </button>
+                    </div>
+                    <p>{copy.passageNavigationHelp}</p>
+                  </>
+                ) : null}
+              </section>
+            ) : null}
             <p id={previewDescriptionId} className="sr-only">
               {previewSupportingDescription}
             </p>
             <section className="sr-only" aria-labelledby={previewTextAlternativeId}>
               <h3 id={previewTextAlternativeId}>{copy.imageTextAlternative}</h3>
-              {isPassage ? passageLines.map(line => (
+              {isPassage ? imagePassageLines.map(line => (
                 <div key={line.id}>
                   <p lang="pa-Guru">{line.gurmukhi}</p>
                   {showTransliteration && line.transliteration ? (
                     <p lang="en-Latn">{line.transliteration}</p>
                   ) : null}
-                  {showMeaning && line.meaning ? <p lang="en">{line.meaning}</p> : null}
+                  {showMeaning && line.meaning ? <p lang={meaningLanguage}>{line.meaning}</p> : null}
                 </div>
               )) : (
                 <>
@@ -1001,7 +1233,7 @@ export default function ShareHighlightSheet({
                   {showTransliteration && content.transliteration ? (
                     <p lang="en-Latn">{content.transliteration}</p>
                   ) : null}
-                  {showMeaning && content.meaning ? <p lang="en">{content.meaning}</p> : null}
+                  {showMeaning && content.meaning ? <p lang={meaningLanguage}>{content.meaning}</p> : null}
                 </>
               )}
               <p>{content.sourceLabel}</p>
@@ -1015,6 +1247,10 @@ export default function ShareHighlightSheet({
                 <span aria-hidden="true">naamras.xyz</span>
                 <span className="sr-only">{copy.brand}: naamras.xyz</span>
               </span>
+              <a className="share-highlight__source-link" href={sourceUrl}>
+                <span>{copy.readOnline}</span>
+                <strong>{sourceUrl}</strong>
+              </a>
             </div>
           </section>
 
@@ -1046,7 +1282,7 @@ export default function ShareHighlightSheet({
                   aria-label={hasTransliteration
                     ? copy.transliteration
                     : `${copy.transliteration}. ${isPassage && passageTransliterationCount > 0
-                        ? copy.supportCoverage(passageTransliterationCount, passageLineCount)
+                        ? copy.supportCoverage(passageTransliterationCount, passageSupportLineCount)
                         : copy.unavailable}`}
                   title={hasTransliteration ? undefined : copy.unavailable}
                   disabled={!hasTransliteration}
@@ -1062,7 +1298,7 @@ export default function ShareHighlightSheet({
                   aria-label={hasMeaning
                     ? copy.meaning
                     : `${copy.meaning}. ${isPassage && passageMeaningCount > 0
-                        ? copy.supportCoverage(passageMeaningCount, passageLineCount)
+                        ? copy.supportCoverage(passageMeaningCount, passageSupportLineCount)
                         : copy.unavailable}`}
                   title={hasMeaning ? undefined : copy.unavailable}
                   disabled={!hasMeaning}
@@ -1079,17 +1315,12 @@ export default function ShareHighlightSheet({
                 <p className="share-highlight__control-help" role="note">
                   {[
                     passageTransliterationCount > 0 && !hasCompletePassageTransliteration
-                      ? `${copy.transliteration}: ${copy.supportCoverage(passageTransliterationCount, passageLineCount)}`
+                      ? `${copy.transliteration}: ${copy.supportCoverage(passageTransliterationCount, passageSupportLineCount)}`
                       : '',
                     passageMeaningCount > 0 && !hasCompletePassageMeaning
-                      ? `${copy.meaning}: ${copy.supportCoverage(passageMeaningCount, passageLineCount)}`
+                      ? `${copy.meaning}: ${copy.supportCoverage(passageMeaningCount, passageSupportLineCount)}`
                       : '',
                   ].filter(Boolean).join('. ')}
-                </p>
-              ) : null}
-              {isPassage && passageSupportOverflow ? (
-                <p className="share-highlight__fit-note" role="note">
-                  {copy.passageSupportOverflow(passageSupportOverflow)}
                 </p>
               ) : null}
             </section>
