@@ -28,7 +28,16 @@ test('uses the native document as the sole primary vertical scroller', () => {
     /html\s*\{[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior-y:\s*none;/s
   )
   expect(indexCss).toMatch(
-    /body,\s*#root\s*\{[^}]*min-height:\s*100dvh;[^}]*overflow-y:\s*visible;/s
+    /body,\s*#root\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100svh;[^}]*overflow-y:\s*visible;/s
+  )
+  expect(indexCss).toMatch(
+    /\.page-shell\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100svh;[^}]*overflow-y:\s*visible;/s
+  )
+  expect(indexCss).toMatch(
+    /\.app-shell\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100svh;[^}]*overflow-y:\s*visible;/s
+  )
+  expect(catalogCss).toMatch(
+    /\.epub-reader-shell\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100svh;/s
   )
   expect(indexCss).not.toContain('.app-scroll-viewport')
   expect(appSource).not.toContain('APP_SCROLL_VIEWPORT_ID')
@@ -38,7 +47,7 @@ test('uses the native document as the sole primary vertical scroller', () => {
   expect(indexCss).not.toContain('-webkit-overflow-scrolling')
 })
 
-test('keeps persistent mobile chrome out of WebKit sticky, layer-promotion, and duplicate-safe-area failure modes', () => {
+test('keeps touch-reader chrome document-attached and out of WebKit viewport-layer failure modes', () => {
   expect(indexHtml).toContain(
     '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />'
   )
@@ -56,6 +65,9 @@ test('keeps persistent mobile chrome out of WebKit sticky, layer-promotion, and 
     /\.app-nav-scrim\s*\{[^}]*height:\s*calc\(var\(--nav-stack-height,\s*4\.25rem\)\s*\+\s*var\(--nav-bottom-offset\)\s*\+\s*2rem\);/s
   )
   expect(navBarSource).not.toContain('app-nav-stack z-50')
+  expect(indexCss).toMatch(
+    /\.app-shell\s*>\s*\*\s*\{[^}]*position:\s*relative;/s
+  )
 
   expect(catalogCss).toMatch(
     /\.epub-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--epub-reader-topbar-height\);/s
@@ -67,6 +79,9 @@ test('keeps persistent mobile chrome out of WebKit sticky, layer-promotion, and 
   expect(catalogCss).not.toMatch(
     /\.epub-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
   )
+  expect(catalogCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)\s*\{\s*\.epub-reader-topbar\s*\{\s*position:\s*absolute;/s
+  )
 
   expect(readerCss).toMatch(
     /\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--study-reader-topbar-height\);/s
@@ -74,6 +89,24 @@ test('keeps persistent mobile chrome out of WebKit sticky, layer-promotion, and 
   expect(readerCss).not.toMatch(/\.study-reader-topbar\s*\{[^}]*position:\s*sticky;/s)
   expect(readerCss).not.toMatch(
     /\.study-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-reader-topbar\s*\{[^}]*position:\s*absolute;/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-reader-ang-navigation\s*\{[^}]*position:\s*static;/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-reader-rail\s*\{[^}]*position:\s*static\s*!important;[^}]*max-height:\s*none\s*!important;[^}]*overflow:\s*visible\s*!important;/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-entry-navigator--top\s*\{[^}]*position:\s*static;/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.read-room-hero\s*\{[^}]*position:\s*static;[^}]*max-height:\s*none;[^}]*overflow-y:\s*visible;/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.read-collection-tabs,\s*\.read-collection-intro\s*\{[^}]*position:\s*static;/s
   )
 })
 

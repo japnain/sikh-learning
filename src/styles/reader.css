@@ -2439,3 +2439,44 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Keep normal reading free of iOS fixed/sticky compositor drift. The existing
+   top padding reserves this toolbar's exact space while it scrolls naturally
+   with the document; Ang navigation already follows the reading in the DOM. */
+@media (hover: none) and (pointer: coarse) {
+  .read-room-hero {
+    position: static;
+    top: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .read-collection-tabs,
+  .read-collection-intro {
+    position: static;
+    top: auto;
+  }
+
+  .study-reader-topbar {
+    position: absolute;
+  }
+
+  .study-reader-rail {
+    position: static !important;
+    top: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .study-entry-navigator--top {
+    position: static;
+    top: auto;
+    z-index: auto;
+  }
+
+  .study-reader-ang-navigation {
+    position: static;
+    width: min(21rem, 100%);
+    margin: 1.25rem auto 0;
+  }
+}

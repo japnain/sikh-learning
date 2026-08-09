@@ -66,13 +66,20 @@ function measureViewportLoss(previousLoss: number) {
 
 export function useIosStandaloneViewportMetrics() {
   useLayoutEffect(() => {
+    const navigatorWithStandalone = window.navigator as Navigator & { standalone?: boolean }
+    if (navigatorWithStandalone.standalone !== true) return
+
     const root = document.documentElement
     let stableLoss = 0
+    let lastAppliedLoss: number | null = null
     let firstFrame: number | null = null
     let secondFrame: number | null = null
 
     const applyMeasurement = () => {
       stableLoss = measureViewportLoss(stableLoss)
+      if (stableLoss === lastAppliedLoss) return
+
+      lastAppliedLoss = stableLoss
       root.style.setProperty('--ios-standalone-viewport-loss', `${stableLoss}px`)
       root.dataset.iosStandaloneViewport = stableLoss > 0 ? 'short' : 'full'
     }

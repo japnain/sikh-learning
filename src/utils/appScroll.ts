@@ -261,9 +261,13 @@ export function addAppScrollSettledListener(
 ) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return () => {}
 
+  const supportsScrollEnd = 'onscrollend' in document
   let idleTimer: number | null = null
   let settleFrame: number | null = null
   let postPaintFrame: number | null = null
+  let touchActive = false
+  let settlePendingForGesture = false
+  const activeTouchPointers = new Set<number>()
 
   const clearIdleTimer = () => {
     if (idleTimer === null) return
@@ -289,28 +293,97 @@ export function addAppScrollSettledListener(
     })
   }
 
+  const hasActiveTouchGesture = () => touchActive || activeTouchPointers.size > 0
+
+  const beginTouchGesture = () => {
+    settlePendingForGesture = false
+    clearIdleTimer()
+    cancelScheduledListener()
+  }
+
+  const finishTouchGesture = () => {
+    if (hasActiveTouchGesture() || !settlePendingForGesture) return
+    settlePendingForGesture = false
+    scheduleListenerAfterPaint()
+  }
+
   const handleScroll = () => {
+    settlePendingForGesture = false
     cancelScheduledListener()
     clearIdleTimer()
+
+    // Browsers with native scrollend can identify the end of touch momentum.
+    // An idle timeout can fire between iOS momentum frames and must only be a
+    // fallback for engines that do not expose scrollend.
+    if (supportsScrollEnd) return
+
     idleTimer = window.setTimeout(() => {
       idleTimer = null
+      if (hasActiveTouchGesture()) {
+        settlePendingForGesture = true
+        return
+      }
       scheduleListenerAfterPaint()
     }, idleMs)
   }
 
   const handleScrollEnd = () => {
     clearIdleTimer()
+    cancelScheduledListener()
+    if (hasActiveTouchGesture()) {
+      settlePendingForGesture = true
+      return
+    }
+    settlePendingForGesture = false
     scheduleListenerAfterPaint()
   }
 
+  const handleTouchStart = () => {
+    touchActive = true
+    beginTouchGesture()
+  }
+
+  const handleTouchEnd = (event: TouchEvent) => {
+    touchActive = (event.touches?.length ?? 0) > 0
+    finishTouchGesture()
+  }
+
+  const handlePointerDown = (event: PointerEvent) => {
+    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return
+    activeTouchPointers.add(event.pointerId)
+    beginTouchGesture()
+  }
+
+  const handlePointerEnd = (event: PointerEvent) => {
+    activeTouchPointers.delete(event.pointerId)
+    finishTouchGesture()
+  }
+
   window.addEventListener('scroll', handleScroll, { passive: true })
-  document.addEventListener('scrollend', handleScrollEnd, { passive: true })
+  if (supportsScrollEnd) {
+    document.addEventListener('scrollend', handleScrollEnd, { passive: true })
+  }
+  document.addEventListener('touchstart', handleTouchStart, { passive: true })
+  document.addEventListener('touchend', handleTouchEnd, { passive: true })
+  document.addEventListener('touchcancel', handleTouchEnd, { passive: true })
+  document.addEventListener('pointerdown', handlePointerDown, { passive: true })
+  window.addEventListener('pointerup', handlePointerEnd, { passive: true })
+  window.addEventListener('pointercancel', handlePointerEnd, { passive: true })
 
   return () => {
     clearIdleTimer()
     cancelScheduledListener()
     window.removeEventListener('scroll', handleScroll)
-    document.removeEventListener('scrollend', handleScrollEnd)
+    if (supportsScrollEnd) {
+      document.removeEventListener('scrollend', handleScrollEnd)
+    }
+    document.removeEventListener('touchstart', handleTouchStart)
+    document.removeEventListener('touchend', handleTouchEnd)
+    document.removeEventListener('touchcancel', handleTouchEnd)
+    document.removeEventListener('pointerdown', handlePointerDown)
+    window.removeEventListener('pointerup', handlePointerEnd)
+    window.removeEventListener('pointercancel', handlePointerEnd)
+    activeTouchPointers.clear()
   }
 }
 
