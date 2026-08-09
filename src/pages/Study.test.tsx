@@ -37,12 +37,15 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
       seriesLabel?: string
       dateLabel?: string
       sourcePath?: string
+      sharePath?: string
+      passageKind?: 'daily-hukamnama' | 'personal-hukamnama'
       provenance?: {
         ceremonyLocation?: string
         scripture?: string
         raag?: string
         writer?: string
         translationLabel?: string
+        translationLanguage?: 'en' | 'pa' | 'hi'
         dateIso?: string
       }
     }
@@ -53,6 +56,8 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
       <p data-testid="share-flattened-gurmukhi">{content.gurmukhi}</p>
       <p>{content.sourceLabel}</p>
       {content.sourcePath ? <p data-testid="share-source-path">{content.sourcePath}</p> : null}
+      {content.sharePath ? <p data-testid="share-short-path">{content.sharePath}</p> : null}
+      {content.passageKind ? <p data-testid="share-passage-kind">{content.passageKind}</p> : null}
       {content.provenance ? (
         <pre data-testid="share-provenance">{JSON.stringify(content.provenance)}</pre>
       ) : null}
@@ -1194,7 +1199,67 @@ describe('Study hukamnama mode', () => {
     expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
   })
 
-  it("passes every ordered Daily/Today's Hukamnama line with English meanings even when reader meaning is off", async () => {
+  it.each([
+    {
+      name: 'English',
+      language: 'en' as const,
+      sourceState: { englishSource: 'bdb' as const },
+      expectedMeanings: [
+        'People try to deceive others, but the Inner-knower knows everything.',
+        'Looking around, this way and that, the greedy people come and go. ||Pause||',
+      ],
+      expectedCredit: 'English · Standard',
+    },
+    {
+      name: 'Punjabi',
+      language: 'pa' as const,
+      sourceState: { punjabiSource: 'ss' as const },
+      expectedMeanings: [
+        'ਮਨੁੱਖ ਧੋਖਾ ਦੇਂਦਾ ਹੈ ਪਰ ਪ੍ਰਭੂ ਸਭ ਜਾਣਦਾ ਹੈ।',
+        'ਲੋਭੀ ਮਨੁੱਖ ਇੱਧਰ ਉੱਧਰ ਵੇਖਦਾ ਫਿਰਦਾ ਹੈ। ਰਹਾਉ।',
+      ],
+      expectedCredit: 'Punjabi · Steek',
+    },
+    {
+      name: 'Hindi',
+      language: 'hi' as const,
+      sourceState: { hindiSource: 'ss' as const },
+      expectedMeanings: [
+        'मनुष्य धोखा देता है पर प्रभु सब जानता है।',
+        'लोभी मनुष्य इधर उधर देखता फिरता है। रहाउ।',
+      ],
+      expectedCredit: 'Hindi · Steek',
+    },
+  ])('shares complete $name meanings with matching provenance', async ({
+    language,
+    sourceState,
+    expectedMeanings,
+    expectedCredit,
+  }) => {
+    useLanguageStore.setState({ meaningLanguage: language, ...sourceState })
+
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const topbar = await screen.findByTestId('study-reader-topbar')
+    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    await waitFor(() => expect(shareButton).toBeEnabled())
+    fireEvent.click(shareButton)
+
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    expect(
+      within(composer).getAllByTestId('share-passage-meaning').map(line => line.textContent)
+    ).toEqual(expectedMeanings)
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(expectedCredit)
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(
+      `"translationLanguage":"${language}"`
+    )
+  })
+
+  it("defaults Hukamnama share support to English when the reader's meaning is off", async () => {
     useLanguageStore.setState({ meaningLanguage: 'none', englishSource: 'ms' })
     const firstShabad = MOCK_HUKAMNAMA_RESPONSE.shabads[0]
     const firstVerse = firstShabad.verses[0]
@@ -1258,6 +1323,7 @@ describe('Study hukamnama mode', () => {
     ])
     expect(within(composer).getByTestId('share-flattened-gurmukhi').textContent).toBe(expectedLines.join('\n'))
     expect(within(composer).getByTestId('share-series-label')).toHaveTextContent('Daily Hukamnama')
+    expect(within(composer).getByTestId('share-passage-kind')).toHaveTextContent('daily-hukamnama')
     expect(within(composer).getByTestId('share-date-label')).toHaveTextContent('April 5, 2026')
     expect(within(composer).getByTestId('share-source-path')).toHaveTextContent(
       '/study?hukamnamaDate=2026-04-05'
@@ -1266,11 +1332,81 @@ describe('Study hukamnama mode', () => {
     expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(
       'Sri Harmandir Sahib, Amritsar'
     )
-    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent('Manmohan Singh')
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(
+      'English · Manmohan Singh'
+    )
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(
+      '"translationLanguage":"en"'
+    )
     expect(within(composer).getByTestId('share-provenance')).toHaveTextContent('2026-04-05')
 
     fireEvent.click(within(composer).getByRole('button', { name: 'Close share image' }))
     await waitFor(() => expect(shareButton).toHaveFocus())
+  })
+
+  it('falls back per line within the selected meaning language and credits every provider used', async () => {
+    useLanguageStore.setState({ meaningLanguage: 'pa', punjabiSource: 'ft' })
+    const firstShabad = MOCK_HUKAMNAMA_RESPONSE.shabads[0]
+    const [firstVerse, secondVerse] = firstShabad.verses
+    const response = {
+      ...MOCK_HUKAMNAMA_RESPONSE,
+      shabads: [{
+        ...firstShabad,
+        verses: [
+          {
+            ...firstVerse,
+            translation: {
+              ...firstVerse.translation,
+              pu: {
+                ss: { unicode: 'ਪਹਿਲੀ ਲਾਈਨ ਦਾ ਸਟੀਕ ਅਰਥ।' },
+                ft: { unicode: 'ਪਹਿਲੀ ਲਾਈਨ ਦਾ ਫਰੀਦਕੋਟ ਅਰਥ।' },
+              },
+            },
+          },
+          {
+            ...secondVerse,
+            translation: {
+              ...secondVerse.translation,
+              pu: {
+                ss: { unicode: 'ਦੂਜੀ ਲਾਈਨ ਦਾ ਸਟੀਕ ਅਰਥ।' },
+                ft: { unicode: '' },
+              },
+            },
+          },
+        ],
+      }],
+    }
+
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path?.startsWith('/v2/hukamnamas/')) return HttpResponse.json(response)
+        if (body.path === '/v2/shabads/2591') return HttpResponse.json({ verses: [] })
+        return HttpResponse.json({ error: 'Unexpected BaniDB test path.' }, { status: 404 })
+      })
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const topbar = await screen.findByTestId('study-reader-topbar')
+    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    await waitFor(() => expect(shareButton).toBeEnabled())
+    fireEvent.click(shareButton)
+
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    expect(
+      within(composer).getAllByTestId('share-passage-meaning').map(line => line.textContent)
+    ).toEqual([
+      'ਪਹਿਲੀ ਲਾਈਨ ਦਾ ਫਰੀਦਕੋਟ ਅਰਥ।',
+      'ਦੂਜੀ ਲਾਈਨ ਦਾ ਸਟੀਕ ਅਰਥ।',
+    ])
+    expect(within(composer).getByTestId('share-provenance')).toHaveTextContent(
+      'Punjabi · Faridkot / Steek'
+    )
   })
 
   it('passes the complete ordered Personal Hukamnama shabad to top Share', async () => {
@@ -1295,6 +1431,8 @@ describe('Study hukamnama mode', () => {
     expect(within(composer).getByTestId('share-source-path')).toHaveTextContent(
       '/study?shabadId=50&flow=ardaas-hukamnama&randomHukamnamaAng=1&resumeVerseId=100'
     )
+    expect(within(composer).getByTestId('share-short-path')).toHaveTextContent('/p/50/1/100')
+    expect(within(composer).getByTestId('share-passage-kind')).toHaveTextContent('personal-hukamnama')
   })
 
   it('uses bani-specific editorial copy for Japji Sahib instead of generic reader product copy', async () => {

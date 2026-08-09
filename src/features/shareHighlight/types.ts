@@ -90,14 +90,35 @@ export interface ShareHighlightPassageLine {
   isHeader?: boolean
 }
 
+export interface ShareHighlightStoryScopeCopy {
+  complete: string
+  excerpt: string
+  /** Supports the `{included}` and `{total}` tokens. */
+  coverageTemplate: string
+  readComplete: string
+  openInNaamras: string
+}
+
 export interface ShareHighlightPassageContent {
   lines: ShareHighlightPassageLine[]
   sourceLabel: string
   seriesLabel: string
   dateLabel?: string | null
+  /** Canonical compact public URL for optional footer/QR treatments. */
+  shareUrl?: string | null
+  /** Human-readable language/provider credit, such as “Punjabi · Steek”. */
+  supportLabel?: string | null
+  /** Localized labels printed in the Story footer. */
+  scopeCopy?: ShareHighlightStoryScopeCopy | null
+  /**
+   * Optional source line to begin an adaptive excerpt from. If it belongs to an
+   * atomic header + verse block, the renderer begins with the header so the
+   * structural context is never separated from its following line.
+   */
+  anchorLineId?: ShareHighlightPassageLine['id'] | null
 }
 
-/** A complete reading rendered onto one 9:16 Story image. */
+/** A reading adaptively rendered as complete content or one contiguous excerpt. */
 export interface ShareHighlightPassageInput {
   /** `null` renders the deterministic solid-background option. */
   artwork?: ShareHighlightArtwork | null
@@ -183,6 +204,26 @@ export interface ShareHighlightStoryFit {
   atReadabilityFloor: boolean
 }
 
+export type ShareHighlightStorySelectionMode = 'complete' | 'excerpt'
+
+/**
+ * Exact source coverage for the one-image Story. Navigation IDs identify the
+ * next non-overlapping atomic block or the start of the prior deterministic
+ * page, allowing a caller to request that excerpt by passing the ID back as
+ * `anchorLineId`.
+ */
+export interface ShareHighlightStorySelection {
+  mode: ShareHighlightStorySelectionMode
+  anchorSourceLineId: ShareHighlightPassageLine['id'] | null
+  includedLineCount: number
+  totalLineCount: number
+  includedSourceLineIds: ShareHighlightPassageLine['id'][]
+  firstSourceLineId: ShareHighlightPassageLine['id']
+  lastSourceLineId: ShareHighlightPassageLine['id']
+  previousSourceLineId: ShareHighlightPassageLine['id'] | null
+  nextSourceLineId: ShareHighlightPassageLine['id'] | null
+}
+
 export interface ShareHighlightStoryLayout {
   width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
   height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
@@ -194,6 +235,7 @@ export interface ShareHighlightStoryLayout {
   composition: ShareHighlightStoryComposition
   artworkMode: ShareHighlightStoryArtworkMode
   fit: ShareHighlightStoryFit
+  selection: ShareHighlightStorySelection
   /** IDs in their exact rendered order, one entry for each non-empty source line. */
   sourceLineIds: ShareHighlightPassageLine['id'][]
   sections: ShareHighlightStoryTextSection[]
@@ -205,6 +247,8 @@ export interface ShareHighlightStoryPngExport {
   file: File
   width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
   height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
+  layout: ShareHighlightStoryLayout
+  selection: ShareHighlightStorySelection
 }
 
 export type ShareHighlightShareResult =

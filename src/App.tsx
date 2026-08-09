@@ -1,5 +1,5 @@
 import { lazy, Suspense, startTransition, useCallback, useEffect, useRef, useState, type MouseEvent } from 'react'
-import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
 import OnboardingSheet from './components/OnboardingSheet'
@@ -17,6 +17,10 @@ import { useOnboardingStore } from './store/onboarding'
 import { applyThemeToDocument, useThemeStore } from './store/theme'
 import { scrollAppTo } from './utils/appScroll'
 import { getRouterBasename } from './utils/basePath'
+import {
+  buildHukamnamaStudyPath,
+  buildPersonalHukamnamaStudyPath,
+} from './utils/hukamnamaShareRoute'
 
 const HomePage = lazy(() => import('./pages/Home'))
 const StudyPage = lazy(() => import('./pages/Study'))
@@ -37,6 +41,25 @@ const PUBLIC_DOCUMENT_PATHS = new Set(['/privacy', '/support'])
 function isPublicDocumentPath(pathname: string) {
   const normalizedPath = pathname.replace(/\/+$/, '') || '/'
   return PUBLIC_DOCUMENT_PATHS.has(normalizedPath)
+}
+
+function HukamnamaShareRedirect() {
+  const { date } = useParams<{ date: string }>()
+  return <Navigate to={buildHukamnamaStudyPath(date)} replace />
+}
+
+function PersonalHukamnamaShareRedirect() {
+  const { shabadId, ang, resumeVerseId } = useParams<{
+    shabadId: string
+    ang: string
+    resumeVerseId?: string
+  }>()
+  return (
+    <Navigate
+      to={buildPersonalHukamnamaStudyPath(shabadId, ang, resumeVerseId)}
+      replace
+    />
+  )
 }
 
 function SkeletonBlock({ className }: { className: string }) {
@@ -314,6 +337,9 @@ function AppShell() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/study" element={<StudyPage />} />
                 <Route path="/study/:scriptureId" element={<StudyPage />} />
+                <Route path="/h/:date" element={<HukamnamaShareRedirect />} />
+                <Route path="/p/:shabadId/:ang" element={<PersonalHukamnamaShareRedirect />} />
+                <Route path="/p/:shabadId/:ang/:resumeVerseId" element={<PersonalHukamnamaShareRedirect />} />
                 <Route path="/saved" element={<LibraryPage />} />
                 <Route path="/library" element={<Navigate to="/saved" replace />} />
                 <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />

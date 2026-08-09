@@ -16,7 +16,16 @@ import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import type { EnglishSource, ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
+import type {
+  EnglishSource,
+  HindiSource,
+  MeaningLanguage,
+  PunjabiSource,
+  ScriptureEntry,
+  ScriptureLine,
+  SundarGutkaLength,
+  UiLocale,
+} from '../types'
 import {
   getEnglishSourceLabels,
   getHindiSourceLabel,
@@ -70,6 +79,7 @@ import {
   scrollAppTo,
   scrollElementIntoAppView,
 } from '../utils/appScroll'
+import { buildPersonalHukamnamaShortPath } from '../utils/hukamnamaShareRoute'
 
 type BaniSource = SourceReaderId
 
@@ -85,11 +95,13 @@ type ShareHighlightSheetContent = {
     meaning?: string
     isHeader?: boolean
   }>
+  passageKind?: 'daily-hukamnama' | 'personal-hukamnama'
   seriesLabel?: string
   dateLabel?: string
   caption?: string
   verseId?: number
   sourcePath?: string
+  sharePath?: string
   selectedExcerpt?: boolean
   initialShowTransliteration?: boolean
   initialShowMeaning?: boolean
@@ -99,6 +111,7 @@ type ShareHighlightSheetContent = {
     raag?: string
     writer?: string
     translationLabel?: string
+    translationLanguage?: 'en' | 'pa' | 'hi'
     dateIso?: string
   }
 }
@@ -126,6 +139,30 @@ function getResolvedEnglishSource(line: ScriptureLine, preferred: EnglishSource)
   if (translations?.ms?.trim()) return 'ms'
   if (translations?.ssk?.trim()) return 'ssk'
   return null
+}
+
+function getResolvedMappedSource(
+  translations: Record<string, string> | undefined,
+  preferred: string,
+): string | null {
+  if (translations?.[preferred]?.trim()) return preferred
+
+  return Object.entries(translations ?? {})
+    .find(([, text]) => Boolean(text.trim()))?.[0] ?? null
+}
+
+function getResolvedMeaningSource(
+  line: ScriptureLine,
+  language: Exclude<MeaningLanguage, 'none'>,
+  preferred: {
+    english: EnglishSource
+    punjabi: PunjabiSource
+    hindi: HindiSource
+  },
+): string | null {
+  if (language === 'en') return getResolvedEnglishSource(line, preferred.english)
+  if (language === 'pa') return getResolvedMappedSource(line.translations_pa, preferred.punjabi)
+  return getResolvedMappedSource(line.translations_hi, preferred.hindi)
 }
 
 function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: BaniSource) {
@@ -1091,15 +1128,17 @@ export default function Study() {
     }
 
     if (isHukamnamaMode || isRandomHukamnamaMode) {
+      const shareMeaningLanguage = meaningLanguage === 'none' ? 'en' : meaningLanguage
       const passageLines = (currentEntry.lines ?? [])
         .map((line, index) => {
           const gurmukhi = line.gurmukhi.trim()
           if (!gurmukhi) return null
 
           const transliteration = line.transliteration.trim()
-          // The share composer always offers a complete English Meaning layer,
-          // independent of which reading supports are currently visible.
-          const meaning = getLineMeaningText(line, 'en', englishSource).trim()
+          // Share the reader's selected meaning language. When meaning is off,
+          // English remains available so a shared Hukamnama is never stripped
+          // of all translation support merely because the reader hid it.
+          const meaning = getLineMeaningText(line, shareMeaningLanguage, englishSource).trim()
           return {
             id: `${line.shabadId}-${line.verseId}-${index}`,
             gurmukhi,
@@ -1129,9 +1168,24 @@ export default function Study() {
           : null
         const translationSources = Array.from(new Set(
           (currentEntry.lines ?? [])
-            .map(line => getResolvedEnglishSource(line, englishSource))
-            .filter((source): source is EnglishSource => source !== null)
+            .map(line => getResolvedMeaningSource(line, shareMeaningLanguage, {
+              english: englishSource,
+              punjabi: punjabiSource,
+              hindi: hindiSource,
+            }))
+            .filter((source): source is string => source !== null)
         ))
+        const translationProviderLabels = translationSources.map(source => (
+          shareMeaningLanguage === 'en'
+            ? englishSourceLabels[source as EnglishSource]
+            : shareMeaningLanguage === 'pa'
+              ? getPunjabiSourceLabel(locale, source as PunjabiSource)
+              : getHindiSourceLabel(locale, source as HindiSource)
+        ))
+        const translationLabel = [
+          meaningLanguageLabels[shareMeaningLanguage],
+          translationProviderLabels.filter(Boolean).join(' / '),
+        ].filter(Boolean).join(' · ')
         const exactSourcePath = isHukamnamaMode && dateIso
           ? `/study?hukamnamaDate=${encodeURIComponent(dateIso)}`
           : (() => {
@@ -1151,11 +1205,19 @@ export default function Study() {
           meaning: meaning || undefined,
           sourceLabel,
           passageLines,
+          passageKind: isHukamnamaMode ? 'daily-hukamnama' : 'personal-hukamnama',
           seriesLabel: isHukamnamaMode
             ? HUKAMNAMA_SHARE_SERIES[locale].daily
             : HUKAMNAMA_SHARE_SERIES[locale].personal,
           dateLabel: dateLabel || undefined,
           sourcePath: exactSourcePath,
+          sharePath: isRandomHukamnamaMode && shabadIdParam && randomHukamnamaAngParam
+            ? buildPersonalHukamnamaShortPath(
+                shabadIdParam,
+                randomHukamnamaAngParam,
+                resumeVerseIdParam,
+              )
+            : undefined,
           initialShowTransliteration: showTransliteration && Boolean(transliteration),
           initialShowMeaning: Boolean(meaning),
           provenance: {
@@ -1165,9 +1227,8 @@ export default function Study() {
             scripture: scriptureLabel,
             raag: currentEntry.raag || undefined,
             writer: currentEntry.writer || undefined,
-            translationLabel: translationSources.length > 0
-              ? translationSources.map(source => englishSourceLabels[source]).join(' / ')
-              : undefined,
+            translationLabel: translationLabel || undefined,
+            translationLanguage: shareMeaningLanguage,
             dateIso: dateIso || undefined,
           },
         })
