@@ -666,7 +666,8 @@
   --epub-accent: 137 91 35;
   --epub-measure: 42rem;
   --epub-reader-topbar-height: calc(var(--safe-area-top) + 3.7rem);
-  min-height: 100dvh;
+  min-height: 100vh;
+  min-height: 100svh;
   background: rgb(var(--epub-page));
   color: rgb(var(--epub-ink));
   transition: background-color 160ms ease, color 160ms ease;
@@ -1385,5 +1386,14 @@
   .epub-reader-shell,
   .epub-reader-progress span {
     transition: none;
+  }
+}
+
+/* iOS can move viewport-attached layers independently of touch momentum.
+   Attach persistent reader chrome to the document on touch devices so the
+   toolbar and text always travel in the same compositor layer. */
+@media (hover: none) and (pointer: coarse) {
+  .epub-reader-topbar {
+    position: absolute;
   }
 }

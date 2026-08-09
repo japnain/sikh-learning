@@ -49,7 +49,8 @@
 
   body,
   #root {
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
     overflow-x: clip;
     overflow-y: visible;
@@ -133,7 +134,8 @@
 @layer components {
   .page-shell {
     @apply mx-auto max-w-md;
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
     overflow-x: clip;
     overflow-y: visible;
@@ -147,7 +149,8 @@
   .app-shell {
     position: relative;
     isolation: isolate;
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100svh;
     overflow-x: clip;
     overflow-y: visible;
     padding-bottom: 0;

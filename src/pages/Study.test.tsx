@@ -303,7 +303,7 @@ describe('Study source browsing', () => {
 })
 
 describe('Study reader title hierarchy', () => {
-  it('keeps a named bani as the single page heading in the sticky topbar from loading through ready', async () => {
+  it('keeps a named bani as the single page heading in the reader topbar from loading through ready', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>

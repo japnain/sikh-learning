@@ -77,20 +77,80 @@ describe('native app document scrolling', () => {
     })
   })
 
-  test('does no settled work during active scrolling and cancels the idle fallback on scrollend', () => {
+  test('uses native scrollend exclusively when the browser supports it', () => {
     vi.useFakeTimers()
     documentScroll = mockDocumentScroll()
     const onSettled = vi.fn()
     const removeListener = addAppScrollSettledListener(onSettled)
 
     window.dispatchEvent(new Event('scroll'))
-    vi.advanceTimersByTime(179)
+    vi.advanceTimersByTime(1000)
     expect(onSettled).not.toHaveBeenCalled()
 
-    window.dispatchEvent(new Event('scroll'))
     document.dispatchEvent(new Event('scrollend'))
     expect(onSettled).not.toHaveBeenCalled()
 
+    vi.runAllTimers()
+    expect(onSettled).toHaveBeenCalledTimes(1)
+    removeListener()
+  })
+
+  test('falls back to an idle timer only when native scrollend is unavailable', () => {
+    vi.useFakeTimers()
+    documentScroll = mockDocumentScroll()
+    const documentPrototype = Object.getPrototypeOf(document) as object
+    const scrollEndDescriptor = Object.getOwnPropertyDescriptor(documentPrototype, 'onscrollend')
+    Reflect.deleteProperty(documentPrototype, 'onscrollend')
+
+    try {
+      expect('onscrollend' in document).toBe(false)
+      const onSettled = vi.fn()
+      const removeListener = addAppScrollSettledListener(onSettled)
+
+      window.dispatchEvent(new Event('scroll'))
+      vi.advanceTimersByTime(179)
+      expect(onSettled).not.toHaveBeenCalled()
+
+      vi.advanceTimersByTime(1)
+      vi.runAllTimers()
+      expect(onSettled).toHaveBeenCalledTimes(1)
+      removeListener()
+    } finally {
+      if (scrollEndDescriptor) {
+        Object.defineProperty(documentPrototype, 'onscrollend', scrollEndDescriptor)
+      }
+    }
+  })
+
+  test('defers scrollend work until an active touch gesture releases', () => {
+    vi.useFakeTimers()
+    documentScroll = mockDocumentScroll()
+    const onSettled = vi.fn()
+    const removeListener = addAppScrollSettledListener(onSettled)
+
+    document.dispatchEvent(new Event('touchstart'))
+    document.dispatchEvent(new Event('scrollend'))
+    vi.runAllTimers()
+    expect(onSettled).not.toHaveBeenCalled()
+
+    document.dispatchEvent(new Event('touchend'))
+    vi.runAllTimers()
+    expect(onSettled).toHaveBeenCalledTimes(1)
+    removeListener()
+  })
+
+  test('cancels queued settled work when a new scroll begins', () => {
+    vi.useFakeTimers()
+    documentScroll = mockDocumentScroll()
+    const onSettled = vi.fn()
+    const removeListener = addAppScrollSettledListener(onSettled)
+
+    document.dispatchEvent(new Event('scrollend'))
+    window.dispatchEvent(new Event('scroll'))
+    vi.runAllTimers()
+    expect(onSettled).not.toHaveBeenCalled()
+
+    document.dispatchEvent(new Event('scrollend'))
     vi.runAllTimers()
     expect(onSettled).toHaveBeenCalledTimes(1)
     removeListener()
