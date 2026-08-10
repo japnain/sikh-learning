@@ -2444,19 +2444,6 @@
    top padding reserves this toolbar's exact space while it scrolls naturally
    with the document; Ang navigation already follows the reading in the DOM. */
 @media (hover: none) and (pointer: coarse) {
-  .read-room-hero {
-    position: static;
-    top: auto;
-    max-height: none;
-    overflow-y: visible;
-  }
-
-  .read-collection-tabs,
-  .read-collection-intro {
-    position: static;
-    top: auto;
-  }
-
   .study-reader-topbar {
     position: absolute;
   }
