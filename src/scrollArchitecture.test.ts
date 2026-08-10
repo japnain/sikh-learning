@@ -102,11 +102,25 @@ test('keeps touch-reader chrome document-attached and out of WebKit viewport-lay
   expect(readerCss).toMatch(
     /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-entry-navigator--top\s*\{[^}]*position:\s*static;/s
   )
+})
+
+test('keeps focused-reader touch workarounds out of the Read browsing layout', () => {
+  const touchReaderMediaStart = readerCss.lastIndexOf(
+    '@media (hover: none) and (pointer: coarse)'
+  )
+  expect(touchReaderMediaStart).toBeGreaterThan(-1)
+
+  const touchReaderOverrides = readerCss.slice(touchReaderMediaStart)
+  expect(touchReaderOverrides).not.toContain('.read-room-')
+  expect(touchReaderOverrides).not.toContain('.read-collection-')
   expect(readerCss).toMatch(
-    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.read-room-hero\s*\{[^}]*position:\s*static;[^}]*max-height:\s*none;[^}]*overflow-y:\s*visible;/s
+    /\.read-collection-intro\s*\{[^}]*position:\s*relative;/s
   )
   expect(readerCss).toMatch(
-    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.read-collection-tabs,\s*\.read-collection-intro\s*\{[^}]*position:\s*static;/s
+    /\.read-collection-intro img\s*\{[^}]*position:\s*absolute;[^}]*inset:\s*0;/s
+  )
+  expect(readerCss).toMatch(
+    /@media \(min-width:\s*760px\)\s*\{[\s\S]*?\.read-collection-tabs\s*\{[^}]*position:\s*sticky;/s
   )
 })
 
