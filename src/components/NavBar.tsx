@@ -64,11 +64,14 @@ export default function NavBar() {
   const isBookRoute = /^\/library\/[^/]+(?:\/chapters\/[^/]+)?\/?$/.test(location.pathname)
   const activeTabId = isBookRoute
     ? 'read'
-    : location.pathname === '/'
+    : location.pathname === '/' || location.pathname.startsWith('/nitnem/customize')
       ? 'home'
       : location.pathname === '/banis' || location.pathname.startsWith('/banis/')
         ? 'read'
-        : location.pathname === '/saved' || location.pathname.startsWith('/saved/')
+        : location.pathname === '/saved'
+            || location.pathname.startsWith('/saved/')
+            || location.pathname === '/vocab'
+            || location.pathname.startsWith('/vocab/')
           ? 'saved'
           : location.pathname === '/more' || location.pathname.startsWith('/more/')
             ? 'more'
@@ -106,7 +109,7 @@ export default function NavBar() {
       id: 'more',
       to: '/more',
       label: copy.nav.more,
-      ariaLabel: copy.nav.more,
+      ariaLabel: copy.nav.moreDestination,
       Glyph: MoreGlyph,
     },
   ]
@@ -160,6 +163,9 @@ export default function NavBar() {
                 <tab.Glyph active={tab.id === activeTabId} />
               </span>
               <span className="app-nav-tab__label">{tab.label}</span>
+              {tab.id === 'more' ? (
+                <span className="sr-only"> — {copy.nav.moreDestination}</span>
+              ) : null}
             </Link>
           ))}
         </nav>

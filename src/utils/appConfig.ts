@@ -3,6 +3,14 @@ export interface PublicAppLinks {
   privacyUrl: string | null
 }
 
+export function normalizeSupportEmail(value: string | null | undefined): string | null {
+  const candidate = value?.trim()
+  if (!candidate || candidate.length > 254 || /[\r\n]/.test(candidate)) return null
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9.-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$/.test(candidate)
+    ? candidate
+    : null
+}
+
 export function normalizePublicHttpsUrl(value: string | null | undefined): string | null {
   const candidate = value?.trim()
   if (!candidate) return null
@@ -25,6 +33,21 @@ export function getPublicAppLinks(): PublicAppLinks {
 
 export function getDiagnosticsEndpoint(): string | null {
   return normalizePublicHttpsUrl(import.meta.env.VITE_DIAGNOSTICS_ENDPOINT)
+}
+
+export function getSupportEmail(): string | null {
+  return normalizeSupportEmail(import.meta.env.VITE_SUPPORT_EMAIL)
+}
+
+export function buildSupportMailto(value: string | null | undefined): string | null {
+  const email = normalizeSupportEmail(value)
+  if (!email) return null
+
+  const separatorIndex = email.lastIndexOf('@')
+  const localPart = encodeURIComponent(email.slice(0, separatorIndex))
+  const domain = encodeURIComponent(email.slice(separatorIndex + 1))
+  const subject = encodeURIComponent('NaamRas support')
+  return `mailto:${localPart}@${domain}?subject=${subject}`
 }
 
 export function getAppVersion(): string {

@@ -16,7 +16,7 @@ const handler = createMergeLocalStateHandler({
       },
       mergeSnapshot: async (incomingRecords, incomingEvents) => {
         const { data, error } = await supabase.rpc(
-          "merge_naamras_cloud_snapshot_v2",
+          "merge_naamras_cloud_snapshot_v3",
           {
             incoming_records: incomingRecords,
             incoming_events: incomingEvents,

@@ -8,6 +8,7 @@ import {
 } from '../../store/epubReader'
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
 import { mockDocumentScroll } from '../../test/documentScroll'
+import { useBookmarksStore } from '../../store/bookmarks'
 
 const FIRST_EPISODE_PATH = '/library/panth-prakash-english/chapters/episode-001'
 let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
@@ -33,6 +34,7 @@ describe('LibraryChapterReader', () => {
       lastStudied: null,
     })
     useEpubReaderStore.setState(DEFAULT_EPUB_READER_PREFERENCES)
+    useBookmarksStore.setState({ bookmarks: [] })
   })
 
   afterEach(() => {
@@ -121,6 +123,29 @@ describe('LibraryChapterReader', () => {
     await user.click(screen.getByRole('link', { name: /next.*episode 2/i }))
 
     expect(await screen.findByRole('link', { name: /back to saved/i })).toHaveAttribute('href', '/saved')
+  })
+
+  test('saves and removes the current Panth Prakash chapter with an exact block return', async () => {
+    renderReader()
+    await screen.findByTestId('panth-chapter-reader')
+
+    fireEvent.click(screen.getByRole('button', { name: /save this book section/i }))
+
+    expect(useBookmarksStore.getState().bookmarks).toEqual([
+      expect.objectContaining({
+        type: 'book',
+        workId: 'panth-prakash-english',
+        chapterId: 'episode-001',
+        chapterLabel: 'Episode 1',
+        excerpt: expect.stringMatching(/\S/),
+        returnPath: expect.stringMatching(/^\/library\/panth-prakash-english\/chapters\/episode-001#/),
+      }),
+    ])
+    expect(screen.getByText('Book section saved.')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /remove this saved book section/i }))
+    expect(useBookmarksStore.getState().bookmarks).toHaveLength(0)
+    expect(screen.getByText('Book section removed from Saved.')).toBeInTheDocument()
   })
 
   test('preserves an exact Read search origin', async () => {

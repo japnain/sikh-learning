@@ -631,7 +631,10 @@ function shouldRecordRequestFailure(request) {
     try {
       const requestUrl = new URL(url)
       const qaUrl = new URL(BASE_URL)
-      if (requestUrl.origin === qaUrl.origin && requestUrl.pathname.startsWith('/src/')) return false
+      const isExpectedCancellableStaticRequest = requestUrl.pathname.startsWith('/src/')
+        || requestUrl.pathname.startsWith('/assets/')
+        || requestUrl.pathname.startsWith('/data/library/')
+      if (requestUrl.origin === qaUrl.origin && isExpectedCancellableStaticRequest) return false
     } catch {
       // Keep malformed URLs visible as failures.
     }
@@ -914,9 +917,9 @@ async function main() {
       path: '/banis',
       qaControls: { empty: ['read-search'] },
       run: async ({ page, notes }) => {
-        notes.push('Expected Read smart search to render a deterministic empty state when the search backend returns no results.')
+        notes.push('Expected Read smart search to render a deterministic empty state when every enabled search layer returns no results.')
         await ensureVisible(page, '[data-page="banis"]', 'the Read page shell')
-        await page.locator('#banis-search').fill('waheguru')
+        await page.locator('#banis-search').fill('zzzxqvnomatch')
         await ensureVisible(page, '[data-ai-surface="read-smart-search"][data-ai-state="empty"]', 'the Read smart-search empty state')
       },
     },

@@ -12,6 +12,7 @@ import './styles/settings.css'
 import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary.tsx'
 import { installGlobalDiagnosticHandlers } from './utils/diagnostics.ts'
+import { registerNaamRasServiceWorker } from './utils/serviceWorker.ts'
 
 installGlobalDiagnosticHandlers()
 
@@ -22,3 +23,5 @@ createRoot(document.getElementById('root')!).render(
     </ErrorBoundary>
   </StrictMode>,
 )
+
+registerNaamRasServiceWorker()

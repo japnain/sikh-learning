@@ -1,0 +1,17 @@
+# NaamRas
+
+> NaamRas is a Sikh scripture reading app for daily Gurbani reading, reflection, saved passages, and curated books.
+
+## Main pages
+
+- [Home](https://naamras.xyz/)
+- [Read and search](https://naamras.xyz/banis)
+- [Panth Prakash](https://naamras.xyz/library/panth-prakash-english)
+- [Support](https://naamras.xyz/support)
+- [Privacy and sources](https://naamras.xyz/privacy)
+
+## Notes
+
+- Gurbani search and reader views identify their scripture source and location.
+- Saved items and reading progress remain on the device unless the reader enables cloud backup.
+- Public share links open the corresponding Hukamnama or personal reading inside NaamRas.

@@ -12,6 +12,8 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import {
   IconArrowLeft,
   IconArrowRight,
+  IconBookmark,
+  IconBookmarkFilled,
   IconClose,
   IconLibrary,
   IconMoreHorizontal,
@@ -30,6 +32,8 @@ import {
   type EpubReaderPalette,
 } from '../../store/epubReader'
 import { useProgressStore } from '../../store/progress'
+import { useBookmarksStore } from '../../store/bookmarks'
+import { useLocaleStore } from '../../store/locale'
 import type {
   LibraryChapterIndexEntry,
   LibraryChapterPayload,
@@ -60,6 +64,30 @@ interface ChapterLoadState {
 }
 
 type ReaderPanel = 'contents' | 'display' | null
+
+const BOOK_SAVE_COPY = {
+  en: {
+    save: 'Save this book section',
+    remove: 'Remove this saved book section',
+    saved: 'Book section saved.',
+    removed: 'Book section removed from Saved.',
+    storage: 'This change is only available for this session because device storage is unavailable.',
+  },
+  pa: {
+    save: 'ਕਿਤਾਬ ਦਾ ਇਹ ਭਾਗ ਸੰਭਾਲੋ',
+    remove: 'ਕਿਤਾਬ ਦਾ ਇਹ ਸੰਭਾਲਿਆ ਭਾਗ ਹਟਾਓ',
+    saved: 'ਕਿਤਾਬ ਦਾ ਭਾਗ ਸੰਭਾਲਿਆ ਗਿਆ।',
+    removed: 'ਕਿਤਾਬ ਦਾ ਭਾਗ ਸੰਭਾਲੇ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ।',
+    storage: 'ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਾ ਹੋਣ ਕਾਰਨ ਇਹ ਬਦਲਾਅ ਸਿਰਫ਼ ਇਸ ਸੈਸ਼ਨ ਲਈ ਹੈ।',
+  },
+  hi: {
+    save: 'पुस्तक का यह भाग सहेजें',
+    remove: 'पुस्तक का यह सहेजा भाग हटाएँ',
+    saved: 'पुस्तक का भाग सहेजा गया।',
+    removed: 'पुस्तक का भाग सहेजे से हटा दिया गया।',
+    storage: 'डिवाइस स्टोरेज उपलब्ध न होने के कारण यह बदलाव केवल इस सत्र के लिए है।',
+  },
+} as const
 
 function chapterLabel(chapter: Pick<LibraryChapterPayload | LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
   return chapter.kind === 'episode' && chapter.episodeNumber
@@ -210,6 +238,9 @@ function ReaderPanelShell({ title, description, palette, onClose, children }: {
 
 export default function LibraryChapterReader() {
   const updateSession = useProgressStore(state => state.updateSession)
+  const locale = useLocaleStore(state => state.locale)
+  const bookSaveCopy = BOOK_SAVE_COPY[locale]
+  const { addBookmark, removeBookmark, getBookBookmark } = useBookmarksStore()
   const { workId = 'panth-prakash-english', chapterId = '' } = useParams<{ workId: string; chapterId: string }>()
   const location = useLocation()
   const readerOrigin = getLibraryReaderOrigin(location.state, `/library/${workId}`)
@@ -218,6 +249,7 @@ export default function LibraryChapterReader() {
   const [loadState, setLoadState] = useState<ChapterLoadState>({ key: requestKey, status: 'loading', reader: null })
   const [activePanel, setActivePanel] = useState<ReaderPanel>(null)
   const [tocQuery, setTocQuery] = useState('')
+  const [savedNotice, setSavedNotice] = useState<string | null>(null)
   const blockNodes = useRef(new Map<string, HTMLElement>())
   const visibleBlockIdRef = useRef<string | null>(null)
   const committedBlockIdRef = useRef<string | null>(null)
@@ -498,6 +530,29 @@ export default function LibraryChapterReader() {
     : readerOrigin.startsWith('/banis')
       ? 'Back to Read'
       : `Back to ${work.shortTitle}`
+  const chapterBookmark = getBookBookmark(work.id, chapter.id)
+  const toggleChapterBookmark = () => {
+    if (chapterBookmark) {
+      const result = removeBookmark(chapterBookmark.id)
+      setSavedNotice(result.persisted ? bookSaveCopy.removed : bookSaveCopy.storage)
+      return
+    }
+
+    const blockId = visibleBlockIdRef.current ?? chapterBlocks[0]?.id
+    const block = blockId ? chapterBlocks.find(item => item.id === blockId) : undefined
+    const result = addBookmark({
+      type: 'book',
+      title: `${work.shortTitle} · ${chapterLabel(chapter)}`,
+      workId: work.id,
+      chapterId: chapter.id,
+      chapterLabel: chapterLabel(chapter),
+      blockId,
+      excerpt: block ? readerBlockText(block).slice(0, 360).trim() : chapter.title,
+      description: chapter.title,
+      returnPath: `${chapterPath(work.id, chapter.id)}${blockId ? `#${encodeURIComponent(blockId)}` : ''}`,
+    })
+    setSavedNotice(result.persisted ? bookSaveCopy.saved : bookSaveCopy.storage)
+  }
 
   return (
     <div
@@ -524,6 +579,15 @@ export default function LibraryChapterReader() {
           <strong>{chapterLabel(chapter)}</strong>
         </div>
         <div className="epub-reader-topbar__actions">
+          <button
+            type="button"
+            onClick={toggleChapterBookmark}
+            aria-label={chapterBookmark ? bookSaveCopy.remove : bookSaveCopy.save}
+            aria-pressed={Boolean(chapterBookmark)}
+            data-testid="panth-reader-bookmark"
+          >
+            {chapterBookmark ? <IconBookmarkFilled size={18} /> : <IconBookmark size={18} />}
+          </button>
           <button ref={contentsTriggerRef} type="button" onClick={() => setActivePanel('contents')} aria-label="Open contents">
             <IconLibrary size={18} />
           </button>
@@ -535,6 +599,8 @@ export default function LibraryChapterReader() {
           <span ref={progressBarRef} />
         </div>
       </header>
+
+      <div className="sr-only" aria-live="polite" aria-atomic="true">{savedNotice}</div>
 
       <div className="epub-reader-main" data-testid="panth-chapter-article">
         <header className="epub-reading-title">

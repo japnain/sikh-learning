@@ -5,6 +5,10 @@ export type LibraryReaderNavigationState = {
   [LIBRARY_READER_ORIGIN_KEY]: string
 }
 
+export type ReaderOriginNavigationState =
+  | LibraryReaderNavigationState
+  | { readerOrigin: string }
+
 export function isSafeInternalAppPath(value: unknown): value is string {
   if (
     typeof value !== 'string'
@@ -33,6 +37,23 @@ export function buildLibraryReaderNavigationState(origin: string): LibraryReader
   return {
     [LIBRARY_READER_ORIGIN_KEY]: isSafeInternalAppPath(origin) ? origin : '/banis?collection=books',
   }
+}
+
+export function buildReaderOriginNavigationState(
+  destination: string,
+  origin: string
+): ReaderOriginNavigationState | undefined {
+  const safeOrigin = isSafeInternalAppPath(origin) ? origin : '/banis'
+
+  if (destination === '/study' || destination.startsWith('/study?')) {
+    return { readerOrigin: safeOrigin }
+  }
+
+  if (destination.startsWith('/library/')) {
+    return buildLibraryReaderNavigationState(safeOrigin)
+  }
+
+  return undefined
 }
 
 export function buildCurrentAppPath(location: {

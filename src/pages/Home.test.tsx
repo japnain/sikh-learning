@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
 import * as hukamnamaHook from '../hooks/useHukamnama'
@@ -18,6 +18,27 @@ import { useVocabStore } from '../store/vocab'
 
 function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
+}
+
+function HomeDestinationSpy() {
+  const location = useLocation()
+  return (
+    <div data-testid="home-destination" data-location-state={JSON.stringify(location.state)}>
+      {`${location.pathname}${location.search}${location.hash}`}
+    </div>
+  )
+}
+
+function renderHomeRoutes() {
+  return render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/study" element={<HomeDestinationSpy />} />
+        <Route path="/library/:workId/chapters/:chapterId" element={<HomeDestinationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
 }
 
 function todayStamp() {
@@ -271,6 +292,60 @@ test('saved overview shows only reading, favorites, and review metrics', () => {
   expect(within(metrics).getByText('Bookmarks').parentElement).toHaveTextContent('1')
   expect(within(metrics).getByText('Favorites').parentElement).toHaveTextContent('0')
   expect(within(metrics).getByText('Review Bank').parentElement).toHaveTextContent('0')
+})
+
+test('saved scripture previews localize source units and return to Home from Study', () => {
+  useLocaleStore.setState({ locale: 'pa' })
+  useBookmarksStore.setState({
+    bookmarks: [{
+      id: 'bookmark-vaar',
+      type: 'bani',
+      title: 'Vaar reading',
+      source: 'B',
+      ang: 12,
+      returnPath: '/study?source=B&ang=12',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }],
+  })
+
+  renderHomeRoutes()
+
+  const preview = screen.getByTestId('home-saved-preview-passage')
+  expect(within(preview).getByText('BGV · ਵਾਰ 12')).toBeInTheDocument()
+  fireEvent.click(preview)
+
+  expect(screen.getByTestId('home-destination')).toHaveTextContent('/study?source=B&ang=12')
+  expect(screen.getByTestId('home-destination')).toHaveAttribute(
+    'data-location-state',
+    JSON.stringify({ readerOrigin: '/' })
+  )
+})
+
+test('saved book previews preserve Home as the book reader origin', () => {
+  useBookmarksStore.setState({
+    bookmarks: [{
+      id: 'bookmark-book',
+      type: 'book',
+      title: 'Panth Prakash · Episode 1',
+      workId: 'panth-prakash-english',
+      chapterId: 'episode-001',
+      chapterLabel: 'Episode 1',
+      blockId: 'episode-001-p47-b003',
+      returnPath: '/library/panth-prakash-english/chapters/episode-001#episode-001-p47-b003',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }],
+  })
+
+  renderHomeRoutes()
+  fireEvent.click(screen.getByTestId('home-saved-preview-passage'))
+
+  expect(screen.getByTestId('home-destination')).toHaveTextContent(
+    '/library/panth-prakash-english/chapters/episode-001#episode-001-p47-b003'
+  )
+  expect(screen.getByTestId('home-destination')).toHaveAttribute(
+    'data-location-state',
+    JSON.stringify({ libraryReaderOrigin: '/' })
+  )
 })
 
 test('keeps ordinary Nitnem clicks separate from carousel drag capture', () => {

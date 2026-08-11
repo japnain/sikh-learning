@@ -23,6 +23,7 @@ type LocaleCopy = {
     read: string
     saved: string
     more: string
+    moreDestination: string
   }
   onboarding: {
     eyebrow: string
@@ -218,6 +219,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       read: 'Read',
       saved: 'Saved',
       more: 'More',
+      moreDestination: 'More settings and information',
     },
     onboarding: {
       eyebrow: 'Welcome',
@@ -411,6 +413,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       read: 'ਪੜ੍ਹੋ',
       saved: 'ਸੰਭਾਲਿਆ',
       more: 'ਹੋਰ',
+      moreDestination: 'ਹੋਰ ਸੈਟਿੰਗਾਂ ਅਤੇ ਜਾਣਕਾਰੀ',
     },
     onboarding: {
       eyebrow: 'ਜੀ ਆਇਆਂ ਨੂੰ',
@@ -604,6 +607,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       read: 'पढ़ें',
       saved: 'सहेजा',
       more: 'और',
+      moreDestination: 'अधिक सेटिंग्स और जानकारी',
     },
     onboarding: {
       eyebrow: 'स्वागत',

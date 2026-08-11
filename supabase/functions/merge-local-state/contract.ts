@@ -6,13 +6,13 @@ export type Json =
   | Json[]
   | { [key: string]: Json | undefined };
 
-export const CLOUD_SNAPSHOT_VERSION = 2 as const;
+export const CLOUD_SNAPSHOT_VERSION = 3 as const;
 
 type JsonObject = Record<string, Json | undefined>;
 type RecordType = "profile" | "saved-item" | "vocab-entry" | "learning-progress";
 
 export interface ParsedMergeSnapshot {
-  version: 2;
+  version: 3;
   deviceId: string;
   profile: JsonObject;
   savedItems: JsonObject[];
@@ -33,8 +33,8 @@ export interface DatabaseSyncRecord {
   record: JsonObject;
 }
 
-export interface RemoteSnapshotV2 {
-  version: 2;
+export interface RemoteSnapshotV3 {
+  version: 3;
   generatedAt: string;
   profile: JsonObject;
   savedItems: JsonObject[];
@@ -336,7 +336,7 @@ function validateRemoteRecord(record: JsonObject, index: number) {
 export function buildRemoteSnapshot(
   records: unknown,
   generatedAt: string
-): RemoteSnapshotV2 {
+): RemoteSnapshotV3 {
   if (!isTimestamp(generatedAt)) {
     throw new SnapshotValidationError("remote.generatedAt must be an ISO timestamp.");
   }

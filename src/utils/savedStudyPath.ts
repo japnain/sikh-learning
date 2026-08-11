@@ -1,4 +1,4 @@
-import type { Bookmark } from '../store/bookmarks'
+import { isBookBookmark, isSafeSavedReturnPath, type Bookmark } from '../store/bookmarks'
 import type { FavoriteItem } from '../store/favorites'
 
 type SavedStudyItem = Bookmark | FavoriteItem
@@ -20,6 +20,13 @@ function getSavedRouteMode(item: SavedStudyItem) {
 }
 
 export function buildSavedStudyPath(item: SavedStudyItem): string {
+  if (isSafeSavedReturnPath(item.returnPath)) return item.returnPath
+
+  if ('type' in item && item.type === 'book' && isBookBookmark(item)) {
+    const blockHash = item.blockId ? `#${encodeURIComponent(item.blockId)}` : ''
+    return `/library/${item.workId}/chapters/${item.chapterId}${blockHash}`
+  }
+
   const routeMode = getSavedRouteMode(item)
 
   if (routeMode === 'verse' && item.shabadId && 'verseId' in item && item.verseId) {

@@ -14,6 +14,8 @@ import type {
   VisraamSource,
   VocabEntry,
 } from '../types'
+import type { Bookmark } from '../store/bookmarks'
+import type { FavoriteItem } from '../store/favorites'
 
 export interface CloudSyncMetadata {
   id: string
@@ -55,30 +57,9 @@ export interface CloudProfileRecord extends CloudSyncMetadata {
   }
 }
 
-export interface CloudBookmarkPayload {
-  id: string
-  type: 'shabad' | 'bani' | 'verse'
-  title: string
-  source: 'G' | 'D' | 'B' | 'A'
-  ang: number
-  shabadId?: number
-  verseId?: number
-  excerpt?: string
-  description?: string
-  savedAt: string
-}
+export type CloudBookmarkPayload = Bookmark
 
-export interface CloudFavoritePayload {
-  id: string
-  title: string
-  source: 'G' | 'D' | 'B' | 'A'
-  ang: number
-  shabadId?: number
-  verseId?: number
-  type: 'ang' | 'shabad' | 'bani'
-  routeMode?: 'canonical' | 'shabad' | 'verse'
-  savedAt: string
-}
+export type CloudFavoritePayload = FavoriteItem
 
 export type CloudSavedItemKind = 'bookmark' | 'favorite'
 
@@ -115,7 +96,7 @@ export interface CloudActivityEvent {
 }
 
 export interface CloudLocalSnapshot {
-  version: 2
+  version: 3
   deviceId: string
   profile: CloudProfileRecord
   savedItems: CloudSavedItemRecord[]
@@ -125,7 +106,7 @@ export interface CloudLocalSnapshot {
 }
 
 export interface CloudRemoteSnapshot {
-  version: 2
+  version: 3
   generatedAt: string
   profile?: CloudProfileRecord | null
   savedItems?: CloudSavedItemRecord[]
@@ -135,7 +116,7 @@ export interface CloudRemoteSnapshot {
 }
 
 export interface MergeLocalStateResult {
-  version?: 2
+  version?: 3
   complete?: boolean
   acknowledgedEventIds?: string[]
   mergedAt?: string | null

@@ -83,7 +83,7 @@ const EVENT: CloudActivityEvent = {
 }
 
 const LOCAL_SNAPSHOT: CloudLocalSnapshot = {
-  version: 2,
+  version: 3,
   deviceId: 'device-a',
   profile: {
     id: 'profile',
@@ -124,7 +124,7 @@ const LOCAL_SNAPSHOT: CloudLocalSnapshot = {
 }
 
 const REMOTE_SNAPSHOT: CloudRemoteSnapshot = {
-  version: 2,
+  version: 3,
   generatedAt: '2026-04-17T12:05:00.000Z',
   profile: {
     ...LOCAL_SNAPSHOT.profile,
@@ -139,7 +139,7 @@ const REMOTE_SNAPSHOT: CloudRemoteSnapshot = {
 
 function completeResult(): MergeLocalStateResult {
   return {
-    version: 2,
+    version: 3,
     complete: true,
     acknowledgedEventIds: ['event-1'],
     mergedAt: '2026-04-17T12:05:00.000Z',
@@ -180,7 +180,7 @@ beforeEach(() => {
 })
 
 describe('cloud runtime completion contract', () => {
-  test('uploads the full v2 snapshot without dropping favorites or progress domains', () => {
+  test('uploads the full v3 snapshot without dropping favorites or progress domains', () => {
     const serialized = toSupabaseMergeSnapshot({
       ...LOCAL_SNAPSHOT,
       savedItems: [{

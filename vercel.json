@@ -1,6 +1,19 @@
 {
   "headers": [
     {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
@@ -34,5 +47,19 @@
       ]
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/h/:date",
+      "destination": "/api/share?kind=hukamnama&date=:date"
+    },
+    {
+      "source": "/p/:shabadId/:ang/:resumeVerseId",
+      "destination": "/api/share?kind=personal&shabadId=:shabadId&ang=:ang&resumeVerseId=:resumeVerseId"
+    },
+    {
+      "source": "/p/:shabadId/:ang",
+      "destination": "/api/share?kind=personal&shabadId=:shabadId&ang=:ang"
+    },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

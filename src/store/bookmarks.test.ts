@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { useBookmarksStore } from './bookmarks'
 
 beforeEach(() => {
@@ -112,4 +113,72 @@ test('hydrateCachedBookmarks drops malformed persisted records without breaking 
   expect(useBookmarksStore.getState().bookmarks).toEqual([
     expect.objectContaining({ id: 'bookmark-valid', verseId: 100 }),
   ])
+})
+
+test('keeps exact Japji, generic Ang, and Hukamnama routes as distinct saves', () => {
+  const store = useBookmarksStore.getState()
+  store.addBookmark({
+    type: 'bani', title: 'Japji Sahib', source: 'G', ang: 1,
+    returnPath: '/study?source=G&ang=1&baniDbId=2&baniId=japji-sahib&exactBani=1',
+  })
+  store.addBookmark({
+    type: 'bani', title: 'SGGS Ang 1', source: 'G', ang: 1,
+    returnPath: '/study?source=G&ang=1',
+  })
+  store.addBookmark({
+    type: 'bani', title: 'Daily Hukamnama', source: 'G', ang: 1,
+    returnPath: '/study?hukamnamaDate=2026-08-10',
+  })
+  store.addBookmark({
+    type: 'shabad', title: 'Personal Hukamnama', source: 'G', ang: 1, shabadId: 50,
+    returnPath: '/study?shabadId=50&flow=ardaas-hukamnama&randomHukamnamaAng=1',
+  })
+
+  expect(useBookmarksStore.getState().bookmarks).toHaveLength(4)
+})
+
+test('does not let a legacy generic bookmark swallow an exact-context save', () => {
+  const store = useBookmarksStore.getState()
+  store.addBookmark({ type: 'bani', title: 'Legacy Ang 1', source: 'G', ang: 1 })
+  store.addBookmark({
+    type: 'bani', title: 'Daily Hukamnama', source: 'G', ang: 1,
+    returnPath: '/study?hukamnamaDate=2026-08-10',
+  })
+  store.addBookmark({
+    type: 'bani', title: 'Japji Sahib', source: 'G', ang: 1,
+    returnPath: '/study?source=G&ang=1&baniDbId=2&baniId=japji-sahib',
+  })
+
+  expect(useBookmarksStore.getState().bookmarks).toHaveLength(3)
+})
+
+test('supports an intentional book chapter bookmark with an exact block return', () => {
+  const result = useBookmarksStore.getState().addBookmark({
+    type: 'book',
+    title: 'Panth Prakash · Episode 1',
+    workId: 'panth-prakash-english',
+    chapterId: 'episode-001',
+    chapterLabel: 'Episode 1',
+    blockId: 'episode-001-p47-b003',
+    excerpt: 'I bow my head in reverence.',
+    returnPath: '/library/panth-prakash-english/chapters/episode-001#episode-001-p47-b003',
+  })
+
+  expect(result).toMatchObject({ changed: true, persisted: true })
+  expect(useBookmarksStore.getState().getBookBookmark('panth-prakash-english', 'episode-001')).toEqual(
+    expect.objectContaining({ blockId: 'episode-001-p47-b003' })
+  )
+})
+
+test('reports when a bookmark cannot be persisted durably', () => {
+  const storage = vi.spyOn(window.localStorage, 'setItem').mockImplementation(() => {
+    throw new DOMException('Quota exceeded', 'QuotaExceededError')
+  })
+
+  const result = useBookmarksStore.getState().addBookmark({
+    type: 'bani', title: 'Japji Sahib', source: 'G', ang: 1,
+  })
+
+  expect(result).toMatchObject({ changed: true, persisted: false })
+  storage.mockRestore()
 })

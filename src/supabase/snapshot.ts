@@ -26,7 +26,7 @@ import type {
   CloudVocabRecord,
 } from './types'
 
-export const CLOUD_SNAPSHOT_VERSION = 2 as const
+export const CLOUD_SNAPSHOT_VERSION = 3 as const
 
 const SNAPSHOT_METADATA_STORAGE_KEY = 'naamras-cloud-sync-export-metadata'
 
@@ -119,12 +119,14 @@ function readSnapshotMetadata(): SnapshotMetadataMap {
 }
 
 function writeSnapshotMetadata(metadata: SnapshotMetadataMap) {
-  if (!canUseStorage()) return
+  if (!canUseStorage()) return false
 
   try {
     globalThis.localStorage.setItem(SNAPSHOT_METADATA_STORAGE_KEY, JSON.stringify(metadata))
+    return true
   } catch {
     // Local reading remains usable when browser storage is under pressure.
+    return false
   }
 }
 
@@ -265,7 +267,7 @@ function createSavedItemTombstone(
   return record
 }
 
-function asSavedSource(value: unknown): CloudBookmarkPayload['source'] | null {
+function asSavedSource(value: unknown): 'G' | 'D' | 'B' | 'A' | null {
   return value === 'G' || value === 'D' || value === 'B' || value === 'A'
     ? value
     : null
@@ -285,6 +287,35 @@ function getRemovalSavedItemTombstones(
   const tombstones: CloudSavedItemRecord[] = []
 
   for (const event of events) {
+    if (
+      event.eventType === 'saved-item.bookmark.removed'
+      && event.payload.bookmarkType === 'book'
+      && typeof event.payload.workId === 'string'
+      && typeof event.payload.chapterId === 'string'
+    ) {
+      const naturalKey = buildBookmarkNaturalKey({
+        type: 'book',
+        workId: event.payload.workId,
+        chapterId: event.payload.chapterId,
+      })
+      if (occupiedNaturalKeys.has(naturalKey)) continue
+
+      const id = typeof event.payload.bookmarkId === 'string'
+        ? event.payload.bookmarkId
+        : event.id
+      const legacyMetadata = metadata[id]
+      tombstones.push(createSavedItemTombstone(
+        metadata,
+        'bookmark',
+        naturalKey,
+        id,
+        event.occurredAt,
+        isIsoTimestamp(legacyMetadata?.clientUpdatedAt) ? legacyMetadata.clientUpdatedAt : null
+      ))
+      occupiedNaturalKeys.add(naturalKey)
+      continue
+    }
+
     const source = asSavedSource(event.payload.source)
     const ang = asPositiveNumber(event.payload.ang)
     if (!source || !ang) continue
@@ -292,7 +323,13 @@ function getRemovalSavedItemTombstones(
     if (event.eventType === 'saved-item.bookmark.removed') {
       const verseId = asPositiveNumber(event.payload.verseId)
       const shabadId = asPositiveNumber(event.payload.shabadId)
-      const naturalKey = buildBookmarkNaturalKey({ source, ang, verseId, shabadId })
+      const naturalKey = buildBookmarkNaturalKey({
+        source,
+        ang,
+        verseId,
+        shabadId,
+        returnPath: typeof event.payload.returnPath === 'string' ? event.payload.returnPath : undefined,
+      })
       if (occupiedNaturalKeys.has(naturalKey)) continue
 
       const id = typeof event.payload.bookmarkId === 'string'
@@ -324,6 +361,7 @@ function getRemovalSavedItemTombstones(
         shabadId,
         verseId,
         routeMode,
+        returnPath: typeof event.payload.returnPath === 'string' ? event.payload.returnPath : undefined,
       })
       if (occupiedNaturalKeys.has(naturalKey)) continue
 
@@ -621,7 +659,7 @@ function syncRemoteSnapshotMetadata(snapshot: CloudRemoteSnapshot) {
     storeRemoteRecord('learning-progress', record.scope, record)
   }
 
-  writeSnapshotMetadata(metadata)
+  return writeSnapshotMetadata(metadata)
 }
 
 function applyProfileRecord(profile: CloudProfileRecord | null | undefined) {
@@ -673,8 +711,20 @@ function applySavedItems(savedItems: CloudSavedItemRecord[] | undefined) {
     ))
     .map(record => record.payload)
 
-  useBookmarksStore.getState().replaceBookmarks(bookmarks)
-  useFavoritesStore.setState({ favorites })
+  const bookmarkStore = useBookmarksStore.getState()
+  const favoriteStore = useFavoritesStore.getState()
+  const previousBookmarks = bookmarkStore.bookmarks
+  const previousFavorites = favoriteStore.favorites
+  const bookmarksPersisted = bookmarkStore.replaceBookmarks(bookmarks)
+  const favoritesPersisted = favoriteStore.replaceFavorites(favorites)
+
+  if (bookmarksPersisted && favoritesPersisted) return
+
+  // Keep a partially applied snapshot from becoming the new local truth. A
+  // later retry can safely merge the same server result again.
+  if (bookmarksPersisted) bookmarkStore.replaceBookmarks(previousBookmarks)
+  if (favoritesPersisted) favoriteStore.replaceFavorites(previousFavorites)
+  throw new Error('Remote saved items could not be persisted on this device.')
 }
 
 function applyVocabEntries(vocabEntries: CloudVocabRecord[] | undefined) {
@@ -719,5 +769,7 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
   applySavedItems(snapshot.savedItems)
   applyVocabEntries(snapshot.vocabEntries)
   applyLearningProgress(snapshot.learningProgress)
-  syncRemoteSnapshotMetadata(snapshot)
+  if (!syncRemoteSnapshotMetadata(snapshot)) {
+    throw new Error('Cloud snapshot metadata could not be persisted on this device.')
+  }
 }

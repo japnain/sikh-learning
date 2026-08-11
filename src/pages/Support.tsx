@@ -1,7 +1,26 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IconArrowLeft, IconArrowRight, IconExternalLink } from '../components/icons'
+import { IconArrowLeft, IconArrowRight, IconCheck, IconExternalLink, IconShare } from '../components/icons'
+import { buildSupportMailto, getSupportEmail } from '../utils/appConfig'
 
 const SUPPORT_ISSUE_URL = 'https://github.com/japnain/sikh-learning/issues/new?title=NaamRas%20support%3A%20'
+const SUPPORT_REPORT_TEMPLATE = `NaamRas support report
+
+Page or reading:
+Device model:
+Operating system and version:
+Browser or app version:
+
+What happened:
+
+Steps to reproduce:
+1.
+2.
+3.
+
+Expected result:
+
+Please remove private notes, account identifiers, saved passages, and personal information before sending.`
 
 const troubleshootingItems = [
   {
@@ -19,8 +38,23 @@ const troubleshootingItems = [
 ]
 
 export default function Support() {
+  const supportEmail = getSupportEmail()
+  const supportMailto = buildSupportMailto(supportEmail)
+  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'unavailable'>('idle')
+
+  const copyReportTemplate = async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable')
+      await navigator.clipboard.writeText(SUPPORT_REPORT_TEMPLATE)
+      setCopyState('copied')
+    } catch {
+      setCopyState('unavailable')
+    }
+  }
+
   return (
     <div
+      lang="en"
       className="page-shell animate-fade-in"
       data-testid="page-support"
       data-page="support"
@@ -43,16 +77,33 @@ export default function Support() {
         <p className="mt-3 max-w-[58ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
           Start with the checks below. When something is still wrong, send a report with the screen, device, and steps that reproduced it.
         </p>
-        <a
-          href={SUPPORT_ISSUE_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg sm:w-auto"
-          data-testid="support-report-problem"
-        >
-          Report a problem
-          <IconExternalLink size={15} />
-        </a>
+        <div className="mt-4 grid gap-2 sm:flex sm:flex-wrap">
+          {supportMailto ? (
+            <a
+              href={supportMailto}
+              className="interactive-focus interactive-pill-link min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg sm:w-auto"
+              data-testid="support-email"
+            >
+              Email support
+              <IconArrowRight size={14} />
+            </a>
+          ) : null}
+          <a
+            href={SUPPORT_ISSUE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className={`interactive-focus interactive-pill-link min-h-[48px] w-full gap-2 rounded-lg px-4 font-sans text-sm font-semibold sm:w-auto ${supportMailto ? 'border border-sand/20 text-ink dark:border-dark-text/15 dark:text-dark-text' : 'bg-ink text-parchment dark:bg-parchment dark:text-dark-bg'}`}
+            data-testid="support-report-problem"
+          >
+            Open GitHub issue
+            <IconExternalLink size={15} />
+          </a>
+        </div>
+        {!supportMailto ? (
+          <p className="mt-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/62" data-testid="support-email-unavailable">
+            GitHub is the only verified public support endpoint in this build. A monitored email option will appear here only after it is configured.
+          </p>
+        ) : null}
       </section>
 
       <section className="mt-5" aria-labelledby="support-common-title">
@@ -77,6 +128,20 @@ export default function Support() {
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
           Include your device model, operating-system or browser version, the page you were using, and the shortest steps that reproduce the issue. Do not post account identifiers, private notes, saved passages, or screenshots containing personal information.
+        </p>
+        <button
+          type="button"
+          onClick={copyReportTemplate}
+          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text sm:w-auto"
+          data-testid="support-copy-template"
+        >
+          {copyState === 'copied' ? <IconCheck size={15} /> : <IconShare size={15} />}
+          {copyState === 'copied' ? 'Report template copied' : 'Copy report template'}
+        </button>
+        <p className="mt-2 font-sans text-xs leading-5 text-ink/66 dark:text-dark-text/58" aria-live="polite">
+          {copyState === 'unavailable'
+            ? 'Copy is unavailable in this browser. Use the checklist above to write the report.'
+            : 'Paste the template into email or another contact channel and review it before sending.'}
         </p>
       </section>
 

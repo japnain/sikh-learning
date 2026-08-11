@@ -11,8 +11,8 @@ import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import SoundscapeControls from '../components/SoundscapeControls'
 import StudyCard from '../components/StudyCard'
 import StudyEntryNavigator from '../components/StudyEntryNavigator'
-import { useBookmarksStore } from '../store/bookmarks'
-import { useFavoritesStore } from '../store/favorites'
+import { getSavedReturnIdentity, isSafeSavedReturnPath, isScriptureBookmark, useBookmarksStore } from '../store/bookmarks'
+import { resolveFavoriteRouteMode, useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
@@ -80,6 +80,7 @@ import {
   scrollElementIntoAppView,
 } from '../utils/appScroll'
 import { buildPersonalHukamnamaShortPath } from '../utils/hukamnamaShareRoute'
+import { canUseLegacySavedLocationFallback } from '../utils/savedRouteIdentity'
 
 type BaniSource = SourceReaderId
 
@@ -202,6 +203,13 @@ function parseShabadId(entry: ScriptureEntry): number | null {
   return null
 }
 
+function hasExactLineIdentity(line: Pick<ScriptureLine, 'shabadId' | 'verseId'>) {
+  return Number.isSafeInteger(line.shabadId)
+    && line.shabadId > 0
+    && Number.isSafeInteger(line.verseId)
+    && line.verseId > 0
+}
+
 function sliceEntryToLines(entry: ScriptureEntry, lines: ScriptureLine[]): ScriptureEntry {
   const nextAng = lines.find(line => line.ang)?.ang ?? entry.ang
 
@@ -235,6 +243,67 @@ function findFirstRenderableLine(entries: ScriptureEntry[]): ScriptureLine | nul
   return null
 }
 
+function truncateSavedText(value: string | undefined, maxLength = 700) {
+  const compact = value?.replace(/\s+/g, ' ').trim() ?? ''
+  return compact.length > maxLength ? `${compact.slice(0, maxLength).trim()}…` : compact
+}
+
+function buildSavedExcerptEntry(saved: {
+  id: string
+  title: string
+  source: BaniSource
+  ang: number
+  shabadId?: number
+  verseId?: number
+  excerpt?: string
+  transliteration?: string
+  translation_en?: string
+  translation_hi?: string
+  translation_pa?: string
+}): ScriptureEntry | null {
+  const gurmukhi = saved.excerpt?.trim()
+  if (!gurmukhi) return null
+
+  // ScriptureLine requires numeric IDs, but canonical saves do not always have
+  // an exact verse identity. Zero is an explicit non-routable sentinel; never
+  // invent a valid-looking Gurbani ID for an offline excerpt.
+  const shabadId = saved.shabadId ?? 0
+  const verseId = saved.verseId ?? 0
+  const transliteration = saved.transliteration?.trim() ?? ''
+  const translationEn = saved.translation_en?.trim() ?? ''
+  const translationHi = saved.translation_hi?.trim() ?? ''
+  const translationPa = saved.translation_pa?.trim() ?? ''
+  const line: ScriptureLine = {
+    verseId,
+    shabadId,
+    ang: saved.ang,
+    gurmukhi,
+    transliteration,
+    translation_en: translationEn,
+    translations_en: translationEn ? { bdb: translationEn } : {},
+    translation_hi: translationHi,
+    translations_hi: translationHi ? { ss: translationHi } : undefined,
+    translation_pa: translationPa,
+    translations_pa: translationPa ? { ss: translationPa } : undefined,
+  }
+
+  return {
+    id: `saved-${saved.id}`,
+    scripture: saved.title,
+    source: saved.source,
+    ang: saved.ang,
+    shabadId,
+    verseIds: verseId > 0 ? [verseId] : [],
+    lines: [line],
+    gurmukhi,
+    transliteration,
+    translation_en: translationEn,
+    translation_hi: translationHi,
+    translation_pa: translationPa,
+    words: [],
+  }
+}
+
 function findStudyEntryTitle(entry: ScriptureEntry): string {
   const titleLine = entry.lines?.find(
     line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi)
@@ -257,6 +326,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   bookmarkSaved: string
   bookmarkRemoved: string
   bookmarkExists: string
+  storageUnavailable: string
+  savedOffline: string
+  tryLive: string
   favoriteAdded: string
   favoriteRemoved: string
   lineCopied: string
@@ -283,6 +355,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     bookmarkSaved: 'Bookmark saved.',
     bookmarkRemoved: 'Bookmark removed.',
     bookmarkExists: 'This passage is already bookmarked.',
+    storageUnavailable: 'Saved for this session, but device storage is unavailable. Free some space and try again.',
+    savedOffline: 'Showing the passage already saved on this device because the live source is unavailable.',
+    tryLive: 'Try live copy',
     favoriteAdded: 'Added to favorites.',
     favoriteRemoved: 'Removed from favorites.',
     lineCopied: 'Verse copied to clipboard.',
@@ -309,6 +384,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     bookmarkSaved: 'ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।',
     bookmarkRemoved: 'ਬੁੱਕਮਾਰਕ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
     bookmarkExists: 'ਇਹ ਪਾਠ ਪਹਿਲਾਂ ਹੀ ਬੁੱਕਮਾਰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ।',
+    storageUnavailable: 'ਇਸ ਸੈਸ਼ਨ ਲਈ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ, ਪਰ ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਕੁਝ ਜਗ੍ਹਾ ਖਾਲੀ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+    savedOffline: 'ਲਾਈਵ ਸਰੋਤ ਉਪਲਬਧ ਨਾ ਹੋਣ ਕਰਕੇ ਇਸ ਡਿਵਾਈਸ ਤੇ ਪਹਿਲਾਂ ਸੰਭਾਲਿਆ ਪਾਠ ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ।',
+    tryLive: 'ਲਾਈਵ ਕਾਪੀ ਅਜ਼ਮਾਓ',
     favoriteAdded: 'ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜਿਆ ਗਿਆ ਹੈ।',
     favoriteRemoved: 'ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
     lineCopied: 'ਪੰਕਤੀ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਈ ਹੈ।',
@@ -335,6 +413,9 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     bookmarkSaved: 'बुकमार्क सेव हो गया।',
     bookmarkRemoved: 'बुकमार्क हटा दिया गया।',
     bookmarkExists: 'यह अंश पहले से बुकमार्क किया हुआ है।',
+    storageUnavailable: 'इस सत्र के लिए सेव है, लेकिन डिवाइस स्टोरेज उपलब्ध नहीं है। कुछ जगह खाली करके फिर कोशिश करें।',
+    savedOffline: 'लाइव स्रोत उपलब्ध न होने के कारण इस डिवाइस पर पहले से सहेजा पाठ दिखाया जा रहा है।',
+    tryLive: 'लाइव प्रति आज़माएँ',
     favoriteAdded: 'पसंदीदा में जोड़ दिया गया।',
     favoriteRemoved: 'पसंदीदा से हटा दिया गया।',
     lineCopied: 'पंक्ति क्लिपबोर्ड में कॉपी हो गई।',
@@ -640,6 +721,8 @@ export default function Study() {
   const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, requestedSgLength)
   const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
   const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
+  const { addBookmark, removeBookmark, bookmarks, hasBookmark } = useBookmarksStore()
+  const { addFavorite, removeFavorite, favorites } = useFavoritesStore()
   const effectiveSgLength = supportedSundarGutkaBaniId
     ? (baniResult.resolvedLength ?? requestedSgLength)
     : null
@@ -698,7 +781,42 @@ export default function Study() {
     ? SUNDAR_GUTKA_LENGTH_LABELS[effectiveSgLength]
     : null
 
-  const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
+  const requestedSavedPath = searchParamsString ? `/study?${searchParamsString}` : '/study'
+  const requestedSavedIdentity = getSavedReturnIdentity(requestedSavedPath)
+  const savedFallback = useMemo(() => {
+    const candidates = [
+      ...bookmarks.filter(isScriptureBookmark),
+      ...favorites,
+    ].sort((left, right) => Date.parse(right.savedAt) - Date.parse(left.savedAt))
+
+    const saved = candidates.find(item => {
+      const savedIdentity = getSavedReturnIdentity(item.returnPath)
+      if (savedIdentity && requestedSavedIdentity) return savedIdentity === requestedSavedIdentity
+      if (requestedSavedIdentity && !canUseLegacySavedLocationFallback(requestedSavedPath)) return false
+
+      if (shabadIdParam) {
+        if (item.shabadId !== shabadIdParam) return false
+        return !verseIdParam || item.verseId === verseIdParam
+      }
+
+      return Boolean(source && angParam && item.source === source && item.ang === angParam)
+    })
+
+    if (!saved) return null
+    const entry = buildSavedExcerptEntry(saved)
+    if (!entry) return null
+
+    return {
+      entry,
+      returnPath: isSafeSavedReturnPath(saved.returnPath) ? saved.returnPath : requestedSavedPath,
+    }
+  }, [angParam, bookmarks, favorites, requestedSavedIdentity, requestedSavedPath, shabadIdParam, source, verseIdParam])
+  const savedFallbackEntry = savedFallback?.entry ?? null
+  const savedFallbackReturnPath = savedFallback?.returnPath ?? requestedSavedPath
+
+  const fullShabadEntry = isExactShabadMode
+    ? (shabadResult.entries[0] ?? (shabadResult.error ? savedFallbackEntry : null))
+    : null
   const exactEntries = useMemo(() => {
     if (!isExactShabadMode || !fullShabadEntry) return []
     if (!verseIdParam) return [fullShabadEntry]
@@ -710,12 +828,24 @@ export default function Study() {
   }, [fullShabadEntry, isExactShabadMode, verseIdParam])
 
   const entries = useMemo(() => {
-    if (isHukamnamaMode) return hukamnamaResult.data ? [hukamnamaResult.data.entry] : []
+    if (isHukamnamaMode) return hukamnamaResult.data
+      ? [hukamnamaResult.data.entry]
+      : hukamnamaResult.error && savedFallbackEntry
+        ? [savedFallbackEntry]
+        : []
     if (isExactShabadMode) return exactEntries
-    if (isBaniDbMode) return baniPageEntries
-    if (isAngMode) return angResult.entries
+    if (isBaniDbMode) return baniPageEntries.length > 0
+      ? baniPageEntries
+      : baniResult.error && savedFallbackEntry
+        ? [savedFallbackEntry]
+        : []
+    if (isAngMode) return angResult.entries.length > 0
+      ? angResult.entries
+      : angResult.error && savedFallbackEntry
+        ? [savedFallbackEntry]
+        : []
     return []
-  }, [angResult.entries, baniPageEntries, exactEntries, hukamnamaResult.data, isAngMode, isBaniDbMode, isExactShabadMode, isHukamnamaMode])
+  }, [angResult.entries, angResult.error, baniPageEntries, baniResult.error, exactEntries, hukamnamaResult.data, hukamnamaResult.error, isAngMode, isBaniDbMode, isExactShabadMode, isHukamnamaMode, savedFallbackEntry])
 
   const loading =
     isHukamnamaMode ? hukamnamaResult.loading :
@@ -728,11 +858,13 @@ export default function Study() {
     isExactShabadMode ? shabadResult.error :
     isBaniDbMode ? baniResult.error :
     angResult.error
-  const readerStatus =
+  const liveReaderStatus =
     isHukamnamaMode ? hukamnamaResult.status :
     isExactShabadMode ? shabadResult.status :
     isBaniDbMode ? baniResult.status :
     angResult.status
+  const usingSavedFallback = Boolean(savedFallbackEntry && entries.some(entry => entry.id === savedFallbackEntry.id))
+  const readerStatus = usingSavedFallback ? 'degraded' : liveReaderStatus
 
   const [activeEntryIndex, setActiveEntryIndex] = useState(0)
   const shouldPaginateEntries = entries.length > PAGINATED_ENTRY_THRESHOLD
@@ -791,8 +923,6 @@ export default function Study() {
   const updateSession = useProgressStore(state => state.updateSession)
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
   const markStudied = useProgressStore(state => state.markStudied)
-  const { addBookmark, removeBookmark, bookmarks, hasBookmark } = useBookmarksStore()
-  const { addFavorite, removeFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
   const studyExperienceCopy = STUDY_EXPERIENCE_COPY[locale]
@@ -1078,19 +1208,24 @@ export default function Study() {
     const meaning = selectedExcerpt ? '' : getLineMeaningText(line, meaningLanguage, englishSource).trim()
     const sourceName = baniName || entry.scripture
     const sourceLabel = `${sourceName} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${line.ang}`
-    const exactPassageParams = new URLSearchParams({
-      shabadId: String(line.shabadId),
-      verseId: String(line.verseId),
-    })
-    if (baniName?.trim()) exactPassageParams.set('baniName', baniName.trim())
+    const hasExactPassageIdentity = hasExactLineIdentity(line)
+    const exactPassageParams = hasExactPassageIdentity
+      ? new URLSearchParams({
+          shabadId: String(line.shabadId),
+          verseId: String(line.verseId),
+        })
+      : null
+    if (exactPassageParams && baniName?.trim()) exactPassageParams.set('baniName', baniName.trim())
 
     return {
       gurmukhi,
       transliteration: transliteration || undefined,
       meaning: meaning || undefined,
       sourceLabel,
-      verseId: line.verseId,
-      sourcePath: `/study?${exactPassageParams.toString()}`,
+      verseId: hasExactPassageIdentity ? line.verseId : undefined,
+      sourcePath: exactPassageParams
+        ? `/study?${exactPassageParams.toString()}`
+        : savedFallbackReturnPath,
       selectedExcerpt,
       initialShowTransliteration: !selectedExcerpt && showTransliteration && Boolean(transliteration),
       initialShowMeaning: !selectedExcerpt && Boolean(meaning),
@@ -1268,8 +1403,25 @@ export default function Study() {
       ? 'shabad'
       : 'canonical'
 
+  const currentSavedLine = currentEntry ? findFirstRenderableLine([currentEntry]) : null
+  const currentSavedReturnPath = useMemo(() => {
+    const params = new URLSearchParams(searchParamsString)
+    if (currentAng) params.set('ang', String(currentAng))
+    params.set('source', currentSource)
+    if (currentSavedLine?.verseId && !verseIdParam) {
+      params.set('resumeVerseId', String(currentSavedLine.verseId))
+    }
+    const nextSearch = params.toString()
+    return nextSearch ? `/study?${nextSearch}` : '/study'
+  }, [currentAng, currentSavedLine?.verseId, currentSource, searchParamsString, verseIdParam])
+  const currentSavedIdentity = getSavedReturnIdentity(currentSavedReturnPath)
+
   const currentBookmark = currentEntry && currentAng
     ? bookmarks.find(bookmark => {
+      if (!isScriptureBookmark(bookmark)) return false
+      const savedIdentity = getSavedReturnIdentity(bookmark.returnPath)
+      if (savedIdentity && currentSavedIdentity) return savedIdentity === currentSavedIdentity
+      if (currentSavedIdentity && !canUseLegacySavedLocationFallback(currentSavedReturnPath)) return false
       if (bookmark.source !== currentSource || bookmark.ang !== currentAng) return false
       if (isExactSearchResult) return bookmark.verseId === verseIdParam
       if (isExactShabadMode) {
@@ -1281,7 +1433,10 @@ export default function Study() {
   const isBookmarked = Boolean(currentBookmark)
   const currentFavorite = currentEntry && currentAng
     ? favorites.find(favorite => {
-      const routeMode = favorite.routeMode ?? 'canonical'
+      const savedIdentity = getSavedReturnIdentity(favorite.returnPath)
+      if (savedIdentity && currentSavedIdentity) return savedIdentity === currentSavedIdentity
+      if (currentSavedIdentity && !canUseLegacySavedLocationFallback(currentSavedReturnPath)) return false
+      const routeMode = resolveFavoriteRouteMode(favorite)
 
       if (
         favorite.source !== currentSource
@@ -1306,7 +1461,8 @@ export default function Study() {
 
   const handleSaveBookmark = () => {
     if (!currentEntry || !currentAng) return
-    addBookmark({
+    const savedLine = currentSavedLine
+    const result = addBookmark({
       type: currentFavoriteRouteMode === 'verse'
         ? 'verse'
         : currentFavoriteRouteMode === 'shabad'
@@ -1319,22 +1475,28 @@ export default function Study() {
       ang: currentAng,
       shabadId: currentFavoriteRouteMode === 'canonical' ? undefined : currentShabadId,
       verseId: currentFavoriteRouteMode === 'verse' ? verseIdParam ?? undefined : undefined,
-      excerpt: isExactSearchResult ? currentEntry.gurmukhi : undefined,
+      excerpt: truncateSavedText(savedLine?.gurmukhi ?? currentEntry.gurmukhi),
+      transliteration: truncateSavedText(savedLine?.transliteration ?? currentEntry.transliteration),
+      translation_en: truncateSavedText(savedLine?.translation_en ?? currentEntry.translation_en),
+      translation_hi: truncateSavedText(savedLine?.translation_hi ?? currentEntry.translation_hi),
+      translation_pa: truncateSavedText(savedLine?.translation_pa ?? currentEntry.translation_pa),
+      returnPath: currentSavedReturnPath,
       description: bookmarkText || undefined,
     })
     setShowBookmarkForm(false)
     setBookmarkText('')
-    announceAction(studyExperienceCopy.bookmarkSaved)
+    announceAction(result.persisted ? studyExperienceCopy.bookmarkSaved : studyExperienceCopy.storageUnavailable)
   }
 
   const toggleFavorite = () => {
     if (!currentEntry || !currentAng) return
     if (currentFavorite) {
-      removeFavorite(currentFavorite.id)
-      announceAction(studyExperienceCopy.favoriteRemoved)
+      const result = removeFavorite(currentFavorite.id)
+      announceAction(result.persisted ? studyExperienceCopy.favoriteRemoved : studyExperienceCopy.storageUnavailable)
       return
     }
-    addFavorite({
+    const savedLine = currentSavedLine
+    const result = addFavorite({
       title: baniName
         ? `${baniName} · ${currentReadingUnit} ${currentAng}`
         : `${currentEntry.scripture} · ${currentReadingUnit} ${currentAng}`,
@@ -1344,8 +1506,14 @@ export default function Study() {
       verseId: currentFavoriteRouteMode === 'verse' ? verseIdParam ?? undefined : undefined,
       type: currentFavoriteRouteMode === 'canonical' ? 'ang' : 'shabad',
       routeMode: currentFavoriteRouteMode,
+      excerpt: truncateSavedText(savedLine?.gurmukhi ?? currentEntry.gurmukhi),
+      transliteration: truncateSavedText(savedLine?.transliteration ?? currentEntry.transliteration),
+      translation_en: truncateSavedText(savedLine?.translation_en ?? currentEntry.translation_en),
+      translation_hi: truncateSavedText(savedLine?.translation_hi ?? currentEntry.translation_hi),
+      translation_pa: truncateSavedText(savedLine?.translation_pa ?? currentEntry.translation_pa),
+      returnPath: currentSavedReturnPath,
     })
-    announceAction(studyExperienceCopy.favoriteAdded)
+    announceAction(result.persisted ? studyExperienceCopy.favoriteAdded : studyExperienceCopy.storageUnavailable)
   }
 
   const buildLineText = (entry: ScriptureEntry, line: ScriptureLine) => [
@@ -1376,28 +1544,53 @@ export default function Study() {
   }
 
   const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {
+    if (!hasExactLineIdentity(line)) {
+      if (!usingSavedFallback) return
+
+      // An offline excerpt without exact IDs still owns its canonical saved
+      // route. Toggle that passage-level bookmark instead of manufacturing a
+      // verse bookmark that would reopen unrelated Gurbani.
+      if (currentBookmark) {
+        const result = removeBookmark(currentBookmark.id)
+        announceAction(result.persisted ? studyExperienceCopy.bookmarkRemoved : studyExperienceCopy.storageUnavailable)
+      } else {
+        handleSaveBookmark()
+      }
+      return
+    }
+
     const entrySource = (entry.source ?? currentSource) as BaniSource
     const existingBookmark = bookmarks.find(bookmark =>
-      bookmark.source === entrySource
+      isScriptureBookmark(bookmark)
+      && bookmark.source === entrySource
       && bookmark.ang === line.ang
       && bookmark.verseId === line.verseId
     )
     if (existingBookmark) {
-      removeBookmark(existingBookmark.id)
-      announceAction(studyExperienceCopy.bookmarkRemoved)
+      const result = removeBookmark(existingBookmark.id)
+      announceAction(result.persisted ? studyExperienceCopy.bookmarkRemoved : studyExperienceCopy.storageUnavailable)
       return
     }
-    addBookmark({
+    const exactParams = new URLSearchParams({
+      shabadId: String(line.shabadId),
+      verseId: String(line.verseId),
+    })
+    if (baniName?.trim()) exactParams.set('baniName', baniName.trim())
+    const result = addBookmark({
       type: 'verse',
       title: `${entry.scripture} · ${getSourceReaderUnit(entry.source, entry.scripture)} ${line.ang}`,
       source: entrySource,
       ang: line.ang,
       shabadId: line.shabadId,
       verseId: line.verseId,
-      excerpt: line.gurmukhi,
-      description: line.transliteration || undefined,
+      excerpt: truncateSavedText(line.gurmukhi),
+      transliteration: truncateSavedText(line.transliteration),
+      translation_en: truncateSavedText(line.translation_en),
+      translation_hi: truncateSavedText(line.translation_hi),
+      translation_pa: truncateSavedText(line.translation_pa),
+      returnPath: `/study?${exactParams.toString()}`,
     })
-    announceAction(studyExperienceCopy.lineBookmarked)
+    announceAction(result.persisted ? studyExperienceCopy.lineBookmarked : studyExperienceCopy.storageUnavailable)
   }
 
   const handleSavePhrase = (line: ScriptureLine, entry: ScriptureEntry) => {
@@ -1419,8 +1612,8 @@ export default function Study() {
         scripture: entry.scripture,
         sourceId: entry.source ?? currentSource,
         ang: line.ang,
-        shabadId: line.shabadId,
-        verseId: line.verseId,
+        ...(line.shabadId > 0 ? { shabadId: line.shabadId } : {}),
+        ...(line.verseId > 0 ? { verseId: line.verseId } : {}),
         line: line.gurmukhi,
       },
     })
@@ -1477,8 +1670,11 @@ export default function Study() {
     setSearchParams(nextParams, { replace: true })
   }
 
-  const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) =>
-    hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
+  const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) => (
+    usingSavedFallback && !hasExactLineIdentity(line)
+      ? Boolean(currentBookmark)
+      : hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
+  )
   const isPhraseSaved = (line: ScriptureLine) =>
     vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')
 
@@ -1845,8 +2041,10 @@ export default function Study() {
           <button
             onClick={() => {
               if (isBookmarked) {
-                if (currentBookmark) removeBookmark(currentBookmark.id)
-                announceAction(studyExperienceCopy.bookmarkRemoved)
+                if (currentBookmark) {
+                  const result = removeBookmark(currentBookmark.id)
+                  announceAction(result.persisted ? studyExperienceCopy.bookmarkRemoved : studyExperienceCopy.storageUnavailable)
+                }
                 return
               }
 
@@ -1892,7 +2090,7 @@ export default function Study() {
           data-ai-state="degraded"
         >
           <p className="font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
-            Showing the passage already saved on this device because the live source is unavailable.
+            {studyExperienceCopy.savedOffline}
           </p>
           <button
             type="button"
@@ -1900,7 +2098,7 @@ export default function Study() {
             className="shrink-0 rounded-full border border-saffron/30 px-3 py-2 font-sans text-xs font-medium text-saffron dark:text-saffron-light"
             data-ai-action="retry-study"
           >
-            Try live copy
+            {studyExperienceCopy.tryLive}
           </button>
         </div>
       ) : null}

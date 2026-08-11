@@ -3,7 +3,7 @@ import { IconArrowLeft } from '../components/icons'
 
 export default function Privacy() {
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-privacy" data-page="privacy" data-ai-surface="privacy" data-ai-state="ready">
+    <div lang="en" className="page-shell animate-fade-in" data-testid="page-privacy" data-page="privacy" data-ai-surface="privacy" data-ai-state="ready">
       <Link
         to="/more"
         className="interactive-focus mb-4 inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-sand/15 bg-parchment-card px-4 py-2 font-sans text-sm text-ink/72 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/74"

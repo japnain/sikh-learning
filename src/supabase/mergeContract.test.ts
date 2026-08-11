@@ -24,7 +24,7 @@ function metadata(id: string) {
 
 function buildSnapshot() {
   return {
-    version: 2,
+    version: 3,
     deviceId: 'device-a',
     profile: {
       ...metadata('profile'),
@@ -151,7 +151,14 @@ function buildSnapshot() {
   }
 }
 
-describe('merge-local-state v2 contract', () => {
+describe('merge-local-state v3 contract', () => {
+  test('rejects v2 clients before they can merge incompatible Saved keys', () => {
+    const legacySnapshot = { ...buildSnapshot(), version: 2 }
+
+    expect(() => parseMergeSnapshot(legacySnapshot)).toThrow(SnapshotValidationError)
+    expect(() => parseMergeSnapshot(legacySnapshot)).toThrow(/version must be 3/i)
+  })
+
   test('normalizes every sync domain and maps phrase review from dueAt', () => {
     const snapshot = parseMergeSnapshot(buildSnapshot())
     const records = toDatabaseSyncRecords(snapshot, 'user-1')
@@ -209,7 +216,7 @@ describe('merge-local-state v2 contract', () => {
     )
 
     expect(remote).toMatchObject({
-      version: 2,
+      version: 3,
       generatedAt: '2026-04-17T12:05:00.000Z',
       profile: {
         userId: 'user-1',
@@ -226,11 +233,18 @@ describe('merge-local-state v2 contract', () => {
       resolve(process.cwd(), 'supabase/schema/002_naamras_cloud_sync_v2.sql'),
       'utf8'
     )
+    const versionGate = readFileSync(
+      resolve(process.cwd(), 'supabase/schema/003_naamras_cloud_sync_v3.sql'),
+      'utf8'
+    )
 
     expect(migration).toMatch(/record_payload jsonb not null/i)
     expect(migration).toMatch(/excluded\.base_updated_at is not null/i)
     expect(migration).toMatch(/excluded\.client_updated_at > existing\.client_updated_at/i)
     expect(migration).toMatch(/merge_naamras_cloud_snapshot_v2/i)
     expect(migration).toMatch(/payload #>> '\{review,dueAt\}'/i)
+    expect(versionGate).toMatch(/merge_naamras_cloud_snapshot_v3/i)
+    expect(versionGate).toMatch(/merge_naamras_cloud_snapshot_v2\(incoming_records, incoming_events\)/i)
+    expect(versionGate).toMatch(/'3'::jsonb/i)
   })
 })

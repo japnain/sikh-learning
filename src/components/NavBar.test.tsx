@@ -12,7 +12,9 @@ test('renders the 4-tab product nav', () => {
   expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument()
   expect(screen.getByRole('link', { name: 'Read' })).toBeInTheDocument()
   expect(screen.getByRole('link', { name: 'Saved' })).toBeInTheDocument()
-  expect(screen.getByRole('link', { name: 'More' })).toBeInTheDocument()
+  const moreLink = screen.getByRole('link', { name: 'More settings and information' })
+  expect(moreLink).toBeInTheDocument()
+  expect(moreLink).toHaveTextContent('More — More settings and information')
 })
 
 test('keeps curated book routes inside the Read navigation flow', () => {
@@ -36,4 +38,26 @@ test('uses Saved as the canonical shelf destination', () => {
   expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('href', '/saved')
   expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('aria-current', 'page')
   expect(screen.getByTestId('nav-tab-read')).not.toHaveAttribute('aria-current')
+})
+
+test('keeps vocabulary review inside the Saved navigation flow', () => {
+  render(
+    <MemoryRouter initialEntries={['/vocab']}>
+      <NavBar />
+    </MemoryRouter>
+  )
+
+  expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('aria-current', 'page')
+  expect(screen.getByTestId('nav-tab-home')).not.toHaveAttribute('aria-current')
+})
+
+test('keeps Nitnem customization inside the Home navigation flow', () => {
+  render(
+    <MemoryRouter initialEntries={['/nitnem/customize']}>
+      <NavBar />
+    </MemoryRouter>
+  )
+
+  expect(screen.getByTestId('nav-tab-home')).toHaveAttribute('aria-current', 'page')
+  expect(screen.getByTestId('nav-tab-more')).not.toHaveAttribute('aria-current')
 })

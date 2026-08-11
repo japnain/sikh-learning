@@ -396,6 +396,7 @@ export default function Rehat() {
 
   return (
     <div
+      lang="en"
       className="page-shell max-w-3xl mx-auto min-h-screen bg-parchment text-ink transition-colors duration-300 animate-fade-in dark:bg-dark-bg dark:text-dark-text"
       data-testid="page-rehat"
       data-page="rehat"

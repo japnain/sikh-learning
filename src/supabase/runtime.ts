@@ -99,20 +99,20 @@ function validateCompleteMergeResult(
 ): asserts result is Required<
   Pick<MergeLocalStateResult, 'version' | 'complete' | 'acknowledgedEventIds' | 'mergedAt' | 'snapshot'>
 > & {
-  version: 2
+  version: 3
   complete: true
   mergedAt: string
   snapshot: CloudRemoteSnapshot
 } {
   if (
     !result
-    || result.version !== 2
+    || result.version !== 3
     || result.complete !== true
     || !isTimestamp(result.mergedAt)
     || !Array.isArray(result.acknowledgedEventIds)
     || !result.acknowledgedEventIds.every(id => typeof id === 'string')
     || !isObject(result.snapshot)
-    || result.snapshot.version !== 2
+    || result.snapshot.version !== 3
     || !isTimestamp(result.snapshot.generatedAt)
     || !isObject(result.snapshot.profile)
     || !Array.isArray(result.snapshot.savedItems)
@@ -278,6 +278,7 @@ export async function bootstrapCloudSync() {
 
   bootstrapPromise = (async () => {
     useBookmarksStore.getState().hydrateCachedBookmarks()
+    useFavoritesStore.getState().hydrateCachedFavorites()
     await refreshCloudState()
     bindStoreSubscriptions()
     bindOnlineListener()
