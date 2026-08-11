@@ -30,7 +30,7 @@ import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
 } from '../utils/sundarGutkaLength'
-import { SOURCE_READER_META } from '../utils/sourceReaderMeta'
+import { getSourceReaderUnit, SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import { getSearchModeLabels } from '../utils/translations'
 import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
@@ -40,18 +40,26 @@ import { hasSearchMatch } from '../utils/searchHighlight'
 import {
   getAngTargets,
   getAvailableSearchMeta,
+  getLibrarySearchMatches,
   groupSearchResults,
+  isDirectLookupQuery,
   SEARCH_SOURCE_LABELS,
+  type AppSearchMatch,
   type GroupedSearchResult,
   type SearchSource,
 } from '../utils/appSearch'
 import { buildReadSearchPath } from '../utils/searchRoutes'
+import {
+  buildCurrentAppPath,
+  buildReaderOriginNavigationState,
+} from '../utils/libraryReaderNavigation'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import {
   getAppScrollTop,
   getAppViewportBounds,
   scrollAppTo,
 } from '../utils/appScroll'
+import { getSearchRevealScrollTop } from '../utils/searchReveal'
 import {
   ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   getReaderEditorialCopyForBani,
@@ -85,12 +93,25 @@ type ReadPageCopy = {
   ready: string
   inApp: string
   exactFirst: string
+  libraryMatches: string
   gurbaniMatches: string
   result: string
   results: string
   directDestination: string
   directDestinations: string
   partialSearch: string
+  allSources: string
+  openDirectTarget: (label: string, unit: string, value: string) => string
+  directLookupBody: string
+  noDirectTarget: string
+  matchedFor: string
+  meaning: string
+  allRaags: string
+  allWriters: string
+  unitLabels: Record<'Ang' | 'Vaar' | 'Page', string>
+  matchCount: (count: number) => string
+  libraryWorkDetail: (chapterCount: number) => string
+  libraryChapterDetail: (shortTitle: string, volume: number, episodeNumber?: number) => string
   showingResults: (visible: number, total: number) => string
   showMoreResults: string
   noFilteredResults: string
@@ -174,12 +195,25 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     ready: 'Ready',
     inApp: 'In the app',
     exactFirst: 'Exact destinations first',
+    libraryMatches: 'From the library',
     gurbaniMatches: 'Gurbani matches',
     result: 'result found',
     results: 'results found',
     directDestination: 'direct reading destination available',
     directDestinations: 'direct reading destinations available',
     partialSearch: 'Some sources could not be searched. Showing the results that are available.',
+    allSources: 'All',
+    openDirectTarget: (label, unit, value) => `Open ${label} ${unit} ${value}`,
+    directLookupBody: 'Direct source lookup without running a word search.',
+    noDirectTarget: 'No matching source can open that ang or Vaar.',
+    matchedFor: 'Matched for',
+    meaning: 'Meaning',
+    allRaags: 'All Raags',
+    allWriters: 'All Writers',
+    unitLabels: { Ang: 'Ang', Vaar: 'Vaar', Page: 'Page' },
+    matchCount: count => `${count} ${count === 1 ? 'match' : 'matches'}`,
+    libraryWorkDetail: chapterCount => `Book · ${chapterCount} chapters`,
+    libraryChapterDetail: (shortTitle, volume, episodeNumber) => `${shortTitle} · Volume ${volume}${episodeNumber ? ` · Episode ${episodeNumber}` : ''}`,
     showingResults: (visible, total) => `Showing ${visible} of ${total} Gurbani matches.`,
     showMoreResults: 'Show more matches',
     noFilteredResults: 'No matches use both of these filters.',
@@ -261,12 +295,25 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     ready: 'ਤਿਆਰ',
     inApp: 'ਐਪ ਵਿੱਚ',
     exactFirst: 'ਸਿੱਧੇ ਰਸਤੇ ਪਹਿਲਾਂ',
+    libraryMatches: 'ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚੋਂ',
     gurbaniMatches: 'ਗੁਰਬਾਣੀ ਮੇਲ',
     result: 'ਨਤੀਜਾ ਮਿਲਿਆ',
     results: 'ਨਤੀਜੇ ਮਿਲੇ',
     directDestination: 'ਸਿੱਧਾ ਪੜ੍ਹਨ ਵਾਲਾ ਰਸਤਾ ਉਪਲਬਧ',
     directDestinations: 'ਸਿੱਧੇ ਪੜ੍ਹਨ ਵਾਲੇ ਰਸਤੇ ਉਪਲਬਧ',
     partialSearch: 'ਕੁਝ ਸਰੋਤ ਖੋਜੇ ਨਹੀਂ ਜਾ ਸਕੇ। ਉਪਲਬਧ ਨਤੀਜੇ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ।',
+    allSources: 'ਸਾਰੇ',
+    openDirectTarget: (label, unit, value) => `${label} ${unit} ${value} ਖੋਲ੍ਹੋ`,
+    directLookupBody: 'ਸ਼ਬਦ ਖੋਜ ਚਲਾਏ ਬਿਨਾਂ ਸਰੋਤ ਸਿੱਧਾ ਖੋਲ੍ਹੋ।',
+    noDirectTarget: 'ਕੋਈ ਮੇਲ ਖਾਂਦਾ ਸਰੋਤ ਉਹ ਅੰਗ ਜਾਂ ਵਾਰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦਾ।',
+    matchedFor: 'ਇਸ ਲਈ ਮੇਲ',
+    meaning: 'ਅਰਥ',
+    allRaags: 'ਸਾਰੇ ਰਾਗ',
+    allWriters: 'ਸਾਰੇ ਰਚਨਾਕਾਰ',
+    unitLabels: { Ang: 'ਅੰਗ', Vaar: 'ਵਾਰ', Page: 'ਸਫ਼ਾ' },
+    matchCount: count => `${count} ਮੇਲ`,
+    libraryWorkDetail: chapterCount => `ਕਿਤਾਬ · ${chapterCount} ਅਧਿਆਇ`,
+    libraryChapterDetail: (shortTitle, volume, episodeNumber) => `${shortTitle} · ਜਿਲਦ ${volume}${episodeNumber ? ` · ਕੜੀ ${episodeNumber}` : ''}`,
     showingResults: (visible, total) => `${total} ਵਿੱਚੋਂ ${visible} ਗੁਰਬਾਣੀ ਮੇਲ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ।`,
     showMoreResults: 'ਹੋਰ ਮੇਲ ਦਿਖਾਓ',
     noFilteredResults: 'ਇਹਨਾਂ ਦੋਵੇਂ ਫਿਲਟਰਾਂ ਨਾਲ ਕੋਈ ਮੇਲ ਨਹੀਂ ਹੈ।',
@@ -348,12 +395,25 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     ready: 'तैयार',
     inApp: 'ऐप में',
     exactFirst: 'सीधे रास्ते पहले',
+    libraryMatches: 'लाइब्रेरी से',
     gurbaniMatches: 'गुरबाणी मिलान',
     result: 'नतीजा मिला',
     results: 'नतीजे मिले',
     directDestination: 'सीधा पढ़ने का रास्ता उपलब्ध',
     directDestinations: 'सीधे पढ़ने के रास्ते उपलब्ध',
     partialSearch: 'कुछ स्रोत खोजे नहीं जा सके। उपलब्ध नतीजे दिखाए जा रहे हैं।',
+    allSources: 'सभी',
+    openDirectTarget: (label, unit, value) => `${label} ${unit} ${value} खोलें`,
+    directLookupBody: 'शब्द खोज चलाए बिना स्रोत सीधे खोलें।',
+    noDirectTarget: 'कोई मिलता स्रोत उस अंग या वार को नहीं खोल सकता।',
+    matchedFor: 'इसके लिए मिलान',
+    meaning: 'अर्थ',
+    allRaags: 'सभी राग',
+    allWriters: 'सभी रचनाकार',
+    unitLabels: { Ang: 'अंग', Vaar: 'वार', Page: 'पृष्ठ' },
+    matchCount: count => `${count} मिलान`,
+    libraryWorkDetail: chapterCount => `किताब · ${chapterCount} अध्याय`,
+    libraryChapterDetail: (shortTitle, volume, episodeNumber) => `${shortTitle} · खंड ${volume}${episodeNumber ? ` · कड़ी ${episodeNumber}` : ''}`,
     showingResults: (visible, total) => `${total} में से ${visible} गुरबाणी मिलान दिखाए जा रहे हैं।`,
     showMoreResults: 'और मिलान दिखाएँ',
     noFilteredResults: 'इन दोनों फ़िल्टरों के साथ कोई मिलान नहीं है।',
@@ -440,13 +500,21 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   gurmukhi: { type: 2, placeholder: 'Full Gurbani words', minLength: 2 },
   english: { type: 3, placeholder: 'English meanings', minLength: 2 },
   transliteration: { type: 4, placeholder: 'Transliteration', minLength: 2 },
-  ang: { type: -1, placeholder: 'Open an ang, Vaar, or page', minLength: 1 },
+  ang: { type: -1, placeholder: 'Open an ang or Vaar', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
 }
 const READ_SEARCH_EXAMPLES = ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam']
 const SEARCH_RESULTS_PAGE_SIZE = 12
 const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
 const LATIN_SEARCH_PATTERN = /[A-Za-z]/
+
+function isDirectSearch(query: string, mode: SearchMode) {
+  return mode === 'ang' || (mode === 'auto-detect' && isDirectLookupQuery(query))
+}
+
+function getSearchMinimumLength(query: string, mode: SearchMode) {
+  return isDirectSearch(query, mode) ? 1 : SEARCH_MODE_META[mode].minLength
+}
 
 function getBackendSearchTypes(query: string, mode: SearchMode): number[] {
   if (mode !== 'auto-detect') return [SEARCH_MODE_META[mode].type]
@@ -488,6 +556,23 @@ function dedupeSearchResults(resultSets: SearchResult[][]): SearchResult[] {
   }
 
   return Array.from(seen.values())
+}
+
+function getUniqueAppSearchMatches(
+  matches: AppSearchMatch[],
+  excludedMatches: AppSearchMatch[] = []
+) {
+  const seenKeys = new Set(excludedMatches.map(match => match.key))
+  const seenPaths = new Set(excludedMatches.map(match => match.path))
+
+  return [...matches]
+    .sort((left, right) => right.score - left.score || left.label.localeCompare(right.label))
+    .filter(match => {
+      if (seenKeys.has(match.key) || seenPaths.has(match.path)) return false
+      seenKeys.add(match.key)
+      seenPaths.add(match.path)
+      return true
+    })
 }
 
 function normalizeSearchMatchText(value: string) {
@@ -872,6 +957,106 @@ function ReadArtwork({
   )
 }
 
+function AppSearchResultGroup({
+  matches,
+  query,
+  groupLabel,
+  groupHint,
+  testId,
+  aiResultGroup,
+  resultAnchor,
+  className,
+  copy,
+  searchMode,
+  searchSource,
+  addRecent,
+  openSearchDestination,
+}: {
+  matches: AppSearchMatch[]
+  query: string
+  groupLabel: string
+  groupHint?: string
+  testId: string
+  aiResultGroup: string
+  resultAnchor: boolean
+  className: string
+  copy: ReadPageCopy
+  searchMode: SearchMode
+  searchSource: SearchSource
+  addRecent: (query: string, mode: SearchMode, source: SearchSource) => void
+  openSearchDestination: (path: string) => void
+}) {
+  const trimmedQuery = query.trim()
+
+  return (
+    <div
+      data-search-result-anchor={resultAnchor ? 'true' : undefined}
+      className={`nav-safe-results space-y-2 ${className}`}
+      data-testid={testId}
+      data-ai-result-group={aiResultGroup}
+    >
+      <div className="flex items-center justify-between gap-3 px-1">
+        <h3 className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/75 dark:text-dark-text/76">
+          {groupLabel}
+        </h3>
+        {groupHint ? (
+          <p className="font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
+            {groupHint}
+          </p>
+        ) : null}
+      </div>
+      {matches.map(match => {
+        const matchDetail = match.kind === 'library-work' && match.library
+          ? copy.libraryWorkDetail(match.library.chapterCount ?? 0)
+          : match.kind === 'library-chapter' && match.library
+            ? copy.libraryChapterDetail(
+                match.library.shortTitle,
+                match.library.volume ?? 1,
+                match.library.episodeNumber
+              )
+            : match.detail
+        const showMatchedQuery = trimmedQuery.length >= 2
+          && !hasSearchMatch(match.label, trimmedQuery)
+          && !hasSearchMatch(matchDetail, trimmedQuery)
+          && !hasSearchMatch(match.excerpt ?? '', trimmedQuery)
+
+        return (
+          <button
+            key={match.key}
+            onClick={() => {
+              addRecent(trimmedQuery, searchMode, searchSource)
+              openSearchDestination(match.path)
+            }}
+            className="w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 py-3 text-left transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:bg-saffron/12"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                  <SearchHighlight text={match.label} query={trimmedQuery} />
+                </p>
+                <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
+                  <SearchHighlight text={matchDetail} query={trimmedQuery} />
+                </p>
+                {match.excerpt ? (
+                  <p className="mt-2 line-clamp-3 font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
+                    <SearchHighlight text={match.excerpt} query={trimmedQuery} />
+                  </p>
+                ) : null}
+                {showMatchedQuery ? (
+                  <p className="mt-2 font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
+                    {copy.matchedFor} <SearchHighlight text={trimmedQuery} query={trimmedQuery} />
+                  </p>
+                ) : null}
+              </div>
+              <span className="chip-pill">{copy.browse}</span>
+            </div>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function Banis() {
   const scriptMode = useLanguageStore(state => state.scriptMode)
   const showTransliteration = useLanguageStore(state => state.showTransliteration)
@@ -889,6 +1074,7 @@ export default function Banis() {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
   const [searchQuery, setSearchQuery] = useState(() => searchParams.get('query') ?? '')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
+  const [librarySearchResults, setLibrarySearchResults] = useState<AppSearchMatch[]>([])
   const [searching, setSearching] = useState(false)
   const [searchIssue, setSearchIssue] = useState<AsyncIssueCode | null>(null)
   const [searchPartialIssue, setSearchPartialIssue] = useState<AsyncIssueCode | null>(null)
@@ -913,36 +1099,47 @@ export default function Banis() {
   const searchSequenceRef = useRef(0)
   const searchAbortRef = useRef<AbortController | null>(null)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
-  const searchFeedbackRef = useRef<HTMLElement | null>(null)
-  const setSearchFeedbackElement = useCallback((element: HTMLElement | null) => {
-    searchFeedbackRef.current = element
-  }, [])
+  const searchCardRef = useRef<HTMLDivElement | null>(null)
+  const searchLocationHydrationRef = useRef(false)
+  const searchStateRef = useRef({
+    query: searchQuery,
+    mode: searchMode,
+    source: searchSource,
+  })
+  searchStateRef.current = {
+    query: searchQuery,
+    mode: searchMode,
+    source: searchSource,
+  }
 
   const revealSearchFeedback = useCallback(() => {
     if (typeof window === 'undefined') return
 
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        const element = searchFeedbackRef.current
-        if (!element) return
+        const input = searchInputRef.current
+        const card = searchCardRef.current
+        const feedback = card?.querySelector<HTMLElement>('[data-search-result-anchor="true"]')
+          ?? card?.querySelector<HTMLElement>('[data-search-feedback-anchor="true"]')
+        if (!input || !feedback) return
 
         const navHeight = Number.parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue('--nav-stack-height')
         ) || 0
-        const rect = element.getBoundingClientRect()
+        const inputRect = input.getBoundingClientRect()
+        const feedbackRect = feedback.getBoundingClientRect()
         const viewportBounds = getAppViewportBounds()
         const visibleTop = viewportBounds.top + 18
         const visibleBottom = viewportBounds.bottom - navHeight - 26
         const currentScrollTop = getAppScrollTop()
-        let nextScrollTop = currentScrollTop
-
-        if (rect.bottom > visibleBottom) {
-          nextScrollTop += rect.bottom - visibleBottom
-        }
-
-        if (rect.top < visibleTop) {
-          nextScrollTop += rect.top - visibleTop
-        }
+        const nextScrollTop = getSearchRevealScrollTop({
+          currentScrollTop,
+          inputTop: inputRect.top,
+          feedbackTop: feedbackRect.top,
+          feedbackBottom: feedbackRect.bottom,
+          visibleTop,
+          visibleBottom,
+        })
 
         if (Math.abs(nextScrollTop - currentScrollTop) > 1) {
           scrollAppTo({
@@ -996,6 +1193,24 @@ export default function Banis() {
     const nextSourceParam = params.get('source')
     const nextMode: SearchMode = isSearchModeParam(nextModeParam) ? nextModeParam : 'auto-detect'
     const nextSource: SearchSource = isSearchSourceParam(nextSourceParam) ? nextSourceParam : 'all'
+    const currentSearch = searchStateRef.current
+    const searchChanged = currentSearch.query !== nextQuery
+      || currentSearch.mode !== nextMode
+      || currentSearch.source !== nextSource
+
+    searchLocationHydrationRef.current = true
+    if (searchChanged) {
+      searchSequenceRef.current += 1
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+      debounceRef.current = null
+      searchAbortRef.current?.abort()
+      searchAbortRef.current = null
+      setSearchResults([])
+      setLibrarySearchResults([])
+      setSearching(false)
+      setSearchIssue(null)
+      setSearchPartialIssue(null)
+    }
 
     setSearchQuery(current => current === nextQuery ? current : nextQuery)
     setSearchMode(current => current === nextMode ? current : nextMode)
@@ -1003,6 +1218,11 @@ export default function Banis() {
   }, [location.search])
 
   useEffect(() => {
+    if (searchLocationHydrationRef.current) {
+      searchLocationHydrationRef.current = false
+      return
+    }
+
     const searchPath = buildReadSearchPath({
       query: searchQuery,
       mode: searchMode,
@@ -1011,6 +1231,11 @@ export default function Banis() {
     const nextSearchParams = new URLSearchParams(searchPath.split('?')[1] ?? '')
     if (activeCollection !== 'banis') {
       nextSearchParams.set('collection', activeCollection)
+    }
+    const currentLocationParams = new URLSearchParams(location.search)
+    for (const qaControl of ['qaFail', 'qaEmpty', 'qaSlow']) {
+      const value = currentLocationParams.get(qaControl)
+      if (value) nextSearchParams.set(qaControl, value)
     }
 
     const nextSearch = nextSearchParams.toString()
@@ -1059,20 +1284,26 @@ export default function Banis() {
     setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE)
     if (debounceRef.current) clearTimeout(debounceRef.current)
     const trimmed = query.trim()
-    if (trimmed.length < SEARCH_MODE_META[mode].minLength) {
+    const directLookup = isDirectSearch(trimmed, mode)
+    if (trimmed.length < getSearchMinimumLength(trimmed, mode)) {
       setSearchResults([])
+      setLibrarySearchResults([])
       setSearching(false)
       setSearchIssue(null)
       setSearchPartialIssue(null)
       return
     }
-    if (mode === 'ang') {
+    if (directLookup) {
       setSearchResults([])
+      setLibrarySearchResults([])
       setSearching(false)
       setSearchIssue(null)
       setSearchPartialIssue(null)
+      revealSearchFeedback()
       return
     }
+    setSearchResults([])
+    setLibrarySearchResults([])
     setSearching(true)
     setSearchIssue(null)
     setSearchPartialIssue(null)
@@ -1080,6 +1311,8 @@ export default function Banis() {
       const controller = new AbortController()
       searchAbortRef.current = controller
       try {
+        const shouldSearchLibrary = source === 'all'
+          && (mode === 'auto-detect' || mode === 'english' || mode === 'transliteration')
         const settledResults = await Promise.allSettled(
           getBackendSearchTypes(trimmed, mode).map(searchType => (
             fetchSearch(trimmed, searchType, source, 'read-search', controller.signal)
@@ -1088,14 +1321,9 @@ export default function Banis() {
         const fulfilledResults = settledResults.filter(
           (result): result is PromiseFulfilledResult<SearchResult[]> => result.status === 'fulfilled'
         )
-        const rejectedResult = settledResults.find(
+        const rejectedBackendResult = settledResults.find(
           (result): result is PromiseRejectedResult => result.status === 'rejected'
         )
-
-        if (fulfilledResults.length === 0) {
-          throw rejectedResult?.reason ?? new Error('Read search unavailable')
-        }
-
         const resultSets = fulfilledResults.map(result => result.value)
         const results = refineLatinSearchResults(
           dedupeSearchResults(resultSets),
@@ -1104,12 +1332,34 @@ export default function Banis() {
         )
         if (searchSequenceRef.current !== requestSequence) return
         setSearchResults(results)
+        if (results.length > 0) revealSearchFeedback()
+
+        const settledLibrary = shouldSearchLibrary
+          ? await getLibrarySearchMatches(trimmed).then(
+              value => ({ status: 'fulfilled' as const, value }),
+              reason => ({ status: 'rejected' as const, reason })
+            )
+          : null
+        if (searchSequenceRef.current !== requestSequence) return
+
+        const libraryResults = settledLibrary?.status === 'fulfilled' ? settledLibrary.value : []
+        const partialFailure = rejectedBackendResult?.reason
+          ?? (settledLibrary?.status === 'rejected' ? settledLibrary.reason : null)
+
+        if (fulfilledResults.length === 0 && libraryResults.length === 0) {
+          throw rejectedBackendResult?.reason
+            ?? (settledLibrary?.status === 'rejected' ? settledLibrary.reason : null)
+            ?? new Error('Read search unavailable')
+        }
+
+        setLibrarySearchResults(libraryResults)
         setSearchIssue(null)
-        setSearchPartialIssue(rejectedResult ? resolveAsyncIssue(rejectedResult.reason).code : null)
-        addRecent(trimmed, mode)
+        setSearchPartialIssue(partialFailure ? resolveAsyncIssue(partialFailure).code : null)
+        addRecent(trimmed, mode, source)
       } catch (error) {
         if (searchSequenceRef.current !== requestSequence) return
         setSearchResults([])
+        setLibrarySearchResults([])
         setSearchIssue(resolveAsyncIssue(error).code)
         setSearchPartialIssue(null)
       } finally {
@@ -1127,6 +1377,7 @@ export default function Banis() {
   const clearSearch = useCallback(() => {
     handleSearch('', searchMode, searchSource)
     setSearchResults([])
+    setLibrarySearchResults([])
     setSearchIssue(null)
     setSearchPartialIssue(null)
     globalThis.requestAnimationFrame(() => searchInputRef.current?.focus())
@@ -1139,13 +1390,21 @@ export default function Banis() {
   }, [handleSearch, searchSource])
 
   useEffect(() => {
-    if (searchQuery.trim().length >= 2) {
+    const trimmed = searchQuery.trim()
+    if (trimmed.length >= getSearchMinimumLength(trimmed, searchMode)) {
       handleSearch(searchQuery, searchMode, searchSource)
     }
   }, [handleSearch, searchMode, searchSource, searchQuery])
 
+  const readSearchOrigin = buildCurrentAppPath(location)
+  const openSearchDestination = (path: string) => {
+    navigate(path, {
+      state: buildReaderOriginNavigationState(path, readSearchOrigin),
+    })
+  }
+
   const openSearchResult = (result: GroupedSearchResult) => {
-    navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
+    openSearchDestination(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
   }
 
   const openSundarGutkaBani = (item: BaniIndexItem) => {
@@ -1230,14 +1489,25 @@ export default function Banis() {
     [searchResults]
   )
 
+  const directLookupActive = isDirectSearch(searchQuery.trim(), searchMode)
   const angTargets = useMemo(
-    () => searchMode === 'ang' ? getAngTargets(searchQuery, searchSource) : [],
-    [searchMode, searchQuery, searchSource]
+    () => directLookupActive ? getAngTargets(searchQuery, searchSource) : [],
+    [directLookupActive, searchQuery, searchSource]
   )
 
-  const appSearchMatches = useAppSearchMatches(
-    searchMode === 'ang' ? '' : searchQuery.trim(),
+  const readRouteMatches = useAppSearchMatches(
+    directLookupActive ? '' : searchQuery.trim(),
     searchSource
+  )
+  const immediateAppSearchMatches = getUniqueAppSearchMatches(readRouteMatches)
+    .slice(0, SEARCH_RESULTS_PAGE_SIZE)
+  const deferredLibrarySearchMatches = getUniqueAppSearchMatches(
+    librarySearchResults,
+    immediateAppSearchMatches
+  ).slice(0, Math.max(SEARCH_RESULTS_PAGE_SIZE - immediateAppSearchMatches.length, 0))
+  const appSearchMatchCount = (
+    immediateAppSearchMatches.length
+    + deferredLibrarySearchMatches.length
   )
   const isEnglishMeaningSearch = (
     searchMode === 'english'
@@ -1247,21 +1517,21 @@ export default function Banis() {
       && !GURMUKHI_SEARCH_PATTERN.test(searchQuery)
     )
   )
-  const hasActiveSearch = searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength
+  const hasActiveSearch = searchQuery.trim().length >= getSearchMinimumLength(searchQuery.trim(), searchMode)
   const searchStatusMessage = useMemo(() => {
     if (!hasActiveSearch) return ''
     if (searching) return copy.searching
     if (searchIssue) return getSearchIssueCopy(searchIssue, locale)
-    if (searchMode === 'ang') {
+    if (directLookupActive) {
       return angTargets.length === 1
         ? `1 ${copy.directDestination}`
         : `${angTargets.length} ${copy.directDestinations}`
     }
 
-    const resultCount = appSearchMatches.length + groupedSearchResults.length
+    const resultCount = appSearchMatchCount + groupedSearchResults.length
     const resultCopy = resultCount === 1 ? `1 ${copy.result}` : `${resultCount} ${copy.results}`
     return searchPartialIssue ? `${resultCopy}. ${copy.partialSearch}` : resultCopy
-  }, [angTargets.length, appSearchMatches.length, copy, groupedSearchResults.length, hasActiveSearch, locale, searchIssue, searchMode, searchPartialIssue, searching])
+  }, [angTargets.length, appSearchMatchCount, copy, directLookupActive, groupedSearchResults.length, hasActiveSearch, locale, searchIssue, searchPartialIssue, searching])
 
   return (
     <div
@@ -1296,20 +1566,21 @@ export default function Banis() {
           </figure>
 
           <div
+            ref={searchCardRef}
             className="read-quick-find-card"
         aria-labelledby="banis-quick-find-title"
         data-testid="banis-quick-find"
         data-ai-surface="read-smart-search"
         data-ai-state={
-          searchMode === 'ang'
-            ? (searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength ? 'ready' : 'empty')
+          directLookupActive
+            ? (hasActiveSearch ? 'ready' : 'empty')
               : searching
                 ? 'loading'
               : searchIssue || searchPartialIssue
                 ? 'degraded'
-              : (appSearchMatches.length > 0 || searchResults.length > 0)
+              : (appSearchMatchCount > 0 || searchResults.length > 0)
                 ? 'ready'
-                : searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength
+                : hasActiveSearch
                   ? 'empty'
                   : 'empty'
         }
@@ -1361,8 +1632,8 @@ export default function Banis() {
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <MetadataChip>{searchMode === 'auto-detect' ? copy.autoDetect : searchModeLabels[searchMode]}</MetadataChip>
           {searchSource !== 'all' && <MetadataChip>{SEARCH_SOURCE_LABELS[searchSource]}</MetadataChip>}
-          {searchMode === 'ang' && <MetadataChip>{copy.directOpen}</MetadataChip>}
-          {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && searchMode !== 'ang' && (
+          {directLookupActive && <MetadataChip>{copy.directOpen}</MetadataChip>}
+          {hasActiveSearch && !directLookupActive && (
             <MetadataChip>{searching ? copy.searching : copy.ready}</MetadataChip>
           )}
         </div>
@@ -1389,7 +1660,7 @@ export default function Banis() {
               })}
             </div>
             <div className="flex flex-wrap gap-2 mt-3">
-              {Object.entries(SEARCH_SOURCE_LABELS).map(([value, label]) => {
+              {(Object.keys(SEARCH_SOURCE_LABELS) as SearchSource[]).map(value => {
                 const selected = searchSource === value
                 return (
                     <button
@@ -1402,40 +1673,43 @@ export default function Banis() {
                           : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
-                    {label}
+                    {value === 'all' ? copy.allSources : SEARCH_SOURCE_LABELS[value]}
                   </button>
                 )
               })}
             </div>
           </div>
           )}
-          {searchMode === 'ang' && searchQuery.trim() && (
-            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-ang-results" data-ai-result-group="ang">
+          {directLookupActive && searchQuery.trim() && (
+            <div data-search-result-anchor="true" className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-ang-results" data-ai-result-group="ang">
             {angTargets.length > 0 ? angTargets.map(target => (
               <button
                 key={target.source}
                 onClick={() => {
-                  addRecent(searchQuery.trim(), 'ang')
-                  navigate(target.path)
+                  addRecent(searchQuery.trim(), searchMode, searchSource)
+                  openSearchDestination(target.path)
                 }}
                 className="w-full rounded-lg border border-sand/15 bg-parchment-card px-3 py-3 text-left transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card"
               >
                 <p className="font-sans text-sm text-ink dark:text-dark-text">
-                  Open {target.label} {target.kind}{' '}
-                  <SearchHighlight text={searchQuery.trim()} query={searchQuery.trim()} />
+                  {copy.openDirectTarget(
+                    target.label,
+                    copy.unitLabels[target.kind as keyof typeof copy.unitLabels] ?? target.kind,
+                    searchQuery.trim()
+                  )}
                 </p>
                 <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-1">
-                  Direct source lookup without running a word search.
+                  {copy.directLookupBody}
                 </p>
               </button>
             )) : (
-              <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">No matching source can open that ang, Vaar, or page.</p>
+              <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 ml-1">{copy.noDirectTarget}</p>
             )}
           </div>
           )}
-          {searching && <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-2 ml-1">{copy.searching}…</p>}
-          {searchIssue && !searching && searchMode !== 'ang' && (
-            <div ref={setSearchFeedbackElement} role="alert" className="nav-safe-results mt-3 rounded-lg border border-[#b4553d]/25 bg-[#b4553d]/10 px-4 py-3 text-sm text-[#7a2f1b] dark:border-[#ffb29d]/28 dark:bg-[#ffb29d]/10 dark:text-[#ffd0c4]">
+          {searching && <p data-search-feedback-anchor="true" className="nav-safe-results font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-2 ml-1">{copy.searching}…</p>}
+          {searchIssue && !searching && !directLookupActive && (
+            <div data-search-feedback-anchor="true" role="alert" className="nav-safe-results mt-3 rounded-lg border border-[#b4553d]/25 bg-[#b4553d]/10 px-4 py-3 text-sm text-[#7a2f1b] dark:border-[#ffb29d]/28 dark:bg-[#ffb29d]/10 dark:text-[#ffd0c4]">
               <p>{getSearchIssueCopy(searchIssue, locale)}</p>
               <button
                 type="button"
@@ -1446,58 +1720,30 @@ export default function Banis() {
               </button>
             </div>
           )}
-          {searchPartialIssue && !searching && !searchIssue && searchMode !== 'ang' && (
-            <div ref={setSearchFeedbackElement} role="status" className="read-search-partial nav-safe-results mt-3 rounded-lg border px-4 py-3 font-sans text-sm">
+          {searchPartialIssue && !searching && !searchIssue && !directLookupActive && (
+            <div data-search-feedback-anchor="true" role="status" className="read-search-partial nav-safe-results mt-3 rounded-lg border px-4 py-3 font-sans text-sm">
               {copy.partialSearch}
             </div>
           )}
-          {appSearchMatches.length > 0 && searchMode !== 'ang' && (
-            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-app-results" data-ai-result-group="in-app">
-            <div className="flex items-center justify-between gap-3 px-1">
-              <h3 className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/75 dark:text-dark-text/76">
-                {copy.inApp}
-              </h3>
-              <p className="font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
-                {copy.exactFirst}
-              </p>
-            </div>
-            {appSearchMatches.map(match => (
-              (() => {
-                const trimmedSearchQuery = searchQuery.trim()
-                const showMatchedQuery = trimmedSearchQuery.length >= 2
-                  && !hasSearchMatch(match.label, trimmedSearchQuery)
-                  && !hasSearchMatch(match.detail, trimmedSearchQuery)
-
-                return (
-                  <button
-                    key={match.key}
-                    onClick={() => navigate(match.path)}
-                    className="w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 py-3 text-left transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:bg-saffron/12"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                          <SearchHighlight text={match.label} query={trimmedSearchQuery} />
-                        </p>
-                        <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
-                          <SearchHighlight text={match.detail} query={trimmedSearchQuery} />
-                        </p>
-                        {showMatchedQuery ? (
-                          <p className="mt-2 font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
-                            Matched for <SearchHighlight text={trimmedSearchQuery} query={trimmedSearchQuery} />
-                          </p>
-                        ) : null}
-                      </div>
-                      <span className="chip-pill">{copy.browse}</span>
-                    </div>
-                  </button>
-                )
-              })()
-            ))}
-            </div>
+          {immediateAppSearchMatches.length > 0 && !directLookupActive && (
+            <AppSearchResultGroup
+              matches={immediateAppSearchMatches}
+              query={searchQuery}
+              groupLabel={copy.inApp}
+              groupHint={copy.exactFirst}
+              testId="banis-search-app-results"
+              aiResultGroup="in-app"
+              resultAnchor
+              className="mt-3"
+              copy={copy}
+              searchMode={searchMode}
+              searchSource={searchSource}
+              addRecent={addRecent}
+              openSearchDestination={openSearchDestination}
+            />
           )}
-          {searchResults.length > 0 && searchMode !== 'ang' && (
-            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-2 space-y-1" data-testid="banis-search-gurbani-results" data-ai-result-group="gurbani">
+          {searchResults.length > 0 && !directLookupActive && (
+            <div data-search-result-anchor={immediateAppSearchMatches.length === 0 ? 'true' : undefined} className="nav-safe-results mt-2 space-y-1" data-testid="banis-search-gurbani-results" data-ai-result-group="gurbani">
             <h3 className="px-1 pb-1 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/75 dark:text-dark-text/76">
               {copy.gurbaniMatches}
             </h3>
@@ -1510,7 +1756,7 @@ export default function Banis() {
                         aria-pressed={raagFilter === 'all'}
                         className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'}`}
                     >
-                      All Raags
+                      {copy.allRaags}
                     </button>
                     {availableRaags.map(raag => (
                       <button
@@ -1531,7 +1777,7 @@ export default function Banis() {
                         aria-pressed={writerFilter === 'all'}
                         className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'}`}
                     >
-                      All Writers
+                      {copy.allWriters}
                     </button>
                     {availableWriters.map(writer => (
                       <button
@@ -1581,7 +1827,7 @@ export default function Banis() {
                   ) : null}
                   {(meaningLanguage === 'en' || isEnglishMeaningSearch) && r.translation_en ? (
                     <p className="read-search-result__meaning font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-1">
-                      {isEnglishMeaningSearch ? <span>Meaning</span> : null}
+                      {isEnglishMeaningSearch ? <span>{copy.meaning}</span> : null}
                       <SearchHighlight text={r.translation_en} query={searchQuery.trim()} />
                     </p>
                   ) : null}
@@ -1590,8 +1836,10 @@ export default function Banis() {
                   {r.sourceName && r.source in SEARCH_SOURCE_LABELS
                     ? <MetadataChip onClick={() => setSearchSource(r.source as SearchSource)}>{r.sourceName}</MetadataChip>
                     : (r.sourceName ? <MetadataChip>{r.sourceName}</MetadataChip> : null)}
-                  {typeof r.pageNo === 'number' && r.pageNo > 0 && <MetadataChip>{`Ang ${r.pageNo}`}</MetadataChip>}
-                  {r.matchCount > 1 && <MetadataChip>{`${r.matchCount} matches`}</MetadataChip>}
+                  {typeof r.pageNo === 'number' && r.pageNo > 0 && (
+                    <MetadataChip>{`${copy.unitLabels[getSourceReaderUnit(r.source)]} ${r.pageNo}`}</MetadataChip>
+                  )}
+                  {r.matchCount > 1 && <MetadataChip>{copy.matchCount(r.matchCount)}</MetadataChip>}
                   {r.raag ? <MetadataChip onClick={() => setRaagFilter(r.raag)}>{r.raag}</MetadataChip> : null}
                   {r.writer ? <MetadataChip onClick={() => setWriterFilter(r.writer)}>{r.writer}</MetadataChip> : null}
                 </div>
@@ -1615,8 +1863,24 @@ export default function Banis() {
             ) : null}
           </div>
         )}
-        {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && !searchIssue && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (
-          <section ref={setSearchFeedbackElement} className="read-search-empty nav-safe-results mt-3" aria-labelledby="read-search-empty-title">
+        {deferredLibrarySearchMatches.length > 0 && !directLookupActive && (
+          <AppSearchResultGroup
+            matches={deferredLibrarySearchMatches}
+            query={searchQuery}
+            groupLabel={copy.libraryMatches}
+            testId="banis-search-library-results"
+            aiResultGroup="library"
+            resultAnchor={immediateAppSearchMatches.length === 0 && searchResults.length === 0}
+            className="mt-2"
+            copy={copy}
+            searchMode={searchMode}
+            searchSource={searchSource}
+            addRecent={addRecent}
+            openSearchDestination={openSearchDestination}
+          />
+        )}
+        {hasActiveSearch && !searching && !searchIssue && !searchPartialIssue && searchResults.length === 0 && appSearchMatchCount === 0 && !directLookupActive && (
+          <section data-search-feedback-anchor="true" className="read-search-empty nav-safe-results mt-3" aria-labelledby="read-search-empty-title">
             <h3 id="read-search-empty-title" className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
               {copy.noResultsTitle}
             </h3>
@@ -1643,18 +1907,19 @@ export default function Banis() {
             </div>
             <div className="space-y-2">
               {recent.map(item => (
-                <div key={`${item.query}-${item.mode}`} className="flex items-center gap-2">
+                <div key={`${item.query}-${item.mode}-${item.source}`} className="flex items-center gap-2">
                   <button
                     onClick={() => {
                       setSearchMode(item.mode)
-                      handleSearch(item.query, item.mode, searchSource)
+                      setSearchSource(item.source)
+                      handleSearch(item.query, item.mode, item.source)
                     }}
                     className="flex-1 text-left font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-2 text-ink/68 dark:text-dark-text/64 active:scale-95 transition-transform duration-150"
                   >
-                    {item.query} · {searchModeLabels[item.mode]}
+                    {item.query} · {searchModeLabels[item.mode]} · {item.source === 'all' ? copy.allSources : SEARCH_SOURCE_LABELS[item.source]}
                   </button>
                   <button
-                    onClick={() => togglePinned(item.query, item.mode)}
+                    onClick={() => togglePinned(item.query, item.mode, item.source)}
                     aria-label={`${item.pinned ? copy.unpin : copy.pin} ${item.query}`}
                     className="min-h-[40px] min-w-[40px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/68 dark:text-dark-text/64"
                   >

@@ -77,7 +77,7 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-describe('cloud snapshot v2', () => {
+describe('cloud snapshot v3', () => {
   test('exports favorites, phrase review, preferences, activity, and reading Ang arrays', () => {
     useBookmarksStore.setState({
       bookmarks: [{
@@ -161,7 +161,7 @@ describe('cloud snapshot v2', () => {
 
     const snapshot = exportLocalSnapshot()
 
-    expect(snapshot.version).toBe(2)
+    expect(snapshot.version).toBe(3)
     expect(snapshot.profile.locale).toBe('pa')
     expect(snapshot.profile.reader).toMatchObject({
       showTransliteration: true,
@@ -219,5 +219,78 @@ describe('cloud snapshot v2', () => {
       '2026-04-18T13:00:01.000Z'
     ))
     expect(useBookmarksStore.getState().bookmarks).toEqual([])
+  })
+
+  test('round-trips route-backed saves that share an Ang without cloud collisions', () => {
+    useBookmarksStore.setState({ bookmarks: [
+      {
+        id: 'bookmark-japji', type: 'bani', title: 'Japji Sahib', source: 'G', ang: 1,
+        returnPath: '/study?source=G&ang=1&baniDbId=2&baniId=japji-sahib', savedAt: SAVED_AT,
+      },
+      {
+        id: 'bookmark-ang', type: 'bani', title: 'Generic Ang 1', source: 'G', ang: 1,
+        returnPath: '/study?source=G&ang=1', savedAt: SAVED_AT,
+      },
+      {
+        id: 'bookmark-book', type: 'book', title: 'Panth Prakash · Episode 1',
+        workId: 'panth-prakash-english', chapterId: 'episode-001', chapterLabel: 'Episode 1',
+        returnPath: '/library/panth-prakash-english/chapters/episode-001', savedAt: SAVED_AT,
+      },
+    ] })
+    useFavoritesStore.setState({ favorites: [
+      {
+        id: 'favorite-daily', type: 'ang', routeMode: 'canonical', title: 'Daily Hukamnama',
+        source: 'G', ang: 1, returnPath: '/study?hukamnamaDate=2026-08-10', savedAt: SAVED_AT,
+      },
+      {
+        id: 'favorite-personal', type: 'shabad', routeMode: 'shabad', title: 'Personal Hukamnama',
+        source: 'G', ang: 1, shabadId: 50,
+        returnPath: '/study?shabadId=50&flow=ardaas-hukamnama', savedAt: SAVED_AT,
+      },
+    ] })
+
+    const snapshot = exportLocalSnapshot()
+    expect(new Set(snapshot.savedItems.map(item => item.naturalKey)).size).toBe(5)
+
+    useBookmarksStore.setState({ bookmarks: [] })
+    useFavoritesStore.setState({ favorites: [] })
+    applyRemoteSnapshot(asRemoteSnapshot(snapshot))
+
+    expect(useBookmarksStore.getState().bookmarks.map(item => item.id)).toEqual([
+      'bookmark-japji', 'bookmark-ang', 'bookmark-book',
+    ])
+    expect(useFavoritesStore.getState().favorites.map(item => item.id)).toEqual([
+      'favorite-daily', 'favorite-personal',
+    ])
+  })
+
+  test('rejects a remote Saved apply when either device cache is not durable', () => {
+    useBookmarksStore.setState({ bookmarks: [{
+      id: 'bookmark-remote', type: 'bani', title: 'Remote Japji Sahib', source: 'G', ang: 1,
+      returnPath: '/study?baniDbId=2&baniId=japji-sahib', savedAt: SAVED_AT,
+    }] })
+    useFavoritesStore.setState({ favorites: [{
+      id: 'favorite-remote', type: 'ang', routeMode: 'canonical', title: 'Remote Ang',
+      source: 'G', ang: 2, returnPath: '/study?source=G&ang=2', savedAt: SAVED_AT,
+    }] })
+    const remoteSnapshot = asRemoteSnapshot(exportLocalSnapshot())
+
+    localStorage.clear()
+    useBookmarksStore.setState({ bookmarks: [] })
+    useFavoritesStore.setState({ favorites: [] })
+    const originalSetItem = window.localStorage.setItem.bind(window.localStorage)
+    const setItem = vi.spyOn(window.localStorage, 'setItem').mockImplementation((key, value) => {
+      if (key === 'sikh-favorites') {
+        throw new DOMException('Quota exceeded', 'QuotaExceededError')
+      }
+      originalSetItem(key, value)
+    })
+
+    expect(() => applyRemoteSnapshot(remoteSnapshot)).toThrow(/saved items could not be persisted/i)
+    expect(useBookmarksStore.getState().bookmarks).toEqual([])
+    expect(useFavoritesStore.getState().favorites).toEqual([])
+    expect(localStorage.getItem('naamras-cloud-sync-export-metadata')).toBeNull()
+
+    setItem.mockRestore()
   })
 })

@@ -16,6 +16,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <main
+          lang="en"
           id="main-content"
           tabIndex={-1}
           className="page-shell animate-fade-in"

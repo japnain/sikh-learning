@@ -17,7 +17,7 @@ const UPDATED_AT = '2026-07-29T12:00:00.000Z'
 
 function validSnapshot() {
   return {
-    version: 2,
+    version: 3,
     deviceId: 'device-a',
     profile: {
       id: 'profile',
@@ -79,7 +79,7 @@ function mergeOptions(
       mergeSnapshot: async (incomingRecords, incomingEvents) => ({
         failed: false,
         data: {
-          version: 2,
+          version: 3,
           complete: true,
           acknowledgedEventIds: incomingEvents.map((event) => String(event.id)),
           mergedAt: UPDATED_AT,
@@ -220,12 +220,12 @@ describe('NaamRas cloud Edge HTTP boundary', () => {
     const result = await response.json()
     expect(result).not.toHaveProperty('userId')
     expect(result).toMatchObject({
-      version: 2,
+      version: 3,
       complete: true,
       mergedAt: UPDATED_AT,
       acknowledgedEventIds: [],
       snapshot: {
-        version: 2,
+        version: 3,
         generatedAt: UPDATED_AT,
       },
     })
@@ -264,6 +264,29 @@ describe('NaamRas cloud Edge HTTP boundary', () => {
 })
 
 describe('merge-local-state Edge handler', () => {
+  test('rejects v2 snapshots before invoking the merge RPC', async () => {
+    const mergeSnapshot = vi.fn()
+    const handler = createMergeLocalStateHandler(mergeOptions({
+      createService: () => ({
+        authenticate: async () => 'user-private-id',
+        mergeSnapshot,
+      }),
+    }))
+
+    const response = await handler(functionRequest({
+      body: {
+        snapshot: { ...validSnapshot(), version: 2 },
+      },
+    }))
+
+    expect(response.status).toBe(400)
+    expect(await response.json()).toEqual({
+      error: 'snapshot.version must be 3.',
+      code: 'invalid-cloud-snapshot',
+    })
+    expect(mergeSnapshot).not.toHaveBeenCalled()
+  })
+
   test('redacts database diagnostics and identifiers from failures', async () => {
     const handler = createMergeLocalStateHandler(mergeOptions({
       createService: () => ({
@@ -316,7 +339,7 @@ describe('merge-local-state Edge handler', () => {
         mergeSnapshot: async () => ({
           failed: false,
           data: {
-            version: 2,
+            version: 3,
             complete: true,
             acknowledgedEventIds: [],
             mergedAt: UPDATED_AT,

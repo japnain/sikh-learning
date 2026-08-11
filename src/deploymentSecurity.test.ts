@@ -35,6 +35,8 @@ test('deployment config applies the production security policy without breaking 
   expect(headers.get('Referrer-Policy')).toBe('no-referrer')
   expect(headers.get('Permissions-Policy')).toContain('camera=()')
   expect(headers.get('Cross-Origin-Resource-Policy')).toBe('same-origin')
+  expect(headers.get('Cache-Control')).toBe('public, max-age=0, must-revalidate')
+  expect(headers.get('Service-Worker-Allowed')).toBe('/')
 
   const policy = headers.get('Content-Security-Policy') ?? ''
   const scriptDirective = policy.split(';').find(directive => directive.trim().startsWith('script-src'))
@@ -56,6 +58,9 @@ test('deployment config applies the production security policy without breaking 
     source: '/(.*)',
     destination: '/index.html',
   })
+  const catchAllIndex = config.rewrites.findIndex(rule => rule.source === '/(.*)')
+  expect(config.rewrites.findIndex(rule => rule.source === '/h/:date')).toBeLessThan(catchAllIndex)
+  expect(config.rewrites.findIndex(rule => rule.source === '/p/:shabadId/:ang')).toBeLessThan(catchAllIndex)
 })
 
 test('the CSP hash matches the inline theme bootstrap exactly', () => {
@@ -76,4 +81,26 @@ test('the CSP hash matches the inline theme bootstrap exactly', () => {
     ?.value ?? ''
 
   expect(policy).toContain(`'sha256-${expectedHash}'`)
+})
+
+test('robots advertises a real sitemap containing only canonical public routes', () => {
+  const robots = fs.readFileSync(path.join(PROJECT_ROOT, 'public', 'robots.txt'), 'utf8')
+  const sitemap = fs.readFileSync(path.join(PROJECT_ROOT, 'public', 'sitemap.xml'), 'utf8')
+  const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1])
+
+  expect(robots).toContain('Sitemap: https://naamras.xyz/sitemap.xml')
+  expect(sitemap).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+  expect(locations.length).toBeGreaterThan(0)
+  expect(locations.every(location => location?.startsWith('https://naamras.xyz/'))).toBe(true)
+  expect(locations.every(location => !location?.includes('?'))).toBe(true)
+  expect(locations).not.toContain('https://naamras.xyz/saved')
+})
+
+test('the public AI discovery document identifies NaamRas and links to canonical pages', () => {
+  const llms = fs.readFileSync(path.join(PROJECT_ROOT, 'public', 'llms.txt'), 'utf8')
+
+  expect(llms).toMatch(/^# NaamRas\n/)
+  expect(llms).toContain('[Read and search](https://naamras.xyz/banis)')
+  expect(llms).toContain('[Privacy and sources](https://naamras.xyz/privacy)')
+  expect(llms).not.toContain('localhost')
 })

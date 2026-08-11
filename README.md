@@ -40,12 +40,15 @@ Public Support and Privacy URLs are committed in `.env.production` for web and p
 
 - `VITE_APP_VERSION`: release version included in anonymous diagnostics
 - `VITE_SUPPORT_URL`: verified public HTTPS support page
+- `VITE_SUPPORT_EMAIL`: optional verified, monitored public support inbox; omit it until one exists
 - `VITE_PRIVACY_URL`: verified public HTTPS privacy policy
 - `VITE_DIAGNOSTICS_ENDPOINT`: optional HTTPS endpoint for allow-listed failure events
 
 More falls back to the internal Support and Privacy routes when external URLs are absent. External links accept only credential-free HTTPS values. Diagnostics stay disabled until an endpoint is configured; enabled payloads contain only an event code, source, fatal flag, app version, and pathname without query data. Error messages, stacks, scripture, saved content, account identifiers, and local-storage values are never included.
 
 Any release that enables Supabase sign-in must deploy both `merge-local-state` and `delete-account`. The deletion function validates the caller's session and deletes that same auth user; schema foreign keys cascade deletion through synced NaamRas records.
+
+Saved-item sync v3 has a strict rollout order: first apply `supabase/schema/003_naamras_cloud_sync_v3.sql`, then deploy the updated `merge-local-state` Edge Function, and only then deploy the web/iOS client. The v3 Edge contract intentionally rejects older v2 snapshots so an installed stale client cannot collapse route-specific or book bookmarks; those clients keep their local data and can sync again after updating.
 
 ## Quality Checks
 

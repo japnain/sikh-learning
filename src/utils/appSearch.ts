@@ -1,5 +1,6 @@
 import type { SearchResult } from '../api/banidb'
-import { READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
+import { loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../data/libraryRepository'
+import { BANIS, READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
 import { SOURCE_READER_META } from './sourceReaderMeta'
@@ -24,9 +25,16 @@ export interface AppSearchMatch {
   key: string
   label: string
   detail: string
+  excerpt?: string
   path: string
   score: number
-  kind: 'read-route'
+  kind: 'read-route' | 'library-work' | 'library-chapter'
+  library?: {
+    shortTitle: string
+    chapterCount?: number
+    volume?: number
+    episodeNumber?: number
+  }
 }
 
 export interface DirectAngTarget {
@@ -68,11 +76,20 @@ export const ANG_SOURCE_META = {
   G: { label: SOURCE_READER_META.G.shortName, max: SOURCE_READER_META.G.max, kind: SOURCE_READER_META.G.unit },
   D: { label: SOURCE_READER_META.D.shortName, max: SOURCE_READER_META.D.max, kind: SOURCE_READER_META.D.unit },
   B: { label: SOURCE_READER_META.B.shortName, max: SOURCE_READER_META.B.max, kind: SOURCE_READER_META.B.unit },
+  A: { label: SOURCE_READER_META.A.shortName, max: SOURCE_READER_META.A.max, kind: SOURCE_READER_META.A.unit },
 } as const
+
+// BaniDB exposes Amrit Keertan through its dedicated `/amritkeertan`
+// directory endpoints. Its `/angs/:page/A` route does not resolve AK pages,
+// so numeric direct lookup must never offer a link that opens a degraded
+// Study reader. Amrit Keertan remains discoverable through app search.
+const DIRECT_ANG_SOURCES = ['G', 'D', 'B'] as const
 
 const ROUTABLE_EXACT_BANIS = READ_EXACT_BANIS
   .filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number')
   .filter(bani => !bani.variantOf)
+
+const ROUTABLE_BROWSE_BANIS = BANIS.filter(bani => bani.type === 'browse-only')
 
 const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
   .flat()
@@ -102,6 +119,16 @@ const CANONICAL_BANI_ALIASES_BY_ID = new Map<string, string[]>([
   ['akal-ustat', ['akal ustat']],
   ['ardaas', ['ardas', 'ardaas']],
 ])
+
+const STANDALONE_ROUTE_DESTINATIONS = [
+  {
+    id: 'ardaas',
+    label: 'Ardaas',
+    detail: 'Sundar Gutka · Daily Prayer',
+    path: '/study?baniDbId=24&bani=Ardaas',
+    aliases: ['ardas', 'ardaas', 'ਅਰਦਾਸ'],
+  },
+] as const
 
 const SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL = new Map<string, string>([
   ['ਜਪੁਜੀ ਸਾਹਿਬ', 'japji-sahib'],
@@ -161,6 +188,26 @@ function normalizeBaniLabel(value: string) {
     .replace(/[^a-z0-9\u0A00-\u0A7F]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
+}
+
+function normalizeLibrarySearchText(value: string) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function getSearchSnippet(searchText: string, normalizedQuery: string) {
+  const normalizedText = normalizeLibrarySearchText(searchText)
+  const matchIndex = normalizedText.indexOf(normalizedQuery)
+  if (matchIndex < 0) return searchText.slice(0, 180).replace(/\s+/g, ' ').trim()
+
+  const start = Math.max(0, matchIndex - 70)
+  const end = Math.min(searchText.length, matchIndex + normalizedQuery.length + 130)
+  return searchText.slice(start, end).replace(/\s+/g, ' ').trim()
 }
 
 function normalizeRomanizedBaniLabel(value: string) {
@@ -264,12 +311,8 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
 }
 
 function getReadRouteMatches(query: string, searchSource: SearchSource): AppSearchMatch[] {
-  const allowedSources = searchSource === 'all'
-    ? new Set(['G', 'D'])
-    : new Set(['G', 'D'].includes(searchSource) ? [searchSource] : [])
-
   const matches = ROUTABLE_EXACT_BANIS.flatMap((bani): AppSearchMatch[] => {
-    if (!allowedSources.has(bani.source)) return []
+    if (searchSource !== 'all' && bani.source !== searchSource) return []
 
     const routeOptions = getExactRouteOptionsForBani(bani)
     const resolvedRoutes = routeOptions.length > 0
@@ -304,7 +347,46 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
       })
   })
 
-  return matches
+  const browseMatches = ROUTABLE_BROWSE_BANIS.flatMap((bani): AppSearchMatch[] => {
+    if (searchSource !== 'all' && bani.source !== searchSource) return []
+
+    const searchLabels = [
+      bani.name,
+      bani.id.replace(/-/g, ' '),
+      ...(CANONICAL_BANI_ALIASES_BY_ID.get(bani.id) ?? []),
+    ]
+    const score = getCanonicalRouteMatchScore(query, searchLabels)
+    if (score < 0) return []
+
+    return [{
+      key: `read-${bani.id}`,
+      label: bani.name,
+      detail: `${SOURCE_READER_META[bani.source].name} · ${bani.category}`,
+      path: bani.id === 'amrit-keertan'
+        ? '/banis/amrit-keertan'
+        : buildCanonicalBaniStudyPath(bani),
+      score,
+      kind: 'read-route',
+    }]
+  })
+
+  const standaloneMatches = searchSource === 'all'
+    ? STANDALONE_ROUTE_DESTINATIONS.flatMap((destination): AppSearchMatch[] => {
+        const score = getCanonicalRouteMatchScore(query, [destination.label, ...destination.aliases])
+        if (score < 0) return []
+
+        return [{
+          key: `read-${destination.id}`,
+          label: destination.label,
+          detail: destination.detail,
+          path: destination.path,
+          score,
+          kind: 'read-route',
+        }]
+      })
+    : []
+
+  return [...matches, ...browseMatches, ...standaloneMatches]
 }
 
 export function getAppSearchMatches(
@@ -318,8 +400,74 @@ export function getAppSearchMatches(
     .slice(0, 8)
 }
 
-export function getAngTargets(query: string, searchSource: SearchSource): DirectAngTarget[] {
-  const normalizedQuery = Array.from(query.trim(), character => {
+export async function getLibrarySearchMatches(query: string): Promise<AppSearchMatch[]> {
+  const normalizedQuery = normalizeLibrarySearchText(query)
+  if (normalizedQuery.length < 2) return []
+
+  const queryTokens = normalizedQuery.split(' ').filter(Boolean)
+  const [catalog, catalogIndex] = await Promise.all([
+    loadLibraryWorkCatalog(),
+    loadLibrarySearchIndex(),
+  ])
+  const aliasesByWorkId = new Map(catalogIndex.works.map(work => [work.id, work.aliases]))
+  const workMatches: AppSearchMatch[] = []
+
+  for (const work of catalog.works) {
+    const labels = [work.title, work.shortTitle, ...(aliasesByWorkId.get(work.id) ?? [])]
+    const score = getCanonicalRouteMatchScore(query, labels)
+    if (score < 0) continue
+
+    workMatches.push({
+      key: `library-work-${work.id}`,
+      label: work.title,
+      detail: `Book · ${work.totalChapters ?? 0} chapters`,
+      path: `/library/${work.id}`,
+      score: score + 8,
+      kind: 'library-work',
+      library: {
+        shortTitle: work.shortTitle,
+        chapterCount: work.totalChapters ?? 0,
+      },
+    })
+  }
+
+  const workIndexResults = await Promise.all(catalog.works.map(async work => {
+    const searchIndex = await loadLibrarySearchIndex(work.id)
+    return (searchIndex.chapters ?? []).flatMap((entry): AppSearchMatch[] => {
+      const normalizedTitle = normalizeLibrarySearchText(entry.title)
+      const normalizedText = normalizeLibrarySearchText(entry.searchText)
+      const exactTitle = normalizedTitle === normalizedQuery
+      const titleContains = normalizedTitle.includes(normalizedQuery)
+      const phraseMatch = normalizedText.includes(normalizedQuery)
+      const tokenMatch = queryTokens.length > 1 && queryTokens.every(token => normalizedText.includes(token))
+      if (!exactTitle && !titleContains && !phraseMatch && !tokenMatch) return []
+
+      const score = exactTitle ? 132 : titleContains ? 112 : phraseMatch ? 78 : 60
+      const episodeLabel = entry.episodeNumber ? ` · Episode ${entry.episodeNumber}` : ''
+      return [{
+        key: `library-chapter-${entry.workId}-${entry.chapterId}`,
+        label: entry.title,
+        detail: `${work.shortTitle} · Volume ${entry.volume}${episodeLabel}`,
+        excerpt: getSearchSnippet(entry.searchText, normalizedQuery),
+        path: entry.path,
+        score,
+        kind: 'library-chapter',
+        library: {
+          shortTitle: work.shortTitle,
+          volume: entry.volume,
+          episodeNumber: entry.episodeNumber,
+        },
+      }]
+    })
+  }))
+
+  return [...workMatches, ...workIndexResults.flat()]
+    .sort((left, right) => right.score - left.score || left.label.localeCompare(right.label))
+    .slice(0, 8)
+}
+
+function normalizeDirectLookupQuery(query: string) {
+  return Array.from(query.trim(), character => {
     const codePoint = character.codePointAt(0) ?? 0
     if (codePoint >= 0x0A66 && codePoint <= 0x0A6F) {
       return String(codePoint - 0x0A66)
@@ -329,15 +477,27 @@ export function getAngTargets(query: string, searchSource: SearchSource): Direct
     }
     return character
   }).join('')
-  if (!/^\d+$/.test(normalizedQuery)) return []
+}
+
+export function isDirectLookupQuery(query: string) {
+  const normalizedQuery = normalizeDirectLookupQuery(query)
+  if (!/^\d+$/.test(normalizedQuery)) return false
+
+  const lookup = Number(normalizedQuery)
+  return Number.isSafeInteger(lookup) && lookup > 0
+}
+
+export function getAngTargets(query: string, searchSource: SearchSource): DirectAngTarget[] {
+  const normalizedQuery = normalizeDirectLookupQuery(query)
+  if (!isDirectLookupQuery(normalizedQuery)) return []
 
   const angLookup = Number(normalizedQuery)
   if (!Number.isSafeInteger(angLookup) || angLookup <= 0) return []
 
   const sources = searchSource === 'all'
-    ? (Object.keys(ANG_SOURCE_META) as Array<keyof typeof ANG_SOURCE_META>)
-    : searchSource in ANG_SOURCE_META
-      ? [searchSource as keyof typeof ANG_SOURCE_META]
+    ? [...DIRECT_ANG_SOURCES]
+    : DIRECT_ANG_SOURCES.includes(searchSource as typeof DIRECT_ANG_SOURCES[number])
+      ? [searchSource as typeof DIRECT_ANG_SOURCES[number]]
       : []
 
   return sources

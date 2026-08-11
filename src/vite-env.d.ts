@@ -16,6 +16,7 @@ interface ImportMetaEnv {
   readonly VITE_NAAMRAS_BANIDB_PUBLIC_ORIGIN?: string
   readonly VITE_DIAGNOSTICS_ENDPOINT?: string
   readonly VITE_SUPPORT_URL?: string
+  readonly VITE_SUPPORT_EMAIL?: string
   readonly VITE_PRIVACY_URL?: string
   readonly VITE_APP_VERSION?: string
 }

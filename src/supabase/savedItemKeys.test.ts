@@ -42,4 +42,31 @@ describe('saved-item cloud identity', () => {
       verseId: 100,
     })).toBe('bookmark:G:1:verse:100')
   })
+
+  test('uses the exact saved reading route before source and Ang', () => {
+    const genericAng = buildBookmarkNaturalKey({
+      source: 'G', ang: 1, returnPath: '/study?source=G&ang=1',
+    })
+    const japji = buildBookmarkNaturalKey({
+      source: 'G', ang: 1, returnPath: '/study?source=G&ang=1&baniDbId=2&baniId=japji-sahib',
+    })
+    const daily = buildFavoriteNaturalKey({
+      source: 'G', ang: 1, returnPath: '/study?hukamnamaDate=2026-08-10',
+    })
+    const personal = buildFavoriteNaturalKey({
+      source: 'G', ang: 1, shabadId: 50, returnPath: '/study?shabadId=50&flow=ardaas-hukamnama',
+    })
+
+    expect(new Set([genericAng, japji, daily, personal]).size).toBe(4)
+    expect(japji).toContain('bookmark:route:')
+    expect(daily).toContain('favorite:route:')
+  })
+
+  test('builds a stable cloud key for a book chapter', () => {
+    expect(buildBookmarkNaturalKey({
+      type: 'book',
+      workId: 'panth-prakash-english',
+      chapterId: 'episode-001',
+    })).toBe('bookmark:book:panth-prakash-english:chapter:episode-001')
+  })
 })

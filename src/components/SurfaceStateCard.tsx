@@ -21,6 +21,7 @@ interface SurfaceStateCardProps {
   errorCode?: string | null
   pageShell?: boolean
   headingLevel?: 1 | 2
+  lang?: string
 }
 
 export default function SurfaceStateCard({
@@ -35,6 +36,7 @@ export default function SurfaceStateCard({
   errorCode = null,
   pageShell = true,
   headingLevel = 1,
+  lang,
 }: SurfaceStateCardProps) {
   const Heading = headingLevel === 2 ? 'h2' : 'h1'
   const content = (
@@ -75,6 +77,7 @@ export default function SurfaceStateCard({
 
   return (
     <div
+      lang={lang}
       className="page-shell animate-fade-in"
       data-testid={testId}
       data-page={page}

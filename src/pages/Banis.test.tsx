@@ -10,6 +10,9 @@ import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
+import { useRecentSearchStore } from '../store/recentSearch'
+import { getSearchRevealScrollTop } from '../utils/searchReveal'
+import * as appSearch from '../utils/appSearch'
 
 function renderBanis() {
   return render(<MemoryRouter><Banis /></MemoryRouter>)
@@ -21,12 +24,31 @@ function openReadCollection(name: 'Banis' | 'Sources' | 'Books') {
 
 function LocationSpy() {
   const location = useLocation()
-  return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
+  return (
+    <div
+      data-testid="location"
+      data-location-state={JSON.stringify(location.state)}
+    >
+      {`${location.pathname}${location.search}`}
+    </div>
+  )
 }
 
 function HistoryControls() {
   const navigate = useNavigate()
   return <button type="button" onClick={() => navigate(-1)}>Back in history</button>
+}
+
+function SearchUrlControls() {
+  const navigate = useNavigate()
+  return (
+    <button
+      type="button"
+      onClick={() => navigate('/banis?query=x&mode=auto-detect')}
+    >
+      Open short search URL
+    </button>
+  )
 }
 
 const SEARCH_RESULT_FIXTURE: banidbApi.SearchResult = {
@@ -46,6 +68,7 @@ beforeEach(() => {
   vi.restoreAllMocks()
   localStorage.clear()
   useLocaleStore.setState({ locale: 'en' })
+  useRecentSearchStore.setState({ recent: [] })
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
     showTransliteration: true,
@@ -587,14 +610,26 @@ test('links Rehat to its route-driven reader instead of opening a dropdown panel
 test('supports direct ang lookup mode', async () => {
   renderBanis()
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
-  fireEvent.click(screen.getByRole('button', { name: /ang \/ vaar \/ page/i }))
+  fireEvent.click(screen.getByRole('button', { name: /ang \/ vaar/i }))
   fireEvent.change(screen.getByRole('searchbox', { name: /search gurbani, meanings, or direct routes/i }), { target: { value: '12' } })
 
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /open dg ang 12/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /open bgv vaar 12/i })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /open ak page 12/i })).not.toBeInTheDocument()
   })
+})
+
+test('auto-detects a numeric query as a direct lookup without a backend search', async () => {
+  const fetchSearch = vi.spyOn(banidbApi, 'fetchSearch')
+  renderBanis()
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: '12' } })
+
+  expect(await screen.findByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /open ak page 12/i })).not.toBeInTheDocument()
+  expect(fetchSearch).not.toHaveBeenCalled()
 })
 
 test('front-loads canonical bani routes for short romanized queries like jap', async () => {
@@ -618,6 +653,112 @@ test('front-loads canonical bani routes for short romanized queries like jap', a
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji+Sahib')
   })
+  expect(screen.getByTestId('location')).toHaveAttribute(
+    'data-location-state',
+    JSON.stringify({ readerOrigin: '/banis?query=jap' })
+  )
+  expect(useRecentSearchStore.getState().recent[0]).toMatchObject({
+    query: 'jap',
+    mode: 'auto-detect',
+    source: 'all',
+  })
+})
+
+test('searches Panth Prakash chapters alongside Gurbani destinations', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<Banis />} />
+        <Route path="/library/:workId/chapters/:chapterId" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Origin of the Khalsa' } })
+
+  const results = await screen.findByTestId('banis-search-library-results')
+  const chapterResult = within(results).getByRole('button', { name: /Origin of the Khalsa/i })
+  expect(chapterResult).toBeInTheDocument()
+  expect(within(results).getByText(/Panth Prakash · Volume 1 · Episode 1$/i)).toBeInTheDocument()
+
+  fireEvent.click(chapterResult)
+  await waitFor(() => {
+    expect(screen.getByTestId('location')).toHaveTextContent('/library/panth-prakash-english/chapters/episode-001')
+  })
+  expect(screen.getByTestId('location')).toHaveAttribute(
+    'data-location-state',
+    JSON.stringify({ libraryReaderOrigin: '/banis?query=Origin+of+the+Khalsa' })
+  )
+})
+
+test('keeps exact routes and ready Gurbani ahead of late library results', async () => {
+  let resolveLibrarySearch!: (matches: appSearch.AppSearchMatch[]) => void
+  const pendingLibrarySearch = new Promise<appSearch.AppSearchMatch[]>(resolve => {
+    resolveLibrarySearch = resolve
+  })
+  const lateLibraryMatch: appSearch.AppSearchMatch = {
+    key: 'library-chapter-panth-prakash-english-episode-001',
+    label: 'Jap and the origin of the Khalsa',
+    detail: 'Panth Prakash · Volume 1 · Episode 1',
+    path: '/library/panth-prakash-english/chapters/episode-001',
+    score: 92,
+    kind: 'library-chapter',
+    library: {
+      shortTitle: 'Panth Prakash',
+      volume: 1,
+      episodeNumber: 1,
+    },
+  }
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockReturnValue(pendingLibrarySearch)
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'jap' } })
+
+  const exactRoutes = await screen.findByTestId('banis-search-app-results')
+  const gurbaniResults = await screen.findByTestId('banis-search-gurbani-results')
+  expect(gurbaniResults).toHaveTextContent('ਸਤਿਨਾਮੁ')
+  expect(screen.queryByTestId('banis-search-library-results')).not.toBeInTheDocument()
+  expect(exactRoutes.compareDocumentPosition(gurbaniResults) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+
+  await act(async () => {
+    resolveLibrarySearch([
+      lateLibraryMatch,
+      { ...lateLibraryMatch, key: 'duplicate-path-that-must-not-render' },
+    ])
+    await pendingLibrarySearch
+  })
+
+  const libraryResults = await screen.findByTestId('banis-search-library-results')
+  expect(within(libraryResults).getAllByRole('button')).toHaveLength(1)
+  expect(gurbaniResults.compareDocumentPosition(libraryResults) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  expect(
+    Array.from(screen.getByTestId('banis-quick-find').querySelectorAll('[data-ai-result-group]'))
+      .map(group => group.getAttribute('data-ai-result-group'))
+  ).toEqual(['in-app', 'gurbani', 'library'])
+})
+
+test('accepts a short URL-hydrated query without restoring or rendering stale results', async () => {
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+
+  render(
+    <MemoryRouter initialEntries={['/banis?query=staleprobe']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><SearchUrlControls /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  expect(await screen.findByTestId('banis-search-gurbani-results')).toHaveTextContent('ਸਤਿਨਾਮੁ')
+  fireEvent.click(screen.getByRole('button', { name: 'Open short search URL' }))
+
+  await waitFor(() => {
+    expect(screen.getByRole('searchbox')).toHaveValue('x')
+    expect(screen.getByTestId('location')).toHaveTextContent('/banis?query=x')
+  })
+  expect(screen.queryByTestId('banis-search-gurbani-results')).not.toBeInTheDocument()
 })
 
 test('auto search queries both English meanings and romanized text for Roman-letter terms', async () => {
@@ -720,6 +861,19 @@ test('keeps fulfilled search results when another search source fails', async ()
   expect(screen.getByText('ਸਤਿਨਾਮੁ')).toBeInTheDocument()
   expect(screen.getByText('The Name is truth.')).toBeInTheDocument()
   expect(screen.getByTestId('banis-quick-find')).toHaveAttribute('data-ai-state', 'degraded')
+})
+
+test('does not show a contradictory empty state when a partial search returns no matches', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (_query, searchType) => {
+    if (searchType === 3) return []
+    throw new Error('one search source unavailable')
+  })
+
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'partialemptyprobe' } })
+
+  expect(await screen.findByText(/Some sources could not be searched/i, { selector: '.read-search-partial' })).toBeInTheDocument()
+  expect(screen.queryByRole('heading', { name: /No matches yet/i })).not.toBeInTheDocument()
 })
 
 test('retries a failed search in place with the current query and filters', async () => {
@@ -831,7 +985,8 @@ test('localizes Read controls while English searches always include the matching
   expect(await screen.findByText('ਸਤਿਨਾਮੁ')).toBeInTheDocument()
   expect(screen.queryByText('sat naam')).not.toBeInTheDocument()
   expect(screen.getByText('The Name is truth.')).toBeInTheDocument()
-  expect(screen.getByText('Meaning')).toBeInTheDocument()
+  expect(screen.getByText('ਅਰਥ')).toBeInTheDocument()
+  expect(screen.queryByText('Meaning')).not.toBeInTheDocument()
 
   act(() => {
     useLanguageStore.setState({ showTransliteration: true, meaningLanguage: 'en' })
@@ -872,6 +1027,26 @@ test('highlights matching terms inside read search results', async () => {
 
   const inAppResults = await screen.findByTestId('banis-search-app-results')
   expect(inAppResults.querySelector('[data-search-highlight="true"]')).not.toBeNull()
+})
+
+test('mobile result reveal measures only the first result preview, not the full result list', () => {
+  expect(getSearchRevealScrollTop({
+    currentScrollTop: 0,
+    inputTop: 400,
+    feedbackTop: 520,
+    feedbackBottom: 2800,
+    visibleTop: 18,
+    visibleBottom: 700,
+  })).toBe(0)
+
+  expect(getSearchRevealScrollTop({
+    currentScrollTop: 0,
+    inputTop: 600,
+    feedbackTop: 800,
+    feedbackBottom: 2800,
+    visibleTop: 18,
+    visibleBottom: 700,
+  })).toBe(196)
 })
 
 test('keeps the nav-safe page shell while lower sections still open after other expansions', async () => {

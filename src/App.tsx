@@ -74,6 +74,7 @@ function SkeletonBlock({ className }: { className: string }) {
 function RouteFallback() {
   return (
     <div
+      lang="en"
       className="page-shell"
       data-testid="route-fallback"
       data-ai-surface="route-fallback"
@@ -145,6 +146,7 @@ function NotFoundPage() {
 
   return (
     <SurfaceStateCard
+      lang="en"
       surface="route-not-found"
       state="empty"
       eyebrow="Page not found"

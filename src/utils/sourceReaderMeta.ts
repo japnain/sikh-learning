@@ -1,3 +1,5 @@
+import type { UiLocale } from '../types'
+
 export type SourceReaderId = 'G' | 'D' | 'B' | 'A'
 export type SourceReaderUnit = 'Ang' | 'Vaar' | 'Page'
 
@@ -50,4 +52,49 @@ export function getSourceReaderUnit(
   if (scripture === 'SGGS' || scripture === 'DG') return 'Ang'
   if (scripture === 'BGV') return 'Vaar'
   return 'Page'
+}
+
+const SOURCE_READER_UNIT_LABELS: Record<UiLocale, Record<SourceReaderUnit, string>> = {
+  en: { Ang: 'Ang', Vaar: 'Vaar', Page: 'Page' },
+  pa: { Ang: 'ਅੰਗ', Vaar: 'ਵਾਰ', Page: 'ਸਫ਼ਾ' },
+  hi: { Ang: 'अंग', Vaar: 'वार', Page: 'पृष्ठ' },
+}
+
+const SOURCE_READER_VERSE_LABELS: Record<UiLocale, string> = {
+  en: 'Verse',
+  pa: 'ਪੰਕਤੀ',
+  hi: 'पंक्ति',
+}
+
+export function getSourceReaderUnitLabel(
+  source: string | null | undefined,
+  locale: UiLocale,
+  scripture?: string | null
+) {
+  return SOURCE_READER_UNIT_LABELS[locale][getSourceReaderUnit(source, scripture)]
+}
+
+export function formatSourceReaderReference({
+  source,
+  value,
+  locale,
+  scripture,
+  sourceLabel,
+  verseId,
+}: {
+  source: string
+  value: number | string
+  locale: UiLocale
+  scripture?: string | null
+  sourceLabel?: string
+  verseId?: number
+}) {
+  const resolvedSourceLabel = sourceLabel
+    ?? (isSourceReaderId(source) ? SOURCE_READER_META[source].shortName : source.toUpperCase())
+  const location = `${getSourceReaderUnitLabel(source, locale, scripture)} ${value}`
+  return [
+    resolvedSourceLabel,
+    location,
+    verseId ? `${SOURCE_READER_VERSE_LABELS[locale]} ${verseId}` : null,
+  ].filter(Boolean).join(' · ')
 }

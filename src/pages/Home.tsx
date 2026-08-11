@@ -41,6 +41,8 @@ import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
 import { toLocalDayStamp } from '../utils/localDates'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
+import { buildReaderOriginNavigationState } from '../utils/libraryReaderNavigation'
+import { formatSourceReaderReference } from '../utils/sourceReaderMeta'
 import { scrollElementIntoAppView } from '../utils/appScroll'
 import { getEditorialCopy } from '../content/editorialCopy'
 import heroEclipseSrc from '../assets/home-eclipse/hero-eclipse.avif'
@@ -55,13 +57,6 @@ const HOME_SPOTLIGHT_HIGHLIGHT_CLASSES = [
   'ring-offset-parchment',
   'dark:ring-offset-dark-bg',
 ]
-
-const SOURCE_SHORT_NAME: Record<string, string> = {
-  G: 'SGGS',
-  D: 'DG',
-  B: 'BGV',
-  A: 'AK',
-}
 
 type HomeSavedPreviewItem = {
   id: string
@@ -95,11 +90,6 @@ const HOME_SAVED_PREVIEW_APPEARANCE: Record<
     surfaceClassName: 'border-emerald-500/14 bg-parchment-card dark:border-emerald-500/20 dark:bg-dark-card',
     detailClassName: 'text-ink/70 dark:text-dark-text/70',
   },
-}
-
-function formatSavedPassageReference(source: string, ang: number, verseId?: number): string {
-  const sourceLabel = SOURCE_SHORT_NAME[source] ?? source.toUpperCase()
-  return verseId ? `${sourceLabel} · Ang ${ang} · Verse ${verseId}` : `${sourceLabel} · Ang ${ang}`
 }
 
 function compareSavedAtDesc(
@@ -167,6 +157,7 @@ type HomeMessages = {
   chooseNitnemBody: string
   savedJustNow: string
   savedPreview: string
+  savedBook: string
   savedEmptyTitle: string
   savedEmptyBody: string
   savedArtworkAlt: string
@@ -215,6 +206,7 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
     chooseNitnemBody: 'Choose the banis that should appear in your daily Nitnem ritual.',
     savedJustNow: 'Saved just now',
     savedPreview: 'Saved preview',
+    savedBook: 'Book',
     savedEmptyTitle: 'Nothing saved yet',
     savedEmptyBody: 'Open Read and save a passage or word. Your most recent return points will appear here.',
     savedArtworkAlt: 'Narrative mural with a gateway, gathering figures, instruments, and landscape scenes.',
@@ -265,6 +257,7 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
     chooseNitnemBody: 'ਉਹ ਬਾਣੀਆਂ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਵਿੱਚ ਦਿਸਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।',
     savedJustNow: 'ਹੁਣੇ ਸੰਭਾਲਿਆ',
     savedPreview: 'ਸੰਭਾਲੀ ਝਲਕ',
+    savedBook: 'ਕਿਤਾਬ',
     savedEmptyTitle: 'ਹਾਲੇ ਕੁਝ ਸੰਭਾਲਿਆ ਨਹੀਂ',
     savedEmptyBody: 'ਪੜ੍ਹੋ ਖੋਲ੍ਹ ਕੇ ਕੋਈ ਪੰਕਤੀ ਜਾਂ ਸ਼ਬਦ ਸੰਭਾਲੋ। ਤੁਹਾਡੇ ਹਾਲੀਆ ਵਾਪਸੀ ਬਿੰਦੂ ਇੱਥੇ ਦਿਸਣਗੇ।',
     savedArtworkAlt: 'ਦਰਵਾਜ਼ੇ, ਇਕੱਠੇ ਹੋਏ ਲੋਕਾਂ, ਸਾਜ਼ਾਂ ਅਤੇ ਕੁਦਰਤੀ ਦ੍ਰਿਸ਼ਾਂ ਵਾਲਾ ਕਥਾਤਮਕ ਮਿਊਰਲ।',
@@ -315,6 +308,7 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
     chooseNitnemBody: 'वे बानियाँ चुनें जो आपके दैनिक नितनेम में दिखाई दें।',
     savedJustNow: 'अभी सहेजा',
     savedPreview: 'सहेजी झलक',
+    savedBook: 'पुस्तक',
     savedEmptyTitle: 'अभी कुछ सहेजा नहीं',
     savedEmptyBody: 'पढ़ें खोलकर कोई पंक्ति या शब्द सहेजें। आपके हाल के वापसी बिंदु यहाँ दिखाई देंगे।',
     savedArtworkAlt: 'द्वार, एकत्र लोगों, वाद्ययंत्रों और प्राकृतिक दृश्यों वाला कथात्मक भित्तिचित्र।',
@@ -661,18 +655,22 @@ export default function Home() {
       ...favorites.map(item => ({ item, feedbackKind: 'favorite' as const, label: libraryCopy.favorites })),
     ].sort((left, right) => compareSavedAtDesc(left.item, right.item))[0]
     if (latestSavedPassage) {
+      const savedItem = latestSavedPassage.item
       previewItems.push({
-        id: latestSavedPassage.item.id,
+        id: savedItem.id,
         kind: 'passage',
         feedbackKind: latestSavedPassage.feedbackKind,
         label: latestSavedPassage.label,
-        title: latestSavedPassage.item.title,
-        detail: formatSavedPassageReference(
-          latestSavedPassage.item.source,
-          latestSavedPassage.item.ang,
-          'verseId' in latestSavedPassage.item ? latestSavedPassage.item.verseId : undefined
-        ),
-        path: buildSavedStudyPath(latestSavedPassage.item),
+        title: savedItem.title,
+        detail: 'workId' in savedItem
+          ? `${homeMessages.savedBook} · ${savedItem.chapterLabel}`
+          : formatSourceReaderReference({
+              source: savedItem.source,
+              value: savedItem.ang,
+              locale,
+              verseId: savedItem.verseId,
+            }),
+        path: buildSavedStudyPath(savedItem),
       })
     }
 
@@ -691,7 +689,7 @@ export default function Home() {
     }
 
     return previewItems.slice(0, 3)
-  }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, vocab])
+  }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, homeMessages.savedBook, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, vocab])
   return (
     <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--nav-bottom-offset)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
@@ -1147,6 +1145,7 @@ export default function Home() {
                   <Link
                     key={item.id}
                     to={item.path}
+                    state={buildReaderOriginNavigationState(item.path, '/')}
                     className={`section-shell-quiet interactive-focus interactive-card-link flex w-full items-start gap-3 px-4 py-4 text-left transition-colors duration-300 hover:border-gold/18 dark:hover:border-gold/20 ${appearance.surfaceClassName} ${isHighlighted ? 'saved-feedback-highlight' : ''}`}
                     data-testid={`home-saved-preview-${item.kind}`}
                   >

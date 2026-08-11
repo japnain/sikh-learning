@@ -219,6 +219,43 @@ describe('Study bookmark button', () => {
     expect(screen.getByText(/removed from favorites/i)).toBeInTheDocument()
   })
 
+  test('does not treat same-Ang legacy saves as the dated Hukamnama', async () => {
+    useBookmarksStore.setState({ bookmarks: [{
+      id: 'bookmark-legacy-ang-680',
+      type: 'bani',
+      title: 'Legacy Ang 680',
+      source: 'G',
+      ang: 680,
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }] })
+    useFavoritesStore.setState({ favorites: [{
+      id: 'favorite-legacy-ang-680',
+      title: 'Legacy Ang 680',
+      source: 'G',
+      ang: 680,
+      type: 'ang',
+      routeMode: 'canonical',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }] })
+
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findByLabelText(/add bookmark/i)
+    expect(screen.getByLabelText(/add favorite/i)).toBeInTheDocument()
+
+    fireEvent.click(screen.getByLabelText(/add favorite/i))
+    expect(useFavoritesStore.getState().favorites).toHaveLength(2)
+
+    fireEvent.click(screen.getByLabelText(/add bookmark/i))
+    const bookmarkForm = await screen.findByTestId('study-bookmark-form')
+    fireEvent.click(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' }))
+    expect(useBookmarksStore.getState().bookmarks).toHaveLength(2)
+  })
+
   test('opens the visual share composer before invoking a native share target', async () => {
     const share = vi.fn()
     const writeText = vi.fn()
@@ -1014,6 +1051,163 @@ describe('Study exact shabad mode', () => {
         resumeVerseId: 100,
       }))
     })
+  })
+
+  it('keeps the complete exact Bani context on a saved favorite', async () => {
+    const route = '/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib'
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findByLabelText(/add favorite/i)
+    fireEvent.click(screen.getByLabelText(/add favorite/i))
+
+    const favorite = useFavoritesStore.getState().favorites[0]
+    expect(favorite.returnPath).toContain('baniDbId=2')
+    expect(favorite.returnPath).toContain('baniId=japji-sahib')
+    expect(favorite.returnPath).toContain('exactBani=1')
+    expect(favorite.excerpt).toBeTruthy()
+    expect(favorite.translation_en).toBeTruthy()
+  })
+
+  it('recognizes a migrated legacy shabad favorite instead of adding it again', async () => {
+    localStorage.setItem('sikh-favorites', JSON.stringify({ state: { favorites: [{
+      id: 'favorite-legacy-shabad',
+      title: 'Legacy exact shabad',
+      source: 'G',
+      ang: 1,
+      shabadId: 50,
+      type: 'shabad',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }] } }))
+    useFavoritesStore.getState().hydrateCachedFavorites()
+
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findByLabelText(/remove favorite/i)
+    fireEvent.click(screen.getByLabelText(/remove favorite/i))
+    expect(useFavoritesStore.getState().favorites).toHaveLength(0)
+  })
+
+  it('renders a saved excerpt visibly when the exact live shabad is offline', async () => {
+    useBookmarksStore.setState({ bookmarks: [{
+      id: 'bookmark-offline-excerpt',
+      type: 'verse',
+      title: 'Saved exact verse',
+      source: 'G',
+      ang: 1,
+      shabadId: 50,
+      verseId: 100,
+      excerpt: 'ਸੰਭਾਲਿਆ ਆਫ਼ਲਾਈਨ ਪਾਠ',
+      transliteration: 'sambhaaliaa offline paath',
+      translation_en: 'A passage kept on this device.',
+      returnPath: '/study?shabadId=50&verseId=100',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }] })
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path === '/v2/shabads/50') {
+          return HttpResponse.json({ error: 'offline' }, { status: 503 })
+        }
+      })
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const savedBanner = await screen.findByTestId('study-reader-saved-copy')
+    expect(savedBanner).toHaveTextContent(/passage already saved on this device/i)
+    expect(screen.getByTestId('study-entry-list')).toHaveTextContent('ਸੰਭਾਲਿਆ ਆਫ਼ਲਾਈਨ ਪਾਠ')
+    expect(screen.queryByText(/This reading view needs another pass/i)).not.toBeInTheDocument()
+    expect(screen.getByTestId('page-study')).toHaveAttribute('data-ai-state', 'degraded')
+  })
+
+  it('does not surface an unrelated legacy shabad excerpt for an offline Personal Hukamnama', async () => {
+    useBookmarksStore.setState({ bookmarks: [{
+      id: 'bookmark-legacy-shabad',
+      type: 'shabad',
+      title: 'Legacy exact shabad',
+      source: 'G',
+      ang: 1,
+      shabadId: 50,
+      excerpt: 'ਇਹ ਨਿੱਜੀ ਹੁਕਮਨਾਮਾ ਨਹੀਂ ਹੈ',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }] })
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path === '/v2/shabads/50') {
+          return HttpResponse.json({ error: 'offline' }, { status: 503 })
+        }
+      })
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&flow=ardaas-hukamnama&randomHukamnamaAng=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    expect(await screen.findByText(/This reading view needs another pass/i)).toBeInTheDocument()
+    expect(screen.queryByTestId('study-reader-saved-copy')).not.toBeInTheDocument()
+    expect(screen.queryByText('ਇਹ ਨਿੱਜੀ ਹੁਕਮਨਾਮਾ ਨਹੀਂ ਹੈ')).not.toBeInTheDocument()
+  })
+
+  it('keeps canonical offline actions on the saved route without fabricating verse IDs', async () => {
+    useBookmarksStore.setState({ bookmarks: [{
+      id: 'bookmark-offline-canonical',
+      type: 'bani',
+      title: 'Saved Ang 1',
+      source: 'G',
+      ang: 1,
+      excerpt: 'ਸੰਭਾਲਿਆ ਕੈਨੋਨਿਕਲ ਪਾਠ',
+      transliteration: 'sambhaaliaa canonical paath',
+      translation_en: 'A canonical passage kept on this device.',
+      returnPath: '/study?source=G&ang=1',
+      savedAt: '2026-08-10T12:00:00.000Z',
+    }] })
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', () => (
+        HttpResponse.json({ error: 'offline' }, { status: 503 })
+      ))
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await screen.findByTestId('study-reader-saved-copy')
+    const offlineLine = screen.getByTestId('study-line')
+    expect(offlineLine).toHaveAttribute('data-verse-id', '0')
+
+    fireEvent.click(screen.getByRole('button', { name: /open verse actions/i }))
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save phrase/i }))
+    const savedPhrase = useVocabStore.getState().vocab.find(item => item.word === 'ਸੰਭਾਲਿਆ ਕੈਨੋਨਿਕਲ ਪਾਠ')
+    expect(savedPhrase?.context).not.toHaveProperty('shabadId')
+    expect(savedPhrase?.context).not.toHaveProperty('verseId')
+
+    fireEvent.click(screen.getByRole('button', { name: /open verse actions/i }))
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /^share$/i }))
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    expect(within(composer).getByTestId('share-source-path')).toHaveTextContent('/study?source=G&ang=1')
+    expect(within(composer).getByTestId('share-source-path')).not.toHaveTextContent('shabadId=1')
+    fireEvent.click(within(composer).getByRole('button', { name: /close share image/i }))
+
+    fireEvent.click(screen.getByRole('button', { name: /open verse actions/i }))
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /remove bookmark/i }))
+    expect(useBookmarksStore.getState().bookmarks).toEqual([])
   })
 
   it('scrolls to a resume verse without breaking exact search mode', async () => {

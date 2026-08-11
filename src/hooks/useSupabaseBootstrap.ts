@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useCloudSyncStore } from '../store/cloudSync'
+import { useFavoritesStore } from '../store/favorites'
 import { getNaamrasSupabaseConfig } from '../supabase/config'
 
 const CLOUD_RUNTIME_LOAD_ERROR =
@@ -9,6 +10,7 @@ const CLOUD_RUNTIME_LOAD_ERROR =
 export function useSupabaseBootstrap() {
   useEffect(() => {
     useBookmarksStore.getState().hydrateCachedBookmarks()
+    useFavoritesStore.getState().hydrateCachedFavorites()
 
     if (!getNaamrasSupabaseConfig().enabled) return
     void import('../supabase/runtime')

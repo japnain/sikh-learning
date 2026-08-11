@@ -4,6 +4,7 @@ import NitnemCustomizePanel from '../components/NitnemCustomizePanel'
 export default function NitnemCustomize() {
   return (
     <div
+      lang="en"
       className="page-shell animate-fade-in"
       data-testid="page-nitnem-customize"
       data-page="nitnem-customize"
