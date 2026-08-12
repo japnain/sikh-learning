@@ -39,7 +39,7 @@ import {
   getVisraamSourceLabels,
 } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
-import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralGurbaniHeadingLine, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { findCanonicalBaniById } from '../utils/baniRouteResolver'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconClose, IconHeart, IconHeartFilled, IconMoreHorizontal } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
@@ -170,6 +170,17 @@ function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: Ban
   if (entry?.sourceName && entry.sourceName !== entry.scripture) return entry.sourceName
   const source = (entry?.source ?? fallbackSource) as BaniSource
   return SOURCE_READER_META[source]?.name ?? entry?.scripture ?? SOURCE_READER_META.G.name
+}
+
+function formatEntryReaderLocation(entry: ScriptureEntry, unit: string): string {
+  const lineLocations = (entry.lines ?? [])
+    .map(line => line.ang)
+    .filter((value): value is number => Number.isSafeInteger(value) && value > 0)
+  const locations = lineLocations.length > 0 ? lineLocations : [entry.ang]
+  const first = Math.min(...locations)
+  const last = Math.max(...locations)
+
+  return `${unit} ${first}${last === first ? '' : `–${last}`}`
 }
 
 function readerControlOptionClass(selected: boolean, extra = '') {
@@ -1279,7 +1290,7 @@ export default function Study() {
             gurmukhi,
             transliteration: transliteration || undefined,
             meaning: meaning || undefined,
-            isHeader: line.isHeader || undefined,
+            isHeader: (line.isHeader || isStructuralGurbaniHeadingLine(gurmukhi)) || undefined,
           }
         })
         .filter((line): line is NonNullable<typeof line> => line !== null)
@@ -1294,7 +1305,7 @@ export default function Study() {
           .filter(Boolean)
           .join('\n')
         const scriptureLabel = getEntrySourceDisplay(currentEntry, currentSource)
-        const sourceLabel = `${scriptureLabel} · ${currentReadingUnit} ${currentEntry.ang}`
+        const sourceLabel = `${scriptureLabel} · ${formatEntryReaderLocation(currentEntry, currentReadingUnit)}`
         const dateIso = isHukamnamaMode
           ? (hukamnamaResult.data?.date ?? hukamnamaDateParam)
           : null

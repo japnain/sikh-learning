@@ -328,10 +328,20 @@ export function getMockBanidbResponse(path: string, query?: BanidbProxyQuery): u
     }
   }
 
-  if (/^\/v2\/hukamnamas(?:\/\d{4}\/\d{2}\/\d{2})?$/.test(url.pathname)) {
+  const hukamnamaMatch = url.pathname.match(
+    /^\/v2\/hukamnamas(?:\/(\d{4})\/(\d{2})\/(\d{2}))?$/
+  )
+  if (hukamnamaMatch) {
+    const [, requestedYear, requestedMonth, requestedDay] = hukamnamaMatch
     return {
       isLatest: true,
-      date: { gregorian: { year: 2026, month: 4, date: 23 } },
+      date: {
+        gregorian: {
+          year: Number(requestedYear ?? 2026),
+          month: Number(requestedMonth ?? 4),
+          date: Number(requestedDay ?? 23),
+        },
+      },
       shabads: [
         {
           shabadInfo: {

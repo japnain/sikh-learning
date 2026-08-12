@@ -1,14 +1,23 @@
 import { useEffect, useId, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
-import { shareHighlightAssets } from '../../assets/share-highlights/manifest'
+import {
+  shareHighlightAssets,
+  shareHighlightHukamnamaAssets,
+} from '../../assets/share-highlights/manifest'
 import { IconCheck, IconClose, IconShare } from '../../components/icons'
 import ModalSheet from '../../components/ModalSheet'
 import type { UiLocale } from '../../types'
 import { focusElementWithoutAppScroll } from '../../utils/appScroll'
 import {
   exportShareHighlightPng,
-  exportShareHighlightStoryPng,
+  exportShareHighlightStoryPngSet,
 } from './renderer'
-import { copyShareHighlightText, downloadShareHighlightFile, shareHighlightFile } from './share'
+import {
+  copyShareHighlightText,
+  downloadShareHighlightFile,
+  downloadShareHighlightFiles,
+  shareHighlightFile,
+  shareHighlightFiles,
+} from './share'
 import { getCanonicalSourceUrl, getHukamnamaShareUrl } from './sourceUrl'
 import type {
   ShareHighlightArtwork,
@@ -17,6 +26,7 @@ import type {
   ShareHighlightPassageLine,
   ShareHighlightPngExport,
   ShareHighlightStoryPngExport,
+  ShareHighlightStoryPngSet,
   ShareHighlightStoryScopeCopy,
   ShareHighlightStorySelection,
   ShareHighlightTextPosition,
@@ -108,23 +118,29 @@ interface ShareHighlightSheetCopy {
   passageExcerpt: string
   personalPassageExcerpt: string
   passageImageCoverage: (included: number, total: number) => string
+  passageSetCoverage: (lines: number, images: number) => string
+  passageImagePosition: (current: number, total: number) => string
   passageFullTextFollows: string
   changePassage: string
   previousPassage: string
   nextPassage: string
   passageNavigationHelp: string
+  passageSetNavigationHelp: (count: number) => string
   storyScopeCopy: ShareHighlightStoryScopeCopy
   personalStoryScopeCopy: ShareHighlightStoryScopeCopy
   preparingBilingual: string
   bilingualReady: string
   passageShareTitle: string
   shareImage: string
+  shareImages: (count: number) => string
   saveImage: string
+  saveImages: (count: number) => string
   copyText: string
   copyFullText: string
   reflectionLabel: string
   imageTextAlternative: string
   completeImageNote: string
+  completeImageSetNote: (count: number) => string
   excerptImageNote: string
   personalExcerptImageNote: string
   readOnline: string
@@ -134,18 +150,22 @@ interface ShareHighlightSheetCopy {
   previewSummary: (kind: 'passage' | 'line', layers: string) => string
   supportCoverage: (available: number, total: number) => string
   preparing: string
+  preparingSet: string
   ready: string
+  setReady: (count: number) => string
   shareTitle: string
   sharing: string
   downloading: string
   copying: string
   shared: string
   sharedFileOnly: string
+  sharedFilesOnly: (count: number) => string
   cancelled: string
   shareUnavailable: string
   shareFailed: string
   shareTimedOut: string
   downloaded: string
+  downloadedSet: (count: number) => string
   copied: string
   renderError: string
   retry: string
@@ -193,11 +213,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passageExcerpt: "Excerpt from today's Hukamnama",
     personalPassageExcerpt: 'Personal Hukamnama excerpt',
     passageImageCoverage: (included, total) => `${included} of ${total} lines in this image`,
+    passageSetCoverage: (lines, images) => `${lines} lines across ${images} images`,
+    passageImagePosition: (current, total) => `Image ${current} of ${total}`,
     passageFullTextFollows: 'The complete Hukamnama text follows.',
     changePassage: 'Change passage',
-    previousPassage: 'Previous passage',
-    nextPassage: 'Next passage',
+    previousPassage: 'Previous image',
+    nextPassage: 'Next image',
     passageNavigationHelp: 'Choose another contiguous passage. Copy full text always includes the complete Hukamnama.',
+    passageSetNavigationHelp: count => `Preview each image. Share and Download include all ${count} images in order.`,
     storyScopeCopy: {
       complete: 'Complete Hukamnama',
       excerpt: "Excerpt from today's Hukamnama",
@@ -216,12 +239,15 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     bilingualReady: 'Bilingual Story ready.',
     passageShareTitle: 'Hukamnama from NaamRas',
     shareImage: 'Share image',
+    shareImages: count => `Share ${count} images`,
     saveImage: 'Download image',
+    saveImages: count => `Download ${count} images`,
     copyText: 'Copy text',
     copyFullText: 'Copy full text',
     reflectionLabel: 'Personal reflection',
     imageTextAlternative: 'Text shown in the image',
     completeImageNote: 'The attached image contains the complete Hukamnama.',
+    completeImageSetNote: count => `The ${count} attached images contain the complete Hukamnama in order.`,
     excerptImageNote: "The attached image contains an excerpt from today's Hukamnama.",
     personalExcerptImageNote: 'The attached image contains an excerpt from this personal Hukamnama.',
     readOnline: 'Read this exact passage on NaamRas',
@@ -231,18 +257,22 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     previewSummary: (kind, layers) => `${kind === 'passage' ? 'Hukamnama Story' : 'Gurbani card'} preview. Includes ${layers}`,
     supportCoverage: (available, total) => `${available} of ${total} lines available`,
     preparing: 'Preparing image…',
+    preparingSet: 'Preparing the complete image set…',
     ready: 'Image ready.',
+    setReady: count => `${count} ordered images ready.`,
     shareTitle: 'A line from NaamRas',
     sharing: 'Opening share sheet…',
     downloading: 'Starting download…',
     copying: 'Copying full text…',
     shared: 'Shared successfully.',
     sharedFileOnly: 'Image shared. This app may not have included your reflection or source details — use Copy full text if you need to paste them too.',
+    sharedFilesOnly: count => `${count} images shared. This app may not have included your reflection or source details — use Copy full text if you need to paste them too.`,
     cancelled: 'Sharing cancelled.',
     shareUnavailable: 'Native sharing is unavailable here. Download the image or copy the full text instead.',
     shareFailed: 'The share sheet could not open. Try again, download the image, or copy the full text.',
     shareTimedOut: 'The share sheet did not respond. You can try again, download the image, or copy the full text.',
     downloaded: 'Download started. Your browser will confirm where the image is stored.',
+    downloadedSet: count => `${count} image downloads started in order. Your browser will confirm where they are stored.`,
     copied: 'Text copied.',
     renderError: 'The image could not be prepared. Retry without changing the Gurbani.',
     retry: 'Retry image',
@@ -288,11 +318,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passageExcerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
     personalPassageExcerpt: 'ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
     passageImageCoverage: (included, total) => `${total} ਵਿੱਚੋਂ ${included} ਪੰਕਤੀਆਂ ਇਸ ਤਸਵੀਰ ਵਿੱਚ`,
+    passageSetCoverage: (lines, images) => `${lines} ਪੰਕਤੀਆਂ ${images} ਤਸਵੀਰਾਂ ਵਿੱਚ`,
+    passageImagePosition: (current, total) => `${total} ਵਿੱਚੋਂ ਤਸਵੀਰ ${current}`,
     passageFullTextFollows: 'ਪੂਰੇ ਹੁਕਮਨਾਮੇ ਦੀ ਲਿਖਤ ਹੇਠਾਂ ਹੈ।',
     changePassage: 'ਅੰਸ਼ ਬਦਲੋ',
-    previousPassage: 'ਪਿਛਲਾ ਅੰਸ਼',
-    nextPassage: 'ਅਗਲਾ ਅੰਸ਼',
+    previousPassage: 'ਪਿਛਲੀ ਤਸਵੀਰ',
+    nextPassage: 'ਅਗਲੀ ਤਸਵੀਰ',
     passageNavigationHelp: 'ਨਾਲ ਲੱਗਦਾ ਹੋਰ ਅੰਸ਼ ਚੁਣੋ। “ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਹਮੇਸ਼ਾ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਹੁੰਦਾ ਹੈ।',
+    passageSetNavigationHelp: count => `ਹਰ ਤਸਵੀਰ ਵੇਖੋ। ਸਾਂਝਾ ਅਤੇ ਡਾਊਨਲੋਡ ਸਾਰੀਆਂ ${count} ਤਸਵੀਰਾਂ ਕ੍ਰਮ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਦੇ ਹਨ।`,
     storyScopeCopy: {
       complete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
       excerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
@@ -311,12 +344,15 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     bilingualReady: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੈ।',
     passageShareTitle: 'ਨਾਮਰਸ ਤੋਂ ਹੁਕਮਨਾਮਾ',
     shareImage: 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ',
+    shareImages: count => `${count} ਤਸਵੀਰਾਂ ਸਾਂਝੀਆਂ ਕਰੋ`,
     saveImage: 'ਤਸਵੀਰ ਡਾਊਨਲੋਡ ਕਰੋ',
+    saveImages: count => `${count} ਤਸਵੀਰਾਂ ਡਾਊਨਲੋਡ ਕਰੋ`,
     copyText: 'ਲਿਖਤ ਕਾਪੀ ਕਰੋ',
     copyFullText: 'ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ',
     reflectionLabel: 'ਨਿੱਜੀ ਵਿਚਾਰ',
     imageTextAlternative: 'ਤਸਵੀਰ ਵਿੱਚ ਦਿਖਾਈ ਲਿਖਤ',
     completeImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਹੈ।',
+    completeImageSetNote: count => `ਨੱਥੀਆਂ ${count} ਤਸਵੀਰਾਂ ਵਿੱਚ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਕ੍ਰਮ ਵਿੱਚ ਹੈ।`,
     excerptImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਇੱਕ ਅੰਸ਼ ਹੈ।',
     personalExcerptImageNote: 'ਨੱਥੀ ਤਸਵੀਰ ਵਿੱਚ ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਇੱਕ ਅੰਸ਼ ਹੈ।',
     readOnline: 'ਨਾਮਰਸ ਉੱਤੇ ਇਹੀ ਪਾਠ ਪੜ੍ਹੋ',
@@ -326,18 +362,22 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     previewSummary: (kind, layers) => `${kind === 'passage' ? 'ਹੁਕਮਨਾਮਾ ਸਟੋਰੀ' : 'ਗੁਰਬਾਣੀ ਕਾਰਡ'} ਦੀ ਝਲਕ। ਇਸ ਵਿੱਚ ${layers} ਸ਼ਾਮਲ ਹੈ`,
     supportCoverage: (available, total) => `${total} ਵਿੱਚੋਂ ${available} ਪੰਕਤੀਆਂ ਉਪਲਬਧ`,
     preparing: 'ਤਸਵੀਰ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
+    preparingSet: 'ਪੂਰੀ ਤਸਵੀਰ ਲੜੀ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
     ready: 'ਤਸਵੀਰ ਤਿਆਰ ਹੈ।',
+    setReady: count => `${count} ਕ੍ਰਮਵਾਰ ਤਸਵੀਰਾਂ ਤਿਆਰ ਹਨ।`,
     shareTitle: 'ਨਾਮਰਸ ਤੋਂ ਇੱਕ ਪੰਕਤੀ',
     sharing: 'ਸਾਂਝਾ ਪੰਨਾ ਖੁੱਲ੍ਹ ਰਿਹਾ ਹੈ…',
     downloading: 'ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ…',
     copying: 'ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਹੋ ਰਹੀ ਹੈ…',
     shared: 'ਸਫਲਤਾਪੂਰਵਕ ਸਾਂਝਾ ਹੋ ਗਿਆ।',
     sharedFileOnly: 'ਤਸਵੀਰ ਸਾਂਝੀ ਹੋ ਗਈ। ਹੋ ਸਕਦਾ ਹੈ ਇਸ ਐਪ ਨੇ ਤੁਹਾਡਾ ਵਿਚਾਰ ਜਾਂ ਸਰੋਤ ਵੇਰਵੇ ਸ਼ਾਮਲ ਨਾ ਕੀਤੇ ਹੋਣ — ਉਹਨਾਂ ਨੂੰ ਵੀ ਪਾਉਣ ਲਈ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।',
+    sharedFilesOnly: count => `${count} ਤਸਵੀਰਾਂ ਸਾਂਝੀਆਂ ਹੋ ਗਈਆਂ। ਹੋ ਸਕਦਾ ਹੈ ਐਪ ਨੇ ਤੁਹਾਡਾ ਵਿਚਾਰ ਜਾਂ ਸਰੋਤ ਵੇਰਵੇ ਸ਼ਾਮਲ ਨਾ ਕੀਤੇ ਹੋਣ — ਉਹਨਾਂ ਲਈ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।`,
     cancelled: 'ਸਾਂਝਾ ਕਰਨਾ ਰੱਦ ਕੀਤਾ ਗਿਆ।',
     shareUnavailable: 'ਇੱਥੇ ਮੂਲ ਸਾਂਝਾ ਸਹੂਲਤ ਉਪਲਬਧ ਨਹੀਂ। ਤਸਵੀਰ ਡਾਊਨਲੋਡ ਕਰੋ ਜਾਂ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।',
     shareFailed: 'ਸਾਂਝਾ ਪੰਨਾ ਨਹੀਂ ਖੁੱਲ੍ਹਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਤਸਵੀਰ ਡਾਊਨਲੋਡ ਕਰੋ ਜਾਂ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।',
     shareTimedOut: 'ਸਾਂਝਾ ਪੰਨੇ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਤਸਵੀਰ ਡਾਊਨਲੋਡ ਕਰੋ ਜਾਂ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।',
     downloaded: 'ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਹੈ। ਤਸਵੀਰ ਕਿੱਥੇ ਸੰਭਾਲੀ ਗਈ ਹੈ, ਇਹ ਬ੍ਰਾਊਜ਼ਰ ਦੱਸੇਗਾ।',
+    downloadedSet: count => `${count} ਤਸਵੀਰਾਂ ਦੇ ਡਾਊਨਲੋਡ ਕ੍ਰਮ ਵਿੱਚ ਸ਼ੁਰੂ ਹੋ ਗਏ ਹਨ। ਬ੍ਰਾਊਜ਼ਰ ਉਹਨਾਂ ਦੀ ਥਾਂ ਦੱਸੇਗਾ।`,
     copied: 'ਲਿਖਤ ਕਾਪੀ ਹੋ ਗਈ।',
     renderError: 'ਤਸਵੀਰ ਤਿਆਰ ਨਹੀਂ ਹੋ ਸਕੀ। ਗੁਰਬਾਣੀ ਬਦਲੇ ਬਿਨਾਂ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
     retry: 'ਤਸਵੀਰ ਦੁਬਾਰਾ ਬਣਾਓ',
@@ -383,11 +423,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passageExcerpt: 'आज के हुकमनामे का अंश',
     personalPassageExcerpt: 'व्यक्तिगत हुकमनामे का अंश',
     passageImageCoverage: (included, total) => `${total} में से ${included} पंक्तियाँ इस छवि में`,
+    passageSetCoverage: (lines, images) => `${lines} पंक्तियाँ ${images} छवियों में`,
+    passageImagePosition: (current, total) => `${total} में से छवि ${current}`,
     passageFullTextFollows: 'पूरा हुकमनामा पाठ नीचे है।',
     changePassage: 'अंश बदलें',
-    previousPassage: 'पिछला अंश',
-    nextPassage: 'अगला अंश',
+    previousPassage: 'पिछली छवि',
+    nextPassage: 'अगली छवि',
     passageNavigationHelp: 'साथ वाला दूसरा अंश चुनें। “पूरा पाठ कॉपी करें” में हमेशा पूरा हुकमनामा होता है।',
+    passageSetNavigationHelp: count => `हर छवि देखें। साझा और डाउनलोड में सभी ${count} छवियाँ क्रम से शामिल हैं।`,
     storyScopeCopy: {
       complete: 'पूरा हुकमनामा',
       excerpt: 'आज के हुकमनामे का अंश',
@@ -406,12 +449,15 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     bilingualReady: 'द्विभाषी स्टोरी तैयार है।',
     passageShareTitle: 'नामरस से हुकमनामा',
     shareImage: 'छवि साझा करें',
+    shareImages: count => `${count} छवियाँ साझा करें`,
     saveImage: 'छवि डाउनलोड करें',
+    saveImages: count => `${count} छवियाँ डाउनलोड करें`,
     copyText: 'पाठ कॉपी करें',
     copyFullText: 'पूरा पाठ कॉपी करें',
     reflectionLabel: 'व्यक्तिगत विचार',
     imageTextAlternative: 'छवि में दिखाया गया पाठ',
     completeImageNote: 'संलग्न छवि में पूरा हुकमनामा है।',
+    completeImageSetNote: count => `संलग्न ${count} छवियों में पूरा हुकमनामा क्रम से है।`,
     excerptImageNote: 'संलग्न छवि में आज के हुकमनामे का एक अंश है।',
     personalExcerptImageNote: 'संलग्न छवि में व्यक्तिगत हुकमनामे का एक अंश है।',
     readOnline: 'नामरस पर यही पाठ पढ़ें',
@@ -421,18 +467,22 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     previewSummary: (kind, layers) => `${kind === 'passage' ? 'हुकमनामा स्टोरी' : 'गुरबाणी कार्ड'} का पूर्वावलोकन। इसमें ${layers} शामिल है`,
     supportCoverage: (available, total) => `${total} में से ${available} पंक्तियाँ उपलब्ध`,
     preparing: 'छवि तैयार हो रही है…',
+    preparingSet: 'पूरी छवि श्रृंखला तैयार हो रही है…',
     ready: 'छवि तैयार है।',
+    setReady: count => `${count} क्रमबद्ध छवियाँ तैयार हैं।`,
     shareTitle: 'नामरस से एक पंक्ति',
     sharing: 'शेयर शीट खुल रही है…',
     downloading: 'डाउनलोड शुरू हो रहा है…',
     copying: 'पूरा पाठ कॉपी हो रहा है…',
     shared: 'सफलतापूर्वक साझा हो गया।',
     sharedFileOnly: 'छवि साझा हो गई। हो सकता है इस ऐप ने आपका विचार या स्रोत विवरण शामिल न किया हो — उन्हें भी जोड़ने के लिए पूरा पाठ कॉपी करें।',
+    sharedFilesOnly: count => `${count} छवियाँ साझा हो गईं। हो सकता है ऐप ने आपका विचार या स्रोत विवरण शामिल न किया हो — उनके लिए पूरा पाठ कॉपी करें।`,
     cancelled: 'साझा करना रद्द किया गया।',
     shareUnavailable: 'यहाँ मूल शेयर सुविधा उपलब्ध नहीं है। छवि डाउनलोड करें या पूरा पाठ कॉपी करें।',
     shareFailed: 'शेयर शीट नहीं खुली। फिर कोशिश करें, छवि डाउनलोड करें या पूरा पाठ कॉपी करें।',
     shareTimedOut: 'शेयर शीट ने जवाब नहीं दिया। फिर कोशिश करें, छवि डाउनलोड करें या पूरा पाठ कॉपी करें।',
     downloaded: 'डाउनलोड शुरू हो गया है। छवि कहाँ रखी गई है, इसकी पुष्टि ब्राउज़र करेगा।',
+    downloadedSet: count => `${count} छवियों के डाउनलोड क्रम से शुरू हो गए हैं। ब्राउज़र बताएगा कि वे कहाँ रखी गई हैं।`,
     copied: 'पाठ कॉपी हो गया।',
     renderError: 'छवि तैयार नहीं हो सकी। गुरबाणी बदले बिना फिर कोशिश करें।',
     retry: 'छवि फिर बनाएँ',
@@ -441,12 +491,18 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
   },
 }
 
-function resolveInitialArtworkId(initialArtworkId: string | null | undefined) {
+function resolveInitialArtworkId(
+  initialArtworkId: string | null | undefined,
+  isPassage: boolean,
+) {
   if (initialArtworkId === null) return NO_ARTWORK_ID
-  if (initialArtworkId && shareHighlightAssets.some(asset => asset.id === initialArtworkId)) {
+  const availableArtwork = isPassage
+    ? shareHighlightHukamnamaAssets
+    : shareHighlightAssets
+  if (initialArtworkId && availableArtwork.some(asset => asset.id === initialArtworkId)) {
     return initialArtworkId
   }
-  return shareHighlightAssets[0]?.id ?? NO_ARTWORK_ID
+  return availableArtwork[0]?.id ?? NO_ARTWORK_ID
 }
 
 class ShareHighlightActionTimeoutError extends Error {
@@ -549,6 +605,17 @@ function getPassageStatusLines(
   ]
 }
 
+function getPassageSetStatusLines(
+  lineCount: number,
+  imageCount: number,
+  copy: ShareHighlightSheetCopy,
+) {
+  return [
+    copy.passageComplete,
+    copy.passageSetCoverage(lineCount, imageCount),
+  ]
+}
+
 function getPassageImageLines(
   content: ShareHighlightContent,
   selection?: ShareHighlightStorySelection | null,
@@ -567,6 +634,7 @@ function buildCopiedText(
   sourceUrl: string,
   copy: ShareHighlightSheetCopy,
   passageSelection?: ShareHighlightStorySelection | null,
+  passagePageCount = 1,
 ) {
   const passageText = content.passageLines?.length
     ? content.passageLines.flatMap(line => [
@@ -580,8 +648,18 @@ function buildCopiedText(
     socialNote.trim() ? `${copy.reflectionLabel}:\n${socialNote.trim()}\n——` : '',
     content.seriesLabel?.trim(),
     content.dateLabel?.trim(),
-    passageSelection ? getPassageStatusLines(passageSelection, content, copy).join(' · ') : '',
-    passageSelection?.mode === 'excerpt' ? copy.passageFullTextFollows : '',
+    passageSelection
+      ? passagePageCount > 1
+        ? getPassageSetStatusLines(
+            passageSelection.totalLineCount,
+            passagePageCount,
+            copy,
+          ).join(' · ')
+        : getPassageStatusLines(passageSelection, content, copy).join(' · ')
+      : '',
+    passageSelection?.mode === 'excerpt' && passagePageCount === 1
+      ? copy.passageFullTextFollows
+      : '',
     passageText || content.gurmukhi.trim(),
     passageText ? '' : (showTransliteration ? content.transliteration?.trim() : ''),
     passageText ? '' : (showMeaning ? content.meaning?.trim() : ''),
@@ -597,9 +675,14 @@ function buildShareCompanionText(
   sourceUrl: string,
   copy: ShareHighlightSheetCopy,
   passageSelection?: ShareHighlightStorySelection | null,
+  passagePageCount = 1,
 ) {
+  const sharesCompleteSet = Boolean(passageSelection && passagePageCount > 1)
   const lines = (content.passageLines?.length
-    ? getPassageImageLines(content, passageSelection).map(line => line.gurmukhi)
+    ? getPassageImageLines(
+        content,
+        sharesCompleteSet ? null : passageSelection,
+      ).map(line => line.gurmukhi)
     : content.gurmukhi.split('\n'))
     .map(line => line.trim())
     .filter(Boolean)
@@ -610,10 +693,20 @@ function buildShareCompanionText(
     socialNote.trim() ? `${copy.reflectionLabel}:\n${socialNote.trim()}\n——` : '',
     content.seriesLabel?.trim(),
     content.dateLabel?.trim(),
-    passageSelection ? getPassageStatusLines(passageSelection, content, copy).join(' · ') : '',
+    passageSelection
+      ? sharesCompleteSet
+        ? getPassageSetStatusLines(
+            passageSelection.totalLineCount,
+            passagePageCount,
+            copy,
+          ).join(' · ')
+        : getPassageStatusLines(passageSelection, content, copy).join(' · ')
+      : '',
     excerpt ? `${excerpt}${hasMore ? '\n…' : ''}` : '',
     passageSelection
-      ? passageSelection.mode === 'complete'
+      ? sharesCompleteSet
+        ? copy.completeImageSetNote(passagePageCount)
+        : passageSelection.mode === 'complete'
         ? copy.completeImageNote
         : getPassagePresentationCopy(content, copy).excerptImageNote
       : '',
@@ -706,7 +799,12 @@ export default function ShareHighlightSheet({
     && !initiallyShowPassageMeaning
     && Boolean(content.initialShowTransliteration)
   )
-  const [selectedArtworkId, setSelectedArtworkId] = useState(() => resolveInitialArtworkId(initialArtworkId))
+  const availableArtwork = isPassage
+    ? shareHighlightHukamnamaAssets
+    : shareHighlightAssets
+  const [selectedArtworkId, setSelectedArtworkId] = useState(() => (
+    resolveInitialArtworkId(initialArtworkId, isPassage)
+  ))
   const [textPosition, setTextPosition] = useState<ShareHighlightTextPosition>('auto')
   const [showTransliteration, setShowTransliteration] = useState(() => (
     isPassage
@@ -724,13 +822,14 @@ export default function ShareHighlightSheet({
   ))
   const [socialNote, setSocialNote] = useState(() => (content.caption ?? '').slice(0, SOCIAL_NOTE_LIMIT))
   const [pngExport, setPngExport] = useState<ShareHighlightPngExport | ShareHighlightStoryPngExport | null>(null)
+  const [passagePngSet, setPassagePngSet] = useState<ShareHighlightStoryPngSet | null>(null)
+  const [activePassagePageIndex, setActivePassagePageIndex] = useState(0)
   const [renderStatus, setRenderStatus] = useState(copy.preparing)
   const [actionStatus, setActionStatus] = useState<string | null>(null)
   const [renderFailed, setRenderFailed] = useState(false)
   const [rendering, setRendering] = useState(true)
   const [canvasElement, setCanvasElement] = useState<HTMLCanvasElement | null>(null)
   const [busyAction, setBusyAction] = useState<'share' | 'save' | 'copy' | null>(null)
-  const [passageAnchorLineId, setPassageAnchorLineId] = useState<ShareHighlightPassageLine['id'] | null>(null)
   const [renderRetryNonce, setRenderRetryNonce] = useState(0)
 
   const hasTransliteration = (
@@ -746,8 +845,8 @@ export default function ShareHighlightSheet({
   const selectedArtwork = useMemo<ShareHighlightArtwork | null>(() => (
     selectedArtworkId === NO_ARTWORK_ID
       ? null
-      : shareHighlightAssets.find(asset => asset.id === selectedArtworkId) ?? null
-  ), [selectedArtworkId])
+      : availableArtwork.find(asset => asset.id === selectedArtworkId) ?? null
+  ), [availableArtwork, selectedArtworkId])
 
   useEffect(() => {
     if (open) return
@@ -766,7 +865,7 @@ export default function ShareHighlightSheet({
 
   useEffect(() => {
     if (!open) return
-    setSelectedArtworkId(resolveInitialArtworkId(initialArtworkId))
+    setSelectedArtworkId(resolveInitialArtworkId(initialArtworkId, isPassage))
     setTextPosition('auto')
     setShowTransliteration(
       isPassage
@@ -786,9 +885,10 @@ export default function ShareHighlightSheet({
     busyActionRef.current = null
     setBusyAction(null)
     setPngExport(null)
+    setPassagePngSet(null)
+    setActivePassagePageIndex(0)
     setRenderFailed(false)
     setRendering(true)
-    setPassageAnchorLineId(null)
     setRenderRetryNonce(0)
     setRenderStatus(copy.preparing)
     setActionStatus(null)
@@ -861,7 +961,7 @@ export default function ShareHighlightSheet({
             ? copy.transliteration
             : null,
         scopeCopy: passageCopy.storyScopeCopy,
-        anchorLineId: passageAnchorLineId,
+        anchorLineId: null,
       },
       fileNameBase: content.provenance?.dateIso?.trim()
         ? `naamras-hukamnama-${content.provenance.dateIso.trim()}`
@@ -874,7 +974,6 @@ export default function ShareHighlightSheet({
     content.seriesLabel,
     content.sourceLabel,
     isPassage,
-    passageAnchorLineId,
     passageLines,
     copy.transliteration,
     passageCopy.storyScopeCopy,
@@ -896,23 +995,36 @@ export default function ShareHighlightSheet({
     setRenderFailed(false)
     setRendering(true)
     setActionStatus(null)
-    setRenderStatus(passageInput && activePassageSupport === 'meaning'
-      ? copy.preparingBilingual
-      : copy.preparing)
+    setRenderStatus(passageInput ? copy.preparingSet : copy.preparing)
 
     const renderTimeout = window.setTimeout(() => {
       const exportPromise = passageInput
-        ? exportShareHighlightStoryPng(passageInput)
-        : exportShareHighlightPng(cardInput)
+        ? exportShareHighlightStoryPngSet(passageInput).then(passageSet => ({
+            primary: passageSet.pages[0]!,
+            passageSet,
+          }))
+        : exportShareHighlightPng(cardInput).then(primary => ({
+            primary,
+            passageSet: null,
+          }))
 
       void exportPromise
         .then(result => {
           if (renderSequenceRef.current !== renderSequence) return
-          setPngExport(result)
+          if (result.passageSet) {
+            setPngExport(null)
+            setPassagePngSet(result.passageSet)
+          } else {
+            setPngExport(result.primary)
+            setPassagePngSet(null)
+          }
+          setActivePassagePageIndex(0)
           setRendering(false)
-          setRenderStatus(passageInput && activePassageSupport === 'meaning'
-            ? copy.bilingualReady
-            : copy.ready)
+          setRenderStatus(result.passageSet && result.passageSet.pages.length > 1
+            ? copy.setReady(result.passageSet.pages.length)
+            : passageInput && activePassageSupport === 'meaning'
+              ? copy.bilingualReady
+              : copy.ready)
         })
         .catch(() => {
           if (renderSequenceRef.current !== renderSequence) return
@@ -936,39 +1048,83 @@ export default function ShareHighlightSheet({
     renderRetryNonce,
   ])
 
+  const passagePages = passagePngSet?.pages ?? []
+  const passagePageCount = passagePages.length
+  const safeActivePassagePageIndex = passagePageCount > 0
+    ? Math.min(activePassagePageIndex, passagePageCount - 1)
+    : 0
+  const passageExport = isPassage
+    ? passagePages[safeActivePassagePageIndex] ?? null
+    : null
+  const displayedPngExport = passageExport ?? pngExport
+  const passageSelection = passageExport?.selection ?? null
+  const sharesCompletePassageSet = passagePageCount > 1
+
   useEffect(() => {
-    if (
-      !canvasElement
-      || !pngExport
-      || pngExport.canvas === canvasElement
-    ) return
+    if (!canvasElement || !displayedPngExport) return
 
     const context = canvasElement.getContext('2d')
     if (!context) return
-    context.clearRect(0, 0, canvasElement.width, canvasElement.height)
-    context.drawImage(pngExport.canvas, 0, 0, canvasElement.width, canvasElement.height)
-  }, [canvasElement, pngExport])
 
-  const passageExport: ShareHighlightStoryPngExport | null = (
-    isPassage
-    && pngExport
-    && 'selection' in pngExport
-  ) ? pngExport : null
-  const passageSelection = passageExport?.selection ?? null
+    const drawPreview = (source: CanvasImageSource) => {
+      context.clearRect(0, 0, canvasElement.width, canvasElement.height)
+      context.drawImage(source, 0, 0, canvasElement.width, canvasElement.height)
+    }
+
+    if ('canvas' in displayedPngExport) {
+      if (displayedPngExport.canvas !== canvasElement) {
+        drawPreview(displayedPngExport.canvas)
+      }
+      return
+    }
+
+    const objectUrl = URL.createObjectURL(displayedPngExport.blob)
+    const image = new Image()
+    let cancelled = false
+    let objectUrlRevoked = false
+    const revokeObjectUrl = () => {
+      if (objectUrlRevoked) return
+      objectUrlRevoked = true
+      URL.revokeObjectURL(objectUrl)
+    }
+    image.decoding = 'async'
+    image.onload = () => {
+      if (!cancelled) drawPreview(image)
+      revokeObjectUrl()
+    }
+    image.onerror = revokeObjectUrl
+    image.src = objectUrl
+
+    return () => {
+      cancelled = true
+      image.onload = null
+      image.onerror = null
+      image.src = ''
+      revokeObjectUrl()
+    }
+  }, [canvasElement, displayedPngExport])
+
   const usesQuietPassageLayout = passageExport?.layout.composition === 'manuscript'
   const imagePassageLines = isPassage
     ? getPassageImageLines(content, passageSelection)
     : []
-  const passageStatusTitle = passageSelection?.mode === 'complete'
+  const passageStatusTitle = sharesCompletePassageSet
+    ? copy.passageComplete
+    : passageSelection?.mode === 'complete'
     ? copy.passageComplete
     : passageSelection?.mode === 'excerpt'
       ? passageCopy.excerpt
       : null
   const passageCoverage = passageSelection
-    ? copy.passageImageCoverage(
-        passageSelection.includedLineCount,
-        passageSelection.totalLineCount,
-      )
+    ? [
+        sharesCompletePassageSet
+          ? copy.passageImagePosition(safeActivePassagePageIndex + 1, passagePageCount)
+          : '',
+        copy.passageImageCoverage(
+          passageSelection.includedLineCount,
+          passageSelection.totalLineCount,
+        ),
+      ].filter(Boolean).join(' · ')
     : null
 
   const announce = (message: string) => {
@@ -991,19 +1147,34 @@ export default function ShareHighlightSheet({
   }
 
   const handleShare = async () => {
-    if (!pngExport || !beginAction('share', copy.sharing)) return
+    const files = passagePngSet?.files ?? (displayedPngExport ? [displayedPngExport.file] : [])
+    if (files.length === 0 || !beginAction('share', copy.sharing)) return
     const actionGeneration = ++shareActionGenerationRef.current
-    const timedAction = withActionTimeout(shareHighlightFile(pngExport.file, {
+    const shareOptions = {
       title: isPassage ? copy.passageShareTitle : copy.shareTitle,
-      text: buildShareCompanionText(content, socialNote, sourceUrl, copy, passageSelection),
+      text: buildShareCompanionText(
+        content,
+        socialNote,
+        sourceUrl,
+        copy,
+        passageSelection,
+        passagePageCount,
+      ),
       url: sourceUrl,
-    }))
+    }
+    const timedAction = withActionTimeout(files.length > 1
+      ? shareHighlightFiles(files, shareOptions)
+      : shareHighlightFile(files[0]!, shareOptions))
     shareActionCancelRef.current = timedAction.cancel
     try {
       const result = await timedAction.promise
       if (shareActionGenerationRef.current !== actionGeneration) return
       if (result.status === 'shared') {
-        announce(result.payload === 'file-only' ? copy.sharedFileOnly : copy.shared)
+        announce(result.payload === 'file-only'
+          ? files.length > 1
+            ? copy.sharedFilesOnly(files.length)
+            : copy.sharedFileOnly
+          : copy.shared)
       }
       if (result.status === 'cancelled') announce(copy.cancelled)
       if (result.status === 'unsupported') announce(copy.shareUnavailable)
@@ -1025,10 +1196,16 @@ export default function ShareHighlightSheet({
   }
 
   const handleSave = async () => {
-    if (!pngExport || !beginAction('save', copy.downloading)) return
+    const files = passagePngSet?.files ?? (displayedPngExport ? [displayedPngExport.file] : [])
+    if (files.length === 0 || !beginAction('save', copy.downloading)) return
     try {
-      downloadShareHighlightFile(pngExport.file)
-      announce(copy.downloaded)
+      if (files.length > 1) {
+        downloadShareHighlightFiles(files)
+        announce(copy.downloadedSet(files.length))
+      } else {
+        downloadShareHighlightFile(files[0]!)
+        announce(copy.downloaded)
+      }
     } catch {
       announce(copy.actionError)
     } finally {
@@ -1060,11 +1237,13 @@ export default function ShareHighlightSheet({
     if (nextValue) setShowTransliteration(false)
   }
 
-  const handlePassageNavigation = (anchorLineId: ShareHighlightPassageLine['id'] | null) => {
-    if (anchorLineId === null || rendering) return
-    setRendering(true)
+  const handlePassageNavigation = (offset: -1 | 1) => {
+    if (rendering || passagePageCount <= 1) return
     setActionStatus(null)
-    setPassageAnchorLineId(anchorLineId)
+    setActivePassagePageIndex(current => Math.min(
+      passagePageCount - 1,
+      Math.max(0, current + offset),
+    ))
   }
 
   const handleCopy = async (event: ReactMouseEvent<HTMLButtonElement>) => {
@@ -1079,6 +1258,7 @@ export default function ShareHighlightSheet({
         sourceUrl,
         copy,
         passageSelection,
+        passagePageCount,
       ), { focusTarget: returnFocusTarget })
       announce(copy.copied)
     } catch {
@@ -1146,7 +1326,7 @@ export default function ShareHighlightSheet({
                 width={1080}
                 height={isPassage ? SHARE_HIGHLIGHT_STORY_HEIGHT : SHARE_HIGHLIGHT_CARD_HEIGHT}
               />
-              {!pngExport ? (
+              {!displayedPngExport ? (
                 <div
                   className={`share-highlight__preview-pending${renderFailed ? ' share-highlight__preview-pending--error' : ''}`}
                   aria-hidden={renderFailed ? undefined : 'true'}
@@ -1174,10 +1354,7 @@ export default function ShareHighlightSheet({
                   <strong>{passageStatusTitle}</strong>
                   <span>{passageCoverage}</span>
                 </div>
-                {passageSelection.mode === 'excerpt' && (
-                  passageSelection.previousSourceLineId !== null
-                  || passageSelection.nextSourceLineId !== null
-                ) ? (
+                {passagePageCount > 1 ? (
                   <>
                     <div
                       className="share-highlight__passage-navigation"
@@ -1186,9 +1363,9 @@ export default function ShareHighlightSheet({
                     >
                       <button
                         type="button"
-                        onClick={() => handlePassageNavigation(passageSelection.previousSourceLineId)}
+                        onClick={() => handlePassageNavigation(-1)}
                         disabled={
-                          passageSelection.previousSourceLineId === null
+                          safeActivePassagePageIndex === 0
                           || rendering
                           || busyAction !== null
                         }
@@ -1198,9 +1375,9 @@ export default function ShareHighlightSheet({
                       </button>
                       <button
                         type="button"
-                        onClick={() => handlePassageNavigation(passageSelection.nextSourceLineId)}
+                        onClick={() => handlePassageNavigation(1)}
                         disabled={
-                          passageSelection.nextSourceLineId === null
+                          safeActivePassagePageIndex >= passagePageCount - 1
                           || rendering
                           || busyAction !== null
                         }
@@ -1209,7 +1386,7 @@ export default function ShareHighlightSheet({
                         <span aria-hidden="true">→</span>
                       </button>
                     </div>
-                    <p>{copy.passageNavigationHelp}</p>
+                    <p>{copy.passageSetNavigationHelp(passagePageCount)}</p>
                   </>
                 ) : null}
               </section>
@@ -1354,7 +1531,7 @@ export default function ShareHighlightSheet({
                     <span className="share-highlight__art-name">{copy.noArtwork}</span>
                   </label>
                 </div>
-                {shareHighlightAssets.map((asset, index) => (
+                {availableArtwork.map((asset, index) => (
                   <div className="share-highlight__art-choice" key={asset.id}>
                     <input
                       id={`${artworkGroupId}-${asset.id}`}
@@ -1450,7 +1627,7 @@ export default function ShareHighlightSheet({
       </div>
 
       <footer className="share-highlight__action-bar">
-        {renderFailed && pngExport ? (
+        {renderFailed && displayedPngExport ? (
           <div className="share-highlight__recovery" role="note">
             <span>{copy.renderError}</span>
             <button type="button" onClick={() => setRenderRetryNonce(value => value + 1)}>
@@ -1462,22 +1639,30 @@ export default function ShareHighlightSheet({
           <button
             type="button"
             className="share-highlight__action share-highlight__action--primary"
-            disabled={!pngExport || rendering || renderFailed || busyAction !== null}
+            disabled={!displayedPngExport || rendering || renderFailed || busyAction !== null}
             aria-busy={busyAction === 'share'}
             onClick={() => { void handleShare() }}
           >
             <IconShare size={17} />
-            {busyAction === 'share' ? copy.sharing : copy.shareImage}
+            {busyAction === 'share'
+              ? copy.sharing
+              : passagePageCount > 1
+                ? copy.shareImages(passagePageCount)
+                : copy.shareImage}
           </button>
           <button
             type="button"
             className="share-highlight__action share-highlight__action--secondary"
-            disabled={!pngExport || rendering || renderFailed || busyAction !== null}
+            disabled={!displayedPngExport || rendering || renderFailed || busyAction !== null}
             aria-busy={busyAction === 'save'}
             onClick={() => { void handleSave() }}
           >
             <span aria-hidden="true">↓</span>
-            {busyAction === 'save' ? copy.downloading : copy.saveImage}
+            {busyAction === 'save'
+              ? copy.downloading
+              : passagePageCount > 1
+                ? copy.saveImages(passagePageCount)
+                : copy.saveImage}
           </button>
         </div>
         <button

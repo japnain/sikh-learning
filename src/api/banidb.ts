@@ -1135,6 +1135,7 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
     const year = targetDate.getFullYear()
     const month = String(targetDate.getMonth() + 1).padStart(2, '0')
     const day = String(targetDate.getDate()).padStart(2, '0')
+    const requestedDateString = `${year}-${month}-${day}`
 
     let request = await requestBanidb<{
       isLatest?: boolean
@@ -1149,7 +1150,11 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
         }
       }>
     }>(`${API_PREFIX}/hukamnamas/${year}/${month}/${day}`)
-    if (!request.response.ok) {
+    // A dated share URL is an exact permalink. Falling back to the latest
+    // Hukamnama here would silently replace the reading the sender intended.
+    // The latest endpoint remains a resilience fallback only for today's
+    // undated reader flow.
+    if (!request.response.ok && date === undefined) {
       request = await requestBanidb<{
         isLatest?: boolean
         date?: { gregorian?: { year?: number; month?: number; date?: number } }
@@ -1179,6 +1184,12 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
       String(data.date?.gregorian?.month ?? month).padStart(2, '0'),
       String(data.date?.gregorian?.date ?? day).padStart(2, '0'),
     ].join('-')
+
+    if (date !== undefined && dateString !== requestedDateString) {
+      throw new Error(
+        `BaniDB returned Hukamnama for ${dateString} when ${requestedDateString} was requested.`
+      )
+    }
 
     const entry = buildEntry({
       id: `hukamnama-${dateString}-${sourceId}-${shabadId}`,

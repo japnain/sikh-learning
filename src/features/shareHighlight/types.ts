@@ -251,6 +251,30 @@ export interface ShareHighlightStoryPngExport {
   selection: ShareHighlightStorySelection
 }
 
+/**
+ * One encoded page in a complete Story set. Unlike the singular export, set
+ * pages deliberately do not retain their large backing canvases after encoding.
+ */
+export interface ShareHighlightStoryPngSetPage {
+  blob: Blob
+  file: File
+  width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
+  height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
+  layout: ShareHighlightStoryLayout
+  selection: ShareHighlightStorySelection
+}
+
+/**
+ * A complete, ordered Story export for one passage. Short readings contain a
+ * single page; longer readings contain non-overlapping pages that together
+ * preserve every normalized source line.
+ */
+export interface ShareHighlightStoryPngSet {
+  pages: ShareHighlightStoryPngSetPage[]
+  files: File[]
+  totalLineCount: number
+}
+
 export type ShareHighlightShareResult =
   | {
       status: 'shared'

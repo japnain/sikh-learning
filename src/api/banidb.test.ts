@@ -17,6 +17,7 @@ import {
   fetchSearch,
 } from './banidb'
 import type { ScriptureEntry } from '../types'
+import { MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handlers'
 import { server } from '../test/msw-server'
 
 function firstVisibleLine(entries: ScriptureEntry[]) {
@@ -362,5 +363,73 @@ describe('fetchHukamnama', () => {
     expect(hukamnama.entry.lines).toHaveLength(2)
     expect(hukamnama.entry.raag).toBe('Raag Dhanaasree')
     expect(hukamnama.entry.lines?.[0].translations_en.ssk).toContain('Inner-knower')
+  })
+
+  it('does not replace a failed dated Hukamnama request with the latest reading', async () => {
+    const requestedPaths: string[] = []
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (!body.path?.startsWith('/v2/hukamnamas')) return
+        requestedPaths.push(body.path)
+
+        if (body.path === '/v2/hukamnamas/2026/04/05') {
+          return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
+        }
+        return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+      })
+    )
+
+    await expect(fetchHukamnama('2026-04-05')).rejects.toThrow(
+      'BaniDB /hukamnamas error: 503'
+    )
+    expect(requestedPaths).toEqual(['/v2/hukamnamas/2026/04/05'])
+  })
+
+  it('rejects a dated response whose Gregorian date does not match the request', async () => {
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path !== '/v2/hukamnamas/2026/04/05') return
+
+        return HttpResponse.json({
+          ...MOCK_HUKAMNAMA_RESPONSE,
+          date: {
+            gregorian: {
+              year: 2026,
+              month: 4,
+              date: 6,
+            },
+          },
+        })
+      })
+    )
+
+    await expect(fetchHukamnama('2026-04-05')).rejects.toThrow(
+      'BaniDB returned Hukamnama for 2026-04-06 when 2026-04-05 was requested.'
+    )
+  })
+
+  it('still falls back to the latest endpoint for the undated daily reader', async () => {
+    const requestedPaths: string[] = []
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (!body.path?.startsWith('/v2/hukamnamas')) return
+        requestedPaths.push(body.path)
+
+        if (body.path !== '/v2/hukamnamas') {
+          return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
+        }
+        return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+      })
+    )
+
+    const hukamnama = await fetchHukamnama()
+
+    expect(hukamnama.date).toBe('2026-04-05')
+    expect(requestedPaths).toHaveLength(2)
+    expect(requestedPaths[0]).toMatch(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)
+    expect(requestedPaths[1]).toBe('/v2/hukamnamas')
   })
 })
