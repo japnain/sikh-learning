@@ -9,19 +9,31 @@ const mocks = vi.hoisted(() => {
     exportPng: vi.fn(),
     exportStoryPng: vi.fn(),
     shareFile: vi.fn(),
+    shareFiles: vi.fn(),
     downloadFile: vi.fn(),
+    downloadFiles: vi.fn(),
     copyText: vi.fn(),
   }
 })
 
 vi.mock('./renderer', () => ({
   exportShareHighlightPng: mocks.exportPng,
-  exportShareHighlightStoryPng: mocks.exportStoryPng,
+  exportShareHighlightStoryPngSet: async (...args: unknown[]) => {
+    const result = await mocks.exportStoryPng(...args)
+    if (result && typeof result === 'object' && 'pages' in result) return result
+    return {
+      pages: [result],
+      files: [result.file],
+      totalLineCount: result.selection.totalLineCount,
+    }
+  },
 }))
 
 vi.mock('./share', () => ({
   shareHighlightFile: mocks.shareFile,
+  shareHighlightFiles: mocks.shareFiles,
   downloadShareHighlightFile: mocks.downloadFile,
+  downloadShareHighlightFiles: mocks.downloadFiles,
   copyShareHighlightText: mocks.copyText,
 }))
 
@@ -131,6 +143,14 @@ function makePngExport(
     : baseExport
 }
 
+function makeStorySet(pages: Array<ReturnType<typeof makePngExport>>) {
+  return {
+    pages,
+    files: pages.map(page => page.file),
+    totalLineCount: pages[0]?.selection.totalLineCount ?? 0,
+  }
+}
+
 beforeAll(() => {
   vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
     clearRect: vi.fn(),
@@ -155,7 +175,10 @@ beforeEach(() => {
   })
   mocks.shareFile.mockReset()
   mocks.shareFile.mockResolvedValue({ status: 'shared', method: 'web-share', payload: 'full' })
+  mocks.shareFiles.mockReset()
+  mocks.shareFiles.mockResolvedValue({ status: 'shared', method: 'web-share', payload: 'full' })
   mocks.downloadFile.mockReset()
+  mocks.downloadFiles.mockReset()
   mocks.copyText.mockReset()
   mocks.copyText.mockImplementation(async (text: string) => {
     await window.navigator.clipboard.writeText(text)
@@ -214,7 +237,7 @@ describe('ShareHighlightSheet', () => {
 
     const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
     const artworkChoices = within(artworkGroup).getAllByRole('radio')
-    expect(artworkChoices).toHaveLength(15)
+    expect(artworkChoices).toHaveLength(16)
     expect(within(dialog).getByRole('radio', { name: /No art/i })).not.toBeChecked()
 
     await waitFor(() => expect(mocks.exportPng).toHaveBeenCalled())
@@ -223,7 +246,7 @@ describe('ShareHighlightSheet', () => {
     expect(within(dialog).getByRole('button', { name: 'Download image' })).toBeEnabled()
   })
 
-  it('builds the full Hukamnama as one ordered, story-ready image with every artwork choice', async () => {
+  it('builds the full Hukamnama as one ordered, story-ready image with only reviewed neutral artwork', async () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
 
@@ -240,7 +263,11 @@ describe('ShareHighlightSheet', () => {
     expect(preview.parentElement).toHaveClass('share-highlight__preview-frame--story')
 
     const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(15)
+    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(2)
+    expect(within(artworkGroup).getByRole('radio', { name: /Quiet Parchment.*abstract parchment/i }))
+      .toBeChecked()
+    expect(within(artworkGroup).queryByRole('radio', { name: /Court Mural/i })).not.toBeInTheDocument()
+    expect(within(artworkGroup).queryByRole('radio', { name: /Waterside Temple/i })).not.toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: 'Transliteration' })).toHaveAttribute('aria-pressed', 'false')
     expect(within(dialog).getByRole('button', { name: 'Meaning' })).toHaveAttribute('aria-pressed', 'true')
 
@@ -276,6 +303,7 @@ describe('ShareHighlightSheet', () => {
         coverageTemplate: '{included} of {total} lines',
       }),
     })
+    expect(initialInput.artwork?.id).toBe('quiet-parchment')
     expect(initialInput.fileNameBase).toBe('naamras-hukamnama-2026-07-15')
     expect(mocks.exportStoryPng.mock.calls.at(-1)?.[1]).toBeUndefined()
     expect(mocks.exportPng).not.toHaveBeenCalled()
@@ -326,7 +354,7 @@ describe('ShareHighlightSheet', () => {
       expect(within(dialog).queryByRole('radiogroup', { name: 'Artwork' })).not.toBeInTheDocument()
       expect(within(dialog).getByText(/quiet manuscript background/i)).toBeInTheDocument()
     })
-    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork).not.toBeNull()
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('quiet-parchment')
   })
 
   it('reports incomplete supports instead of silently presenting a partial visual layer', async () => {
@@ -441,7 +469,7 @@ describe('ShareHighlightSheet', () => {
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Meaning' }))
 
-    expect(within(dialog).getByRole('status')).toHaveTextContent('Preparing bilingual Story…')
+    expect(within(dialog).getByRole('status')).toHaveTextContent('Preparing the complete image set…')
     expect(shareButton).toBeDisabled()
     expect(saveButton).toBeDisabled()
     expect(copyButton).toBeEnabled()
@@ -478,7 +506,7 @@ describe('ShareHighlightSheet', () => {
     })
   })
 
-  it('keeps Meaning selected, labels a long Story as an excerpt, and changes passage accessibly', async () => {
+  it('previews and shares a complete long Hukamnama as one ordered local image set', async () => {
     const longPassageLines = [
       passageContent.passageLines![0],
       ...Array.from({ length: 6 }, (_, index) => ({
@@ -488,30 +516,49 @@ describe('ShareHighlightSheet', () => {
         meaning: `Meaning line ${index + 1}.`,
       })),
     ]
-    mocks.exportStoryPng.mockImplementation(async (input: {
-      content: {
-        anchorLineId?: string | number | null
-        lines: Array<{ id: string | number; meaning?: string | null }>
-      }
-    }) => {
-      const changedPassage = input.content.anchorLineId === 'verse-3'
-      const includedIds = changedPassage
-        ? ['verse-3', 'verse-4', 'verse-5']
-        : ['header', 'verse-1', 'verse-2']
-      return makePngExport(
+    const pages = [
+      makePngExport(
         undefined,
-        'naamras-hukamnama-2026-07-15.png',
+        'naamras-hukamnama-2026-07-15-01-of-03.png',
         1920,
-        makeStorySelection(includedIds, {
+        makeStorySelection(['header', 'verse-1', 'verse-2'], {
           mode: 'excerpt',
-          anchorSourceLineId: changedPassage ? 'verse-3' : 'header',
-          includedLineCount: includedIds.length,
+          anchorSourceLineId: 'header',
+          includedLineCount: 3,
           totalLineCount: longPassageLines.length,
-          previousSourceLineId: changedPassage ? 'header' : null,
-          nextSourceLineId: changedPassage ? 'verse-6' : 'verse-3',
+          previousSourceLineId: null,
+          nextSourceLineId: 'verse-3',
         }),
-      )
-    })
+      ),
+      makePngExport(
+        undefined,
+        'naamras-hukamnama-2026-07-15-02-of-03.png',
+        1920,
+        makeStorySelection(['verse-3', 'verse-4'], {
+          mode: 'excerpt',
+          anchorSourceLineId: 'verse-3',
+          includedLineCount: 2,
+          totalLineCount: longPassageLines.length,
+          previousSourceLineId: 'header',
+          nextSourceLineId: 'verse-5',
+        }),
+      ),
+      makePngExport(
+        undefined,
+        'naamras-hukamnama-2026-07-15-03-of-03.png',
+        1920,
+        makeStorySelection(['verse-5', 'verse-6'], {
+          mode: 'excerpt',
+          anchorSourceLineId: 'verse-5',
+          includedLineCount: 2,
+          totalLineCount: longPassageLines.length,
+          previousSourceLineId: 'verse-3',
+          nextSourceLineId: null,
+        }),
+      ),
+    ]
+    const storySet = makeStorySet(pages)
+    mocks.exportStoryPng.mockResolvedValueOnce(storySet)
 
     render(
       <ShareHighlightSheet
@@ -527,50 +574,160 @@ describe('ShareHighlightSheet', () => {
     )
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
     const meaning = within(dialog).getByRole('button', { name: 'Meaning' })
-    const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
+    const initialShareButton = within(dialog).getByRole('button', { name: 'Share image' })
 
-    await waitFor(() => expect(shareButton).toBeEnabled())
+    await waitFor(() => expect(initialShareButton).toBeEnabled())
+    const shareButton = within(dialog).getByRole('button', { name: 'Share 3 images' })
+    const saveButton = within(dialog).getByRole('button', { name: 'Download 3 images' })
     expect(meaning).toHaveAttribute('aria-pressed', 'true')
-    expect(within(dialog).getByText("Excerpt from today's Hukamnama")).toBeInTheDocument()
-    expect(within(dialog).getByText('3 of 7 lines in this image')).toBeInTheDocument()
-    expect(within(dialog).queryByText('Complete Hukamnama')).not.toBeInTheDocument()
+    expect(within(dialog).getByText('Complete Hukamnama')).toBeInTheDocument()
+    expect(within(dialog).getByText('Image 1 of 3 · 3 of 7 lines in this image')).toBeInTheDocument()
+    expect(within(dialog).getByRole('status')).toHaveTextContent('3 ordered images ready.')
     expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.lines.every(
       (line: { meaning?: string | null }) => Boolean(line.meaning)
     )).toBe(true)
 
-    const previousButton = within(dialog).getByRole('button', { name: 'Previous passage' })
-    const nextButton = within(dialog).getByRole('button', { name: 'Next passage' })
+    const previousButton = within(dialog).getByRole('button', { name: 'Previous image' })
+    const nextButton = within(dialog).getByRole('button', { name: 'Next image' })
     expect(previousButton).toBeDisabled()
     expect(nextButton).toBeEnabled()
     fireEvent.click(nextButton)
 
     await waitFor(() => {
-      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.anchorLineId).toBe('verse-3')
+      expect(within(dialog).getByText('Image 2 of 3 · 2 of 7 lines in this image')).toBeInTheDocument()
       expect(previousButton).toBeEnabled()
+      expect(nextButton).toBeEnabled()
       expect(meaning).toHaveAttribute('aria-pressed', 'true')
     })
     const imageText = within(dialog).getByRole('region', { name: 'Text shown in the image' })
     expect(imageText).toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 3 ॥')
     expect(imageText).not.toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 1 ॥')
 
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Copy full text' }))
+    fireEvent.click(nextButton)
     await waitFor(() => {
-      const copiedText = vi.mocked(window.navigator.clipboard.writeText).mock.calls.at(-1)?.[0]
-      expect(copiedText).toContain("Excerpt from today's Hukamnama · 3 of 7 lines in this image")
-      expect(copiedText).toContain('The complete Hukamnama text follows.')
-      expect(copiedText).toContain('Meaning line 6.')
-      expect(copiedText).toContain('https://naamras.xyz/h/2026-07-15')
+      expect(within(dialog).getByText('Image 3 of 3 · 2 of 7 lines in this image')).toBeInTheDocument()
+      expect(imageText).toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 6 ॥')
+      expect(nextButton).toBeDisabled()
     })
+    fireEvent.click(previousButton)
+    await waitFor(() => {
+      expect(within(dialog).getByText('Image 2 of 3 · 2 of 7 lines in this image')).toBeInTheDocument()
+      expect(imageText).toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 4 ॥')
+      expect(imageText).not.toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 6 ॥')
+    })
+    expect(mocks.exportStoryPng).toHaveBeenCalledTimes(1)
 
     fireEvent.click(shareButton)
     await waitFor(() => {
-      const shareData = mocks.shareFile.mock.calls.at(-1)?.[1]
-      expect(shareData.text).toContain("Excerpt from today's Hukamnama · 3 of 7 lines in this image")
-      expect(shareData.text).toContain('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 3 ॥')
-      expect(shareData.text).not.toContain('The attached image contains the complete Hukamnama')
-      expect(shareData.text).toContain("The attached image contains an excerpt from today's Hukamnama")
-      expect(shareData.url).toBe('https://naamras.xyz/h/2026-07-15')
+      expect(mocks.shareFiles).toHaveBeenCalledWith(
+        storySet.files,
+        expect.objectContaining({
+          title: 'Hukamnama from NaamRas',
+          url: 'https://naamras.xyz/h/2026-07-15',
+        })
+      )
+      const shareText = mocks.shareFiles.mock.calls.at(-1)?.[1]?.text as string
+      expect(shareText).toContain('Complete Hukamnama · 7 lines across 3 images')
+      expect(shareText).toContain('The 3 attached images contain the complete Hukamnama in order.')
+      expect(shareText).not.toContain("Excerpt from today's Hukamnama")
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Shared successfully.')
     })
+    expect(mocks.shareFile).not.toHaveBeenCalled()
+
+    fireEvent.click(saveButton)
+    expect(mocks.downloadFiles).toHaveBeenCalledWith(storySet.files)
+    expect(mocks.downloadFile).not.toHaveBeenCalled()
+    expect(within(dialog).getByRole('status')).toHaveTextContent('3 image downloads started in order.')
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Copy full text' }))
+    await waitFor(() => {
+      const copiedText = mocks.copyText.mock.calls.at(-1)?.[0] as string
+      expect(copiedText).toContain('Complete Hukamnama · 7 lines across 3 images')
+      expect(copiedText).not.toContain('The complete Hukamnama text follows.')
+      expect(copiedText).toContain('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 1 ॥')
+      expect(copiedText).toContain('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 6 ॥')
+      expect(copiedText).toContain('Meaning line 1.')
+      expect(copiedText).toContain('Meaning line 6.')
+      expect(copiedText).toContain('https://naamras.xyz/h/2026-07-15')
+    })
+  })
+
+  it('previews encoded passage pages without retaining their render canvases', async () => {
+    const createObjectUrlDescriptor = Object.getOwnPropertyDescriptor(URL, 'createObjectURL')
+    const revokeObjectUrlDescriptor = Object.getOwnPropertyDescriptor(URL, 'revokeObjectURL')
+    const imageDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'Image')
+    const createObjectURL = vi.fn(() => 'blob:naamras-passage-preview')
+    const revokeObjectURL = vi.fn()
+
+    class LoadedImage {
+      decoding = ''
+      onload: ((event: Event) => void) | null = null
+      onerror: ((event: Event) => void) | null = null
+      private value = ''
+
+      get src() {
+        return this.value
+      }
+
+      set src(value: string) {
+        this.value = value
+        if (value) queueMicrotask(() => this.onload?.(new Event('load')))
+      }
+    }
+
+    Object.defineProperty(URL, 'createObjectURL', {
+      configurable: true,
+      value: createObjectURL,
+    })
+    Object.defineProperty(URL, 'revokeObjectURL', {
+      configurable: true,
+      value: revokeObjectURL,
+    })
+    Object.defineProperty(globalThis, 'Image', {
+      configurable: true,
+      value: LoadedImage,
+    })
+
+    try {
+      const renderedPage = makePngExport(
+        undefined,
+        'naamras-hukamnama-2026-07-15.png',
+        1920,
+      )
+      const encodedPage = {
+        blob: renderedPage.blob,
+        file: renderedPage.file,
+        width: renderedPage.width,
+        height: renderedPage.height,
+        layout: renderedPage.layout,
+        selection: renderedPage.selection,
+      }
+      mocks.exportStoryPng.mockResolvedValueOnce({
+        pages: [encodedPage],
+        files: [encodedPage.file],
+        totalLineCount: encodedPage.selection.totalLineCount,
+      })
+
+      render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+
+      await waitFor(() => {
+        expect(createObjectURL).toHaveBeenCalledWith(encodedPage.blob)
+        expect(revokeObjectURL).toHaveBeenCalledWith('blob:naamras-passage-preview')
+      })
+      expect(screen.getByRole('button', { name: 'Share image' })).toBeEnabled()
+    } finally {
+      if (createObjectUrlDescriptor) {
+        Object.defineProperty(URL, 'createObjectURL', createObjectUrlDescriptor)
+      } else {
+        Reflect.deleteProperty(URL, 'createObjectURL')
+      }
+      if (revokeObjectUrlDescriptor) {
+        Object.defineProperty(URL, 'revokeObjectURL', revokeObjectUrlDescriptor)
+      } else {
+        Reflect.deleteProperty(URL, 'revokeObjectURL')
+      }
+      if (imageDescriptor) Object.defineProperty(globalThis, 'Image', imageDescriptor)
+    }
   })
 
   it('labels a personal Hukamnama and its exact companion text without calling it today\'s reading', async () => {

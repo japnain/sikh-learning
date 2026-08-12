@@ -1538,6 +1538,60 @@ describe('Study hukamnama mode', () => {
     await waitFor(() => expect(shareButton).toHaveFocus())
   })
 
+  it('preserves inferred structure and the full Ang range in Hukamnama share content', async () => {
+    const firstShabad = MOCK_HUKAMNAMA_RESPONSE.shabads[0]
+    const [firstVerse, secondVerse] = firstShabad.verses
+    const structuralHeading = 'ਸਲੋਕ ਮਃ ੩ ॥'
+    const response = {
+      ...MOCK_HUKAMNAMA_RESPONSE,
+      shabads: [{
+        ...firstShabad,
+        verses: [
+          {
+            ...firstVerse,
+            verseId: 29343,
+            verse: { unicode: structuralHeading },
+            transliteration: { english: 'salok mahalaa teejaa ||' },
+            translation: { en: { bdb: 'Shalok, Third Mehla:', ms: '', ssk: '' } },
+            pageNo: 680,
+          },
+          firstVerse,
+          { ...secondVerse, pageNo: 681 },
+        ],
+      }],
+    }
+
+    server.use(
+      http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+        const body = await request.json() as { path?: string }
+        if (body.path?.startsWith('/v2/hukamnamas/')) return HttpResponse.json(response)
+        if (body.path === '/v2/shabads/2591') return HttpResponse.json({ verses: [] })
+        return HttpResponse.json({ error: 'Unexpected BaniDB test path.' }, { status: 404 })
+      })
+    )
+
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const topbar = await screen.findByTestId('study-reader-topbar')
+    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    await waitFor(() => expect(shareButton).toBeEnabled())
+    fireEvent.click(shareButton)
+
+    const composer = await screen.findByTestId('share-highlight-sheet-test-double')
+    const sharedLines = within(composer).getAllByTestId('share-passage-line')
+
+    expect(sharedLines[0]).toHaveTextContent(structuralHeading)
+    expect(sharedLines[0]).toHaveAttribute('data-is-header', 'true')
+    expect(sharedLines[1]).toHaveAttribute('data-is-header', 'false')
+    expect(sharedLines[2]).toHaveTextContent('ਰਹਾਉ')
+    expect(sharedLines[2]).toHaveAttribute('data-is-header', 'false')
+    expect(within(composer).getByText('Sri Guru Granth Sahib Ji · Ang 680–681')).toBeInTheDocument()
+  })
+
   it('falls back per line within the selected meaning language and credits every provider used', async () => {
     useLanguageStore.setState({ meaningLanguage: 'pa', punjabiSource: 'ft' })
     const firstShabad = MOCK_HUKAMNAMA_RESPONSE.shabads[0]

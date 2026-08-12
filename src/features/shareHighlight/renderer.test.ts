@@ -4,6 +4,7 @@ import {
   computeShareHighlightObjectCover,
   exportShareHighlightPng,
   exportShareHighlightStoryPng,
+  exportShareHighlightStoryPngSet,
   layoutShareHighlightCardText,
   layoutShareHighlightStory,
   mapShareHighlightArtworkSafeZone,
@@ -225,7 +226,11 @@ const fortyTwoLineBilingualReading: ShareHighlightPassageLine[] = Array.from(
   })
 )
 
-function makeFakeRendererEnvironment() {
+function makeFakeRendererEnvironment({
+  deferEncoding = false,
+}: {
+  deferEncoding?: boolean
+} = {}) {
   const drawnText: string[] = []
   const drawnTextCalls: Array<{
     text: string
@@ -240,6 +245,10 @@ function makeFakeRendererEnvironment() {
   }> = []
   const imageDrawStates: Array<{ filter: string; globalAlpha: number }> = []
   const gradients: Array<{ addColorStop: ReturnType<typeof vi.fn> }> = []
+  const canvases: HTMLCanvasElement[] = []
+  let activeEncodings = 0
+  let maximumConcurrentEncodings = 0
+  let maximumLiveStoryCanvases = 0
   const context = {
     fillStyle: '',
     strokeStyle: '',
@@ -297,18 +306,44 @@ function makeFakeRendererEnvironment() {
     }),
   }
   const encodedBlob = new Blob(['png'], { type: 'image/png' })
-  const canvas = {
-    width: 0,
-    height: 0,
-    getContext: vi.fn(() => context),
-    toBlob: vi.fn((callback: BlobCallback) => callback(encodedBlob)),
-  } as unknown as HTMLCanvasElement
+  const makeCanvas = () => {
+    const canvas = {
+      width: 0,
+      height: 0,
+      getContext: vi.fn(() => context),
+      toBlob: vi.fn((callback: BlobCallback) => {
+        activeEncodings += 1
+        maximumConcurrentEncodings = Math.max(
+          maximumConcurrentEncodings,
+          activeEncodings,
+        )
+        maximumLiveStoryCanvases = Math.max(
+          maximumLiveStoryCanvases,
+          canvases.filter(candidate => (
+            candidate.width === SHARE_HIGHLIGHT_STORY_WIDTH
+            && candidate.height === SHARE_HIGHLIGHT_STORY_HEIGHT
+          )).length,
+        )
+        const finish = () => {
+          activeEncodings -= 1
+          callback(encodedBlob)
+        }
+        if (deferEncoding) queueMicrotask(finish)
+        else finish()
+      }),
+    } as unknown as HTMLCanvasElement
+    canvases.push(canvas)
+    return canvas
+  }
+  const canvas = makeCanvas()
+  const createCanvas = vi.fn(makeCanvas)
   const fontSet = {
     ready: Promise.resolve(),
     load: vi.fn().mockResolvedValue([]),
   }
   const options: ShareHighlightRendererOptions = {
     canvas,
+    createCanvas,
     fontSet,
     loadImage: vi.fn().mockResolvedValue({
       source: {} as CanvasImageSource,
@@ -319,6 +354,8 @@ function makeFakeRendererEnvironment() {
 
   return {
     canvas,
+    canvases,
+    createCanvas,
     context,
     drawnText,
     drawnTextCalls,
@@ -326,6 +363,12 @@ function makeFakeRendererEnvironment() {
     encodedBlob,
     fontSet,
     gradients,
+    get maximumConcurrentEncodings() {
+      return maximumConcurrentEncodings
+    },
+    get maximumLiveStoryCanvases() {
+      return maximumLiveStoryCanvases
+    },
     options,
   }
 }
@@ -1272,6 +1315,232 @@ describe('Canvas rendering and export', () => {
     expect(safeMetadata).toHaveLength(4)
     expect(safeMetadata.every(call => call.y >= 204 && call.y <= 1712)).toBe(true)
     expect(safeMetadata.every(call => call.fontSize >= 23)).toBe(true)
+  })
+
+  it('keeps a short complete Story set on one page with its legacy filename', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const shortLines = [
+      { id: 'short-header', gurmukhi: 'ਸਲੋਕ ॥', isHeader: true },
+      { id: 'short-1', gurmukhi: 'ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ॥' },
+      { id: 'short-2', gurmukhi: 'ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ॥' },
+    ]
+
+    const result = await exportShareHighlightStoryPngSet({
+      ...passageInput,
+      content: {
+        ...passageInput.content,
+        lines: shortLines,
+      },
+    }, environment.options)
+
+    expect(result.pages).toHaveLength(1)
+    expect(result.files).toEqual([result.pages[0]!.file])
+    expect(result.totalLineCount).toBe(shortLines.length)
+    expect(result.pages[0]).toMatchObject({
+      width: 1080,
+      height: 1920,
+      selection: {
+        mode: 'complete',
+        includedSourceLineIds: shortLines.map(line => line.id),
+      },
+    })
+    expect(result.files[0]!.name).toBe('naamras-hukamnama-2026-07-15.png')
+    expect(environment.drawnText).not.toContain('1 / 1')
+    expect(environment.createCanvas).not.toHaveBeenCalled()
+    expect(result.pages[0]).not.toHaveProperty('canvas')
+    expect(environment.canvas.width).toBe(0)
+    expect(environment.canvas.height).toBe(0)
+  })
+
+  it('exports every normalized long-passage line once in ordered, numbered Story pages', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const linesWithBlank = [
+      { id: 'ignored-blank', gurmukhi: '   ', meaning: 'Not rendered.' },
+      ...fortyTwoLineBilingualReading,
+    ]
+    const result = await exportShareHighlightStoryPngSet({
+      ...passageInput,
+      content: {
+        ...passageInput.content,
+        lines: linesWithBlank,
+      },
+    }, environment.options)
+
+    expect(result.pages.length).toBeGreaterThan(1)
+    expect(result.totalLineCount).toBe(fortyTwoLineBilingualReading.length)
+    expect(result.files).toEqual(result.pages.map(page => page.file))
+
+    const expectedSourceLineIds = fortyTwoLineBilingualReading.map(line => line.id)
+    const exportedSourceLineIds = result.pages.flatMap(
+      page => page.selection.includedSourceLineIds
+    )
+    expect(exportedSourceLineIds).toEqual(expectedSourceLineIds)
+    expect(new Set(exportedSourceLineIds).size).toBe(expectedSourceLineIds.length)
+
+    const numberWidth = Math.max(2, String(result.pages.length).length)
+    expect(result.files.map(file => file.name)).toEqual(
+      result.pages.map((_, index) => (
+        `naamras-hukamnama-2026-07-15-${String(index + 1).padStart(numberWidth, '0')}-of-${String(result.pages.length).padStart(numberWidth, '0')}.png`
+      ))
+    )
+    const pageHeaderCalls = environment.drawnTextCalls.filter(call => (
+      call.text.startsWith('July 15, 2026 · ')
+      && /\d+ \/ \d+$/.test(call.text)
+    ))
+    expect(pageHeaderCalls.map(call => call.text)).toEqual(
+      result.pages.map((_, index) => (
+        `July 15, 2026 · ${index + 1} / ${result.pages.length}`
+      ))
+    )
+    expect(pageHeaderCalls.every(call => (
+      call.y >= 204
+      && call.y < result.pages[0]!.layout.body.y
+    ))).toBe(true)
+    const pageTitleCalls = environment.drawnTextCalls.filter(call => (
+      call.text === "Today's Hukamnama"
+      && call.y === pageHeaderCalls[0]?.y
+    ))
+    expect(pageTitleCalls).toHaveLength(result.pages.length)
+    expect(pageHeaderCalls.every((dateCall, index) => {
+      const titleCall = pageTitleCalls[index]!
+      const titleWidth = Array.from(titleCall.text).length * titleCall.fontSize * 0.52
+      const dateWidth = Array.from(dateCall.text).length * dateCall.fontSize * 0.52
+      return titleWidth + 28 + dateWidth <= result.pages[0]!.layout.body.width
+    })).toBe(true)
+    expect(result.pages.every(page => (
+      page.width === SHARE_HIGHLIGHT_STORY_WIDTH
+      && page.height === SHARE_HIGHLIGHT_STORY_HEIGHT
+      && page.selection.includedLineCount > 0
+      && page.selection.totalLineCount === expectedSourceLineIds.length
+      && page.layout.composition === 'manuscript'
+    ))).toBe(true)
+    expect(result.pages[0]!.selection.previousSourceLineId).toBeNull()
+    expect(result.pages.at(-1)!.selection.nextSourceLineId).toBeNull()
+    expect(result.pages.every(page => !('canvas' in page))).toBe(true)
+    expect(environment.canvases).toHaveLength(result.pages.length)
+    expect(environment.canvases.every(canvas => (
+      canvas.width === 0 && canvas.height === 0
+    ))).toBe(true)
+  })
+
+  it('rebalances a realistic nineteen-line bilingual set instead of orphaning its final line', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const nineteenLineReading: ShareHighlightPassageLine[] = Array.from(
+      { length: 19 },
+      (_, index) => ({
+        id: `orphan-tail-${index + 1}`,
+        gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ਸਦਾ ਮਨਿ ਵਸੈ ॥ ${index + 1}`,
+        meaning: "The Guru's wisdom steadies the heart and guides each breath toward truthful living.",
+      })
+    )
+
+    const result = await exportShareHighlightStoryPngSet({
+      ...passageInput,
+      artwork: null,
+      content: {
+        ...passageInput.content,
+        lines: nineteenLineReading,
+        shareUrl: 'https://naamras.xyz/h/2026-07-15',
+      },
+    }, environment.options)
+
+    expect(result.pages.map(page => page.selection.includedLineCount)).toEqual([9, 8, 2])
+    expect(result.pages.at(-1)!.selection.includedLineCount).toBeGreaterThan(1)
+    expect(result.pages.flatMap(page => (
+      page.selection.includedSourceLineIds
+    ))).toEqual(nineteenLineReading.map(line => line.id))
+    expect(result.pages.every(page => (
+      page.layout.fit.fontSizes.gurmukhi >= 42
+      && (page.layout.fit.fontSizes.meaning ?? 0) >= 32
+    ))).toBe(true)
+  })
+
+  it('moves a whole structural header block when rebalancing the final page', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const readingWithLateHeader: ShareHighlightPassageLine[] = Array.from(
+      { length: 19 },
+      (_, index) => ({
+        id: `atomic-tail-${index + 1}`,
+        gurmukhi: index === 16
+          ? 'ਸਲੋਕ ਮਹਲਾ ੫ ॥'
+          : `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ਸਦਾ ਮਨਿ ਵਸੈ ॥ ${index + 1}`,
+        meaning: index === 16
+          ? 'Shalok, Fifth Mehla:'
+          : "The Guru's wisdom steadies the heart and guides each breath toward truthful living.",
+        isHeader: index === 16,
+      })
+    )
+
+    const result = await exportShareHighlightStoryPngSet({
+      ...passageInput,
+      artwork: null,
+      content: {
+        ...passageInput.content,
+        lines: readingWithLateHeader,
+        shareUrl: 'https://naamras.xyz/h/2026-07-15',
+      },
+    }, environment.options)
+
+    const pageContainingHeader = result.pages.findIndex(page => (
+      page.selection.includedSourceLineIds.includes('atomic-tail-17')
+    ))
+    const pageContainingFollowingVerse = result.pages.findIndex(page => (
+      page.selection.includedSourceLineIds.includes('atomic-tail-18')
+    ))
+    expect(result.pages).toHaveLength(3)
+    expect(result.pages.at(-1)!.selection.includedLineCount).toBeGreaterThan(1)
+    expect(pageContainingHeader).toBe(pageContainingFollowingVerse)
+    expect(pageContainingHeader).toBe(result.pages.length - 1)
+    expect(result.pages.flatMap(page => (
+      page.selection.includedSourceLineIds
+    ))).toEqual(readingWithLateHeader.map(line => line.id))
+  })
+
+  it('plans and serially encodes a released 399-line Story set with bounded work', async () => {
+    const environment = makeFakeRendererEnvironment({ deferEncoding: true })
+    const enormousReading: ShareHighlightPassageLine[] = Array.from(
+      { length: 399 },
+      (_, index) => ({
+        id: `set-stress-${index + 1}`,
+        gurmukhi: `ਸਤਿ ਨਾਮੁ ਵਾਹਿਗੁਰੂ ॥ ${index + 1}`,
+      })
+    )
+
+    const result = await exportShareHighlightStoryPngSet({
+      ...passageInput,
+      artwork: null,
+      content: {
+        ...passageInput.content,
+        lines: enormousReading,
+      },
+    }, environment.options)
+
+    const expectedSourceLineIds = enormousReading.map(line => line.id)
+    expect(result.pages.length).toBeGreaterThan(10)
+    expect(result.pages.flatMap(page => (
+      page.selection.includedSourceLineIds
+    ))).toEqual(expectedSourceLineIds)
+    expect(result.pages.every((page, index) => (
+      page.selection.previousSourceLineId === (
+        result.pages[index - 1]?.selection.firstSourceLineId ?? null
+      )
+      && page.selection.nextSourceLineId === (
+        result.pages[index + 1]?.selection.firstSourceLineId ?? null
+      )
+    ))).toBe(true)
+    expect(result.files[0]!.name).toMatch(/-01-of-\d+\.png$/)
+    expect(result.files.at(-1)!.name).toMatch(new RegExp(
+      `-${String(result.pages.length).padStart(2, '0')}-of-${String(result.pages.length).padStart(2, '0')}\\.png$`
+    ))
+
+    expect(environment.maximumConcurrentEncodings).toBe(1)
+    expect(environment.maximumLiveStoryCanvases).toBe(1)
+    expect(environment.createCanvas).toHaveBeenCalledTimes(result.pages.length - 1)
+    expect(environment.canvases).toHaveLength(result.pages.length)
+    expect(environment.canvases.every(canvas => (
+      canvas.width === 0 && canvas.height === 0
+    ))).toBe(true)
+    expect(environment.context.measureText.mock.calls.length).toBeLessThan(60_000)
   })
 
   it('exports adaptive excerpt coverage and anchor metadata with the PNG', async () => {

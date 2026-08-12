@@ -1,4 +1,5 @@
 import courtMuralSrc from './01-court-mural.jpg'
+import quietParchmentSrc from './00-quiet-parchment.jpg'
 import interiorAudienceSrc from './02-interior-audience.jpg'
 import courtAssemblySrc from './03-court-assembly.jpg'
 import fortProcessionSrc from './04-fort-procession.jpg'
@@ -13,6 +14,7 @@ import goldenCourtAssemblySrc from './12-golden-court-assembly.jpg'
 import gurmukhiFloralMedallionSrc from './13-gurmukhi-floral-medallion.jpg'
 import ceremonialArmsDisplaySrc from './14-ceremonial-arms-display.jpg'
 import courtMuralThumbnail from './thumbnails/01-court-mural.jpg'
+import quietParchmentThumbnail from './thumbnails/00-quiet-parchment.jpg'
 import interiorAudienceThumbnail from './thumbnails/02-interior-audience.jpg'
 import courtAssemblyThumbnail from './thumbnails/03-court-assembly.jpg'
 import fortProcessionThumbnail from './thumbnails/04-fort-procession.jpg'
@@ -93,6 +95,12 @@ export interface ShareHighlightAsset {
   }
   storyProfile: ShareHighlightStoryProfile
   overlayTone: ShareHighlightOverlayTone
+  /** Reviewed, semantically neutral work that may accompany an unrelated Hukamnama. */
+  hukamnamaUse?: {
+    status: 'approved-neutral'
+    provenance: string
+    createdDate: string
+  }
   /** Neutral description of only the content visible in the supplied artwork. */
   description: string
 }
@@ -397,4 +405,31 @@ export const shareHighlightAssets = [
     description:
       'Golden-lit display of shields, curved swords, and a framed miniature of a rider on horseback.',
   },
+  {
+    id: 'quiet-parchment',
+    src: quietParchmentSrc,
+    thumbnail: quietParchmentThumbnail,
+    original: { width: 1080, height: 1920, orientation: 'portrait' },
+    normalized: { width: 1080, height: 1920, orientation: 'portrait' },
+    orientationCorrection: 'none',
+    focalPosition: { x: 0.5, y: 0.5 },
+    textSafeZone: { x: 0.08, y: 0.18, width: 0.84, height: 0.62 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.5, y: 0.5 },
+    },
+    overlayTone: 'light',
+    hukamnamaUse: {
+      status: 'approved-neutral',
+      provenance: 'Original nonfigurative background generated specifically for NaamRas with OpenAI image generation; no source images were supplied.',
+      createdDate: '2026-08-11',
+    },
+    description:
+      'Abstract parchment and watercolor texture in forest green, warm cream, and muted copper, without figures, symbols, or embedded text.',
+  },
 ] as const satisfies readonly ShareHighlightAsset[]
+
+/** Artwork reviewed as neutral enough to accompany an unrelated Hukamnama. */
+export const shareHighlightHukamnamaAssets = shareHighlightAssets.filter(
+  asset => 'hukamnamaUse' in asset && asset.hukamnamaUse.status === 'approved-neutral'
+)

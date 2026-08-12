@@ -19,6 +19,8 @@ import {
   type ShareHighlightStoryArtworkProfile,
   type ShareHighlightStoryComposition,
   type ShareHighlightStoryPngExport,
+  type ShareHighlightStoryPngSet,
+  type ShareHighlightStoryPngSetPage,
   type ShareHighlightStorySelection,
   type ShareHighlightStoryScopeCopy,
   type ShareHighlightStoryTextSection,
@@ -1003,13 +1005,21 @@ function applyStorySelection(
   }
 }
 
+interface StoryForwardPaginationContext {
+  /** Start of the already-planned page immediately before this one. */
+  previousSourceLineId: ShareHighlightPassageLine['id'] | null
+  /** The complete-passage attempts are known to have failed after page one. */
+  excerptOnly: boolean
+}
+
 function selectStoryExcerpt(
   lines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
   storyProfile: ShareHighlightStoryArtworkProfile | undefined,
   overlayTone: string | undefined,
   anchorLineId: ShareHighlightPassageLine['id'] | null | undefined,
-  footerMode: ShareHighlightStoryFooterMode
+  footerMode: ShareHighlightStoryFooterMode,
+  forwardPagination?: StoryForwardPaginationContext
 ): ShareHighlightStoryLayout {
   const blocks = buildStoryAtomicBlocks(lines)
   const manuscriptBodyHeight = resolveStoryCompositionSpec('manuscript', footerMode).body.height
@@ -1146,7 +1156,13 @@ function selectStoryExcerpt(
     return lastNonOverlappingPageStartBlockIndex
   }
 
-  const previousPageStartBlockIndex = findPreviousPageStartBlockIndex()
+  // Singular exports support backwards navigation from any arbitrary anchor,
+  // so they replay deterministic boundaries from page zero. A complete set is
+  // planned strictly forwards and already knows its prior page start; replaying
+  // here would turn a large export into superlinear work.
+  const previousPageStartBlockIndex = forwardPagination
+    ? null
+    : findPreviousPageStartBlockIndex()
   const endLineIndex = blocks[selectedRange.endBlockIndex]!.endLineIndex
   const startLineIndex = blocks[startBlockIndex]!.startLineIndex
   const includedLines = lines.slice(startLineIndex, endLineIndex + 1)
@@ -1184,9 +1200,11 @@ function selectStoryExcerpt(
     includedSourceLineIds,
     firstSourceLineId: includedSourceLineIds[0]!,
     lastSourceLineId: includedSourceLineIds.at(-1)!,
-    previousSourceLineId: previousPageStartBlock
-      ? lines[previousPageStartBlock.startLineIndex]!.id
-      : null,
+    previousSourceLineId: forwardPagination
+      ? forwardPagination.previousSourceLineId
+      : previousPageStartBlock
+        ? lines[previousPageStartBlock.startLineIndex]!.id
+        : null,
     nextSourceLineId: nextBlock ? lines[nextBlock.startLineIndex]!.id : null,
   }
 
@@ -1200,6 +1218,51 @@ function selectStoryExcerpt(
  * dropping the chosen reading support. Structural headers form an atomic block
  * with their following line and are therefore never stranded at an edge.
  */
+function layoutNormalizedShareHighlightStory(
+  lines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  overlayTone?: string,
+  storyProfile?: ShareHighlightStoryArtworkProfile,
+  anchorLineId?: ShareHighlightPassageLine['id'] | null,
+  footerMode: ShareHighlightStoryFooterMode = 'plain',
+  forwardPagination?: StoryForwardPaginationContext
+): ShareHighlightStoryLayout {
+  storySupportRoles(lines)
+  if (!forwardPagination?.excerptOnly) {
+    const selection = makeCompleteStorySelection(lines, anchorLineId)
+    const expressive = tryStoryComposition(
+      lines,
+      measure,
+      'expressive',
+      storyProfile,
+      overlayTone,
+      footerMode
+    )
+    if (expressive.layout) return applyStorySelection(expressive.layout, selection)
+
+    const manuscript = tryStoryComposition(
+      lines,
+      measure,
+      'manuscript',
+      storyProfile,
+      overlayTone,
+      footerMode
+    )
+
+    if (manuscript.layout) return applyStorySelection(manuscript.layout, selection)
+  }
+
+  return selectStoryExcerpt(
+    lines,
+    measure,
+    storyProfile,
+    overlayTone,
+    anchorLineId,
+    footerMode,
+    forwardPagination
+  )
+}
+
 export function layoutShareHighlightStory(
   rawLines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
@@ -1208,35 +1271,11 @@ export function layoutShareHighlightStory(
   anchorLineId?: ShareHighlightPassageLine['id'] | null,
   footerMode: ShareHighlightStoryFooterMode = 'plain'
 ): ShareHighlightStoryLayout {
-  const lines = normalizePassageLines(rawLines)
-  storySupportRoles(lines)
-  const selection = makeCompleteStorySelection(lines, anchorLineId)
-  const expressive = tryStoryComposition(
-    lines,
+  return layoutNormalizedShareHighlightStory(
+    normalizePassageLines(rawLines),
     measure,
-    'expressive',
-    storyProfile,
     overlayTone,
-    footerMode
-  )
-  if (expressive.layout) return applyStorySelection(expressive.layout, selection)
-
-  const manuscript = tryStoryComposition(
-    lines,
-    measure,
-    'manuscript',
     storyProfile,
-    overlayTone,
-    footerMode
-  )
-
-  if (manuscript.layout) return applyStorySelection(manuscript.layout, selection)
-
-  return selectStoryExcerpt(
-    lines,
-    measure,
-    storyProfile,
-    overlayTone,
     anchorLineId,
     footerMode
   )
@@ -2193,16 +2232,120 @@ function normalizePassageFileBase(value?: string) {
   return normalized || 'naamras-hukamnama.png'
 }
 
+function makePassagePageFileName(
+  value: string | undefined,
+  pageNumber: number,
+  pageCount: number
+) {
+  const normalized = normalizePassageFileBase(value)
+  if (pageCount <= 1) return normalized
+
+  const stem = normalized.replace(/\.png$/i, '')
+  const numberWidth = Math.max(2, String(pageCount).length)
+  return `${stem}-${String(pageNumber).padStart(numberWidth, '0')}-of-${String(pageCount).padStart(numberWidth, '0')}.png`
+}
+
 interface RenderedShareHighlightStory {
   canvas: HTMLCanvasElement
   layout: ShareHighlightStoryLayout
 }
 
-/** Renders the adaptive complete reading or contiguous excerpt with metadata. */
-async function renderShareHighlightStoryWithLayout(
+interface ShareHighlightStoryRenderPlan {
+  artwork: ShareHighlightDecodedImage | null
+  dateLabel: string | null
+  footerMode: ShareHighlightStoryFooterMode
+  layouts: ShareHighlightStoryLayout[]
+  overlayTone: string | undefined
+  seriesLabel: string
+  sourceLabel: string
+  storyProfile: ResolvedStoryArtworkProfile
+}
+
+type ShareHighlightStoryLayoutPlanner = (
+  measure: ShareHighlightTextMeasure,
+  overlayTone: string | undefined,
+  storyProfile: ShareHighlightStoryArtworkProfile,
+  footerMode: ShareHighlightStoryFooterMode
+) => ShareHighlightStoryLayout[]
+
+function prepareStoryCanvas(canvas: HTMLCanvasElement) {
+  canvas.width = SHARE_HIGHLIGHT_STORY_WIDTH
+  canvas.height = SHARE_HIGHLIGHT_STORY_HEIGHT
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('A Canvas 2D rendering context is required.')
+  return context
+}
+
+function releaseStoryCanvas(canvas: HTMLCanvasElement) {
+  // Resetting both dimensions releases the browser's native pixel buffer. Set
+  // exports retain only encoded blobs; singular exports intentionally keep the
+  // canvas for the existing live preview API.
+  canvas.width = 0
+  canvas.height = 0
+}
+
+function measureStoryTextWith(context: CanvasRenderingContext2D): ShareHighlightTextMeasure {
+  return (text, style) => {
+    context.font = fontString(style)
+    return context.measureText(text).width
+  }
+}
+
+function makeStoryPageDateLabel(
+  dateLabel: string | null,
+  pageNumber?: number,
+  pageCount?: number
+) {
+  if (!pageNumber || !pageCount || pageCount <= 1) return dateLabel
+  return [dateLabel, `${pageNumber} / ${pageCount}`].filter(Boolean).join(' · ')
+}
+
+function drawPlannedShareHighlightStory(
+  context: CanvasRenderingContext2D,
   input: ShareHighlightPassageInput,
-  options: ShareHighlightRendererOptions = {}
-): Promise<RenderedShareHighlightStory> {
+  plan: ShareHighlightStoryRenderPlan,
+  layout: ShareHighlightStoryLayout,
+  pageNumber?: number,
+  pageCount?: number
+) {
+  const palette = resolveShareHighlightOverlayPalette(
+    layout.composition !== 'expressive' ? 'light' : plan.overlayTone
+  )
+
+  context.clearRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
+  drawStoryArtworkBackground(
+    context,
+    layout.composition === 'expressive' ? plan.artwork : null,
+    plan.storyProfile,
+    layout.composition
+  )
+  drawStoryReadingSurface(context, layout, palette)
+  drawStoryMetadataSurfaces(context, layout, palette, plan.footerMode)
+  drawStoryHeader(
+    context,
+    plan.seriesLabel,
+    makeStoryPageDateLabel(plan.dateLabel, pageNumber, pageCount),
+    palette,
+    layout
+  )
+  layout.sections.forEach(section => drawTextSection(context, section, palette))
+  drawStoryFooter(
+    context,
+    plan.sourceLabel,
+    palette,
+    layout,
+    input.content.shareUrl,
+    input.content.supportLabel,
+    input.content.scopeCopy
+  )
+}
+
+async function prepareShareHighlightStoryRenderPlan(
+  input: ShareHighlightPassageInput,
+  options: ShareHighlightRendererOptions,
+  context: CanvasRenderingContext2D,
+  planLayouts: ShareHighlightStoryLayoutPlanner
+): Promise<ShareHighlightStoryRenderPlan> {
   const sourceLabel = input.content.sourceLabel.trim()
   const seriesLabel = input.content.seriesLabel.trim()
   const dateLabel = input.content.dateLabel?.trim() || null
@@ -2212,74 +2355,268 @@ async function renderShareHighlightStoryWithLayout(
   if (!sourceLabel) throw new TypeError('A passage source label is required.')
   if (!seriesLabel) throw new TypeError('A passage series label is required.')
 
-  const canvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
-  canvas.width = SHARE_HIGHLIGHT_STORY_WIDTH
-  canvas.height = SHARE_HIGHLIGHT_STORY_HEIGHT
-  const context = canvas.getContext('2d')
-  if (!context) throw new Error('A Canvas 2D rendering context is required.')
-
   await awaitShareHighlightFonts(resolveFontSet(options.fontSet))
 
+  const measure = measureStoryTextWith(context)
   const artworkSrc = input.artwork?.src?.trim() || null
   let artwork: ShareHighlightDecodedImage | null = null
   let overlayTone = artworkSrc ? input.artwork?.overlayTone : 'dark'
   let storyProfile = resolveStoryArtworkProfile(input, null)
-  let layout = layoutShareHighlightStory(
-    input.content.lines,
-    (text, style) => {
-      context.font = fontString(style)
-      return context.measureText(text).width
-    },
-    overlayTone,
-    storyProfile,
-    input.content.anchorLineId,
-    footerMode
-  )
+  let layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
+  if (layouts.length === 0) throw new Error('A Hukamnama Story plan requires at least one page.')
 
   // Artwork is relevant only to an expressive complete layout. Exact text
-  // preflight therefore prevents a long manuscript/excerpt from decoding an
-  // image it will never draw, without relying on a brittle source-line count.
-  if (layout.composition === 'expressive' && artworkSrc) {
+  // preflight therefore prevents a long manuscript set from decoding an image
+  // that none of its pages will draw.
+  if (layouts[0]!.composition === 'expressive' && artworkSrc) {
     artwork = await (options.loadImage ?? loadDecodedImage)(artworkSrc)
     overlayTone = input.artwork?.overlayTone
     storyProfile = resolveStoryArtworkProfile(input, artwork)
-    layout = layoutShareHighlightStory(
-      input.content.lines,
-      (text, style) => {
-        context.font = fontString(style)
-        return context.measureText(text).width
-      },
-      overlayTone,
-      storyProfile,
-      input.content.anchorLineId,
-      footerMode
-    )
+    layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
   }
 
-  const palette = resolveShareHighlightOverlayPalette(
-    layout.composition !== 'expressive' ? 'light' : overlayTone
-  )
-
-  context.clearRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
-  drawStoryArtworkBackground(
-    context,
-    layout.composition === 'expressive' ? artwork : null,
-    storyProfile,
-    layout.composition
-  )
-  drawStoryReadingSurface(context, layout, palette)
-  drawStoryMetadataSurfaces(context, layout, palette, footerMode)
-  drawStoryHeader(context, seriesLabel, dateLabel, palette, layout)
-  layout.sections.forEach(section => drawTextSection(context, section, palette))
-  drawStoryFooter(
-    context,
+  return {
+    artwork,
+    dateLabel,
+    footerMode,
+    layouts,
+    overlayTone,
+    seriesLabel,
     sourceLabel,
-    palette,
-    layout,
-    input.content.shareUrl,
-    input.content.supportLabel,
-    input.content.scopeCopy
+    storyProfile,
+  }
+}
+
+function assertCompleteStoryLayoutPlan(
+  layouts: readonly ShareHighlightStoryLayout[],
+  normalizedLines: readonly ShareHighlightPassageLine[]
+) {
+  const expectedSourceLineIds = normalizedLines.map(line => line.id)
+  const exportedSourceLineIds = layouts.flatMap(layout => (
+    layout.selection.includedSourceLineIds
+  ))
+  const hasValidPageLinks = layouts.every((layout, index) => {
+    const previous = layouts[index - 1]
+    const next = layouts[index + 1]
+    return layout.selection.includedLineCount > 0
+      && layout.selection.totalLineCount === normalizedLines.length
+      && layout.selection.previousSourceLineId === (
+        previous?.selection.firstSourceLineId ?? null
+      )
+      && layout.selection.nextSourceLineId === (
+        next?.selection.firstSourceLineId ?? null
+      )
+  })
+
+  if (
+    layouts.length === 0
+    || !hasValidPageLinks
+    || exportedSourceLineIds.length !== expectedSourceLineIds.length
+    || exportedSourceLineIds.some((sourceLineId, index) => (
+      sourceLineId !== expectedSourceLineIds[index]
+    ))
+  ) {
+    throw new Error('Hukamnama Story pagination did not preserve the complete passage.')
+  }
+}
+
+function makePlannedExcerptSelection(
+  lines: readonly ShareHighlightPassageLine[],
+  totalLineCount: number,
+  previousSourceLineId: ShareHighlightPassageLine['id'] | null,
+  nextSourceLineId: ShareHighlightPassageLine['id'] | null
+): ShareHighlightStorySelection {
+  const includedSourceLineIds = lines.map(line => line.id)
+  return {
+    mode: 'excerpt',
+    anchorSourceLineId: includedSourceLineIds[0]!,
+    includedLineCount: includedSourceLineIds.length,
+    totalLineCount,
+    includedSourceLineIds,
+    firstSourceLineId: includedSourceLineIds[0]!,
+    lastSourceLineId: includedSourceLineIds.at(-1)!,
+    previousSourceLineId,
+    nextSourceLineId,
+  }
+}
+
+function layoutExactManuscriptStoryPage(
+  lines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  overlayTone: string | undefined,
+  storyProfile: ShareHighlightStoryArtworkProfile,
+  footerMode: ShareHighlightStoryFooterMode,
+  selection: ShareHighlightStorySelection
+) {
+  const attempt = tryStoryComposition(
+    lines,
+    measure,
+    'manuscript',
+    storyProfile,
+    overlayTone,
+    footerMode
   )
+  return attempt.layout ? applyStorySelection(attempt.layout, selection) : null
+}
+
+function rebalanceFinalStoryOrphan(
+  layouts: readonly ShareHighlightStoryLayout[],
+  normalizedLines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  overlayTone: string | undefined,
+  storyProfile: ShareHighlightStoryArtworkProfile,
+  footerMode: ShareHighlightStoryFooterMode
+) {
+  if (layouts.length < 2) return Array.from(layouts)
+
+  const previousLayout = layouts.at(-2)!
+  const finalLayout = layouts.at(-1)!
+  if (
+    previousLayout.composition !== 'manuscript'
+    || finalLayout.composition !== 'manuscript'
+  ) return Array.from(layouts)
+
+  const blocks = buildStoryAtomicBlocks(normalizedLines)
+  const finalStartLineIndex = normalizedLines.length - finalLayout.selection.includedLineCount
+  const previousStartLineIndex = (
+    finalStartLineIndex - previousLayout.selection.includedLineCount
+  )
+  const finalStartBlockIndex = blocks.findIndex(block => (
+    block.startLineIndex === finalStartLineIndex
+  ))
+  const previousStartBlockIndex = blocks.findIndex(block => (
+    block.startLineIndex === previousStartLineIndex
+  ))
+  if (
+    finalStartBlockIndex < 1
+    || previousStartBlockIndex < 0
+    || blocks.length - finalStartBlockIndex !== 1
+    // Moving one whole block must leave at least two on the prior page. This
+    // fixes the tail without merely relocating the orphan one page earlier.
+    || finalStartBlockIndex - previousStartBlockIndex < 3
+  ) return Array.from(layouts)
+
+  const movedBlock = blocks[finalStartBlockIndex - 1]!
+  const rebalancedPreviousLines = normalizedLines.slice(
+    previousStartLineIndex,
+    movedBlock.startLineIndex
+  )
+  const rebalancedFinalLines = normalizedLines.slice(movedBlock.startLineIndex)
+  const pageBeforePrevious = layouts.at(-3)
+  const previousSelection = makePlannedExcerptSelection(
+    rebalancedPreviousLines,
+    normalizedLines.length,
+    pageBeforePrevious?.selection.firstSourceLineId ?? null,
+    rebalancedFinalLines[0]!.id
+  )
+  const finalSelection = makePlannedExcerptSelection(
+    rebalancedFinalLines,
+    normalizedLines.length,
+    rebalancedPreviousLines[0]!.id,
+    null
+  )
+  const rebalancedPrevious = layoutExactManuscriptStoryPage(
+    rebalancedPreviousLines,
+    measure,
+    overlayTone,
+    storyProfile,
+    footerMode,
+    previousSelection
+  )
+  const rebalancedFinal = layoutExactManuscriptStoryPage(
+    rebalancedFinalLines,
+    measure,
+    overlayTone,
+    storyProfile,
+    footerMode,
+    finalSelection
+  )
+  if (!rebalancedPrevious || !rebalancedFinal) return Array.from(layouts)
+
+  return [
+    ...layouts.slice(0, -2),
+    rebalancedPrevious,
+    rebalancedFinal,
+  ]
+}
+
+function planCompleteStoryLayouts(
+  normalizedLines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure,
+  overlayTone: string | undefined,
+  storyProfile: ShareHighlightStoryArtworkProfile,
+  footerMode: ShareHighlightStoryFooterMode
+) {
+  const layouts: ShareHighlightStoryLayout[] = []
+  const seenPageStarts = new Set<ShareHighlightPassageLine['id']>()
+  let nextAnchorLineId: ShareHighlightPassageLine['id'] | null = null
+  let previousPageStartLineId: ShareHighlightPassageLine['id'] | null = null
+
+  for (let pageIndex = 0; pageIndex < normalizedLines.length; pageIndex += 1) {
+    const layout = layoutNormalizedShareHighlightStory(
+      normalizedLines,
+      measure,
+      overlayTone,
+      storyProfile,
+      nextAnchorLineId,
+      footerMode,
+      {
+        previousSourceLineId: previousPageStartLineId,
+        excerptOnly: pageIndex > 0,
+      }
+    )
+    const selection = layout.selection
+    if (
+      selection.includedLineCount <= 0
+      || seenPageStarts.has(selection.firstSourceLineId)
+    ) {
+      throw new Error('Hukamnama Story pagination did not advance.')
+    }
+
+    layouts.push(layout)
+    seenPageStarts.add(selection.firstSourceLineId)
+
+    if (selection.mode === 'complete' || selection.nextSourceLineId === null) break
+    previousPageStartLineId = selection.firstSourceLineId
+    nextAnchorLineId = selection.nextSourceLineId
+  }
+
+  const rebalancedLayouts = rebalanceFinalStoryOrphan(
+    layouts,
+    normalizedLines,
+    measure,
+    overlayTone,
+    storyProfile,
+    footerMode
+  )
+  assertCompleteStoryLayoutPlan(rebalancedLayouts, normalizedLines)
+  return rebalancedLayouts
+}
+
+/** Renders the adaptive complete reading or contiguous excerpt with metadata. */
+async function renderShareHighlightStoryWithLayout(
+  input: ShareHighlightPassageInput,
+  options: ShareHighlightRendererOptions = {}
+): Promise<RenderedShareHighlightStory> {
+  const canvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
+  const context = prepareStoryCanvas(canvas)
+  const plan = await prepareShareHighlightStoryRenderPlan(
+    input,
+    options,
+    context,
+    (measure, overlayTone, storyProfile, footerMode) => [
+      layoutShareHighlightStory(
+        input.content.lines,
+        measure,
+        overlayTone,
+        storyProfile,
+        input.content.anchorLineId,
+        footerMode
+      ),
+    ]
+  )
+  const layout = plan.layouts[0]!
+  drawPlannedShareHighlightStory(context, input, plan, layout)
   return { canvas, layout }
 }
 
@@ -2310,5 +2647,89 @@ export async function exportShareHighlightStoryPng(
     height: SHARE_HIGHLIGHT_STORY_HEIGHT,
     layout,
     selection: layout.selection,
+  }
+}
+
+/**
+ * Exports an entire passage as one ordered Story set. A short reading keeps its
+ * backwards-compatible single filename. Longer readings are split only at the
+ * renderer's existing atomic boundaries, numbered on-canvas, and returned in
+ * exact source order so callers can share the full Hukamnama in one action.
+ */
+export async function exportShareHighlightStoryPngSet(
+  input: ShareHighlightPassageInput,
+  options: ShareHighlightRendererOptions = {}
+): Promise<ShareHighlightStoryPngSet> {
+  const normalizedLines = normalizePassageLines(input.content.lines)
+  const firstCanvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
+  let firstCanvasReleased = false
+
+  try {
+    const firstContext = prepareStoryCanvas(firstCanvas)
+    const plan = await prepareShareHighlightStoryRenderPlan(
+      input,
+      options,
+      firstContext,
+      (measure, overlayTone, storyProfile, footerMode) => (
+        planCompleteStoryLayouts(
+          normalizedLines,
+          measure,
+          overlayTone,
+          storyProfile,
+          footerMode
+        )
+      )
+    )
+    const pageCount = plan.layouts.length
+    const pages: ShareHighlightStoryPngSetPage[] = []
+
+    // Render and encode one page at a time. No subsequent canvas is allocated
+    // until the prior PNG is complete and its native pixel buffer is released.
+    for (const [index, layout] of plan.layouts.entries()) {
+      const canvas = index === 0
+        ? firstCanvas
+        : options.createCanvas?.() ?? createDefaultCanvas()
+      let page: ShareHighlightStoryPngSetPage | null = null
+
+      try {
+        const context = index === 0 ? firstContext : prepareStoryCanvas(canvas)
+        drawPlannedShareHighlightStory(
+          context,
+          input,
+          plan,
+          layout,
+          index + 1,
+          pageCount
+        )
+        const blob = await canvasToPngBlob(canvas)
+        const file = new File(
+          [blob],
+          makePassagePageFileName(input.fileNameBase, index + 1, pageCount),
+          { type: 'image/png' }
+        )
+        page = {
+          blob,
+          file,
+          width: SHARE_HIGHLIGHT_STORY_WIDTH,
+          height: SHARE_HIGHLIGHT_STORY_HEIGHT,
+          layout,
+          selection: layout.selection,
+        }
+      } finally {
+        releaseStoryCanvas(canvas)
+        if (index === 0) firstCanvasReleased = true
+      }
+
+      if (!page) throw new Error('The Hukamnama Story page could not be encoded.')
+      pages.push(page)
+    }
+
+    return {
+      pages,
+      files: pages.map(page => page.file),
+      totalLineCount: normalizedLines.length,
+    }
+  } finally {
+    if (!firstCanvasReleased) releaseStoryCanvas(firstCanvas)
   }
 }

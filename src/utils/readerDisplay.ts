@@ -63,6 +63,50 @@ export function isStructuralTitleLine(text: string): boolean {
   return /^(ਪਉੜੀ|ਸਲੋਕ|ਮਹਲਾ|ਮਃ|ਰਹਾਉ|ਚਉਪਈ|ਚੌਪਈ|ਦੋਹਰਾ|ਸਵਈਆ|ਸਵੈਯਾ|ਅਸਟਪਦੀ|ਛੰਤ|ਵਾਰ)\b/.test(compact)
 }
 
+/**
+ * Identifies standalone Gurbani structure labels that BaniDB sometimes returns
+ * without header metadata. Keep this deliberately narrower than
+ * `isStructuralTitleLine`: a short Gurbani verse, or a verse ending in
+ * "ਰਹਾਉ", must still be treated as scripture content.
+ */
+export function isStructuralGurbaniHeadingLine(text: string): boolean {
+  const compact = text
+    .normalize('NFC')
+    .replace(/[।॥|]+/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim()
+
+  if (!compact) return false
+
+  const number = '[0-9੦-੯]+'
+  const sectionHeading = new RegExp(
+    `^(?:ਸਲੋਕੁ?|ਪਉੜੀ|ਅਸਟਪਦੀ|ਛੰਤ|ਵਾਰ|ਦੋਹਰਾ|ਚਉਪਈ|ਚੌਪਈ|ਸਵਈਆ|ਸਵੈਯਾ)(?:\\s+(?:(?:ਮਃ|ਮਹਲਾ)\\s+)?${number})?$`,
+    'u'
+  )
+  if (sectionHeading.test(compact)) return true
+
+  const numberedHeading = new RegExp(
+    `^(?:ਮਃ|ਮਹਲਾ)\\s+${number}(?:\\s+(?:ਘਰ|ਘਰੁ)\\s+${number})?$`,
+    'u'
+  )
+  if (numberedHeading.test(compact)) return true
+
+  const words = compact.split(' ')
+  if (words.length > 9) return false
+
+  // Raag and section titles may begin with a proper name (for example,
+  // "ਧਨਾਸਰੀ") before their Mahala/Ghar metadata.
+  const metadataHeading = new RegExp(
+    `^(?:.+\\s+)(?:ਮਃ|ਮਹਲਾ)\\s+${number}(?:\\s+(?:ਘਰ|ਘਰੁ)\\s+${number})?$`,
+    'u'
+  )
+  if (metadataHeading.test(compact)) return true
+
+  // Dasam Bani section headings can include a short descriptive prefix.
+  return words.length <= 6
+    && /(?:^|\s)(?:ਚਉਪਈ|ਚੌਪਈ|ਦੋਹਰਾ|ਸਵਈਆ|ਸਵੈਯਾ)$/u.test(compact)
+}
+
 function getPreferredMappedText(
   translations: Record<string, string> | undefined,
   preferred: string,
