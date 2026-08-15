@@ -1,5 +1,5 @@
-import courtMuralSrc from './01-court-mural.jpg'
 import quietParchmentSrc from './00-quiet-parchment.jpg'
+import courtMuralSrc from './01-court-mural.jpg'
 import interiorAudienceSrc from './02-interior-audience.jpg'
 import courtAssemblySrc from './03-court-assembly.jpg'
 import fortProcessionSrc from './04-fort-procession.jpg'
@@ -13,8 +13,19 @@ import floralTeacherMuralSrc from './11-floral-teacher-mural.jpg'
 import goldenCourtAssemblySrc from './12-golden-court-assembly.jpg'
 import gurmukhiFloralMedallionSrc from './13-gurmukhi-floral-medallion.jpg'
 import ceremonialArmsDisplaySrc from './14-ceremonial-arms-display.jpg'
-import courtMuralThumbnail from './thumbnails/01-court-mural.jpg'
+import emeraldMistSrc from './15-emerald-mist.jpg'
+import indigoRainSrc from './16-indigo-rain.jpg'
+import roseDawnSrc from './17-rose-dawn.jpg'
+import copperEarthSrc from './18-copper-earth.jpg'
+import riverStoneSrc from './19-river-stone.jpg'
+import nightGoldSrc from './20-night-gold.jpg'
+import sageCanopySrc from './21-sage-canopy.jpg'
+import monsoonBlueSrc from './22-monsoon-blue.jpg'
+import sandstoneLightSrc from './23-sandstone-light.jpg'
+import plumInkSrc from './24-plum-ink.jpg'
+import silverDuskSrc from './25-silver-dusk.jpg'
 import quietParchmentThumbnail from './thumbnails/00-quiet-parchment.jpg'
+import courtMuralThumbnail from './thumbnails/01-court-mural.jpg'
 import interiorAudienceThumbnail from './thumbnails/02-interior-audience.jpg'
 import courtAssemblyThumbnail from './thumbnails/03-court-assembly.jpg'
 import fortProcessionThumbnail from './thumbnails/04-fort-procession.jpg'
@@ -28,6 +39,17 @@ import floralTeacherMuralThumbnail from './thumbnails/11-floral-teacher-mural.jp
 import goldenCourtAssemblyThumbnail from './thumbnails/12-golden-court-assembly.jpg'
 import gurmukhiFloralMedallionThumbnail from './thumbnails/13-gurmukhi-floral-medallion.jpg'
 import ceremonialArmsDisplayThumbnail from './thumbnails/14-ceremonial-arms-display.jpg'
+import emeraldMistThumbnail from './thumbnails/15-emerald-mist.jpg'
+import indigoRainThumbnail from './thumbnails/16-indigo-rain.jpg'
+import roseDawnThumbnail from './thumbnails/17-rose-dawn.jpg'
+import copperEarthThumbnail from './thumbnails/18-copper-earth.jpg'
+import riverStoneThumbnail from './thumbnails/19-river-stone.jpg'
+import nightGoldThumbnail from './thumbnails/20-night-gold.jpg'
+import sageCanopyThumbnail from './thumbnails/21-sage-canopy.jpg'
+import monsoonBlueThumbnail from './thumbnails/22-monsoon-blue.jpg'
+import sandstoneLightThumbnail from './thumbnails/23-sandstone-light.jpg'
+import plumInkThumbnail from './thumbnails/24-plum-ink.jpg'
+import silverDuskThumbnail from './thumbnails/25-silver-dusk.jpg'
 
 export type ShareHighlightOrientation = 'portrait' | 'landscape' | 'square'
 
@@ -54,6 +76,8 @@ export interface ShareHighlightStoryProfile {
   }
   /** Fraction of the 9:16 canvas reserved for artwork in landscape-hero mode. */
   heroHeightFraction?: number
+  /** Reviewed use as the outer mat behind a protected long-form manuscript. */
+  manuscriptTreatment?: 'art-frame'
   /** Important subject matter that automatic crops and reading surfaces should respect. */
   protectedSubject?: {
     bounds: {
@@ -100,12 +124,71 @@ export interface ShareHighlightAsset {
     status: 'approved-neutral'
     provenance: string
     createdDate: string
+    displayName: {
+      en: string
+      pa: string
+      hi: string
+    }
+    /** Concise, localized visual description announced separately from the name. */
+    description: {
+      en: string
+      pa: string
+      hi: string
+    }
   }
   /** Neutral description of only the content visible in the supplied artwork. */
   description: string
 }
 
-export const shareHighlightAssets = [
+interface GeneratedHukamnamaAssetInput {
+  id: string
+  src: string
+  thumbnail: string
+  createdDate: string
+  displayName: NonNullable<ShareHighlightAsset['hukamnamaUse']>['displayName']
+  localizedDescription: NonNullable<ShareHighlightAsset['hukamnamaUse']>['description']
+  description: string
+}
+
+const GENERATED_HUKAMNAMA_PROVENANCE =
+  'Original nonfigurative background generated specifically for NaamRas with OpenAI image generation; no source images were supplied.'
+
+function makeGeneratedHukamnamaAsset({
+  id,
+  src,
+  thumbnail,
+  createdDate,
+  displayName,
+  localizedDescription,
+  description,
+}: GeneratedHukamnamaAssetInput): ShareHighlightAsset {
+  return {
+    id,
+    src,
+    thumbnail,
+    original: { width: 1080, height: 1920, orientation: 'portrait' },
+    normalized: { width: 1080, height: 1920, orientation: 'portrait' },
+    orientationCorrection: 'none',
+    focalPosition: { x: 0.5, y: 0.5 },
+    textSafeZone: { x: 0.08, y: 0.18, width: 0.84, height: 0.62 },
+    storyProfile: {
+      mode: 'portrait-bleed',
+      focalPosition: { x: 0.5, y: 0.5 },
+      manuscriptTreatment: 'art-frame',
+    },
+    overlayTone: 'light',
+    hukamnamaUse: {
+      status: 'approved-neutral',
+      provenance: GENERATED_HUKAMNAMA_PROVENANCE,
+      createdDate,
+      displayName,
+      description: localizedDescription,
+    },
+    description,
+  }
+}
+
+const shareHighlightNarrativeAssets: readonly ShareHighlightAsset[] = [
   {
     id: 'court-mural',
     src: courtMuralSrc,
@@ -405,31 +488,242 @@ export const shareHighlightAssets = [
     description:
       'Golden-lit display of shields, curved swords, and a framed miniature of a rider on horseback.',
   },
-  {
+]
+
+const generatedHukamnamaAssets: readonly ShareHighlightAsset[] = [
+  makeGeneratedHukamnamaAsset({
     id: 'quiet-parchment',
     src: quietParchmentSrc,
     thumbnail: quietParchmentThumbnail,
-    original: { width: 1080, height: 1920, orientation: 'portrait' },
-    normalized: { width: 1080, height: 1920, orientation: 'portrait' },
-    orientationCorrection: 'none',
-    focalPosition: { x: 0.5, y: 0.5 },
-    textSafeZone: { x: 0.08, y: 0.18, width: 0.84, height: 0.62 },
-    storyProfile: {
-      mode: 'portrait-bleed',
-      focalPosition: { x: 0.5, y: 0.5 },
+    createdDate: '2026-08-11',
+    displayName: {
+      en: 'Quiet Parchment',
+      pa: 'ਸ਼ਾਂਤ ਕਾਗਜ਼',
+      hi: 'शांत काग़ज़',
     },
-    overlayTone: 'light',
-    hukamnamaUse: {
-      status: 'approved-neutral',
-      provenance: 'Original nonfigurative background generated specifically for NaamRas with OpenAI image generation; no source images were supplied.',
-      createdDate: '2026-08-11',
+    localizedDescription: {
+      en: 'Forest-green and warm-cream watercolor parchment with muted copper edges.',
+      pa: 'ਗੂੜ੍ਹੇ ਹਰੇ, ਗਰਮ ਕਰੀਮੀ ਅਤੇ ਹਲਕੇ ਤਾਂਬੀ ਕਿਨਾਰਿਆਂ ਵਾਲਾ ਜਲਰੰਗੀ ਕਾਗਜ਼।',
+      hi: 'गहरे हरे, गरम क्रीम और हल्के तांबे के किनारों वाला जलरंगी काग़ज़।',
     },
     description:
       'Abstract parchment and watercolor texture in forest green, warm cream, and muted copper, without figures, symbols, or embedded text.',
-  },
-] as const satisfies readonly ShareHighlightAsset[]
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'emerald-mist',
+    src: emeraldMistSrc,
+    thumbnail: emeraldMistThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Emerald Mist',
+      pa: 'ਪੰਨਾ ਧੁੰਦ',
+      hi: 'पन्ना धुंध',
+    },
+    localizedDescription: {
+      en: 'Ivory paper with emerald-green mist and light mineral speckles at the edges.',
+      pa: 'ਹਾਥੀਦੰਦ ਰੰਗ ਦੇ ਕਾਗਜ਼ ਉੱਤੇ ਪੰਨਾ-ਹਰੀ ਧੁੰਦ ਅਤੇ ਕਿਨਾਰਿਆਂ ਕੋਲ ਹਲਕੇ ਖਣਿਜ ਬਿੰਦੂ।',
+      hi: 'हाथीदाँत-रंग काग़ज़ पर पन्ना-हरी धुंध और किनारों पर हल्के खनिज बिंदु।',
+    },
+    description:
+      'Ivory paper with forest-green ink mist and restrained mineral speckles around a quiet center.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'indigo-rain',
+    src: indigoRainSrc,
+    thumbnail: indigoRainThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Indigo Rain',
+      pa: 'ਨੀਲੀ ਵਰਖਾ',
+      hi: 'नीली वर्षा',
+    },
+    localizedDescription: {
+      en: 'Pearl paper framed by indigo and blue-grey ink streaks.',
+      pa: 'ਮੋਤੀਲੇ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਨੀਲੀ ਅਤੇ ਸਲੇਟੀ-ਨੀਲੀ ਸਿਆਹੀ ਦੀਆਂ ਧਾਰੀਆਂ।',
+      hi: 'मोती-जैसे काग़ज़ के किनारों पर नील और धूसर-नीली स्याही की धारियाँ।',
+    },
+    description:
+      'Warm pearl paper with indigo and blue-grey fiber-like ink textures framing a calm center.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'rose-dawn',
+    src: roseDawnSrc,
+    thumbnail: roseDawnThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Rose Dawn',
+      pa: 'ਗੁਲਾਬੀ ਸਵੇਰ',
+      hi: 'गुलाबी भोर',
+    },
+    localizedDescription: {
+      en: 'Pale sand paper edged with dusty rose, muted coral, and ochre.',
+      pa: 'ਫਿੱਕੇ ਰੇਤਲੇ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਧੂੜਲੇ ਗੁਲਾਬੀ, ਮੂੰਗੀਆ ਅਤੇ ਗੇਰੂ ਰੰਗ।',
+      hi: 'हल्के रेतीले काग़ज़ के किनारों पर धूल-गुलाबी, मूँगा और गेरुए रंग।',
+    },
+    description:
+      'Pale sand paper with dusty-rose, muted coral, and ochre pigment blooms around the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'copper-earth',
+    src: copperEarthSrc,
+    thumbnail: copperEarthThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Copper Earth',
+      pa: 'ਤਾਂਬੀ ਧਰਤੀ',
+      hi: 'तांबे-सी धरती',
+    },
+    localizedDescription: {
+      en: 'Warm cream paper with terracotta, umber, and copper-green mineral edges.',
+      pa: 'ਗਰਮ ਕਰੀਮੀ ਕਾਗਜ਼ ਉੱਤੇ ਮਿੱਟੀਲੇ, ਭੂਰੇ ਅਤੇ ਤਾਂਬੀ-ਹਰੇ ਖਣਿਜ ਕਿਨਾਰੇ।',
+      hi: 'गरम क्रीम काग़ज़ पर मिट्टी, गहरे भूरे और तांबा-हरे खनिज किनारे।',
+    },
+    description:
+      'Warm cream paper with terracotta, umber, oxidized-copper, and mineral textures at the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'river-stone',
+    src: riverStoneSrc,
+    thumbnail: riverStoneThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'River Stone',
+      pa: 'ਦਰਿਆਈ ਪੱਥਰ',
+      hi: 'नदी का पत्थर',
+    },
+    localizedDescription: {
+      en: 'Pearl paper with slate-grey and faint blue-green marbling at the edges.',
+      pa: 'ਮੋਤੀਲੇ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਸਲੇਟੀ ਅਤੇ ਹਲਕੇ ਨੀਲ-ਹਰੇ ਸੰਗਮਰਮਰੀ ਰੰਗ।',
+      hi: 'मोती-जैसे काग़ज़ के किनारों पर स्लेटी और हल्के नीले-हरे संगमरमरी रंग।',
+    },
+    description:
+      'Pearl and limestone paper with slate-grey and faint teal organic marbling around the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'night-gold',
+    src: nightGoldSrc,
+    thumbnail: nightGoldThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Night Gold',
+      pa: 'ਰਾਤ ਦਾ ਸੋਨਾ',
+      hi: 'रात का सोना',
+    },
+    localizedDescription: {
+      en: 'Pale warm parchment edged with charcoal ink and restrained antique gold.',
+      pa: 'ਫਿੱਕੇ ਗਰਮ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਕੋਲੇ ਵਰਗੀ ਸਿਆਹੀ ਅਤੇ ਹਲਕੀਆਂ ਸੁਨਹਿਰੀ ਝਲਕਾਂ।',
+      hi: 'हल्के गरम काग़ज़ के किनारों पर कोयला-सी स्याही और हल्की सुनहरी झलक।',
+    },
+    description:
+      'Pale warm parchment with charcoal ink and restrained antique-gold flecks close to the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'sage-canopy',
+    src: sageCanopySrc,
+    thumbnail: sageCanopyThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Sage Canopy',
+      pa: 'ਸਲੇਟੀ-ਹਰੀ ਛਾਂ',
+      hi: 'धूसर-हरी छाया',
+    },
+    localizedDescription: {
+      en: 'Warm ivory paper edged with soft sage, olive, and charcoal pigment.',
+      pa: 'ਗਰਮ ਚਿੱਟੇ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਸਲੇਟੀ-ਹਰੇ, ਜੈਤੂਨੀ ਅਤੇ ਕੋਲੇ ਵਰਗੇ ਨਰਮ ਰੰਗ।',
+      hi: 'गरम सफ़ेद काग़ज़ के किनारों पर धूसर-हरे, जैतूनी और कोयला-जैसे मुलायम रंग।',
+    },
+    description:
+      'Warm ivory paper with sage, olive, and charcoal shadow-like pigment gathered at the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'monsoon-blue',
+    src: monsoonBlueSrc,
+    thumbnail: monsoonBlueThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Monsoon Blue',
+      pa: 'ਮਾਨਸੂਨੀ ਨੀਲਾ',
+      hi: 'मानसूनी नीला',
+    },
+    localizedDescription: {
+      en: 'Cream-grey paper edged with blue-grey and muted blue-green ink.',
+      pa: 'ਕਰੀਮੀ-ਸਲੇਟੀ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਨੀਲੇ-ਸਲੇਟੀ ਅਤੇ ਫਿੱਕੇ ਨੀਲ-ਹਰੇ ਸਿਆਹੀ ਰੰਗ।',
+      hi: 'क्रीम-धूसर काग़ज़ के किनारों पर नीले-धूसर और हल्के नीले-हरे स्याही रंग।',
+    },
+    description:
+      'Cream-grey paper with abstract blue-grey, desaturated teal, and storm-ink diffusion at the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'sandstone-light',
+    src: sandstoneLightSrc,
+    thumbnail: sandstoneLightThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Sandstone Light',
+      pa: 'ਰੇਤਲੇ ਪੱਥਰ ਦੀ ਰੌਸ਼ਨੀ',
+      hi: 'बलुआ पत्थर की रोशनी',
+    },
+    localizedDescription: {
+      en: 'Creamy stone paper with warm sandstone and pale clay texture at the edges.',
+      pa: 'ਕਰੀਮੀ ਪੱਥਰੀ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਗਰਮ ਰੇਤਲੇ ਅਤੇ ਫਿੱਕੇ ਮਿੱਟੀ ਰੰਗਾਂ ਦੀ ਬਣਾਵਟ।',
+      hi: 'क्रीमी पत्थर-जैसे काग़ज़ के किनारों पर गरम बलुआ और हल्की मिट्टी की बनावट।',
+    },
+    description:
+      'Creamy limestone paper with warm sandstone, pale clay, and subtle plaster-like geometry at the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'plum-ink',
+    src: plumInkSrc,
+    thumbnail: plumInkThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Plum Ink',
+      pa: 'ਜਾਮਨੀ ਸਿਆਹੀ',
+      hi: 'जामुनी स्याही',
+    },
+    localizedDescription: {
+      en: 'Parchment edged with plum, wine-red, and smoke-black ink blooms.',
+      pa: 'ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਜਾਮਨੀ, ਗੂੜ੍ਹੇ ਲਾਲ ਅਤੇ ਧੂੰਏਂ ਵਰਗੀ ਕਾਲੀ ਸਿਆਹੀ।',
+      hi: 'काग़ज़ के किनारों पर जामुनी, गहरी लाल और धुएँ-सी काली स्याही।',
+    },
+    description:
+      'Parchment paper with muted aubergine, plum, wine, and smoke-black ink blooms at the edges.',
+  }),
+  makeGeneratedHukamnamaAsset({
+    id: 'silver-dusk',
+    src: silverDuskSrc,
+    thumbnail: silverDuskThumbnail,
+    createdDate: '2026-08-15',
+    displayName: {
+      en: 'Silver Dusk',
+      pa: 'ਚਾਂਦੀਲੀ ਸੰਝ',
+      hi: 'रुपहली सांझ',
+    },
+    localizedDescription: {
+      en: 'Soft ivory paper edged with silver-grey, pale lilac, and graphite washes.',
+      pa: 'ਹਲਕੇ ਚਿੱਟੇ ਕਾਗਜ਼ ਦੇ ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਚਾਂਦੀਲੇ-ਸਲੇਟੀ, ਫਿੱਕੇ ਜਾਮਨੀ ਅਤੇ ਸਲੇਟੀ ਖਣਿਜ ਰੰਗ।',
+      hi: 'हल्के सफ़ेद काग़ज़ के किनारों पर रुपहले-धूसर, हल्के जामुनी और स्लेटी खनिज रंग।',
+    },
+    description:
+      'Soft ivory paper with silver-grey, lilac-grey, and graphite mineral washes at the edges.',
+  }),
+]
+
+/** Complete bundled inventory, including legacy narrative and generated works. */
+export const shareHighlightAssets: readonly ShareHighlightAsset[] = [
+  ...shareHighlightNarrativeAssets,
+  ...generatedHukamnamaAssets,
+]
+
+/** Preserve the focused fifteen-treatment gallery used by single-line cards. */
+export const shareHighlightLineAssets: readonly ShareHighlightAsset[] = [
+  ...shareHighlightNarrativeAssets,
+  generatedHukamnamaAssets[0]!,
+]
 
 /** Artwork reviewed as neutral enough to accompany an unrelated Hukamnama. */
 export const shareHighlightHukamnamaAssets = shareHighlightAssets.filter(
-  asset => 'hukamnamaUse' in asset && asset.hukamnamaUse.status === 'approved-neutral'
+  (asset): asset is ShareHighlightAsset & {
+    hukamnamaUse: NonNullable<ShareHighlightAsset['hukamnamaUse']>
+  } => asset.hukamnamaUse?.status === 'approved-neutral'
 )

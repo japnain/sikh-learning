@@ -302,6 +302,13 @@
   padding: 0.82rem;
 }
 
+.share-highlight__art-fieldset {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
 .share-highlight__quiet-layout-note {
   min-width: 0;
   border: 1px solid rgb(var(--color-accent) / 0.28);
@@ -391,6 +398,10 @@
   scroll-snap-align: start;
 }
 
+.share-highlight__art-strip--story .share-highlight__art-choice {
+  flex-basis: 4.2rem;
+}
+
 .share-highlight__art-input {
   position: absolute;
   width: 1px;
@@ -420,6 +431,11 @@
   transition:
     border-color var(--motion-duration-sm) var(--motion-ease-standard),
     transform var(--motion-duration-sm) var(--motion-ease-standard);
+}
+
+.share-highlight__art-thumb--story {
+  width: 4.2rem;
+  aspect-ratio: 9 / 16;
 }
 
 .share-highlight__art-input:checked + .share-highlight__art-option .share-highlight__art-thumb {
@@ -718,6 +734,29 @@
     gap: 8px;
   }
 
+  /* At reflow widths the chooser joins the sheet's single vertical reading
+     path instead of requiring a second, horizontal scrolling direction. */
+  .share-highlight__art-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem 0.62rem;
+    margin: 0.72rem 0 0;
+    overflow: visible;
+    padding: 0.1rem 0 0.2rem;
+    scroll-snap-type: none;
+  }
+
+  .share-highlight__art-choice,
+  .share-highlight__art-strip--story .share-highlight__art-choice {
+    min-width: 0;
+    width: auto;
+  }
+
+  .share-highlight__art-thumb,
+  .share-highlight__art-thumb--story {
+    width: 100%;
+  }
+
   .share-highlight__primary-actions {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -730,6 +769,31 @@
   .share-highlight__recovery {
     align-items: stretch;
     flex-direction: column;
+  }
+}
+
+/* At extreme zoom, keep each choice comfortably tappable and let translated
+   names use the remaining row width. */
+@media (max-width: 16rem) {
+  .share-highlight__art-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .share-highlight__art-option {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .share-highlight__art-thumb,
+  .share-highlight__art-thumb--story {
+    width: 3rem;
+  }
+
+  .share-highlight__art-name {
+    margin-top: 0;
+    text-align: left;
   }
 }
 
