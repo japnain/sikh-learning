@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+import { shareHighlightHukamnamaAssets } from '../../assets/share-highlights/manifest'
 import {
   ShareHighlightContentOverflowError,
   computeShareHighlightObjectCover,
@@ -21,7 +22,6 @@ import {
   SHARE_HIGHLIGHT_CARD_WIDTH,
   SHARE_HIGHLIGHT_STORY_HEIGHT,
   SHARE_HIGHLIGHT_STORY_WIDTH,
-  type ShareHighlightArtwork,
   type ShareHighlightCardInput,
   type ShareHighlightPassageInput,
   type ShareHighlightPassageLine,
@@ -1352,6 +1352,45 @@ describe('Canvas rendering and export', () => {
     expect(environment.canvas.height).toBe(0)
   })
 
+  it('renders every approved Hukamnama artwork as a complete expressive Story', async () => {
+    const shortLines = [
+      { id: 'approved-short-header', gurmukhi: 'ਸਲੋਕ ॥', isHeader: true },
+      { id: 'approved-short-1', gurmukhi: 'ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ॥' },
+      { id: 'approved-short-2', gurmukhi: 'ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ॥' },
+    ]
+    const expectedSourceLineIds = shortLines.map(line => line.id)
+
+    for (const artwork of shareHighlightHukamnamaAssets) {
+      const environment = makeFakeRendererEnvironment()
+      const result = await exportShareHighlightStoryPngSet({
+        ...passageInput,
+        artwork,
+        content: {
+          ...passageInput.content,
+          lines: shortLines,
+        },
+      }, environment.options)
+
+      expect(result.pages, artwork.id).toHaveLength(1)
+      expect(result.pages[0]!.layout, artwork.id).toMatchObject({
+        composition: 'expressive',
+        artworkMode: 'portrait-bleed',
+      })
+      expect(result.pages[0]!.selection.includedSourceLineIds, artwork.id)
+        .toEqual(expectedSourceLineIds)
+      expect(environment.options.loadImage, artwork.id)
+        .toHaveBeenCalledTimes(1)
+      expect(environment.options.loadImage, artwork.id)
+        .toHaveBeenCalledWith(artwork.src)
+      expect(environment.context.drawImage, artwork.id).toHaveBeenCalled()
+      expect(environment.createCanvas, artwork.id).not.toHaveBeenCalled()
+      expect(environment.maximumConcurrentEncodings, artwork.id).toBe(1)
+      expect(environment.maximumLiveStoryCanvases, artwork.id).toBe(1)
+      expect(environment.canvas.width, artwork.id).toBe(0)
+      expect(environment.canvas.height, artwork.id).toBe(0)
+    }
+  })
+
   it('exports every normalized long-passage line once in ordered, numbered Story pages', async () => {
     const environment = makeFakeRendererEnvironment()
     const linesWithBlank = [
@@ -1771,39 +1810,12 @@ describe('Canvas rendering and export', () => {
     })
   })
 
-  it('keeps long Stories quiet across all fourteen configured artwork choices', async () => {
-    const artworks: ShareHighlightArtwork[] = Array.from({ length: 14 }, (_, index) => ({
-      id: `art-${index + 1}`,
-      src: `/share/art-${index + 1}.jpg`,
-      focalPosition: { x: (index % 3) / 2, y: (index % 5) / 4 },
-      textSafeZone: { x: 0.05, y: 0.1, width: 0.2, height: 0.18 },
-      overlayTone: index % 2 === 0 ? 'light' : 'warm-dark',
-      storyProfile: {
-        mode: index % 3 === 0
-          ? 'portrait-bleed'
-          : index % 3 === 1 ? 'landscape-hero' : 'pattern-frame',
-        focalPosition: { x: (index % 4) / 3, y: (index % 5) / 4 },
-        heroHeightFraction: 0.3 + ((index % 3) * 0.05),
-        protectedSubject: {
-          bounds: { x: 0.2, y: 0.15, width: 0.35, height: 0.45 },
-          intent: index % 2 === 0 ? 'keep-visible' : 'keep-clear-of-text',
-        },
-      },
-    }))
-    const expectedLayout = layoutShareHighlightStory(
-      july18Ang683Reading,
-      measureStoryByCharacter,
-      'light'
-    )
-    const includedLines = july18Ang683Reading.slice(
-      0,
-      expectedLayout.selection.includedLineCount
-    )
-    const firstExcluded = july18Ang683Reading[expectedLayout.selection.includedLineCount]
+  it('keeps every approved artwork as a bounded mat around an exact long manuscript set', async () => {
+    const expectedSourceLineIds = july18Ang683Reading.map(line => line.id)
 
-    for (const artwork of artworks) {
+    for (const artwork of shareHighlightHukamnamaAssets) {
       const environment = makeFakeRendererEnvironment()
-      const canvas = await renderShareHighlightStory({
+      const result = await exportShareHighlightStoryPngSet({
         ...passageInput,
         artwork,
         content: {
@@ -1812,20 +1824,71 @@ describe('Canvas rendering and export', () => {
         },
       }, environment.options)
 
-      expect(canvas.width).toBe(1080)
-      expect(canvas.height).toBe(1920)
-      expect(environment.options.loadImage).not.toHaveBeenCalled()
-      expect(environment.context.drawImage).not.toHaveBeenCalled()
-      const renderedText = environment.drawnText.join(' ')
-      expect(renderedText).toContain(includedLines[0]!.gurmukhi)
-      expect(renderedText).toContain(includedLines[0]!.meaning)
-      expect(renderedText).toContain(includedLines.at(-1)!.gurmukhi)
-      expect(renderedText).toContain(includedLines.at(-1)!.meaning)
-      if (firstExcluded) {
-        expect(renderedText).not.toContain(firstExcluded.gurmukhi)
-        expect(renderedText).not.toContain(firstExcluded.meaning)
-      }
+      const exportedSourceLineIds = result.pages.flatMap(page => (
+        page.selection.includedSourceLineIds
+      ))
+      expect(result.pages.length, artwork.id).toBeGreaterThan(1)
+      expect(result.pages.every(page => (
+        page.layout.composition === 'manuscript'
+        && page.layout.artworkMode === 'portrait-bleed'
+        && page.layout.body.x === 64
+        && page.layout.body.y === 282
+        && page.layout.body.width === 952
+        && page.layout.readingSurface.x === 18
+        && page.layout.readingSurface.y === 72
+        && page.layout.readingSurface.width === 1044
+        && page.layout.readingSurface.height === 1776
+      )), artwork.id).toBe(true)
+      expect(exportedSourceLineIds, artwork.id).toEqual(expectedSourceLineIds)
+      expect(new Set(exportedSourceLineIds).size, artwork.id)
+        .toBe(expectedSourceLineIds.length)
+      expect(environment.options.loadImage, artwork.id)
+        .toHaveBeenCalledTimes(1)
+      expect(environment.options.loadImage, artwork.id)
+        .toHaveBeenCalledWith(artwork.src)
+      expect(environment.context.drawImage, artwork.id)
+        .toHaveBeenCalledTimes(result.pages.length)
+      expect(environment.maximumConcurrentEncodings, artwork.id).toBe(1)
+      expect(environment.maximumLiveStoryCanvases, artwork.id).toBe(1)
+      expect(environment.createCanvas, artwork.id)
+        .toHaveBeenCalledTimes(result.pages.length - 1)
+      expect(environment.canvases.every(canvas => (
+        canvas.width === 0 && canvas.height === 0
+      )), artwork.id).toBe(true)
+      const colorStops = environment.gradients.flatMap(
+        gradient => gradient.addColorStop.mock.calls
+      )
+      expect(colorStops, artwork.id)
+        .toContainEqual([0, 'rgba(251, 245, 232, 0.96)'])
+      expect(colorStops, artwork.id)
+        .toContainEqual([1, 'rgba(240, 227, 202, 0.96)'])
     }
+  })
+
+  it('keeps a non-opted manuscript on the opaque quiet background', async () => {
+    const environment = makeFakeRendererEnvironment()
+    const result = await exportShareHighlightStoryPngSet({
+      ...passageInput,
+      artwork: {
+        ...passageInput.artwork!,
+        storyProfile: { mode: 'portrait-bleed' },
+      },
+      content: {
+        ...passageInput.content,
+        lines: july18Ang683Reading,
+      },
+    }, environment.options)
+
+    expect(result.pages.length).toBeGreaterThan(1)
+    expect(result.pages.every(page => page.layout.composition === 'manuscript')).toBe(true)
+    expect(environment.options.loadImage).not.toHaveBeenCalled()
+    expect(environment.context.drawImage).not.toHaveBeenCalled()
+    const colorStops = environment.gradients.flatMap(
+      gradient => gradient.addColorStop.mock.calls
+    )
+    expect(colorStops).toContainEqual([0, '#fbf5e8'])
+    expect(colorStops).toContainEqual([1, '#f0e3ca'])
+    expect(colorStops).not.toContainEqual([0, 'rgba(251, 245, 232, 0.96)'])
   })
 
   it('uses a protected subject as the crop focus when a Story profile omits a focal point', async () => {
