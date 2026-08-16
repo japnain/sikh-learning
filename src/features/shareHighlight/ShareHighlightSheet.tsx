@@ -1,8 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import {
+  shareHighlightAssets,
   shareHighlightHukamnamaAssets,
-  shareHighlightLineAssets,
-  type ShareHighlightAsset,
 } from '../../assets/share-highlights/manifest'
 import { IconCheck, IconClose, IconShare } from '../../components/icons'
 import ModalSheet from '../../components/ModalSheet'
@@ -98,7 +97,6 @@ interface ShareHighlightSheetCopy {
   unavailable: string
   artwork: string
   artworkHelp: string
-  hukamnamaArtworkHelp: (count: number) => string
   noArtwork: string
   artworkNumber: (index: number) => string
   textPosition: string
@@ -116,7 +114,6 @@ interface ShareHighlightSheetCopy {
   passageTitle: string
   passageTextLayersHelp: string
   quietPassageArtworkNote: string
-  framedPassageArtworkNote: string
   passageComplete: string
   passageExcerpt: string
   personalPassageExcerpt: string
@@ -195,7 +192,6 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     unavailable: 'Not available for this selection',
     artwork: 'Artwork',
     artworkHelp: 'Choose one visual treatment, or keep the card quiet.',
-    hukamnamaArtworkHelp: count => `${count} original treatments, composed to keep Gurbani clear. Choose a mood or keep the Story quiet.`,
     noArtwork: 'No art',
     artworkNumber: index => `Artwork ${index}`,
     textPosition: 'Text position',
@@ -213,7 +209,6 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passageTitle: 'Create a Story image',
     passageTextLayersHelp: 'Gurmukhi is always included. Meaning places each complete selected translation directly below its matching Gurbani line. Choose Transliteration instead for pronunciation.',
     quietPassageArtworkNote: 'Long Hukamnamas use a quiet manuscript background so the selected passage stays balanced and legible.',
-    framedPassageArtworkNote: 'Long Hukamnamas keep Gurbani on a quiet manuscript page; your chosen artwork becomes its outer frame.',
     passageComplete: 'Complete Hukamnama',
     passageExcerpt: "Excerpt from today's Hukamnama",
     personalPassageExcerpt: 'Personal Hukamnama excerpt',
@@ -302,7 +297,6 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     unavailable: 'ਇਸ ਚੋਣ ਲਈ ਉਪਲਬਧ ਨਹੀਂ',
     artwork: 'ਕਲਾ',
     artworkHelp: 'ਇੱਕ ਦ੍ਰਿਸ਼ ਚੁਣੋ ਜਾਂ ਕਾਰਡ ਨੂੰ ਸਾਦਾ ਰੱਖੋ।',
-    hukamnamaArtworkHelp: count => `${count} ਮੌਲਿਕ ਦ੍ਰਿਸ਼, ਗੁਰਬਾਣੀ ਨੂੰ ਸਾਫ਼ ਰੱਖਣ ਲਈ ਬਣਾਏ ਗਏ। ਕੋਈ ਮਾਹੌਲ ਚੁਣੋ ਜਾਂ ਸਟੋਰੀ ਨੂੰ ਸਾਦਾ ਰੱਖੋ।`,
     noArtwork: 'ਕੋਈ ਕਲਾ ਨਹੀਂ',
     artworkNumber: index => `ਕਲਾ ${index}`,
     textPosition: 'ਲਿਖਤ ਦੀ ਥਾਂ',
@@ -320,7 +314,6 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passageTitle: 'ਸਟੋਰੀ ਤਸਵੀਰ ਬਣਾਓ',
     passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਅਰਥ ਹਰ ਗੁਰਬਾਣੀ ਪੰਕਤੀ ਦੇ ਬਿਲਕੁਲ ਹੇਠਾਂ ਉਸ ਦਾ ਪੂਰਾ ਚੁਣਿਆ ਅਨੁਵਾਦ ਦਿਖਾਉਂਦਾ ਹੈ। ਉਚਾਰਨ ਲਈ ਇਸ ਦੀ ਥਾਂ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
     quietPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਲਈ ਸਾਦਾ ਹੱਥ-ਲਿਖਤ ਪਿਛੋਕੜ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਜੋ ਚੁਣਿਆ ਪਾਠ ਸੰਤੁਲਿਤ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹੇ।',
-    framedPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਵਿੱਚ ਗੁਰਬਾਣੀ ਸਾਦੇ ਹੱਥ-ਲਿਖਤ ਸਫ਼ੇ ਉੱਤੇ ਰਹਿੰਦੀ ਹੈ; ਤੁਹਾਡੀ ਚੁਣੀ ਕਲਾ ਉਸ ਦਾ ਬਾਹਰੀ ਫਰੇਮ ਬਣਦੀ ਹੈ।',
     passageComplete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
     passageExcerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
     personalPassageExcerpt: 'ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
@@ -409,7 +402,6 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     unavailable: 'इस चयन के लिए उपलब्ध नहीं',
     artwork: 'कलाकृति',
     artworkHelp: 'एक दृश्य चुनें या कार्ड को सादा रखें।',
-    hukamnamaArtworkHelp: count => `${count} मौलिक दृश्य, गुरबाणी को साफ़ रखने के लिए बनाए गए। कोई भाव चुनें या स्टोरी को सादा रखें।`,
     noArtwork: 'बिना कला',
     artworkNumber: index => `कलाकृति ${index}`,
     textPosition: 'पाठ की जगह',
@@ -427,7 +419,6 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     passageTitle: 'स्टोरी छवि बनाएँ',
     passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। अर्थ हर गुरबाणी पंक्ति के ठीक नीचे उसका पूरा चुना हुआ अनुवाद दिखाता है। उच्चारण के लिए इसकी जगह लिप्यंतरण चुनें।',
     quietPassageArtworkNote: 'लंबे हुकमनामों में शांत पांडुलिपि पृष्ठभूमि रहती है, ताकि चुना हुआ अंश संतुलित और पढ़ने योग्य रहे।',
-    framedPassageArtworkNote: 'लंबे हुकमनामों में गुरबाणी शांत पांडुलिपि पृष्ठ पर रहती है; आपकी चुनी कलाकृति उसका बाहरी फ्रेम बनती है।',
     passageComplete: 'पूरा हुकमनामा',
     passageExcerpt: 'आज के हुकमनामे का अंश',
     personalPassageExcerpt: 'व्यक्तिगत हुकमनामे का अंश',
@@ -507,7 +498,7 @@ function resolveInitialArtworkId(
   if (initialArtworkId === null) return NO_ARTWORK_ID
   const availableArtwork = isPassage
     ? shareHighlightHukamnamaAssets
-    : shareHighlightLineAssets
+    : shareHighlightAssets
   if (initialArtworkId && availableArtwork.some(asset => asset.id === initialArtworkId)) {
     return initialArtworkId
   }
@@ -725,22 +716,11 @@ function buildShareCompanionText(
   ].filter(Boolean).join('\n')
 }
 
-function getArtworkName(asset: ShareHighlightAsset, locale: UiLocale) {
-  const fallbackName = asset.id
+function getArtworkName(assetId: string) {
+  return assetId
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ')
-  return asset.hukamnamaUse?.displayName[locale] ?? fallbackName
-}
-
-function getArtworkAccessibleName(asset: ShareHighlightAsset, locale: UiLocale) {
-  const name = getArtworkName(asset, locale)
-  return locale === 'en' ? `${name}. ${asset.description}` : name
-}
-
-function getArtworkDescription(asset: ShareHighlightAsset, locale: UiLocale) {
-  return asset.hukamnamaUse?.description[locale]
-    ?? (locale === 'en' ? asset.description : null)
 }
 
 function makeFileName(verseId?: number) {
@@ -821,7 +801,7 @@ export default function ShareHighlightSheet({
   )
   const availableArtwork = isPassage
     ? shareHighlightHukamnamaAssets
-    : shareHighlightLineAssets
+    : shareHighlightAssets
   const [selectedArtworkId, setSelectedArtworkId] = useState(() => (
     resolveInitialArtworkId(initialArtworkId, isPassage)
   ))
@@ -1124,7 +1104,7 @@ export default function ShareHighlightSheet({
     }
   }, [canvasElement, displayedPngExport])
 
-  const usesManuscriptPassageLayout = passageExport?.layout.composition === 'manuscript'
+  const usesQuietPassageLayout = passageExport?.layout.composition === 'manuscript'
   const imagePassageLines = isPassage
     ? getPassageImageLines(content, passageSelection)
     : []
@@ -1522,24 +1502,16 @@ export default function ShareHighlightSheet({
               ) : null}
             </section>
 
-            <section className="share-highlight__control-group">
-              <fieldset
-                className="share-highlight__art-fieldset"
-                role="radiogroup"
-                aria-labelledby={`${artworkGroupId}-label`}
-                aria-describedby={`${artworkGroupId}-help`}
-              >
-              <legend id={`${artworkGroupId}-label`} className="share-highlight__control-label">
-                {copy.artwork}
-              </legend>
-              <p id={`${artworkGroupId}-help`} className="share-highlight__control-help">
-                {isPassage
-                  ? copy.hukamnamaArtworkHelp(availableArtwork.length)
-                  : copy.artworkHelp}
-              </p>
-              <div
-                className={`share-highlight__art-strip${isPassage ? ' share-highlight__art-strip--story' : ''}`}
-              >
+            {usesQuietPassageLayout ? (
+              <section className="share-highlight__quiet-layout-note" role="note">
+                <p className="share-highlight__control-label">{copy.noArtwork}</p>
+                <p className="share-highlight__control-help">{copy.quietPassageArtworkNote}</p>
+              </section>
+            ) : (
+            <fieldset className="share-highlight__control-group">
+              <legend className="share-highlight__control-label">{copy.artwork}</legend>
+              <p className="share-highlight__control-help">{copy.artworkHelp}</p>
+              <div className="share-highlight__art-strip" role="radiogroup" aria-label={copy.artwork}>
                 <div className="share-highlight__art-choice">
                   <input
                     id={`${artworkGroupId}-none`}
@@ -1555,58 +1527,34 @@ export default function ShareHighlightSheet({
                     }}
                   />
                   <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-none`}>
-                    <span
-                      className={`share-highlight__art-thumb share-highlight__no-art${isPassage ? ' share-highlight__art-thumb--story' : ''}`}
-                      aria-hidden="true"
-                    >
-                      ∅
-                    </span>
+                    <span className="share-highlight__art-thumb share-highlight__no-art" aria-hidden="true">∅</span>
                     <span className="share-highlight__art-name">{copy.noArtwork}</span>
                   </label>
                 </div>
-                {availableArtwork.map((asset, index) => {
-                  const inputId = `${artworkGroupId}-${asset.id}`
-                  const description = isPassage ? getArtworkDescription(asset, locale) : null
-                  const descriptionId = `${inputId}-description`
-                  return (
-                    <div className="share-highlight__art-choice" key={asset.id}>
-                      <input
-                        id={inputId}
-                        className="share-highlight__art-input"
-                        type="radio"
-                        name={artworkGroupId}
-                        value={asset.id}
-                        aria-label={isPassage ? undefined : getArtworkAccessibleName(asset, locale)}
-                        aria-describedby={description ? descriptionId : undefined}
-                        checked={selectedArtworkId === asset.id}
-                        onChange={() => {
-                          setRendering(true)
-                          setSelectedArtworkId(asset.id)
-                        }}
-                      />
-                      <label className="share-highlight__art-option" htmlFor={inputId}>
-                        <span className={`share-highlight__art-thumb${isPassage ? ' share-highlight__art-thumb--story' : ''}`}>
-                          <img src={asset.thumbnail} alt="" loading="lazy" decoding="async" />
-                        </span>
-                        <span className="share-highlight__art-name">
-                          {isPassage ? getArtworkName(asset, locale) : copy.artworkNumber(index + 1)}
-                        </span>
-                      </label>
-                      {description ? (
-                        <span id={descriptionId} className="sr-only">{description}</span>
-                      ) : null}
-                    </div>
-                  )
-                })}
+                {availableArtwork.map((asset, index) => (
+                  <div className="share-highlight__art-choice" key={asset.id}>
+                    <input
+                      id={`${artworkGroupId}-${asset.id}`}
+                      className="share-highlight__art-input"
+                      type="radio"
+                      name={artworkGroupId}
+                      value={asset.id}
+                      aria-label={`${getArtworkName(asset.id)}. ${asset.description}`}
+                      checked={selectedArtworkId === asset.id}
+                      onChange={() => {
+                        setRendering(true)
+                        setSelectedArtworkId(asset.id)
+                      }}
+                    />
+                    <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-${asset.id}`}>
+                      <span className="share-highlight__art-thumb">
+                        <img src={asset.thumbnail} alt="" loading="lazy" decoding="async" />
+                      </span>
+                      <span className="share-highlight__art-name">{copy.artworkNumber(index + 1)}</span>
+                    </label>
+                  </div>
+                ))}
               </div>
-              {usesManuscriptPassageLayout ? (
-                <p className="share-highlight__control-help" role="note">
-                  {selectedArtwork
-                    ? copy.framedPassageArtworkNote
-                    : copy.quietPassageArtworkNote}
-                </p>
-              ) : null}
-              </fieldset>
               {selectedArtwork && !isPassage ? (
                 <div className="share-highlight__position-control">
                   <p id={`${positionGroupId}-label`} className="share-highlight__control-label">
@@ -1653,7 +1601,8 @@ export default function ShareHighlightSheet({
                   </div>
                 </div>
               ) : null}
-            </section>
+            </fieldset>
+            )}
 
             <section className="share-highlight__control-group">
               <label className="share-highlight__caption-label" htmlFor={captionId}>

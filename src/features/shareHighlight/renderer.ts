@@ -1605,8 +1605,7 @@ function storySurfaceFill(
 function drawStoryReadingSurface(
   context: CanvasRenderingContext2D,
   layout: ShareHighlightStoryLayout,
-  palette: ShareHighlightOverlayPalette,
-  hasManuscriptArtwork = false
+  palette: ShareHighlightOverlayPalette
 ) {
   const isManuscript = layout.composition === 'manuscript'
   context.save()
@@ -1626,12 +1625,8 @@ function drawStoryReadingSurface(
       0,
       layout.readingSurface.y + layout.readingSurface.height
     )
-    parchment.addColorStop(0, hasManuscriptArtwork
-      ? 'rgba(251, 245, 232, 0.96)'
-      : '#fbf5e8')
-    parchment.addColorStop(1, hasManuscriptArtwork
-      ? 'rgba(240, 227, 202, 0.96)'
-      : '#f0e3ca')
+    parchment.addColorStop(0, '#fbf5e8')
+    parchment.addColorStop(1, '#f0e3ca')
     context.fillStyle = parchment
   } else {
     context.fillStyle = storySurfaceFill(palette, layout.composition === 'expressive')
@@ -2124,9 +2119,6 @@ function resolveStoryArtworkProfile(
       0.24,
       0.48
     ),
-    ...(authored?.manuscriptTreatment
-      ? { manuscriptTreatment: authored.manuscriptTreatment }
-      : {}),
     ...(authored?.protectedSubject
       ? { protectedSubject: authored.protectedSubject }
       : {}),
@@ -2319,22 +2311,15 @@ function drawPlannedShareHighlightStory(
   const palette = resolveShareHighlightOverlayPalette(
     layout.composition !== 'expressive' ? 'light' : plan.overlayTone
   )
-  const hasManuscriptArtwork = (
-    layout.composition === 'manuscript'
-    && plan.storyProfile.manuscriptTreatment === 'art-frame'
-    && Boolean(plan.artwork)
-  )
 
   context.clearRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
   drawStoryArtworkBackground(
     context,
-    layout.composition === 'expressive' || hasManuscriptArtwork
-      ? plan.artwork
-      : null,
+    layout.composition === 'expressive' ? plan.artwork : null,
     plan.storyProfile,
     layout.composition
   )
-  drawStoryReadingSurface(context, layout, palette, hasManuscriptArtwork)
+  drawStoryReadingSurface(context, layout, palette)
   drawStoryMetadataSurfaces(context, layout, palette, plan.footerMode)
   drawStoryHeader(
     context,
@@ -2380,22 +2365,14 @@ async function prepareShareHighlightStoryRenderPlan(
   let layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
   if (layouts.length === 0) throw new Error('A Hukamnama Story plan requires at least one page.')
 
-  // Exact text preflight decides whether this is an expressive Story or an
-  // explicitly reviewed art-matted manuscript before any image is decoded.
-  // Long-form pagination never depends on artwork dimensions, so only an
-  // expressive layout needs to be planned again after the selected image loads.
-  const expressiveArtwork = layouts[0]!.composition === 'expressive'
-  const manuscriptArtwork = (
-    layouts[0]!.composition === 'manuscript'
-    && storyProfile.manuscriptTreatment === 'art-frame'
-  )
-  if ((expressiveArtwork || manuscriptArtwork) && artworkSrc) {
+  // Artwork is relevant only to an expressive complete layout. Exact text
+  // preflight therefore prevents a long manuscript set from decoding an image
+  // that none of its pages will draw.
+  if (layouts[0]!.composition === 'expressive' && artworkSrc) {
     artwork = await (options.loadImage ?? loadDecodedImage)(artworkSrc)
     overlayTone = input.artwork?.overlayTone
     storyProfile = resolveStoryArtworkProfile(input, artwork)
-    if (expressiveArtwork) {
-      layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
-    }
+    layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
   }
 
   return {

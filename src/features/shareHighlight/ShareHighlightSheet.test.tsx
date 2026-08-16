@@ -1,5 +1,4 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import ShareHighlightSheet, { type ShareHighlightContent } from './ShareHighlightSheet'
 import { getCanonicalSourceUrl, getHukamnamaShareUrl } from './sourceUrl'
@@ -264,21 +263,9 @@ describe('ShareHighlightSheet', () => {
     expect(preview.parentElement).toHaveClass('share-highlight__preview-frame--story')
 
     const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(13)
-    expect(artworkGroup).toHaveAccessibleDescription(
-      '12 original treatments, composed to keep Gurbani clear. Choose a mood or keep the Story quiet.'
-    )
-    const quietParchment = within(artworkGroup).getByRole('radio', { name: 'Quiet Parchment' })
-    const emeraldMist = within(artworkGroup).getByRole('radio', { name: 'Emerald Mist' })
-    const silverDusk = within(artworkGroup).getByRole('radio', { name: 'Silver Dusk' })
-    expect(quietParchment).toBeChecked()
-    expect(quietParchment).toHaveAccessibleDescription(/forest-green and warm-cream/i)
-    expect(emeraldMist).not.toBeChecked()
-    expect(emeraldMist).toHaveAccessibleDescription(/emerald-green mist/i)
-    expect(silverDusk).not.toBeChecked()
-    expect(silverDusk).toHaveAccessibleDescription(/silver-grey, pale lilac/i)
-    expect(within(dialog).getByText('12 original treatments, composed to keep Gurbani clear. Choose a mood or keep the Story quiet.'))
-      .toBeInTheDocument()
+    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(2)
+    expect(within(artworkGroup).getByRole('radio', { name: /Quiet Parchment.*abstract parchment/i }))
+      .toBeChecked()
     expect(within(artworkGroup).queryByRole('radio', { name: /Court Mural/i })).not.toBeInTheDocument()
     expect(within(artworkGroup).queryByRole('radio', { name: /Waterside Temple/i })).not.toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: 'Transliteration' })).toHaveAttribute('aria-pressed', 'false')
@@ -322,119 +309,6 @@ describe('ShareHighlightSheet', () => {
     expect(mocks.exportPng).not.toHaveBeenCalled()
   })
 
-  it('connects every curated Hukamnama treatment to the live Story renderer', async () => {
-    const expectedArtworkIds = [
-      'quiet-parchment',
-      'emerald-mist',
-      'indigo-rain',
-      'rose-dawn',
-      'copper-earth',
-      'river-stone',
-      'night-gold',
-      'sage-canopy',
-      'monsoon-blue',
-      'sandstone-light',
-      'plum-ink',
-      'silver-dusk',
-    ]
-    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
-    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-    const artworkChoices = within(artworkGroup).getAllByRole('radio').slice(1)
-
-    expect(artworkChoices).toHaveLength(expectedArtworkIds.length)
-    const artworkStrip = artworkGroup.querySelector('.share-highlight__art-strip--story')
-    expect(artworkStrip).toBeInTheDocument()
-    expect(artworkStrip?.querySelectorAll('.share-highlight__art-thumb--story')).toHaveLength(13)
-
-    for (const [index, artworkId] of expectedArtworkIds.entries()) {
-      fireEvent.click(artworkChoices[index]!)
-      await waitFor(() => {
-        expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe(artworkId)
-      })
-      expect(artworkChoices[index]).toBeChecked()
-    }
-  })
-
-  it('moves through the native artwork radio set with arrow keys and preserves focus', async () => {
-    const user = userEvent.setup()
-    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
-    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-    const quietParchment = within(artworkGroup).getByRole('radio', { name: 'Quiet Parchment' })
-    const emeraldMist = within(artworkGroup).getByRole('radio', { name: 'Emerald Mist' })
-
-    quietParchment.focus()
-    await user.keyboard('[ArrowRight]')
-
-    expect(emeraldMist).toHaveFocus()
-    expect(emeraldMist).toBeChecked()
-    await waitFor(() => {
-      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('emerald-mist')
-    })
-  })
-
-  it('fails closed when a legacy artwork id is injected into a Hukamnama', async () => {
-    render(
-      <ShareHighlightSheet
-        open
-        onClose={vi.fn()}
-        content={passageContent}
-        initialArtworkId="court-mural"
-      />
-    )
-    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-
-    expect(within(artworkGroup).queryByRole('radio', { name: /Court Mural/i }))
-      .not.toBeInTheDocument()
-    expect(within(artworkGroup).getByRole('radio', { name: /Quiet Parchment/i }))
-      .toBeChecked()
-    await waitFor(() => {
-      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id)
-        .toBe('quiet-parchment')
-    })
-  })
-
-  it('localizes Hukamnama artwork names without mixing English into accessible labels', () => {
-    render(
-      <ShareHighlightSheet
-        open
-        onClose={vi.fn()}
-        content={passageContent}
-        locale="pa"
-      />
-    )
-    const dialog = screen.getByRole('dialog', { name: 'ਝਲਕ ਸਾਂਝੀ ਕਰੋ' })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'ਕਲਾ' })
-
-    const emeraldMist = within(artworkGroup).getByRole('radio', { name: 'ਪੰਨਾ ਧੁੰਦ' })
-    expect(emeraldMist).toHaveAccessibleDescription(/ਪੰਨਾ-ਹਰੀ ਧੁੰਦ/)
-    expect(within(artworkGroup).getByRole('radio', { name: 'ਚਾਂਦੀਲੀ ਸੰਝ' }))
-      .toBeInTheDocument()
-    expect(within(dialog).getByText(/12 ਮੌਲਿਕ ਦ੍ਰਿਸ਼/)).toBeInTheDocument()
-  })
-
-  it('provides Hindi names, descriptions, and chooser help without English fallback copy', () => {
-    render(
-      <ShareHighlightSheet
-        open
-        onClose={vi.fn()}
-        content={passageContent}
-        locale="hi"
-      />
-    )
-    const dialog = screen.getByRole('dialog', { name: 'अंश साझा करें' })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'कलाकृति' })
-    const emeraldMist = within(artworkGroup).getByRole('radio', { name: 'पन्ना धुंध' })
-
-    expect(artworkGroup).toHaveAccessibleDescription(/12 मौलिक दृश्य/)
-    expect(emeraldMist).toHaveAccessibleDescription(/पन्ना-हरी धुंध/)
-    expect(emeraldMist).not.toHaveAccessibleDescription(/Emerald|Ivory/i)
-    expect(within(artworkGroup).getByRole('radio', { name: 'रुपहली सांझ' }))
-      .toBeInTheDocument()
-  })
-
   it('falls back to the exact reading route when dated short-link metadata is invalid', async () => {
     const exactPath = '/study?hukamnamaDate=2026-07-15'
     render(
@@ -460,7 +334,7 @@ describe('ShareHighlightSheet', () => {
       .toBe(`https://naamras.xyz${exactPath}`)
   })
 
-  it('keeps artwork choices available when renderer preflight chooses an art-matted manuscript', async () => {
+  it('hides artwork controls after renderer preflight chooses the quiet manuscript', async () => {
     const longPassageContent: ShareHighlightContent = {
       ...passageContent,
       passageLines: [
@@ -477,24 +351,10 @@ describe('ShareHighlightSheet', () => {
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
 
     await waitFor(() => {
-      expect(within(dialog).getByText(/chosen artwork becomes its outer frame/i)).toBeInTheDocument()
-    })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(13)
-    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('quiet-parchment')
-
-    const nightGold = within(artworkGroup).getByRole('radio', { name: /Night Gold/i })
-    fireEvent.click(nightGold)
-    await waitFor(() => {
-      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('night-gold')
-    })
-    expect(nightGold).toBeChecked()
-
-    fireEvent.click(within(artworkGroup).getByRole('radio', { name: 'No art' }))
-    await waitFor(() => {
-      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork).toBeNull()
+      expect(within(dialog).queryByRole('radiogroup', { name: 'Artwork' })).not.toBeInTheDocument()
       expect(within(dialog).getByText(/quiet manuscript background/i)).toBeInTheDocument()
     })
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('quiet-parchment')
   })
 
   it('reports incomplete supports instead of silently presenting a partial visual layer', async () => {
