@@ -40,11 +40,6 @@ export interface ShareHighlightStoryArtworkProfile {
   /** Height of a landscape hero as a fraction of the 9:16 frame. */
   heroHeightFraction?: number
   protectedSubject?: ShareHighlightStoryProtectedSubject
-  /**
-   * Explicitly reviewed treatment for long manuscript Stories. Omission is
-   * fail-closed: the manuscript stays on the deterministic quiet background.
-   */
-  manuscriptTreatment?: 'art-frame'
 }
 
 /**
