@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF9A10010000000000000001 /* NaamRasImageShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A10010000000000000002 /* NaamRasImageShare.swift */; };
 		04D1BDBC6941C2986015CF89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D518F989F24031B323E01E /* Foundation.framework */; };
 		21232B199D5606BADE752132 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878445B0E62025426D5259B /* OnboardingFlowView.swift */; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF9A10010000000000000002 /* NaamRasImageShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaamRasImageShare.swift; sourceTree = "<group>"; };
 		1964B89DF477CD9E3A59BFF3 /* NaamRasNativeStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NaamRasNativeStateTests.swift; sourceTree = "<group>"; };
 		2567A7A34E25A6C8ED9E3990 /* NativeAppState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NativeAppState.swift; sourceTree = "<group>"; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
+				CF9A10010000000000000002 /* NaamRasImageShare.swift */,
 				504EC30B1FED79650016851F /* Main.storyboard */,
 				504EC30E1FED79650016851F /* Assets.xcassets */,
 				504EC3101FED79650016851F /* LaunchScreen.storyboard */,
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+				CF9A10010000000000000001 /* NaamRasImageShare.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,31 @@ export interface ShareHighlightStoryProtectedSubject {
   intent: 'keep-visible' | 'keep-clear-of-text'
 }
 
+export type ShareHighlightStoryArtworkFit = 'protected-cover' | 'contain'
+
+export type ShareHighlightStoryFrameEffect =
+  | 'warm'
+  | 'cool'
+  | 'vivid'
+  | 'pattern'
+  | 'architectural'
+  | 'amber'
+
+/** Semantic art direction; the renderer owns all platform-safe pixel geometry. */
+export interface ShareHighlightStoryArtworkPresentation {
+  short: {
+    fit: ShareHighlightStoryArtworkFit
+    /** Maximum crisp-art height inside the fixed short-Story art corridor. */
+    stageHeight: number
+  }
+  long: {
+    frameEffect: ShareHighlightStoryFrameEffect
+    cameoFit: ShareHighlightStoryArtworkFit
+    /** Optional aspect cap for deliberately narrow portrait cameos. */
+    cameoMaxAspect?: number
+  }
+}
+
 /**
  * Optional, hand-authored Story treatment for an artwork. These cues stay out
  * of the composer UI: the selected image simply arrives with a good crop and
@@ -40,6 +65,7 @@ export interface ShareHighlightStoryArtworkProfile {
   /** Height of a landscape hero as a fraction of the 9:16 frame. */
   heroHeightFraction?: number
   protectedSubject?: ShareHighlightStoryProtectedSubject
+  presentation?: ShareHighlightStoryArtworkPresentation
 }
 
 /**
@@ -226,7 +252,8 @@ export interface ShareHighlightStorySelection {
 
 export interface ShareHighlightStoryLayout {
   width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
-  height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
+  /** Compact portrait for short readings; complete single images may grow taller. */
+  height: number
   body: ShareHighlightPixelRect
   /** Opaque or near-opaque field that guarantees contrast behind the reading. */
   readingSurface: ShareHighlightPixelRect
@@ -259,7 +286,7 @@ export interface ShareHighlightStoryPngSetPage {
   blob: Blob
   file: File
   width: typeof SHARE_HIGHLIGHT_STORY_WIDTH
-  height: typeof SHARE_HIGHLIGHT_STORY_HEIGHT
+  height: number
   layout: ShareHighlightStoryLayout
   selection: ShareHighlightStorySelection
 }
@@ -278,22 +305,22 @@ export interface ShareHighlightStoryPngSet {
 export type ShareHighlightShareResult =
   | {
       status: 'shared'
-      method: 'web-share'
+      method: 'web-share' | 'native-share'
       /** The richest payload accepted by the browser/selected share target. */
       payload: 'full' | 'without-url' | 'file-only'
     }
   | {
       status: 'cancelled'
-      method: 'web-share'
+      method: 'web-share' | 'native-share'
     }
   | {
       status: 'unsupported'
-      method: 'web-share'
+      method: 'web-share' | 'native-share'
       reason: 'api-unavailable' | 'file-share-unsupported'
       error?: unknown
     }
   | {
       status: 'failed'
-      method: 'web-share'
+      method: 'web-share' | 'native-share'
       error: unknown
     }

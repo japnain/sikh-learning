@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import {
   shareHighlightAssets,
   shareHighlightHukamnamaAssets,
@@ -9,7 +9,8 @@ import type { UiLocale } from '../../types'
 import { focusElementWithoutAppScroll } from '../../utils/appScroll'
 import {
   exportShareHighlightPng,
-  exportShareHighlightStoryPngSet,
+  exportShareHighlightHukamnamaPng,
+  HukamnamaImageTooLongError,
 } from './renderer'
 import {
   copyShareHighlightText,
@@ -19,8 +20,8 @@ import {
   shareHighlightFiles,
 } from './share'
 import { getCanonicalSourceUrl, getHukamnamaShareUrl } from './sourceUrl'
+import { isNativeImagePlatform, saveNativeHighlightFiles } from './nativeShare'
 import type {
-  ShareHighlightArtwork,
   ShareHighlightCardInput,
   ShareHighlightPassageInput,
   ShareHighlightPassageLine,
@@ -35,9 +36,18 @@ import { SHARE_HIGHLIGHT_CARD_HEIGHT, SHARE_HIGHLIGHT_STORY_HEIGHT } from './typ
 import './ShareHighlightSheet.css'
 
 const NO_ARTWORK_ID = 'none'
+const DEFAULT_HUKAMNAMA_ARTWORK_ID = 'interior-audience'
+const HUKAMNAMA_ARTWORK_PREFERENCE_KEY = 'naamras.share-highlight.hukamnama-artwork.v1'
 const SOCIAL_NOTE_LIMIT = 280
 const RENDER_DEBOUNCE_MS = 90
+const PREVIEW_DECODE_TIMEOUT_MS = 12_000
 const SHARE_ACTION_TIMEOUT_MS = 45_000
+
+const NATIVE_SAVE_COPY = {
+  en: { label: 'Save to Photos', saving: 'Saving to Photos…', saved: 'Saved to Photos.', failed: 'The image was not saved. Try again, or use Share image to save to Files.', permissionFailed: 'The image was not saved. Allow NaamRas to add photos in Settings, or use Share image to save to Files.' },
+  pa: { label: 'ਫ਼ੋਟੋਆਂ ਵਿੱਚ ਸੰਭਾਲੋ', saving: 'ਫ਼ੋਟੋਆਂ ਵਿੱਚ ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ…', saved: 'ਫ਼ੋਟੋਆਂ ਵਿੱਚ ਸੰਭਾਲਿਆ ਗਿਆ।', failed: 'ਤਸਵੀਰ ਸੰਭਾਲੀ ਨਹੀਂ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਫ਼ਾਈਲਾਂ ਵਿੱਚ ਸੰਭਾਲਣ ਲਈ ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ।', permissionFailed: 'ਤਸਵੀਰ ਸੰਭਾਲੀ ਨਹੀਂ ਗਈ। ਸੈਟਿੰਗਾਂ ਵਿੱਚ NaamRas ਨੂੰ ਫ਼ੋਟੋਆਂ ਜੋੜਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ ਜਾਂ ਫ਼ਾਈਲਾਂ ਵਿੱਚ ਸੰਭਾਲਣ ਲਈ ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ।' },
+  hi: { label: 'फ़ोटो में सहेजें', saving: 'फ़ोटो में सहेजा जा रहा है…', saved: 'फ़ोटो में सहेजा गया।', failed: 'छवि सहेजी नहीं गई। फिर कोशिश करें या फ़ाइलों में सहेजने के लिए छवि साझा करें।', permissionFailed: 'छवि सहेजी नहीं गई। सेटिंग्स में NaamRas को फ़ोटो जोड़ने की अनुमति दें या फ़ाइलों में सहेजने के लिए छवि साझा करें।' },
+} satisfies Record<UiLocale, { label: string; saving: string; saved: string; failed: string; permissionFailed: string }>
 
 export interface ShareHighlightContent {
   gurmukhi: string
@@ -97,8 +107,15 @@ interface ShareHighlightSheetCopy {
   unavailable: string
   artwork: string
   artworkHelp: string
+  passageArtworkHelp: (count: number) => string
   noArtwork: string
-  artworkNumber: (index: number) => string
+  noArtworkDescription: string
+  selectedArtwork: string
+  artworkAppliesToSet: (count: number) => string
+  applyingArtwork: (name: string) => string
+  artworkReady: (name: string) => string
+  artworkSetReady: (name: string, count: number) => string
+  useNoArtwork: string
   textPosition: string
   textPositionHelp: string
   positionAuto: string
@@ -111,10 +128,9 @@ interface ShareHighlightSheetCopy {
   selectedExcerpt: string
   passagePreface: string
   personalPassagePreface: string
-  passageTitle: string
   passageTextLayersHelp: string
-  quietPassageArtworkNote: string
   passageComplete: string
+  tallImageHint: string
   passageExcerpt: string
   personalPassageExcerpt: string
   passageImageCoverage: (included: number, total: number) => string
@@ -168,6 +184,7 @@ interface ShareHighlightSheetCopy {
   downloadedSet: (count: number) => string
   copied: string
   renderError: string
+  imageTooLong: (supportLabel?: string) => string
   retry: string
   actionError: string
   characters: (count: number) => string
@@ -176,7 +193,7 @@ interface ShareHighlightSheetCopy {
 const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
   en: {
     dialogTitle: 'Share highlight',
-    dialogDescription: 'Preview a branded image, choose its artwork and reading supports, then share or save it.',
+    dialogDescription: 'Choose artwork and reading supports, then share or save your image.',
     preface: 'Share a line for remembrance',
     title: 'Create a share image',
     close: 'Close share image',
@@ -184,16 +201,23 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     citation: 'Citation',
     brand: 'Brand',
     textLayers: 'Text on the card',
-    textLayersHelp: 'Gurbani stays unchanged. Add only the reading supports you want to share.',
+    textLayersHelp: 'Gurmukhi is always included. Add reading support below.',
     gurmukhi: 'Gurmukhi',
     alwaysIncluded: 'Always included and cannot be edited',
     transliteration: 'Transliteration',
     meaning: 'Meaning',
     unavailable: 'Not available for this selection',
     artwork: 'Artwork',
-    artworkHelp: 'Choose one visual treatment, or keep the card quiet.',
+    artworkHelp: 'Choose a background, or keep it plain.',
+    passageArtworkHelp: count => `${count} backgrounds, or keep it plain.`,
     noArtwork: 'No art',
-    artworkNumber: index => `Artwork ${index}`,
+    noArtworkDescription: 'A plain reading surface without a picture.',
+    selectedArtwork: 'Selected artwork',
+    artworkAppliesToSet: count => `Used on all ${count} images.`,
+    applyingArtwork: name => `Applying ${name} behind the reading…`,
+    artworkReady: name => `${name} applied. Image ready.`,
+    artworkSetReady: (name, count) => `${name} applied. ${count} ordered images ready.`,
+    useNoArtwork: 'Use No art',
     textPosition: 'Text position',
     textPositionHelp: 'Auto finds the clearest space on the artwork.',
     positionAuto: 'Auto',
@@ -201,15 +225,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     positionMiddle: 'Middle',
     positionBottom: 'Bottom',
     socialNote: 'Social note (optional)',
-    socialNoteHelp: 'Included with Share and copied text, but never printed on the image or mixed with Gurbani.',
+    socialNoteHelp: 'Shared with your image, never printed on it.',
     socialPlaceholder: 'Add a short reflection…',
     selectedExcerpt: 'This card contains only the Gurmukhi words you selected.',
     passagePreface: "Share today's Hukamnama",
     personalPassagePreface: 'Share this personal Hukamnama',
-    passageTitle: 'Create a Story image',
-    passageTextLayersHelp: 'Gurmukhi is always included. Meaning places each complete selected translation directly below its matching Gurbani line. Choose Transliteration instead for pronunciation.',
-    quietPassageArtworkNote: 'Long Hukamnamas use a quiet manuscript background so the selected passage stays balanced and legible.',
+    passageTextLayersHelp: 'Gurmukhi is always included. Add meaning or pronunciation below each line.',
     passageComplete: 'Complete Hukamnama',
+    tallImageHint: 'One taller image keeps every line readable. Check that the full image is visible before posting.',
     passageExcerpt: "Excerpt from today's Hukamnama",
     personalPassageExcerpt: 'Personal Hukamnama excerpt',
     passageImageCoverage: (included, total) => `${included} of ${total} lines in this image`,
@@ -220,7 +243,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     previousPassage: 'Previous image',
     nextPassage: 'Next image',
     passageNavigationHelp: 'Choose another contiguous passage. Copy full text always includes the complete Hukamnama.',
-    passageSetNavigationHelp: count => `Preview each image. Share and Download include all ${count} images in order.`,
+    passageSetNavigationHelp: count => `All ${count} images are shared in order.`,
     storyScopeCopy: {
       complete: 'Complete Hukamnama',
       excerpt: "Excerpt from today's Hukamnama",
@@ -235,8 +258,8 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
       readComplete: 'Read complete Hukamnama',
       openInNaamras: 'Open in NaamRas',
     },
-    preparingBilingual: 'Preparing bilingual Story…',
-    bilingualReady: 'Bilingual Story ready.',
+    preparingBilingual: 'Preparing bilingual image…',
+    bilingualReady: 'Bilingual image ready.',
     passageShareTitle: 'Hukamnama from NaamRas',
     shareImage: 'Share image',
     shareImages: count => `Share ${count} images`,
@@ -254,10 +277,10 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     raagCredit: value => `Raag: ${value}`,
     writerCredit: value => `Writer: ${value}`,
     translationCredit: value => `Translation: ${value}`,
-    previewSummary: (kind, layers) => `${kind === 'passage' ? 'Hukamnama Story' : 'Gurbani card'} preview. Includes ${layers}`,
+    previewSummary: (kind, layers) => `${kind === 'passage' ? 'Hukamnama image' : 'Gurbani card'} preview. Includes ${layers}`,
     supportCoverage: (available, total) => `${available} of ${total} lines available`,
     preparing: 'Preparing image…',
-    preparingSet: 'Preparing the complete image set…',
+    preparingSet: 'Preparing one complete image…',
     ready: 'Image ready.',
     setReady: count => `${count} ordered images ready.`,
     shareTitle: 'A line from NaamRas',
@@ -275,13 +298,16 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     downloadedSet: count => `${count} image downloads started in order. Your browser will confirm where they are stored.`,
     copied: 'Text copied.',
     renderError: 'The image could not be prepared. Retry without changing the Gurbani.',
+    imageTooLong: support => support
+      ? `This passage is too long for one readable image with ${support}. Turn off ${support}, or use Copy full text to share every line.`
+      : 'This passage is too long for one readable image. Use Copy full text to share every line.',
     retry: 'Retry image',
     actionError: 'That action did not complete. Please try again.',
     characters: count => `${count} / ${SOCIAL_NOTE_LIMIT}`,
   },
   pa: {
     dialogTitle: 'ਝਲਕ ਸਾਂਝੀ ਕਰੋ',
-    dialogDescription: 'ਬ੍ਰਾਂਡ ਵਾਲੀ ਤਸਵੀਰ ਦੀ ਝਲਕ ਵੇਖੋ, ਕਲਾ ਅਤੇ ਪਾਠ ਸਹਾਇਤਾ ਚੁਣੋ, ਫਿਰ ਸਾਂਝੀ ਜਾਂ ਸੰਭਾਲੋ।',
+    dialogDescription: 'ਕਲਾ ਅਤੇ ਪਾਠ ਸਹਾਇਤਾ ਚੁਣੋ, ਫਿਰ ਤਸਵੀਰ ਸਾਂਝੀ ਜਾਂ ਸੰਭਾਲੋ।',
     preface: 'ਯਾਦ ਲਈ ਇੱਕ ਪੰਕਤੀ ਸਾਂਝੀ ਕਰੋ',
     title: 'ਸਾਂਝੀ ਕਰਨ ਲਈ ਤਸਵੀਰ ਬਣਾਓ',
     close: 'ਸਾਂਝੀ ਤਸਵੀਰ ਬੰਦ ਕਰੋ',
@@ -289,16 +315,23 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     citation: 'ਹਵਾਲਾ',
     brand: 'ਬ੍ਰਾਂਡ',
     textLayers: 'ਕਾਰਡ ਉੱਤੇ ਲਿਖਤ',
-    textLayersHelp: 'ਗੁਰਬਾਣੀ ਬਦਲਦੀ ਨਹੀਂ। ਸਿਰਫ਼ ਉਹ ਪਾਠ ਸਹਾਇਤਾ ਜੋੜੋ ਜੋ ਤੁਸੀਂ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ।',
+    textLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਹੇਠਾਂ ਪਾਠ ਸਹਾਇਤਾ ਜੋੜੋ।',
     gurmukhi: 'ਗੁਰਮੁਖੀ',
     alwaysIncluded: 'ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ ਅਤੇ ਬਦਲੀ ਨਹੀਂ ਜਾ ਸਕਦੀ',
     transliteration: 'ਲਿਪੀਅੰਤਰਨ',
     meaning: 'ਅਰਥ',
     unavailable: 'ਇਸ ਚੋਣ ਲਈ ਉਪਲਬਧ ਨਹੀਂ',
     artwork: 'ਕਲਾ',
-    artworkHelp: 'ਇੱਕ ਦ੍ਰਿਸ਼ ਚੁਣੋ ਜਾਂ ਕਾਰਡ ਨੂੰ ਸਾਦਾ ਰੱਖੋ।',
+    artworkHelp: 'ਇੱਕ ਪਿਛੋਕੜ ਚੁਣੋ ਜਾਂ ਸਾਦਾ ਰੱਖੋ।',
+    passageArtworkHelp: count => `${count} ਪਿਛੋਕੜਾਂ ਵਿੱਚੋਂ ਚੁਣੋ ਜਾਂ ਸਾਦਾ ਰੱਖੋ।`,
     noArtwork: 'ਕੋਈ ਕਲਾ ਨਹੀਂ',
-    artworkNumber: index => `ਕਲਾ ${index}`,
+    noArtworkDescription: 'ਤਸਵੀਰ ਤੋਂ ਬਿਨਾਂ ਸਾਦੀ ਪਾਠ ਸਤ੍ਹਾ।',
+    selectedArtwork: 'ਚੁਣੀ ਕਲਾ',
+    artworkAppliesToSet: count => `ਸਾਰੀਆਂ ${count} ਤਸਵੀਰਾਂ ਉੱਤੇ ਲਾਗੂ ਹੈ।`,
+    applyingArtwork: name => `${name} ਨੂੰ ਪਾਠ ਦੇ ਪਿੱਛੇ ਲਗਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…`,
+    artworkReady: name => `${name} ਲਾਗੂ ਹੋ ਗਈ। ਤਸਵੀਰ ਤਿਆਰ ਹੈ।`,
+    artworkSetReady: (name, count) => `${name} ਲਾਗੂ ਹੋ ਗਈ। ${count} ਕ੍ਰਮਵਾਰ ਤਸਵੀਰਾਂ ਤਿਆਰ ਹਨ।`,
+    useNoArtwork: 'ਕੋਈ ਕਲਾ ਨਾ ਵਰਤੋ',
     textPosition: 'ਲਿਖਤ ਦੀ ਥਾਂ',
     textPositionHelp: 'ਆਟੋ ਕਲਾ ਵਿੱਚ ਸਭ ਤੋਂ ਸਾਫ਼ ਥਾਂ ਲੱਭਦਾ ਹੈ।',
     positionAuto: 'ਆਟੋ',
@@ -306,15 +339,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     positionMiddle: 'ਵਿਚਕਾਰ',
     positionBottom: 'ਹੇਠਾਂ',
     socialNote: 'ਸਾਂਝਾ ਨੋਟ (ਵਿਕਲਪਿਕ)',
-    socialNoteHelp: 'ਇਹ ਸਾਂਝਾ ਕਰਨ ਅਤੇ ਕਾਪੀ ਲਿਖਤ ਨਾਲ ਜਾਂਦਾ ਹੈ, ਪਰ ਤਸਵੀਰ ਉੱਤੇ ਨਹੀਂ ਲਿਖਿਆ ਜਾਂਦਾ ਅਤੇ ਗੁਰਬਾਣੀ ਨਾਲ ਨਹੀਂ ਮਿਲਾਇਆ ਜਾਂਦਾ।',
+    socialNoteHelp: 'ਤਸਵੀਰ ਨਾਲ ਸਾਂਝਾ ਹੁੰਦਾ ਹੈ, ਪਰ ਉਸ ਉੱਤੇ ਨਹੀਂ ਲਿਖਿਆ ਜਾਂਦਾ।',
     socialPlaceholder: 'ਛੋਟਾ ਵਿਚਾਰ ਲਿਖੋ…',
     selectedExcerpt: 'ਇਸ ਕਾਰਡ ਵਿੱਚ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਚੁਣੇ ਗੁਰਮੁਖੀ ਸ਼ਬਦ ਹਨ।',
     passagePreface: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
     personalPassagePreface: 'ਇਹ ਨਿੱਜੀ ਹੁਕਮਨਾਮਾ ਸਾਂਝਾ ਕਰੋ',
-    passageTitle: 'ਸਟੋਰੀ ਤਸਵੀਰ ਬਣਾਓ',
-    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਅਰਥ ਹਰ ਗੁਰਬਾਣੀ ਪੰਕਤੀ ਦੇ ਬਿਲਕੁਲ ਹੇਠਾਂ ਉਸ ਦਾ ਪੂਰਾ ਚੁਣਿਆ ਅਨੁਵਾਦ ਦਿਖਾਉਂਦਾ ਹੈ। ਉਚਾਰਨ ਲਈ ਇਸ ਦੀ ਥਾਂ ਲਿਪੀਅੰਤਰਨ ਚੁਣੋ।',
-    quietPassageArtworkNote: 'ਲੰਮੇ ਹੁਕਮਨਾਮਿਆਂ ਲਈ ਸਾਦਾ ਹੱਥ-ਲਿਖਤ ਪਿਛੋਕੜ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਜੋ ਚੁਣਿਆ ਪਾਠ ਸੰਤੁਲਿਤ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹੇ।',
+    passageTextLayersHelp: 'ਗੁਰਮੁਖੀ ਹਮੇਸ਼ਾ ਸ਼ਾਮਲ ਹੈ। ਹਰ ਪੰਕਤੀ ਹੇਠਾਂ ਅਰਥ ਜਾਂ ਉਚਾਰਨ ਜੋੜੋ।',
     passageComplete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
+    tallImageHint: 'ਇੱਕ ਲੰਮੀ ਤਸਵੀਰ ਵਿੱਚ ਹਰ ਪੰਕਤੀ ਪੜ੍ਹਨਯੋਗ ਰਹਿੰਦੀ ਹੈ। ਪੋਸਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਦੇਖੋ ਕਿ ਪੂਰੀ ਤਸਵੀਰ ਦਿਸ ਰਹੀ ਹੈ।',
     passageExcerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
     personalPassageExcerpt: 'ਨਿੱਜੀ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
     passageImageCoverage: (included, total) => `${total} ਵਿੱਚੋਂ ${included} ਪੰਕਤੀਆਂ ਇਸ ਤਸਵੀਰ ਵਿੱਚ`,
@@ -325,7 +357,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     previousPassage: 'ਪਿਛਲੀ ਤਸਵੀਰ',
     nextPassage: 'ਅਗਲੀ ਤਸਵੀਰ',
     passageNavigationHelp: 'ਨਾਲ ਲੱਗਦਾ ਹੋਰ ਅੰਸ਼ ਚੁਣੋ। “ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ” ਵਿੱਚ ਹਮੇਸ਼ਾ ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਹੁੰਦਾ ਹੈ।',
-    passageSetNavigationHelp: count => `ਹਰ ਤਸਵੀਰ ਵੇਖੋ। ਸਾਂਝਾ ਅਤੇ ਡਾਊਨਲੋਡ ਸਾਰੀਆਂ ${count} ਤਸਵੀਰਾਂ ਕ੍ਰਮ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਦੇ ਹਨ।`,
+    passageSetNavigationHelp: count => `ਸਾਰੀਆਂ ${count} ਤਸਵੀਰਾਂ ਕ੍ਰਮ ਵਿੱਚ ਸਾਂਝੀਆਂ ਹੁੰਦੀਆਂ ਹਨ।`,
     storyScopeCopy: {
       complete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ',
       excerpt: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਦਾ ਅੰਸ਼',
@@ -340,8 +372,8 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
       readComplete: 'ਪੂਰਾ ਹੁਕਮਨਾਮਾ ਪੜ੍ਹੋ',
       openInNaamras: 'ਨਾਮਰਸ ਵਿੱਚ ਖੋਲ੍ਹੋ',
     },
-    preparingBilingual: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
-    bilingualReady: 'ਦੋ-ਭਾਸ਼ਾਈ ਸਟੋਰੀ ਤਿਆਰ ਹੈ।',
+    preparingBilingual: 'ਦੋ-ਭਾਸ਼ਾਈ ਤਸਵੀਰ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
+    bilingualReady: 'ਦੋ-ਭਾਸ਼ਾਈ ਤਸਵੀਰ ਤਿਆਰ ਹੈ।',
     passageShareTitle: 'ਨਾਮਰਸ ਤੋਂ ਹੁਕਮਨਾਮਾ',
     shareImage: 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ',
     shareImages: count => `${count} ਤਸਵੀਰਾਂ ਸਾਂਝੀਆਂ ਕਰੋ`,
@@ -359,10 +391,10 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     raagCredit: value => `ਰਾਗ: ${value}`,
     writerCredit: value => `ਰਚਨਾਕਾਰ: ${value}`,
     translationCredit: value => `ਅਨੁਵਾਦ: ${value}`,
-    previewSummary: (kind, layers) => `${kind === 'passage' ? 'ਹੁਕਮਨਾਮਾ ਸਟੋਰੀ' : 'ਗੁਰਬਾਣੀ ਕਾਰਡ'} ਦੀ ਝਲਕ। ਇਸ ਵਿੱਚ ${layers} ਸ਼ਾਮਲ ਹੈ`,
+    previewSummary: (kind, layers) => `${kind === 'passage' ? 'ਹੁਕਮਨਾਮੇ ਦੀ ਤਸਵੀਰ' : 'ਗੁਰਬਾਣੀ ਕਾਰਡ'} ਦੀ ਝਲਕ। ਇਸ ਵਿੱਚ ${layers} ਸ਼ਾਮਲ ਹੈ`,
     supportCoverage: (available, total) => `${total} ਵਿੱਚੋਂ ${available} ਪੰਕਤੀਆਂ ਉਪਲਬਧ`,
     preparing: 'ਤਸਵੀਰ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
-    preparingSet: 'ਪੂਰੀ ਤਸਵੀਰ ਲੜੀ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
+    preparingSet: 'ਇੱਕ ਪੂਰੀ ਤਸਵੀਰ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ…',
     ready: 'ਤਸਵੀਰ ਤਿਆਰ ਹੈ।',
     setReady: count => `${count} ਕ੍ਰਮਵਾਰ ਤਸਵੀਰਾਂ ਤਿਆਰ ਹਨ।`,
     shareTitle: 'ਨਾਮਰਸ ਤੋਂ ਇੱਕ ਪੰਕਤੀ',
@@ -380,13 +412,16 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     downloadedSet: count => `${count} ਤਸਵੀਰਾਂ ਦੇ ਡਾਊਨਲੋਡ ਕ੍ਰਮ ਵਿੱਚ ਸ਼ੁਰੂ ਹੋ ਗਏ ਹਨ। ਬ੍ਰਾਊਜ਼ਰ ਉਹਨਾਂ ਦੀ ਥਾਂ ਦੱਸੇਗਾ।`,
     copied: 'ਲਿਖਤ ਕਾਪੀ ਹੋ ਗਈ।',
     renderError: 'ਤਸਵੀਰ ਤਿਆਰ ਨਹੀਂ ਹੋ ਸਕੀ। ਗੁਰਬਾਣੀ ਬਦਲੇ ਬਿਨਾਂ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+    imageTooLong: support => support
+      ? `ਇਹ ਪਾਠ ${support} ਨਾਲ ਇੱਕ ਪੜ੍ਹਨਯੋਗ ਤਸਵੀਰ ਲਈ ਬਹੁਤ ਲੰਮਾ ਹੈ। ${support} ਬੰਦ ਕਰੋ ਜਾਂ ਹਰ ਪੰਕਤੀ ਸਾਂਝੀ ਕਰਨ ਲਈ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।`
+      : 'ਇਹ ਪਾਠ ਇੱਕ ਪੜ੍ਹਨਯੋਗ ਤਸਵੀਰ ਲਈ ਬਹੁਤ ਲੰਮਾ ਹੈ। ਹਰ ਪੰਕਤੀ ਸਾਂਝੀ ਕਰਨ ਲਈ ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ।',
     retry: 'ਤਸਵੀਰ ਦੁਬਾਰਾ ਬਣਾਓ',
     actionError: 'ਇਹ ਕਾਰਵਾਈ ਪੂਰੀ ਨਹੀਂ ਹੋਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
     characters: count => `${count} / ${SOCIAL_NOTE_LIMIT}`,
   },
   hi: {
     dialogTitle: 'अंश साझा करें',
-    dialogDescription: 'ब्रांड वाली छवि का पूर्वावलोकन करें, कला और पाठ सहायता चुनें, फिर साझा या सेव करें।',
+    dialogDescription: 'कला और पाठ सहायता चुनें, फिर छवि साझा या सेव करें।',
     preface: 'स्मरण के लिए एक पंक्ति साझा करें',
     title: 'साझा करने की छवि बनाएँ',
     close: 'साझा छवि बंद करें',
@@ -394,16 +429,23 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     citation: 'संदर्भ',
     brand: 'ब्रांड',
     textLayers: 'कार्ड पर पाठ',
-    textLayersHelp: 'गुरबाणी नहीं बदलती। केवल वही पाठ सहायता जोड़ें जिसे आप साझा करना चाहते हैं।',
+    textLayersHelp: 'गुरमुखी हमेशा शामिल है। नीचे पाठ सहायता जोड़ें।',
     gurmukhi: 'गुरमुखी',
     alwaysIncluded: 'हमेशा शामिल है और बदली नहीं जा सकती',
     transliteration: 'लिप्यंतरण',
     meaning: 'अर्थ',
     unavailable: 'इस चयन के लिए उपलब्ध नहीं',
     artwork: 'कलाकृति',
-    artworkHelp: 'एक दृश्य चुनें या कार्ड को सादा रखें।',
+    artworkHelp: 'एक पृष्ठभूमि चुनें या सादा रखें।',
+    passageArtworkHelp: count => `${count} पृष्ठभूमियों में से चुनें या सादा रखें।`,
     noArtwork: 'बिना कला',
-    artworkNumber: index => `कलाकृति ${index}`,
+    noArtworkDescription: 'बिना किसी चित्र के सादा पठन क्षेत्र।',
+    selectedArtwork: 'चुनी गई कलाकृति',
+    artworkAppliesToSet: count => `सभी ${count} छवियों पर लागू है।`,
+    applyingArtwork: name => `${name} को पाठ के पीछे लगाया जा रहा है…`,
+    artworkReady: name => `${name} लागू हो गई। छवि तैयार है।`,
+    artworkSetReady: (name, count) => `${name} लागू हो गई। ${count} क्रमबद्ध छवियाँ तैयार हैं।`,
+    useNoArtwork: 'कोई कला न रखें',
     textPosition: 'पाठ की जगह',
     textPositionHelp: 'ऑटो कलाकृति में सबसे साफ़ जगह ढूँढता है।',
     positionAuto: 'ऑटो',
@@ -411,15 +453,14 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     positionMiddle: 'बीच',
     positionBottom: 'नीचे',
     socialNote: 'सोशल नोट (वैकल्पिक)',
-    socialNoteHelp: 'यह शेयर और कॉपी किए पाठ के साथ जाता है, पर छवि पर नहीं छपता और गुरबाणी में नहीं मिलता।',
+    socialNoteHelp: 'छवि के साथ साझा होता है, लेकिन उस पर नहीं छपता।',
     socialPlaceholder: 'एक छोटा विचार लिखें…',
     selectedExcerpt: 'इस कार्ड में केवल आपके चुने हुए गुरमुखी शब्द हैं।',
     passagePreface: 'आज का हुकमनामा साझा करें',
     personalPassagePreface: 'यह व्यक्तिगत हुकमनामा साझा करें',
-    passageTitle: 'स्टोरी छवि बनाएँ',
-    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। अर्थ हर गुरबाणी पंक्ति के ठीक नीचे उसका पूरा चुना हुआ अनुवाद दिखाता है। उच्चारण के लिए इसकी जगह लिप्यंतरण चुनें।',
-    quietPassageArtworkNote: 'लंबे हुकमनामों में शांत पांडुलिपि पृष्ठभूमि रहती है, ताकि चुना हुआ अंश संतुलित और पढ़ने योग्य रहे।',
+    passageTextLayersHelp: 'गुरमुखी हमेशा शामिल है। हर पंक्ति के नीचे अर्थ या उच्चारण जोड़ें।',
     passageComplete: 'पूरा हुकमनामा',
+    tallImageHint: 'एक लंबी छवि में हर पंक्ति पढ़ने योग्य रहती है। पोस्ट करने से पहले देखें कि पूरी छवि दिखाई दे रही है।',
     passageExcerpt: 'आज के हुकमनामे का अंश',
     personalPassageExcerpt: 'व्यक्तिगत हुकमनामे का अंश',
     passageImageCoverage: (included, total) => `${total} में से ${included} पंक्तियाँ इस छवि में`,
@@ -430,7 +471,7 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     previousPassage: 'पिछली छवि',
     nextPassage: 'अगली छवि',
     passageNavigationHelp: 'साथ वाला दूसरा अंश चुनें। “पूरा पाठ कॉपी करें” में हमेशा पूरा हुकमनामा होता है।',
-    passageSetNavigationHelp: count => `हर छवि देखें। साझा और डाउनलोड में सभी ${count} छवियाँ क्रम से शामिल हैं।`,
+    passageSetNavigationHelp: count => `सभी ${count} छवियाँ क्रम में साझा होती हैं।`,
     storyScopeCopy: {
       complete: 'पूरा हुकमनामा',
       excerpt: 'आज के हुकमनामे का अंश',
@@ -445,8 +486,8 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
       readComplete: 'पूरा हुकमनामा पढ़ें',
       openInNaamras: 'नामरस में खोलें',
     },
-    preparingBilingual: 'द्विभाषी स्टोरी तैयार हो रही है…',
-    bilingualReady: 'द्विभाषी स्टोरी तैयार है।',
+    preparingBilingual: 'द्विभाषी छवि तैयार हो रही है…',
+    bilingualReady: 'द्विभाषी छवि तैयार है।',
     passageShareTitle: 'नामरस से हुकमनामा',
     shareImage: 'छवि साझा करें',
     shareImages: count => `${count} छवियाँ साझा करें`,
@@ -464,10 +505,10 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     raagCredit: value => `राग: ${value}`,
     writerCredit: value => `रचनाकार: ${value}`,
     translationCredit: value => `अनुवाद: ${value}`,
-    previewSummary: (kind, layers) => `${kind === 'passage' ? 'हुकमनामा स्टोरी' : 'गुरबाणी कार्ड'} का पूर्वावलोकन। इसमें ${layers} शामिल है`,
+    previewSummary: (kind, layers) => `${kind === 'passage' ? 'हुकमनामे की छवि' : 'गुरबाणी कार्ड'} का पूर्वावलोकन। इसमें ${layers} शामिल है`,
     supportCoverage: (available, total) => `${total} में से ${available} पंक्तियाँ उपलब्ध`,
     preparing: 'छवि तैयार हो रही है…',
-    preparingSet: 'पूरी छवि श्रृंखला तैयार हो रही है…',
+    preparingSet: 'एक पूरी छवि तैयार हो रही है…',
     ready: 'छवि तैयार है।',
     setReady: count => `${count} क्रमबद्ध छवियाँ तैयार हैं।`,
     shareTitle: 'नामरस से एक पंक्ति',
@@ -485,6 +526,9 @@ const SHEET_COPY: Record<UiLocale, ShareHighlightSheetCopy> = {
     downloadedSet: count => `${count} छवियों के डाउनलोड क्रम से शुरू हो गए हैं। ब्राउज़र बताएगा कि वे कहाँ रखी गई हैं।`,
     copied: 'पाठ कॉपी हो गया।',
     renderError: 'छवि तैयार नहीं हो सकी। गुरबाणी बदले बिना फिर कोशिश करें।',
+    imageTooLong: support => support
+      ? `यह पाठ ${support} के साथ एक पठनीय छवि के लिए बहुत लंबा है। ${support} बंद करें या हर पंक्ति साझा करने के लिए पूरा पाठ कॉपी करें।`
+      : 'यह पाठ एक पठनीय छवि के लिए बहुत लंबा है। हर पंक्ति साझा करने के लिए पूरा पाठ कॉपी करें।',
     retry: 'छवि फिर बनाएँ',
     actionError: 'यह कार्रवाई पूरी नहीं हुई। फिर से प्रयास करें।',
     characters: count => `${count} / ${SOCIAL_NOTE_LIMIT}`,
@@ -501,6 +545,21 @@ function resolveInitialArtworkId(
     : shareHighlightAssets
   if (initialArtworkId && availableArtwork.some(asset => asset.id === initialArtworkId)) {
     return initialArtworkId
+  }
+  if (isPassage) {
+    if (initialArtworkId === undefined && typeof window !== 'undefined') {
+      try {
+        const savedId = window.localStorage.getItem(HUKAMNAMA_ARTWORK_PREFERENCE_KEY)
+        if (savedId && (savedId === NO_ARTWORK_ID || availableArtwork.some(asset => asset.id === savedId))) {
+          return savedId
+        }
+      } catch {
+        // Private/embedded browsers may deny storage. Sharing still works.
+      }
+    }
+    return availableArtwork.find(asset => asset.id === DEFAULT_HUKAMNAMA_ARTWORK_ID)?.id
+      ?? availableArtwork[0]?.id
+      ?? NO_ARTWORK_ID
   }
   return availableArtwork[0]?.id ?? NO_ARTWORK_ID
 }
@@ -519,7 +578,7 @@ class ShareHighlightActionDismissedError extends Error {
   }
 }
 
-function withActionTimeout<T>(promise: Promise<T>) {
+function withActionTimeout<T>(promise: Promise<T>, timeoutMs = SHARE_ACTION_TIMEOUT_MS) {
   let settled = false
   let timeoutId: number | null = null
   let rejectAction: ((reason?: unknown) => void) | null = null
@@ -531,12 +590,12 @@ function withActionTimeout<T>(promise: Promise<T>) {
 
   const timedPromise = new Promise<T>((resolve, reject) => {
     rejectAction = reject
-    timeoutId = window.setTimeout(() => {
+    if (timeoutMs > 0) timeoutId = window.setTimeout(() => {
       if (settled) return
       settled = true
       timeoutId = null
       reject(new ShareHighlightActionTimeoutError())
-    }, SHARE_ACTION_TIMEOUT_MS)
+    }, timeoutMs)
 
     void promise.then(
       value => {
@@ -716,13 +775,6 @@ function buildShareCompanionText(
   ].filter(Boolean).join('\n')
 }
 
-function getArtworkName(assetId: string) {
-  return assetId
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
-}
-
 function makeFileName(verseId?: number) {
   return verseId ? `naamras-highlight-${verseId}.png` : 'naamras-highlight.png'
 }
@@ -736,6 +788,8 @@ export default function ShareHighlightSheet({
   onNotice,
 }: ShareHighlightSheetProps) {
   const copy = SHEET_COPY[locale]
+  const nativeImagePlatform = isNativeImagePlatform()
+  const nativeSaveCopy = NATIVE_SAVE_COPY[locale]
   const passageCopy = getPassagePresentationCopy(content, copy)
   const meaningLanguage = content.provenance?.translationLanguage === 'pa'
     ? 'pa-Guru'
@@ -743,11 +797,24 @@ export default function ShareHighlightSheet({
       ? 'hi'
       : 'en'
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  const noArtworkInputRef = useRef<HTMLInputElement | null>(null)
   const renderSequenceRef = useRef(0)
+  const renderQueueRef = useRef<Promise<void>>(Promise.resolve())
+  const renderAbortControllerRef = useRef<AbortController | null>(null)
   const busyActionRef = useRef<'share' | 'save' | 'copy' | null>(null)
   const shareActionCancelRef = useRef<(() => void) | null>(null)
+  const shareActionAbortControllerRef = useRef<AbortController | null>(null)
   const shareActionGenerationRef = useRef(0)
+  const cancelPendingDelivery = useCallback(() => {
+    shareActionGenerationRef.current += 1
+    shareActionAbortControllerRef.current?.abort()
+    shareActionAbortControllerRef.current = null
+    shareActionCancelRef.current?.()
+    shareActionCancelRef.current = null
+  }, [])
   const artworkGroupId = useId()
+  const artworkHelpId = useId()
+  const selectedArtworkLabelId = useId()
   const positionGroupId = useId()
   const captionId = useId()
   const captionHelpId = useId()
@@ -823,10 +890,19 @@ export default function ShareHighlightSheet({
   const [socialNote, setSocialNote] = useState(() => (content.caption ?? '').slice(0, SOCIAL_NOTE_LIMIT))
   const [pngExport, setPngExport] = useState<ShareHighlightPngExport | ShareHighlightStoryPngExport | null>(null)
   const [passagePngSet, setPassagePngSet] = useState<ShareHighlightStoryPngSet | null>(null)
+  const [paintedPngExport, setPaintedPngExport] = useState<
+    ShareHighlightPngExport | ShareHighlightStoryPngSet['pages'][number] | null
+  >(null)
+  const [pendingPreview, setPendingPreview] = useState<{
+    renderSequence: number
+    signal: AbortSignal
+    readyStatus: string
+  } | null>(null)
   const [activePassagePageIndex, setActivePassagePageIndex] = useState(0)
   const [renderStatus, setRenderStatus] = useState(copy.preparing)
   const [actionStatus, setActionStatus] = useState<string | null>(null)
   const [renderFailed, setRenderFailed] = useState(false)
+  const [renderTooLong, setRenderTooLong] = useState(false)
   const [rendering, setRendering] = useState(true)
   const [canvasElement, setCanvasElement] = useState<HTMLCanvasElement | null>(null)
   const [busyAction, setBusyAction] = useState<'share' | 'save' | 'copy' | null>(null)
@@ -842,29 +918,33 @@ export default function ShareHighlightSheet({
       ? hasCompletePassageMeaning
       : Boolean(content.meaning?.trim())
   ) && !content.selectedExcerpt
-  const selectedArtwork = useMemo<ShareHighlightArtwork | null>(() => (
+  const selectedArtwork = useMemo(() => (
     selectedArtworkId === NO_ARTWORK_ID
       ? null
       : availableArtwork.find(asset => asset.id === selectedArtworkId) ?? null
   ), [availableArtwork, selectedArtworkId])
+  const selectedArtworkName = selectedArtwork?.displayName[locale] ?? copy.noArtwork
+  const selectedArtworkDescription = selectedArtwork?.localizedDescription[locale]
+    ?? copy.noArtworkDescription
 
   useEffect(() => {
     if (open) return
-    shareActionGenerationRef.current += 1
-    shareActionCancelRef.current?.()
-    shareActionCancelRef.current = null
+    renderAbortControllerRef.current?.abort()
+    renderAbortControllerRef.current = null
+    cancelPendingDelivery()
     busyActionRef.current = null
     setBusyAction(null)
-  }, [open])
+  }, [open, cancelPendingDelivery])
 
   useEffect(() => () => {
-    shareActionGenerationRef.current += 1
-    shareActionCancelRef.current?.()
-    shareActionCancelRef.current = null
-  }, [])
+    renderAbortControllerRef.current?.abort()
+    renderAbortControllerRef.current = null
+    cancelPendingDelivery()
+  }, [cancelPendingDelivery])
 
   useEffect(() => {
     if (!open) return
+    cancelPendingDelivery()
     setSelectedArtworkId(resolveInitialArtworkId(initialArtworkId, isPassage))
     setTextPosition('auto')
     setShowTransliteration(
@@ -886,8 +966,11 @@ export default function ShareHighlightSheet({
     setBusyAction(null)
     setPngExport(null)
     setPassagePngSet(null)
+    setPaintedPngExport(null)
+    setPendingPreview(null)
     setActivePassagePageIndex(0)
     setRenderFailed(false)
+    setRenderTooLong(false)
     setRendering(true)
     setRenderRetryNonce(0)
     setRenderStatus(copy.preparing)
@@ -917,6 +1000,8 @@ export default function ShareHighlightSheet({
     isPassage,
     open,
     copy.preparing,
+    cancelPendingDelivery,
+    locale,
   ])
 
   const cardInput = useMemo<ShareHighlightCardInput>(() => ({
@@ -987,30 +1072,67 @@ export default function ShareHighlightSheet({
     : showTransliteration
       ? 'transliteration'
       : null
+  const imageTooLongMessage = copy.imageTooLong(activePassageSupport === 'meaning'
+    ? copy.meaning
+    : activePassageSupport === 'transliteration'
+      ? copy.transliteration
+      : undefined)
 
   useEffect(() => {
     if (!open || !canvasElement) return
 
     const renderSequence = ++renderSequenceRef.current
+    renderAbortControllerRef.current?.abort()
+    const renderAbortController = new AbortController()
+    renderAbortControllerRef.current = renderAbortController
     setRenderFailed(false)
+    setRenderTooLong(false)
     setRendering(true)
     setActionStatus(null)
-    setRenderStatus(passageInput ? copy.preparingSet : copy.preparing)
+    setRenderStatus(
+      passageInput && selectedArtwork
+        ? copy.applyingArtwork(selectedArtworkName)
+        : passageInput
+          ? copy.preparingSet
+          : copy.preparing,
+    )
 
     const renderTimeout = window.setTimeout(() => {
-      const exportPromise = passageInput
-        ? exportShareHighlightStoryPngSet(passageInput).then(passageSet => ({
-            primary: passageSet.pages[0]!,
-            passageSet,
-          }))
-        : exportShareHighlightPng(cardInput).then(primary => ({
-            primary,
-            passageSet: null,
-          }))
+      const runQueuedRender = async () => {
+        if (renderSequenceRef.current !== renderSequence) return
 
-      void exportPromise
-        .then(result => {
+        try {
+          const result = await (passageInput
+            ? exportShareHighlightHukamnamaPng(passageInput, {
+                signal: renderAbortController.signal,
+              }).then(passageSet => ({
+                primary: passageSet.pages[0]!,
+                passageSet,
+              }))
+            : exportShareHighlightPng(cardInput, {
+                signal: renderAbortController.signal,
+              }).then(primary => ({
+                primary,
+                passageSet: null,
+              })))
+
           if (renderSequenceRef.current !== renderSequence) return
+          if (renderAbortControllerRef.current === renderAbortController) {
+            renderAbortControllerRef.current = null
+          }
+          setPendingPreview({
+            renderSequence,
+            signal: renderAbortController.signal,
+            readyStatus: result.passageSet && result.passageSet.pages.length > 1
+              ? selectedArtwork
+                ? copy.artworkSetReady(selectedArtworkName, result.passageSet.pages.length)
+                : copy.setReady(result.passageSet.pages.length)
+              : passageInput && selectedArtwork
+                ? copy.artworkReady(selectedArtworkName)
+                : passageInput && activePassageSupport === 'meaning'
+                  ? copy.bilingualReady
+                  : copy.ready,
+          })
           if (result.passageSet) {
             setPngExport(null)
             setPassagePngSet(result.passageSet)
@@ -1018,24 +1140,37 @@ export default function ShareHighlightSheet({
             setPngExport(result.primary)
             setPassagePngSet(null)
           }
-          setActivePassagePageIndex(0)
-          setRendering(false)
-          setRenderStatus(result.passageSet && result.passageSet.pages.length > 1
-            ? copy.setReady(result.passageSet.pages.length)
-            : passageInput && activePassageSupport === 'meaning'
-              ? copy.bilingualReady
-              : copy.ready)
-        })
-        .catch(() => {
+          setActivePassagePageIndex(current => (
+            result.passageSet
+              ? Math.min(current, Math.max(0, result.passageSet.pages.length - 1))
+              : 0
+          ))
+        } catch (error) {
           if (renderSequenceRef.current !== renderSequence) return
+          if (renderAbortController.signal.aborted) return
+          if (renderAbortControllerRef.current === renderAbortController) {
+            renderAbortControllerRef.current = null
+          }
           setRenderFailed(true)
+          const tooLong = error instanceof HukamnamaImageTooLongError
+          setRenderTooLong(tooLong)
           setRendering(false)
-          setRenderStatus(copy.renderError)
-        })
+          setRenderStatus(tooLong ? imageTooLongMessage : copy.renderError)
+        }
+      }
+
+      renderQueueRef.current = renderQueueRef.current.then(
+        runQueuedRender,
+        runQueuedRender,
+      )
     }, RENDER_DEBOUNCE_MS)
 
     return () => {
       window.clearTimeout(renderTimeout)
+      renderAbortController.abort()
+      if (renderAbortControllerRef.current === renderAbortController) {
+        renderAbortControllerRef.current = null
+      }
       if (renderSequenceRef.current === renderSequence) renderSequenceRef.current += 1
     }
   }, [
@@ -1043,9 +1178,12 @@ export default function ShareHighlightSheet({
     canvasElement,
     cardInput,
     copy,
+    imageTooLongMessage,
     open,
     passageInput,
     renderRetryNonce,
+    selectedArtwork,
+    selectedArtworkName,
   ])
 
   const passagePages = passagePngSet?.pages ?? []
@@ -1061,50 +1199,87 @@ export default function ShareHighlightSheet({
   const sharesCompletePassageSet = passagePageCount > 1
 
   useEffect(() => {
-    if (!canvasElement || !displayedPngExport) return
-
-    const context = canvasElement.getContext('2d')
-    if (!context) return
-
-    const drawPreview = (source: CanvasImageSource) => {
-      context.clearRect(0, 0, canvasElement.width, canvasElement.height)
-      context.drawImage(source, 0, 0, canvasElement.width, canvasElement.height)
-    }
-
-    if ('canvas' in displayedPngExport) {
-      if (displayedPngExport.canvas !== canvasElement) {
-        drawPreview(displayedPngExport.canvas)
-      }
-      return
-    }
-
-    const objectUrl = URL.createObjectURL(displayedPngExport.blob)
-    const image = new Image()
+    if (!open || !canvasElement || !displayedPngExport || !pendingPreview) return
     let cancelled = false
-    let objectUrlRevoked = false
-    const revokeObjectUrl = () => {
-      if (objectUrlRevoked) return
-      objectUrlRevoked = true
-      URL.revokeObjectURL(objectUrl)
+    const isCurrent = () => !cancelled
+      && !pendingPreview.signal.aborted
+      && renderSequenceRef.current === pendingPreview.renderSequence
+    if (!isCurrent()) return
+
+    const failPreview = () => {
+      if (!isCurrent()) return
+      setRenderFailed(true)
+      setRendering(false)
+      setRenderStatus(copy.renderError)
     }
-    image.decoding = 'async'
-    image.onload = () => {
-      if (!cancelled) drawPreview(image)
-      revokeObjectUrl()
+    const drawPreview = (source: CanvasImageSource) => {
+      if (!isCurrent()) return
+      try {
+        const context = canvasElement.getContext('2d')
+        if (!context) throw new Error('The image preview canvas is unavailable.')
+        if (source !== canvasElement) {
+          // Keep the prior preview intact while decoding. Resize only when the
+          // replacement is ready to paint, including a taller complete image.
+          if (canvasElement.width !== displayedPngExport.width) canvasElement.width = displayedPngExport.width
+          if (canvasElement.height !== displayedPngExport.height) canvasElement.height = displayedPngExport.height
+          context.clearRect(0, 0, canvasElement.width, canvasElement.height)
+          context.drawImage(source, 0, 0, canvasElement.width, canvasElement.height)
+        }
+        setPaintedPngExport(displayedPngExport)
+        setRenderFailed(false)
+        setRendering(false)
+        setRenderStatus(pendingPreview.readyStatus)
+      } catch {
+        failPreview()
+      }
     }
-    image.onerror = revokeObjectUrl
-    image.src = objectUrl
+
+    let disposeImage = () => {}
+    try {
+      if ('canvas' in displayedPngExport) {
+        drawPreview(displayedPngExport.canvas)
+        return
+      }
+
+      const image = new Image()
+      const objectUrl = URL.createObjectURL(displayedPngExport.blob)
+      let disposed = false
+      const timeout = window.setTimeout(() => {
+        failPreview()
+        disposeImage()
+      }, PREVIEW_DECODE_TIMEOUT_MS)
+      disposeImage = () => {
+        if (disposed) return
+        disposed = true
+        window.clearTimeout(timeout)
+        pendingPreview.signal.removeEventListener('abort', disposeImage)
+        image.onload = null
+        image.onerror = null
+        image.src = ''
+        URL.revokeObjectURL(objectUrl)
+      }
+      image.decoding = 'async'
+      image.onload = () => {
+        drawPreview(image)
+        disposeImage()
+      }
+      image.onerror = () => {
+        failPreview()
+        disposeImage()
+      }
+      pendingPreview.signal.addEventListener('abort', disposeImage, { once: true })
+      image.src = objectUrl
+    } catch {
+      failPreview()
+      disposeImage()
+    }
 
     return () => {
       cancelled = true
-      image.onload = null
-      image.onerror = null
-      image.src = ''
-      revokeObjectUrl()
+      disposeImage()
     }
-  }, [canvasElement, displayedPngExport])
+  }, [canvasElement, copy.renderError, displayedPngExport, open, pendingPreview])
 
-  const usesQuietPassageLayout = passageExport?.layout.composition === 'manuscript'
   const imagePassageLines = isPassage
     ? getPassageImageLines(content, passageSelection)
     : []
@@ -1147,9 +1322,12 @@ export default function ShareHighlightSheet({
   }
 
   const handleShare = async () => {
+    if (rendering || renderFailed || paintedPngExport !== displayedPngExport) return
     const files = passagePngSet?.files ?? (displayedPngExport ? [displayedPngExport.file] : [])
     if (files.length === 0 || !beginAction('share', copy.sharing)) return
     const actionGeneration = ++shareActionGenerationRef.current
+    const abortController = new AbortController()
+    shareActionAbortControllerRef.current = abortController
     const shareOptions = {
       title: isPassage ? copy.passageShareTitle : copy.shareTitle,
       text: buildShareCompanionText(
@@ -1161,10 +1339,11 @@ export default function ShareHighlightSheet({
         passagePageCount,
       ),
       url: sourceUrl,
+      signal: abortController.signal,
     }
     const timedAction = withActionTimeout(files.length > 1
       ? shareHighlightFiles(files, shareOptions)
-      : shareHighlightFile(files[0]!, shareOptions))
+      : shareHighlightFile(files[0]!, shareOptions), nativeImagePlatform ? 0 : SHARE_ACTION_TIMEOUT_MS)
     shareActionCancelRef.current = timedAction.cancel
     try {
       const result = await timedAction.promise
@@ -1190,26 +1369,43 @@ export default function ShareHighlightSheet({
     } finally {
       if (shareActionGenerationRef.current === actionGeneration) {
         shareActionCancelRef.current = null
+        shareActionAbortControllerRef.current = null
         finishAction('share')
       }
     }
   }
 
   const handleSave = async () => {
+    if (rendering || renderFailed || paintedPngExport !== displayedPngExport) return
     const files = passagePngSet?.files ?? (displayedPngExport ? [displayedPngExport.file] : [])
-    if (files.length === 0 || !beginAction('save', copy.downloading)) return
+    if (files.length === 0 || !beginAction('save', nativeImagePlatform ? nativeSaveCopy.saving : copy.downloading)) return
+    const actionGeneration = ++shareActionGenerationRef.current
+    const abortController = new AbortController()
+    shareActionAbortControllerRef.current = abortController
     try {
-      if (files.length > 1) {
+      if (nativeImagePlatform) {
+        await saveNativeHighlightFiles(files, { signal: abortController.signal })
+        if (shareActionGenerationRef.current === actionGeneration) announce(nativeSaveCopy.saved)
+      } else if (files.length > 1) {
         downloadShareHighlightFiles(files)
         announce(copy.downloadedSet(files.length))
       } else {
         downloadShareHighlightFile(files[0]!)
         announce(copy.downloaded)
       }
-    } catch {
-      announce(copy.actionError)
+    } catch (error) {
+      if (shareActionGenerationRef.current === actionGeneration) {
+        const permissionDenied = error && typeof error === 'object'
+          && 'code' in error && error.code === 'PHOTO_PERMISSION'
+        announce(nativeImagePlatform
+          ? permissionDenied ? nativeSaveCopy.permissionFailed : nativeSaveCopy.failed
+          : copy.actionError)
+      }
     } finally {
-      finishAction('save')
+      if (shareActionGenerationRef.current === actionGeneration) {
+        shareActionAbortControllerRef.current = null
+        finishAction('save')
+      }
     }
   }
 
@@ -1237,9 +1433,33 @@ export default function ShareHighlightSheet({
     if (nextValue) setShowTransliteration(false)
   }
 
+  const handleArtworkChange = (artworkId: string) => {
+    if (artworkId === selectedArtworkId) return
+    setRendering(true)
+    setSelectedArtworkId(artworkId)
+    if (isPassage) {
+      try {
+        // Remember only the artwork choice, never the scripture or reflection.
+        window.localStorage.setItem(HUKAMNAMA_ARTWORK_PREFERENCE_KEY, artworkId)
+      } catch {
+        // A storage failure must not interrupt selection or image export.
+      }
+    }
+    if (artworkId === NO_ARTWORK_ID) setTextPosition('auto')
+  }
+
+  const handleUseNoArtwork = () => {
+    handleArtworkChange(NO_ARTWORK_ID)
+    window.requestAnimationFrame(() => {
+      if (noArtworkInputRef.current?.isConnected) noArtworkInputRef.current.focus()
+    })
+  }
+
   const handlePassageNavigation = (offset: -1 | 1) => {
     if (rendering || passagePageCount <= 1) return
     setActionStatus(null)
+    setRendering(true)
+    setRenderStatus(copy.preparing)
     setActivePassagePageIndex(current => Math.min(
       passagePageCount - 1,
       Math.max(0, current + offset),
@@ -1279,6 +1499,7 @@ export default function ShareHighlightSheet({
   const status = actionStatus ?? renderStatus
   const previewSupportingDescription = [
     copy.previewSummary(isPassage ? 'passage' : 'line', visibleLayers),
+    isPassage ? `${copy.artwork}: ${selectedArtworkName}` : '',
     passageStatusTitle,
     passageCoverage,
     content.dateLabel,
@@ -1297,8 +1518,8 @@ export default function ShareHighlightSheet({
     >
       <header className="share-highlight__header">
         <div>
-          <p className="share-highlight__preface">{isPassage ? passageCopy.preface : copy.preface}</p>
-          <h2 className="share-highlight__title">{isPassage ? copy.passageTitle : copy.title}</h2>
+          {!isPassage ? <p className="share-highlight__preface">{copy.preface}</p> : null}
+          <h2 className="share-highlight__title">{isPassage ? passageCopy.preface : copy.title}</h2>
         </div>
         <button
           ref={closeButtonRef}
@@ -1317,6 +1538,7 @@ export default function ShareHighlightSheet({
             <div
               className={`share-highlight__preview-frame${isPassage ? ' share-highlight__preview-frame--story' : ''}`}
               aria-busy={rendering}
+              style={isPassage ? { aspectRatio: `1080 / ${paintedPngExport?.height ?? SHARE_HIGHLIGHT_STORY_HEIGHT}` } : undefined}
             >
               <canvas
                 ref={setCanvasElement}
@@ -1332,14 +1554,25 @@ export default function ShareHighlightSheet({
                   aria-hidden={renderFailed ? undefined : 'true'}
                 >
                   <span>{status}</span>
-                  {renderFailed ? (
-                    <button
-                      type="button"
-                      className="share-highlight__retry"
-                      onClick={() => setRenderRetryNonce(value => value + 1)}
-                    >
-                      {copy.retry}
-                    </button>
+                  {renderFailed && !renderTooLong ? (
+                    <div className="share-highlight__preview-recovery-actions">
+                      <button
+                        type="button"
+                        className="share-highlight__retry"
+                        onClick={() => setRenderRetryNonce(value => value + 1)}
+                      >
+                        {copy.retry}
+                      </button>
+                      {selectedArtwork ? (
+                        <button
+                          type="button"
+                          className="share-highlight__retry"
+                          onClick={handleUseNoArtwork}
+                        >
+                          {copy.useNoArtwork}
+                        </button>
+                      ) : null}
+                    </div>
                   ) : null}
                 </div>
               ) : null}
@@ -1347,12 +1580,16 @@ export default function ShareHighlightSheet({
             {passageSelection ? (
               <section
                 className={`share-highlight__passage-status share-highlight__passage-status--${passageSelection.mode}`}
-                aria-live="polite"
-                aria-atomic="true"
               >
-                <div className="share-highlight__passage-status-copy">
+                <div
+                  className="share-highlight__passage-status-copy"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
                   <strong>{passageStatusTitle}</strong>
                   <span>{passageCoverage}</span>
+                  {paintedPngExport && paintedPngExport.height > SHARE_HIGHLIGHT_STORY_HEIGHT
+                    ? <span>{copy.tallImageHint}</span> : null}
                 </div>
                 {passagePageCount > 1 ? (
                   <>
@@ -1425,13 +1662,97 @@ export default function ShareHighlightSheet({
                 <span className="sr-only">{copy.brand}: naamras.xyz</span>
               </span>
               <a className="share-highlight__source-link" href={sourceUrl}>
-                <span>{copy.readOnline}</span>
-                <strong>{sourceUrl}</strong>
+                {copy.readOnline} <span aria-hidden="true">↗</span>
               </a>
             </div>
           </section>
 
           <div className="share-highlight__controls-column">
+            <fieldset
+              className="share-highlight__control-group"
+              aria-describedby={artworkHelpId}
+            >
+              <legend className="share-highlight__control-label">{copy.artwork}</legend>
+              <p id={artworkHelpId} className="share-highlight__control-help">
+                {isPassage
+                  ? copy.passageArtworkHelp(availableArtwork.length)
+                  : copy.artworkHelp}
+              </p>
+              <div className="share-highlight__art-grid">
+                <div className="share-highlight__art-choice">
+                  <input
+                    ref={noArtworkInputRef}
+                    id={`${artworkGroupId}-none`}
+                    className="share-highlight__art-input"
+                    type="radio"
+                    name={artworkGroupId}
+                    value={NO_ARTWORK_ID}
+                    aria-describedby={`${artworkGroupId}-none-description`}
+                    checked={selectedArtworkId === NO_ARTWORK_ID}
+                    onChange={() => handleArtworkChange(NO_ARTWORK_ID)}
+                  />
+                  <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-none`}>
+                    <span className="share-highlight__art-selected-mark" aria-hidden="true">
+                      <IconCheck size={12} />
+                    </span>
+                    <span className="share-highlight__art-thumb share-highlight__no-art" aria-hidden="true">
+                      <span className="share-highlight__no-art-page" />
+                    </span>
+                    <span className="share-highlight__art-name">{copy.noArtwork}</span>
+                  </label>
+                  <span id={`${artworkGroupId}-none-description`} className="sr-only">
+                    {copy.noArtworkDescription}
+                  </span>
+                </div>
+                {availableArtwork.map(asset => {
+                  const artworkName = asset.displayName[locale]
+                  const artworkDescription = asset.localizedDescription[locale]
+                  const descriptionId = `${artworkGroupId}-${asset.id}-description`
+
+                  return (
+                    <div className="share-highlight__art-choice" key={asset.id}>
+                      <input
+                        id={`${artworkGroupId}-${asset.id}`}
+                        className="share-highlight__art-input"
+                        type="radio"
+                        name={artworkGroupId}
+                        value={asset.id}
+                        aria-describedby={descriptionId}
+                        checked={selectedArtworkId === asset.id}
+                        onChange={() => handleArtworkChange(asset.id)}
+                      />
+                      <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-${asset.id}`}>
+                        <span className="share-highlight__art-selected-mark" aria-hidden="true">
+                          <IconCheck size={12} />
+                        </span>
+                        <span className="share-highlight__art-thumb" aria-hidden="true">
+                          <img src={asset.thumbnail} alt="" loading="lazy" decoding="async" />
+                        </span>
+                        <span className="share-highlight__art-name">{artworkName}</span>
+                      </label>
+                      <span id={descriptionId} className="sr-only">{artworkDescription}</span>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <section
+                className="share-highlight__selected-artwork"
+                aria-labelledby={selectedArtworkLabelId}
+              >
+                <p id={selectedArtworkLabelId} className="sr-only">
+                  {copy.selectedArtwork}
+                </p>
+                <strong>{selectedArtworkName}</strong>
+                <p className="share-highlight__selected-artwork-description sr-only">
+                  {selectedArtworkDescription}
+                </p>
+                {isPassage && selectedArtwork && passagePageCount > 1 ? (
+                  <p>{copy.artworkAppliesToSet(passagePageCount)}</p>
+                ) : null}
+              </section>
+            </fieldset>
+
             <section className="share-highlight__control-group" aria-labelledby={`${artworkGroupId}-layers`}>
               <p id={`${artworkGroupId}-layers`} className="share-highlight__control-label">{copy.textLayers}</p>
               <p className="share-highlight__control-help">
@@ -1502,107 +1823,52 @@ export default function ShareHighlightSheet({
               ) : null}
             </section>
 
-            {usesQuietPassageLayout ? (
-              <section className="share-highlight__quiet-layout-note" role="note">
-                <p className="share-highlight__control-label">{copy.noArtwork}</p>
-                <p className="share-highlight__control-help">{copy.quietPassageArtworkNote}</p>
-              </section>
-            ) : (
-            <fieldset className="share-highlight__control-group">
-              <legend className="share-highlight__control-label">{copy.artwork}</legend>
-              <p className="share-highlight__control-help">{copy.artworkHelp}</p>
-              <div className="share-highlight__art-strip" role="radiogroup" aria-label={copy.artwork}>
-                <div className="share-highlight__art-choice">
-                  <input
-                    id={`${artworkGroupId}-none`}
-                    className="share-highlight__art-input"
-                    type="radio"
-                    name={artworkGroupId}
-                    value={NO_ARTWORK_ID}
-                    checked={selectedArtworkId === NO_ARTWORK_ID}
-                    onChange={() => {
-                      setRendering(true)
-                      setSelectedArtworkId(NO_ARTWORK_ID)
-                      setTextPosition('auto')
-                    }}
-                  />
-                  <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-none`}>
-                    <span className="share-highlight__art-thumb share-highlight__no-art" aria-hidden="true">∅</span>
-                    <span className="share-highlight__art-name">{copy.noArtwork}</span>
-                  </label>
-                </div>
-                {availableArtwork.map((asset, index) => (
-                  <div className="share-highlight__art-choice" key={asset.id}>
-                    <input
-                      id={`${artworkGroupId}-${asset.id}`}
-                      className="share-highlight__art-input"
-                      type="radio"
-                      name={artworkGroupId}
-                      value={asset.id}
-                      aria-label={`${getArtworkName(asset.id)}. ${asset.description}`}
-                      checked={selectedArtworkId === asset.id}
-                      onChange={() => {
-                        setRendering(true)
-                        setSelectedArtworkId(asset.id)
-                      }}
-                    />
-                    <label className="share-highlight__art-option" htmlFor={`${artworkGroupId}-${asset.id}`}>
-                      <span className="share-highlight__art-thumb">
-                        <img src={asset.thumbnail} alt="" loading="lazy" decoding="async" />
-                      </span>
-                      <span className="share-highlight__art-name">{copy.artworkNumber(index + 1)}</span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-              {selectedArtwork && !isPassage ? (
-                <div className="share-highlight__position-control">
-                  <p id={`${positionGroupId}-label`} className="share-highlight__control-label">
-                    {copy.textPosition}
-                  </p>
-                  <p id={`${positionGroupId}-help`} className="share-highlight__control-help">
-                    {copy.textPositionHelp}
-                  </p>
-                  <div
-                    className="share-highlight__position-options"
-                    role="radiogroup"
-                    aria-labelledby={`${positionGroupId}-label`}
-                    aria-describedby={`${positionGroupId}-help`}
-                  >
-                    {([
-                      ['auto', copy.positionAuto],
-                      ['top', copy.positionTop],
-                      ['middle', copy.positionMiddle],
-                      ['bottom', copy.positionBottom],
-                    ] as const).map(([position, label]) => (
-                      <label className="share-highlight__position-option" key={position}>
-                        <input
-                          className="share-highlight__position-input"
-                          type="radio"
-                          name={positionGroupId}
-                          value={position}
-                          checked={textPosition === position}
-                          onChange={() => {
-                            setRendering(true)
-                            setTextPosition(position)
-                          }}
-                        />
-                        <span className="share-highlight__position-choice">
-                          <span
-                            className={`share-highlight__position-icon share-highlight__position-icon--${position}`}
-                            aria-hidden="true"
-                          >
-                            <span />
-                          </span>
-                          <span className="share-highlight__position-name">{label}</span>
+            {selectedArtwork && !isPassage ? (
+              <section className="share-highlight__control-group share-highlight__position-control">
+                <p id={`${positionGroupId}-label`} className="share-highlight__control-label">
+                  {copy.textPosition}
+                </p>
+                <p id={`${positionGroupId}-help`} className="share-highlight__control-help">
+                  {copy.textPositionHelp}
+                </p>
+                <div
+                  className="share-highlight__position-options"
+                  role="radiogroup"
+                  aria-labelledby={`${positionGroupId}-label`}
+                  aria-describedby={`${positionGroupId}-help`}
+                >
+                  {([
+                    ['auto', copy.positionAuto],
+                    ['top', copy.positionTop],
+                    ['middle', copy.positionMiddle],
+                    ['bottom', copy.positionBottom],
+                  ] as const).map(([position, label]) => (
+                    <label className="share-highlight__position-option" key={position}>
+                      <input
+                        className="share-highlight__position-input"
+                        type="radio"
+                        name={positionGroupId}
+                        value={position}
+                        checked={textPosition === position}
+                        onChange={() => {
+                          setRendering(true)
+                          setTextPosition(position)
+                        }}
+                      />
+                      <span className="share-highlight__position-choice">
+                        <span
+                          className={`share-highlight__position-icon share-highlight__position-icon--${position}`}
+                          aria-hidden="true"
+                        >
+                          <span />
                         </span>
-                      </label>
-                    ))}
-                  </div>
+                        <span className="share-highlight__position-name">{label}</span>
+                      </span>
+                    </label>
+                  ))}
                 </div>
-              ) : null}
-            </fieldset>
-            )}
+              </section>
+            ) : null}
 
             <section className="share-highlight__control-group">
               <label className="share-highlight__caption-label" htmlFor={captionId}>
@@ -1629,17 +1895,26 @@ export default function ShareHighlightSheet({
       <footer className="share-highlight__action-bar">
         {renderFailed && displayedPngExport ? (
           <div className="share-highlight__recovery" role="note">
-            <span>{copy.renderError}</span>
-            <button type="button" onClick={() => setRenderRetryNonce(value => value + 1)}>
-              {copy.retry}
-            </button>
+            <span>{renderTooLong ? imageTooLongMessage : copy.renderError}</span>
+            {!renderTooLong ? (
+              <div className="share-highlight__recovery-actions">
+                <button type="button" onClick={() => setRenderRetryNonce(value => value + 1)}>
+                  {copy.retry}
+                </button>
+                {selectedArtwork ? (
+                  <button type="button" onClick={handleUseNoArtwork}>
+                    {copy.useNoArtwork}
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         ) : null}
         <div className="share-highlight__primary-actions">
           <button
             type="button"
             className="share-highlight__action share-highlight__action--primary"
-            disabled={!displayedPngExport || rendering || renderFailed || busyAction !== null}
+            disabled={!displayedPngExport || paintedPngExport !== displayedPngExport || rendering || renderFailed || busyAction !== null}
             aria-busy={busyAction === 'share'}
             onClick={() => { void handleShare() }}
           >
@@ -1653,14 +1928,14 @@ export default function ShareHighlightSheet({
           <button
             type="button"
             className="share-highlight__action share-highlight__action--secondary"
-            disabled={!displayedPngExport || rendering || renderFailed || busyAction !== null}
+            disabled={!displayedPngExport || paintedPngExport !== displayedPngExport || rendering || renderFailed || busyAction !== null}
             aria-busy={busyAction === 'save'}
             onClick={() => { void handleSave() }}
           >
             <span aria-hidden="true">↓</span>
             {busyAction === 'save'
-              ? copy.downloading
-              : passagePageCount > 1
+              ? nativeImagePlatform ? nativeSaveCopy.saving : copy.downloading
+              : nativeImagePlatform ? nativeSaveCopy.label : passagePageCount > 1
                 ? copy.saveImages(passagePageCount)
                 : copy.saveImage}
           </button>
