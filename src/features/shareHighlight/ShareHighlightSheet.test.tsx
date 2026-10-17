@@ -1,8 +1,11 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import ShareHighlightSheet, { type ShareHighlightContent } from './ShareHighlightSheet'
 import { getCanonicalSourceUrl, getHukamnamaShareUrl } from './sourceUrl'
 import type { ShareHighlightStorySelection } from './types'
+
+const ARTWORK_PREFERENCE_KEY = 'naamras.share-highlight.hukamnama-artwork.v1'
 
 const mocks = vi.hoisted(() => {
   return {
@@ -13,12 +16,16 @@ const mocks = vi.hoisted(() => {
     downloadFile: vi.fn(),
     downloadFiles: vi.fn(),
     copyText: vi.fn(),
+    isNative: vi.fn(),
+    saveNative: vi.fn(),
+    ImageTooLongError: class HukamnamaImageTooLongError extends RangeError {},
   }
 })
 
 vi.mock('./renderer', () => ({
+  HukamnamaImageTooLongError: mocks.ImageTooLongError,
   exportShareHighlightPng: mocks.exportPng,
-  exportShareHighlightStoryPngSet: async (...args: unknown[]) => {
+  exportShareHighlightHukamnamaPng: async (...args: unknown[]) => {
     const result = await mocks.exportStoryPng(...args)
     if (result && typeof result === 'object' && 'pages' in result) return result
     return {
@@ -35,6 +42,11 @@ vi.mock('./share', () => ({
   downloadShareHighlightFile: mocks.downloadFile,
   downloadShareHighlightFiles: mocks.downloadFiles,
   copyShareHighlightText: mocks.copyText,
+}))
+
+vi.mock('./nativeShare', () => ({
+  isNativeImagePlatform: mocks.isNative,
+  saveNativeHighlightFiles: mocks.saveNative,
 }))
 
 const content: ShareHighlightContent = {
@@ -151,6 +163,49 @@ function makeStorySet(pages: Array<ReturnType<typeof makePngExport>>) {
   }
 }
 
+function makeEncodedStorySet(height = 1920) {
+  const rendered = makePngExport(undefined, 'naamras-hukamnama.png', 1920)
+  const page = {
+    blob: rendered.blob,
+    file: rendered.file,
+    width: rendered.width,
+    height,
+    layout: rendered.layout,
+    selection: rendered.selection,
+  }
+  return { pages: [page], files: [page.file], totalLineCount: page.selection.totalLineCount }
+}
+
+function controlPreviewImageLoading() {
+  const imageDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'Image')
+  const createDescriptor = Object.getOwnPropertyDescriptor(URL, 'createObjectURL')
+  const revokeDescriptor = Object.getOwnPropertyDescriptor(URL, 'revokeObjectURL')
+  const images: ControlledImage[] = []
+  class ControlledImage {
+    decoding = ''
+    onload: ((event: Event) => void) | null = null
+    onerror: ((event: Event) => void) | null = null
+    src = ''
+    constructor() { images.push(this) }
+  }
+  const createObjectURL = vi.fn(() => `blob:controlled-preview-${images.length}`)
+  const revokeObjectURL = vi.fn()
+  Object.defineProperty(globalThis, 'Image', { configurable: true, value: ControlledImage })
+  Object.defineProperty(URL, 'createObjectURL', { configurable: true, value: createObjectURL })
+  Object.defineProperty(URL, 'revokeObjectURL', { configurable: true, value: revokeObjectURL })
+  return {
+    images,
+    revokeObjectURL,
+    restore() {
+      if (imageDescriptor) Object.defineProperty(globalThis, 'Image', imageDescriptor)
+      if (createDescriptor) Object.defineProperty(URL, 'createObjectURL', createDescriptor)
+      else Reflect.deleteProperty(URL, 'createObjectURL')
+      if (revokeDescriptor) Object.defineProperty(URL, 'revokeObjectURL', revokeDescriptor)
+      else Reflect.deleteProperty(URL, 'revokeObjectURL')
+    },
+  }
+}
+
 beforeAll(() => {
   vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
     clearRect: vi.fn(),
@@ -159,6 +214,7 @@ beforeAll(() => {
 })
 
 beforeEach(() => {
+  window.localStorage.removeItem(ARTWORK_PREFERENCE_KEY)
   mocks.exportPng.mockReset()
   mocks.exportPng.mockImplementation(async (_input, options) => makePngExport(options?.canvas))
   mocks.exportStoryPng.mockReset()
@@ -179,6 +235,9 @@ beforeEach(() => {
   mocks.shareFiles.mockResolvedValue({ status: 'shared', method: 'web-share', payload: 'full' })
   mocks.downloadFile.mockReset()
   mocks.downloadFiles.mockReset()
+  mocks.isNative.mockReturnValue(false)
+  mocks.saveNative.mockReset()
+  mocks.saveNative.mockResolvedValue(undefined)
   mocks.copyText.mockReset()
   mocks.copyText.mockImplementation(async (text: string) => {
     await window.navigator.clipboard.writeText(text)
@@ -191,6 +250,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  window.localStorage.removeItem(ARTWORK_PREFERENCE_KEY)
   vi.useRealTimers()
 })
 
@@ -215,6 +275,150 @@ afterAll(() => {
 })
 
 describe('ShareHighlightSheet', () => {
+  it('saves to Photos in the installed iPhone app without starting a browser download', async () => {
+    mocks.isNative.mockReturnValue(true)
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const save = screen.getByRole('button', { name: 'Save to Photos' })
+    await waitFor(() => expect(save).toBeEnabled())
+    fireEvent.click(save)
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Saved to Photos.'))
+    expect(mocks.saveNative).toHaveBeenCalledOnce()
+    expect(mocks.saveNative.mock.calls[0]?.[0]).toHaveLength(1)
+    expect(mocks.downloadFile).not.toHaveBeenCalled()
+    expect(mocks.downloadFiles).not.toHaveBeenCalled()
+  })
+
+  it('shows recovery advice instead of a successful save when Photos access fails', async () => {
+    mocks.isNative.mockReturnValue(true)
+    mocks.saveNative.mockRejectedValue(Object.assign(new Error('permission denied'), { code: 'PHOTO_PERMISSION' }))
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const save = screen.getByRole('button', { name: 'Save to Photos' })
+    await waitFor(() => expect(save).toBeEnabled())
+    fireEvent.click(save)
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('The image was not saved.'))
+    expect(screen.getByRole('status')).toHaveTextContent('Share image to save to Files')
+    expect(screen.getByRole('status')).toHaveTextContent('Allow NaamRas to add photos in Settings')
+    expect(save).toBeEnabled()
+  })
+
+  it('does not blame Photos permission when native saving fails for another reason', async () => {
+    mocks.isNative.mockReturnValue(true)
+    mocks.saveNative.mockRejectedValue(Object.assign(new Error('storage unavailable'), { code: 'SAVE_FAILED' }))
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const save = screen.getByRole('button', { name: 'Save to Photos' })
+    await waitFor(() => expect(save).toBeEnabled())
+    fireEvent.click(save)
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(
+      'The image was not saved. Try again, or use Share image to save to Files.',
+    ))
+    expect(screen.getByRole('status')).not.toHaveTextContent('Settings')
+    expect(screen.getByRole('status')).not.toHaveTextContent('Saved to Photos.')
+    expect(save).toBeEnabled()
+    expect(mocks.downloadFile).not.toHaveBeenCalled()
+  })
+
+  it.each([
+    ['share', 'close'], ['save', 'close'],
+    ['share', 'content'], ['save', 'content'],
+    ['share', 'locale'], ['save', 'locale'],
+  ] as const)('cancels pending native %s preparation and ignores its result after a %s change', async (action, change) => {
+    mocks.isNative.mockReturnValue(true)
+    let complete!: () => void
+    const pending = new Promise<unknown>(resolve => {
+      complete = () => resolve(action === 'share'
+        ? { status: 'shared', method: 'native-share', payload: 'full' }
+        : undefined)
+    })
+    const nativeAction = action === 'share' ? mocks.shareFile : mocks.saveNative
+    nativeAction.mockReturnValueOnce(pending)
+    const onNotice = vi.fn()
+    const view = render(
+      <ShareHighlightSheet open onClose={vi.fn()} content={passageContent} onNotice={onNotice} />,
+    )
+    const button = screen.getByRole('button', { name: action === 'share' ? 'Share image' : 'Save to Photos' })
+    await waitFor(() => expect(button).toBeEnabled())
+    fireEvent.click(button)
+    const signal = nativeAction.mock.calls[0]?.[1]?.signal as AbortSignal
+    expect(signal).toBeInstanceOf(AbortSignal)
+    expect(signal.aborted).toBe(false)
+
+    view.rerender(
+      <ShareHighlightSheet
+        open={change !== 'close'}
+        onClose={vi.fn()}
+        content={change === 'content' ? { ...passageContent, dateLabel: 'July 16, 2026' } : passageContent}
+        locale={change === 'locale' ? 'pa' : 'en'}
+        onNotice={onNotice}
+      />,
+    )
+    expect(signal.aborted).toBe(true)
+    if (change === 'close') {
+      view.rerender(
+        <ShareHighlightSheet open onClose={vi.fn()} content={passageContent} onNotice={onNotice} />,
+      )
+    }
+
+    await act(async () => {
+      complete()
+      await pending
+    })
+    expect(onNotice).not.toHaveBeenCalled()
+    await waitFor(() => expect(screen.getByRole('button', {
+      name: change === 'locale' ? 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ' : 'Share image',
+    })).toBeEnabled())
+  })
+
+  it.each([
+    { locale: 'en', explanation: 'too long for one readable image with Meaning', meaning: 'Meaning', share: 'Share image', retry: 'Retry image', noArt: 'Use No art', copy: 'Copy full text' },
+    { locale: 'pa', explanation: 'ਇੱਕ ਪੜ੍ਹਨਯੋਗ ਤਸਵੀਰ ਲਈ ਬਹੁਤ ਲੰਮਾ', meaning: 'ਅਰਥ', share: 'ਤਸਵੀਰ ਸਾਂਝੀ ਕਰੋ', retry: 'ਤਸਵੀਰ ਦੁਬਾਰਾ ਬਣਾਓ', noArt: 'ਕੋਈ ਕਲਾ ਨਾ ਵਰਤੋ', copy: 'ਪੂਰੀ ਲਿਖਤ ਕਾਪੀ ਕਰੋ' },
+    { locale: 'hi', explanation: 'एक पठनीय छवि के लिए बहुत लंबा', meaning: 'अर्थ', share: 'छवि साझा करें', retry: 'छवि फिर बनाएँ', noArt: 'कोई कला न रखें', copy: 'पूरा पाठ कॉपी करें' },
+  ] as const)('offers useful $locale recovery when support makes a passage too tall', async labels => {
+    mocks.exportStoryPng.mockRejectedValueOnce(new mocks.ImageTooLongError())
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} locale={labels.locale} />)
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(labels.explanation))
+    expect(screen.getByRole('button', { name: labels.share })).toBeDisabled()
+    expect(screen.getByRole('button', { name: labels.copy })).toBeEnabled()
+    expect(screen.queryByRole('button', { name: labels.retry })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: labels.noArt })).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: labels.meaning }))
+    await waitFor(() => expect(screen.getByRole('button', { name: labels.share })).toBeEnabled())
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].content.lines.every(
+      (line: { meaning?: string | null }) => !line.meaning,
+    )).toBe(true)
+  })
+
+  it('keeps the complete text copyable when even Gurmukhi alone exceeds one readable image', async () => {
+    mocks.exportStoryPng.mockRejectedValueOnce(new mocks.ImageTooLongError())
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={{
+      ...passageContent, initialShowMeaning: false, initialShowTransliteration: false,
+    }} />)
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(
+      'This passage is too long for one readable image. Use Copy full text to share every line.',
+    ))
+    expect(screen.queryByRole('button', { name: 'Retry image' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Use No art' })).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Copy full text' }))
+    await waitFor(() => expect(window.navigator.clipboard.writeText).toHaveBeenCalled())
+    const copied = mocks.copyText.mock.calls[0]?.[0] as string
+    for (const line of passageContent.passageLines!) expect(copied).toContain(line.gurmukhi)
+    expect(mocks.shareFile).not.toHaveBeenCalled()
+    expect(mocks.downloadFile).not.toHaveBeenCalled()
+  })
+
+  it('explains an overflow after an earlier preview without offering ineffective artwork retries', async () => {
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Share image' })).toBeEnabled())
+    mocks.exportStoryPng.mockRejectedValueOnce(new mocks.ImageTooLongError())
+    fireEvent.click(screen.getByRole('button', { name: 'Transliteration' }))
+    await waitFor(() => expect(screen.getByRole('note')).toHaveTextContent(
+      'Turn off Transliteration, or use Copy full text to share every line.',
+    ))
+    expect(screen.queryByRole('button', { name: 'Retry image' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Use No art' })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Share image' })).toBeDisabled()
+  })
+
   it('presents immutable scripture, a live preview, and every artwork choice accessibly', async () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={content} />)
 
@@ -225,7 +429,10 @@ describe('ShareHighlightSheet', () => {
     expect(within(dialog).getByText('naamras.xyz')).toBeInTheDocument()
     expect(within(dialog).getByRole('region', { name: 'Text shown in the image' }))
       .toHaveTextContent(content.gurmukhi)
-    expect(within(dialog).getByRole('radio', { name: /Court Mural.*procession/i })).toBeInTheDocument()
+    expect(within(dialog).getByRole('radio', {
+      name: 'Court mural',
+      description: /court scene with riders/i,
+    })).toBeInTheDocument()
     const note = within(dialog).getByRole('textbox', { name: /Social note/i })
     const describedByIds = note.getAttribute('aria-describedby')?.split(' ') ?? []
     expect(describedByIds).toHaveLength(2)
@@ -235,24 +442,23 @@ describe('ShareHighlightSheet', () => {
     expect(gurmukhi).toBeDisabled()
     expect(gurmukhi).toHaveAttribute('aria-pressed', 'true')
 
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
     const artworkChoices = within(artworkGroup).getAllByRole('radio')
     expect(artworkChoices).toHaveLength(16)
     expect(within(dialog).getByRole('radio', { name: /No art/i })).not.toBeChecked()
 
     await waitFor(() => expect(mocks.exportPng).toHaveBeenCalled())
-    expect(within(dialog).getByRole('status')).toHaveTextContent('Image ready.')
+    await waitFor(() => expect(within(dialog).getByRole('status')).toHaveTextContent('Image ready.'))
     expect(within(dialog).getByRole('button', { name: 'Share image' })).toBeEnabled()
     expect(within(dialog).getByRole('button', { name: 'Download image' })).toBeEnabled()
   })
 
-  it('builds the full Hukamnama as one ordered, story-ready image with only reviewed neutral artwork', async () => {
+  it('builds the full Hukamnama as one ordered Story and exposes only the existing artwork set', async () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
 
-    expect(within(dialog).getByText("Share today's Hukamnama")).toBeInTheDocument()
-    expect(within(dialog).getByRole('heading', { name: 'Create a Story image' })).toBeInTheDocument()
-    expect(within(dialog).getByText(/Meaning places each complete selected translation directly below its matching Gurbani line/i)).toBeInTheDocument()
+    expect(within(dialog).getByRole('heading', { name: "Share today's Hukamnama" })).toBeInTheDocument()
+    expect(within(dialog).getByText('Gurmukhi is always included. Add meaning or pronunciation below each line.')).toBeInTheDocument()
     expect(within(dialog).queryByRole('radiogroup', { name: 'Text position' })).not.toBeInTheDocument()
     expect(within(dialog).queryByText(/Page \d+ of \d+/i)).not.toBeInTheDocument()
     expect(within(dialog).queryByRole('button', { name: /Previous image|Next image/i })).not.toBeInTheDocument()
@@ -262,12 +468,28 @@ describe('ShareHighlightSheet', () => {
     expect(preview).toHaveAttribute('height', '1920')
     expect(preview.parentElement).toHaveClass('share-highlight__preview-frame--story')
 
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
-    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(2)
-    expect(within(artworkGroup).getByRole('radio', { name: /Quiet Parchment.*abstract parchment/i }))
-      .toBeChecked()
-    expect(within(artworkGroup).queryByRole('radio', { name: /Court Mural/i })).not.toBeInTheDocument()
-    expect(within(artworkGroup).queryByRole('radio', { name: /Waterside Temple/i })).not.toBeInTheDocument()
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
+    const readingControls = within(dialog).getByRole('region', { name: 'Text on the card' })
+    expect(artworkGroup.compareDocumentPosition(readingControls) & Node.DOCUMENT_POSITION_FOLLOWING)
+      .toBeTruthy()
+    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(15)
+    expect(within(artworkGroup).getByRole('radio', {
+      name: 'No art',
+      description: 'A plain reading surface without a picture.',
+    })).not.toBeChecked()
+    expect(within(artworkGroup).getByRole('radio', { name: 'Interior audience' })).toBeChecked()
+    expect(within(artworkGroup).getByRole('radio', {
+      name: 'Court mural',
+      description: /court scene with riders/i,
+    })).toBeInTheDocument()
+    expect(within(artworkGroup).getByRole('radio', {
+      name: 'Waterside temple',
+      description: /conflict scenes/i,
+    })).toBeInTheDocument()
+    expect(within(artworkGroup).queryByRole('radio', { name: /Quiet parchment/i }))
+      .not.toBeInTheDocument()
+    expect(dialog.querySelector('.share-highlight__selected-artwork-description'))
+      .not.toHaveTextContent('A plain reading surface without a picture.')
     expect(within(dialog).getByRole('button', { name: 'Transliteration' })).toHaveAttribute('aria-pressed', 'false')
     expect(within(dialog).getByRole('button', { name: 'Meaning' })).toHaveAttribute('aria-pressed', 'true')
 
@@ -275,7 +497,7 @@ describe('ShareHighlightSheet', () => {
     expect(await within(dialog).findByText('Complete Hukamnama')).toBeInTheDocument()
     expect(within(dialog).getByText('3 of 3 lines in this image')).toBeInTheDocument()
     expect(within(dialog).getByRole('link', {
-      name: /Read this exact passage on NaamRas.*https:\/\/naamras\.xyz\/h\/2026-07-15/i,
+      name: 'Read this exact passage on NaamRas',
     })).toHaveAttribute('href', 'https://naamras.xyz/h/2026-07-15')
     const initialInput = mocks.exportStoryPng.mock.calls.at(-1)?.[0]
     expect(initialInput.content.lines.map((line: { id: string }) => line.id)).toEqual([
@@ -303,10 +525,439 @@ describe('ShareHighlightSheet', () => {
         coverageTemplate: '{included} of {total} lines',
       }),
     })
-    expect(initialInput.artwork?.id).toBe('quiet-parchment')
+    expect(initialInput.artwork?.id).toBe('interior-audience')
+    expect(window.localStorage.getItem(ARTWORK_PREFERENCE_KEY)).toBeNull()
     expect(initialInput.fileNameBase).toBe('naamras-hukamnama-2026-07-15')
-    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[1]).toBeUndefined()
+    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[1]).toEqual({
+      signal: expect.any(AbortSignal),
+    })
     expect(mocks.exportPng).not.toHaveBeenCalled()
+  })
+
+  it('remembers the chosen Hukamnama background across closing and remounting', async () => {
+    const view = render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    fireEvent.click(screen.getByRole('radio', { name: 'Court mural' }))
+    expect(window.localStorage.getItem(ARTWORK_PREFERENCE_KEY)).toBe('court-mural')
+    view.rerender(<ShareHighlightSheet open={false} onClose={vi.fn()} content={passageContent} />)
+    view.rerender(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    expect(screen.getByRole('radio', { name: 'Court mural' })).toBeChecked()
+    view.unmount()
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    expect(screen.getByRole('radio', { name: 'Court mural' })).toBeChecked()
+    await waitFor(() => expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('court-mural'))
+  })
+
+  it('previews a taller complete Hukamnama at its actual aspect ratio with single-image actions', async () => {
+    const page = makePngExport(undefined, 'naamras-hukamnama.png', 1920)
+    mocks.exportStoryPng.mockResolvedValueOnce(makeStorySet([{ ...page, height: 2600 } as typeof page]))
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const preview = screen.getByRole('img', { name: 'Share image preview' })
+    await waitFor(() => expect(preview).toHaveAttribute('height', '2600'))
+    expect(preview.parentElement).toHaveStyle({ aspectRatio: '1080 / 2600' })
+    expect(screen.getByText('One taller image keeps every line readable. Check that the full image is visible before posting.')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Download image', exact: true })).toBeEnabled()
+    expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeEnabled()
+    expect(screen.queryByRole('button', { name: /Download \d+ images/ })).not.toBeInTheDocument()
+  })
+
+  it('keeps the prior preview and disables image actions until the latest taller PNG is painted', async () => {
+    const loading = controlPreviewImageLoading()
+    const view = render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    try {
+      const share = screen.getByRole('button', { name: 'Share image', exact: true })
+      const download = screen.getByRole('button', { name: 'Download image', exact: true })
+      const preview = screen.getByRole('img', { name: 'Share image preview' })
+      await waitFor(() => expect(share).toBeEnabled())
+      mocks.exportStoryPng.mockResolvedValueOnce(makeEncodedStorySet(2600))
+      fireEvent.click(screen.getByRole('radio', { name: 'Court mural' }))
+      await waitFor(() => expect(loading.images).toHaveLength(1))
+
+      expect(share).toBeDisabled()
+      expect(download).toBeDisabled()
+      expect(preview).toHaveAttribute('height', '1920')
+      expect(preview.parentElement).toHaveStyle({ aspectRatio: '1080 / 1920' })
+      expect(screen.getByRole('status')).toHaveTextContent('Applying Court mural')
+      fireEvent.click(share)
+      fireEvent.click(download)
+      expect(mocks.shareFile).not.toHaveBeenCalled()
+      expect(mocks.downloadFile).not.toHaveBeenCalled()
+
+      act(() => loading.images[0]!.onload?.(new Event('load')))
+
+      expect(preview).toHaveAttribute('height', '2600')
+      expect(preview.parentElement).toHaveStyle({ aspectRatio: '1080 / 2600' })
+      expect(share).toBeEnabled()
+      expect(download).toBeEnabled()
+      expect(screen.getByRole('status')).toHaveTextContent('Court mural applied. Image ready.')
+      expect(loading.revokeObjectURL).toHaveBeenCalledTimes(1)
+    } finally {
+      view.unmount()
+      loading.restore()
+    }
+  })
+
+  it('ignores a stale preview decode and visibly recovers from the latest decode failure', async () => {
+    const loading = controlPreviewImageLoading()
+    mocks.exportStoryPng.mockImplementation(async () => makeEncodedStorySet())
+    const view = render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    try {
+      await waitFor(() => expect(loading.images).toHaveLength(1))
+      const staleLoad = loading.images[0]!.onload!
+      fireEvent.click(screen.getByRole('radio', { name: 'Court mural' }))
+      await waitFor(() => expect(loading.images).toHaveLength(2))
+      expect(loading.images[0]!.src).toBe('')
+      act(() => staleLoad(new Event('load')))
+      expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeDisabled()
+      expect(screen.getByRole('status')).toHaveTextContent('Applying Court mural')
+
+      act(() => loading.images[1]!.onerror?.(new Event('error')))
+      expect(screen.getByRole('status')).toHaveTextContent('The image could not be prepared.')
+      expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeDisabled()
+      expect(screen.getByRole('button', { name: 'Download image', exact: true })).toBeDisabled()
+      fireEvent.click(screen.getByRole('button', { name: 'Retry image' }))
+      await waitFor(() => expect(loading.images).toHaveLength(3))
+      act(() => loading.images[2]!.onload?.(new Event('load')))
+      expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeEnabled()
+      expect(screen.queryByRole('button', { name: 'Retry image' })).not.toBeInTheDocument()
+      expect(loading.revokeObjectURL).toHaveBeenCalledTimes(3)
+    } finally {
+      view.unmount()
+      loading.restore()
+    }
+  })
+
+  it('surfaces a failed preview draw and allows a successful retry', async () => {
+    const context = document.createElement('canvas').getContext('2d')!
+    vi.mocked(context.drawImage).mockImplementationOnce(() => { throw new Error('canvas draw failed') })
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const retry = await screen.findByRole('button', { name: 'Retry image' })
+    expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeDisabled()
+    expect(screen.getByRole('status')).toHaveTextContent('The image could not be prepared.')
+    fireEvent.click(retry)
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeEnabled())
+    expect(screen.queryByRole('button', { name: 'Retry image' })).not.toBeInTheDocument()
+  })
+
+  it('times out a stalled preview decode without making the image shareable', async () => {
+    const loading = controlPreviewImageLoading()
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+    mocks.exportStoryPng.mockResolvedValueOnce(makeEncodedStorySet())
+    const view = render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    try {
+      await act(async () => { await vi.advanceTimersByTimeAsync(100) })
+      expect(loading.images).toHaveLength(1)
+      await act(async () => { await vi.advanceTimersByTimeAsync(12_000) })
+      expect(screen.getByRole('status')).toHaveTextContent('The image could not be prepared.')
+      expect(screen.getByRole('button', { name: 'Share image', exact: true })).toBeDisabled()
+      expect(screen.getByRole('button', { name: 'Retry image' })).toBeInTheDocument()
+      expect(loading.images[0]!.src).toBe('')
+      expect(loading.revokeObjectURL).toHaveBeenCalledTimes(1)
+    } finally {
+      view.unmount()
+      loading.restore()
+      vi.useRealTimers()
+    }
+  })
+
+  it('remembers the plain option after a previously chosen background', () => {
+    window.localStorage.setItem(ARTWORK_PREFERENCE_KEY, 'court-mural')
+    const view = render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    fireEvent.click(screen.getByRole('radio', { name: 'No art' }))
+    expect(window.localStorage.getItem(ARTWORK_PREFERENCE_KEY)).toBe('none')
+    view.unmount()
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    expect(screen.getByRole('radio', { name: 'No art' })).toBeChecked()
+  })
+
+  it.each([
+    { initialArtworkId: null, name: 'No art' },
+    { initialArtworkId: 'waterside-temple', name: 'Waterside temple' },
+  ])('honors explicit initial artwork over the saved choice: $name', ({ initialArtworkId, name }) => {
+    window.localStorage.setItem(ARTWORK_PREFERENCE_KEY, 'court-mural')
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} initialArtworkId={initialArtworkId} />)
+    expect(screen.getByRole('radio', { name })).toBeChecked()
+    expect(window.localStorage.getItem(ARTWORK_PREFERENCE_KEY)).toBe('court-mural')
+  })
+
+  it.each(['removed-artwork', 'quiet-parchment'])('ignores unavailable saved artwork: %s', savedId => {
+    window.localStorage.setItem(ARTWORK_PREFERENCE_KEY, savedId)
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    expect(screen.getByRole('radio', { name: 'Interior audience' })).toBeChecked()
+  })
+
+  it('keeps artwork selection and export usable when browser storage is denied', async () => {
+    const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('Storage denied') })
+    const setItem = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Storage denied') })
+    try {
+      render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+      expect(screen.getByRole('radio', { name: 'Interior audience' })).toBeChecked()
+      fireEvent.click(screen.getByRole('radio', { name: 'Court mural' }))
+      expect(screen.getByRole('radio', { name: 'Court mural' })).toBeChecked()
+      await waitFor(() => expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('court-mural'))
+    } finally {
+      getItem.mockRestore()
+      setItem.mockRestore()
+    }
+  })
+
+  it('uses native radio-key navigation across the persistent Hukamnama artwork picker', async () => {
+    const user = userEvent.setup()
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
+    const noArtwork = within(artworkGroup).getByRole('radio', { name: 'No art' })
+    const courtMural = within(artworkGroup).getByRole('radio', { name: 'Court mural' })
+
+    noArtwork.focus()
+    await user.keyboard('{ArrowRight}')
+
+    expect(courtMural).toBeChecked()
+    expect(courtMural).toHaveFocus()
+    await waitFor(() => {
+      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('court-mural')
+      expect(within(dialog).getByRole('status')).toHaveTextContent(
+        'Court mural applied. Image ready.',
+      )
+    })
+    expect(courtMural).toHaveFocus()
+  })
+
+  it('serializes full-set exports and coalesces queued artwork selections to the latest choice', async () => {
+    const user = userEvent.setup()
+    type StoryExport = ReturnType<typeof makePngExport>
+    let resolveCourtMural!: (value: StoryExport) => void
+    let resolveWatersideTemple!: (value: StoryExport) => void
+    const courtMuralExport = new Promise<StoryExport>(resolve => {
+      resolveCourtMural = resolve
+    })
+    const watersideTempleExport = new Promise<StoryExport>(resolve => {
+      resolveWatersideTemple = resolve
+    })
+    const invokedArtworkIds: Array<string | null> = []
+    const abortedArtworkIds: Array<string | null> = []
+    let activeExports = 0
+    let maxActiveExports = 0
+
+    mocks.exportStoryPng.mockImplementation((input: {
+      artwork?: { id: string } | null
+      content: { lines: Array<{ id: string | number }> }
+    }, options?: { signal?: AbortSignal }) => {
+      const artworkId = input.artwork?.id ?? null
+      invokedArtworkIds.push(artworkId)
+      activeExports += 1
+      maxActiveExports = Math.max(maxActiveExports, activeExports)
+      const sourceLineIds = input.content.lines.map(line => line.id)
+      const immediateExport = makePngExport(
+        undefined,
+        'naamras-hukamnama-2026-07-15.png',
+        1920,
+        makeStorySelection(sourceLineIds),
+      )
+      const exportPromise = artworkId === 'court-mural'
+        ? courtMuralExport
+        : artworkId === 'waterside-temple'
+          ? watersideTempleExport
+          : Promise.resolve(immediateExport)
+
+      const abortableExport = new Promise<StoryExport>((resolve, reject) => {
+        const handleAbort = () => {
+          abortedArtworkIds.push(artworkId)
+          const error = new Error('Share image rendering was cancelled.')
+          error.name = 'AbortError'
+          reject(error)
+        }
+        const cleanup = () => options?.signal?.removeEventListener('abort', handleAbort)
+
+        if (options?.signal?.aborted) {
+          handleAbort()
+          return
+        }
+        options?.signal?.addEventListener('abort', handleAbort, { once: true })
+        void exportPromise.then(
+          value => {
+            cleanup()
+            resolve(value)
+          },
+          error => {
+            cleanup()
+            reject(error)
+          },
+        )
+      })
+
+      return abortableExport.finally(() => {
+        activeExports -= 1
+      })
+    })
+
+    render(<ShareHighlightSheet open onClose={vi.fn()} content={passageContent} initialArtworkId={null} />)
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+    const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
+    await waitFor(() => {
+      expect(shareButton).toBeEnabled()
+      expect(invokedArtworkIds).toEqual([null])
+      expect(activeExports).toBe(0)
+    })
+
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
+    const courtMural = within(artworkGroup).getByRole('radio', { name: 'Court mural' })
+    const interiorAudience = within(artworkGroup).getByRole('radio', { name: 'Interior audience' })
+    const watersideTemple = within(artworkGroup).getByRole('radio', { name: 'Waterside temple' })
+
+    await user.click(courtMural)
+    await waitFor(() => {
+      expect(invokedArtworkIds).toEqual([null, 'court-mural'])
+      expect(activeExports).toBe(1)
+      expect(shareButton).toBeDisabled()
+    })
+
+    await user.click(interiorAudience)
+    await user.click(watersideTemple)
+
+    expect(watersideTemple).toBeChecked()
+    expect(watersideTemple).toHaveFocus()
+    expect(within(dialog).getByText('Complete Hukamnama')).toBeInTheDocument()
+    expect(within(dialog).getByRole('status')).toHaveTextContent(
+      'Applying Waterside temple behind the reading…',
+    )
+
+    await waitFor(() => {
+      expect(invokedArtworkIds).toEqual([null, 'court-mural', 'waterside-temple'])
+      expect(activeExports).toBe(1)
+      expect(abortedArtworkIds).toContain('court-mural')
+    })
+    expect(invokedArtworkIds).not.toContain('interior-audience')
+    expect(maxActiveExports).toBe(1)
+    expect(watersideTemple).toHaveFocus()
+
+    const watersideResult = makePngExport(
+      undefined,
+      'waterside-temple.png',
+      1920,
+      makeStorySelection(),
+    )
+    await act(async () => {
+      resolveWatersideTemple(watersideResult)
+      await watersideTempleExport
+    })
+
+    resolveCourtMural(makePngExport(
+      undefined,
+      'court-mural.png',
+      1920,
+      makeStorySelection(),
+    ))
+
+    await waitFor(() => {
+      expect(activeExports).toBe(0)
+      expect(shareButton).toBeEnabled()
+      expect(within(dialog).getByRole('status')).toHaveTextContent(
+        'Waterside temple applied. Image ready.',
+      )
+    })
+    expect(watersideTemple).toHaveFocus()
+    expect(maxActiveExports).toBe(1)
+  })
+
+  it('aborts active Hukamnama rendering when the composer closes', async () => {
+    let activeSignal: AbortSignal | undefined
+    let resolveAbortObserved!: () => void
+    const abortObserved = new Promise<void>(resolve => {
+      resolveAbortObserved = resolve
+    })
+    mocks.exportStoryPng.mockImplementation((_input, options?: { signal?: AbortSignal }) => (
+      new Promise((_resolve, reject) => {
+        activeSignal = options?.signal
+        const handleAbort = () => {
+          const error = new Error('Share image rendering was cancelled.')
+          error.name = 'AbortError'
+          resolveAbortObserved()
+          reject(error)
+        }
+        if (activeSignal?.aborted) handleAbort()
+        else activeSignal?.addEventListener('abort', handleAbort, { once: true })
+      })
+    ))
+
+    const { rerender } = render(
+      <ShareHighlightSheet
+        open
+        onClose={vi.fn()}
+        content={passageContent}
+        initialArtworkId="court-mural"
+      />
+    )
+
+    await waitFor(() => expect(activeSignal).toBeInstanceOf(AbortSignal))
+    rerender(
+      <ShareHighlightSheet
+        open={false}
+        onClose={vi.fn()}
+        content={passageContent}
+        initialArtworkId="court-mural"
+      />
+    )
+    await abortObserved
+
+    expect(activeSignal?.aborted).toBe(true)
+    expect(screen.queryByRole('dialog', { name: 'Share highlight' })).not.toBeInTheDocument()
+  })
+
+  it.each([
+    {
+      locale: 'pa' as const,
+      dialogName: 'ਝਲਕ ਸਾਂਝੀ ਕਰੋ',
+      groupName: 'ਕਲਾ',
+      noArtworkName: 'ਕੋਈ ਕਲਾ ਨਹੀਂ',
+      noArtworkDescription: 'ਤਸਵੀਰ ਤੋਂ ਬਿਨਾਂ ਸਾਦੀ ਪਾਠ ਸਤ੍ਹਾ।',
+      artworkName: 'ਦਰਬਾਰੀ ਭਿੱਤ-ਚਿੱਤਰ',
+      artworkDescription: 'ਸਵਾਰਾਂ, ਸੇਵਾਦਾਰਾਂ, ਫੁੱਲਦਾਰ ਹਾਸ਼ੀਆਂ ਅਤੇ ਗੁਰਮੁਖੀ ਲਿਖਤ ਵਾਲਾ ਦਰਬਾਰੀ ਦ੍ਰਿਸ਼।',
+    },
+    {
+      locale: 'hi' as const,
+      dialogName: 'अंश साझा करें',
+      groupName: 'कलाकृति',
+      noArtworkName: 'बिना कला',
+      noArtworkDescription: 'बिना किसी चित्र के सादा पठन क्षेत्र।',
+      artworkName: 'दरबारी भित्तिचित्र',
+      artworkDescription: 'सवारों, परिचारकों, पुष्प किनारों और गुरमुखी लेखों वाला दरबारी दृश्य।',
+    },
+  ])('uses active-locale artwork names and descriptions in $locale', async ({
+    locale,
+    dialogName,
+    groupName,
+    noArtworkName,
+    noArtworkDescription,
+    artworkName,
+    artworkDescription,
+  }) => {
+    const user = userEvent.setup()
+    render(
+      <ShareHighlightSheet
+        open
+        onClose={vi.fn()}
+        content={passageContent}
+        locale={locale}
+      />
+    )
+    const dialog = screen.getByRole('dialog', { name: dialogName })
+    const artworkGroup = within(dialog).getByRole('group', { name: groupName })
+    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(15)
+    expect(within(artworkGroup).getByRole('radio', {
+      name: noArtworkName,
+      description: noArtworkDescription,
+    })).not.toBeChecked()
+    expect(within(artworkGroup).getByRole('radio', { checked: true })).toHaveAttribute('value', 'interior-audience')
+    const courtMural = within(artworkGroup).getByRole('radio', {
+      name: artworkName,
+      description: artworkDescription,
+    })
+
+    await user.click(courtMural)
+
+    expect(courtMural).toHaveFocus()
+    expect(dialog.querySelector('.share-highlight__selected-artwork'))
+      .toHaveTextContent(`${artworkName}${artworkDescription}`)
   })
 
   it('falls back to the exact reading route when dated short-link metadata is invalid', async () => {
@@ -334,7 +985,8 @@ describe('ShareHighlightSheet', () => {
       .toBe(`https://naamras.xyz${exactPath}`)
   })
 
-  it('hides artwork controls after renderer preflight chooses the quiet manuscript', async () => {
+  it('keeps all existing artwork choices mounted and focused through manuscript preflight', async () => {
+    const user = userEvent.setup()
     const longPassageContent: ShareHighlightContent = {
       ...passageContent,
       passageLines: [
@@ -350,11 +1002,21 @@ describe('ShareHighlightSheet', () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={longPassageContent} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
 
+    await waitFor(() => expect(mocks.exportStoryPng).toHaveBeenCalled())
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
+    expect(within(artworkGroup).getAllByRole('radio')).toHaveLength(15)
+    expect(within(artworkGroup).getByRole('radio', { name: 'Interior audience' })).toBeChecked()
+    const courtMural = within(artworkGroup).getByRole('radio', { name: 'Court mural' })
+
+    await user.click(courtMural)
+
+    expect(courtMural).toHaveFocus()
     await waitFor(() => {
-      expect(within(dialog).queryByRole('radiogroup', { name: 'Artwork' })).not.toBeInTheDocument()
-      expect(within(dialog).getByText(/quiet manuscript background/i)).toBeInTheDocument()
+      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('court-mural')
+      expect(courtMural).toBeChecked()
+      expect(within(dialog).getByRole('group', { name: 'Artwork' })).toBeInTheDocument()
     })
-    expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork?.id).toBe('quiet-parchment')
+    expect(courtMural).toHaveFocus()
   })
 
   it('reports incomplete supports instead of silently presenting a partial visual layer', async () => {
@@ -391,7 +1053,7 @@ describe('ShareHighlightSheet', () => {
 
     await waitFor(() => {
       expect(within(dialog).getByRole('button', { name: 'Share image' })).toBeEnabled()
-      expect(within(dialog).getByRole('status')).toHaveTextContent('Bilingual Story ready.')
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Interior audience applied. Image ready.')
     })
     const storyExport = await mocks.exportStoryPng.mock.results.at(-1)?.value
     const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
@@ -435,7 +1097,7 @@ describe('ShareHighlightSheet', () => {
         line.transliteration === null && Boolean(line.meaning)
       ))).toBe(true)
       expect(lastInput.content.supportLabel).toBe('Manmohan Singh')
-      expect(within(dialog).getByRole('status')).toHaveTextContent('Bilingual Story ready.')
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Interior audience applied. Image ready.')
     })
     expect(transliteration).toHaveAttribute('aria-pressed', 'false')
     expect(meaning).toHaveAttribute('aria-pressed', 'true')
@@ -469,7 +1131,7 @@ describe('ShareHighlightSheet', () => {
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Meaning' }))
 
-    expect(within(dialog).getByRole('status')).toHaveTextContent('Preparing the complete image set…')
+    expect(within(dialog).getByRole('status')).toHaveTextContent('Applying Interior audience behind the reading…')
     expect(shareButton).toBeDisabled()
     expect(saveButton).toBeDisabled()
     expect(copyButton).toBeEnabled()
@@ -507,6 +1169,7 @@ describe('ShareHighlightSheet', () => {
   })
 
   it('previews and shares a complete long Hukamnama as one ordered local image set', async () => {
+    const user = userEvent.setup()
     const longPassageLines = [
       passageContent.passageLines![0],
       ...Array.from({ length: 6 }, (_, index) => ({
@@ -558,7 +1221,7 @@ describe('ShareHighlightSheet', () => {
       ),
     ]
     const storySet = makeStorySet(pages)
-    mocks.exportStoryPng.mockResolvedValueOnce(storySet)
+    mocks.exportStoryPng.mockResolvedValue(storySet)
 
     render(
       <ShareHighlightSheet
@@ -615,7 +1278,26 @@ describe('ShareHighlightSheet', () => {
       expect(imageText).toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 4 ॥')
       expect(imageText).not.toHaveTextContent('ਗੁਰਬਾਣੀ ਪੰਕਤੀ 6 ॥')
     })
-    expect(mocks.exportStoryPng).toHaveBeenCalledTimes(1)
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
+    const courtMural = within(artworkGroup).getByRole('radio', { name: 'Court mural' })
+    await user.click(courtMural)
+
+    expect(courtMural).toHaveFocus()
+    expect(shareButton).toBeDisabled()
+    expect(within(dialog).getByRole('img', { name: 'Share image preview' })).toBeInTheDocument()
+    expect(within(dialog).getByText('Image 2 of 3 · 2 of 7 lines in this image')).toBeInTheDocument()
+
+    await waitFor(() => {
+      expect(mocks.exportStoryPng).toHaveBeenCalledTimes(2)
+      expect(shareButton).toBeEnabled()
+      expect(within(dialog).getByText('Image 2 of 3 · 2 of 7 lines in this image')).toBeInTheDocument()
+      expect(within(dialog).getByRole('status')).toHaveTextContent(
+        'Court mural applied. 3 ordered images ready.',
+      )
+    })
+    expect(courtMural).toHaveFocus()
+    expect(within(dialog).getByText('Used on all 3 images.'))
+      .toBeInTheDocument()
 
     fireEvent.click(shareButton)
     await waitFor(() => {
@@ -871,7 +1553,7 @@ describe('ShareHighlightSheet', () => {
     const positionGroup = within(dialog).getByRole('radiogroup', { name: 'Text position' })
     fireEvent.click(within(positionGroup).getByRole('radio', { name: 'Top' }))
 
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
     fireEvent.click(within(artworkGroup).getByRole('radio', { name: /No art/i }))
 
     expect(within(dialog).queryByRole('radiogroup', { name: 'Text position' })).not.toBeInTheDocument()
@@ -1078,7 +1760,7 @@ describe('ShareHighlightSheet', () => {
   it('ignores stale render results and offers an exact retry after a render failure', async () => {
     render(<ShareHighlightSheet open onClose={vi.fn()} content={content} />)
     const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
-    const artworkGroup = within(dialog).getByRole('radiogroup', { name: 'Artwork' })
+    const artworkGroup = within(dialog).getByRole('group', { name: 'Artwork' })
     const shareButton = within(dialog).getByRole('button', { name: 'Share image' })
     await waitFor(() => expect(shareButton).toBeEnabled())
 
@@ -1093,15 +1775,19 @@ describe('ShareHighlightSheet', () => {
     fireEvent.click(within(artworkGroup).getByRole('radio', { name: /No art/i }))
     await waitFor(() => expect(mocks.exportPng).toHaveBeenCalledTimes(2))
     fireEvent.click(within(artworkGroup).getAllByRole('radio')[2])
-    await waitFor(() => expect(mocks.exportPng).toHaveBeenCalledTimes(3))
+    await new Promise(resolve => window.setTimeout(resolve, 120))
+    expect(mocks.exportPng).toHaveBeenCalledTimes(2)
 
     const latestExport = makePngExport(undefined, 'latest-share.png')
     const staleExport = makePngExport(undefined, 'stale-share.png')
     await act(async () => {
-      resolveLatest(latestExport)
-      await latestRender
       resolveStale(staleExport)
       await staleRender
+    })
+    await waitFor(() => expect(mocks.exportPng).toHaveBeenCalledTimes(3))
+    await act(async () => {
+      resolveLatest(latestExport)
+      await latestRender
     })
     await waitFor(() => expect(shareButton).toBeEnabled())
     fireEvent.click(shareButton)
@@ -1119,6 +1805,32 @@ describe('ShareHighlightSheet', () => {
     await waitFor(() => {
       expect(within(dialog).queryByRole('button', { name: 'Retry image' })).not.toBeInTheDocument()
       expect(shareButton).toBeEnabled()
+    })
+  })
+
+  it('offers a focus-safe No art fallback when a selected Hukamnama artwork fails', async () => {
+    const user = userEvent.setup()
+    mocks.exportStoryPng.mockRejectedValueOnce(new Error('artwork decode failed'))
+    render(
+      <ShareHighlightSheet
+        open
+        onClose={vi.fn()}
+        content={passageContent}
+        initialArtworkId="court-mural"
+      />
+    )
+    const dialog = screen.getByRole('dialog', { name: 'Share highlight' })
+    const useNoArtwork = await within(dialog).findByRole('button', { name: 'Use No art' })
+
+    await user.click(useNoArtwork)
+
+    const noArtwork = within(dialog).getByRole('radio', { name: 'No art' })
+    await waitFor(() => {
+      expect(noArtwork).toBeChecked()
+      expect(noArtwork).toHaveFocus()
+      expect(mocks.exportStoryPng.mock.calls.at(-1)?.[0].artwork).toBeNull()
+      expect(within(dialog).queryByRole('button', { name: 'Use No art' }))
+        .not.toBeInTheDocument()
     })
   })
 

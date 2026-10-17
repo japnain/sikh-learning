@@ -1,4 +1,5 @@
 import type { ShareHighlightShareResult } from './types'
+import { isNativeImagePlatform, shareNativeHighlightFiles } from './nativeShare'
 
 interface ShareHighlightNavigator {
   canShare?: (data: ShareData) => boolean
@@ -39,6 +40,8 @@ export interface ShareHighlightShareOptions extends ShareHighlightDownloadOption
   title?: string
   text?: string
   url?: string
+  /** Cancels native image preparation before an OS action has started. */
+  signal?: AbortSignal
 }
 
 export interface ShareHighlightClipboardOptions {
@@ -160,6 +163,11 @@ export async function shareHighlightFiles(
   options: ShareHighlightShareOptions = {}
 ): Promise<ShareHighlightShareResult> {
   const orderedFiles = requireFiles(files)
+  // Do not await any platform preparation on the browser path: Web Share needs
+  // the original button's transient user activation.
+  if (!options.navigator && isNativeImagePlatform()) {
+    return shareNativeHighlightFiles(orderedFiles, options)
+  }
   const navigatorRef = options.navigator ?? defaultNavigator()
   if (!navigatorRef?.share || !navigatorRef.canShare) {
     return {

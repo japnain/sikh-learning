@@ -16,6 +16,9 @@ import {
   type ShareHighlightPngExport,
   type ShareHighlightStoryLayout,
   type ShareHighlightStoryArtworkMode,
+  type ShareHighlightStoryArtworkFit,
+  type ShareHighlightStoryArtworkPresentation,
+  type ShareHighlightStoryFrameEffect,
   type ShareHighlightStoryArtworkProfile,
   type ShareHighlightStoryComposition,
   type ShareHighlightStoryPngExport,
@@ -33,6 +36,7 @@ import {
   drawShareHighlightQrCode,
   SHARE_HIGHLIGHT_QR_RENDER_SIZE,
 } from './qrCode'
+import { buildHukamnamaArtworkSlices, getHukamnamaArtDirection } from './hukamnamaArtDirection'
 
 const DEFAULT_FOCAL_POSITION: ShareHighlightNormalizedPoint = { x: 0.5, y: 0.5 }
 const DEFAULT_TEXT_SAFE_ZONE: ShareHighlightNormalizedRect = {
@@ -66,9 +70,61 @@ const STORY_LINK_FOOTER_TOP = 1544
 const STORY_LINK_QR_SIZE = SHARE_HIGHLIGHT_QR_RENDER_SIZE
 const STORY_LINK_QR_X = SHARE_HIGHLIGHT_STORY_WIDTH - STORY_FOOTER_HORIZONTAL_MARGIN - STORY_LINK_QR_SIZE
 const STORY_LINK_QR_Y = STORY_SAFE_BOTTOM - STORY_LINK_QR_SIZE
+const STORY_EXPRESSIVE_HEADER_SURFACE: ShareHighlightPixelRect = {
+  x: 46,
+  y: STORY_SAFE_TOP - 18,
+  width: 988,
+  height: 112,
+}
+const STORY_EXPRESSIVE_ART_STAGE: ShareHighlightPixelRect = {
+  x: 72,
+  y: 318,
+  width: 936,
+  height: 520,
+}
+const STORY_EXPRESSIVE_AMBIENT_OVERSCAN = 36
+const STORY_EXPRESSIVE_AMBIENT_DESTINATION: ShareHighlightPixelRect = {
+  x: -STORY_EXPRESSIVE_AMBIENT_OVERSCAN,
+  y: -STORY_EXPRESSIVE_AMBIENT_OVERSCAN,
+  width: SHARE_HIGHLIGHT_STORY_WIDTH + (STORY_EXPRESSIVE_AMBIENT_OVERSCAN * 2),
+  height: SHARE_HIGHLIGHT_STORY_HEIGHT + (STORY_EXPRESSIVE_AMBIENT_OVERSCAN * 2),
+}
+const STORY_EXPRESSIVE_PLAIN_FOOTER_SURFACE: ShareHighlightPixelRect = {
+  x: 46,
+  y: 1614,
+  width: 988,
+  height: 98,
+}
+const STORY_EXPRESSIVE_LINK_FOOTER_SURFACE: ShareHighlightPixelRect = {
+  x: 46,
+  y: STORY_LINK_FOOTER_TOP - 10,
+  width: 988,
+  height: 178,
+}
 const STORY_SCALE_STEP = 0.02
+const HUKAMNAMA_IMAGE_MAX_HEIGHT = 8192
 const MANUSCRIPT_HEADER_CENTER_Y = 220
 const MANUSCRIPT_HEADER_RULE_Y = 258
+const MANUSCRIPT_ART_HEADER_RULE_Y = 272
+const STORY_MANUSCRIPT_ART_READING_SURFACE: ShareHighlightPixelRect = {
+  x: 40,
+  y: 132,
+  width: 1000,
+  height: 1640,
+}
+const STORY_MANUSCRIPT_CAMEO_STAGE: ShareHighlightPixelRect = {
+  x: 56,
+  y: 154,
+  width: 136,
+  height: 116,
+}
+const STORY_MANUSCRIPT_HEADER_COPY: ShareHighlightPixelRect = {
+  x: 220,
+  y: 172,
+  width: 796,
+  height: 86,
+}
+const STORY_MANUSCRIPT_AMBIENT_OVERSCAN = 24
 const MANUSCRIPT_PLAIN_FOOTER_RULE_Y = 1658
 const MANUSCRIPT_LINK_FOOTER_RULE_Y = 1532
 const MANUSCRIPT_HEADER_GAP = 28
@@ -105,7 +161,7 @@ const LINKED_STORY_BODY_HEIGHTS: Record<SingleColumnStoryComposition, number> = 
 
 const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionSpec> = {
   expressive: {
-    // The expressive card begins below the metadata capsule, leaving a clean
+    // The expressive card begins below the metadata, leaving a clean
     // seam of artwork between the two instead of forming one large text wall.
     body: { x: 82, y: 360, width: 916, height: 1192 },
     readingSurface: { x: 46, y: 318, width: 988, height: 1278 },
@@ -129,21 +185,47 @@ const STORY_COMPOSITIONS: Record<SingleColumnStoryComposition, StoryCompositionS
   },
 }
 
+const CONTAINED_ART_EXPRESSIVE_COMPOSITION: StoryCompositionSpec = {
+  body: { x: 82, y: 910, width: 916, height: 590 },
+  readingSurface: { x: 46, y: 868, width: 988, height: 674 },
+  maximum: STORY_COMPOSITIONS.expressive.maximum,
+  minimum: STORY_COMPOSITIONS.expressive.minimum,
+  sectionGap: STORY_COMPOSITIONS.expressive.sectionGap,
+  lineGap: STORY_COMPOSITIONS.expressive.lineGap,
+  headerGap: STORY_COMPOSITIONS.expressive.headerGap,
+}
+
 function resolveStoryCompositionSpec(
   composition: SingleColumnStoryComposition,
-  footerMode: ShareHighlightStoryFooterMode
+  footerMode: ShareHighlightStoryFooterMode,
+  storyProfile?: ShareHighlightStoryArtworkProfile
 ): StoryCompositionSpec {
-  const spec = STORY_COMPOSITIONS[composition]
+  const usesContainedArtwork = composition === 'expressive' && Boolean(storyProfile)
+  const usesArtworkMat = composition === 'manuscript' && Boolean(storyProfile)
+  const baseSpec = usesContainedArtwork
+    ? CONTAINED_ART_EXPRESSIVE_COMPOSITION
+    : STORY_COMPOSITIONS[composition]
+  const spec = usesArtworkMat
+    ? {
+        ...baseSpec,
+        readingSurface: { ...STORY_MANUSCRIPT_ART_READING_SURFACE },
+      }
+    : baseSpec
   if (footerMode === 'plain') return spec
 
   return {
     ...spec,
     body: {
       ...spec.body,
-      height: LINKED_STORY_BODY_HEIGHTS[composition],
+      height: usesContainedArtwork
+        ? 500
+        : LINKED_STORY_BODY_HEIGHTS[composition],
     },
   }
 }
+
+const SHARE_SANS_FONT_FAMILY = '"Plus Jakarta Sans", "Noto Serif Gurmukhi", "Noto Sans Devanagari", sans-serif'
+const SHARE_TITLE_FONT_FAMILY = '"Cormorant Garamond", "Noto Serif Gurmukhi", "Noto Sans Devanagari", serif'
 
 const STORY_ROLE_SPECS = {
   header: {
@@ -160,13 +242,13 @@ const STORY_ROLE_SPECS = {
   },
   transliteration: {
     lineHeightRatio: 1.28,
-    fontFamily: '"Plus Jakarta Sans", sans-serif',
+    fontFamily: SHARE_SANS_FONT_FAMILY,
     fontStyle: 'italic' as const,
     fontWeight: 500 as const,
   },
   meaning: {
     lineHeightRatio: 1.28,
-    fontFamily: '"Plus Jakarta Sans", "Noto Serif Gurmukhi", sans-serif',
+    fontFamily: SHARE_SANS_FONT_FAMILY,
     fontStyle: 'normal' as const,
     fontWeight: 500 as const,
   },
@@ -184,7 +266,7 @@ const TEXT_SPECS: Record<ShareHighlightTextRole, {
     maximumFontSize: 25,
     minimumFontSize: 18,
     lineHeightRatio: 1.35,
-    fontFamily: '"Plus Jakarta Sans", sans-serif',
+    fontFamily: SHARE_SANS_FONT_FAMILY,
     fontStyle: 'normal',
     fontWeight: 700,
   },
@@ -200,7 +282,7 @@ const TEXT_SPECS: Record<ShareHighlightTextRole, {
     maximumFontSize: 31,
     minimumFontSize: 20,
     lineHeightRatio: 1.5,
-    fontFamily: '"Plus Jakarta Sans", sans-serif',
+    fontFamily: SHARE_SANS_FONT_FAMILY,
     fontStyle: 'italic',
     fontWeight: 500,
   },
@@ -208,7 +290,7 @@ const TEXT_SPECS: Record<ShareHighlightTextRole, {
     maximumFontSize: 34,
     minimumFontSize: 21,
     lineHeightRatio: 1.48,
-    fontFamily: '"Plus Jakarta Sans", "Noto Serif Gurmukhi", sans-serif',
+    fontFamily: SHARE_SANS_FONT_FAMILY,
     fontStyle: 'normal',
     fontWeight: 500,
   },
@@ -285,15 +367,53 @@ export interface ShareHighlightDecodedImage {
 
 export interface ShareHighlightFontSet {
   ready: PromiseLike<unknown>
-  load: (font: string, text?: string) => PromiseLike<unknown>
+  load: (font: string, text?: string) => PromiseLike<readonly unknown[]>
+  check?: (font: string, text?: string) => boolean
 }
 
 export interface ShareHighlightRendererOptions {
   canvas?: HTMLCanvasElement
   createCanvas?: () => HTMLCanvasElement
-  loadImage?: (src: string) => Promise<ShareHighlightDecodedImage>
+  loadImage?: (src: string, signal?: AbortSignal) => Promise<ShareHighlightDecodedImage>
   /** Pass `null` only in a controlled environment that has no FontFaceSet. */
   fontSet?: ShareHighlightFontSet | null
+  /** Cancels stale or closed render work without surfacing a user-facing failure. */
+  signal?: AbortSignal
+  /** Defaults to 12 seconds for the complete image load and decode operation. */
+  imageDecodeTimeoutMs?: number
+  /** Defaults to 15 seconds for each PNG page encoding operation. */
+  pngEncodeTimeoutMs?: number
+}
+
+export class ShareHighlightRenderAbortedError extends Error {
+  readonly code = 'share-highlight-render-aborted'
+
+  constructor() {
+    super('Share image rendering was cancelled.')
+    this.name = 'AbortError'
+  }
+}
+
+export class ShareHighlightRenderTimeoutError extends Error {
+  readonly code = 'share-highlight-render-timeout'
+
+  constructor(message: string) {
+    super(message)
+    this.name = 'ShareHighlightRenderTimeoutError'
+  }
+}
+
+/** Keeps an oversized complete reading distinguishable from a retryable render failure. */
+export class HukamnamaImageTooLongError extends RangeError {
+  readonly code = 'hukamnama-image-too-long'
+  readonly requiredHeight: number
+  readonly maximumHeight = HUKAMNAMA_IMAGE_MAX_HEIGHT
+
+  constructor(requiredHeight: number) {
+    super('This reading is too long for one safely readable image.')
+    this.name = 'HukamnamaImageTooLongError'
+    this.requiredHeight = requiredHeight
+  }
 }
 
 export class ShareHighlightContentOverflowError extends Error {
@@ -441,10 +561,23 @@ export function computeShareHighlightObjectCover(
 
   const focal = normalizePoint(focalPosition)
   const scale = Math.max(destinationWidth / imageWidth, destinationHeight / imageHeight)
-  const sourceWidth = destinationWidth / scale
-  const sourceHeight = destinationHeight / scale
-  const sourceX = clamp((imageWidth * focal.x) - (sourceWidth / 2), 0, imageWidth - sourceWidth)
-  const sourceY = clamp((imageHeight * focal.y) - (sourceHeight / 2), 0, imageHeight - sourceHeight)
+  // Near-equal aspect ratios can produce a source dimension a tiny fraction
+  // larger than the decoded bitmap. Clamp the derived crop before calculating
+  // its origin so floating-point drift never creates a negative source pixel.
+  const sourceWidth = Math.min(imageWidth, destinationWidth / scale)
+  const sourceHeight = Math.min(imageHeight, destinationHeight / scale)
+  const maximumSourceX = Math.max(0, imageWidth - sourceWidth)
+  const maximumSourceY = Math.max(0, imageHeight - sourceHeight)
+  const sourceX = clamp(
+    (imageWidth * focal.x) - (sourceWidth / 2),
+    0,
+    maximumSourceX
+  )
+  const sourceY = clamp(
+    (imageHeight * focal.y) - (sourceHeight / 2),
+    0,
+    maximumSourceY
+  )
 
   return {
     sourceX,
@@ -455,6 +588,122 @@ export function computeShareHighlightObjectCover(
     destinationY: 0,
     destinationWidth,
     destinationHeight,
+  }
+}
+
+/** Fits the complete source inside an exact canvas stage without cropping it. */
+export function computeShareHighlightObjectContain(
+  imageWidth: number,
+  imageHeight: number,
+  destination: ShareHighlightPixelRect = {
+    x: 0,
+    y: 0,
+    width: SHARE_HIGHLIGHT_STORY_WIDTH,
+    height: SHARE_HIGHLIGHT_STORY_HEIGHT,
+  }
+): ShareHighlightObjectCoverPlacement {
+  if (
+    !Number.isFinite(imageWidth)
+    || !Number.isFinite(imageHeight)
+    || imageWidth <= 0
+    || imageHeight <= 0
+    || !Number.isFinite(destination.x)
+    || !Number.isFinite(destination.y)
+    || !Number.isFinite(destination.width)
+    || !Number.isFinite(destination.height)
+    || destination.width <= 0
+    || destination.height <= 0
+  ) {
+    throw new RangeError('Artwork and destination dimensions must be finite and greater than zero.')
+  }
+
+  const scale = Math.min(
+    destination.width / imageWidth,
+    destination.height / imageHeight
+  )
+  const destinationWidth = imageWidth * scale
+  const destinationHeight = imageHeight * scale
+  return {
+    sourceX: 0,
+    sourceY: 0,
+    sourceWidth: imageWidth,
+    sourceHeight: imageHeight,
+    destinationX: destination.x + ((destination.width - destinationWidth) / 2),
+    destinationY: destination.y + ((destination.height - destinationHeight) / 2),
+    destinationWidth,
+    destinationHeight,
+  }
+}
+
+function isValidNormalizedBounds(bounds: ShareHighlightNormalizedRect) {
+  return Number.isFinite(bounds.x)
+    && Number.isFinite(bounds.y)
+    && Number.isFinite(bounds.width)
+    && Number.isFinite(bounds.height)
+    && bounds.x >= 0
+    && bounds.y >= 0
+    && bounds.width > 0
+    && bounds.height > 0
+    && bounds.x + bounds.width <= 1
+    && bounds.y + bounds.height <= 1
+}
+
+function isValidArtworkPlacement(
+  placement: ShareHighlightObjectCoverPlacement,
+  imageWidth: number,
+  imageHeight: number
+) {
+  return Number.isFinite(imageWidth)
+    && Number.isFinite(imageHeight)
+    && imageWidth > 0
+    && imageHeight > 0
+    && Number.isFinite(placement.sourceX)
+    && Number.isFinite(placement.sourceY)
+    && Number.isFinite(placement.sourceWidth)
+    && Number.isFinite(placement.sourceHeight)
+    && Number.isFinite(placement.destinationX)
+    && Number.isFinite(placement.destinationY)
+    && Number.isFinite(placement.destinationWidth)
+    && Number.isFinite(placement.destinationHeight)
+    && placement.sourceWidth > 0
+    && placement.sourceHeight > 0
+    && placement.destinationWidth > 0
+    && placement.destinationHeight > 0
+    && placement.sourceX >= 0
+    && placement.sourceY >= 0
+    && placement.sourceX + placement.sourceWidth <= imageWidth + 0.001
+    && placement.sourceY + placement.sourceHeight <= imageHeight + 0.001
+}
+
+/** Maps exact source-normalized subject bounds through one resolved draw placement. */
+export function mapShareHighlightArtworkBoundsToCanvas(
+  bounds: ShareHighlightNormalizedRect,
+  imageWidth: number,
+  imageHeight: number,
+  placement: ShareHighlightObjectCoverPlacement
+): ShareHighlightPixelRect {
+  if (!isValidNormalizedBounds(bounds)) {
+    throw new RangeError('Protected artwork bounds must be a positive normalized rectangle.')
+  }
+  if (!isValidArtworkPlacement(placement, imageWidth, imageHeight)) {
+    throw new RangeError('Artwork placement dimensions must be finite and greater than zero.')
+  }
+
+  const sourceX = bounds.x * imageWidth
+  const sourceY = bounds.y * imageHeight
+  const sourceWidth = bounds.width * imageWidth
+  const sourceHeight = bounds.height * imageHeight
+  return {
+    x: placement.destinationX + (
+      ((sourceX - placement.sourceX) / placement.sourceWidth)
+      * placement.destinationWidth
+    ),
+    y: placement.destinationY + (
+      ((sourceY - placement.sourceY) / placement.sourceHeight)
+      * placement.destinationHeight
+    ),
+    width: (sourceWidth / placement.sourceWidth) * placement.destinationWidth,
+    height: (sourceHeight / placement.sourceHeight) * placement.destinationHeight,
   }
 }
 
@@ -759,7 +1008,7 @@ function buildStoryLayout(
   contentScale: number,
   footerMode: ShareHighlightStoryFooterMode
 ): ShareHighlightStoryLayout {
-  const spec = resolveStoryCompositionSpec(composition, footerMode)
+  const spec = resolveStoryCompositionSpec(composition, footerMode, storyProfile)
   const expandableGapCount = composition === 'manuscript'
     ? measured.drafts.slice(0, -1).filter(draft => !draft.line.isHeader).length
     : 0
@@ -774,19 +1023,22 @@ function buildStoryLayout(
     measured.requiredHeight
     + (distributedLineGap * expandableGapCount)
   )
-  const verticalInset = composition === 'expressive'
+  const verticalInset = composition === 'expressive' && !storyProfile
     ? Math.min(52, Math.max(0, (spec.body.height - measured.requiredHeight) / 2))
     : Math.max(0, (spec.body.height - laidOutContentHeight) / 2)
   const protectedSubject = storyProfile?.protectedSubject
+  const usesContainedArtwork = composition === 'expressive' && Boolean(storyProfile)
   const protectedCenterY = protectedSubject
     ? protectedSubject.bounds.y + (protectedSubject.bounds.height / 2)
     : null
   const clearProtectedSubject = (
     composition === 'expressive'
+    && !usesContainedArtwork
     && protectedSubject?.intent === 'keep-clear-of-text'
   )
   const centerBelowLandscapeHero = (
     composition === 'expressive'
+    && !usesContainedArtwork
     && storyProfile?.mode === 'landscape-hero'
   )
   const contentTop = clearProtectedSubject
@@ -834,7 +1086,14 @@ function buildStoryLayout(
   if (supportRoles.includes('transliteration')) activeMinimums.push(minimum.transliteration)
   if (supportRoles.includes('meaning')) activeMinimums.push(minimum.meaning)
 
-  const readingSurface = composition === 'expressive'
+  const readingSurface = composition === 'expressive' && storyProfile
+    ? {
+        ...spec.readingSurface,
+        // One quiet sheet carries both the reading and its citation. Keeping
+        // the paper continuous avoids a stack of unrelated text capsules.
+        height: STORY_SAFE_BOTTOM - spec.readingSurface.y,
+      }
+    : composition === 'expressive'
     ? {
         x: spec.readingSurface.x,
         y: Math.max(spec.readingSurface.y, contentTop - 42),
@@ -894,7 +1153,11 @@ function tryStoryComposition(
   overlayTone?: string,
   footerMode: ShareHighlightStoryFooterMode = 'plain'
 ): StoryLayoutAttempt {
-  const availableHeight = resolveStoryCompositionSpec(composition, footerMode).body.height
+  const availableHeight = resolveStoryCompositionSpec(
+    composition,
+    footerMode,
+    storyProfile
+  ).body.height
   const maximumStep = Math.round(1 / STORY_SCALE_STEP)
   const floorMeasurement = measureStoryDrafts(lines, measure, composition, 0, overlayTone)
   if (floorMeasurement.requiredHeight > availableHeight) {
@@ -1225,20 +1488,23 @@ function layoutNormalizedShareHighlightStory(
   storyProfile?: ShareHighlightStoryArtworkProfile,
   anchorLineId?: ShareHighlightPassageLine['id'] | null,
   footerMode: ShareHighlightStoryFooterMode = 'plain',
-  forwardPagination?: StoryForwardPaginationContext
+  forwardPagination?: StoryForwardPaginationContext,
+  forceManuscript = false
 ): ShareHighlightStoryLayout {
   storySupportRoles(lines)
   if (!forwardPagination?.excerptOnly) {
     const selection = makeCompleteStorySelection(lines, anchorLineId)
-    const expressive = tryStoryComposition(
-      lines,
-      measure,
-      'expressive',
-      storyProfile,
-      overlayTone,
-      footerMode
-    )
-    if (expressive.layout) return applyStorySelection(expressive.layout, selection)
+    if (!forceManuscript) {
+      const expressive = tryStoryComposition(
+        lines,
+        measure,
+        'expressive',
+        storyProfile,
+        overlayTone,
+        footerMode
+      )
+      if (expressive.layout) return applyStorySelection(expressive.layout, selection)
+    }
 
     const manuscript = tryStoryComposition(
       lines,
@@ -1431,7 +1697,82 @@ function createDefaultCanvas() {
   return document.createElement('canvas')
 }
 
-async function loadDecodedImage(src: string): Promise<ShareHighlightDecodedImage> {
+const SHARE_HIGHLIGHT_IMAGE_DECODE_TIMEOUT_MS = 12_000
+const SHARE_HIGHLIGHT_PNG_ENCODE_TIMEOUT_MS = 15_000
+
+function resolveRenderTimeout(value: number | undefined, fallback: number) {
+  return Number.isFinite(value) && value! > 0 ? value! : fallback
+}
+
+function throwIfShareHighlightRenderAborted(signal?: AbortSignal) {
+  if (signal?.aborted) throw new ShareHighlightRenderAbortedError()
+}
+
+function isShareHighlightRenderInterruption(error: unknown) {
+  return (
+    error instanceof ShareHighlightRenderAbortedError
+    || error instanceof ShareHighlightRenderTimeoutError
+  )
+}
+
+function withShareHighlightRenderDeadline<T>(
+  operation: () => PromiseLike<T> | T,
+  {
+    signal,
+    timeoutMs,
+    timeoutMessage,
+    onInterrupt,
+  }: {
+    signal?: AbortSignal
+    timeoutMs: number
+    timeoutMessage: string
+    onInterrupt?: () => void
+  }
+): Promise<T> {
+  return new Promise((resolve, reject) => {
+    let settled = false
+    let timeoutId: ReturnType<typeof globalThis.setTimeout> | null = null
+
+    const finish = (settle: () => void) => {
+      if (settled) return
+      settled = true
+      if (timeoutId !== null) globalThis.clearTimeout(timeoutId)
+      timeoutId = null
+      signal?.removeEventListener('abort', handleAbort)
+      settle()
+    }
+    const interrupt = (error: Error) => {
+      finish(() => {
+        onInterrupt?.()
+        reject(error)
+      })
+    }
+    const handleAbort = () => interrupt(new ShareHighlightRenderAbortedError())
+
+    if (signal?.aborted) {
+      handleAbort()
+      return
+    }
+
+    signal?.addEventListener('abort', handleAbort, { once: true })
+    timeoutId = globalThis.setTimeout(() => {
+      interrupt(new ShareHighlightRenderTimeoutError(timeoutMessage))
+    }, timeoutMs)
+    ;(timeoutId as unknown as { unref?: () => void }).unref?.()
+
+    Promise.resolve()
+      .then(operation)
+      .then(
+        value => finish(() => resolve(value)),
+        error => finish(() => reject(error)),
+      )
+  })
+}
+
+async function loadDecodedImage(
+  src: string,
+  signal?: AbortSignal,
+): Promise<ShareHighlightDecodedImage> {
   if (typeof Image === 'undefined') {
     throw new Error('Artwork loading requires a browser Image implementation or an injected image loader.')
   }
@@ -1439,15 +1780,41 @@ async function loadDecodedImage(src: string): Promise<ShareHighlightDecodedImage
   const image = new Image()
   image.decoding = 'async'
   const loaded = new Promise<void>((resolve, reject) => {
-    image.addEventListener('load', () => resolve(), { once: true })
-    image.addEventListener('error', () => reject(new Error(`Unable to load share artwork: ${src}`)), { once: true })
+    const cleanup = () => {
+      image.removeEventListener('load', handleLoad)
+      image.removeEventListener('error', handleError)
+      signal?.removeEventListener('abort', handleAbort)
+    }
+    const handleLoad = () => {
+      cleanup()
+      resolve()
+    }
+    const handleError = () => {
+      cleanup()
+      reject(new Error(`Unable to load share artwork: ${src}`))
+    }
+    const handleAbort = () => {
+      cleanup()
+      image.src = ''
+      reject(new ShareHighlightRenderAbortedError())
+    }
+
+    if (signal?.aborted) {
+      handleAbort()
+      return
+    }
+    image.addEventListener('load', handleLoad, { once: true })
+    image.addEventListener('error', handleError, { once: true })
+    signal?.addEventListener('abort', handleAbort, { once: true })
+    image.src = src
   })
-  image.src = src
   await loaded
 
+  throwIfShareHighlightRenderAborted(signal)
   if (typeof image.decode === 'function') {
     await image.decode()
   }
+  throwIfShareHighlightRenderAborted(signal)
   if (!image.naturalWidth || !image.naturalHeight) {
     throw new Error(`Share artwork has invalid dimensions: ${src}`)
   }
@@ -1459,24 +1826,106 @@ async function loadDecodedImage(src: string): Promise<ShareHighlightDecodedImage
   }
 }
 
+async function loadShareHighlightArtwork(
+  src: string,
+  options: ShareHighlightRendererOptions,
+) {
+  const loadController = new AbortController()
+  const forwardAbort = () => loadController.abort()
+  if (options.signal?.aborted) forwardAbort()
+  else options.signal?.addEventListener('abort', forwardAbort, { once: true })
+
+  try {
+    return await withShareHighlightRenderDeadline(
+      () => (options.loadImage ?? loadDecodedImage)(src, loadController.signal),
+      {
+        signal: options.signal,
+        timeoutMs: resolveRenderTimeout(
+          options.imageDecodeTimeoutMs,
+          SHARE_HIGHLIGHT_IMAGE_DECODE_TIMEOUT_MS,
+        ),
+        timeoutMessage: 'Share artwork loading timed out before rendering.',
+        onInterrupt: () => loadController.abort(),
+      },
+    )
+  } finally {
+    options.signal?.removeEventListener('abort', forwardAbort)
+  }
+}
+
 function resolveFontSet(option: ShareHighlightRendererOptions['fontSet']) {
   if (option !== undefined) return option
   if (typeof document === 'undefined' || !('fonts' in document)) return null
   return document.fonts as unknown as ShareHighlightFontSet
 }
 
-export async function awaitShareHighlightFonts(fontSet?: ShareHighlightFontSet | null) {
+const SHARE_HIGHLIGHT_FONT_TIMEOUT_MS = 5_000
+const REQUIRED_SHARE_HIGHLIGHT_FONTS = [
+  {
+    family: 'Noto Serif Gurmukhi',
+    font: '600 76px "Noto Serif Gurmukhi"',
+    text: 'ੴ ਸਤਿ ਨਾਮੁ',
+  },
+  {
+    family: 'Plus Jakarta Sans Bold',
+    font: '700 25px "Plus Jakarta Sans"',
+    text: `${SHARE_HIGHLIGHT_BRAND_DOMAIN} SOURCE`,
+  },
+  {
+    family: 'Plus Jakarta Sans Regular',
+    font: '400 32px "Plus Jakarta Sans"',
+    text: 'Complete English meaning',
+  },
+  {
+    family: 'Plus Jakarta Sans Medium',
+    font: '500 34px "Plus Jakarta Sans"',
+    text: 'Read. Reflect. Return.',
+  },
+  {
+    family: 'Cormorant Garamond',
+    font: '650 38px "Cormorant Garamond"',
+    text: 'Daily Hukamnama',
+  },
+  {
+    family: 'Noto Sans Devanagari',
+    font: '500 32px "Noto Sans Devanagari"',
+    text: 'हुकमनामा अर्थ',
+  },
+] as const
+
+export async function awaitShareHighlightFonts(
+  fontSet?: ShareHighlightFontSet | null,
+  signal?: AbortSignal,
+) {
   const resolved = fontSet === undefined ? resolveFontSet(undefined) : fontSet
   if (!resolved) return
 
-  await resolved.ready
-  await Promise.all([
-    resolved.load('600 76px "Noto Serif Gurmukhi"', 'ੴ ਸਤਿ ਨਾਮੁ'),
-    resolved.load('700 25px "Plus Jakarta Sans"', `${SHARE_HIGHLIGHT_BRAND_DOMAIN} SOURCE`),
-    resolved.load('400 32px "Plus Jakarta Sans"', 'Complete English meaning'),
-    resolved.load('500 34px "Plus Jakarta Sans"', 'Read. Reflect. Return.'),
-    resolved.load('650 38px "Cormorant Garamond"', 'Daily Hukamnama'),
-  ])
+  const loadedFaces = await withShareHighlightRenderDeadline(
+    () => Promise.resolve(resolved.ready)
+      .then(() => Promise.all(
+        REQUIRED_SHARE_HIGHLIGHT_FONTS.map(request => (
+          resolved.load(request.font, request.text)
+        )),
+      ))
+      .catch(() => {
+        throw new Error('Required share fonts could not be loaded before rendering.')
+      }),
+    {
+      signal,
+      timeoutMs: SHARE_HIGHLIGHT_FONT_TIMEOUT_MS,
+      timeoutMessage: 'Required share fonts timed out before rendering.',
+    },
+  )
+
+  REQUIRED_SHARE_HIGHLIGHT_FONTS.forEach((request, index) => {
+    const faces = loadedFaces[index]
+    if (!Array.isArray(faces) || faces.length === 0) {
+      throw new Error(`Required share font is unavailable: ${request.family}.`)
+    }
+    if (resolved.check && !resolved.check(request.font, request.text)) {
+      throw new Error(`Required share font failed verification: ${request.family}.`)
+    }
+  })
 }
 
 function roundedRectanglePath(
@@ -1607,50 +2056,20 @@ function drawStoryReadingSurface(
   layout: ShareHighlightStoryLayout,
   palette: ShareHighlightOverlayPalette
 ) {
-  const isManuscript = layout.composition === 'manuscript'
   context.save()
-  context.shadowColor = 'rgba(8, 5, 3, 0.28)'
-  context.shadowBlur = isManuscript ? 24 : 24
+  context.shadowColor = 'transparent'
+  context.shadowBlur = 0
   context.shadowOffsetX = 0
-  context.shadowOffsetY = isManuscript ? 8 : 12
+  context.shadowOffsetY = 0
   roundedRectanglePath(
     context,
     layout.readingSurface,
-    isManuscript ? 40 : 54
+    8
   )
-  if (layout.composition !== 'expressive' && palette.kind === 'parchment') {
-    const parchment = context.createLinearGradient(
-      0,
-      layout.readingSurface.y,
-      0,
-      layout.readingSurface.y + layout.readingSurface.height
-    )
-    parchment.addColorStop(0, '#fbf5e8')
-    parchment.addColorStop(1, '#f0e3ca')
-    context.fillStyle = parchment
-  } else {
-    context.fillStyle = storySurfaceFill(palette, layout.composition === 'expressive')
-  }
+  // The art supplies the colour and texture; the reading remains a flat,
+  // opaque field so every background has the same dependable contrast.
+  context.fillStyle = storySurfaceFill(palette)
   context.fill()
-  context.shadowColor = 'transparent'
-  context.lineWidth = 2
-  context.strokeStyle = palette.kind === 'parchment'
-    ? 'rgba(91, 63, 37, 0.22)'
-    : 'rgba(245, 224, 188, 0.22)'
-  context.stroke()
-
-  if (isManuscript) {
-    const keylineInset = 10
-    roundedRectanglePath(context, {
-      x: layout.readingSurface.x + keylineInset,
-      y: layout.readingSurface.y + keylineInset,
-      width: layout.readingSurface.width - (keylineInset * 2),
-      height: layout.readingSurface.height - (keylineInset * 2),
-    }, 22)
-    context.lineWidth = 1
-    context.strokeStyle = 'rgba(117, 82, 45, 0.12)'
-    context.stroke()
-  }
   context.restore()
 }
 
@@ -1658,9 +2077,10 @@ function drawStoryMetadataSurfaces(
   context: CanvasRenderingContext2D,
   layout: ShareHighlightStoryLayout,
   palette: ShareHighlightOverlayPalette,
-  footerMode: ShareHighlightStoryFooterMode
+  footerMode: ShareHighlightStoryFooterMode,
+  hasArtworkCameo = false
 ) {
-  const surfaceFill = storySurfaceFill(palette, layout.composition === 'expressive')
+  const surfaceFill = storySurfaceFill(palette)
   context.save()
 
   if (layout.composition === 'manuscript') {
@@ -1670,7 +2090,7 @@ function drawStoryMetadataSurfaces(
     context.fillStyle = 'rgba(105, 75, 43, 0.2)'
     context.fillRect(
       layout.body.x,
-      MANUSCRIPT_HEADER_RULE_Y,
+      hasArtworkCameo ? MANUSCRIPT_ART_HEADER_RULE_Y : MANUSCRIPT_HEADER_RULE_Y,
       layout.body.width,
       2
     )
@@ -1687,32 +2107,27 @@ function drawStoryMetadataSurfaces(
   }
 
   context.fillStyle = surfaceFill
-  roundedRectanglePath(context, {
-    x: 46,
-    y: STORY_SAFE_TOP - 18,
-    width: 988,
-    height: 112,
-  }, 36)
+  roundedRectanglePath(context, STORY_EXPRESSIVE_HEADER_SURFACE, 8)
   context.fill()
 
-  // In expressive mode the footer sits outside the central reading field. A
-  // separate quiet capsule keeps both citation and brand contrast guaranteed.
-  if (footerMode === 'linked') {
-    roundedRectanglePath(context, {
-      x: 46,
-      y: STORY_LINK_FOOTER_TOP - 10,
-      width: 988,
-      height: 178,
-    }, 36)
+  const footerSurface = expressiveFooterSurface(footerMode)
+  if (!pixelRectContains(layout.readingSurface, footerSurface)) {
+    roundedRectanglePath(context, footerSurface, 8)
     context.fill()
   }
+  // When artwork is present, the citation belongs to the same reading sheet.
+  context.fillStyle = palette.kind === 'parchment'
+    ? 'rgba(105, 75, 43, 0.2)'
+    : 'rgba(245, 236, 218, 0.2)'
+  context.fillRect(STORY_METADATA_X, footerSurface.y, STORY_METADATA_WIDTH, 1)
   context.restore()
 }
 
 function resolveManuscriptHeaderTypography(
   context: CanvasRenderingContext2D,
   seriesLabel: string,
-  dateLabel: string | null
+  dateLabel: string | null,
+  availableWidth = STORY_COMPOSITIONS.manuscript.body.width
 ) {
   const maximumSteps = Math.max(
     MANUSCRIPT_TITLE_MAX_SIZE - MANUSCRIPT_TITLE_MIN_SIZE,
@@ -1737,7 +2152,7 @@ function resolveManuscriptHeaderTypography(
       dateLabel ? MANUSCRIPT_HEADER_GAP + dateWidth : 0
     )
 
-    if (requiredWidth <= STORY_COMPOSITIONS.manuscript.body.width) {
+    if (requiredWidth <= availableWidth) {
       return { titleSize, dateSize }
     }
   }
@@ -1753,13 +2168,14 @@ function drawStoryHeader(
   seriesLabel: string,
   dateLabel: string | null,
   palette: ShareHighlightOverlayPalette,
-  layout: ShareHighlightStoryLayout
+  layout: ShareHighlightStoryLayout,
+  hasArtworkCameo = false
 ) {
   context.save()
-  context.shadowColor = palette.shadow
-  context.shadowBlur = 7
+  context.shadowColor = 'transparent'
+  context.shadowBlur = 0
   context.shadowOffsetX = 0
-  context.shadowOffsetY = 2
+  context.shadowOffsetY = 0
   context.textAlign = 'left'
   context.textBaseline = 'top'
   context.font = 'normal 700 32px "Plus Jakarta Sans", sans-serif'
@@ -1767,14 +2183,25 @@ function drawStoryHeader(
 
   if (layout.composition === 'manuscript') {
     const manuscriptBody = STORY_COMPOSITIONS.manuscript.body
-    const headerRight = manuscriptBody.x + manuscriptBody.width
-    const typography = resolveManuscriptHeaderTypography(context, seriesLabel, dateLabel)
+    const headerLeft = hasArtworkCameo
+      ? STORY_MANUSCRIPT_HEADER_COPY.x
+      : manuscriptBody.x
+    const headerWidth = hasArtworkCameo
+      ? STORY_MANUSCRIPT_HEADER_COPY.width
+      : manuscriptBody.width
+    const headerRight = headerLeft + headerWidth
+    const typography = resolveManuscriptHeaderTypography(
+      context,
+      seriesLabel,
+      dateLabel,
+      headerWidth
+    )
 
     context.textBaseline = 'middle'
     context.font = `normal 650 ${typography.titleSize}px "Cormorant Garamond", serif`
     context.fillStyle = palette.primaryText
     context.textAlign = 'left'
-    context.fillText(seriesLabel, manuscriptBody.x, MANUSCRIPT_HEADER_CENTER_Y)
+    context.fillText(seriesLabel, headerLeft, MANUSCRIPT_HEADER_CENTER_Y)
 
     if (dateLabel) {
       context.font = `normal 600 ${typography.dateSize}px "Plus Jakarta Sans", sans-serif`
@@ -1799,17 +2226,18 @@ function drawStoryHeader(
 function drawTextSection(
   context: CanvasRenderingContext2D,
   section: ShareHighlightTextSection,
-  palette: ShareHighlightOverlayPalette
+  palette: ShareHighlightOverlayPalette,
+  useTextShadow = true
 ) {
   context.save()
   context.font = fontString(section.style)
   context.fillStyle = section.style.color
   context.textAlign = 'left'
   context.textBaseline = 'top'
-  context.shadowColor = palette.shadow
-  context.shadowBlur = 8
+  context.shadowColor = useTextShadow ? palette.shadow : 'transparent'
+  context.shadowBlur = useTextShadow ? 8 : 0
   context.shadowOffsetX = 0
-  context.shadowOffsetY = 2
+  context.shadowOffsetY = useTextShadow ? 2 : 0
   section.lines.forEach((line, index) => {
     if (line) context.fillText(line, section.x, section.y + (index * section.style.lineHeight))
   })
@@ -1902,10 +2330,10 @@ function drawStoryFooter(
     const textMaxWidth = STORY_LINK_QR_X - textX - 34
 
     context.save()
-    context.shadowColor = palette.shadow
-    context.shadowBlur = 3
+    context.shadowColor = 'transparent'
+    context.shadowBlur = 0
     context.shadowOffsetX = 0
-    context.shadowOffsetY = 1
+    context.shadowOffsetY = 0
     context.textAlign = 'left'
     context.textBaseline = 'top'
 
@@ -1956,10 +2384,10 @@ function drawStoryFooter(
     : STORY_FOOTER_BASELINE
   const fontSize = isManuscript ? 24 : 30
   context.save()
-  context.shadowColor = palette.shadow
-  context.shadowBlur = 4
+  context.shadowColor = 'transparent'
+  context.shadowBlur = 0
   context.shadowOffsetX = 0
-  context.shadowOffsetY = 1
+  context.shadowOffsetY = 0
   context.font = `normal 600 ${fontSize}px "Plus Jakarta Sans", sans-serif`
   context.fillStyle = palette.secondaryText
   context.textAlign = 'left'
@@ -1985,6 +2413,7 @@ export async function renderShareHighlightCard(
   input: ShareHighlightCardInput,
   options: ShareHighlightRendererOptions = {}
 ): Promise<HTMLCanvasElement> {
+  throwIfShareHighlightRenderAborted(options.signal)
   const canvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
   canvas.width = SHARE_HIGHLIGHT_CARD_WIDTH
   canvas.height = SHARE_HIGHLIGHT_CARD_HEIGHT
@@ -1994,9 +2423,9 @@ export async function renderShareHighlightCard(
   const artworkSrc = input.artwork?.src?.trim()
   const [artwork] = await Promise.all([
     artworkSrc
-      ? (options.loadImage ?? loadDecodedImage)(artworkSrc)
+      ? loadShareHighlightArtwork(artworkSrc, options)
       : Promise.resolve(null),
-    awaitShareHighlightFonts(resolveFontSet(options.fontSet)),
+    awaitShareHighlightFonts(resolveFontSet(options.fontSet), options.signal),
   ])
 
   context.clearRect(0, 0, SHARE_HIGHLIGHT_CARD_WIDTH, SHARE_HIGHLIGHT_CARD_HEIGHT)
@@ -2051,13 +2480,26 @@ export async function renderShareHighlightCard(
   return canvas
 }
 
-export function canvasToPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
-  return new Promise((resolve, reject) => {
-    canvas.toBlob(blob => {
-      if (blob) resolve(blob)
-      else reject(new Error('The share highlight canvas could not be encoded as PNG.'))
-    }, 'image/png')
-  })
+export function canvasToPngBlob(
+  canvas: HTMLCanvasElement,
+  options: Pick<ShareHighlightRendererOptions, 'signal' | 'pngEncodeTimeoutMs'> = {},
+): Promise<Blob> {
+  return withShareHighlightRenderDeadline(
+    () => new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob(blob => {
+        if (blob) resolve(blob)
+        else reject(new Error('The share highlight canvas could not be encoded as PNG.'))
+      }, 'image/png')
+    }),
+    {
+      signal: options.signal,
+      timeoutMs: resolveRenderTimeout(
+        options.pngEncodeTimeoutMs,
+        SHARE_HIGHLIGHT_PNG_ENCODE_TIMEOUT_MS,
+      ),
+      timeoutMessage: 'Share image encoding timed out before completion.',
+    },
+  )
 }
 
 function normalizePngFileName(value?: string) {
@@ -2071,7 +2513,7 @@ export async function exportShareHighlightPng(
   options: ShareHighlightRendererOptions = {}
 ): Promise<ShareHighlightPngExport> {
   const canvas = await renderShareHighlightCard(input, options)
-  const blob = await canvasToPngBlob(canvas)
+  const blob = await canvasToPngBlob(canvas, options)
   const file = new File([blob], normalizePngFileName(input.fileName), { type: 'image/png' })
   return {
     canvas,
@@ -2085,6 +2527,20 @@ export async function exportShareHighlightPng(
 interface ResolvedStoryArtworkProfile extends ShareHighlightStoryArtworkProfile {
   focalPosition: ShareHighlightNormalizedPoint
   heroHeightFraction: number
+  presentation: ShareHighlightStoryArtworkPresentation
+}
+
+interface ResolvedStoryArtworkPlacement {
+  ambientPlacement: ShareHighlightObjectCoverPlacement | null
+  crispPlacement: ShareHighlightObjectCoverPlacement | null
+  cameoPlacement: ShareHighlightObjectCoverPlacement | null
+  frameEffect: ShareHighlightStoryFrameEffect
+  protectedCanvasBounds: ShareHighlightPixelRect | null
+}
+
+const DEFAULT_STORY_ARTWORK_PRESENTATION: ShareHighlightStoryArtworkPresentation = {
+  short: { fit: 'contain', stageHeight: 500 },
+  long: { frameEffect: 'warm', cameoFit: 'contain' },
 }
 
 function resolveStoryArtworkProfile(
@@ -2119,77 +2575,531 @@ function resolveStoryArtworkProfile(
       0.24,
       0.48
     ),
+    presentation: authored?.presentation ?? DEFAULT_STORY_ARTWORK_PRESENTATION,
     ...(authored?.protectedSubject
       ? { protectedSubject: authored.protectedSubject }
       : {}),
   }
 }
 
+function isValidStoryArtworkProfile(profile: ShareHighlightStoryArtworkProfile) {
+  const validMode = profile.mode === 'portrait-bleed'
+    || profile.mode === 'landscape-hero'
+    || profile.mode === 'pattern-frame'
+  const validPoint = (point: ShareHighlightNormalizedPoint | undefined) => (
+    point === undefined
+    || (
+      Number.isFinite(point.x)
+      && Number.isFinite(point.y)
+      && point.x >= 0
+      && point.x <= 1
+      && point.y >= 0
+      && point.y <= 1
+    )
+  )
+  const validHeroHeight = profile.heroHeightFraction === undefined
+    || (
+      Number.isFinite(profile.heroHeightFraction)
+      && profile.heroHeightFraction > 0
+      && profile.heroHeightFraction <= 1
+    )
+  const validSubject = profile.protectedSubject === undefined
+    || (
+      (profile.protectedSubject.intent === 'keep-visible'
+        || profile.protectedSubject.intent === 'keep-clear-of-text')
+      && isValidNormalizedBounds(profile.protectedSubject.bounds)
+    )
+  const validFit = (fit: ShareHighlightStoryArtworkFit) => (
+    fit === 'protected-cover' || fit === 'contain'
+  )
+  const validFrameEffect = (effect: ShareHighlightStoryFrameEffect) => (
+    effect === 'warm'
+    || effect === 'cool'
+    || effect === 'vivid'
+    || effect === 'pattern'
+    || effect === 'architectural'
+    || effect === 'amber'
+  )
+  const presentation = profile.presentation
+  const validPresentation = presentation === undefined || (
+    validFit(presentation.short.fit)
+    && Number.isFinite(presentation.short.stageHeight)
+    && presentation.short.stageHeight > 0
+    && presentation.short.stageHeight <= STORY_EXPRESSIVE_ART_STAGE.height
+    && validFrameEffect(presentation.long.frameEffect)
+    && validFit(presentation.long.cameoFit)
+    && (
+      presentation.long.cameoMaxAspect === undefined
+      || (
+        Number.isFinite(presentation.long.cameoMaxAspect)
+        && presentation.long.cameoMaxAspect > 0
+        && presentation.long.cameoMaxAspect <= 2
+      )
+    )
+  )
+  return validMode
+    && validPoint(profile.focalPosition)
+    && validHeroHeight
+    && validSubject
+    && validPresentation
+}
+
+function placementDestinationRect(
+  placement: ShareHighlightObjectCoverPlacement
+): ShareHighlightPixelRect {
+  return {
+    x: placement.destinationX,
+    y: placement.destinationY,
+    width: placement.destinationWidth,
+    height: placement.destinationHeight,
+  }
+}
+
+function pixelRectContains(
+  outer: ShareHighlightPixelRect,
+  inner: ShareHighlightPixelRect
+) {
+  const epsilon = 0.001
+  return inner.x >= outer.x - epsilon
+    && inner.y >= outer.y - epsilon
+    && inner.x + inner.width <= outer.x + outer.width + epsilon
+    && inner.y + inner.height <= outer.y + outer.height + epsilon
+}
+
+function pixelRectHasFinitePositiveArea(rect: ShareHighlightPixelRect) {
+  return Number.isFinite(rect.x)
+    && Number.isFinite(rect.y)
+    && Number.isFinite(rect.width)
+    && Number.isFinite(rect.height)
+    && rect.width > 0
+    && rect.height > 0
+}
+
+function pixelRectsOverlap(
+  left: ShareHighlightPixelRect,
+  right: ShareHighlightPixelRect
+) {
+  return left.x < right.x + right.width
+    && left.x + left.width > right.x
+    && left.y < right.y + right.height
+    && left.y + left.height > right.y
+}
+
+function expressiveFooterSurface(
+  footerMode: ShareHighlightStoryFooterMode
+) {
+  return footerMode === 'linked'
+    ? STORY_EXPRESSIVE_LINK_FOOTER_SURFACE
+    : STORY_EXPRESSIVE_PLAIN_FOOTER_SURFACE
+}
+
+function computeStoryObjectCoverPlacement(
+  imageWidth: number,
+  imageHeight: number,
+  destination: ShareHighlightPixelRect,
+  focalPosition: ShareHighlightNormalizedPoint
+) {
+  return {
+    ...computeShareHighlightObjectCover(
+      imageWidth,
+      imageHeight,
+      destination.width,
+      destination.height,
+      focalPosition
+    ),
+    destinationX: destination.x,
+    destinationY: destination.y,
+  }
+}
+
+function centeredArtworkStage(
+  parent: ShareHighlightPixelRect,
+  maximumHeight: number,
+  maximumAspect?: number
+): ShareHighlightPixelRect {
+  const height = Math.min(parent.height, maximumHeight)
+  const width = maximumAspect === undefined
+    ? parent.width
+    : Math.min(parent.width, height * maximumAspect)
+  return {
+    x: parent.x + ((parent.width - width) / 2),
+    y: parent.y + ((parent.height - height) / 2),
+    width,
+    height,
+  }
+}
+
+/**
+ * Finds the largest cover crop inside a stage that keeps the complete authored
+ * protected subject visible. The crop origin is additionally constrained so a
+ * focal point near an edge can never push protected pixels out of frame.
+ */
+export function computeShareHighlightProtectedCover(
+  imageWidth: number,
+  imageHeight: number,
+  destination: ShareHighlightPixelRect,
+  protectedBounds: ShareHighlightNormalizedRect,
+  focalPosition: ShareHighlightNormalizedPoint = DEFAULT_FOCAL_POSITION
+): ShareHighlightObjectCoverPlacement {
+  if (
+    !Number.isFinite(imageWidth)
+    || !Number.isFinite(imageHeight)
+    || imageWidth <= 0
+    || imageHeight <= 0
+    || !pixelRectHasFinitePositiveArea(destination)
+    || !isValidNormalizedBounds(protectedBounds)
+  ) {
+    throw new RangeError('Protected-cover artwork geometry must be finite and positive.')
+  }
+
+  const sourceAspect = imageWidth / imageHeight
+  const destinationAspect = destination.width / destination.height
+  const minimumSafeAspect = sourceAspect * protectedBounds.width
+  const maximumSafeAspect = sourceAspect / protectedBounds.height
+  const safeAspect = clamp(
+    destinationAspect,
+    minimumSafeAspect,
+    maximumSafeAspect
+  )
+  const safeDestinationWidth = safeAspect >= destinationAspect
+    ? destination.width
+    : destination.height * safeAspect
+  const safeDestinationHeight = safeAspect >= destinationAspect
+    ? destination.width / safeAspect
+    : destination.height
+  const safeDestination = {
+    x: destination.x + ((destination.width - safeDestinationWidth) / 2),
+    y: destination.y + ((destination.height - safeDestinationHeight) / 2),
+    width: safeDestinationWidth,
+    height: safeDestinationHeight,
+  }
+
+  const cropUsesFullHeight = sourceAspect >= safeAspect
+  const sourceWidth = cropUsesFullHeight ? imageHeight * safeAspect : imageWidth
+  const sourceHeight = cropUsesFullHeight ? imageHeight : imageWidth / safeAspect
+  const protectedLeft = protectedBounds.x * imageWidth
+  const protectedRight = (protectedBounds.x + protectedBounds.width) * imageWidth
+  const protectedTop = protectedBounds.y * imageHeight
+  const protectedBottom = (protectedBounds.y + protectedBounds.height) * imageHeight
+  const minimumSourceX = Math.max(0, protectedRight - sourceWidth)
+  const maximumSourceX = Math.min(protectedLeft, imageWidth - sourceWidth)
+  const minimumSourceY = Math.max(0, protectedBottom - sourceHeight)
+  const maximumSourceY = Math.min(protectedTop, imageHeight - sourceHeight)
+  const focal = normalizePoint(focalPosition)
+  const sourceX = clamp(
+    (imageWidth * focal.x) - (sourceWidth / 2),
+    minimumSourceX,
+    maximumSourceX
+  )
+  const sourceY = clamp(
+    (imageHeight * focal.y) - (sourceHeight / 2),
+    minimumSourceY,
+    maximumSourceY
+  )
+
+  return {
+    sourceX,
+    sourceY,
+    sourceWidth,
+    sourceHeight,
+    destinationX: safeDestination.x,
+    destinationY: safeDestination.y,
+    destinationWidth: safeDestination.width,
+    destinationHeight: safeDestination.height,
+  }
+}
+
+function resolveAuthoredArtworkPlacement(
+  artwork: ShareHighlightDecodedImage,
+  destination: ShareHighlightPixelRect,
+  fit: ShareHighlightStoryArtworkFit,
+  profile: ResolvedStoryArtworkProfile
+) {
+  if (fit === 'protected-cover' && profile.protectedSubject) {
+    return computeShareHighlightProtectedCover(
+      artwork.width,
+      artwork.height,
+      destination,
+      profile.protectedSubject.bounds,
+      profile.focalPosition
+    )
+  }
+  return computeShareHighlightObjectContain(
+    artwork.width,
+    artwork.height,
+    destination
+  )
+}
+
+function resolveStoryArtworkPlacement(
+  artwork: ShareHighlightDecodedImage,
+  profile: ResolvedStoryArtworkProfile,
+  layout: ShareHighlightStoryLayout,
+  footerMode: ShareHighlightStoryFooterMode
+): ResolvedStoryArtworkPlacement | null {
+  if (
+    !Number.isFinite(artwork.width)
+    || !Number.isFinite(artwork.height)
+    || artwork.width <= 0
+    || artwork.height <= 0
+  ) return null
+
+  try {
+    if (layout.composition === 'manuscript') {
+      const ambientDestination = {
+        x: -STORY_MANUSCRIPT_AMBIENT_OVERSCAN,
+        y: -STORY_MANUSCRIPT_AMBIENT_OVERSCAN,
+        width: SHARE_HIGHLIGHT_STORY_WIDTH + (STORY_MANUSCRIPT_AMBIENT_OVERSCAN * 2),
+        height: SHARE_HIGHLIGHT_STORY_HEIGHT + (STORY_MANUSCRIPT_AMBIENT_OVERSCAN * 2),
+      }
+      const ambientPlacement = computeStoryObjectCoverPlacement(
+        artwork.width,
+        artwork.height,
+        ambientDestination,
+        profile.focalPosition
+      )
+      const cameoStage = centeredArtworkStage(
+        STORY_MANUSCRIPT_CAMEO_STAGE,
+        STORY_MANUSCRIPT_CAMEO_STAGE.height,
+        profile.presentation.long.cameoMaxAspect
+      )
+      const cameoPlacement = resolveAuthoredArtworkPlacement(
+        artwork,
+        cameoStage,
+        profile.presentation.long.cameoFit,
+        profile
+      )
+      const cameoBounds = placementDestinationRect(cameoPlacement)
+      const protectedCanvasBounds = profile.protectedSubject
+        ? mapShareHighlightArtworkBoundsToCanvas(
+            profile.protectedSubject.bounds,
+            artwork.width,
+            artwork.height,
+            cameoPlacement
+          )
+        : null
+      const footerRuleY = footerMode === 'linked'
+        ? MANUSCRIPT_LINK_FOOTER_RULE_Y
+        : MANUSCRIPT_PLAIN_FOOTER_RULE_Y
+      const manuscriptReservedSurfaces: ShareHighlightPixelRect[] = [
+        STORY_MANUSCRIPT_HEADER_COPY,
+        layout.body,
+        {
+          x: layout.body.x,
+          y: footerRuleY,
+          width: layout.body.width,
+          height: STORY_SAFE_BOTTOM - footerRuleY,
+        },
+      ]
+      const placementIsSafe = isValidArtworkPlacement(
+        ambientPlacement,
+        artwork.width,
+        artwork.height
+      )
+        && isValidArtworkPlacement(cameoPlacement, artwork.width, artwork.height)
+        && pixelRectContains(STORY_MANUSCRIPT_CAMEO_STAGE, cameoBounds)
+        && manuscriptReservedSurfaces.every(surface => (
+          !pixelRectsOverlap(cameoBounds, surface)
+        ))
+        && (
+          protectedCanvasBounds === null
+          || (
+            pixelRectHasFinitePositiveArea(protectedCanvasBounds)
+            && pixelRectContains(cameoBounds, protectedCanvasBounds)
+            && manuscriptReservedSurfaces.every(surface => (
+              !pixelRectsOverlap(protectedCanvasBounds, surface)
+            ))
+          )
+        )
+
+      return placementIsSafe
+        ? {
+            ambientPlacement,
+            crispPlacement: null,
+            cameoPlacement,
+            frameEffect: profile.presentation.long.frameEffect,
+            protectedCanvasBounds,
+          }
+        : null
+    }
+
+    const shortStage = centeredArtworkStage(
+      STORY_EXPRESSIVE_ART_STAGE,
+      profile.presentation.short.stageHeight
+    )
+    const crispPlacement = resolveAuthoredArtworkPlacement(
+      artwork,
+      shortStage,
+      profile.presentation.short.fit,
+      profile
+    )
+    const ambientPlacement = computeStoryObjectCoverPlacement(
+      artwork.width,
+      artwork.height,
+      STORY_EXPRESSIVE_AMBIENT_DESTINATION,
+      profile.focalPosition
+    )
+    const artworkBounds = placementDestinationRect(crispPlacement)
+    const ambientBounds = placementDestinationRect(ambientPlacement)
+    const protectedCanvasBounds = profile.protectedSubject
+      ? mapShareHighlightArtworkBoundsToCanvas(
+          profile.protectedSubject.bounds,
+          artwork.width,
+          artwork.height,
+          crispPlacement
+        )
+      : null
+    const reservedSurfaces = [
+      STORY_EXPRESSIVE_HEADER_SURFACE,
+      layout.readingSurface,
+      expressiveFooterSurface(footerMode),
+    ]
+    const placementIsSafe = isValidArtworkPlacement(
+      crispPlacement,
+      artwork.width,
+      artwork.height
+    )
+      && isValidArtworkPlacement(ambientPlacement, artwork.width, artwork.height)
+      && pixelRectHasFinitePositiveArea(artworkBounds)
+      && pixelRectHasFinitePositiveArea(ambientBounds)
+      && pixelRectContains(STORY_EXPRESSIVE_ART_STAGE, artworkBounds)
+      && pixelRectContains(ambientBounds, STORY_EXPRESSIVE_ART_STAGE)
+      && reservedSurfaces.every(surface => !pixelRectsOverlap(
+        STORY_EXPRESSIVE_ART_STAGE,
+        surface
+      ))
+      && (
+        protectedCanvasBounds === null
+        || (
+          pixelRectHasFinitePositiveArea(protectedCanvasBounds)
+          && pixelRectContains(artworkBounds, protectedCanvasBounds)
+          && reservedSurfaces.every(surface => (
+            !pixelRectsOverlap(protectedCanvasBounds, surface)
+          ))
+        )
+      )
+
+    return placementIsSafe
+      ? {
+          ambientPlacement,
+          crispPlacement,
+          cameoPlacement: null,
+          frameEffect: profile.presentation.long.frameEffect,
+          protectedCanvasBounds,
+        }
+      : null
+  } catch {
+    return null
+  }
+}
+
 function drawStoryArtworkBackground(
   context: CanvasRenderingContext2D,
   artwork: ShareHighlightDecodedImage | null,
-  profile: ResolvedStoryArtworkProfile,
+  resolvedPlacement: ResolvedStoryArtworkPlacement | null,
   composition: ShareHighlightStoryComposition
 ) {
-  if (!artwork) {
-    drawNoArtworkBackground(context, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
+  // Story decoration is intentionally restrained. Ordinary highlight cards
+  // retain their existing background treatment in drawNoArtworkBackground.
+  context.fillStyle = artwork && resolvedPlacement ? '#17191a' : '#f5ecda'
+  context.fillRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
+  if (!artwork || !resolvedPlacement) {
     return
   }
 
-  context.fillStyle = '#171310'
-  context.fillRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
-  const protectedSubjectHero = (
-    composition !== 'expressive'
-    && profile.protectedSubject?.intent === 'keep-clear-of-text'
-  )
-  const destinationHeight = profile.mode === 'landscape-hero' || protectedSubjectHero
-    ? Math.round(SHARE_HIGHLIGHT_STORY_HEIGHT * (
-        protectedSubjectHero ? 0.28 : profile.heroHeightFraction
-      ))
-    : SHARE_HIGHLIGHT_STORY_HEIGHT
+  if (composition === 'manuscript') {
+    const ambientPlacement = resolvedPlacement.ambientPlacement
+    if (!ambientPlacement) return
+    const frameTreatments: Record<ShareHighlightStoryFrameEffect, {
+      filter: string
+      overlay: string
+    }> = {
+      warm: {
+        filter: 'blur(14px) saturate(0.70) brightness(0.50)',
+        overlay: 'rgba(29, 14, 8, 0.26)',
+      },
+      cool: {
+        filter: 'blur(14px) saturate(0.64) brightness(0.48)',
+        overlay: 'rgba(5, 20, 28, 0.28)',
+      },
+      vivid: {
+        filter: 'blur(18px) saturate(0.56) brightness(0.44)',
+        overlay: 'rgba(8, 16, 22, 0.32)',
+      },
+      pattern: {
+        filter: 'blur(3px) saturate(0.80) brightness(0.58)',
+        overlay: 'rgba(24, 14, 8, 0.16)',
+      },
+      architectural: {
+        filter: 'blur(8px) saturate(0.70) brightness(0.56)',
+        overlay: 'rgba(10, 18, 24, 0.20)',
+      },
+      amber: {
+        filter: 'blur(10px) saturate(0.68) brightness(0.44)',
+        overlay: 'rgba(36, 17, 3, 0.30)',
+      },
+    }
+    const treatment = frameTreatments[resolvedPlacement.frameEffect]
 
-  if (profile.mode === 'landscape-hero' || protectedSubjectHero) {
-    // Extend the artwork's palette through the full Story so a landscape hero
-    // never falls into a large, flat void. This ambient layer is deliberately
-    // soft and dark; the crisp authored crop is drawn over it below.
-    const ambientOverscan = 44
-    const ambientPlacement = computeShareHighlightObjectCover(
-      artwork.width,
-      artwork.height,
-      SHARE_HIGHLIGHT_STORY_WIDTH + (ambientOverscan * 2),
-      SHARE_HIGHLIGHT_STORY_HEIGHT + (ambientOverscan * 2),
-      profile.focalPosition
-    )
     context.save()
-    context.globalAlpha = composition === 'expressive' ? 0.84 : 0.7
-    context.filter = composition === 'expressive'
-      ? 'blur(22px) saturate(0.88) brightness(0.72)'
-      : 'blur(30px) saturate(0.72) brightness(0.5)'
+    context.imageSmoothingEnabled = true
+    context.imageSmoothingQuality = 'high'
+    context.filter = treatment.filter
+    context.globalAlpha = 1
     context.drawImage(
       artwork.source,
       ambientPlacement.sourceX,
       ambientPlacement.sourceY,
       ambientPlacement.sourceWidth,
       ambientPlacement.sourceHeight,
-      -ambientOverscan,
-      -ambientOverscan,
+      ambientPlacement.destinationX,
+      ambientPlacement.destinationY,
       ambientPlacement.destinationWidth,
       ambientPlacement.destinationHeight
     )
-    context.restore()
-    context.fillStyle = composition === 'expressive'
-      ? 'rgba(13, 10, 8, 0.2)'
-      : 'rgba(13, 10, 8, 0.42)'
+    context.filter = 'none'
+    context.fillStyle = treatment.overlay
     context.fillRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
+    context.restore()
+    return
   }
 
-  const placement = computeShareHighlightObjectCover(
-    artwork.width,
-    artwork.height,
-    SHARE_HIGHLIGHT_STORY_WIDTH,
-    destinationHeight,
-    profile.focalPosition
-  )
+  if (composition === 'expressive') {
+    const ambientPlacement = resolvedPlacement.ambientPlacement
+    if (!ambientPlacement) return
+
+    context.save()
+    context.imageSmoothingEnabled = true
+    context.imageSmoothingQuality = 'high'
+    context.filter = 'blur(24px) saturate(0.72) brightness(0.62)'
+    context.globalAlpha = 0.88
+    context.drawImage(
+      artwork.source,
+      ambientPlacement.sourceX,
+      ambientPlacement.sourceY,
+      ambientPlacement.sourceWidth,
+      ambientPlacement.sourceHeight,
+      ambientPlacement.destinationX,
+      ambientPlacement.destinationY,
+      ambientPlacement.destinationWidth,
+      ambientPlacement.destinationHeight
+    )
+    context.filter = 'none'
+    context.globalAlpha = 1
+    context.fillStyle = 'rgba(15, 13, 12, 0.42)'
+    context.fillRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
+    context.restore()
+  }
+
+  const placement = resolvedPlacement.crispPlacement
+  if (!placement) return
+  context.save()
+  // The sharp, uncropped subject remains visible over the full-canvas art.
+  // Square edges also avoid masking protected pixels at a rounded corner.
+  roundedRectanglePath(context, STORY_EXPRESSIVE_ART_STAGE, 0)
+  context.clip()
+  context.filter = 'none'
+  context.globalAlpha = 1
   context.imageSmoothingEnabled = true
   context.imageSmoothingQuality = 'high'
   context.drawImage(
@@ -2203,28 +3113,41 @@ function drawStoryArtworkBackground(
     placement.destinationWidth,
     placement.destinationHeight
   )
+  context.restore()
+}
 
-  if (profile.mode === 'landscape-hero' || protectedSubjectHero) {
-    const fadeHeight = Math.min(170, destinationHeight * 0.28)
-    const gradient = context.createLinearGradient(0, destinationHeight - fadeHeight, 0, destinationHeight)
-    gradient.addColorStop(0, 'rgba(23, 19, 16, 0)')
-    gradient.addColorStop(1, 'rgba(23, 19, 16, 0.88)')
-    context.fillStyle = gradient
-    context.fillRect(0, destinationHeight - fadeHeight, SHARE_HIGHLIGHT_STORY_WIDTH, fadeHeight)
-  } else if (profile.mode === 'pattern-frame') {
-    const frameInset = 24
-    context.save()
-    roundedRectanglePath(context, {
-      x: frameInset,
-      y: 156,
-      width: SHARE_HIGHLIGHT_STORY_WIDTH - (frameInset * 2),
-      height: 1578,
-    }, 48)
-    context.strokeStyle = 'rgba(245, 222, 178, 0.5)'
-    context.lineWidth = 4
-    context.stroke()
-    context.restore()
-  }
+function drawStoryArtworkCameo(
+  context: CanvasRenderingContext2D,
+  artwork: ShareHighlightDecodedImage | null,
+  resolvedPlacement: ResolvedStoryArtworkPlacement | null,
+  composition: ShareHighlightStoryComposition
+) {
+  const placement = resolvedPlacement?.cameoPlacement
+  if (composition !== 'manuscript' || !artwork || !placement) return
+
+  context.save()
+  context.shadowColor = 'transparent'
+  context.shadowBlur = 0
+  context.shadowOffsetX = 0
+  context.shadowOffsetY = 0
+  roundedRectanglePath(context, STORY_MANUSCRIPT_CAMEO_STAGE, 0)
+  context.clip()
+  context.filter = 'none'
+  context.globalAlpha = 1
+  context.imageSmoothingEnabled = true
+  context.imageSmoothingQuality = 'high'
+  context.drawImage(
+    artwork.source,
+    placement.sourceX,
+    placement.sourceY,
+    placement.sourceWidth,
+    placement.sourceHeight,
+    placement.destinationX,
+    placement.destinationY,
+    placement.destinationWidth,
+    placement.destinationHeight
+  )
+  context.restore()
 }
 
 function normalizePassageFileBase(value?: string) {
@@ -2252,20 +3175,21 @@ interface RenderedShareHighlightStory {
 
 interface ShareHighlightStoryRenderPlan {
   artwork: ShareHighlightDecodedImage | null
+  artworkPlacement: ResolvedStoryArtworkPlacement | null
   dateLabel: string | null
   footerMode: ShareHighlightStoryFooterMode
   layouts: ShareHighlightStoryLayout[]
   overlayTone: string | undefined
   seriesLabel: string
   sourceLabel: string
-  storyProfile: ResolvedStoryArtworkProfile
 }
 
 type ShareHighlightStoryLayoutPlanner = (
   measure: ShareHighlightTextMeasure,
   overlayTone: string | undefined,
-  storyProfile: ShareHighlightStoryArtworkProfile,
-  footerMode: ShareHighlightStoryFooterMode
+  storyProfile: ShareHighlightStoryArtworkProfile | undefined,
+  footerMode: ShareHighlightStoryFooterMode,
+  forceManuscript: boolean
 ) => ShareHighlightStoryLayout[]
 
 function prepareStoryCanvas(canvas: HTMLCanvasElement) {
@@ -2315,20 +3239,34 @@ function drawPlannedShareHighlightStory(
   context.clearRect(0, 0, SHARE_HIGHLIGHT_STORY_WIDTH, SHARE_HIGHLIGHT_STORY_HEIGHT)
   drawStoryArtworkBackground(
     context,
-    layout.composition === 'expressive' ? plan.artwork : null,
-    plan.storyProfile,
+    plan.artwork,
+    plan.artworkPlacement,
     layout.composition
   )
   drawStoryReadingSurface(context, layout, palette)
-  drawStoryMetadataSurfaces(context, layout, palette, plan.footerMode)
+  drawStoryArtworkCameo(
+    context,
+    plan.artwork,
+    plan.artworkPlacement,
+    layout.composition
+  )
+  const hasArtworkCameo = Boolean(plan.artworkPlacement?.cameoPlacement)
+  drawStoryMetadataSurfaces(
+    context,
+    layout,
+    palette,
+    plan.footerMode,
+    hasArtworkCameo
+  )
   drawStoryHeader(
     context,
     plan.seriesLabel,
     makeStoryPageDateLabel(plan.dateLabel, pageNumber, pageCount),
     palette,
-    layout
+    layout,
+    hasArtworkCameo
   )
-  layout.sections.forEach(section => drawTextSection(context, section, palette))
+  layout.sections.forEach(section => drawTextSection(context, section, palette, false))
   drawStoryFooter(
     context,
     plan.sourceLabel,
@@ -2354,36 +3292,97 @@ async function prepareShareHighlightStoryRenderPlan(
     : 'plain'
   if (!sourceLabel) throw new TypeError('A passage source label is required.')
   if (!seriesLabel) throw new TypeError('A passage series label is required.')
+  const artworkSrc = input.artwork?.src?.trim() || null
+  const authoredProfile = input.artwork?.storyProfile
+  const optedIntoStoryArtwork = Boolean(artworkSrc && authoredProfile)
+  const profileIsValid = Boolean(
+    optedIntoStoryArtwork
+    && authoredProfile
+    && isValidStoryArtworkProfile(authoredProfile)
+  )
+  if (optedIntoStoryArtwork && !profileIsValid) {
+    throw new TypeError('The selected Hukamnama artwork has an invalid Story profile.')
+  }
 
-  await awaitShareHighlightFonts(resolveFontSet(options.fontSet))
+  await awaitShareHighlightFonts(resolveFontSet(options.fontSet), options.signal)
+  throwIfShareHighlightRenderAborted(options.signal)
 
   const measure = measureStoryTextWith(context)
-  const artworkSrc = input.artwork?.src?.trim() || null
   let artwork: ShareHighlightDecodedImage | null = null
-  let overlayTone = artworkSrc ? input.artwork?.overlayTone : 'dark'
-  let storyProfile = resolveStoryArtworkProfile(input, null)
-  let layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
+  let artworkPlacement: ResolvedStoryArtworkPlacement | null = null
+  let overlayTone = profileIsValid ? input.artwork?.overlayTone : 'dark'
+  const storyProfile = resolveStoryArtworkProfile(input, null)
+  let layouts = planLayouts(
+    measure,
+    overlayTone,
+    profileIsValid ? storyProfile : undefined,
+    footerMode,
+    !optedIntoStoryArtwork
+  )
   if (layouts.length === 0) throw new Error('A Hukamnama Story plan requires at least one page.')
 
-  // Artwork is relevant only to an expressive complete layout. Exact text
-  // preflight therefore prevents a long manuscript set from decoding an image
-  // that none of its pages will draw.
-  if (layouts[0]!.composition === 'expressive' && artworkSrc) {
-    artwork = await (options.loadImage ?? loadDecodedImage)(artworkSrc)
+  // Only an authored profile opts a supplied image into Hukamnama rendering.
+  // The decoded image is shared by the whole set, and the exact placement
+  // validated here is retained in the plan and used by every page draw.
+  if (profileIsValid && artworkSrc) {
+    let decodedArtwork: ShareHighlightDecodedImage
+    try {
+      decodedArtwork = await loadShareHighlightArtwork(artworkSrc, options)
+    } catch (error) {
+      if (isShareHighlightRenderInterruption(error)) throw error
+      throw new Error('The selected Hukamnama artwork could not be loaded.')
+    }
+    if (
+      !Number.isFinite(decodedArtwork.width)
+      || !Number.isFinite(decodedArtwork.height)
+      || decodedArtwork.width <= 0
+      || decodedArtwork.height <= 0
+    ) {
+      throw new RangeError('The selected Hukamnama artwork decoded with invalid dimensions.')
+    }
+
+    const resolvedProfile = resolveStoryArtworkProfile(input, decodedArtwork)
+    let resolvedLayouts = layouts
+    if (layouts[0]!.composition === 'expressive') {
+      resolvedLayouts = planLayouts(
+        measure,
+        input.artwork?.overlayTone,
+        resolvedProfile,
+        footerMode,
+        false
+      )
+    }
+    const firstLayout = resolvedLayouts[0]
+    const resolvedPlacement = firstLayout
+      ? resolveStoryArtworkPlacement(
+          decodedArtwork,
+          resolvedProfile,
+          firstLayout,
+          footerMode
+        )
+      : null
+
+    if (!firstLayout || !resolvedPlacement) {
+      throw new RangeError(
+        'The selected Hukamnama artwork cannot be placed safely around the reading.'
+      )
+    }
+
+    artwork = decodedArtwork
+    artworkPlacement = resolvedPlacement
     overlayTone = input.artwork?.overlayTone
-    storyProfile = resolveStoryArtworkProfile(input, artwork)
-    layouts = planLayouts(measure, overlayTone, storyProfile, footerMode)
+    layouts = resolvedLayouts
   }
 
   return {
     artwork,
+    artworkPlacement,
     dateLabel,
     footerMode,
     layouts,
     overlayTone,
     seriesLabel,
     sourceLabel,
-    storyProfile,
   }
 }
 
@@ -2444,7 +3443,7 @@ function layoutExactManuscriptStoryPage(
   lines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
   overlayTone: string | undefined,
-  storyProfile: ShareHighlightStoryArtworkProfile,
+  storyProfile: ShareHighlightStoryArtworkProfile | undefined,
   footerMode: ShareHighlightStoryFooterMode,
   selection: ShareHighlightStorySelection
 ) {
@@ -2459,12 +3458,142 @@ function layoutExactManuscriptStoryPage(
   return attempt.layout ? applyStorySelection(attempt.layout, selection) : null
 }
 
-function rebalanceFinalStoryOrphan(
+const STORY_FINAL_PAGE_MINIMUM_FILL_GAIN = 0.04
+const STORY_FINAL_PAGE_SCORE_EPSILON = 0.001
+const STORY_FINAL_PAGE_MAX_CANDIDATES = 2
+
+function storyLayoutContentFill(layout: ShareHighlightStoryLayout) {
+  if (layout.sections.length === 0 || layout.body.height <= 0) return 0
+
+  const contentTop = Math.min(...layout.sections.map(section => section.y))
+  const contentBottom = Math.max(...layout.sections.map(section => (
+    section.y + section.height
+  )))
+  return clamp((contentBottom - contentTop) / layout.body.height, 0, 1)
+}
+
+interface StoryFinalPairCandidate {
+  layouts: [ShareHighlightStoryLayout, ShareHighlightStoryLayout]
+  minimumFill: number
+  fillImbalance: number
+  scaleImbalance: number
+  movedBlockCount: number
+}
+
+interface StoryFinalSplitCandidate {
+  splitBlockIndex: number
+  estimatedImbalance: number
+  movedBlockCount: number
+}
+
+function rankStoryFinalSplitCandidates(
+  blocks: readonly StoryAtomicBlock[],
+  normalizedLines: readonly ShareHighlightPassageLine[],
+  previousStartBlockIndex: number,
+  originalFinalStartBlockIndex: number,
+  measure: ShareHighlightTextMeasure,
+  overlayTone: string | undefined
+) {
+  const relevantBlocks = blocks.slice(previousStartBlockIndex)
+  const minimumGapScale = 0.72
+  const weights = relevantBlocks.map(block => {
+    const blockLines = normalizedLines.slice(
+      block.startLineIndex,
+      block.endLineIndex + 1
+    )
+    const measured = measureStoryDrafts(
+      blockLines,
+      measure,
+      'manuscript',
+      0,
+      overlayTone
+    )
+    const finalLine = blockLines.at(-1)!
+    return measured.requiredHeight + storyLineGap(
+      finalLine,
+      'manuscript',
+      minimumGapScale
+    )
+  })
+  const totalWeight = weights.reduce((total, weight) => total + weight, 0)
+  let leftWeight = 0
+  const candidates: StoryFinalSplitCandidate[] = []
+
+  for (let offset = 1; offset < relevantBlocks.length; offset += 1) {
+    leftWeight += weights[offset - 1]!
+    const splitBlockIndex = previousStartBlockIndex + offset
+    if (splitBlockIndex === originalFinalStartBlockIndex) continue
+    candidates.push({
+      splitBlockIndex,
+      estimatedImbalance: Math.abs(leftWeight - (totalWeight - leftWeight)),
+      movedBlockCount: Math.abs(splitBlockIndex - originalFinalStartBlockIndex),
+    })
+  }
+
+  return candidates
+    .sort((candidate, current) => (
+      candidate.estimatedImbalance - current.estimatedImbalance
+      || candidate.movedBlockCount - current.movedBlockCount
+    ))
+    .slice(0, STORY_FINAL_PAGE_MAX_CANDIDATES)
+}
+
+function scoreStoryFinalPair(
+  layouts: StoryFinalPairCandidate['layouts'],
+  movedBlockCount: number
+): StoryFinalPairCandidate {
+  const fills = layouts.map(storyLayoutContentFill)
+  return {
+    layouts,
+    minimumFill: Math.min(...fills),
+    fillImbalance: Math.abs(fills[0]! - fills[1]!),
+    scaleImbalance: Math.abs(
+      layouts[0].contentScale - layouts[1].contentScale
+    ),
+    movedBlockCount,
+  }
+}
+
+function isBetterStoryFinalPair(
+  candidate: StoryFinalPairCandidate,
+  current: StoryFinalPairCandidate
+) {
+  if (
+    candidate.minimumFill
+    > current.minimumFill + STORY_FINAL_PAGE_SCORE_EPSILON
+  ) return true
+  if (
+    Math.abs(candidate.minimumFill - current.minimumFill)
+    > STORY_FINAL_PAGE_SCORE_EPSILON
+  ) return false
+
+  if (
+    candidate.fillImbalance
+    < current.fillImbalance - STORY_FINAL_PAGE_SCORE_EPSILON
+  ) return true
+  if (
+    Math.abs(candidate.fillImbalance - current.fillImbalance)
+    > STORY_FINAL_PAGE_SCORE_EPSILON
+  ) return false
+
+  if (
+    candidate.scaleImbalance
+    < current.scaleImbalance - STORY_FINAL_PAGE_SCORE_EPSILON
+  ) return true
+  if (
+    Math.abs(candidate.scaleImbalance - current.scaleImbalance)
+    > STORY_FINAL_PAGE_SCORE_EPSILON
+  ) return false
+
+  return candidate.movedBlockCount < current.movedBlockCount
+}
+
+function rebalanceFinalStoryPages(
   layouts: readonly ShareHighlightStoryLayout[],
   normalizedLines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
   overlayTone: string | undefined,
-  storyProfile: ShareHighlightStoryArtworkProfile,
+  storyProfile: ShareHighlightStoryArtworkProfile | undefined,
   footerMode: ShareHighlightStoryFooterMode
 ) {
   if (layouts.length < 2) return Array.from(layouts)
@@ -2490,53 +3619,88 @@ function rebalanceFinalStoryOrphan(
   if (
     finalStartBlockIndex < 1
     || previousStartBlockIndex < 0
-    || blocks.length - finalStartBlockIndex !== 1
-    // Moving one whole block must leave at least two on the prior page. This
-    // fixes the tail without merely relocating the orphan one page earlier.
-    || finalStartBlockIndex - previousStartBlockIndex < 3
   ) return Array.from(layouts)
 
-  const movedBlock = blocks[finalStartBlockIndex - 1]!
-  const rebalancedPreviousLines = normalizedLines.slice(
-    previousStartLineIndex,
-    movedBlock.startLineIndex
-  )
-  const rebalancedFinalLines = normalizedLines.slice(movedBlock.startLineIndex)
   const pageBeforePrevious = layouts.at(-3)
-  const previousSelection = makePlannedExcerptSelection(
-    rebalancedPreviousLines,
-    normalizedLines.length,
-    pageBeforePrevious?.selection.firstSourceLineId ?? null,
-    rebalancedFinalLines[0]!.id
-  )
-  const finalSelection = makePlannedExcerptSelection(
-    rebalancedFinalLines,
-    normalizedLines.length,
-    rebalancedPreviousLines[0]!.id,
-    null
-  )
-  const rebalancedPrevious = layoutExactManuscriptStoryPage(
-    rebalancedPreviousLines,
+  const originalPair: StoryFinalPairCandidate['layouts'] = [
+    previousLayout,
+    finalLayout,
+  ]
+  const originalScore = scoreStoryFinalPair(originalPair, 0)
+  let bestScore = originalScore
+
+  // Rank boundaries using real minimum-font wrapping for each atomic block,
+  // then fully lay out only the two most balanced candidates. This remains
+  // height-aware without turning the final polish pass into an exhaustive
+  // series of costly full-page layout searches.
+  const splitCandidates = rankStoryFinalSplitCandidates(
+    blocks,
+    normalizedLines,
+    previousStartBlockIndex,
+    finalStartBlockIndex,
     measure,
-    overlayTone,
-    storyProfile,
-    footerMode,
-    previousSelection
+    overlayTone
   )
-  const rebalancedFinal = layoutExactManuscriptStoryPage(
-    rebalancedFinalLines,
-    measure,
-    overlayTone,
-    storyProfile,
-    footerMode,
-    finalSelection
-  )
-  if (!rebalancedPrevious || !rebalancedFinal) return Array.from(layouts)
+  for (const splitCandidate of splitCandidates) {
+    const { splitBlockIndex } = splitCandidate
+
+    const finalStartLine = blocks[splitBlockIndex]!.startLineIndex
+    const candidatePreviousLines = normalizedLines.slice(
+      previousStartLineIndex,
+      finalStartLine
+    )
+    const candidateFinalLines = normalizedLines.slice(finalStartLine)
+    const previousSelection = makePlannedExcerptSelection(
+      candidatePreviousLines,
+      normalizedLines.length,
+      pageBeforePrevious?.selection.firstSourceLineId ?? null,
+      candidateFinalLines[0]!.id
+    )
+    const finalSelection = makePlannedExcerptSelection(
+      candidateFinalLines,
+      normalizedLines.length,
+      candidatePreviousLines[0]!.id,
+      null
+    )
+    const candidatePrevious = layoutExactManuscriptStoryPage(
+      candidatePreviousLines,
+      measure,
+      overlayTone,
+      storyProfile,
+      footerMode,
+      previousSelection
+    )
+    const candidateFinal = layoutExactManuscriptStoryPage(
+      candidateFinalLines,
+      measure,
+      overlayTone,
+      storyProfile,
+      footerMode,
+      finalSelection
+    )
+    if (!candidatePrevious || !candidateFinal) continue
+
+    const candidateScore = scoreStoryFinalPair(
+      [candidatePrevious, candidateFinal],
+      splitCandidate.movedBlockCount
+    )
+    if (isBetterStoryFinalPair(candidateScore, bestScore)) {
+      bestScore = candidateScore
+    }
+  }
+
+  // Avoid moving stable boundaries for tiny metric differences. Four percent
+  // of the manuscript body is roughly one readable support line; a change
+  // below that threshold is not a meaningful visual improvement.
+  if (
+    bestScore === originalScore
+    || bestScore.minimumFill
+      < originalScore.minimumFill + STORY_FINAL_PAGE_MINIMUM_FILL_GAIN
+  ) return Array.from(layouts)
 
   return [
     ...layouts.slice(0, -2),
-    rebalancedPrevious,
-    rebalancedFinal,
+    ...bestScore.layouts,
   ]
 }
 
@@ -2544,8 +3708,9 @@ function planCompleteStoryLayouts(
   normalizedLines: readonly ShareHighlightPassageLine[],
   measure: ShareHighlightTextMeasure,
   overlayTone: string | undefined,
-  storyProfile: ShareHighlightStoryArtworkProfile,
-  footerMode: ShareHighlightStoryFooterMode
+  storyProfile: ShareHighlightStoryArtworkProfile | undefined,
+  footerMode: ShareHighlightStoryFooterMode,
+  forceManuscript = false
 ) {
   const layouts: ShareHighlightStoryLayout[] = []
   const seenPageStarts = new Set<ShareHighlightPassageLine['id']>()
@@ -2563,7 +3728,8 @@ function planCompleteStoryLayouts(
       {
         previousSourceLineId: previousPageStartLineId,
         excerptOnly: pageIndex > 0,
-      }
+      },
+      forceManuscript
     )
     const selection = layout.selection
     if (
@@ -2581,7 +3747,7 @@ function planCompleteStoryLayouts(
     nextAnchorLineId = selection.nextSourceLineId
   }
 
-  const rebalancedLayouts = rebalanceFinalStoryOrphan(
+  const rebalancedLayouts = rebalanceFinalStoryPages(
     layouts,
     normalizedLines,
     measure,
@@ -2604,14 +3770,16 @@ async function renderShareHighlightStoryWithLayout(
     input,
     options,
     context,
-    (measure, overlayTone, storyProfile, footerMode) => [
-      layoutShareHighlightStory(
-        input.content.lines,
+    (measure, overlayTone, storyProfile, footerMode, forceManuscript) => [
+      layoutNormalizedShareHighlightStory(
+        normalizePassageLines(input.content.lines),
         measure,
         overlayTone,
         storyProfile,
         input.content.anchorLineId,
-        footerMode
+        footerMode,
+        undefined,
+        forceManuscript
       ),
     ]
   )
@@ -2637,7 +3805,7 @@ export async function exportShareHighlightStoryPng(
   options: ShareHighlightRendererOptions = {}
 ): Promise<ShareHighlightStoryPngExport> {
   const { canvas, layout } = await renderShareHighlightStoryWithLayout(input, options)
-  const blob = await canvasToPngBlob(canvas)
+  const blob = await canvasToPngBlob(canvas, options)
   const file = new File([blob], normalizePassageFileBase(input.fileNameBase), { type: 'image/png' })
   return {
     canvas,
@@ -2660,6 +3828,7 @@ export async function exportShareHighlightStoryPngSet(
   input: ShareHighlightPassageInput,
   options: ShareHighlightRendererOptions = {}
 ): Promise<ShareHighlightStoryPngSet> {
+  throwIfShareHighlightRenderAborted(options.signal)
   const normalizedLines = normalizePassageLines(input.content.lines)
   const firstCanvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
   let firstCanvasReleased = false
@@ -2670,13 +3839,14 @@ export async function exportShareHighlightStoryPngSet(
       input,
       options,
       firstContext,
-      (measure, overlayTone, storyProfile, footerMode) => (
+      (measure, overlayTone, storyProfile, footerMode, forceManuscript) => (
         planCompleteStoryLayouts(
           normalizedLines,
           measure,
           overlayTone,
           storyProfile,
-          footerMode
+          footerMode,
+          forceManuscript
         )
       )
     )
@@ -2686,6 +3856,7 @@ export async function exportShareHighlightStoryPngSet(
     // Render and encode one page at a time. No subsequent canvas is allocated
     // until the prior PNG is complete and its native pixel buffer is released.
     for (const [index, layout] of plan.layouts.entries()) {
+      throwIfShareHighlightRenderAborted(options.signal)
       const canvas = index === 0
         ? firstCanvas
         : options.createCanvas?.() ?? createDefaultCanvas()
@@ -2701,7 +3872,8 @@ export async function exportShareHighlightStoryPngSet(
           index + 1,
           pageCount
         )
-        const blob = await canvasToPngBlob(canvas)
+        const blob = await canvasToPngBlob(canvas, options)
+        throwIfShareHighlightRenderAborted(options.signal)
         const file = new File(
           [blob],
           makePassagePageFileName(input.fileNameBase, index + 1, pageCount),
@@ -2731,5 +3903,236 @@ export async function exportShareHighlightStoryPngSet(
     }
   } finally {
     if (!firstCanvasReleased) releaseStoryCanvas(firstCanvas)
+  }
+}
+
+/** One complete reading, never an excerpt or a multi-image set. */
+export function layoutShareHighlightHukamnamaImage(
+  rawLines: readonly ShareHighlightPassageLine[],
+  measure: ShareHighlightTextMeasure
+): ShareHighlightStoryLayout {
+  const lines = normalizePassageLines(rawLines)
+  const supportRoles = storySupportRoles(lines)
+  const palette = resolveShareHighlightOverlayPalette('light')
+  const width = SHARE_HIGHLIGHT_STORY_WIDTH
+  const inset = 96
+  const bodyWidth = width - inset * 2
+  const measureAtScale = (scale: number) => {
+    const fontSizes = {
+      header: Math.round(28 + scale * 6),
+      gurmukhi: Math.round(42 + scale * 22),
+      transliteration: Math.round(32 + scale * 2),
+      meaning: Math.round(32 + scale * 2),
+    }
+    let cursor = 0
+    const sections: ShareHighlightStoryTextSection[] = []
+    lines.forEach((line, lineIndex) => {
+      const values: Array<['gurmukhi' | 'meaning' | 'transliteration', string]> = [['gurmukhi', line.gurmukhi]]
+      if (line.meaning) values.push(['meaning', line.meaning])
+      if (line.transliteration) values.push(['transliteration', line.transliteration])
+      values.forEach(([role, value], index) => {
+        const style = makeStoryStyle(role, Boolean(line.isHeader), fontSizes, palette, 'manuscript')
+        // A clear rhythm between verse and meaning, without stretching the
+        // spaces between lines merely to fill a fixed Story-shaped canvas.
+        style.lineHeight = Math.ceil(style.fontSize * (role === 'gurmukhi' ? 1.3 : 1.4))
+        const wrapped = wrapShareHighlightText(value, bodyWidth, style, measure)
+        // Keep an ending verse marker with its preceding word rather than
+        // leaving a lonely ||4|| / ॥੪॥ on a line. Only wrapping changes.
+        const lastIndex = wrapped.length - 1
+        if (lastIndex > 0 && /^[|॥।\d੦-੯\s]+$/u.test(wrapped[lastIndex]!)) {
+          const previous = wrapped[lastIndex - 1]!
+          const breakAt = previous.lastIndexOf(' ')
+          const joined = `${previous.slice(breakAt + 1)} ${wrapped[lastIndex]}`
+          if (breakAt > 0 && measure(joined, style) <= bodyWidth) {
+            wrapped[lastIndex - 1] = previous.slice(0, breakAt)
+            wrapped[lastIndex] = joined
+          }
+        }
+        const sectionHeight = wrapped.length * style.lineHeight
+        sections.push({ role, lines: wrapped, style, sourceLineId: line.id,
+          isHeader: Boolean(line.isHeader), x: inset, y: cursor, width: bodyWidth, height: sectionHeight })
+        cursor += sectionHeight + (index < values.length - 1 ? 10 : 0)
+      })
+      if (lineIndex < lines.length - 1) cursor += line.isHeader ? 12 : 22
+    })
+    return { sections, requiredHeight: cursor, fontSizes }
+  }
+  const frameSpace = 440
+  const availableHeight = SHARE_HIGHLIGHT_STORY_HEIGHT - frameSpace
+  let scale = 1
+  let measured = measureAtScale(scale)
+  while (measured.requiredHeight > availableHeight && scale > 0) {
+    scale = Math.max(0, Math.round((scale - 0.1) * 10) / 10)
+    measured = measureAtScale(scale)
+  }
+  // Short readings are composed as a compact portrait. Longer readings keep
+  // their exact text and grow beyond Story height at the readable font floor.
+  const height = Math.max(1350, Math.ceil(measured.requiredHeight + frameSpace))
+  // Bound mobile canvas memory; never silently truncate, split, or use tiny
+  // scripture when an unreasonable payload exceeds one safe image buffer.
+  if (height > HUKAMNAMA_IMAGE_MAX_HEIGHT) {
+    throw new HukamnamaImageTooLongError(height)
+  }
+  const bodyTop = Math.round((height - measured.requiredHeight) / 2)
+  return {
+    width, height,
+    body: { x: inset, y: bodyTop, width: bodyWidth, height: measured.requiredHeight },
+    readingSurface: { x: 0, y: 0, width, height },
+    sections: measured.sections.map(section => ({ ...section, y: section.y + bodyTop })),
+    contentScale: scale,
+    density: scale > 0.5 ? 'comfortable' : 'dense',
+    composition: 'manuscript',
+    artworkMode: 'portrait-bleed',
+    fit: {
+      supportRoles,
+      fontSizes: { gurmukhi: measured.fontSizes.gurmukhi,
+        ...(supportRoles.includes('meaning') ? { meaning: measured.fontSizes.meaning } : {}),
+        ...(supportRoles.includes('transliteration') ? { transliteration: measured.fontSizes.transliteration } : {}) },
+      atReadabilityFloor: scale === 0,
+    },
+    sourceLineIds: lines.map(line => line.id),
+    selection: makeDefaultStorySelection(lines),
+  }
+}
+
+/** Contrast is bounded against both black and white artwork pixels, rather
+ * than guessed from a thumbnail. The original colours remain visible. */
+export function resolveHukamnamaImagePalette(overlayTone?: string, artworkId?: string, contentScale = 1) {
+  const dark = overlayTone && overlayTone !== 'light'
+  const base = dark
+    ? { paper: '#151d1a', primaryText: '#fff7e9', secondaryText: '#f7efdf', veilOpacity: 0.68 }
+    : { paper: '#f5ecda', primaryText: '#201b16', secondaryText: '#29231d', veilOpacity: 0.64 }
+  const direction = getHukamnamaArtDirection(artworkId)
+  if (!direction) return base
+  const density = 1 - Math.max(0, Math.min(1, Number.isFinite(contentScale) ? contentScale : 0))
+  return { ...base, paper: direction.paper,
+    veilOpacity: direction.shortVeil + (direction.longVeil - direction.shortVeil) * density }
+}
+
+function drawTextFirstHukamnama(
+  context: CanvasRenderingContext2D,
+  input: ShareHighlightPassageInput,
+  layout: ShareHighlightStoryLayout,
+  artwork: ShareHighlightDecodedImage | null
+) {
+  const treatment = resolveHukamnamaImagePalette(artwork ? input.artwork?.overlayTone : 'light',
+    artwork ? input.artwork?.id : undefined, layout.contentScale)
+  const palette = { ...resolveShareHighlightOverlayPalette('light'), ...treatment }
+  context.clearRect(0, 0, layout.width, layout.height)
+  context.fillStyle = treatment.paper
+  context.fillRect(0, 0, layout.width, layout.height)
+
+  if (artwork) {
+    const destination = { x: 0, y: 0, width: layout.width, height: layout.height }
+    const profile = input.artwork!.storyProfile!
+    const placement = profile.protectedSubject
+      ? computeShareHighlightProtectedCover(artwork.width, artwork.height, destination,
+          profile.protectedSubject.bounds, profile.focalPosition)
+      : computeShareHighlightObjectContain(artwork.width, artwork.height, destination)
+    context.save()
+    context.globalAlpha = 1
+    context.imageSmoothingEnabled = true
+    context.imageSmoothingQuality = 'high'
+    if ('filter' in context && (placement.destinationWidth < layout.width - 1 || placement.destinationHeight < layout.height - 1)) {
+      // Extend the same artwork into the spare space, never inventing new art
+      // or stretching/cutting off a wide scene to force a portrait crop.
+      const overscan = 72
+      const ambient = computeShareHighlightObjectCover(artwork.width, artwork.height,
+        layout.width + overscan * 2, layout.height + overscan * 2, profile.focalPosition)
+      context.filter = 'blur(36px)'
+      context.drawImage(artwork.source,
+        ambient.sourceX, ambient.sourceY, ambient.sourceWidth, ambient.sourceHeight,
+        -overscan, -overscan, ambient.destinationWidth, ambient.destinationHeight)
+    }
+    context.filter = 'none'
+    for (const slice of buildHukamnamaArtworkSlices(placement, layout,
+      getHukamnamaArtDirection(input.artwork?.id)?.edgeFeather ?? 80)) {
+      const p = slice.placement
+      context.globalAlpha = slice.opacity
+      context.drawImage(artwork.source,
+        p.sourceX, p.sourceY, p.sourceWidth, p.sourceHeight,
+        p.destinationX, p.destinationY, p.destinationWidth, p.destinationHeight)
+    }
+    // One uninterrupted reading veil, not an opaque panel or miniature image.
+    // Text colours below are paired with this exact strength for contrast.
+    context.globalAlpha = treatment.veilOpacity
+    context.fillStyle = treatment.paper
+    context.fillRect(0, 0, layout.width, layout.height)
+    context.restore()
+  }
+
+  // The exported image is a reading, not a promotional card: no QR, URL,
+  // call-to-action, coverage counters, or duplicated product branding.
+  context.save()
+  context.shadowColor = 'transparent'
+  context.shadowBlur = 0
+  context.globalAlpha = 1
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.fillStyle = palette.secondaryText
+  context.font = `normal 500 32px ${SHARE_TITLE_FONT_FAMILY}`
+  context.fillText(input.content.seriesLabel.trim(), layout.width / 2, 116, layout.body.width)
+  if (input.content.dateLabel?.trim()) {
+    context.font = `normal 400 20px ${SHARE_SANS_FONT_FAMILY}`
+    context.fillText(input.content.dateLabel.trim(), layout.width / 2, 156, layout.body.width)
+  }
+  context.restore()
+  layout.sections.forEach(section => drawTextSection(context, {
+    ...section,
+    style: { ...section.style, color: section.role === 'gurmukhi' ? palette.primaryText : palette.secondaryText },
+  }, palette, false))
+  context.save()
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.fillStyle = palette.secondaryText
+  context.font = `normal 400 22px ${SHARE_SANS_FONT_FAMILY}`
+  context.fillText(input.content.sourceLabel.trim(), layout.width / 2, layout.height - 112, layout.body.width)
+  context.restore()
+}
+
+/** Singleton wrapper keeps sharing/download services unchanged while the
+ * Hukamnama composer always offers exactly one complete image. */
+export async function exportShareHighlightHukamnamaPng(
+  input: ShareHighlightPassageInput,
+  options: ShareHighlightRendererOptions = {}
+): Promise<ShareHighlightStoryPngSet> {
+  throwIfShareHighlightRenderAborted(options.signal)
+  if (!input.content.sourceLabel.trim() || !input.content.seriesLabel.trim()) {
+    throw new TypeError('A passage source label and series label are required.')
+  }
+  const canvas = options.canvas ?? options.createCanvas?.() ?? createDefaultCanvas()
+  try {
+    const context = prepareStoryCanvas(canvas)
+    await awaitShareHighlightFonts(resolveFontSet(options.fontSet), options.signal)
+    const layout = layoutShareHighlightHukamnamaImage(
+      input.content.lines, measureStoryTextWith(context)
+    )
+    let artwork: ShareHighlightDecodedImage | null = null
+    if (input.artwork?.src?.trim() && input.artwork.storyProfile) {
+      if (!isValidStoryArtworkProfile(input.artwork.storyProfile)) {
+        throw new TypeError('The selected Hukamnama artwork has an invalid Story profile.')
+      }
+      try {
+        artwork = await loadShareHighlightArtwork(input.artwork.src.trim(), options)
+      } catch (error) {
+        if (isShareHighlightRenderInterruption(error)) throw error
+        throw new Error('The selected Hukamnama artwork could not be loaded.')
+      }
+      if (!Number.isFinite(artwork.width) || !Number.isFinite(artwork.height) || artwork.width <= 0 || artwork.height <= 0) {
+        throw new RangeError('The selected Hukamnama artwork decoded with invalid dimensions.')
+      }
+    }
+    throwIfShareHighlightRenderAborted(options.signal)
+    canvas.height = layout.height
+    drawTextFirstHukamnama(context, input, layout, artwork)
+    const blob = await canvasToPngBlob(canvas, options)
+    throwIfShareHighlightRenderAborted(options.signal)
+    const file = new File([blob], normalizePassageFileBase(input.fileNameBase), { type: 'image/png' })
+    const page: ShareHighlightStoryPngSetPage = {
+      blob, file, width: SHARE_HIGHLIGHT_STORY_WIDTH, height: layout.height, layout, selection: layout.selection,
+    }
+    return { pages: [page], files: [file], totalLineCount: layout.sourceLineIds.length }
+  } finally {
+    releaseStoryCanvas(canvas)
   }
 }
