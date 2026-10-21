@@ -170,8 +170,7 @@
     z-index: 1;
   }
 
-  .app-shell[data-display-mode='standalone'],
-  .app-shell--first-run {
+  .app-shell[data-display-mode='standalone'] {
     padding-bottom: 0;
   }
 
