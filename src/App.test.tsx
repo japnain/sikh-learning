@@ -5,7 +5,9 @@ import App from './App'
 import { useCloudSyncStore } from './store/cloudSync'
 import { useLanguageStore } from './store/language'
 import { useOnboardingStore } from './store/onboarding'
+import { DARK_THEME_COLOR, LIGHT_THEME_COLOR, useThemeStore } from './store/theme'
 import { mockDocumentScroll } from './test/documentScroll'
+import { renderScriptText } from './utils/readerDisplay'
 
 vi.mock('./hooks/useSupabaseBootstrap', () => ({
   useSupabaseBootstrap: () => undefined,
@@ -51,25 +53,25 @@ afterEach(() => {
   sessionStorage.clear()
 })
 
-function advanceFirstRunOnboardingToPreview() {
-  for (let step = 0; step < 3; step += 1) {
-    fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  }
+function advanceOnboardingToMeanings() {
+  fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
 }
 
-test('shows onboarding above the app shell and lands home after first-run setup', async () => {
+const JAPJI_READING_PATH = '/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji+Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib'
+
+test('onboarding applies the selected script, pronunciation, and meanings to the requested reader', async () => {
+  window.history.replaceState({}, '', JAPJI_READING_PATH)
   documentScroll = mockDocumentScroll({ top: 320 })
   render(<App />)
 
-  expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
-  expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
-  expect(screen.getByRole('heading', { name: /^NaamRas$/ })).toBeInTheDocument()
-  expect(screen.queryByRole('heading', { level: 1, name: /satshriakaal/i })).not.toBeInTheDocument()
-  expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
+  expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', `${JAPJI_READING_PATH}#main-content`)
+  expect(screen.getByTestId('onboarding-first-run')).toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument()
 
-  fireEvent.click(screen.getByTestId('onboarding-intent-understand'))
-  advanceFirstRunOnboardingToPreview()
+  fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
+  fireEvent.click(screen.getByRole('switch', { name: 'Pronunciation help' }))
+  advanceOnboardingToMeanings()
+  fireEvent.click(screen.getByTestId('onboarding-meaning-pa'))
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   await waitFor(() => {
@@ -77,7 +79,8 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   }, APP_TEST_WAIT)
 
   await waitFor(() => {
-    expect(window.location.pathname).toBe('/')
+    expect(window.location.pathname).toBe('/study')
+    expect(new URLSearchParams(window.location.search).get('baniId')).toBe('japji-sahib')
   }, APP_TEST_WAIT)
 
   await waitFor(() => {
@@ -85,7 +88,50 @@ test('shows onboarding above the app shell and lands home after first-run setup'
     expect(screen.getByTestId('main-content')).toHaveFocus()
   }, APP_TEST_WAIT)
 
+  expect(localStorage.getItem('naamras-reader-presentation')).toBe('study')
+  expect(useLanguageStore.getState()).toMatchObject({
+    scriptMode: 'devanagari',
+    showTransliteration: true,
+    meaningLanguage: 'pa',
+  })
+  const selectedMeaning = renderScriptText('ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ', 'devanagari')
+  expect(await screen.findByText(selectedMeaning, undefined, APP_TEST_WAIT)).toHaveClass('font-devanagari')
+  expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-presentation', 'study')
+  expect(screen.getByText('ikOankaar sat naam kartaa purakh')).toBeInTheDocument()
+})
+
+test('ordinary first-run onboarding opens Home after its two reader settings pages', async () => {
+  render(<App />)
+  expect(screen.getByTestId('onboarding-script-step')).toBeInTheDocument()
+  advanceOnboardingToMeanings()
+  expect(screen.getByTestId('onboarding-support-step')).toBeInTheDocument()
+  expect(screen.getByTestId('onboarding-preview-primary-action')).toHaveTextContent('Open NaamRas')
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(window.location.pathname).toBe('/')
+})
+
+test('onboarding uses dark mode and restores the saved app appearance after completion', async () => {
+  useThemeStore.getState().setMode('light')
+  const themeMeta = document.createElement('meta')
+  themeMeta.name = 'theme-color'
+  document.head.append(themeMeta)
+  try {
+    render(<App />)
+    expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
+    expect(themeMeta.content).toBe(DARK_THEME_COLOR)
+    expect(useThemeStore.getState().mode).toBe('light')
+
+    advanceOnboardingToMeanings()
+    fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+
+    await waitFor(() => expect(document.documentElement).toHaveAttribute('data-theme', 'light'))
+    expect(themeMeta.content).toBe(LIGHT_THEME_COLOR)
+    expect(useThemeStore.getState().mode).toBe('light')
+  } finally {
+    themeMeta.remove()
+  }
 })
 
 test('preserves the originally requested deep link through first-run onboarding', async () => {
@@ -93,8 +139,8 @@ test('preserves the originally requested deep link through first-run onboarding'
   const scrollIntoView = vi.spyOn(HTMLElement.prototype, 'scrollIntoView')
   render(<App />)
 
-  fireEvent.click(screen.getByTestId('onboarding-intent-understand'))
-  advanceFirstRunOnboardingToPreview()
+  advanceOnboardingToMeanings()
+  expect(screen.getByTestId('onboarding-preview-primary-action')).toHaveTextContent('Open NaamRas')
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
@@ -110,8 +156,7 @@ test('preserves a compact Hukamnama link through first-run onboarding before res
   window.history.replaceState({}, '', '/h/2026-08-03')
   render(<App />)
 
-  fireEvent.click(screen.getByTestId('onboarding-intent-understand'))
-  advanceFirstRunOnboardingToPreview()
+  advanceOnboardingToMeanings()
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   await waitFor(() => {
@@ -358,24 +403,27 @@ test('keeps unknown routes visible as an honest not-found state', async () => {
   expect(window.location.pathname).toBe('/this-route-does-not-exist')
 })
 
-test('habit onboarding completion returns home after the premium onboarding flow', async () => {
+test('Gurbani-only choices open a requested reader in Read with support layers hidden', async () => {
+  window.history.replaceState({}, '', JAPJI_READING_PATH)
+  localStorage.setItem('naamras-reader-presentation', 'study')
   render(<App />)
 
-  fireEvent.click(screen.getByTestId('onboarding-intent-habit'))
-  advanceFirstRunOnboardingToPreview()
+  advanceOnboardingToMeanings()
+  fireEvent.click(screen.getByTestId('onboarding-meaning-none'))
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   await waitFor(() => {
-    expect(window.location.pathname).toBe('/')
+    expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-presentation', 'read')
   }, APP_TEST_WAIT)
-
-  await waitFor(() => {
-    expect(screen.getByTestId('page-home')).toBeInTheDocument()
-  }, APP_TEST_WAIT)
+  expect(window.location.pathname + window.location.search).toBe(JAPJI_READING_PATH)
+  expect(localStorage.getItem('naamras-reader-presentation')).toBe('read')
+  expect(document.querySelector('[data-reader-support="meaning"]')).toBeNull()
+  expect(document.querySelector('[data-reader-support="transliteration"]')).toBeNull()
 })
 
-test('reopening onboarding from more keeps the saved reading intent', async () => {
-  window.history.replaceState({}, '', '/more')
+test('saving reopened onboarding preserves the current page, query, and scroll position', async () => {
+  window.history.replaceState({}, '', '/more?from=settings')
+  documentScroll = mockDocumentScroll()
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
     isOnboardingOpen: false,
@@ -388,14 +436,50 @@ test('reopening onboarding from more keeps the saved reading intent', async () =
   render(<App />)
 
   await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
+  documentScroll.setTop(420)
   fireEvent.click(screen.getByTestId('more-open-onboarding'))
 
   await waitFor(() => {
-    expect(screen.getByRole('dialog', { name: /shape how gurbani opens for you/i })).toBeInTheDocument()
+    expect(screen.getByTestId('onboarding-overlay')).toBeInTheDocument()
   }, APP_TEST_WAIT)
 
-  expect(screen.getByRole('button', { name: /i want to understand/i })).toHaveAttribute('aria-pressed', 'true')
-  expect(useOnboardingStore.getState().learningGoal).toBe('understand')
+  fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
+  advanceOnboardingToMeanings()
+  fireEvent.click(screen.getByTestId('onboarding-meaning-none'))
+  expect(screen.getByTestId('onboarding-preview-primary-action')).toHaveTextContent('Save changes')
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+
+  await waitFor(() => {
+    expect(screen.queryByTestId('onboarding-overlay')).not.toBeInTheDocument()
+    expect(documentScroll?.getTop()).toBe(420)
+  }, APP_TEST_WAIT)
+  expect(screen.getByTestId('page-more')).toBeInTheDocument()
+  expect(window.location.pathname).toBe('/more')
+  expect(window.location.search).toBe('?from=settings')
+  expect(useLanguageStore.getState()).toMatchObject({ scriptMode: 'devanagari', meaningLanguage: 'none' })
+  expect(localStorage.getItem('naamras-reader-presentation')).toBe('read')
+})
+
+test('dismissing reopened onboarding keeps the current page and restores its appearance', async () => {
+  window.history.replaceState({}, '', '/more?from=settings')
+  useThemeStore.getState().setMode('light')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+  })
+  render(<App />)
+  await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
+  fireEvent.click(screen.getByTestId('more-open-onboarding'))
+  expect(screen.getByTestId('onboarding-overlay')).toBeInTheDocument()
+  expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
+
+  fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+
+  await waitFor(() => expect(screen.queryByTestId('onboarding-overlay')).not.toBeInTheDocument())
+  expect(window.location.pathname).toBe('/more')
+  expect(window.location.search).toBe('?from=settings')
+  expect(document.documentElement).toHaveAttribute('data-theme', 'light')
 })
 
 test('uses the focused shell and hides primary navigation on an EPUB chapter route', async () => {

@@ -1,323 +1,232 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { useState } from 'react'
-import { beforeEach, expect, test, vi } from 'vitest'
-import type {
-  EnglishSource,
-  LearningGoal,
-  MeaningLanguage,
-  ScriptMode,
-  UiLocale,
-} from '../types'
-import { useCloudSyncStore } from '../store/cloudSync'
+import { expect, test, vi } from 'vitest'
+import type { MeaningLanguage, OnboardingPresentationMode, ScriptMode, UiLocale } from '../types'
+import { SAMPLE_ONBOARDING_LINE } from '../content/onboardingCopy'
+import { renderScriptText } from '../utils/readerDisplay'
 import { mockDocumentScroll } from '../test/documentScroll'
 import OnboardingSheet from './OnboardingSheet'
 
-const { sendMagicLinkMock, signInWithProviderMock } = vi.hoisted(() => ({
-  sendMagicLinkMock: vi.fn(),
-  signInWithProviderMock: vi.fn(),
-}))
-
-vi.mock('../supabase/runtime', () => ({
-  sendMagicLink: sendMagicLinkMock,
-  signInWithProvider: signInWithProviderMock,
-}))
-
 function Harness({
-  presentation = 'first-run' as const,
-  locale = 'en',
-  onComplete = vi.fn(),
+  presentation = 'first-run', locale = 'en', onComplete = vi.fn(), onDismiss = vi.fn(), isCompleting = false,
 }: {
-  presentation?: 'first-run' | 'overlay'
+  presentation?: OnboardingPresentationMode
   locale?: UiLocale
   onComplete?: () => void | Promise<void>
+  onDismiss?: () => void
+  isCompleting?: boolean
 }) {
   const [scriptMode, setScriptMode] = useState<ScriptMode>('gurmukhi')
   const [showTransliteration, setShowTransliteration] = useState(false)
   const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguage>('en')
-  const [englishSource, setEnglishSource] = useState<EnglishSource>('bdb')
-  const [learningGoal, setLearningGoal] = useState<LearningGoal>('read')
-
-  return (
-    <>
-      <OnboardingSheet
-        presentation={presentation}
-        locale={locale}
-        scriptMode={scriptMode}
-        setScriptMode={setScriptMode}
-        showTransliteration={showTransliteration}
-        setShowTransliteration={setShowTransliteration}
-        meaningLanguage={meaningLanguage}
-        setMeaningLanguage={setMeaningLanguage}
-        englishSource={englishSource}
-        setEnglishSource={setEnglishSource}
-        learningGoal={learningGoal}
-        setLearningGoal={setLearningGoal}
-        onComplete={onComplete}
-        onDismiss={presentation === 'overlay' ? vi.fn() : undefined}
-      />
-      <pre data-testid="state">
-        {JSON.stringify({
-          scriptMode,
-          showTransliteration,
-          meaningLanguage,
-          englishSource,
-          learningGoal,
-        })}
-      </pre>
-    </>
-  )
+  return <>
+    <OnboardingSheet {...{
+      presentation, locale, scriptMode, setScriptMode, showTransliteration,
+      setShowTransliteration, meaningLanguage, setMeaningLanguage, onComplete, onDismiss, isCompleting,
+    }} />
+    <output data-testid="preferences">{JSON.stringify({ scriptMode, showTransliteration, meaningLanguage })}</output>
+  </>
 }
 
-beforeEach(() => {
-  sendMagicLinkMock.mockReset()
-  signInWithProviderMock.mockReset()
-  useCloudSyncStore.getState().reset()
+function next() { fireEvent.click(screen.getByTestId('onboarding-setup-primary-action')) }
+function preferences() { return JSON.parse(screen.getByTestId('preferences').textContent ?? '{}') }
+
+test('finishes in two pages with one Continue and one completion action', async () => {
+  const onComplete = vi.fn()
+  render(<Harness onComplete={onComplete} />)
+  expect(screen.getByRole('heading', { name: 'Choose your script.' })).toBeInTheDocument()
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1')
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuemax', '2')
+  expect(screen.getByRole('button', { name: 'Continue' })).toBeInTheDocument()
+  expect(screen.queryByTestId('onboarding-preview-hero')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('onboarding-intent-step')).not.toBeInTheDocument()
+  expect(screen.queryByText(/your intention|daily practice|explore the meaning|choose a bani/i)).not.toBeInTheDocument()
+  expect(screen.queryByRole('textbox')).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Close' })).not.toBeInTheDocument()
+
+  next()
+
+  expect(onComplete).not.toHaveBeenCalled()
+  expect(screen.getByRole('heading', { name: 'Choose your meanings.' })).toHaveFocus()
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '2')
+  expect(screen.getByTestId('onboarding-support-step')).toContainElement(screen.getByTestId('onboarding-preview-hero'))
+  expect(screen.queryByTestId('onboarding-preview-step')).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Continue' })).not.toBeInTheDocument()
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Open NaamRas' })) })
+  expect(onComplete).toHaveBeenCalledOnce()
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '2')
+  expect(preferences()).toEqual({ scriptMode: 'gurmukhi', showTransliteration: false, meaningLanguage: 'en' })
 })
 
-function advanceToPreview() {
-  for (let step = 0; step < 3; step += 1) {
-    fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
+test.each(['gurmukhi', 'devanagari'] as const)('shows the selected %s script and lets pronunciation help be turned on and off', script => {
+  render(<Harness />)
+  fireEvent.click(screen.getByTestId(`onboarding-script-${script}`))
+  const pronunciation = screen.getByRole('switch', { name: 'Pronunciation help' })
+  expect(pronunciation).not.toBeChecked()
+  fireEvent.click(pronunciation)
+  expect(screen.getByTestId('onboarding-pronunciation-example')).toHaveTextContent(SAMPLE_ONBOARDING_LINE.transliteration)
+  next()
+  const reader = within(screen.getByTestId('onboarding-preview-hero'))
+  expect(reader.getByText(renderScriptText(SAMPLE_ONBOARDING_LINE.gurmukhi, script))).toHaveAttribute('lang', script === 'gurmukhi' ? 'pa-Guru' : 'hi')
+  expect(reader.getByTestId('onboarding-preview-pronunciation')).toHaveTextContent(SAMPLE_ONBOARDING_LINE.transliteration)
+  expect(preferences()).toMatchObject({ scriptMode: script, showTransliteration: true })
+  fireEvent.click(screen.getByRole('button', { name: 'Back' }))
+  fireEvent.click(screen.getByRole('switch', { name: 'Pronunciation help' }))
+  next()
+  expect(screen.queryByTestId('onboarding-preview-pronunciation')).not.toBeInTheDocument()
+  expect(preferences()).toMatchObject({ scriptMode: script, showTransliteration: false })
+})
+
+const meaningCases = (['gurmukhi', 'devanagari'] as const).flatMap(script =>
+  (['none', 'en', 'pa', 'hi'] as const).map(language => ({ script, language }))
+)
+
+test.each(meaningCases)('updates $language meanings immediately in the $script preview', ({ script, language }) => {
+  render(<Harness />)
+  fireEvent.click(screen.getByTestId(`onboarding-script-${script}`))
+  next()
+  fireEvent.click(screen.getByTestId(`onboarding-meaning-${language}`))
+  for (const value of ['none', 'en', 'pa', 'hi']) {
+    expect(screen.getByTestId(`onboarding-meaning-${value}`)).toHaveAttribute('aria-pressed', String(value === language))
   }
-}
+  const reader = screen.getByTestId('onboarding-preview-hero')
+  const meaning = reader.querySelector('.onboarding-preview-meaning')
+  if (language === 'none') {
+    expect(meaning).not.toBeInTheDocument()
+  } else {
+    const expected = language === 'pa'
+      ? renderScriptText(SAMPLE_ONBOARDING_LINE.meaning.pa, script)
+      : SAMPLE_ONBOARDING_LINE.meaning[language]
+    expect(meaning).toHaveTextContent(expected)
+    expect(meaning).toHaveAttribute('lang', language === 'pa' ? script === 'gurmukhi' ? 'pa-Guru' : 'hi' : language)
+  }
+  expect(reader).toHaveTextContent(renderScriptText(SAMPLE_ONBOARDING_LINE.gurmukhi, script))
+  expect(screen.queryByTestId('onboarding-preview-pronunciation')).not.toBeInTheDocument()
+  expect(preferences()).toEqual({ scriptMode: script, showTransliteration: false, meaningLanguage: language })
+})
 
-test('setup step presents visual intent choices that curate the reader and sticky action shelf', () => {
+test('Back preserves every reading choice and focuses the question being edited', () => {
   render(<Harness />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
-
-  const helper = screen.getByTestId('onboarding-setup-helper')
-  const actionBar = screen.getByTestId('onboarding-setup-action-bar')
-
-  expect(screen.getByRole('heading', { name: /naamras/i })).toBeInTheDocument()
-  expect(screen.getByText(/how do you want to begin/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /i want to read/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /i want to understand/i })).toBeInTheDocument()
-  expect(helper).toHaveTextContent(/curated setup/i)
-  expect(helper).toHaveTextContent(/keep the next step simple/i)
-  expect(helper).toHaveTextContent(/reading \+ meaning/i)
-  expect(actionBar).toHaveTextContent(/selected/i)
-  expect(actionBar).toHaveTextContent(/reading \+ meaning/i)
-  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"habit"')
-  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
-  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
-  expect(screen.getByTestId('onboarding-setup-primary-action')).toBeInTheDocument()
+  fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
+  fireEvent.click(screen.getByRole('switch', { name: 'Pronunciation help' }))
+  next()
+  fireEvent.click(screen.getByTestId('onboarding-meaning-pa'))
+  fireEvent.click(screen.getByRole('button', { name: 'Back' }))
+  expect(screen.getByRole('heading', { name: 'Choose your script.' })).toHaveFocus()
+  expect(screen.getByTestId('onboarding-script-devanagari')).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('switch', { name: 'Pronunciation help' })).toBeChecked()
+  expect(preferences()).toEqual({ scriptMode: 'devanagari', showTransliteration: true, meaningLanguage: 'pa' })
+  next()
+  expect(screen.getByRole('heading', { name: 'Choose your meanings.' })).toHaveFocus()
+  expect(screen.getByTestId('onboarding-meaning-pa')).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByTestId('onboarding-preview-hero')).toHaveTextContent(renderScriptText(SAMPLE_ONBOARDING_LINE.meaning.pa, 'devanagari'))
+  expect(screen.getByTestId('onboarding-preview-pronunciation')).toBeInTheDocument()
 })
 
-test('guided flow keeps the hero dominant while secondary setup stays collapsed until requested', () => {
-  render(<Harness />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
-  advanceToPreview()
-
-  const previewHero = screen.getByTestId('onboarding-preview-hero')
-  const actionBar = screen.getByTestId('onboarding-preview-action-bar')
-
-  expect(screen.getByText(/this is how your reader will open/i)).toBeInTheDocument()
-  expect(previewHero).toHaveTextContent(/open with meaning/i)
-  expect(previewHero).toHaveTextContent(/reading \+ meaning · gurmukhi · transliteration on/i)
-  expect(previewHero).toHaveTextContent(/ik oankaar sat naam kartaa purakh/i)
-  expect(previewHero).toHaveTextContent(/One Universal Creator/i)
-  expect(previewHero).not.toHaveTextContent(/you will open with meaning close/i)
-  expect(previewHero).not.toHaveTextContent(/continue as guest/i)
-  expect(previewHero).not.toHaveTextContent(/recommended/i)
-  expect(actionBar).toHaveTextContent(/refine setup later/i)
-  expect(actionBar).toHaveTextContent(/you will open with meaning close/i)
-  expect(within(actionBar).getByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
-  expect(actionBar).toHaveTextContent(/backup later if you want it/i)
-  expect(actionBar).toHaveTextContent(/guest reading stays open on this device/i)
-  expect(within(actionBar).queryByRole('button', { name: /^continue as guest$/i })).not.toBeInTheDocument()
-  expect(document.querySelector('[data-ai-surface="onboarding-auth"]')).toBeNull()
-  expect(actionBar).toHaveTextContent(/fine tune reader/i)
-  expect(actionBar).toHaveTextContent(/open the lower-level choices only if you want to refine script or support details now/i)
-  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
-  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"understand"')
-
-  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
-
-  expect(actionBar).toHaveTextContent(/backup later if you want it/i)
-  expect(actionBar).toHaveTextContent(/guest reading stays open on this device/i)
-
-  expect(screen.queryByRole('button', { name: /daily reader/i })).not.toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: /teen/i })).not.toBeInTheDocument()
+test('protects an asynchronous save against repeated submits, Back, and dismissal', async () => {
+  let finish: () => void = () => {}
+  const onComplete = vi.fn(() => new Promise<void>(resolve => { finish = resolve }))
+  const onDismiss = vi.fn()
+  const view = render(<Harness presentation="overlay" onComplete={onComplete} onDismiss={onDismiss} />)
+  next()
+  const action = screen.getByRole('button', { name: 'Save changes' })
+  fireEvent.click(action)
+  fireEvent.click(action)
+  fireEvent.click(screen.getByRole('button', { name: 'Back' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Close' }))
+  fireEvent.keyDown(document, { key: 'Escape' })
+  expect(onComplete).toHaveBeenCalledOnce()
+  expect(onDismiss).not.toHaveBeenCalled()
+  expect(action).toBeDisabled()
+  expect(action).toHaveTextContent('Saving…')
+  expect(screen.getByRole('button', { name: 'Back' })).toBeDisabled()
+  expect(screen.getByRole('button', { name: 'Close' })).toBeDisabled()
+  expect(screen.getByTestId('onboarding-support-step')).toBeInTheDocument()
+  await act(async () => { finish() })
+  await waitFor(() => expect(action).toBeEnabled())
+  expect(action).toHaveTextContent('Save changes')
+  view.unmount()
 })
 
-test('intent buttons apply distinct, real reader defaults', () => {
-  render(<Harness />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
-
-  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"habit"')
-  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
-  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
-
-  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"read"')
-  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
-  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
+test('respects an externally pending completion before navigation or dismissal', () => {
+  const onDismiss = vi.fn()
+  const view = render(<Harness presentation="overlay" isCompleting onDismiss={onDismiss} />)
+  expect(screen.getByTestId('onboarding-setup-primary-action')).toBeDisabled()
+  expect(screen.getByRole('button', { name: 'Close' })).toBeDisabled()
+  next()
+  fireEvent.keyDown(document, { key: 'Escape' })
+  expect(screen.getByTestId('onboarding-script-step')).toBeInTheDocument()
+  expect(onDismiss).not.toHaveBeenCalled()
+  view.unmount()
 })
 
-test('quiet preset keeps the preview text-first', () => {
-  render(<Harness />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
-  advanceToPreview()
-
-  const previewHero = screen.getByTestId('onboarding-preview-hero')
-
-  expect(previewHero).toHaveTextContent(/text-first reading stays active here/i)
-  expect(previewHero).not.toHaveTextContent(/One Universal Creator/i)
-  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
-  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
-})
-
-test('turning meaning off updates the preview summary and action copy for understand mode', async () => {
-  render(<Harness />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
-  advanceToPreview()
-
-  expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
-  expect(screen.getAllByText(/You will open with meaning close/i)).toHaveLength(1)
-
-  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^Off$/i }))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
-    expect(within(screen.getByTestId('onboarding-preview-action-bar')).getByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open my reader$/i)
-    expect(screen.getAllByText(/You will land in a cleaner reader/i)).toHaveLength(1)
-  })
-})
-
-test('first-run onboarding does not lock document scrolling', () => {
-  render(<Harness presentation="first-run" />)
-
-  expect(document.body.style.overflow).toBe('')
-  expect(document.body.style.overscrollBehavior).toBe('')
-  expect(document.documentElement.style.overflow).toBe('')
-})
-
-test('localizes the script setup step in Punjabi', () => {
-  render(<Harness locale="pa" />)
-
-  fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
-
-  expect(screen.getByRole('heading', { name: 'ਉਹ ਲਿਪੀ ਚੁਣੋ ਜਿਸ ਨਾਲ ਤੁਹਾਡਾ ਪਾਠਕ ਖੁੱਲੇ।' })).toBeInTheDocument()
-  expect(screen.getByText('ਇਹ ਚੋਣ ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲੇ ਪਾਠਾਂ ਦੀ ਮੂਲ ਲਿਪੀ ਬਦਲਦੀ ਹੈ।')).toBeInTheDocument()
-})
-
-test('overlay onboarding locks the document root and restores it on unmount', () => {
-  const documentScroll = mockDocumentScroll({ top: 280 })
-  const root = document.documentElement
-  const { unmount } = render(<Harness presentation="overlay" />)
-
-  expect(root.style.overflow).toBe('hidden')
-  expect(root.style.overflowY).toBe('hidden')
-  expect(root.style.overscrollBehavior).toBe('none')
-  expect(document.body.style.overflow).toBe('')
-
-  unmount()
-
-  expect(root.style.overflow).toBe('')
-  expect(root.style.overflowY).toBe('')
-  expect(root.style.overscrollBehavior).toBe('')
-
-  documentScroll.restore()
-  root.removeAttribute('style')
-})
-
-test('preview step offers configured sign-in providers only after backup drawer is expanded', async () => {
-  const onComplete = vi.fn()
-
-  useCloudSyncStore.setState({
-    configured: true,
-    status: 'signed-out',
-    currentUser: null,
-    availableProviders: ['apple', 'email'],
-    lastSyncedAt: null,
-    lastError: null,
-    syncQueued: false,
-  })
-
+test('keeps the selected preferences after a completion failure and allows retry', async () => {
+  const onComplete = vi.fn().mockRejectedValueOnce(new Error('unavailable')).mockResolvedValueOnce(undefined)
   render(<Harness onComplete={onComplete} />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
-  advanceToPreview()
-
-  expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
-  fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
-
-  expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /continue with apple/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /send magic link/i })).toBeDisabled()
-
-  fireEvent.click(screen.getByRole('button', { name: /continue with apple/i }))
-
-  await waitFor(() => {
-    expect(onComplete).toHaveBeenCalledTimes(1)
-    expect(signInWithProviderMock).toHaveBeenCalledWith('apple')
-  })
-
-  fireEvent.change(screen.getByPlaceholderText(/email for magic link/i), {
-    target: { value: 'simran@example.com' },
-  })
-  fireEvent.click(screen.getByRole('button', { name: /send magic link/i }))
-
-  await waitFor(() => {
-    expect(sendMagicLinkMock).toHaveBeenCalledWith('simran@example.com')
-  })
-})
-
-test('guest bootstrap issues stay in the optional backup state during onboarding', () => {
-  useCloudSyncStore.setState({
-    configured: true,
-    status: 'error',
-    currentUser: null,
-    availableProviders: [],
-    lastSyncedAt: null,
-    lastError: 'Backup is unavailable right now. You can keep reading on this device and sign in later.',
-    syncQueued: false,
-  })
-
-  render(<Harness />)
-
-  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
-  advanceToPreview()
-  fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
-
-  const authSurface = document.querySelector('[data-ai-surface="onboarding-auth"]')
-
-  expect(authSurface).not.toBeNull()
-  expect(authSurface).toHaveAttribute('data-ai-state', 'empty')
-  expect(authSurface).not.toHaveAttribute('data-ai-error')
-  expect(screen.getByText(/backup is unavailable right now/i)).toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
+  next()
+  fireEvent.click(screen.getByTestId('onboarding-meaning-hi'))
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+  expect(await screen.findByRole('alert')).toHaveTextContent(/try again/i)
   expect(screen.getByTestId('onboarding-preview-primary-action')).toBeEnabled()
+  expect(preferences()).toEqual({ scriptMode: 'devanagari', showTransliteration: false, meaningLanguage: 'hi' })
+  expect(screen.getByTestId('onboarding-meaning-hi')).toHaveAttribute('aria-pressed', 'true')
+  await act(async () => { fireEvent.click(screen.getByTestId('onboarding-preview-primary-action')) })
+  expect(onComplete).toHaveBeenCalledTimes(2)
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
 })
 
-test('keeps onboarding local-first when the lazy sign-in runtime fails', async () => {
-  const onComplete = vi.fn()
-  signInWithProviderMock.mockRejectedValueOnce(new Error('chunk unavailable'))
-  useCloudSyncStore.setState({
-    configured: true,
-    status: 'signed-out',
-    currentUser: null,
-    availableProviders: ['apple'],
-    lastSyncedAt: null,
-    lastError: null,
-    syncQueued: false,
-  })
+test.each([
+  { locale: 'en', scriptTitle: 'Choose your script.', meaningTitle: 'Choose your meanings.', continueLabel: 'Continue', startLabel: 'Open NaamRas' },
+  { locale: 'pa', scriptTitle: 'ਆਪਣੀ ਲਿਪੀ ਚੁਣੋ।', meaningTitle: 'ਅਰਥਾਂ ਦੀ ਭਾਸ਼ਾ ਚੁਣੋ।', continueLabel: 'ਅੱਗੇ', startLabel: 'ਨਾਮਰਸ ਖੋਲ੍ਹੋ' },
+  { locale: 'hi', scriptTitle: 'अपनी लिपि चुनें।', meaningTitle: 'अर्थों की भाषा चुनें।', continueLabel: 'आगे', startLabel: 'नामरस खोलें' },
+] as const)('localizes both pages and the final action in $locale', ({ locale, scriptTitle, meaningTitle, continueLabel, startLabel }) => {
+  render(<Harness locale={locale} />)
+  expect(screen.getByRole('heading', { name: scriptTitle })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: continueLabel }))
+  expect(screen.getByRole('heading', { name: meaningTitle })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: startLabel })).toBeEnabled()
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuemax', '2')
+})
 
-  render(<Harness onComplete={onComplete} />)
-  advanceToPreview()
-  fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
-  fireEvent.click(screen.getByRole('button', { name: /continue with apple/i }))
+test('first run leaves document scrolling available', () => {
+  const overflow = document.documentElement.style.overflow
+  const view = render(<Harness />)
+  expect(document.documentElement.style.overflow).toBe(overflow)
+  next()
+  expect(document.documentElement.style.overflow).toBe(overflow)
+  view.unmount()
+})
 
-  await waitFor(() => {
-    expect(useCloudSyncStore.getState()).toMatchObject({
-      status: 'error',
-      lastError: expect.stringMatching(/keep reading locally/i),
-    })
-  })
+test('overlay dismissal restores document scrolling and returns focus to its opener', async () => {
+  const documentScroll = mockDocumentScroll({ top: 280 })
+  const overflow = document.documentElement.style.overflow
+  const opener = document.createElement('button')
+  opener.textContent = 'Reading preferences'
+  document.body.append(opener)
+  opener.focus()
+  const onDismiss = vi.fn()
+  const view = render(<Harness presentation="overlay" onDismiss={onDismiss} />)
+  try {
+    expect(document.documentElement.style.overflow).toBe('hidden')
+    expect(screen.getByRole('dialog')).toHaveAccessibleName(/naamras/i)
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }))
+    expect(onDismiss).toHaveBeenCalledOnce()
+    view.unmount()
+    expect(document.documentElement.style.overflow).toBe(overflow)
+    await waitFor(() => expect(opener).toHaveFocus())
+    expect(documentScroll.getTop()).toBe(280)
+  } finally {
+    view.unmount()
+    opener.remove()
+    documentScroll.restore()
+  }
+})
+
+test('Escape dismisses an idle overlay', async () => {
+  const onDismiss = vi.fn()
+  const view = render(<Harness presentation="overlay" onDismiss={onDismiss} />)
+  fireEvent.keyDown(document, { key: 'Escape' })
+  await waitFor(() => expect(onDismiss).toHaveBeenCalledOnce())
+  view.unmount()
 })

@@ -151,6 +151,28 @@ function getQaBanidbResponse(url) {
     ]
   }
 
+  if (url.pathname === '/v2/banis/2') {
+    return {
+      baniInfo: { baniID: 2, source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1) },
+      verses: [{
+        ...createScriptureVerse({
+          verseId: 1,
+          shabadId: 1,
+          text: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ',
+          pageNo: 1,
+          translation: 'One Universal Creator. Truth is the Name. Creative Being.',
+          transliteration: 'ik oankaar sat naam kartaa purakh',
+        }),
+        writer: buildWriter('Guru Nanak Dev Ji', 1),
+        translation: {
+          en: { bdb: 'One Universal Creator. Truth is the Name. Creative Being.' },
+          hi: { ss: 'एक ओंकार। सत्य नाम। करता पुरुष।' },
+          pu: { ss: { unicode: 'ਇੱਕ ਓਅੰਕਾਰ। ਸਤਿ ਨਾਮੁ। ਕਰਤਾ ਪੁਰਖੁ।' } },
+        },
+      }],
+    }
+  }
+
   if (url.pathname === '/v2/amritkeertan') {
     return {
       headers: [
@@ -590,21 +612,33 @@ async function ensureVisible(page, selector, description, timeout = 12_000) {
   }
 }
 
-async function advanceOnboardingToPreview(page) {
-  for (const nextStep of [2, 3]) {
-    await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
-    await page.getByText(`Step ${nextStep} of 4`, { exact: true }).waitFor({
-      state: 'visible',
-      timeout: 12_000,
-    })
-  }
-
-  await page.locator('[data-testid="onboarding-setup-primary-action"]').click()
+async function advanceOnboardingToMeanings(page) {
+  await page.getByTestId('onboarding-setup-primary-action').click()
+  await ensureVisible(page, '[data-testid="onboarding-support-step"]', 'the meanings settings page')
   await ensureVisible(
     page,
     '[data-testid="onboarding-preview-primary-action"]',
-    'the onboarding preview action'
+    'the final onboarding action'
   )
+}
+
+async function assertSavedOnboardingChoices(page, expected) {
+  const saved = await page.evaluate(() => ({
+    onboarding: JSON.parse(window.localStorage.getItem('sikh-onboarding') ?? '{}').state,
+    language: JSON.parse(window.localStorage.getItem('sikh-language') ?? '{}').state,
+    presentation: window.localStorage.getItem('naamras-reader-presentation'),
+  }))
+  if (!saved.onboarding?.hasCompletedOnboarding) {
+    throw createAssertionError('Expected onboarding completion to be saved on this device.')
+  }
+  for (const key of ['scriptMode', 'showTransliteration', 'meaningLanguage']) {
+    if (saved.language?.[key] !== expected[key]) {
+      throw createAssertionError(`Expected the selected ${key} to be saved on this device.`)
+    }
+  }
+  if (saved.presentation !== expected.presentation) {
+    throw createAssertionError('Expected the saved reader presentation to honor the selected reading support.')
+  }
 }
 
 async function assertNoGenericFailureCopy(page) {
@@ -1045,14 +1079,37 @@ async function main() {
       onboarding: 'first-run',
       path: '/',
       run: async ({ page, notes }) => {
-        notes.push('Expected first-run onboarding to keep optional backup hidden until the preview drawer is opened.')
-        await ensureVisible(page, '[data-page="onboarding"][data-ai-surface="onboarding"][data-ai-state="ready"]', 'the first-run onboarding shell')
-        await advanceOnboardingToPreview(page)
-        if (await page.locator('[data-ai-surface="onboarding-auth"]').count() > 0) {
-          throw createAssertionError('Expected optional backup controls to stay hidden before the backup drawer is opened.')
+        notes.push('Expected two dark onboarding pages to save reader settings, open Home, and apply the choices when Japji Sahib is opened.')
+        await ensureVisible(page, '[data-testid="onboarding-first-run"]', 'the first-run onboarding shell')
+        if (!await page.locator('html').evaluate(element => element.classList.contains('dark'))) {
+          throw createAssertionError('Expected onboarding to use dark mode.')
         }
-        await page.locator('[data-testid="onboarding-backup-toggle"]').click()
-        await ensureVisible(page, '[data-ai-surface="onboarding-auth"]', 'the onboarding auth surface')
+        await ensureVisible(page, '[data-testid="onboarding-script-step"]', 'the script settings page')
+        await page.getByTestId('onboarding-script-devanagari').click()
+        await page.locator('.onboarding-pronunciation').click()
+        await advanceOnboardingToMeanings(page)
+        await page.getByTestId('onboarding-meaning-hi').click()
+        await ensureVisible(page, '[data-testid="onboarding-preview-hero"]', 'the inline reader preview')
+        await ensureVisible(page, '.onboarding-preview-script[lang="hi"]', 'the Devanagari reader preview')
+        await ensureVisible(page, '[data-testid="onboarding-preview-pronunciation"]', 'the selected pronunciation help')
+        await ensureVisible(page, '.onboarding-preview-meaning[lang="hi"]', 'the selected Hindi meanings')
+
+        await page.getByTestId('onboarding-preview-primary-action').click()
+        await page.waitForURL(url => url.pathname === '/' && !url.search)
+        await ensureVisible(page, '[data-page="home"]', 'Home after setup')
+        await assertSavedOnboardingChoices(page, {
+          scriptMode: 'devanagari', showTransliteration: true,
+          meaningLanguage: 'hi', presentation: 'study',
+        })
+        if (await page.getByTestId('onboarding-first-run').count() > 0) {
+          throw createAssertionError('Expected completing local setup to close onboarding.')
+        }
+        await page.getByTestId('home-nitnem-primary-action').click()
+        await page.waitForURL(url => url.pathname === '/study' && url.searchParams.get('baniId') === 'japji-sahib')
+        await ensureVisible(page, '[data-page="study"][data-reader-presentation="study"]', 'Japji Sahib with reading support')
+        await ensureVisible(page, '[data-testid="study-gurbani-line"][lang="hi"]', 'Gurbani in the chosen script')
+        await ensureVisible(page, '[data-reader-support="transliteration"]', 'pronunciation help in the reader')
+        await ensureVisible(page, '[data-reader-support="meaning"][lang="hi"]', 'Hindi meanings in the reader')
       },
     },
     {
@@ -1060,16 +1117,28 @@ async function main() {
       title: 'Onboarding overlay mobile route',
       viewport: 'mobile',
       onboarding: 'overlay',
-      path: '/',
+      path: '/more?from=onboarding-qa',
       run: async ({ page, notes }) => {
-        notes.push('Expected overlay onboarding to preserve the same progressive optional-backup flow.')
-        await ensureVisible(page, '[data-page="onboarding-overlay"][data-ai-surface="onboarding-overlay"][data-ai-state="ready"]', 'the onboarding overlay shell')
-        await advanceOnboardingToPreview(page)
-        if (await page.locator('[data-ai-surface="onboarding-auth"]').count() > 0) {
-          throw createAssertionError('Expected optional backup controls to stay hidden before the backup drawer is opened.')
+        notes.push('Expected two reader settings pages to save Gurbani-only preferences and keep the current page and query.')
+        await ensureVisible(page, '[data-testid="onboarding-overlay"]', 'the onboarding overlay shell')
+        await ensureVisible(page, '[data-testid="onboarding-script-step"]', 'the script settings page')
+        await advanceOnboardingToMeanings(page)
+        await page.getByTestId('onboarding-meaning-none').click()
+        if (await page.locator('.onboarding-preview-meaning, [data-testid="onboarding-preview-pronunciation"]').count() > 0) {
+          throw createAssertionError('Expected the inline preview to reflect Gurbani-only reader settings.')
         }
-        await page.locator('[data-testid="onboarding-backup-toggle"]').click()
-        await ensureVisible(page, '[data-ai-surface="onboarding-auth"]', 'the onboarding auth surface')
+        await page.getByTestId('onboarding-preview-primary-action').click()
+        await ensureVisible(page, '[data-page="more"]', 'the current page after saving settings')
+        if (new URL(page.url()).pathname !== '/more' || new URL(page.url()).search !== '?from=onboarding-qa') {
+          throw createAssertionError('Expected saving reader settings to preserve the current route and query.')
+        }
+        await assertSavedOnboardingChoices(page, {
+          scriptMode: 'gurmukhi', showTransliteration: false,
+          meaningLanguage: 'none', presentation: 'read',
+        })
+        if (await page.getByTestId('onboarding-overlay').count() > 0) {
+          throw createAssertionError('Expected completing the revised choices to close the onboarding overlay.')
+        }
       },
     },
     {

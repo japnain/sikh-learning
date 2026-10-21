@@ -2,21 +2,35 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLanguageStore } from '../store/language'
 import { captureReaderAnchor, isReaderScrollUnmovedOrClamped, restoreReaderAnchor, type ReaderAnchor } from '../utils/readerAnchor'
 import { getAppScrollTop } from '../utils/appScroll'
+import {
+  getSavedReaderPresentation,
+  READER_PRESENTATION_CHANGED_EVENT,
+  setReaderPresentationPreference,
+  type ReaderPresentation,
+} from '../utils/readerPresentation'
 
-export type ReaderPresentation = 'read' | 'study'
-const STORAGE_KEY = 'naamras-reader-presentation'
+export type { ReaderPresentation } from '../utils/readerPresentation'
 
 export function useReaderPresentation(routeIdentity: string, sheetOpen: boolean, contentRevision?: unknown) {
   const [presentation, setPresentation] = useState<ReaderPresentation>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved === 'read' || saved === 'study') return saved
-    } catch { /* Reading remains available when storage is unavailable. */ }
+    const saved = getSavedReaderPresentation()
+    if (saved) return saved
     const preferences = useLanguageStore.getState()
     return preferences.meaningLanguage !== 'none' || preferences.showTransliteration ? 'study' : 'read'
   })
   const anchor = useRef<ReaderAnchor | null>(null)
   const language = useLanguageStore()
+
+  useEffect(() => {
+    const updatePresentation = (event: Event) => {
+      const next = (event as CustomEvent<ReaderPresentation>).detail
+      if (next !== 'read' && next !== 'study') return
+      if (!anchor.current) anchor.current = captureReaderAnchor()
+      setPresentation(next)
+    }
+    window.addEventListener(READER_PRESENTATION_CHANGED_EVENT, updatePresentation)
+    return () => window.removeEventListener(READER_PRESENTATION_CHANGED_EVENT, updatePresentation)
+  }, [])
 
   useEffect(() => useLanguageStore.subscribe(() => {
     // Capture before React commits changed typography. While a sheet is open,
@@ -68,7 +82,7 @@ export function useReaderPresentation(routeIdentity: string, sheetOpen: boolean,
     if (next === presentation) return
     if (!anchor.current) anchor.current = captureReaderAnchor()
     setPresentation(next)
-    try { localStorage.setItem(STORAGE_KEY, next) } catch { /* Session preference still works. */ }
+    setReaderPresentationPreference(next)
   }
 
   const rememberReadingPosition = (sourceAnchorKey?: string) => {
