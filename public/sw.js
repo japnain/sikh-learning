@@ -45,19 +45,21 @@ self.addEventListener('activate', event => {
   })())
 })
 
-async function networkFirstNavigation(request, url) {
+async function networkFirstNavigation(request) {
+  let response
   try {
-    const response = await fetch(request)
-    if (url.pathname === '/' && isSuccessfulResponse(response)) {
-      const cache = await caches.open(APP_SHELL_CACHE)
-      await cache.put('/', response.clone())
-    }
-    return response
+    response = await fetch(request)
+    if (response.status < 500) return response
   } catch {
-    return (await caches.match(request, { ignoreVary: true }))
-      || (await caches.match('/', { ignoreVary: true }))
-      || Response.error()
+    // A failed connection can still use this worker's installed shell.
   }
+
+  // Keep the install-time shell paired with its assets until a new worker activates.
+  const cache = await caches.open(APP_SHELL_CACHE)
+  return (await cache.match(request, { ignoreVary: true }))
+    || (await cache.match('/', { ignoreVary: true }))
+    || response
+    || Response.error()
 }
 
 async function cacheFirstAsset(request) {
@@ -101,7 +103,7 @@ self.addEventListener('fetch', event => {
   if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/__banidb/')) return
 
   if (request.mode === 'navigate') {
-    event.respondWith(networkFirstNavigation(request, url))
+    event.respondWith(networkFirstNavigation(request))
     return
   }
 

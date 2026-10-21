@@ -1,5 +1,13 @@
 # NaamRas Release Device Sign-off
 
+> Evidence note: `artifacts/` links and localhost previews in this document refer to preserved local QA records, which are excluded from Git. Historical build results apply only to their named snapshots; the current session-only push scope is recorded in [pre-push readiness](session-prepush-readiness.md).
+
+**Scope correction — October 21, 2026.** The owner confirmed that NaamRas is a web app added to the Home Screen. This native-wrapper checklist is retained for historical reference; it is not a requirement or blocker for the current goal. Current v25 PWA acceptance and web delivery are recorded in [PWA Home/reader acceptance](pwa-home-reader-acceptance.md). No native device or signing item is being relabeled as tested.
+
+## Preserved native-wrapper checklist
+
+Current candidate: **v23, October 21, 2026**. Software/package checks and scoped native Home/artwork/reader/Appearance checks passed. Hands-on native gestures/safe areas, Rehras/routine restoration, physical iPhone acceptance and signing remain open. See the [current beta handoff](experience-beta-handoff.md) and [completion goal](../design/world-class-completion-goal.md). No item below is implicitly signed off by compilation, package integrity or browser scans.
+
 Use this checklist on the final signed Capacitor `App` build. Recitation and audio-file behavior are outside this pass.
 
 ## Prerequisites
@@ -43,3 +51,21 @@ Record device model, iOS version, build number, tester, and date with the result
 ## Evidence
 
 For each failed item record the screen, exact steps, expected result, actual result, screenshot or video path, severity, owner, and retest result. Submission is not signed off while any crash, inaccessible core action, data-loss issue, placeholder claim, or visual overlap remains open.
+
+## Preserved goal candidate: v21
+
+October 18, 2026: final 651/41 affected regression, full lint/types, stylesheet/startup audits, Capacitor sync, both Release builds, CLI installation/launch without data erasure and strict archive integrity passed. See the [current handoff](experience-beta-handoff.md). Native UI awaits owner Mac unlock. The isolated QA simulator retains the temporary Rehras Medium + Kirtan Sohila Short routine; the original seven must be restored through UI and verified after relaunch.
+
+No physical iPhone was discoverable in the preceding inventory (CoreDevice provider unavailable), and there were zero valid signing identities. Physical 30-minute reading, VoiceOver, wrapped selection, display/lock/offline journeys and authorized signing remain required. This is not device sign-off.
+
+## Historical goal candidate: v22
+
+October 18, 2026: final **699 distinct tests across 42 affected files**, full lint/types, 14-file stylesheet audit, production/startup audit, Capacitor sync, both Release targets, CLI installation/launch without erasure and strict archive integrity passed. [Source validation](../../artifacts/goal-quality-v22/final-source-validation.json), [current handoff](experience-beta-handoff.md). V21 observations above remain historical.
+
+Actual native interaction still awaits Mac unlock. The isolated QA simulator is shut down; its last observed routine is Rehras Medium + Kirtan Sohila Short, with original seven restoration/relaunch verification pending. Latest inventory discovered zero physical devices while CoreDevice reported no provider, so hardware absence is not established. There are zero valid signing identities. Physical 30-minute reading, native VoiceOver, wrapped selection, display/accessibility/lock/offline journeys and authorized signing remain required. No item in this checklist is signed off by software/package checks.
+
+Historical v22 goal status: **blocked on native/device access**, following the [third consecutive audit](../../artifacts/goal-quality-v22/blocked-audit-3/audit.json). Software delivery is preserved, and no physical/native checklist item is newly accepted.
+
+## October 21 v23 candidate
+
+Use the [v23 handoff](experience-beta-handoff.md) and [actual runtime ledger](../../artifacts/goal-quality-v23/runtime-results.json). Current software/package and scoped simulator results do not close any physical checklist item above. Native scrolling/selection and the partially scrolled toolbar/status-area observation require hands-on reproduction; exact Rehras variants/places, original seven-bani restoration and interruptions are still queued. Current discovery completed with zero devices and zero valid signing identities; hardware absence is not inferred. The archive remains unsigned and undistributed.

@@ -95,9 +95,9 @@ export function isStructuralGurbaniHeadingLine(text: string): boolean {
   if (words.length > 9) return false
 
   // Raag and section titles may begin with a proper name (for example,
-  // "ਧਨਾਸਰੀ") before their Mahala/Ghar metadata.
+  // "ਧਨਾਸਰੀ") before their Mahala/Ghar metadata and a terminal form label.
   const metadataHeading = new RegExp(
-    `^(?:.+\\s+)(?:ਮਃ|ਮਹਲਾ)\\s+${number}(?:\\s+(?:ਘਰ|ਘਰੁ)\\s+${number})?$`,
+    `^(?:.+\\s+)(?:ਮਃ|ਮਹਲਾ)\\s+${number}(?:\\s+(?:ਘਰ|ਘਰੁ)\\s+${number})?(?:\\s+ਅਸਟਪਦੀ)?$`,
     'u'
   )
   if (metadataHeading.test(compact)) return true
@@ -112,10 +112,10 @@ function getPreferredMappedText(
   preferred: string,
   fallback: string
 ) {
-  if (translations?.[preferred]) return translations[preferred]
+  if (translations?.[preferred]?.trim()) return translations[preferred]
 
-  const next = Object.values(translations ?? {}).find(Boolean)
-  return next ?? fallback
+  const next = Object.values(translations ?? {}).find(text => Boolean(text?.trim()))
+  return next ?? (fallback?.trim() ? fallback : '')
 }
 
 export function getLinePunjabiText(
@@ -157,10 +157,42 @@ export function getLineMeaningText(
   meaningLanguage: MeaningLanguage,
   englishSource: EnglishSource
 ): string {
-  if (meaningLanguage === 'none') return ''
-  if (meaningLanguage === 'en') return getLineEnglishText(line, englishSource)
-  if (meaningLanguage === 'hi') return getLineHindiText(line)
-  return getLinePunjabiText(line)
+  return getLineMeaningDetails(line, meaningLanguage, englishSource).text
+}
+
+export interface LineMeaningDetails {
+  text: string
+  actualSource: string | null
+  preferredSource: string | null
+  preferredUnavailable: boolean
+}
+
+/** Keep displayed text and its actual attribution together when a preferred source is absent. */
+export function getLineMeaningDetails(
+  line: ScriptureLine,
+  meaningLanguage: MeaningLanguage,
+  englishSource: EnglishSource,
+): LineMeaningDetails {
+  if (meaningLanguage === 'none') return { text: '', actualSource: null, preferredSource: null, preferredUnavailable: false }
+
+  const language = useLanguageStore.getState()
+  const preferred = meaningLanguage === 'en' ? englishSource
+    : meaningLanguage === 'hi' ? language.hindiSource : language.punjabiSource
+  const translations: Record<string, string | undefined> | undefined = meaningLanguage === 'en'
+    ? { ...line.translations_en } : meaningLanguage === 'hi' ? line.translations_hi : line.translations_pa
+  const sourceOrder = meaningLanguage === 'en'
+    ? [preferred, 'bdb', 'ms', 'ssk']
+    : [preferred, ...Object.keys(translations ?? {})]
+  const actualSource = sourceOrder.find(source => Boolean(translations?.[source]?.trim())) ?? null
+  const text = (meaningLanguage === 'en' ? getLineEnglishText(line, englishSource)
+    : meaningLanguage === 'hi' ? getLineHindiText(line, preferred) : getLinePunjabiText(line, preferred)) ?? ''
+
+  return {
+    text: text.trim() ? text : '',
+    actualSource,
+    preferredSource: preferred,
+    preferredUnavailable: !translations?.[preferred]?.trim(),
+  }
 }
 
 export function isScriptureMeaningLanguage(value: MeaningLanguage): value is 'pa' | 'hi' {

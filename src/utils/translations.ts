@@ -323,13 +323,8 @@ export function getPreferredEnglishText(
 ): string {
   if (!translations) return ''
 
-  return (
-    translations[preferred]
-    ?? translations.bdb
-    ?? translations.ms
-    ?? translations.ssk
-    ?? ''
-  )
+  return [translations[preferred], translations.bdb, translations.ms, translations.ssk]
+    .find(text => Boolean(text?.trim())) ?? ''
 }
 
 export function getEntryEnglishText(entry: ScriptureEntry, preferred: EnglishSource): string {

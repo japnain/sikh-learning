@@ -5,8 +5,8 @@
   --safe-area-left: env(safe-area-inset-left, 0px);
   --ios-standalone-viewport-loss: 0px;
   --fixed-ui-safe-bottom: var(--safe-area-bottom);
-  --nav-bottom-offset: max(0.4rem, var(--fixed-ui-safe-bottom));
-  --nav-stack-height: 4.25rem;
+  --nav-bottom-offset: 0px;
+  --nav-stack-height: 4.5rem;
 
   --nr-page-max: 76rem;
   --nr-reading-rail: 18.5rem;
@@ -17,23 +17,23 @@
   --nr-nav-content-offset: 6.5rem;
   --nr-target-min: 2.75rem;
 
-  --theme-color: #f2f1e9;
+  --theme-color: #e5dfd2;
 
-  --color-bg: 242 241 233;
-  --color-surface: 255 253 248;
-  --color-surface-muted: 231 235 225;
-  --color-surface-elevated: 202 216 199;
-  --color-text: 36 40 35;
-  --color-text-muted: 82 91 80;
-  --color-accent: 137 78 35;
-  --color-accent-strong: 48 111 95;
-  --color-success: 61 127 96;
-  --color-warning: 164 104 38;
-  --color-danger: 178 74 50;
-  --color-border: 157 158 128;
-  --color-focus: 197 126 45;
+  --color-bg: 229 223 210;
+  --color-surface: 236 231 220;
+  --color-surface-muted: 219 214 202;
+  --color-surface-elevated: 225 219 206;
+  --color-text: 24 43 52;
+  --color-text-muted: 67 86 93;
+  --color-accent: 116 86 49;
+  --color-accent-strong: 116 86 49;
+  --color-success: 53 107 80;
+  --color-warning: 133 86 31;
+  --color-danger: 159 64 44;
+  --color-border: 149 160 161;
+  --color-focus: 116 86 49;
 
-  --color-overlay: rgba(255, 252, 245, 0.9);
+  --color-overlay: rgba(229, 223, 210, 0.94);
   --color-scrim: rgba(37, 26, 18, 0.2);
 
   --nr-surface: rgb(var(--color-surface) / 0.9);
@@ -65,21 +65,21 @@ html[data-ios-standalone-viewport='short'] {
 
 html.dark,
 html[data-theme='dark'] {
-  --theme-color: #070c0e;
+  --theme-color: #111923;
 
-  --color-bg: 7 12 14;
-  --color-surface: 24 31 34;
-  --color-surface-muted: 35 45 43;
-  --color-surface-elevated: 52 67 59;
-  --color-text: 246 241 231;
-  --color-text-muted: 194 201 187;
-  --color-accent: 224 160 72;
-  --color-accent-strong: 123 192 164;
+  --color-bg: 17 25 35;
+  --color-surface: 23 38 48;
+  --color-surface-muted: 30 48 60;
+  --color-surface-elevated: 36 56 67;
+  --color-text: 243 239 230;
+  --color-text-muted: 164 173 176;
+  --color-accent: 196 170 123;
+  --color-accent-strong: 196 170 123;
   --color-success: 137 194 158;
   --color-warning: 236 185 103;
   --color-danger: 255 171 149;
-  --color-border: 92 111 100;
-  --color-focus: 242 199 119;
+  --color-border: 105 123 135;
+  --color-focus: 213 188 145;
 
   --color-overlay: rgba(7, 12, 14, 0.9);
   --color-scrim: rgba(6, 4, 10, 0.58);

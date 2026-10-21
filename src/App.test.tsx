@@ -417,6 +417,20 @@ test('uses the focused shell and hides primary navigation on an EPUB chapter rou
   expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
 })
 
+test('keeps routine editing focused and restores primary navigation after leaving', async () => {
+  window.history.replaceState({}, '', '/nitnem/customize')
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true, isOnboardingOpen: false, presentationMode: 'overlay',
+  })
+  render(<App />)
+  await screen.findByTestId('nitnem-customize-panel', undefined, APP_TEST_WAIT)
+  expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
+  expect(screen.getByTestId('app-shell')).not.toHaveAttribute('data-navigation')
+  fireEvent.click(screen.getByRole('button', { name: 'Cancel', exact: true }))
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
+})
+
 test('restores document positions through browser Back and Forward navigation', async () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,

@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { useState } from 'react'
+import { StrictMode, useState } from 'react'
 import { mockDocumentScroll } from '../test/documentScroll'
 import ModalSheet from './ModalSheet'
 
@@ -82,6 +82,52 @@ test('returns focus to the exact opener without moving document scroll after eve
   await user.click(screen.getByRole('button', { name: 'Close share sheet' }))
 
   await waitFor(() => expect(opener).toHaveFocus())
+  expect(documentScroll.getTop()).toBe(320)
+
+  view.unmount()
+  documentScroll.restore()
+  document.documentElement.removeAttribute('style')
+})
+
+test('Strict Mode effect replay preserves the external opener through close and Escape', async () => {
+  const user = userEvent.setup()
+  const documentScroll = mockDocumentScroll({ top: 320 })
+  const view = render(<StrictMode><ConditionalTestModal /></StrictMode>)
+  const opener = screen.getByRole('button', { name: 'Open share sheet' })
+
+  await user.click(opener)
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Close share sheet' })).toHaveFocus())
+  await user.click(screen.getByRole('button', { name: 'Close share sheet' }))
+  await waitFor(() => expect(opener).toHaveFocus())
+  expect(documentScroll.getTop()).toBe(320)
+
+  await user.click(opener)
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Close share sheet' })).toHaveFocus())
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(opener).toHaveFocus())
+  expect(documentScroll.getTop()).toBe(320)
+
+  view.unmount()
+  documentScroll.restore()
+  document.documentElement.removeAttribute('style')
+})
+
+test('queued dismissal never restores focus to an opener removed by navigation', async () => {
+  const user = userEvent.setup()
+  const documentScroll = mockDocumentScroll({ top: 320 })
+  const view = render(<StrictMode><ConditionalTestModal /></StrictMode>)
+  const opener = screen.getByRole('button', { name: 'Open share sheet' })
+  await user.click(opener)
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Close share sheet' })).toHaveFocus())
+
+  view.rerender(<StrictMode><button type="button">Destination action</button></StrictMode>)
+  const destination = screen.getByRole('button', { name: 'Destination action' })
+  destination.focus()
+  await act(async () => {
+    await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
+  })
+  expect(opener.isConnected).toBe(false)
+  expect(destination).toHaveFocus()
   expect(documentScroll.getTop()).toBe(320)
 
   view.unmount()

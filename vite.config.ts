@@ -30,6 +30,7 @@ const initialVendorChunkGroups = [
 
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: { entries: ['index.html'] },
   build: {
     copyPublicDir: false,
     rolldownOptions: {
@@ -43,7 +44,7 @@ export default defineConfig({
   },
   server: {
     watch: {
-      ignored: ['**/ios/App/App/public/**'],
+      ignored: ['**/ios/App/App/public/**', '**/.node_modules*/**', '**/node_modules*/**'],
     },
     proxy: {
       '/__banidb': {

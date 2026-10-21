@@ -17,8 +17,9 @@ import {
   fetchSearch,
 } from './banidb'
 import type { ScriptureEntry } from '../types'
-import { MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handlers'
+import { MOCK_CHAUPAI_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE, MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
 import { server } from '../test/msw-server'
+import { isExactBaniReading } from '../utils/baniReadingValidation'
 
 function firstVisibleLine(entries: ScriptureEntry[]) {
   return entries
@@ -30,6 +31,33 @@ function firstVisibleLine(entries: ScriptureEntry[]) {
 function introLines(entries: ScriptureEntry[]) {
   return entries.flatMap(entry => entry.lines ?? []).filter(line => line.isHeader).map(line => line.gurmukhi)
 }
+
+describe('reading request cancellation', () => {
+  it.each([
+    ['Ang', (signal: AbortSignal) => fetchAng(1, 'G', signal)],
+    ['Shabad', (signal: AbortSignal) => fetchShabad(50, signal)],
+    ['Shabad words', (signal: AbortSignal) => fetchShabadWords(1, signal)],
+  ] as const)('forwards cancellation for %s and rejects a held request when aborted', async (_name, request) => {
+    const controller = new AbortController()
+    let release: ((response: Response) => void) | undefined
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation((_url, options) => new Promise((resolve, reject) => {
+      release = resolve
+      options?.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')), { once: true })
+    }))
+    const outcome = request(controller.signal).then(() => null, error => error)
+    try {
+      await vi.waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(1))
+      expect(fetchSpy.mock.calls[0]?.[1]?.signal).toBe(controller.signal)
+      controller.abort()
+      expect(await outcome).toMatchObject({ name: 'AbortError' })
+    } finally {
+      controller.abort()
+      release?.(new Response('{}', { status: 200 }))
+      await outcome
+      fetchSpy.mockRestore()
+    }
+  })
+})
 
 describe('fetchAng', () => {
   it('routes scripture reads through the Supabase banidb proxy endpoint', async () => {
@@ -271,6 +299,105 @@ describe('reference fetchers', () => {
 })
 
 describe('fetchBani', () => {
+  it('preserves provider order across noncontiguous repeated page groups and keeps their entry IDs unique', async () => {
+    const rows = [MOCK_REHRAS_BANI_RESPONSE.verses[5], MOCK_REHRAS_BANI_RESPONSE.verses[7], MOCK_REHRAS_BANI_RESPONSE.verses[8]]
+    const payload = {
+      baniInfo: { source: { sourceId: null } },
+      verses: rows.map((item, index) => ({ ...item,
+        verse: {
+          ...Object.fromEntries(Object.entries(item.verse).filter(([key]) => !['source', 'shabadId'].includes(key))),
+          pageNo: index === 1 ? 1386 : 8,
+        },
+      })),
+    }
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+      const body = await request.json() as { path?: string }
+      if (body.path === '/v2/banis/21') return HttpResponse.json(payload)
+    }))
+    const result = await fetchBani(21, 'short')
+    expect(result.entries.flatMap(entry => entry.lines ?? []).map(line => [line.verseId, line.gurmukhi])).toEqual(
+      rows.map(item => [item.verse.verseId, item.verse.verse.unicode])
+    )
+    expect(result.entries.map(entry => entry.id)).toEqual(['bani-21-8-0', 'bani-21-1386-0', 'bani-21-8-0-part-2'])
+    expect(result.normalizationRevision).toBe(2)
+    expect(isExactBaniReading(result, 21, 'short')).toBe(true)
+  })
+
+  it.each(['short', 'long'] as const)('keeps real-shape unattributed Rehras %s neutral without changing its text, order, or length', async length => {
+    const baseline = await fetchBani(21, length)
+    const payload = {
+      baniInfo: {
+        baniID: 21,
+        english: 'Rehraas Sahib',
+        source: { sourceId: null, gurmukhi: null, unicode: null, english: null, pageNo: null },
+      },
+      verses: MOCK_REHRAS_BANI_RESPONSE.verses.map(item => ({ ...item,
+        verse: Object.fromEntries(Object.entries(item.verse).filter(([key]) => !['source', 'shabadId'].includes(key))),
+      })),
+    }
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+      const body = await request.json() as { path?: string }
+      if (body.path === '/v2/banis/21') return HttpResponse.json(payload)
+    }))
+
+    const result = await fetchBani(21, length)
+
+    expect(result.entries.every(entry => entry.source === 'G' && entry.scripture === 'Sundar Gutka'
+      && entry.sourceName === 'Sundar Gutka' && entry.sourceMeta === null
+      && entry.sourceAttribution === 'unavailable' && entry.shabadId === 0)).toBe(true)
+    expect(result.entries.flatMap(entry => entry.lines ?? [])).toEqual(
+      baseline.entries.flatMap(entry => entry.lines ?? []).map(line => ({ ...line, shabadId: 0 }))
+    )
+    expect(result.availableLengths).toEqual(baseline.availableLengths)
+    expect(result.resolvedLength).toBe(baseline.resolvedLength)
+    expect(isExactBaniReading(result, 21, length)).toBe(true)
+  })
+
+  it('uses authoritative baniInfo source when real-shape Chaupai verses omit individual sources', async () => {
+    const baseline = await fetchBani(9, 'short')
+    const payload = {
+      baniInfo: { baniID: 9, source: { sourceId: 'D', english: 'Dasam Bani', pageNo: 1385 } },
+      verses: MOCK_CHAUPAI_BANI_RESPONSE.verses.map(item => ({ ...item,
+        source: { sourceId: null },
+        verse: { ...Object.fromEntries(Object.entries(item.verse).filter(([key]) => key !== 'source')), source: { sourceId: null } },
+      })),
+    }
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+      const body = await request.json() as { path?: string }
+      if (body.path === '/v2/banis/9') return HttpResponse.json(payload)
+    }))
+    const result = await fetchBani(9, 'short')
+
+    expect(isExactBaniReading(result, 9, 'short')).toBe(true)
+    expect(result.entries.every(entry => entry.source === 'D' && entry.scripture === 'DG' && entry.sourceMeta?.sourceId === 'D')).toBe(true)
+    expect(result.entries.flatMap(entry => entry.lines ?? []).map(line => [line.verseId, line.gurmukhi, line.isHeader])).toEqual(
+      baseline.entries.flatMap(entry => entry.lines ?? []).map(line => [line.verseId, line.gurmukhi, line.isHeader])
+    )
+    expect(result.availableLengths).toEqual(baseline.availableLengths)
+    expect(result.resolvedLength).toBe(baseline.resolvedLength)
+  })
+
+  it('preserves explicit composite verse sources using sourceId despite a different baniInfo source', async () => {
+    const baseline = await fetchBani(21, 'short')
+    const payload = {
+      baniInfo: { baniID: 21, source: { sourceId: 'G', english: 'Sri Guru Granth Sahib Ji', pageNo: 8 } },
+      verses: MOCK_REHRAS_BANI_RESPONSE.verses.map(item => ({ ...item,
+        verse: { ...item.verse, source: Object.fromEntries(Object.entries(item.verse.source).filter(([key]) => key !== 'id')) },
+      })),
+    }
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+      const body = await request.json() as { path?: string }
+      if (body.path === '/v2/banis/21') return HttpResponse.json(payload)
+    }))
+    const result = await fetchBani(21, 'short')
+
+    expect(isExactBaniReading(result, 21, 'short')).toBe(true)
+    expect(result.entries.map(entry => [entry.source, entry.ang])).toEqual([['G', 8], ['D', 1386], ['G', 917]])
+    expect(result.entries.flatMap(entry => entry.lines ?? []).map(line => [line.verseId, line.gurmukhi, line.isHeader])).toEqual(
+      baseline.entries.flatMap(entry => entry.lines ?? []).map(line => [line.verseId, line.gurmukhi, line.isHeader])
+    )
+  })
+
   it('keeps the complete Ardaas body after its structural opening', async () => {
     const result = await fetchBani(24)
     const lines = result.entries.flatMap(entry => entry.lines ?? [])
@@ -332,6 +459,23 @@ describe('fetchBani', () => {
     expect(firstVisibleLine(mediumResult.entries)).toBe('ੴ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥')
     expect(introLines(longResult.entries)).toContain('ਦੋਹਰਾ ॥')
     expect(introLines(extraLongResult.entries)).toContain('ਦੋਹਰਾ ॥')
+  })
+
+  it('attributes long Chaupai to its Dasam body while preserving structural headers and source order', async () => {
+    const result = await fetchBani(9, 'long')
+    const lines = result.entries.flatMap(entry => entry.lines ?? [])
+
+    expect(result.entries[0]).toMatchObject({
+      scripture: 'DG',
+      source: 'D',
+      sourceMeta: { sourceId: 'D' },
+    })
+    expect(lines.map(line => [line.verseId, line.gurmukhi, Boolean(line.isHeader)])).toEqual([
+      [9001, 'ਦੋਹਰਾ ॥', true],
+      [9002, 'ੴ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥', false],
+      [9003, 'ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ॥', false],
+      [9004, 'ਹਮਰੀ ਕਰੋ ਹਾਥ ਦੈ ਰੱਛਾ ॥', false],
+    ])
   })
 
   it('normalizes Aarti to three ordered bands and keeps Kirtan Sohila at four', async () => {
@@ -412,6 +556,8 @@ describe('fetchHukamnama', () => {
 
   it('still falls back to the latest endpoint for the undated daily reader', async () => {
     const requestedPaths: string[] = []
+    const controller = new AbortController()
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
     server.use(
       http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
         const body = await request.json() as { path?: string }
@@ -425,11 +571,31 @@ describe('fetchHukamnama', () => {
       })
     )
 
-    const hukamnama = await fetchHukamnama()
+    const hukamnama = await fetchHukamnama(undefined, { signal: controller.signal })
 
     expect(hukamnama.date).toBe('2026-04-05')
     expect(requestedPaths).toHaveLength(2)
     expect(requestedPaths[0]).toMatch(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)
     expect(requestedPaths[1]).toBe('/v2/hukamnamas')
+    expect(fetchSpy.mock.calls).toHaveLength(2)
+    expect(fetchSpy.mock.calls.every(([, options]) => options?.signal === controller.signal)).toBe(true)
+    fetchSpy.mockRestore()
+  })
+
+  it('aborts an in-flight exact Hukamnama request without requesting the latest endpoint', async () => {
+    const controller = new AbortController()
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation((_url, options) => new Promise((_resolve, reject) => {
+      options?.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')), { once: true })
+    }))
+    try {
+      const request = fetchHukamnama('2026-04-05', { signal: controller.signal })
+      const rejection = expect(request).rejects.toMatchObject({ name: 'AbortError' })
+      await vi.waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(1))
+      controller.abort()
+      await rejection
+      expect(fetchSpy).toHaveBeenCalledTimes(1)
+    } finally {
+      fetchSpy.mockRestore()
+    }
   })
 })

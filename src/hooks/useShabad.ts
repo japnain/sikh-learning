@@ -3,6 +3,8 @@ import { resolveAsyncIssue } from '../qa/async'
 import type { AsyncIssue, AsyncStatus, ScriptureEntry } from '../types'
 import { fetchShabad } from '../api/banidb'
 
+const SHABAD_REQUEST_TIMEOUT_MS = 30_000
+
 type ShabadRequestState = {
   key: string
   requestKey: string
@@ -23,10 +25,29 @@ export function useShabad(shabadId: number | null) {
     if (!shabadId || !requestKey || !operationKey) return
 
     let cancelled = false
+    let settled = false
+    const controller = new AbortController()
+    const fail = (error: unknown) => {
+      if (cancelled || settled) return
+      settled = true
+      window.clearTimeout(deadline)
+      setState(previous => ({
+        key: operationKey,
+        requestKey,
+        entries: previous?.requestKey === requestKey ? previous.entries : [],
+        issue: resolveAsyncIssue(error),
+      }))
+    }
+    const deadline = window.setTimeout(() => {
+      controller.abort()
+      fail(new Error('The reading request timed out. Please try again.'))
+    }, SHABAD_REQUEST_TIMEOUT_MS)
 
-    fetchShabad(shabadId)
+    fetchShabad(shabadId, controller.signal)
       .then(data => {
-        if (cancelled) return
+        if (cancelled || settled) return
+        settled = true
+        window.clearTimeout(deadline)
         setState({
           key: operationKey,
           requestKey,
@@ -34,18 +55,12 @@ export function useShabad(shabadId: number | null) {
           issue: null,
         })
       })
-      .catch(error => {
-        if (cancelled) return
-        setState({
-          key: operationKey,
-          requestKey,
-          entries: [],
-          issue: resolveAsyncIssue(error),
-        })
-      })
+      .catch(fail)
 
     return () => {
       cancelled = true
+      window.clearTimeout(deadline)
+      controller.abort()
     }
   }, [operationKey, requestKey, shabadId])
 

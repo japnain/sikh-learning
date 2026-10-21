@@ -202,15 +202,20 @@ function AppShell() {
   const isFocusedReader = location.pathname === '/study'
     || location.pathname.startsWith('/study/')
     || isLibraryChapterReader
-  const showPrimaryNavigation = !isPublicDocument && !isFocusedReader
+  const isFocusedEditor = /^\/nitnem\/customize\/?$/.test(location.pathname)
+  const showPrimaryNavigation = !isPublicDocument && !isFocusedReader && !isFocusedEditor
   const showFirstRun = !isPublicDocument && !hasCompletedOnboarding && presentationMode === 'first-run'
   const showOverlay = !isPublicDocument && hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
+  const requestedResumeVerseId = Number(new URLSearchParams(location.search).get('resumeVerseId'))
+  const scriptureOwnsResumePosition = location.pathname === '/study'
+    && Number.isSafeInteger(requestedResumeVerseId) && requestedResumeVerseId > 0
 
   useIosStandaloneViewportMetrics()
   useAppScrollRestoration({
     mainContentRef,
     enabled: !showFirstRun,
     routeHandlesOwnHash: isLibraryChapterReader,
+    routeHandlesOwnPosition: scriptureOwnsResumePosition,
   })
   useRouteDocumentTitle(location.pathname)
   useNitemOfflineCache()

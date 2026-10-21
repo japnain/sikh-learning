@@ -26,6 +26,8 @@ dist-ssr
 .vercel
 
 # Local scratch artifacts
+artifacts/
+.lazyweb/
 .playwright-cli/
 output/
 cache.dat

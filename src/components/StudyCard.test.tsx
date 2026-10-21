@@ -182,11 +182,116 @@ test('carries a selected Gurmukhi phrase into the share action', async () => {
   })
 })
 
+test('saves the complete canonical verse when only an excerpt is selected', async () => {
+  useLanguageStore.setState({ showVishraam: false })
+  const onSavePhrase = vi.fn()
+  render(<StudyCard entry={entry} presentation="read" onSavePhrase={onSavePhrase} />)
+  const line = screen.getByTestId('study-gurbani-line')
+  const range = document.createRange()
+  range.setStart(line.firstChild!, 0)
+  range.setEnd(line.firstChild!, 1)
+  act(() => {
+    const selection = window.getSelection()!
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.dispatchEvent(new Event('selectionchange'))
+  })
+  const toolbar = await screen.findByRole('toolbar', { name: 'Verse actions' })
+  fireEvent.click(within(toolbar).getByRole('button', { name: 'Save verse' }))
+  expect(onSavePhrase).toHaveBeenCalledExactlyOnceWith(entry.lines![0], entry)
+  expect(onSavePhrase.mock.calls[0]?.[0].gurmukhi).toBe('ੴ ਸਤਿ')
+  expect(screen.queryByRole('toolbar')).not.toBeInTheDocument()
+})
+
 test('shows translation inline without flipping', () => {
   render(<StudyCard entry={entry} showAudioPlayer />)
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
   expect(screen.queryByText('Ik Oankaar Sat')).not.toBeInTheDocument()
   expect(screen.queryByText(/recitation coming soon/i)).not.toBeInTheDocument()
+})
+
+test('shares a selected phrase from plain Read text without adding inline word wrappers', async () => {
+  useLanguageStore.setState({ showVishraam: false })
+  const onShareLine = vi.fn()
+  render(<StudyCard entry={entry} presentation="read" onShareLine={onShareLine} />)
+  const line = screen.getByTestId('study-gurbani-line')
+  expect(line.querySelectorAll('[data-reader-word]')).toHaveLength(0)
+  const range = document.createRange()
+  range.selectNodeContents(line)
+  const selection = window.getSelection()!
+  act(() => {
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.dispatchEvent(new Event('selectionchange'))
+  })
+  const actionTrigger = screen.getByLabelText(/open verse actions for line 1/i)
+  fireEvent.click(actionTrigger)
+  expect(await screen.findByText('Selected for sharing')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Share selection' }))
+  await waitFor(() => expect(onShareLine).toHaveBeenCalledWith(entry.lines![0], entry, 'ੴ ਸਤਿ', actionTrigger))
+})
+
+test('preserves canonical Danda in Read and wraps only the selected source pause markers', () => {
+  const canonical = 'ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ ॥੧॥'
+  const sourceEntry: ScriptureEntry = { ...entry, gurmukhi: canonical, lines: [{
+    ...entry.lines![0], gurmukhi: canonical,
+    visraam: { sttm: [{ p: 1, t: 'v' }], igurbani: [{ p: 2, t: 'y' }] },
+  }] }
+  useLanguageStore.setState({ showVishraam: false, visraamSource: 'sttm' })
+  render(<StudyCard entry={sourceEntry} presentation="read" />)
+  const line = screen.getByTestId('study-gurbani-line')
+  expect(line.textContent).toBe(canonical)
+  expect(line.querySelectorAll('span')).toHaveLength(0)
+  act(() => useLanguageStore.setState({ showVishraam: true, visraamSource: 'igurbani' }))
+  expect(line.textContent).toBe(canonical)
+  expect(line.querySelectorAll('[data-reader-word]')).toHaveLength(0)
+  expect(line.querySelectorAll('span')).toHaveLength(1)
+  expect(line.querySelector('[data-visraam="y"]')).toHaveTextContent('ਜੁਗਾਦਿ')
+})
+
+test.each([['selection', 0], ['verse actions', 0], ['selection', 1], ['verse actions', 1]] as const)('opens source appearance through %s for opening %i', async (path, lineIndex) => {
+  const openingEntry: ScriptureEntry = { ...entry, id: 'japji-opening', lines: [
+    { ...entry.lines![0], verseId: 20, gurmukhi: 'ੴ ਸਤਿ', isHeader: true, headerLevel: 1 },
+    { ...entry.lines![0], verseId: 21, gurmukhi: '॥ ਜਪੁ ॥', isHeader: true, headerLevel: 1 },
+    { ...entry.lines![0], verseId: 22, gurmukhi: 'ਪਹਿਲੀ ਪੰਕਤੀ', isHeader: false },
+  ] }
+  const onOpenReaderAppearance = vi.fn()
+  render(<StudyCard entry={openingEntry} presentation="read" onOpenReaderAppearance={onOpenReaderAppearance} />)
+  const opening = screen.getAllByTestId('study-line')[lineIndex]!
+  const sourceParagraph = within(opening).getByTestId('study-gurbani-line')
+  expect(opening).toHaveAttribute('data-verse-id', String(20 + lineIndex))
+  expect(sourceParagraph.textContent).toBe(openingEntry.lines![lineIndex]!.gurmukhi)
+  expect((sourceParagraph.textContent!.match(/ੴ/g) ?? []).length).toBe(lineIndex === 0 ? 1 : 0)
+  if (path === 'selection') {
+    const range = document.createRange()
+    range.selectNodeContents(within(opening).getByTestId('study-gurbani-line'))
+    act(() => {
+      const selection = window.getSelection()!
+      selection.removeAllRanges()
+      selection.addRange(range)
+      document.dispatchEvent(new Event('selectionchange'))
+    })
+  } else {
+    fireEvent.click(within(opening).getByRole('button', { name: /open verse actions/i }))
+  }
+  if (path === 'selection') fireEvent.click(screen.getByRole('button', { name: 'More verse actions' }))
+  fireEvent.click(within(screen.getByRole('dialog', { name: 'Verse actions' })).getByRole('button', { name: 'Reading appearance' }))
+  await waitFor(() => expect(onOpenReaderAppearance).toHaveBeenCalledWith(`japji-opening:${lineIndex}`))
+})
+
+test('keeps meaning text outside native Gurbani selection actions', () => {
+  const onOpenReaderAppearance = vi.fn()
+  render(<StudyCard entry={entry} onOpenReaderAppearance={onOpenReaderAppearance} />)
+  const range = document.createRange()
+  range.selectNodeContents(screen.getByText('One Creator Truth'))
+  act(() => {
+    const selection = window.getSelection()!
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.dispatchEvent(new Event('selectionchange'))
+  })
+  expect(screen.queryByRole('button', { name: 'Reading appearance' })).not.toBeInTheDocument()
+  expect(onOpenReaderAppearance).not.toHaveBeenCalled()
 })
 
 test('switches to selected English source', () => {
@@ -248,6 +353,61 @@ test('opens source layers from the verse actions sheet', async () => {
   expect(screen.getAllByText('Selected').length).toBeGreaterThan(0)
 })
 
+test('discloses a preferred English fallback once and makes a single actual source accessible', () => {
+  useLanguageStore.setState({ englishSource: 'ms', showVishraam: false })
+  const onlyEnglish: ScriptureEntry = {
+    ...entry,
+    lines: [{ ...entry.lines![0], translations_en: { bdb: 'One Creator Truth' }, translations_pa: {}, translations_hi: {}, visraam: undefined }],
+  }
+  const original = structuredClone(onlyEnglish)
+  render(<StudyCard entry={onlyEnglish} />)
+
+  expect(screen.getAllByTestId('study-support-status')).toHaveLength(1)
+  expect(screen.getByTestId('study-support-status')).toHaveTextContent('Manmohan Singh is unavailable for some verses. Showing Standard.')
+  expect(screen.getByTestId('study-gurbani-line').textContent).toBe('ੴ ਸਤਿ')
+  fireEvent.click(screen.getByLabelText(/open verse actions for line 1/i))
+  expect(screen.getByTestId('study-meaning-source')).toHaveTextContent('English · Standard')
+  expect(screen.getByTestId('study-meaning-source')).toHaveTextContent('Manmohan Singh is unavailable for this verse.')
+  fireEvent.click(screen.getByRole('button', { name: 'Show source layers' }))
+  expect(within(screen.getByTestId('study-source-layers-sheet')).getByText('Standard')).toBeInTheDocument()
+  expect(within(screen.getByTestId('study-source-layers-sheet')).getByText('One Creator Truth')).toBeInTheDocument()
+  expect(onlyEnglish).toEqual(original)
+})
+
+test('summarizes missing requested layers once without inserting warnings between canonical verses', () => {
+  useLanguageStore.setState({ meaningLanguage: 'hi', showTransliteration: true, showVishraam: false })
+  const partial: ScriptureEntry = {
+    ...entry,
+    lines: [
+      { ...entry.lines![0], verseId: 10, isHeader: true, gurmukhi: 'ਸਲੋਕ ਮਃ ੩ ॥', transliteration: '', translation_hi: '', translations_hi: {} },
+      { ...entry.lines![0], verseId: 11, gurmukhi: 'ਸਤਿ ਨਾਮੁ ॥' },
+      { ...entry.lines![0], verseId: 12, gurmukhi: 'ਕਰਤਾ ਪੁਰਖੁ ॥', transliteration: '', translation_hi: '', translations_hi: {} },
+    ],
+  }
+  const { rerender } = render(<StudyCard entry={partial} />)
+
+  expect(screen.getAllByTestId('study-support-status')).toHaveLength(1)
+  expect(screen.getByTestId('study-support-status')).toHaveTextContent('Hindi meanings are unavailable for some verses in this passage.')
+  expect(screen.getByTestId('study-support-status')).toHaveTextContent('Transliteration is unavailable for some verses in this passage.')
+  expect(screen.getAllByTestId('study-gurbani-line').map(line => line.textContent)).toEqual(['ਸਲੋਕ ਮਃ ੩ ॥', 'ਸਤਿ ਨਾਮੁ ॥', 'ਕਰਤਾ ਪੁਰਖੁ ॥'])
+  expect(screen.getAllByTestId('study-line').map(line => line.dataset.verseId)).toEqual(['10', '11', '12'])
+  fireEvent.click(screen.getByLabelText(/open verse actions for line 3/i))
+  const dialog = screen.getByRole('dialog', { name: 'Verse actions' })
+  expect(within(dialog).getByText('Hindi meaning is unavailable for this verse.')).toBeInTheDocument()
+  expect(within(dialog).getByText('Transliteration is unavailable for this verse.')).toBeInTheDocument()
+  fireEvent.click(screen.getByLabelText('Dismiss verse actions'))
+
+  rerender(<StudyCard entry={partial} presentation="read" />)
+  expect(screen.queryByTestId('study-support-status')).not.toBeInTheDocument()
+  expect(screen.getAllByTestId('study-gurbani-line').map(line => line.textContent)).toEqual(['ਸਲੋਕ ਮਃ ੩ ॥', 'ਸਤਿ ਨਾਮੁ ॥', 'ਕਰਤਾ ਪੁਰਖੁ ॥'])
+})
+
+test('does not require supporting meanings or transliteration for structural headings', () => {
+  useLanguageStore.setState({ meaningLanguage: 'hi', showTransliteration: true })
+  render(<StudyCard entry={{ ...entry, lines: [{ ...entry.lines![0], isHeader: true, transliteration: '', translation_hi: '', translations_hi: {} }] }} />)
+  expect(screen.queryByTestId('study-support-status')).not.toBeInTheDocument()
+})
+
 test('keeps devotional reader body lines after the structural opening', () => {
   render(<StudyCard entry={introOnlyEntry} />)
 
@@ -265,7 +425,7 @@ test('keeps later BaniDB headers in their source sequence instead of hoisting th
   expect(within(screen.getByTestId('study-header-block')).getByText('ਸੋ ਦਰੁ ਰਾਗੁ ਆਸਾ ਮਹਲਾ ੧')).toBeInTheDocument()
 
   const orderedLines = screen.getAllByTestId('study-line')
-  expect(orderedLines.map(line => line.dataset.verseId)).toEqual(['21', '22', '23'])
-  expect(orderedLines.map(line => line.dataset.lineKind)).toEqual(['verse', 'header', 'verse'])
-  expect(orderedLines[1]).toHaveAttribute('data-header-level', '2')
+  expect(orderedLines.map(line => line.dataset.verseId)).toEqual(['20', '21', '22', '23'])
+  expect(orderedLines.map(line => line.dataset.lineKind)).toEqual(['header', 'verse', 'header', 'verse'])
+  expect(orderedLines[2]).toHaveAttribute('data-header-level', '2')
 })

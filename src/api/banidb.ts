@@ -20,6 +20,7 @@ import type {
 } from '../types'
 import { requestBanidb } from '../supabase/banidb'
 import { withQaControl } from '../qa/runtime'
+import { BANIS } from '../data/banis'
 import {
   SUNDAR_GUTKA_LENGTH_EXISTS_KEY,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -130,12 +131,12 @@ interface BaniResponseVerse {
     verseId?: number
     shabadId?: number
     pageNo?: number | null
-    source?: { id?: BaniSource }
+    source?: BaniShabadVerse['source']
     raag?: ShabadInfo['raag']
     writer?: ShabadInfo['writer']
   }
   pageNo?: number | null
-  source?: { id?: BaniSource }
+  source?: BaniShabadVerse['source']
   raag?: ShabadInfo['raag']
   writer?: ShabadInfo['writer']
 }
@@ -296,6 +297,8 @@ export interface BaniFetchResult {
   entries: ScriptureEntry[]
   availableLengths: SundarGutkaLength[]
   resolvedLength: SundarGutkaLength | null
+  /** Revision 2 preserves provider sequence across noncontiguous repeated page groups. */
+  normalizationRevision?: 2
 }
 
 function toScripture(source: BaniSource): string {
@@ -540,6 +543,7 @@ function buildEntry({
   verses,
   sourceName,
   sourceMeta,
+  sourceAttribution,
   raag,
   raagMeta,
   writer,
@@ -554,6 +558,7 @@ function buildEntry({
   verses: Array<BaniVerse | BaniFlatVerse | BaniShabadVerse>
   sourceName?: string
   sourceMeta?: ScriptureSourceMeta | null
+  sourceAttribution?: ScriptureEntry['sourceAttribution']
   raag?: string
   raagMeta?: ScriptureRaagMeta | null
   writer?: string
@@ -563,7 +568,7 @@ function buildEntry({
   const resolvedAng = verses.find(verse => verse.pageNo !== null && verse.pageNo !== undefined)?.pageNo ?? ang
   const lines = verses.map(verse => buildLine(verse, resolvedAng, shabadId ?? verse.shabadId ?? 0))
   const firstVerse = verses[0]
-  const resolvedSourceMeta = sourceMeta ?? normalizeSourceMeta(firstVerse?.source)
+  const resolvedSourceMeta = sourceAttribution === 'unavailable' ? null : sourceMeta ?? normalizeSourceMeta(firstVerse?.source)
   const resolvedRaagMeta = raagMeta ?? normalizeRaagMeta(firstVerse?.raag)
   const resolvedWriterMeta = writerMeta ?? normalizeWriterMeta(firstVerse?.writer)
 
@@ -576,6 +581,7 @@ function buildEntry({
     verseIds: lines.map(line => line.verseId).filter(Boolean),
     sourceName: sourceName ?? getSourceDisplay(resolvedSourceMeta, scripture),
     sourceMeta: resolvedSourceMeta,
+    sourceAttribution,
     raag: raag ?? getRaagDisplay(resolvedRaagMeta),
     raagMeta: resolvedRaagMeta,
     writer: writer ?? getWriterDisplay(resolvedWriterMeta),
@@ -591,9 +597,9 @@ function buildEntry({
   }
 }
 
-export async function fetchAng(ang: number, source: BaniSource): Promise<ScriptureEntry[]> {
+export async function fetchAng(ang: number, source: BaniSource, signal?: AbortSignal): Promise<ScriptureEntry[]> {
   return withQaControl('study-ang', async () => {
-    const { response: res, data } = await requestBanidb<Record<string, unknown>>(`${API_PREFIX}/angs/${ang}/${source}`)
+    const { response: res, data } = await requestBanidb<Record<string, unknown>>(`${API_PREFIX}/angs/${ang}/${source}`, undefined, { signal })
     if (!res.ok) throw new Error(`BaniDB /angs error: ${res.status}`)
 
     const rawPage = (data.page ?? data.verses ?? data.shabads) as BaniVerse[] | undefined
@@ -625,8 +631,8 @@ export async function fetchAng(ang: number, source: BaniSource): Promise<Scriptu
   })
 }
 
-export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
-  const { response: res, data } = await requestBanidb<{ verses: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`)
+export async function fetchShabadWords(shabadId: number, signal?: AbortSignal): Promise<Word[]> {
+  const { response: res, data } = await requestBanidb<{ verses: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`, undefined, { signal })
   if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
   if (!data.verses?.length) return []
 
@@ -817,8 +823,12 @@ export async function fetchBani(
         resolvedLength: null,
       }
     }
+    const baniInfo = data.baniInfo && typeof data.baniInfo === 'object'
+      ? data.baniInfo as { source?: BaniFlatVerse['source'] }
+      : null
 
     const supportedBaniId = getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
+    const canonicalSource = BANIS.find(bani => bani.baniDbId === baniDbId)?.source ?? 'G'
     const normalizedLengthOptions = supportedBaniId
       ? getNormalizedSundarGutkaLengthOptions(rawArray)
       : []
@@ -847,12 +857,15 @@ export async function fetchBani(
         verseId?: number
         shabadId?: number
         pageNo?: number | null
-        source?: { id?: string }
+        source?: BaniFlatVerse['source']
       }
       const pageNo = inner.pageNo ?? item.pageNo ?? null
       const headerLevel = typeof item.header === 'number' && item.header > 0
         ? item.header
         : undefined
+      // An empty per-verse source object must not hide usable authoritative bani metadata.
+      const authoritativeSource = [inner.source, item.source, baniInfo?.source]
+        .find(candidate => safeText(candidate?.id) || safeText(candidate?.sourceId))
       const flatVerse: BaniFlatVerse = {
         verseId: inner.verseId ?? 0,
         shabadId: inner.shabadId ?? 0,
@@ -863,7 +876,7 @@ export async function fetchBani(
         visraam: inner.visraam,
         pageNo,
         originalPageNo: pageNo,
-        source: (inner.source ?? item.source ?? { id: 'G' }) as BaniFlatVerse['source'],
+        source: (authoritativeSource ?? {}) as BaniFlatVerse['source'],
         raag: (inner.raag ?? item.raag) as BaniFlatVerse['raag'],
         writer: (inner.writer ?? item.writer) as BaniFlatVerse['writer'],
         isHeader: headerLevel !== undefined,
@@ -896,35 +909,44 @@ export async function fetchBani(
 
     const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
 
-    // Group by page + shabad so the reader can render one section per shabad.
-    const grouped = new Map<string, BaniFlatVerse[]>()
+    // Only adjacent rows may share a section: composite banis revisit the same page later.
+    const grouped: Array<{ key: string; verses: BaniFlatVerse[] }> = []
     for (const v of flatVerses) {
       const key = `${v.pageNo ?? currentPageNo ?? 1}-${v.shabadId}`
-      const list = grouped.get(key) ?? []
-      list.push(v)
-      grouped.set(key, list)
+      const previous = grouped.at(-1)
+      if (previous?.key === key) previous.verses.push(v)
+      else grouped.push({ key, verses: [v] })
     }
+    const groupOccurrences = new Map<string, number>()
 
     return {
-      entries: Array.from(grouped.entries()).map(([key, verses]) => {
+      entries: grouped.map(({ key, verses }) => {
+        const occurrence = (groupOccurrences.get(key) ?? 0) + 1
+        groupOccurrences.set(key, occurrence)
         const [pageNoString] = key.split('-')
         const pageNo = Number(pageNoString)
-        const srcId = verses[0]?.source?.id ?? 'G'
+        // Structural headers may carry a default source. Attribute the passage to its body.
+        const contextVerse = verses.find(verse => !verse.isHeader) ?? verses[0]
+        const attributedSourceId = safeText(contextVerse?.source?.id) || safeText(contextVerse?.source?.sourceId)
+        const sourceUnavailable = !attributedSourceId
+        const srcId = attributedSourceId || canonicalSource
         return buildEntry({
-          id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}`,
-          scripture: sourceMap[srcId] ?? 'SGGS',
+          id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}${occurrence > 1 ? `-part-${occurrence}` : ''}`,
+          scripture: sourceUnavailable ? 'Sundar Gutka' : sourceMap[srcId] ?? 'SGGS',
           ang: pageNo,
           source: (srcId as BaniSource) ?? 'G',
           shabadId: verses[0]?.shabadId,
           verses,
-          sourceMeta: normalizeSourceMeta(verses[0]?.source),
-          sourceName: getSourceDisplay(normalizeSourceMeta(verses[0]?.source), sourceMap[srcId] ?? 'SGGS'),
-          raagMeta: normalizeRaagMeta(verses[0]?.raag),
-          writerMeta: normalizeWriterMeta(verses[0]?.writer),
+          sourceMeta: sourceUnavailable ? null : normalizeSourceMeta(contextVerse?.source),
+          sourceName: sourceUnavailable ? 'Sundar Gutka' : getSourceDisplay(normalizeSourceMeta(contextVerse?.source), sourceMap[srcId] ?? 'SGGS'),
+          sourceAttribution: sourceUnavailable ? 'unavailable' : undefined,
+          raagMeta: normalizeRaagMeta(contextVerse?.raag),
+          writerMeta: normalizeWriterMeta(contextVerse?.writer),
         })
       }),
       availableLengths,
       resolvedLength: selectedLengthOption?.band ?? null,
+      normalizationRevision: 2,
     }
   }, {
     emptyValue: {
@@ -972,9 +994,9 @@ export async function fetchSearch(
   })
 }
 
-export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | null> {
+export async function fetchShabad(shabadId: number, signal?: AbortSignal): Promise<ScriptureEntry | null> {
   return withQaControl('study-shabad', async () => {
-    const { response: res, data } = await requestBanidb<{ shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`)
+    const { response: res, data } = await requestBanidb<{ shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`, undefined, { signal })
     if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
 
     const verses = data.verses ?? []
@@ -1129,7 +1151,7 @@ export async function fetchAudio(shabadId: number): Promise<string | null> {
   }
 }
 
-export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
+export async function fetchHukamnama(date?: string, options?: { signal?: AbortSignal }): Promise<HukamnamaResult> {
   return withQaControl('study-hukamnama', async () => {
     const targetDate = date ? new Date(`${date}T00:00:00`) : new Date()
     const year = targetDate.getFullYear()
@@ -1149,7 +1171,7 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
           verses?: BaniVerse[]
         }
       }>
-    }>(`${API_PREFIX}/hukamnamas/${year}/${month}/${day}`)
+    }>(`${API_PREFIX}/hukamnamas/${year}/${month}/${day}`, undefined, options)
     // A dated share URL is an exact permalink. Falling back to the latest
     // Hukamnama here would silently replace the reading the sender intended.
     // The latest endpoint remains a resilience fallback only for today's
@@ -1167,7 +1189,7 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
             verses?: BaniVerse[]
           }
         }>
-      }>(`${API_PREFIX}/hukamnamas`)
+      }>(`${API_PREFIX}/hukamnamas`, undefined, options)
     }
     const { response: res, data } = request
     if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)

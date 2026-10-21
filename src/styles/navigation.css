@@ -1,7 +1,7 @@
 @tailwind components;
 
 /*
- * One navigation system: a reserved bottom dock on compact screens and a
+ * One artwork-inspired navigation system: a reserved bottom bar on compact screens and a
  * non-overlapping side rail on desktop. The page shell owns the reserved
  * space, while scroll margins keep keyboard focus above the dock.
  */
@@ -12,7 +12,7 @@
     right: auto;
     bottom: var(--nav-bottom-offset);
     left: 50%;
-    width: min(var(--nr-nav-dock-max), calc(100% - var(--safe-area-left) - var(--safe-area-right) - 1rem));
+    width: 100%;
     transform: translateX(-50%);
     pointer-events: none;
   }
@@ -24,30 +24,22 @@
     bottom: 0;
     left: 0;
     height: calc(var(--nav-stack-height, 4.25rem) + var(--nav-bottom-offset) + 2rem);
-    background: linear-gradient(
-      to bottom,
-      rgb(var(--color-bg) / 0),
-      rgb(var(--color-bg) / 0.9) 38%,
-      rgb(var(--color-bg))
-    );
+    background: none;
     pointer-events: none;
   }
 
   .app-nav {
     display: grid;
-    min-height: 4.25rem;
+    min-height: 4.5rem;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.2rem;
-    padding: 0.38rem;
+    gap: 0.15rem;
+    padding: 0.375rem max(0.875rem, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(0.875rem, var(--safe-area-left));
     overflow: hidden;
-    border: 1px solid rgb(var(--color-border) / 0.5);
-    border-radius: 0.9rem;
-    background: rgb(var(--color-surface) / 0.96);
-    box-shadow:
-      0 16px 34px rgb(54 39 22 / 0.16),
-      inset 0 1px 0 rgb(255 255 255 / 0.42);
-    backdrop-filter: blur(18px) saturate(1.08);
-    -webkit-backdrop-filter: blur(18px) saturate(1.08);
+    border: 0;
+    border-top: 1px solid rgb(var(--color-accent) / 0.34);
+    border-radius: 0;
+    background: rgb(var(--color-surface));
+    box-shadow: 0 -1px 0 rgb(var(--color-bg) / 0.7);
     pointer-events: auto;
   }
 
@@ -55,35 +47,19 @@
     position: relative;
     display: flex;
     min-width: 0;
-    min-height: 3.35rem;
+    min-height: 3.5rem;
     touch-action: manipulation;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.12rem;
+    gap: 0.2rem;
+    padding: 0.2rem 0.1rem 0.45rem;
     overflow: hidden;
-    border-radius: 0.55rem;
+    border-radius: 0.65rem;
     color: rgb(var(--color-text-muted));
     outline: none;
     text-align: center;
     text-decoration: none;
-    transition:
-      color var(--motion-duration-sm) var(--motion-ease-standard),
-      background-color var(--motion-duration-sm) var(--motion-ease-standard),
-      transform var(--motion-duration-sm) var(--motion-ease-standard);
-  }
-
-  .app-nav-tab::before {
-    position: absolute;
-    inset: 0.15rem;
-    border: 1px solid transparent;
-    border-radius: 0.45rem;
-    background: transparent;
-    content: '';
-    pointer-events: none;
-    transition:
-      border-color var(--motion-duration-sm) var(--motion-ease-standard),
-      background-color var(--motion-duration-sm) var(--motion-ease-standard);
   }
 
   .app-nav-tab__icon,
@@ -94,21 +70,27 @@
 
   .app-nav-tab__icon {
     display: flex;
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.75rem;
+    height: 1.75rem;
     align-items: center;
     justify-content: center;
   }
 
+  .app-nav-tab__icon svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: none;
+  }
+
   .app-nav-tab__label {
     max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
+    white-space: normal;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.66rem;
-    font-weight: 650;
-    line-height: 1.05;
+    font-size: 0.75rem;
+    font-weight: 550;
+    line-height: 1.25;
   }
 
   .app-nav-tab:hover {
@@ -116,41 +98,37 @@
   }
 
   .app-nav-tab:active {
-    transform: translateY(1px);
+    background: rgb(var(--color-accent) / 0.08);
   }
 
   .app-nav-tab:focus-visible {
-    outline: 3px solid rgb(var(--color-focus));
-    outline-offset: 2px;
+    outline: 2px solid rgb(var(--color-focus));
+    outline-offset: -2px;
   }
 
-  .app-nav-tab.is-active {
-    color: rgb(var(--color-accent-strong));
+  .app-nav-tab[aria-current='page'] {
+    color: rgb(var(--color-accent));
   }
 
-  .app-nav-tab.is-active::before {
-    border-color: rgb(var(--color-accent-strong) / 0.28);
-    background: rgb(var(--color-accent-strong) / 0.12);
+  .app-nav-tab[aria-current='page'] .app-nav-tab__label {
+    font-weight: 650;
   }
 
-  html.dark .app-nav,
-  html[data-theme='dark'] .app-nav {
-    border-color: rgb(var(--color-border) / 0.72);
-    background: rgb(var(--color-surface) / 0.97);
-    box-shadow:
-      0 18px 36px rgb(0 0 0 / 0.38),
-      inset 0 1px 0 rgb(255 255 255 / 0.07);
+  .app-nav-tab__active-marker {
+    position: absolute;
+    bottom: 0.2rem;
+    left: 50%;
+    width: 1rem;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+    opacity: 0;
+    transform: translateX(-50%);
+    pointer-events: none;
   }
 
-  html.dark .app-nav-tab.is-active,
-  html[data-theme='dark'] .app-nav-tab.is-active {
-    color: rgb(var(--color-accent-strong));
-  }
-
-  html.dark .app-nav-tab.is-active::before,
-  html[data-theme='dark'] .app-nav-tab.is-active::before {
-    border-color: rgb(var(--color-accent-strong) / 0.35);
-    background: rgb(var(--color-accent-strong) / 0.14);
+  .app-nav-tab[aria-current='page'] .app-nav-tab__active-marker {
+    opacity: 1;
   }
 }
 
@@ -165,21 +143,21 @@ html {
 
 @media (max-width: 399px) {
   .app-nav-stack {
-    width: calc(100% - var(--safe-area-left) - var(--safe-area-right) - 0.7rem);
+    width: 100%;
   }
 
   .app-nav {
-    min-height: 4rem;
+    min-height: 4.5rem;
     gap: 0.08rem;
-    padding: 0.3rem;
+    padding: 0.375rem max(8px, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(8px, var(--safe-area-left));
   }
 
   .app-nav-tab {
-    min-height: 3.15rem;
+    min-height: 3.5rem;
   }
 
   .app-nav-tab__label {
-    font-size: 0.61rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -202,6 +180,8 @@ html {
   }
 
   .app-nav {
+    border: 1px solid rgb(var(--color-accent) / .34);
+    border-radius: 1rem;
     min-height: 0;
     grid-template-columns: minmax(0, 1fr);
     gap: 0.28rem;
@@ -209,18 +189,14 @@ html {
   }
 
   .app-nav-tab {
-    min-height: 4.15rem;
+    min-height: 4.5rem;
     gap: 0.25rem;
-  }
-
-  .app-nav-tab::before {
-    inset: 0.16rem;
   }
 
   .app-nav-tab__label {
     max-width: 4.2rem;
     white-space: normal;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
   }
 
   html,
@@ -244,7 +220,13 @@ html {
     border-width: 2px;
   }
 
-  .app-nav-tab.is-active::before {
-    border-width: 2px;
+  .app-nav-tab[aria-current='page'] .app-nav-tab__active-marker {
+    height: 3px;
+  }
+}
+
+@media (forced-colors: active) {
+  .app-nav-tab[aria-current='page'] .app-nav-tab__active-marker {
+    background: Highlight;
   }
 }

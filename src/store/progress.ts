@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 import type { LibraryReaderLocator, StudiedEntry } from '../types'
 import { getUpdatedStreak } from '../utils/streak'
 import { queueActivityEvent } from './activityEvents'
+import { useReadingPlacesStore } from './readingPlaces'
 
 export interface Session {
   scriptureId: string
@@ -18,11 +19,11 @@ interface ProgressState {
   lastStudied: string | null
   streak: number
   currentSession: Session | null
-  markStudied: (id: string) => void
-  addToReview: (id: string) => void
-  updateSession: (session: Session) => void
-  clearSession: () => void
-  recordSwipeToday: () => void
+  markStudied: (id: string) => boolean
+  addToReview: (id: string) => boolean
+  updateSession: (session: Session) => boolean
+  clearSession: () => boolean
+  recordSwipeToday: () => boolean
 }
 
 const READING_HISTORY_LIMIT = 50
@@ -133,45 +134,64 @@ function todayLocal(): string {
 }
 
 export const useProgressStore = create<ProgressState>()(
-  persist(
-    (set) => ({
-      studied: [],
-      reviewQueue: [],
-      lastStudied: null,
-      streak: 0,
-      currentSession: null,
+  persist<ProgressState, [], [], Partial<ProgressState>>(
+    (set) => {
+      const writeProgress = (update: Partial<ProgressState> | ((state: ProgressState) => Partial<ProgressState>)): boolean => {
+        try {
+          // Persist updates memory first. A blocked disk write must not stop
+          // reading, but callers need an honest durability result.
+          set(update)
+          return Boolean(useProgressStore.persist?.getOptions().storage)
+        } catch {
+          return false
+        }
+      }
+      return {
+        studied: [],
+        reviewQueue: [],
+        lastStudied: null,
+        streak: 0,
+        currentSession: null,
 
-      markStudied: (id) => set(state => ({
-        studied: [...state.studied.filter(s => s.id !== id), { id, swipedAt: new Date().toISOString() }]
-          .slice(-READING_HISTORY_LIMIT),
-        reviewQueue: state.reviewQueue.filter(r => r !== id),
-      })),
+        markStudied: (id) => writeProgress(state => ({
+          studied: [...state.studied.filter(s => s.id !== id), { id, swipedAt: new Date().toISOString() }]
+            .slice(-READING_HISTORY_LIMIT),
+          reviewQueue: state.reviewQueue.filter(r => r !== id),
+        })),
 
-      addToReview: (id) => set(state => ({
-        reviewQueue: state.reviewQueue.includes(id) ? state.reviewQueue : [...state.reviewQueue, id],
-      })),
+        addToReview: (id) => writeProgress(state => ({
+          reviewQueue: state.reviewQueue.includes(id) ? state.reviewQueue : [...state.reviewQueue, id],
+        })),
 
-      updateSession: (session) => set({ currentSession: session }),
+        updateSession: (session) => {
+          const placePersisted = useReadingPlacesStore.getState().remember(session)
+          const sessionPersisted = writeProgress({ currentSession: session })
+          return placePersisted && sessionPersisted
+        },
 
-      clearSession: () => set({ currentSession: null }),
+        clearSession: () => writeProgress({ currentSession: null }),
 
-      recordSwipeToday: () => {
-        const occurredAt = new Date().toISOString()
-        let nextStreak = 0
-        let nextLastStudied: string | null = null
-        set(state => {
-          const today = todayLocal()
-          const updated = getUpdatedStreak({ streak: state.streak, lastStudied: state.lastStudied }, today)
-          nextStreak = updated.streak
-          nextLastStudied = updated.lastStudied
-          return updated
-        })
-        queueActivityEvent('study.swipe-recorded', {
-          streak: nextStreak,
-          lastStudied: nextLastStudied,
-        }, occurredAt)
-      },
-    }),
+        recordSwipeToday: () => {
+          const occurredAt = new Date().toISOString()
+          let nextStreak = 0
+          let nextLastStudied: string | null = null
+          const persisted = writeProgress(state => {
+            const today = todayLocal()
+            const updated = getUpdatedStreak({ streak: state.streak, lastStudied: state.lastStudied }, today)
+            nextStreak = updated.streak
+            nextLastStudied = updated.lastStudied
+            return updated
+          })
+          try {
+            queueActivityEvent('study.swipe-recorded', {
+              streak: nextStreak,
+              lastStudied: nextLastStudied,
+            }, occurredAt)
+          } catch { /* Optional sync bookkeeping cannot interrupt reading. */ }
+          return persisted
+        },
+      }
+    },
     {
       name: 'sikh-progress',
       version: 3,

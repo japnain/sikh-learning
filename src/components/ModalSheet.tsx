@@ -24,6 +24,7 @@ export default function ModalSheet({
   const contentRef = useRef<HTMLDivElement | null>(null)
   const returnFocusRef = useRef<HTMLElement | null>(null)
   const focusWasRestoredRef = useRef(false)
+  const openEffectGenerationRef = useRef(0)
   // Radix may move focus to a guard before `onOpenAutoFocus` runs in Chromium.
   // Capture the opener from this render, while a conditionally mounted sheet is
   // still being created in response to the originating click/key press.
@@ -45,8 +46,13 @@ export default function ModalSheet({
     focusWasRestoredRef.current = true
   }, [])
 
+  const hasLiveOpenSheet = useCallback((generation: number) => (
+    generation !== openEffectGenerationRef.current || contentRef.current?.isConnected === true
+  ), [])
+
   useEffect(() => {
     if (!open) return
+    const generation = ++openEffectGenerationRef.current
     const contentElement = contentRef.current
     const unlockScroll = lockAppScroll()
 
@@ -55,12 +61,13 @@ export default function ModalSheet({
       if (typeof window === 'undefined' || focusWasRestoredRef.current) return
       window.requestAnimationFrame(() => {
         // React Strict Mode replays effects without removing the open sheet.
-        // Only treat cleanup as dismissal once the dialog content is gone.
-        if (contentElement?.isConnected) return
+        // The first setup can precede portal mounting, so a null captured ref
+        // cannot identify a dismissal. A newer setup owns the open sheet.
+        if (contentElement?.isConnected || hasLiveOpenSheet(generation)) return
         restoreReturnFocus()
       })
     }
-  }, [open, restoreReturnFocus])
+  }, [open, restoreReturnFocus, hasLiveOpenSheet])
 
   return (
     <Dialog.Root open={open} onOpenChange={nextOpen => {
@@ -78,7 +85,14 @@ export default function ModalSheet({
           data-testid={testId}
           onOpenAutoFocus={event => {
             const activeElement = returnFocusCandidate ?? document.activeElement
-            if (activeElement instanceof HTMLElement && activeElement !== document.body) {
+            // Strict Mode replays the mount after focus has entered the sheet.
+            // Preserve the external opener instead of replacing it with a
+            // soon-to-be-removed dialog control or a Radix focus guard.
+            if (activeElement instanceof HTMLElement
+              && activeElement !== document.body
+              && activeElement.isConnected
+              && !contentRef.current?.contains(activeElement)
+              && !activeElement.hasAttribute('data-radix-focus-guard')) {
               returnFocusRef.current = activeElement
               focusWasRestoredRef.current = false
             }

@@ -3,13 +3,15 @@ import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
-import { useNitemStore } from '../store/nitnem'
+import { normalizePersistedNitnemIds, useNitemStore } from '../store/nitnem'
+import { getNitnemCompletedIds, useNitnemHistoryStore } from '../store/nitnemHistory'
+import { toLocalDayStamp } from '../utils/localDates'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import { useThemeStore } from '../store/theme'
+import { readStoredThemeMode, useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
 import { getNaamrasDeviceId } from './device'
 import { buildBookmarkNaturalKey, buildFavoriteNaturalKey } from './savedItemKeys'
@@ -200,6 +202,7 @@ function extractProfileRecord(
 ): CloudProfileRecord {
   const locale = useLocaleStore.getState().locale
   const darkMode = useThemeStore.getState().dark
+  const themeMode = useThemeStore.getState().mode
   const language = useLanguageStore.getState()
   const onboarding = useOnboardingStore.getState()
   const sundarGutkaLengths = useSundarGutkaLengthStore.getState().lengths
@@ -229,6 +232,7 @@ function extractProfileRecord(
   const semanticPayload = {
     locale,
     darkMode,
+    themeMode,
     reader,
     onboarding: onboardingState,
   }
@@ -666,7 +670,12 @@ function applyProfileRecord(profile: CloudProfileRecord | null | undefined) {
   if (!profile || profile.deletedAt) return
 
   useLocaleStore.setState({ locale: profile.locale })
-  useThemeStore.getState().setDark(profile.darkMode)
+  const theme = useThemeStore.getState()
+  if (profile.themeMode === 'light' || profile.themeMode === 'dark' || profile.themeMode === 'system') {
+    theme.setMode(profile.themeMode)
+  } else if (theme.mode !== 'system' || readStoredThemeMode() !== 'system') {
+    theme.setDark(profile.darkMode)
+  }
   useLanguageStore.setState({
     scriptMode: profile.reader.scriptMode,
     showTransliteration: profile.reader.showTransliteration,
@@ -752,9 +761,24 @@ function applyLearningProgress(records: CloudLearningProgressRecord[] | undefine
       case 'reading-progress':
         useReadingProgressStore.setState(record.payload as Partial<ReturnType<typeof useReadingProgressStore.getState>>)
         break
-      case 'nitnem-state':
-        useNitemStore.setState(record.payload as Partial<ReturnType<typeof useNitemStore.getState>>)
+      case 'nitnem-state': {
+        const current = useNitemStore.getState()
+        const date = typeof record.payload.completedDate === 'string' ? record.payload.completedDate : current.completedDate
+        const completedIds = normalizePersistedNitnemIds(record.payload.completedIds, false)
+        const history = useNitnemHistoryStore.getState()
+        if (date === toLocalDayStamp(new Date())) {
+          const revision = `remote:${record.id}:${record.deviceId}:${record.clientUpdatedAt}:${[...completedIds].sort().join(',')}`
+          history.reconcileCurrentDay(date, completedIds, revision, record.clientUpdatedAt)
+        } else {
+          history.importLegacy(date, completedIds)
+        }
+        useNitemStore.setState({
+          completedDate: date,
+          completedIds: getNitnemCompletedIds(useNitnemHistoryStore.getState().events, date),
+          selectedIds: Array.isArray(record.payload.selectedIds) ? normalizePersistedNitnemIds(record.payload.selectedIds) : current.selectedIds,
+        })
         break
+      }
     }
   }
 }

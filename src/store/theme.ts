@@ -2,11 +2,14 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 export const THEME_STORAGE_KEY = 'sikh-theme'
-export const LIGHT_THEME_COLOR = '#f2f1e9'
-export const DARK_THEME_COLOR = '#070c0e'
+export const LIGHT_THEME_COLOR = '#e5dfd2'
+export const DARK_THEME_COLOR = '#111923'
+export type ThemeMode = 'light' | 'dark' | 'system'
 
 export interface ThemeState {
   dark: boolean
+  mode: ThemeMode
+  setMode: (mode: ThemeMode) => void
   setDark: (next: boolean) => void
   toggle: () => void
 }
@@ -14,8 +17,22 @@ export interface ThemeState {
 type PersistedThemeState = {
   state?: {
     dark?: unknown
+    mode?: unknown
   }
   dark?: unknown
+  mode?: unknown
+}
+
+function isThemeMode(value: unknown): value is ThemeMode {
+  return value === 'light' || value === 'dark' || value === 'system'
+}
+
+const systemThemeQuery = typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+  ? window.matchMedia('(prefers-color-scheme: dark)')
+  : null
+
+function resolveDark(mode: ThemeMode): boolean {
+  return mode === 'system' ? (systemThemeQuery?.matches ?? false) : mode === 'dark'
 }
 
 function getBrowserStorage(): Storage | null {
@@ -29,6 +46,11 @@ function getBrowserStorage(): Storage | null {
 }
 
 export function readStoredDarkPreference(storage = getBrowserStorage()): boolean | null {
+  const mode = readStoredThemeMode(storage)
+  return mode === null || mode === 'system' ? null : mode === 'dark'
+}
+
+export function readStoredThemeMode(storage = getBrowserStorage()): ThemeMode | null {
   if (!storage) return null
 
   try {
@@ -36,19 +58,17 @@ export function readStoredDarkPreference(storage = getBrowserStorage()): boolean
     if (!stored) return null
 
     const parsed = JSON.parse(stored) as PersistedThemeState
+    const mode = parsed.state?.mode ?? parsed.mode
+    if (isThemeMode(mode)) return mode
     const value = parsed.state?.dark ?? parsed.dark
-    return typeof value === 'boolean' ? value : null
+    return typeof value === 'boolean' ? (value ? 'dark' : 'light') : null
   } catch {
     return null
   }
 }
 
 export function getInitialDarkPreference(): boolean {
-  const stored = readStoredDarkPreference()
-  if (stored !== null) return stored
-
-  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
+  return resolveDark(readStoredThemeMode() ?? 'system')
 }
 
 export function applyThemeToDocument(dark: boolean, documentRef = typeof document === 'undefined' ? null : document) {
@@ -64,27 +84,66 @@ export function applyThemeToDocument(dark: boolean, documentRef = typeof documen
 }
 
 const initialDark = getInitialDarkPreference()
+const initialMode = readStoredThemeMode() ?? 'system'
 applyThemeToDocument(initialDark)
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
       dark: initialDark,
+      mode: initialMode,
+      setMode: (mode) => {
+        const dark = resolveDark(mode)
+        applyThemeToDocument(dark)
+        set({ mode, dark })
+      },
       setDark: (next) => set(() => {
         applyThemeToDocument(next)
-        return { dark: next }
+        return { dark: next, mode: next ? 'dark' : 'light' }
       }),
       toggle: () => set(state => {
         const next = !state.dark
         applyThemeToDocument(next)
-        return { dark: next }
+        return { dark: next, mode: next ? 'dark' : 'light' }
       }),
     }),
     {
       name: THEME_STORAGE_KEY,
+      version: 1,
+      migrate: (persistedState) => {
+        const state = (persistedState ?? {}) as { mode?: unknown; dark?: unknown }
+        const mode = isThemeMode(state.mode)
+          ? state.mode
+          : typeof state.dark === 'boolean' ? (state.dark ? 'dark' : 'light') : 'system'
+        return { mode, dark: resolveDark(mode) }
+      },
+      merge: (persistedState, currentState) => {
+        const state = (persistedState ?? {}) as { mode?: unknown; dark?: unknown }
+        const mode = isThemeMode(state.mode) ? state.mode : currentState.mode
+        return { ...currentState, mode, dark: resolveDark(mode) }
+      },
       onRehydrateStorage: () => (state) => {
         applyThemeToDocument(state?.dark ?? getInitialDarkPreference())
       },
     }
   )
 )
+
+const handleSystemThemeChange = (event: MediaQueryListEvent) => {
+  if (useThemeStore.getState().mode !== 'system') return
+  applyThemeToDocument(event.matches)
+  useThemeStore.setState({ dark: event.matches })
+}
+
+if (systemThemeQuery?.addEventListener) {
+  systemThemeQuery.addEventListener('change', handleSystemThemeChange)
+} else {
+  systemThemeQuery?.addListener?.(handleSystemThemeChange)
+}
+
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    if (systemThemeQuery?.removeEventListener) systemThemeQuery.removeEventListener('change', handleSystemThemeChange)
+    else systemThemeQuery?.removeListener?.(handleSystemThemeChange)
+  })
+}

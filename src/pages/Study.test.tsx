@@ -9,6 +9,9 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useLanguageStore } from '../store/language'
 import { useMusicStore } from '../store/music'
 import { useProgressStore } from '../store/progress'
+import { getExactReadingKey, useReadingPlacesStore } from '../store/readingPlaces'
+import { buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
+import { getHomeNitnemResume } from '../utils/homeNitnemResume'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
@@ -20,7 +23,7 @@ import {
   getReaderEditorialCopyForBani,
 } from '../content/readerEditorialCopy'
 import { server } from '../test/msw-server'
-import { MOCK_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE } from '../test/msw-handlers'
+import { MOCK_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE, MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
 import { mockDocumentScroll } from '../test/documentScroll'
 
 vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
@@ -83,6 +86,34 @@ vi.mock('../features/shareHighlight/ShareHighlightSheet', () => ({
 function LocationSpy() {
   const location = useLocation()
   return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
+}
+
+async function openReaderTools() {
+  const existing = screen.queryByRole('dialog', { name: 'Reading tools' })
+  if (existing) return existing
+  fireEvent.click(await screen.findByRole('button', { name: 'Reading tools' }))
+  return screen.getByRole('dialog', { name: 'Reading tools' })
+}
+
+function expandReaderDetails(scope: HTMLElement, label: string) {
+  const summary = within(scope).getByText(label, { exact: true }).closest('summary')
+  expect(summary).not.toBeNull()
+  fireEvent.click(summary!)
+  expect(scope).toBeInTheDocument()
+  expect(summary!.closest('details')).toHaveAttribute('open')
+}
+
+async function openReaderAbout() {
+  const tools = await openReaderTools()
+  expandReaderDetails(tools, 'About this reading')
+  return tools
+}
+
+async function openReaderSettings(section?: 'Study layers' | 'Text options') {
+  fireEvent.click(await screen.findByRole('button', { name: 'Reader Controls', exact: true }))
+  const sheet = screen.getByRole('dialog', { name: 'Reader Controls', exact: true })
+  if (section) expandReaderDetails(sheet, section)
+  return sheet
 }
 
 let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
@@ -158,6 +189,7 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
+    await openReaderTools()
     await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
   })
 
@@ -170,8 +202,10 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
+    await openReaderTools()
     await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
     const scrollCallsBeforeOpen = scrollSpy.mock.calls.length
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add bookmark/i))
 
     const bookmarkForm = await screen.findByTestId('study-bookmark-form')
@@ -191,13 +225,16 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
+    await openReaderTools()
     await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add bookmark/i))
     const bookmarkForm = await screen.findByTestId('study-bookmark-form')
     fireEvent.click(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' }))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
     expect(screen.getByText(/bookmark saved/i)).toBeInTheDocument()
 
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/remove bookmark/i))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(false)
     expect(screen.getByText(/bookmark removed/i)).toBeInTheDocument()
@@ -210,10 +247,13 @@ describe('Study bookmark button', () => {
       </MemoryRouter>
     )
 
+    await openReaderTools()
     await waitFor(() => expect(screen.queryByLabelText(/add favorite/i)).toBeInTheDocument())
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add favorite/i))
 
     expect(screen.getByText(/added to favorites/i)).toBeInTheDocument()
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/remove favorite/i))
     expect(useFavoritesStore.getState().favorites).toHaveLength(0)
     expect(screen.getByText(/removed from favorites/i)).toBeInTheDocument()
@@ -244,12 +284,15 @@ describe('Study bookmark button', () => {
       </MemoryRouter>
     )
 
+    await openReaderTools()
     await screen.findByLabelText(/add bookmark/i)
     expect(screen.getByLabelText(/add favorite/i)).toBeInTheDocument()
 
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add favorite/i))
     expect(useFavoritesStore.getState().favorites).toHaveLength(2)
 
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add bookmark/i))
     const bookmarkForm = await screen.findByTestId('study-bookmark-form')
     fireEvent.click(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' }))
@@ -275,6 +318,7 @@ describe('Study bookmark button', () => {
       </MemoryRouter>
     )
 
+    await openReaderTools()
     await waitFor(() => expect(screen.getByLabelText(/^share$/i)).toBeInTheDocument())
     fireEvent.click(screen.getByLabelText(/^share$/i))
 
@@ -452,7 +496,7 @@ describe('Study reader title hierarchy', () => {
 
     const stateHeading = await screen.findByRole('heading', {
       level: 2,
-      name: 'Nothing landed on this route yet.',
+      name: 'This passage isn’t available.',
     })
     const pageHeadings = screen.getAllByRole('heading', { level: 1 })
 
@@ -464,28 +508,14 @@ describe('Study reader title hierarchy', () => {
 })
 
 describe('Study renders all shabads on an ang', () => {
-  it('keeps the on-this-ang outline collapsed by default until expanded', async () => {
-    render(
-      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
-        <Routes><Route path="/study" element={<Study />} /></Routes>
-      </MemoryRouter>
-    )
-
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /on this ang/i })).toBeInTheDocument()
-    })
-
-    const outlineButton = screen.getByRole('button', { name: /on this ang/i })
-    expect(outlineButton).toHaveAttribute('aria-expanded', 'false')
-    expect(document.getElementById('study-entry-outline-panel')).toBeNull()
-
-    fireEvent.click(outlineButton)
-
-    expect(outlineButton).toHaveAttribute('aria-expanded', 'true')
-    const outlinePanel = document.getElementById('study-entry-outline-panel')
-    expect(outlinePanel).not.toBeNull()
-    expect(within(outlinePanel as HTMLElement).getByText(/Shabad 1 of 2/i)).toBeInTheDocument()
-    expect(within(outlinePanel as HTMLElement).getByText(/Shabad 2 of 2/i)).toBeInTheDocument()
+  it('opens the complete source navigator without showing a duplicate end-of-bani outline', async () => {
+    render(<MemoryRouter initialEntries={['/study?source=G&ang=1']}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
+    await screen.findByTestId('study-entry-list')
+    expect(screen.queryByTestId('study-entry-outline')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Jump to section', exact: true }))
+    const navigator = screen.getByRole('dialog', { name: 'Reading sections' })
+    expect(within(navigator).getAllByRole('listitem')).toHaveLength(2)
+    expect(within(navigator).getAllByText(/Ang 1/)).toHaveLength(2)
   })
 
   it('renders multiple study cards for all shabads on a page', async () => {
@@ -571,9 +601,9 @@ describe('Study renders all shabads on an ang', () => {
     const actionSheet = screen.getByTestId('study-verse-actions-sheet')
 
     expect(actionSheet).toBeVisible()
-    expect(within(dialog).getByRole('button', { name: /save phrase/i })).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: /save verse/i })).toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: /^Copy$/i })).toBeInTheDocument()
-    expect(within(dialog).getByRole('button', { name: /^Share$/i })).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: /^Share verse$/i })).toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: /^Bookmark$/i })).toBeInTheDocument()
   })
 
@@ -590,12 +620,88 @@ describe('Study renders all shabads on an ang', () => {
 
     fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
     fireEvent.click(
-      within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save phrase/i })
+      within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save verse/i })
     )
 
     expect(
       useVocabStore.getState().vocab.some(item => item.kind === 'phrase' && item.word.includes('ੴ'))
     ).toBe(true)
+  })
+
+  it('keeps a failed verse save session-only and retries the same phrase without changing its review or context', async () => {
+    const mounted = render(<MemoryRouter initialEntries={['/study?source=G&ang=1']}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
+    await screen.findAllByRole('button', { name: /open verse actions/i })
+    const openActions = () => fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
+    openActions()
+    const originalWrite = localStorage.setItem.bind(localStorage)
+    const write = vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+      if (key === 'sikh-vocab') throw new Error('Storage full')
+      originalWrite(key, value)
+    })
+    try {
+      fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: 'Save verse', exact: true }))
+      expect(screen.getByRole('status')).toHaveTextContent('Saved for this session, but device storage is unavailable.')
+      expect(screen.getByRole('status')).not.toHaveTextContent('Verse saved to review.')
+      const retained = useVocabStore.getState().vocab.find(item => item.kind === 'phrase')!
+      expect(retained).toBeDefined()
+      const originalContext = structuredClone(retained.context)
+      const originalReview = structuredClone(retained.review)
+      mounted.unmount()
+      render(<MemoryRouter initialEntries={['/study?source=G&ang=1']}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
+      await screen.findAllByRole('button', { name: /open verse actions/i })
+      openActions()
+      const dialog = screen.getByRole('dialog', { name: /verse actions/i })
+      expect(within(dialog).queryByRole('button', { name: 'Verse saved', exact: true })).not.toBeInTheDocument()
+      const retry = within(dialog).getByRole('button', { name: 'Save verse', exact: true })
+      write.mockRestore()
+      fireEvent.click(retry)
+      expect(screen.getByRole('status')).toHaveTextContent('Verse saved to review.')
+      const phrases = useVocabStore.getState().vocab.filter(item => item.kind === 'phrase')
+      expect(phrases).toHaveLength(1)
+      expect(phrases[0]).toMatchObject({ word: retained.word, context: originalContext, review: originalReview })
+      const persisted = JSON.parse(localStorage.getItem('sikh-vocab')!).state.vocab.filter((item: { kind?: string }) => item.kind === 'phrase')
+      expect(persisted).toHaveLength(1)
+      expect(persisted[0]).toMatchObject({ word: retained.word, context: originalContext, review: originalReview })
+      openActions()
+      expect(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: 'Verse saved', exact: true })).toBeInTheDocument()
+    } finally {
+      write.mockRestore()
+    }
+  })
+
+  it('keeps unattributed Sundar Gutka phrases neutral and shares their exact bani route', async () => {
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+      const body = await request.json() as { path?: string }
+      if (body.path !== '/v2/banis/21') return
+      return HttpResponse.json({
+        baniInfo: { baniID: 21, source: { sourceId: null } },
+        verses: MOCK_REHRAS_BANI_RESPONSE.verses.map(item => ({
+          ...item,
+          verse: Object.fromEntries(Object.entries(item.verse).filter(([key]) => key !== 'source' && key !== 'shabadId')),
+        })),
+      })
+    }))
+    const option = getNitnemOption('rehras-sahib')!
+    render(
+      <MemoryRouter initialEntries={[buildNitnemStudyPath(option)]}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    expect((await screen.findAllByText('Sundar Gutka')).length).toBeGreaterThan(0)
+    fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save verse/i }))
+    const phrase = useVocabStore.getState().vocab.find(item => item.kind === 'phrase')!
+    expect(phrase).toMatchObject({ scripture: 'Sundar Gutka', sourceId: '', context: { scripture: 'Sundar Gutka', sourceId: '' } })
+    expect(phrase.context).not.toHaveProperty('shabadId')
+    expect(phrase.context).not.toHaveProperty('verseId')
+
+    fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: 'Share verse' }))
+    const sharePath = await screen.findByTestId('share-source-path')
+    expect(getExactReadingKey(sharePath.textContent)).toBe(getExactReadingKey(buildNitnemStudyPath(option)))
+    expect(sharePath.textContent).toContain('resumeVerseId=')
+    expect(sharePath.textContent).not.toContain('shabadId=')
   })
 
   it('uses the selected English translation source', async () => {
@@ -622,7 +728,7 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+    await openReaderSettings('Study layers')
     fireEvent.click(screen.getByRole('button', { name: /transliteration off/i }))
 
     expect(screen.getByText(/ikOankaar sat naam/i)).toBeInTheDocument()
@@ -639,7 +745,7 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getByText('One Universal Creator God. The Name Is Truth.')).toBeInTheDocument()
     })
 
-    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+    await openReaderSettings('Text options')
     fireEvent.click(screen.getByRole('button', { name: /^Punjabi$/i }))
 
     expect(screen.getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
@@ -686,21 +792,22 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    expect(screen.getByTestId('study-reader-header')).toHaveTextContent('Vaar 40')
+    expect(within(screen.getByTestId('study-reader-topbar')).getByText('Vaar 40')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Vaar 39/i })).toBeEnabled()
-    expect(screen.getByRole('button', { name: /Vaar 40/i })).toBeDisabled()
+    expect(within(screen.getByTestId('study-ang-navigation')).getByRole('button', { name: /Vaar 40/i })).toBeDisabled()
     expect(screen.queryByRole('button', { name: /Ang 39/i })).not.toBeInTheDocument()
   })
 })
 
 describe('Study soundscapes and tracking', () => {
-  it('keeps compact soundscapes collapsed by default while retaining playback controls', async () => {
+  it('keeps soundscapes in reading tools, collapsed by default, with playback controls', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
 
+    fireEvent.click(await screen.findByRole('button', { name: 'Reading tools' }))
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /expand soundscapes/i })).toBeInTheDocument()
     })
@@ -717,6 +824,8 @@ describe('Study soundscapes and tracking', () => {
     fireEvent.click(screen.getByRole('button', { name: /pause soundscape/i }))
     expect(useMusicStore.getState().selectedSoundId).toBe('mountain-stream')
     expect(useMusicStore.getState().isPlaying).toBe(false)
+    fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Close', exact: true }))
+    await act(async () => { await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))) })
   })
 
   it('updates reading progress only after scrolling settles and avoids layout width writes', async () => {
@@ -747,7 +856,7 @@ describe('Study soundscapes and tracking', () => {
 
     fireEvent(window, new Event('resize'))
 
-    const progress = screen.getByRole('progressbar', { name: /reading progress/i })
+    const progress = screen.getByRole('progressbar', { name: 'Reading position' })
     const progressBar = progress.firstElementChild as HTMLElement
     await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '38'))
 
@@ -895,7 +1004,6 @@ describe('Study soundscapes and tracking', () => {
       const ardaasLines = screen.getAllByTestId('study-line')
       expect(ardaasLines.some(line => line.textContent?.includes('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ'))).toBe(true)
       expect(ardaasLines.find(line => line.dataset.verseId === '3737')).toHaveTextContent('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')
-      expect(screen.getByText(/SGGS · Ang 119/i)).toBeInTheDocument()
       expect(screen.queryByRole('button', { name: /Ang 118/i })).not.toBeInTheDocument()
       expect(screen.queryByRole('button', { name: /Ang 120/i })).not.toBeInTheDocument()
       expect(useProgressStore.getState().streak).toBe(2)
@@ -910,8 +1018,6 @@ describe('Study soundscapes and tracking', () => {
 
       expect(screen.getByText(/Selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
       expect(screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote!)).toBeInTheDocument()
-      expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.sourceLine)).toBeInTheDocument()
-      expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.dek)).toBeInTheDocument()
       expect(within(screen.getByTestId('study-reader-topbar')).getByRole('heading', {
         level: 1,
         name: 'Personal Hukamnama',
@@ -922,7 +1028,10 @@ describe('Study soundscapes and tracking', () => {
       expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
       expect(screen.queryByText(/Go to source shabad/i)).not.toBeInTheDocument()
       expect(screen.queryByText('Exact Search Result')).not.toBeInTheDocument()
-      expect(screen.queryByRole('button', { name: /Ang /i })).not.toBeInTheDocument()
+      expect(screen.queryByTestId('study-ang-navigation')).not.toBeInTheDocument()
+      await openReaderAbout()
+      expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.sourceLine)).toBeInTheDocument()
+      expect(screen.getByText(PERSONAL_HUKAMNAMA_EDITORIAL_COPY.dek)).toBeInTheDocument()
       expect(useProgressStore.getState().streak).toBe(2)
       expect(useProgressStore.getState().currentSession).toEqual(session)
       expect(useReadingProgressStore.getState().progress).toEqual({})
@@ -975,7 +1084,9 @@ describe('Study exact shabad mode', () => {
       </MemoryRouter>
     )
 
-    const context = await screen.findByTestId('study-amrit-keertan-context')
+    await screen.findByTestId('study-entry-list')
+    const tools = await openReaderAbout()
+    const context = within(tools).getByTestId('study-amrit-keertan-context')
 
     expect(within(context).getByText('From Amrit Keertan')).toBeInTheDocument()
     expect(within(context).getByText('Section 1 · AK Page 65 · Item 2')).toBeInTheDocument()
@@ -1029,10 +1140,12 @@ describe('Study exact shabad mode', () => {
       </MemoryRouter>
     )
 
+    await openReaderTools()
     await waitFor(() => {
       expect(screen.getByLabelText(/add favorite/i)).toBeInTheDocument()
     })
 
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add favorite/i))
 
     await waitFor(() => {
@@ -1061,7 +1174,9 @@ describe('Study exact shabad mode', () => {
       </MemoryRouter>
     )
 
+    await openReaderTools()
     await screen.findByLabelText(/add favorite/i)
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/add favorite/i))
 
     const favorite = useFavoritesStore.getState().favorites[0]
@@ -1090,7 +1205,9 @@ describe('Study exact shabad mode', () => {
       </MemoryRouter>
     )
 
+    await openReaderTools()
     await screen.findByLabelText(/remove favorite/i)
+    await openReaderTools()
     fireEvent.click(screen.getByLabelText(/remove favorite/i))
     expect(useFavoritesStore.getState().favorites).toHaveLength(0)
   })
@@ -1128,7 +1245,7 @@ describe('Study exact shabad mode', () => {
     const savedBanner = await screen.findByTestId('study-reader-saved-copy')
     expect(savedBanner).toHaveTextContent(/passage already saved on this device/i)
     expect(screen.getByTestId('study-entry-list')).toHaveTextContent('ਸੰਭਾਲਿਆ ਆਫ਼ਲਾਈਨ ਪਾਠ')
-    expect(screen.queryByText(/This reading view needs another pass/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/This reading couldn’t be loaded/i)).not.toBeInTheDocument()
     expect(screen.getByTestId('page-study')).toHaveAttribute('data-ai-state', 'degraded')
   })
 
@@ -1158,7 +1275,7 @@ describe('Study exact shabad mode', () => {
       </MemoryRouter>
     )
 
-    expect(await screen.findByText(/This reading view needs another pass/i)).toBeInTheDocument()
+    expect(await screen.findByText(/This reading couldn’t be loaded/i)).toBeInTheDocument()
     expect(screen.queryByTestId('study-reader-saved-copy')).not.toBeInTheDocument()
     expect(screen.queryByText('ਇਹ ਨਿੱਜੀ ਹੁਕਮਨਾਮਾ ਨਹੀਂ ਹੈ')).not.toBeInTheDocument()
   })
@@ -1193,13 +1310,13 @@ describe('Study exact shabad mode', () => {
     expect(offlineLine).toHaveAttribute('data-verse-id', '0')
 
     fireEvent.click(screen.getByRole('button', { name: /open verse actions/i }))
-    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save phrase/i }))
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save verse/i }))
     const savedPhrase = useVocabStore.getState().vocab.find(item => item.word === 'ਸੰਭਾਲਿਆ ਕੈਨੋਨਿਕਲ ਪਾਠ')
     expect(savedPhrase?.context).not.toHaveProperty('shabadId')
     expect(savedPhrase?.context).not.toHaveProperty('verseId')
 
     fireEvent.click(screen.getByRole('button', { name: /open verse actions/i }))
-    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /^share$/i }))
+    fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: 'Share verse' }))
     const composer = await screen.findByTestId('share-highlight-sheet-test-double')
     expect(within(composer).getByTestId('share-source-path')).toHaveTextContent('/study?source=G&ang=1')
     expect(within(composer).getByTestId('share-source-path')).not.toHaveTextContent('shabadId=1')
@@ -1225,7 +1342,7 @@ describe('Study exact shabad mode', () => {
     })
   })
 
-  it('offers the same shabad navigation at the end of paginated scripture content', async () => {
+  it('keeps long scripture content continuous when jumping between its ordered sections', async () => {
     const shabadTitles = [
       'ਪਹਿਲਾ ਸ਼ਬਦ',
       'ਦੂਜਾ ਸ਼ਬਦ',
@@ -1258,8 +1375,8 @@ describe('Study exact shabad mode', () => {
       })
     )
 
-    const scrollIntoViewSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
-    const scrollToSpy = vi.spyOn(window, 'scrollTo')
+    const jumpedTo: string[] = []
+    vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(function (this: HTMLElement) { jumpedTo.push(this.dataset.verseId ?? this.id) })
 
     render(
       <MemoryRouter initialEntries={['/study?baniDbId=99&bani=Test%20Reading']}>
@@ -1267,30 +1384,15 @@ describe('Study exact shabad mode', () => {
       </MemoryRouter>
     )
 
-    const topNavigator = await screen.findByTestId('study-entry-paginator')
-    const bottomNavigator = await screen.findByTestId('study-entry-paginator-bottom')
-    const previousButton = within(bottomNavigator).getByRole('button', { name: /Previous part:/i })
-    const nextButton = within(bottomNavigator).getByRole('button', { name: /Next part:/i })
-
-    expect(screen.getAllByTestId('study-card')).toHaveLength(1)
-    expect(within(bottomNavigator).getByText('Part 1 of 5')).toBeInTheDocument()
-    expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1')
-    expect(previousButton).toBeDisabled()
-    expect(nextButton).toBeEnabled()
-    scrollIntoViewSpy.mockClear()
-
-    fireEvent.click(nextButton)
-
-    await waitFor(() => {
-      expect(within(topNavigator).getByText('Part 2 of 5')).toBeInTheDocument()
-      expect(within(bottomNavigator).getByText('Part 2 of 5')).toBeInTheDocument()
-      expect(within(bottomNavigator).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '2')
-      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
-    })
-
-    expect(scrollIntoViewSpy).not.toHaveBeenCalled()
-    expect(within(bottomNavigator).getByRole('button', { name: /Previous part: ਪਹਿਲਾ ਸ਼ਬਦ/i })).toBeEnabled()
-    expect(within(bottomNavigator).getByRole('button', { name: /Next part: ਤੀਜਾ ਸ਼ਬਦ/i })).toBeEnabled()
+    await waitFor(() => expect(screen.getAllByTestId('study-card')).toHaveLength(5))
+    expect(screen.queryByTestId('study-entry-paginator')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('study-entry-paginator-bottom')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Jump to section' }))
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Reading sections' })).getByRole('button', { name: /ਪੰਜਵਾਂ ਸ਼ਬਦ/ }))
+    await waitFor(() => expect(jumpedTo).toContain('8004'))
+    expect(document.getElementById('study-entry-5')).toHaveFocus()
+    expect(screen.getAllByTestId('study-card')).toHaveLength(5)
+    expect(screen.getAllByTestId('study-line').map(line => Number(line.dataset.verseId))).toEqual(verses.map(verse => verse.verseId))
   })
 })
 
@@ -1378,6 +1480,9 @@ describe('Study hukamnama mode', () => {
         level: 1,
         name: DAILY_HUKAMNAMA_EDITORIAL_COPY.title,
       })).toBeInTheDocument()
+    })
+    await openReaderAbout()
+    await waitFor(() => {
       expect(within(screen.getByTestId('study-reader-header')).getByText(
         DAILY_HUKAMNAMA_EDITORIAL_COPY.sourceLine
       )).toBeInTheDocument()
@@ -1438,8 +1543,8 @@ describe('Study hukamnama mode', () => {
       </MemoryRouter>
     )
 
-    const topbar = await screen.findByTestId('study-reader-topbar')
-    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    const tools = await openReaderTools()
+    const shareButton = within(tools).getByRole('button', { name: /^Share$/i })
     await waitFor(() => expect(shareButton).toBeEnabled())
     fireEvent.click(shareButton)
 
@@ -1492,8 +1597,8 @@ describe('Study hukamnama mode', () => {
       </MemoryRouter>
     )
 
-    const topbar = await screen.findByTestId('study-reader-topbar')
-    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    const tools = await openReaderTools()
+    const shareButton = within(tools).getByRole('button', { name: /^Share$/i })
     await waitFor(() => expect(shareButton).toBeEnabled())
     shareButton.focus()
     fireEvent.click(shareButton)
@@ -1535,7 +1640,7 @@ describe('Study hukamnama mode', () => {
     expect(within(composer).getByTestId('share-provenance')).toHaveTextContent('2026-04-05')
 
     fireEvent.click(within(composer).getByRole('button', { name: 'Close share image' }))
-    await waitFor(() => expect(shareButton).toHaveFocus())
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Reading tools' })).toHaveFocus())
   })
 
   it('preserves inferred structure and the full Ang range in Hukamnama share content', async () => {
@@ -1576,8 +1681,8 @@ describe('Study hukamnama mode', () => {
       </MemoryRouter>
     )
 
-    const topbar = await screen.findByTestId('study-reader-topbar')
-    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    const tools = await openReaderTools()
+    const shareButton = within(tools).getByRole('button', { name: /^Share$/i })
     await waitFor(() => expect(shareButton).toBeEnabled())
     fireEvent.click(shareButton)
 
@@ -1640,8 +1745,8 @@ describe('Study hukamnama mode', () => {
       </MemoryRouter>
     )
 
-    const topbar = await screen.findByTestId('study-reader-topbar')
-    const shareButton = within(topbar).getByRole('button', { name: /^Share$/i })
+    const tools = await openReaderTools()
+    const shareButton = within(tools).getByRole('button', { name: /^Share$/i })
     await waitFor(() => expect(shareButton).toBeEnabled())
     fireEvent.click(shareButton)
 
@@ -1664,9 +1769,9 @@ describe('Study hukamnama mode', () => {
       </MemoryRouter>
     )
 
-    const topbar = await screen.findByTestId('study-reader-topbar')
-    await waitFor(() => expect(within(topbar).getByRole('button', { name: /^Share$/i })).toBeEnabled())
-    fireEvent.click(within(topbar).getByRole('button', { name: /^Share$/i }))
+    const tools = await openReaderTools()
+    await waitFor(() => expect(within(tools).getByRole('button', { name: /^Share$/i })).toBeEnabled())
+    fireEvent.click(within(tools).getByRole('button', { name: /^Share$/i }))
 
     const expectedLines = ['ੴ ਸਤਿ ਨਾਮੁ', 'ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ']
     const composer = await screen.findByTestId('share-highlight-sheet-test-double')
@@ -1695,11 +1800,12 @@ describe('Study hukamnama mode', () => {
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Japji Sahib' })).toBeInTheDocument()
       expect(within(screen.getByTestId('study-reader-topbar')).getByText('Japji Sahib')).toBeInTheDocument()
-      expect(screen.getByText(japjiCopy.dek)).toBeInTheDocument()
     })
 
     expect(within(screen.getByTestId('study-reader-topbar')).queryByText(/^Gurbani$/i)).not.toBeInTheDocument()
 
+    await openReaderAbout()
+    expect(screen.getByText(japjiCopy.dek)).toBeInTheDocument()
     fireEvent.click(within(screen.getByTestId('study-reader-context')).getByRole('button'))
     expect(screen.getByText(japjiCopy.historicalNote!)).toBeInTheDocument()
     expect(screen.getByText(japjiCopy.practiceNote!)).toBeInTheDocument()
@@ -1708,47 +1814,31 @@ describe('Study hukamnama mode', () => {
     expect(screen.queryByText(/controls stay close/i)).not.toBeInTheDocument()
   })
 
-  it('groups expanded reader controls under stable editorial settings sections', async () => {
-    render(
-      <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}>
-        <Routes><Route path="/study" element={<Study />} /></Routes>
-      </MemoryRouter>
-    )
-
-    const controls = await screen.findByTestId('study-reader-controls')
-    expect(within(controls).getByText(/Reader Controls/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^Gurmukhi$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/^English$/i)).toBeInTheDocument()
-    expect(within(controls).getByText(/Translit Off/i)).toBeInTheDocument()
-
-    fireEvent.click(within(controls).getByRole('button', { name: /show reader controls/i }))
-
-    const settingsSheet = screen.getByTestId('study-reader-settings-sheet')
-    expect(settingsSheet).toHaveAttribute('role', 'dialog')
-    expect(within(settingsSheet).getByText(/^Script$/i)).toBeInTheDocument()
-    expect(within(settingsSheet).getByRole('button', { name: /^Devanagari$/i })).toBeInTheDocument()
-    expect(within(settingsSheet).getByText(/^Reading layers$/i)).toBeInTheDocument()
-    expect(within(settingsSheet).getByText(/^Meaning$/i)).toBeInTheDocument()
-    expect(within(settingsSheet).getByText(/^Quick reading presets$/i)).toBeInTheDocument()
-    expect(within(settingsSheet).getByRole('button', { name: /^Text only$/i })).toBeInTheDocument()
-    expect(within(settingsSheet).getByRole('button', { name: /^Study support$/i })).toBeInTheDocument()
-    expect(within(settingsSheet).getByRole('button', { name: /^Large type$/i })).toBeInTheDocument()
-    expect(within(settingsSheet).getByText(/^English translation source$/i)).toBeInTheDocument()
-    const fontSizeControl = within(settingsSheet).getByRole('slider', { name: /Gurbani text size/i })
-    expect(fontSizeControl).toHaveValue('22')
-    fireEvent.change(fontSizeControl, { target: { value: '28' } })
+  it('puts live type controls first and discloses specialist reading preferences', async () => {
+    render(<MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
+    await screen.findByTestId('study-entry-list')
+    const sheet = await openReaderSettings()
+    const font = within(sheet).getByRole('slider', { name: 'Gurbani text size' })
+    expect(font).toHaveValue('22')
+    const preview = within(sheet).getByRole('region', { name: 'Text preview' })
+    expect(preview).toHaveTextContent('ੴ')
+    fireEvent.change(font, { target: { value: '28' } })
     expect(useLanguageStore.getState().fontSize).toBe(28)
-    const englishSourceGroup = within(settingsSheet).getByRole('group', { name: /English translation source/i })
-    fireEvent.click(within(englishSourceGroup).getByRole('button', { name: /Manmohan Singh/i }))
+    expect(preview.querySelector('p')).toHaveStyle({ fontSize: '28px' })
+    expect(within(sheet).getByRole('group', { name: 'Spacing' })).toBeInTheDocument()
+    expect(within(sheet).getByRole('group', { name: 'Alignment' })).toBeInTheDocument()
+    expect(within(sheet).getByText('Text options', { exact: true }).closest('details')).not.toHaveAttribute('open')
+    expect(within(sheet).getByText('Study layers', { exact: true }).closest('details')).not.toHaveAttribute('open')
+    expect(within(sheet).queryByRole('button', { name: 'Text only' })).not.toBeInTheDocument()
+    expandReaderDetails(sheet, 'Text options')
+    expect(within(sheet).getByRole('button', { name: 'Devanagari' })).toBeInTheDocument()
+    expandReaderDetails(sheet, 'Study layers')
+    const english = within(sheet).getByRole('group', { name: 'English translation source' })
+    fireEvent.click(within(english).getByRole('button', { name: /Manmohan Singh/ }))
     expect(useLanguageStore.getState().englishSource).toBe('ms')
-    expect(within(settingsSheet).queryByText(/^Punjabi teeka\/source$/i)).not.toBeInTheDocument()
-    expect(within(settingsSheet).queryByText(/^Hindi source$/i)).not.toBeInTheDocument()
-
-    fireEvent.click(within(settingsSheet).getByRole('button', { name: /^Punjabi$/i }))
-    expect(within(settingsSheet).queryByText(/^English translation source$/i)).not.toBeInTheDocument()
-    expect(within(settingsSheet).getByText(/^Punjabi teeka\/source$/i)).toBeInTheDocument()
-    expect(within(settingsSheet).queryByText(/^Hindi source$/i)).not.toBeInTheDocument()
-    expect(within(settingsSheet).getByText(/^Layout$/i)).toBeInTheDocument()
+    fireEvent.click(within(sheet).getByRole('button', { name: 'Punjabi', exact: true }))
+    expect(within(sheet).queryByRole('group', { name: 'English translation source' })).not.toBeInTheDocument()
+    expect(within(sheet).getByRole('group', { name: 'Punjabi teeka/source' })).toBeInTheDocument()
   })
 
   it('renders short Rehras without the legacy extra intro block or Ang 0', async () => {
@@ -1780,6 +1870,58 @@ describe('Study hukamnama mode', () => {
       expect(screen.getAllByTestId('study-card')).toHaveLength(3)
     })
   })
+
+  it('keeps the composite Rehras identity when the visible verse belongs to Dasam Granth', async () => {
+    useReadingPlacesStore.setState({ places: {} })
+    documentScroll = mockDocumentScroll({ top: 700, viewportHeight: 800, scrollHeight: 2400 })
+    const option = getNitnemOption('rehras-sahib')!
+    const canonicalPath = buildNitnemStudyPath(option)
+    render(<MemoryRouter initialEntries={[canonicalPath]}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
+    const lines = await screen.findAllByTestId('study-line')
+    await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2632))
+    for (const line of lines) {
+      const top = line.dataset.verseId === '4001' ? 200 : -100
+      vi.spyOn(line, 'getBoundingClientRect').mockReturnValue({ x: 0, y: top, top, right: 390, bottom: top + 60, left: 0, width: 390, height: 60, toJSON: () => ({}) })
+    }
+    fireEvent(document, new Event('scrollend'))
+    await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(4001))
+
+    const session = useProgressStore.getState().currentSession!
+    expect(session.scriptureId).toBe('D-1386')
+    const homeContinue = getHomeNitnemResume(option, session, useReadingPlacesStore.getState().places)!
+    expect(new URLSearchParams(homeContinue.split('?')[1]).get('resumeVerseId')).toBe('4001')
+    expect(getExactReadingKey(session.resumePath)).toBe(getExactReadingKey(canonicalPath))
+
+    const saved = localStorage.getItem('naamras-reading-places')!
+    useReadingPlacesStore.setState({ places: {} })
+    localStorage.setItem('naamras-reading-places', saved)
+    await useReadingPlacesStore.persist.rehydrate()
+    expect(getHomeNitnemResume(option, null, useReadingPlacesStore.getState().places)).toContain('resumeVerseId=4001')
+  })
+
+  it('retains the same composite Rehras place after cold entry into its Dasam section', async () => {
+    useReadingPlacesStore.setState({ places: {} })
+    documentScroll = mockDocumentScroll({ top: 700, viewportHeight: 800, scrollHeight: 2400 })
+    const option = getNitnemOption('rehras-sahib')!
+    const canonicalPath = buildNitnemStudyPath(option)
+    const params = new URLSearchParams(canonicalPath.split('?')[1])
+    params.set('ang', '1386')
+    params.set('resumeVerseId', '4001')
+    const directDasamResume = `/study?${params}`
+    const originalRect = HTMLElement.prototype.getBoundingClientRect
+    const measure = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+      if (this.dataset.testid !== 'study-line') return originalRect.call(this)
+      const top = this.dataset.verseId === '4001' ? 200 : -100
+      return { x: 0, y: top, top, right: 390, bottom: top + 60, left: 0, width: 390, height: 60, toJSON: () => ({}) }
+    })
+    try {
+      render(<MemoryRouter initialEntries={[directDasamResume]}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
+      await screen.findAllByTestId('study-line')
+      await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(4001))
+      expect(useProgressStore.getState().currentSession?.scriptureId).toBe('D-1386')
+      expect(getExactReadingKey(useProgressStore.getState().currentSession!.resumePath)).toBe(getExactReadingKey(canonicalPath))
+    } finally { measure.mockRestore() }
+  })
 })
 
 describe('Study adjustable STTM lengths', () => {
@@ -1799,7 +1941,7 @@ describe('Study adjustable STTM lengths', () => {
 
     expect(screen.queryByText('Rehras Sahib starts here')).not.toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+    await openReaderSettings('Text options')
     fireEvent.click(screen.getByRole('button', { name: /^Long$/i }))
 
     await waitFor(() => {
@@ -1850,10 +1992,10 @@ describe('Study adjustable STTM lengths', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getAllByText(/Long ·/i).length).toBeGreaterThan(0)
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+    await openReaderSettings('Text options')
 
     expect(screen.getByText(/^Length$/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^Short$/i })).toBeInTheDocument()
@@ -1876,7 +2018,7 @@ describe('Study adjustable STTM lengths', () => {
       expect(screen.getAllByText('ਆਰਤੀ-ਆਰਤਾ').length).toBeGreaterThan(0)
     })
 
-    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+    await openReaderSettings('Text options')
 
     expect(screen.getByRole('button', { name: /^Short$/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^Medium$/i })).toBeInTheDocument()
