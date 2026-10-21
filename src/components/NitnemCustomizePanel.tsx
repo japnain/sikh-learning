@@ -1,366 +1,227 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { IconArrowRight } from './icons'
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
+import { useBeforeUnload, useNavigate } from 'react-router-dom'
+import { IconArrowLeft, IconArrowRight, IconClose, IconSearch } from './icons'
+import ModalSheet from './ModalSheet'
+import { useBani } from '../hooks/useBani'
 import {
-  buildNitnemStudyPath,
-  compareNitnemOptions,
-  NITNEM_ROUTE_OPTIONS,
-  type NitnemRouteOption,
-  useNitemStore,
+  DEFAULT_NITNEM_OPTION_IDS, NITNEM_ROUTE_OPTIONS, compareNitnemOptions,
+  getNitnemOption, type NitnemRouteOption, useNitemStore,
 } from '../store/nitnem'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useLanguageStore } from '../store/language'
+import { useLocaleStore } from '../store/locale'
+import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
-import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
+import { asSupportedSundarGutkaBaniId, normalizeSundarGutkaLength } from '../utils/sundarGutkaLength'
+import { clearNitnemDraft, isNitnemDraftStorageAvailable, readNitnemDraft, rememberNitnemDraft, subscribeNitnemDraftStorage } from '../utils/nitnemDraft'
+import { NITNEM_CUSTOMIZE_COPY } from '../utils/nitnemCustomizeCopy'
+import type { SundarGutkaLength } from '../types'
 
-function SettingsBlock({
-  title,
-  description,
-  children,
-  headingId,
-  testId,
-}: {
-  title: string
-  description?: string
-  children: ReactNode
-  headingId?: string
-  testId?: string
+type LengthPreferences = ReturnType<typeof useSundarGutkaLengthStore.getState>['lengths']
+
+function LengthChoice({ option, value, onChange }: {
+  option: NitnemRouteOption
+  value: SundarGutkaLength
+  onChange: (value: SundarGutkaLength) => void
 }) {
+  const locale = useLocaleStore(state => state.locale)
+  const copy = NITNEM_CUSTOMIZE_COPY[locale]
+  const { availableLengths, loading, error, retry } = useBani(option.baniDbId ?? null, value)
+  const choices = availableLengths.length ? availableLengths : [value]
+  const savedLengthUnavailable = !choices.includes(value)
   return (
-    <div
-      className="section-shell px-4 py-4"
-      aria-labelledby={headingId}
-      data-testid={testId}
-    >
-      <p id={headingId} className="eyebrow">{title}</p>
-      {description ? (
-        <p className="mt-1 mb-3 font-sans text-xs text-ink/68 dark:text-dark-text/64">
-          {description}
-        </p>
-      ) : null}
-      {children}
+    <div className="nitnem-editor-length">
+      <label htmlFor={`nitnem-length-${option.id}`}>{copy.readingLength}</label>
+      <select id={`nitnem-length-${option.id}`} aria-label={copy.lengthLabel(option.romanizedTitle)} value={value}
+        onChange={event => onChange(event.target.value as SundarGutkaLength)}>
+        {savedLengthUnavailable ? <option value={value}>{copy.lengths[value]} · {copy.saved}</option> : null}
+        {choices.map(length => <option key={length} value={length}>{copy.lengths[length]}</option>)}
+      </select>
+      {loading ? <p role="status">{copy.checkingLengths}</p> : error && availableLengths.length === 0 ? <p>{copy.keepingLength} <button type="button" onClick={retry}>{copy.retryLengths}</button></p> : null}
     </div>
   )
 }
 
 export default function NitnemCustomizePanel() {
   const navigate = useNavigate()
-  const {
-    selectedIds,
-    completionTrackingEnabled,
-    setCompletionTrackingEnabled,
-    markComplete,
-    unmarkComplete,
-    isComplete,
-    toggleSelected,
-    moveSelected,
-    resetSelections,
-    resetIfNewDay,
-  } = useNitemStore()
-  const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
+  const selectedIds = useNitemStore(state => state.selectedIds)
+  const weeklyDayGoal = useNitemStore(state => state.weeklyDayGoal)
+  const completionTrackingEnabled = useNitemStore(state => state.completionTrackingEnabled)
+  const lengths = useSundarGutkaLengthStore(state => state.lengths)
   const scriptMode = useLanguageStore(state => state.scriptMode)
-  const [confirmingReset, setConfirmingReset] = useState(false)
-  const resetConfirmRef = useRef<number | null>(null)
-
-  const selectedNitnemOptions = useMemo(() => {
-    return selectedIds
-      .map(optionId => NITNEM_ROUTE_OPTIONS.find(option => option.id === optionId) ?? null)
-      .filter((option): option is NitnemRouteOption => option !== null)
-  }, [selectedIds])
-  const availableNitnemOptions = useMemo(() => {
-    return [...NITNEM_ROUTE_OPTIONS].sort(compareNitnemOptions)
-  }, [])
-  const nitnemDone = selectedNitnemOptions.filter(option => isComplete(option.id)).length
-  const nitnemTotal = selectedNitnemOptions.length
-  const nitnemProgressPct = nitnemTotal > 0 ? (nitnemDone / nitnemTotal) * 100 : 0
-
-  const getNitnemOptionDetail = (option: NitnemRouteOption) => (
-    option.supportsLengthAdjustment && isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
-      ? getSundarGutkaLengthDetail(sundarGutkaLengths[option.baseBaniId])
-      : option.detail
-  )
-
+  const locale = useLocaleStore(state => state.locale)
+  const copy = NITNEM_CUSTOMIZE_COPY[locale]
+  const offline = useNitnemOfflineStatusStore()
+  const [committedBase] = useState(() => ({ selectedIds: [...selectedIds], lengths: { ...lengths }, weeklyDayGoal, completionTrackingEnabled }))
+  const [recoveredDraft] = useState(() => readNitnemDraft(committedBase))
+  const [draftIds, setDraftIds] = useState(() => [...(recoveredDraft?.selectedIds ?? selectedIds)])
+  const [draftLengths, setDraftLengths] = useState<LengthPreferences>(() => ({ ...(recoveredDraft?.lengths ?? lengths) }))
+  const [draftGoal, setDraftGoal] = useState(recoveredDraft?.weeklyDayGoal ?? weeklyDayGoal)
+  const [draftTracking, setDraftTracking] = useState(recoveredDraft?.completionTrackingEnabled ?? completionTrackingEnabled)
+  const draftStorageAvailable = useSyncExternalStore(subscribeNitnemDraftStorage, isNitnemDraftStorageAvailable, () => true)
+  const [libraryOpen, setLibraryOpen] = useState(false)
+  const [query, setQuery] = useState('')
+  const [notice, setNotice] = useState('')
+  const [saveError, setSaveError] = useState('')
+  const [leaveOpen, setLeaveOpen] = useState(false)
+  const keepEditingRef = useRef<HTMLButtonElement>(null)
+  const selected = draftIds.map(getNitnemOption).filter((option): option is NitnemRouteOption => option !== null)
+  const available = useMemo(() => [...NITNEM_ROUTE_OPTIONS].sort(compareNitnemOptions), [])
+    .filter(option => !draftIds.includes(option.id))
+  const matches = available.filter(option => `${option.name} ${option.gurmukhiTitle} ${option.group} ${copy.groups[option.group]}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()))
+  const readingsChanged = draftIds.join('|') !== selectedIds.join('|')
+    || Object.entries(draftLengths).some(([id, value]) => value !== lengths[id as keyof LengthPreferences])
+  const hasChanges = readingsChanged || draftGoal !== weeklyDayGoal || draftTracking !== completionTrackingEnabled
+  const hasUnsavedChanges = hasChanges || Boolean(saveError)
+  const draftValues = useMemo(() => ({ selectedIds: draftIds, lengths: draftLengths, weeklyDayGoal: draftGoal, completionTrackingEnabled: draftTracking }), [draftIds, draftLengths, draftGoal, draftTracking])
   useEffect(() => {
-    resetIfNewDay()
-  }, [resetIfNewDay])
-
-  useEffect(() => {
-    return () => {
-      if (resetConfirmRef.current !== null) {
-        window.clearTimeout(resetConfirmRef.current)
-      }
-    }
-  }, [])
-
-  const handleReset = () => {
-    if (confirmingReset) {
-      if (resetConfirmRef.current !== null) {
-        window.clearTimeout(resetConfirmRef.current)
-        resetConfirmRef.current = null
-      }
-      setConfirmingReset(false)
-      resetSelections()
-      return
-    }
-
-    setConfirmingReset(true)
-    if (resetConfirmRef.current !== null) {
-      window.clearTimeout(resetConfirmRef.current)
-    }
-    resetConfirmRef.current = window.setTimeout(() => {
-      resetConfirmRef.current = null
-      setConfirmingReset(false)
-    }, 3000)
+    if (hasChanges) rememberNitnemDraft(committedBase, draftValues)
+    else clearNitnemDraft()
+  }, [committedBase, draftValues, hasChanges])
+  useBeforeUnload(useCallback(event => {
+    if (!hasUnsavedChanges) return
+    event.preventDefault()
+    event.returnValue = ''
+  }, [hasUnsavedChanges]))
+  const leave = () => {
+    if (hasUnsavedChanges) setLeaveOpen(true)
+    else { clearNitnemDraft(); navigate('/') }
   }
+  const offlineCopy = offline.status === 'ready'
+    ? copy.ready(offline.ready, offline.total)
+    : offline.status === 'checking' ? copy.checking
+    : offline.status === 'preparing' ? copy.preparing(offline.ready, offline.total)
+    : offline.status === 'offline' ? copy.offline(offline.ready, offline.total)
+    : offline.status === 'paused' ? copy.paused(offline.ready, offline.total)
+    : offline.status === 'partial' ? copy.partial(offline.ready, offline.total)
+    : copy.offlineError
 
+  const move = (id: string, direction: 'up' | 'down') => {
+    const index = draftIds.indexOf(id)
+    const target = index + (direction === 'up' ? -1 : 1)
+    if (target < 0 || target >= draftIds.length) return
+    const next = [...draftIds]
+    ;[next[index], next[target]] = [next[target], next[index]]
+    setDraftIds(next)
+    setNotice(copy.moved(getNitnemOption(id)?.name ?? id, target + 1))
+  }
+  const remove = (id: string) => {
+    if (draftIds.length <= 1) return
+    setDraftIds(draftIds.filter(value => value !== id))
+    setNotice(copy.removed(getNitnemOption(id)?.name ?? id))
+  }
+  const add = (option: NitnemRouteOption) => {
+    setDraftIds(ids => ids.includes(option.id) ? ids : [...ids, option.id])
+    setNotice(copy.added(option.name))
+    if (available.length === 1) setLibraryOpen(false)
+  }
+  const save = () => {
+    const current = useNitemStore.getState()
+    const committedRoutine = { selectedIds: [...current.selectedIds], weeklyDayGoal: current.weeklyDayGoal, completionTrackingEnabled: current.completionTrackingEnabled }
+    const committedLengths = { ...useSundarGutkaLengthStore.getState().lengths }
+    const nextLengths = { ...committedLengths }
+    for (const [id, value] of Object.entries(draftLengths)) {
+      const supportedId = asSupportedSundarGutkaBaniId(id)
+      const validLength = normalizeSundarGutkaLength(value)
+      if (supportedId && validLength) nextLengths[supportedId] = validLength
+    }
+    setSaveError('')
+    try {
+      useNitemStore.getState().setSelectedIds(draftIds)
+      useNitemStore.getState().setWeeklyDayGoal(draftGoal)
+      useNitemStore.getState().setCompletionTrackingEnabled(draftTracking)
+      // Persist the complete draft on every attempt, including a retry after a failed write.
+      useSundarGutkaLengthStore.setState({ lengths: nextLengths })
+      clearNitnemDraft()
+      navigate('/')
+    } catch {
+      // Persist middleware updates memory before writing storage. Restore the
+      // committed draft fields even when storage remains unavailable.
+      try { useNitemStore.setState(committedRoutine) } catch { /* Memory is restored before this write can fail. */ }
+      try { useSundarGutkaLengthStore.setState({ lengths: committedLengths }) } catch { /* Restore this store independently. */ }
+      setSaveError(copy.saveError)
+    }
+  }
+  const title = (option: NitnemRouteOption) => (
+    <>
+      <p className={`nitnem-editor-bani-title ${getScriptTextFontClass(scriptMode)}`} lang={getScriptTextLang(scriptMode)}>{renderScriptText(option.gurmukhiTitle, scriptMode)}</p>
+      <p className="nitnem-editor-bani-name">{option.romanizedTitle}</p>
+    </>
+  )
   return (
-    <div className="space-y-4" data-testid="nitnem-customize-panel">
-      <SettingsBlock
-        title="Ritual Order"
-        description="Home follows this exact order. Start here, reorder here, and keep completion away from the Home card."
-        headingId="nitnem-ritual-order-title"
-        testId="nitnem-ritual-order"
-      >
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">
-            Selected banis appear on Home in this sequence.
-          </p>
-          <button
-            type="button"
-            onClick={handleReset}
-            className="min-h-[44px] px-2 font-sans text-xs text-gold-dark underline underline-offset-2 dark:text-gold-light"
-            data-testid="nitnem-reset"
-          >
-            {confirmingReset ? 'Tap again to reset' : 'Reset'}
-          </button>
-        </div>
-
-        <div className="space-y-2">
-          {selectedNitnemOptions.map((option, index) => {
-            const canRemove = selectedNitnemOptions.length > 1
-
-            return (
-              <article
-                key={`ritual-order-${option.id}`}
-                className="rounded-lg border border-sand/14 bg-parchment-card/72 px-3 py-3 text-ink dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text"
-                data-testid="nitnem-ritual-item"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-gold/10 font-sans text-[11px] font-semibold text-gold-dark dark:text-gold-light">
-                    {index + 1}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed`}>
-                        {renderScriptText(option.gurmukhiTitle, scriptMode)}
-                      </p>
-                      <span className="rounded-full bg-ink/5 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-ink/68 dark:bg-white/10 dark:text-dark-text/64">
-                        {option.group}
-                      </span>
+    <div className="nitnem-editor" data-testid="nitnem-customize-panel">
+      <nav className="nitnem-editor-nav" aria-label={copy.titleEmphasis}>
+        <button type="button" onClick={leave}><IconArrowLeft size={18} />{copy.back}</button>
+      </nav>
+      <header className="nitnem-editor-intro">
+        <h1 id="nitnem-customize-title">{copy.title} <em>{copy.titleEmphasis}</em></h1>
+        <p>{copy.subtitle}</p>
+        {recoveredDraft ? <p className="nitnem-editor-recovered" role="status">{copy.recovered}</p> : null}
+        {hasChanges && !draftStorageAvailable ? <p className="nitnem-editor-draft-warning" role="status">{copy.draftUnavailable}</p> : null}
+      </header>
+      <section aria-labelledby="nitnem-customize-title" data-testid="nitnem-ritual-order">
+        <p className="nitnem-editor-selection-count">{copy.selected(selected.length)}</p>
+        <ol className="nitnem-editor-list">
+          {selected.map((option, index) => {
+            const lengthId = asSupportedSundarGutkaBaniId(option.baseBaniId)
+            return <li className="nitnem-editor-row" key={option.id} data-testid="nitnem-ritual-item">
+              <details className="nitnem-editor-bani-details">
+                <summary aria-label={copy.editBani(option.romanizedTitle)}>
+                  <span className="nitnem-editor-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="nitnem-editor-bani">{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}{lengthId ? ` · ${copy.lengths[draftLengths[lengthId]]}` : ''}</p></div>
+                  <span className="nitnem-editor-edit" aria-hidden="true">{copy.edit} <IconArrowRight size={14} /></span>
+                </summary>
+                <div className="nitnem-editor-bani-adjustments">
+                  {lengthId ? <LengthChoice option={option} value={draftLengths[lengthId]} onChange={value => setDraftLengths(current => ({ ...current, [lengthId]: value }))} /> : null}
+                  <div className="nitnem-editor-row-actions">
+                    <span>{copy.position(index + 1, selected.length)}</span>
+                    <div>
+                      <button type="button" disabled={index === 0} onClick={() => move(option.id, 'up')} aria-label={copy.moveUp(option.romanizedTitle)}><IconArrowRight size={16} className="-rotate-90" /><span>{copy.up}</span></button>
+                      <button type="button" disabled={index === selected.length - 1} onClick={() => move(option.id, 'down')} aria-label={copy.moveDown(option.romanizedTitle)}><IconArrowRight size={16} className="rotate-90" /><span>{copy.down}</span></button>
                     </div>
-                    <p className="mt-1 font-sans text-xs font-semibold text-ink/70 dark:text-dark-text/75">
-                      {option.romanizedTitle}
-                    </p>
-                    <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
-                      {getNitnemOptionDetail(option)}
-                    </p>
+                    <button type="button" disabled={selected.length === 1} onClick={() => remove(option.id)} aria-label={copy.removeBani(option.romanizedTitle)}>{copy.remove}</button>
                   </div>
+                  {selected.length === 1 ? <p className="nitnem-editor-hint">{copy.keepOne}</p> : null}
                 </div>
-
-                <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                  <button
-                    type="button"
-                    onClick={() => moveSelected(option.id, 'up')}
-                    disabled={index === 0}
-                    className="rounded-lg border border-sand/15 bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/70 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/70"
-                    aria-label={`Move ${option.romanizedTitle} up`}
-                  >
-                    Move up
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => moveSelected(option.id, 'down')}
-                    disabled={index === selectedNitnemOptions.length - 1}
-                    className="rounded-lg border border-sand/15 bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/70 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/70"
-                    aria-label={`Move ${option.romanizedTitle} down`}
-                  >
-                    Move down
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => toggleSelected(option.id)}
-                    disabled={!canRemove}
-                    className="rounded-lg border border-sand/15 bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/70 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/70"
-                    aria-label={`Remove ${option.romanizedTitle} from Daily Nitnem`}
-                  >
-                    Remove
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => navigate(buildNitnemStudyPath(option))}
-                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink px-3 py-2 font-sans text-xs font-semibold text-parchment transition-colors duration-300 dark:bg-parchment dark:text-dark-bg"
-                  >
-                    Begin
-                    <IconArrowRight size={13} />
-                  </button>
-                </div>
-              </article>
-            )
+              </details>
+            </li>
           })}
+        </ol>
+        <div className="nitnem-editor-add-row">
+          <button type="button" onClick={() => { setQuery(''); setLibraryOpen(true) }} disabled={!available.length} className="nitnem-editor-add"><span aria-hidden="true">＋</span><span>{copy.add}</span><small>{copy.available(available.length)}</small></button>
+          <button type="button" className="nitnem-editor-reset" onClick={() => { setDraftIds([...DEFAULT_NITNEM_OPTION_IDS]); setNotice(copy.restoredSeven) }} data-testid="nitnem-reset">{copy.restore}</button>
         </div>
-      </SettingsBlock>
-
-      <SettingsBlock
-        title="Available Banis"
-        description="Add banis to the end of your ritual order. Length choices for supported banis stay inside the reader."
-        headingId="nitnem-selection-title"
-        testId="nitnem-selection"
-      >
-        <div className="space-y-4">
-          {(['Morning', 'Evening', 'Night', 'Additional'] as const).map(group => (
-            <div key={`manage-${group}`}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
-                {group}
-              </p>
-              <div className="space-y-2">
-                {availableNitnemOptions
-                  .filter(option => option.group === group)
-                  .map(option => {
-                    const selected = selectedIds.includes(option.id)
-
-                    return (
-                      <div
-                        key={`manage-${option.id}`}
-                        className={`rounded-lg border px-3 py-3 transition-colors duration-300 ${
-                          selected
-                            ? 'border-gold/24 bg-gold/10 text-ink dark:border-gold/26 dark:bg-gold/10 dark:text-dark-text'
-                            : 'border-sand/15 bg-parchment-card/72 text-ink dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text'
-                        }`}
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed`}>
-                              {renderScriptText(option.gurmukhiTitle, scriptMode)}
-                            </p>
-                            <p className={`mt-1 font-sans text-xs font-semibold ${selected ? 'text-ink/75 dark:text-dark-text/75' : 'text-ink/70 dark:text-dark-text/75'}`}>
-                              {option.romanizedTitle}
-                            </p>
-                            <p className={`mt-1 font-sans text-xs ${selected ? 'text-ink/68 dark:text-dark-text/64' : 'text-ink/68 dark:text-dark-text/64'}`}>
-                              {getNitnemOptionDetail(option)}
-                            </p>
-                          </div>
-                          {selected ? (
-                            <span className="rounded-full bg-ink/6 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-ink dark:bg-white/10 dark:text-dark-text">
-                              Selected
-                            </span>
-                          ) : (
-                            <button
-                              type="button"
-                              onClick={() => toggleSelected(option.id)}
-                              className="rounded-full bg-gold/12 px-3 py-2 font-sans text-[11px] font-semibold text-gold-dark transition-colors duration-300 hover:bg-gold/18 dark:text-gold-light"
-                              aria-label={`Add ${option.romanizedTitle}`}
-                            >
-                              Add
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-              </div>
-            </div>
-          ))}
+      </section>
+      <section className="nitnem-editor-offline" aria-labelledby="nitnem-offline-title" data-offline-status={offline.status}>
+        <div><h2 id="nitnem-offline-title">{copy.offlineTitle}</h2><p role="status">{offlineCopy}</p>{readingsChanged ? <p className="nitnem-editor-offline-draft">{copy.draftPreparing}</p> : null}</div>
+        {['offline', 'paused', 'partial', 'error'].includes(offline.status) ? <button type="button" onClick={offline.retry}>{offline.status === 'paused' ? copy.prepareNow : copy.tryAgain}<IconArrowRight size={16} /></button> : null}
+      </section>
+      <section id="nitnem-continuity" className="nitnem-editor-goal" aria-labelledby="nitnem-weekly-goal-title">
+        <div><p className="nitnem-editor-eyebrow">{copy.continuity}</p><h2 id="nitnem-weekly-goal-title">{copy.goalTitle}</h2><p>{copy.goalDescription}</p></div>
+        <div className="nitnem-editor-tracking"><div><span id="nitnem-tracking-label">{copy.completion}</span><p id="nitnem-tracking-description">{copy.completionDescription}</p></div><button type="button" role="switch" aria-labelledby="nitnem-tracking-label" aria-describedby="nitnem-tracking-description" aria-checked={draftTracking} onClick={() => setDraftTracking(value => !value)}><span /></button></div>
+        <label htmlFor="nitnem-weekly-goal">{copy.weeklyGoal}</label>
+        <select id="nitnem-weekly-goal" value={draftGoal} onChange={event => setDraftGoal(Number(event.target.value))}>{Array.from({ length: 7 }, (_, index) => index + 1).map(day => <option key={day} value={day}>{copy.daysPerWeek(day)}</option>)}</select>
+      </section>
+      <p className="nitnem-editor-notice sr-only" role="status" aria-live="polite">{notice}</p>
+      {saveError ? <p className="nitnem-editor-save-error" role="alert">{saveError}</p> : null}
+      <footer className="nitnem-editor-footer"><p className="nitnem-editor-save-state" aria-live="polite">{saveError ? copy.notSaved : hasChanges ? copy.unsaved : ''}</p><div className="nitnem-editor-save-actions"><button type="button" onClick={leave} className="nitnem-editor-cancel">{copy.cancel}</button><button type="button" onClick={save} className="nitnem-editor-save" aria-label={copy.saveRoutine}>{copy.save}<IconArrowRight size={18} /></button></div></footer>
+      <ModalSheet open={leaveOpen} onClose={() => setLeaveOpen(false)} title={copy.discardTitle} description={copy.discardDescription} className="nitnem-editor-discard" initialFocusRef={keepEditingRef}>
+        <h2>{copy.discardTitle}</h2>
+        <p>{copy.discardBody}</p>
+        <div>
+          <button ref={keepEditingRef} type="button" onClick={() => setLeaveOpen(false)} className="nitnem-editor-keep-editing">{copy.keepEditing}</button>
+          <button type="button" onClick={() => { clearNitnemDraft(); setLeaveOpen(false); navigate('/') }}>{copy.discard}</button>
         </div>
-
-        {selectedNitnemOptions[0] ? (
-          <button
-            type="button"
-            onClick={() => navigate(buildNitnemStudyPath(selectedNitnemOptions[0]))}
-            className="mt-4 w-full rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-parchment transition-colors duration-300 dark:bg-parchment dark:text-dark-bg"
-          >
-            Open first selected bani
-          </button>
-        ) : null}
-      </SettingsBlock>
-
-      <SettingsBlock
-        title="Completion Tracking"
-        description="Optional progress controls live here so Home can stay focused on starting the bani."
-        headingId="nitnem-completion-title"
-        testId="nitnem-completion"
-      >
-        <button
-          type="button"
-          onClick={() => setCompletionTrackingEnabled(!completionTrackingEnabled)}
-          aria-pressed={completionTrackingEnabled}
-          className={`w-full rounded-lg border px-4 py-3 text-left transition-colors duration-300 ${
-            completionTrackingEnabled
-              ? 'border-gold/24 bg-gold/10 text-ink dark:border-gold/24 dark:bg-gold/12 dark:text-dark-text'
-              : 'border-sand/15 bg-parchment-card/72 text-ink/72 dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text/72'
-          }`}
-          data-testid="nitnem-completion-toggle"
-        >
-          <span className="flex items-center justify-between gap-3">
-            <span className="font-sans text-sm font-semibold">
-              Completion tracking {completionTrackingEnabled ? 'On' : 'Off'}
-            </span>
-            <span className="rounded-full border border-current/15 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.16em]">
-              {completionTrackingEnabled ? 'Visible here' : 'Optional'}
-            </span>
-          </span>
-        </button>
-
-        {completionTrackingEnabled ? (
-          <div className="mt-4 space-y-3" data-testid="nitnem-completion-panel">
-            <div>
-              <div className="h-px overflow-hidden bg-sand/18 dark:bg-dark-text/12">
-                <div
-                  className="h-full bg-gold"
-                  style={{ width: `${nitnemProgressPct}%` }}
-                />
-              </div>
-              <p className="mt-2 font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">
-                {nitnemDone} / {nitnemTotal} daily banis complete
-              </p>
-            </div>
-
-            <div className="grid gap-2">
-              {selectedNitnemOptions.map(option => {
-                const done = isComplete(option.id)
-
-                return (
-                  <div
-                    key={`complete-${option.id}`}
-                    className="rounded-lg border border-sand/12 bg-parchment-card/70 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}>
-                          {renderScriptText(option.gurmukhiTitle, scriptMode)}
-                        </p>
-                        <p className="mt-1 font-sans text-xs font-semibold text-ink/70 dark:text-dark-text/75">
-                          {option.romanizedTitle}
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => done ? unmarkComplete(option.id) : markComplete(option.id)}
-                        className={`shrink-0 rounded-full border px-3 py-2 font-sans text-[11px] font-semibold transition-colors duration-300 ${
-                          done
-                            ? 'border-gold/24 bg-gold/10 text-gold-dark dark:text-gold-light'
-                            : 'border-sand/16 bg-parchment-low text-ink/68 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/68'
-                        }`}
-                      >
-                        {done ? 'Complete' : 'Mark complete'}
-                      </button>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        ) : null}
-      </SettingsBlock>
+      </ModalSheet>
+      <ModalSheet open={libraryOpen} onClose={() => setLibraryOpen(false)} title={copy.add} description={copy.addDescription} className="nitnem-editor-library" testId="nitnem-selection">
+        <div className="nitnem-editor-library-heading"><div><p className="nitnem-editor-eyebrow">{copy.title} {copy.titleEmphasis}</p><h2>{copy.addTitle}</h2></div><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = 0 }} aria-label={copy.closeAvailable}><IconClose size={20} /></button></div>
+        <label className="nitnem-editor-search"><IconSearch size={18} /><input type="search" aria-label={copy.searchLabel} placeholder={copy.searchPlaceholder} value={query} onChange={event => setQuery(event.target.value)} /></label>
+        <div className="nitnem-editor-available">
+          {matches.map(option => <article key={option.id}><div>{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}</p></div><button type="button" onClick={() => add(option)} aria-label={copy.addBani(option.romanizedTitle)}><span aria-hidden="true">＋</span></button></article>)}
+          {matches.length === 0 ? <p className="nitnem-editor-empty">{copy.noMatches}</p> : null}
+        </div>
+        <footer className="nitnem-editor-library-footer"><p className="nitnem-editor-hint">{copy.addedHint}</p><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = sheet.scrollHeight }}>{copy.done}<IconArrowRight size={18} /></button></footer>
+      </ModalSheet>
     </div>
   )
 }

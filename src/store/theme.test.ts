@@ -1,20 +1,29 @@
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 
+let systemDark = false
+let systemListeners = new Set<(event: MediaQueryListEvent) => void>()
 function setSystemDarkPreference(matches: boolean) {
+  systemDark = matches
+  systemListeners = new Set()
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     configurable: true,
     value: vi.fn().mockImplementation((query: string) => ({
-      matches: query === '(prefers-color-scheme: dark)' ? matches : false,
+      get matches() { return query === '(prefers-color-scheme: dark)' ? systemDark : false },
       media: query,
       onchange: null,
       addListener: () => {},
       removeListener: () => {},
-      addEventListener: () => {},
-      removeEventListener: () => {},
+      addEventListener: (_type: string, handler: (event: MediaQueryListEvent) => void) => systemListeners.add(handler),
+      removeEventListener: (_type: string, handler: (event: MediaQueryListEvent) => void) => systemListeners.delete(handler),
       dispatchEvent: () => false,
     })),
   })
+}
+
+function changeSystemDarkPreference(matches: boolean) {
+  systemDark = matches
+  systemListeners.forEach(listener => listener({ matches } as MediaQueryListEvent))
 }
 
 function resetThemeDocument() {
@@ -29,16 +38,16 @@ function resetThemeDocument() {
   document.head.appendChild(meta)
 }
 
-async function loadThemeModule(options: { systemDark?: boolean; storedDark?: boolean } = {}) {
+async function loadThemeModule(options: { systemDark?: boolean; storedDark?: boolean; storedMode?: 'light' | 'dark' | 'system' } = {}) {
   vi.resetModules()
   localStorage.clear()
   resetThemeDocument()
   setSystemDarkPreference(options.systemDark ?? false)
 
-  if (typeof options.storedDark === 'boolean') {
+  if (typeof options.storedDark === 'boolean' || options.storedMode) {
     localStorage.setItem('sikh-theme', JSON.stringify({
-      state: { dark: options.storedDark },
-      version: 0,
+      state: { dark: options.storedDark, ...(options.storedMode ? { mode: options.storedMode } : {}) },
+      version: options.storedMode ? 1 : 0,
     }))
   }
 
@@ -57,6 +66,7 @@ describe('theme store', () => {
     })
 
     expect(useThemeStore.getState().dark).toBe(true)
+    expect(useThemeStore.getState().mode).toBe('dark')
     expect(document.documentElement).toHaveClass('dark')
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
     expect(document.documentElement.style.colorScheme).toBe('dark')
@@ -69,6 +79,26 @@ describe('theme store', () => {
     expect(useThemeStore.getState().dark).toBe(true)
     expect(document.documentElement).toHaveClass('dark')
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
+    expect(useThemeStore.getState().mode).toBe('system')
+  })
+
+  test('stored System resolves against the current OS instead of its old dark boolean', async () => {
+    const { useThemeStore } = await loadThemeModule({ systemDark: true, storedDark: false, storedMode: 'system' })
+    expect(useThemeStore.getState()).toMatchObject({ mode: 'system', dark: true })
+    changeSystemDarkPreference(false)
+    expect(useThemeStore.getState().dark).toBe(false)
+    expect(document.documentElement).not.toHaveClass('dark')
+  })
+
+  test('explicit Light survives migration and ignores subsequent OS changes', async () => {
+    const { useThemeStore } = await loadThemeModule({ systemDark: true, storedDark: false })
+    expect(useThemeStore.getState()).toMatchObject({ mode: 'light', dark: false })
+    changeSystemDarkPreference(false)
+    changeSystemDarkPreference(true)
+    expect(useThemeStore.getState().dark).toBe(false)
+    useThemeStore.getState().setMode('system')
+    expect(useThemeStore.getState().dark).toBe(true)
+    expect(JSON.parse(localStorage.getItem('sikh-theme')!).state.mode).toBe('system')
   })
 
   test('setDark and toggle update the document theme contract', async () => {

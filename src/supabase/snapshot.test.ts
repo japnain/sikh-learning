@@ -5,6 +5,7 @@ import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useNitemStore } from '../store/nitnem'
+import { getNitnemHistorySummary, useNitnemHistoryStore } from '../store/nitnemHistory'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
@@ -34,6 +35,7 @@ beforeEach(() => {
   useFavoritesStore.setState({ favorites: [] })
   useVocabStore.setState({ vocab: [] })
   useActivityEventsStore.setState({ pendingEvents: [] })
+  useNitnemHistoryStore.setState({ events: [], remoteDays: {} })
   useProgressStore.setState({
     studied: [],
     reviewQueue: [],
@@ -48,7 +50,7 @@ beforeEach(() => {
     selectedIds: ['japji-sahib'],
   })
   useLocaleStore.setState({ locale: 'en' })
-  useThemeStore.setState({ dark: false })
+  useThemeStore.getState().setMode('light')
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
     showTransliteration: false,
@@ -78,6 +80,54 @@ afterEach(() => {
 })
 
 describe('cloud snapshot v3', () => {
+  test('mirrors current-day remote completion and undo once while retaining earlier history', () => {
+    useNitnemHistoryStore.getState().importLegacy('2026-04-16', ['japji-sahib'])
+    const snapshot = asRemoteSnapshot(exportLocalSnapshot())
+    const nitnem = snapshot.learningProgress!.find(record => record.scope === 'nitnem-state')!
+    nitnem.clientUpdatedAt = '2026-04-17T12:00:00.000Z'
+    nitnem.payload.completedIds = ['japji-sahib']
+    applyRemoteSnapshot(snapshot)
+    expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(true)
+    expect(getNitnemHistorySummary(useNitnemHistoryStore.getState().events).currentStreak).toBe(2)
+    expect(useNitnemHistoryStore.getState().events).toHaveLength(2)
+    applyRemoteSnapshot(snapshot)
+    expect(useNitnemHistoryStore.getState().events).toHaveLength(2)
+
+    nitnem.clientUpdatedAt = '2026-04-17T13:01:00.000Z'
+    nitnem.payload.completedIds = []
+    applyRemoteSnapshot(snapshot)
+    expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(false)
+    expect(getNitnemHistorySummary(useNitnemHistoryStore.getState().events).successfulDays).toEqual(['2026-04-16'])
+    expect(useNitnemHistoryStore.getState().events).toHaveLength(3)
+    applyRemoteSnapshot(snapshot)
+    expect(useNitnemHistoryStore.getState().events).toHaveLength(3)
+
+    vi.setSystemTime(new Date('2026-04-17T13:02:00.000Z'))
+    useNitemStore.getState().markComplete('japji-sahib')
+    applyRemoteSnapshot(snapshot)
+    expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(true)
+    expect(useNitnemHistoryStore.getState().events).toHaveLength(4)
+    expect(useActivityEventsStore.getState().pendingEvents).toHaveLength(1)
+  })
+
+  test('round-trips System appearance independently of the resolved dark boolean', () => {
+    useThemeStore.getState().setMode('system')
+    const snapshot = exportLocalSnapshot()
+    expect(snapshot.profile.themeMode).toBe('system')
+    useThemeStore.getState().setMode('dark')
+    applyRemoteSnapshot(asRemoteSnapshot(snapshot))
+    expect(useThemeStore.getState().mode).toBe('system')
+  })
+
+  test('a legacy boolean-only profile does not erase a local System preference', () => {
+    const snapshot = exportLocalSnapshot()
+    delete snapshot.profile.themeMode
+    snapshot.profile.darkMode = true
+    useThemeStore.getState().setMode('system')
+    applyRemoteSnapshot(asRemoteSnapshot(snapshot))
+    expect(useThemeStore.getState().mode).toBe('system')
+  })
+
   test('exports favorites, phrase review, preferences, activity, and reading Ang arrays', () => {
     useBookmarksStore.setState({
       bookmarks: [{

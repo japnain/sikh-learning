@@ -15,6 +15,8 @@ type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
 interface ScriptureCacheState {
   angCache: Record<string, ScriptureEntry[]>
   angOrder: string[]
+  completeAngKeys: string[]
+  studyEntries: ScriptureEntry[]
   wordCache: Record<string, Word[]>
   wordOrder: string[]
   mahankoshCache: Record<string, MahanKoshEntry[]>
@@ -28,6 +30,8 @@ interface ScriptureCacheState {
   rehatChapterOrder: string[]
   getAng: (source: BaniSource, ang: number) => ScriptureEntry[] | undefined
   setAng: (source: BaniSource, ang: number, entries: ScriptureEntry[]) => void
+  hasCompleteAng: (source: BaniSource, ang: number) => boolean
+  setStudyEntry: (entry: ScriptureEntry) => void
   getWords: (shabadId: number) => Word[] | undefined
   setWords: (shabadId: number, words: Word[]) => void
   getMahanKosh: (word: string) => MahanKoshEntry[] | undefined
@@ -46,6 +50,7 @@ interface ScriptureCacheState {
 
 const angKey = (source: BaniSource, ang: number) => `${source}-${ang}`
 const ANG_CACHE_LIMIT = 40
+const STUDY_ENTRY_CACHE_LIMIT = 40
 const WORD_CACHE_LIMIT = 80
 const MAHANKOSH_CACHE_LIMIT = 120
 const KOSH_CACHE_LIMIT = 120
@@ -79,6 +84,8 @@ export const useScriptureCacheStore = create<ScriptureCacheState>()(
     (set, get) => ({
       angCache: {},
       angOrder: [],
+      completeAngKeys: [],
+      studyEntries: [],
       wordCache: {},
       wordOrder: [],
       mahankoshCache: {},
@@ -91,11 +98,17 @@ export const useScriptureCacheStore = create<ScriptureCacheState>()(
       rehatChapterCache: {},
       rehatChapterOrder: [],
       getAng: (source, ang) => get().angCache[angKey(source, ang)],
+      hasCompleteAng: (source, ang) => {
+        const key = angKey(source, ang)
+        const keys = get().completeAngKeys
+        return Array.isArray(keys) && keys.includes(key) && Array.isArray(get().angCache[key])
+      },
       setAng: (source, ang, entries) => set(state => {
+        const key = angKey(source, ang)
         const next = applyBoundedCache(
           state.angCache,
           state.angOrder,
-          angKey(source, ang),
+          key,
           entries,
           ANG_CACHE_LIMIT
         )
@@ -103,8 +116,16 @@ export const useScriptureCacheStore = create<ScriptureCacheState>()(
         return {
           angCache: next.cache,
           angOrder: next.order,
+          completeAngKeys: next.order.filter(candidate => candidate === key
+            || (Array.isArray(state.completeAngKeys) && state.completeAngKeys.includes(candidate))),
         }
       }),
+      setStudyEntry: (entry) => set(state => ({
+        studyEntries: [
+          ...(Array.isArray(state.studyEntries) ? state.studyEntries : []).filter(previous => previous.id !== entry.id),
+          entry,
+        ].slice(-STUDY_ENTRY_CACHE_LIMIT),
+      })),
       getWords: (shabadId) => get().wordCache[String(shabadId)],
       setWords: (shabadId, words) => set(state => {
         const next = applyBoundedCache(
@@ -183,10 +204,13 @@ export const useScriptureCacheStore = create<ScriptureCacheState>()(
           rehatChapterOrder: next.order,
         }
       }),
-      getEntryById: (id) => Object.values(get().angCache).flat().find(e => e.id === id),
+      getEntryById: (id) => Object.values(get().angCache).flat().find(e => e.id === id)
+        ?? (Array.isArray(get().studyEntries) ? get().studyEntries.find(entry => entry.id === id) : undefined),
       clearAll: () => set({
         angCache: {},
         angOrder: [],
+        completeAngKeys: [],
+        studyEntries: [],
         wordCache: {},
         wordOrder: [],
         mahankoshCache: {},

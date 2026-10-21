@@ -1,20 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { PointerEvent as ReactPointerEvent } from 'react'
-import type { TouchEvent as ReactTouchEvent } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import {
-  IconArrowRight,
-  IconBookmark,
-  IconBookmarkFilled,
-  IconCheck,
-  IconLibrary,
-  IconMoon,
-  IconMoreHorizontal,
-  IconSun,
-} from '../components/icons'
-import NaamRasLogoMark from '../components/NaamRasLogoMark'
-import StreakBadge from '../components/StreakBadge'
+import { IconArrowRight, IconMoon, IconSun } from '../components/icons'
 import { useHukamnama } from '../hooks/useHukamnama'
+import { useHomeArtwork } from '../hooks/useHomeArtwork'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
@@ -22,41 +10,27 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
+import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
-import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
+import { NITNEM_ROUTE_OPTIONS, setNitnemCompletionSafely, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
+import { getNitnemHistorySummary, useNitnemHistoryStore } from '../store/nitnemHistory'
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
 import type { UiLocale, VocabEntry } from '../types'
-import {
-  getEntryMeaningText,
-  getLineMeaningText,
-  getScriptTextFontClass,
-  getScriptTextLang,
-  isStructuralTitleLine,
-  renderScriptText,
-} from '../utils/readerDisplay'
-import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
+import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralGurbaniHeadingLine, renderScriptText } from '../utils/readerDisplay'
 import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
 import { toLocalDayStamp } from '../utils/localDates'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
-import { buildReaderOriginNavigationState } from '../utils/libraryReaderNavigation'
 import { formatSourceReaderReference } from '../utils/sourceReaderMeta'
-import { scrollElementIntoAppView } from '../utils/appScroll'
-import { getEditorialCopy } from '../content/editorialCopy'
-import heroEclipseSrc from '../assets/home-eclipse/hero-eclipse.avif'
-import savedMuralSrc from '../assets/living-library/saved-mural-landscape.avif'
+import { getHomeNitnemResume } from '../utils/homeNitnemResume'
+import { getAppViewportHeight, scrollElementIntoAppView } from '../utils/appScroll'
 
-const HOME_SPOTLIGHT_HIGHLIGHT_CLASSES = [
-  'border-gold/45',
-  'shadow-gold-strong',
-  'ring-2',
-  'ring-gold/35',
-  'ring-offset-2',
-  'ring-offset-parchment',
-  'dark:ring-offset-dark-bg',
-]
+import HomeDailyNitnem from '../components/HomeDailyNitnem'
+import HomeReturnArea from '../components/HomeReturnArea'
+
+const HomeArtworkSettings = lazy(() => import('../components/HomeArtworkSettings'))
 
 type HomeSavedPreviewItem = {
   id: string
@@ -66,30 +40,10 @@ type HomeSavedPreviewItem = {
   title: string
   detail: string
   path: string
-  meta?: string
-}
-
-const HOME_SAVED_PREVIEW_APPEARANCE: Record<
-  HomeSavedPreviewItem['kind'],
-  {
-    icon: typeof IconLibrary
-    badgeClassName: string
-    surfaceClassName: string
-    detailClassName: string
-  }
-> = {
-  passage: {
-    icon: IconBookmarkFilled,
-    badgeClassName: 'bg-saffron/12 text-saffron dark:bg-saffron/12 dark:text-saffron-light',
-    surfaceClassName: 'border-saffron/14 bg-parchment-card dark:border-saffron/18 dark:bg-dark-card',
-    detailClassName: 'text-saffron dark:text-saffron-light',
-  },
-  vocab: {
-    icon: IconCheck,
-    badgeClassName: 'bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/14 dark:text-emerald-300',
-    surfaceClassName: 'border-emerald-500/14 bg-parchment-card dark:border-emerald-500/20 dark:bg-dark-card',
-    detailClassName: 'text-ink/70 dark:text-dark-text/70',
-  },
+  excerpt?: string
+  isScripture?: boolean
+  meaning?: string
+  meaningLanguage?: 'en' | 'pa' | 'hi'
 }
 
 function compareSavedAtDesc(
@@ -208,7 +162,7 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
     savedPreview: 'Saved preview',
     savedBook: 'Book',
     savedEmptyTitle: 'Nothing saved yet',
-    savedEmptyBody: 'Open Read and save a passage or word. Your most recent return points will appear here.',
+    savedEmptyBody: 'Save a passage or word to keep it here.',
     savedArtworkAlt: 'Narrative mural with a gateway, gathering figures, instruments, and landscape scenes.',
     savedNotice: {
       bookmark: 'Bookmarked passage added to the shelf.',
@@ -259,7 +213,7 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
     savedPreview: 'ਸੰਭਾਲੀ ਝਲਕ',
     savedBook: 'ਕਿਤਾਬ',
     savedEmptyTitle: 'ਹਾਲੇ ਕੁਝ ਸੰਭਾਲਿਆ ਨਹੀਂ',
-    savedEmptyBody: 'ਪੜ੍ਹੋ ਖੋਲ੍ਹ ਕੇ ਕੋਈ ਪੰਕਤੀ ਜਾਂ ਸ਼ਬਦ ਸੰਭਾਲੋ। ਤੁਹਾਡੇ ਹਾਲੀਆ ਵਾਪਸੀ ਬਿੰਦੂ ਇੱਥੇ ਦਿਸਣਗੇ।',
+    savedEmptyBody: 'ਕੋਈ ਪੰਕਤੀ ਜਾਂ ਸ਼ਬਦ ਸੰਭਾਲੋ ਤਾਂ ਜੋ ਉਹ ਇੱਥੇ ਮਿਲ ਸਕੇ।',
     savedArtworkAlt: 'ਦਰਵਾਜ਼ੇ, ਇਕੱਠੇ ਹੋਏ ਲੋਕਾਂ, ਸਾਜ਼ਾਂ ਅਤੇ ਕੁਦਰਤੀ ਦ੍ਰਿਸ਼ਾਂ ਵਾਲਾ ਕਥਾਤਮਕ ਮਿਊਰਲ।',
     savedNotice: {
       bookmark: 'ਬੁੱਕਮਾਰਕ ਕੀਤੀ ਪੰਕਤੀ ਸੰਭਾਲੀ ਗਈ।',
@@ -310,7 +264,7 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
     savedPreview: 'सहेजी झलक',
     savedBook: 'पुस्तक',
     savedEmptyTitle: 'अभी कुछ सहेजा नहीं',
-    savedEmptyBody: 'पढ़ें खोलकर कोई पंक्ति या शब्द सहेजें। आपके हाल के वापसी बिंदु यहाँ दिखाई देंगे।',
+    savedEmptyBody: 'किसी पंक्ति या शब्द को सहेजें ताकि वह यहाँ मिल सके।',
     savedArtworkAlt: 'द्वार, एकत्र लोगों, वाद्ययंत्रों और प्राकृतिक दृश्यों वाला कथात्मक भित्तिचित्र।',
     savedNotice: {
       bookmark: 'बुकमार्क किया अंश सहेजा गया।',
@@ -320,889 +274,174 @@ const HOME_MESSAGES: Record<UiLocale, HomeMessages> = {
   },
 }
 
+const EXPERIENCE_COPY = {
+  en: { close: 'Close', artwork: 'Home artwork', study: 'Study', complete: 'Mark complete', undo: 'Undo completion', completed: 'Complete today', notStarted: 'Ready to read', inProgress: 'Saved place', begin: 'Begin reading', resume: 'Continue reading', again: 'Read again', savedPlace: 'Return to your saved place.', ready: 'A little space for your daily practice.', today: 'complete today', all: 'All banis', week: 'This week', days: 'days', goal: 'Weekly goal', streak: 'day streak', best: 'Best', saved: 'Saved for later', browse: 'Explore Gurbani', preferences: 'Reading preferences', finishedNotice: 'marked complete.', undoneNotice: 'Completion undone.', dayNames: ['M', 'T', 'W', 'T', 'F', 'S', 'S'] },
+  pa: { close: 'ਬੰਦ ਕਰੋ', artwork: 'ਮੁੱਖ ਪੰਨੇ ਦਾ ਚਿੱਤਰ', study: 'ਵਿਚਾਰ', complete: 'ਪੂਰੀ ਚਿੰਨ੍ਹੋ', undo: 'ਪੂਰਾ ਚਿੰਨ੍ਹ ਹਟਾਓ', completed: 'ਅੱਜ ਪੂਰੀ', notStarted: 'ਪੜ੍ਹਨ ਲਈ ਤਿਆਰ', inProgress: 'ਸੰਭਾਲੀ ਥਾਂ', begin: 'ਪੜ੍ਹਨਾ ਸ਼ੁਰੂ ਕਰੋ', resume: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ', again: 'ਮੁੜ ਪੜ੍ਹੋ', savedPlace: 'ਆਪਣੀ ਸੰਭਾਲੀ ਥਾਂ ਤੋਂ ਜਾਰੀ ਰੱਖੋ।', ready: 'ਰੋਜ਼ਾਨਾ ਅਭਿਆਸ ਲਈ ਥੋੜ੍ਹੀ ਜਿਹੀ ਥਾਂ।', today: 'ਅੱਜ ਪੂਰੀਆਂ', all: 'ਸਾਰੀਆਂ ਬਾਣੀਆਂ', week: 'ਇਸ ਹਫ਼ਤੇ', days: 'ਦਿਨ', goal: 'ਹਫ਼ਤਾਵਾਰੀ ਟੀਚਾ', streak: 'ਦਿਨ ਲਗਾਤਾਰ', best: 'ਸਭ ਤੋਂ ਵੱਧ', saved: 'ਬਾਅਦ ਲਈ ਸੰਭਾਲਿਆ', browse: 'ਗੁਰਬਾਣੀ ਖੋਜੋ', preferences: 'ਪੜ੍ਹਨ ਦੀਆਂ ਪਸੰਦਾਂ', finishedNotice: 'ਪੂਰੀ ਚਿੰਨ੍ਹੀ ਗਈ।', undoneNotice: 'ਪੂਰਾ ਚਿੰਨ੍ਹ ਹਟਾਇਆ ਗਿਆ।', dayNames: ['ਸੋ', 'ਮੰ', 'ਬੁੱ', 'ਵੀ', 'ਸ਼ੁੱ', 'ਸ਼', 'ਐ'] },
+  hi: { close: 'बंद करें', artwork: 'मुख पृष्ठ का चित्र', study: 'अध्ययन', complete: 'पूर्ण चिह्नित करें', undo: 'पूर्ण चिह्न हटाएँ', completed: 'आज पूर्ण', notStarted: 'पढ़ने के लिए तैयार', inProgress: 'सहेजी जगह', begin: 'पढ़ना शुरू करें', resume: 'पढ़ना जारी रखें', again: 'फिर पढ़ें', savedPlace: 'अपनी सहेजी जगह से जारी रखें।', ready: 'दैनिक अभ्यास के लिए थोड़ी जगह।', today: 'आज पूर्ण', all: 'सभी बानियाँ', week: 'इस सप्ताह', days: 'दिन', goal: 'साप्ताहिक लक्ष्य', streak: 'दिन लगातार', best: 'सर्वश्रेष्ठ', saved: 'बाद के लिए सहेजा', browse: 'गुरबानी खोजें', preferences: 'पढ़ने की पसंद', finishedNotice: 'पूर्ण चिह्नित हुई।', undoneNotice: 'पूर्ण चिह्न हटा दिया गया।', dayNames: ['सो', 'मं', 'बु', 'गु', 'शु', 'श', 'र'] },
+} as const
+
+const FOLIO_COPY = {
+  en: { choose: 'Choose a bani to read', order: 'Your routine, in order.', complete: 'Your selected banis are complete today.', selection: 'Selected reading', empty: 'Choose your daily banis to begin.', artwork: 'Artwork', recorded: 'Practice recorded', weekEmpty: 'Begin with one bani.', weekToday: 'Today’s practice is recorded.', weekReturn: 'A little space for today.', weekMet: 'Your weekly goal is met.', weekExplanation: 'One completed bani records a day of practice.' },
+  pa: { choose: 'ਪੜ੍ਹਨ ਲਈ ਬਾਣੀ ਚੁਣੋ', order: 'ਤੁਹਾਡੀ ਰੋਜ਼ਾਨਾ ਬਾਣੀਆਂ ਦਾ ਕ੍ਰਮ।', complete: 'ਅੱਜ ਤੁਹਾਡੀਆਂ ਚੁਣੀਆਂ ਬਾਣੀਆਂ ਪੂਰੀਆਂ ਹਨ।', selection: 'ਚੁਣਿਆ ਪਾਠ', empty: 'ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਰੋਜ਼ਾਨਾ ਬਾਣੀਆਂ ਚੁਣੋ।', artwork: 'ਚਿੱਤਰ', recorded: 'ਅਭਿਆਸ ਦਰਜ ਹੋਇਆ', weekEmpty: 'ਇੱਕ ਬਾਣੀ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।', weekToday: 'ਅੱਜ ਦਾ ਅਭਿਆਸ ਦਰਜ ਹੋ ਗਿਆ ਹੈ।', weekReturn: 'ਅੱਜ ਦੇ ਅਭਿਆਸ ਲਈ ਥੋੜ੍ਹੀ ਥਾਂ।', weekMet: 'ਇਸ ਹਫ਼ਤੇ ਦਾ ਟੀਚਾ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ।', weekExplanation: 'ਇੱਕ ਬਾਣੀ ਪੂਰੀ ਕਰਨ ਨਾਲ ਅਭਿਆਸ ਦਾ ਇੱਕ ਦਿਨ ਦਰਜ ਹੁੰਦਾ ਹੈ।' },
+  hi: { choose: 'पढ़ने के लिए बानी चुनें', order: 'आपकी दैनिक बानियाँ, आपके क्रम में।', complete: 'आज आपकी चुनी हुई बानियाँ पूर्ण हैं।', selection: 'चुना हुआ पाठ', empty: 'शुरू करने के लिए दैनिक बानियाँ चुनें।', artwork: 'चित्र', recorded: 'अभ्यास दर्ज हुआ', weekEmpty: 'एक बानी से शुरू करें।', weekToday: 'आज का अभ्यास दर्ज हो गया है।', weekReturn: 'आज के अभ्यास के लिए थोड़ी जगह।', weekMet: 'इस सप्ताह का लक्ष्य पूरा हो गया है।', weekExplanation: 'एक बानी पूरी करने से अभ्यास का एक दिन दर्ज होता है।' },
+} as const
+
 export default function Home() {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const streak = useProgressStore(state => state.streak)
+  const locale = useLocaleStore(s => s.locale)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
-  const locale = useLocaleStore(s => s.locale)
-  const {
-    completedDate,
-    completedIds,
-    completionTrackingEnabled,
-    selectedIds,
-    resetIfNewDay,
-  } = useNitemStore()
-  const bookmarks = useBookmarksStore(state => state.bookmarks)
-  const favorites = useFavoritesStore(state => state.favorites)
-  const vocab = useVocabStore(s => s.vocab)
-  const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
-  const {
-    openOnboarding,
-  } = useOnboardingStore()
-  const copy = getUiCopy(locale)
-  const editorial = getEditorialCopy(locale)
-  const homeCopy = copy.home
-  const libraryCopy = copy.library
-  const homeMessages = HOME_MESSAGES[locale]
-  const nitnemSpotlightRef = useRef<HTMLElement | null>(null)
-  const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
-  const nitnemScrollTimeoutRef = useRef<number | null>(null)
-  const nitnemMomentSyncedRef = useRef(false)
-  const nitnemUserScrollRef = useRef(false)
-  const nitnemSwipeRef = useRef<{ pointerId: number; startX: number; startY: number; handled: boolean } | null>(null)
-  const [heroImageFailed, setHeroImageFailed] = useState(false)
-  const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
-  const now = useCurrentTime()
-  const homeNow = useMemo(() => new Date(now), [now])
-  const homeDateLabel = useMemo(() => formatUiDate(locale, homeNow), [homeNow, locale])
-  const getNitnemOptionDetail = (option: NitnemRouteOption) => (
-    locale !== 'en'
-      ? homeMessages.groupDetail[option.group]
-      : option.supportsLengthAdjustment && isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
-      ? getSundarGutkaLengthDetail(sundarGutkaLengths[option.baseBaniId])
-      : option.detail
-  )
-
-  useEffect(() => {
-    resetIfNewDay()
-  }, [resetIfNewDay])
-
-  useEffect(() => {
-    const state = (location.state as {
-      reopenOnboarding?: boolean
-      highlightTodayPath?: boolean
-    } | null) ?? null
-
-    if (!state?.reopenOnboarding && !state?.highlightTodayPath) return
-
-    let highlightTimer: number | null = null
-
-    if (state.reopenOnboarding) {
-      openOnboarding()
-    }
-
-    if (state.highlightTodayPath) {
-      globalThis.requestAnimationFrame(() => {
-        nitnemSpotlightRef.current?.classList.add(...HOME_SPOTLIGHT_HIGHLIGHT_CLASSES)
-        if (nitnemSpotlightRef.current) {
-          scrollElementIntoAppView(nitnemSpotlightRef.current, { behavior: 'smooth', block: 'center' })
-        }
-      })
-      highlightTimer = window.setTimeout(() => {
-        nitnemSpotlightRef.current?.classList.remove(...HOME_SPOTLIGHT_HIGHLIGHT_CLASSES)
-      }, 2600)
-    }
-
-    navigate(location.pathname, { replace: true, state: null })
-
-    return () => {
-      if (highlightTimer !== null) {
-        window.clearTimeout(highlightTimer)
-      }
-    }
-  }, [location.pathname, location.state, navigate, openOnboarding])
-
-  const {
-    data: hukamnama,
-    loading: hukamnamaLoading,
-    refreshing: hukamnamaRefreshing,
-    isCached: hukamnamaIsCached,
-    isOlder: hookReportsOlderHukamnama,
-    retry: retryHukamnama,
-  } = useHukamnama()
-
-  const selectedNitnemOptions = useMemo(() => {
-    return selectedIds
-      .map(optionId => NITNEM_ROUTE_OPTIONS.find(option => option.id === optionId) ?? null)
-      .filter((option): option is NitnemRouteOption => option !== null)
-  }, [selectedIds])
-  const nitnemMoment = useMemo<NitnemRouteOption['group']>(() => {
-    const hour = new Date(now).getHours()
-    if (hour >= 21) return 'Night'
-    if (hour >= 16) return 'Evening'
-    return 'Morning'
-  }, [now])
-  const preferredNitnemIndex = useMemo(() => {
-    const momentIndex = selectedNitnemOptions.findIndex(option => option.group === nitnemMoment)
-    return momentIndex >= 0 ? momentIndex : 0
-  }, [nitnemMoment, selectedNitnemOptions])
-  const [activeNitnemIndex, setActiveNitnemIndex] = useState(preferredNitnemIndex)
-  const safeNitnemIndex = selectedNitnemOptions.length > 0
-    ? Math.max(0, Math.min(activeNitnemIndex, selectedNitnemOptions.length - 1))
-    : 0
-  const activeNitnemOption = selectedNitnemOptions[safeNitnemIndex]
-    ?? selectedNitnemOptions[preferredNitnemIndex]
-    ?? selectedNitnemOptions[0]
-    ?? null
-  const nitnemHasCarousel = selectedNitnemOptions.length > 1
-  const nitnemCompletedCount = useMemo(() => {
-    if (!completionTrackingEnabled || completedDate !== toLocalDayStamp(homeNow)) return 0
-    const completed = new Set(completedIds)
-    return selectedNitnemOptions.filter(option => completed.has(option.id)).length
-  }, [completedDate, completedIds, completionTrackingEnabled, homeNow, selectedNitnemOptions])
-  const nitnemPositionLabel = homeMessages.nitnemPosition(
-    safeNitnemIndex + 1,
-    selectedNitnemOptions.length
-  )
-
-  useEffect(() => {
-    if (selectedNitnemOptions.length === 0) return
-
-    setActiveNitnemIndex(currentIndex => {
-      if (!nitnemMomentSyncedRef.current) {
-        nitnemMomentSyncedRef.current = true
-        return preferredNitnemIndex
-      }
-
-      return Math.max(0, Math.min(currentIndex, selectedNitnemOptions.length - 1))
-    })
-  }, [preferredNitnemIndex, selectedNitnemOptions.length])
-
-  const scrollNitnemCarouselTo = useCallback((index: number, behavior: ScrollBehavior = 'auto') => {
-    const carousel = nitnemCarouselRef.current
-    const target = carousel?.querySelector<HTMLElement>(`[data-nitnem-index="${index}"]`)
-    if (!carousel || !target) return
-    const firstCard = carousel.querySelector<HTMLElement>('[data-nitnem-index]')
-    const left = Math.max(0, target.offsetLeft - (firstCard?.offsetLeft ?? 0))
-    if (typeof carousel.scrollTo === 'function') {
-      carousel.scrollTo({ left, behavior })
-      return
-    }
-    carousel.scrollLeft = left
-  }, [])
-
-  const setNitnemCarouselIndex = useCallback((index: number) => {
-    if (selectedNitnemOptions.length === 0) return
-    const boundedIndex = ((index % selectedNitnemOptions.length) + selectedNitnemOptions.length) % selectedNitnemOptions.length
-    if (boundedIndex === safeNitnemIndex) {
-      window.requestAnimationFrame(() => scrollNitnemCarouselTo(boundedIndex, 'smooth'))
-      return
-    }
-    nitnemUserScrollRef.current = true
-    setActiveNitnemIndex(boundedIndex)
-  }, [safeNitnemIndex, scrollNitnemCarouselTo, selectedNitnemOptions.length])
-
-  useEffect(() => {
-    if (!nitnemHasCarousel) return undefined
-    const behavior: ScrollBehavior = nitnemUserScrollRef.current ? 'smooth' : 'auto'
-    nitnemUserScrollRef.current = false
-    const frame = window.requestAnimationFrame(() => scrollNitnemCarouselTo(safeNitnemIndex, behavior))
-    return () => window.cancelAnimationFrame(frame)
-  }, [nitnemHasCarousel, safeNitnemIndex, scrollNitnemCarouselTo])
-
-  useEffect(() => {
-    return () => {
-      if (nitnemScrollTimeoutRef.current) {
-        window.clearTimeout(nitnemScrollTimeoutRef.current)
-      }
-    }
-  }, [])
-
-  const handleNitnemCarouselScroll = () => {
-    const carousel = nitnemCarouselRef.current
-    if (!carousel || !nitnemHasCarousel) return
-
-    if (nitnemScrollTimeoutRef.current) {
-      window.clearTimeout(nitnemScrollTimeoutRef.current)
-    }
-
-    nitnemScrollTimeoutRef.current = window.setTimeout(() => {
-      const cards = Array.from(carousel.querySelectorAll<HTMLElement>('[data-nitnem-index]'))
-      const firstCardOffset = cards[0]?.offsetLeft ?? 0
-      const nearestCard = cards.reduce<HTMLElement | null>((nearest, card) => {
-        if (!nearest) return card
-        const cardDistance = Math.abs((card.offsetLeft - firstCardOffset) - carousel.scrollLeft)
-        const nearestDistance = Math.abs((nearest.offsetLeft - firstCardOffset) - carousel.scrollLeft)
-        return cardDistance < nearestDistance
-          ? card
-          : nearest
-      }, null)
-      const nextIndex = Number(nearestCard?.dataset.nitnemIndex ?? 0)
-      setActiveNitnemIndex(Math.max(0, Math.min(nextIndex, selectedNitnemOptions.length - 1)))
-    }, 80)
-  }
-
-  const handleNitnemPointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!nitnemHasCarousel) return
-    if (event.pointerType === 'mouse' && event.button !== 0) return
-
-    nitnemSwipeRef.current = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      handled: false,
-    }
-  }, [nitnemHasCarousel])
-
-  const completeNitnemSwipeFromPoint = useCallback((clientX: number, clientY: number) => {
-    const swipe = nitnemSwipeRef.current
-    if (!swipe || swipe.handled) return false
-
-    const deltaX = clientX - swipe.startX
-    const deltaY = clientY - swipe.startY
-    if (Math.abs(deltaX) < 36 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.2) return false
-
-    swipe.handled = true
-    setNitnemCarouselIndex(safeNitnemIndex + (deltaX < 0 ? 1 : -1))
-    return true
-  }, [safeNitnemIndex, setNitnemCarouselIndex])
-
-  const handleNitnemPointerMove = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
-    const swipe = nitnemSwipeRef.current
-    if (!swipe || swipe.pointerId !== event.pointerId) return
-    if (completeNitnemSwipeFromPoint(event.clientX, event.clientY)) {
-      event.currentTarget.setPointerCapture?.(event.pointerId)
-      event.preventDefault()
-    }
-  }, [completeNitnemSwipeFromPoint])
-
-  const handleNitnemPointerUp = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
-    const swipe = nitnemSwipeRef.current
-    if (swipe?.pointerId === event.pointerId && completeNitnemSwipeFromPoint(event.clientX, event.clientY)) {
-      event.preventDefault()
-    }
-    if (nitnemSwipeRef.current?.pointerId === event.pointerId) {
-      nitnemSwipeRef.current = null
-      if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
-        event.currentTarget.releasePointerCapture?.(event.pointerId)
-      }
-    }
-  }, [completeNitnemSwipeFromPoint])
-
-  const handleNitnemPointerCancel = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
-    const swipe = nitnemSwipeRef.current
-    if (swipe?.pointerId === event.pointerId) {
-      nitnemSwipeRef.current = null
-    }
-  }, [])
-
-  const handleNitnemTouchStart = useCallback((event: ReactTouchEvent<HTMLDivElement>) => {
-    if (!nitnemHasCarousel) return
-    const touch = event.touches[0]
-    if (!touch) return
-    nitnemSwipeRef.current = {
-      pointerId: -1,
-      startX: touch.clientX,
-      startY: touch.clientY,
-      handled: false,
-    }
-  }, [nitnemHasCarousel])
-
-  const handleNitnemTouchMove = useCallback((event: ReactTouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0]
-    if (!touch || nitnemSwipeRef.current?.pointerId !== -1) return
-    if (completeNitnemSwipeFromPoint(touch.clientX, touch.clientY)) {
-      event.preventDefault()
-    }
-  }, [completeNitnemSwipeFromPoint])
-
-  const handleNitnemTouchEnd = useCallback((event: ReactTouchEvent<HTMLDivElement>) => {
-    const touch = event.changedTouches[0]
-    if (touch && nitnemSwipeRef.current?.pointerId === -1 && completeNitnemSwipeFromPoint(touch.clientX, touch.clientY)) {
-      event.preventDefault()
-    }
-    if (nitnemSwipeRef.current?.pointerId === -1) {
-      nitnemSwipeRef.current = null
-    }
-  }, [completeNitnemSwipeFromPoint])
-  const savedBookmarks = bookmarks.length
-  const savedFavorites = favorites.length
-  const savedReviewItems = vocab.length
-  const hasSavedContent = savedBookmarks + savedFavorites + savedReviewItems > 0
-  const isDarkTheme = useThemeStore(s => s.dark)
+  const isDark = useThemeStore(s => s.dark)
   const toggleTheme = useThemeStore(s => s.toggle)
-  const savedShelfNotice = lastSaved ? homeMessages.savedNotice[lastSaved.kind] : null
+  const openOnboarding = useOnboardingStore(s => s.openOnboarding)
+  const currentSession = useProgressStore(s => s.currentSession)
+  const readingPlaces = useReadingPlacesStore(s => s.places)
+  const nitnem = useNitemStore()
+  const resetIfNewDay = useNitemStore(s => s.resetIfNewDay)
+  const events = useNitnemHistoryStore(s => s.events)
+  useSundarGutkaLengthStore(s => s.lengths)
+  const bookmarks = useBookmarksStore(s => s.bookmarks)
+  const favorites = useFavoritesStore(s => s.favorites)
+  const vocab = useVocabStore(s => s.vocab)
+  const lastSaved = useSavedFeedbackStore(s => s.lastSaved)
+  const now = useCurrentTime()
+  const currentDate = useMemo(() => new Date(now), [now])
+  const day = toLocalDayStamp(currentDate)
+  const continuity = useMemo(() => getNitnemHistorySummary(events, currentDate, nitnem.weeklyDayGoal), [events, currentDate, nitnem.weeklyDayGoal])
+  const homeMessages = HOME_MESSAGES[locale]
+  const x = EXPERIENCE_COPY[locale]
+  const folio = FOLIO_COPY[locale]
+  const copy = getUiCopy(locale)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const nitnemRef = useRef<HTMLDivElement>(null)
+  const arrivalRef = useRef<HTMLElement>(null)
+  const [artOpen, setArtOpen] = useState(false)
+  const [pinnableArrival, setPinnableArrival] = useState(false)
+  const [failedImageKey, setFailedImageKey] = useState<string | null>(null)
+  const [notice, setNotice] = useState('')
+  const [chosenOptionId, setChosenOptionId] = useState<string | null>(null)
+  const { asset, imageStyle, onImageError, imageKey } = useHomeArtwork()
+  const artworkStageRatio = Math.max(1, asset.width / asset.height)
+  const { data: hukamnama, loading, refreshing, isCached, isOlder, retry } = useHukamnama()
 
-  const hukamnamaPreviewLine = useMemo(() => {
-    if (!hukamnama) return null
-    return hukamnama.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))
-      ?? hukamnama.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim())
-      ?? hukamnama.entry.lines?.find(line => line.gurmukhi.trim())
-      ?? null
-  }, [hukamnama])
-  const hukamnamaTransliterationPreview = useMemo(() => {
-    if (!hukamnama || !showTransliteration) return ''
-    return hukamnamaPreviewLine?.transliteration || hukamnama.entry.transliteration
-  }, [hukamnama, hukamnamaPreviewLine?.transliteration, showTransliteration])
-  const hukamnamaMeaningPreview = useMemo(() => {
-    if (!hukamnama || meaningLanguage === 'none') return ''
-    return hukamnamaPreviewLine
-      ? getLineMeaningText(hukamnamaPreviewLine, meaningLanguage, englishSource)
-      : getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
-  }, [englishSource, hukamnama, hukamnamaPreviewLine, meaningLanguage])
-  const hukamnamaDateLabel = hukamnama ? formatHukamnamaDate(locale, hukamnama.date) : ''
-  const hukamnamaIsOlder = Boolean(
-    hukamnama
-    && (hookReportsOlderHukamnama || hukamnama.date !== toLocalDayStamp(homeNow))
-  )
-  const hukamnamaTitle = hukamnamaIsOlder
-    ? homeMessages.earlierHukamnama(hukamnamaDateLabel)
-    : homeMessages.todaysHukamnama
-  const hukamnamaStateLabel = hukamnamaIsCached
-    ? homeMessages.availableOffline
-    : hukamnamaIsOlder
-      ? homeMessages.olderReading
-      : homeMessages.liveReading
-  const savedPreviewItems = useMemo<HomeSavedPreviewItem[]>(() => {
-    const previewItems: HomeSavedPreviewItem[] = []
+  const selected = useMemo(() => nitnem.selectedIds.map(id => NITNEM_ROUTE_OPTIONS.find(o => o.id === id)).filter((o): o is NitnemRouteOption => Boolean(o)), [nitnem.selectedIds])
+  const completed = useMemo(() => new Set(nitnem.completedDate === day ? nitnem.completedIds : []), [nitnem.completedDate, nitnem.completedIds, day])
+  const preferredIndex = useMemo(() => {
+    const finished = (option: NitnemRouteOption) => nitnem.completionTrackingEnabled && completed.has(option.id)
+    const resume = selected.findIndex(o => !finished(o) && getHomeNitnemResume(o, currentSession, readingPlaces))
+    if (resume >= 0) return resume
+    const unfinished = selected.findIndex(o => !finished(o))
+    return unfinished >= 0 ? unfinished : 0
+  }, [selected, completed, currentSession, readingPlaces, nitnem.completionTrackingEnabled])
+  const activeOptionId = selected.find(option => option.id === chosenOptionId)?.id
+    ?? selected[preferredIndex]?.id
 
-    const latestSavedPassage = [
-      ...bookmarks.map(item => ({ item, feedbackKind: 'bookmark' as const, label: libraryCopy.bookmarks })),
-      ...favorites.map(item => ({ item, feedbackKind: 'favorite' as const, label: libraryCopy.favorites })),
-    ].sort((left, right) => compareSavedAtDesc(left.item, right.item))[0]
-    if (latestSavedPassage) {
-      const savedItem = latestSavedPassage.item
-      previewItems.push({
-        id: savedItem.id,
-        kind: 'passage',
-        feedbackKind: latestSavedPassage.feedbackKind,
-        label: latestSavedPassage.label,
-        title: savedItem.title,
-        detail: 'workId' in savedItem
-          ? `${homeMessages.savedBook} · ${savedItem.chapterLabel}`
-          : formatSourceReaderReference({
-              source: savedItem.source,
-              value: savedItem.ang,
-              locale,
-              verseId: savedItem.verseId,
-            }),
-        path: buildSavedStudyPath(savedItem),
-      })
+  useEffect(() => { resetIfNewDay() }, [resetIfNewDay, day])
+  useEffect(() => {
+    const element = arrivalRef.current
+    if (!element || typeof ResizeObserver === 'undefined') return
+    const measure = () => {
+      const arrivalHeight = element.getBoundingClientRect().height
+      setPinnableArrival(arrivalHeight > 0 && arrivalHeight <= getAppViewportHeight() - 24)
     }
+    const observer = new ResizeObserver(measure)
+    observer.observe(element)
+    window.addEventListener('resize', measure)
+    return () => { observer.disconnect(); window.removeEventListener('resize', measure) }
+  }, [])
+  useEffect(() => {
+    if (!notice) return
+    const timer = window.setTimeout(() => setNotice(''), 3200)
+    return () => window.clearTimeout(timer)
+  }, [notice])
+  useEffect(() => {
+    const state = location.state as { reopenOnboarding?: boolean; highlightTodayPath?: boolean } | null
+    if (!state?.reopenOnboarding && !state?.highlightTodayPath) return
+    if (state.reopenOnboarding) openOnboarding()
+    if (state.highlightTodayPath && nitnemRef.current) scrollElementIntoAppView(nitnemRef.current, { behavior: 'smooth', block: 'center' })
+    navigate(location.pathname, { replace: true, state: null })
+  }, [location.state, location.pathname, navigate, openOnboarding])
 
-    const latestVocab = [...vocab].sort(compareSavedAtDesc)[0]
-    if (latestVocab) {
-      previewItems.push({
-        id: buildVocabFeedbackId(latestVocab),
-        kind: 'vocab',
-        feedbackKind: 'review',
-        label: libraryCopy.reviewBank,
-        title: latestVocab.word,
-        detail: getVocabPreviewDetail(latestVocab, locale),
-        path: '/vocab',
-        meta: (latestVocab.kind ?? 'word') === 'phrase' ? homeCopy.phrases : homeCopy.words,
-      })
+  const previewLine = hukamnama?.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim()
+    && !isStructuralGurbaniHeadingLine(line.gurmukhi)
+    && !/^ੴ\s*ਸਤਿਗੁਰ\s*ਪ੍ਰਸਾਦਿ\s*[।॥]*$/u.test(line.gurmukhi.trim()))
+    ?? hukamnama?.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim())
+  const meaning = !hukamnama || meaningLanguage === 'none' ? '' : previewLine
+    ? getLineMeaningText(previewLine, meaningLanguage, englishSource)
+    : getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
+  const transliteration = !showTransliteration || !hukamnama ? '' : previewLine?.transliteration || hukamnama.entry.transliteration
+  const older = Boolean(hukamnama && (isOlder || hukamnama.date !== day))
+  const dateLabel = hukamnama ? formatHukamnamaDate(locale, hukamnama.date) : formatUiDate(locale, currentDate)
+  const hukamTitle = older ? homeMessages.earlierHukamnama(dateLabel) : homeMessages.todaysHukamnama
+  const stateLabel = isCached ? homeMessages.availableOffline : older ? homeMessages.olderReading : homeMessages.liveReading
+  const handleCompletion = (option: NitnemRouteOption) => {
+    setChosenOptionId(option.id)
+    const complete = !useNitemStore.getState().isComplete(option.id)
+    const result = setNitnemCompletionSafely(option.id, complete)
+    if (result === 'failed') {
+      setNotice(locale === 'pa' ? 'ਇਹ ਤਬਦੀਲੀ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।' : locale === 'hi' ? 'यह बदलाव सहेजा नहीं जा सका। फिर कोशिश करें।' : 'This change could not be saved. Please try again.')
+    } else if (result === 'changed' || result === 'unchanged') {
+      setNotice(complete ? `${option.romanizedTitle} ${x.finishedNotice}` : x.undoneNotice)
     }
+  }
+  const savedItems = useMemo<HomeSavedPreviewItem[]>(() => {
+    const items: HomeSavedPreviewItem[] = []
+    const latest = [...bookmarks.map(item => ({ item, feedbackKind: 'bookmark' as const, label: copy.library.bookmarks })), ...favorites.map(item => ({ item, feedbackKind: 'favorite' as const, label: copy.library.favorites }))].sort((a, b) => compareSavedAtDesc(a.item, b.item))[0]
+    if (latest) {
+      const item = latest.item
+      items.push({ id: item.id, kind: 'passage', feedbackKind: latest.feedbackKind, label: latest.label, title: item.title,
+        excerpt: item.excerpt, isScripture: !('workId' in item),
+        meaning: meaningLanguage === 'pa' ? item.translation_pa : meaningLanguage === 'hi' ? item.translation_hi : meaningLanguage === 'en' ? item.translation_en : undefined,
+        meaningLanguage: meaningLanguage === 'none' ? undefined : meaningLanguage,
+        detail: 'workId' in item ? `${homeMessages.savedBook} · ${item.chapterLabel}` : formatSourceReaderReference({ source: item.source, value: item.ang, locale, verseId: item.verseId }), path: buildSavedStudyPath(item) })
+    }
+    const latestWord = [...vocab].sort(compareSavedAtDesc)[0]
+    if (latestWord) items.push({ id: buildVocabFeedbackId(latestWord), kind: 'vocab', feedbackKind: 'review', label: copy.library.reviewBank, title: latestWord.word, detail: getVocabPreviewDetail(latestWord, locale), path: '/vocab' })
+    return items
+  }, [bookmarks, favorites, vocab, copy.library, homeMessages.savedBook, locale, meaningLanguage])
 
-    return previewItems.slice(0, 3)
-  }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, homeMessages.savedBook, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, vocab])
   return (
-    <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--nav-bottom-offset)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
-      <section
-        className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
-        aria-labelledby="home-hukamnama-title"
-        data-testid="home-hero"
-        data-ai-surface="daily-reading-room"
-      >
-        <header className="flex items-center justify-between gap-4" data-testid="home-brand-header">
-          <div className="flex min-w-0 items-center gap-3">
-            <NaamRasLogoMark
-              size={50}
-              className="shrink-0 drop-shadow-[0_8px_14px_rgba(122,84,32,0.18)]"
-              testId="home-brand-mark"
-            />
-            <div className="min-w-0">
-              <h1 id="home-title" className="font-display text-[2.05rem] leading-none text-ink dark:text-dark-text">
-                {editorial?.brand.name ?? 'NaamRas'}
-              </h1>
-              <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                {homeMessages.brandTagline}
-              </p>
-            </div>
-          </div>
-          <div className="flex shrink-0 items-center gap-2">
-            <Link
-              to="/saved"
-              aria-label={homeCopy.openSaved}
-              className="home-door-icon-button"
-              data-testid="home-header-saved"
-            >
-              <IconBookmark size={19} />
-            </Link>
-            <button
-              type="button"
-              onClick={toggleTheme}
-              aria-label={isDarkTheme ? copy.more.lightMode : copy.more.darkMode}
-              className="home-door-icon-button"
-              data-testid="home-theme-toggle"
-            >
-              {isDarkTheme ? <IconSun size={17} /> : <IconMoon size={17} />}
-            </button>
+    <div className="home-stack page-shell home-experience" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
+      <section ref={arrivalRef} className="home-arrival" aria-labelledby="home-hukamnama-title" data-testid="home-hero" data-pinnable={pinnableArrival ? 'true' : undefined} data-gallery-art={asset.id !== 'eclipse' ? 'true' : undefined} data-ai-surface="daily-reading-room">
+        <header className="home-masthead" data-testid="home-brand-header">
+          <h1 id="home-title" className="home-wordmark">Naam<span>Ras</span><i aria-hidden="true" /></h1>
+          <div className="home-header-tools">
+            <button type="button" onClick={toggleTheme} aria-label={isDark ? copy.more.lightMode : copy.more.darkMode} className="home-icon-button" data-testid="home-theme-toggle">{isDark ? <IconSun size={18} /> : <IconMoon size={18} />}</button>
+            <button type="button" onClick={() => setArtOpen(true)} aria-label={x.artwork} className="home-artwork-button" data-testid="home-artwork-settings"><ArtworkIcon /><span>{folio.artwork}</span></button>
           </div>
         </header>
-
-        <div className="home-day-meta mt-3 border-y border-sand/20 py-2.5 dark:border-dark-text/10">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="font-display text-[1.05rem] leading-none text-ink/78 dark:text-dark-text/82">
-              {homeDateLabel}
-            </p>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={openOnboarding}
-                className="chip-pill interactive-focus"
-                data-testid="home-reading-preferences"
-              >
-                {homeMessages.readingPreferences}
-              </button>
-              <StreakBadge streak={streak} label={homeMessages.streakLabel(streak)} />
-            </div>
-          </div>
+        <div className="home-arrival-art" style={{ aspectRatio: artworkStageRatio, maxWidth: `${400 * artworkStageRatio}px` }} data-testid="home-hero-art-stage" data-artwork-id={asset.id}>
+          {failedImageKey === imageKey ? <div className="home-hero-art-fallback" role="img" aria-label={homeMessages.artworkUnavailable} data-testid="home-hero-art-fallback" /> : <img key={imageKey} src={asset.src} alt={asset.localizedDescription[locale]} width={asset.width} height={asset.height} decoding="async" loading="eager" fetchPriority="high" style={imageStyle} onError={() => { onImageError(); if (asset.id === 'eclipse') setFailedImageKey(imageKey) }} data-testid="home-hero-artwork" />}
         </div>
-
-        <div className="home-path-marker" data-testid="home-path-receive">
-          <span aria-hidden="true">01</span>
-          <p>{homeMessages.pathReceive}</p>
-        </div>
-
-        <figure className="home-door-frame">
-          <div className="home-door-artwork" data-testid="home-hero-art-stage">
-            {heroImageFailed ? (
-              <div
-                className="home-hero-art-fallback"
-                role="img"
-                aria-label={homeMessages.artworkUnavailable}
-                data-testid="home-hero-art-fallback"
-              >
-                <span className="home-hero-art-fallback-landscape" aria-hidden="true" />
-              </div>
-            ) : (
-              <img
-                src={heroEclipseSrc}
-                alt={homeMessages.heroArtworkAlt}
-                width={1178}
-                height={1280}
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
-                className="home-hero-art"
-                data-testid="home-hero-artwork"
-                onError={() => setHeroImageFailed(true)}
-              />
-            )}
-          </div>
-          <div className="home-door-content" data-testid="home-daily-reading-room">
-            {hukamnamaLoading && !hukamnama ? (
-              <div
-                className="home-hukam-card animate-pulse px-3.5 py-3.5"
-                data-testid="home-hukamnama-loading"
-                role="status"
-                aria-live="polite"
-                aria-busy="true"
-              >
-                <h2 id="home-hukamnama-title" className="sr-only">{homeMessages.todaysHukamnama}</h2>
-                <span className="sr-only">{homeMessages.loadingHukamnama}</span>
-                <div aria-hidden="true">
-                  <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-32 mb-4" />
-                  <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10" />
-                  <div className="mt-4 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-                  <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
-                  <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
-                </div>
-              </div>
-            ) : hukamnama ? (
-              <div
-                className="home-hukam-card px-3.5 py-3.5"
-                data-testid="home-hukamnama-card"
-                data-ai-surface="home-hukamnama"
-                data-ai-state={hukamnamaIsCached ? 'degraded' : 'ready'}
-                aria-busy={hukamnamaRefreshing || undefined}
-              >
-                <div className="home-card-heading-row">
-                  <h2 id="home-hukamnama-title" className="home-section-label">
-                    {hukamnamaTitle}
-                  </h2>
-                  <span className={`home-soft-pill ${hukamnamaIsCached || hukamnamaIsOlder ? 'home-state-pill--degraded' : ''}`}>
-                    {hukamnamaStateLabel}
-                  </span>
-                </div>
-                <div className="home-hukam-source-state" role="status" aria-live="polite">
-                  <time dateTime={hukamnama.date}>{hukamnamaDateLabel}</time>
-                  {(hukamnamaIsCached || hukamnamaIsOlder) ? (
-                    <button
-                      type="button"
-                      onClick={retryHukamnama}
-                      disabled={hukamnamaRefreshing}
-                      className="home-hukam-refresh interactive-focus"
-                    >
-                      {hukamnamaRefreshing ? homeMessages.refreshing : homeMessages.refresh}
-                    </button>
-                  ) : null}
-                </div>
-                <p
-                  lang={getScriptTextLang(scriptMode)}
-                  className={`${getScriptTextFontClass(scriptMode)} home-hukam-line`}
-                >
-                  {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
-                </p>
-                <div className="home-hukam-support">
-                  {hukamnamaTransliterationPreview ? (
-                    <p className="home-hukam-transliteration">{hukamnamaTransliterationPreview}</p>
-                  ) : null}
-                  {hukamnamaMeaningPreview ? (
-                    <p
-                      className="home-hukam-meaning"
-                      lang={meaningLanguage === 'pa' ? 'pa-Guru' : meaningLanguage === 'hi' ? 'hi' : 'en'}
-                    >
-                      {hukamnamaMeaningPreview}
-                    </p>
-                  ) : null}
-                </div>
-                <p className="home-hukam-provenance">
-                  <span>{hukamnama.entry.sourceName || hukamnama.entry.scripture}</span>
-                  <span aria-hidden="true">·</span>
-                  <span>{homeMessages.angLabel} {hukamnama.ang}</span>
-                  {hukamnama.entry.raag ? (
-                    <>
-                      <span aria-hidden="true">·</span>
-                      <span>{renderScriptText(hukamnama.entry.raag, scriptMode)}</span>
-                    </>
-                  ) : null}
-                </p>
-                <Link
-                  to={`/study?hukamnamaDate=${hukamnama.date}`}
-                  state={{ readerOrigin: '/' }}
-                  className="home-primary-action interactive-focus interactive-pill-link"
-                  data-testid="home-hero-primary-action"
-                  data-ai-action="open-hukamnama"
-                >
-                  <IconLibrary size={20} />
-                  <span>{homeMessages.readHukamnama}</span>
-                </Link>
-              </div>
-            ) : (
-              <div
-                className="home-hukam-card px-3.5 py-3.5"
-                data-testid="home-hukamnama-error"
-                data-ai-surface="home-hukamnama"
-                data-ai-state="degraded"
-                data-ai-error="study-hukamnama"
-              >
-                <h2 id="home-hukamnama-title" className="home-section-label">{homeMessages.hukamnamaUnavailable}</h2>
-                <p className="home-hukam-error-body">
-                  {homeMessages.hukamnamaUnavailableBody}
-                </p>
-                <div className="home-hukam-error-actions">
-                  <button
-                    type="button"
-                    onClick={retryHukamnama}
-                    className="home-primary-action interactive-focus"
-                    data-testid="home-hukamnama-retry"
-                  >
-                    {homeMessages.retry}
-                  </button>
-                  <Link
-                    to="/banis"
-                    className="home-secondary-action interactive-focus interactive-pill-link"
-                    data-ai-action="browse-read"
-                  >
-                    {homeMessages.browseRead}
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-        </figure>
-      </section>
-
-      <section
-        ref={nitnemSpotlightRef}
-        tabIndex={-1}
-        className="home-nitnem-tray mb-4 px-4 py-4 animate-slide-up stagger-3 transition-[box-shadow,transform,border-color] duration-500"
-        aria-labelledby="home-nitnem-title"
-        data-testid="home-nitnem-spotlight"
-      >
-        <div className="home-path-marker" data-testid="home-path-practice">
-          <span aria-hidden="true">02</span>
-          <p>{homeMessages.pathPractice}</p>
-        </div>
-
-        <div className="home-nitnem-heading">
-          <div className="min-w-0">
-            <p
-              className="font-sans text-[11px] uppercase tracking-[0.24em] text-gold-dark dark:text-gold-light"
-            >
-              {homeMessages.dailyNitnem}
-            </p>
-            <h2 id="home-nitnem-title" className="mt-2 max-w-[18ch] font-display text-[1.75rem] leading-[0.98] text-ink dark:text-dark-text sm:max-w-none">
-              {homeMessages.nitnemHeroTitle}
-            </h2>
-          </div>
-          <Link
-            to="/nitnem/customize"
-            className="home-nitnem-customize interactive-focus"
-            aria-label={homeMessages.customizeNitnem}
-            title={homeMessages.customizeNitnem}
-            data-testid="home-nitnem-manage"
-          >
-            <IconMoreHorizontal size={17} />
-            <span>{homeMessages.customizeNitnemShort}</span>
-          </Link>
-        </div>
-
-        <div className="home-nitnem-practice">
-          {activeNitnemOption ? (
-            <>
-              <div className="home-nitnem-toolbar">
-                <div className="min-w-0">
-                  <p className="home-nitnem-moment">{homeMessages.groupLabel[activeNitnemOption.group]}</p>
-                  <p className="home-nitnem-position" aria-live="polite">
-                    {nitnemPositionLabel}
-                    {completionTrackingEnabled ? (
-                      <span>{homeMessages.nitnemCompletion(nitnemCompletedCount)}</span>
-                    ) : null}
-                  </p>
-                </div>
-                {nitnemHasCarousel ? (
-                  <div className="home-nitnem-nav" data-testid="home-nitnem-carousel-controls" aria-label={homeMessages.nitnemCarousel}>
-                    <button
-                      type="button"
-                      onClick={() => setNitnemCarouselIndex(safeNitnemIndex - 1)}
-                      className="interactive-focus"
-                      aria-label={homeMessages.previousBani}
-                      aria-controls="home-nitnem-carousel"
-                    >
-                      <IconArrowRight size={16} className="rotate-180" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setNitnemCarouselIndex(safeNitnemIndex + 1)}
-                      className="interactive-focus"
-                      aria-label={homeMessages.nextBani}
-                      aria-controls="home-nitnem-carousel"
-                    >
-                      <IconArrowRight size={16} />
-                    </button>
-                  </div>
-                ) : null}
-              </div>
-
-              {completionTrackingEnabled ? (
-                <div
-                  className="home-nitnem-progress"
-                  role="progressbar"
-                  aria-label={homeMessages.dailyNitnem}
-                  aria-valuemin={0}
-                  aria-valuemax={selectedNitnemOptions.length}
-                  aria-valuenow={nitnemCompletedCount}
-                  aria-valuetext={homeMessages.nitnemProgressValue(nitnemCompletedCount, selectedNitnemOptions.length)}
-                >
-                  <span
-                    style={{ width: `${selectedNitnemOptions.length > 0 ? (nitnemCompletedCount / selectedNitnemOptions.length) * 100 : 0}%` }}
-                  />
-                </div>
-              ) : null}
-
-              <div
-                ref={nitnemCarouselRef}
-                id="home-nitnem-carousel"
-                onScroll={handleNitnemCarouselScroll}
-                onPointerDown={handleNitnemPointerDown}
-                onPointerMove={handleNitnemPointerMove}
-                onPointerUp={handleNitnemPointerUp}
-                onPointerCancel={handleNitnemPointerCancel}
-                onTouchStart={handleNitnemTouchStart}
-                onTouchMove={handleNitnemTouchMove}
-                onTouchEnd={handleNitnemTouchEnd}
-                className="home-nitnem-carousel"
-                data-testid="home-nitnem-carousel"
-                role="region"
-                aria-roledescription="carousel"
-                aria-label={homeMessages.nitnemCarousel}
-              >
-                {selectedNitnemOptions.map((option, index) => {
-                  const active = index === safeNitnemIndex
-                  return (
-                    <article
-                      key={`home-nitnem-card-${option.id}`}
-                      data-nitnem-index={index}
-                      data-testid={active ? 'home-nitnem-active-card' : undefined}
-                      aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
-                      aria-current={active ? 'true' : undefined}
-                      aria-hidden={active ? undefined : true}
-                      role="group"
-                      aria-roledescription="slide"
-                      className="home-nitnem-card"
-                    >
-                      <div className="home-nitnem-card-grid">
-                        <p className="home-section-label">{homeMessages.currentBani}</p>
-                        <p lang={getScriptTextLang(scriptMode)} className={getScriptTextFontClass(scriptMode)}>
-                          {renderScriptText(option.gurmukhiTitle, scriptMode)}
-                        </p>
-                        {showTransliteration ? <p>{option.romanizedTitle}</p> : null}
-                        <div className="home-ritual-note">
-                          {getNitnemOptionDetail(option)}
-                        </div>
-                      </div>
-
-                      <Link
-                        to={buildNitnemStudyPath(option)}
-                        state={{ readerOrigin: '/' }}
-                        className="home-primary-action interactive-focus interactive-pill-link"
-                        data-testid={active ? 'home-nitnem-primary-action' : undefined}
-                        tabIndex={active ? undefined : -1}
-                      >
-                        {homeMessages.beginNitnem}
-                      </Link>
-                    </article>
-                  )
-                })}
-              </div>
-            </>
-          ) : (
-            <div className="home-nitnem-empty">
-              <p className="font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
-                {homeMessages.chooseNitnemBody}
-              </p>
-            </div>
-          )}
+        <div className="home-hukam-content" data-testid="home-daily-reading-room">
+          {loading && !hukamnama ? <div className="home-hukam-skeleton" role="status" aria-busy="true" data-testid="home-hukamnama-loading"><h2 id="home-hukamnama-title" className="sr-only">{homeMessages.todaysHukamnama}</h2><span className="sr-only">{homeMessages.loadingHukamnama}</span><i /><i /><i /></div> : hukamnama ? <div data-testid="home-hukamnama-card" data-ai-surface="home-hukamnama" data-ai-state={isCached ? 'degraded' : 'ready'} aria-busy={refreshing || undefined}>
+            <div className="home-hukam-heading"><h2 id="home-hukamnama-title">{hukamTitle}</h2><time dateTime={hukamnama.date}>{dateLabel}</time></div>
+            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} home-hukam-line`}>{renderScriptText(previewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}</p>
+            {transliteration ? <p className="home-hukam-transliteration">{transliteration}</p> : null}
+            {meaning ? <p className="home-hukam-meaning" lang={meaningLanguage === 'pa' ? 'pa-Guru' : meaningLanguage === 'hi' ? 'hi' : 'en'}>{meaning}</p> : null}
+            <div className="home-hukam-actions"><Link to={`/study?hukamnamaDate=${hukamnama.date}`} state={{ readerOrigin: '/' }} className="home-hukam-read" data-testid="home-hero-primary-action">{homeMessages.readHukamnama}<IconArrowRight size={20} /></Link><button type="button" onClick={openOnboarding} className="home-hukam-study" aria-label={x.preferences}><span aria-hidden="true">Aa</span><span>{x.preferences}</span></button></div>
+            <p className="home-hukam-provenance"><span>{hukamnama.entry.sourceName || hukamnama.entry.scripture}</span><span aria-hidden="true">·</span><span>{homeMessages.angLabel} {hukamnama.ang}</span>{hukamnama.entry.raag ? <><span aria-hidden="true">·</span><span>{renderScriptText(hukamnama.entry.raag, scriptMode)}</span></> : null}</p>
+            <div className="home-hukam-state" role="status"><span>{stateLabel}</span>{isCached || older ? <button type="button" onClick={retry} disabled={refreshing}>{refreshing ? homeMessages.refreshing : homeMessages.refresh}</button> : null}</div>
+          </div> : <div data-testid="home-hukamnama-error" data-ai-state="degraded"><h2 id="home-hukamnama-title">{homeMessages.hukamnamaUnavailable}</h2><p className="home-hukam-error-body">{homeMessages.hukamnamaUnavailableBody}</p><div className="home-hukam-actions"><button onClick={retry} type="button" className="home-hukam-read" data-testid="home-hukamnama-retry">{homeMessages.retry}<IconArrowRight size={18} /></button><Link to="/banis" className="home-hukam-study">{homeMessages.browseRead}</Link></div></div>}
         </div>
       </section>
 
-      <section
-        className="home-saved-cabinet p-4 mb-5 animate-slide-up stagger-4"
-        aria-labelledby="home-saved-title"
-        data-testid="home-saved-overview"
-      >
-        <div className="home-path-marker" data-testid="home-path-keep">
-          <span aria-hidden="true">03</span>
-          <p>{homeMessages.pathKeep}</p>
+      <div className="home-practice-column">
+        <div ref={nitnemRef} tabIndex={-1} className="home-daily-anchor">
+          <HomeDailyNitnem selected={selected} completed={completed} tracking={nitnem.completionTrackingEnabled}
+            activeId={activeOptionId} getResume={option => getHomeNitnemResume(option, currentSession, readingPlaces)}
+            onComplete={handleCompletion} locale={locale} />
         </div>
-
-        <div className="home-saved-heading flex items-start justify-between gap-3">
-          <div>
-            <p className="eyebrow">{homeCopy.savedEyebrow}</p>
-            <h2 id="home-saved-title" className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
-              {editorial?.home.savedTitle ?? homeCopy.savedTitle}
-            </h2>
-          </div>
-          {hasSavedContent ? (
-            <Link
-              to="/saved"
-              className="interactive-focus inline-flex min-h-11 shrink-0 items-center gap-1 whitespace-nowrap px-2 font-sans text-sm text-gold-dark dark:text-gold-light"
-            >
-              {homeCopy.openSaved} <IconArrowRight size={14} />
-            </Link>
-          ) : null}
-        </div>
-        {savedShelfNotice ? (
-          <div aria-live="polite" className="mt-3 min-h-[1.5rem]">
-            <p role="status" className="inline-flex rounded-full bg-gold/10 px-3 py-1.5 font-sans text-xs font-medium text-gold-dark dark:bg-gold/12 dark:text-gold-light">
-              {savedShelfNotice}
-            </p>
-          </div>
-        ) : null}
-        {hasSavedContent ? (
-          <div className="home-saved-layout" data-testid="home-saved-layout">
-          <Link
-            to="/saved"
-            className="home-saved-art-band interactive-focus"
-            aria-label={`${homeCopy.openSaved}. ${homeMessages.savedArtworkAlt}`}
-            data-testid="home-saved-art"
-          >
-            <img
-              src={savedMuralSrc}
-              alt={homeMessages.savedArtworkAlt}
-              width={1920}
-              height={1080}
-              loading="lazy"
-              decoding="async"
-            />
-            <span className="home-saved-art-caption" aria-hidden="true">
-              <span>{homeCopy.openSaved}</span>
-              <IconArrowRight size={16} />
-            </span>
-          </Link>
-
-          <div className="home-saved-shelf">
-            <div className="home-saved-summary" data-testid="home-saved-metrics">
-              <p className={`home-saved-summary-item ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
-                <strong>{savedBookmarks}</strong>
-                <span>{libraryCopy.bookmarks}</span>
-              </p>
-              <p className={`home-saved-summary-item ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
-                <strong>{savedFavorites}</strong>
-                <span>{libraryCopy.favorites}</span>
-              </p>
-              <p className={`home-saved-summary-item ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
-                <strong>{savedReviewItems}</strong>
-                <span>{libraryCopy.reviewBank}</span>
-              </p>
-            </div>
-
-            <div className="home-saved-preview-list" data-testid="home-saved-preview-list">
-              {savedPreviewItems.length > 0 ? (
-                savedPreviewItems.map(item => {
-                  const appearance = HOME_SAVED_PREVIEW_APPEARANCE[item.kind]
-                  const SavedPreviewIcon = appearance.icon
-                  const isHighlighted = lastSaved?.kind === item.feedbackKind && lastSaved.targetId === item.id
-
-                  return (
-                  <Link
-                    key={item.id}
-                    to={item.path}
-                    state={buildReaderOriginNavigationState(item.path, '/')}
-                    className={`section-shell-quiet interactive-focus interactive-card-link flex w-full items-start gap-3 px-4 py-4 text-left transition-colors duration-300 hover:border-gold/18 dark:hover:border-gold/20 ${appearance.surfaceClassName} ${isHighlighted ? 'saved-feedback-highlight' : ''}`}
-                    data-testid={`home-saved-preview-${item.kind}`}
-                  >
-                    <span className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${appearance.badgeClassName}`}>
-                      <SavedPreviewIcon size={16} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <p className="eyebrow">{item.label}</p>
-                        {item.meta ? <span className="chip-pill">{item.meta}</span> : null}
-                        {isHighlighted ? <span className="chip-pill">{homeMessages.savedJustNow}</span> : null}
-                      </div>
-                      <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                        {item.title}
-                      </p>
-                      {item.kind === 'passage' ? (
-                        <p className={`mt-2 font-sans text-[11px] uppercase tracking-[0.18em] ${appearance.detailClassName}`}>
-                          {item.detail}
-                        </p>
-                      ) : (
-                        <p className={`mt-1.5 font-sans text-sm leading-6 ${appearance.detailClassName}`}>
-                          {item.detail}
-                        </p>
-                      )}
-                    </div>
-                    <span className="mt-1 shrink-0 text-gold-dark dark:text-gold-light">
-                      <IconArrowRight size={16} />
-                    </span>
-                  </Link>
-                )})
-              ) : (
-                <div className="home-quiet-card home-saved-empty-preview px-4 py-4">
-                  <p className="eyebrow">{homeMessages.savedPreview}</p>
-                  <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                    {homeMessages.savedEmptyBody}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-          </div>
-        ) : (
-          <div className="home-saved-compact-empty" data-testid="home-saved-empty">
-            <span className="home-saved-empty-icon" aria-hidden="true">
-              <IconBookmark size={18} />
-            </span>
-            <div className="min-w-0">
-              <p className="home-section-label">{homeMessages.savedEmptyTitle}</p>
-              <p>{homeMessages.savedEmptyBody}</p>
-            </div>
-            <Link to="/banis" className="home-secondary-action interactive-focus interactive-pill-link">
-              {homeMessages.browseRead}
-              <IconArrowRight size={15} />
-            </Link>
-          </div>
-        )}
-      </section>
+        <HomeReturnArea locale={locale} savedItems={savedItems} lastSavedNotice={lastSaved ? homeMessages.savedNotice[lastSaved.kind] : null}
+          practice={{ tracking: nitnem.completionTrackingEnabled, days: continuity.week, completedDays: continuity.completedDaysThisWeek,
+            weeklyGoal: nitnem.weeklyDayGoal, currentStreak: continuity.currentStreak, bestStreak: continuity.bestStreak }} />
+      </div>
+      {notice ? <div role="status" className="home-completion-notice">{notice}</div> : null}
+      {artOpen ? <Suspense fallback={<div role="status" className="home-completion-notice">{locale === 'pa' ? 'ਚਿੱਤਰ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…' : locale === 'hi' ? 'चित्र लोड हो रहे हैं…' : 'Loading artworks…'}</div>}><HomeArtworkSettings open={artOpen} onClose={() => setArtOpen(false)} /></Suspense> : null}
     </div>
   )
 }
+
+function ArtworkIcon() { return <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" /><circle cx="8" cy="8" r="1.5" /><path d="m3 17 6-6 4 4 3-3 5 5" /></svg> }

@@ -33,6 +33,8 @@ export interface CloudSyncMetadata {
 export interface CloudProfileRecord extends CloudSyncMetadata {
   locale: UiLocale
   darkMode: boolean
+  /** Optional for compatibility with older clients that only stored darkMode. */
+  themeMode?: 'light' | 'dark' | 'system'
   reader: {
     scriptMode: ScriptMode
     showTransliteration: boolean

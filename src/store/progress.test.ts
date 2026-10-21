@@ -1,5 +1,8 @@
-import { beforeEach, expect, test } from 'vitest'
+import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { buildSessionResumePath, useProgressStore } from './progress'
+import { getExactReadingKey, useReadingPlacesStore } from './readingPlaces'
+
+afterEach(() => { vi.restoreAllMocks() })
 
 beforeEach(() => {
   localStorage.clear()
@@ -85,4 +88,95 @@ test('bounds Reading History while keeping the most recent reading units', () =>
   expect(history).toHaveLength(50)
   expect(history[0]?.id).toBe('entry-6')
   expect(history.at(-1)?.id).toBe('entry-55')
+})
+
+test('keeps an exact reading usable in memory when both progress stores cannot persist', () => {
+  useReadingPlacesStore.setState({ places: {} })
+  const storedProgress = localStorage.getItem('sikh-progress')
+  const storedPlaces = localStorage.getItem('naamras-reading-places')
+  const session = {
+    scriptureId: 'G-1',
+    resumePath: '/study?source=G&ang=1&startAng=1&endAng=8&baniId=japji-sahib&baniDbId=1&exactBani=1',
+    resumeVerseId: 55,
+    updatedAt: '2026-10-18T03:00:00.000Z',
+  }
+  const write = localStorage.setItem.bind(localStorage)
+  vi.spyOn(localStorage, 'setItem').mockImplementation(function (key, value) {
+    if (key === 'sikh-progress' || key === 'naamras-reading-places') throw new DOMException('Storage is full', 'QuotaExceededError')
+    write(key, value)
+  })
+
+  expect(useProgressStore.getState().updateSession(session)).toBe(false)
+  expect(useProgressStore.getState().currentSession).toEqual(session)
+  expect(useReadingPlacesStore.getState().places[getExactReadingKey(session.resumePath)!]).toEqual(session)
+  expect(localStorage.getItem('sikh-progress')).toBe(storedProgress)
+  expect(localStorage.getItem('naamras-reading-places')).toBe(storedPlaces)
+})
+
+test.each(['markStudied', 'addToReview', 'recordSwipeToday', 'clearSession'] as const)('reading action %s does not interrupt scripture when storage and activity persistence are blocked', action => {
+  vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new DOMException('Storage is unavailable', 'SecurityError') })
+
+  expect((() => {
+    const store = useProgressStore.getState()
+    if (action === 'markStudied') return store.markStudied('entry-55')
+    if (action === 'addToReview') return store.addToReview('entry-55')
+    if (action === 'recordSwipeToday') return store.recordSwipeToday()
+    return store.clearSession()
+  })()).toBe(false)
+
+  const state = useProgressStore.getState()
+  if (action === 'markStudied') expect(state.studied.at(-1)?.id).toBe('entry-55')
+  else if (action === 'addToReview') expect(state.reviewQueue).toContain('entry-55')
+  else if (action === 'recordSwipeToday') expect(state.lastStudied).toBeTruthy()
+  else expect(state.currentSession).toBeNull()
+})
+
+test.each(['sikh-progress', 'naamras-reading-places'])('retries the same exact verse after an independent %s write fails', key => {
+  useReadingPlacesStore.setState({ places: {} })
+  const session = {
+    scriptureId: 'G-1',
+    resumePath: '/study?source=G&ang=1&startAng=1&endAng=8&baniId=japji-sahib&baniDbId=1&exactBani=1',
+    resumeVerseId: 55, updatedAt: '2026-10-18T03:00:00.000Z',
+  }
+  const write = localStorage.setItem.bind(localStorage)
+  const failure = vi.spyOn(localStorage, 'setItem').mockImplementation((storageKey, value) => {
+    if (storageKey === key) throw new DOMException('Storage is full', 'QuotaExceededError')
+    write(storageKey, value)
+  })
+  expect(useProgressStore.getState().updateSession(session)).toBe(false)
+  expect(useProgressStore.getState().currentSession).toEqual(session)
+  expect(useReadingPlacesStore.getState().places[getExactReadingKey(session.resumePath)!]).toEqual(session)
+  failure.mockRestore()
+
+  expect(useProgressStore.getState().updateSession(session)).toBe(true)
+  expect(JSON.parse(localStorage.getItem('sikh-progress')!).state.currentSession).toEqual(session)
+  expect(Object.values(JSON.parse(localStorage.getItem('naamras-reading-places')!).state.places)).toEqual([session])
+})
+
+test('an optional activity failure does not invalidate the saved study day', () => {
+  const write = localStorage.setItem.bind(localStorage)
+  vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+    if (key === 'naamras-cloud-activity-events') throw new Error('Activity unavailable')
+    write(key, value)
+  })
+  expect(useProgressStore.getState().recordSwipeToday()).toBe(true)
+  expect(JSON.parse(localStorage.getItem('sikh-progress')!).state.lastStudied).toBe(useProgressStore.getState().lastStudied)
+})
+
+test('unavailable storage at initialization keeps sessions usable without claiming persistence', async () => {
+  const descriptor = Object.getOwnPropertyDescriptor(window, 'localStorage')!
+  Object.defineProperty(window, 'localStorage', { configurable: true, get: () => { throw new DOMException('Blocked', 'SecurityError') } })
+  vi.spyOn(console, 'warn').mockImplementation(() => {})
+  vi.resetModules()
+  try {
+    const { useProgressStore: unavailableStore } = await import('./progress')
+    const session = { scriptureId: 'G-21', resumePath: '/study?source=G&ang=21', updatedAt: '2026-10-18T03:00:00.000Z' }
+    expect(unavailableStore.getState().updateSession(session)).toBe(false)
+    expect(unavailableStore.getState().currentSession).toEqual(session)
+    expect(unavailableStore.getState().markStudied('entry-55')).toBe(false)
+    expect(unavailableStore.getState().studied.at(-1)?.id).toBe('entry-55')
+  } finally {
+    Object.defineProperty(window, 'localStorage', descriptor)
+    vi.resetModules()
+  }
 })

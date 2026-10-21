@@ -43,6 +43,7 @@ const SHARE_COMPOSER_MODES = [
   { id: 'share-phone-light', viewport: { width: 390, height: 844 }, dark: false, textScale: 1 },
   { id: 'share-phone-dark', viewport: { width: 390, height: 844 }, dark: true, textScale: 1 },
   { id: 'share-reflow-200', viewport: { width: 320, height: 568 }, dark: false, textScale: 2 },
+  { id: 'share-reader-dock', viewport: { width: 390, height: 844 }, dark: true, textScale: 1, deep: true },
 ]
 const CHROME_CANDIDATES = [
   process.env.CHROME_EXECUTABLE,
@@ -257,10 +258,10 @@ async function assertActionableControl(locator, label, viewport) {
   await locator.click({ trial: true })
 }
 
-async function assertFocusReturnedToStudyShare(page) {
+async function assertFocusReturnedToReaderTools(page) {
   try {
     await page.waitForFunction(
-      () => document.activeElement?.getAttribute('data-a11y-focus-return') === 'study-share',
+      () => document.activeElement?.getAttribute('data-a11y-focus-return') === 'reader-tools',
       undefined,
       { timeout: 2_000 }
     )
@@ -272,7 +273,7 @@ async function assertFocusReturnedToStudyShare(page) {
       const identity = [active.tagName.toLowerCase(), active.id ? `#${active.id}` : '', active.className ? `.${String(active.className).trim().replace(/\s+/g, '.')}` : ''].join('')
       return name ? `${identity} (${name.slice(0, 80)})` : identity
     })
-    throw new Error(`focus returned to ${activeElement || 'an unidentified element'} instead of the exact Study share trigger.`)
+    throw new Error(`focus returned to ${activeElement || 'an unidentified element'} instead of the reader tools opener.`)
   }
 }
 
@@ -345,9 +346,27 @@ async function scanShareComposerMode(browser, mode) {
     const reducedMotion = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
     if (!reducedMotion) throw new Error('The share composer was not tested with reduced motion enabled.')
 
-    const shareTrigger = page.locator('[data-ai-action="study-share"]')
+    if (mode.deep) {
+      await page.mouse.move(mode.viewport.width / 2, mode.viewport.height / 2)
+      await page.mouse.wheel(0, 900)
+      await page.getByRole('button', { name: 'Show reader controls', exact: true }).click()
+      await page.getByTestId('reader-dock').getByRole('button', { name: 'More', exact: true }).waitFor({ state: 'visible' })
+    }
+
+    const dockTools = page.getByTestId('reader-dock').getByRole('button', { name: 'More', exact: true })
+    const toolsTrigger = await dockTools.isVisible()
+      ? dockTools
+      : page.getByRole('button', { name: 'Reading tools', exact: true })
+    await toolsTrigger.evaluate(element => element.setAttribute('data-a11y-focus-return', 'reader-tools'))
+    await toolsTrigger.click()
+    const toolsDialog = page.getByRole('dialog', { name: 'Reading tools', exact: true })
+    await toolsDialog.locator('summary').filter({ hasText: 'About this reading' }).click()
+    if (!await toolsDialog.isVisible()) throw new Error('Opening reading details dismissed the tools sheet.')
+    await recordCheck('Open-tools axe scan', async () => {
+      violations.push(...await scanPage(page))
+    })
+    const shareTrigger = toolsDialog.locator('[data-ai-action="study-share"]')
     await shareTrigger.waitFor({ state: 'visible', timeout: 15_000 })
-    await shareTrigger.evaluate(element => element.setAttribute('data-a11y-focus-return', 'study-share'))
     await shareTrigger.click()
 
     const dialog = page.getByRole('dialog', { name: 'Share highlight' })
@@ -366,12 +385,12 @@ async function scanShareComposerMode(browser, mode) {
     await recordCheck('Copy action', () => assertActionableControl(copyButton, 'Copy text control', mode.viewport))
 
     await recordCheck('Open-dialog axe scan', async () => {
-      violations = await scanPage(page)
+      violations.push(...await scanPage(page))
     })
 
     await page.keyboard.press('Escape')
     await recordCheck('Escape close', () => dialog.waitFor({ state: 'hidden', timeout: 10_000 }))
-    await recordCheck('Escape focus return', () => assertFocusReturnedToStudyShare(page))
+    await recordCheck('Escape focus return', () => assertFocusReturnedToReaderTools(page))
   } catch (error) {
     checkErrors.push(`Composer setup: ${formatFailure(error)}`)
   } finally {

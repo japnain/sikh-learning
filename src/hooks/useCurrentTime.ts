@@ -4,12 +4,27 @@ export function useCurrentTime(resolutionMs: number = 60000) {
   const [now, setNow] = useState(() => Date.now())
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
+    let timer: number
+    const resolution = Math.max(100, resolutionMs)
+    const schedule = () => {
+      timer = window.setTimeout(() => {
+        setNow(Date.now())
+        schedule()
+      }, resolution - Date.now() % resolution)
+    }
+    const refresh = () => {
+      if (document.hidden) return
+      window.clearTimeout(timer)
       setNow(Date.now())
-    }, resolutionMs)
-
+      schedule()
+    }
+    schedule()
+    window.addEventListener('focus', refresh)
+    document.addEventListener('visibilitychange', refresh)
     return () => {
-      window.clearInterval(timer)
+      window.clearTimeout(timer)
+      window.removeEventListener('focus', refresh)
+      document.removeEventListener('visibilitychange', refresh)
     }
   }, [resolutionMs])
 

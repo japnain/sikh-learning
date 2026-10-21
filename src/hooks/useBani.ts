@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { resolveAsyncIssue } from '../qa/async'
 import type { AsyncIssue, AsyncStatus, ScriptureEntry, SundarGutkaLength } from '../types'
-import { fetchBani } from '../api/banidb'
+import { fetchBani, type BaniFetchResult } from '../api/banidb'
 import { readBaniOfflineCache, writeBaniOfflineCache } from '../utils/baniOfflineCache'
+import { isExactBaniReading } from '../utils/baniReadingValidation'
+
+const BANI_REQUEST_TIMEOUT_MS = 30_000
 
 type BaniRequestState = {
   key: string
@@ -14,8 +17,16 @@ type BaniRequestState = {
   isCached: boolean
 }
 
-export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | null) {
+export function useBani(
+  baniDbId: number | null,
+  sgLength?: SundarGutkaLength | null,
+  onBeforeReplace?: () => void,
+) {
   const [state, setState] = useState<BaniRequestState | null>(null)
+  const renderedState = useRef<BaniRequestState | null>(null)
+  const beforeReplace = useRef(onBeforeReplace)
+  useLayoutEffect(() => { renderedState.current = state }, [state])
+  useLayoutEffect(() => { beforeReplace.current = onBeforeReplace }, [onBeforeReplace])
   const [attempt, setAttempt] = useState(0)
   const requestKey = baniDbId ? `${baniDbId}:${sgLength ?? 'default'}` : null
   const operationKey = requestKey ? `${requestKey}:${attempt}` : null
@@ -27,19 +38,45 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
     if (!baniDbId || !requestKey || !operationKey) return
 
     let cancelled = false
+    let settled = false
+    let cached: BaniFetchResult | null = null
     const controller = new AbortController()
+    const fail = (error: unknown) => {
+      if (cancelled || settled) return
+      settled = true
+      window.clearTimeout(deadline)
+      setState(previous => ({
+        key: operationKey,
+        requestKey,
+        entries: previous?.requestKey === requestKey ? previous.entries : cached?.entries ?? [],
+        availableLengths: previous?.requestKey === requestKey ? previous.availableLengths : cached?.availableLengths ?? [],
+        resolvedLength: previous?.requestKey === requestKey ? previous.resolvedLength : cached?.resolvedLength ?? null,
+        issue: resolveAsyncIssue(error),
+        isCached: previous?.requestKey === requestKey ? previous.isCached : Boolean(cached),
+      }))
+    }
+    const deadline = window.setTimeout(() => {
+      controller.abort()
+      fail(new Error('The reading request timed out. Please try again.'))
+    }, BANI_REQUEST_TIMEOUT_MS)
 
     const load = async () => {
-      const cached = await readBaniOfflineCache(baniDbId, sgLength)
-      if (cancelled) return
+      const candidate = await readBaniOfflineCache(baniDbId, sgLength).catch(() => null)
+      if (cancelled || settled) return
+      const cachedReading = isExactBaniReading(candidate, baniDbId, sgLength) ? candidate : null
+      cached = cachedReading
 
-      if (cached) {
-        setState({
+      if (cachedReading) {
+        setState(previous => previous?.requestKey === requestKey && previous.entries.length > 0 ? {
+          ...previous,
+          key: operationKey,
+          issue: null,
+        } : {
           key: operationKey,
           requestKey,
-          entries: cached.entries,
-          availableLengths: cached.availableLengths,
-          resolvedLength: cached.resolvedLength,
+          entries: cachedReading.entries,
+          availableLengths: cachedReading.availableLengths,
+          resolvedLength: cachedReading.resolvedLength,
           issue: null,
           isCached: true,
         })
@@ -47,7 +84,16 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
 
       try {
         const data = await fetchBani(baniDbId, sgLength, controller.signal)
-        if (cancelled) return
+        if (cancelled || settled) return
+        if (!isExactBaniReading(data, baniDbId, sgLength)) {
+          throw new Error('The requested bani or length is unavailable. Please try again.')
+        }
+        const previous = renderedState.current
+        if (previous?.requestKey === requestKey && previous.entries.length > 0 && previous.entries !== data.entries) {
+          beforeReplace.current?.()
+        }
+        settled = true
+        window.clearTimeout(deadline)
         setState({
           key: operationKey,
           requestKey,
@@ -57,18 +103,11 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
           issue: null,
           isCached: false,
         })
-        void writeBaniOfflineCache(baniDbId, sgLength, data)
-      } catch (error) {
-        if (cancelled) return
-        setState({
-          key: operationKey,
-          requestKey,
-          entries: cached?.entries ?? [],
-          availableLengths: cached?.availableLengths ?? [],
-          resolvedLength: cached?.resolvedLength ?? null,
-          issue: resolveAsyncIssue(error),
-          isCached: Boolean(cached),
+        void writeBaniOfflineCache(baniDbId, sgLength, data).catch(() => {
+          // A cache write failure must not turn successfully loaded scripture into a reading error.
         })
+      } catch (error) {
+        fail(error)
       }
     }
 
@@ -76,6 +115,7 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
 
     return () => {
       cancelled = true
+      window.clearTimeout(deadline)
       controller.abort()
     }
   }, [baniDbId, operationKey, requestKey, sgLength])

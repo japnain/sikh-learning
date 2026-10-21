@@ -126,6 +126,8 @@ export interface ScriptureEntry {
   verseIds?: number[]
   sourceName?: string
   sourceMeta?: ScriptureSourceMeta | null
+  /** Route identity is retained when BaniDB omits authoritative scripture metadata. */
+  sourceAttribution?: 'unavailable'
   raag?: string
   raagMeta?: ScriptureRaagMeta | null
   writer?: string

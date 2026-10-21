@@ -1,0 +1,88 @@
+.reader-finish {
+  width: min(100%, 34rem);
+  margin: clamp(3rem, 9vw, 5.5rem) auto 2rem;
+  padding: 0 0 1.5rem;
+  color: rgb(var(--color-text));
+  text-align: center;
+}
+
+.reader-finish__rule {
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin: 0 auto 1.75rem;
+  background: rgb(var(--color-accent) / .65);
+}
+
+.reader-finish h2 {
+  margin: 0 0 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.reader-finish button {
+  min-height: 48px;
+  border-radius: 12px;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.reader-finish button:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: 4px;
+}
+
+.reader-finish__completion { margin-bottom: 1.25rem; }
+
+.reader-finish__mark {
+  width: 100%;
+  padding: .9rem 1rem;
+  border: 1px solid rgb(var(--color-text));
+  background: rgb(var(--color-text));
+  color: rgb(var(--color-bg));
+  font-weight: 600 !important;
+  line-height: 1.4;
+}
+
+.reader-finish__confirmed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  text-align: left;
+}
+
+.reader-finish__confirmed > span {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.reader-finish__confirmed svg { flex-shrink: 0; color: rgb(var(--color-success)); }
+.reader-finish__confirmed button { padding: .5rem .75rem; border: 0; background: transparent; color: rgb(var(--color-text)); text-decoration: underline; text-underline-offset: 4px; }
+.reader-finish__actions { display: grid; gap: .5rem; }
+
+.reader-finish__next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgb(var(--color-border) / .5);
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-text));
+  text-align: left;
+}
+
+.reader-finish__next > span:first-child { display: grid; gap: .2rem; }
+.reader-finish__next > span > span { color: rgb(var(--color-text-muted)); font-size: .85rem; line-height: 1.4; }
+.reader-finish__next strong { font-size: 1rem; font-weight: 500; line-height: 1.5; }
+.reader-finish__next svg { flex-shrink: 0; }
+.reader-finish__return, .reader-finish__again { border: 0; background: transparent; color: rgb(var(--color-text)); padding: .7rem 1rem; line-height: 1.5; }
+.reader-finish__again { color: rgb(var(--color-text-muted)); }
+.reader-finish__error { margin: .85rem 0 0; color: rgb(var(--color-danger)); font-size: .95rem; line-height: 1.5; text-align: left; }

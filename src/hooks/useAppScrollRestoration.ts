@@ -25,6 +25,7 @@ interface UseAppScrollRestorationOptions {
   mainContentRef: RefObject<HTMLElement | null>
   enabled?: boolean
   routeHandlesOwnHash?: boolean
+  routeHandlesOwnPosition?: boolean
 }
 
 function locationId(location: LocationSnapshot) {
@@ -75,6 +76,7 @@ export function useAppScrollRestoration({
   mainContentRef,
   enabled = true,
   routeHandlesOwnHash = false,
+  routeHandlesOwnPosition = false,
 }: UseAppScrollRestorationOptions) {
   const location = useLocation()
   const navigationType = useNavigationType()
@@ -162,7 +164,10 @@ export function useAppScrollRestoration({
     let cancelScroll = () => {}
     let focusFrame: number | null = null
 
-    if (currentLocation.hash) {
+    if (routeHandlesOwnPosition) {
+      // A source-line resume has priority over a remembered pixel offset. A
+      // deferred pixel restore can otherwise run after long scripture loads.
+    } else if (currentLocation.hash) {
       if (!routeHandlesOwnHash) {
         cancelScroll = scrollAppHashIntoView(currentLocation.hash)
       }
@@ -193,5 +198,6 @@ export function useAppScrollRestoration({
     mainContentRef,
     navigationType,
     routeHandlesOwnHash,
+    routeHandlesOwnPosition,
   ])
 }

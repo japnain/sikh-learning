@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { lazy, Suspense, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import CloudSyncPanel from '../components/CloudSyncPanel'
 import DisclosureSection from '../components/DisclosureSection'
@@ -7,7 +7,7 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
-import { useThemeStore } from '../store/theme'
+import { useThemeStore, type ThemeMode } from '../store/theme'
 import {
   getEnglishSourceLabels,
   getHindiSourceLabels,
@@ -24,6 +24,9 @@ import { IconArrowRight, IconExternalLink } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getPublicAppLinks } from '../utils/appConfig'
+import '../styles/home-artwork.css'
+
+const HomeArtworkSettings = lazy(() => import('../components/HomeArtworkSettings'))
 
 function SettingsBlock({
   title,
@@ -85,8 +88,14 @@ export default function More() {
   const locale = useLocaleStore(s => s.locale)
   const setLocale = useLocaleStore(s => s.setLocale)
   const openOnboarding = useOnboardingStore(s => s.openOnboarding)
-  const dark = useThemeStore(s => s.dark)
-  const setDark = useThemeStore(s => s.setDark)
+  const themeMode = useThemeStore(s => s.mode)
+  const setThemeMode = useThemeStore(s => s.setMode)
+  const [artworkSettingsOpen, setArtworkSettingsOpen] = useState(false)
+  const appearanceCopy = locale === 'pa'
+    ? { system: 'ਸਿਸਟਮ', artwork: 'ਹੋਮ ਦਾ ਚਿੱਤਰ', artworkDescription: 'ਆਪਣਾ ਮਨਪਸੰਦ ਦ੍ਰਿਸ਼ ਜਾਂ ਹਰ ਰੋਜ਼ ਨਵਾਂ ਚਿੱਤਰ ਚੁਣੋ।' }
+    : locale === 'hi'
+      ? { system: 'सिस्टम', artwork: 'होम का चित्र', artworkDescription: 'पसंदीदा दृश्य चुनें या हर दिन नया चित्र।' }
+      : { system: 'System', artwork: 'Home artwork', artworkDescription: 'Choose a favorite scene or a daily change.' }
   const selectedNitnemCount = useNitemStore(s => s.selectedIds.length)
   const completionTrackingEnabled = useNitemStore(s => s.completionTrackingEnabled)
   const copy = getUiCopy(locale)
@@ -110,7 +119,7 @@ export default function More() {
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">
           {editorial?.more.title ?? moreCopy.title}
         </h1>
-        <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
+        <p className="font-sans text-sm leading-6 text-text-muted mt-3">
           {editorial?.more.body ?? moreCopy.body}
         </p>
       </div>
@@ -122,14 +131,14 @@ export default function More() {
           headingId="more-appearance-title"
           testId="more-appearance"
         >
-          <div className="grid grid-cols-2 gap-2">
-            {([false, true] as const).map(option => {
-              const selected = dark === option
+          <div className="grid grid-cols-3 gap-2">
+            {(['light', 'dark', 'system'] as ThemeMode[]).map(option => {
+              const selected = themeMode === option
               return (
                 <button
-                  key={option ? 'dark' : 'light'}
+                  key={option}
                   type="button"
-                  onClick={() => setDark(option)}
+                  onClick={() => setThemeMode(option)}
                   aria-pressed={selected}
                   className={`interactive-focus min-h-[48px] rounded-lg border px-3 font-sans text-sm font-semibold ${
                     selected
@@ -137,11 +146,16 @@ export default function More() {
                       : 'border-sand/15 text-ink dark:border-dark-text/10 dark:text-dark-text'
                   }`}
                 >
-                  {option ? moreCopy.darkMode : moreCopy.lightMode}
+                  {option === 'system' ? appearanceCopy.system : option === 'dark' ? moreCopy.darkMode : moreCopy.lightMode}
                 </button>
               )
             })}
           </div>
+          <button type="button" className="home-artwork-more-link interactive-focus" onClick={() => setArtworkSettingsOpen(true)}
+            data-testid="more-home-artwork">
+            <span>{appearanceCopy.artwork}<small>{appearanceCopy.artworkDescription}</small></span>
+            <IconArrowRight size={18} />
+          </button>
         </SettingsBlock>
 
         <SettingsBlock
@@ -172,6 +186,8 @@ export default function More() {
           </div>
         </SettingsBlock>
       </div>
+
+      {artworkSettingsOpen ? <Suspense fallback={<div role="status" className="home-completion-notice">{locale === 'pa' ? 'ਚਿੱਤਰ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…' : locale === 'hi' ? 'चित्र लोड हो रहे हैं…' : 'Loading artworks…'}</div>}><HomeArtworkSettings open onClose={() => setArtworkSettingsOpen(false)} /></Suspense> : null}
 
       <section
         id="daily-nitnem"

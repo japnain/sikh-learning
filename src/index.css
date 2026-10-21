@@ -131,7 +131,6 @@
   @media (prefers-reduced-motion: reduce) {
     .splash-fade-out,
     .animate-fade-in,
-    .animate-slide-up,
     .animate-scale-in,
     .animate-glow-pulse {
       animation-duration: 1ms !important;
@@ -318,10 +317,6 @@
   opacity: 0.94;
 }
 
-.stagger-1 { animation-delay: 0.05s; }
-.stagger-3 { animation-delay: 0.15s; }
-.stagger-4 { animation-delay: 0.2s; }
-
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
@@ -345,32 +340,10 @@ html[data-motion='reduce'] *::after {
   scroll-behavior: auto !important;
 }
 
-/* Calm home visual layer: the live UI carries the layout; one landscape carries atmosphere. */
-.app-shell {
-  background:
-    radial-gradient(circle at 50% -8rem, rgb(255 255 255 / 0.58), transparent 30rem),
-    radial-gradient(circle at 18% 24rem, rgb(87 112 69 / 0.12), transparent 20rem),
-    linear-gradient(180deg, #f8f2e6 0%, #ebe5da 54%, #ddd6cf 100%);
-}
-
+/* A single canvas lets artwork and reading surfaces set the hierarchy. */
+.app-shell,
 html.dark .app-shell,
-html[data-theme='dark'] .app-shell {
-  background:
-    radial-gradient(circle at 50% -8rem, rgb(var(--color-accent-strong) / 0.08), transparent 30rem),
-    linear-gradient(180deg, rgb(7 12 14) 0%, rgb(14 23 25) 58%, rgb(7 12 14) 100%);
-}
-
-html.dark .home-door-icon-button,
-html[data-theme='dark'] .home-door-icon-button,
-html.dark .app-nav,
-html[data-theme='dark'] .app-nav,
-html.dark .app-nav-stack::before,
-html[data-theme='dark'] .app-nav-stack::before,
-html.dark .home-saved-cabinet [data-testid='home-saved-metrics'] .home-quiet-card,
-html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .home-quiet-card {
-  border-color: rgb(255 255 255 / 0.1);
-  background: rgb(var(--color-surface) / 0.92);
-}
+html[data-theme='dark'] .app-shell { background: rgb(var(--color-bg)); }
 
 /* Home shell refinement: keep the reveal art, but make the page read as one surface. */
 

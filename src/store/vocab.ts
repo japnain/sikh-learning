@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 import type { VocabContext, VocabEntry, VocabKind, VocabReviewState } from '../types'
 import { queueActivityEvent } from './activityEvents'
 import { buildVocabFeedbackId, useSavedFeedbackStore } from './savedFeedback'
+import type { SavedMutationResult } from './bookmarks'
 
 type ReviewRating = 'again' | 'good' | 'easy'
 
@@ -12,10 +13,40 @@ interface AddWordInput extends Omit<VocabEntry, 'review' | 'context'> {
 
 interface VocabState {
   vocab: VocabEntry[]
-  addWord: (entry: AddWordInput) => void
+  addWord: (entry: AddWordInput) => SavedMutationResult<VocabEntry>
   removeWord: (word: string, kind?: VocabKind) => void
   reviewWord: (word: string, rating: ReviewRating, kind?: VocabKind) => void
   getDueWords: (at?: Date) => VocabEntry[]
+}
+
+const VOCAB_STORAGE_KEY = 'sikh-vocab'
+let persistedSnapshot: { raw: string | null; keys: Set<string> } | null = null
+const vocabKey = (word: string, kind: VocabKind = 'word') => JSON.stringify([kind, word])
+
+/** One parsed snapshot per storage value, shared by the relevant saved controls. */
+export function isVocabEntryPersisted(word: string, kind: VocabKind = 'word'): boolean {
+  try {
+    if (typeof window === 'undefined') return false
+    const raw = window.localStorage.getItem(VOCAB_STORAGE_KEY)
+    if (persistedSnapshot?.raw !== raw) {
+      const stored = raw ? JSON.parse(raw) : null
+      const entries: unknown = typeof stored?.version === 'number' && stored.version !== 0 ? [] : stored?.state?.vocab
+      const keys = new Set<string>()
+      if (Array.isArray(entries)) {
+        for (const entry of entries) {
+          if (entry && typeof entry.word === 'string' && entry.word.length > 0
+            && (entry.kind === undefined || entry.kind === null || entry.kind === 'word' || entry.kind === 'phrase')) {
+            keys.add(vocabKey(entry.word, entry.kind ?? 'word'))
+          }
+        }
+      }
+      persistedSnapshot = { raw, keys }
+    }
+    return persistedSnapshot.keys.has(vocabKey(word, kind))
+  } catch {
+    persistedSnapshot = null
+    return false
+  }
 }
 
 function createInitialReviewState(referenceDate = new Date()): VocabReviewState {
@@ -67,16 +98,16 @@ function normalizeEntry(entry: VocabEntry): VocabEntry {
 }
 
 export const useVocabStore = create<VocabState>()(
-  persist(
+  persist<VocabState>(
     (set, get) => ({
       vocab: [],
-      addWord: (entry) => {
-        const existing = get().vocab.some(v => v.word === entry.word && (v.kind ?? 'word') === (entry.kind ?? 'word'))
-        if (existing) return
-
-        const vocabEntry: VocabEntry = {
+      addWord: (entry): SavedMutationResult<VocabEntry> => {
+        const kind = entry.kind ?? 'word'
+        const existing = get().vocab.find(v => v.word === entry.word && (v.kind ?? 'word') === kind)
+        const wasPersisted = isVocabEntryPersisted(entry.word, kind)
+        const vocabEntry: VocabEntry = existing ?? {
           ...entry,
-          kind: entry.kind ?? 'word',
+          kind,
           context: entry.context ?? {
             scripture: entry.scripture,
             sourceId: entry.sourceId,
@@ -84,19 +115,29 @@ export const useVocabStore = create<VocabState>()(
           review: createInitialReviewState(new Date(entry.savedAt)),
         }
 
-        set(state => ({
-          vocab: [...state.vocab, vocabEntry],
-        }))
-        useSavedFeedbackStore.getState().recordSaved({
-          kind: 'review',
-          targetId: buildVocabFeedbackId(vocabEntry),
-          surfacedAt: vocabEntry.savedAt,
-        })
-        queueActivityEvent('vocab.entry.added', {
-          word: vocabEntry.word,
-          kind: vocabEntry.kind,
-          sourceId: vocabEntry.sourceId,
-        }, vocabEntry.savedAt)
+        let persisted = false
+        try {
+          // A retained duplicate retries the complete current vocabulary. Its
+          // original context/review and all unrelated entries stay intact.
+          set(state => ({ vocab: existing ? [...state.vocab] : [...state.vocab, vocabEntry] }))
+          persisted = Boolean(useVocabStore.persist?.getOptions().storage) && isVocabEntryPersisted(entry.word, kind)
+        } catch {
+          // Persist updates memory first. Keep the entry usable for this
+          // session, but require a successful retry before confirming Saved.
+        }
+        if (persisted && (!existing || !wasPersisted)) {
+          try {
+            useSavedFeedbackStore.getState().recordSaved({
+              kind: 'review', targetId: buildVocabFeedbackId(vocabEntry), surfacedAt: vocabEntry.savedAt,
+            })
+          } catch { /* Optional feedback cannot invalidate the main write. */ }
+          try {
+            queueActivityEvent('vocab.entry.added', {
+              word: vocabEntry.word, kind: vocabEntry.kind, sourceId: vocabEntry.sourceId,
+            }, vocabEntry.savedAt)
+          } catch { /* Optional sync bookkeeping cannot invalidate the main write. */ }
+        }
+        return { item: vocabEntry, changed: !existing, persisted }
       },
       removeWord: (word, kind = 'word') => {
         const removed = get().vocab.find(entry => entry.word === word && (entry.kind ?? 'word') === kind)
@@ -138,7 +179,7 @@ export const useVocabStore = create<VocabState>()(
       }),
     }),
     {
-      name: 'sikh-vocab',
+      name: VOCAB_STORAGE_KEY,
       merge: (persistedState, currentState) => {
         const persisted = persistedState as Partial<VocabState> | undefined
         const persistedVocab = persisted?.vocab ?? []

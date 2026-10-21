@@ -116,6 +116,16 @@ test('persists appearance and applies it to the document', () => {
   expect(screen.getByRole('button', { name: /^Dark$/i })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('offers System appearance and the shared Home artwork picker', async () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  fireEvent.click(screen.getByRole('button', { name: /^System$/i }))
+  expect(useThemeStore.getState().mode).toBe('system')
+  expect(screen.getByRole('button', { name: /^System$/i })).toHaveAttribute('aria-pressed', 'true')
+  fireEvent.click(screen.getByTestId('more-home-artwork'))
+  expect(await screen.findByTestId('home-artwork-settings')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: /^Cancel$/ }))
+})
+
 test('persists app locale without exposing unused profile controls', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
 

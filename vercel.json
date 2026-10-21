@@ -18,7 +18,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'sha256-RBdNNTnGuzd0qjEF6Pft8i1Jl1FoWXvtdIbJXt9IGjQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.banidb.com https://backend.searchgurbani.com https://*.supabase.co wss://*.supabase.co; media-src 'self' blob: https:; manifest-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'sha256-7FPN5xQI0cBUCMla106QS7cpmx5lGgiHlsgi7JuVuyU='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.banidb.com https://backend.searchgurbani.com https://*.supabase.co wss://*.supabase.co; media-src 'self' blob: https:; manifest-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests"
         },
         {
           "key": "Strict-Transport-Security",

@@ -100,7 +100,7 @@ export default function Support() {
           </a>
         </div>
         {!supportMailto ? (
-          <p className="mt-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/62" data-testid="support-email-unavailable">
+          <p className="mt-3 font-sans text-xs leading-5 text-ink/72 dark:text-dark-text/62" data-testid="support-email-unavailable">
             GitHub is the only verified public support endpoint in this build. A monitored email option will appear here only after it is configured.
           </p>
         ) : null}

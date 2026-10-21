@@ -281,7 +281,7 @@ export default function Library() {
       <div className="library-page-header mb-5">
         <p className="eyebrow">{libraryCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.title}</h1>
-        <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
+        <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/65 mt-3">
           {editorial?.library.body ?? libraryCopy.body}
         </p>
       </div>
