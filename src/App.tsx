@@ -1,4 +1,4 @@
-import { lazy, Suspense, startTransition, useCallback, useEffect, useRef, useState, type MouseEvent } from 'react'
+import { lazy, Suspense, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
@@ -17,6 +17,7 @@ import { useOnboardingStore } from './store/onboarding'
 import { applyThemeToDocument, useThemeStore } from './store/theme'
 import { scrollAppTo } from './utils/appScroll'
 import { getRouterBasename } from './utils/basePath'
+import { setReaderPresentationPreference } from './utils/readerPresentation'
 import {
   buildHukamnamaStudyPath,
   buildPersonalHukamnamaStudyPath,
@@ -183,14 +184,10 @@ function AppShell() {
   const setShowTransliteration = useLanguageStore(s => s.setShowTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const setMeaningLanguage = useLanguageStore(s => s.setMeaningLanguage)
-  const englishSource = useLanguageStore(s => s.englishSource)
-  const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const hasCompletedOnboarding = useOnboardingStore(s => s.hasCompletedOnboarding)
   const isOnboardingOpen = useOnboardingStore(s => s.isOnboardingOpen)
   const presentationMode = useOnboardingStore(s => s.presentationMode)
   const learningLevel = useOnboardingStore(s => s.learningLevel)
-  const learningGoal = useOnboardingStore(s => s.learningGoal)
-  const setLearningGoal = useOnboardingStore(s => s.setLearningGoal)
   const completeOnboarding = useOnboardingStore(s => s.completeOnboarding)
   const closeOnboarding = useOnboardingStore(s => s.closeOnboarding)
   const locale = useLocaleStore(s => s.locale)
@@ -221,10 +218,10 @@ function AppShell() {
   useNitemOfflineCache()
   useSupabaseBootstrap()
 
-  useEffect(() => {
-    applyThemeToDocument(dark)
+  useLayoutEffect(() => {
+    applyThemeToDocument(showFirstRun || showOverlay || dark)
     document.documentElement.dataset.displayMode = displayMode
-  }, [dark, displayMode])
+  }, [dark, displayMode, showFirstRun, showOverlay])
 
   useEffect(() => {
     document.documentElement.lang = locale === 'pa' ? 'pa-Guru' : locale === 'hi' ? 'hi' : 'en'
@@ -257,19 +254,19 @@ function AppShell() {
     try {
       const returningFromOverlay = hasCompletedOnboarding && presentationMode === 'overlay'
 
+      setReaderPresentationPreference(meaningLanguage !== 'none' || showTransliteration ? 'study' : 'read')
       completeOnboarding(learningLevel)
 
-      if (returningFromOverlay) {
-        return
-      }
+      if (returningFromOverlay) return
 
+      const destination = firstRunDestinationRef.current
       startTransition(() => {
-        navigate(firstRunDestinationRef.current, {
+        navigate(destination, {
           replace: true,
           state: null,
         })
       })
-      setPendingOnboardingViewportReset(!firstRunDestinationRef.current.includes('#'))
+      setPendingOnboardingViewportReset(!destination.includes('#'))
     } finally {
       setIsCompletingOnboarding(false)
     }
@@ -313,10 +310,6 @@ function AppShell() {
           setShowTransliteration={setShowTransliteration}
           meaningLanguage={meaningLanguage}
           setMeaningLanguage={setMeaningLanguage}
-          englishSource={englishSource}
-          setEnglishSource={setEnglishSource}
-          learningGoal={learningGoal}
-          setLearningGoal={setLearningGoal}
           onComplete={handleOnboardingComplete}
           isCompleting={isCompletingOnboarding}
         />
@@ -378,10 +371,6 @@ function AppShell() {
               setShowTransliteration={setShowTransliteration}
               meaningLanguage={meaningLanguage}
               setMeaningLanguage={setMeaningLanguage}
-              englishSource={englishSource}
-              setEnglishSource={setEnglishSource}
-              learningGoal={learningGoal}
-              setLearningGoal={setLearningGoal}
               onComplete={handleOnboardingComplete}
               onDismiss={closeOnboarding}
               isCompleting={isCompletingOnboarding}
