@@ -1,0 +1,10 @@
+.bani-find { margin-block: 1rem 1.5rem; font-family: var(--font-sans, sans-serif); }
+.bani-find label { font-size: .9rem; font-weight: 650; }
+.bani-find__hint, .bani-find__status { font-size: .75rem; line-height: 1.6; opacity: .8; margin-block: .35rem .65rem; }
+.bani-find input { display: block; width: 100%; min-height: 48px; padding: .75rem; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: .55rem; background: transparent; color: inherit; font: inherit; }
+.bani-find input:focus-visible, .bani-find button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.bani-find__results { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.bani-find__results button { display: grid; gap: .4rem; width: 100%; min-height: 48px; padding: .85rem; border: 1px solid color-mix(in srgb, currentColor 16%, transparent); border-radius: .55rem; background: transparent; color: inherit; text-align: start; overflow-wrap: anywhere; }
+.bani-find__results button > span:first-child { font-size: 1.1rem; line-height: 1.85; }
+.bani-find__results .bani-find__roman { font-size: .8rem; line-height: 1.6; }
+.bani-find__results small { font-size: .7rem; line-height: 1.6; opacity: .8; }

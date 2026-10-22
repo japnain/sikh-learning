@@ -20,10 +20,26 @@ function getClassNames(selector) {
   return [...selector.matchAll(CUSTOM_CLASS_PATTERN)].map(match => match[1])
 }
 
-const sourceText = walk('src')
+function getDynamicClassNames(source) {
+  const classNames = new Set()
+  // Resolve simple template modifiers only when the same source explicitly
+  // handles the interpolated value, e.g. kind === 'river'. Do not exempt an
+  // entire dynamic prefix: a misspelled or removed variant must still fail.
+  for (const [, template] of source.matchAll(/\bclassName=\{`([^`]+)`\}/g)) {
+    for (const [, prefix, variable] of template.matchAll(/([_a-zA-Z][_a-zA-Z0-9-]*)\$\{([_$a-zA-Z][_$a-zA-Z0-9]*)\}/g)) {
+      const escapedVariable = variable.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      const literalComparison = new RegExp(`\\b${escapedVariable}\\s*===\\s*(['"])([_a-zA-Z0-9-]+)\\1`, 'g')
+      for (const [, , value] of source.matchAll(literalComparison)) classNames.add(`${prefix}${value}`)
+    }
+  }
+  return classNames
+}
+
+const sources = walk('src')
   .filter(file => SOURCE_EXTENSIONS.has(path.extname(file)))
   .map(file => fs.readFileSync(file, 'utf8'))
-  .join('\n')
+const sourceText = sources.join('\n')
+const dynamicClassNames = new Set(sources.flatMap(source => [...getDynamicClassNames(source)]))
 
 const cssFiles = [
   'src/index.css',
@@ -41,7 +57,7 @@ for (const file of cssFiles) {
     for (const selector of postcss.list.comma(rule.selector)) {
       const classNames = [...new Set(getClassNames(selector))]
       if (classNames.length === 0) continue
-      if (classNames.every(className => sourceText.includes(className))) continue
+      if (classNames.every(className => sourceText.includes(className) || dynamicClassNames.has(className))) continue
 
       findings.push({
         file,

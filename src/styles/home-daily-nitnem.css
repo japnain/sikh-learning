@@ -91,3 +91,18 @@
   .home-daily-current { padding-block: 1.5rem; }
   .home-daily-script { font-size: 2.75rem; }
 }
+
+.home-daily-reading-options { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; margin-top: .75rem; }
+.home-daily-reading-options:empty { display: none; }
+.home-daily-availability { color: var(--daily-muted); font-size: .75rem; line-height: 1.6; }
+.home-daily-saved-line { margin: .75rem 0 0; padding-left: .85rem; border-left: 1px solid var(--daily-line); font-size: 1.125rem; line-height: 1.9; color: var(--daily-muted); overflow-wrap: anywhere; }
+.home-daily-saved-study { display: inline-flex; align-items: center; min-height: 44px; gap: .5rem; margin-top: .25rem; color: var(--daily-muted); font-size: .75rem; line-height: 1.6; }
+.home-daily-sheet.home-daily-sheet { --modal-sheet-bottom: 0px; inset-inline: 0; top: 0; width: 100%; max-width: 44rem; height: 100dvh; max-height: 100dvh; padding-block: var(--safe-area-top) var(--fixed-ui-safe-bottom); border: 0; border-radius: 0; }
+.home-daily-sheet-list > li { padding-block: .5rem .75rem; }
+.home-daily-sheet-row-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .25rem 1rem; margin-left: 2.125rem; }
+.home-daily-sheet-row-actions > .home-daily-sheet-complete { margin-left: 0; }
+.home-daily-sheet-recorded { margin: .25rem 0 .25rem 2.125rem; color: var(--daily-accent); font-size: .75rem; line-height: 1.7; }
+.home-daily-sheet-list > li[data-current] .home-daily-next-number { color: var(--daily-ink); font-weight: 600; }
+@media (max-width: 359px) {
+  .home-daily-sheet-row-actions, .home-daily-sheet-recorded { margin-left: 1.5rem; }
+}

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { toLocalDayStamp } from '../utils/localDates'
+import { getExactReadingKey } from './readingPlaces'
 
 export interface NitnemCompletionEvent {
   id: string
@@ -10,6 +11,10 @@ export interface NitnemCompletionEvent {
   occurredAt: string
   source: 'manual' | 'legacy' | 'remote'
   wasSelected: boolean
+  /** Absent on legacy practice records; never infer it from today's preference. */
+  readingPath?: string
+  readingKey?: string
+  undoesEventId?: string
 }
 
 interface NitnemHistoryState {
@@ -17,6 +22,7 @@ interface NitnemHistoryState {
   remoteDays: Record<string, { revision: string; updatedAt: string }>
   record: (event: NitnemCompletionEvent) => void
   importLegacy: (date: string, ids: string[]) => void
+  importCompletionEvents: (events: unknown) => void
   reconcileCurrentDay: (date: string, ids: string[], revision: string, updatedAt: string) => void
 }
 
@@ -44,9 +50,67 @@ function isEvent(value: unknown): value is NitnemCompletionEvent {
     && (event.source === 'manual' || event.source === 'legacy' || event.source === 'remote')
 }
 
-function normalizeEvents(input: unknown): NitnemCompletionEvent[] {
+export function normalizeNitnemCompletionEvents(input: unknown): NitnemCompletionEvent[] {
   if (!Array.isArray(input)) return []
-  return [...new Map(input.filter(isEvent).map(event => [event.id, event])).values()]
+  const events = input.filter(isEvent).map(event => {
+    const { readingPath, readingKey, undoesEventId, ...practice } = event
+    const exactKey = typeof readingPath === 'string' ? getExactReadingKey(readingPath) : null
+    return {
+      ...practice,
+      ...(exactKey && (!readingKey || readingKey === exactKey) ? { readingPath, readingKey: exactKey } : {}),
+      ...(typeof undoesEventId === 'string' && undoesEventId ? { undoesEventId } : {}),
+    }
+  })
+  return [...new Map(events.map(event => [event.id, event])).values()]
+}
+
+/** The confirmed bani/day event, independent of the currently selected version. */
+export function getNitnemCompletionForDay(events: NitnemCompletionEvent[], date: string, optionId: string): NitnemCompletionEvent | null {
+  let latest: NitnemCompletionEvent | null = null
+  for (const event of events) {
+    if (event.date !== date || event.optionId !== optionId) continue
+    if (!latest || event.occurredAt > latest.occurredAt
+      || (event.occurredAt === latest.occurredAt && event.id > latest.id)) latest = event
+  }
+  return latest?.completed && latest.wasSelected ? latest : null
+}
+
+function isLaterEvent(left: NitnemCompletionEvent, right: NitnemCompletionEvent): boolean {
+  return left.occurredAt > right.occurredAt || (left.occurredAt === right.occurredAt && left.id > right.id)
+}
+
+/**
+ * Older cloud payloads project completion at restore time without its version.
+ * A later metadata-aware payload may describe the earlier real event. Enrich
+ * that projection without replacing its clock/state or crossing an actual Undo.
+ */
+function enrichRemoteCompletionProvenance(events: NitnemCompletionEvent[], incoming: NitnemCompletionEvent[]): NitnemCompletionEvent[] {
+  const latest = new Map<string, NitnemCompletionEvent>()
+  const latestUndo = new Map<string, NitnemCompletionEvent>()
+  for (const event of events) {
+    const key = `${event.date}:${event.optionId}`
+    const previous = latest.get(key)
+    if (!previous || isLaterEvent(event, previous)) latest.set(key, event)
+    const undo = latestUndo.get(key)
+    if (!event.completed && (!undo || isLaterEvent(event, undo))) latestUndo.set(key, event)
+  }
+  const provenance = new Map<string, NitnemCompletionEvent>()
+  for (const event of incoming) {
+    if (!event.completed || !event.wasSelected || !event.readingPath || !event.readingKey) continue
+    const key = `${event.date}:${event.optionId}`
+    const projected = latest.get(key)
+    if (!projected || projected.source !== 'remote' || !projected.completed || !projected.wasSelected
+      || projected.readingPath || projected.readingKey || isLaterEvent(event, projected)) continue
+    const undo = latestUndo.get(key)
+    if (undo && isLaterEvent(undo, event)) continue
+    const previous = provenance.get(projected.id)
+    if (!previous || isLaterEvent(event, previous)) provenance.set(projected.id, event)
+  }
+  if (!provenance.size) return events
+  return events.map(event => {
+    const exact = provenance.get(event.id)
+    return exact ? { ...event, readingPath: exact.readingPath, readingKey: exact.readingKey } : event
+  })
 }
 
 /** Retained local history is independent of the cloud transport's capped outbox. */
@@ -56,8 +120,19 @@ export const useNitnemHistoryStore = create<NitnemHistoryState>()(
       events: [],
       remoteDays: {},
       record: event => {
-        if (!isEvent(event) || get().events.some(existing => existing.id === event.id)) return
-        set(state => ({ events: [...state.events, event] }))
+        const normalized = normalizeNitnemCompletionEvents([event])[0]
+        if (!normalized || get().events.some(existing => existing.id === normalized.id)) return
+        set(state => ({ events: [...state.events, normalized] }))
+      },
+      importCompletionEvents: input => {
+        const incoming = normalizeNitnemCompletionEvents(input)
+          .filter(event => event.date <= toLocalDayStamp(new Date()))
+        const current = get().events
+        const known = new Set(current.map(event => event.id))
+        const added = incoming.filter(event => !known.has(event.id))
+        const merged = added.length ? [...current, ...added] : current
+        const events = enrichRemoteCompletionProvenance(merged, incoming)
+        if (events !== current) set({ events })
       },
       importLegacy: (date, ids) => {
         if (!isDayStamp(date) || date > toLocalDayStamp(new Date())) return
@@ -82,11 +157,18 @@ export const useNitnemHistoryStore = create<NitnemHistoryState>()(
         const latestTime = state.events.filter(event => event.date === date)
           .reduce((latest, event) => Math.max(latest, Date.parse(event.occurredAt)), 0)
         const occurredAt = new Date(Math.max(Date.now(), Date.parse(updatedAt), latestTime + 1)).toISOString()
-        const changes = changedIds.map(optionId => ({
-          id: `${revision}:${date}:${optionId}:${completed.has(optionId) ? '1' : '0'}`,
-          optionId, date, completed: completed.has(optionId), occurredAt,
-          source: 'remote' as const, wasSelected: true,
-        })).filter(isEvent)
+        const changes = changedIds.map(optionId => {
+          const previousCompletion = getNitnemCompletionForDay(state.events, date, optionId)
+          return {
+            id: `${revision}:${date}:${optionId}:${completed.has(optionId) ? '1' : '0'}`,
+            optionId, date, completed: completed.has(optionId), occurredAt,
+            source: 'remote' as const, wasSelected: true,
+            ...(!completed.has(optionId) && previousCompletion ? {
+              readingPath: previousCompletion.readingPath, readingKey: previousCompletion.readingKey,
+              undoesEventId: previousCompletion.id,
+            } : {}),
+          }
+        }).filter(isEvent)
         set({ events: [...state.events, ...changes], remoteDays: { ...state.remoteDays, [date]: { revision, updatedAt } } })
       },
     }),
@@ -95,7 +177,7 @@ export const useNitnemHistoryStore = create<NitnemHistoryState>()(
       version: 1,
       merge: (persisted, current) => ({
         ...current,
-        events: normalizeEvents((persisted as Partial<NitnemHistoryState> | undefined)?.events),
+        events: normalizeNitnemCompletionEvents((persisted as Partial<NitnemHistoryState> | undefined)?.events),
         remoteDays: Object.fromEntries(Object.entries((persisted as Partial<NitnemHistoryState> | undefined)?.remoteDays ?? {})
           .filter(([date, value]) => isDayStamp(date) && value && typeof value.revision === 'string' && typeof value.updatedAt === 'string' && Number.isFinite(Date.parse(value.updatedAt)))),
       }),

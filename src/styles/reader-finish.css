@@ -49,6 +49,7 @@
 
 .reader-finish__confirmed {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: .75rem;
@@ -57,14 +58,17 @@
 
 .reader-finish__confirmed > span {
   display: flex;
+  min-width: 0;
+  max-width: 100%;
   align-items: center;
   gap: .6rem;
   font-size: .95rem;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .reader-finish__confirmed svg { flex-shrink: 0; color: rgb(var(--color-success)); }
-.reader-finish__confirmed button { padding: .5rem .75rem; border: 0; background: transparent; color: rgb(var(--color-text)); text-decoration: underline; text-underline-offset: 4px; }
+.reader-finish__confirmed button { flex: 0 0 auto; min-width: 44px; max-width: 100%; margin-left: auto; padding: .5rem .75rem; border: 0; background: transparent; color: rgb(var(--color-text)); overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 4px; }
 .reader-finish__actions { display: grid; gap: .5rem; }
 
 .reader-finish__next {

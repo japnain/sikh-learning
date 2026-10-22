@@ -21,6 +21,7 @@ export function useBani(
   baniDbId: number | null,
   sgLength?: SundarGutkaLength | null,
   onBeforeReplace?: () => void,
+  preparedReading?: BaniFetchResult | null,
 ) {
   const [state, setState] = useState<BaniRequestState | null>(null)
   const renderedState = useRef<BaniRequestState | null>(null)
@@ -32,7 +33,8 @@ export function useBani(
   const operationKey = requestKey ? `${requestKey}:${attempt}` : null
   const currentState = operationKey && state?.key === operationKey ? state : null
   const previousState = requestKey && state?.requestKey === requestKey ? state : null
-  const displayState = currentState ?? previousState
+  const prepared = isExactBaniReading(preparedReading, baniDbId ?? 0, sgLength) ? preparedReading : null
+  const displayState = currentState ?? previousState ?? (prepared ? { ...prepared, isCached: false } : null)
 
   useEffect(() => {
     if (!baniDbId || !requestKey || !operationKey) return
@@ -52,7 +54,7 @@ export function useBani(
         availableLengths: previous?.requestKey === requestKey ? previous.availableLengths : cached?.availableLengths ?? [],
         resolvedLength: previous?.requestKey === requestKey ? previous.resolvedLength : cached?.resolvedLength ?? null,
         issue: resolveAsyncIssue(error),
-        isCached: previous?.requestKey === requestKey ? previous.isCached : Boolean(cached),
+        isCached: previous?.requestKey === requestKey ? previous.isCached : Boolean(cached) && !prepared,
       }))
     }
     const deadline = window.setTimeout(() => {
@@ -61,9 +63,9 @@ export function useBani(
     }, BANI_REQUEST_TIMEOUT_MS)
 
     const load = async () => {
-      const candidate = await readBaniOfflineCache(baniDbId, sgLength).catch(() => null)
+      const candidate = prepared ?? await readBaniOfflineCache(baniDbId, sgLength).catch(() => null)
       if (cancelled || settled) return
-      const cachedReading = isExactBaniReading(candidate, baniDbId, sgLength) ? candidate : null
+      const cachedReading = prepared ?? (isExactBaniReading(candidate, baniDbId, sgLength) ? candidate : null)
       cached = cachedReading
 
       if (cachedReading) {
@@ -78,7 +80,7 @@ export function useBani(
           availableLengths: cachedReading.availableLengths,
           resolvedLength: cachedReading.resolvedLength,
           issue: null,
-          isCached: true,
+          isCached: !prepared,
         })
       }
 
@@ -118,7 +120,7 @@ export function useBani(
       window.clearTimeout(deadline)
       controller.abort()
     }
-  }, [baniDbId, operationKey, requestKey, sgLength])
+  }, [baniDbId, operationKey, prepared, requestKey, sgLength])
 
   const issue = currentState?.issue ?? null
   const entries = displayState?.entries ?? []

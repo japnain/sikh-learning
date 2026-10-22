@@ -14,7 +14,17 @@ export function hasReaderSelection() {
   return Boolean(selection && !selection.isCollapsed && selection.toString().trim())
 }
 
+function isWithinReaderDock(target: EventTarget | null) {
+  return target instanceof Element && Boolean(target.closest('.reader-dock:not([hidden])'))
+}
+
+function hasReaderDockFocus() {
+  return isWithinReaderDock(document.activeElement)
+}
+
 function needsReaderDock() {
+  // Do not remove a focused dock merely because the top actions came back.
+  if (hasReaderDockFocus()) return true
   const toolbar = document.querySelector<HTMLElement>('.study-reader-topbar')
   const toolbarStyle = toolbar ? getComputedStyle(toolbar) : null
   // Fixed desktop headers and transitional/missing headers retain the existing fallback.
@@ -41,6 +51,7 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
   const [deep, setDeep] = useState(() => getAppScrollTop() > 120)
   const [word, setWord] = useState<ReaderWordContext | null>(null)
   const [selectionActive, setSelectionActive] = useState(false)
+  const [focusWithinDock, setFocusWithinDock] = useState(false)
   const gesture = useRef<{ x: number; y: number; at: number; top: number } | null>(null)
   const readingIntent = useRef(false)
   const wordTarget = useRef<HTMLElement | null>(null)
@@ -79,7 +90,7 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
     const removeScroll = addAppScrollSettledListener(() => {
       const top = getAppScrollTop()
       setDeep(needsReaderDock())
-      if (readingIntent.current && !blockedRef.current && !hasReaderSelection() && Math.abs(top - lastTop) > 32) {
+      if (readingIntent.current && !blockedRef.current && !hasReaderSelection() && !hasReaderDockFocus() && Math.abs(top - lastTop) > 32) {
         setVisible(false)
         setWord(null)
       }
@@ -95,8 +106,10 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
     const selectionChanged = () => {
       const active = hasReaderSelection()
       setSelectionActive(active)
-      if (active && !blockedRef.current) setWord(null)
+      if (active && !blockedRef.current && !hasReaderDockFocus()) setWord(null)
     }
+    const focusEntered = (event: FocusEvent) => { setFocusWithinDock(isWithinReaderDock(event.target)) }
+    const focusLeft = (event: FocusEvent) => { setFocusWithinDock(isWithinReaderDock(event.relatedTarget)) }
     let viewportFrame: number | null = null
     const refreshViewport = () => {
       if (viewportFrame !== null) window.cancelAnimationFrame(viewportFrame)
@@ -106,6 +119,8 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
       })
     }
     document.addEventListener('selectionchange', selectionChanged)
+    document.addEventListener('focusin', focusEntered)
+    document.addEventListener('focusout', focusLeft)
     window.addEventListener('resize', refreshViewport)
     window.addEventListener('orientationchange', refreshViewport)
     window.addEventListener('pageshow', refreshViewport)
@@ -117,6 +132,8 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
       removeScroll()
       if (viewportFrame !== null) window.cancelAnimationFrame(viewportFrame)
       document.removeEventListener('selectionchange', selectionChanged)
+      document.removeEventListener('focusin', focusEntered)
+      document.removeEventListener('focusout', focusLeft)
       window.removeEventListener('resize', refreshViewport)
       window.removeEventListener('orientationchange', refreshViewport)
       window.removeEventListener('pageshow', refreshViewport)
@@ -154,5 +171,5 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
     setWord(context)
   }
 
-  return { visible: visible && !selectionActive, selectionActive, deep, word, onPointerDown, onContentClick, previewWord, reveal, hide, clearWord: () => { readingIntent.current = false; setWord(null) } }
+  return { visible: visible && (!selectionActive || focusWithinDock), selectionActive, deep: deep || focusWithinDock, word, onPointerDown, onContentClick, previewWord, reveal, hide, clearWord: () => { readingIntent.current = false; setWord(null) } }
 }

@@ -3,8 +3,8 @@ import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
-import { normalizePersistedNitnemIds, useNitemStore } from '../store/nitnem'
-import { getNitnemCompletedIds, useNitnemHistoryStore } from '../store/nitnemHistory'
+import { getNitnemOption, getNitnemReadingProvenance, normalizePersistedNitnemIds, useNitemStore } from '../store/nitnem'
+import { getNitnemCompletedIds, normalizeNitnemCompletionEvents, useNitnemHistoryStore } from '../store/nitnemHistory'
 import { toLocalDayStamp } from '../utils/localDates'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
@@ -585,6 +585,8 @@ function extractLearningProgress(
       completedDate: nitnem.completedDate,
       completedIds: nitnem.completedIds,
       selectedIds: nitnem.selectedIds,
+      // Additive JSON payload; older clients continue to consume completedIds.
+      completionEvents: useNitnemHistoryStore.getState().events.filter(event => event.date === nitnem.completedDate),
     }, now),
   ]
 }
@@ -766,6 +768,17 @@ function applyLearningProgress(records: CloudLearningProgressRecord[] | undefine
         const date = typeof record.payload.completedDate === 'string' ? record.payload.completedDate : current.completedDate
         const completedIds = normalizePersistedNitnemIds(record.payload.completedIds, false)
         const history = useNitnemHistoryStore.getState()
+        const completionEvents = normalizeNitnemCompletionEvents(record.payload.completionEvents)
+          .filter(event => event.date === date && getNitnemOption(event.optionId))
+          .map(event => {
+            if (!event.readingPath || getNitnemReadingProvenance(getNitnemOption(event.optionId)!, event.readingPath)) return event
+            // Keep a valid habit record without assigning an unrelated reading to it.
+            const legacy = { ...event }
+            delete legacy.readingPath
+            delete legacy.readingKey
+            return legacy
+          })
+        history.importCompletionEvents(completionEvents)
         if (date === toLocalDayStamp(new Date())) {
           const revision = `remote:${record.id}:${record.deviceId}:${record.clientUpdatedAt}:${[...completedIds].sort().join(',')}`
           history.reconcileCurrentDay(date, completedIds, revision, record.clientUpdatedAt)

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NaamRas — reader and Nitnem design comparison</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#e5dfd2;--paper:#eee8dc;--ink:#292f2d;--muted:#59605b;--line:#c4bcae;--accent:#715735;--good:#355747;--night:#142323;--night-ink:#e7e3d9;--night-muted:#b9c3bb}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1200px;margin:auto;padding:48px 24px 72px}h1,h2,h3,p{margin-top:0}h1{max-width:850px;font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;letter-spacing:-.045em;margin-bottom:22px}h2{font-size:1.7rem;line-height:1.25;letter-spacing:-.025em;margin-bottom:14px}h3{font-size:1.06rem;line-height:1.4;margin-bottom:9px}.eyebrow{font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}.lead{max-width:790px;font-size:1.1rem}.muted,.intro{color:var(--muted)}.intro{max-width:850px}.notice{padding:18px 22px;border-left:3px solid var(--accent);background:var(--paper);max-width:950px;margin:28px 0 42px}.section{margin-top:48px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.concept{min-width:0;border-top:1px solid var(--line);padding-top:16px}.tag{display:inline-block;padding:4px 9px;font-size:.69rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;margin-bottom:10px}.tag.good{color:var(--good);border-color:var(--good)}.concept>p{font-size:.92rem;color:var(--muted);margin-bottom:18px}.phone{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:19px 15px 15px;max-width:310px;min-height:425px;margin:0 auto 18px;box-shadow:0 12px 28px #222a2420;display:flex;flex-direction:column;font-size:12px;line-height:1.5;overflow:hidden}.phone.dark{background:var(--night);color:var(--night-ink);border-color:#42534d}.phone.dark .small{color:var(--night-muted)}.phone.dark .rule,.phone.dark .reading-line{border-color:#53615a;background:#53615a}.status{font-size:9px;font-weight:600;display:flex;justify-content:space-between;opacity:.7;margin-bottom:17px}.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.topbar b{font-size:15px;font-weight:600}.small{font-size:10px;color:var(--muted)}.chip{display:inline-block;align-self:flex-start;border:1px solid var(--line);border-radius:20px;padding:6px 9px;margin-top:8px;font-size:10px}.row{display:flex;gap:10px;align-items:center;justify-content:space-between}.rule{height:1px;background:var(--line);border:0;margin:12px 0}.reading{flex:1;padding-top:18px}.reading-label{text-align:center;font-size:10px;opacity:.75;margin-bottom:18px}.reading-line{height:7px;background:var(--line);border-radius:2px;margin:12px 0}.reading-line:nth-child(3n){width:84%}.reading-line:nth-child(2n){width:94%}.reading-note{font-size:10px;text-align:center;opacity:.7;margin:18px 0}.dock{display:flex;justify-content:space-between;gap:4px;border-top:1px solid var(--line);padding-top:12px;font-size:10px}.proposed-action{display:block;background:var(--ink);color:var(--paper);padding:10px 12px;border-radius:5px;font-size:11px;font-weight:600;margin:10px 0}.phone.dark .proposed-action{background:#e7e3d9;color:#142323}.art{height:89px;margin:13px -15px 10px;background:#354c49;color:#ddd9ca;display:grid;place-items:center;text-align:center;font-size:10px;padding:12px}.art.mini{height:38px;margin-top:6px}.quiet-link{color:var(--accent);font-size:10px;padding-top:9px}.phone.dark .quiet-link{color:#d2ba8b}.bani-title{font-size:21px;letter-spacing:-.025em;line-height:1.25;margin:12px 0 5px}.routine-row{border-bottom:1px solid var(--line);padding:9px 0;font-size:11px}.routine-row .small{display:block;margin-top:2px}.routine-preview{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--paper) 88%,var(--ink) 12%);margin-top:14px}.hub{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px 0}.hub span{border:1px solid var(--line);padding:11px 8px;border-radius:5px}.caption{font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 13px}.decisions{background:var(--night);color:var(--night-ink);padding:28px;border-radius:10px;margin-top:42px}.decisions .eyebrow{color:#d2ba8b}.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.decisions p{font-size:.94rem;color:var(--night-muted);margin-bottom:0}.decisions h3{color:var(--night-ink)}.rules{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px}.rules p{font-size:.94rem;color:var(--muted)}details{border-top:1px solid var(--line);padding-top:16px;margin-top:18px}summary{cursor:pointer;font-weight:600;min-height:44px;display:list-item;list-style-position:inside}summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.footer{border-top:1px solid var(--line);margin-top:38px;padding-top:17px;font-size:.8rem;color:var(--muted)}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}.concept{display:grid;grid-template-columns:minmax(230px,310px) 1fr;column-gap:24px}.concept h3,.concept>.tag,.concept>.caption,.concept>p{grid-column:2}.concept .phone{grid-column:1;grid-row:1/7;width:100%;margin-bottom:24px}.concept>.tag{justify-self:start}.decision-grid{grid-template-columns:1fr}.rules{grid-template-columns:1fr;gap:12px}}
+    @media(max-width:560px){main{padding:30px 18px 48px}.concept{display:block}.concept .phone{margin-bottom:18px}.decisions{padding:22px}.phone{min-height:405px}.notice{padding:15px 18px}.section{margin-top:36px}}
+    @media(prefers-color-scheme:dark){:root{--bg:#101b1c;--paper:#192726;--ink:#e6e1d5;--muted:#b2beb7;--line:#43554d;--accent:#c8af84;--good:#abc7b0}.phone{box-shadow:0 12px 28px #0003}.decisions{border:1px solid var(--line)}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+    @media print{body{background:#e5dfd2;color:#292f2d}main{padding:20px}.concept,.decisions,.rules{break-inside:avoid}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.concept{display:block}.phone{min-height:370px;box-shadow:none}.section{margin-top:25px}.notice{margin:20px 0}details{display:block}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">NaamRas · Design exploration · 22 October 2026</p>
+    <h1>An easier way into daily paath. A quieter place to read.</h1>
+    <p class="lead">Improve access without rebuilding Home into a checklist or filling the reader with controls.</p>
+    <p class="intro">These comparisons are <strong>schematic proposals</strong>, not live screenshots, implemented screens or tested outcomes. The reading areas contain placeholders, not Gurbani.</p>
+  </header>
+
+  <aside class="notice"><strong>Recommended direction:</strong> a visible length selector, an intentional Nitnem session, and the existing editorial spotlight with a full-height routine navigator. Preserve the artwork’s scale and the app’s shared reading experience.</aside>
+
+  <section class="section" aria-labelledby="reader-title">
+    <p class="eyebrow">Reader · Three approaches</p>
+    <h2 id="reader-title">A content choice deserves its own visible control.</h2>
+    <div class="grid">
+      <article class="concept">
+        <span class="tag good">A · Recommended</span><h3>Visible length selector</h3>
+        <div class="phone dark" aria-label="Schematic reader with a visible length selector">
+          <div class="status"><span>SCHEMATIC</span><span>PROPOSED</span></div>
+          <div class="topbar"><span>‹ Back</span><b>Rehras Sahib</b><span>Aa ···</span></div>
+          <span class="chip">Length · Long ⌄</span>
+          <div class="row small" style="margin-top:12px"><span>Read · Study</span><span>Contents ⌄</span></div>
+          <div class="reading"><div class="reading-label">Canonical Gurbani reading area</div><div class="reading-line"></div><div class="reading-line"></div><div class="reading-line"></div><div class="reading-line"></div><div class="reading-line"></div><p class="reading-note">Exact saved place retained</p></div>
+          <div class="dock"><span>Contents</span><span>Long ⌄</span><span>Aa</span><span>More</span></div>
+        </div>
+        <p class="caption">Purpose stays explicit</p><p>One tap exposes supported choices. Repeat the current length in the deep-reading controls, while ordinary reading remains uncluttered.</p>
+      </article>
+      <article class="concept">
+        <span class="tag">B · Reject</span><h3>Title dropdown</h3>
+        <div class="phone" aria-label="Schematic reader with length hidden behind the title">
+          <div class="status"><span>SCHEMATIC</span><span>PROPOSED</span></div>
+          <div class="topbar"><span>‹ Back</span><b>Rehras Sahib ⌄</b><span>Aa ···</span></div><p class="small" style="margin-top:10px">Length is behind the title</p>
+          <div class="reading"><div class="reading-label">Canonical Gurbani reading area</div><div class="reading-line"></div><div class="reading-line"></div><div class="reading-line"></div><div class="reading-line"></div><div class="reading-line"></div></div>
+          <div class="dock"><span>Contents</span><span>Aa</span><span>More</span></div>
+        </div>
+        <p class="caption">Cleaner, less discoverable</p><p>A title dropdown could mean switch bani, jump section or change length. It exchanges the current hiding place for another ambiguity.</p>
+      </article>
+      <article class="concept">
+        <span class="tag">C · Reject</span><h3>One controls hub</h3>
+        <div class="phone" aria-label="Schematic reader with a general controls hub">
+          <div class="status"><span>SCHEMATIC</span><span>PROPOSED</span></div>
+          <div class="topbar"><span>‹ Back</span><b>Reader controls</b><span>Close</span></div>
+          <div class="hub"><span>Text size</span><span>Theme</span><span>Length</span><span>Script</span><span>Meanings</span><span>Contents</span></div>
+          <p class="small">A general menu interrupts the reading area.</p><div class="reading"><div class="reading-line"></div><div class="reading-line"></div></div>
+        </div>
+        <p class="caption">Organized, still a detour</p><p>Grouping everything together is tidy, but the reader must still hunt through unrelated options to change the composition.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="home-title">
+    <p class="eyebrow">Home Nitnem · Three approaches</p>
+    <h2 id="home-title">Keep the emotional arrival. Improve the daily handoff.</h2>
+    <div class="grid">
+      <article class="concept">
+        <span class="tag good">A · Recommended</span><h3>Spotlight + Your Nitnem</h3>
+        <div class="phone" aria-label="Schematic art-led Home with a focused Nitnem reading">
+          <div class="status"><span>SCHEMATIC</span><span>PROPOSED</span></div><div class="topbar"><b>NaamRas</b><span>Appearance</span></div>
+          <span class="quiet-link">Continue Nitnem · Rehras Sahib →</span>
+          <div class="art">Existing artwork<br>Scale preserved</div><span class="small">Today’s Hukamnama · reading preview</span><div class="rule"></div>
+          <div class="row small"><span>Daily Nitnem</span><span>Your routine →</span></div><div class="bani-title">Rehras Sahib</div><div class="row small"><span>Saved reading part</span><span>Long ⌄</span></div><span class="proposed-action">Continue reading →</span>
+          <div class="small">Your routine opens a full-height navigator.</div>
+        </div>
+        <p class="caption">Focused Home, complete access</p><p>One quiet first-screen entry; one active reading below Hukamnama. The full routine gets a spacious destination with direct reading links, lengths and completion.</p>
+      </article>
+      <article class="concept">
+        <span class="tag">B · Reject</span><h3>Expanded Home checklist</h3>
+        <div class="phone" aria-label="Schematic Home dominated by an expanded routine checklist">
+          <div class="status"><span>SCHEMATIC</span><span>PROPOSED</span></div><div class="topbar"><b>NaamRas</b><span>Appearance</span></div><div class="art">Existing artwork</div><span class="small">Today’s Hukamnama</span><div class="rule"></div><b>Daily Nitnem</b>
+          <div class="routine-row">○ Japji Sahib <span class="small">Continue · expand controls</span></div><div class="routine-row">○ Jaap Sahib <span class="small">Begin · expand controls</span></div><div class="routine-row">○ Tav Prasad Savaiye</div><div class="routine-row">○ Chaupai Sahib</div><div class="routine-row">○ Rehras Sahib</div>
+        </div>
+        <p class="caption">Access overwhelms composition</p><p>The owner previously rejected seven expanding rows. Returning to that layout would repeat the same Home problem, particularly with long routines and large text.</p>
+      </article>
+      <article class="concept">
+        <span class="tag">C · Defer</span><h3>Practice-first alternate Home</h3>
+        <div class="phone dark" aria-label="Schematic alternative Home focused on practice rather than artwork">
+          <div class="status"><span>SCHEMATIC</span><span>PROPOSED</span></div><div class="topbar"><b>Your practice</b><span>Home mode ⌄</span></div><div class="bani-title">Today’s Nitnem</div><span class="proposed-action">Begin your chosen routine →</span><div class="small">Your banis, in your order</div>
+          <div class="routine-row">Japji Sahib →</div><div class="routine-row">Jaap Sahib →</div><div class="routine-row">Tav Prasad Savaiye →</div><div class="routine-row">Chaupai Sahib →</div><div class="art mini">Reduced artwork</div><span class="small">Today’s Hukamnama</span>
+        </div>
+        <p class="caption">Useful, but doubles Home</p><p>A fast alternative for frequent readers, at the cost of another interface to maintain and a weaker shared identity. Revisit only if usage supports it.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="decisions" aria-labelledby="state-title">
+    <p class="eyebrow">Three distinct truths</p><h2 id="state-title">What is open, what is usual, and what was completed.</h2>
+    <div class="decision-grid">
+      <div><h3>Open reading</h3><p>The chooser beside a reading changes that reading, from Home or the reader. A secondary “Use for my Nitnem” action updates the usual choice. A shared link never changes it.</p></div>
+      <div><h3>Usual preference</h3><p>Customize edits remembered lengths with Save/Cancel. Changing a default never moves an active reading. If different, show “Reading Long · Usual Short.” No confirmation is needed each time a bani opens.</p></div>
+      <div><h3>Daily practice</h3><p>Credit a bani once. After Short is completed, opening Long shows “Read today · Short”; the new version is not falsely completed and the daily total does not fall.</p></div>
+    </div>
+  </section>
+
+  <section class="rules" aria-label="Reading continuity and scope">
+    <div><h3>Fresh paath is different from an old saved place.</h3><p>Continue the intentional daily session; offer Begin for a fresh practice. Older Study places remain available separately. An open session survives midnight; completion is dated when explicitly recorded.</p><h3>Navigation should allow exploration.</h3><p>Contents and Find need Return to the reading position before replacing ordinary resume. Keep awake is an optional reading comfort setting, released when leaving the reader.</p></div>
+    <div><h3>Completion should lead somewhere useful.</h3><p>Complete &amp; continue opens the next exact reading only after saving succeeds. Home promotes the next bani while keeping Undo reachable. Respect personal order; do not silently rearrange it by the clock.</p><details><summary>Deferred: memorization line reveal</summary><p>Potentially valuable, but a separate interaction requiring careful testing of text selection, accidental taps and sacred-text continuity. First improve everyday reading access, navigation and session reliability.</p></details></div>
+  </section>
+  <details><summary>Reference patterns and evidence</summary><p>These sources demonstrate patterns; their adaptation to NaamRas is a design proposal, not a measured outcome.</p><ul><li><a href="https://help.youversion.com/l/en/article/050z6oe74d-change-bible-version-or-language-ios">YouVersion</a>: the current version abbreviation opens version selection directly.</li><li><a href="https://support.spotify.com/us/article/play-queue/">Spotify</a>: a focused current item can have a separate, accessible view of the upcoming sequence.</li><li><a href="https://www.paprikaapp.com/help/iphone/">Paprika</a>: optional Keep Screen On disables sleep while viewing a recipe and restores it after leaving. This is a useful bounded comfort pattern for long readings.</li><li>Project evidence: <code>docs/design/experience-quality-plan.md</code> records the earlier rejection of seven expanding Home rows. The current reader, Nitnem and saved-place code were inspected for the state decisions above.</li></ul></details>
+  <footer class="footer">Planning artifact only. Existing app code is unchanged. Validate real supported lengths, source order, saved places, offline behavior, large text, VoiceOver and sustained physical-iPhone reading before judging the result.</footer>
+</main>
+</body>
+</html>

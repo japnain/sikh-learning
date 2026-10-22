@@ -10,14 +10,19 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
-import { useReadingPlacesStore } from '../store/readingPlaces'
+import { getExactReadingKey, useReadingPlacesStore } from '../store/readingPlaces'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { NITNEM_ROUTE_OPTIONS, setNitnemCompletionSafely, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
-import { getNitnemHistorySummary, useNitnemHistoryStore } from '../store/nitnemHistory'
+import { getNitnemCompletionForDay, getNitnemHistorySummary, useNitnemHistoryStore } from '../store/nitnemHistory'
+import { useNitnemPracticeStore } from '../store/nitnemPractice'
+import { getActiveNitnemPractice, getNitnemPracticeResume } from '../utils/nitnemPractice'
+import { getNextIncompleteNitnemReading } from '../utils/nitnemReadingIdentity'
+import { buildNitnemStudyPath } from '../store/nitnem'
+import { asSupportedSundarGutkaBaniId, normalizeSundarGutkaLength } from '../utils/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
-import type { UiLocale, VocabEntry } from '../types'
+import type { SundarGutkaLength, UiLocale, VocabEntry } from '../types'
 import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralGurbaniHeadingLine, renderScriptText } from '../utils/readerDisplay'
 import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
@@ -26,6 +31,9 @@ import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { formatSourceReaderReference } from '../utils/sourceReaderMeta'
 import { getHomeNitnemResume } from '../utils/homeNitnemResume'
 import { getAppViewportHeight, scrollElementIntoAppView } from '../utils/appScroll'
+import { isExactBaniReading } from '../utils/baniReadingValidation'
+import type { BaniFetchResult } from '../api/banidb'
+import type { BaniLengthDestination } from '../utils/baniLengthSelection'
 
 import HomeDailyNitnem from '../components/HomeDailyNitnem'
 import HomeReturnArea from '../components/HomeReturnArea'
@@ -297,6 +305,7 @@ export default function Home() {
   const openOnboarding = useOnboardingStore(s => s.openOnboarding)
   const currentSession = useProgressStore(s => s.currentSession)
   const readingPlaces = useReadingPlacesStore(s => s.places)
+  const practice = useNitnemPracticeStore(s => s.active)
   const nitnem = useNitemStore()
   const resetIfNewDay = useNitemStore(s => s.resetIfNewDay)
   const events = useNitnemHistoryStore(s => s.events)
@@ -328,15 +337,77 @@ export default function Home() {
 
   const selected = useMemo(() => nitnem.selectedIds.map(id => NITNEM_ROUTE_OPTIONS.find(o => o.id === id)).filter((o): o is NitnemRouteOption => Boolean(o)), [nitnem.selectedIds])
   const completed = useMemo(() => new Set(nitnem.completedDate === day ? nitnem.completedIds : []), [nitnem.completedDate, nitnem.completedIds, day])
-  const preferredIndex = useMemo(() => {
-    const finished = (option: NitnemRouteOption) => nitnem.completionTrackingEnabled && completed.has(option.id)
-    const resume = selected.findIndex(o => !finished(o) && getHomeNitnemResume(o, currentSession, readingPlaces))
-    if (resume >= 0) return resume
-    const unfinished = selected.findIndex(o => !finished(o))
-    return unfinished >= 0 ? unfinished : 0
-  }, [selected, completed, currentSession, readingPlaces, nitnem.completionTrackingEnabled])
-  const activeOptionId = selected.find(option => option.id === chosenOptionId)?.id
-    ?? selected[preferredIndex]?.id
+  const activePractice = getActiveNitnemPractice(selected, practice, day)
+  const activeOptionId = activePractice?.optionId
+    ?? selected.find(option => option.id === chosenOptionId && !(nitnem.completionTrackingEnabled && completed.has(option.id)))?.id
+    ?? selected.find(option => !(nitnem.completionTrackingEnabled && completed.has(option.id)))?.id
+    ?? selected[0]?.id
+  const activeOption = selected.find(option => option.id === activeOptionId)
+  const practiceResume = (option: NitnemRouteOption) => getNitnemPracticeResume(option, activePractice, readingPlaces, currentSession)
+  const readingPath = (option: NitnemRouteOption) => practiceResume(option) ?? buildNitnemStudyPath(option)
+  const allComplete = nitnem.completionTrackingEnabled && selected.length > 0 && selected.every(option => completed.has(option.id))
+  const entryCopy = {
+    en: { label: 'Daily Nitnem', begin: 'Begin Nitnem', resume: 'Continue Nitnem', complete: 'Your banis are complete today', view: 'Your Nitnem', sessionOnly: 'Reading is available for this session. Your place could not be saved on this device.' },
+    pa: { label: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ', begin: 'ਨਿਤਨੇਮ ਸ਼ੁਰੂ ਕਰੋ', resume: 'ਨਿਤਨੇਮ ਜਾਰੀ ਰੱਖੋ', complete: 'ਅੱਜ ਤੁਹਾਡੀਆਂ ਬਾਣੀਆਂ ਪੂਰੀਆਂ ਹਨ', view: 'ਤੁਹਾਡਾ ਨਿਤਨੇਮ', sessionOnly: 'ਇਸ ਵਾਰ ਪੜ੍ਹ ਸਕਦੇ ਹੋ। ਇਸ ਯੰਤਰ ਉੱਤੇ ਤੁਹਾਡੀ ਥਾਂ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ।' },
+    hi: { label: 'दैनिक नितनेम', begin: 'नितनेम शुरू करें', resume: 'नितनेम जारी रखें', complete: 'आज आपकी बानियाँ पूर्ण हैं', view: 'आपका नितनेम', sessionOnly: 'इस सत्र में पढ़ सकते हैं। इस उपकरण पर आपकी जगह सहेजी नहीं जा सकी।' },
+  }[locale]
+  const entryLength = activeOption ? normalizeSundarGutkaLength(new URLSearchParams(readingPath(activeOption).split('?')[1]).get('sgLength')) : null
+  const entryLengthLabels = {
+    en: { short: 'Short', medium: 'Medium', long: 'Long', extralong: 'Extra long' },
+    pa: { short: 'ਛੋਟੀ', medium: 'ਦਰਮਿਆਨੀ', long: 'ਲੰਮੀ', extralong: 'ਵਧੇਰੇ ਲੰਮੀ' },
+    hi: { short: 'संक्षिप्त', medium: 'मध्यम', long: 'लंबी', extralong: 'अधिक लंबी' },
+  }[locale]
+  const beginReading = (option: NitnemRouteOption, path: string) => {
+    const store = useNitnemPracticeStore.getState()
+    const continuing = getNitnemPracticeResume(option, store.active, readingPlaces, currentSession)
+    const saved = continuing ? store.updatePath(path) : store.start(option.id, path)
+    if (!saved) setNotice(entryCopy.sessionOnly)
+    setChosenOptionId(option.id)
+    const activePath = useNitnemPracticeStore.getState().active?.readingPath ?? path
+    navigate(activePath, { state: { readerOrigin: '/', ...(!saved ? { nitnemSessionOnly: true } : {}) } })
+  }
+  const changeReadingLength = async (option: NitnemRouteOption, length: SundarGutkaLength, remember: boolean, signal?: AbortSignal,
+    preparedReading?: BaniFetchResult, preparedDestination?: BaniLengthDestination) => {
+    const id = asSupportedSundarGutkaBaniId(option.baseBaniId)
+    if (!id || !option.baniDbId) return
+    const { getBaniLengthDestination, loadExactBaniReading } = await import('../utils/baniLengthSelection')
+    const prepared = isExactBaniReading(preparedReading, option.baniDbId, length)
+    const loaded = prepared ? preparedReading! : await loadExactBaniReading(option.baniDbId, length, signal)
+    if (signal?.aborted) throw new DOMException('Reading change cancelled.', 'AbortError')
+    const resolvedLength = loaded.resolvedLength ?? length
+    const currentPath = readingPath(option)
+    const currentParams = new URLSearchParams(currentPath.split('?')[1])
+    const currentVerseId = Number(currentParams.get('resumeVerseId'))
+    const continuing = getActiveNitnemPractice([option], useNitnemPracticeStore.getState().active)
+    const resolvedDestination = getBaniLengthDestination(currentPath, loaded, continuing ? readingPlaces : {},
+      continuing && currentVerseId > 0 ? { verseId: currentVerseId, source: currentParams.get('resumeSource') ?? currentParams.get('source') ?? undefined } : null)
+    const targetKey = getExactReadingKey(resolvedDestination.path)
+    const destination = prepared && preparedDestination && targetKey
+      && getExactReadingKey(preparedDestination.path) === targetKey
+      ? preparedDestination : resolvedDestination
+    const path = destination.path
+    const store = useNitnemPracticeStore.getState()
+    const previousPractice = store.active
+    const previousLengths = { ...useSundarGutkaLengthStore.getState().lengths }
+    const persistedPractice = localStorage.getItem('naamras-nitnem-practice')
+    const persistedLengths = localStorage.getItem('sikh-sundar-gutka-lengths')
+    try {
+      const ongoing = getActiveNitnemPractice([option], store.active)
+      const saved = ongoing ? store.switchReading(option.id, path) : store.start(option.id, path)
+      if (!saved) throw new Error(entryCopy.sessionOnly)
+      if (remember) useSundarGutkaLengthStore.getState().setLength(id, resolvedLength)
+    } catch (error) {
+      try { useNitnemPracticeStore.setState({ active: previousPractice }) } catch { /* Restore memory even when device storage is unavailable. */ }
+      try { useSundarGutkaLengthStore.setState({ lengths: previousLengths }) } catch { /* Restore the previous preference independently. */ }
+      for (const [key, value] of [['naamras-nitnem-practice', persistedPractice], ['sikh-sundar-gutka-lengths', persistedLengths]]) {
+        try { if (value === null) localStorage.removeItem(key!); else localStorage.setItem(key!, value!) } catch { /* Keep the chooser retryable. */ }
+      }
+      throw error
+    }
+    setChosenOptionId(option.id)
+    navigate(useNitnemPracticeStore.getState().active?.readingPath ?? path, { state: { readerOrigin: '/' } })
+  }
+
 
   useEffect(() => { resetIfNewDay() }, [resetIfNewDay, day])
   useEffect(() => {
@@ -377,12 +448,17 @@ export default function Home() {
   const hukamTitle = older ? homeMessages.earlierHukamnama(dateLabel) : homeMessages.todaysHukamnama
   const stateLabel = isCached ? homeMessages.availableOffline : older ? homeMessages.olderReading : homeMessages.liveReading
   const handleCompletion = (option: NitnemRouteOption) => {
-    setChosenOptionId(option.id)
     const complete = !useNitemStore.getState().isComplete(option.id)
-    const result = setNitnemCompletionSafely(option.id, complete)
+    const recorded = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, day, option.id)
+    const result = setNitnemCompletionSafely(option.id, complete, complete ? readingPath(option) : recorded?.readingPath)
     if (result === 'failed') {
       setNotice(locale === 'pa' ? 'ਇਹ ਤਬਦੀਲੀ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।' : locale === 'hi' ? 'यह बदलाव सहेजा नहीं जा सका। फिर कोशिश करें।' : 'This change could not be saved. Please try again.')
     } else if (result === 'changed' || result === 'unchanged') {
+      if (complete) {
+        useNitnemPracticeStore.getState().finish(option.id)
+        const next = getNextIncompleteNitnemReading(option.id, nitnem.selectedIds, useNitemStore.getState().completedIds)
+        setChosenOptionId(next?.id ?? null)
+      } else setChosenOptionId(option.id)
       setNotice(complete ? `${option.romanizedTitle} ${x.finishedNotice}` : x.undoneNotice)
     }
   }
@@ -412,6 +488,11 @@ export default function Home() {
             <button type="button" onClick={() => setArtOpen(true)} aria-label={x.artwork} className="home-artwork-button" data-testid="home-artwork-settings"><ArtworkIcon /><span>{folio.artwork}</span></button>
           </div>
         </header>
+        {activeOption && (!allComplete || activePractice) ? <Link className="home-nitnem-entry" data-testid="home-nitnem-entry" to={readingPath(activeOption)}
+          state={{ readerOrigin: '/' }} onClick={event => { if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && event.button === 0) { event.preventDefault(); beginReading(activeOption, readingPath(activeOption)) } }}>
+          <span><small>{entryCopy.label}</small><span>{activeOption.romanizedTitle}{entryLength ? ` · ${entryLengthLabels[entryLength]}` : ''}</span></span>
+          <span>{practiceResume(activeOption) ? entryCopy.resume : entryCopy.begin}<IconArrowRight size={17} /></span>
+        </Link> : allComplete ? <a className="home-nitnem-entry" href="#home-nitnem-title"><span><small>{entryCopy.label}</small><span>{entryCopy.complete}</span></span><span>{entryCopy.view}<IconArrowRight size={17} /></span></a> : null}
         <div className="home-arrival-art" style={{ aspectRatio: artworkStageRatio, maxWidth: `${400 * artworkStageRatio}px` }} data-testid="home-hero-art-stage" data-artwork-id={asset.id}>
           {failedImageKey === imageKey ? <div className="home-hero-art-fallback" role="img" aria-label={homeMessages.artworkUnavailable} data-testid="home-hero-art-fallback" /> : <img key={imageKey} src={asset.src} alt={asset.localizedDescription[locale]} width={asset.width} height={asset.height} decoding="async" loading="eager" fetchPriority="high" style={imageStyle} onError={() => { onImageError(); if (asset.id === 'eclipse') setFailedImageKey(imageKey) }} data-testid="home-hero-artwork" />}
         </div>
@@ -431,8 +512,10 @@ export default function Home() {
       <div className="home-practice-column">
         <div ref={nitnemRef} tabIndex={-1} className="home-daily-anchor">
           <HomeDailyNitnem selected={selected} completed={completed} tracking={nitnem.completionTrackingEnabled}
-            activeId={activeOptionId} getResume={option => getHomeNitnemResume(option, currentSession, readingPlaces)}
-            onComplete={handleCompletion} locale={locale} />
+            activeId={activeOptionId} getResume={practiceResume} getReadingPath={readingPath}
+            getSavedStudy={option => getHomeNitnemResume(option, currentSession, readingPlaces)}
+            getCompletionPath={option => getNitnemCompletionForDay(events, day, option.id)?.readingPath}
+            onRead={beginReading} onLengthChange={changeReadingLength} onComplete={handleCompletion} locale={locale} />
         </div>
         <HomeReturnArea locale={locale} savedItems={savedItems} lastSavedNotice={lastSaved ? homeMessages.savedNotice[lastSaved.kind] : null}
           practice={{ tracking: nitnem.completionTrackingEnabled, days: continuity.week, completedDays: continuity.completedDaysThisWeek,

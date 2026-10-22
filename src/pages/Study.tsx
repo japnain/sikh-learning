@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
-import { fetchAng, fetchShabad } from '../api/banidb'
+import { fetchAng, fetchShabad, type BaniFetchResult } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
 import { useProgressStore, type Session } from '../store/progress'
 import { useAng } from '../hooks/useAng'
@@ -12,10 +12,21 @@ import SoundscapeControls from '../components/SoundscapeControls'
 import StudyCard from '../components/StudyCard'
 import ReaderDock from '../components/ReaderDock'
 import ReaderFinishPanel from '../components/ReaderFinishPanel'
+import BaniLengthControl from '../components/BaniLengthControl'
+import { getBaniLengthDestinationLabel } from '../components/baniLengthCopy'
+import { useBaniLengthSelection } from '../hooks/useBaniLengthSelection'
+import { useReaderWakeLock } from '../hooks/useReaderWakeLock'
+import { useReaderHeaderLayout } from '../hooks/useReaderHeaderLayout'
+import { getBaniLengthDestination, type BaniLengthDestination } from '../utils/baniLengthSelection'
+import { getExactReadingKey, useReadingPlacesStore } from '../store/readingPlaces'
+import { useNitemStore } from '../store/nitnem'
+import { getSelectedNitnemReading } from '../utils/nitnemReadingIdentity'
+import { useNitnemPracticeStore } from '../store/nitnemPractice'
+import { isActiveNitnemPracticeReading } from '../utils/nitnemPractice'
 import WordPopover from '../components/WordPopover'
 import { useReaderInteraction, type ReaderWordContext } from '../hooks/useReaderInteraction'
 import { useReaderPresentation, type ReaderPresentation } from '../hooks/useReaderPresentation'
-import { captureReaderAnchor, findVisibleReaderLine, getReaderBodyLines, getReaderViewportTop, isReaderScrollUnmovedOrClamped, restoreReaderAnchor, type ReaderAnchor } from '../utils/readerAnchor'
+import { captureReaderAnchor, findVisibleReaderLine, getReaderBodyLines, getReaderViewportTop, restoreReaderAnchor, type ReaderAnchor } from '../utils/readerAnchor'
 import { getSavedReturnIdentity, isSafeSavedReturnPath, isScriptureBookmark, useBookmarksStore } from '../store/bookmarks'
 import { resolveFavoriteRouteMode, useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
@@ -125,6 +136,8 @@ type ShareHighlightSheetContent = {
 }
 
 const ShareHighlightSheet = lazy(() => import('../features/shareHighlight/ShareHighlightSheet'))
+const BaniLengthSheet = lazy(() => import('../components/BaniLengthSheet'))
+const BaniFindPanel = lazy(() => import('../components/BaniFindPanel'))
 
 const HUKAMNAMA_SHARE_SERIES: Record<UiLocale, { daily: string; personal: string }> = {
   en: { daily: 'Daily Hukamnama', personal: 'Personal Hukamnama' },
@@ -346,6 +359,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   positionSessionOnly: string
   retryPosition: string
   savedOffline: string
+  retainedReading: string
   tryLive: string
   favoriteAdded: string
   favoriteRemoved: string
@@ -377,6 +391,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     positionSessionOnly: 'Your place is kept for this session. This device couldn’t save it.',
     retryPosition: 'Retry saving place',
     savedOffline: 'Showing the passage already saved on this device because the live source is unavailable.',
+    retainedReading: 'The live source is unavailable. Your open reading is still here; saving it for offline use could not be confirmed.',
     tryLive: 'Try live copy',
     favoriteAdded: 'Added to favorites.',
     favoriteRemoved: 'Removed from favorites.',
@@ -408,6 +423,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     positionSessionOnly: 'ਪਾਠ ਵਿੱਚ ਤੁਹਾਡਾ ਸਥਾਨ ਇਸ ਸੈਸ਼ਨ ਲਈ ਰੱਖਿਆ ਹੈ। ਇਹ ਡਿਵਾਈਸ ਇਸਨੂੰ ਸੰਭਾਲ ਨਹੀਂ ਸਕਿਆ।',
     retryPosition: 'ਸਥਾਨ ਮੁੜ ਸੰਭਾਲੋ',
     savedOffline: 'ਲਾਈਵ ਸਰੋਤ ਉਪਲਬਧ ਨਾ ਹੋਣ ਕਰਕੇ ਇਸ ਡਿਵਾਈਸ ਤੇ ਪਹਿਲਾਂ ਸੰਭਾਲਿਆ ਪਾਠ ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ।',
+    retainedReading: 'ਲਾਈਵ ਸਰੋਤ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਤੁਹਾਡਾ ਖੁੱਲ੍ਹਾ ਪਾਠ ਮੌਜੂਦ ਹੈ; ਆਫ਼ਲਾਈਨ ਲਈ ਸੰਭਾਲੇ ਜਾਣ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ।',
     tryLive: 'ਲਾਈਵ ਕਾਪੀ ਅਜ਼ਮਾਓ',
     favoriteAdded: 'ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜਿਆ ਗਿਆ ਹੈ।',
     favoriteRemoved: 'ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
@@ -439,6 +455,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     positionSessionOnly: 'आपका स्थान इस सत्र के लिए रखा है। यह डिवाइस उसे सहेज नहीं सका।',
     retryPosition: 'स्थान फिर सहेजें',
     savedOffline: 'लाइव स्रोत उपलब्ध न होने के कारण इस डिवाइस पर पहले से सहेजा पाठ दिखाया जा रहा है।',
+    retainedReading: 'लाइव स्रोत उपलब्ध नहीं है। आपका खुला पाठ मौजूद है; ऑफ़लाइन सहेजे जाने की पुष्टि नहीं हो सकी।',
     tryLive: 'लाइव प्रति आज़माएँ',
     favoriteAdded: 'पसंदीदा में जोड़ दिया गया।',
     favoriteRemoved: 'पसंदीदा से हटा दिया गया।',
@@ -677,6 +694,7 @@ export default function Study() {
   const shabadIdParam = Number(searchParams.get('shabadId')) || null
   const verseIdParam = Number(searchParams.get('verseId')) || null
   const resumeVerseIdParam = Number(searchParams.get('resumeVerseId')) || null
+  const resumeVerseSourceParam = searchParams.get('resumeSource')
   const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
   const flowParam = searchParams.get('flow')
@@ -736,7 +754,7 @@ export default function Study() {
   const shouldTrackProgress = !isArdaasHukamnamaFlow
   const searchParamsString = searchParams.toString()
   const resumeSettledRef = useRef<string | null>(null)
-  const fallbackRetryAnchorRef = useRef<{ route: string; verseId: number; anchor: ReaderAnchor } | null>(null)
+  const fallbackRetryAnchorRef = useRef<{ route: string; verseId: number; source?: string; anchor: ReaderAnchor } | null>(null)
 
   useEffect(() => {
     if (!isApiMode) navigate('/banis', { replace: true })
@@ -747,7 +765,8 @@ export default function Study() {
     isAngMode ? source! : 'G'
   )
   const beforeBaniRefresh = useRef<(() => void) | null>(null)
-  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, requestedSgLength, () => beforeBaniRefresh.current?.())
+  const lengthSelection = useBaniLengthSelection(searchParamsString)
+  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, requestedSgLength, () => beforeBaniRefresh.current?.(), lengthSelection.preparedReading)
   const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
   const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
   const { addBookmark, removeBookmark, bookmarks, hasBookmark } = useBookmarksStore()
@@ -757,11 +776,7 @@ export default function Study() {
     : null
 
   useEffect(() => {
-    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !effectiveSgLength) return
-
-    if (rememberedSgLength !== effectiveSgLength) {
-      setSundarGutkaLength(supportedSundarGutkaBaniId, effectiveSgLength)
-    }
+    if (!isBaniDbMode || isExactShabadMode || isHukamnamaMode || !supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !effectiveSgLength) return
 
     const nextParams = new URLSearchParams(searchParamsString)
     const currentAng = angParam ?? startAngParam ?? supportedSundarGutkaBani.startAng
@@ -779,15 +794,17 @@ export default function Study() {
     nextParams.set('sgLength', effectiveSgLength)
 
     if (nextParams.toString() !== searchParamsString) {
-      setSearchParams(nextParams, { replace: true })
+      setSearchParams(nextParams, { replace: true, state: location.state })
     }
   }, [
     angParam,
     effectiveSgLength,
-    rememberedSgLength,
+    isBaniDbMode,
+    isExactShabadMode,
+    isHukamnamaMode,
+    location.state,
     searchParamsString,
     setSearchParams,
-    setSundarGutkaLength,
     startAngParam,
     supportedSundarGutkaBani,
     supportedSundarGutkaBaniId,
@@ -902,10 +919,11 @@ export default function Study() {
 
   useEffect(() => {
     const resumeIndex = resumeVerseIdParam
-      ? entries.findIndex(entry => entry.lines?.some(line => line.verseId === resumeVerseIdParam))
+      ? entries.findIndex(entry => (!resumeVerseSourceParam || entry.source === resumeVerseSourceParam)
+        && entry.lines?.some(line => line.verseId === resumeVerseIdParam))
       : -1
     setActiveEntryIndex(resumeIndex >= 0 ? resumeIndex : 0)
-  }, [entries, resumeVerseIdParam, searchParamsString])
+  }, [entries, resumeVerseIdParam, resumeVerseSourceParam, searchParamsString])
 
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
@@ -941,13 +959,25 @@ export default function Study() {
   const setTextAlign = useLanguageStore(s => s.setTextAlign)
 
   const updateSession = useProgressStore(state => state.updateSession)
-  const [positionSessionOnly, setPositionSessionOnly] = useState(false)
+  const [positionSessionOnly, setPositionSessionOnly] = useState(Boolean((location.state as { nitnemSessionOnly?: boolean } | null)?.nitnemSessionOnly))
+  const explorationRef = useRef<{ route: string; anchor: ReaderAnchor } | null>(null)
+  const [hasExploration, setHasExploration] = useState(false)
+  const sectionsOriginRef = useRef<ReaderAnchor | null>(null)
   const persistReadingSession = useCallback((session: Session) => {
-    const persisted = updateSession(session)
+    if (explorationRef.current?.route === searchParamsString) return true
+    const sessionPersisted = updateSession(session)
+    let practicePersisted = true
+    const practice = useNitnemPracticeStore.getState()
+    if (practice.active && isActiveNitnemPracticeReading(session.resumePath, practice.active)) {
+      const params = new URLSearchParams(session.resumePath.split('?')[1])
+      if (session.resumeVerseId) params.set('resumeVerseId', String(session.resumeVerseId))
+      practicePersisted = practice.updatePath(`/study?${params}`)
+    }
+    const persisted = sessionPersisted && practicePersisted
     if (!persisted) setPositionSessionOnly(true)
     else if (session.resumeVerseId && session.resumeVerseId > 0) setPositionSessionOnly(false)
     return persisted
-  }, [updateSession])
+  }, [searchParamsString, updateSession])
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
   const markStudied = useProgressStore(state => state.markStudied)
   const { addWord, vocab } = useVocabStore()
@@ -970,6 +1000,11 @@ export default function Study() {
   const [appearancePreview, setAppearancePreview] = useState<ScriptureLine | null>(null)
   const [readerMenuOpen, setReaderMenuOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
+  const [lengthOpen, setLengthOpen] = useState(false)
+  const lengthAnchorRef = useRef<ReaderAnchor | null>(null)
+  const lengthDestinationRef = useRef<{ origin: string; reading: BaniFetchResult; destination: BaniLengthDestination } | null>(null)
+  const lengthOpenerRef = useRef<HTMLElement | null>(null)
+  const wakeLock = useReaderWakeLock(entries.length > 0)
   const [exploredWord, setExploredWord] = useState<ReaderWordContext | null>(null)
   const [interactionRoute, setInteractionRoute] = useState(searchParamsString)
   if (interactionRoute !== searchParamsString) {
@@ -977,17 +1012,21 @@ export default function Study() {
     setExploredWord(null)
     setReaderMenuOpen(false)
     setSectionsOpen(false)
+    setLengthOpen(false)
+    setHasExploration(false)
+    explorationRef.current = null
     setControlsOpen(false)
     setShowBookmarkForm(false)
     setShareHighlightContent(null)
   }
-  const { presentation, changePresentation, rememberReadingPosition } = useReaderPresentation(searchParamsString, controlsOpen, isBaniDbMode ? baniResult.entries : null)
+  const readerSheetOpen = controlsOpen || sectionsOpen || lengthOpen || readerMenuOpen || showBookmarkForm || Boolean(exploredWord) || Boolean(shareHighlightContent)
+  const { presentation, changePresentation, rememberReadingPosition, discardReadingPosition } = useReaderPresentation(searchParamsString, readerSheetOpen, isBaniDbMode ? baniResult.entries : null)
   useEffect(() => { beforeBaniRefresh.current = () => {
     // The cached opening viewport must not replace an authoritative incoming verse.
     if (resumeVerseIdParam && resumeSettledRef.current !== searchParamsString) return
     rememberReadingPosition()
   } })
-  const readerInteraction = useReaderInteraction(searchParamsString, controlsOpen || sectionsOpen || readerMenuOpen || showBookmarkForm || Boolean(exploredWord) || Boolean(shareHighlightContent))
+  const readerInteraction = useReaderInteraction(searchParamsString, readerSheetOpen)
   const changeReaderPresentation = (mode: ReaderPresentation) => { readerInteraction.clearWord(); changePresentation(mode) }
   const presentationCopy = locale === 'pa'
     ? { read: 'ਪਾਠ', study: 'ਅਧਿਐਨ', sections: 'ਪਾਠ ਦੇ ਭਾਗ', jump: 'ਭਾਗ ਤੇ ਜਾਓ', tools: 'ਪਾਠ ਦੇ ਸਾਧਨ', listen: 'ਸੁਣੋ', close: 'ਬੰਦ ਕਰੋ', position: 'ਪਾਠ ਵਿੱਚ ਸਥਾਨ' }
@@ -1057,6 +1096,9 @@ export default function Study() {
       if (baniDbIdParam) nextParams.set('baniDbId', String(baniDbIdParam))
       if (isBaniDbMode) nextParams.set('exactBani', '1')
       if (effectiveSgLength) nextParams.set('sgLength', effectiveSgLength)
+      if (isBaniDbMode && currentEntry?.source) nextParams.set('resumeSource', currentEntry.source)
+      const practiceMarker = new URLSearchParams(searchParamsString).get('nitnemPractice')
+      if (practiceMarker) nextParams.set('nitnemPractice', practiceMarker)
     }
 
     const nextSearch = nextParams.toString()
@@ -1076,6 +1118,8 @@ export default function Study() {
     isHukamnamaMode,
     shouldTrackProgress,
     startAngParam,
+    searchParamsString,
+    currentEntry,
   ])
 
   const baseSession = useMemo(() => {
@@ -1132,6 +1176,7 @@ export default function Study() {
       if (visibleEntry && !isHukamnamaMode) {
         resumeParams.set('ang', String(visibleEntry.ang))
         if (!isBaniDbMode) resumeParams.set('source', visibleEntry.source ?? currentSource)
+        else if (visibleEntry.source) resumeParams.set('resumeSource', visibleEntry.source)
       }
       const persisted = persistReadingSession({
         ...session,
@@ -1191,6 +1236,7 @@ export default function Study() {
   useEffect(() => {
     const retryAnchor = fallbackRetryAnchorRef.current?.route === searchParamsString ? fallbackRetryAnchorRef.current : null
     const requestedResumeVerseId = retryAnchor?.verseId ?? resumeVerseIdParam
+    const requestedResumeSource = retryAnchor?.source ?? resumeVerseSourceParam
     if (!requestedResumeVerseId || loading || entries.length === 0 || typeof window === 'undefined' || resumeSettledRef.current === searchParamsString) return
 
     let cancelled = false
@@ -1222,18 +1268,39 @@ export default function Study() {
 
     const scrollToResumeVerse = () => {
       if (cancelled || userInteracted) return false
-      const target = document.querySelector<HTMLElement>(`[data-verse-id="${requestedResumeVerseId}"]`)
+      const targets = Array.from(document.querySelectorAll<HTMLElement>(`[data-testid="study-line"][data-verse-id="${requestedResumeVerseId}"]`))
+      const target = requestedResumeSource ? targets.find(element => {
+        const entryId = element.closest<HTMLElement>('[data-study-entry-id]')?.dataset.studyEntryId
+        return entries.find(entry => entry.id === entryId)?.source === requestedResumeSource
+      }) : targets[0]
       if (!target) return false
 
       const alignTarget = () => {
+        discardReadingPosition()
         if (retryAnchor && target.dataset.readerAnchor) restoreReaderAnchor({ ...retryAnchor.anchor, key: target.dataset.readerAnchor })
-        else scrollElementIntoAppView(target, { behavior: 'auto', block: 'start' })
+        else {
+          scrollElementIntoAppView(target, { behavior: 'auto', block: 'start' })
+          const toolbar = document.querySelector<HTMLElement>('.study-reader-topbar')
+          // Touch headers scroll with the document. Native scroll-margin still
+          // reserves their old height; resume against the actual reading edge
+          // once that header is outside the viewport.
+          if (target.dataset.readerAnchor && toolbar && getComputedStyle(toolbar).position === 'absolute'
+            && toolbar.getBoundingClientRect().bottom <= getAppViewportBounds().top) {
+            restoreReaderAnchor({ key: target.dataset.readerAnchor, fraction: 0, viewportTop: getReaderViewportTop() })
+          }
+        }
       }
       alignTarget()
-      // A short saved excerpt may align now, but full scripture still has to restore the same verse later.
-      if (!usingSavedFallback) {
-        resumeSettledRef.current = searchParamsString
-        fallbackRetryAnchorRef.current = null
+      const finishAlignment = () => {
+        if (cancelled || userInteracted) return
+        // A short saved excerpt may align now, but full scripture still has to
+        // restore the same verse later. Until font/header reflow settles, the
+        // incoming verse remains authoritative over automatic scroll events.
+        if (!usingSavedFallback) {
+          resumeSettledRef.current = searchParamsString
+          fallbackRetryAnchorRef.current = null
+          removeIntentListeners()
+        }
       }
       const entryId = target.closest<HTMLElement>('[data-study-entry-id]')?.dataset.studyEntryId
       const entryIndex = entries.findIndex(entry => entry.id === entryId)
@@ -1246,6 +1313,7 @@ export default function Study() {
         if (!isHukamnamaMode) {
           params.set('ang', String(entry.ang))
           if (!isBaniDbMode) params.set('source', entry.source ?? currentSource)
+          else if (entry.source) params.set('resumeSource', entry.source)
         }
         persistReadingSession({
           ...session,
@@ -1255,21 +1323,26 @@ export default function Study() {
           updatedAt: new Date().toISOString(),
         })
       }
-      const alignedScrollTop = getAppScrollTop()
       // Read this promise after mounting and measuring the actual scripture.
       // An earlier fonts.ready may have resolved before Gurmukhi was requested.
       const mountedFontsReady = document.fonts?.ready
-      if (!mountedFontsReady) { if (!usingSavedFallback) removeIntentListeners(); return true }
+      if (!mountedFontsReady) { finishAlignment(); return true }
       void mountedFontsReady.then(() => {
         if (cancelled || userInteracted) return
         fontFrameId = window.requestAnimationFrame(() => {
           fontFrameId = null
-          if (!cancelled && !userInteracted && target.isConnected && isReaderScrollUnmovedOrClamped(alignedScrollTop)) {
+          if (cancelled || userInteracted || !target.isConnected) return
+          alignTarget()
+          // Header measurement can update reserved space on the same frame as
+          // font completion. Align once more after that layout has committed.
+          fontFrameId = window.requestAnimationFrame(() => {
+            fontFrameId = null
+            if (cancelled || userInteracted || !target.isConnected) return
             alignTarget()
-          }
-          if (!usingSavedFallback) removeIntentListeners()
+            finishAlignment()
+          })
         })
-      }).catch(() => { if (!usingSavedFallback) removeIntentListeners() })
+      }).catch(finishAlignment)
       return true
     }
 
@@ -1295,7 +1368,7 @@ export default function Study() {
       if (timeoutId !== null) window.clearTimeout(timeoutId)
       removeIntentListeners()
     }
-  }, [currentSource, entries, isBaniDbMode, isHukamnamaMode, loading, resumeVerseIdParam, searchParamsString, shouldTrackProgress, persistReadingSession, usingSavedFallback])
+  }, [currentSource, discardReadingPosition, entries, isBaniDbMode, isHukamnamaMode, loading, resumeVerseIdParam, resumeVerseSourceParam, searchParamsString, shouldTrackProgress, persistReadingSession, usingSavedFallback])
 
   const announceAction = (message: string) => {
     setActionNotice(message)
@@ -1418,6 +1491,7 @@ export default function Study() {
       : null
     if (baniPassageParams && Number.isSafeInteger(line.verseId) && line.verseId > 0) {
       baniPassageParams.set('resumeVerseId', String(line.verseId))
+      if (entry.source) baniPassageParams.set('resumeSource', entry.source)
     }
 
     return {
@@ -1610,13 +1684,14 @@ export default function Study() {
   const currentSavedReturnPath = useMemo(() => {
     const params = new URLSearchParams(searchParamsString)
     if (currentAng) params.set('ang', String(currentAng))
-    params.set('source', currentSource)
+    params.set('source', isBaniDbMode ? resumeSource : currentSource)
     if (currentSavedLine?.verseId && !verseIdParam) {
       params.set('resumeVerseId', String(currentSavedLine.verseId))
+      if (isBaniDbMode) params.set('resumeSource', currentSource)
     }
     const nextSearch = params.toString()
     return nextSearch ? `/study?${nextSearch}` : '/study'
-  }, [currentAng, currentSavedLine?.verseId, currentSource, searchParamsString, verseIdParam])
+  }, [currentAng, currentSavedLine?.verseId, currentSource, isBaniDbMode, resumeSource, searchParamsString, verseIdParam])
   const currentSavedIdentity = getSavedReturnIdentity(currentSavedReturnPath)
 
   const currentBookmark = currentEntry && currentAng
@@ -1851,25 +1926,71 @@ export default function Study() {
     }
   }
 
-  const handleSundarGutkaLengthChange = (nextLength: SundarGutkaLength) => {
-    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || nextLength === effectiveSgLength) return
-
-    setSundarGutkaLength(supportedSundarGutkaBaniId, nextLength)
-
-    const nextParams = new URLSearchParams(searchParamsString)
-    const currentAng = angParam ?? startAngParam ?? supportedSundarGutkaBani.startAng
-
-    nextParams.set('source', supportedSundarGutkaBani.source)
-    nextParams.set('ang', String(currentAng))
-    nextParams.set('startAng', String(supportedSundarGutkaBani.startAng))
-    nextParams.set('endAng', String(supportedSundarGutkaBani.endAng))
-    nextParams.set('bani', SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].name)
-    nextParams.set('baniId', supportedSundarGutkaBaniId)
-    nextParams.set('baniDbId', String(SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].baniDbId))
-    nextParams.set('exactBani', '1')
-    nextParams.set('sgLength', nextLength)
-
-    setSearchParams(nextParams, { replace: true })
+  const canChangeBaniLength = isBaniDbMode && !isExactShabadMode && !isHukamnamaMode && Boolean(supportedSundarGutkaBaniId && effectiveSgLength)
+  const openBaniLengths = () => {
+    lengthOpenerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    syncReadingPlaceRef.current?.()
+    lengthAnchorRef.current = captureReaderAnchor()
+    lengthDestinationRef.current = null
+    rememberReadingPosition(lengthAnchorRef.current?.key)
+    readerInteraction.clearWord()
+    setLengthOpen(true)
+  }
+  const closeBaniLengths = () => {
+    lengthSelection.cancel()
+    lengthDestinationRef.current = null
+    setLengthOpen(false)
+    deferReaderFocus(() => {
+      const opener = lengthOpenerRef.current
+      const target = opener?.isConnected && !opener.closest('[hidden],[inert]') ? opener
+        : document.querySelector<HTMLButtonElement>('.reader-dock:not([hidden]) [data-testid="bani-length-control"]')
+          ?? document.querySelector<HTMLButtonElement>('.study-reader-topbar [data-testid="bani-length-control"]')
+      target?.focus({ preventScroll: true })
+    }, 2)
+  }
+  const resolveBaniLengthDestination = (reading: BaniFetchResult) => {
+    const currentPath = `${location.pathname}?${searchParamsString}`
+    const anchor = lengthAnchorRef.current ?? captureReaderAnchor()
+    const separator = anchor?.key.lastIndexOf(':') ?? -1
+    const entry = separator >= 0 ? entries.find(item => item.id === anchor!.key.slice(0, separator)) : currentEntry
+    const lineIndex = separator >= 0 ? Number(anchor!.key.slice(separator + 1)) : 0
+    const line = entry?.lines?.[lineIndex]
+    return getBaniLengthDestination(currentPath, reading, useReadingPlacesStore.getState().places,
+      line?.verseId ? { verseId: line.verseId, source: entry?.source } : null)
+  }
+  const describeBaniLengthDestination = (reading: BaniFetchResult) => {
+    const destination = resolveBaniLengthDestination(reading)
+    lengthDestinationRef.current = { origin: `${location.pathname}?${searchParamsString}`, reading, destination }
+    return getBaniLengthDestinationLabel(destination.destination, locale)
+  }
+  const handleSundarGutkaLengthChange = async (nextLength: SundarGutkaLength, remember = false, preparedReading?: BaniFetchResult) => {
+    if (!canChangeBaniLength || !supportedSundarGutkaBaniId || !baniDbIdParam) return
+    const currentPath = `${location.pathname}?${searchParamsString}`
+    syncReadingPlaceRef.current?.()
+    const reading = await lengthSelection.prepare(baniDbIdParam, nextLength, preparedReading)
+    const preview = lengthDestinationRef.current
+    const destination = preview?.origin === currentPath && preview.reading === reading ? preview.destination : resolveBaniLengthDestination(reading)
+    if (remember) {
+      const previous = useSundarGutkaLengthStore.getState().lengths[supportedSundarGutkaBaniId]
+      try { setSundarGutkaLength(supportedSundarGutkaBaniId, reading.resolvedLength ?? nextLength) }
+      catch {
+        try { setSundarGutkaLength(supportedSundarGutkaBaniId, previous) } catch { /* Keep the prior preference in memory. */ }
+        throw new Error(locale === 'pa' ? 'ਪਸੰਦ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਤੁਹਾਡਾ ਪਾਠ ਨਹੀਂ ਬਦਲਿਆ।' : locale === 'hi' ? 'पसंद सहेजी नहीं जा सकी। आपका पाठ नहीं बदला।' : 'Your usual length could not be saved. Your reading is unchanged.')
+      }
+    }
+    const practice = useNitnemPracticeStore.getState()
+    if (practice.active && isActiveNitnemPracticeReading(currentPath, practice.active)) {
+      if (!practice.switchReading(practice.active.optionId, destination.path)) setPositionSessionOnly(true)
+    }
+    setLengthOpen(false)
+    readerInteraction.clearWord()
+    setSearchParams(new URLSearchParams(destination.path.split('?')[1]), { replace: true, state: location.state })
+    if (destination.destination === 'beginning') {
+      resetReaderViewport()
+      announceAction(locale === 'pa' ? 'ਚੁਣੀ ਲੰਬਾਈ ਸ਼ੁਰੂ ਤੋਂ ਖੁੱਲ੍ਹੀ ਹੈ।' : locale === 'hi' ? 'चुनी लंबाई शुरुआत से खुली है।' : 'This length opens at its beginning.')
+    } else if (destination.destination === 'saved-place') {
+      announceAction(locale === 'pa' ? 'ਇਸ ਲੰਬਾਈ ਦੀ ਸੰਭਾਲੀ ਥਾਂ ਖੁੱਲ੍ਹੀ ਹੈ।' : locale === 'hi' ? 'इस लंबाई की सहेजी जगह खुली है।' : 'Returned to this length’s saved place.')
+    }
   }
 
   const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) => (
@@ -1975,7 +2096,6 @@ export default function Study() {
       eyebrow: entrySequenceCopy.sectionLabel(index + 1, entries.length),
     }
   }), [entries, entrySequenceCopy])
-  const showEntryOutline = entries.length > 1
 
   const rangeEntries = isBaniDbMode ? baniResult.entries : entries
   const navMinAng = isBaniDbMode
@@ -2033,37 +2153,54 @@ export default function Study() {
     resetReaderViewport()
   }
 
-  const jumpToEntry = (entryIndex: number) => {
+  const openReaderSections = () => {
+    syncReadingPlaceRef.current?.()
+    sectionsOriginRef.current = captureReaderAnchor()
+    readerInteraction.clearWord()
+    setSectionsOpen(true)
+  }
+  const jumpToLine = (entryIndex: number, lineIndex?: number) => {
+    discardReadingPosition()
     const nextIndex = Math.max(0, Math.min(entryIndex, entries.length - 1))
+    const anchor = sectionsOriginRef.current ?? captureReaderAnchor()
+    if (!explorationRef.current && anchor) {
+      explorationRef.current = { route: searchParamsString, anchor }
+      setHasExploration(true)
+    }
     setSectionsOpen(false)
     setActiveEntryIndex(nextIndex)
-    // Let ModalSheet release its document scroll lock before moving to the source.
-    window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+    deferReaderFocus(() => {
       const section = document.getElementById(`study-entry-${nextIndex + 1}`)
-      if (section) {
-        const bodyLines = getReaderBodyLines(Array.from(section.querySelectorAll<HTMLElement>('[data-testid="study-line"][data-verse-id]')))
-        const target = bodyLines.find(line => Number(line.dataset.verseId) > 0) ?? bodyLines[0] ?? section
-        scrollElementIntoAppView(target, { behavior: 'auto', block: 'start' })
-        section.focus({ preventScroll: true })
-        const nextVerseId = Number(target.dataset.verseId)
-        const entry = entries[nextIndex]
-        const session = latestBaseSessionRef.current
-        if (shouldTrackProgress && nextVerseId > 0 && entry && session) {
-          latestResumeVerseIdRef.current = nextVerseId
-          const params = new URLSearchParams(session.resumePath.split('?')[1] ?? '')
-          params.set('ang', String(entry.ang))
-          if (!isBaniDbMode) params.set('source', entry.source ?? currentSource)
-          persistReadingSession({
-            ...session,
-            scriptureId: `${entry.source ?? currentSource}-${entry.ang}`,
-            resumePath: `/study?${params.toString()}`,
-            resumeVerseId: nextVerseId,
-            updatedAt: new Date().toISOString(),
-          })
-        }
-      }
-    }))
+      if (!section) return
+      const exactKey = lineIndex === undefined ? null : `${entries[nextIndex].id}:${lineIndex}`
+      const exactLine = exactKey ? Array.from(section.querySelectorAll<HTMLElement>('[data-reader-anchor]')).find(element => element.dataset.readerAnchor === exactKey) : null
+      const bodyLines = getReaderBodyLines(Array.from(section.querySelectorAll<HTMLElement>('[data-testid="study-line"][data-verse-id]')))
+      const target = exactLine ?? bodyLines.find(line => Number(line.dataset.verseId) > 0) ?? bodyLines[0] ?? section
+      scrollElementIntoAppView(target, { behavior: 'auto', block: 'start' })
+      section.focus({ preventScroll: true })
+      readerInteraction.reveal()
+    }, 2)
   }
+  const jumpToEntry = (entryIndex: number) => jumpToLine(entryIndex)
+  const returnToReading = () => {
+    discardReadingPosition()
+    const saved = explorationRef.current
+    explorationRef.current = null
+    setHasExploration(false)
+    if (saved?.route !== searchParamsString) return
+    deferReaderFocus(() => {
+      restoreReaderAnchor(saved.anchor)
+      syncReadingPlaceRef.current?.(true)
+      readerInteraction.reveal()
+    }, 2)
+  }
+  const continueHere = () => {
+    discardReadingPosition()
+    explorationRef.current = null
+    setHasExploration(false)
+    syncReadingPlaceRef.current?.(true)
+  }
+
   const showAngNavigation = !isExactShabadMode
     && !isHukamnamaMode
     && !isArdaasHukamnamaFlow
@@ -2086,12 +2223,15 @@ export default function Study() {
         .find(element => element.dataset.readerAnchor === anchor.key) : null
       const verseId = Number(line?.dataset.verseId)
       if (anchor && verseId > 0) {
-        fallbackRetryAnchorRef.current = { route: searchParamsString, verseId, anchor }
+        const entryId = line?.closest<HTMLElement>('[data-study-entry-id]')?.dataset.studyEntryId
+        const entry = entries.find(item => item.id === entryId)
+        fallbackRetryAnchorRef.current = { route: searchParamsString, verseId, source: entry?.source, anchor }
         resumeSettledRef.current = null
       }
     }
     retryLiveReader()
   }
+  const readerPageRef = useReaderHeaderLayout(searchParamsString, `${readerStatus}:${readerTitle}:${canChangeBaniLength}`)
   const readerStateTopbar = (
     <div className="study-reader-topbar" data-testid="study-reader-topbar">
       <button
@@ -2122,6 +2262,7 @@ export default function Study() {
   if (loading && entries.length === 0) {
     return (
       <div
+        ref={readerPageRef}
         className="page-shell"
         data-testid="page-study"
         data-page="study"
@@ -2142,7 +2283,7 @@ export default function Study() {
 
   if (readerStatus === 'degraded' && entries.length === 0) {
     return (
-      <div className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="degraded">
+      <div ref={readerPageRef} className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="degraded">
         {readerStateTopbar}
         <SurfaceStateCard
           surface="study-reader"
@@ -2173,7 +2314,7 @@ export default function Study() {
 
   if (readerStatus === 'empty' || entries.length === 0) {
     return (
-      <div className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="empty">
+      <div ref={readerPageRef} className="page-shell" data-testid="page-study" data-page="study" data-ai-surface="study-reader" data-ai-state="empty">
         {readerStateTopbar}
         <SurfaceStateCard
           surface="study-reader"
@@ -2203,6 +2344,7 @@ export default function Study() {
 
   return (
     <div
+      ref={readerPageRef}
       className="page-shell"
       data-testid="page-study"
       data-page="study"
@@ -2210,6 +2352,7 @@ export default function Study() {
       data-ai-state={readerStatus === 'degraded' ? 'degraded' : 'ready'}
       data-reader-presentation={presentation}
       data-reader-controls={readerInteraction.visible ? 'visible' : 'hidden'}
+      data-reader-has-length={canChangeBaniLength ? 'true' : undefined}
       data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
       data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
@@ -2232,6 +2375,7 @@ export default function Study() {
             {readerTitle}
           </h1>
           <span>{entrySourceDisplay}</span>
+          {canChangeBaniLength && effectiveSgLength ? <BaniLengthControl value={effectiveSgLength} onClick={openBaniLengths} className="study-reader-length-control" /> : null}
         </div>
         <div className="study-reader-topbar__actions">
           <button type="button" onClick={openReaderSettings} aria-label={studyCopy.readerControls} title={studyCopy.readerControls} className="study-reader-settings-action" data-ai-action="open-reader-settings"><span className="study-reader-aa" aria-hidden="true">Aa</span></button>
@@ -2254,18 +2398,24 @@ export default function Study() {
         <fieldset className="study-reader-mode"><legend className="sr-only">{locale === 'en' ? 'Reading presentation' : studyCopy.readerControls}</legend>
           {(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-top" value={mode} checked={presentation === mode} onChange={() => changeReaderPresentation(mode)} /><span>{presentationCopy[mode]}</span></label>)}
         </fieldset>
-        {showEntryOutline ? <button className="study-reader-section-trigger" type="button" aria-label={presentationCopy.jump} aria-haspopup="dialog" onClick={() => setSectionsOpen(true)}><span>{currentReadingUnit} {currentAng}</span><span aria-hidden="true">⌄</span></button> : <span className="study-reader-location">{currentReadingUnit} {currentAng}</span>}
+        <button className="study-reader-section-trigger" type="button" aria-label={presentationCopy.jump} aria-haspopup="dialog" onClick={openReaderSections}><span>{currentReadingUnit} {currentAng}</span><span aria-hidden="true">⌄</span></button>
       </div>
 
+
       <ReaderDock
-        visible={readerInteraction.visible && (readerInteraction.deep || Boolean(readerInteraction.word) || positionSessionOnly) && !controlsOpen && !sectionsOpen && !readerMenuOpen && !exploredWord && !showBookmarkForm && !shareHighlightContent}
+        visible={readerInteraction.visible && (readerInteraction.deep || Boolean(readerInteraction.word) || positionSessionOnly || hasExploration) && !controlsOpen && !lengthOpen && !sectionsOpen && !readerMenuOpen && !exploredWord && !showBookmarkForm && !shareHighlightContent}
         title={readerTitle}
         location={`${currentReadingUnit} ${currentAng}`}
         presentation={presentation}
         word={readerInteraction.word}
-        notice={positionSessionOnly ? <div role="note" aria-label={presentationCopy.position} data-testid="study-position-recovery"><p>{studyExperienceCopy.positionSessionOnly}</p><button type="button" data-ai-action="retry-reading-position" onClick={() => { syncReadingPlaceRef.current?.(true) }}>{studyExperienceCopy.retryPosition}</button></div> : undefined}
+        notice={positionSessionOnly || hasExploration ? <>
+          {positionSessionOnly ? <div role="note" aria-label={presentationCopy.position} data-testid="study-position-recovery"><p>{studyExperienceCopy.positionSessionOnly}</p><button type="button" data-ai-action="retry-reading-position" onClick={() => { syncReadingPlaceRef.current?.(true) }}>{studyExperienceCopy.retryPosition}</button></div> : null}
+          {hasExploration ? <div className="study-reader-return"><button type="button" onClick={returnToReading}>{locale === 'pa' ? 'ਪਿਛਲੀ ਥਾਂ ਵਾਪਸ ਜਾਓ' : locale === 'hi' ? 'पिछली जगह पर लौटें' : 'Return to previous place'}</button><button type="button" onClick={continueHere}>{locale === 'pa' ? 'ਇੱਥੋਂ ਜਾਰੀ ਰੱਖੋ' : locale === 'hi' ? 'यहाँ से जारी रखें' : 'Continue here'}</button></div> : null}
+        </> : undefined}
         onBack={handleReaderBack}
-        onSections={() => setSectionsOpen(true)}
+        onSections={openReaderSections}
+        length={canChangeBaniLength ? effectiveSgLength : null}
+        onLength={openBaniLengths}
         onAppearance={openReaderSettings}
         onMore={openReaderTools}
         onMode={mode => {
@@ -2304,6 +2454,10 @@ export default function Study() {
 
       <ModalSheet open={readerMenuOpen} onClose={() => setReaderMenuOpen(false)} title={presentationCopy.tools} description={locale === 'en' ? 'Save, share and explore this reading.' : presentationCopy.tools} className="study-reader-tools-sheet max-h-[82dvh] overflow-y-auto rounded-lg p-5" testId="study-reader-tools-sheet">
         <div className="study-reader-sheet__heading"><h2>{presentationCopy.tools}</h2><button type="button" aria-label={presentationCopy.close} onClick={() => setReaderMenuOpen(false)}><IconClose size={18} /></button></div>
+        <div className="study-reader-awake">
+          <label><input type="checkbox" checked={wakeLock.enabled} disabled={!wakeLock.supported} onChange={event => wakeLock.setEnabled(event.target.checked)} />{locale === 'pa' ? 'ਪੜ੍ਹਦੇ ਸਮੇਂ ਸਕ੍ਰੀਨ ਚਾਲੂ ਰੱਖੋ' : locale === 'hi' ? 'पढ़ते समय स्क्रीन चालू रखें' : 'Keep screen awake while reading'}</label>
+          {!wakeLock.supported || wakeLock.error ? <p role="status">{locale === 'pa' ? 'ਇਹ ਬ੍ਰਾਊਜ਼ਰ ਇਸ ਵੇਲੇ ਸਕ੍ਰੀਨ ਚਾਲੂ ਨਹੀਂ ਰੱਖ ਸਕਦਾ।' : locale === 'hi' ? 'यह ब्राउज़र अभी स्क्रीन चालू नहीं रख सकता।' : 'Screen awake is unavailable in this browser right now.'}</p> : null}
+        </div>
         <div className="study-reader-tools-list">
           <button
             onClick={() => {
@@ -2464,9 +2618,14 @@ export default function Study() {
         <div className="study-reader-secondary-tools"><SoundscapeControls context="study" variant="compact" /></div>
       </ModalSheet>
 
-      <ModalSheet open={sectionsOpen} onClose={() => setSectionsOpen(false)} title={presentationCopy.sections} description={entrySequenceCopy.entryOutlineBody} className="study-reader-sections-sheet rounded-lg p-5" testId="study-reader-sections-sheet">
+      {lengthOpen && supportedSundarGutkaBaniId && effectiveSgLength ? <Suspense fallback={<div role="status" className="sr-only">{locale === 'pa' ? 'ਲੰਬਾਈ ਚੋਣਾਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…' : locale === 'hi' ? 'लंबाई विकल्प खुल रहे हैं…' : 'Opening Bani lengths…'}</div>}><BaniLengthSheet open onClose={closeBaniLengths} baniId={supportedSundarGutkaBaniId} currentLength={effectiveSgLength} usualLength={rememberedSgLength ?? effectiveSgLength} availableLengths={availableSundarGutkaLengths} describeDestination={describeBaniLengthDestination} onSelect={handleSundarGutkaLengthChange} pending={lengthSelection.pending} /></Suspense> : null}
+
+      <ModalSheet open={sectionsOpen} onClose={() => setSectionsOpen(false)} title={presentationCopy.sections} description={entrySequenceCopy.entryOutlineBody} className="study-reader-sections-sheet rounded-lg" testId="study-reader-sections-sheet">
         <div className="study-reader-sheet__heading"><h2>{presentationCopy.sections}</h2><button type="button" aria-label={presentationCopy.close} onClick={() => setSectionsOpen(false)}><IconClose size={18} /></button></div>
+        <div className="study-reader-sections-sheet__scroll">
+        {sectionsOpen ? <Suspense fallback={null}><BaniFindPanel entries={entries} onJump={jumpToLine} currentEntryIndex={safeActiveEntryIndex} /></Suspense> : null}
         <ol className="study-reader-section-list">{entryOutline.map((item, index) => <li key={item.sectionId}><button type="button" aria-current={index === safeActiveEntryIndex ? 'location' : undefined} onClick={() => jumpToEntry(index)}><span className="study-reader-section-number">{String(index + 1).padStart(2, '0')}</span><span><span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}>{renderScriptText(item.title, scriptMode)}</span><small>{getSourceReaderUnit(item.entry.source, item.entry.scripture)} {item.entry.ang}{item.entry.writer ? ` · ${item.entry.writer}` : ''}</small></span></button></li>)}</ol>
+        </div>
       </ModalSheet>
 
       {readerStatus === 'degraded' ? (
@@ -2478,7 +2637,7 @@ export default function Study() {
           data-ai-state="degraded"
         >
           <p className="font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
-            {studyExperienceCopy.savedOffline}
+            {isBaniDbMode && !baniResult.isCached && !usingSavedFallback ? studyExperienceCopy.retainedReading : studyExperienceCopy.savedOffline}
           </p>
           <button
             type="button"
@@ -2750,27 +2909,7 @@ export default function Study() {
                   {studyCopy.larivaar}: {larivaar ? commonCopy.on : commonCopy.off}
                 </button>
               </div>
-            </fieldset>            {supportedSundarGutkaBaniId && availableSundarGutkaLengths.length > 0 && (
-              <fieldset className="study-reader-controls__group">
-                <legend>{focusedReaderCopy.length}</legend>
-                <div className="study-reader-controls__grid study-reader-controls__grid--two">
-                  {availableSundarGutkaLengths.map(length => {
-                    const selected = effectiveSgLength === length
-                    return (
-                      <button
-                        key={length}
-                        type="button"
-                        onClick={() => handleSundarGutkaLengthChange(length)}
-                        aria-pressed={selected}
-                        className={readerControlOptionClass(selected)}
-                      >
-                        {SUNDAR_GUTKA_LENGTH_LABELS[length]}
-                      </button>
-                    )
-                  })}
-                </div>
-              </fieldset>
-            )}</div></details>
+            </fieldset>            </div></details>
           </div>
         </div>
       </ModalSheet>
@@ -2894,7 +3033,7 @@ export default function Study() {
               showHeaderBlock
               presentation={presentation}
               onOpenReaderAppearance={openReaderSettingsAt}
-              onOpenSections={showEntryOutline ? () => setSectionsOpen(true) : undefined}
+              onOpenSections={openReaderSections}
               onPreviewWord={readerInteraction.previewWord}
               showAudioPlayer={false}
               onSavePhrase={handleSavePhrase}
@@ -2911,8 +3050,18 @@ export default function Study() {
       <ReaderFinishPanel readingPath={usingSavedFallback ? '' : `${location.pathname}${location.search}`} onBack={handleReaderBack} onReadAgain={() => {
         const params = new URLSearchParams(searchParamsString)
         params.delete('resumeVerseId')
+        params.delete('resumeSource')
         if (entries[0]?.ang) params.set('ang', String(entries[0].ang))
-        setSearchParams(params, { replace: true, state: location.state })
+        const practice = useNitnemPracticeStore.getState()
+        const option = getSelectedNitnemReading(`${location.pathname}?${params}`, useNitemStore.getState().selectedIds)
+        let sessionOnly = false
+        if (option && practice.active && params.get('nitnemPractice') === practice.active.startedAt
+          && getExactReadingKey(`${location.pathname}?${params}`) === getExactReadingKey(practice.active.readingPath)) {
+          sessionOnly = !practice.start(option.id, `${location.pathname}?${params}`)
+          const fresh = useNitnemPracticeStore.getState().active
+          if (fresh) params.set('nitnemPractice', fresh.startedAt)
+        }
+        setSearchParams(params, { replace: true, state: { ...(location.state as object ?? {}), nitnemSessionOnly: sessionOnly } })
         readerInteraction.reveal()
         resetReaderViewport()
       }} />

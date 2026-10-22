@@ -41,7 +41,15 @@ test('a previously opened length loses eligibility when the selected routine len
   const short = buildNitnemStudyPath(option)
   useSundarGutkaLengthStore.getState().setLength('rehras-sahib', 'long')
   expect(isExactNitnemReading(short, option)).toBe(false)
+  expect(getSelectedNitnemReading(short, ['rehras-sahib'])?.id).toBe('rehras-sahib')
   expect(isExactNitnemReading(buildNitnemStudyPath(option), option)).toBe(true)
+})
+
+test('temporary length recognition never accepts lengths on fixed readings or a changed exact range', () => {
+  expect(getSelectedNitnemReading(`${buildNitnemStudyPath(getNitnemOption('japji-sahib')!)}&sgLength=long`, ['japji-sahib'])).toBeNull()
+  const rehras = buildNitnemStudyPath(getNitnemOption('rehras-sahib')!).replace('sgLength=short', 'sgLength=long')
+  expect(getSelectedNitnemReading(rehras, ['rehras-sahib'])?.id).toBe('rehras-sahib')
+  expect(getSelectedNitnemReading(rehras.replace('endAng=12', 'endAng=11'), ['rehras-sahib'])).toBeNull()
 })
 
 test('next follows personal order, skips complete items, wraps once and excludes the current reading', () => {

@@ -1,4 +1,4 @@
-import { buildNitnemStudyPath, getNitnemOption, type NitnemRouteOption } from '../store/nitnem'
+import { buildNitnemStudyPath, getNitnemOption, getNitnemReadingProvenance, type NitnemRouteOption } from '../store/nitnem'
 import { getExactReadingKey } from '../store/readingPlaces'
 
 /** Source, exact variant, range and selected length all belong to a daily reading. */
@@ -12,7 +12,7 @@ export function isExactNitnemReading(readingPath: string, option: NitnemRouteOpt
 }
 
 export function getSelectedNitnemReading(readingPath: string, selectedIds: readonly string[]): NitnemRouteOption | null {
-  return selectedIds.map(getNitnemOption).find(option => option && isExactNitnemReading(readingPath, option)) ?? null
+  return selectedIds.map(getNitnemOption).find(option => option && getNitnemReadingProvenance(option, readingPath)) ?? null
 }
 
 /** Continue once through the user's order; never auto-open the next reading. */

@@ -84,7 +84,16 @@ test('keeps touch-reader chrome document-attached and out of WebKit viewport-lay
   )
 
   expect(readerCss).toMatch(
-    /\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--study-reader-topbar-height\);/s
+    /\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*auto;[^}]*min-height:\s*var\(--study-reader-topbar-min-height\);/s
+  )
+  // The header may grow for enlarged interface text. Its measured height owns
+  // both document reservation and verse clearance; hook geometry tests verify
+  // measurement/reflow rather than assuming a fixed number of header pixels.
+  expect(readerCss).toMatch(
+    /\.page-shell\[data-page='study'\]\s*\{[^}]*--study-reader-topbar-height:\s*var\(--study-reader-topbar-min-height\);[^}]*padding:\s*var\(--study-reader-topbar-height\)/s
+  )
+  expect(readerCss).toMatch(
+    /\.study-reader-body\s*\[data-testid='study-line'\]\s*\{[^}]*scroll-margin-top:\s*calc\(var\(--study-reader-topbar-height\)\s*\+\s*1rem\);/s
   )
   expect(readerCss).not.toMatch(/\.study-reader-topbar\s*\{[^}]*position:\s*sticky;/s)
   expect(readerCss).not.toMatch(

@@ -1,10 +1,15 @@
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
-import { beforeEach, expect, test, vi } from 'vitest'
+import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import HomeDailyNitnem, { type HomeDailyNitnemProps } from './HomeDailyNitnem'
 import { buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
 import { useLanguageStore } from '../store/language'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
+import { getExactReadingKey, useReadingPlacesStore } from '../store/readingPlaces'
+import type { BaniFetchResult } from '../api/banidb'
+import * as offlineCache from '../utils/baniOfflineCache'
+import * as lengthSelection from '../utils/baniLengthSelection'
+import * as baniHook from '../hooks/useBani'
 
 const option = (id: string) => getNitnemOption(id)!
 const selected = ['japji-sahib', 'jaap-sahib', 'tav-prasad-savaiye', 'chaupai-sahib', 'anand-sahib', 'rehras-sahib', 'kirtan-sohila'].map(option)
@@ -16,8 +21,10 @@ const defaults: HomeDailyNitnemProps = {
 beforeEach(() => {
   useLanguageStore.setState({ scriptMode: 'gurmukhi' })
   useSundarGutkaLengthStore.setState({ lengths: { ...DEFAULT_SUNDAR_GUTKA_LENGTHS } })
+  useReadingPlacesStore.setState({ places: {} })
   vi.clearAllMocks()
 })
+afterEach(() => vi.restoreAllMocks())
 
 function Destination() {
   const location = useLocation()
@@ -49,7 +56,7 @@ test('all banis exposes every reading in user order with direct links and explic
   const customOrder = [selected[5], selected[0], selected[2], selected[4]]
   renderDaily({ selected: customOrder, completed: new Set([selected[0].id]) })
   fireEvent.click(screen.getByRole('button', { name: 'All 4 banis' }))
-  const dialog = screen.getByRole('dialog', { name: 'All banis' })
+  const dialog = screen.getByRole('dialog', { name: 'Your Nitnem' })
   const list = within(dialog).getByRole('list', { name: 'Daily Nitnem' })
   expect(within(list).getAllByRole('listitem').map(item => item.getAttribute('data-nitnem-id'))).toEqual(customOrder.map(item => item.id))
   expect(within(list).getAllByRole('link')).toHaveLength(4)
@@ -89,7 +96,7 @@ test('a complete day has its own finish state and exposes every completed readin
   expect(screen.queryByTestId('home-nitnem-next')).not.toBeInTheDocument()
   expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '7')
   fireEvent.click(screen.getByRole('button', { name: 'Revisit your banis' }))
-  const dialog = screen.getByRole('dialog', { name: 'All banis' })
+  const dialog = screen.getByRole('dialog', { name: 'Your Nitnem' })
   expect(within(dialog).getAllByRole('button', { name: /^Undo completion:/ })).toHaveLength(7)
   expect(within(dialog).getAllByRole('link', { name: /^Read again:/ })).toHaveLength(7)
 })
@@ -108,4 +115,52 @@ test('empty daily selection provides one useful action and no invented progress'
   expect(screen.getByRole('link', { name: 'Choose your banis' })).toHaveAttribute('href', '/nitnem/customize')
   expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-nitnem-active-reading')).not.toBeInTheDocument()
+})
+
+function readingFixture(): BaniFetchResult {
+  return { availableLengths: ['short', 'long'], resolvedLength: 'long', entries: (['G', 'D'] as const).map(source => ({
+    id: `bani-21-${source}-400`, source, scripture: source === 'G' ? 'SGGS' : 'DG', ang: source === 'G' ? 8 : 1386,
+    gurmukhi: `${source} saved line`, transliteration: '', translation_en: '', translation_pa: '', translation_hi: '', words: [],
+    lines: [400, 500].map(verseId => ({ verseId, shabadId: 1, ang: source === 'G' ? 8 : 1386,
+      gurmukhi: `${source} saved line ${verseId}`, transliteration: '', translation_en: '', translation_pa: '', translation_hi: '' })),
+  })) }
+}
+
+test('the saved-line preview uses the recorded scripture source when verse IDs repeat', async () => {
+  vi.spyOn(offlineCache, 'readBaniOfflineCache').mockResolvedValue(readingFixture())
+  const rehras = option('rehras-sahib')
+  const path = `${buildNitnemStudyPath(rehras)}&resumeVerseId=400&resumeSource=D`
+  renderDaily({ selected: [rehras], activeId: rehras.id, getResume: () => path })
+  expect(await screen.findByText('D saved line 400')).toBeInTheDocument()
+  expect(screen.queryByText('G saved line 400')).not.toBeInTheDocument()
+})
+
+test('Apply forwards the verified payload and the announced destination despite a later saved-place update', async () => {
+  const rehras = option('rehras-sahib')
+  const current = `${buildNitnemStudyPath(rehras)}&resumeVerseId=999&resumeSource=G`
+  const target = current.replace('sgLength=short', 'sgLength=long')
+  const key = getExactReadingKey(target)!
+  const saved = { scriptureId: 'G-8', resumePath: `${target}&resumeSource=G`, resumeVerseId: 400, updatedAt: new Date().toISOString() }
+  useReadingPlacesStore.setState({ places: { [key]: saved } })
+  vi.spyOn(offlineCache, 'readBaniOfflineCache').mockResolvedValue(null)
+  const prepared = readingFixture()
+  vi.spyOn(lengthSelection, 'loadExactBaniReading').mockResolvedValue(prepared)
+  vi.spyOn(baniHook, 'useBani').mockReturnValue({ entries: [], availableLengths: ['short', 'long'], resolvedLength: 'short',
+    status: 'ready', issue: null, loading: false, refreshing: false, error: null, isCached: false, retry: vi.fn() })
+  const onLengthChange = vi.fn().mockResolvedValue(undefined)
+  renderDaily({ selected: [rehras], activeId: rehras.id, getResume: () => current, onLengthChange })
+  fireEvent.click(screen.getByRole('button', { name: 'Rehras Sahib Length: Short' }))
+  const sheet = await screen.findByRole('dialog', { name: 'Bani length' })
+  fireEvent.click(within(sheet).getByRole('radio', { name: 'Long' }))
+  await waitFor(() => expect(within(sheet).getByRole('button', { name: 'Read long' })).toBeEnabled())
+  expect(within(sheet).getByTestId('bani-length-destination')).toHaveTextContent('saved place')
+  act(() => useReadingPlacesStore.setState({ places: { [key]: { ...saved, resumeVerseId: 500 } } }))
+  fireEvent.click(within(sheet).getByRole('button', { name: 'Read long' }))
+  await waitFor(() => expect(onLengthChange).toHaveBeenCalledOnce())
+  const args = onLengthChange.mock.calls[0]
+  expect(args.slice(0, 4)).toEqual([rehras, 'long', false, expect.any(AbortSignal)])
+  expect(args[4]).toBe(prepared)
+  expect(args[5].destination).toBe('saved-place')
+  expect(new URLSearchParams(args[5].path.split('?')[1]).get('resumeVerseId')).toBe('400')
+  expect(new URLSearchParams(args[5].path.split('?')[1]).get('resumeSource')).toBe('G')
 })

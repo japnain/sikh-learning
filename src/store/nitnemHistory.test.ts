@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
-import { getNitnemCompletedIds, getNitnemHistorySummary, normalizeWeeklyDayGoal, type NitnemCompletionEvent, useNitnemHistoryStore } from './nitnemHistory'
+import { getNitnemCompletedIds, getNitnemCompletionForDay, getNitnemHistorySummary, normalizeWeeklyDayGoal, type NitnemCompletionEvent, useNitnemHistoryStore } from './nitnemHistory'
+import { buildNitnemStudyPath, getNitnemOption } from './nitnem'
 
 function event(date: string, optionId = 'japji-sahib', completed = true, hour = 8): NitnemCompletionEvent {
   const [year, month, day] = date.split('-').map(Number)
@@ -65,6 +66,48 @@ test('persists retained events and deduplicates transport retries', async () => 
   expect(useNitnemHistoryStore.getState().events).toHaveLength(1)
   await useNitnemHistoryStore.persist.rehydrate()
   expect(useNitnemHistoryStore.getState().events).toEqual([record])
+})
+
+test('keeps legacy completion provenance unknown and safely persists verified exact metadata', async () => {
+  const history = useNitnemHistoryStore.getState()
+  history.importLegacy('2026-10-17', ['japji-sahib'])
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'japji-sahib')?.readingPath).toBeUndefined()
+  const readingPath = buildNitnemStudyPath(getNitnemOption('jaap-sahib')!)
+  history.record({ ...event('2026-10-17', 'jaap-sahib'), readingPath })
+  await useNitnemHistoryStore.persist.rehydrate()
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'jaap-sahib')).toMatchObject({ readingPath, readingKey: expect.any(String) })
+  history.importCompletionEvents([{ ...event('2026-10-17', 'rehras-sahib'), readingPath: '/study?shabadId=1', readingKey: 'invalid' }])
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')?.readingPath).toBeUndefined()
+})
+
+test('late exact metadata enriches a legacy cloud projection without changing its clock or duplicating credit', () => {
+  const history = useNitnemHistoryStore.getState()
+  history.reconcileCurrentDay('2026-10-17', ['rehras-sahib'], 'old-client', '2026-10-17T08:00:00.000Z')
+  const projected = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')!
+  expect(projected.readingPath).toBeUndefined()
+  const readingPath = buildNitnemStudyPath(getNitnemOption('rehras-sahib')!)
+  const original = { ...event('2026-10-17', 'rehras-sahib'), readingPath }
+  history.importCompletionEvents([original])
+  const restored = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')!
+  expect(restored).toMatchObject({ id: projected.id, occurredAt: projected.occurredAt, source: 'remote', readingPath, readingKey: expect.any(String) })
+  expect(getNitnemCompletedIds(useNitnemHistoryStore.getState().events, '2026-10-17')).toEqual(['rehras-sahib'])
+  history.importCompletionEvents([original])
+  expect(useNitnemHistoryStore.getState().events).toHaveLength(2)
+})
+
+test('late completion metadata neither reverses a later Undo nor labels an unknown re-completion after it', () => {
+  const history = useNitnemHistoryStore.getState()
+  const readingPath = buildNitnemStudyPath(getNitnemOption('rehras-sahib')!)
+  const original = { ...event('2026-10-17', 'rehras-sahib'), readingPath }
+  history.reconcileCurrentDay('2026-10-17', ['rehras-sahib'], 'old-client', '2026-10-17T08:00:00.000Z')
+  history.record(event('2026-10-17', 'rehras-sahib', false, 13))
+  history.importCompletionEvents([original])
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')).toBeNull()
+  expect(getNitnemCompletedIds(useNitnemHistoryStore.getState().events, '2026-10-17')).toEqual([])
+  const reread = { ...event('2026-10-17', 'rehras-sahib', true, 14), source: 'remote' as const }
+  history.record(reread)
+  history.importCompletionEvents([original])
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')).toEqual(reread)
 })
 
 test('keeps the weekly target between one and seven days', () => {

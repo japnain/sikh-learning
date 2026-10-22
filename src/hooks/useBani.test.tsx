@@ -4,6 +4,7 @@ import { fetchBani, type BaniFetchResult } from '../api/banidb'
 import { readBaniOfflineCache, writeBaniOfflineCache } from '../utils/baniOfflineCache'
 import { useBani } from './useBani'
 import type { SundarGutkaLength } from '../types'
+import { loadExactBaniReading } from '../utils/baniLengthSelection'
 
 vi.mock('../api/banidb', () => ({
   fetchBani: vi.fn(),
@@ -53,6 +54,43 @@ function exactResult(baniDbId: number, length: SundarGutkaLength | null = null):
 }
 
 describe('useBani offline recovery', () => {
+  it('keeps a committed prepared reading visible when its cache write failed and subsequent live loading is offline', async () => {
+    const exact = exactResult(21, 'long')
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(null)
+    vi.mocked(writeBaniOfflineCache).mockRejectedValue(new Error('Storage full'))
+    vi.mocked(fetchBani).mockResolvedValueOnce(exact).mockRejectedValueOnce(new Error('offline'))
+    const prepared = await loadExactBaniReading(21, 'long')
+    expect(writeBaniOfflineCache).toHaveBeenCalledWith(21, 'long', exact)
+
+    const { result } = renderHook(() => useBani(21, 'long', undefined, prepared))
+    expect(result.current.entries).toBe(exact.entries)
+    await waitFor(() => expect(result.current.status).toBe('degraded'))
+    expect(result.current.entries).toBe(exact.entries)
+    expect(result.current.resolvedLength).toBe('long')
+    expect(result.current.isCached).toBe(false)
+  })
+
+  it('uses a validated prepared reading without waiting for stalled cache storage', async () => {
+    const prepared = exactResult(21, 'long')
+    vi.mocked(readBaniOfflineCache).mockImplementation(() => new Promise(() => {}))
+    vi.mocked(fetchBani).mockRejectedValue(new Error('offline'))
+    const { result } = renderHook(() => useBani(21, 'long', undefined, prepared))
+    await waitFor(() => expect(result.current.status).toBe('degraded'))
+    expect(result.current.entries).toBe(prepared.entries)
+    expect(readBaniOfflineCache).not.toHaveBeenCalled()
+    expect(result.current.isCached).toBe(false)
+  })
+
+  it('never displays a prepared reading for a different requested length', async () => {
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(null)
+    vi.mocked(fetchBani).mockRejectedValue(new Error('offline'))
+    const { result } = renderHook(() => useBani(21, 'short', undefined, exactResult(21, 'long')))
+    expect(result.current.entries).toEqual([])
+    await waitFor(() => expect(result.current.status).toBe('degraded'))
+    expect(result.current.entries).toEqual([])
+    expect(result.current.resolvedLength).toBeNull()
+  })
+
   it.each([false, true])('settles a hung request after a bounded deadline and retries without accepting its late payload (cached: %s)', async cached => {
     vi.useFakeTimers()
     vi.mocked(readBaniOfflineCache).mockResolvedValueOnce(cached ? cachedResult : null).mockResolvedValue(null)
