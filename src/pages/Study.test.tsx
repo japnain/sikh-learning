@@ -1925,7 +1925,7 @@ describe('Study hukamnama mode', () => {
 })
 
 describe('Study adjustable STTM lengths', () => {
-  it('updates the URL, store, and visible start when switching Rehras length', async () => {
+  it('switches the active Rehras text explicitly and changes its usual length only when requested', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras%20Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=short']}>
         <Routes>
@@ -1941,13 +1941,32 @@ describe('Study adjustable STTM lengths', () => {
 
     expect(screen.queryByText('Rehras Sahib starts here')).not.toBeInTheDocument()
 
-    await openReaderSettings('Text options')
-    fireEvent.click(screen.getByRole('button', { name: /^Long$/i }))
+    fireEvent.click(screen.getByRole('button', { name: 'Change bani length: Short' }))
+    const lengths = await screen.findByRole('dialog', { name: 'Bani length' })
+    fireEvent.click(within(lengths).getByRole('radio', { name: /^Long(?: |$)/ }))
+    expect(screen.getByTestId('location').textContent).toContain('sgLength=short')
+    expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('short')
+    expect(within(lengths).getByRole('checkbox', { name: 'Use for my Nitnem' })).not.toBeChecked()
+    await waitFor(() => expect(within(lengths).getByRole('button', { name: 'Read long' })).toBeEnabled())
+    expect(within(lengths).getByTestId('bani-length-destination')).not.toHaveTextContent('Checking where')
+    fireEvent.click(within(lengths).getByRole('button', { name: 'Read long' }))
 
     await waitFor(() => {
       expect(screen.getByText('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')).toBeInTheDocument()
       expect(screen.getByTestId('location').textContent).toContain('sgLength=long')
+      expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('short')
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: 'Change bani length: Long' }))
+    const remembered = await screen.findByRole('dialog', { name: 'Bani length' })
+    expect(within(remembered).getByRole('radio', { name: 'Long Current' })).toBeChecked()
+    fireEvent.click(within(remembered).getByRole('checkbox', { name: 'Use for my Nitnem' }))
+    await waitFor(() => expect(within(remembered).getByRole('button', { name: 'Read long' })).toBeEnabled())
+    fireEvent.click(within(remembered).getByRole('button', { name: 'Read long' }))
+    await waitFor(() => {
       expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('long')
+      expect(screen.getByTestId('location').textContent).toContain('sgLength=long')
+      expect(screen.queryByRole('dialog', { name: 'Bani length' })).not.toBeInTheDocument()
     })
   })
 
@@ -1995,13 +2014,13 @@ describe('Study adjustable STTM lengths', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    await openReaderSettings('Text options')
-
-    expect(screen.getByText(/^Length$/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^Short$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^Medium$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^Long$/i })).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /^Extra Long$/i })).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Change bani length: Long' }))
+    const lengths = await screen.findByRole('dialog', { name: 'Bani length' })
+    expect(within(lengths).getAllByRole('radio').map(input => input.getAttribute('value'))).toEqual(['short', 'medium', 'long'])
+    expect(within(lengths).getByRole('radio', { name: /^Short(?: |$)/ })).toBeInTheDocument()
+    expect(within(lengths).getByRole('radio', { name: /^Medium(?: |$)/ })).toBeInTheDocument()
+    expect(within(lengths).getByRole('radio', { name: /^Long(?: |$)/ })).toBeChecked()
+    expect(within(lengths).queryByRole('radio', { name: /^Extra long/i })).not.toBeInTheDocument()
   })
 
   it('normalizes Aarti onto three real bands so Short is shortest and legacy extra-long lands on Long', async () => {
@@ -2018,14 +2037,18 @@ describe('Study adjustable STTM lengths', () => {
       expect(screen.getAllByText('ਆਰਤੀ-ਆਰਤਾ').length).toBeGreaterThan(0)
     })
 
-    await openReaderSettings('Text options')
+    fireEvent.click(screen.getByRole('button', { name: 'Change bani length: Long' }))
+    const lengths = await screen.findByRole('dialog', { name: 'Bani length' })
+    expect(within(lengths).getAllByRole('radio').map(input => input.getAttribute('value'))).toEqual(['short', 'medium', 'long'])
+    expect(within(lengths).getByRole('radio', { name: /^Short(?: |$)/ })).toBeInTheDocument()
+    expect(within(lengths).getByRole('radio', { name: /^Medium(?: |$)/ })).toBeInTheDocument()
+    expect(within(lengths).getByRole('radio', { name: /^Long(?: |$)/ })).toBeChecked()
+    expect(within(lengths).queryByRole('radio', { name: /^Extra long/i })).not.toBeInTheDocument()
 
-    expect(screen.getByRole('button', { name: /^Short$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^Medium$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^Long$/i })).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /^Extra Long$/i })).not.toBeInTheDocument()
-
-    fireEvent.click(screen.getByRole('button', { name: /^Short$/i }))
+    fireEvent.click(within(lengths).getByRole('radio', { name: /^Short(?: |$)/ }))
+    expect(screen.getByTestId('location').textContent).toContain('sgLength=long')
+    await waitFor(() => expect(within(lengths).getByRole('button', { name: 'Read short' })).toBeEnabled())
+    fireEvent.click(within(lengths).getByRole('button', { name: 'Read short' }))
 
     await waitFor(() => {
       expect(screen.getByTestId('location').textContent).toContain('sgLength=short')

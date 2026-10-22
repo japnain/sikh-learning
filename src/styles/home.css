@@ -75,3 +75,18 @@
 
 }
 @media (prefers-reduced-motion: reduce) { .home-hukam-skeleton i { animation: none; } }
+
+.home-nitnem-entry {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  margin: .85rem 1.5rem 0; padding: .65rem 0; min-height: 48px;
+  border-top: 1px solid #f3efe62b; border-bottom: 1px solid #f3efe62b;
+  color: #f3efe6; text-decoration: none;
+}
+.home-nitnem-entry > span:first-child { display: grid; gap: .15rem; min-width: 0; }
+.home-nitnem-entry small { color: #d1b88d; font-size: .6875rem; line-height: 1.5; }
+.home-nitnem-entry > span:first-child > span { font-size: .8125rem; line-height: 1.6; overflow-wrap: anywhere; }
+.home-nitnem-entry > span:last-child { display: inline-flex; align-items: center; flex: none; gap: .5rem; font-size: .75rem; line-height: 1.6; }
+.home-nitnem-entry svg { flex: none; color: #d1b88d; }
+@media (max-width: 359px) {
+  .home-nitnem-entry { margin-inline: 1.25rem; flex-wrap: wrap; gap: .25rem .75rem; }
+}

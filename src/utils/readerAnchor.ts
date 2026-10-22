@@ -10,7 +10,17 @@ export function getReaderViewportTop() {
   const viewport = getAppViewportBounds()
   const toolbar = document.querySelector<HTMLElement>('.study-reader-topbar')
   const toolbarHidden = toolbar?.closest<HTMLElement>('[data-reader-controls]')?.dataset.readerControls === 'hidden'
-  return Math.max(viewport.top + 16, toolbarHidden ? 0 : toolbar?.getBoundingClientRect().bottom ?? 0)
+  const breathingRoom = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+  const line = document.querySelector<HTMLElement>('[data-reader-anchor]')
+  const fixedToolbar = toolbar && getComputedStyle(toolbar).position !== 'absolute'
+  const scrollMargin = fixedToolbar && line ? Number.parseFloat(getComputedStyle(line).scrollMarginTop) || 0 : 0
+  // Resume aligns below the header plus the line's 1rem scroll margin. Treat
+  // that same gutter as outside the reading area so the previous line's
+  // trailing padding cannot replace the requested verse immediately afterward.
+  return Math.max(viewport.top + breathingRoom, toolbarHidden ? 0 : Math.max(
+    (toolbar?.getBoundingClientRect().bottom ?? 0) + breathingRoom,
+    scrollMargin,
+  ))
 }
 
 /** A font reflow can shrink the document and clamp the browser to its new end. */
@@ -31,7 +41,7 @@ export function findVisibleReaderLine(lines: HTMLElement[]): HTMLElement | null 
   const viewport = getAppViewportBounds()
   const visible = lines.filter(line => {
     const rect = line.getBoundingClientRect()
-    return rect.bottom > top && rect.top < viewport.bottom
+    return rect.bottom > top + 1 && rect.top < viewport.bottom
   })
   return getReaderBodyLines(visible)[0] ?? null
 }

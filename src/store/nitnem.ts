@@ -4,7 +4,8 @@ import { BANIS } from '../data/banis'
 import { toLocalDayStamp } from '../utils/localDates'
 import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils/baniRouteResolver'
 import { queueActivityEvent, useActivityEventsStore } from './activityEvents'
-import { getNitnemCompletedIds, normalizeWeeklyDayGoal, useNitnemHistoryStore } from './nitnemHistory'
+import { getNitnemCompletedIds, getNitnemCompletionForDay, normalizeWeeklyDayGoal, useNitnemHistoryStore } from './nitnemHistory'
+import { getExactReadingKey } from './readingPlaces'
 
 export type NitnemGroup = 'Morning' | 'Evening' | 'Night' | 'Additional'
 
@@ -329,8 +330,8 @@ interface NitemState {
   weeklyDayGoal: number
   setWeeklyDayGoal: (goal: number) => void
   setSelectedIds: (ids: string[]) => void
-  markComplete: (id: string) => void
-  unmarkComplete: (id: string) => void
+  markComplete: (id: string, readingPath?: string) => void
+  unmarkComplete: (id: string, readingPath?: string) => void
   isComplete: (id: string) => boolean
   setCompletionTrackingEnabled: (enabled: boolean) => void
   toggleSelected: (id: string) => void
@@ -373,6 +374,23 @@ export function buildNitnemStudyPath(option: NitnemRouteOption): string {
   return `/study?${params.toString()}`
 }
 
+/** Recognize a full selected bani even when this reading is not its usual length. */
+export function getNitnemReadingProvenance(option: NitnemRouteOption, readingPath: string): { readingPath: string; readingKey: string } | null {
+  const actualKey = getExactReadingKey(readingPath)
+  if (!actualKey) return null
+  const actual = new URLSearchParams(readingPath.split('?')[1] ?? '')
+  if (actual.has('shabadId') || actual.has('hukamnamaDate') || actual.get('flow') === 'ardaas-hukamnama') return null
+  const canonical = new URLSearchParams(buildNitnemStudyPath(option).split('?')[1])
+  const length = actual.get('sgLength')
+  if (option.supportsLengthAdjustment) {
+    if (!length || !['short', 'medium', 'long', 'extralong'].includes(length)) return null
+    canonical.set('sgLength', length)
+  } else if (length !== null) return null
+  const canonicalPath = `/study?${canonical}`
+  const readingKey = getExactReadingKey(canonicalPath)
+  return readingKey && readingKey === actualKey ? { readingPath: canonicalPath, readingKey } : null
+}
+
 const LEGACY_NITNEM_ID_MAP: Record<string, string> = {
   'rehras-sahib-focused': 'rehras-sahib',
   'chaupai-sahib-focused': 'chaupai-sahib',
@@ -410,34 +428,45 @@ export const useNitemStore = create<NitemState>()(
         if (selectedIds.length) set({ selectedIds })
       },
 
-      markComplete: (id) => {
+      markComplete: (id, readingPath) => {
         const today = todayStr()
         const state = get()
-        if (!getNitnemOption(id) || !state.selectedIds.includes(id)) return
+        const option = getNitnemOption(id)
+        if (!option || !state.selectedIds.includes(id)) return
+        const provenance = getNitnemReadingProvenance(option, readingPath ?? buildNitnemStudyPath(option))
+        if (!provenance) return
         useNitnemHistoryStore.getState().importLegacy(state.completedDate, normalizePersistedNitnemIds(state.completedIds, false))
         const base = state.completedDate === today ? normalizePersistedNitnemIds(state.completedIds, false) : []
         if (base.includes(id)) return
         const occurredAt = nextCompletionTimestamp(id, today)
-        const event = queueActivityEvent('nitnem.completed', { id, completedDate: today }, occurredAt)
+        const event = queueActivityEvent('nitnem.completed', { id, completedDate: today, ...provenance }, occurredAt)
         useNitnemHistoryStore.getState().record({
           id: event.id, optionId: id, date: today, completed: true,
           occurredAt, source: 'manual', wasSelected: true,
+          ...provenance,
         })
         set({ completedDate: today, completedIds: [...base, id] })
       },
 
-      unmarkComplete: (id) => {
+      unmarkComplete: (id, readingPath) => {
         const today = todayStr()
         const state = get()
         if (!getNitnemOption(id)) return
         useNitnemHistoryStore.getState().importLegacy(state.completedDate, normalizePersistedNitnemIds(state.completedIds, false))
         const base = state.completedDate === today ? normalizePersistedNitnemIds(state.completedIds, false) : []
         if (!base.includes(id)) return
+        const previousCompletion = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, today, id)
+        if (readingPath && previousCompletion?.readingKey && getExactReadingKey(readingPath) !== previousCompletion.readingKey) return
+        const provenance = previousCompletion ? {
+          ...(previousCompletion.readingPath ? { readingPath: previousCompletion.readingPath, readingKey: previousCompletion.readingKey } : {}),
+          undoesEventId: previousCompletion.id,
+        } : {}
         const occurredAt = nextCompletionTimestamp(id, today)
-        const event = queueActivityEvent('nitnem.uncompleted', { id, completedDate: today }, occurredAt)
+        const event = queueActivityEvent('nitnem.uncompleted', { id, completedDate: today, ...provenance }, occurredAt)
         useNitnemHistoryStore.getState().record({
           id: event.id, optionId: id, date: today, completed: false,
           occurredAt, source: 'manual', wasSelected: true,
+          ...provenance,
         })
         set({ completedDate: today, completedIds: base.filter(value => value !== id) })
       },
@@ -535,9 +564,13 @@ export const useNitemStore = create<NitemState>()(
 export type NitnemCompletionResult = 'changed' | 'unchanged' | 'unavailable' | 'failed'
 
 /** Keep an explicit completion honest if any of its three local writes fails. */
-export function setNitnemCompletionSafely(id: string, completed: boolean): NitnemCompletionResult {
+export function setNitnemCompletionSafely(id: string, completed: boolean, readingPath?: string): NitnemCompletionResult {
   const routine = useNitemStore.getState()
-  if (!routine.completionTrackingEnabled || !routine.selectedIds.includes(id) || !getNitnemOption(id)) return 'unavailable'
+  const option = getNitnemOption(id)
+  if (!routine.completionTrackingEnabled || !routine.selectedIds.includes(id) || !option) return 'unavailable'
+  if (readingPath && !getNitnemReadingProvenance(option, readingPath)) return 'unavailable'
+  const previous = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, todayStr(), id)
+  if (!completed && readingPath && previous?.readingKey && getExactReadingKey(readingPath) !== previous.readingKey) return 'unavailable'
   if (routine.isComplete(id) === completed) return 'unchanged'
   const history = useNitnemHistoryStore.getState()
   const activity = useActivityEventsStore.getState()
@@ -549,8 +582,8 @@ export function setNitnemCompletionSafely(id: string, completed: boolean): Nitne
     return 'failed'
   }
   try {
-    if (completed) routine.markComplete(id)
-    else routine.unmarkComplete(id)
+    if (completed) routine.markComplete(id, readingPath)
+    else routine.unmarkComplete(id, readingPath)
     return 'changed'
   } catch {
     // Zustand persistence updates memory before writing. Restore both sides; a

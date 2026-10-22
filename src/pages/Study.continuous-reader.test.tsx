@@ -288,6 +288,8 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     fireEvent.click(within(screen.getByRole('dialog', { name: 'Reading sections' })).getByRole('button', { name: /ਹਮਰੀ ਕਰੋ/ }))
     await settleReaderFrames()
     act(() => document.dispatchEvent(new Event('scrollend')))
+    expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796)
+    fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Continue here' }))
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883))
     expect(jumped).toContain('2883')
     expect(screen.getByTestId('reader-dock')).toHaveTextContent('Ang 1386')
@@ -308,6 +310,8 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     fireEvent.click(within(screen.getByRole('dialog', { name: 'Reading sections' })).getByRole('button', { name: /ਸਰਣਿ ਪਰੇ/ }))
     await settleReaderFrames()
     act(() => document.dispatchEvent(new Event('scrollend')))
+    expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883)
+    fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Continue here' }))
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796))
     expect(jumped).toContain('2796')
     expect(screen.getByTestId('reader-dock')).toHaveTextContent('Ang 12')
@@ -932,12 +936,12 @@ it.each(['header', 'dock', 'finish'] as const)('keeps the authoritative incoming
   }
 })
 
-it('realigns an incoming resume once after delayed font layout and never snaps back during later reading', async () => {
+it('settles an incoming resume after delayed font/header layout and never snaps back during later reading', async () => {
   const { lines, target, alignment, finishFonts, reflow } = await openWithDelayedResumeFont()
   reflow()
   expect(target.getBoundingClientRect().top).toBe(-139)
   await act(async () => { finishFonts() })
-  await waitFor(() => expect(alignment).toHaveBeenCalledTimes(2))
+  await waitFor(() => expect(alignment).toHaveBeenCalledTimes(3))
   expect(target.getBoundingClientRect().top).toBe(76)
   for (const [index, line] of lines.entries()) {
     vi.spyOn(line, 'getBoundingClientRect').mockReturnValue({
@@ -950,7 +954,7 @@ it('realigns an incoming resume once after delayed font layout and never snaps b
   act(() => document.dispatchEvent(new Event('scrollend')))
   await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8180))
   await settleReaderFrames()
-  expect(alignment).toHaveBeenCalledTimes(2)
+  expect(alignment).toHaveBeenCalledTimes(3)
 })
 
 it.each([false, true])('handles a late-font document-end clamp without mistaking it for user scroll: %s', async userInteracts => {
@@ -963,7 +967,7 @@ it.each([false, true])('handles a late-font document-end clamp without mistaking
   if (userInteracts) fireEvent.wheel(document)
   await act(async () => finishFonts())
   await settleReaderFrames()
-  expect(alignment).toHaveBeenCalledTimes(userInteracts ? 1 : 2)
+  await waitFor(() => expect(alignment).toHaveBeenCalledTimes(userInteracts ? 1 : 3))
   expect(target.getBoundingClientRect().top).toBe(userInteracts ? -126 : 76)
 })
 
@@ -979,15 +983,18 @@ it.each(['wheel', 'touch', 'pointer', 'keyboard'])('leaves reading untouched aft
   expect(alignment).toHaveBeenCalledTimes(1)
 })
 
-it('does not replace an actual scroll position change when the resume font finishes loading', async () => {
-  const { alignment, finishFonts, reflow } = await openWithDelayedResumeFont()
+it('keeps the requested verse through automatic scroll and font reflow before resume settles', async () => {
+  const { target, alignment, finishFonts, reflow } = await openWithDelayedResumeFont()
   scroll!.setTop(scroll!.getTop() + 120)
-  const userPosition = scroll!.getTop()
+  const automaticPosition = scroll!.getTop()
   reflow()
+  act(() => document.dispatchEvent(new Event('scrollend')))
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8172)
   await act(async () => { finishFonts() })
-  await settleReaderFrames()
-  expect(alignment).toHaveBeenCalledTimes(1)
-  expect(scroll!.getTop()).toBe(userPosition)
+  await waitFor(() => expect(alignment).toHaveBeenCalledTimes(3))
+  expect(target.getBoundingClientRect().top).toBe(76)
+  expect(scroll!.getTop()).not.toBe(automaticPosition)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8172)
 })
 
 it('cancels delayed font realignment when the reader unmounts', async () => {

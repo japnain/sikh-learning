@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react'
+import { act, fireEvent, render, renderHook, screen } from '@testing-library/react'
 import type { MouseEvent, PointerEvent } from 'react'
 import { useReaderInteraction, type ReaderWordContext } from './useReaderInteraction'
 
@@ -34,6 +34,18 @@ function addToolbar({ position = 'absolute', safeTop = 59, controlTop = () => 66
 
 async function measureCommit() {
   await act(async () => { await new Promise<void>(resolve => window.requestAnimationFrame(() => resolve())) })
+}
+
+function DockFocusHarness() {
+  const interaction = useReaderInteraction('first', false)
+  return <>
+    <p data-testid="reader-content">Reader content</p>
+    <button type="button">Outside action</button>
+    <section className="reader-dock" hidden={!interaction.visible || !interaction.deep} data-testid="reader-dock">
+      <button type="button">Dock Back</button>
+      <button type="button" onClick={interaction.hide}>Hide dock</button>
+    </section>
+  </>
 }
 
 test('shallow touch scroll and reveal keep the dock available when the top targets move into the safe area', async () => {
@@ -131,6 +143,70 @@ test('deliberate scroll hides the controls and a normal page tap reveals them', 
   expect(result.current.visible).toBe(true)
   act(() => result.current.onContentClick(click()))
   expect(result.current.visible).toBe(false)
+})
+
+test('content scrolling keeps a focused dock available until focus leaves it', () => {
+  scroll.top = 1000
+  render(<DockFocusHarness />)
+  const dock = screen.getByTestId('reader-dock')
+  const back = screen.getByRole('button', { name: 'Dock Back' })
+  act(() => back.focus())
+  act(() => {
+    fireEvent.wheel(screen.getByTestId('reader-content'))
+    scroll.top = 600
+    scroll.settled()
+  })
+  expect(dock).not.toHaveAttribute('hidden')
+  expect(back).toHaveFocus()
+  // Reaching the top must not remove the focused dock via its depth condition.
+  act(() => {
+    fireEvent.wheel(screen.getByTestId('reader-content'))
+    scroll.top = 0
+    scroll.settled()
+  })
+  expect(dock).not.toHaveAttribute('hidden')
+  expect(back).toHaveFocus()
+  act(() => screen.getByRole('button', { name: 'Outside action' }).focus())
+  act(() => {
+    fireEvent.wheel(screen.getByTestId('reader-content'))
+    scroll.top = 400
+    scroll.settled()
+  })
+  expect(dock).toHaveAttribute('hidden')
+  expect(screen.getByRole('button', { name: 'Outside action' })).toHaveFocus()
+})
+
+test('selection preserves a focused dock but suppresses it after blur, while explicit Hide still works', () => {
+  scroll.top = 1000
+  const { result } = renderHook(() => useReaderInteraction('first', false))
+  const host = document.createElement('div')
+  host.innerHTML = '<p>Reader content</p><button>Outside action</button><section class="reader-dock"><button>Dock Back</button></section>'
+  document.body.append(host)
+  try {
+    const back = host.querySelector<HTMLElement>('.reader-dock button')!
+    const outside = host.querySelector<HTMLElement>(':scope > button')!
+    const selection = window.getSelection()!
+    act(() => back.focus())
+    const range = document.createRange()
+    range.selectNodeContents(host.querySelector('p')!)
+    act(() => {
+      selection.removeAllRanges()
+      selection.addRange(range)
+      document.dispatchEvent(new Event('selectionchange'))
+    })
+    expect(result.current.selectionActive).toBe(true)
+    expect(result.current.visible).toBe(true)
+    expect(back).toHaveFocus()
+    act(() => outside.focus())
+    expect(result.current.visible).toBe(false)
+    act(() => {
+      selection.removeAllRanges()
+      document.dispatchEvent(new Event('selectionchange'))
+      back.focus()
+    })
+    act(() => result.current.hide())
+    expect(result.current.visible).toBe(false)
+  } finally { host.remove() }
 })
 
 test('a word preview reveals controls and another word replaces it without a modal', () => {

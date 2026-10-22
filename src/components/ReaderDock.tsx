@@ -6,6 +6,8 @@ import type { ReaderWordContext } from '../hooks/useReaderInteraction'
 import type { ReaderPresentation } from '../hooks/useReaderPresentation'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { IconArrowLeft, IconArrowRight, IconClose, IconMoreHorizontal } from './icons'
+import BaniLengthControl from './BaniLengthControl'
+import type { SundarGutkaLength } from '../types'
 
 const WORD_MEANING_COPY = {
   en: { languages: { en: 'English', pa: 'Punjabi', hi: 'Hindi' }, fallback: 'English fallback', missing: (language: string) => `No ${language} study meaning is available for this word.` },
@@ -27,6 +29,8 @@ interface Props {
   onMode: (mode: ReaderPresentation) => void
   onHide: () => void
   onExplore: () => void
+  length?: SundarGutkaLength | null
+  onLength?: () => void
 }
 
 export default function ReaderDock(props: Props) {
@@ -59,6 +63,7 @@ export default function ReaderDock(props: Props) {
         </p>
       </div> : null}
       <div className="reader-dock__heading"><span>{props.title}</span><button type="button" onClick={props.onHide} aria-label={copy.hide}><IconClose size={16} /></button></div>
+      {props.length && props.onLength ? <div className="reader-dock__length"><BaniLengthControl value={props.length} onClick={props.onLength} /></div> : null}
       <div className="reader-dock__context"><button type="button" onClick={props.onSections} aria-haspopup="dialog">{props.location}<span aria-hidden="true">⌄</span></button><fieldset><legend className="sr-only">{locale === 'en' ? 'Reading presentation' : copy.controls}</legend>{(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-dock" checked={props.presentation === mode} onChange={() => props.onMode(mode)} /><span>{copy[mode]}</span></label>)}</fieldset></div>
       {props.notice ? <div className="reader-dock__notice">{props.notice}</div> : null}
       <nav className="reader-dock__actions" aria-label={copy.controls}>

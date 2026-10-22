@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
-import { getNitnemHistorySummary, useNitnemHistoryStore } from './nitnemHistory'
+import { getNitnemCompletionForDay, getNitnemHistorySummary, useNitnemHistoryStore } from './nitnemHistory'
 import { useActivityEventsStore } from './activityEvents'
 import {
   buildNitnemStudyPath,
@@ -164,6 +164,35 @@ test('records idempotent complete and undo events even within one clock millisec
   store.markComplete('japji-sahib')
   expect(getNitnemHistorySummary(useNitnemHistoryStore.getState().events).currentStreak).toBe(1)
   expect(useNitnemHistoryStore.getState().events).toHaveLength(3)
+})
+
+test('retains the actual completed version when the usual version changes and undo targets that reading', () => {
+  const short = buildNitnemStudyPath(getNitnemOption('rehras-sahib')!)
+  expect(setNitnemCompletionSafely('rehras-sahib', true, short)).toBe('changed')
+  const completed = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')!
+  expect(completed.readingPath).toBe(short)
+  useSundarGutkaLengthStore.getState().setLength('rehras-sahib', 'long')
+  const long = buildNitnemStudyPath(getNitnemOption('rehras-sahib')!)
+  expect(useNitemStore.getState().isComplete('rehras-sahib')).toBe(true)
+  expect(setNitnemCompletionSafely('rehras-sahib', true, long)).toBe('unchanged')
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')?.readingPath).toBe(short)
+  expect(setNitnemCompletionSafely('rehras-sahib', false, long)).toBe('unavailable')
+  expect(setNitnemCompletionSafely('rehras-sahib', false, completed.readingPath)).toBe('changed')
+  expect(useNitnemHistoryStore.getState().events.at(-1)).toMatchObject({ readingPath: short, undoesEventId: completed.id })
+  expect(getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')).toBeNull()
+})
+
+test('records a temporary valid reading without changing the usual length and rejects unrelated provenance', () => {
+  const short = buildNitnemStudyPath(getNitnemOption('rehras-sahib')!)
+  const long = short.replace('sgLength=short', 'sgLength=long')
+  expect(setNitnemCompletionSafely('rehras-sahib', true, `${long}&resumeVerseId=400`)).toBe('changed')
+  expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('short')
+  const recorded = getNitnemCompletionForDay(useNitnemHistoryStore.getState().events, '2026-10-17', 'rehras-sahib')!
+  expect(recorded.readingPath).toBe(long)
+  expect(recorded.readingPath).not.toContain('resumeVerseId')
+  expect(useActivityEventsStore.getState().pendingEvents[0].payload).toMatchObject({ readingPath: long, readingKey: recorded.readingKey })
+  expect(setNitnemCompletionSafely('japji-sahib', true, long)).toBe('unavailable')
+  expect(setNitnemCompletionSafely('jaap-sahib', true, `${buildNitnemStudyPath(getNitnemOption('jaap-sahib')!)}&shabadId=123`)).toBe('unavailable')
 })
 
 test('retains local history after the cloud pending queue is acknowledged', () => {

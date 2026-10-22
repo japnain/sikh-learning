@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { captureReaderAnchor, isReaderScrollUnmovedOrClamped, restoreReaderAnchor } from './readerAnchor'
+import { captureReaderAnchor, findVisibleReaderLine, getReaderViewportTop, isReaderScrollUnmovedOrClamped, restoreReaderAnchor } from './readerAnchor'
 import * as appScroll from './appScroll'
 
 function rect(top: number, height: number): DOMRect {
@@ -68,6 +68,43 @@ describe('semantic reader anchors', () => {
     expect(captureReaderAnchor()).toMatchObject({ key: 'current-entry:0', viewportTop: 16 })
   })
 
+  it.each([16, 32])('keeps an incoming verse after resume when previous padding is visible in the %ipx header gutter', (fontSize) => {
+    vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
+    const toolbar = document.createElement('div')
+    toolbar.className = 'study-reader-topbar'
+    vi.spyOn(toolbar, 'getBoundingClientRect').mockReturnValue(rect(0, 78.1875))
+    document.body.append(toolbar)
+    const originalFontSize = document.documentElement.style.fontSize
+    document.documentElement.style.fontSize = `${fontSize}px`
+    try {
+      // The measured CSS height rounds up, while native scroll positions may
+      // differ by a fraction of a pixel. Neither should restore the prior row.
+      const alignedTop = 79 + fontSize
+      const previous = sourceLine('previous-verse:0', -50, alignedTop + 50.25)
+      previous.style.scrollMarginTop = `${alignedTop}px`
+      const target = sourceLine('requested-verse:0', alignedTop + .25, 140)
+
+      expect(findVisibleReaderLine([previous, target])).toBe(target)
+      expect(captureReaderAnchor()).toMatchObject({ key: 'requested-verse:0', fraction: 0 })
+    } finally {
+      document.documentElement.style.fontSize = originalFontSize
+    }
+  })
+
+  it('uses the real reading edge after the touch header scrolls away instead of its stale scroll margin', () => {
+    vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
+    const toolbar = document.createElement('div')
+    toolbar.className = 'study-reader-topbar'
+    toolbar.style.position = 'absolute'
+    vi.spyOn(toolbar, 'getBoundingClientRect').mockReturnValue(rect(-200, 80))
+    document.body.append(toolbar)
+    const current = sourceLine('currently-visible:0', 16, 140)
+    current.style.scrollMarginTop = '96px'
+
+    expect(getReaderViewportTop()).toBe(16)
+    expect(captureReaderAnchor()).toMatchObject({ key: 'currently-visible:0', fraction: 0, viewportTop: 16 })
+  })
+
   it('restores the same point in a source line after larger text reflows earlier passages', () => {
     vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
     vi.spyOn(appScroll, 'getAppScrollTop').mockReturnValue(1000)
@@ -83,7 +120,7 @@ describe('semantic reader anchors', () => {
 
     restoreReaderAnchor(anchor)
 
-    expect(scroll).toHaveBeenCalledWith({ top: 1360, behavior: 'auto' })
+    expect(scroll).toHaveBeenCalledWith({ top: 1376, behavior: 'auto' })
   })
 
   it('does not move to a different passage if the anchored source no longer exists', () => {
