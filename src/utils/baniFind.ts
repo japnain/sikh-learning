@@ -24,6 +24,49 @@ export function normalizeBaniFindText(text: string): string {
 
 const wordCharacter = /[\p{L}\p{M}\p{N}]/u
 
+export interface BaniFindFragment { text: string; match: boolean }
+
+const graphemeSegmenter = typeof Intl.Segmenter === 'function'
+  ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null
+
+/** Map search-normalized matches back to whole, unmodified display graphemes. */
+export function getBaniFindFragments(text: string, query: string): BaniFindFragment[] {
+  const needle = normalizeBaniFindText(query)
+  if (!needle || query.length > 240 || !graphemeSegmenter) return [{ text, match: false }]
+  let normalized = ''
+  const starts: number[] = []
+  const ends: number[] = []
+  for (const { segment, index } of graphemeSegmenter.segment(text)) {
+    const folded = normalizeBaniFindText(segment) || (/[\s\p{P}]/u.test(segment) ? ' ' : '')
+    for (let offset = 0; offset < folded.length; offset += 1) {
+      const character = folded[offset]
+      if (character === ' ' && (!normalized || normalized.endsWith(' '))) continue
+      normalized += character
+      starts.push(index)
+      ends.push(index + segment.length)
+    }
+  }
+  const ranges: { start: number; end: number }[] = []
+  let index = normalized.indexOf(needle)
+  while (index >= 0) {
+    const range = { start: starts[index], end: ends[index + needle.length - 1] }
+    const previous = ranges.at(-1)
+    if (previous && range.start <= previous.end) previous.end = Math.max(previous.end, range.end)
+    else ranges.push(range)
+    index = normalized.indexOf(needle, index + needle.length)
+  }
+  if (!ranges.length) return [{ text, match: false }]
+  const fragments: BaniFindFragment[] = []
+  let cursor = 0
+  for (const range of ranges) {
+    if (range.start > cursor) fragments.push({ text: text.slice(cursor, range.start), match: false })
+    fragments.push({ text: text.slice(range.start, range.end), match: true })
+    cursor = range.end
+  }
+  if (cursor < text.length) fragments.push({ text: text.slice(cursor), match: false })
+  return fragments
+}
+
 function matches(text: string, query: string, wholeWords: boolean): boolean {
   const normalized = normalizeBaniFindText(text)
   if (!wholeWords) return normalized.includes(query)

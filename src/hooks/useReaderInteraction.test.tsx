@@ -98,12 +98,22 @@ test('without a safe inset, visible shallow touch targets do not trigger the doc
   expect(result.current.deep).toBe(true)
 })
 
-test('a fixed desktop toolbar retains the 120px depth threshold', () => {
-  addToolbar({ position: 'fixed', controlTop: () => 10 })
+test('a reachable fixed desktop toolbar does not gain a duplicate dock during deep reading', () => {
+  addToolbar({ position: 'fixed', safeTop: 0, controlTop: () => 10 })
   const { result } = renderHook(() => useReaderInteraction('first', false))
   act(() => { scroll.top = 60; scroll.settled() })
   expect(result.current.deep).toBe(false)
   act(() => { scroll.top = 121; scroll.settled() })
+  expect(result.current.deep).toBe(false)
+  act(() => result.current.hide())
+  act(() => result.current.reveal())
+  expect(result.current.visible).toBe(true)
+  expect(result.current.deep).toBe(false)
+})
+
+test('an obstructed fixed toolbar still offers reachable dock controls', () => {
+  addToolbar({ position: 'fixed', safeTop: 59, controlTop: () => 10 })
+  const { result } = renderHook(() => useReaderInteraction('first', false))
   expect(result.current.deep).toBe(true)
 })
 

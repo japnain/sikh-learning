@@ -18,6 +18,7 @@ import { useActivityEventsStore } from '../store/activityEvents'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
 import { useNitnemPracticeStore } from '../store/nitnemPractice'
+import { clearHomeNitnemReturn, rememberHomeNitnemReturn } from '../utils/homeNitnemNavigation'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useScriptureCacheStore } from '../store/scriptureCache'
@@ -114,6 +115,7 @@ afterEach(() => {
 })
 
 beforeEach(() => {
+  clearHomeNitnemReturn()
   vi.useFakeTimers({ shouldAdvanceTime: true })
   vi.setSystemTime(new Date('2026-04-11T09:00:00.000Z'))
   vi.spyOn(globalThis, 'requestAnimationFrame').mockImplementation(callback => (
@@ -330,7 +332,7 @@ test('manual completion and undo update today, retained history and the weekly s
   fireEvent.click(screen.getByRole('button', { name: 'Mark complete: Japji Sahib' }))
   expect(progress).toHaveAttribute('aria-valuenow', '1')
   expect(progress).toHaveAttribute('aria-valuetext', `1 of ${DEFAULT_NITNEM_OPTION_IDS.length} complete today`)
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'jaap-sahib')
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('3 / 5 days')
   expect(within(week).getByLabelText('Saturday, April 11: Practice recorded')).toHaveAttribute('datetime', todayStamp())
   expect(useNitnemHistoryStore.getState().events.at(-1)).toMatchObject({ optionId: 'japji-sahib', date: todayStamp(), completed: true, source: 'manual' })
@@ -509,45 +511,38 @@ test('saved book previews preserve Home as the book reader origin', () => {
   expect(screen.getByTestId('home-destination')).toHaveAttribute('data-location-state', JSON.stringify({ libraryReaderOrigin: '/' }))
 })
 
-test('keeps Home focused on the current reading and two direct links while All banis preserves the full personal order', () => {
+test('all chosen banis are directly reachable in the rail and full navigator in personal order', () => {
   const selectedIds = ['kirtan-sohila', 'japji-sahib', 'jaap-sahib', 'anand-sahib', 'sukhmani-sahib']
   useNitemStore.setState({ selectedIds })
   renderHome()
-
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'kirtan-sohila')
-  const next = screen.getByTestId('home-nitnem-next')
-  expect(within(next).getAllByRole('link').map(link => link.getAttribute('aria-label'))).toEqual(['Begin reading: Japji Sahib', 'Begin reading: Jaap Sahib'])
-  expect(screen.queryByRole('radio')).not.toBeInTheDocument()
-  expect(screen.queryByTestId('home-nitnem-carousel')).not.toBeInTheDocument()
-
+  const rail = within(screen.getByTestId('home-nitnem-carousel')).getByRole('list')
+  expect(within(rail).getAllByRole('listitem').map(card => card.getAttribute('data-nitnem-id'))).toEqual(selectedIds)
+  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
+  expect(useNitnemPracticeStore.getState().active).toBeNull()
+  expect(screen.getByTestId('home-nitnem-entry')).toHaveTextContent('Kirtan Sohila')
   const dialog = openAllBanis()
-  const routine = within(dialog).getByRole('list', { name: 'Daily Nitnem' })
-  const entries = within(routine).getAllByRole('listitem')
-  expect(entries.map(entry => entry.getAttribute('data-nitnem-id'))).toEqual(selectedIds)
-  expect(within(routine).getAllByRole('link')).toHaveLength(selectedIds.length)
-  expect(within(routine).getByText('ਸੋਹਿਲਾ ਸਾਹਿਬ')).toBeVisible()
-  expect(within(routine).getByText('ਜਪੁਜੀ ਸਾਹਿਬ')).toBeVisible()
-  expect(within(routine).getByText('ਜਾਪੁ ਸਾਹਿਬ')).toBeVisible()
-  expect(within(routine).queryByRole('radio')).not.toBeInTheDocument()
-  fireEvent.click(within(dialog).getByRole('button', { name: 'Close your banis' }))
-  expect(screen.queryByRole('dialog', { name: 'Your Nitnem' })).not.toBeInTheDocument()
+  expect(within(dialog).getAllByRole('listitem').map(item => item.getAttribute('data-nitnem-id'))).toEqual(selectedIds)
 })
 
-test('promotes the next reading after completion and retains undo in the ordered navigator', () => {
+test('manual completion keeps visible focused Undo while the first-screen shortcut moves independently', () => {
   useNitemStore.setState({ selectedIds: ['jaap-sahib', 'japji-sahib', 'kirtan-sohila'], completionTrackingEnabled: true })
   renderHome()
-  fireEvent.click(screen.getByRole('button', { name: 'Mark complete: Jaap Sahib' }))
-  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveTextContent('Begin reading')
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
+  const completion = screen.getByRole('button', { name: 'Mark complete: Jaap Sahib' })
+  act(() => completion.focus())
+  fireEvent.click(completion)
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'jaap-sahib')
+  expect(completion).toHaveFocus()
+  expect(completion).toHaveAccessibleName('Undo completion: Jaap Sahib')
+  expect(screen.getByTestId('home-nitnem-entry')).toHaveTextContent('Japji Sahib')
   expect(useNitnemPracticeStore.getState().active).toBeNull()
   act(() => {
     useNitemStore.getState().setSelectedIds(['kirtan-sohila', 'japji-sahib', 'jaap-sahib'])
     vi.advanceTimersByTime(60000)
   })
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
-  expect(screen.getAllByTestId('home-nitnem-reading-panel')).toHaveLength(1)
-  const navigator = openAllBanis()
-  expect(within(navigator).getByRole('button', { name: 'Undo completion: Jaap Sahib' })).toBeVisible()
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'jaap-sahib')
+  fireEvent.click(completion)
+  expect(useNitemStore.getState().completedIds).toEqual([])
 })
 
 test('previews a real Hukamnama verse after an unmarked Raag and Mahala heading', () => {
@@ -594,7 +589,7 @@ test('previews the body after the live Ashtpadi heading and standalone invocatio
 test('native keyboard navigation goes directly from the current reading to the next bani', async () => {
   const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
   renderHomeRoutes()
-  screen.getByTestId('home-nitnem-primary-action').focus()
+  act(() => screen.getByTestId('home-nitnem-primary-action').focus())
   await user.tab()
 
   expect(screen.getByRole('link', { name: 'Begin reading: Jaap Sahib' })).toHaveFocus()
@@ -689,7 +684,7 @@ test('keeps older exact Study places as a secondary action without starting toda
   renderHome()
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveTextContent('Begin reading')
   expect(screen.getByTestId('home-nitnem-primary-action').getAttribute('href')).not.toContain('resumeVerseId')
-  expect(screen.getByRole('link', { name: 'Resume saved study' }).getAttribute('href')).toContain('resumeVerseId=222')
+  expect(screen.getByRole('link', { name: 'Resume saved study: Japji Sahib' }).getAttribute('href')).toContain('resumeVerseId=222')
   const dialog = openAllBanis()
   expect(within(dialog).getByRole('link', { name: 'Begin reading: Japji Sahib' }).getAttribute('href')).not.toContain('resumeVerseId')
   expect(within(dialog).getByRole('link', { name: 'Begin reading: Jaap Sahib' }).getAttribute('href')).not.toContain('resumeVerseId')
@@ -721,7 +716,7 @@ test('direct reading links preserve the selected length and exact Savaiye varian
   expect(current.get('sgLength')).toBe('long')
   expect(current.has('resumeVerseId')).toBe(false)
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveTextContent('Begin reading')
-  const next = within(screen.getByTestId('home-nitnem-next')).getByRole('link')
+  const next = screen.getByRole('link', { name: /Begin reading: Tav Prasad Savaiye/ })
   const variant = new URLSearchParams(next.getAttribute('href')!.split('?')[1])
   expect(variant.get('baniDbId')).toBe('7')
   expect(variant.get('exactBani')).toBe('1')
@@ -780,8 +775,8 @@ test('distinguishes one recorded practice day from completion of every selected 
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('1 / 7 days')
   expect(within(week).queryByText('Your weekly goal is met.')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-nitnem-primary-action')).not.toBeInTheDocument()
-  expect(screen.queryByRole('link', { name: 'Read again' })).not.toBeInTheDocument()
-  expect(screen.getByRole('button', { name: 'Revisit your banis' })).toBeVisible()
+  expect(screen.getAllByRole('link', { name: /^Read again:/ })).toHaveLength(2)
+  expect(screen.getByTestId('home-nitnem-carousel')).toBeVisible()
 })
 
 test('shows a met weekly goal from retained history without claiming today or the routine is complete', () => {
@@ -1001,4 +996,20 @@ test('switching a composite Rehras length preserves the resumed verse source ind
   expect(destination.get('nitnemPractice')).toBe(startedAt)
   expect(useNitnemPracticeStore.getState().active?.startedAt).toBe(startedAt)
   expect(useNitemStore.getState().completedIds).toEqual([])
+})
+
+
+test('restores the card returned from the reader without retargeting an unfinished practice', () => {
+  startPractice('rehras-sahib', 555)
+  const exact = useNitnemPracticeStore.getState().active!.readingPath
+  rememberHomeNitnemReturn('jaap-sahib')
+  renderHome()
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'jaap-sahib')
+  expect(screen.getByTestId('home-nitnem-entry')).toHaveAttribute('href', exact)
+  expect(screen.getByRole('link', { name: 'Continue reading: Rehras Sahib' })).toHaveAttribute('href', exact)
+  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  act(() => vi.advanceTimersByTime(60000))
+  expect(useNitnemPracticeStore.getState().active!.readingPath).toBe(exact)
+  expect(useNitemStore.getState().completedIds).toEqual([])
+  expect(useNitnemHistoryStore.getState().events).toEqual([])
 })

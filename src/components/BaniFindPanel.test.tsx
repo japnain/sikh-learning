@@ -64,3 +64,25 @@ test.each(['pa', 'hi'] as const)('localizes search and result feedback in %s', l
   fireEvent.change(input, { target: { value: 'ਨਾਮੁ' } })
   expect(screen.getByRole('status')).not.toHaveTextContent('matching')
 })
+
+test('a controlled query survives panel remount and follows its parent reading state', () => {
+  const onQueryChange = vi.fn()
+  const view = render(<BaniFindPanel entries={entries} onJump={() => {}} query="nam" onQueryChange={onQueryChange} />)
+  expect(screen.getByRole('searchbox')).toHaveValue('nam')
+  expect(screen.getByRole('button')).toBeInTheDocument()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'ਨਾਮੁ' } })
+  expect(onQueryChange).toHaveBeenCalledWith('ਨਾਮੁ')
+  view.rerender(<BaniFindPanel entries={entries} onJump={() => {}} query="ਨਾਮੁ" onQueryChange={onQueryChange} />)
+  expect(screen.getByRole('button').querySelector('mark')).toHaveTextContent('ਨਾਮੁ')
+  view.unmount()
+  render(<BaniFindPanel entries={entries} onJump={() => {}} query="ਨਾਮੁ" onQueryChange={onQueryChange} />)
+  expect(screen.getByRole('searchbox')).toHaveValue('ਨਾਮੁ')
+  expect(screen.getByRole('status')).toHaveTextContent('1 matching line')
+})
+
+test('Roman match emphasis preserves accents and the result’s accessible text', () => {
+  render(<BaniFindPanel entries={entries} onJump={() => {}} query="nam" />)
+  const result = screen.getByRole('button')
+  expect(result.querySelector('mark')).toHaveTextContent('nām')
+  expect(result).toHaveAccessibleName(/ਸਤਿ ਨਾਮੁ.*Sat nām/)
+})

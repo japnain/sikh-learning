@@ -8,8 +8,9 @@ import { useNitnemPracticeStore } from '../store/nitnemPractice'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { toLocalDayStamp } from '../utils/localDates'
 import { getNitnemPracticeResume, isActiveNitnemPracticeReading } from '../utils/nitnemPractice'
-import { getNextIncompleteNitnemReading, getSelectedNitnemReading } from '../utils/nitnemReadingIdentity'
+import { getNextIncompleteNitnemReading, getNextNitnemReading, getSelectedNitnemReading } from '../utils/nitnemReadingIdentity'
 import { normalizeSundarGutkaLength } from '../utils/sundarGutkaLength'
+import { rememberHomeNitnemReturn } from '../utils/homeNitnemNavigation'
 import { IconArrowRight, IconCheck } from './icons'
 import '../styles/reader-finish.css'
 
@@ -19,6 +20,7 @@ const COPY = {
     next: 'Next bani', routine: 'Return to today’s Nitnem', again: 'Read again', back: 'Return to where you started',
     failed: 'This change could not be saved. Please try again.',
     completeContinue: 'Complete & continue',
+    continueTo: (title: string) => `Continue to ${title}`,
     finishReading: 'Finish this reading',
     groups: { Morning: 'Morning', Evening: 'Evening', Night: 'Night', Additional: 'Additional' },
     lengths: { short: 'Short', medium: 'Medium', long: 'Long', extralong: 'Extra long' },
@@ -28,6 +30,7 @@ const COPY = {
     next: 'ਅਗਲੀ ਬਾਣੀ', routine: 'ਅੱਜ ਦੇ ਨਿਤਨੇਮ ਵੱਲ ਵਾਪਸ ਜਾਓ', again: 'ਮੁੜ ਪੜ੍ਹੋ', back: 'ਜਿੱਥੋਂ ਸ਼ੁਰੂ ਕੀਤਾ ਸੀ ਉੱਥੇ ਵਾਪਸ ਜਾਓ',
     failed: 'ਇਹ ਤਬਦੀਲੀ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
     completeContinue: 'ਪੂਰਾ ਦਰਜ ਕਰਕੇ ਅੱਗੇ ਜਾਓ',
+    continueTo: (title: string) => `${title} ਵੱਲ ਅੱਗੇ ਜਾਓ`,
     finishReading: 'ਇਹ ਪਾਠ ਸਮਾਪਤ ਕਰੋ',
     groups: { Morning: 'ਸਵੇਰ', Evening: 'ਸ਼ਾਮ', Night: 'ਰਾਤ', Additional: 'ਹੋਰ' },
     lengths: { short: 'ਛੋਟੀ', medium: 'ਦਰਮਿਆਨੀ', long: 'ਲੰਮੀ', extralong: 'ਵਧੇਰੇ ਲੰਮੀ' },
@@ -37,6 +40,7 @@ const COPY = {
     next: 'अगली बाणी', routine: 'आज के नितनेम पर लौटें', again: 'फिर पढ़ें', back: 'जहाँ से शुरू किया था वहाँ लौटें',
     failed: 'यह बदलाव सहेजा नहीं जा सका। फिर कोशिश करें।',
     completeContinue: 'पूर्ण दर्ज करके आगे बढ़ें',
+    continueTo: (title: string) => `${title} पर आगे बढ़ें`,
     finishReading: 'यह पाठ समाप्त करें',
     groups: { Morning: 'सुबह', Evening: 'शाम', Night: 'रात', Additional: 'अन्य' },
     lengths: { short: 'संक्षिप्त', medium: 'मध्यम', long: 'लंबी', extralong: 'अधिक लंबी' },
@@ -70,7 +74,9 @@ export default function ReaderFinishPanel({ readingPath, onReadAgain, onBack }: 
   const completedToday = completedDate === today ? completedIds : []
   const complete = eligible && completedToday.includes(option.id)
   const canFinishPractice = option !== null && (!tracking || complete) && isActiveNitnemPracticeReading(readingPath, activePractice)
-  const next = eligible ? getNextIncompleteNitnemReading(option.id, selectedIds, completedToday) : null
+  const next = option ? tracking
+    ? getNextIncompleteNitnemReading(option.id, selectedIds, completedToday)
+    : getNextNitnemReading(option.id, selectedIds) : null
   const recorded = option ? getNitnemCompletionForDay(completionEvents, today, option.id) : null
   const completedLength = recorded?.readingPath
     ? normalizeSundarGutkaLength(new URLSearchParams(recorded.readingPath.split('?')[1]).get('sgLength')) : null
@@ -98,15 +104,18 @@ export default function ReaderFinishPanel({ readingPath, onReadAgain, onBack }: 
   const continueReading = () => {
     const current = useNitemStore.getState()
     const currentOption = getSelectedNitnemReading(readingPath, current.selectedIds)
-    if (!currentOption || !current.completionTrackingEnabled) return
+    if (!currentOption) return
     const today = toLocalDayStamp(new Date())
-    const nextReading = getNextIncompleteNitnemReading(currentOption.id, current.selectedIds, current.completedDate === today ? current.completedIds : [])
+    const nextReading = current.completionTrackingEnabled
+      ? getNextIncompleteNitnemReading(currentOption.id, current.selectedIds, current.completedDate === today ? current.completedIds : [])
+      : getNextNitnemReading(currentOption.id, current.selectedIds)
     if (!nextReading) return
     const practice = useNitnemPracticeStore.getState()
     const resume = getNitnemPracticeResume(nextReading, practice.active)
     const durable = resume ? practice.updatePath(resume) : practice.start(nextReading.id, buildNitnemStudyPath(nextReading))
     const active = useNitnemPracticeStore.getState().active
     if (!active || active.optionId !== nextReading.id) return
+    rememberHomeNitnemReturn(nextReading.id)
     navigate(active.readingPath, { state: { readerOrigin: '/', nitnemSessionOnly: !durable } })
   }
 
@@ -154,14 +163,15 @@ export default function ReaderFinishPanel({ readingPath, onReadAgain, onBack }: 
       ) : null}
       {failure?.path === readingPath && failure.date === today ? <p className="reader-finish__error" role="alert">{copy.failed}</p> : null}
       <div className="reader-finish__actions">
-        {canFinishPractice ? <button type="button" className="reader-finish__mark" onClick={finishThisReading}>{copy.finishReading}</button> : null}
+        {canFinishPractice ? <button type="button" className={!tracking && next ? 'reader-finish__return' : 'reader-finish__mark'} onClick={finishThisReading}>{copy.finishReading}</button> : null}
         {next ? (
-          <button type="button" className="reader-finish__next" onClick={continueReading} aria-label={`${copy.next} ${locale === 'en' ? next.romanizedTitle : next.gurmukhiTitle}`}>
-            <span><span>{copy.next} · {copy.groups[next.group]}</span>{' '}<strong>{locale === 'en' ? next.romanizedTitle : next.gurmukhiTitle}</strong></span>
+          <button type="button" className={`reader-finish__next${eligible && (!complete || canFinishPractice) ? ' reader-finish__next--quiet' : ''}`} onClick={continueReading}
+            aria-label={tracking ? `${copy.next} ${locale === 'en' ? next.romanizedTitle : next.gurmukhiTitle}` : copy.continueTo(locale === 'en' ? next.romanizedTitle : next.gurmukhiTitle)}>
+            <span><span>{copy.next} · {copy.groups[next.group]}</span>{' '}<strong>{tracking ? locale === 'en' ? next.romanizedTitle : next.gurmukhiTitle : copy.continueTo(locale === 'en' ? next.romanizedTitle : next.gurmukhiTitle)}</strong></span>
             <span aria-hidden="true"><IconArrowRight size={20} /></span>
           </button>
         ) : null}
-        {option ? <button type="button" className="reader-finish__return" data-reader-back="true" onClick={() => navigate('/')}>{copy.routine}</button> : (
+        {option ? <button type="button" className="reader-finish__return" data-reader-back="true" onClick={() => { rememberHomeNitnemReturn(option.id); navigate('/') }}>{copy.routine}</button> : (
           <button type="button" className="reader-finish__return" data-reader-back="true" onClick={onBack}>{copy.back}</button>
         )}
         <button type="button" className="reader-finish__again" onClick={onReadAgain}>{copy.again}</button>

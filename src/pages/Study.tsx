@@ -937,6 +937,8 @@ export default function Study() {
   const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const fontSize = useLanguageStore(s => s.fontSize)
   const setFontSize = useLanguageStore(s => s.setFontSize)
+  const supportTextSize = useLanguageStore(s => s.supportTextSize)
+  const setSupportTextSize = useLanguageStore(s => s.setSupportTextSize)
   const punjabiSource = useLanguageStore(s => s.punjabiSource)
   const setPunjabiSource = useLanguageStore(s => s.setPunjabiSource)
   const hindiSource = useLanguageStore(s => s.hindiSource)
@@ -1000,6 +1002,38 @@ export default function Study() {
   const [appearancePreview, setAppearancePreview] = useState<ScriptureLine | null>(null)
   const [readerMenuOpen, setReaderMenuOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
+  const contentsScrollRef = useRef<HTMLDivElement | null>(null)
+  const contentsHeadingRef = useRef<HTMLHeadingElement | null>(null)
+  const findIdentity = JSON.stringify([
+    source, baniIdParam, baniDbIdParam, startAngParam, endAngParam, sgLengthParam,
+    shabadIdParam, hukamnamaDateParam, flowParam, randomHukamnamaAngParam,
+    // The visible Ang and incoming verse can move within one bani.
+    isBaniDbMode || isBaniRangeMode ? null : angParam,
+  ])
+  const findSession = useRef({ identity: findIdentity, scrollTop: 0 })
+  const [findQuery, setFindQuery] = useState('')
+  if (findSession.current.identity !== findIdentity) {
+    findSession.current = { identity: findIdentity, scrollTop: 0 }
+    setFindQuery('')
+  }
+  useEffect(() => {
+    if (!sectionsOpen) return
+    const frame = requestAnimationFrame(() => {
+      const scroller = contentsScrollRef.current
+      if (!scroller) return
+      if (findQuery.trim()) {
+        scroller.scrollTop = findSession.current.scrollTop
+        return
+      }
+      const current = scroller.querySelector<HTMLElement>('[aria-current="location"]')
+      if (!current) return
+      const bounds = scroller.getBoundingClientRect()
+      const row = current.getBoundingClientRect()
+      // Move only this sheet's scroller, never the scripture behind it.
+      scroller.scrollTop += row.top - bounds.top - Math.max(8, (bounds.height - row.height) / 2)
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [sectionsOpen, findQuery])
   const [lengthOpen, setLengthOpen] = useState(false)
   const lengthAnchorRef = useRef<ReaderAnchor | null>(null)
   const lengthDestinationRef = useRef<{ origin: string; reading: BaniFetchResult; destination: BaniLengthDestination } | null>(null)
@@ -1029,10 +1063,10 @@ export default function Study() {
   const readerInteraction = useReaderInteraction(searchParamsString, readerSheetOpen)
   const changeReaderPresentation = (mode: ReaderPresentation) => { readerInteraction.clearWord(); changePresentation(mode) }
   const presentationCopy = locale === 'pa'
-    ? { read: 'ਪਾਠ', study: 'ਅਧਿਐਨ', sections: 'ਪਾਠ ਦੇ ਭਾਗ', jump: 'ਭਾਗ ਤੇ ਜਾਓ', tools: 'ਪਾਠ ਦੇ ਸਾਧਨ', listen: 'ਸੁਣੋ', close: 'ਬੰਦ ਕਰੋ', position: 'ਪਾਠ ਵਿੱਚ ਸਥਾਨ' }
+    ? { read: 'ਪਾਠ', study: 'ਅਧਿਐਨ', sections: 'ਪਾਠ ਦੇ ਭਾਗ', jump: 'ਪਾਠ ਦੇ ਭਾਗ', tools: 'ਪਾਠ ਦੇ ਸਾਧਨ', listen: 'ਸੁਣੋ', close: 'ਬੰਦ ਕਰੋ', position: 'ਪਾਠ ਵਿੱਚ ਸਥਾਨ' }
     : locale === 'hi'
-      ? { read: 'पाठ', study: 'अध्ययन', sections: 'पाठ के भाग', jump: 'भाग पर जाएँ', tools: 'पाठ के साधन', listen: 'सुनें', close: 'बंद करें', position: 'पाठ में स्थान' }
-      : { read: 'Read', study: 'Study', sections: 'Reading sections', jump: 'Jump to section', tools: 'Reading tools', listen: 'Listen', close: 'Close', position: 'Reading position' }
+      ? { read: 'पाठ', study: 'अध्ययन', sections: 'पाठ के भाग', jump: 'पाठ के भाग', tools: 'पाठ के साधन', listen: 'सुनें', close: 'बंद करें', position: 'पाठ में स्थान' }
+      : { read: 'Read', study: 'Study', sections: 'Contents', jump: 'Contents', tools: 'Reading tools', listen: 'Listen', close: 'Close', position: 'Reading position' }
   const readerMenuButtonRef = useRef<HTMLButtonElement | null>(null)
   const readerToolsOpenerRef = useRef<HTMLButtonElement | null>(null)
   const openReaderTools = (trigger: HTMLButtonElement) => {
@@ -1465,7 +1499,7 @@ export default function Study() {
       removeSettledScrollListener()
       window.removeEventListener('resize', measureAfterResizeSettles)
     }
-  }, [entries.length, loading, searchParamsString, presentation, fontSize, lineSpacing, meaningLanguage, showTransliteration, scriptMode, larivaar])
+  }, [entries.length, loading, searchParamsString, presentation, fontSize, supportTextSize, lineSpacing, meaningLanguage, showTransliteration, scriptMode, larivaar])
 
   const buildShareHighlightContent = (
     line: ScriptureLine,
@@ -2232,6 +2266,7 @@ export default function Study() {
     retryLiveReader()
   }
   const readerPageRef = useReaderHeaderLayout(searchParamsString, `${readerStatus}:${readerTitle}:${canChangeBaniLength}`)
+  const previewMeaning = appearancePreview ? getLineMeaningText(appearancePreview, meaningLanguage, englishSource) : ''
   const readerStateTopbar = (
     <div className="study-reader-topbar" data-testid="study-reader-topbar">
       <button
@@ -2351,6 +2386,7 @@ export default function Study() {
       data-ai-surface="study-reader"
       data-ai-state={readerStatus === 'degraded' ? 'degraded' : 'ready'}
       data-reader-presentation={presentation}
+      data-support-text-size={supportTextSize}
       data-reader-controls={readerInteraction.visible ? 'visible' : 'hidden'}
       data-reader-has-length={canChangeBaniLength ? 'true' : undefined}
       data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
@@ -2378,6 +2414,7 @@ export default function Study() {
           {canChangeBaniLength && effectiveSgLength ? <BaniLengthControl value={effectiveSgLength} onClick={openBaniLengths} className="study-reader-length-control" /> : null}
         </div>
         <div className="study-reader-topbar__actions">
+          <button type="button" onClick={openReaderSections} aria-label={presentationCopy.sections} title={presentationCopy.sections} aria-haspopup="dialog" className="study-reader-settings-action study-reader-contents-action"><span className="reader-dock__contents" aria-hidden="true">☷</span></button>
           <button type="button" onClick={openReaderSettings} aria-label={studyCopy.readerControls} title={studyCopy.readerControls} className="study-reader-settings-action" data-ai-action="open-reader-settings"><span className="study-reader-aa" aria-hidden="true">Aa</span></button>
           <button ref={readerMenuButtonRef} type="button" onClick={event => openReaderTools(event.currentTarget)} aria-label={presentationCopy.tools} aria-haspopup="dialog" className="study-reader-settings-action"><IconMoreHorizontal size={21} /></button>
         </div>
@@ -2398,7 +2435,7 @@ export default function Study() {
         <fieldset className="study-reader-mode"><legend className="sr-only">{locale === 'en' ? 'Reading presentation' : studyCopy.readerControls}</legend>
           {(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-top" value={mode} checked={presentation === mode} onChange={() => changeReaderPresentation(mode)} /><span>{presentationCopy[mode]}</span></label>)}
         </fieldset>
-        <button className="study-reader-section-trigger" type="button" aria-label={presentationCopy.jump} aria-haspopup="dialog" onClick={openReaderSections}><span>{currentReadingUnit} {currentAng}</span><span aria-hidden="true">⌄</span></button>
+        <button className="study-reader-section-trigger" type="button" aria-label={presentationCopy.jump} aria-haspopup="dialog" onClick={openReaderSections}><span>{presentationCopy.sections}</span><small>{currentReadingUnit} {currentAng}</small><span aria-hidden="true">⌄</span></button>
       </div>
 
 
@@ -2406,7 +2443,6 @@ export default function Study() {
         visible={readerInteraction.visible && (readerInteraction.deep || Boolean(readerInteraction.word) || positionSessionOnly || hasExploration) && !controlsOpen && !lengthOpen && !sectionsOpen && !readerMenuOpen && !exploredWord && !showBookmarkForm && !shareHighlightContent}
         title={readerTitle}
         location={`${currentReadingUnit} ${currentAng}`}
-        presentation={presentation}
         word={readerInteraction.word}
         notice={positionSessionOnly || hasExploration ? <>
           {positionSessionOnly ? <div role="note" aria-label={presentationCopy.position} data-testid="study-position-recovery"><p>{studyExperienceCopy.positionSessionOnly}</p><button type="button" data-ai-action="retry-reading-position" onClick={() => { syncReadingPlaceRef.current?.(true) }}>{studyExperienceCopy.retryPosition}</button></div> : null}
@@ -2418,14 +2454,6 @@ export default function Study() {
         onLength={openBaniLengths}
         onAppearance={openReaderSettings}
         onMore={openReaderTools}
-        onMode={mode => {
-          changeReaderPresentation(mode)
-          deferReaderFocus(() => {
-            const target = document.querySelector<HTMLInputElement>('.reader-dock:not([hidden]) input:checked')
-              ?? document.querySelector<HTMLInputElement>('.study-reader-presentation-bar input:checked')
-            target?.focus({ preventScroll: true })
-          })
-        }}
         onHide={() => {
           readerInteraction.hide()
           deferReaderFocus(() => document.querySelector<HTMLButtonElement>('.reader-controls-reveal')?.focus({ preventScroll: true }))
@@ -2454,11 +2482,16 @@ export default function Study() {
 
       <ModalSheet open={readerMenuOpen} onClose={() => setReaderMenuOpen(false)} title={presentationCopy.tools} description={locale === 'en' ? 'Save, share and explore this reading.' : presentationCopy.tools} className="study-reader-tools-sheet max-h-[82dvh] overflow-y-auto rounded-lg p-5" testId="study-reader-tools-sheet">
         <div className="study-reader-sheet__heading"><h2>{presentationCopy.tools}</h2><button type="button" aria-label={presentationCopy.close} onClick={() => setReaderMenuOpen(false)}><IconClose size={18} /></button></div>
+        <fieldset className="study-reader-tools-mode"><legend>{locale === 'en' ? 'Reading presentation' : studyCopy.readerControls}</legend><div className="study-reader-mode">{(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-tools" value={mode} checked={presentation === mode} onChange={() => changeReaderPresentation(mode)} /><span>{presentationCopy[mode]}</span></label>)}</div></fieldset>
         <div className="study-reader-awake">
           <label><input type="checkbox" checked={wakeLock.enabled} disabled={!wakeLock.supported} onChange={event => wakeLock.setEnabled(event.target.checked)} />{locale === 'pa' ? 'ਪੜ੍ਹਦੇ ਸਮੇਂ ਸਕ੍ਰੀਨ ਚਾਲੂ ਰੱਖੋ' : locale === 'hi' ? 'पढ़ते समय स्क्रीन चालू रखें' : 'Keep screen awake while reading'}</label>
           {!wakeLock.supported || wakeLock.error ? <p role="status">{locale === 'pa' ? 'ਇਹ ਬ੍ਰਾਊਜ਼ਰ ਇਸ ਵੇਲੇ ਸਕ੍ਰੀਨ ਚਾਲੂ ਨਹੀਂ ਰੱਖ ਸਕਦਾ।' : locale === 'hi' ? 'यह ब्राउज़र अभी स्क्रीन चालू नहीं रख सकता।' : 'Screen awake is unavailable in this browser right now.'}</p> : null}
         </div>
         <div className="study-reader-tools-list">
+          <button type="button" aria-haspopup="dialog" onClick={() => {
+            setReaderMenuOpen(false)
+            deferReaderFocus(openReaderSections, 2)
+          }}><span className="reader-dock__contents" aria-hidden="true">☷</span><span>{presentationCopy.sections}</span></button>
           <button
             onClick={() => {
               setReaderMenuOpen(false)
@@ -2620,10 +2653,11 @@ export default function Study() {
 
       {lengthOpen && supportedSundarGutkaBaniId && effectiveSgLength ? <Suspense fallback={<div role="status" className="sr-only">{locale === 'pa' ? 'ਲੰਬਾਈ ਚੋਣਾਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…' : locale === 'hi' ? 'लंबाई विकल्प खुल रहे हैं…' : 'Opening Bani lengths…'}</div>}><BaniLengthSheet open onClose={closeBaniLengths} baniId={supportedSundarGutkaBaniId} currentLength={effectiveSgLength} usualLength={rememberedSgLength ?? effectiveSgLength} availableLengths={availableSundarGutkaLengths} describeDestination={describeBaniLengthDestination} onSelect={handleSundarGutkaLengthChange} pending={lengthSelection.pending} /></Suspense> : null}
 
-      <ModalSheet open={sectionsOpen} onClose={() => setSectionsOpen(false)} title={presentationCopy.sections} description={entrySequenceCopy.entryOutlineBody} className="study-reader-sections-sheet rounded-lg" testId="study-reader-sections-sheet">
-        <div className="study-reader-sheet__heading"><h2>{presentationCopy.sections}</h2><button type="button" aria-label={presentationCopy.close} onClick={() => setSectionsOpen(false)}><IconClose size={18} /></button></div>
-        <div className="study-reader-sections-sheet__scroll">
-        {sectionsOpen ? <Suspense fallback={null}><BaniFindPanel entries={entries} onJump={jumpToLine} currentEntryIndex={safeActiveEntryIndex} /></Suspense> : null}
+      <ModalSheet open={sectionsOpen} onClose={() => setSectionsOpen(false)} title={presentationCopy.sections} description={entrySequenceCopy.entryOutlineBody} className="study-reader-sections-sheet rounded-lg" testId="study-reader-sections-sheet" initialFocusRef={contentsHeadingRef}>
+        <div className="study-reader-sheet__heading"><h2 ref={contentsHeadingRef} tabIndex={-1}>{presentationCopy.sections}</h2><button type="button" aria-label={presentationCopy.close} onClick={() => setSectionsOpen(false)}><IconClose size={18} /></button></div>
+        <div ref={contentsScrollRef} className="study-reader-sections-sheet__scroll" onScroll={event => { if (findQuery.trim()) findSession.current.scrollTop = event.currentTarget.scrollTop }}>
+        {sectionsOpen ? <Suspense fallback={null}><BaniFindPanel entries={entries} onJump={jumpToLine} currentEntryIndex={safeActiveEntryIndex} query={findQuery} onQueryChange={query => { findSession.current.scrollTop = 0; setFindQuery(query) }} /></Suspense> : null}
+        <h3 className="study-reader-section-list__title">{presentationCopy.sections}</h3>
         <ol className="study-reader-section-list">{entryOutline.map((item, index) => <li key={item.sectionId}><button type="button" aria-current={index === safeActiveEntryIndex ? 'location' : undefined} onClick={() => jumpToEntry(index)}><span className="study-reader-section-number">{String(index + 1).padStart(2, '0')}</span><span><span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}>{renderScriptText(item.title, scriptMode)}</span><small>{getSourceReaderUnit(item.entry.source, item.entry.scripture)} {item.entry.ang}{item.entry.writer ? ` · ${item.entry.writer}` : ''}</small></span></button></li>)}</ol>
         </div>
       </ModalSheet>
@@ -2720,7 +2754,12 @@ export default function Study() {
                 <output>{fontSize}px</output>
               </div>
             </fieldset>
-            {appearancePreview ? <div className="study-reader-preview" role="region" aria-label={locale === 'en' ? 'Text preview' : focusedReaderCopy.fontSize} tabIndex={0}><p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} study-reader-preview__text`} style={{ fontSize: `${fontSize}px`, textAlign, lineHeight: lineSpacing === 'relaxed' ? 1.85 : 1.6 }}>{formatGurbaniText(appearancePreview.gurmukhi, { scriptMode, larivaar, showVishraam: true, larivaarText: appearancePreview.larivaar })}</p><p className="study-reader-preview__caption">{locale === 'en' ? 'Preview' : focusedReaderCopy.fontSize} · {currentReadingUnit} {appearancePreview.ang}</p></div> : null}
+            {appearancePreview ? <div className="study-reader-preview" data-support-text-size={supportTextSize} role="region" aria-label={locale === 'en' ? 'Text preview' : focusedReaderCopy.fontSize} tabIndex={0}>
+              <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} study-reader-preview__text`} style={{ fontSize: `${fontSize}px`, textAlign, lineHeight: lineSpacing === 'relaxed' ? 1.85 : 1.6 }}>{formatGurbaniText(appearancePreview.gurmukhi, { scriptMode, larivaar, showVishraam: true, larivaarText: appearancePreview.larivaar })}</p>
+              {presentation === 'study' && showTransliteration && appearancePreview.transliteration ? <p data-reader-support="transliteration" lang="pa-Latn">{appearancePreview.transliteration}</p> : null}
+              {presentation === 'study' && previewMeaning ? <p data-reader-support="meaning" lang={meaningLanguage === 'pa' ? getScriptTextLang(scriptMode) : meaningLanguage === 'hi' ? 'hi' : 'en'} className={meaningLanguage === 'pa' ? getScriptTextFontClass(scriptMode) : meaningLanguage === 'hi' ? getScriptTextFontClass('devanagari') : undefined}>{meaningLanguage === 'pa' ? renderScriptText(previewMeaning, scriptMode) : previewMeaning}</p> : null}
+              <p className="study-reader-preview__caption">{locale === 'en' ? 'Preview' : focusedReaderCopy.fontSize} · {currentReadingUnit} {appearancePreview.ang}</p>
+            </div> : null}
 <fieldset className="study-reader-controls__group"><legend>{locale === 'en' ? 'Reading presentation' : studyCopy.readerControls}</legend><div className="study-reader-mode">{(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-settings" value={mode} checked={presentation === mode} onChange={() => changeReaderPresentation(mode)} /><span>{presentationCopy[mode]}</span></label>)}</div></fieldset><fieldset className="study-reader-controls__group">
               <legend>{locale === 'pa' ? 'ਪੰਕਤੀ ਵਿੱਥ' : locale === 'hi' ? 'पंक्ति का अंतर' : 'Spacing'}</legend>
               <div className="study-reader-controls__grid study-reader-controls__grid--two">
@@ -2785,7 +2824,9 @@ export default function Study() {
                 </div>
               )}
             </fieldset>
-            <details className="study-reader-settings-disclosure"><summary><span>{locale === 'en' ? 'Study layers' : focusedReaderCopy.readingLayers}</span><small>{meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}</small><span aria-hidden="true">⌄</span></summary><div className="study-reader-settings-disclosure__body"><p className="study-reader-settings-note">{locale === 'en' ? 'These layers appear in Study. Your choices stay saved when you switch to Read.' : focusedReaderCopy.settingsDescription}</p><fieldset className="study-reader-controls__group">
+            <details className="study-reader-settings-disclosure"><summary><span>{locale === 'en' ? 'Study layers' : focusedReaderCopy.readingLayers}</span><small>{meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}</small><span aria-hidden="true">⌄</span></summary><div className="study-reader-settings-disclosure__body"><p className="study-reader-settings-note">{locale === 'en' ? 'These layers appear in Study. Your choices stay saved when you switch to Read.' : focusedReaderCopy.settingsDescription}</p>
+            <fieldset className="study-reader-controls__group"><legend>{locale === 'pa' ? 'ਅਰਥ ਅਤੇ ਲਿਪੀਅੰਤਰਨ ਦਾ ਆਕਾਰ' : locale === 'hi' ? 'अर्थ और लिप्यंतरण का आकार' : 'Meaning and transliteration size'}</legend><div className="study-reader-controls__grid study-reader-controls__grid--three">{(['standard', 'large', 'extra-large'] as const).map(size => <button key={size} type="button" aria-pressed={supportTextSize === size} onClick={() => setSupportTextSize(size)} className={readerControlOptionClass(supportTextSize === size)}>{locale === 'pa' ? ({ standard: 'ਆਮ', large: 'ਵੱਡਾ', 'extra-large': 'ਹੋਰ ਵੱਡਾ' }[size]) : locale === 'hi' ? ({ standard: 'सामान्य', large: 'बड़ा', 'extra-large': 'और बड़ा' }[size]) : ({ standard: 'Standard', large: 'Large', 'extra-large': 'Extra large' }[size])}</button>)}</div></fieldset>
+            <fieldset className="study-reader-controls__group">
               <legend>{focusedReaderCopy.meaning}</legend>
               <div className="study-reader-controls__grid study-reader-controls__grid--four">
                 {(['none', 'en', 'pa', 'hi'] as const).map(option => {

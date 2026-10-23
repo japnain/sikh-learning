@@ -9,6 +9,7 @@ import { useNitnemPracticeStore } from '../store/nitnemPractice'
 import { useProgressStore } from '../store/progress'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
+import { clearHomeNitnemReturn, getHomeNitnemReturn } from '../utils/homeNitnemNavigation'
 import ReaderFinishPanel from './ReaderFinishPanel'
 
 beforeEach(() => {
@@ -21,6 +22,7 @@ beforeEach(() => {
   useActivityEventsStore.setState({ pendingEvents: [] })
   useProgressStore.setState({ currentSession: null })
   useReadingPlacesStore.setState({ places: {} })
+  clearHomeNitnemReturn()
   useNitemStore.setState({
     selectedIds: ['japji-sahib', 'jaap-sahib', 'rehras-sahib'],
     completedDate: '2026-10-17', completedIds: [], completionTrackingEnabled: true,
@@ -33,7 +35,7 @@ const pathFor = (id: string) => buildNitnemStudyPath(getNitnemOption(id)!)
 
 function LocationProbe() {
   const location = useLocation()
-  return <div data-testid="destination">{location.pathname}{location.search}|{location.state?.readerOrigin}</div>
+  return <div data-testid="destination" data-session-only={location.state?.nitnemSessionOnly}>{location.pathname}{location.search}|{location.state?.readerOrigin}</div>
 }
 
 function open(path = pathFor('japji-sahib')) {
@@ -105,6 +107,63 @@ test('tracking disabled and a different exact variant never offer completion', (
   useNitemStore.setState({ completionTrackingEnabled: true, selectedIds: ['tav-prasad-savaiye'] })
   open(pathFor('tav-prasad-savaiye-dheenan-ki'))
   expect(screen.queryByRole('button', { name: 'Mark complete for today' })).not.toBeInTheDocument()
+})
+
+test('tracking off continues in personal order without skipping completed items or writing history', () => {
+  useNitemStore.setState({ selectedIds: ['rehras-sahib', 'jaap-sahib', 'japji-sahib'] })
+  useNitemStore.getState().markComplete('jaap-sahib', pathFor('jaap-sahib'))
+  useNitemStore.setState({ completionTrackingEnabled: false })
+  const history = [...useNitnemHistoryStore.getState().events]
+  const activity = [...useActivityEventsStore.getState().pendingEvents]
+  open(pathFor('rehras-sahib'))
+  expect(screen.queryByRole('button', { name: /complete/i })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Continue to Jaap Sahib' }))
+  expect(screen.getByTestId('destination')).toHaveTextContent(pathFor('jaap-sahib'))
+  expect(useNitnemPracticeStore.getState().active?.optionId).toBe('jaap-sahib')
+  expect(useNitemStore.getState().completedIds).toEqual(['jaap-sahib'])
+  expect(useNitnemHistoryStore.getState().events).toEqual(history)
+  expect(useActivityEventsStore.getState().pendingEvents).toEqual(activity)
+  expect(getHomeNitnemReturn()).toBe('jaap-sahib')
+})
+
+test('tracking off stops at the end of personal order and leaves Home and read-again available', () => {
+  useNitemStore.setState({ selectedIds: ['rehras-sahib', 'jaap-sahib', 'japji-sahib'], completionTrackingEnabled: false })
+  const { again } = open()
+  expect(screen.queryByRole('button', { name: /^Continue to/ })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Read again' }))
+  expect(again).toHaveBeenCalledOnce()
+  fireEvent.click(screen.getByRole('button', { name: 'Return to today’s Nitnem' }))
+  expect(screen.getByTestId('destination')).toHaveTextContent('/|')
+  expect(getHomeNitnemReturn()).toBe('japji-sahib')
+  expect(useNitnemHistoryStore.getState().events).toEqual([])
+})
+
+test('tracking off continues the exact deliberately started next practice instead of its usual version', () => {
+  useNitemStore.setState({ completionTrackingEnabled: false })
+  const long = pathFor('rehras-sahib').replace('sgLength=short', 'sgLength=long')
+  useNitnemPracticeStore.getState().start('rehras-sahib', `${long}&resumeVerseId=222&resumeSource=G`)
+  const active = useNitnemPracticeStore.getState().active!
+  open(pathFor('jaap-sahib'))
+  fireEvent.click(screen.getByRole('button', { name: 'Continue to Rehras Sahib' }))
+  expect(screen.getByTestId('destination')).toHaveTextContent(active.readingPath)
+  expect(useNitnemPracticeStore.getState().active?.startedAt).toBe(active.startedAt)
+  expect(useNitnemHistoryStore.getState().events).toEqual([])
+  expect(useActivityEventsStore.getState().pendingEvents).toEqual([])
+})
+
+test('tracking off keeps next reading available for this session when saving its practice fails', () => {
+  useNitemStore.setState({ completionTrackingEnabled: false })
+  open()
+  const realWrite = localStorage.setItem.bind(localStorage)
+  vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+    if (key === 'naamras-nitnem-practice') throw new Error('Storage full')
+    realWrite(key, value)
+  })
+  fireEvent.click(screen.getByRole('button', { name: 'Continue to Jaap Sahib' }))
+  expect(screen.getByTestId('destination')).toHaveTextContent(pathFor('jaap-sahib'))
+  expect(screen.getByTestId('destination')).toHaveAttribute('data-session-only', 'true')
+  expect(useNitnemHistoryStore.getState().events).toEqual([])
+  expect(useActivityEventsStore.getState().pendingEvents).toEqual([])
 })
 
 test('an open temporary reading stays eligible when the usual length changes', () => {

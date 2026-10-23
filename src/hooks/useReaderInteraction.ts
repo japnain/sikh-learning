@@ -27,8 +27,10 @@ function needsReaderDock() {
   if (hasReaderDockFocus()) return true
   const toolbar = document.querySelector<HTMLElement>('.study-reader-topbar')
   const toolbarStyle = toolbar ? getComputedStyle(toolbar) : null
-  // Fixed desktop headers and transitional/missing headers retain the existing fallback.
-  if (!toolbar || toolbarStyle?.position !== 'absolute') return getAppScrollTop() > 120
+  // A usable fixed desktop header already exposes the same controls. Touch
+  // headers scroll with the document; measure both rather than duplicating a
+  // reachable toolbar merely because the reading is deep.
+  if (!toolbar || !toolbarStyle || !['absolute', 'fixed', 'sticky'].includes(toolbarStyle.position)) return getAppScrollTop() > 120
 
   const back = toolbar.querySelector<HTMLElement>('[data-reader-back]')
   const appearance = toolbar.querySelector<HTMLElement>('[data-ai-action="open-reader-settings"]')
@@ -48,7 +50,7 @@ function needsReaderDock() {
 export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
   const [currentRoute, setCurrentRoute] = useState(routeIdentity)
   const [visible, setVisible] = useState(true)
-  const [deep, setDeep] = useState(() => getAppScrollTop() > 120)
+  const [deep, setDeep] = useState(needsReaderDock)
   const [word, setWord] = useState<ReaderWordContext | null>(null)
   const [selectionActive, setSelectionActive] = useState(false)
   const [focusWithinDock, setFocusWithinDock] = useState(false)
@@ -69,7 +71,7 @@ export function useReaderInteraction(routeIdentity: string, blocked: boolean) {
     setVisible(true)
     setWord(null)
     setSelectionActive(false)
-    setDeep(getAppScrollTop() > 120)
+    setDeep(needsReaderDock())
   }
 
   useLayoutEffect(() => {

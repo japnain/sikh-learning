@@ -512,8 +512,8 @@ describe('Study renders all shabads on an ang', () => {
     render(<MemoryRouter initialEntries={['/study?source=G&ang=1']}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
     await screen.findByTestId('study-entry-list')
     expect(screen.queryByTestId('study-entry-outline')).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Jump to section', exact: true }))
-    const navigator = screen.getByRole('dialog', { name: 'Reading sections' })
+    fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+    const navigator = screen.getByRole('dialog', { name: 'Contents' })
     expect(within(navigator).getAllByRole('listitem')).toHaveLength(2)
     expect(within(navigator).getAllByText(/Ang 1/)).toHaveLength(2)
   })
@@ -731,7 +731,7 @@ describe('Study renders all shabads on an ang', () => {
     await openReaderSettings('Study layers')
     fireEvent.click(screen.getByRole('button', { name: /transliteration off/i }))
 
-    expect(screen.getByText(/ikOankaar sat naam/i)).toBeInTheDocument()
+    expect(within(screen.getByTestId('study-entry-list')).getByText(/ikOankaar sat naam/i)).toBeInTheDocument()
   })
 
   it('switches meanings inside the reader controls', async () => {
@@ -748,7 +748,7 @@ describe('Study renders all shabads on an ang', () => {
     await openReaderSettings('Text options')
     fireEvent.click(screen.getByRole('button', { name: /^Punjabi$/i }))
 
-    expect(screen.getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
+    expect(within(screen.getByTestId('study-entry-list')).getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
     expect(screen.queryByText('One Universal Creator God. The Name Is Truth.')).not.toBeInTheDocument()
   })
 
@@ -1387,8 +1387,8 @@ describe('Study exact shabad mode', () => {
     await waitFor(() => expect(screen.getAllByTestId('study-card')).toHaveLength(5))
     expect(screen.queryByTestId('study-entry-paginator')).not.toBeInTheDocument()
     expect(screen.queryByTestId('study-entry-paginator-bottom')).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Jump to section' }))
-    fireEvent.click(within(screen.getByRole('dialog', { name: 'Reading sections' })).getByRole('button', { name: /ਪੰਜਵਾਂ ਸ਼ਬਦ/ }))
+    fireEvent.click(screen.getAllByRole('button', { name: 'Contents' })[0]!)
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Contents' })).getByRole('button', { name: /ਪੰਜਵਾਂ ਸ਼ਬਦ/ }))
     await waitFor(() => expect(jumpedTo).toContain('8004'))
     expect(document.getElementById('study-entry-5')).toHaveFocus()
     expect(screen.getAllByTestId('study-card')).toHaveLength(5)

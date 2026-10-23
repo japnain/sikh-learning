@@ -30,6 +30,7 @@ import { toLocalDayStamp } from '../utils/localDates'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { formatSourceReaderReference } from '../utils/sourceReaderMeta'
 import { getHomeNitnemResume } from '../utils/homeNitnemResume'
+import { clearHomeNitnemReturn, getHomeNitnemReturn, rememberHomeNitnemReturn } from '../utils/homeNitnemNavigation'
 import { getAppViewportHeight, scrollElementIntoAppView } from '../utils/appScroll'
 import { isExactBaniReading } from '../utils/baniReadingValidation'
 import type { BaniFetchResult } from '../api/banidb'
@@ -331,6 +332,8 @@ export default function Home() {
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null)
   const [notice, setNotice] = useState('')
   const [chosenOptionId, setChosenOptionId] = useState<string | null>(null)
+  const [initialBrowseId] = useState(getHomeNitnemReturn)
+  useEffect(() => { clearHomeNitnemReturn(initialBrowseId) }, [initialBrowseId])
   const { asset, imageStyle, onImageError, imageKey } = useHomeArtwork()
   const artworkStageRatio = Math.max(1, asset.width / asset.height)
   const { data: hukamnama, loading, refreshing, isCached, isOlder, retry } = useHukamnama()
@@ -358,6 +361,7 @@ export default function Home() {
     hi: { short: 'संक्षिप्त', medium: 'मध्यम', long: 'लंबी', extralong: 'अधिक लंबी' },
   }[locale]
   const beginReading = (option: NitnemRouteOption, path: string) => {
+    rememberHomeNitnemReturn(option.id)
     const store = useNitnemPracticeStore.getState()
     const continuing = getNitnemPracticeResume(option, store.active, readingPlaces, currentSession)
     const saved = continuing ? store.updatePath(path) : store.start(option.id, path)
@@ -405,6 +409,7 @@ export default function Home() {
       throw error
     }
     setChosenOptionId(option.id)
+    rememberHomeNitnemReturn(option.id)
     navigate(useNitnemPracticeStore.getState().active?.readingPath ?? path, { state: { readerOrigin: '/' } })
   }
 
@@ -512,7 +517,7 @@ export default function Home() {
       <div className="home-practice-column">
         <div ref={nitnemRef} tabIndex={-1} className="home-daily-anchor">
           <HomeDailyNitnem selected={selected} completed={completed} tracking={nitnem.completionTrackingEnabled}
-            activeId={activeOptionId} getResume={practiceResume} getReadingPath={readingPath}
+            activeId={activeOptionId} initialBrowseId={initialBrowseId} getResume={practiceResume} getReadingPath={readingPath}
             getSavedStudy={option => getHomeNitnemResume(option, currentSession, readingPlaces)}
             getCompletionPath={option => getNitnemCompletionForDay(events, day, option.id)?.readingPath}
             onRead={beginReading} onLengthChange={changeReadingLength} onComplete={handleCompletion} locale={locale} />
