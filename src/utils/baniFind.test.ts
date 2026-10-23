@@ -1,5 +1,5 @@
 import type { ScriptureEntry, ScriptureLine } from '../types'
-import { findBaniLines, normalizeBaniFindText } from './baniFind'
+import { findBaniLines, getBaniFindFragments, normalizeBaniFindText } from './baniFind'
 
 function line(gurmukhi: string, transliteration = '', verseId = 1): ScriptureLine {
   return { gurmukhi, transliteration, verseId, shabadId: 1, ang: 8, translation_en: '', translations_en: {}, translation_hi: '', translation_pa: '' }
@@ -61,4 +61,25 @@ test('missing optional Roman support does not prevent searching scripture', () =
   const entries = [entry('one', 'G', [incomplete])]
   expect(findBaniLines(entries, 'ਨਾਮੁ')[0]).toMatchObject({ lineIndex: 0, transliteration: '' })
   expect(findBaniLines(entries, 'nam')).toEqual([])
+})
+
+test('match emphasis preserves original diacritics, punctuation, whitespace and repeated matches', () => {
+  const text = 'Socẖai,  socẖ na hovaī. Socẖai socẖ ॥'
+  const fragments = getBaniFindFragments(text, 'SOCHAI SOCH')
+  expect(fragments.filter(part => part.match).map(part => part.text)).toEqual(['Socẖai,  socẖ', 'Socẖai socẖ'])
+  expect(fragments.map(part => part.text).join('')).toBe(text)
+})
+
+test('partial Gurmukhi matches never split vowel signs or a canonical grapheme', () => {
+  const text = 'ਸਤਿ ਨਾਮੁ ਨਾਮਿ ॥'
+  const fragments = getBaniFindFragments(text, 'ਨਾਮ')
+  expect(fragments.filter(part => part.match).map(part => part.text)).toEqual(['ਨਾਮੁ', 'ਨਾਮਿ'])
+  expect(fragments.map(part => part.text).join('')).toBe(text)
+  expect(getBaniFindFragments('ਖ਼ਾਲਸਾ ॥', 'ਖ਼ਾਲਸਾ').filter(part => part.match).map(part => part.text)).toEqual(['ਖ਼ਾਲਸਾ'])
+})
+
+test('empty, absent and overlong display searches leave all text unchanged', () => {
+  for (const query of ['', '॥', 'other', 'x'.repeat(241)]) {
+    expect(getBaniFindFragments('ਸਤਿ ਨਾਮੁ ॥', query)).toEqual([{ text: 'ਸਤਿ ਨਾਮੁ ॥', match: false }])
+  }
 })

@@ -2,7 +2,7 @@ import { useId, useMemo, useState } from 'react'
 import type { ScriptureEntry } from '../types'
 import { useLocaleStore } from '../store/locale'
 import { useLanguageStore } from '../store/language'
-import { findBaniLines } from '../utils/baniFind'
+import { findBaniLines, getBaniFindFragments } from '../utils/baniFind'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { getSourceReaderUnitLabel } from '../utils/sourceReaderMeta'
 import '../styles/bani-find.css'
@@ -17,13 +17,22 @@ interface Props {
   entries: readonly ScriptureEntry[]
   onJump: (entryIndex: number, lineIndex: number) => void
   currentEntryIndex?: number
+  query?: string
+  onQueryChange?: (query: string) => void
 }
 
-export default function BaniFindPanel({ entries, onJump, currentEntryIndex }: Props) {
+function FindText({ text, query }: { text: string; query: string }) {
+  return getBaniFindFragments(text, query).map((fragment, index) => fragment.match
+    ? <mark key={index}>{fragment.text}</mark> : fragment.text)
+}
+
+export default function BaniFindPanel({ entries, onJump, currentEntryIndex, query: controlledQuery, onQueryChange }: Props) {
   const id = useId()
   const locale = useLocaleStore(state => state.locale)
   const scriptMode = useLanguageStore(state => state.scriptMode)
-  const [query, setQuery] = useState('')
+  const [localQuery, setLocalQuery] = useState('')
+  const query = controlledQuery ?? localQuery
+  const updateQuery = (value: string) => { setLocalQuery(value); onQueryChange?.(value) }
   const hits = useMemo(() => findBaniLines(entries, query, { limit: 61 }), [entries, query])
   const visible = hits.slice(0, 60)
   const copy = COPY[locale]
@@ -32,7 +41,7 @@ export default function BaniFindPanel({ entries, onJump, currentEntryIndex }: Pr
     <p id={`${id}-hint`} className="bani-find__hint">{copy.hint}</p>
     <input id={`${id}-input`} type="search" value={query} maxLength={240} placeholder={copy.placeholder}
       aria-describedby={`${id}-hint ${id}-status`} autoComplete="off" spellCheck={false}
-      onChange={event => setQuery(event.target.value)} onKeyDown={event => {
+      onChange={event => updateQuery(event.target.value)} onKeyDown={event => {
         if (event.key === 'Enter' && !event.nativeEvent.isComposing && visible[0]) {
           event.preventDefault()
           onJump(visible[0].entryIndex, visible[0].lineIndex)
@@ -41,9 +50,13 @@ export default function BaniFindPanel({ entries, onJump, currentEntryIndex }: Pr
     <p id={`${id}-status`} role="status" className="bani-find__status">{query.trim() ? visible.length ? copy.count(visible.length, hits.length > 60) : copy.empty : null}</p>
     {visible.length ? <ol className="bani-find__results">
       {visible.map(hit => <li key={`${hit.entryId}:${hit.entryIndex}:${hit.lineIndex}`}>
-        <button type="button" onClick={() => onJump(hit.entryIndex, hit.lineIndex)}>
-          <span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}>{renderScriptText(hit.gurmukhi, scriptMode)}</span>
-          {hit.matchedField === 'transliteration' ? <span className="bani-find__roman" lang="en">{hit.transliteration}</span> : null}
+        <button type="button" onClick={() => onJump(hit.entryIndex, hit.lineIndex)} aria-label={[
+          renderScriptText(hit.gurmukhi, scriptMode), hit.matchedField === 'transliteration' ? hit.transliteration : null,
+          `${entries[hit.entryIndex].sourceName || entries[hit.entryIndex].scripture} · ${getSourceReaderUnitLabel(hit.source, locale, entries[hit.entryIndex].scripture)} ${hit.ang}`,
+          hit.entryIndex === currentEntryIndex ? copy.current : null,
+        ].filter(Boolean).join(' · ')}>
+          <span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}><FindText text={renderScriptText(hit.gurmukhi, scriptMode)} query={hit.matchedField === 'gurmukhi' ? renderScriptText(query, scriptMode) : ''} /></span>
+          {hit.matchedField === 'transliteration' ? <span className="bani-find__roman" lang="en"><FindText text={hit.transliteration} query={query} /></span> : null}
           <small>{entries[hit.entryIndex].sourceName || entries[hit.entryIndex].scripture} · {getSourceReaderUnitLabel(hit.source, locale, entries[hit.entryIndex].scripture)} {hit.ang}{hit.entryIndex === currentEntryIndex ? ` · ${copy.current}` : ''}</small>
         </button>
       </li>)}

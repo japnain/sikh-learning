@@ -1,5 +1,5 @@
 import { beforeEach, expect, test, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import ReaderDock from './ReaderDock'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
@@ -68,4 +68,36 @@ test('uses English for details when reading meanings are hidden', () => {
   expect(screen.getByTestId('reader-word-meaning')).toHaveAttribute('lang', 'en')
   expect(screen.queryByText('English fallback')).not.toBeInTheDocument()
   expect(screen.getByRole('button', { name: 'Return to previous screen' })).toHaveAttribute('data-reader-back', 'true')
+})
+
+test('keeps one Contents action and direct length access without duplicated location or presentation controls', () => {
+  const onSections = vi.fn()
+  const onLength = vi.fn()
+  const onHide = vi.fn()
+  render(<ReaderDock visible title="Rehras Sahib" location="Ang 8" word={null} length="long"
+    onBack={vi.fn()} onSections={onSections} onAppearance={vi.fn()} onMore={vi.fn()}
+    onHide={onHide} onExplore={vi.fn()} onLength={onLength} />)
+  const dock = screen.getByTestId('reader-dock')
+  expect(within(dock).getAllByRole('button', { name: 'Contents' })).toHaveLength(1)
+  expect(within(dock).queryByRole('button', { name: /Ang 8/ })).not.toBeInTheDocument()
+  expect(within(dock).getByText('Ang 8')).toBeInTheDocument()
+  expect(within(dock).queryByRole('radio')).not.toBeInTheDocument()
+  fireEvent.click(within(dock).getByRole('button', { name: 'Contents' }))
+  fireEvent.click(within(dock).getByTestId('bani-length-control'))
+  fireEvent.click(within(dock).getByRole('button', { name: 'Hide reader controls' }))
+  expect(onSections).toHaveBeenCalledOnce()
+  expect(onLength).toHaveBeenCalledOnce()
+  expect(onHide).toHaveBeenCalledOnce()
+})
+
+test('keeps contextual notices separate from the compact controls and hidden docks out of focus order', () => {
+  const { rerender } = render(<ReaderDock visible title="Japji Sahib" location="Ang 1" word={null}
+    notice={<button type="button">Return to previous place</button>}
+    onBack={vi.fn()} onSections={vi.fn()} onAppearance={vi.fn()} onMore={vi.fn()} onHide={vi.fn()} onExplore={vi.fn()} />)
+  expect(screen.getByRole('button', { name: 'Return to previous place' })).toBeInTheDocument()
+  rerender(<ReaderDock visible={false} title="Japji Sahib" location="Ang 1" word={null}
+    onBack={vi.fn()} onSections={vi.fn()} onAppearance={vi.fn()} onMore={vi.fn()} onHide={vi.fn()} onExplore={vi.fn()} />)
+  expect(screen.getByTestId('reader-dock')).toHaveAttribute('hidden')
+  expect(screen.getByTestId('reader-dock')).toHaveAttribute('inert')
+  expect(screen.queryByRole('button', { name: 'Contents' })).not.toBeInTheDocument()
 })

@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { IconArrowRight, IconCheck, IconClose } from './icons'
+import { IconArrowLeft, IconArrowRight, IconCheck, IconClose } from './icons'
 import ModalSheet from './ModalSheet'
 import { useLanguageStore } from '../store/language'
 import { buildNitnemStudyPath, type NitnemRouteOption } from '../store/nitnem'
@@ -15,6 +15,8 @@ import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
 import BaniLengthControl from './BaniLengthControl'
 import { getBaniLengthDestination, type BaniLengthDestination } from '../utils/baniLengthSelection'
 import { getBaniLengthDestinationLabel } from './baniLengthCopy'
+import { useNitnemRail } from '../hooks/useNitnemRail'
+import { rememberHomeNitnemReturn } from '../utils/homeNitnemNavigation'
 import '../styles/home-daily-nitnem.css'
 
 const BaniLengthSheet = lazy(() => import('./BaniLengthSheet'))
@@ -23,7 +25,7 @@ const COPY = {
   en: {
     title: 'Daily Nitnem', customize: 'Customize', saved: 'Your saved place',
     complete: 'Complete today', begin: 'Begin reading', resume: 'Continue reading', again: 'Read again',
-    mark: 'Mark complete', undo: 'Undo completion', next: 'Up next', all: 'Your Nitnem',
+    mark: 'Mark complete', undo: 'Undo completion', next: 'Up next', all: 'Your Nitnem', previous: 'Previous bani', nextCard: 'Next bani', browse: 'Browse your Nitnem',
     length: 'Length', usual: 'Usual', offline: 'Available offline', savedStudy: 'Resume saved study', recorded: 'Recorded today', unknownVersion: 'Version not recorded',
     close: 'Close your banis', description: 'Your daily banis, in your chosen order. Read any bani or update today’s completion.',
     finished: 'Your Nitnem is complete.', finishedBody: 'Return to any bani whenever you wish.', revisit: 'Revisit your banis',
@@ -36,7 +38,7 @@ const COPY = {
   pa: {
     title: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ', customize: 'ਬਦਲੋ', saved: 'ਤੁਹਾਡੀ ਸੰਭਾਲੀ ਥਾਂ',
     complete: 'ਅੱਜ ਪੂਰੀ', begin: 'ਪੜ੍ਹਨਾ ਸ਼ੁਰੂ ਕਰੋ', resume: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ', again: 'ਮੁੜ ਪੜ੍ਹੋ',
-    mark: 'ਪੂਰੀ ਚਿੰਨ੍ਹੋ', undo: 'ਪੂਰਾ ਚਿੰਨ੍ਹ ਹਟਾਓ', next: 'ਅੱਗੇ', all: 'ਤੁਹਾਡਾ ਨਿਤਨੇਮ',
+    mark: 'ਪੂਰੀ ਚਿੰਨ੍ਹੋ', undo: 'ਪੂਰਾ ਚਿੰਨ੍ਹ ਹਟਾਓ', next: 'ਅੱਗੇ', all: 'ਤੁਹਾਡਾ ਨਿਤਨੇਮ', previous: 'ਪਿਛਲੀ ਬਾਣੀ', nextCard: 'ਅਗਲੀ ਬਾਣੀ', browse: 'ਆਪਣੇ ਨਿਤਨੇਮ ਦੀਆਂ ਬਾਣੀਆਂ ਵੇਖੋ',
     length: 'ਲੰਬਾਈ', usual: 'ਰੋਜ਼ਾਨਾ', offline: 'ਆਫ਼ਲਾਈਨ ਉਪਲਬਧ', savedStudy: 'ਸੰਭਾਲਿਆ ਅਧਿਐਨ ਜਾਰੀ ਰੱਖੋ', recorded: 'ਅੱਜ ਦਰਜ ਹੈ', unknownVersion: 'ਲੰਬਾਈ ਦਰਜ ਨਹੀਂ',
     close: 'ਬਾਣੀਆਂ ਬੰਦ ਕਰੋ', description: 'ਤੁਹਾਡੇ ਚੁਣੇ ਕ੍ਰਮ ਵਿੱਚ ਰੋਜ਼ਾਨਾ ਬਾਣੀਆਂ। ਕੋਈ ਬਾਣੀ ਪੜ੍ਹੋ ਜਾਂ ਅੱਜ ਦੀ ਪੂਰੀ ਬਾਣੀ ਚਿੰਨ੍ਹੋ।',
     finished: 'ਤੁਹਾਡਾ ਨਿਤਨੇਮ ਪੂਰਾ ਹੈ।', finishedBody: 'ਜਦੋਂ ਚਾਹੋ ਕਿਸੇ ਵੀ ਬਾਣੀ ਨੂੰ ਮੁੜ ਪੜ੍ਹੋ।', revisit: 'ਬਾਣੀਆਂ ਮੁੜ ਵੇਖੋ',
@@ -49,7 +51,7 @@ const COPY = {
   hi: {
     title: 'दैनिक नितनेम', customize: 'बदलें', saved: 'आपकी सहेजी जगह',
     complete: 'आज पूर्ण', begin: 'पढ़ना शुरू करें', resume: 'पढ़ना जारी रखें', again: 'फिर पढ़ें',
-    mark: 'पूर्ण चिह्नित करें', undo: 'पूर्ण चिह्न हटाएँ', next: 'आगे', all: 'आपका नितनेम',
+    mark: 'पूर्ण चिह्नित करें', undo: 'पूर्ण चिह्न हटाएँ', next: 'आगे', all: 'आपका नितनेम', previous: 'पिछली बानी', nextCard: 'अगली बानी', browse: 'अपनी नितनेम बानियाँ देखें',
     length: 'लंबाई', usual: 'नियमित', offline: 'ऑफ़लाइन उपलब्ध', savedStudy: 'सहेजा अध्ययन जारी रखें', recorded: 'आज दर्ज है', unknownVersion: 'लंबाई दर्ज नहीं',
     close: 'बानियाँ बंद करें', description: 'आपके चुने क्रम में दैनिक बानियाँ। कोई बानी पढ़ें या आज की पूर्णता बदलें।',
     finished: 'आपका नितनेम पूर्ण है।', finishedBody: 'जब चाहें किसी भी बानी को फिर पढ़ें।', revisit: 'बानियाँ फिर देखें',
@@ -66,6 +68,7 @@ export interface HomeDailyNitnemProps {
   completed: ReadonlySet<string>
   tracking: boolean
   activeId: string | undefined
+  initialBrowseId?: string | null
   /** Only an explicitly started daily practice may supply the primary Continue. */
   getResume: (option: NitnemRouteOption) => string | null
   getReadingPath?: (option: NitnemRouteOption) => string
@@ -78,7 +81,7 @@ export interface HomeDailyNitnemProps {
   locale: UiLocale
 }
 
-export default function HomeDailyNitnem({ selected, completed, tracking, activeId, getResume, getReadingPath,
+export default function HomeDailyNitnem({ selected, completed, tracking, activeId, initialBrowseId, getResume, getReadingPath,
   getSavedStudy, getCompletionPath, onRead, onLengthChange, onComplete, locale }: HomeDailyNitnemProps) {
   const copy = COPY[locale]
   const scriptMode = useLanguageStore(state => state.scriptMode)
@@ -86,7 +89,7 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
   const offlineStatus = useNitnemOfflineStatusStore(state => state.status)
   const [allOpen, setAllOpen] = useState(false)
   const [lengthOption, setLengthOption] = useState<NitnemRouteOption | null>(null)
-  const [cachedPlace, setCachedPlace] = useState<{ path: string; line: string } | null>(null)
+  const [cachedPlace, setCachedPlace] = useState<{ path: string; line: string; status: typeof offlineStatus } | null>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const lengthAbortRef = useRef<AbortController | null>(null)
   const lengthDestinationRef = useRef<{ optionId: string; origin: string; reading: BaniFetchResult; destination: BaniLengthDestination } | null>(null)
@@ -96,12 +99,10 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
   const resumes = new Map(selected.map(option => [option.id, getResume(option)]))
   const count = tracking ? selected.filter(isDone).length : 0
   const finished = tracking && selected.length > 0 && count === selected.length && !selected.some(option => resumes.get(option.id))
-  const active = selected.find(option => option.id === activeId) ?? selected.find(option => !isDone(option)) ?? selected[0]
-  const activeIndex = active ? selected.indexOf(active) : -1
-  const activeDone = active ? isDone(active) && !resumes.get(active.id) : false
-  const resume = active ? resumes.get(active.id) : null
-  const upcoming = active ? [...selected.slice(activeIndex + 1), ...selected.slice(0, activeIndex)]
-    .filter(option => !isDone(option)).slice(0, 2) : []
+  const initialActive = selected.find(option => option.id === activeId) ?? selected.find(option => !isDone(option)) ?? selected[0]
+  const { id: browsedId, index: activeIndex, announcement, railRef, cardsRef, browse, onScroll, onFocus, onKeyDown, onPointerDown, onPointerEnd, onWheel } =
+    useNitnemRail(selected.map(option => option.id), initialActive?.id, initialBrowseId)
+  const active = selected.find(option => option.id === browsedId)
   const readingPath = (option: NitnemRouteOption) => resumes.get(option.id) || getReadingPath?.(option) || buildNitnemStudyPath(option)
   const selectedLength = (option: NitnemRouteOption) => normalizeSundarGutkaLength(new URLSearchParams(readingPath(option).split('?')[1]).get('sgLength'))
   const lengthLabel = (option: NitnemRouteOption) => {
@@ -129,11 +130,11 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
       const matches = cached?.entries.filter(entry => !verseSource || entry.source === verseSource)
         .flatMap(entry => entry.lines ?? []).filter(line => !line.isHeader && line.verseId === verseId) ?? []
       const line = matches.length === 1 ? matches[0].gurmukhi : ''
-      setCachedPlace(cached ? { path: activePath, line } : null)
+      setCachedPlace(cached ? { path: activePath, line, status: offlineStatus } : null)
     }).catch(() => { if (!cancelled) setCachedPlace(null) })
     return () => { cancelled = true }
   }, [activePath, offlineStatus])
-  const cachedActive = cachedPlace?.path === activePath ? cachedPlace : null
+  const cachedActive = cachedPlace?.path === activePath && cachedPlace?.status === offlineStatus ? cachedPlace : null
   const title = (option: NitnemRouteOption, heading = false) => <>
     <span className={`${getScriptTextFontClass(scriptMode)} ${heading ? 'home-daily-script' : 'home-daily-row-script'}`}
       lang={getScriptTextLang(scriptMode)}>{renderScriptText(option.gurmukhiTitle, scriptMode)}</span>
@@ -141,7 +142,7 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
   </>
   const completion = (option: NitnemRouteOption, className: string) => <button type="button" className={className}
     aria-label={`${isDone(option) ? copy.undo : copy.mark}: ${option.romanizedTitle}`}
-    aria-pressed={isDone(option)} onClick={() => onComplete(option)}>
+    aria-pressed={isDone(option)} onClick={() => { browse(option.id); onComplete(option) }}>
     <span aria-hidden="true" className="home-daily-completion-mark">{isDone(option) ? <IconCheck size={15} /> : null}</span>
     <span>{isDone(option) ? copy.undo : copy.mark}</span>
   </button>
@@ -153,6 +154,8 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
   }
   const openReading = (option: NitnemRouteOption, event: MouseEvent<HTMLAnchorElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
+    browse(option.id)
+    rememberHomeNitnemReturn(option.id)
     if (onRead) { event.preventDefault(); onRead(option, readingPath(option)) }
     setAllOpen(false)
   }
@@ -184,44 +187,58 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
     </div> : null}
 
     {finished ? <div className="home-daily-finished" data-testid="home-nitnem-finished">
-      <span className="home-daily-finished-mark" aria-hidden="true"><IconCheck size={25} /></span>
-      <h3>{copy.finished}</h3><p>{copy.finishedBody}</p>
-      <button type="button" className="home-daily-read" onClick={() => setAllOpen(true)}>{copy.revisit}<IconArrowRight size={19} /></button>
-    </div> : active ? <>
-      <article className={`home-daily-current${activeDone ? ' is-complete' : ''}`} data-testid="home-nitnem-active-reading" data-nitnem-id={active.id} data-nitnem-index={activeIndex} aria-labelledby="home-daily-current-title">
-        <div className="home-daily-current-overline"><span>{details(active)}</span>
-          <span className="home-daily-position"><span className="sr-only">{copy.position(activeIndex + 1, selected.length)}</span><span aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')}<span className="home-daily-position-divider"> / </span>{String(selected.length).padStart(2, '0')}</span></span>
-        </div>
-        <div data-testid="home-nitnem-reading-panel">
-          <h3 id="home-daily-current-title">{title(active, true)}</h3>
-          <div className="home-daily-reading-options">{lengthControl(active)}{cachedActive ? <span className="home-daily-availability">{copy.offline}</span> : null}</div>
-          {isDone(active) ? <p className="home-daily-current-meta">{completedDetail(active)}</p> : null}
-          {resume ? <p className="home-daily-current-meta">{copy.saved}</p> : null}
-          {resume && cachedActive?.line ? <p className={`home-daily-saved-line ${getScriptTextFontClass(scriptMode)}`} lang={getScriptTextLang(scriptMode)}>{renderScriptText(cachedActive.line, scriptMode)}</p> : null}
-          <div className="home-daily-current-actions">
-            <Link to={readingPath(active)} state={{ readerOrigin: '/' }} onClick={event => openReading(active, event)}
-              className={activeDone ? 'home-daily-read-again' : 'home-daily-read'} data-testid={activeDone ? undefined : 'home-nitnem-primary-action'}>
-              {activeDone ? copy.again : resume ? copy.resume : copy.begin}<IconArrowRight size={19} />
-            </Link>
-            {tracking ? completion(active, 'home-daily-complete') : null}
-          </div>
-          {!resume && !activeDone && getSavedStudy?.(active) ? <Link className="home-daily-saved-study" to={getSavedStudy(active)!} state={{ readerOrigin: '/' }}>{copy.savedStudy}<IconArrowRight size={15} /></Link> : null}
-        </div>
-      </article>
-      {upcoming.length > 0 ? <div className="home-daily-upcoming" data-testid="home-nitnem-next">
-        <h3>{copy.next}</h3>
-        <ol aria-label={copy.next}>
-          {upcoming.map(option => <li key={option.id}>
-            <Link to={readingPath(option)} state={{ readerOrigin: '/' }} className="home-daily-next" onClick={event => openReading(option, event)}
-              aria-label={`${resumes.get(option.id) ? copy.resume : copy.begin}: ${option.romanizedTitle}`}>
-              <span className="home-daily-next-number" aria-hidden="true">{String(selected.indexOf(option) + 1).padStart(2, '0')}</span>
-              <span className="home-daily-next-copy">{title(option)}<span className="home-daily-next-meta">{details(option)}{resumes.get(option.id) ? ` · ${copy.saved}` : ''}</span></span>
-              <IconArrowRight size={19} />
-            </Link>
-          </li>)}
-        </ol>
+      <span className="home-daily-finished-mark" aria-hidden="true"><IconCheck size={19} /></span>
+      <div><h3>{copy.finished}</h3><p>{copy.finishedBody}</p></div>
+    </div> : null}
+    {active ? <div className="home-daily-carousel" data-testid="home-nitnem-carousel" role="region" aria-label={copy.browse} aria-roledescription="carousel">
+      <div className="home-daily-rail" data-single={selected.length === 1 || undefined} ref={railRef} tabIndex={selected.length > 1 ? 0 : undefined}
+        role="list" aria-label={copy.title} onScroll={onScroll} onFocusCapture={onFocus} onKeyDown={event => onKeyDown(event, copy.position)}
+        onPointerDownCapture={onPointerDown} onPointerUpCapture={onPointerEnd} onPointerCancelCapture={onPointerEnd} onWheelCapture={onWheel}>
+        {selected.map((option, index) => {
+          const resume = resumes.get(option.id)
+          const done = isDone(option) && !resume
+          const viewed = option.id === active.id
+          const cached = viewed ? cachedActive : null
+          const action = done ? copy.again : resume ? copy.resume : copy.begin
+          return <article key={option.id} ref={element => { if (element) cardsRef.current.set(option.id, element); else cardsRef.current.delete(option.id) }}
+            className={`home-daily-current${done ? ' is-complete' : ''}`} role="listitem"
+            data-nitnem-card={option.id} data-testid={viewed ? 'home-nitnem-active-reading' : 'home-nitnem-card'}
+            data-nitnem-id={option.id} data-nitnem-index={index} aria-labelledby={`home-daily-title-${option.id}`}>
+            <div className="home-daily-current-overline"><span>{copy.groups[option.group]}</span>
+              <span className="home-daily-position" aria-label={copy.position(index + 1, selected.length)}>{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <div data-testid={viewed ? 'home-nitnem-reading-panel' : undefined} className="home-daily-reading-panel">
+              <h3 id={`home-daily-title-${option.id}`}>{title(option, true)}</h3>
+              <div className="home-daily-reading-options">{lengthControl(option)}{cached ? <span className="home-daily-availability">{copy.offline}</span> : null}</div>
+              {isDone(option) ? <p className="home-daily-current-meta">{completedDetail(option)}</p> : null}
+              {resume ? <p className="home-daily-current-meta">{copy.saved}</p> : null}
+              {resume && cached?.line ? <p className={`home-daily-saved-line ${getScriptTextFontClass(scriptMode)}`} lang={getScriptTextLang(scriptMode)}>{renderScriptText(cached.line, scriptMode)}</p> : null}
+              <div className="home-daily-current-actions">
+                <Link to={readingPath(option)} state={{ readerOrigin: '/' }} onClick={event => openReading(option, event)}
+                  aria-label={`${action}: ${option.romanizedTitle}`} className="home-daily-read" data-testid={viewed && !done ? 'home-nitnem-primary-action' : undefined}>
+                  {action}<IconArrowRight size={19} />
+                </Link>
+                {tracking ? completion(option, 'home-daily-complete') : null}
+              </div>
+              {!resume && !done && getSavedStudy?.(option) ? <Link className="home-daily-saved-study" to={getSavedStudy(option)!}
+                aria-label={`${copy.savedStudy}: ${option.romanizedTitle}`} state={{ readerOrigin: '/' }} onClick={() => rememberHomeNitnemReturn(option.id)}>{copy.savedStudy}<IconArrowRight size={15} /></Link> : null}
+            </div>
+          </article>
+        })}
+      </div>
+      {selected.length > 1 ? <div className="home-daily-pagination">
+        <p>{copy.position(activeIndex + 1, selected.length)}</p>
+        <div><button type="button" aria-label={copy.previous} aria-disabled={activeIndex === 0} onClick={() => {
+          const previous = selected[activeIndex - 1]
+          if (previous) browse(previous.id, { animate: true, announce: `${copy.position(activeIndex, selected.length)}: ${previous.romanizedTitle}` })
+        }}><IconArrowLeft size={19} /></button>
+        <button type="button" aria-label={copy.nextCard} aria-disabled={activeIndex === selected.length - 1} onClick={() => {
+          const next = selected[activeIndex + 1]
+          if (next) browse(next.id, { animate: true, announce: `${copy.position(activeIndex + 2, selected.length)}: ${next.romanizedTitle}` })
+        }}><IconArrowRight size={19} /></button></div>
       </div> : null}
-    </> : <div className="home-daily-empty"><p>{copy.empty}</p><Link to="/nitnem/customize" className="home-daily-read">{copy.choose}<IconArrowRight size={19} /></Link></div>}
+      <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</span>
+    </div> : <div className="home-daily-empty"><p>{copy.empty}</p><Link to="/nitnem/customize" className="home-daily-read">{copy.choose}<IconArrowRight size={19} /></Link></div>}
 
     {allOpen ? <ModalSheet open onClose={() => setAllOpen(false)} title={copy.all} description={copy.description}
       className="home-daily-sheet" testId="home-nitnem-all" initialFocusRef={closeRef}>

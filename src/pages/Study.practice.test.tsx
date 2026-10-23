@@ -171,8 +171,8 @@ test('Find exploration preserves the reading place; Return restores it and Conti
   const key = getExactReadingKey(path)!
   await waitFor(() => expect(useReadingPlacesStore.getState().places[key]?.resumeVerseId).toBe(102))
   const findEnding = async () => {
-    fireEvent.click(screen.getByRole('button', { name: 'Jump to section', exact: true }))
-    const sections = await screen.findByRole('dialog', { name: 'Reading sections' })
+    fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+    const sections = await screen.findByRole('dialog', { name: 'Contents' })
     fireEvent.change(await within(sections).findByRole('searchbox'), { target: { value: 'ਸਦਾ ਸਹਾਈ' } })
     aligned.length = 0
     fireEvent.click(within(sections).getByRole('button', { name: /ਅੰਤ ਦੀ ਪੰਕਤੀ ਸਦਾ ਸਹਾਈ/ }))

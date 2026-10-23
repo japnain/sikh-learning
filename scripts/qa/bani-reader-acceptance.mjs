@@ -33,6 +33,10 @@ export function measureBaniReaderUi() {
   if (documentWidth > viewport.width + 2) issues.push({ kind: 'document-horizontal-overflow', documentWidth, viewportWidth: viewport.width })
   for (const control of document.querySelectorAll(selectors.join(','))) {
     if (!(control instanceof HTMLElement) || hidden(control)) continue
+    // Cards outside the rail's viewport are deliberately scrollable, not clipped UI.
+    // Inspect the browsed card; focus/navigation checks reveal the others separately.
+    const railCard = control.closest('[data-nitnem-card]')
+    if (railCard && railCard.getAttribute('data-testid') !== 'home-nitnem-active-reading') continue
     const label = control instanceof HTMLInputElement && ['radio', 'checkbox'].includes(control.type)
       ? control.closest('label') : null
     const target = label ?? control
@@ -59,7 +63,7 @@ export function measureBaniReaderUi() {
       }
     }
   }
-  const scrollRegions = [...document.querySelectorAll('.bani-length-sheet__scroll,.home-daily-sheet-list,.study-reader-settings-sheet__scroll')]
+  const scrollRegions = [...document.querySelectorAll('.bani-length-sheet__scroll,.home-daily-sheet-list,.study-reader-settings-sheet__scroll,.study-reader-sections-sheet__scroll')]
     .filter(element => element instanceof HTMLElement && !hidden(element)).map(element => {
       const region = { ...describe(element), ...box(element), clientHeight: element.clientHeight, scrollHeight: element.scrollHeight }
       if (getComputedStyle(element).overflowY !== 'visible' && element.clientHeight < 44 && element.scrollHeight > element.clientHeight + 2) {

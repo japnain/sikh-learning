@@ -11,6 +11,8 @@ import type {
   VisraamSource,
 } from '../types'
 
+export type SupportTextSize = 'standard' | 'large' | 'extra-large'
+
 interface LanguageState {
   scriptMode: ScriptMode
   setScriptMode: (mode: ScriptMode) => void
@@ -30,6 +32,8 @@ interface LanguageState {
   setTextAlign: (value: ReaderAlignment) => void
   fontSize: number
   setFontSize: (n: number) => void
+  supportTextSize: SupportTextSize
+  setSupportTextSize: (size: SupportTextSize) => void
   englishSource: EnglishSource
   setEnglishSource: (source: EnglishSource) => void
   punjabiSource: PunjabiSource
@@ -61,6 +65,8 @@ export const useLanguageStore = create<LanguageState>()(
       setTextAlign: (textAlign) => set({ textAlign }),
       fontSize: 22,
       setFontSize: (n) => set({ fontSize: n }),
+      supportTextSize: 'standard',
+      setSupportTextSize: (supportTextSize) => set({ supportTextSize }),
       englishSource: 'bdb',
       setEnglishSource: (englishSource) => set({ englishSource }),
       punjabiSource: 'ss',

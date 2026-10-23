@@ -8,3 +8,4 @@
 .bani-find__results button > span:first-child { font-size: 1.1rem; line-height: 1.85; }
 .bani-find__results .bani-find__roman { font-size: .8rem; line-height: 1.6; }
 .bani-find__results small { font-size: .7rem; line-height: 1.6; opacity: .8; }
+.bani-find__results mark { color: inherit; background: rgb(var(--color-accent) / .2); border-bottom: 1px solid rgb(var(--color-accent) / .65); }

@@ -75,7 +75,9 @@ function renderLongReading(search = '') {
 function modelTypographyReflow(lines: HTMLElement[], targetIndex = 40, lateFontOffset = () => 0) {
   const lineHeight = () => {
     const read = document.querySelector<HTMLElement>('[data-testid="page-study"]')?.dataset.readerPresentation === 'read'
-    return useLanguageStore.getState().fontSize >= 34 ? (read ? 105 : 180) : (read ? 70 : 120)
+    const preferences = useLanguageStore.getState()
+    const supportScale = read || preferences.supportTextSize === 'standard' ? 1 : preferences.supportTextSize === 'large' ? 1.15 : 1.3
+    return (preferences.fontSize >= 34 ? (read ? 105 : 180) : (read ? 70 : 120)) * supportScale
   }
   scroll = mockDocumentScroll({ top: 200 + targetIndex * lineHeight() - 300, viewportHeight: 800, scrollHeight: 20000 })
   vi.spyOn(screen.getByTestId('study-reader-topbar'), 'getBoundingClientRect').mockImplementation(() => {
@@ -158,6 +160,19 @@ it('switching to Read in appearance clears the previous Study word', async () =>
   expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-presentation', 'read')
 })
 
+it('offers deep presentation and Contents from More without duplicating the dock mode controls', async () => {
+  renderLongReading()
+  await screen.findByTestId('study-entry-list')
+  fireEvent.click(screen.getByRole('button', { name: 'Reading tools', exact: true }))
+  const tools = screen.getByRole('dialog', { name: 'Reading tools' })
+  fireEvent.click(within(tools).getByRole('radio', { name: 'Read', exact: true }))
+  expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-presentation', 'read')
+  fireEvent.click(within(tools).getByRole('button', { name: 'Contents', exact: true }))
+  expect(await screen.findByRole('dialog', { name: 'Contents' })).toBeInTheDocument()
+  expect(screen.queryByRole('dialog', { name: 'Reading tools' })).not.toBeInTheDocument()
+  expect(screen.getByTestId('reader-dock').querySelector('fieldset')).not.toBeInTheDocument()
+})
+
 beforeEach(() => {
   localStorage.clear()
   useLocaleStore.setState({ locale: 'en' })
@@ -171,7 +186,7 @@ beforeEach(() => {
     scriptMode: 'gurmukhi', showTransliteration: true, meaningLanguage: 'en',
     englishSource: 'ms', punjabiSource: 'ss', hindiSource: 'ss',
     larivaar: false, showVishraam: false, visraamSource: 'sttm',
-    lineSpacing: 'relaxed', textAlign: 'left', fontSize: 22,
+    lineSpacing: 'relaxed', textAlign: 'left', fontSize: 22, supportTextSize: 'standard',
   })
   server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
     const body = await request.json() as { path?: string }
@@ -224,17 +239,102 @@ it('remembers Study support preferences while Read offers the same Gurbani witho
   expect(within(reopened).getByText('Long reading transliteration 84')).toBeInTheDocument()
 })
 
+it('previews independent Study support sizing while preserving Gurbani size and the contextual verse', async () => {
+  renderLongReading()
+  const lines = await screen.findAllByTestId('study-line')
+  const target = modelTypographyReflow(lines)
+  fireEvent.click(within(target).getByRole('button', { name: /open verse actions/i }))
+  fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: 'Reading appearance' }))
+  const appearance = await screen.findByRole('dialog', { name: 'Reader Controls' })
+  const preview = within(appearance).getByRole('region', { name: 'Text preview' })
+  expect(preview).toHaveTextContent('Long reading transliteration 41')
+  expect(preview).toHaveTextContent('Alternative meaning 41')
+  fireEvent.click(within(appearance).getByText('Study layers', { exact: true }))
+  fireEvent.click(within(appearance).getByRole('button', { name: 'Extra large', exact: true }))
+  expect(preview).toHaveAttribute('data-support-text-size', 'extra-large')
+  expect(useLanguageStore.getState()).toMatchObject({ fontSize: 22, supportTextSize: 'extra-large' })
+  fireEvent.click(within(appearance).getByRole('radio', { name: 'Read', exact: true }))
+  expect(within(preview).queryByText('Alternative meaning 41')).not.toBeInTheDocument()
+  fireEvent.click(within(appearance).getByRole('radio', { name: 'Study', exact: true }))
+  expect(preview).toHaveTextContent('Alternative meaning 41')
+  fireEvent.click(within(appearance).getByRole('button', { name: 'Close reader settings' }))
+  await settleReaderFrames()
+  expect(screen.getByTestId('page-study')).toHaveAttribute('data-support-text-size', 'extra-large')
+  expect(target.getBoundingClientRect().top).toBeCloseTo(300, 0)
+})
+
+it('retains Find query and its scroller through sheet reopening without moving the reading', async () => {
+  renderLongReading()
+  await screen.findByTestId('study-entry-list')
+  fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+  let contents = screen.getByRole('dialog', { name: 'Contents' })
+  expect(contents.querySelector('.study-reader-sheet__heading h2')).toHaveFocus()
+  const input = await within(contents).findByRole('searchbox')
+  fireEvent.change(input, { target: { value: 'Long reading transliteration' } })
+  const scroller = contents.querySelector<HTMLElement>('.study-reader-sections-sheet__scroll')!
+  scroller.scrollTop = 650
+  fireEvent.scroll(scroller)
+  fireEvent.click(within(contents).getByRole('button', { name: 'Close', exact: true }))
+  await settleReaderFrames()
+  fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+  contents = screen.getByRole('dialog', { name: 'Contents' })
+  expect(await within(contents).findByRole('searchbox')).toHaveValue('Long reading transliteration')
+  await settleReaderFrames()
+  expect(contents.querySelector<HTMLElement>('.study-reader-sections-sheet__scroll')!.scrollTop).toBe(650)
+  expect(screen.getAllByTestId('study-line').map(line => Number(line.dataset.verseId))).toEqual(verseIds)
+})
+
+it('keeps Find during a resume-location change but clears it when the reading length changes', async () => {
+  function FindRouteControls() {
+    const navigate = useNavigate()
+    const path = '/study?source=G&ang=100&startAng=100&endAng=106&baniDbId=99&exactBani=1&bani=Long%20Reading'
+    return <><button onClick={() => navigate(`${path}&resumeVerseId=8172`)}>Move saved verse</button><button onClick={() => navigate(`${path}&sgLength=long`)}>Other reading length</button></>
+  }
+  render(<MemoryRouter initialEntries={['/study?source=G&ang=100&startAng=100&endAng=106&baniDbId=99&exactBani=1&bani=Long%20Reading']}><Routes><Route path="/study" element={<><Study /><FindRouteControls /></>} /></Routes></MemoryRouter>)
+  await screen.findByTestId('study-entry-list')
+  const openContents = async () => {
+    fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+    return within(screen.getByRole('dialog', { name: 'Contents' })).findByRole('searchbox')
+  }
+  fireEvent.change(await openContents(), { target: { value: 'transliteration' } })
+  fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+  fireEvent.click(screen.getByRole('button', { name: 'Move saved verse' }))
+  expect(await openContents()).toHaveValue('transliteration')
+  fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+  fireEvent.click(screen.getByRole('button', { name: 'Other reading length' }))
+  expect(await openContents()).toHaveValue('')
+})
+
+it('ordinary Contents opening reveals the marked row inside its own scroller without scrolling scripture', async () => {
+  renderLongReading()
+  await screen.findByTestId('study-entry-list')
+  scroll = mockDocumentScroll({ top: 440, viewportHeight: 800, scrollHeight: 20000 })
+  const original = HTMLElement.prototype.getBoundingClientRect
+  const measurement = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+    const top = this.classList.contains('study-reader-sections-sheet__scroll') ? 100 : this.getAttribute('aria-current') === 'location' ? 900 : null
+    if (top === null) return original.call(this)
+    const height = this.classList.contains('study-reader-sections-sheet__scroll') ? 500 : 80
+    return { x: 0, y: top, top, bottom: top + height, left: 0, right: 390, width: 390, height, toJSON: () => ({}) }
+  })
+  fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+  const contents = screen.getByRole('dialog', { name: 'Contents' })
+  await settleReaderFrames()
+  measurement.mockRestore()
+  expect(contents.querySelector<HTMLElement>('.study-reader-sections-sheet__scroll')!.scrollTop).toBe(590)
+  expect(scroll.getTop()).toBe(440)
+})
+
 it('jumps to a later section without removing or replacing the rest of the bani', async () => {
   const jumpedTo: string[] = []
   vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(function (this: HTMLElement) { jumpedTo.push(this.dataset.verseId ?? this.id) })
   renderLongReading()
   await screen.findByTestId('study-entry-list')
-  fireEvent.click(screen.getByRole('button', { name: 'Jump to section' }))
-  const sections = screen.getByRole('dialog', { name: 'Reading sections' })
+  fireEvent.click(screen.getAllByRole('button', { name: 'Contents' })[0]!)
+  const sections = screen.getByRole('dialog', { name: 'Contents' })
   fireEvent.click(within(sections).getByRole('button', { name: /ਸ਼ਬਦ 7 ਪੰਕਤੀ 1/ }))
   await waitFor(() => expect(jumpedTo).toContain('8172'))
   expect(document.getElementById('study-entry-7')).toHaveFocus()
-  expect(screen.queryByRole('dialog', { name: 'Reading sections' })).not.toBeInTheDocument()
+  expect(screen.queryByRole('dialog', { name: 'Contents' })).not.toBeInTheDocument()
   expect(screen.getAllByTestId('study-line').map(line => Number(line.dataset.verseId))).toEqual(verseIds)
 })
 
@@ -284,8 +384,8 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     await screen.findByTestId('study-entry-list')
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796))
     const sourceOrder = screen.getAllByTestId('study-line').map(line => line.dataset.verseId)
-    fireEvent.click(screen.getByRole('button', { name: 'Jump to section', exact: true }))
-    fireEvent.click(within(screen.getByRole('dialog', { name: 'Reading sections' })).getByRole('button', { name: /ਹਮਰੀ ਕਰੋ/ }))
+    fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Contents' })).getByRole('button', { name: /ਹਮਰੀ ਕਰੋ/ }))
     await settleReaderFrames()
     act(() => document.dispatchEvent(new Event('scrollend')))
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796)
@@ -306,8 +406,8 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     expect(bodyLine.getBoundingClientRect().top).toBeCloseTo(538, 0)
     expect(captureReaderAnchor()?.key).toBe('bani-21-1386-0:2')
 
-    fireEvent.click(screen.getByRole('button', { name: 'Jump to section', exact: true }))
-    fireEvent.click(within(screen.getByRole('dialog', { name: 'Reading sections' })).getByRole('button', { name: /ਸਰਣਿ ਪਰੇ/ }))
+    fireEvent.click(screen.getAllByRole('button', { name: 'Contents', exact: true })[0]!)
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Contents' })).getByRole('button', { name: /ਸਰਣਿ ਪਰੇ/ }))
     await settleReaderFrames()
     act(() => document.dispatchEvent(new Event('scrollend')))
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883)

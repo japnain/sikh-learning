@@ -1,7 +1,7 @@
 import { beforeEach, expect, test } from 'vitest'
 import { buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import { getNextIncompleteNitnemReading, getSelectedNitnemReading, isExactNitnemReading } from './nitnemReadingIdentity'
+import { getNextIncompleteNitnemReading, getNextNitnemReading, getSelectedNitnemReading, isExactNitnemReading } from './nitnemReadingIdentity'
 
 beforeEach(() => useSundarGutkaLengthStore.setState({ lengths: { ...DEFAULT_SUNDAR_GUTKA_LENGTHS } }))
 
@@ -59,4 +59,13 @@ test('next follows personal order, skips complete items, wraps once and excludes
   expect(getNextIncompleteNitnemReading('japji-sahib', ids, ['rehras-sahib', 'jaap-sahib'])).toBeNull()
   expect(getNextIncompleteNitnemReading('japji-sahib', ['japji-sahib'], [])).toBeNull()
   expect(getNextIncompleteNitnemReading('unknown', ids, [])).toBeNull()
+})
+
+test('untracked next follows personal order through valid entries and stops at the end', () => {
+  const ids = ['rehras-sahib', 'unknown', 'jaap-sahib', 'japji-sahib']
+  expect(getNextNitnemReading('rehras-sahib', ids)?.id).toBe('jaap-sahib')
+  expect(getNextNitnemReading('jaap-sahib', ids)?.id).toBe('japji-sahib')
+  expect(getNextNitnemReading('japji-sahib', ids)).toBeNull()
+  expect(getNextNitnemReading('unknown-current', ids)).toBeNull()
+  expect(getNextNitnemReading('japji-sahib', ['japji-sahib'])).toBeNull()
 })

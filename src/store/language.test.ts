@@ -12,6 +12,7 @@ beforeEach(() => {
     lineSpacing: 'relaxed',
     textAlign: 'left',
     fontSize: 22,
+    supportTextSize: 'standard',
     englishSource: 'bdb',
     punjabiSource: 'ss',
     hindiSource: 'ss',
@@ -31,6 +32,7 @@ test('persists reader preference state updates', () => {
   useLanguageStore.getState().setPunjabiSource('ft')
   useLanguageStore.getState().setHindiSource('sts')
   useLanguageStore.getState().setVisraamSource('igurbani')
+  useLanguageStore.getState().setSupportTextSize('large')
 
   const state = useLanguageStore.getState()
   expect(state.scriptMode).toBe('devanagari')
@@ -44,4 +46,7 @@ test('persists reader preference state updates', () => {
   expect(state.punjabiSource).toBe('ft')
   expect(state.hindiSource).toBe('sts')
   expect(state.visraamSource).toBe('igurbani')
+  expect(state.supportTextSize).toBe('large')
+  expect(state.fontSize).toBe(22)
+  expect(JSON.parse(localStorage.getItem('sikh-language')!).state.supportTextSize).toBe('large')
 })

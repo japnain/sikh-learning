@@ -15,6 +15,17 @@ export function getSelectedNitnemReading(readingPath: string, selectedIds: reado
   return selectedIds.map(getNitnemOption).find(option => option && getNitnemReadingProvenance(option, readingPath)) ?? null
 }
 
+/** Without tracking, continue through the saved order and stop at its end. */
+export function getNextNitnemReading(currentId: string, selectedIds: readonly string[]): NitnemRouteOption | null {
+  const index = selectedIds.indexOf(currentId)
+  if (index < 0) return null
+  for (const id of selectedIds.slice(index + 1)) {
+    const option = getNitnemOption(id)
+    if (option) return option
+  }
+  return null
+}
+
 /** Continue once through the user's order; never auto-open the next reading. */
 export function getNextIncompleteNitnemReading(
   currentId: string,
