@@ -43,7 +43,7 @@ const SHARE_COMPOSER_MODES = [
   { id: 'share-phone-light', viewport: { width: 390, height: 844 }, dark: false, textScale: 1 },
   { id: 'share-phone-dark', viewport: { width: 390, height: 844 }, dark: true, textScale: 1 },
   { id: 'share-reflow-200', viewport: { width: 320, height: 568 }, dark: false, textScale: 2 },
-  { id: 'share-reader-dock', viewport: { width: 390, height: 844 }, dark: true, textScale: 1, deep: true },
+  { id: 'share-reader-dock', viewport: { width: 390, height: 844 }, dark: true, textScale: 1, deep: true, hasTouch: true },
 ]
 const CHROME_CANDIDATES = [
   process.env.CHROME_EXECUTABLE,
@@ -160,6 +160,8 @@ async function scanPage(page) {
 async function createAuditContext(browser, mode) {
   const context = await browser.newContext({
     viewport: mode.viewport,
+    // The dock requires the scrolling touch header; a narrow desktop viewport keeps the fixed toolbar.
+    hasTouch: Boolean(mode.hasTouch),
     colorScheme: mode.dark ? 'dark' : 'light',
     reducedMotion: 'reduce',
   })
