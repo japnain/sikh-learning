@@ -11,7 +11,7 @@
   "endSourcePage": 127,
   "wordCount": 1526,
   "charCount": 9071,
-  "startPosition": 12138,
+  "startPosition": 12137,
   "pages": [
     {
       "sourcePageNumber": 119,
@@ -574,5 +574,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-013",
-  "nextChapterId": "episode-015"
+  "nextChapterId": "episode-015",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 543,
+      "printPageNumber": 499,
+      "sourceHref": "EPUB/page_543.html",
+      "text": "1 Panthan Teeja or Third Religion : The reference is to the emergence of the Khalsa Panth as a third religion, the other two existing main religious being Hinduism and Islam. 2 The Singhs: with their blue uniforms, flowing beards and turbans on their heads and armed with weapons could not remain unspotted and anonymous in a crowd. This reference is to"
+    },
+    {
+      "sourcePageNumber": 544,
+      "printPageNumber": 500,
+      "sourceHref": "EPUB/page_544.html",
+      "text": "their unique and conspicuous dress. 3 Initiation: Reference to the creation of the Khalsa Panth through an initiation ceremony (Amrit Pahul) - specially prepared sweetened water called Amrit (Elixir) by stirring it with the ceremonial double-edged dagger in the midst of the chanting of Gurbani hymns and administered to the chosen first five Sikhs by Guru Gobind Singh himself. Later on, this ceremony of initiation could be performed at any place by the five initiated Sikhs. This is a ritual for self -purification and for taking a vow to lead a clean, moral life dedicated to one's religion. 4 Charan Pahul : Before the Sikhs were turned into Singhs and organised as an organised religion \"The Khalsa Panth\" by Guru Gobind Singh on the Vaisakhi day of 1699 through the initiation (Baptism) ceremony by administering them Amrit known as Khandey-ki-Pahul, the earlier tradition of bringing a person into the Sikh fold was through the administering of water made sacred by the touch of a thumb of Guru's feet . These Sikhs were known as \"Charan Pahulias\". Guru Gobind Singh discontinued this tradition after introducing the ceremony of administering Khandey ki Pahul. This historical event brought about a complete transformation in the collective psyche of the Sikhs and made them a force to reckon with. 5 Khandey-ki-Pahul: op. cit, page 81. 6 Guga Pir Sultan : His real name was Sayyad Ahmad. He is counted among the Muslim Pirs known by various names such as Sakhi sarwar, Lakhdata, Lalanwala. People offer big size bread loaves known as \"Rotes\" on every Thursday to seek his blessings and pray for fulfillment of their wishes."
+    }
+  ]
 }

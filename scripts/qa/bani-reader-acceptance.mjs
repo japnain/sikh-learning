@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
+import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { installDeterministicFixtures, resolveBrowserExecutable } from './browser-fixtures.mjs'
 
 /** Self-contained: serialize this function for DevTools, or pass it to page.evaluate. */
 export function measureBaniReaderUi() {
@@ -97,11 +99,8 @@ async function main() {
   const { chromium } = await import('playwright-core')
   const require = createRequire(import.meta.url)
   const axeSource = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8')
-  const executablePath = [process.env.CHROME_EXECUTABLE,
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/Applications/Chromium.app/Contents/MacOS/Chromium',
-    '/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser',
-  ].find(candidate => candidate && fs.existsSync(candidate))
-  if (!executablePath) throw new Error('Set CHROME_EXECUTABLE to an available Chromium executable.')
+  const executablePath = resolveBrowserExecutable()
+  const deterministic = args.has('--deterministic') || process.env.QA_DETERMINISTIC === '1'
   const locale = args.get('--locale') ?? 'en'
   const dark = args.get('--theme') === 'dark'
   const textScale = Number(args.get('--text-scale') ?? 2)
@@ -112,7 +111,8 @@ async function main() {
   const browser = await chromium.launch({ executablePath, headless: true })
   try {
     const context = await browser.newContext({ viewport: { width: Number(args.get('--width') ?? 320), height: Number(args.get('--height') ?? 568) },
-      colorScheme: dark ? 'dark' : 'light', reducedMotion: 'reduce' })
+      colorScheme: dark ? 'dark' : 'light', reducedMotion: 'reduce', timezoneId: 'America/Toronto', serviceWorkers: deterministic ? 'block' : 'allow' })
+    const fixtures = deterministic ? await installDeterministicFixtures(context, url) : null
     await context.addInitScript(({ locale, dark }) => {
       sessionStorage.setItem('splash-shown', '1')
       localStorage.setItem('sikh-onboarding', JSON.stringify({ state: { hasCompletedOnboarding: true, isOnboardingOpen: false, presentationMode: 'overlay' }, version: 0 }))
@@ -122,9 +122,13 @@ async function main() {
       localStorage.setItem('naamras-reader-presentation', 'read')
     }, { locale, dark })
     const page = await context.newPage()
+    const pageErrors = []
+    const checks = []
+    page.on('pageerror', error => pageErrors.push(error.message))
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
     await page.locator('[data-page]').first().waitFor({ state: 'visible', timeout: 20_000 })
     if (surface !== 'home') await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor({ state: 'visible', timeout: 30_000 })
+    else await page.getByTestId('home-hukamnama-card').waitFor({ state: 'visible', timeout: 30_000 })
     await page.addStyleTag({ content: `html { font-size: ${textScale * 100}% !important; }` })
     await page.evaluate(async () => { await document.fonts.ready; await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))) })
     if (surface === 'length') {
@@ -133,20 +137,40 @@ async function main() {
     } else if (surface === 'find') {
       await page.locator('.study-reader-section-trigger').click()
       await page.getByTestId('study-reader-sections-sheet').waitFor({ state: 'visible' })
-      await page.getByRole('searchbox').fill(locale === 'en' ? 'naam' : 'ਨਾਮ')
+      await page.getByRole('searchbox').fill(deterministic ? locale === 'en' ? 'satigur' : 'ਸਤਿਗੁਰ' : locale === 'en' ? 'naam' : 'ਨਾਮ')
+      await page.locator('.bani-find__results button').first().waitFor({ state: 'visible' })
     } else if (surface === 'finish') await page.getByTestId('reader-finish-panel').scrollIntoViewIfNeeded()
     await page.addScriptTag({ content: axeSource })
     const layout = await page.evaluate(measureBaniReaderUi)
     const violations = await page.evaluate(async () => (await window.axe.run(document, {
       runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }, resultTypes: ['violations'],
     })).violations.map(rule => ({ id: rule.id, impact: rule.impact, help: rule.help, targets: rule.nodes.map(node => node.target) })))
-    const report = { url, surface, locale, theme: dark ? 'dark' : 'light', textScale, checkedAt: new Date().toISOString(), layout, violations }
-    if (args.has('--output')) {
-      const output = path.resolve(args.get('--output'))
+    const output = args.has('--output') ? path.resolve(args.get('--output')) : null
+    if (output) {
       fs.mkdirSync(path.dirname(output), { recursive: true })
-      fs.writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`)
       await page.screenshot({ path: output.replace(/\.json$/u, '') + '.png', fullPage: surface === 'home' })
     }
+    if (surface === 'find') {
+      await page.locator('.bani-find__results button').first().click()
+      await page.getByTestId('study-reader-sections-sheet').waitFor({ state: 'hidden' })
+      await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor({ state: 'visible' })
+      checks.push('Find returns a matching line; selecting it closes the sheet and returns to the reader.')
+    } else if (surface === 'length') {
+      await page.getByTestId('bani-length-sheet').locator('input[type="radio"][value="short"]').check()
+      await page.getByTestId('bani-length-sheet').locator('button[type="submit"]').click()
+      await page.getByTestId('bani-length-sheet').waitFor({ state: 'hidden' })
+      await page.waitForURL(current => current.searchParams.get('sgLength') === 'short')
+      await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor({ state: 'visible' })
+      checks.push('Changing medium to short applies verified reading text and updates the route.')
+    } else if (surface === 'home') {
+      await page.getByTestId('home-hero-primary-action').click()
+      await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor({ state: 'visible' })
+      checks.push('The daily Hukamnama action opens a ready reader.')
+    }
+    fixtures?.assertNoUnexpectedRequests()
+    assert.deepEqual(pageErrors, [], 'No unhandled browser exceptions.')
+    const report = { deterministic, providerRequests: fixtures?.providerRequests, url, surface, locale, theme: dark ? 'dark' : 'light', textScale, checkedAt: new Date().toISOString(), checks, pageErrors, layout, violations }
+    if (output) fs.writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`)
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`)
     if (layout.issues.length || violations.length || layout.rootFontPx < 15.9 * textScale) process.exitCode = 1
     await context.close()

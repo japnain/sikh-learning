@@ -170,7 +170,7 @@ export default function OnboardingSheet({
             <span>{busy ? copy.saving : step === 1 ? overlay ? copy.save : copy.start : copy.continue}</span><IconArrowRight size={19} />
           </button>
         </div>
-        <p className="onboarding-footer-note">{copy.footer}</p>
+        <p className="onboarding-footer-note">{overlay ? copy.immediateChanges : copy.footer}</p>
       </footer>
     </div>
   )

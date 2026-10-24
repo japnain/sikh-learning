@@ -11,7 +11,7 @@
   "endSourcePage": 535,
   "wordCount": 935,
   "charCount": 5665,
-  "startPosition": 85813,
+  "startPosition": 85812,
   "pages": [
     {
       "sourcePageNumber": 529,
@@ -391,5 +391,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-080",
-  "nextChapterId": "episode-082"
+  "nextChapterId": "episode-082",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 570,
+      "printPageNumber": 526,
+      "sourceHref": "EPUB/page_570.html",
+      "text": "1 Bawali or Bauli : A deep well with concrete steps to rech the water level from one side. The third Sikh Guru, Guru Amardas got such a well Bauli constructed at Goindwal in 1616. it has eighty four steps. The devout Sikhs meditate and recite Gurbani (Japji) while sitting on each step and then take a bath in the Bauli. 2 Akbar: The Mughal emperor JalaludinAkbar born on October 15, 1542atAmarkot(Sindh). He sat on the royal throne of India after the death of his father Humayun. India made a great progress under his rule. He died in 1604 at Agra. 3 Chittaurgarh or Chittor: the capital of Mewar in Rajputana. Akbar occupied the fort in 1667. 4 Hundiwal or Hundi : An ancient financial instrument somewhat like the modern Bank Demand draft, Handing over this instrument from one person to the other at a distant place would provide the bearer of the Hundi with a cash amount mentioned in the instrument. 5 Bibi Bhani : The daughter of Guru Amardas born in 1538 at Basarkay. She was married to the fourth Sikh Guru, Guru Ramdas at Goindwal in 1553. The fifth Sikh Guru, Arjun Dev was the son of Bibi Bhani."
+    }
+  ]
 }

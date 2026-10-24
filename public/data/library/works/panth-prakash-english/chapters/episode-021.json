@@ -11,7 +11,7 @@
   "endSourcePage": 193,
   "wordCount": 2422,
   "charCount": 13966,
-  "startPosition": 23131,
+  "startPosition": 23130,
   "pages": [
     {
       "sourcePageNumber": 181,
@@ -845,5 +845,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-020",
-  "nextChapterId": "episode-022"
+  "nextChapterId": "episode-022",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 548,
+      "printPageNumber": 504,
+      "sourceHref": "EPUB/page_548.html",
+      "text": "1 Kangar : Th name of a village under the jurisdiction of police station Rampura Phool, one and a half mile to the South of Dina town. Once in the ancient past, it was the capital of Raj a Jodh. Guru Gobind Singh arrived here after leaving Machhiwara and wrote a bitter letter to Emperor Aurangzeb. The letter was entitled Zafarnama (A letter of victory) in Persian. Earlier, the Sixth Sikh Guru, Guru Hargobind had also stayed here for some time. 2 Tapa : Name of another village in District Barnala in Punjab. 3 Dina : Another village in the jurisdiction of police station Nihalsinghwala in District Moga in"
+    },
+    {
+      "sourcePageNumber": 549,
+      "printPageNumber": 505,
+      "sourceHref": "EPUB/page_549.html",
+      "text": "Punjab where Guru Gobind arrived on his way to village Kangar. 4 Lakhmir: The grandson of ancient king Raj a Jodh and custodian of Dina Kangar territory. He provided shelter to Guru Gobind Singh for a considerable period in 1705 and served him with great devotion. Gurdwara Lohgarh stands there as a memorial. 5 Bachittar Singh, brother of Udai Singh and son of Bhai Mani Singh, a close associate of Guru Gobind Singh. The brave warrior Bachittar Singh had repulsed the attack of a drunken elephant at Lohgarh fort in Anandpur Sahib. 6 Kotla : A small village on the outskirts of Ropar near Gurdwara Bhattha Sahib (Ropar). 7 Wazir Khan : The Governor of Sirhind Province who executed the two infant Sahibzadas and was beheaded by Banda Singh Bahadur in a battle. 8 Sher Mohammad Khan: Nawab of Malerkota who took part in the battle of Chamkaur Sahib along with the army of Wazir Khan of Sirhind. While one of his brothers Nahar Khan was killed in this battle, his other brother Khawaja Khijar was badly wounded and escaped. But this brave Nawab refused to take revenge against the Guru by killing his innocent sons, and protested strongly against the younger Sahibzadas' execution. The Sikhs revere him for his sense of justice and magnanimity. During the partition riots in 1947, the Muslim population of Malerkotla was not harmed by the Sikhs and the Hindus as a mark of respect for this justice loving Nawab. 9 Khwaj a Khizar: Another brother of Nawab of Malerkotla who was seriously wounded by the arrow of Guru Gobind Singh. 10 Raipur : A village near Sirhind 1 1 Chanarthal : Another village near Sirhind. 12 Baint: A kind of poetical composition with fixed metrical rules."
+    }
+  ]
 }

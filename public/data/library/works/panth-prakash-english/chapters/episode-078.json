@@ -11,7 +11,7 @@
   "endSourcePage": 515,
   "wordCount": 437,
   "charCount": 2459,
-  "startPosition": 82753,
+  "startPosition": 82752,
   "pages": [
     {
       "sourcePageNumber": 513,
@@ -178,5 +178,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-077",
-  "nextChapterId": "episode-079"
+  "nextChapterId": "episode-079",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 569,
+      "printPageNumber": 525,
+      "sourceHref": "EPUB/page_569.html",
+      "text": "1 Damdama : The name given to seat where Guru Gobind Singh used to hold congregation at Anandpur Sahib. 2 Saudama : A poor Brahmin friend and playmate of Lord Krishna whose house was converted into a palatial house by Lord Krishna when Saudama returned home after meeting Krishna."
+    }
+  ]
 }

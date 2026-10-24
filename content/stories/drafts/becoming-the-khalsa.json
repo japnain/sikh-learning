@@ -1,0 +1,246 @@
+{
+  "id": "becoming-the-khalsa",
+  "title": "Becoming the Khalsa",
+  "subtitle": "A gathering at Anandpur, and a new relationship between the Guru and the Panth.",
+  "description": "Five Sikhs offer themselves. The Guru receives initiation from them. A reading about the formation of the Khalsa, the authority it shared, and the life its members were called to lead.",
+  "collectionId": "courage-and-conscience",
+  "themes": [
+    "Khalsa",
+    "Equality",
+    "Responsibility",
+    "Community"
+  ],
+  "people": [
+    "Guru Gobind Singh",
+    "The Panj Piare",
+    "The Sikh sangat"
+  ],
+  "artwork": "light",
+  "wordCount": 1452,
+  "readingMinutes": 8,
+  "revision": 2,
+  "language": "en",
+  "accountType": "Historical profile",
+  "sections": [
+    {
+      "id": "the-gathering",
+      "title": "The gathering",
+      "startParagraphId": "gathering-1"
+    },
+    {
+      "id": "the-distance-between",
+      "title": "The distance between",
+      "startParagraphId": "distance-1"
+    },
+    {
+      "id": "five-who-stepped-forward",
+      "title": "Five who stepped forward",
+      "startParagraphId": "five-1"
+    },
+    {
+      "id": "the-shared-bowl",
+      "title": "The shared bowl",
+      "startParagraphId": "bowl-1"
+    },
+    {
+      "id": "a-life-together",
+      "title": "A life together",
+      "startParagraphId": "life-1"
+    }
+  ],
+  "paragraphs": [
+    {
+      "id": "gathering-1",
+      "text": "The Sikhs gathered at Anandpur for Vaisakhi. They came to see Guru Gobind Singh, carrying the offerings and concerns of communities that lived far beyond the town. In the account later collected by Max Arthur Macauliffe, the Guru had asked them to arrive with their hair uncut. Those who answered the invitation were approaching a gathering that would change what belonging to the Guru required of them."
+    },
+    {
+      "id": "gathering-2",
+      "text": "The year remembered for this transformation is 1699. The event is often told through the five men who offered their heads, and the account reaches a remarkable turning point when the Guru asks those men to initiate him. Yet the change also concerned the people who would return home afterwards: whom they would obey, how they would treat one another, and what they would be willing to defend."
+    },
+    {
+      "id": "gathering-3",
+      "text": "Macauliffe set down his version in 1909, drawing on earlier Sikh accounts. It preserves the shape of a traditional telling, including speeches that cannot be treated as a surviving transcript. Following its narrative makes it possible to see the formation of the Khalsa as a succession of demanding choices. The first concerns people who had come to stand between the Sikhs and their Guru."
+    },
+    {
+      "id": "distance-1",
+      "text": "The masands were representatives who connected local congregations with the Guru's house and collected offerings for it. Their position gave them a responsibility: something placed in their hands for the Guru was not their own property. Macauliffe describes that responsibility being abused. His account tells of money withheld, offerings diverted, and an authority entrusted for service being used to make the giver feel small."
+    },
+    {
+      "id": "distance-2",
+      "text": "One episode turns on a meal. A masand stayed with a poor Sikh and rejected the bread and pulse his host could provide. He demanded sweets instead. The guest's importance became a burden the household could not meet; the telling says the host sold an item of his wife's clothing to satisfy him. An offering made through such a relationship could carry fear and humiliation along with devotion."
+    },
+    {
+      "id": "distance-3",
+      "text": "When complaints reached Guru Gobind Singh, he required the accused to answer for their conduct. Macauliffe's account does not describe every masand as equally guilty: some established their innocence and were pardoned. But the system itself was brought to an end. Sikhs were to present their offerings directly. The person who had used access to the Guru as a means of power could no longer claim that place between them."
+    },
+    {
+      "id": "distance-4",
+      "text": "This gave the approaching change a practical meaning. A Sikh's relationship with the Guru would not depend on pleasing an intermediary, purchasing his approval, or accepting his demands at the household table. What had been entrusted to the Guru's house would reach it without that obstruction. The question of who possessed authority was already being opened before the five beloved ones stood before the gathering."
+    },
+    {
+      "id": "five-1",
+      "text": "In Macauliffe's Vaisakhi telling, the Guru came before the assembly carrying a sword and asked whether any Sikh would offer his life. The request met silence. He repeated it. Then Daya Ram of Lahore stood up and placed himself at the Guru's disposal. The first response was the act of one person rising from among many who had heard the same call."
+    },
+    {
+      "id": "five-2",
+      "text": "Four others followed: Dharam Das, Mohkam Chand, Sahib Chand and Himmat. The account unfolds through repeated requests and repeated decisions, rather than a single movement of the whole crowd. Each of the five had to come forward. They would be remembered as the Panj Piare, the five beloved ones, whose place in the community came from their offered commitment to the Guru."
+    },
+    {
+      "id": "five-3",
+      "text": "In Macauliffe's version, the five emerged alive and were brought before the people. The men who had offered themselves now stood beside the Guru. The gathering saw the courage of people who had been sitting among them."
+    },
+    {
+      "id": "five-4",
+      "text": "The Guru addressed the five as sharing in his own form. Macauliffe connects this moment with the earlier passage of Guruship from Guru Nanak to Guru Angad, while describing a new collective responsibility given to the five. Their devotion was not simply rewarded with praise. The narrative gives them a role that would soon require the Guru himself to stand before them as a petitioner."
+    },
+    {
+      "id": "bowl-1",
+      "text": "First came initiation. Water was placed in an iron vessel and stirred with a khanda, a double-edged sword, while sacred compositions were recited. The five received the amrit, the consecrated water used in the initiation. In the words and actions of the ceremony, devotion was joined with the readiness to bear responsibility. The new identity would be carried on the body and practised in the world."
+    },
+    {
+      "id": "bowl-2",
+      "text": "The five received the name Singh. They were instructed to set aside the claims of their previous castes and regard themselves as members of one family. Macauliffe's account places the shared meal beside the shared initiation: people separated by inherited rank were to eat together without contempt for one another. The change reached into an ordinary act through which social distance was often maintained."
+    },
+    {
+      "id": "bowl-3",
+      "text": "The instructions included the visible articles associated with the Khalsa: uncut hair, a comb, a kirpan, the kachh and a steel bracelet. They also included obligations towards other people. The newly initiated were to help those in poverty and protect those who sought refuge. Those who bore arms were also responsible for protecting others."
+    },
+    {
+      "id": "bowl-4",
+      "text": "Then the direction of the ceremony changed. The Guru stood before the five with his hands joined and asked them to administer the same initiation to him. Macauliffe's account describes their astonishment. They considered themselves unworthy of such a task before their Guru. He insisted. The men who had received amrit from him were asked to give it to him in turn."
+    },
+    {
+      "id": "bowl-5",
+      "text": "The five did so. The Guru accepted the same discipline he had given them. In this telling, he became Gobind Singh, and the name of the Khalsa expressed a relationship in which the Guru and his committed community could not be pulled apart."
+    },
+    {
+      "id": "bowl-6",
+      "text": "Others then came forward to receive initiation. What had begun with five could be carried into many congregations. The narrative gives the event a future beyond the people who first answered: the ceremony could be repeated, the discipline could be taught, and a Sikh could meet another member of the Khalsa without first asking for a pedigree."
+    },
+    {
+      "id": "life-1",
+      "text": "A much earlier account, Sainapati's Sri Gur Sobha, directs attention towards the life of the new community. Its fifth chapter emphasizes departure from the masand system and attachment to the Guru. It does not narrate the familiar sequence of five demands for a head. Its next chapters describe disagreements over the discipline, showing that the change was contested among Sikhs as well as welcomed."
+    },
+    {
+      "id": "life-2",
+      "text": "Sainapati also tells of a dispute following a death, opposition to abandoning a customary head-shaving rite, and a boycott that shut Sikhs out of trade. His account proceeds through appeals, hardship and the reopening of shops to reconciliation. It lets the reader see consequences away from the founding gathering. This earlier narrative and Macauliffe's later telling illuminate different parts of the change; they are not a single continuous eyewitness report."
+    },
+    {
+      "id": "life-3",
+      "text": "Macauliffe, too, records resistance to the Khalsa's challenge to inherited divisions. The people who objected in his account understood that eating together and accepting a common identity would weaken rules that had kept them apart. The demand therefore reached further than a change of clothing. It asked what standing a person could claim over someone else because of birth, and whether that claim would survive within the new fellowship."
+    },
+    {
+      "id": "life-4",
+      "text": "The discipline carried obligations that continued after the crowd dispersed. The account connects rising early, bathing, remembering the Creator and reading the Gurus' compositions with restraints on conduct. A member of the Khalsa was to keep faith with a spouse, reject tobacco and remain prepared to protect others. A ceremony could mark entry into this life. Repeated actions would have to give the commitment its shape."
+    },
+    {
+      "id": "life-5",
+      "text": "There is a quieter passage in Macauliffe's account, close to his description of the Vaisakhi gathering. He remembers Sikhs feeding one another, helping one another bathe, washing one another's clothes, and caring for a companion who was tired. These acts belong beside the more familiar images of sword and courage. They show what one member of the community could owe another when nobody was watching a public test."
+    },
+    {
+      "id": "life-6",
+      "text": "The five who stepped forward are remembered because they were ready to offer everything. The people who followed were called to carry that readiness through lives that would include work, meals, prayer, disagreement and danger. At the centre of the founding account remains an exchange: the Guru gave initiation to the five, and then stood with joined hands to receive it from them. The authority entrusted to the Khalsa had become something he asked them to exercise."
+    }
+  ],
+  "sources": [
+    {
+      "id": "macauliffe-1909-v5",
+      "role": "narrative",
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume V",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "workDate": "1909",
+      "edition": "Oxford: Clarendon Press, original 1909 edition; University of Toronto scan and OCR",
+      "reference": "Life of Guru Gobind Singh, chapters XI–XII, printed pp. 84–98: masands, fellowship, Vaisakhi, the five beloved, initiation, the Guru receiving initiation, and initial objections.",
+      "locator": {
+        "kind": "page",
+        "value": "Volume V, pp. 84–98, chapters XI–XII"
+      },
+      "url": "https://archive.org/details/thesikhreligioni05macauoft/page/84/mode/2up"
+    },
+    {
+      "id": "sainapati-2014-v-vii",
+      "role": "comparison",
+      "title": "Sri Gur Sobha",
+      "author": "Sainapati",
+      "year": 2014,
+      "workDate": "Early eighteenth century; usually dated c. 1711",
+      "edition": "Chandigarh: Institute of Sikh Studies, 2014, ISBN 81-85815-35-6; bilingual edition",
+      "translator": "Kulwant Singh",
+      "reference": "Chapters V–VII, printed pp. 56–123: chapter V, stanzas 1–6 and 21–26; chapter VI, stanzas 1–8; chapter VII, stanzas 4–37. Consulted for comparison, not reproduced as an English translation.",
+      "locator": {
+        "kind": "chapter",
+        "value": "V–VII; printed pp. 56–123"
+      },
+      "url": "https://library.gurmat.info/download/sri-gur-sobha-sainapati-translation-kulwant-singh.pdf"
+    }
+  ],
+  "accountNote": "A source-aware historical profile drawing its principal narrative from Macauliffe's 1909 traditional account. The ceremony is not a surviving transcript. Two paragraphs compare the earlier Sri Gur Sobha without merging its emphasis or events into the later telling. The sources differ in what they narrate; omissions here are recorded in the research dossier.",
+  "editorialNote": "Original English draft prepared for Naamras with AI assistance. Direct historical dialogue and imagined private thoughts are omitted. The screened-enclosure action, sparrow episode, disputed crowd numbers, and the identity of the woman associated with adding sweets are not reconstructed. This is a draft for editorial review, not a scholar-approved edition.",
+  "editorial": {
+    "credit": "Naamras editorial draft, prepared with AI assistance",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "Original prose based principally on the original 1909 Macauliffe edition. The modern Sri Gur Sobha English translation is a comparison reference; no translated passage is reproduced. Independent editorial review remains pending.",
+    "records": [
+      {
+        "id": "macauliffe-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v5"
+        ],
+        "evidence": "Original 1909 Oxford edition by Max Arthur Macauliffe (died 1913), accessed in the University of Toronto scan/OCR. This record concerns that original text, not a modern adaptation or reprint's added material.",
+        "url": "https://archive.org/details/thesikhreligioni05macauoft"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "New English prose drafted for Naamras. No modern translation, historical quotation, or upstream artwork copied."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Khalsa",
+      "meaning": "The community instituted by Guru Gobind Singh through initiation and a shared discipline; the term expresses belonging to the Guru."
+    },
+    {
+      "term": "Panth",
+      "meaning": "A path, and the Sikh collective that follows it."
+    },
+    {
+      "term": "Panj Piare",
+      "meaning": "The five beloved ones, remembered as the first to offer themselves and receive Khalsa initiation."
+    },
+    {
+      "term": "Amrit",
+      "meaning": "The consecrated water administered during Khalsa initiation."
+    },
+    {
+      "term": "Masand",
+      "meaning": "A representative of a Sikh congregation who historically conveyed offerings to the Guru; Guru Gobind Singh ended the system."
+    },
+    {
+      "term": "Sangat",
+      "meaning": "A congregation gathered in the Guru's presence and teachings."
+    },
+    {
+      "term": "Khanda",
+      "meaning": "A double-edged sword, used in preparing the amrit for initiation."
+    },
+    {
+      "term": "Kachh",
+      "meaning": "The distinctive short undergarment prescribed in the Khalsa discipline."
+    }
+  ]
+}

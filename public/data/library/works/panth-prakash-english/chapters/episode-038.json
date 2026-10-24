@@ -11,7 +11,7 @@
   "endSourcePage": 279,
   "wordCount": 760,
   "charCount": 4489,
-  "startPosition": 40421,
+  "startPosition": 40420,
   "pages": [
     {
       "sourcePageNumber": 275,
@@ -280,5 +280,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-037",
-  "nextChapterId": "episode-039"
+  "nextChapterId": "episode-039",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 554,
+      "printPageNumber": 510,
+      "sourceHref": "EPUB/page_554.html",
+      "text": "1 Khwaja Khijar Mardood: A Pathan warrior and brother of Nawab of Malerkotla Sher Mohammand Khan. He fought against Guru Gobind Singh at the battle of Chamkaur but could not face the Guru's arrows and saved himself by taking a cover behind the wall. The Guru challenged him to fight a duel with him but he could not face the Guru. The Guru nicknamed him as Khwaja, the coward. He was killed by the Majhail Singhs at Ropar before the victory over Sirhind, his two step brothers were also killed, while Sher Mohammad Khan escaped grievously wounded. Episode39 1 Karah Parshad : The ceremonial thanksgiving offering made before the Guru Granth Sahib at the end of a Sikh prayer and then distributed among the congregation. 2 Chhatt: A twin town of Banur."
+    }
+  ]
 }

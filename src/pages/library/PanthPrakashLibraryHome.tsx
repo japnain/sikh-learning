@@ -1,7 +1,10 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import '../../styles/catalog.css'
+import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { IconArrowLeft, IconArrowRight, IconLibrary, IconSearch } from '../../components/icons'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
+import LibraryDownloadControls from './LibraryDownloadControls'
+import { buildLibrarySearchPath, findLibraryChapterMatches, normalizeLibraryQuery, type LibraryChapterMatch } from '../../utils/librarySearch'
 import {
   loadLibraryChapterIndex,
   loadLibrarySearchIndex,
@@ -14,17 +17,11 @@ import {
 } from '../../utils/libraryReaderNavigation'
 import type {
   LibraryChapterIndexEntry,
-  LibrarySearchChapterEntry,
   LibraryWork,
 } from '../../types'
 
 const DEFAULT_WORK_ID = 'panth-prakash-english'
 const INITIAL_VISIBLE_CHAPTERS = 36
-
-type ChapterSearchResult = Pick<
-  LibrarySearchChapterEntry,
-  'chapterId' | 'title' | 'snippet' | 'episodeNumber' | 'volume'
->
 
 interface LibraryLoadState {
   key: string
@@ -61,8 +58,12 @@ function contributorLine(work: LibraryWork) {
 export default function PanthPrakashLibraryHome() {
   const { workId: routeWorkId } = useParams<{ workId: string }>()
   const location = useLocation()
+  const navigate = useNavigate()
   const workId = routeWorkId ?? DEFAULT_WORK_ID
-  const readerOrigin = getLibraryReaderOrigin(location.state, '/banis?collection=books')
+  const requestedReaderOrigin = getLibraryReaderOrigin(location.state, '/banis?collection=books')
+  const readerOrigin = requestedReaderOrigin.split(/[?#]/u)[0].replace(/\/$/u, '') === location.pathname.replace(/\/$/u, '')
+    ? '/banis?collection=books'
+    : requestedReaderOrigin
   const readerNavigationState = buildLibraryReaderNavigationState(readerOrigin)
   const readerOriginLabel = readerOrigin.startsWith('/saved')
     ? 'Saved'
@@ -79,9 +80,13 @@ export default function PanthPrakashLibraryHome() {
   const [chapterQuery, setChapterQuery] = useState('')
   const [volumeFilter, setVolumeFilter] = useState<'all' | number>('all')
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_CHAPTERS)
-  const [bookSearchQuery, setBookSearchQuery] = useState('')
-  const [bookSearchStatus, setBookSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty' | 'error'>('idle')
-  const [bookSearchResults, setBookSearchResults] = useState<ChapterSearchResult[]>([])
+  const [bookSearchQuery, setBookSearchQuery] = useState(() => new URLSearchParams(location.search).get('q') ?? '')
+  const [submittedQuery, setSubmittedQuery] = useState(() => new URLSearchParams(location.search).get('q') ?? '')
+  const [searchVisibleCount, setSearchVisibleCount] = useState(10)
+  const [searchAttempt, setSearchAttempt] = useState(0)
+  const searchSequence = useRef(0)
+  const [bookSearchStatus, setBookSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty' | 'error'>(() => new URLSearchParams(location.search).get('q') ? 'searching' : 'idle')
+  const [bookSearchResults, setBookSearchResults] = useState<LibraryChapterMatch[]>([])
   const [loadAttempt, setLoadAttempt] = useState(0)
 
   useEffect(() => {
@@ -115,65 +120,51 @@ export default function PanthPrakashLibraryHome() {
     ? loadState
     : { key: workId, status: 'loading' as const, work: null, chapters: [] }
   const { work, chapters, status } = currentLoadState
-  const episodeChapters = useMemo(
-    () => chapters.filter(chapter => chapter.kind === 'episode'),
-    [chapters]
-  )
-
-  const filteredChapters = useMemo(() => {
-    const normalizedQuery = chapterQuery.trim().toLowerCase()
-    return chapters.filter(chapter => {
+  const episodeChapters = chapters.filter(chapter => chapter.kind === 'episode')
+  const normalizedChapterQuery = chapterQuery.trim().toLowerCase()
+  const filteredChapters = chapters.filter(chapter => {
       const matchesVolume = volumeFilter === 'all' || chapter.volume === volumeFilter
       const haystack = `${chapterLabel(chapter)} ${chapter.title} volume ${chapter.volume}`.toLowerCase()
-      return matchesVolume && (!normalizedQuery || haystack.includes(normalizedQuery))
-    })
-  }, [chapterQuery, chapters, volumeFilter])
+      return matchesVolume && (!normalizedChapterQuery || haystack.includes(normalizedChapterQuery))
+  })
 
   const visibleChapters = filteredChapters.slice(0, visibleCount)
   const continueReadingPath = currentSession && currentSession.resumePath.startsWith(`/library/${workId}/chapters/`)
     ? buildSessionResumePath(currentSession)
     : null
 
-  async function handleBookSearchSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const query = bookSearchQuery.trim().toLowerCase()
-    if (!query) {
-      setBookSearchResults([])
-      setBookSearchStatus('idle')
-      return
-    }
-
-    setBookSearchStatus('searching')
-    try {
-      const searchIndex = await loadLibrarySearchIndex(workId)
-      const matches = (searchIndex.chapters ?? [])
-        .filter(entry => entry.workId === workId)
-        .map<ChapterSearchResult | null>(entry => {
-          const normalizedHaystack = entry.searchText.toLowerCase()
-          const matchIndex = normalizedHaystack.indexOf(query)
-          if (matchIndex === -1) return null
-          const snippetStart = Math.max(0, matchIndex - 80)
-          const snippetEnd = Math.min(entry.searchText.length, matchIndex + query.length + 150)
-          return {
-            chapterId: entry.chapterId,
-            title: entry.title,
-            episodeNumber: entry.episodeNumber,
-            volume: entry.volume,
-            snippet: entry.searchText.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
-          }
-        })
-        .filter((result): result is ChapterSearchResult => Boolean(result))
-        .slice(0, 10)
-
+  useEffect(() => {
+    const sequence = ++searchSequence.current
+    const query = normalizeLibraryQuery(new URLSearchParams(location.search).get('q') ?? '')
+    if (!query) return
+    void loadLibrarySearchIndex(workId).then(searchIndex => {
+      if (searchSequence.current !== sequence) return
+      const matches = findLibraryChapterMatches(searchIndex, query, workId)
+      setSubmittedQuery(query)
+      setSearchVisibleCount(10)
       setBookSearchResults(matches)
       setBookSearchStatus(matches.length ? 'ready' : 'empty')
-    } catch {
+    }).catch(() => {
+      if (searchSequence.current !== sequence) return
       setBookSearchResults([])
       setBookSearchStatus('error')
-    }
+    })
+    return () => { searchSequence.current += 1 }
+  }, [location.search, searchAttempt, workId])
+
+  function handleBookSearchSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const query = normalizeLibraryQuery(bookSearchQuery)
+    setSubmittedQuery(query)
+    setSearchVisibleCount(10)
+    setBookSearchResults([])
+    setBookSearchStatus(query ? 'searching' : 'idle')
+    const search = query ? `?${new URLSearchParams({ q: query })}` : ''
+    if (search === location.search) setSearchAttempt(attempt => attempt + 1)
+    else navigate({ pathname: location.pathname, search }, { replace: true, state: location.state })
   }
 
-  function handleRetryLoad() {
+  const handleRetryLoad = useCallback(() => {
     setLoadState({
       key: workId,
       status: 'loading',
@@ -181,7 +172,13 @@ export default function PanthPrakashLibraryHome() {
       chapters: [],
     })
     setLoadAttempt(attempt => attempt + 1)
-  }
+  }, [workId])
+
+  useEffect(() => {
+    if (status !== 'error') return
+    window.addEventListener('online', handleRetryLoad)
+    return () => window.removeEventListener('online', handleRetryLoad)
+  }, [handleRetryLoad, status])
 
   if (status === 'loading') {
     return (
@@ -192,6 +189,7 @@ export default function PanthPrakashLibraryHome() {
         title="Opening the collection"
         body="Preparing volumes and contents."
         page="library"
+        actions={[{ label: 'Back to books', onClick: () => navigate(readerOrigin), aiAction: 'leave-loading-library' }]}
       />
     )
   }
@@ -209,7 +207,7 @@ export default function PanthPrakashLibraryHome() {
           label: 'Retry',
           onClick: handleRetryLoad,
           aiAction: 'retry-library-work',
-        }]}
+        }, { label: 'Back to books', onClick: () => navigate(readerOrigin), aiAction: 'leave-unavailable-library', emphasis: 'secondary' }]}
       />
     )
   }
@@ -278,6 +276,11 @@ export default function PanthPrakashLibraryHome() {
           {work.editionNote ?? 'The original EPUB files are preserved while their text is organized into accessible reading sections.'}
         </p>
         {work.sourceQualityNote ? <p className="epub-source-quality">{work.sourceQualityNote}</p> : null}
+        {work.historicalContext ? <aside className="epub-historical-context" aria-labelledby="epub-historical-context-title">
+          <h3 id="epub-historical-context-title">Read with historical context</h3>
+          <p>{work.historicalContext}</p>
+          {(work.historicalContextSources ?? []).filter(source => /^https:\/\//u.test(source.url)).map(source => <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>)}
+        </aside> : null}
         <div className="epub-edition-stats">
           <span>{episodeChapters.length} episodes</span>
           <span>{publications.length || 1} volumes</span>
@@ -326,6 +329,8 @@ export default function PanthPrakashLibraryHome() {
         </div>
       </section>
 
+      <LibraryDownloadControls key={work.id} work={work} />
+
       <section className="epub-search-panel" aria-labelledby="epub-search-title">
         <div>
           <p className="eyebrow">Search this book</p>
@@ -351,18 +356,21 @@ export default function PanthPrakashLibraryHome() {
         {bookSearchStatus === 'error' ? <p className="epub-search-status">Search is temporarily unavailable.</p> : null}
         {bookSearchResults.length ? (
           <div className="epub-search-results" data-testid="panth-full-text-results" aria-live="polite">
-            {bookSearchResults.map(result => (
+            <p>Showing {Math.min(searchVisibleCount, bookSearchResults.length)} of {bookSearchResults.length} matching sections for “{submittedQuery}”.</p>
+            {bookSearchResults.slice(0, searchVisibleCount).map(result => (
               <Link
                 key={result.chapterId}
-                to={chapterPath(work.id, result.chapterId)}
-                state={readerNavigationState}
+                to={buildLibrarySearchPath(work.id, result.chapterId, submittedQuery)}
+                state={buildLibraryReaderNavigationState(`${location.pathname}?${new URLSearchParams({ q: submittedQuery })}`)}
                 className="interactive-focus"
               >
                 <span>Volume {result.volume} · {result.episodeNumber ? `Episode ${result.episodeNumber}` : 'Section'}</span>
                 <strong>{result.title}</strong>
                 <p>{result.snippet}</p>
+                <small>{result.matchCount} match{result.matchCount === 1 ? '' : 'es'} in this section</small>
               </Link>
             ))}
+            {searchVisibleCount < bookSearchResults.length ? <button type="button" className="epub-load-more interactive-focus" onClick={() => setSearchVisibleCount(count => count + 10)}>Show more matches</button> : null}
           </div>
         ) : null}
       </section>

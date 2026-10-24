@@ -11,7 +11,7 @@
   "endSourcePage": 149,
   "wordCount": 713,
   "charCount": 4169,
-  "startPosition": 17028,
+  "startPosition": 17027,
   "pages": [
     {
       "sourcePageNumber": 145,
@@ -291,5 +291,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-016",
-  "nextChapterId": "episode-018"
+  "nextChapterId": "episode-018",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 546,
+      "printPageNumber": 502,
+      "sourceHref": "EPUB/page_546.html",
+      "text": "1 Masand Mewaras : The officials, selected from the Mewar region of Raj asthan, appointed first by the fourth Sikh Guru, Guru Ramdas and given the designation \"Masands\" in different parts of the country to preach Sikhism as well as collect offerings made by the Sikh devotees as one tenth (Tithe) or \"Daswandh\" of their incomes and deposit these collections to the Sikh Gurus through the offices of Masands. 2 Chandi : The goddess Durga or Bhagwati, the prime force of the whole universe. Guru Gobind Singh invoked Bhagwati's blessings by composing a ballad \"Chandi di Var\" and reciting it at the time of conducting the initiation ceremony of the Khalsa Panth. Sword is the embodiment or living emblem of Bhagwati for the Sikhs. The Sikhs are ordained to pick up a sword against repression and tyranny."
+    },
+    {
+      "sourcePageNumber": 547,
+      "printPageNumber": 503,
+      "sourceHref": "EPUB/page_547.html",
+      "text": "3 Sahibzada Jujhar Singh: The second son of the tenth Sikh Guru, Guru Gobind Singh."
+    }
+  ]
 }

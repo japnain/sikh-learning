@@ -11,7 +11,7 @@
   "endSourcePage": 115,
   "wordCount": 2586,
   "charCount": 15299,
-  "startPosition": 9113,
+  "startPosition": 9112,
   "pages": [
     {
       "sourcePageNumber": 101,
@@ -967,5 +967,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-011",
-  "nextChapterId": "episode-013"
+  "nextChapterId": "episode-013",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 542,
+      "printPageNumber": 498,
+      "sourceHref": "EPUB/page_542.html",
+      "text": "1 Aurangeb : Abu Shaffar Mohiudin Aurangzeb Alamgir, the third son of the Emperor Shahj ahan. He occupied the royal throne at Delhi in 1658 after imprisoning his father at Agra. He was an extremely bigoted Sunni Muslim who destroyed many Hindu temples and planned to convert all the Hindus to Islam using force and coercion. He executed Guru Tegh Bahadur for not accepting Islam and for protesting against forcible conversions of the Hindus. He died in 1707 and lies buried near Daultabad in South India. He was contemptuously known as Noranga or Auranga among the Indian people. 2 Brahmins : In the totally hierarchical and stratified caste based Indian society, Brahmins were supposed to be the most elite and superior among the Indian populace and Indian Society. 3 Kshtriya : The warrior section of Indian society who were ordained to defend and die for the defence of the nation and their faith. 4 Doshala or a costly garment : The oral tradition mentions that Guru Tegh Bahadur had picked up a cowherd to make his whereabouts known in Delhi. The cowherd, who had a marriageable daughter, had wished that he could marry off his daughter with the reward money the emperor had declared as a reward for Guru Tegh Bahadur's arrest if he could catch hold of the Guru and inform the authorities. When this cowherd with an expensive garment and a gold coin went to buy sweets as instructed by the Guru, it aroused the shopkeeper's suspicion and he informed the police, who in turn, working on cowherd's information, arrested Guru Tegh Bahadur. In this dramatic way, Guru Tegh Bahadur offered his arrest as well as fulfilled the cowherd's wish."
+    },
+    {
+      "sourcePageNumber": 543,
+      "printPageNumber": 499,
+      "sourceHref": "EPUB/page_543.html",
+      "text": "5 Sacha Patshah: A Divine prophet, a true Lord of lords, as Sikh Gurus are addressed with reverence by their Sikh followers. Although the Sikh Gurus never claimed themselves to be a God or gods, but they have become synonymous with the Divine in the hearts and minds of their Sikh followers because of their Divine attributes. 6 Ram Rai : The elder son of the seventh Sikh Guru, Guru Har Rai Sahib, who is believed to have displayed quite a few miraculous powers. He was excommunicated from the Sikh Panth by Guru Har Rai for distorting/misquoting Guru Nanak's Bani in the court of Aurangzeb, but was rewarded by Aurangzeb and he established his seat near Dehradun. He was burnt alive by the Masands while in a meditative trance. 7 Bachittar Natak : Literally means a \"wonderful Act\", an episode from the epic \"Dasam Granth\" a part of which gives an autobiographical account of the previous and (present) human life of the tenth Sikh Guru, Guru Gobind Singh."
+    }
+  ]
 }

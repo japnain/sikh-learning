@@ -129,7 +129,8 @@ test('protects an asynchronous save against repeated submits, Back, and dismissa
   const onDismiss = vi.fn()
   const view = render(<Harness presentation="overlay" onComplete={onComplete} onDismiss={onDismiss} />)
   next()
-  const action = screen.getByRole('button', { name: 'Save changes' })
+  const action = screen.getByRole('button', { name: 'Done' })
+  expect(screen.getByText(/Changes apply immediately/)).toBeInTheDocument()
   fireEvent.click(action)
   fireEvent.click(action)
   fireEvent.click(screen.getByRole('button', { name: 'Back' }))
@@ -144,7 +145,7 @@ test('protects an asynchronous save against repeated submits, Back, and dismissa
   expect(screen.getByTestId('onboarding-support-step')).toBeInTheDocument()
   await act(async () => { finish() })
   await waitFor(() => expect(action).toBeEnabled())
-  expect(action).toHaveTextContent('Save changes')
+  expect(action).toHaveTextContent('Done')
   view.unmount()
 })
 

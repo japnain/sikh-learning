@@ -11,7 +11,7 @@
   "endSourcePage": 145,
   "wordCount": 2294,
   "charCount": 13900,
-  "startPosition": 14734,
+  "startPosition": 14733,
   "pages": [
     {
       "sourcePageNumber": 133,
@@ -877,5 +877,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-015",
-  "nextChapterId": "episode-017"
+  "nextChapterId": "episode-017",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 546,
+      "printPageNumber": 502,
+      "sourceHref": "EPUB/page_546.html",
+      "text": "1 Majhail Singhs: The Sikhs belonging to the Majha region of Punjab comprising the present districts of Amritsar, Gurdaspur, TaranTaran and Pathankot, etc. 2 Singhs : Initially the epithet applied to an initiated Sikh who started following the prescribed dress code and code of conduct after partaking of Amrit at the initiation ceremony or Khandeyki-Pahul. Later on, every Sikh name came to have it as its suffix. 3 Sonchi : A rural game of Punjab somewhat like Kabbadi, in which a single most muscular and strong youth grapples with the joint team from the other side and tries to get free from them. 4 Guru Bilas: Guru Bilas written by Bhai Sukha Singh, head priest of Gurdwara Keshgarh Sahib in 1858 B.S. It consists of thirty chapters. 5 Nihangs : The connotations of this word in Persian are : alligator, sword and dagger. It was a name first given to the initiated Singhs who wore the prescribed blue uniform and remained armed at all times with a sword, dagger and steel rings around their turbans and ever ready to sacrifice for their religion. Guru Gobind Singh's son Baba Fateh Singh is supposed to be the founder of this sect of Nihangs. They were lovingly addressed as the beloved soldiers of the Tenth Guru. 6 Bhuchangees: The young one of a Nihang or the motivated offspring of an initiated Singh. The word was first used for the four sons (sahibzadas) of Guru Gobind Singh. Bhuchang also means the offspring of a snake who had the ability to sting and harm its adversary. 7 Sultanis : A sect among Muslims who worship a Muslim Pir named \"Sakhi Sarvar\". They neither eat Pork nor animal meat of a slaughtered animal in the Hindu way, i.e., when the animal's neck is slit in one stroke. 8 Nawab : A royal title during the Mughal rule given to a person who used to be the highest authority of a big area - a big city or a province. 9 Majha : The region covering the districts of Amritsar and Gurdaspur of Punjab."
+    }
+  ]
 }

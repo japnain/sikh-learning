@@ -11,7 +11,7 @@
   "endSourcePage": 249,
   "wordCount": 594,
   "charCount": 3392,
-  "startPosition": 35184,
+  "startPosition": 35183,
   "pages": [
     {
       "sourcePageNumber": 245,
@@ -225,5 +225,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-030",
-  "nextChapterId": "episode-032"
+  "nextChapterId": "episode-032",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 552,
+      "printPageNumber": 508,
+      "sourceHref": "EPUB/page_552.html",
+      "text": "1 Lobana Singhs: Aclass of Sikh merchants dealing in Salt on Bullock-driven wagons. Lobana Sikhs are very devout Sikhs of the Guru. Makhan Shah Lobana had discovered the hiding place of Guru Tegh Bahadur at Baba Bakala. Another Sikh trader, Lakhi Shah Banjara had taken away Guru Tegh Bahadur's body in his wagon loaded with cotton and cremated the Guru's body by setting his house on fire at Delhi. 2 Daswandh : One tenth of one's income or Tithe which Sikhs are ordained to offer to the Guru. 3 Akal Ustat : One of Guru Gobind Singh's compositions. 4 Chandi Di Var : Another composition of the tenth Guru."
+    }
+  ]
 }

@@ -11,7 +11,7 @@
   "endSourcePage": 363,
   "wordCount": 2872,
   "charCount": 16719,
-  "startPosition": 53691,
+  "startPosition": 53690,
   "pages": [
     {
       "sourcePageNumber": 349,
@@ -1018,5 +1018,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-053",
-  "nextChapterId": "episode-055"
+  "nextChapterId": "episode-055",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 558,
+      "printPageNumber": 514,
+      "sourceHref": "EPUB/page_558.html",
+      "text": "1 Malerkotla Pathan Brothers : They were Nahar Khan, Nashtar Khan, Wali Mohammad Khan and Sher Mohammad Khan. While Nahar Khan died in the battle of Chamkaur Sahib in 1705, due to a fatal wound caused by Guru Gobind Singh's arrow, Nashtar Khan and Wali Mohammad Khan and Khwaja Khizar Khan alias Khwaja Mardood were killed by Khalsa forces at Ropar in 1710. Sher Mohammad Khan also died in the battles Chappar Chiri in 1710 along with Wazir Khan. 2 Hajee : A Muslim pilgrim who goes on a pilgrimage to Mecca for forgiveness of his sins and for self purification as prescribed in the Islamic texts."
+    },
+    {
+      "sourcePageNumber": 559,
+      "printPageNumber": 515,
+      "sourceHref": "EPUB/page_559.html",
+      "text": "3 Kafir : It means an infidel, a non-believer in general and one who does not subscribe to the ideology of Islam in particular. 4 Prophet Mohammad : The founder of Islam, son of Abdullah and Amina born at Mecca (U A.E) on April 20, 57 1 A.D. who received God's commandments through the divine angel Gabriel and gave the message to the people. His teachings are recorded in the holy book Qoran. He died at Madina in 632. 5 Taravari or Taraori : A small town on the Grand Trunk Road or National Highway No. 1 between Kurukshetra and Karnal. After the fall of Sirhind, S. Baaj Singh, S. Ram Singh and Baba Binod Singh, who were given custodianship of Thanesar, made their headquarters at Taraori. 6 Haidri Flag : Haider Ali was the surname of the son-in-law of Muslim prophet Mohammed. The Mughal war standard or flag signifying Islam is made of a great velvet cloth with the sign of a cresent moon and a sword. It is a Muslim emblem of war. 7 Gabriel (Divine Angel) who brought God's commandments and conveyed these to Prophet Mohammed. 8 Taraori : A small town between Kurukshetra and Karnal (Haryana) on the national highway No. 1 . S. Baaj Singh, S. Ram Singh and Baba Binod Singh had their headquarters at Tarori after getting the custodianship of Thanesar after the occupation of Sirhind."
+    }
+  ]
 }

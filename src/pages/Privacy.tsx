@@ -1,3 +1,4 @@
+import '../styles/settings.css'
 import { Link } from 'react-router-dom'
 import { IconArrowLeft } from '../components/icons'
 
@@ -21,7 +22,7 @@ export default function Privacy() {
           You can use the app as a guest. Cloud backup is optional and should only be connected when you want saved progress available across devices.
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective July 18, 2026
+          Effective October 24, 2026
         </p>
       </section>
 
@@ -50,9 +51,15 @@ export default function Privacy() {
             </p>
           </div>
           <div className="section-shell-quiet px-4 py-4">
-            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Crash diagnostics</p>
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Word lookup</p>
             <p className="mt-1 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/66">
-              Diagnostics stay off unless a release endpoint is configured. When enabled, NaamRas sends only a generic failure code, app version, and screen path without query details. Error text, stacks, scripture, saved content, and account identifiers are excluded.
+              Opening a word sends that selected word over HTTPS to BaniDB and to SearchGurbani's Mahan Kosh service at backend.searchgurbani.com. Each provider receives the requesting IP address and lookup URL. NaamRas does not control these providers' logs or retention. Following a source link also opens that provider's website.
+            </p>
+          </div>
+          <div className="section-shell-quiet px-4 py-4">
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Technical reports</p>
+            <p className="mt-1 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/66">
+              Up to 20 recent technical failures are kept in memory for the current app session so you can review, copy, or download a support report. Reloading clears this history. Records contain generic failure codes, time and count, app version, and a screen category; they exclude search terms, reading titles, error text, stacks, scripture, saved content, and account identifiers. Automatic sending stays off unless a release endpoint is configured. When enabled, only the generic failure code, source, fatal flag, app version, and screen category are sent.
             </p>
           </div>
         </div>
@@ -74,7 +81,7 @@ export default function Privacy() {
           Providers and diagnostics
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          BaniDB-backed services provide scripture lookup. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. The current App Store 1.0 build does not configure Supabase sign-in, cloud sync, or diagnostics. If a later release enables them, this notice and the App Store disclosures must be updated first.
+          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. The committed production configuration does not enable Supabase sign-in, cloud sync, or automatic diagnostics. If a release enables them, this notice and the App Store disclosures must be reviewed first. Support reports you copy or download remain under your control; posting one to GitHub makes it public.
         </p>
       </section>
 

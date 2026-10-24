@@ -1,3 +1,4 @@
+import '../../styles/catalog.css'
 import {
   Fragment,
   useCallback,
@@ -8,7 +9,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import {
   IconArrowLeft,
   IconArrowRight,
@@ -16,7 +17,6 @@ import {
   IconBookmarkFilled,
   IconClose,
   IconLibrary,
-  IconMoreHorizontal,
 } from '../../components/icons'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
 import ModalSheet from '../../components/ModalSheet'
@@ -24,7 +24,10 @@ import {
   loadLibraryChapter,
   loadLibraryChapterIndex,
   loadLibraryWorkCatalog,
+  resetLibraryRepositoryCache,
 } from '../../data/libraryRepository'
+import { findLibraryBlockMatches, libraryMatchRanges, normalizeLibraryQuery } from '../../utils/librarySearch'
+import '../../styles/library-tools.css'
 import {
   useEpubReaderStore,
   type EpubReaderLineHeight,
@@ -61,9 +64,10 @@ interface ChapterLoadState {
   key: string
   status: 'loading' | 'ready' | 'error'
   reader: ChapterReaderState | null
+  issue?: 'missing' | 'unavailable'
 }
 
-type ReaderPanel = 'contents' | 'display' | null
+type ReaderPanel = 'contents' | 'display' | 'notes' | null
 
 const BOOK_SAVE_COPY = {
   en: {
@@ -113,7 +117,20 @@ function readerBlockText(block: LibraryTextBlock) {
   return block.lines?.join(' ') || block.text
 }
 
-function ReaderInlineText({ text }: { text: string }) {
+function HighlightedText({ text, query }: { text: string; query: string }) {
+  const ranges = libraryMatchRanges(text, query)
+  if (!ranges.length) return <>{text}</>
+  let from = 0
+  const parts: ReactNode[] = []
+  for (const range of ranges) {
+    parts.push(text.slice(from, range.start), <mark key={range.start} className="epub-search-highlight">{text.slice(range.start, range.end)}</mark>)
+    from = range.end
+  }
+  parts.push(text.slice(from))
+  return <>{parts}</>
+}
+
+function ReaderInlineText({ text, query, onOpenNotes }: { text: string; query: string; onOpenNotes?: (trigger: HTMLElement) => void }) {
   const normalized = text.replace(/\s+([,.;!?])/g, '$1')
   const markerPattern = /([A-Za-z)])(\d{1,3})(?=(?:[,.;:!?)]|\s|$))/g
   const content: ReactNode[] = []
@@ -122,32 +139,34 @@ function ReaderInlineText({ text }: { text: string }) {
   for (const match of normalized.matchAll(markerPattern)) {
     const number = match[2]
     const numberStart = (match.index ?? 0) + match[1].length
-    content.push(normalized.slice(cursor, numberStart))
-    content.push(<sup key={`${numberStart}-${number}`} className="epub-reading-footnote-marker">{number}</sup>)
+    content.push(<HighlightedText key={`text-${cursor}`} text={normalized.slice(cursor, numberStart)} query={query} />)
+    content.push(<sup key={`${numberStart}-${number}`} className="epub-reading-footnote-marker">{onOpenNotes ? <a href="#source-notes" aria-label={`Open source notes, reference ${number}`} onClick={event => { event.preventDefault(); onOpenNotes(event.currentTarget) }}>{number}</a> : number}</sup>)
     cursor = numberStart + number.length
   }
 
-  content.push(normalized.slice(cursor))
+  content.push(<HighlightedText key={`text-${cursor}`} text={normalized.slice(cursor)} query={query} />)
   return <>{content}</>
 }
 
-function ReaderBlock({ block, register }: { block: LibraryTextBlock; register: (blockId: string, node: HTMLElement | null) => void }) {
+function ReaderBlock({ block, query, matched, register, onOpenNotes }: { block: LibraryTextBlock; query: string; matched: boolean; register: (blockId: string, node: HTMLElement | null) => void; onOpenNotes?: (trigger: HTMLElement) => void }) {
   const common = {
     id: block.id,
     ref: (node: HTMLElement | null) => register(block.id, node),
     'data-reader-block': block.id,
+    'data-reader-match': matched ? 'true' : undefined,
+    tabIndex: -1,
   }
 
   if (block.type === 'heading') {
-    return <h2 {...common} className="epub-reading-heading"><ReaderInlineText text={block.text} /></h2>
+    return <h2 {...common} className="epub-reading-heading"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></h2>
   }
 
   if (block.type === 'invocation') {
-    return <p {...common} className="epub-reading-invocation"><ReaderInlineText text={block.text} /></p>
+    return <p {...common} className="epub-reading-invocation"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></p>
   }
 
   if (block.type === 'meter') {
-    return <p {...common} className="epub-reading-meter">{block.text}</p>
+    return <p {...common} className="epub-reading-meter"><HighlightedText text={block.text} query={query} /></p>
   }
 
   if (block.type === 'verse' || block.type === 'line') {
@@ -155,7 +174,7 @@ function ReaderBlock({ block, register }: { block: LibraryTextBlock; register: (
     return (
       <div {...common} className="epub-reading-verse">
         <div>
-          {lines.map((line, index) => <span key={`${block.id}-line-${index}`}><ReaderInlineText text={line} /></span>)}
+          {lines.map((line, index) => <span key={`${block.id}-line-${index}`}><ReaderInlineText text={line} query={query} onOpenNotes={onOpenNotes} /></span>)}
         </div>
         {block.number ? <span className="epub-reading-verse__number">{block.number}</span> : null}
       </div>
@@ -163,10 +182,10 @@ function ReaderBlock({ block, register }: { block: LibraryTextBlock; register: (
   }
 
   if (block.type === 'note') {
-    return <aside {...common} className="epub-reading-note" aria-label="Note"><ReaderInlineText text={block.text} /></aside>
+    return <aside {...common} className="epub-reading-note" aria-label="Note"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></aside>
   }
 
-  return <p {...common} className="epub-reading-paragraph"><ReaderInlineText text={block.text} /></p>
+  return <p {...common} className="epub-reading-paragraph"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></p>
 }
 
 function SegmentedControl<T extends string>({
@@ -243,10 +262,13 @@ export default function LibraryChapterReader() {
   const { addBookmark, removeBookmark, getBookBookmark } = useBookmarksStore()
   const { workId = 'panth-prakash-english', chapterId = '' } = useParams<{ workId: string; chapterId: string }>()
   const location = useLocation()
+  const navigate = useNavigate()
+  const searchQuery = normalizeLibraryQuery(new URLSearchParams(location.search).get('find') ?? '')
   const readerOrigin = getLibraryReaderOrigin(location.state, `/library/${workId}`)
   const readerNavigationState = buildLibraryReaderNavigationState(readerOrigin)
   const requestKey = `${workId}:${chapterId}`
   const [loadState, setLoadState] = useState<ChapterLoadState>({ key: requestKey, status: 'loading', reader: null })
+  const [loadAttempt, setLoadAttempt] = useState(0)
   const [activePanel, setActivePanel] = useState<ReaderPanel>(null)
   const [tocQuery, setTocQuery] = useState('')
   const [savedNotice, setSavedNotice] = useState<string | null>(null)
@@ -257,6 +279,7 @@ export default function LibraryChapterReader() {
   const readerShellRef = useRef<HTMLDivElement | null>(null)
   const contentsTriggerRef = useRef<HTMLButtonElement | null>(null)
   const settingsTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const notesTriggerRef = useRef<HTMLElement | null>(null)
   const progressBarRef = useRef<HTMLSpanElement | null>(null)
   const progressLabelRef = useRef<HTMLSpanElement | null>(null)
 
@@ -287,19 +310,34 @@ export default function LibraryChapterReader() {
     ])
       .then(([catalog, chapters, chapter]) => {
         const work = catalog.workById[workId]
-        if (!work || !chapter) throw new Error('Chapter not found')
         if (cancelled) return
+        if (!work || !chapter) {
+          setLoadState({ key: requestKey, status: 'error', reader: null, issue: 'missing' })
+          return
+        }
         setLoadState({ key: requestKey, status: 'ready', reader: { work, chapter, chapters } })
       })
       .catch(() => {
         if (cancelled) return
-        setLoadState({ key: requestKey, status: 'error', reader: null })
+        setLoadState({ key: requestKey, status: 'error', reader: null, issue: 'unavailable' })
       })
 
     return () => {
       cancelled = true
     }
-  }, [chapterId, requestKey, workId])
+  }, [chapterId, requestKey, workId, loadAttempt])
+
+  const retryLoad = useCallback(() => {
+    resetLibraryRepositoryCache()
+    setLoadState({ key: requestKey, status: 'loading', reader: null })
+    setLoadAttempt(attempt => attempt + 1)
+  }, [requestKey])
+
+  useEffect(() => {
+    if (state !== 'error' || loadState.issue === 'missing') return
+    window.addEventListener('online', retryLoad)
+    return () => window.removeEventListener('online', retryLoad)
+  }, [state, loadState.issue, retryLoad])
 
   const currentIndex = useMemo(() => {
     if (!reader) return -1
@@ -310,6 +348,9 @@ export default function LibraryChapterReader() {
     () => reader?.chapter.pages.flatMap(page => page.blocks) ?? [],
     [reader]
   )
+  const searchMatches = useMemo(() => findLibraryBlockMatches(chapterBlocks, searchQuery), [chapterBlocks, searchQuery])
+  const matchedBlockIds = useMemo(() => new Set(searchMatches.map(match => match.blockId)), [searchMatches])
+  const currentMatchIndex = Math.max(0, searchMatches.findIndex(match => match.blockId === decodeReaderBlockHash(location.hash)))
 
   const locatorMetrics = useMemo(() => {
     if (!reader) return null
@@ -405,7 +446,7 @@ export default function LibraryChapterReader() {
   }, [chapterBlocks, commitLocation])
 
   const closeActivePanel = useCallback(() => {
-    const trigger = activePanel === 'contents' ? contentsTriggerRef.current : settingsTriggerRef.current
+    const trigger = activePanel === 'contents' ? contentsTriggerRef.current : activePanel === 'notes' ? notesTriggerRef.current : settingsTriggerRef.current
     setActivePanel(null)
     window.requestAnimationFrame(() => trigger?.focus({ preventScroll: true }))
   }, [activePanel, setActivePanel])
@@ -424,7 +465,7 @@ export default function LibraryChapterReader() {
   useEffect(() => {
     if (!reader || !chapterBlocks.length) return
 
-    const decodedBlockId = decodeReaderBlockHash(location.hash)
+    const decodedBlockId = decodeReaderBlockHash(location.hash) ?? searchMatches[0]?.blockId ?? null
     const requestedNode = decodedBlockId ? blockNodes.current.get(decodedBlockId) : null
     const shouldRestoreBlock = Boolean(decodedBlockId && requestedNode)
     const requestedBlockId = shouldRestoreBlock ? decodedBlockId : chapterBlocks[0]?.id
@@ -432,6 +473,10 @@ export default function LibraryChapterReader() {
       if (shouldRestoreBlock && !didRestoreLocation.current && requestedNode) {
         didRestoreLocation.current = true
         scrollElementIntoAppView(requestedNode, { block: 'start', behavior: 'auto' })
+        if (searchQuery) {
+          requestedNode.focus({ preventScroll: true })
+          if (!location.hash) navigate({ pathname: location.pathname, search: location.search, hash: `#${encodeURIComponent(decodedBlockId!)}` }, { replace: true, state: location.state })
+        }
       }
       if (requestedBlockId) {
         visibleBlockIdRef.current = requestedBlockId
@@ -465,7 +510,7 @@ export default function LibraryChapterReader() {
       removeSettledScrollListener()
       observer.disconnect()
     }
-  }, [chapterBlocks, commitVisibleLocation, location.hash, reader, renderLocationProgress])
+  }, [chapterBlocks, commitVisibleLocation, location.hash, location.pathname, location.search, location.state, navigate, reader, renderLocationProgress, searchMatches, searchQuery])
 
   useEffect(() => {
     if (!reader) return
@@ -498,6 +543,7 @@ export default function LibraryChapterReader() {
         title="Opening this section"
         body="Preparing the reading edition."
         page="library"
+        actions={[{ label: 'Back to book', onClick: () => navigate(`/library/${workId}`, { state: readerNavigationState }), aiAction: 'leave-loading-book-section' }]}
       />
     )
   }
@@ -509,8 +555,12 @@ export default function LibraryChapterReader() {
         state="degraded"
         eyebrow="Reader"
         title="Section unavailable"
-        body="This section could not be opened from the publication package."
+        body={loadState.issue === 'missing' ? 'This section is not in the current book. Open the contents to choose another section.' : navigator.onLine === false ? 'You are offline and this section has not been downloaded. Reconnect to try again, or return to the book.' : 'The connection or saved copy could not be read. Try again, or return to the book.'}
         page="library"
+        actions={[
+          { label: 'Retry', onClick: retryLoad, aiAction: 'retry-library-chapter' },
+          { label: 'Back to book', onClick: () => navigate(`/library/${workId}`, { state: readerNavigationState }), aiAction: 'leave-unavailable-book-section', emphasis: 'secondary' },
+        ]}
       />
     )
   }
@@ -531,6 +581,16 @@ export default function LibraryChapterReader() {
       ? 'Back to Read'
       : `Back to ${work.shortTitle}`
   const chapterBookmark = getBookBookmark(work.id, chapter.id)
+  const openSourceNotes = (trigger: HTMLElement) => {
+    notesTriggerRef.current = trigger
+    setActivePanel('notes')
+  }
+  const goToSearchMatch = (index: number) => {
+    const match = searchMatches[index]
+    if (!match) return
+    didRestoreLocation.current = false
+    navigate({ pathname: location.pathname, search: location.search, hash: `#${encodeURIComponent(match.blockId)}` }, { replace: true, state: location.state })
+  }
   const toggleChapterBookmark = () => {
     if (chapterBookmark) {
       const result = removeBookmark(chapterBookmark.id)
@@ -591,8 +651,8 @@ export default function LibraryChapterReader() {
           <button ref={contentsTriggerRef} type="button" onClick={() => setActivePanel('contents')} aria-label="Open contents">
             <IconLibrary size={18} />
           </button>
-          <button ref={settingsTriggerRef} type="button" onClick={() => setActivePanel('display')} aria-label="Open reading settings">
-            <IconMoreHorizontal size={19} />
+          <button ref={settingsTriggerRef} type="button" onClick={() => setActivePanel('display')} aria-label="Reading appearance">
+            <span aria-hidden="true" className="study-reader-aa">Aa</span>
           </button>
         </div>
         <div className="epub-reader-progress" aria-hidden="true">
@@ -603,6 +663,14 @@ export default function LibraryChapterReader() {
       <div className="sr-only" aria-live="polite" aria-atomic="true">{savedNotice}</div>
 
       <div className="epub-reader-main" data-testid="panth-chapter-article">
+        {searchQuery ? <section className="epub-reader-find" aria-label="Find in this section">
+          <p role="status">{searchMatches.length ? `Passage ${currentMatchIndex + 1} of ${searchMatches.length} matching “${searchQuery}”` : `No text passage matches “${searchQuery}” in this section. The search may match its title.`}</p>
+          <div>
+            <button type="button" disabled={currentMatchIndex === 0 || !searchMatches.length} onClick={() => goToSearchMatch(currentMatchIndex - 1)}>Previous match</button>
+            <button type="button" disabled={currentMatchIndex >= searchMatches.length - 1} onClick={() => goToSearchMatch(currentMatchIndex + 1)}>Next match</button>
+            <button type="button" onClick={() => navigate({ pathname: location.pathname, hash: location.hash }, { replace: true, state: location.state })}>Clear search</button>
+          </div>
+        </section> : null}
         <header className="epub-reading-title">
           <p>Volume {chapter.volume} · {chapterLabel(chapter)}</p>
           <h1>{chapter.title}</h1>
@@ -616,11 +684,16 @@ export default function LibraryChapterReader() {
           {chapter.pages.map(page => (
             <Fragment key={`${page.sourcePageNumber}-${page.sourceHref ?? page.fileName}`}>
               {page.blocks.map(block => (
-                <ReaderBlock key={block.id} block={block} register={registerBlock} />
+                <ReaderBlock key={block.id} block={block} query={searchQuery} matched={matchedBlockIds.has(block.id)} register={registerBlock} onOpenNotes={chapter.sourceNotes?.length ? openSourceNotes : undefined} />
               ))}
             </Fragment>
           ))}
         </article>
+
+        <section className="epub-source-notes-entry" aria-label="Source references">
+          {chapter.sourceNotes?.length ? <button id="source-notes" type="button" onClick={event => openSourceNotes(event.currentTarget)}>Read source notes for this episode</button>
+            : <p>The supplied reading package has no source-note appendix for this section.</p>}
+        </section>
 
         <nav className="epub-reader-chapter-nav" aria-label="Section navigation">
           {previousChapter ? (
@@ -679,10 +752,22 @@ export default function LibraryChapterReader() {
         </ReaderPanelShell>
       ) : null}
 
+      {activePanel === 'notes' && chapter.sourceNotes?.length ? <ReaderPanelShell
+        title="Source notes"
+        description="The source edition’s references for this episode. OCR wording is preserved; reference numbers are not individually verified."
+        palette={palette}
+        onClose={closeActivePanel}
+      >
+        {chapter.sourceNotes.map((note, index) => <section key={`${note.sourceHref}-${index}`} className="epub-source-note">
+          <h3>Volume {chapter.volume} · Source page {note.printPageNumber}</h3>
+          <p>{note.text}</p>
+        </section>)}
+      </ReaderPanelShell> : null}
+
       {activePanel === 'display' ? (
         <ReaderPanelShell
-          title="Reading settings"
-          description="These choices stay with you across books."
+          title="Reading appearance"
+          description="Text size, spacing and width are shared with Stories. Page color applies only to books; the app theme stays separate."
           palette={palette}
           onClose={closeActivePanel}
         >

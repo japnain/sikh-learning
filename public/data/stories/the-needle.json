@@ -1,0 +1,127 @@
+{
+  "id": "the-needle",
+  "title": "A Needle for the Next World",
+  "subtitle": "Duni Chand could keep a fortune. Could he keep this?",
+  "description": "A wealthy host accepts a small object from Guru Nanak, then discovers that the simple promise attached to it cannot be kept.",
+  "collectionId": "seva-and-dignity",
+  "themes": [
+    "Generosity",
+    "Impermanence",
+    "Responsibility"
+  ],
+  "people": [
+    "Guru Nanak",
+    "Duni Chand",
+    "Duni Chand’s wife"
+  ],
+  "artwork": "thread",
+  "wordCount": 440,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "Duni Chand’s wealth could be counted before a visitor entered his house. Flags stood above the doorway, each one representing a lakh of rupees. The display turned a private fortune into a public announcement."
+    },
+    {
+      "id": "p2",
+      "text": "When Guru Nanak came to Lahore, Duni Chand welcomed him with affection. The rich man was holding a ceremony in memory of his father and feeding Brahmans in his name. Within that larger visit, the traditional account tells of a much smaller transaction: the Guru gave his host a needle."
+    },
+    {
+      "id": "p3",
+      "text": "It was not presented as payment or as a valuable gift. Duni Chand was asked to keep it safe and return it when the Guru requested it in the next world. A man accustomed to possessing so much had now been entrusted with something very little."
+    },
+    {
+      "id": "p4",
+      "text": "Duni Chand took the needle to his wife. He told her to put it away for the purpose Guru Nanak had specified. She challenged the request immediately. How could anybody carry a needle into the next world? She believed her husband had lost his senses, and told him to take it back."
+    },
+    {
+      "id": "p5",
+      "text": "He returned to the Guru with her objection. The needle could be kept in his house, but the promise attached to it could not be fulfilled. Nothing in his arrangements for safekeeping could make the small object pass beyond death."
+    },
+    {
+      "id": "p6",
+      "text": "Guru Nanak asked him to place his fortune beside that difficulty. If something as small and light as a needle could not accompany him, how could all his wealth make the journey? The flags above his door measured what he had gathered here. They could not establish what would remain with him afterwards."
+    },
+    {
+      "id": "p7",
+      "text": "Duni Chand bowed before the Guru and asked what he should do. The answer directed him towards those who needed food and help. He was to give from his wealth in God’s name and feed the poor. Possessions could be used in this life rather than merely guarded against the day he must leave them."
+    },
+    {
+      "id": "p8",
+      "text": "Macauliffe’s telling says that Duni Chand distributed seven lakhs of his treasure. He became a disciple of Guru Nanak and began to practise remembrance of the Name. The account follows this change with verses about the passing away of rank, buildings, gold, silver, clothing and the human body itself."
+    },
+    {
+      "id": "p9",
+      "text": "The needle had not become a precious object. It remained the small thing his wife had told him he could not take beyond death. But the request to return it had interrupted the habits of a man surrounded by signs of ownership. By the end of the encounter, the significant movement was of wealth leaving his possession and reaching other people."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter XI, pp. 129–131. Chapter XI, opening Lahore/Duni Chand episode: the wealth-flags, needle entrusted for the next world, conversation with Duni Chand’s wife and distribution of seven lakhs; before the Guru’s departure to the Ravi.",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#129",
+      "id": "macauliffe-1909-v1",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume I; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume I, pp. 129–131"
+      }
+    }
+  ],
+  "accountNote": "This is the needle episode within Macauliffe’s traditional Duni Chand account. The money amounts and the request about the next world belong to that telling, not a separately corroborated financial record. The preceding shradh-and-rebirth episode is outside this retelling’s scope.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Focuses on the needle, the wife’s objection and the resulting distribution of wealth. Omits the preceding account of Duni Chand’s father and rebirth, and condenses the following hymn on the passing nature of worldly possessions. No name is invented for Duni Chand’s wife. Dialogue is reported indirectly; descriptions of teachings are prose summaries, not translations of Gurbani. No independent historical or human expert review is claimed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on Max Arthur Macauliffe’s original 1909 public-domain work. No modern translation or modern story adaptation has been copied. This is a traditional account, not independently verified history.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v1"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#129"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Lakh",
+      "meaning": "One hundred thousand. The source describes flags representing lakhs of rupees."
+    },
+    {
+      "term": "The Name",
+      "meaning": "Remembrance and praise of the Divine, central to the practice described in the source."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "sajjan",
+    "bhai-lalo"
+  ]
+}

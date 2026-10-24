@@ -11,7 +11,7 @@
   "endSourcePage": 503,
   "wordCount": 778,
   "charCount": 4392,
-  "startPosition": 80614,
+  "startPosition": 80613,
   "pages": [
     {
       "sourcePageNumber": 499,
@@ -297,5 +297,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-074",
-  "nextChapterId": "episode-076"
+  "nextChapterId": "episode-076",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 568,
+      "printPageNumber": 524,
+      "sourceHref": "EPUB/page_568.html",
+      "text": "1 Gulab Rai : Sodhi Gulab Rai, a grandson of Suraj Mai, from the family lineage of Guru Hargobind Sahib. It is believed that he had initiated himself as a Khalsa and used to hold a religious congregation at Anandpur Sahib after the departure of Guru Gobind Singh from Anandpur Sahib. He had no offsprings. 2 Damdama : The Guru's seat to the west of Anandpur Sahib where Guru Gobind Singh used to hold a religious congregation. It was here that the Guru had meted out punishment to the masands for their acts of misdemeaneur."
+    }
+  ]
 }

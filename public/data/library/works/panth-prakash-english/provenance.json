@@ -1,7 +1,7 @@
 {
   "workId": "panth-prakash-english",
-  "profile": "panth-prakash-english-v6",
-  "generatedAt": "2026-07-15T17:31:46.667Z",
+  "profile": "panth-prakash-english-v7",
+  "generatedAt": "2026-10-24T06:34:20.332Z",
   "generatedFrom": [
     {
       "publicationId": "volume-1",
@@ -21,18 +21,40 @@
     "rules": [
       "Volume I retains odd-numbered EPUB source pages 47 through 535 inclusive.",
       "Volume II retains odd-numbered EPUB source pages 57 through 839 inclusive.",
-      "Preliminary matter, references, indexes, and corrupted source-language/transliteration facing pages are excluded from the default reading sequence.",
+      "Preliminary matter, indexes, and corrupted source-language/transliteration facing pages are excluded from the default reading sequence.",
+      "Volume I reference appendix source pages 536–570 are preserved separately by explicit episode heading; individual reference-number mapping is not claimed. No Episode 39 heading is present. Volume II has no supplied appendix.",
       "Episodes split on sequential in-body Episode 1 through Episode 169 headings; repeated “contd.” headings remain inside their episode."
     ]
   },
   "transformations": [
     "HTML tags and executable markup removed.",
     "Whitespace normalized and running Sri Gur Panth Prakash page headers removed.",
-    "Source wording and OCR spellings retained without silent correction.",
+    "Source wording and OCR spellings retained except exact corrections recorded below.",
+    "Volume I appendix is partitioned by increasing episode headings, retaining source page locators and OCR text. Notes do not change narrative reading positions or word counts.",
     "Meter labels, numbered verses, headings, notes, and residual prose represented as semantic blocks.",
     "Long blocks split at punctuation or whitespace for readable layout without changing word order.",
     "Redundant “Episode about/of” wording removed from display titles; body text remains unchanged.",
     "Episode 3 has no descriptive heading in the body; its display title is taken from the source volume’s contents page."
+  ],
+  "verifiedCorrections": [
+    {
+      "publicationId": "volume-1",
+      "sourcePageNumber": 51,
+      "original": "between the S ikh Gurus and the Mughals",
+      "replacement": "between the Sikh Gurus and the Mughals",
+      "evidence": "Kulwant Singh, Volume I (2006), printed p. 7, verse 15; the PDF text reads Sikh without an internal space.",
+      "sourceUrl": "https://library.gurmat.info/download/sri-gur-panth-prakash-volume-1-history-of-the-10-gurus-rattan-singh-bhangoo-translation-kulwant-singh.pdf#page=52"
+    }
+  ],
+  "unresolvedSourceArtifacts": [
+    {
+      "publicationId": "volume-1",
+      "sourcePageNumber": 49,
+      "text": "Delhi Ruler's Version44",
+      "status": "present-in-printed-source",
+      "evidence": "The same-edition PDF, printed p. 5, also contains Version44. Retained rather than guessing what the number means.",
+      "sourceUrl": "https://library.gurmat.info/download/sri-gur-panth-prakash-volume-1-history-of-the-10-gurus-rattan-singh-bhangoo-translation-kulwant-singh.pdf#page=50"
+    }
   ],
   "locatorPolicy": "Chapter startPosition is the one-based cumulative word position. Page locators retain publication ID, EPUB source href, source page number, and printed page number."
 }

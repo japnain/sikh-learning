@@ -110,8 +110,21 @@ describe('PanthPrakashLibraryHome', () => {
     expect(requestedPaths).not.toContain('/data/library/search-index.json')
     const episodeOneResult = within(results)
       .getAllByRole('link')
-      .find(link => link.getAttribute('href') === '/library/panth-prakash-english/chapters/episode-001')
-    expect(episodeOneResult).toHaveAttribute('href', '/library/panth-prakash-english/chapters/episode-001')
+      .find(link => link.getAttribute('href')?.startsWith('/library/panth-prakash-english/chapters/episode-001?'))
+    expect(episodeOneResult).toHaveAttribute('href', '/library/panth-prakash-english/chapters/episode-001?find=origin+of+the+Khalsa')
+  })
+
+  test('shows the full matching-section count and exposes results beyond the first ten', async () => {
+    const user = userEvent.setup()
+    renderLibraryHome()
+    await screen.findByTestId('panth-library-home')
+    await user.type(screen.getByLabelText(/search within Panth Prakash/i), 'Khalsa')
+    await user.click(screen.getByRole('button', { name: /^search$/i }))
+    const results = await screen.findByTestId('panth-full-text-results')
+    expect(within(results).getAllByRole('link')).toHaveLength(10)
+    expect(results).toHaveTextContent(/Showing 10 of 121 matching sections/)
+    await user.click(within(results).getByRole('button', { name: 'Show more matches' }))
+    expect(within(results).getAllByRole('link')).toHaveLength(20)
   })
 
   test('offers a working retry after the library connection recovers', async () => {

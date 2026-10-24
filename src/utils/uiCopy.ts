@@ -361,7 +361,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     study: {
       eyebrow: 'Read',
       introBody: 'Comfortable reading first. Controls stay close, source layers stay tucked away, and the text stays primary.',
-      readerControls: 'Reader Controls',
+      readerControls: 'Reading appearance',
       transliteration: 'Transliteration',
       larivaar: 'Larivaar',
       vishraam: 'Vishraam',

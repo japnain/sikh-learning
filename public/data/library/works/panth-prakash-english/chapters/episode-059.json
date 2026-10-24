@@ -11,7 +11,7 @@
   "endSourcePage": 383,
   "wordCount": 920,
   "charCount": 5427,
-  "startPosition": 59009,
+  "startPosition": 59008,
   "pages": [
     {
       "sourcePageNumber": 379,
@@ -336,5 +336,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-058",
-  "nextChapterId": "episode-060"
+  "nextChapterId": "episode-060",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 560,
+      "printPageNumber": 516,
+      "sourceHref": "EPUB/page_560.html",
+      "text": "1 Multan and Peshawar : Two major cities in the northwest of India, now in Pakistan. 2 Panna Beera : A traditional and customary practice observed during the medieval age to throw an open challenge for accomplishing a brave and arduous task of capturing, killing or over powering a powerful enemy or warrior, by placing a sword and a beetal nut packing on a"
+    },
+    {
+      "sourcePageNumber": 561,
+      "printPageNumber": 517,
+      "sourceHref": "EPUB/page_561.html",
+      "text": "platform in the open court. Whosoever picked up the sword and put the beetal nut packing in his mouth, was supposed to have accepted the challenge. Such a volunteer would be made the commander of a military expedition constituted for that the accomplishment of that task. 3 Bhai Nand Lai : Son of Chhajju Mai Multani, a great scholar of Arabic and Persian languages, who became a follower of Guru Gobind Singh in 1672 at Anandpur Sahib. Earlier, he was an accountant in the court of Emperor Bahadur Shah. He is supposed to have been instrumental in organising a meeting between Bahadur Shah and Guru Gobind Singh. Born in 1633, he seems to have died in 1711-12 as per Rattan Singh Bhangoo's account. Bhai Kahn Singh Nabha, the author of Mahan Kosh, mentions his death in 1705. 4 Bairagi Vaishno — A sect of wandering Indian mendicants. 5 Darshan Fateh or Fateh Darshan, the slogan of greeting among his followers introduced by Baba Banda Singh Bahadur after ins estrangement from the mainstream Khalsa, replacing the traditional Sikh slogan, \"Waheguru ji ki Fateh.\" 6 Fateh Guru or \"Waheguru ji ka Khalsa, Waheguru ji ki Fateh\". The popular Singh slogan introduced by Guru Gobind Singh after his initiation of Sikh followers as Singhs in 1699. Since then, this is the traditional mode of greeting each other among members of the Sikh Panth. Translated into English, it means \"Khalsa belongs to Waheguru (God) and Victory be to Waheguru or God.\""
+    }
+  ]
 }

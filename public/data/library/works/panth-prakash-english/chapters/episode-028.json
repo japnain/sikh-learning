@@ -11,7 +11,7 @@
   "endSourcePage": 233,
   "wordCount": 1951,
   "charCount": 11188,
-  "startPosition": 30969,
+  "startPosition": 30968,
   "pages": [
     {
       "sourcePageNumber": 223,
@@ -659,5 +659,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-027",
-  "nextChapterId": "episode-029"
+  "nextChapterId": "episode-029",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 551,
+      "printPageNumber": 507,
+      "sourceHref": "EPUB/page_551.html",
+      "text": "1 Baba Banda Bahadur : Born at village Rajauri in Poonch District of J&K state in 1727 BS (1670 CE). First, he joined a sect of Vaishnav Sadhus and changed his name to Madho Dass. He started living on the banks of the river Godwari in Maharashtra after becoming a Siddha. He met Guru Gobind Singh in 1765 BS (1708 CE) and was initiated as a Singh and given the name of Gurbakhsh Singh. He was deputed by Guru Gobind to go to Punjab and take revenge from the Governor of Sirhind for executing the two younger sons of Guru Gobind Singh and establish a Sikh sovereign state. He arrived in Punjab and became a rallying point for all the Sikhs. He succeeded in his mission to destroy the most powerful state of Sirhind of the Mughal empire, but was finally defeated and executed in 1716 AD at Delhi. He is popularly known as Banda Singh Bahadur for his contribution to the Sikh Panth. Many memorials have been raised in his memory. 2 Sukhmani: Name of a Gurbani composition composed by the fifth Guru Arjun Dev Ji in Raag Gauri. It is recited in Sikh homes by the devout Sikhs for peace and prosperity. 3 Six saintly orders or Khat Darshan : Six sects of Indian saints known as Jogi, Jangam, Jain, Sanyasi, Bairagi and Madari. 4 Gorakh Nath: Chief of Indian yogis born at Gorakhpur in (U.P). These yogis lived a very austere life of ascetics and practised various kinds of yogic Asnas and acquired miraculous powers. 5 Rudra Jal: A Sanskrit Mantra or hymn by reciting which gods invoke blessings of Lord Shiva to hood wink their rival gods. 6 Indira Jal : Another hymn whose invocations win favours of God Indira. 7 Jachh, Rachh & Kinnar : Names of mythological Gods who remain in service of God Kuber."
+    }
+  ]
 }

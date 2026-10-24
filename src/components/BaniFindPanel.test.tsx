@@ -86,3 +86,13 @@ test('Roman match emphasis preserves accents and the result’s accessible text'
   expect(result.querySelector('mark')).toHaveTextContent('nām')
   expect(result).toHaveAccessibleName(/ਸਤਿ ਨਾਮੁ.*Sat nām/)
 })
+
+test('Devanagari find highlights the displayed script and jumps to its original line', () => {
+  useLanguageStore.setState({ scriptMode: 'devanagari' })
+  const onJump = vi.fn()
+  render(<BaniFindPanel entries={entries} onJump={onJump} query="नामु" />)
+  const result = screen.getByRole('button')
+  expect(result.querySelector('mark')).toHaveTextContent('नामु')
+  fireEvent.click(result)
+  expect(onJump).toHaveBeenCalledWith(0, 0)
+})

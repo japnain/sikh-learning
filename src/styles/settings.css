@@ -48,3 +48,20 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Expanded defaults use their own row rather than a tall paired grid cell. */
+@media (min-width: 760px) {
+  [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] { grid-column: 1 / -1; }
+  [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  [data-page='more'] [data-testid='more-translation-source'] { grid-column: 1 / -1; }
+}
+[data-page='more'] .text-xs { font-size: .8125rem; line-height: 1.6; }
+[data-page='more'] button[aria-pressed='true'] { border-color: rgb(var(--color-text)); background: rgb(var(--color-text)); color: rgb(var(--color-bg)); }
+
+@media (min-width: 760px) {
+  [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] > div > * { margin-block: 0; }
+}
+
+@media (min-width: 760px) {
+  [data-page='more']:has(> [data-testid='more-reader-defaults'][data-state='open']) > [data-testid='more-daily-nitnem-link'] { grid-column: 1 / -1; }
+}

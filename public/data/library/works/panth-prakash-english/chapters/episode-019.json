@@ -11,7 +11,7 @@
   "endSourcePage": 175,
   "wordCount": 2157,
   "charCount": 12213,
-  "startPosition": 20085,
+  "startPosition": 20084,
   "pages": [
     {
       "sourcePageNumber": 163,
@@ -786,5 +786,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-018",
-  "nextChapterId": "episode-020"
+  "nextChapterId": "episode-020",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 547,
+      "printPageNumber": 503,
+      "sourceHref": "EPUB/page_547.html",
+      "text": "1 Nahar Khan alias Nusrat Khan, a brother of wali Mohammad Khan, a Pathan of Malerkotla who tookpart in the battles of Anandpur Sahib and Chamkaur Sahib, under the orders of the Governor of Sirhind State. Guru Gobind Singh mentioned his name in his open letter to Emperor Aurangzeb \"Zafarnama\" written in Persian. 2 Khawaja Khizar alias Khijar Khan, brother of Malerkotla chief, who participated in the battle of Chamkaur and fled away. Guru Gobind Singh has referred to him in \"Zafar Nama\" as \"Khwaja Mardood\" or the \"Coward Khwaja\". 3 Wazir Khan : The military incharge (subedar) of Sirhind who was one of the most powerful commanders of the Mughal empire and most inimical to the Sikhs. He had ordered the execution of two younger Sahibzadas by murdering. He was mercilessly killed by Baba Banda Bahadur in 1767 (1710 AD) and the town of Sirhind devastated. 4 Abhimanyu : As narrated in the famous Hindu epic, Mahabharata, Abhimanyu, son of Panda va"
+    },
+    {
+      "sourcePageNumber": 548,
+      "printPageNumber": 504,
+      "sourceHref": "EPUB/page_548.html",
+      "text": "warrior, Arjuna who killed son of their main enemy Duryodhna in the war of Mahabharta and himself sacrificed his life while defending Arjuna and the Pandavas. 5 Arjuna : One of the five and the most valiant among the Pandavas. 6 Meghnath: One who thundered like a cloud, was the son of Ravana, the king of Sri Lanka, who grievously wounded Lakshman, the younger brother of Lord Rama and was himself killed by Rama, as narrated in the Hindu epic Ramayana. 7 Ranghreta: One who has come into Sikh religion from the low castes of sweepers and cobblers or scheduled castes. Earlier, a Singh from the same caste and community had carried Guru Tegh Bahadur's severed head from Delhi to Anandpur Sahib on his head. The Tenth Guru had blessed him as his own son - calling \"Ranghretta - Guru ka Beta\"."
+    }
+  ]
 }

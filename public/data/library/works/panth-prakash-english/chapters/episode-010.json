@@ -11,7 +11,7 @@
   "endSourcePage": 99,
   "wordCount": 347,
   "charCount": 2041,
-  "startPosition": 8416,
+  "startPosition": 8415,
   "pages": [
     {
       "sourcePageNumber": 97,
@@ -149,5 +149,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-009",
-  "nextChapterId": "episode-011"
+  "nextChapterId": "episode-011",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 541,
+      "printPageNumber": 497,
+      "sourceHref": "EPUB/page_541.html",
+      "text": "1 Karoon or Korah, the son of Ishor, a descendent of Israeli Dynasty and a very wealthy but miserly king of Ancient Egypt. The keys of his treasure houses alone weighed as much as the load of three hundred Mules. On his act of defiance to the instructions of Prophet Moses, he was cursed to be buried alive in the earth along with his treasures."
+    }
+  ]
 }

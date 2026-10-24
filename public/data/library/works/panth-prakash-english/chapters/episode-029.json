@@ -11,7 +11,7 @@
   "endSourcePage": 243,
   "wordCount": 1836,
   "charCount": 10660,
-  "startPosition": 32920,
+  "startPosition": 32919,
   "pages": [
     {
       "sourcePageNumber": 233,
@@ -662,5 +662,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-028",
-  "nextChapterId": "episode-030"
+  "nextChapterId": "episode-030",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 551,
+      "printPageNumber": 507,
+      "sourceHref": "EPUB/page_551.html",
+      "text": "1 Birs : Captive spirits who could be commanded to do his bidding by Banda because of his command over these supernatural spirits. 2 Sudarshan Chakra : The weapon wielded by Shri Krishna in the war of Mahabharta against the Kaurvas. It was designed and invented by sage Vishavkarma for Lord Vishnu. Sri Krishna was an incarnation of Vishnu in the of Duapar yuga. 3 Satguru: The True enlightener. 4 Dooms : Persons belonging to one of the Scheduled Caste's in the hierarchy of castes in the"
+    },
+    {
+      "sourcePageNumber": 552,
+      "printPageNumber": 508,
+      "sourceHref": "EPUB/page_552.html",
+      "text": "Indian society. Guru Nanak's lifelong companion and musician Bhai Mardana belonged to this caste. Satta Bawand, another Rababi musician during Guru Arjun Dev's time was also a Doom. 5 Baba Binod Singh : One of Guru Gobind Singh's most faithful bodyguards and a devout Singh, who was sent to accompany Baba Banda Bahadur to Punjab. 6 Kahan Singh: Another close and intimate Singh of Guru Gobind Singh. 7 Baaj Singh : A Jat by caste, sub-caste Bal belonging to village Mirpur Patti, initiated as Singh by Guru Gobind Singh and a close companion of the Guru. He was sent to Punjab from the South by the Guru to accompany Banda Bahadur to Punjab. He was made the Governor of Sirhindin 1767BS ( 17 10 CE) by Banda Bahadur after the execution of Wazir Khan. Later on he participated in many Mughal Sikh wars and attained martyrdom along with Banda Singh Bahadur at Delhi. His brother Ram Singh also was a brave Sikh warrior. 8 Wazir Khan, a resident of Kunjpura (Karnal), later on the custodian of Sirhind Province during the mughal empire. He executed the two younger Sahibzadas of Guru Gobind Singh in 176 1 BS (1704 CE). He was killed by Baba Banda Singh Bahadur in 1767BS ( 1710 CE) in the battle of Chhappar Chiri."
+    }
+  ]
 }

@@ -1,3 +1,5 @@
+import { version as packageVersion } from '../../package.json'
+
 export interface PublicAppLinks {
   supportUrl: string | null
   privacyUrl: string | null
@@ -52,6 +54,6 @@ export function buildSupportMailto(value: string | null | undefined): string | n
 
 export function getAppVersion(): string {
   const version = import.meta.env.VITE_APP_VERSION?.trim()
-  if (!version) return 'unknown'
+  if (!version) return packageVersion
   return version.replace(/[^a-zA-Z0-9._+-]/g, '').slice(0, 64) || 'unknown'
 }

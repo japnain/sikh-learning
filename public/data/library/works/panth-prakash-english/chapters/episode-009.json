@@ -11,7 +11,7 @@
   "endSourcePage": 97,
   "wordCount": 411,
   "charCount": 2384,
-  "startPosition": 8005,
+  "startPosition": 8004,
   "pages": [
     {
       "sourcePageNumber": 95,
@@ -195,5 +195,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-008",
-  "nextChapterId": "episode-010"
+  "nextChapterId": "episode-010",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 541,
+      "printPageNumber": 497,
+      "sourceHref": "EPUB/page_541.html",
+      "text": "1 Brahm Khan Lodhi alias Ibrahim Lodhi son of Sikandar Lodhi became an emperor of Delhi in 1517 CE. He was defeated at Panipat by the forces of Babur and thus ushered an era of Mughal empire in India. 2 Chakki : An indigenous stone -wheel grinder which was a household floormill in every Indian home for grinding corn before the invention of mechanical/power driven flour grinders."
+    }
+  ]
 }

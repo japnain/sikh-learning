@@ -11,7 +11,7 @@
   "endSourcePage": 421,
   "wordCount": 2361,
   "charCount": 13900,
-  "startPosition": 64635,
+  "startPosition": 64634,
   "pages": [
     {
       "sourcePageNumber": 409,
@@ -876,5 +876,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-061",
-  "nextChapterId": "episode-063"
+  "nextChapterId": "episode-063",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 562,
+      "printPageNumber": 518,
+      "sourceHref": "EPUB/page_562.html",
+      "text": "1 Ali Ali: The war cry of the Mughals at the time of war."
+    },
+    {
+      "sourcePageNumber": 563,
+      "printPageNumber": 519,
+      "sourceHref": "EPUB/page_563.html",
+      "text": "2 Sultanis: Hindu looking followers of a Muslim Pir Sakhi Sarwar."
+    }
+  ]
 }

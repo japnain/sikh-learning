@@ -35,7 +35,7 @@ test('retrying a session-retained word persists it once without replacing review
   storage.mockRestore()
   const retained = useVocabStore.getState().vocab[0]
 
-  const result = useVocabStore.getState().addWord({ ...input, context: { ...input.context, verseId: 99 } })
+  const result = useVocabStore.getState().addWord(input)
   expect(result).toMatchObject({ changed: false, persisted: true })
   expect(useVocabStore.getState().vocab).toEqual([retained])
   expect(JSON.parse(localStorage.getItem('sikh-vocab') ?? '{}').state.vocab).toEqual([retained])
@@ -145,4 +145,40 @@ test('unavailable storage at initialization retains usable memory without confir
     Object.defineProperty(window, 'localStorage', descriptor)
     vi.resetModules()
   }
+})
+
+
+test('keeps additional meanings and verse contexts without overwriting the first sense or its review', () => {
+  const input = { word: 'ਨਾਮੁ', transliteration: 'naam', meaning_en: 'Name', meaning_hi: '', meaning_pa: '', scripture: 'SGGS', sourceId: 'G', savedAt: '2026-04-05T00:00:00.000Z', context: { scripture: 'SGGS', sourceId: 'G', ang: 1, verseId: 12 } }
+  useVocabStore.getState().addWord(input)
+  useVocabStore.getState().reviewWord(input.word, 'good')
+  const original = useVocabStore.getState().vocab[0]
+  const another = {...input,meaning_en:'Identity',context:{...input.context,verseId:99},definitionSource:{name:'Mahankosh',entryId:'10'}}
+  expect(useVocabStore.getState().addWord(another)).toMatchObject({changed:true,persisted:true})
+  const retained = useVocabStore.getState().vocab[0]
+  expect(retained.context).toEqual(original.context)
+  expect(retained.meaning_en).toBe('Name')
+  expect(retained.review).toEqual(original.review)
+  expect(retained.senses).toEqual([expect.objectContaining({meaning_en:'Identity', context:another.context,definitionSource:another.definitionSource})])
+  expect(useVocabStore.getState().addWord(another)).toMatchObject({changed:false,persisted:true})
+  expect(useVocabStore.getState().vocab[0].senses).toHaveLength(1)
+})
+
+test('failed storage of a new sense is not mistaken for persistence of the original word', () => {
+  const input = { word:'ਨਾਮੁ',transliteration:'naam',meaning_en:'Name',meaning_pa:'',meaning_hi:'',scripture:'SGGS',sourceId:'G',savedAt:'2026-04-05T00:00:00.000Z',context:{scripture:'SGGS',sourceId:'G',verseId:12} }
+  useVocabStore.getState().addWord(input)
+  const another = {...input,meaning_en:'Identity',context:{...input.context,verseId:99}}
+  vi.spyOn(localStorage,'setItem').mockImplementation(() => {throw new Error('full')})
+  expect(useVocabStore.getState().addWord(another)).toMatchObject({changed:true,persisted:false})
+  expect(isVocabEntryPersisted(input.word,'word',input)).toBe(true)
+  expect(isVocabEntryPersisted(input.word,'word',another)).toBe(false)
+})
+
+test('filling a legacy blank answer makes it reviewable while empty entries are excluded', () => {
+  const input = { word:'ਨਾਮੁ',transliteration:'naam',meaning_en:'',meaning_pa:'',meaning_hi:'',scripture:'SGGS',sourceId:'G',savedAt:'2026-04-05T00:00:00.000Z' }
+  useVocabStore.getState().addWord(input)
+  expect(useVocabStore.getState().getDueWords()).toEqual([])
+  useVocabStore.getState().addWord({...input,meaning_pa:'ਨਾਮ',definitionSource:{name:'BaniDB Kosh',entryId:'10'}})
+  expect(useVocabStore.getState().getDueWords()).toHaveLength(1)
+  expect(useVocabStore.getState().vocab[0].meaning_pa).toBe('ਨਾਮ')
 })

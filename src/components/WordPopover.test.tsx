@@ -232,3 +232,40 @@ test('saving a word remains available when the same text was saved only as a ver
   expect(screen.getByRole('button', { name: 'Saved', exact: true })).toBeInTheDocument()
   expect(useVocabStore.getState().vocab.map(entry => entry.kind)).toEqual(['phrase', 'word'])
 })
+
+
+test('requires a chosen answer and saves its dictionary definition with attribution', async () => {
+  render(<WordPopover word={{...word,meaning_en:'',meaning_hi:'',meaning_pa:''}} onClose={() => {}} scripture="SGGS" sourceId="G" ang={1} shabadId={1} verseId={12} line="ੴ ਸਤਿ ਨਾਮੁ" />)
+  expect(screen.getByRole('button',{name:/save word/i})).toBeDisabled()
+  expect(await screen.findByText('ਇੱਕ ਕਰਤਾ ਪੁਰਖ')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button',{name:/Use this definition · BaniDB Kosh/}))
+  fireEvent.click(screen.getByRole('button',{name:/save word/i}))
+  expect(useVocabStore.getState().vocab[0]).toMatchObject({meaning_en:'',meaning_pa:'ਇੱਕ ਕਰਤਾ ਪੁਰਖ',definitionSource:{name:'BaniDB Kosh'},context:{shabadId:1,verseId:12,line:'ੴ ਸਤਿ ਨਾਮੁ'}})
+  expect(screen.getByRole('button',{name:/saved/i})).toBeDisabled()
+})
+
+test('can save another selected definition and original verse for an already saved word', async () => {
+  const view = render(<WordPopover word={word} onClose={() => {}} scripture="SGGS" sourceId="G" verseId={12} />)
+  fireEvent.click(screen.getByRole('button',{name:/save word/i}))
+  view.rerender(<WordPopover word={word} onClose={() => {}} scripture="SGGS" sourceId="G" verseId={24} />)
+  expect(await screen.findByText('ਇੱਕ ਅਕਾਲ ਪੁਰਖ.')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button',{name:/Use this definition · Mahankosh/}))
+  fireEvent.click(screen.getByRole('button',{name:/save word/i}))
+  const saved = useVocabStore.getState().vocab[0]
+  expect(saved.meaning_en).toBe('One Creator')
+  expect(saved.context?.verseId).toBe(12)
+  expect(saved.senses).toEqual([expect.objectContaining({meaning_pa:'ਇੱਕ ਅਕਾਲ ਪੁਰਖ.',definitionSource:expect.objectContaining({name:'Mahankosh'}),context:expect.objectContaining({verseId:24})})])
+})
+
+
+test('keeps legacy-only Kosh text in a disclosure and excludes it from review answers', async () => {
+  vi.spyOn(mahanApi, 'fetchMahanKoshEntries').mockResolvedValue([])
+  vi.spyOn(baniApi, 'fetchKoshEntries').mockResolvedValue([{
+    id: 90, word: 'legacy-word', wordUni: '', definition: 'legacy-encoded-definition', definitionUni: '',
+  }])
+  render(<WordPopover word={{ ...word, meaning_en: '', meaning_hi: '', meaning_pa: '' }} onClose={() => {}} />)
+  const legacy = await screen.findByText('legacy-encoded-definition')
+  expect(legacy.closest('details')).not.toHaveAttribute('open')
+  expect(screen.queryByRole('button', { name: /Use this definition · BaniDB Kosh/ })).not.toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /save word/i })).toBeDisabled()
+})

@@ -1,3 +1,5 @@
+import '../styles/catalog.css'
+import { useCompanionCopy, getCompanionText } from '../utils/companionCopy'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
@@ -72,15 +74,15 @@ function normalizeSearch(text: unknown): string {
   return typeof text === 'string' ? text.toLowerCase() : String(text ?? '').toLowerCase()
 }
 
-function getSourceAngLabel(shabad: AmritKeertanShabad): string | null {
+function getSourceAngLabel(shabad: AmritKeertanShabad, t: (text: string) => string): string | null {
   if (shabad.sourceAng == null) return null
 
   const sourceId = shabad.sourceMeta?.sourceId
-  if (sourceId === 'G') return `SGGS Ang ${shabad.sourceAng}`
-  if (sourceId === 'D') return `DG Ang ${shabad.sourceAng}`
-  if (sourceId) return `${sourceId} Ang ${shabad.sourceAng}`
+  if (sourceId === 'G') return `${t('SGGS Ang')} ${shabad.sourceAng}`
+  if (sourceId === 'D') return `${t('DG Ang')} ${shabad.sourceAng}`
+  if (sourceId) return `${sourceId} ${t('Ang')} ${shabad.sourceAng}`
 
-  return `Source Ang ${shabad.sourceAng}`
+  return `${t('Source Ang')} ${shabad.sourceAng}`
 }
 
 function getShabadSearchText(shabad: AmritKeertanShabad): string {
@@ -114,7 +116,7 @@ function getShabadKey(shabad: AmritKeertanShabad): string {
   return `${shabad.headerId}-${shabad.indexId}-${shabad.shabadId}`
 }
 
-function getAmritPageRange(shabads: AmritKeertanShabad[]): string | null {
+function getAmritPageRange(shabads: AmritKeertanShabad[], t: (text: string) => string): string | null {
   const pages = shabads
     .map(shabad => shabad.amritPageNo)
     .filter((page): page is number => Number.isFinite(page) && page > 0)
@@ -124,7 +126,7 @@ function getAmritPageRange(shabads: AmritKeertanShabad[]): string | null {
   const first = Math.min(...pages)
   const last = Math.max(...pages)
 
-  return first === last ? `AK Page ${first}` : `AK Pages ${first}-${last}`
+  return first === last ? `${t('AK Page')} ${first}` : `${t('AK Pages')} ${first}-${last}`
 }
 
 function compareNullableNumbers(a: number | null | undefined, b: number | null | undefined): number {
@@ -149,15 +151,16 @@ function compareLabels(a: string | null | undefined, b: string | null | undefine
   return left.localeCompare(right)
 }
 
-function getCompactMeta(shabad: AmritKeertanShabad): string[] {
+function getCompactMeta(shabad: AmritKeertanShabad, t: (text: string) => string): string[] {
   return [
-    getSourceAngLabel(shabad),
+    getSourceAngLabel(shabad, t),
     shabad.raag,
     shabad.writer,
   ].filter((item): item is string => Boolean(item))
 }
 
 export default function AmritKeertan() {
+  const { t, lang, locale } = useCompanionCopy()
   const scriptMode = useLanguageStore(state => state.scriptMode)
   const navigate = useNavigate()
   const { headerId } = useParams()
@@ -234,8 +237,8 @@ export default function AmritKeertan() {
     selectedHeaderId && selectedHeaderLoaded ? (shabadsByHeader[selectedHeaderId] ?? []) : []
   ), [selectedHeaderId, selectedHeaderLoaded, shabadsByHeader])
   const selectedAmritPageRange = useMemo(
-    () => getAmritPageRange(selectedShabads),
-    [selectedShabads]
+    () => getAmritPageRange(selectedShabads, text => getCompanionText(locale, text)),
+    [selectedShabads, locale]
   )
   const bookPositionByKey = useMemo(() => {
     const positions = new Map<string, number>()
@@ -320,54 +323,49 @@ export default function AmritKeertan() {
   }
 
   const searchPlaceholder = selectedHeader
-    ? 'Search this section by shabad, source, raag, writer, English, or ang...'
-    : 'Search Amrit Keertan sections...'
+    ? t('Search this section by shabad, source, raag, writer, English, or ang...')
+    : t('Search Amrit Keertan sections...')
 
   return (
     <div
-      lang="en"
+      lang={lang}
       className="page-shell max-w-3xl mx-auto min-h-screen bg-parchment text-ink transition-colors duration-300 animate-fade-in dark:bg-dark-bg dark:text-dark-text"
       data-testid="page-amrit-keertan"
       data-page="amrit-keertan"
     >
       <nav
         className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-ink/68 dark:text-dark-text/75"
-        aria-label="Breadcrumb"
+        aria-label={t("Breadcrumb")}
         data-testid="amrit-keertan-breadcrumbs"
       >
         <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
-          Read
-        </Link>
+          {t("Read")}</Link>
         <span aria-hidden="true">/</span>
         {selectedHeader ? (
           <Link to="/banis/amrit-keertan" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
-            Amrit Keertan
-          </Link>
+            {t("Amrit Keertan")}</Link>
         ) : (
-          <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">Amrit Keertan</span>
+          <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">{t("Amrit Keertan")}</span>
         )}
         {selectedHeader ? (
           <>
             <span aria-hidden="true">/</span>
-            <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">Section</span>
+            <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">{t("Section")}</span>
           </>
         ) : null}
       </nav>
 
       <section className="hero-surface px-5 py-5" aria-labelledby="amrit-keertan-title">
-        <div className="flex items-start justify-between gap-4">
+        <div className="directory-title-row flex flex-col items-start justify-between gap-4 sm:flex-row">
           <div className="min-w-0">
-            <p className="eyebrow">Read Directory</p>
+            <p className="eyebrow">{t("Read Directory")}</p>
             <h1 id="amrit-keertan-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
-              Amrit Keertan
-            </h1>
+              {t("Amrit Keertan")}</h1>
             <p className="mt-3 max-w-[42rem] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/90">
-              Browse Amrit Keertan by section, search within each set of shabads, and open the full shabad in the Study reader with source metadata intact.
-            </p>
+              {t("Browse Amrit Keertan by section, search within each set of shabads, and open the full shabad in the Study reader with source metadata intact.")}</p>
           </div>
           <span className="chip-pill shrink-0">
-            {AMRIT_KEERTAN_SECTION_COUNT} sections
-          </span>
+            {AMRIT_KEERTAN_SECTION_COUNT} {t("sections")}</span>
         </div>
 
         <div className="relative mt-5">
@@ -376,7 +374,7 @@ export default function AmritKeertan() {
             id="amrit-keertan-search"
             name="amrit-keertan-search"
             type="search"
-            aria-label={selectedHeader ? 'Search this Amrit Keertan section' : 'Search Amrit Keertan sections'}
+            aria-label={selectedHeader ? t('Search this Amrit Keertan section') : t('Search Amrit Keertan sections')}
             value={query}
             onChange={event => {
               setQuery(event.target.value)
@@ -396,7 +394,7 @@ export default function AmritKeertan() {
               <div className="section-shell px-4 py-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="eyebrow">Keertan Section</p>
+                    <p className="eyebrow">{t("Keertan Section")}</p>
                     <p lang={getScriptTextLang(scriptMode)} className={`mt-2 ${getScriptTextFontClass(scriptMode)} text-3xl leading-relaxed text-ink dark:text-dark-text`}>
                       {renderScriptText(selectedHeader.gurmukhi, scriptMode)}
                     </p>
@@ -407,17 +405,16 @@ export default function AmritKeertan() {
                     ) : null}
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <MetadataChip>Section {selectedHeaderIndex + 1} of {AMRIT_KEERTAN_SECTION_COUNT}</MetadataChip>
-                    <MetadataChip>Book order</MetadataChip>
+                    <MetadataChip>{t("Section")} {t('{current} of {total}', { current: selectedHeaderIndex + 1, total: AMRIT_KEERTAN_SECTION_COUNT })}</MetadataChip>
+                    <MetadataChip>{t("Book order")}</MetadataChip>
                     {selectedAmritPageRange ? <MetadataChip>{selectedAmritPageRange}</MetadataChip> : null}
-                    <MetadataChip>{selectedShabads.length} shabads</MetadataChip>
-                    {normalizedQuery ? <MetadataChip>{filteredShabads.length} matching</MetadataChip> : null}
+                    <MetadataChip>{selectedShabads.length} {t("shabads")}</MetadataChip>
+                    {normalizedQuery ? <MetadataChip>{filteredShabads.length} {t("matching")}</MetadataChip> : null}
                   </div>
                 </div>
                 {selectedHeaderLoaded ? (
                   <p className="mt-3 border-t border-sand/12 pt-3 font-sans text-xs leading-5 text-ink/68 dark:border-dark-text/12 dark:text-dark-text/72">
-                    Ordered by the Amrit Keertan book index. SGGS Ang, source, raag, and writer show where each shabad comes from.
-                  </p>
+                    {t("Ordered by the Amrit Keertan book index. SGGS Ang, source, raag, and writer show where each shabad comes from.")}</p>
                 ) : null}
               </div>
 
@@ -425,17 +422,17 @@ export default function AmritKeertan() {
                 <div className="section-shell-quiet px-4 py-4" data-testid="amrit-keertan-order-controls">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className="eyebrow">View order</p>
+                      <p className="eyebrow">{t("View order")}</p>
                       <p className="mt-1 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/66">
-                        Keep book order as the default, or compare by source metadata.
-                      </p>
+                        {t("Keep book order as the default, or compare by source metadata.")}</p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setShowEnglishPreview(value => !value)}
+                      aria-pressed={showEnglishPreview}
                       className="interactive-focus rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-xs font-semibold text-ink/70 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/80"
                     >
-                      English {showEnglishPreview ? 'On' : 'Off'}
+                      {t('English')} {t(showEnglishPreview ? 'On' : 'Off')}
                     </button>
                   </div>
                   <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -454,8 +451,8 @@ export default function AmritKeertan() {
                           }`}
                           aria-pressed={selected}
                         >
-                          <span className="block font-sans text-xs font-semibold">{option.label}</span>
-                          <span className="mt-1 block font-sans text-[11px] leading-4">{option.description}</span>
+                          <span className="block font-sans text-xs font-semibold">{t(option.label)}</span>
+                          <span className="mt-1 block font-sans text-[11px] leading-4">{t(option.description)}</span>
                         </button>
                       )
                     })}
@@ -470,12 +467,10 @@ export default function AmritKeertan() {
                     className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-sand/15 bg-parchment-card px-4 py-3 font-sans text-sm font-semibold text-ink/75 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/90"
                   >
                     <IconArrowLeft size={15} />
-                    Previous section
-                  </Link>
+                    {t("Previous section")}</Link>
                 ) : (
                   <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-sand/10 bg-parchment-low px-4 py-3 font-sans text-sm text-ink/68 dark:border-dark-text/10 dark:bg-white/[0.035] dark:text-dark-text/64">
-                    Previous section
-                  </span>
+                    {t("Previous section")}</span>
                 )}
 
                 {nextHeader ? (
@@ -483,13 +478,11 @@ export default function AmritKeertan() {
                     to={`/banis/amrit-keertan/${nextHeader.headerId}`}
                     className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
                   >
-                    Next section
-                    <IconArrowRight size={15} />
+                    {t("Next section")}<IconArrowRight size={15} />
                   </Link>
                 ) : (
                   <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-sand/10 bg-parchment-low px-4 py-3 font-sans text-sm text-ink/68 dark:border-dark-text/10 dark:bg-white/[0.035] dark:text-dark-text/64">
-                    Next section
-                  </span>
+                    {t("Next section")}</span>
                 )}
               </div>
 
@@ -500,31 +493,27 @@ export default function AmritKeertan() {
                   data-testid="amrit-keertan-shabad-error"
                 >
                   <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
-                    This section could not load right now.
-                  </p>
+                    {t("This section could not load right now.")}</p>
                   <button
                     type="button"
                     onClick={retrySelectedHeader}
                     className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
                   >
-                    Retry
-                  </button>
+                    {t("Retry")}</button>
                 </div>
               ) : !selectedHeaderLoaded ? (
                 <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
-                  Loading shabads...
-                </p>
+                  {t("Loading shabads...")}</p>
               ) : visibleShabads.length === 0 ? (
                 <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
-                  No shabads match this search yet.
-                </p>
+                  {t("No shabads match this search yet.")}</p>
               ) : (
                 <div className="space-y-3" data-testid="amrit-keertan-shabad-list">
                   {visibleShabads.map((shabad, index) => {
-                    const sourceAngLabel = getSourceAngLabel(shabad)
+                    const sourceAngLabel = getSourceAngLabel(shabad, t)
                     const shabadKey = getShabadKey(shabad)
                     const bookPosition = bookPositionByKey.get(shabadKey) ?? index + 1
-                    const compactMeta = getCompactMeta(shabad)
+                    const compactMeta = getCompactMeta(shabad, t)
                     const detailsOpen = expandedDetailsKey === shabadKey
 
                     return (
@@ -537,12 +526,12 @@ export default function AmritKeertan() {
                           type="button"
                           onClick={() => openShabad(shabad, bookPosition)}
                           className="interactive-focus w-full rounded-md text-left"
-                          aria-label={`Open AK Page ${shabad.amritPageNo || 'unknown'} item ${bookPosition} in Study`}
+                          aria-label={t('Open AK Page {page} item {item} in Study', { page: shabad.amritPageNo || t('unknown'), item: bookPosition })}
                         >
                           <div className="flex items-start justify-between gap-4">
                             <div className="min-w-0">
                               <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-dark dark:text-gold-light">
-                                {shabad.amritPageNo ? `AK Page ${shabad.amritPageNo}` : 'AK Page unknown'} · Item {bookPosition} of {selectedShabads.length}
+                                {t('AK Page')} {shabad.amritPageNo || t('unknown')} · {t('Item')} {t('{current} of {total}', { current: bookPosition, total: selectedShabads.length })}
                               </p>
                               <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl leading-relaxed text-ink dark:text-dark-text`}>
                                 {renderScriptText(shabad.gurmukhi, scriptMode)}
@@ -553,7 +542,7 @@ export default function AmritKeertan() {
                                 </p>
                               ) : null}
                               {showEnglishPreview && shabad.translationEn ? (
-                                <p className="mt-3 border-l border-gold/25 pl-3 font-sans text-sm leading-6 text-ink/70 dark:border-gold/30 dark:text-dark-text/90">
+                                <p lang="en" className="mt-3 border-l border-gold/25 pl-3 font-sans text-sm leading-6 text-ink/70 dark:border-gold/30 dark:text-dark-text/90">
                                   {shabad.translationEn}
                                 </p>
                               ) : null}
@@ -564,30 +553,29 @@ export default function AmritKeertan() {
                               ) : null}
                             </div>
                             <span className="mt-1 shrink-0 rounded-full border border-gold/20 bg-gold/[0.08] px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-dark dark:border-gold/25 dark:bg-gold/10 dark:text-gold-light">
-                              Open
-                            </span>
+                              {t("Open")}</span>
                           </div>
                         </button>
 
                         <button
                           type="button"
                           onClick={() => setExpandedDetailsKey(detailsOpen ? null : shabadKey)}
-                          className="interactive-focus mt-3 rounded-full font-sans text-xs font-semibold text-gold-dark underline-offset-4 hover:underline dark:text-gold-light"
+                          className="interactive-focus mt-3 min-h-[44px] rounded-lg px-2 font-sans text-sm font-semibold text-gold-dark underline-offset-4 hover:underline dark:text-gold-light"
                           aria-expanded={detailsOpen}
                         >
-                          {detailsOpen ? 'Hide source details' : 'Show source details'}
+                          {t(detailsOpen ? 'Hide source details' : 'Show source details')}
                         </button>
 
                         {detailsOpen ? (
                           <div className="mt-3 flex flex-wrap gap-1.5" data-testid="amrit-keertan-source-details">
-                            {shabad.amritPageNo ? <MetadataChip onClick={() => setQuery(String(shabad.amritPageNo))}>AK Page {shabad.amritPageNo}</MetadataChip> : null}
+                            {shabad.amritPageNo ? <MetadataChip onClick={() => setQuery(String(shabad.amritPageNo))}>{t("AK Page")} {shabad.amritPageNo}</MetadataChip> : null}
                             {sourceAngLabel ? <MetadataChip onClick={() => setQuery(String(shabad.sourceAng))}>{sourceAngLabel}</MetadataChip> : null}
-                            {shabad.lineNo ? <MetadataChip onClick={() => setQuery(String(shabad.lineNo))}>Line {shabad.lineNo}</MetadataChip> : null}
+                            {shabad.lineNo ? <MetadataChip onClick={() => setQuery(String(shabad.lineNo))}>{t("Line")} {shabad.lineNo}</MetadataChip> : null}
                             {shabad.source ? <MetadataChip onClick={() => setQuery(shabad.source)}>{shabad.source}</MetadataChip> : null}
                             {shabad.raag ? <MetadataChip onClick={() => setQuery(shabad.raag)}>{shabad.raag}</MetadataChip> : null}
                             {shabad.raagMeta?.raagWithPage ? <MetadataChip onClick={() => setQuery(shabad.raagMeta?.raagWithPage ?? '')}>{shabad.raagMeta.raagWithPage}</MetadataChip> : null}
                             {shabad.writer ? <MetadataChip onClick={() => setQuery(shabad.writer)}>{shabad.writer}</MetadataChip> : null}
-                            <MetadataChip onClick={() => setQuery(String(shabad.shabadId))}>Shabad {shabad.shabadId}</MetadataChip>
+                            <MetadataChip onClick={() => setQuery(String(shabad.shabadId))}>{t("Shabad")} {shabad.shabadId}</MetadataChip>
                           </div>
                         ) : null}
                       </article>
@@ -598,8 +586,7 @@ export default function AmritKeertan() {
             </>
           ) : loadingHeaders ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
-              Loading section...
-            </p>
+              {t("Loading section...")}</p>
           ) : headerIssue ? (
             <div
               className="section-shell-quiet px-4 py-5"
@@ -607,27 +594,23 @@ export default function AmritKeertan() {
               data-testid="amrit-keertan-header-error"
             >
               <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
-                Amrit Keertan could not load right now.
-              </p>
+                {t("Amrit Keertan could not load right now.")}</p>
               <button
                 type="button"
                 onClick={retryHeaders}
                 className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
               >
-                Retry
-              </button>
+                {t("Retry")}</button>
             </div>
           ) : (
             <div className="section-shell-quiet px-4 py-5">
               <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
-                This Amrit Keertan section was not found.
-              </p>
+                {t("This Amrit Keertan section was not found.")}</p>
               <Link
                 to="/banis/amrit-keertan"
                 className="interactive-focus interactive-pill-link mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
               >
-                Back to Amrit Keertan
-              </Link>
+                {t("Back to Amrit Keertan")}</Link>
             </div>
           )}
         </section>
@@ -635,8 +618,7 @@ export default function AmritKeertan() {
         <section className="mt-5 space-y-3" data-testid="amrit-keertan-header-list">
           {loadingHeaders ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
-              Loading sections...
-            </p>
+              {t("Loading sections...")}</p>
           ) : headerIssue ? (
             <div
               className="section-shell-quiet px-4 py-5"
@@ -644,20 +626,17 @@ export default function AmritKeertan() {
               data-testid="amrit-keertan-header-error"
             >
               <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
-                Amrit Keertan could not load right now.
-              </p>
+                {t("Amrit Keertan could not load right now.")}</p>
               <button
                 type="button"
                 onClick={retryHeaders}
                 className="interactive-focus mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
               >
-                Retry
-              </button>
+                {t("Retry")}</button>
             </div>
           ) : filteredHeaders.length === 0 ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
-              No sections match this search yet.
-            </p>
+              {t("No sections match this search yet.")}</p>
           ) : (
             <>
               {visibleHeaders.map(header => {
@@ -672,7 +651,7 @@ export default function AmritKeertan() {
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0">
                         <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                          Section {sectionIndex + 1}
+                          {t("Section")} {sectionIndex + 1}
                         </p>
                         <p lang={getScriptTextLang(scriptMode)} className={`mt-2 ${getScriptTextFontClass(scriptMode)} text-xl leading-relaxed text-ink dark:text-dark-text`}>
                           {renderScriptText(header.gurmukhi, scriptMode)}
@@ -697,8 +676,7 @@ export default function AmritKeertan() {
                   aria-live="polite"
                   data-testid="amrit-keertan-header-count"
                 >
-                  Showing {visibleHeaders.length} of {filteredHeaders.length} sections
-                </p>
+                  {t('Showing {visible} of {total} sections', { visible: visibleHeaders.length, total: filteredHeaders.length })}</p>
                 {visibleHeaders.length < filteredHeaders.length ? (
                   <button
                     type="button"
@@ -706,8 +684,7 @@ export default function AmritKeertan() {
                     className="interactive-focus min-h-[48px] rounded-lg border border-gold/30 bg-parchment-card px-5 font-sans text-sm font-semibold text-gold-dark dark:border-gold/35 dark:bg-dark-card dark:text-gold-light"
                     data-testid="amrit-keertan-show-more"
                   >
-                    Show more sections
-                  </button>
+                    {t("Show more sections")}</button>
                 ) : null}
               </div>
             </>

@@ -3,15 +3,19 @@
 import { spawn } from 'node:child_process'
 import { once } from 'node:events'
 import fs from 'node:fs'
+import path from 'node:path'
 import { createRequire } from 'node:module'
 import process from 'node:process'
 import { chromium } from 'playwright-core'
+import { installDeterministicFixtures, resolveBrowserExecutable } from './browser-fixtures.mjs'
 
 const require = createRequire(import.meta.url)
 const AXE_SOURCE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8')
 const BASE_URL = process.env.QA_A11Y_BASE_URL ?? 'http://127.0.0.1:4186'
 const SERVER_MODE = process.env.QA_A11Y_SERVER_MODE === 'preview' ? 'preview' : 'dev'
 const SCAN_TIMEOUT_MS = Number(process.env.QA_A11Y_SCAN_TIMEOUT_MS) || 45_000
+const DETERMINISTIC = process.env.QA_DETERMINISTIC !== '0'
+const fixtureSessions = []
 const SWEEP_SCOPE = process.env.QA_A11Y_SCOPE ?? 'all'
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
 const HUKAMNAMA_SHARE_ROUTE = '/study?hukamnamaDate=2026-04-05'
@@ -23,7 +27,9 @@ const ROUTES = [
   '/study?source=G&ang=183',
   '/library',
   '/library/panth-prakash-english',
-  '/library/panth-prakash-english/chapters/episode-001-the-episode-about-the-origin-of-the-khalsa',
+  '/library/panth-prakash-english/chapters/episode-001',
+  '/banis?collection=stories',
+  '/stories/bhai-lalo',
   '/nitnem/customize',
   '/banis/amrit-keertan',
   '/banis/amrit-keertan/1',
@@ -45,27 +51,11 @@ const SHARE_COMPOSER_MODES = [
   { id: 'share-reflow-200', viewport: { width: 320, height: 568 }, dark: false, textScale: 2 },
   { id: 'share-reader-dock', viewport: { width: 390, height: 844 }, dark: true, textScale: 1, deep: true, hasTouch: true },
 ]
-const CHROME_CANDIDATES = [
-  process.env.CHROME_EXECUTABLE,
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  '/Applications/Chromium.app/Contents/MacOS/Chromium',
-  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
-  '/usr/bin/google-chrome',
-  '/usr/bin/chromium',
-  '/usr/bin/chromium-browser',
-].filter(Boolean)
-
 function delay(duration) {
   return new Promise(resolve => setTimeout(resolve, duration))
 }
 
-function resolveChromeExecutable() {
-  const executable = CHROME_CANDIDATES.find(candidate => fs.existsSync(candidate))
-  if (!executable) {
-    throw new Error('No supported Chrome/Chromium executable was found. Set CHROME_EXECUTABLE to continue.')
-  }
-  return executable
-}
+const resolveChromeExecutable = resolveBrowserExecutable
 
 async function waitForServer(url, child) {
   const deadline = Date.now() + 45_000
@@ -93,12 +83,11 @@ async function startDevServer() {
 
   const serverUrl = new URL(BASE_URL)
   const port = serverUrl.port || (serverUrl.protocol === 'https:' ? '443' : '80')
-  const child = spawn('npm', ['run', SERVER_MODE, '--', '--host', serverUrl.hostname, '--port', port, '--strictPort'], {
+  const child = spawn(process.execPath, [path.join(path.dirname(require.resolve('vite/package.json')), 'bin/vite.js'), ...(SERVER_MODE === 'preview' ? ['preview'] : []), '--host', serverUrl.hostname, '--port', port, '--strictPort', '--configLoader', 'runner'], {
     cwd: process.cwd(),
     env: {
       ...process.env,
       FORCE_COLOR: '0',
-      VITE_NAAMRAS_BANIDB_MOCK: 'true',
     },
     stdio: 'ignore',
   })
@@ -127,6 +116,17 @@ async function preparePage(page, route) {
   } else {
     await page.locator('[data-page]').first().waitFor({ state: 'visible', timeout: 10_000 })
   }
+
+  const contentSelector = route === '/' ? '[data-testid="home-hukamnama-card"]'
+    : route.startsWith('/stories/') ? '#story-title'
+    : route === '/banis?collection=stories' ? '[data-testid="story-browser"] .story-card'
+    : route.includes('/chapters/') ? '[data-testid="panth-chapter-reader"]'
+    : route === '/library/panth-prakash-english' ? '[data-testid="panth-chapter-browser"]'
+    : route.startsWith('/banis/rehat') ? '[data-page="rehat"][data-ai-state="ready"]'
+    : route === '/banis/amrit-keertan' ? '[data-testid="amrit-keertan-header-list"] a'
+    : route === '/banis/amrit-keertan/1' ? '[data-testid="amrit-keertan-shabad-row"]'
+    : null
+  if (contentSelector) await page.locator(contentSelector).first().waitFor({ state: 'visible', timeout: 15_000 })
 
   await page.waitForTimeout(300)
   await page.addScriptTag({ content: AXE_SOURCE })
@@ -164,7 +164,10 @@ async function createAuditContext(browser, mode) {
     hasTouch: Boolean(mode.hasTouch),
     colorScheme: mode.dark ? 'dark' : 'light',
     reducedMotion: 'reduce',
+    timezoneId: 'America/Toronto',
+    serviceWorkers: DETERMINISTIC ? 'block' : 'allow',
   })
+  if (DETERMINISTIC) fixtureSessions.push(await installDeterministicFixtures(context, BASE_URL, { longHukamnama: Boolean(mode.deep) }))
 
   await context.addInitScript(({ dark }) => {
     localStorage.clear()
@@ -470,6 +473,8 @@ async function main() {
     await browser?.close()
     await stopDevServer(server)
   }
+
+  for (const fixtures of fixtureSessions) fixtures.assertNoUnexpectedRequests()
 
   if (failures.length === 0) {
     const routeChecks = SWEEP_SCOPE === 'share-composer' ? 0 : ROUTES.length * MODES.length

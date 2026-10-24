@@ -1082,14 +1082,13 @@
 }
 
 .read-search-result__meaning {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0.45rem;
+  display: block;
   line-height: 1.55;
 }
 
-.read-search-result__meaning > span {
+.read-search-result__label {
+  display: block;
+  margin-bottom: 0.25rem;
   color: rgb(var(--color-accent-strong));
   font-size: 0.58rem;
   font-weight: 800;
@@ -1974,3 +1973,9 @@
   color: rgb(var(--color-text-muted));
   font-size: .8125rem;
 }
+
+/* Keep exits in a stable header, with only the content pane scrolling. */
+.study-reader-word-sheet, .study-verse-sheet { overflow: clip; }
+.study-word-header, .study-verse-sheet__header { background: rgb(var(--color-surface)); color: rgb(var(--color-text)); }
+.study-word-body [lang='pa-Guru'], .study-word-body [lang='hi'] { font-size: 1rem; line-height: 1.75; }
+.study-word-body .text-xs { font-size: .8125rem; line-height: 1.65; }

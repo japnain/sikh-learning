@@ -1,59 +1,69 @@
 #!/usr/bin/env node
-
 import fs from 'node:fs'
 import path from 'node:path'
-import process from 'node:process'
+import { fileURLToPath } from 'node:url'
+import { gzipSync } from 'node:zlib'
+import ts from 'typescript'
 
-const DIST_DIR = path.resolve('dist')
-const ASSETS_DIR = path.join(DIST_DIR, 'assets')
-const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html')
-const BACKEND_CHUNK_PATTERN = /^vendor-backend-.*\.js$/
+// Measure the entire static startup graph, including shared chunks. Lazy route
+// chunks are excluded; changes must fit a deliberate, reviewable transfer budget.
+export const STARTUP_BUDGETS = { javascriptGzip: 190 * 1024, cssGzip: 36 * 1024, javascriptRaw: 650 * 1024, cssRaw: 210 * 1024 }
 
-function fail(message) {
-  console.error(`Startup bundle audit failed: ${message}`)
-  process.exitCode = 1
-}
+export function inspectStartupBundle(distDirectory = 'dist', budgets = STARTUP_BUDGETS) {
+  const root = path.resolve(distDirectory)
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8')
+  const failures = []
+  const entry = html.match(/<script[^>]+type="module"[^>]+src="([^"]+)"/)
+  if (!entry) throw new Error('The production module entry could not be identified.')
+  const assetNames = fs.readdirSync(path.join(root, 'assets'))
+  if (!assetNames.some(name => /^vendor-backend-.*\.js$/.test(name))) failures.push('The lazy cloud backend chunk is missing.')
+  const seeds = [...html.matchAll(/(?:src|href)="([^\"]+\.(?:js|css))"/g)].map(match => match[1])
+  const visited = new Set()
+  const totals = { javascriptGzip: 0, cssGzip: 0, javascriptRaw: 0, cssRaw: 0 }
+  const assets = []
+  const queue = seeds.map(name => path.resolve(root, name.replace(/^\/+/, '')))
 
-if (!fs.existsSync(INDEX_HTML_PATH)) {
-  fail('dist/index.html does not exist. Run the production build first.')
-} else {
-  const indexHtml = fs.readFileSync(INDEX_HTML_PATH, 'utf8')
-  const backendChunks = fs.existsSync(ASSETS_DIR)
-    ? fs.readdirSync(ASSETS_DIR).filter(file => BACKEND_CHUNK_PATTERN.test(file))
-    : []
-
-  if (backendChunks.length === 0) {
-    fail('the lazy cloud runtime backend chunk is missing from the production output.')
-  }
-
-  const preloadedBackendChunks = backendChunks.filter(file => (
-    indexHtml.includes(`rel="modulepreload" crossorigin href="/assets/${file}"`)
-    || indexHtml.includes(`rel="modulepreload" href="/assets/${file}"`)
-  ))
-
-  if (preloadedBackendChunks.length > 0) {
-    fail(`Supabase is in the initial preload graph: ${preloadedBackendChunks.join(', ')}`)
-  }
-
-  const entryMatch = indexHtml.match(/<script[^>]+type="module"[^>]+src="([^"]+)"/)
-  if (!entryMatch) {
-    fail('the production module entry could not be identified.')
-  } else {
-    const entryPath = path.join(DIST_DIR, entryMatch[1].replace(/^\/+/, ''))
-    const entrySource = fs.readFileSync(entryPath, 'utf8')
-    const staticallyImportedBackendChunks = backendChunks.filter(file => (
-      entrySource.includes(`from"./${file}"`)
-      || entrySource.includes(`from'./${file}'`)
-    ))
-
-    if (staticallyImportedBackendChunks.length > 0) {
-      fail(`the app entry statically imports Supabase: ${staticallyImportedBackendChunks.join(', ')}`)
+  while (queue.length) {
+    const absolute = queue.shift()
+    if (visited.has(absolute)) continue
+    visited.add(absolute)
+    if (!absolute.startsWith(`${root}${path.sep}`)) throw new Error('An initial asset escapes the build directory.')
+    const bytes = fs.readFileSync(absolute)
+    const relative = path.relative(root, absolute)
+    const kind = absolute.endsWith('.css') ? 'css' : 'javascript'
+    totals[`${kind}Raw`] += bytes.length
+    totals[`${kind}Gzip`] += gzipSync(bytes).length
+    assets.push(relative)
+    if (/^vendor-backend-.*\.js$/.test(path.basename(absolute))) failures.push(`Supabase entered the static startup graph: ${relative}`)
+    if (kind !== 'javascript') continue
+    // Parse declarations: strings and dynamic imports must not be mistaken for
+    // eager dependencies. TypeScript is an existing direct development dependency.
+    const source = ts.createSourceFile(absolute, bytes.toString('utf8'), ts.ScriptTarget.Latest, false, ts.ScriptKind.JS)
+    for (const statement of source.statements) {
+      if (!(ts.isImportDeclaration(statement) || ts.isExportDeclaration(statement))) continue
+      const specifier = statement.moduleSpecifier
+      if (!specifier || !ts.isStringLiteral(specifier)) continue
+      const name = specifier.text
+      if (name.startsWith('.') && /\.(?:js|css)$/.test(name)) queue.push(path.resolve(path.dirname(absolute), name))
     }
   }
 
-  if (process.exitCode !== 1) {
-    console.log(
-      `Startup bundle audit passed: ${backendChunks.join(', ')} remains lazy and is not module-preloaded.`
-    )
+  for (const [metric, limit] of Object.entries(budgets)) {
+    if (totals[metric] > limit) failures.push(`${metric}: ${(totals[metric] / 1024).toFixed(1)} KiB exceeds ${(limit / 1024).toFixed(1)} KiB budget.`)
+  }
+  return { totals, budgets, assets: assets.sort(), failures }
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    const report = inspectStartupBundle(process.argv[2] ?? 'dist')
+    for (const [metric, bytes] of Object.entries(report.totals)) console.log(`[startup] ${metric}: ${(bytes / 1024).toFixed(1)} / ${(report.budgets[metric] / 1024).toFixed(1)} KiB`)
+    if (report.failures.length) {
+      report.failures.forEach(failure => console.error(`Startup bundle audit failed: ${failure}`))
+      process.exitCode = 1
+    } else console.log(`Startup bundle audit passed: ${report.assets.length} initial assets within budget; Supabase remains lazy.`)
+  } catch (error) {
+    console.error(`Startup bundle audit failed: ${error.message}`)
+    process.exitCode = 1
   }
 }

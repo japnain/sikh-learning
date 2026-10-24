@@ -1,4 +1,4 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.105.3";
 import { createDeleteAccountHandler } from "./handler.ts";
 
 const handler = createDeleteAccountHandler({

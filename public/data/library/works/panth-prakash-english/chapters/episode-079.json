@@ -11,7 +11,7 @@
   "endSourcePage": 521,
   "wordCount": 973,
   "charCount": 5567,
-  "startPosition": 83190,
+  "startPosition": 83189,
   "pages": [
     {
       "sourcePageNumber": 515,
@@ -398,5 +398,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-078",
-  "nextChapterId": "episode-080"
+  "nextChapterId": "episode-080",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 569,
+      "printPageNumber": 525,
+      "sourceHref": "EPUB/page_569.html",
+      "text": "1 Gurdas : Bhai Gurdas, the famous Sikh scholar and bard the writer of \"Suraj Parkash\"."
+    }
+  ]
 }

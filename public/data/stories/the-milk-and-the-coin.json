@@ -1,0 +1,117 @@
+{
+  "id": "the-milk-and-the-coin",
+  "title": "The Milk and the Gold",
+  "subtitle": "A gift offered before daylight brings an unexpected discovery.",
+  "description": "A villager brings milk to Guru Nanak and Shaikh Brahm. The traditional account asks what can be received, and what can be missed.",
+  "collectionId": "lives-transformed",
+  "themes": [
+    "Generosity",
+    "Grace",
+    "Attachment"
+  ],
+  "people": [
+    "Guru Nanak",
+    "Shaikh Brahm (Ibrahim)",
+    "An unnamed villager"
+  ],
+  "artwork": "bowl",
+  "wordCount": 431,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "Near Pak Pattan, Guru Nanak met Shaikh Brahm, the custodian of the shrine of Shaikh Farid. Their conversation moved through questions of devotion, worldly life and the presence of the Divine. Each answered the other through verse. They remained together that night in the forest."
+    },
+    {
+      "id": "p2",
+      "text": "Before daylight, a villager who had seen them brought a basin of milk. Macauliffe describes him as kind and charitable. He had something to offer the two religious men, and he brought it to where they were staying."
+    },
+    {
+      "id": "p3",
+      "text": "Shaikh Brahm separated his portion from Guru Nanak’s. He spoke of devotion in the early and later parts of the night, comparing the first with a blossom and the last with fruit. Those who stayed awake in devotion, he said, received gifts from the Lord."
+    },
+    {
+      "id": "p4",
+      "text": "Guru Nanak’s response placed the gift with the Giver. Wakefulness alone did not command it. Some who stayed awake did not receive what they sought; others could be awakened and blessed. The exchange continued the conversation about devotion, now beside the milk that had been freely brought to them."
+    },
+    {
+      "id": "p5",
+      "text": "Then Guru Nanak asked Shaikh Brahm to place his hand in the milk and feel what was there. The traditional account says he found four gold coins. The villager witnessed the discovery and became afraid that he had come into the company of magicians. He went away, leaving his basin behind."
+    },
+    {
+      "id": "p6",
+      "text": "Guru Nanak recited a hymn that followed the watches of a night. Its images called a person to wakefulness of another kind: a field being eaten away, a house exposed to a thief, a life passing while its owner remained absorbed in possessions. The account places those verses between the villager’s departure and his return."
+    },
+    {
+      "id": "p7",
+      "text": "After Guru Nanak and Shaikh Brahm had left the forest, the villager came back to collect his basin. The telling now adds a second wonder. When he lifted it, he found that the vessel itself had become gold and was filled with gold coins."
+    },
+    {
+      "id": "p8",
+      "text": "He regretted the suspicion that had driven him away. He now recognized the visitors as religious men. Yet the wealth did not end his regret: Macauliffe records that he distinguished what he had received from the holiness he might have gained. His encounter had left him with worldly treasure, while his attention had missed something else."
+    },
+    {
+      "id": "p9",
+      "text": "The villager took up the basin and departed. Shaikh Brahm continued the conversation with Guru Nanak, asking about release from attachment and the help needed on the spiritual path. The story leaves the gold in the villager’s hands, while the questions that began before daylight continue beyond it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter VII, pp. 84–91. Life of Guru Nanak: setting, Shaikh Brahm/Ibrahim and the opening exchange on pp. 84–87; milk, four coins, the hymn and the golden basin on pp. 88–91.",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#84",
+      "id": "macauliffe-1909-v1",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume I; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume I, pp. 84–91"
+      }
+    }
+  ],
+  "accountNote": "This preserves the miraculous elements in Macauliffe’s traditional account: four coins found in milk and a basin later discovered as gold and filled with coins. Shaikh Brahm, also called Ibrahim, is the custodian of Shaikh Farid’s shrine in the narrative; this is not described as a meeting with the earlier Shaikh Farid himself. The telling is not independently verified history.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Condenses the preceding exchange of verses and the long hymn on the watches of the night. Retains the villager’s generosity, fear, return and regret without supplying an invented name, occupation or biography. Dialogue is reported indirectly; descriptions of teachings are prose summaries, not translations of Gurbani. No independent historical or human expert review is claimed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on Max Arthur Macauliffe’s original 1909 public-domain work. No modern translation or modern story adaptation has been copied. This is a traditional account, not independently verified history.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v1"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#88"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "metadataRevision": 3,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "mata-khivi",
+    "water-at-haridwar"
+  ]
+}

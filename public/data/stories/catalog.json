@@ -1,0 +1,204 @@
+{
+  "version": 2,
+  "collections": [
+    {
+      "id": "seva-and-dignity",
+      "title": "Seva & dignity",
+      "description": "The work of our hands, the meals we share, and the dignity we owe one another.",
+      "artwork": "bowl"
+    },
+    {
+      "id": "courage-and-conscience",
+      "title": "Courage & conscience",
+      "description": "Stories of asking difficult questions and living by what matters.",
+      "artwork": "thread"
+    },
+    {
+      "id": "lives-transformed",
+      "title": "Lives transformed",
+      "description": "An encounter, a question, a new direction. Stories of a life opening to change.",
+      "artwork": "doorway"
+    }
+  ],
+  "stories": [
+    {
+      "id": "bhai-lalo",
+      "title": "The Bread at Lalo’s Table",
+      "subtitle": "A meal, a feast, and the work behind them.",
+      "description": "Guru Nanak accepts a carpenter’s hospitality. A powerful man demands to know why his own feast was refused.",
+      "collectionId": "seva-and-dignity",
+      "themes": [
+        "Honest work",
+        "Dignity",
+        "Equality"
+      ],
+      "people": [
+        "Guru Nanak",
+        "Bhai Lalo",
+        "Malik Bhago",
+        "Bhai Mardana"
+      ],
+      "artwork": "bowl",
+      "wordCount": 458,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 2
+    },
+    {
+      "id": "mata-khivi",
+      "title": "The Shade of a Shared Table",
+      "subtitle": "Mata Khivi and the kitchen at Khadur",
+      "description": "A remembered bowl of rice opens a window onto Mata Khivi’s place in the life of the early Sikh community.",
+      "collectionId": "seva-and-dignity",
+      "themes": [
+        "Langar",
+        "Hospitality",
+        "Dignity",
+        "Women in Sikh history"
+      ],
+      "people": [
+        "Mata Khivi",
+        "Guru Angad",
+        "Bibi Amro"
+      ],
+      "artwork": "bowl",
+      "wordCount": 438,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 2
+    },
+    {
+      "id": "the-sacred-thread",
+      "title": "A Thread That Would Not Break",
+      "subtitle": "Young Nanak asks what a sacred thread can hold.",
+      "description": "At a ceremony arranged by his family, Nanak questions whether a mark worn on the body can transform the life within it.",
+      "collectionId": "courage-and-conscience",
+      "themes": [
+        "Conscience",
+        "Integrity",
+        "Equality"
+      ],
+      "people": [
+        "Guru Nanak",
+        "Hardial",
+        "Baba Kalu"
+      ],
+      "artwork": "thread",
+      "wordCount": 482,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 2
+    },
+    {
+      "id": "guru-amar-das-service",
+      "title": "The Water He Carried",
+      "subtitle": "Amar Das on the road to Khadur",
+      "description": "Before he became the third Guru, Amar Das walked the road of service. One stormy night, that road brought him to a weaver’s door.",
+      "collectionId": "seva-and-dignity",
+      "themes": [
+        "Seva",
+        "Humility",
+        "Devotion",
+        "Belonging"
+      ],
+      "people": [
+        "Guru Amar Das",
+        "Guru Angad",
+        "Bibi Amro"
+      ],
+      "artwork": "river",
+      "wordCount": 518,
+      "readingMinutes": 3,
+      "revision": 2,
+      "metadataRevision": 2
+    },
+    {
+      "id": "sajjan",
+      "title": "The House That Hid Its Darkness",
+      "subtitle": "Sajjan’s welcome concealed a terrible cost.",
+      "description": "A host offers shelter to travellers. Guru Nanak answers with a hymn that asks what lies beneath a spotless surface.",
+      "collectionId": "lives-transformed",
+      "themes": [
+        "Truthfulness",
+        "Accountability",
+        "Transformation"
+      ],
+      "people": [
+        "Guru Nanak",
+        "Shaikh Sajjan",
+        "Bhai Mardana"
+      ],
+      "artwork": "doorway",
+      "wordCount": 466,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 2
+    },
+    {
+      "id": "water-at-haridwar",
+      "title": "Water Turned West",
+      "subtitle": "A familiar gesture, interrupted by a question.",
+      "description": "At Haridwar, Guru Nanak throws water in the opposite direction from the gathered pilgrims, and an argument becomes a searching conversation.",
+      "collectionId": "courage-and-conscience",
+      "themes": [
+        "Attention",
+        "Devotion",
+        "Conscience"
+      ],
+      "people": [
+        "Guru Nanak",
+        "Pilgrims at Haridwar"
+      ],
+      "artwork": "river",
+      "wordCount": 504,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 2
+    },
+    {
+      "id": "the-needle",
+      "title": "A Needle for the Next World",
+      "subtitle": "Duni Chand could keep a fortune. Could he keep this?",
+      "description": "A wealthy host accepts a small object from Guru Nanak, then discovers that the simple promise attached to it cannot be kept.",
+      "collectionId": "seva-and-dignity",
+      "themes": [
+        "Generosity",
+        "Impermanence",
+        "Responsibility"
+      ],
+      "people": [
+        "Guru Nanak",
+        "Duni Chand",
+        "Duni Chand’s wife"
+      ],
+      "artwork": "thread",
+      "wordCount": 440,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 2
+    },
+    {
+      "id": "the-milk-and-the-coin",
+      "title": "The Milk and the Gold",
+      "subtitle": "A gift offered before daylight brings an unexpected discovery.",
+      "description": "A villager brings milk to Guru Nanak and Shaikh Brahm. The traditional account asks what can be received, and what can be missed.",
+      "collectionId": "lives-transformed",
+      "themes": [
+        "Generosity",
+        "Grace",
+        "Attachment"
+      ],
+      "people": [
+        "Guru Nanak",
+        "Shaikh Brahm (Ibrahim)",
+        "An unnamed villager"
+      ],
+      "artwork": "bowl",
+      "wordCount": 431,
+      "readingMinutes": 3,
+      "revision": 1,
+      "metadataRevision": 3
+    }
+  ],
+  "featuredStoryId": "bhai-lalo"
+}

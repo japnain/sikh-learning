@@ -11,7 +11,7 @@
   "endSourcePage": 265,
   "wordCount": 789,
   "charCount": 4500,
-  "startPosition": 37829,
+  "startPosition": 37828,
   "pages": [
     {
       "sourcePageNumber": 261,
@@ -308,5 +308,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-033",
-  "nextChapterId": "episode-035"
+  "nextChapterId": "episode-035",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 553,
+      "printPageNumber": 509,
+      "sourceHref": "EPUB/page_553.html",
+      "text": "1 Salodi : A name of a village twenty kilometers north of Sirhind. 2 Aali Singh, Maali Singh from Bhasor : Two Singh brothers from village Salodi near Bhasor who joined Banda Singh's force with Aali Singh quitting his job with the Sirhind ruler. Aali Singh was appointed Naib custodian of Sirhind after the execution of Wazir Khan. Aali Singh was martyred along with Banda Singh at Delhi. 3 Waheguru ji ki Fateh: Sikh slogan of victory as well as a common Sikh mode of greeting each other. Its full form is Waheguru ji ka Khalsa, Waheguru ji ki Fateh, meaning thereby Khalsa belongs to the Divine and Victory be to the Divine. 4 Baba Phool son of Roopchand ( 1 627 - 1 690) born at village Mehraj which was established by Guru Hargobind after blessing his two devout Sikhs Mohan and Kale. Baba Phool was blessed by the Sixth Guru with a blessing that the child will start a royal dynasty and feed millions of hungry people. So he became the founder of Phulkian States."
+    }
+  ]
 }

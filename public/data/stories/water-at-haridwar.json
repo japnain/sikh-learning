@@ -1,0 +1,124 @@
+{
+  "id": "water-at-haridwar",
+  "title": "Water Turned West",
+  "subtitle": "A familiar gesture, interrupted by a question.",
+  "description": "At Haridwar, Guru Nanak throws water in the opposite direction from the gathered pilgrims, and an argument becomes a searching conversation.",
+  "collectionId": "courage-and-conscience",
+  "themes": [
+    "Attention",
+    "Devotion",
+    "Conscience"
+  ],
+  "people": [
+    "Guru Nanak",
+    "Pilgrims at Haridwar"
+  ],
+  "artwork": "river",
+  "wordCount": 504,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "At Haridwar, people had gathered from many directions to bathe and make their offerings. Guru Nanak came among them as they were lifting water in their hands and casting it towards the east. The repeated gesture had a purpose: they were offering water to their departed ancestors."
+    },
+    {
+      "id": "p2",
+      "text": "Guru Nanak cupped his own hands. But the water he lifted went west. He continued until a crowd gathered around him, astonished by a man who stood among the pilgrims and did the opposite of what they were doing."
+    },
+    {
+      "id": "p3",
+      "text": "They asked who he was and why he had come. If he belonged to their religion, why did he not follow its custom? If he did not, why was he at their place of pilgrimage? Before answering those questions, the Guru asked one of his own: to whom were they sending their water?"
+    },
+    {
+      "id": "p4",
+      "text": "They explained that the offerings were for their ancestors. A learned man said those ancestors were thousands of miles away. Guru Nanak went on throwing water westward. The people reminded him that he had still not explained himself."
+    },
+    {
+      "id": "p5",
+      "text": "He replied that he had planted a field before leaving home and had nobody there to water it. It lay on raised ground where rain would not remain. He was sending water towards it so that the crop would stay green."
+    },
+    {
+      "id": "p6",
+      "text": "The listeners immediately objected. The field was far away; water thrown here could never reach it. They could see plainly that such an attempt at irrigation would accomplish nothing. The distance was too great, however often he repeated the movement of his hands."
+    },
+    {
+      "id": "p7",
+      "text": "Guru Nanak brought their answer back to their own offering. If this water could not reach a field much nearer than their ancestors, how could it travel to those ancestors and benefit them? The exchange then moved beyond the direction in which the water fell. He challenged a practice carried out while the mind remained without love or devotion."
+    },
+    {
+      "id": "p8",
+      "text": "A Brahman objected when the Guru warned of the consequences of that emptiness. How could people who repeated God’s Name be condemned? Guru Nanak distinguished remembrance offered with love from the movement of a rosary while attention was occupied elsewhere."
+    },
+    {
+      "id": "p9",
+      "text": "The traditional account adds an extraordinary detail. The Guru described thoughts of trade passing through the listeners’ minds: business with Multan, Kabul and Delhi, and the profits they expected. Macauliffe tells that they recognized the accuracy of what he said and asked to become his disciples."
+    },
+    {
+      "id": "p10",
+      "text": "Later in the same account, Guru Nanak entered a Brahman’s marked cooking space to obtain fire. The cook accused him of making the food impure. The Guru answered by turning to another kind of pollution: cruelty, slander, anger and ill will. A line around a cooking place could not keep those out."
+    },
+    {
+      "id": "p11",
+      "text": "He spoke instead of truth, self-restraint, good actions and remembrance of the Divine. At the river and beside the cooking fire, attention returned to what a person actually carried within the practice. The water had been turned west; the questions had been turned towards the heart."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter IV, pp. 50–52. Chapter IV, Haridwar episode: from the arrival among pilgrims throwing water eastward through the exchange about irrigation, the disclosure of thoughts about trade and the cooking-square encounter; before the journey to Panipat.",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#50",
+      "id": "macauliffe-1909-v1",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume I; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume I, pp. 50–52"
+      }
+    }
+  ],
+  "accountNote": "This follows Macauliffe’s traditional Haridwar account, including its claim that Guru Nanak disclosed the listeners’ unspoken thoughts. It is not a transcript or independently verified record. The narrator’s criticisms describe the particular encounter in this source, not an assessment of all pilgrims or all Hindu devotion.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Condenses the water, rosary and cooking-square exchanges into one narrative. Longer verses and polemical language are summarized rather than reproduced; the source’s extraordinary disclosure of thoughts is retained as part of the account. Dialogue is reported indirectly; descriptions of teachings are prose summaries, not translations of Gurbani. No independent historical or human expert review is claimed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on Max Arthur Macauliffe’s original 1909 public-domain work. No modern translation or modern story adaptation has been copied. This is a traditional account, not independently verified history.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v1"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#50"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "the-sacred-thread",
+    "the-milk-and-the-coin"
+  ]
+}

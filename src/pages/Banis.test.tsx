@@ -66,6 +66,7 @@ const SEARCH_RESULT_FIXTURE: banidbApi.SearchResult = {
 
 beforeEach(() => {
   vi.restoreAllMocks()
+  vi.spyOn(appSearch, 'getStorySearchMatches').mockResolvedValue([])
   localStorage.clear()
   useLocaleStore.setState({ locale: 'en' })
   useRecentSearchStore.setState({ recent: [] })
@@ -820,6 +821,9 @@ test('removes fuzzy romanized noise when an English query has direct meaning mat
     'Remember death while you are still alive.'
   )
   expect(screen.queryByText('The Guru has given me this one understanding.')).not.toBeInTheDocument()
+  const sentence = screen.getByText(/Remember/, { selector: '.read-search-result__text' })
+  expect(sentence).toHaveTextContent('Remember death while you are still alive.')
+  expect(sentence.querySelector('mark')).toHaveTextContent('death')
 })
 
 test('auto search keeps Latin and Gurmukhi search modes for mixed-script queries', async () => {
@@ -1063,4 +1067,52 @@ test('keeps the nav-safe page shell while lower sections still open after other 
   expect(screen.getByTestId('banis-open-amrit-keertan')).toHaveAttribute('href', '/banis/amrit-keertan')
   openReadCollection('Books')
   expect(screen.getByTestId('banis-open-rehat')).toHaveAttribute('href', '/banis/rehat')
+})
+
+test('shows books and stories independently while scripture searches are still pending', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(() => new Promise(() => {}))
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([{ key: 'book', label: 'A local book', detail: 'Book', path: '/library/local', kind: 'library-work', score: 1 }])
+  vi.mocked(appSearch.getStorySearchMatches).mockResolvedValue([{ key: 'story', label: 'A story of courage', detail: 'Courage', path: '/stories/courage', kind: 'story', score: 1 }])
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'courage' } })
+  expect(await screen.findByTestId('banis-search-library-results')).toHaveTextContent('A local book')
+  expect(await screen.findByTestId('banis-search-story-results')).toHaveTextContent('A story of courage')
+  expect(screen.getByTestId('banis-quick-find')).toHaveAttribute('data-ai-state', 'loading')
+})
+
+test('a story result carries the complete global search origin to the reader', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.mocked(appSearch.getStorySearchMatches).mockResolvedValue([{ key: 'story', label: 'A story of courage', detail: 'Courage', path: '/stories/courage', kind: 'story', score: 1 }])
+  render(<MemoryRouter initialEntries={['/banis?query=courage']}><Routes>
+    <Route path="/banis" element={<Banis />} /><Route path="/stories/:storyId" element={<LocationSpy />} />
+  </Routes></MemoryRouter>)
+  expect(screen.getByRole('searchbox')).toHaveValue('courage')
+  fireEvent.click(await screen.findByRole('button', { name: /A story of courage/ }))
+  expect(screen.getByTestId('location')).toHaveAttribute('data-location-state', JSON.stringify({ libraryReaderOrigin: '/banis?query=courage' }))
+})
+
+test('a stalled provider settles with usable local results and can be retried', async () => {
+  vi.useFakeTimers()
+  const search = vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(() => new Promise(() => {}))
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([{ key: 'book', label: 'A local book', detail: 'Book', path: '/library/local', kind: 'library-work', score: 1 }])
+  const view = renderBanis()
+  try {
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'recoveryprobe' } })
+    await act(async () => { await vi.advanceTimersByTimeAsync(300) })
+    expect(screen.getByTestId('banis-search-library-results')).toHaveTextContent('A local book')
+
+    await act(async () => { await vi.advanceTimersByTimeAsync(12000) })
+    expect(screen.getByTestId('banis-quick-find')).toHaveAttribute('data-ai-state', 'degraded')
+    expect(screen.getByTestId('banis-search-library-results')).toHaveTextContent('A local book')
+    expect(screen.queryByText('No matches yet')).not.toBeInTheDocument()
+
+    search.mockResolvedValue([SEARCH_RESULT_FIXTURE])
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }))
+    await act(async () => { await vi.advanceTimersByTimeAsync(300) })
+    expect(screen.getByTestId('banis-search-gurbani-results')).toHaveTextContent('ਸਤਿਨਾਮੁ')
+    expect(screen.getByTestId('banis-quick-find')).toHaveAttribute('data-ai-state', 'ready')
+  } finally {
+    view.unmount()
+    vi.useRealTimers()
+  }
 })

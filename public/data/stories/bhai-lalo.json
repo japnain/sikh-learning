@@ -1,0 +1,125 @@
+{
+  "id": "bhai-lalo",
+  "title": "The Bread at Lalo’s Table",
+  "subtitle": "A meal, a feast, and the work behind them.",
+  "description": "Guru Nanak accepts a carpenter’s hospitality. A powerful man demands to know why his own feast was refused.",
+  "collectionId": "seva-and-dignity",
+  "themes": [
+    "Honest work",
+    "Dignity",
+    "Equality"
+  ],
+  "people": [
+    "Guru Nanak",
+    "Bhai Lalo",
+    "Malik Bhago",
+    "Bhai Mardana"
+  ],
+  "artwork": "bowl",
+  "wordCount": 458,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "When Guru Nanak and Mardana reached Saiyidpur, they stayed with Lalo, a carpenter. The hospitality was simple: a place to stay and a meal when it was ready. But even the serving of that meal brought a question about who belonged where."
+    },
+    {
+      "id": "p2",
+      "text": "Lalo asked the Guru to eat within the lines marked out for a ritually pure space. Guru Nanak answered that the whole earth was such a space for him, and that love of truth made a person pure. Lalo served the food where his guest was already sitting. The meal could begin without a boundary drawn around it."
+    },
+    {
+      "id": "p3",
+      "text": "After two days, Guru Nanak wished to leave. Lalo persuaded him to stay longer. Their time together drew criticism, because the Guru came from a family placed higher in the caste order than the carpenter. Sharing Lalo’s home crossed a line that others expected him to observe."
+    },
+    {
+      "id": "p4",
+      "text": "Then Malik Bhago, a powerful official in the town, arranged a great feast. People from all four castes were invited. A Brahman came to tell Guru Nanak that he, too, should accept the invitation. The Guru answered that he did not belong to any of those four divisions. The messenger warned him that refusing the host’s hospitality would cause offence."
+    },
+    {
+      "id": "p5",
+      "text": "The feast went ahead without him. When Malik Bhago learned that Guru Nanak had not attended, he had him brought before him and demanded an explanation. The Guru said that he was a faqir, with no desire for rich food. If eating something from the official’s hands would please him, he was willing to do so."
+    },
+    {
+      "id": "p6",
+      "text": "That answer did not satisfy Malik Bhago. He returned to the difference in their social standing: why would a man of the Guru’s background eat with Lalo while declining his feast? The objection was still about the person serving the meal, and the rank others had assigned to him."
+    },
+    {
+      "id": "p7",
+      "text": "Guru Nanak asked for a portion of the feast. He also asked Lalo to bring bread from his own house. With both before him, the Guru held Lalo’s coarse bread in one hand and Malik Bhago’s rich bread in the other, and squeezed them."
+    },
+    {
+      "id": "p8",
+      "text": "The traditional account tells that milk flowed from Lalo’s bread, while blood came from Malik Bhago’s. Macauliffe explains the image through the way each meal had been earned. Lalo’s food came from honest labour. Malik Bhago’s wealth had been gathered through bribery and oppression."
+    },
+    {
+      "id": "p9",
+      "text": "The carpenter’s bread had been treated as beneath a distinguished guest. Now the account placed it beside the wealthy official’s food and revealed a different measure of worth. The question was no longer whose house looked more respectable, or whose invitation carried more power. It was what had happened to other people before that food reached the table."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter IV, pp. 43–44. Chapter IV, opening Saiyidpur/Lalo episode: from the arrival at Lalo’s house through the comparison of Lalo’s bread and Malik Bhago’s bread, before the departure to the forest.",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#43",
+      "id": "macauliffe-1909-v1",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume I; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume I, pp. 43–44"
+      }
+    }
+  ],
+  "accountNote": "This follows the traditional Lalo and Malik Bhago account as narrated by Macauliffe in 1909. The milk and blood are retained as miraculous elements of that telling. A named source records a tradition; it does not independently establish every event or quotation. Other retellings may differ in detail.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Condenses the visit and feast into one continuous narrative and omits the unrelated episodes that follow. Caste distinctions are described as social barriers challenged within the account, not accepted as measures of human worth. Dialogue is reported indirectly; descriptions of teachings are prose summaries, not translations of Gurbani. No independent historical or human expert review is claimed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on Max Arthur Macauliffe’s original 1909 public-domain work. No modern translation or modern story adaptation has been copied. This is a traditional account, not independently verified history.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v1"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#43"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Faqir",
+      "meaning": "A religious mendicant or seeker; the word is used of Guru Nanak in this source."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "mata-khivi",
+    "the-needle",
+    "guru-amar-das-service"
+  ]
+}

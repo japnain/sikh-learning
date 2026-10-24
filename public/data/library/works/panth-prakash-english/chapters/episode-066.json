@@ -11,7 +11,7 @@
   "endSourcePage": 451,
   "wordCount": 1508,
   "charCount": 8951,
-  "startPosition": 70910,
+  "startPosition": 70909,
   "pages": [
     {
       "sourcePageNumber": 443,
@@ -579,5 +579,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-065",
-  "nextChapterId": "episode-067"
+  "nextChapterId": "episode-067",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 564,
+      "printPageNumber": 520,
+      "sourceHref": "EPUB/page_564.html",
+      "text": "1 Kali's Bhach or Bowl : The name of a Hindu goddess, an incarnation of Durga, represented by black statues in Hindu temples with a garland of skulls around her neck and a begging bowl filled wih blood. Human or animal sacrifice is to made as an offering to propitiate this goddess in order to appease her and seek her blessings. 2 The Guru's offer : Banda Singh's assertion that Guru Gobind Singh had promised to make an offering of one crore and a quarter to the goddess Kali to invoke her blessings before the initiation of Khalsa Panth is not in accordance with the Sikh tenets. 3 Satyuga, Treta, Duapar and Kaliyuga: the Indian Hindu mythology has divided time into four ages or yugas which is at variance with the western philosophy. According to Indian mythology, each age (yuga) has its presiding Divine Deity and a distinct value system. While Satyuga is an ideal age with prefect moral value, Kaliyuga is the darkest age with all the moral values crumbling. 4 Lord Rama: op. cit., p. 499. 5 Pandavas: op. cit., p. 500. 6 Boiling cauldron : Reference to king Janmeja's Sarapmedh Yajna which the king had organised to destroy \"Takshak\" the chief of snakes. The snakes kept falling into this boiling cauldron as a mark of loyalty to their God \"Takshak\"."
+    }
+  ]
 }

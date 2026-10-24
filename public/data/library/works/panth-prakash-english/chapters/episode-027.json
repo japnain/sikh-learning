@@ -11,7 +11,7 @@
   "endSourcePage": 223,
   "wordCount": 855,
   "charCount": 4912,
-  "startPosition": 30114,
+  "startPosition": 30113,
   "pages": [
     {
       "sourcePageNumber": 219,
@@ -315,5 +315,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-026",
-  "nextChapterId": "episode-028"
+  "nextChapterId": "episode-028",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 550,
+      "printPageNumber": 506,
+      "sourceHref": "EPUB/page_550.html",
+      "text": "1 Saint Dadu and Jait Ram : Saint Dadu, belonging to Kabirpanthi sect of saints, was born in a weaver's family in Ahmadabad (Gujarat). He died in 1660 at the place of Narayana, Jaipur (Rajasthan) which came to be known as Dadu Dwara. Jait Ram : He was the chief saint at Dadu Dwara when Guru Gobind visited this place in 1764 on his way to the Southern India. 2 Chandi Chritar : A poetical composition in \"Dasam Granth\" written in praise of goddess Chandi or Durga by Guru Gobind Singh. 3 Chandi di Var : Another composition from the same source describing goddess Durga's war with the Titans by Guru Gobind Singh. 4 Akal Ustat : Another composition included in the Dasam Granth in praise of God and his various Divine attributes. 5 Trinkets or Jhanjhars: A chain of trinkets tied around a dancer's feet during dance. 6 Percussion Instruments : The Instruments which produce sound or music when beaten with a hand on their surface. Included in this category are Indian instruments like Drums, Dholak, Mardang and Tabla. 7 String instruments : Instruments which produce music when various strings of wire or a single wire are touched. Included in this category are Sarangi Rabab, Sitar, Tamboora and Tanpura, etc., and Veena."
+    },
+    {
+      "sourcePageNumber": 551,
+      "printPageNumber": 507,
+      "sourceHref": "EPUB/page_551.html",
+      "text": "8 Wind Instruments : Instruments which produce music when wind is blown into these instruments such as Been, pipe, clarionet, etc. 9 Yaksha : Name of a mythological Hindu God, in service of God Kuber. 10 Kinnar : A name of mythological creature with the body of a humanbeing and head of a horse. These creatures are supposed to dance in the court of God of Kuber when Raga Gandharv is sung. 11 Narada: An ancient Indian sage (Rishi) who contributed many hymns to the Rigveda and an expert of Raga Gandharv. A very famous name in Indian mythology."
+    }
+  ]
 }

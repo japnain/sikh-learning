@@ -1,0 +1,149 @@
+{
+  "id": "mata-khivi",
+  "title": "The Shade of a Shared Table",
+  "subtitle": "Mata Khivi and the kitchen at Khadur",
+  "description": "A remembered bowl of rice opens a window onto Mata Khivi’s place in the life of the early Sikh community.",
+  "collectionId": "seva-and-dignity",
+  "themes": [
+    "Langar",
+    "Hospitality",
+    "Dignity",
+    "Women in Sikh history"
+  ],
+  "people": [
+    "Mata Khivi",
+    "Guru Angad",
+    "Bibi Amro"
+  ],
+  "artwork": "bowl",
+  "wordCount": 438,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Historical profile",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "Among the people remembered in the story of Guru Angad, Mata Khivi has a distinction of her own. Her work survives in a song. In the verses attributed to the musicians Satta and Balwand, the history of the Gurus pauses to remember a woman, the shelter she offered, and the food she distributed. Rice cooked in milk and enriched with ghee becomes part of the community’s account of itself."
+    },
+    {
+      "id": "p2",
+      "text": "Khivi came from Matte di Sarai. She married the man then known as Lahina, who would become Guru Angad, the second Sikh Guru. Macauliffe’s account names their daughter Amro and their sons Dasu and Datu. These family details place Khivi within a household whose life would become closely connected with a much wider gathering of people. At Khadur, the Guru’s home was also a place to which disciples, travellers, and those seeking help could come."
+    },
+    {
+      "id": "p3",
+      "text": "The kitchen belonged to the daily life of that gathering. Macauliffe describes the offerings brought to Guru Angad being directed towards feeding pilgrims and wayfarers. In the morning, visitors of different conditions sat together in a line to receive food. Children were fed as well, and the Guru taught them. Food was distributed again in the evening. Between these meals came teaching, the singing of hymns, and the other activities of the community."
+    },
+    {
+      "id": "p4",
+      "text": "Within this account, the musicians remember Khivi by name. They describe her as giving the disciples effective shade, an image of protection and relief. They also identify her with the distribution of the Guru’s resources through the kitchen. The food they single out is generous: rice, milk, and ghee. Their praise does not pass over the material needs of the people who had gathered. It remembers the meal alongside the spiritual life it helped to sustain."
+    },
+    {
+      "id": "p5",
+      "text": "The surviving passage is brief. It does not provide a record of kitchen arrangements, a list of workers, or the words Khivi spoke to anyone she served. It gives us something more particular than an imagined scene: a community’s gratitude, preserved in its singing. Her name remains attached to hospitality that people could actually receive, in a place where the resources offered to the Guru were returned to those who came."
+    },
+    {
+      "id": "p6",
+      "text": "Khivi’s daughter Amro appears elsewhere in the same volume singing Guru Nanak’s hymns. When Amar Das heard her, he asked to learn more, and she took him to meet her father. The household thus enters the account through several kinds of giving: a hymn passed on, an introduction made, a meal shared. Of Khivi herself, the musicians leave that enduring image of shade, and beneath it the remembered richness of a bowl of rice."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume II",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter I–V, pp. 1, 8, 15–16, 26–27, 31–32. Life of Guru Angad, the Second Guru: Chapter I (Khivi and her family), Chapter III (the daily kitchen), Chapter IV (Satta and Balwand’s verses on Khivi), and Chapter V (Bibi Amro and Amar Das).",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_2/Life_of_Guru_Angad,_The_Second_Guru#1",
+      "id": "macauliffe-1909-v2",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume II; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume II, pp. 1, 8, 15–16, 26–27, 31–32"
+      }
+    },
+    {
+      "id": "ggs-ang-967",
+      "role": "textual-anchor",
+      "title": "Guru Granth Sahib — primary Gurmukhi text",
+      "author": "Bhai Balvand and Bhai Satta",
+      "workDate": "Early Sikh composition; included in the Adi Granth (1604)",
+      "edition": "Gurmukhi digital transcription at SriGranth; publication year not established; accessed 23 October 2026. No modern English translation reproduced.",
+      "reference": "Ang 967: Ramkali ki Var Rai Balvand tatha Sattai Dum Aakhi, pauri 3. Textual anchor; it does not independently establish the narrated historical setting.",
+      "locator": {
+        "kind": "ang",
+        "value": "967"
+      },
+      "url": "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=967&g=1&h=0&r=0&t=0&p=0&k=0"
+    },
+    {
+      "id": "sikhri-angad-2026",
+      "role": "context",
+      "title": "Guru Angad Sahib: Cultivating the Sikh Mind, Body, and Community",
+      "author": "Santbir Singh",
+      "year": 2026,
+      "workDate": "31 August 2026",
+      "edition": "Sikh Research Institute article; contextual research only",
+      "reference": "Section Langar: Developing the Community and reference 14; includes a primary-text locator to Guru Granth Sahib Ang 967. Modern prose and translation are not reproduced.",
+      "locator": {
+        "kind": "section",
+        "value": "Langar: Developing the Community; reference 14"
+      },
+      "url": "https://sikhri.org/articles/guru-angad-sahib-cultivating-the-sikh-mind-body-and-community"
+    }
+  ],
+  "accountNote": "This short profile follows Macauliffe’s 1909 account and the verses of Satta and Balwand that he includes. The source gives only a brief direct description of Mata Khivi’s work; no detailed kitchen scenes or historical dialogue have been invented. The surrounding daily routine describes Guru Angad’s community, rather than a documented schedule personally assigned to Khivi.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Written as a short profile because the source preserves limited narrative detail about Mata Khivi. Independent specialist review has not been completed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on the original 1909 source; no modern translation copied.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v2"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_2/Life_of_Guru_Angad,_The_Second_Guru#1"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Langar",
+      "meaning": "The Sikh community kitchen and the shared meal it provides."
+    },
+    {
+      "term": "Ghee",
+      "meaning": "Clarified butter."
+    },
+    {
+      "term": "Mata",
+      "meaning": "Mother; an honorific expressing respect."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "bhai-lalo",
+    "guru-amar-das-service"
+  ]
+}

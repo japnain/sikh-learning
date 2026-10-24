@@ -94,6 +94,11 @@ export function isStructuralGurbaniHeadingLine(text: string): boolean {
   const words = compact.split(' ')
   if (words.length > 9) return false
 
+  // Provider metadata occasionally leaves Bhagat-bani collection headings
+  // unmarked (for example the October 24 Todee Hukamnama). Require the complete
+  // heading form so a verse merely mentioning bani/bhagats remains scripture.
+  if (/^(?:ਰਾਗੁ?\s+)?[\u0A00-\u0A7F]+(?:\s+[\u0A00-\u0A7F]+)?\s+ਬਾਣੀ\s+ਭਗਤਾਂ\s+ਕੀ$/u.test(compact)) return true
+
   // Raag and section titles may begin with a proper name (for example,
   // "ਧਨਾਸਰੀ") before their Mahala/Ghar metadata and a terminal form label.
   const metadataHeading = new RegExp(

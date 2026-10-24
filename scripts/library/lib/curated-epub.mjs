@@ -195,7 +195,7 @@ export function publishCuratedWork({
   }
   removeUnreferencedJsonFiles(chaptersRoot, chapters.map(chapter => chapter.id))
 
-  const chapterIndex = chapters.map(({ pages: _pages, source: _source, previousChapterId: _previous, nextChapterId: _next, ...entry }) => ({
+  const chapterIndex = chapters.map(({ pages: _pages, sourceNotes: _sourceNotes, source: _source, previousChapterId: _previous, nextChapterId: _next, ...entry }) => ({
     ...entry,
     pageCount: _pages.length,
     path: `/data/library/works/${work.id}/chapters/${entry.id}.json`,

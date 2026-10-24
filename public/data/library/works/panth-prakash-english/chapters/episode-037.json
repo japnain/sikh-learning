@@ -11,7 +11,7 @@
   "endSourcePage": 275,
   "wordCount": 737,
   "charCount": 4158,
-  "startPosition": 39684,
+  "startPosition": 39683,
   "pages": [
     {
       "sourcePageNumber": 271,
@@ -269,5 +269,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-036",
-  "nextChapterId": "episode-038"
+  "nextChapterId": "episode-038",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 554,
+      "printPageNumber": 510,
+      "sourceHref": "EPUB/page_554.html",
+      "text": "1 Banur : Situated on Chandigarh Rajpura Road at a distance of 30 kms from Chandigarh. It was a big Cluster of Muslim population and part of Sirhind state along with a nearby village Chhat, named together as Chhat-Banur. Banda Singh destroyed and occupied these villages before destroying Sirhind. 2 Nehkalank : According to Vishnu Puran, a prophet by this name will take birth in Sambhal Nagar in District Moradabad (U.R) in the house of a Brahmin Vishnushaya . He would come riding on a white horse and decimate all the sinners in the age of Kaliyuga. Some people regarded Banda Singh as the same Divine incarnation since he had come to punish the sinner Wazir khan who had killed the two innocent sons of Guru Gobind Singh."
+    }
+  ]
 }

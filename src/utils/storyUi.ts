@@ -1,0 +1,81 @@
+import type { UiLocale } from '../types'
+
+const en = {
+  downloadedEdition: 'You are reading a downloaded edition. A newer edition will be used after it downloads and you reopen this story.',
+  stories: 'Stories', saved: 'Saved', collection: 'The story collection', title: 'Sikh lives. Enduring stories.',
+  description: 'Short English readings, with a source and account note behind every story.',
+  count: (n: number) => `${n} ${n === 1 ? 'story' : 'stories'}`, minutes: (n: number) => `${n} min read`,
+  percent: (n: number) => `${n}% read`, progressValue: (n: number) => `${n}% of story`,
+  continue: 'Continue reading', begin: 'A place to begin', read: 'Read the story',
+  search: 'Search stories by title, person or theme', searchPlaceholder: 'Find a story, a person, a theme…',
+  collections: 'Story collections', all: 'All stories', explore: 'Explore the collection',
+  offline: 'Offline', finished: 'Read', part: (n: number) => `Part ${n}`,
+  save: (title: string) => `Save ${title}`, remove: (title: string) => `Remove ${title} from Saved`,
+  added: (title: string) => `${title} added to Saved.`, removed: (title: string) => `${title} removed from Saved.`,
+  storage: 'Device storage is unavailable. This change will last only for this session.',
+  downloadDone: (n: number) => `${n} stories available offline on this device.`,
+  downloadError: 'The download could not finish. Check your connection and device storage, then try again.',
+  loadError: 'Stories could not be loaded. Connect to the internet and try again. Downloaded stories remain available on this device.',
+  retry: 'Try again', openingCollection: 'Opening the story collection…', noMatches: 'No stories match this search.', showAll: 'Show all stories',
+  offlineTitle: 'Keep a little reading close.', offlineReady: 'The collection is available offline on this device.',
+  offlineBody: 'Download the collection to read without a connection.', downloading: (n: number, total: number) => `Downloading ${n} of ${total}…`,
+  availableOffline: 'Available offline', download: 'Download stories', removeDownloads: 'Remove downloads',
+  downloadsRemoved: 'Offline copies removed. Your saves and reading places are kept.', removeError: 'Offline copies could not be removed. Please try again.',
+  editorial: 'Original English retellings and profiles drawn from cited sources. Traditional accounts are identified in each story. Saves and reading places stay on this device.',
+  newReader: 'New to Sikh stories?', newReaderBody: 'Begin with one short account, then follow a theme. A sakhi is a traditional account; its source notes explain the telling. Gurbani references are identified separately.',
+  pathWork: 'Honest work', pathCommunity: 'A shared community', pathService: 'A life of service',
+  back: (label: string) => `Back to ${label}`, return: (label: string) => `Return to ${label}`,
+  openingStory: 'Opening your story…', openError: 'This story could not open', missing: 'Story not found',
+  openingBody: 'A quiet moment to read.', errorBody: 'Check your connection and try again.', missingBody: 'This story may have moved. There are more accounts waiting in Stories.', browse: 'Browse stories',
+  contents: 'Story contents', appearance: 'Reading appearance', account: 'About this account', inStory: 'In this story',
+  saveStory: 'Save story', removeStory: 'Remove story from Saved', storySaved: 'Story saved.', storyRemoved: 'Removed from Saved.', storyFinished: 'Story finished.',
+  progress: 'Reading progress', carry: 'A story to carry with you.', pause: 'Take a moment. Let the story stay with you.', finish: 'Finish story', finishDone: 'Finished',
+  next: 'Read next', nextLabel: (title: string, minutes: number) => `Read next: ${title}, ${minutes} minute read`, continueSeries: (title: string) => `Continue ${title}`,
+  related: 'Related readings', more: 'More to explore',
+  appearanceDescription: 'Reading preferences are shared with Books. Appearance follows your app theme.', contentsDescription: 'Choose a section to continue reading.', accountDescription: 'The sources and editorial context behind this story.',
+  close: (title: string) => `Close ${title}`, textSize: 'Text size', decrease: 'Decrease text size', increase: 'Increase text size',
+  lineSpacing: 'Line spacing', width: 'Reading width', theme: 'App theme', sections: 'Story sections',
+  closeSpacing: 'Close', natural: 'Natural', open: 'Open', narrow: 'Narrow', standard: 'Standard', wide: 'Wide', light: 'Light', dark: 'Dark', system: 'System',
+  sources: 'Sources', originalWork: 'Original work', translation: 'Translation', editor: 'Edition editor', readSource: 'Read source',
+  editorialNote: 'Editorial note', review: 'Edition & review', historyReview: 'History / Gurmat review', englishReview: 'English editorial review', pending: 'Independent review pending.',
+  attribution: 'Text & attribution', glossary: 'A few words',
+  sourceRoles: { narrative: 'Narrative source', context: 'Historical context', 'textual-anchor': 'Textual reference', comparison: 'Another telling' },
+  savedStories: 'Saved stories', savedCount: (n: number) => `${n} saved`, inProgress: 'In progress', undo: 'Undo', restored: (title: string) => `${title} restored.`,
+}
+
+type StoryUi = typeof en
+
+const pa: StoryUi = {
+  downloadedEdition: 'ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਕੀਤਾ ਸੰਸਕਰਨ ਪੜ੍ਹ ਰਹੇ ਹੋ। ਨਵਾਂ ਸੰਸਕਰਨ ਡਾਊਨਲੋਡ ਹੋਣ ਮਗਰੋਂ ਸਾਖੀ ਮੁੜ ਖੋਲ੍ਹਣ ਉੱਤੇ ਦਿਖੇਗਾ।',
+  stories: 'ਸਾਖੀਆਂ', saved: 'ਸੰਭਾਲਿਆ', collection: 'ਸਾਖੀਆਂ ਦਾ ਸੰਗ੍ਰਹਿ', title: 'ਸਿੱਖ ਜੀਵਨ। ਸਦਾ ਯਾਦ ਰਹਿਣ ਵਾਲੀਆਂ ਸਾਖੀਆਂ।',
+  description: 'ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਛੋਟੀਆਂ ਰਚਨਾਵਾਂ, ਹਰ ਸਾਖੀ ਨਾਲ ਉਸ ਦਾ ਸਰੋਤ ਅਤੇ ਜਾਣਕਾਰੀ।',
+  count: n => `${n} ਸਾਖੀਆਂ`, minutes: n => `${n} ਮਿੰਟ ਦਾ ਪਾਠ`, percent: n => `${n}% ਪੜ੍ਹਿਆ`, progressValue: n => `ਸਾਖੀ ਦਾ ${n}%`,
+  continue: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ', begin: 'ਇੱਥੋਂ ਸ਼ੁਰੂ ਕਰੋ', read: 'ਸਾਖੀ ਪੜ੍ਹੋ', search: 'ਸਿਰਲੇਖ, ਵਿਅਕਤੀ ਜਾਂ ਵਿਸ਼ੇ ਅਨੁਸਾਰ ਸਾਖੀ ਲੱਭੋ', searchPlaceholder: 'ਸਾਖੀ, ਵਿਅਕਤੀ ਜਾਂ ਵਿਸ਼ਾ ਲੱਭੋ…',
+  collections: 'ਸਾਖੀਆਂ ਦੇ ਸੰਗ੍ਰਹਿ', all: 'ਸਾਰੀਆਂ ਸਾਖੀਆਂ', explore: 'ਸੰਗ੍ਰਹਿ ਪੜਚੋਲੋ', offline: 'ਆਫ਼ਲਾਈਨ', finished: 'ਪੜ੍ਹਿਆ', part: n => `ਭਾਗ ${n}`,
+  save: title => `${title} ਸੰਭਾਲੋ`, remove: title => `${title} ਸੰਭਾਲੀਆਂ ਵਿੱਚੋਂ ਹਟਾਓ`, added: title => `${title} ਸੰਭਾਲਿਆ ਗਿਆ।`, removed: title => `${title} ਸੰਭਾਲੀਆਂ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ।`,
+  storage: 'ਡਿਵਾਈਸ ਦੀ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ। ਇਹ ਬਦਲਾਅ ਸਿਰਫ਼ ਇਸ ਸੈਸ਼ਨ ਲਈ ਰਹੇਗਾ।', downloadDone: n => `${n} ਸਾਖੀਆਂ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਆਫ਼ਲਾਈਨ ਉਪਲਬਧ ਹਨ।`, downloadError: 'ਡਾਊਨਲੋਡ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ। ਕਨੈਕਸ਼ਨ ਅਤੇ ਸਟੋਰੇਜ ਜਾਂਚ ਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+  loadError: 'ਸਾਖੀਆਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ। ਇੰਟਰਨੈੱਟ ਨਾਲ ਜੁੜ ਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ। ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਸਾਖੀਆਂ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਉਪਲਬਧ ਹਨ।', retry: 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ', openingCollection: 'ਸਾਖੀਆਂ ਦਾ ਸੰਗ੍ਰਹਿ ਖੁੱਲ੍ਹ ਰਿਹਾ ਹੈ…', noMatches: 'ਇਸ ਖੋਜ ਨਾਲ ਕੋਈ ਸਾਖੀ ਨਹੀਂ ਮਿਲੀ।', showAll: 'ਸਾਰੀਆਂ ਸਾਖੀਆਂ ਦਿਖਾਓ',
+  offlineTitle: 'ਪਾਠ ਆਪਣੇ ਕੋਲ ਰੱਖੋ।', offlineReady: 'ਸੰਗ੍ਰਹਿ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਆਫ਼ਲਾਈਨ ਉਪਲਬਧ ਹੈ।', offlineBody: 'ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਪੜ੍ਹਨ ਲਈ ਸੰਗ੍ਰਹਿ ਡਾਊਨਲੋਡ ਕਰੋ।', downloading: (n, total) => `${total} ਵਿੱਚੋਂ ${n} ਡਾਊਨਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…`, availableOffline: 'ਆਫ਼ਲਾਈਨ ਉਪਲਬਧ', download: 'ਸਾਖੀਆਂ ਡਾਊਨਲੋਡ ਕਰੋ', removeDownloads: 'ਡਾਊਨਲੋਡ ਹਟਾਓ', downloadsRemoved: 'ਆਫ਼ਲਾਈਨ ਕਾਪੀਆਂ ਹਟਾਈਆਂ ਗਈਆਂ। ਸੰਭਾਲੀਆਂ ਸਾਖੀਆਂ ਅਤੇ ਪੜ੍ਹਨ ਦੀ ਥਾਂ ਕਾਇਮ ਹਨ।', removeError: 'ਆਫ਼ਲਾਈਨ ਕਾਪੀਆਂ ਹਟ ਨਹੀਂ ਸਕੀਆਂ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+  editorial: 'ਦਿੱਤੇ ਸਰੋਤਾਂ ਉੱਤੇ ਆਧਾਰਿਤ ਮੌਲਿਕ ਅੰਗਰੇਜ਼ੀ ਪੁਨਰਕਥਨ ਅਤੇ ਜੀਵਨ-ਲੇਖ। ਰਵਾਇਤੀ ਬਿਰਤਾਂਤ ਹਰ ਸਾਖੀ ਵਿੱਚ ਦੱਸੇ ਗਏ ਹਨ। ਸੰਭਾਲੀਆਂ ਸਾਖੀਆਂ ਅਤੇ ਪੜ੍ਹਨ ਦੀ ਥਾਂ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਰਹਿੰਦੇ ਹਨ।',
+  newReader: 'ਸਿੱਖ ਸਾਖੀਆਂ ਪਹਿਲੀ ਵਾਰ ਪੜ੍ਹ ਰਹੇ ਹੋ?', newReaderBody: 'ਇੱਕ ਛੋਟੀ ਸਾਖੀ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਵਿਸ਼ੇ ਅਨੁਸਾਰ ਅੱਗੇ ਪੜ੍ਹੋ। ਸਾਖੀ ਇੱਕ ਰਵਾਇਤੀ ਬਿਰਤਾਂਤ ਹੈ; ਸਰੋਤਾਂ ਦੀ ਜਾਣਕਾਰੀ ਉਸ ਦੀ ਪਿਛੋਕੜ ਦੱਸਦੀ ਹੈ। ਗੁਰਬਾਣੀ ਦੇ ਹਵਾਲੇ ਵੱਖਰੇ ਦਿੱਤੇ ਹਨ।', pathWork: 'ਇਮਾਨਦਾਰ ਕਿਰਤ', pathCommunity: 'ਸਾਂਝਾ ਭਾਈਚਾਰਾ', pathService: 'ਸੇਵਾ ਦਾ ਜੀਵਨ',
+  back: label => `${label} ਵੱਲ ਵਾਪਸ`, return: label => `${label} ਵੱਲ ਵਾਪਸ ਜਾਓ`, openingStory: 'ਤੁਹਾਡੀ ਸਾਖੀ ਖੁੱਲ੍ਹ ਰਹੀ ਹੈ…', openError: 'ਇਹ ਸਾਖੀ ਖੁੱਲ੍ਹ ਨਹੀਂ ਸਕੀ', missing: 'ਸਾਖੀ ਨਹੀਂ ਮਿਲੀ', openingBody: 'ਪੜ੍ਹਨ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਪਲ।', errorBody: 'ਕਨੈਕਸ਼ਨ ਜਾਂਚ ਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।', missingBody: 'ਇਸ ਸਾਖੀ ਦੀ ਥਾਂ ਬਦਲ ਗਈ ਹੋ ਸਕਦੀ ਹੈ। ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਹੋਰ ਸਾਖੀਆਂ ਪੜ੍ਹੋ।', browse: 'ਸਾਖੀਆਂ ਪੜਚੋਲੋ',
+  contents: 'ਸਾਖੀ ਦੀ ਸਮੱਗਰੀ', appearance: 'ਪਾਠ ਦੀ ਦਿੱਖ', account: 'ਇਸ ਬਿਰਤਾਂਤ ਬਾਰੇ', inStory: 'ਇਸ ਸਾਖੀ ਵਿੱਚ', saveStory: 'ਸਾਖੀ ਸੰਭਾਲੋ', removeStory: 'ਸਾਖੀ ਸੰਭਾਲੀਆਂ ਵਿੱਚੋਂ ਹਟਾਓ', storySaved: 'ਸਾਖੀ ਸੰਭਾਲੀ ਗਈ।', storyRemoved: 'ਸੰਭਾਲੀਆਂ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ।', storyFinished: 'ਸਾਖੀ ਪੂਰੀ ਹੋਈ।',
+  progress: 'ਪੜ੍ਹਨ ਦੀ ਤਰੱਕੀ', carry: 'ਆਪਣੇ ਨਾਲ ਰੱਖਣ ਲਈ ਇੱਕ ਸਾਖੀ।', pause: 'ਇੱਕ ਪਲ ਰੁਕੋ। ਸਾਖੀ ਨੂੰ ਮਨ ਵਿੱਚ ਟਿਕਣ ਦਿਓ।', finish: 'ਸਾਖੀ ਪੂਰੀ ਕਰੋ', finishDone: 'ਪੂਰੀ ਹੋਈ', next: 'ਅੱਗੇ ਪੜ੍ਹੋ', nextLabel: (title, minutes) => `ਅੱਗੇ ਪੜ੍ਹੋ: ${title}, ${minutes} ਮਿੰਟ ਦਾ ਪਾਠ`, continueSeries: title => `${title} ਜਾਰੀ ਰੱਖੋ`, related: 'ਸੰਬੰਧਿਤ ਰਚਨਾਵਾਂ', more: 'ਹੋਰ ਪੜਚੋਲੋ',
+  appearanceDescription: 'ਪੜ੍ਹਨ ਦੀਆਂ ਪਸੰਦਾਂ ਕਿਤਾਬਾਂ ਨਾਲ ਸਾਂਝੀਆਂ ਹਨ। ਦਿੱਖ ਐਪ ਦੇ ਥੀਮ ਅਨੁਸਾਰ ਹੈ।', contentsDescription: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖਣ ਲਈ ਭਾਗ ਚੁਣੋ।', accountDescription: 'ਇਸ ਸਾਖੀ ਦੇ ਸਰੋਤ ਅਤੇ ਸੰਪਾਦਕੀ ਪਿਛੋਕੜ।', close: title => `${title} ਬੰਦ ਕਰੋ`, textSize: 'ਲਿਖਤ ਦਾ ਆਕਾਰ', decrease: 'ਲਿਖਤ ਛੋਟੀ ਕਰੋ', increase: 'ਲਿਖਤ ਵੱਡੀ ਕਰੋ', lineSpacing: 'ਲਾਈਨਾਂ ਵਿਚਕਾਰ ਫ਼ਾਸਲਾ', width: 'ਪਾਠ ਦੀ ਚੌੜਾਈ', theme: 'ਐਪ ਦਾ ਥੀਮ', sections: 'ਸਾਖੀ ਦੇ ਭਾਗ', closeSpacing: 'ਨੇੜੇ', natural: 'ਸਧਾਰਨ', open: 'ਖੁੱਲ੍ਹਾ', narrow: 'ਤੰਗ', standard: 'ਸਧਾਰਨ', wide: 'ਚੌੜਾ', light: 'ਹਲਕਾ', dark: 'ਗੂੜ੍ਹਾ', system: 'ਸਿਸਟਮ',
+  sources: 'ਸਰੋਤ', originalWork: 'ਮੂਲ ਰਚਨਾ', translation: 'ਅਨੁਵਾਦ', editor: 'ਸੰਸਕਰਨ ਦੇ ਸੰਪਾਦਕ', readSource: 'ਸਰੋਤ ਪੜ੍ਹੋ', editorialNote: 'ਸੰਪਾਦਕੀ ਟਿੱਪਣੀ', review: 'ਸੰਸਕਰਨ ਅਤੇ ਸਮੀਖਿਆ', historyReview: 'ਇਤਿਹਾਸ / ਗੁਰਮਤਿ ਸਮੀਖਿਆ', englishReview: 'ਅੰਗਰੇਜ਼ੀ ਸੰਪਾਦਕੀ ਸਮੀਖਿਆ', pending: 'ਸੁਤੰਤਰ ਸਮੀਖਿਆ ਬਾਕੀ ਹੈ।', attribution: 'ਲਿਖਤ ਅਤੇ ਹਵਾਲੇ', glossary: 'ਕੁਝ ਸ਼ਬਦ', sourceRoles: { narrative: 'ਬਿਰਤਾਂਤ ਦਾ ਸਰੋਤ', context: 'ਇਤਿਹਾਸਕ ਪਿਛੋਕੜ', 'textual-anchor': 'ਲਿਖਤੀ ਹਵਾਲਾ', comparison: 'ਇੱਕ ਹੋਰ ਬਿਰਤਾਂਤ' },
+  savedStories: 'ਸੰਭਾਲੀਆਂ ਸਾਖੀਆਂ', savedCount: n => `${n} ਸੰਭਾਲੀਆਂ`, inProgress: 'ਪੜ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ', undo: 'ਵਾਪਸ ਕਰੋ', restored: title => `${title} ਮੁੜ ਸੰਭਾਲਿਆ ਗਿਆ।`,
+}
+
+const hi: StoryUi = {
+  downloadedEdition: 'आप डाउनलोड किया हुआ संस्करण पढ़ रहे हैं। नया संस्करण डाउनलोड होने के बाद साखी दोबारा खोलने पर दिखेगा।',
+  stories: 'साखियाँ', saved: 'सहेजा हुआ', collection: 'साखियों का संग्रह', title: 'सिख जीवन। याद रह जाने वाली साखियाँ।', description: 'अंग्रेज़ी में छोटी रचनाएँ, हर साखी के साथ स्रोत और विवरण।', count: n => `${n} साखियाँ`, minutes: n => `${n} मिनट का पाठ`, percent: n => `${n}% पढ़ा`, progressValue: n => `साखी का ${n}%`, continue: 'पढ़ना जारी रखें', begin: 'यहाँ से शुरू करें', read: 'साखी पढ़ें', search: 'शीर्षक, व्यक्ति या विषय से साखियाँ खोजें', searchPlaceholder: 'साखी, व्यक्ति या विषय खोजें…', collections: 'साखियों के संग्रह', all: 'सभी साखियाँ', explore: 'संग्रह देखें', offline: 'ऑफ़लाइन', finished: 'पढ़ा हुआ', part: n => `भाग ${n}`,
+  save: title => `${title} सहेजें`, remove: title => `${title} सहेजे हुए से हटाएँ`, added: title => `${title} सहेजी गई।`, removed: title => `${title} सहेजे हुए से हटाई गई।`, storage: 'डिवाइस स्टोरेज उपलब्ध नहीं है। यह बदलाव केवल इस सत्र के लिए रहेगा।', downloadDone: n => `${n} साखियाँ इस डिवाइस पर ऑफ़लाइन उपलब्ध हैं।`, downloadError: 'डाउनलोड पूरा नहीं हुआ। कनेक्शन और स्टोरेज जाँचकर फिर कोशिश करें।', loadError: 'साखियाँ लोड नहीं हो सकीं। इंटरनेट से जुड़कर फिर कोशिश करें। डाउनलोड की गई साखियाँ इस डिवाइस पर उपलब्ध हैं।', retry: 'फिर कोशिश करें', openingCollection: 'साखियों का संग्रह खुल रहा है…', noMatches: 'इस खोज से कोई साखी नहीं मिली।', showAll: 'सभी साखियाँ दिखाएँ',
+  offlineTitle: 'पाठ अपने पास रखें।', offlineReady: 'संग्रह इस डिवाइस पर ऑफ़लाइन उपलब्ध है।', offlineBody: 'बिना कनेक्शन पढ़ने के लिए संग्रह डाउनलोड करें।', downloading: (n, total) => `${total} में से ${n} डाउनलोड हो रही हैं…`, availableOffline: 'ऑफ़लाइन उपलब्ध', download: 'साखियाँ डाउनलोड करें', removeDownloads: 'डाउनलोड हटाएँ', downloadsRemoved: 'ऑफ़लाइन प्रतियाँ हटाई गईं। सहेजी साखियाँ और पढ़ने का स्थान सुरक्षित हैं।', removeError: 'ऑफ़लाइन प्रतियाँ हट नहीं सकीं। फिर कोशिश करें।', editorial: 'दिए गए स्रोतों पर आधारित मौलिक अंग्रेज़ी पुनर्कथन और जीवन-लेख। पारंपरिक विवरण प्रत्येक साखी में बताए गए हैं। सहेजी साखियाँ और पढ़ने का स्थान इस डिवाइस पर रहते हैं।',
+  newReader: 'सिख साखियाँ पहली बार पढ़ रहे हैं?', newReaderBody: 'एक छोटी साखी से शुरू करें, फिर विषय के अनुसार आगे पढ़ें। साखी एक पारंपरिक विवरण है; स्रोत की जानकारी उसकी पृष्ठभूमि बताती है। गुरबाणी के संदर्भ अलग दिए गए हैं।', pathWork: 'ईमानदार मेहनत', pathCommunity: 'साझा समुदाय', pathService: 'सेवा का जीवन', back: label => `${label} पर वापस`, return: label => `${label} पर लौटें`, openingStory: 'आपकी साखी खुल रही है…', openError: 'यह साखी खुल नहीं सकी', missing: 'साखी नहीं मिली', openingBody: 'पढ़ने के लिए एक शांत पल।', errorBody: 'कनेक्शन जाँचकर फिर कोशिश करें।', missingBody: 'इस साखी का स्थान बदल गया हो सकता है। संग्रह में और साखियाँ पढ़ें।', browse: 'साखियाँ देखें',
+  contents: 'साखी की विषय-सूची', appearance: 'पाठ की दिखावट', account: 'इस विवरण के बारे में', inStory: 'इस साखी में', saveStory: 'साखी सहेजें', removeStory: 'साखी सहेजे हुए से हटाएँ', storySaved: 'साखी सहेजी गई।', storyRemoved: 'सहेजे हुए से हटाई गई।', storyFinished: 'साखी पूरी हुई।', progress: 'पढ़ने की प्रगति', carry: 'अपने साथ रखने के लिए एक साखी।', pause: 'एक पल रुकें। साखी को मन में ठहरने दें।', finish: 'साखी पूरी करें', finishDone: 'पूरी हुई', next: 'आगे पढ़ें', nextLabel: (title, minutes) => `आगे पढ़ें: ${title}, ${minutes} मिनट का पाठ`, continueSeries: title => `${title} जारी रखें`, related: 'संबंधित रचनाएँ', more: 'और पढ़ें',
+  appearanceDescription: 'पढ़ने की पसंद किताबों के साथ साझा है। दिखावट ऐप की थीम के अनुसार है।', contentsDescription: 'पढ़ना जारी रखने के लिए भाग चुनें।', accountDescription: 'इस साखी के स्रोत और संपादकीय पृष्ठभूमि।', close: title => `${title} बंद करें`, textSize: 'अक्षरों का आकार', decrease: 'अक्षर छोटे करें', increase: 'अक्षर बड़े करें', lineSpacing: 'पंक्तियों का अंतर', width: 'पाठ की चौड़ाई', theme: 'ऐप की थीम', sections: 'साखी के भाग', closeSpacing: 'पास', natural: 'सामान्य', open: 'खुला', narrow: 'संकरा', standard: 'सामान्य', wide: 'चौड़ा', light: 'हल्की', dark: 'गहरी', system: 'सिस्टम',
+  sources: 'स्रोत', originalWork: 'मूल रचना', translation: 'अनुवाद', editor: 'संस्करण संपादक', readSource: 'स्रोत पढ़ें', editorialNote: 'संपादकीय टिप्पणी', review: 'संस्करण और समीक्षा', historyReview: 'इतिहास / गुरमत समीक्षा', englishReview: 'अंग्रेज़ी संपादकीय समीक्षा', pending: 'स्वतंत्र समीक्षा बाकी है।', attribution: 'पाठ और श्रेय', glossary: 'कुछ शब्द', sourceRoles: { narrative: 'विवरण का स्रोत', context: 'ऐतिहासिक पृष्ठभूमि', 'textual-anchor': 'पाठ का संदर्भ', comparison: 'एक अन्य विवरण' }, savedStories: 'सहेजी साखियाँ', savedCount: n => `${n} सहेजी गईं`, inProgress: 'पढ़ना जारी है', undo: 'वापस करें', restored: title => `${title} फिर सहेजी गई।`,
+}
+
+export const STORY_UI: Record<UiLocale, StoryUi> = { en, pa, hi }
+export const storyUiLang = (locale: UiLocale) => locale === 'pa' ? 'pa-Guru' : locale

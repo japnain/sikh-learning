@@ -11,7 +11,7 @@
   "endSourcePage": 499,
   "wordCount": 486,
   "charCount": 2969,
-  "startPosition": 80128,
+  "startPosition": 80127,
   "pages": [
     {
       "sourcePageNumber": 497,
@@ -212,5 +212,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-073",
-  "nextChapterId": "episode-075"
+  "nextChapterId": "episode-075",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 567,
+      "printPageNumber": 523,
+      "sourceHref": "EPUB/page_567.html",
+      "text": "1 Baba Binod Singh: Adescendent of the second Sikh Guru, Guru Angad Devji was initiated by the tenth Sikh Guru, Guru Gobind Singh and took active part in most of the Sikh battles against the Mughals. He along with Kahan Singh, was deputed to accompany Baba Banda Singh to"
+    },
+    {
+      "sourcePageNumber": 568,
+      "printPageNumber": 524,
+      "sourceHref": "EPUB/page_568.html",
+      "text": "Punjab by Guru Gobind Singh from Nander (Maharashtra) to guide and assist Banda Singh Bahadur. 2 Baba Kahan Singh: A descendent of third Sikh Guru, Guru Amardas Bhalla was also initiated as Singh by Guru Gobind Singh. 3 There are two stanzas of this episode available in the Dr Jeet Singh Seetal's Edited version of Guru Panth Parkash. But in the Dr Balwant Singh Dhillon's edited version of this episode (Singh Brothers 2004) there are ten more stanzas of this episode as translated above : The first and the last stanza of this edition are similar to Dr Jeet Singh Seetal's edition."
+    }
+  ]
 }

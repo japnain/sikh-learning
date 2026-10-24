@@ -11,7 +11,7 @@
   "endSourcePage": 473,
   "wordCount": 513,
   "charCount": 3004,
-  "startPosition": 75497,
+  "startPosition": 75496,
   "pages": [
     {
       "sourcePageNumber": 471,
@@ -215,5 +215,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-069",
-  "nextChapterId": "episode-071"
+  "nextChapterId": "episode-071",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 565,
+      "printPageNumber": 521,
+      "sourceHref": "EPUB/page_565.html",
+      "text": "1 Sayyad Brothers: The two brothers Abdulla Khan and Hussain Ali were the governors of Allahabad and Patna during the reign of emperor Jahandar Shah. Misusing their political clout and power, these two brothers first sided with Farukhsiar against Jahandar Shah in the war of succession. As a result, Abdullah Khan became a minister and Hussain Ali, a military Commander during Farukhsiar's reign. Then, they assassinated Farukhsiar in February 1719, handing over reign first to Rafi-ud-dar and later on to Rafi-ud-Daula. Later on, in September, 1719, they made Mohammad Shah Rangeela, the grandson of Bahadur Shah to sit on the Mughal throne of India. These two brothers were themselves assassinated in 1721, as most of the Mughal commanders turned against them for their gross misuse of Power. 2 1781 : Means 1724 CE, this date mentioned by Rattan Singh Bhangoo is not correct. Emperor, Farukhsiar was, in fact, assassinated by Sayyad brothers on February 28, 1719 after blinding him. The dates in Bikrami Samvat 1724, Hijri 1 133 and CE. 1721, given by the author are also not correct."
+    }
+  ]
 }

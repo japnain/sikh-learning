@@ -11,7 +11,7 @@
   "endSourcePage": 81,
   "wordCount": 186,
   "charCount": 1094,
-  "startPosition": 5731,
+  "startPosition": 5730,
   "pages": [
     {
       "sourcePageNumber": 79,
@@ -106,5 +106,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-003",
-  "nextChapterId": "episode-005"
+  "nextChapterId": "episode-005",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 540,
+      "printPageNumber": 496,
+      "sourceHref": "EPUB/page_540.html",
+      "text": "1 The Kaliyuga : The Dark Age, the last age (Yuga) in the cycle of four main ages or yugas as conceptualised in the Indian mythology. This age is symbolized by the erosion of all moral values and domination of five deadly sins of lust, wrath/anger, avarice, attachment to one's own progeny and arrogance. The Kaliyuga is being personified and deified as a presiding Deity of this age. The above discourse is between Guru Nanak's philosophy of righteous conduct and the Kaliyuga's spirit of sinfulness."
+    }
+  ]
 }

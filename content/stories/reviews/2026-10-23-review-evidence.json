@@ -1,0 +1,737 @@
+{
+  "date": "2026-10-23",
+  "scope": "Separate AI editorial/source review and visual comparison; no human credentials or historical certification claimed.",
+  "originalPageImages": [
+    {
+      "volume": "v1",
+      "printedPage": null,
+      "zeroBasedLeaf": 8,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n8.jpg",
+      "sha256": "acfb5dbef069e8d002e0c2bc5a98a94093a6cd9ed17cb2c7ca1392c231390752",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 16,
+      "zeroBasedLeaf": 111,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n111.jpg",
+      "sha256": "d8f9020a4e8d93aa01b4a754e189405a1d8353e553aa6e2d70e19ac238cbeed1",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 17,
+      "zeroBasedLeaf": 112,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n112.jpg",
+      "sha256": "6d2c08fc0ae21b233fda1a44cc59f6729b3b977347fbb6008eff935e719f2b34",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 18,
+      "zeroBasedLeaf": 113,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n113.jpg",
+      "sha256": "fc5072655b97a903ad87e9276f139e16c9da3660c3f6c1a6b3b903c5ab9c7ef0",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 33,
+      "zeroBasedLeaf": 128,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n128.jpg",
+      "sha256": "b71481583f02da77281830bff293b5bd8b641ba1edb089f066d2c213b5df022f",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 43,
+      "zeroBasedLeaf": 138,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n138.jpg",
+      "sha256": "7e7aba0db8fe319ac792ccd2a5a42cfd309e73f92e1e703079a9dd59f9b536a1",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 44,
+      "zeroBasedLeaf": 139,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n139.jpg",
+      "sha256": "777c5e2e8bd62dd65c75169cbfa4f72d10dbb1bb69b430f3b60451951871de10",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 45,
+      "zeroBasedLeaf": 140,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n140.jpg",
+      "sha256": "9e3116b9794e546502b1d5786c3b80c21f5c6e6e837e37a1862d025606a06722",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 46,
+      "zeroBasedLeaf": 141,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n141.jpg",
+      "sha256": "fe088c22b70c50d1dbf9eb443590a37a63fa8c0bb17f0be2bd7f7613f665e493",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 47,
+      "zeroBasedLeaf": 142,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n142.jpg",
+      "sha256": "37b855371b7c60ce784bcab3f44cbb6b208a8edfd2dc575be95a52d40d72be39",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 50,
+      "zeroBasedLeaf": 145,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n145.jpg",
+      "sha256": "c054635d720b78430b1bb604a3e18fddedebf8d1ab8a25b8e9af79474d169189",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 51,
+      "zeroBasedLeaf": 146,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n146.jpg",
+      "sha256": "d2700c9cabc691ef15bb1f5f416340ccd8ee40e40fc8c87cda7c7f32ead775d9",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 52,
+      "zeroBasedLeaf": 147,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n147.jpg",
+      "sha256": "7a23623bce05f9fefa066ea50e59e5ffa3982c75f747c2acc69075568b799253",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 80,
+      "zeroBasedLeaf": 175,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n175.jpg",
+      "sha256": "029ef5e77b7844e5f91938320511cdd82fa6178dfaf7a5d94b9770214ae78dcd",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 81,
+      "zeroBasedLeaf": 176,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n176.jpg",
+      "sha256": "0f7a97c0c014045c1f72b6a41212f00684d17a00e040024847626c01d0fd75c6",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 84,
+      "zeroBasedLeaf": 179,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n179.jpg",
+      "sha256": "c819e2419abd621be197c381b8e156734335e1731056a020b733e97aa027cd44",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 85,
+      "zeroBasedLeaf": 180,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n180.jpg",
+      "sha256": "2a5772f222cd70c4a4c1feb9bcdb2b8f389324adf025ee7c2a096067058d14c7",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 86,
+      "zeroBasedLeaf": 181,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n181.jpg",
+      "sha256": "20f93340af8ecc0571983b7fbc383b1eea2a2648a84310e751e81929a83063f0",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 87,
+      "zeroBasedLeaf": 182,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n182.jpg",
+      "sha256": "47c78f9e8c89e5e8700df28ca4b061d8cdfb37ed0193d34356bb1a3fd0dd7556",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 88,
+      "zeroBasedLeaf": 183,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n183.jpg",
+      "sha256": "7db9f5342bddbcdf874801a151455ad011d730b30a2aaeacccf1855afc7f28b4",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 89,
+      "zeroBasedLeaf": 184,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n184.jpg",
+      "sha256": "3927e532fcab49a92a8987db193298da733f32568161aee3b9cf58f66806c447",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 90,
+      "zeroBasedLeaf": 185,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n185.jpg",
+      "sha256": "4b33d18ea6b22d64bb9a6b9b177ca5675c17d2904141d75c041377814ea8e4af",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 91,
+      "zeroBasedLeaf": 186,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n186.jpg",
+      "sha256": "85484399fb6dc9b78b9ba32b3dbb809e011b7f898eeacb9dac1114310ca6b0b5",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 101,
+      "zeroBasedLeaf": 196,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n196.jpg",
+      "sha256": "eeea0ede3af56f33e662ca6a6d3b18b47cf733095ef8309a7bd05ea78d7ddecc",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 102,
+      "zeroBasedLeaf": 197,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n197.jpg",
+      "sha256": "8aa12d5d847a9a593a236985957c30cf6123631d763bb2860fca17986297f2e3",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 105,
+      "zeroBasedLeaf": 200,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n200.jpg",
+      "sha256": "d70d8007ee182fe500e21afafde7355a131f68e06cebce89923229ba28515089",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 111,
+      "zeroBasedLeaf": 206,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n206.jpg",
+      "sha256": "e752412b494b7591ac25f873a1a3df2a12d1437b9cb9c41fcaba0b1f724824d9",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 112,
+      "zeroBasedLeaf": 207,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n207.jpg",
+      "sha256": "2f16de60208a8d5dac8bc349072f84ce889d71e84768e658e67efb2e6c9d51eb",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 113,
+      "zeroBasedLeaf": 208,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n208.jpg",
+      "sha256": "5e2cd607447fe3355ab7138a489a368cdb70e76fdb4ce54489837a0a696179ac",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 114,
+      "zeroBasedLeaf": 209,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n209.jpg",
+      "sha256": "389d40d74813962c4b15d3c7aad755def393a1751498f08242e6d1cd147cf1bc",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 115,
+      "zeroBasedLeaf": 210,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n210.jpg",
+      "sha256": "432310cdeaf06921f28e56e22f379a50236c28374a86259331a0df00dccff560",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 129,
+      "zeroBasedLeaf": 224,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n224.jpg",
+      "sha256": "3556e197ab56794ed626e72c33cb773b814637e3709ac4c084f3a1ccef04849d",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 130,
+      "zeroBasedLeaf": 225,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n225.jpg",
+      "sha256": "0ad74aa7aa19cf4f1307488ab12faed9d7d069f966d15fc68a616bc7f374e23b",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 131,
+      "zeroBasedLeaf": 226,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n226.jpg",
+      "sha256": "ee07a7559fc535d49582944c8d68ea99d48aa6df280fec6bfbba1a0b33aeaf3d",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 180,
+      "zeroBasedLeaf": 275,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n275.jpg",
+      "sha256": "4ae815b11ba2d9fdbc2fad268144f11867e7fbb32fefcd962b5d32d0b4da7252",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 181,
+      "zeroBasedLeaf": 276,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n276.jpg",
+      "sha256": "bc5381f9c0a36ff5dee748517321f43247e8541e0bb97c0f4744b26a7d3ae5fd",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v1",
+      "printedPage": 182,
+      "zeroBasedLeaf": 277,
+      "url": "https://archive.org/download/thesikhreligion01macauoft/page/n277.jpg",
+      "sha256": "2decfbf8bc05390541049b75204ef588c5cb2d594f7ae41b3ced8b4b5f1070b6",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": null,
+      "zeroBasedLeaf": 4,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n4.jpg",
+      "sha256": "e9939315d5bb5dc0419a0ef9ba2e27868e82a1b551cab4e2bdf7808fa3d66702",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 1,
+      "zeroBasedLeaf": 10,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n10.jpg",
+      "sha256": "b54f6bd03af44e4044c634b3b5ea40c1165d8b9a2ed31943bc5fd0713482625f",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 3,
+      "zeroBasedLeaf": 12,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n12.jpg",
+      "sha256": "7474c196c6cc0752cb5312933b2d6087c4a6878d855fa223eb9b7efd91eb375e",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 8,
+      "zeroBasedLeaf": 17,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n17.jpg",
+      "sha256": "1214c3b45f31cd38d6834156c032c9c272c21fb767e0738abc171cd4e8eac815",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 15,
+      "zeroBasedLeaf": 24,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n24.jpg",
+      "sha256": "c25f4b59cc752398b95cbcc32a34e7a96cedde19eb18d54b8cc30cfd902b5748",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 16,
+      "zeroBasedLeaf": 25,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n25.jpg",
+      "sha256": "a282ddabfa8dc31b01c0c4a48c4f1b1b92ff553fc4261d7a75388108800d0a81",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 26,
+      "zeroBasedLeaf": 35,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n35.jpg",
+      "sha256": "51c43e23bc6301269ab2d89d87c22a67fdbb8b4b5a4ccb0d1e0d2b87ee35dbca",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 27,
+      "zeroBasedLeaf": 36,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n36.jpg",
+      "sha256": "6a00572a352313dbd8131c7c4b7069de9fc7aa24259ca6e9a2cb618ef24290bb",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 31,
+      "zeroBasedLeaf": 40,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n40.jpg",
+      "sha256": "4cc5f4a8a28102706ca5f9e0a1c1a9a7936614f2c89da127236cef104d136958",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 32,
+      "zeroBasedLeaf": 41,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n41.jpg",
+      "sha256": "10337b924acbb45b04cc92c6ec8c41f60ced49c44c4b5f1aa5d38e688c913b1a",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 33,
+      "zeroBasedLeaf": 42,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n42.jpg",
+      "sha256": "fc65e4f739cd41694d1552cd9f7b37d47b8d05e5fe74f6ef85b7622432b22d19",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 34,
+      "zeroBasedLeaf": 43,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n43.jpg",
+      "sha256": "f318220630a60e1f509dc9ecb289460c84a28603ab20d8c64170c78faa8caff5",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 35,
+      "zeroBasedLeaf": 44,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n44.jpg",
+      "sha256": "36a4d945b47eaecb614d098cb6c60d827b5bcbc3fb856924e456bd32fd2879e1",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 41,
+      "zeroBasedLeaf": 50,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n50.jpg",
+      "sha256": "e2e854aa9644b8821e2ef5b6375e5394d6b31561baf6fdaeb96cac5c86f0ed12",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 42,
+      "zeroBasedLeaf": 51,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n51.jpg",
+      "sha256": "eb7c963d130391c9bec692499b9b2cb6a86bee5a86ffeab686f9f2ef2f2238dc",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 43,
+      "zeroBasedLeaf": 52,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n52.jpg",
+      "sha256": "2bae243277e9c191efd6a3e808c7739487c60d8f42d856774295911c825a6b0b",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v2",
+      "printedPage": 44,
+      "zeroBasedLeaf": 53,
+      "url": "https://archive.org/download/thesikhreligioni02macauoft/page/n53.jpg",
+      "sha256": "a088333aa1f2f85c1602dcaee03977e360672d22ff24ee7e334d3608f907bd8f",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": null,
+      "zeroBasedLeaf": 6,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n6.jpg",
+      "sha256": "7cb1b6abf1d34ac950d1958325311fbc66278e06320f658207c3f1d0a5e70f44",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 84,
+      "zeroBasedLeaf": 95,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n95.jpg",
+      "sha256": "2754ad757da4c0ee0f69ce5b47465ce81b0e9557fb58507315a1d5f249088fbe",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 85,
+      "zeroBasedLeaf": 96,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n96.jpg",
+      "sha256": "65ed0d9d7f228fc318db5ed97f35ab5baebba2c2522882229802d6586e338873",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 86,
+      "zeroBasedLeaf": 97,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n97.jpg",
+      "sha256": "710df1f882c5e083fad7355a8219682f22dbeed43214b79644825451455db29a",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 87,
+      "zeroBasedLeaf": 98,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n98.jpg",
+      "sha256": "3217d4826b93ad7022b92ab8f565f2e54e46b6189b91554d21e4ab1349ad6a99",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 88,
+      "zeroBasedLeaf": 99,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n99.jpg",
+      "sha256": "26e71beba394fe2695512db68e99faa07fb293d1bf7aeb54e039c155285c9f14",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 89,
+      "zeroBasedLeaf": 100,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n100.jpg",
+      "sha256": "341ec62a8cd024c143561d806cf0cfd563a73b0e3338f14a912a24d04a083db9",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 90,
+      "zeroBasedLeaf": 101,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n101.jpg",
+      "sha256": "69fec99f39019bc97a167f875743d2be5984efca73c3ceff5655f791bc023577",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 91,
+      "zeroBasedLeaf": 102,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n102.jpg",
+      "sha256": "a4584213bf719c14e72c05aaf6b7b1e0fc3c4d1e787511725863c59c3b9f19cc",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 92,
+      "zeroBasedLeaf": 103,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n103.jpg",
+      "sha256": "a5f0d9cca8276f654a633248dd16f1f58e572f8f6e7fb9c1fddf6426e89c4511",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 93,
+      "zeroBasedLeaf": 104,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n104.jpg",
+      "sha256": "aa873a7c462fc68b896aa8b49aff3f9f6438cd1470bac7848765c944488a6911",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 94,
+      "zeroBasedLeaf": 105,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n105.jpg",
+      "sha256": "ae8e93898fc0e2b5570a6dab730f5bc384b09f8b9fac7035e63053709c99db7d",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 95,
+      "zeroBasedLeaf": 106,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n106.jpg",
+      "sha256": "a82c96bbaa9748917b144436a5670800210aaa82a1fc81541f217e8778b9442d",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 96,
+      "zeroBasedLeaf": 107,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n107.jpg",
+      "sha256": "762141a1800ea0b0adfd1e6e767822ec4c6333df6de5e9d288d35098a290c836",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 97,
+      "zeroBasedLeaf": 108,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n108.jpg",
+      "sha256": "c74b682fe1869e114c8087912505cb0a5da2b10fced0460596fc3373c6fc17b4",
+      "visuallyInspected": true
+    },
+    {
+      "volume": "v5",
+      "printedPage": 98,
+      "zeroBasedLeaf": 109,
+      "url": "https://archive.org/download/thesikhreligioni05macauoft/page/n109.jpg",
+      "sha256": "18b3861f717ce62dc97f08c1956471caa98b1a186bc4e137abac2769d49f5ffb",
+      "visuallyInspected": true
+    }
+  ],
+  "comparisonPdf": {
+    "url": "https://library.gurmat.info/download/sri-gur-sobha-sainapati-translation-kulwant-singh.pdf",
+    "sha256": "20f3cb18aad904f112f12ea146bcd6072a3eda0830a54f74ece9e26614562e1e",
+    "visuallyInspectedZeroBasedPages": [
+      2,
+      3,
+      8,
+      99,
+      100,
+      101,
+      102,
+      103,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      133,
+      134,
+      135,
+      136,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166
+    ],
+    "report": "2026-10-23-sri-gur-sobha-scan-review.md"
+  },
+  "packagesAfterReview": [
+    {
+      "path": "public/data/stories/bhai-lalo.json",
+      "id": "bhai-lalo",
+      "revision": 1,
+      "metadataRevision": 1,
+      "wordCount": 458,
+      "sha256": "6447511fc5cda09bbae4f830575f18567ec9de3451c993d9e79a72da3fa79309",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/guru-amar-das-service.json",
+      "id": "guru-amar-das-service",
+      "revision": 2,
+      "metadataRevision": 1,
+      "wordCount": 518,
+      "sha256": "8cfb9cc7d79edd4d812a58c72060ebf6538982597ca0f2ee189d3639a70ffa33",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/mata-khivi.json",
+      "id": "mata-khivi",
+      "revision": 1,
+      "metadataRevision": 1,
+      "wordCount": 438,
+      "sha256": "daa20dd5ebb04e6e46d57f78b2a9dc90171939fc48331184f23164a43ef33dc5",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/sajjan.json",
+      "id": "sajjan",
+      "revision": 1,
+      "metadataRevision": 1,
+      "wordCount": 466,
+      "sha256": "75b486fa4aefd1179c3d4beeaca6c3d30e3f6dac37a6d3873e055f0266c10b37",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/the-milk-and-the-coin.json",
+      "id": "the-milk-and-the-coin",
+      "revision": 1,
+      "metadataRevision": 2,
+      "wordCount": 431,
+      "sha256": "fa21448668b64e8cdb9dfba267ca1ed3617107789ab36fbe4f48c34ee9252a19",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/the-needle.json",
+      "id": "the-needle",
+      "revision": 1,
+      "metadataRevision": 1,
+      "wordCount": 440,
+      "sha256": "85f605ed9ccadb767b00498bf57788816352b8846ef1002ad84a6a2d7c86f023",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/the-sacred-thread.json",
+      "id": "the-sacred-thread",
+      "revision": 1,
+      "metadataRevision": 1,
+      "wordCount": 482,
+      "sha256": "8a78517c63f930fa176f42451e46dc7dfa04622bcf57e3b27ceefc169ea36ff8",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "public/data/stories/water-at-haridwar.json",
+      "id": "water-at-haridwar",
+      "revision": 1,
+      "metadataRevision": 1,
+      "wordCount": 504,
+      "sha256": "ebe7b82b699a131596fd0ec929b0c1457ff07f10facf5f591687c6af3d1b3719",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "content/stories/drafts/becoming-the-khalsa.json",
+      "id": "becoming-the-khalsa",
+      "revision": 2,
+      "metadataRevision": 0,
+      "wordCount": 1452,
+      "sha256": "7430642d3fc0dda534286d4523eb06e59555199f35277cc560a22abd954f12d6",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "content/stories/drafts/bhai-mardana.json",
+      "id": "bhai-mardana",
+      "revision": 3,
+      "metadataRevision": 1,
+      "wordCount": 1354,
+      "sha256": "bb674d0b7648ec532bbaae05e0b453d770826bd74dedff76463f5f527cb9415b",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    },
+    {
+      "path": "content/stories/drafts/mata-khivi.json",
+      "id": "mata-khivi",
+      "revision": 3,
+      "metadataRevision": 2,
+      "wordCount": 653,
+      "sha256": "fa08ac191aad5b7d7e4f5fa69717f86aa7235cb03368b19c7880a8d3fd0ea8c8",
+      "englishAiReview": "pass",
+      "historyGurmatAiReview": "pass",
+      "humanReview": "pending"
+    }
+  ],
+  "reports": [
+    "2026-10-23-english-ai-review.md",
+    "2026-10-23-history-gurmat-ai-review.md",
+    "2026-10-23-public-volume-i-scan-review.md",
+    "2026-10-23-mardana-scan-review.md",
+    "2026-10-23-volume-ii-scan-review.md",
+    "2026-10-23-khalsa-scan-review.md",
+    "2026-10-23-sri-gur-sobha-scan-review.md"
+  ]
+}

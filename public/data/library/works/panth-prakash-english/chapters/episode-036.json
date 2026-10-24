@@ -11,7 +11,7 @@
   "endSourcePage": 271,
   "wordCount": 505,
   "charCount": 2849,
-  "startPosition": 39179,
+  "startPosition": 39178,
   "pages": [
     {
       "sourcePageNumber": 267,
@@ -203,5 +203,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-035",
-  "nextChapterId": "episode-037"
+  "nextChapterId": "episode-037",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 553,
+      "printPageNumber": 509,
+      "sourceHref": "EPUB/page_553.html",
+      "text": "1 Sadhaura : Name of a town in Tehsil Naraingarh District (Ambala). Pir Budhu Shah, a Muslim Saint who belonged to this place and who assisted Guru Gobind Singh in the battle of Bhangani was tortured by the Mughals. Sadhaura was one of the twenty-two Parganas of Sirhind State. Banda Bahadur destroyed it and killed those who had tortured Pir Budhu Shah. 2 Kunjpura : A village in the vicinity of Karnal, a part of Sirhind State at that time the birth place ofWazirKhan. Banda Singh destroyed it in 1767BS (1710CE). 3 Aloona Siddh : A disciple of Gorakhnath, who had mastered Tantric knowledge and taught Banda all these Mantras such as to control the elements like air, water, fire, etc."
+    }
+  ]
 }

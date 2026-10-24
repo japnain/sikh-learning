@@ -11,7 +11,7 @@
   "endSourcePage": 259,
   "wordCount": 728,
   "charCount": 4277,
-  "startPosition": 37101,
+  "startPosition": 37100,
   "pages": [
     {
       "sourcePageNumber": 255,
@@ -290,5 +290,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-032",
-  "nextChapterId": "episode-034"
+  "nextChapterId": "episode-034",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 552,
+      "printPageNumber": 508,
+      "sourceHref": "EPUB/page_552.html",
+      "text": "1 Sehar Khand : A village in the Bangar region of present day Haryana. 2 Kabul, Kandhar & Bhakhar - Names of major cities in the northwest now part of Afghanistan."
+    },
+    {
+      "sourcePageNumber": 553,
+      "printPageNumber": 509,
+      "sourceHref": "EPUB/page_553.html",
+      "text": "3 Ibid. 4 Ibid. 5 Banjara: wandering traders and gypsees. 6 Kiratpur : Name of a place and a Sikh shrine in Distt. Ropar in the vicinity of Anandpur Sahib."
+    }
+  ]
 }

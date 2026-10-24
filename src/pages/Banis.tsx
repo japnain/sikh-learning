@@ -1,4 +1,6 @@
-import { useState, useCallback, useRef, useEffect, useMemo, type ImgHTMLAttributes, type ReactNode } from 'react'
+import '../styles/catalog.css'
+import '../styles/reader.css'
+import { lazy, Suspense, useState, useCallback, useRef, useEffect, useMemo, type ImgHTMLAttributes, type ReactNode } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   fetchSearch,
@@ -41,6 +43,7 @@ import {
   getAngTargets,
   getAvailableSearchMeta,
   getLibrarySearchMatches,
+  getStorySearchMatches,
   groupSearchResults,
   isDirectLookupQuery,
   SEARCH_SOURCE_LABELS,
@@ -49,9 +52,11 @@ import {
   type SearchSource,
 } from '../utils/appSearch'
 import { buildReadSearchPath } from '../utils/searchRoutes'
+import { withSearchDeadline } from '../utils/searchDeadline'
 import {
   buildCurrentAppPath,
   buildReaderOriginNavigationState,
+  buildLibraryReaderNavigationState,
 } from '../utils/libraryReaderNavigation'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import {
@@ -69,10 +74,12 @@ import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.jpeg'
 import booksCourtSrc from '../assets/living-library/books-court.jpeg'
 
 type Scripture = 'SGGS' | 'DG'
-type ReadCollection = 'banis' | 'sources' | 'books'
+const StoryBrowser = lazy(() => import('../components/StoryBrowser'))
+
+type ReadCollection = 'banis' | 'sources' | 'books' | 'stories'
 type ExactBani = Bani & { baniDbId: number }
 
-const READ_COLLECTIONS: ReadCollection[] = ['banis', 'sources', 'books']
+const READ_COLLECTIONS: ReadCollection[] = ['banis', 'sources', 'books', 'stories']
 const READ_SOURCE_SECTION_IDS = ['sggs', 'dasam-granth', 'bhai-gurdas-vaaran']
 
 type ReadPageCopy = {
@@ -180,11 +187,11 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
   en: {
     title: 'Read',
     heroEyebrow: 'NaamRas library',
-    heroBody: 'Gurbani, daily banis, source editions, and books.',
+    heroBody: 'Gurbani, daily banis, books, and Sikh stories.',
     collectionsLabel: 'Read collections',
-    tabs: { banis: 'Banis', sources: 'Sources', books: 'Books' },
+    tabs: { banis: 'Banis', sources: 'Sources', books: 'Books', stories: 'Stories' },
     find: 'Find',
-    searchTitle: 'Search Gurbani and the library',
+    searchTitle: 'Search Gurbani, books and stories',
     searchLabel: 'Search Gurbani, meanings, or direct routes',
     searchPlaceholder: 'Search Gurbani, first letters, transliteration, or meaning',
     refine: 'Refine search',
@@ -282,9 +289,9 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     heroEyebrow: 'ਨਾਮਰਸ ਲਾਇਬ੍ਰੇਰੀ',
     heroBody: 'ਗੁਰਬਾਣੀ, ਰੋਜ਼ਾਨਾ ਬਾਣੀਆਂ, ਮੂਲ ਸਰੋਤ ਅਤੇ ਕਿਤਾਬਾਂ।',
     collectionsLabel: 'ਪੜ੍ਹਨ ਦੀਆਂ ਸ਼੍ਰੇਣੀਆਂ',
-    tabs: { banis: 'ਬਾਣੀਆਂ', sources: 'ਸਰੋਤ', books: 'ਕਿਤਾਬਾਂ' },
+    tabs: { banis: 'ਬਾਣੀਆਂ', sources: 'ਸਰੋਤ', books: 'ਕਿਤਾਬਾਂ', stories: 'ਸਾਖੀਆਂ' },
     find: 'ਖੋਜੋ',
-    searchTitle: 'ਗੁਰਬਾਣੀ ਅਤੇ ਲਾਇਬ੍ਰੇਰੀ ਖੋਜੋ',
+    searchTitle: 'ਗੁਰਬਾਣੀ, ਕਿਤਾਬਾਂ ਅਤੇ ਸਾਖੀਆਂ ਖੋਜੋ',
     searchLabel: 'ਗੁਰਬਾਣੀ, ਅਰਥ ਜਾਂ ਸਿੱਧੇ ਰਸਤੇ ਖੋਜੋ',
     searchPlaceholder: 'ਗੁਰਬਾਣੀ, ਪਹਿਲੇ ਅੱਖਰ, ਲਿਪਾਂਤਰ ਜਾਂ ਅਰਥ ਖੋਜੋ',
     refine: 'ਖੋਜ ਸੁਧਾਰੋ',
@@ -382,9 +389,9 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     heroEyebrow: 'नामरस लाइब्रेरी',
     heroBody: 'गुरबाणी, दैनिक बाणियाँ, मूल स्रोत और किताबें।',
     collectionsLabel: 'पढ़ने की श्रेणियाँ',
-    tabs: { banis: 'बाणियाँ', sources: 'स्रोत', books: 'किताबें' },
+    tabs: { banis: 'बाणियाँ', sources: 'स्रोत', books: 'किताबें', stories: 'साखियाँ' },
     find: 'खोजें',
-    searchTitle: 'गुरबाणी और लाइब्रेरी खोजें',
+    searchTitle: 'गुरबाणी, किताबें और साखियाँ खोजें',
     searchLabel: 'गुरबाणी, अर्थ या सीधे रास्ते खोजें',
     searchPlaceholder: 'गुरबाणी, पहले अक्षर, लिप्यंतरण या अर्थ खोजें',
     refine: 'खोज सुधारें',
@@ -1075,6 +1082,7 @@ export default function Banis() {
   const [searchQuery, setSearchQuery] = useState(() => searchParams.get('query') ?? '')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [librarySearchResults, setLibrarySearchResults] = useState<AppSearchMatch[]>([])
+  const [storySearchResults, setStorySearchResults] = useState<AppSearchMatch[]>([])
   const [searching, setSearching] = useState(false)
   const [searchIssue, setSearchIssue] = useState<AsyncIssueCode | null>(null)
   const [searchPartialIssue, setSearchPartialIssue] = useState<AsyncIssueCode | null>(null)
@@ -1152,6 +1160,7 @@ export default function Banis() {
   }, [])
 
   useEffect(() => {
+    if (activeCollection === 'stories') return
     let cancelled = false
 
     setLoadingSundarGutka(true)
@@ -1176,7 +1185,7 @@ export default function Banis() {
     return () => {
       cancelled = true
     }
-  }, [sundarGutkaRequest])
+  }, [activeCollection, sundarGutkaRequest])
 
   useEffect(() => {
     return () => {
@@ -1207,6 +1216,7 @@ export default function Banis() {
       searchAbortRef.current = null
       setSearchResults([])
       setLibrarySearchResults([])
+      setStorySearchResults([])
       setSearching(false)
       setSearchIssue(null)
       setSearchPartialIssue(null)
@@ -1233,7 +1243,7 @@ export default function Banis() {
       nextSearchParams.set('collection', activeCollection)
     }
     const currentLocationParams = new URLSearchParams(location.search)
-    for (const qaControl of ['qaFail', 'qaEmpty', 'qaSlow']) {
+    for (const qaControl of ['qaFail', 'qaEmpty', 'qaSlow', 'storyQuery', 'storyCollection']) {
       const value = currentLocationParams.get(qaControl)
       if (value) nextSearchParams.set(qaControl, value)
     }
@@ -1248,6 +1258,14 @@ export default function Banis() {
   }, [activeCollection, location.pathname, location.search, searchMode, searchQuery, searchSource, setSearchParams])
 
   const selectCollection = useCallback((collection: ReadCollection) => {
+    if (collection === 'stories') {
+      searchSequenceRef.current += 1
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+      debounceRef.current = null
+      searchAbortRef.current?.abort()
+      searchAbortRef.current = null
+      setSearching(false)
+    }
     const nextSearchParams = new URLSearchParams(location.search)
     if (collection === 'banis') {
       nextSearchParams.delete('collection')
@@ -1288,6 +1306,7 @@ export default function Banis() {
     if (trimmed.length < getSearchMinimumLength(trimmed, mode)) {
       setSearchResults([])
       setLibrarySearchResults([])
+      setStorySearchResults([])
       setSearching(false)
       setSearchIssue(null)
       setSearchPartialIssue(null)
@@ -1296,6 +1315,7 @@ export default function Banis() {
     if (directLookup) {
       setSearchResults([])
       setLibrarySearchResults([])
+      setStorySearchResults([])
       setSearching(false)
       setSearchIssue(null)
       setSearchPartialIssue(null)
@@ -1304,80 +1324,59 @@ export default function Banis() {
     }
     setSearchResults([])
     setLibrarySearchResults([])
+    setStorySearchResults([])
     setSearching(true)
     setSearchIssue(null)
     setSearchPartialIssue(null)
     debounceRef.current = setTimeout(async () => {
       const controller = new AbortController()
       searchAbortRef.current = controller
-      try {
-        const shouldSearchLibrary = source === 'all'
-          && (mode === 'auto-detect' || mode === 'english' || mode === 'transliteration')
-        const settledResults = await Promise.allSettled(
-          getBackendSearchTypes(trimmed, mode).map(searchType => (
-            fetchSearch(trimmed, searchType, source, 'read-search', controller.signal)
-          ))
-        )
-        const fulfilledResults = settledResults.filter(
-          (result): result is PromiseFulfilledResult<SearchResult[]> => result.status === 'fulfilled'
-        )
-        const rejectedBackendResult = settledResults.find(
-          (result): result is PromiseRejectedResult => result.status === 'rejected'
-        )
-        const resultSets = fulfilledResults.map(result => result.value)
-        const results = refineLatinSearchResults(
-          dedupeSearchResults(resultSets),
-          trimmed,
-          mode
-        )
-        if (searchSequenceRef.current !== requestSequence) return
-        setSearchResults(results)
-        if (results.length > 0) revealSearchFeedback()
-
-        const settledLibrary = shouldSearchLibrary
-          ? await getLibrarySearchMatches(trimmed).then(
-              value => ({ status: 'fulfilled' as const, value }),
-              reason => ({ status: 'rejected' as const, reason })
-            )
-          : null
-        if (searchSequenceRef.current !== requestSequence) return
-
-        const libraryResults = settledLibrary?.status === 'fulfilled' ? settledLibrary.value : []
-        const partialFailure = rejectedBackendResult?.reason
-          ?? (settledLibrary?.status === 'rejected' ? settledLibrary.reason : null)
-
-        if (fulfilledResults.length === 0 && libraryResults.length === 0) {
-          throw rejectedBackendResult?.reason
-            ?? (settledLibrary?.status === 'rejected' ? settledLibrary.reason : null)
-            ?? new Error('Read search unavailable')
-        }
-
-        setLibrarySearchResults(libraryResults)
-        setSearchIssue(null)
-        setSearchPartialIssue(partialFailure ? resolveAsyncIssue(partialFailure).code : null)
-        addRecent(trimmed, mode, source)
-      } catch (error) {
-        if (searchSequenceRef.current !== requestSequence) return
-        setSearchResults([])
-        setLibrarySearchResults([])
-        setSearchIssue(resolveAsyncIssue(error).code)
-        setSearchPartialIssue(null)
-      } finally {
-        if (searchAbortRef.current === controller) {
-          searchAbortRef.current = null
-        }
-        if (searchSequenceRef.current === requestSequence) {
-          setSearching(false)
-          revealSearchFeedback()
-        }
+      const isCurrent = () => searchSequenceRef.current === requestSequence && !controller.signal.aborted
+      const remoteSets: SearchResult[][] = []
+      let remoteSuccesses = 0
+      let localResultCount = 0
+      let firstFailure: AsyncIssueCode | null = null
+      const failed = (error: unknown) => {
+        if (!isCurrent()) return
+        firstFailure ??= resolveAsyncIssue(error).code
+        setSearchPartialIssue(firstFailure)
       }
-      }, 300)
-    }, [addRecent, revealSearchFeedback, searchMode, searchSource])
+      const tasks: Promise<unknown>[] = getBackendSearchTypes(trimmed, mode).map(searchType =>
+        withSearchDeadline(signal => fetchSearch(trimmed, searchType, source, 'read-search', signal), controller.signal)
+          .then(results => {
+            if (!isCurrent()) return
+            remoteSuccesses += 1
+            remoteSets.push(results)
+            setSearchResults(refineLatinSearchResults(dedupeSearchResults(remoteSets), trimmed, mode))
+            revealSearchFeedback()
+          }).catch(failed)
+      )
+      if (source === 'all' && (mode === 'auto-detect' || mode === 'english' || mode === 'transliteration')) {
+        tasks.push(
+          withSearchDeadline(() => getLibrarySearchMatches(trimmed), controller.signal)
+            .then(results => { if (isCurrent()) { localResultCount += results.length; setLibrarySearchResults(results); revealSearchFeedback() } }).catch(failed),
+          withSearchDeadline(() => getStorySearchMatches(trimmed), controller.signal)
+            .then(results => { if (isCurrent()) { localResultCount += results.length; setStorySearchResults(results); revealSearchFeedback() } }).catch(failed),
+        )
+      }
+      await Promise.all(tasks)
+      if (searchAbortRef.current === controller) searchAbortRef.current = null
+      if (!isCurrent()) return
+      if (remoteSuccesses === 0 && localResultCount === 0 && firstFailure) {
+        setSearchIssue(firstFailure)
+        setSearchPartialIssue(null)
+      }
+      addRecent(trimmed, mode, source)
+      setSearching(false)
+      revealSearchFeedback()
+    }, 300)
+  }, [addRecent, revealSearchFeedback, searchMode, searchSource])
 
   const clearSearch = useCallback(() => {
     handleSearch('', searchMode, searchSource)
     setSearchResults([])
     setLibrarySearchResults([])
+    setStorySearchResults([])
     setSearchIssue(null)
     setSearchPartialIssue(null)
     globalThis.requestAnimationFrame(() => searchInputRef.current?.focus())
@@ -1390,16 +1389,24 @@ export default function Banis() {
   }, [handleSearch, searchSource])
 
   useEffect(() => {
+    if (activeCollection === 'stories') {
+      searchSequenceRef.current += 1
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+      debounceRef.current = null
+      searchAbortRef.current?.abort()
+      searchAbortRef.current = null
+      return
+    }
     const trimmed = searchQuery.trim()
     if (trimmed.length >= getSearchMinimumLength(trimmed, searchMode)) {
       handleSearch(searchQuery, searchMode, searchSource)
     }
-  }, [handleSearch, searchMode, searchSource, searchQuery])
+  }, [activeCollection, handleSearch, searchMode, searchSource, searchQuery])
 
   const readSearchOrigin = buildCurrentAppPath(location)
   const openSearchDestination = (path: string) => {
     navigate(path, {
-      state: buildReaderOriginNavigationState(path, readSearchOrigin),
+      state: path.startsWith('/stories/') ? buildLibraryReaderNavigationState(readSearchOrigin) : buildReaderOriginNavigationState(path, readSearchOrigin),
     })
   }
 
@@ -1508,6 +1515,7 @@ export default function Banis() {
   const appSearchMatchCount = (
     immediateAppSearchMatches.length
     + deferredLibrarySearchMatches.length
+    + storySearchResults.length
   )
   const isEnglishMeaningSearch = (
     searchMode === 'english'
@@ -1517,7 +1525,7 @@ export default function Banis() {
       && !GURMUKHI_SEARCH_PATTERN.test(searchQuery)
     )
   )
-  const hasActiveSearch = searchQuery.trim().length >= getSearchMinimumLength(searchQuery.trim(), searchMode)
+  const hasActiveSearch = activeCollection !== 'stories' && searchQuery.trim().length >= getSearchMinimumLength(searchQuery.trim(), searchMode)
   const searchStatusMessage = useMemo(() => {
     if (!hasActiveSearch) return ''
     if (searching) return copy.searching
@@ -1565,7 +1573,7 @@ export default function Banis() {
             />
           </figure>
 
-          <div
+          {activeCollection !== 'stories' ? <div
             ref={searchCardRef}
             className="read-quick-find-card"
         aria-labelledby="banis-quick-find-title"
@@ -1720,9 +1728,10 @@ export default function Banis() {
               </button>
             </div>
           )}
-          {searchPartialIssue && !searching && !searchIssue && !directLookupActive && (
+          {searchPartialIssue && !searchIssue && !directLookupActive && (
             <div data-search-feedback-anchor="true" role="status" className="read-search-partial nav-safe-results mt-3 rounded-lg border px-4 py-3 font-sans text-sm">
               {copy.partialSearch}
+              {!searching ? <button type="button" className="read-search-clear mt-2" onClick={() => handleSearch(searchQuery, searchMode, searchSource)}>{copy.retry}</button> : null}
             </div>
           )}
           {immediateAppSearchMatches.length > 0 && !directLookupActive && (
@@ -1827,8 +1836,8 @@ export default function Banis() {
                   ) : null}
                   {(meaningLanguage === 'en' || isEnglishMeaningSearch) && r.translation_en ? (
                     <p className="read-search-result__meaning font-sans text-xs text-ink/75 dark:text-dark-text/76 mt-1">
-                      {isEnglishMeaningSearch ? <span>{copy.meaning}</span> : null}
-                      <SearchHighlight text={r.translation_en} query={searchQuery.trim()} />
+                      {isEnglishMeaningSearch ? <span className="read-search-result__label">{copy.meaning}</span> : null}
+                      <span className="read-search-result__text"><SearchHighlight text={r.translation_en} query={searchQuery.trim()} /></span>
                     </p>
                   ) : null}
                 </button>
@@ -1879,6 +1888,12 @@ export default function Banis() {
             openSearchDestination={openSearchDestination}
           />
         )}
+        {storySearchResults.length > 0 && !directLookupActive ? <AppSearchResultGroup
+          matches={storySearchResults} query={searchQuery} groupLabel={copy.tabs.stories}
+          testId="banis-search-story-results" aiResultGroup="stories" resultAnchor={appSearchMatchCount === storySearchResults.length && searchResults.length === 0}
+          className="mt-3" copy={copy} searchMode={searchMode} searchSource={searchSource}
+          addRecent={addRecent} openSearchDestination={openSearchDestination}
+        /> : null}
         {hasActiveSearch && !searching && !searchIssue && !searchPartialIssue && searchResults.length === 0 && appSearchMatchCount === 0 && !directLookupActive && (
           <section data-search-feedback-anchor="true" className="read-search-empty nav-safe-results mt-3" aria-labelledby="read-search-empty-title">
             <h3 id="read-search-empty-title" className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
@@ -1930,7 +1945,7 @@ export default function Banis() {
             </div>
           </div>
         )}
-          </div>
+          </div> : null}
         </section>
 
         <div className="read-collection-tabs" role="tablist" aria-label={copy.collectionsLabel}>
@@ -1968,6 +1983,14 @@ export default function Banis() {
             )
           })}
         </div>
+
+        {!hasActiveSearch && activeCollection === 'stories' ? (
+          <div id="read-active-collection-panel" role="tabpanel" aria-labelledby="read-tab-stories" className="read-collection-panel">
+            <Suspense fallback={<p role="status" className="p-5 text-sm">Opening the story collection…</p>}>
+              <StoryBrowser />
+            </Suspense>
+          </div>
+        ) : null}
 
         {hasActiveSearch ? (
           <div

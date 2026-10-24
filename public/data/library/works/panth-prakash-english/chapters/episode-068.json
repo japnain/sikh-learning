@@ -11,7 +11,7 @@
   "endSourcePage": 463,
   "wordCount": 728,
   "charCount": 4212,
-  "startPosition": 73546,
+  "startPosition": 73545,
   "pages": [
     {
       "sourcePageNumber": 459,
@@ -285,5 +285,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-067",
-  "nextChapterId": "episode-069"
+  "nextChapterId": "episode-069",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 565,
+      "printPageNumber": 521,
+      "sourceHref": "EPUB/page_565.html",
+      "text": "1 Narela : Name of a town on the outskirts of Delhi in the north on the G.T.-road national high way No. 1. 2 1778, which means Bikrami Samvat 1778 or 1721 CE. But this date mentioned by S. Rattan Singh Bhangoo about Banda Singh's execution is not correct. Baba Banda Singh, along with his more than seven hundred followers were arrested and brought to Delhi on February 29, 1716. The public execution of a batch of one hundred Singhs per day was started since March 5, 1716 on a platform in front of Kotwali. Finally, Banda Singh along with twenty six Singhs, was executed near Kutub Minar and Dargah of Khwaja Kutubudin Bakhtiar Kaki on June 9, 1716. The prominent companions of Banda Singh included S. Baaj Singh, two brothers Aali Singh and Maali Singh of Village Salodi."
+    }
+  ]
 }

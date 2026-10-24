@@ -11,7 +11,7 @@
   "endSourcePage": 179,
   "wordCount": 889,
   "charCount": 5149,
-  "startPosition": 22242,
+  "startPosition": 22241,
   "pages": [
     {
       "sourcePageNumber": 175,
@@ -337,5 +337,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-019",
-  "nextChapterId": "episode-021"
+  "nextChapterId": "episode-021",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 548,
+      "printPageNumber": 504,
+      "sourceHref": "EPUB/page_548.html",
+      "text": "1 Machhiwara: A place approximately 20 miles to the west of Chamkaur S ahib, now in District Ludhiana. 2 Haj : The Muslim pilgrimage to the most sacred place of \"Kaaba\" at Mecca Madina in Saudi Arabia, where Muslims go on a pilgrimage every year after observing fasts during the month of Ramzan. This Haj pilgrimage is supposed to clean and condone their sins. 3 Astavas: A brass or copper bowl with a protruding nozzle for carrying water with which the Muslims wash their hands and feet before prayer. 4 Kanaich : Name of a village in District Ludhiana. 5 Masand : An official appointed by the earlier Sikh Gurus for propagating Sikhism and collecting the offerings made by the Sikhs on behalf of the Gurus. 6 Doraha : A small town on the grand trunk road around thirty miles from Ludhiana in the east. 7 Rozas : Act of observing fasts before going for a Haj. 8 Uchh da Pir : A title given to a Muslim saint or pir with his seat in Multan province now in Pakistan. 9 Bhagta : Name of a village known Bhagta Bhai ka, after the name of a devout Sikh who served the Guru for three days during this torturous journey. This village is situated near Kotkapoora in district Faridkot at a distance of sixteen miles from the town of Rampura Phool. 10 Mohi : Name of a village in District Ludhiana. 11 Jaitpur : Another name of a village in District Ludhiana."
+    }
+  ]
 }

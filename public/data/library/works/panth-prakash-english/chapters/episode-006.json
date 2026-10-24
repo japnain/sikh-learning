@@ -11,7 +11,7 @@
   "endSourcePage": 85,
   "wordCount": 596,
   "charCount": 3489,
-  "startPosition": 6086,
+  "startPosition": 6085,
   "pages": [
     {
       "sourcePageNumber": 83,
@@ -253,5 +253,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-005",
-  "nextChapterId": "episode-007"
+  "nextChapterId": "episode-007",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 540,
+      "printPageNumber": 496,
+      "sourceHref": "EPUB/page_540.html",
+      "text": "1 Vallabh : Born in 1422 CE, the head of a Vaishnav Sect and whose's disciple was Surdas. 2 Yogis : The name for Indian ancient saints who practiced various kinds of physical, spiritual and meditational exercises. 3 Gorakh Matta : The Seat of yogic followers of Gorakh Nath, situated in Tehsil Starganj , District Nainital, in the State of present Uttaranchal in the Garhwal region. Here Guru Nanak held a discourse with Bhangar Nath and Jhangar Nath, after which it came to be known as Nanak Matta. 4 Badri Nath : A holy place of the Hindus where a temple in the name of Lord Badrivishal, an incarnation of Lord Vishnu, is situated on the bank of river Alkananda in the State of Uttaranchal in the Garhwal region. 5 Kedar Nath: Another holy place of Hindu worship in Rudarprayag in Garhwal. 6 Jagan Nath: The famous temple of Lord Jagannath, an incarnation of Lord Vishnu (Krishna) at Puri in District Cuttack in Orisa on the sea shore. A famous congregation is held evry year in the month of July when the chariot of Lord Jagannath is taken out in a procession. Guru Nanak visited this famous place of pilgrimage in 1509 and recited the famous hymn in Dhanasari Raga. It is known as \"Aarti\" and recorded in Guru Granth Sahib on page 13. 7 Kamrup : A district level town in upper east Assam on the Indo-Bhutan border famous for its temple of Kamkhya Devi and the practice of black magic etc. 8 Shiv Nabh : The ruler of Sangla Island in the Indian ocean. 9 Sangaldeep : Sinhaladeep, Ceylon or Modern Sri Lanka inhabited by a majority of people of Sinhala race."
+    }
+  ]
 }

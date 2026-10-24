@@ -91,6 +91,24 @@ test('Cancel discards draft order, lengths, and goal', () => {
   expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('short')
 })
 
+test('keeps keyboard focus useful when add and remove controls leave the list', () => {
+  useNitemStore.setState({ selectedIds: ['japji-sahib', 'rehras-sahib'] })
+  renderCustomize()
+  editBani('Japji Sahib')
+  const remove = screen.getByRole('button', { name: 'Remove Japji Sahib from Daily Nitnem' })
+  remove.focus()
+  fireEvent.click(remove)
+  expect(screen.getByLabelText('Edit Rehras Sahib')).toHaveFocus()
+  fireEvent.click(screen.getByRole('button', { name: /add a bani/i }))
+  const search = screen.getByRole('searchbox', { name: 'Search available banis' })
+  fireEvent.change(search, { target: { value: 'Salok Mahalla 9' } })
+  const add = screen.getByRole('button', { name: 'Add Salok Mahalla 9' })
+  add.focus()
+  fireEvent.click(add)
+  expect(search).toHaveFocus()
+  expect(screen.getByRole('dialog')).toBeInTheDocument()
+})
+
 test('saves only supported API length choices together with the weekly goal', () => {
   renderCustomize()
   editBani('Benati Chaupai Sahib')

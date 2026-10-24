@@ -1,4 +1,5 @@
 import type { ScriptureEntry } from '../types'
+import { gurmukhiToHindi } from './gurmukhiToHindi'
 
 export interface BaniFindHit {
   entryIndex: number
@@ -9,7 +10,7 @@ export interface BaniFindHit {
   verseId: number
   gurmukhi: string
   transliteration: string
-  matchedField: 'gurmukhi' | 'transliteration'
+  matchedField: 'gurmukhi' | 'devanagari' | 'transliteration'
 }
 
 /** Search-only normalization: retain Gurmukhi vowel signs and never rewrite scripture. */
@@ -88,6 +89,7 @@ export function findBaniLines(
 ): BaniFindHit[] {
   const needle = normalizeBaniFindText(query)
   if (!needle || query.length > 240) return []
+  const searchesDevanagari = /\p{Script=Devanagari}/u.test(needle)
   const requestedLimit = options.limit ?? 100
   const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(200, Math.floor(requestedLimit))) : 100
   const hits: BaniFindHit[] = []
@@ -98,7 +100,8 @@ export function findBaniLines(
     for (const [lineIndex, line] of lines.entries()) {
       const transliteration = line.transliteration ?? ''
       const matchedField = matches(line.gurmukhi, needle, options.wholeWords ?? false)
-        ? 'gurmukhi' : matches(transliteration, needle, options.wholeWords ?? false) ? 'transliteration' : null
+        ? 'gurmukhi' : searchesDevanagari && matches(gurmukhiToHindi(line.gurmukhi), needle, options.wholeWords ?? false)
+          ? 'devanagari' : matches(transliteration, needle, options.wholeWords ?? false) ? 'transliteration' : null
       if (!matchedField) continue
       hits.push({
         entryIndex, lineIndex, entryId: entry.id, source: entry.source,

@@ -5,6 +5,9 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { afterEach, vi } from 'vitest'
 import * as banidb from '../api/banidb'
 import AmritKeertan from './AmritKeertan'
+import { useLocaleStore } from '../store/locale'
+
+beforeEach(() => useLocaleStore.setState({ locale: 'en' }))
 
 function LocationSpy() {
   const location = useLocation()
@@ -124,4 +127,14 @@ test('does not cache a failed shabad section as an empty result', async () => {
 
   expect(await screen.findByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()
   expect(fetchShabads).toHaveBeenCalledTimes(2)
+})
+
+test.each(['pa', 'hi'] as const)('localizes %s controls while preserving English source translations', async locale => {
+  useLocaleStore.setState({ locale })
+  renderAmritKeertan('/banis/amrit-keertan/1')
+  expect(screen.getByTestId('page-amrit-keertan')).toHaveAttribute('lang', locale === 'pa' ? 'pa-Guru' : 'hi')
+  expect(await screen.findByText('I bow and offer countless salutations to the All-powerful One.')).toHaveAttribute('lang', 'en')
+  expect(screen.getByRole('searchbox')).toHaveAccessibleName(locale === 'pa' ? 'ਇਸ ਅੰਮ੍ਰਿਤ ਕੀਰਤਨ ਭਾਗ ਵਿੱਚ ਲੱਭੋ' : 'इस अमृत कीर्तन भाग में खोजें')
+  expect(screen.getByRole('button', { name: locale === 'pa' ? 'ਅੰਗਰੇਜ਼ੀ ਚਾਲੂ' : 'अंग्रेज़ी चालू' })).toHaveAttribute('aria-pressed', 'true')
+  expect(within(screen.getByTestId('amrit-keertan-page-nav')).getByRole('link', { name: locale === 'pa' ? 'ਅਗਲਾ ਭਾਗ' : 'अगला भाग' })).toBeInTheDocument()
 })

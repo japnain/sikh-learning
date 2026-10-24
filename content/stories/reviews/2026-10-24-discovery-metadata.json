@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-24",
+  "scope": "Discovery metadata only: thematic related-reading links. Story prose, paragraph anchors, sources, rights and pending human reviews unchanged. This does not supersede the dated source-review assessment or assert new human approval.",
+  "packages": [
+    {
+      "id": "bhai-lalo",
+      "readingRevision": 1,
+      "metadataRevision": 2,
+      "previousPackageSha256": "6447511fc5cda09bbae4f830575f18567ec9de3451c993d9e79a72da3fa79309",
+      "packageSha256": "097ac748b6419e8b050df4aedb6cce30655f61983317ec4448751557506f24ac",
+      "relatedStoryIds": [
+        "mata-khivi",
+        "the-needle",
+        "guru-amar-das-service"
+      ]
+    },
+    {
+      "id": "mata-khivi",
+      "readingRevision": 1,
+      "metadataRevision": 2,
+      "previousPackageSha256": "daa20dd5ebb04e6e46d57f78b2a9dc90171939fc48331184f23164a43ef33dc5",
+      "packageSha256": "e2118c8f892367ce46e4953d16841ed45166cfaa6624e50b8878c877f7291a11",
+      "relatedStoryIds": [
+        "bhai-lalo",
+        "guru-amar-das-service"
+      ]
+    },
+    {
+      "id": "guru-amar-das-service",
+      "readingRevision": 2,
+      "metadataRevision": 2,
+      "previousPackageSha256": "8cfb9cc7d79edd4d812a58c72060ebf6538982597ca0f2ee189d3639a70ffa33",
+      "packageSha256": "648942f9ac6fc953f8639e9e73ba4a9b978616e08bb58697a4d248ff32500e8d",
+      "relatedStoryIds": [
+        "mata-khivi",
+        "bhai-lalo"
+      ]
+    },
+    {
+      "id": "sajjan",
+      "readingRevision": 1,
+      "metadataRevision": 2,
+      "previousPackageSha256": "75b486fa4aefd1179c3d4beeaca6c3d30e3f6dac37a6d3873e055f0266c10b37",
+      "packageSha256": "d9c96335d8eaf70e2b928be979daa8c966aa43bcda6911ed79ee13014c8d6f08",
+      "relatedStoryIds": [
+        "the-needle",
+        "the-sacred-thread"
+      ]
+    },
+    {
+      "id": "water-at-haridwar",
+      "readingRevision": 1,
+      "metadataRevision": 2,
+      "previousPackageSha256": "ebe7b82b699a131596fd0ec929b0c1457ff07f10facf5f591687c6af3d1b3719",
+      "packageSha256": "02a74a1b2fbca6318252819b92641aae4c18fe5815ed05713759486406f3a708",
+      "relatedStoryIds": [
+        "the-sacred-thread",
+        "the-milk-and-the-coin"
+      ]
+    },
+    {
+      "id": "the-sacred-thread",
+      "readingRevision": 1,
+      "metadataRevision": 2,
+      "previousPackageSha256": "8a78517c63f930fa176f42451e46dc7dfa04622bcf57e3b27ceefc169ea36ff8",
+      "packageSha256": "a294516da17781793df0ee84c4ec0a0ccbfeb0e1b0fe70aa5bd45fe78d004875",
+      "relatedStoryIds": [
+        "water-at-haridwar",
+        "bhai-lalo"
+      ]
+    },
+    {
+      "id": "the-needle",
+      "readingRevision": 1,
+      "metadataRevision": 2,
+      "previousPackageSha256": "85f605ed9ccadb767b00498bf57788816352b8846ef1002ad84a6a2d7c86f023",
+      "packageSha256": "cf8c344abf0231b70e76bd7645f19139ade17a553ff3f0aa6456e237fd4d05f5",
+      "relatedStoryIds": [
+        "sajjan",
+        "bhai-lalo"
+      ]
+    },
+    {
+      "id": "the-milk-and-the-coin",
+      "readingRevision": 1,
+      "metadataRevision": 3,
+      "previousPackageSha256": "fa21448668b64e8cdb9dfba267ca1ed3617107789ab36fbe4f48c34ee9252a19",
+      "packageSha256": "25b97a0f64285b520e51af6f85a42bb68731563909e8182f3b0c8005f4ef492f",
+      "relatedStoryIds": [
+        "mata-khivi",
+        "water-at-haridwar"
+      ]
+    }
+  ]
+}

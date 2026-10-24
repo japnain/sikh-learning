@@ -11,7 +11,7 @@
   "endSourcePage": 469,
   "wordCount": 1223,
   "charCount": 7083,
-  "startPosition": 74274,
+  "startPosition": 74273,
   "pages": [
     {
       "sourcePageNumber": 463,
@@ -489,5 +489,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-068",
-  "nextChapterId": "episode-070"
+  "nextChapterId": "episode-070",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 565,
+      "printPageNumber": 521,
+      "sourceHref": "EPUB/page_565.html",
+      "text": "1 Jassu : The town of Jasrota near Jammu. 2 SodhiDynasty: A prominent caste among Kshtriyas. The Sikh Gurus - Guru Ramdas, Guru Arjun, Guru Hargobind, Guru Har Rai, Guru Tegh Bahadur and Guru Gobind Singh all belonged to Sodhi Dynasty."
+    }
+  ]
 }

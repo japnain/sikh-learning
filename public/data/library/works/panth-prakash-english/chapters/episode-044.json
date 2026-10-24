@@ -11,7 +11,7 @@
   "endSourcePage": 303,
   "wordCount": 1081,
   "charCount": 6560,
-  "startPosition": 44380,
+  "startPosition": 44379,
   "pages": [
     {
       "sourcePageNumber": 297,
@@ -404,5 +404,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-043",
-  "nextChapterId": "episode-045"
+  "nextChapterId": "episode-045",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 555,
+      "printPageNumber": 511,
+      "sourceHref": "EPUB/page_555.html",
+      "text": "1 Doaba : The area in the Punjab state between the river Satluj and the river Beas consisting of"
+    },
+    {
+      "sourcePageNumber": 556,
+      "printPageNumber": 512,
+      "sourceHref": "EPUB/page_556.html",
+      "text": "the present districts of Jalandhar, Hoshiarpur, Nawashahar and Kapurthala. 2 Rahon, Jalandhar and Hoshiarpur : Important towns in the Doaba region of Punjab. 3 Phagwara : A city situated on the National Highway No. 1 . between Ludhiana and Jalandhar at a distance 15 kms from Jalandhar towards Ludhiana. 4 Muslim Azan : The loud chanting of the Muslim prayer from the Mosque in the early hours of the morning. 5 Sathiala : A town in Amritsar District situated on Beas to Batala road 6 Butala : An ancient village in District Amritsar situated on Beas-Batala road. 7 Jaiswali : Name of a small Hill principality in the hilly region of Jalandhar. 8 Doon, Parrol and Basoli : Names of important places in the Jaiswali principality. 9 Kashmir : The Kashmir valley, a part of J & K state in the north of India. 10 Bahawal : Known as Bahwalpur in the north-west part known as Jhang in Pakistan. 11 Bhakhar : Another town in the same region. 12 Kabul : Capital city of Afghanisatan in the North west of Pakistan. 13 Achal Batala : A tehsil level town in the Majha region of Punjab in District Gurdaspur. An ancient-seat of Siddh yogis with whom Guru Nanak had entered into a discussion about metaphysical matters."
+    }
+  ]
 }

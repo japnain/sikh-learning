@@ -11,7 +11,7 @@
   "endSourcePage": 377,
   "wordCount": 1127,
   "charCount": 6590,
-  "startPosition": 57882,
+  "startPosition": 57881,
   "pages": [
     {
       "sourcePageNumber": 371,
@@ -429,5 +429,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-057",
-  "nextChapterId": "episode-059"
+  "nextChapterId": "episode-059",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 560,
+      "printPageNumber": 516,
+      "sourceHref": "EPUB/page_560.html",
+      "text": "1 Shamas Khan, see op. cit., p. 5 1 5 . 2 BaizidKhan, see op. cit, p. 515. 3 Birs, see op. cit, 507. 4 Nehkalank, see op. cit., p. 510."
+    }
+  ]
 }

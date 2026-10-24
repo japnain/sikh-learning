@@ -1,3 +1,4 @@
+import '../styles/home.css'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { IconArrowRight, IconMoon, IconSun } from '../components/icons'

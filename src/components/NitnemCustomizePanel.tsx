@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { useBeforeUnload, useNavigate } from 'react-router-dom'
 import { IconArrowLeft, IconArrowRight, IconClose, IconSearch } from './icons'
 import ModalSheet from './ModalSheet'
@@ -65,10 +65,24 @@ export default function NitnemCustomizePanel() {
   const [saveError, setSaveError] = useState('')
   const [leaveOpen, setLeaveOpen] = useState(false)
   const keepEditingRef = useRef<HTMLButtonElement>(null)
+  const selectedControls = useRef(new Map<string, HTMLElement>())
+  const availableControls = useRef(new Map<string, HTMLButtonElement>())
+  const librarySearchRef = useRef<HTMLInputElement>(null)
+  const editorHeadingRef = useRef<HTMLHeadingElement>(null)
+  const pendingFocus = useRef<{ list: 'selected' | 'available'; id?: string } | null>(null)
   const selected = draftIds.map(getNitnemOption).filter((option): option is NitnemRouteOption => option !== null)
   const available = useMemo(() => [...NITNEM_ROUTE_OPTIONS].sort(compareNitnemOptions), [])
     .filter(option => !draftIds.includes(option.id))
   const matches = available.filter(option => `${option.name} ${option.gurmukhiTitle} ${option.group} ${copy.groups[option.group]}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()))
+  useLayoutEffect(() => {
+    const target = pendingFocus.current
+    if (!target) return
+    pendingFocus.current = null
+    const control = target.id
+      ? (target.list === 'selected' ? selectedControls.current : availableControls.current).get(target.id)
+      : undefined
+    ;(control ?? (libraryOpen ? librarySearchRef.current : editorHeadingRef.current))?.focus({ preventScroll: true })
+  }, [draftIds, libraryOpen])
   const readingsChanged = draftIds.join('|') !== selectedIds.join('|')
     || Object.entries(draftLengths).some(([id, value]) => value !== lengths[id as keyof LengthPreferences])
   const hasChanges = readingsChanged || draftGoal !== weeklyDayGoal || draftTracking !== completionTrackingEnabled
@@ -107,10 +121,14 @@ export default function NitnemCustomizePanel() {
   }
   const remove = (id: string) => {
     if (draftIds.length <= 1) return
+    const index = draftIds.indexOf(id)
+    pendingFocus.current = { list: 'selected', id: draftIds[index + 1] ?? draftIds[index - 1] }
     setDraftIds(draftIds.filter(value => value !== id))
     setNotice(copy.removed(getNitnemOption(id)?.name ?? id))
   }
   const add = (option: NitnemRouteOption) => {
+    const index = matches.findIndex(item => item.id === option.id)
+    pendingFocus.current = { list: 'available', id: matches[index + 1]?.id ?? matches[index - 1]?.id }
     setDraftIds(ids => ids.includes(option.id) ? ids : [...ids, option.id])
     setNotice(copy.added(option.name))
     if (available.length === 1) setLibraryOpen(false)
@@ -154,7 +172,7 @@ export default function NitnemCustomizePanel() {
         <button type="button" onClick={leave}><IconArrowLeft size={18} />{copy.back}</button>
       </nav>
       <header className="nitnem-editor-intro">
-        <h1 id="nitnem-customize-title">{copy.title} <em>{copy.titleEmphasis}</em></h1>
+        <h1 id="nitnem-customize-title" ref={editorHeadingRef} tabIndex={-1}>{copy.title} <em>{copy.titleEmphasis}</em></h1>
         <p>{copy.subtitle}</p>
         {recoveredDraft ? <p className="nitnem-editor-recovered" role="status">{copy.recovered}</p> : null}
         {hasChanges && !draftStorageAvailable ? <p className="nitnem-editor-draft-warning" role="status">{copy.draftUnavailable}</p> : null}
@@ -166,7 +184,7 @@ export default function NitnemCustomizePanel() {
             const lengthId = asSupportedSundarGutkaBaniId(option.baseBaniId)
             return <li className="nitnem-editor-row" key={option.id} data-testid="nitnem-ritual-item">
               <details className="nitnem-editor-bani-details">
-                <summary aria-label={copy.editBani(option.romanizedTitle)}>
+                <summary aria-label={copy.editBani(option.romanizedTitle)} ref={node => { if (node) selectedControls.current.set(option.id, node); else selectedControls.current.delete(option.id) }}>
                   <span className="nitnem-editor-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                   <div className="nitnem-editor-bani">{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}{lengthId ? ` · ${copy.lengths[draftLengths[lengthId]]}` : ''}</p></div>
                   <span className="nitnem-editor-edit" aria-hidden="true">{copy.edit} <IconArrowRight size={14} /></span>
@@ -215,9 +233,9 @@ export default function NitnemCustomizePanel() {
       </ModalSheet>
       <ModalSheet open={libraryOpen} onClose={() => setLibraryOpen(false)} title={copy.add} description={copy.addDescription} className="nitnem-editor-library" testId="nitnem-selection">
         <div className="nitnem-editor-library-heading"><div><p className="nitnem-editor-eyebrow">{copy.title} {copy.titleEmphasis}</p><h2>{copy.addTitle}</h2></div><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = 0 }} aria-label={copy.closeAvailable}><IconClose size={20} /></button></div>
-        <label className="nitnem-editor-search"><IconSearch size={18} /><input type="search" aria-label={copy.searchLabel} placeholder={copy.searchPlaceholder} value={query} onChange={event => setQuery(event.target.value)} /></label>
+        <label className="nitnem-editor-search"><IconSearch size={18} /><input ref={librarySearchRef} type="search" aria-label={copy.searchLabel} placeholder={copy.searchPlaceholder} value={query} onChange={event => setQuery(event.target.value)} /></label>
         <div className="nitnem-editor-available">
-          {matches.map(option => <article key={option.id}><div>{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}</p></div><button type="button" onClick={() => add(option)} aria-label={copy.addBani(option.romanizedTitle)}><span aria-hidden="true">＋</span></button></article>)}
+          {matches.map(option => <article key={option.id}><div>{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}</p></div><button type="button" ref={node => { if (node) availableControls.current.set(option.id, node); else availableControls.current.delete(option.id) }} onClick={() => add(option)} aria-label={copy.addBani(option.romanizedTitle)}><span aria-hidden="true">＋</span></button></article>)}
           {matches.length === 0 ? <p className="nitnem-editor-empty">{copy.noMatches}</p> : null}
         </div>
         <footer className="nitnem-editor-library-footer"><p className="nitnem-editor-hint">{copy.addedHint}</p><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = sheet.scrollHeight }}>{copy.done}<IconArrowRight size={18} /></button></footer>

@@ -9,8 +9,10 @@ import { useMusicStore } from '../store/music'
 import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
+import { getSavedReaderPresentation, setReaderPresentationPreference } from '../utils/readerPresentation'
 
 beforeEach(() => {
+  window.localStorage.removeItem('naamras-reader-presentation')
   window.localStorage.removeItem(UI_DISCLOSURE_STORAGE_KEY)
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
@@ -107,6 +109,24 @@ test('persists reader display defaults', () => {
   expect(state.textAlign).toBe('center')
 })
 
+test('names the size control, announces the meaning choice, and exposes the mode controlling support', () => {
+  setReaderPresentationPreference('read')
+  render(<MemoryRouter><More /></MemoryRouter>)
+  openMoreSection(/Reader Defaults/i)
+  const defaults = within(screen.getByTestId('more-reader-defaults'))
+  const slider = defaults.getByRole('slider', { name: 'Script size' })
+  expect(slider).toHaveAttribute('min', '16')
+  expect(slider).toHaveAttribute('step', '1')
+  fireEvent.change(slider, { target: { value: '23' } })
+  expect(useLanguageStore.getState().fontSize).toBe(23)
+  const meanings = within(defaults.getByRole('group', { name: 'Meaning language' }))
+  expect(meanings.getByRole('button', { name: 'English' })).toHaveAttribute('aria-pressed', 'true')
+  expect(defaults.getByRole('button', { name: 'Read' })).toHaveAttribute('aria-pressed', 'true')
+  fireEvent.click(defaults.getByRole('button', { name: 'Study' }))
+  expect(getSavedReaderPresentation()).toBe('study')
+  expect(defaults.getByRole('button', { name: 'Study' })).toHaveAttribute('aria-pressed', 'true')
+})
+
 test('persists appearance and applies it to the document', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /^Dark$/i }))
@@ -185,7 +205,7 @@ test('heavy More sections start collapsed while About stays visible', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
 
   expect(screen.getByRole('button', { name: /expand soundscapes/i })).toHaveAttribute('aria-expanded', 'false')
-  expect(screen.getByRole('button', { name: /keep naamras with you across devices/i })).toHaveAttribute('aria-expanded', 'false')
+  expect(within(screen.getByTestId('more-cloud-sync')).getByRole('button')).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByTestId('more-open-nitnem-customize')).toHaveAttribute('href', '/nitnem/customize')
   expect(screen.getByRole('button', { name: /reader defaults/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByTestId('more-appearance')).toBeInTheDocument()

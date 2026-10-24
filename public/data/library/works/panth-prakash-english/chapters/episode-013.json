@@ -11,7 +11,7 @@
   "endSourcePage": 117,
   "wordCount": 439,
   "charCount": 2633,
-  "startPosition": 11699,
+  "startPosition": 11698,
   "pages": [
     {
       "sourcePageNumber": 115,
@@ -183,5 +183,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-012",
-  "nextChapterId": "episode-014"
+  "nextChapterId": "episode-014",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 543,
+      "printPageNumber": 499,
+      "sourceHref": "EPUB/page_543.html",
+      "text": "1 Guru Nanak's blessings to Babur : In Episode 9 of this Epic, Rattan Singh Bhangoo has made a reference to the Guru Nanak's prediction about the end of Lodhi Dynasty because of their oppression and had predicted the beginning of Mughal empire. He had also warned Babur that so long as the Mughals ruled without oppression, their writ will run, otherwise their reign would also perish. This is a reference to Guru Nanak's earlier advice to Babur, the first Mughal emperor. 2 Khalsa Panth: Guru Gobind Singh, the tenth Sikh Guru created the order of the Khalsa Panth through an initiation ceremony on the Vaisakhi Day of 1699 at Anandpur Sahib in order to combat and ultimately destroy the tyrannical rule of the Mughals. 3 Datta Tray : An ancient Indian Sage, son of Anusuya. He is believed to have wielded the spiritual powers of fourteen prophets and started his own ideological order of ascetic saints. 4 Gorakh Nath, another ancient sage who remained a celibate and did not raise any family to promote his ideology. 5 Phophet Mohammad — Founder of Islam also offered the sacrifice of his four sons to promote his religion of Islam. 6 Sahibzadas or Shazadan: The four sons of Guru Gobind Singh. 7 Rama : Lord Rama, in order to uphold the noble tradition, went on a twelve years exile and handed over the power to his step brother Bharat. 8 Krishna: Krishna also handed over the power to his great maternal grand father Ugrasen at Mathura after killing the wicked Harnakashyap (Kans)."
+    }
+  ]
 }

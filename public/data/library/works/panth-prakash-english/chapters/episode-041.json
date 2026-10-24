@@ -11,7 +11,7 @@
   "endSourcePage": 291,
   "wordCount": 389,
   "charCount": 2254,
-  "startPosition": 42998,
+  "startPosition": 42997,
   "pages": [
     {
       "sourcePageNumber": 289,
@@ -180,5 +180,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-040",
-  "nextChapterId": "episode-042"
+  "nextChapterId": "episode-042",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 554,
+      "printPageNumber": 510,
+      "sourceHref": "EPUB/page_554.html",
+      "text": "1 S.Baaj Singh: A Jat Sikh of Bal Sub-caste, a resident of MirpurPatti. Guru Gobind Singh had sent him to accompany Banda Singh to Punjab. He was appointed the custodian of Sirhind by Banda Singh in 1767 BS (1710 CE) after the capture of Sirhind. He was executed along with"
+    },
+    {
+      "sourcePageNumber": 555,
+      "printPageNumber": 511,
+      "sourceHref": "EPUB/page_555.html",
+      "text": "Banda Singh at Delhi and achieved martyrdom. 2 S. Ram Singh : Brother of Baaj Singh. He was appointed the custodian of Thanesar (Kurukshetra) in 1767BS (1710 CE) after the fall of Sirhind. 3 S. Koer Singh : Another brother of Baaj Singh who acted as the bodyguard of S. Banda Singh. 4 S. Siam Singh : He was also sent along with S. Baaj Singh by Guru Gobind Singh to accompany Banda Singh to Punjab. He acted as a personal bodyguard of S. Baaj Singh."
+    }
+  ]
 }

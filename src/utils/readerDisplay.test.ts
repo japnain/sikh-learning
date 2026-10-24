@@ -89,6 +89,7 @@ describe('structural Gurbani headings', () => {
     'ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੧੨',
     'ਰਾਗੁ ਗਉੜੀ ਦੀਪਕੀ ਮਹਲਾ ੧ ॥',
     'ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ਚੌਪਈ ॥',
+    'ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ',
   ])('recognizes BaniDB structure label %s', text => {
     expect(isStructuralGurbaniHeadingLine(text)).toBe(true)
   })
@@ -100,6 +101,8 @@ describe('structural Gurbani headings', () => {
     'ਸਤਿ ਨਾਮੁ ਅਸਟਪਦੀ',
     'ਧਨਾਸਰੀ ਮਃ ੫ ਘਰੁ ੬ ਅਸਟਪਦੀ ਸਤਿ ਨਾਮੁ ॥',
     'ਉਤ ਤਾਕੈ ਉਤ ਤੇ ਉਤ ਪੇਖੈ ਆਵੈ ਲੋਭੀ ਫੇਰਿ ॥ ਰਹਾਉ ॥',
+    'ਕੋਈ ਬੋਲੈ ਨਿਰਵਾ ਕੋਈ ਬੋਲੈ ਦੂਰਿ ॥',
+    'ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ ਸਤਿ ਨਾਮੁ ॥',
   ])('does not promote scripture content %s to a heading', text => {
     expect(isStructuralGurbaniHeadingLine(text)).toBe(false)
   })

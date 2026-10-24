@@ -216,12 +216,13 @@ const capacitorVersions = [
 ]
 check(capacitorVersions.every(Boolean), 'Capacitor core, iOS, and CLI packages are declared')
 check(new Set(capacitorVersions).size === 1, 'Capacitor package versions are pinned consistently', capacitorVersions.join(', '))
-check(capacitorVersions[0] === '8.4.2', 'Capacitor launch baseline is 8.4.2', capacitorVersions[0])
+const capacitorVersion = capacitorVersions[0]
+check(/^\d+\.\d+\.\d+$/.test(capacitorVersion ?? ''), 'Capacitor uses an exact release version', capacitorVersion)
 const lockedCapacitorVersions = ['@capacitor/core', '@capacitor/ios', '@capacitor/cli'].map((name) => packageLock.packages?.[`node_modules/${name}`]?.version)
-check(lockedCapacitorVersions.every((version) => version === '8.4.2'), 'package-lock resolves all Capacitor packages to 8.4.2', lockedCapacitorVersions.join(', '))
-check(packageSwift.includes('exact: "8.4.2"'), 'Capacitor Swift package is pinned to 8.4.2')
+check(lockedCapacitorVersions.every((version) => version === capacitorVersion), 'package-lock resolves the declared Capacitor version', lockedCapacitorVersions.join(', '))
+check(packageSwift.includes(`exact: "${capacitorVersion}"`), 'Capacitor Swift package matches the JavaScript runtime')
 const resolvedCapacitor = packageResolved.pins?.find((pin) => pin.identity === 'capacitor-swift-pm')
-check(resolvedCapacitor?.state?.version === '8.4.2', 'Xcode resolves capacitor-swift-pm 8.4.2', resolvedCapacitor?.state?.version)
+check(resolvedCapacitor?.state?.version === capacitorVersion, 'Xcode resolves the declared Capacitor version', resolvedCapacitor?.state?.version)
 
 check(capacitorConfig.includes("appId: 'com.naamras.app'"), 'Capacitor app id is com.naamras.app')
 check(capacitorConfig.includes("appName: 'NaamRas'"), 'Capacitor app name is NaamRas')
@@ -233,9 +234,11 @@ check(envLines.every((line) => line.startsWith('VITE_SUPPORT_URL=') || line.star
 const banidbConfig = readFileSync(join(root, 'src/supabase/config.ts'), 'utf8')
 check(banidbConfig.includes("'https://api.banidb.com'"), 'production defaults to the public BaniDB API')
 const privacyPage = readFileSync(join(root, 'src/pages/Privacy.tsx'), 'utf8')
-check(privacyPage.includes('Effective July 18, 2026'), 'privacy notice has the audited effective date')
+check(/Effective [A-Z][a-z]+ \d{1,2}, \d{4}/.test(privacyPage), 'privacy notice has a visible effective date')
 check(privacyPage.includes('record the requesting IP address and requested page or path in server logs'), 'privacy notice discloses BaniDB server-log collection')
 check(privacyPage.includes('banidb.com/tos') && privacyPage.includes('khalisfoundation.org/about/privacy-policy'), 'privacy notice identifies the BaniDB terms and Khalis privacy policy')
+check(privacyPage.includes('backend.searchgurbani.com') && privacyPage.includes('selected word'), 'privacy notice discloses the SearchGurbani word lookup provider and data sent')
+check(privacyPage.includes('kept in memory') && privacyPage.includes('copy, or download a support report'), 'privacy notice describes user-controlled session reports')
 
 const sourceInfo = plist(join(root, 'ios/App/App/Info.plist'))
 check(sourceInfo.CFBundleDisplayName === 'NaamRas', 'Info.plist display name is NaamRas')

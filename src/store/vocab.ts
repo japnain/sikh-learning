@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { VocabContext, VocabEntry, VocabKind, VocabReviewState } from '../types'
+import type { VocabContext, VocabEntry, VocabKind, VocabReviewState, VocabSense } from '../types'
+import { canReviewVocab, hasVocabMeaning, hasVocabSense } from '../utils/vocabReview'
 import { queueActivityEvent } from './activityEvents'
 import { buildVocabFeedbackId, useSavedFeedbackStore } from './savedFeedback'
 import type { SavedMutationResult } from './bookmarks'
@@ -20,11 +21,11 @@ interface VocabState {
 }
 
 const VOCAB_STORAGE_KEY = 'sikh-vocab'
-let persistedSnapshot: { raw: string | null; keys: Set<string> } | null = null
+let persistedSnapshot: { raw: string | null; keys: Set<string>; entries: Map<string, VocabEntry> } | null = null
 const vocabKey = (word: string, kind: VocabKind = 'word') => JSON.stringify([kind, word])
 
 /** One parsed snapshot per storage value, shared by the relevant saved controls. */
-export function isVocabEntryPersisted(word: string, kind: VocabKind = 'word'): boolean {
+export function isVocabEntryPersisted(word: string, kind: VocabKind = 'word', sense?: VocabSense): boolean {
   try {
     if (typeof window === 'undefined') return false
     const raw = window.localStorage.getItem(VOCAB_STORAGE_KEY)
@@ -32,17 +33,22 @@ export function isVocabEntryPersisted(word: string, kind: VocabKind = 'word'): b
       const stored = raw ? JSON.parse(raw) : null
       const entries: unknown = typeof stored?.version === 'number' && stored.version !== 0 ? [] : stored?.state?.vocab
       const keys = new Set<string>()
+      const entriesByKey = new Map<string, VocabEntry>()
       if (Array.isArray(entries)) {
         for (const entry of entries) {
           if (entry && typeof entry.word === 'string' && entry.word.length > 0
             && (entry.kind === undefined || entry.kind === null || entry.kind === 'word' || entry.kind === 'phrase')) {
-            keys.add(vocabKey(entry.word, entry.kind ?? 'word'))
+            const key = vocabKey(entry.word, entry.kind ?? 'word')
+            keys.add(key)
+            entriesByKey.set(key, entry)
           }
         }
       }
-      persistedSnapshot = { raw, keys }
+      persistedSnapshot = { raw, keys, entries: entriesByKey }
     }
-    return persistedSnapshot.keys.has(vocabKey(word, kind))
+    const key = vocabKey(word, kind)
+    const entry = persistedSnapshot.entries.get(key)
+    return persistedSnapshot.keys.has(key) && (!sense || Boolean(entry && hasVocabSense(entry, sense)))
   } catch {
     persistedSnapshot = null
     return false
@@ -104,28 +110,37 @@ export const useVocabStore = create<VocabState>()(
       addWord: (entry): SavedMutationResult<VocabEntry> => {
         const kind = entry.kind ?? 'word'
         const existing = get().vocab.find(v => v.word === entry.word && (v.kind ?? 'word') === kind)
-        const wasPersisted = isVocabEntryPersisted(entry.word, kind)
-        const vocabEntry: VocabEntry = existing ?? {
+        const input = { ...entry, context: entry.context ?? { scripture: entry.scripture, sourceId: entry.sourceId } }
+        const wasPersisted = isVocabEntryPersisted(entry.word, kind, input)
+        const newSense = existing && !hasVocabSense(existing, input)
+        const incomingSense: VocabSense = {
+          meaning_en: input.meaning_en, meaning_hi: input.meaning_hi, meaning_pa: input.meaning_pa,
+          context: input.context, definitionSource: input.definitionSource,
+        }
+        const needsPrimaryAnswer = existing && !hasVocabMeaning(existing) && hasVocabMeaning(input)
+        const vocabEntry: VocabEntry = existing ? (newSense ? {
+          ...existing,
+          ...(needsPrimaryAnswer ? incomingSense : {}),
+          senses: needsPrimaryAnswer
+            ? [...(existing.senses ?? []), { meaning_en: existing.meaning_en, meaning_hi: existing.meaning_hi, meaning_pa: existing.meaning_pa, context: existing.context, definitionSource: existing.definitionSource }]
+            : [...(existing.senses ?? []), incomingSense],
+        } : existing) : {
           ...entry,
           kind,
-          context: entry.context ?? {
-            scripture: entry.scripture,
-            sourceId: entry.sourceId,
-          },
+          context: input.context,
           review: createInitialReviewState(new Date(entry.savedAt)),
         }
 
         let persisted = false
         try {
-          // A retained duplicate retries the complete current vocabulary. Its
-          // original context/review and all unrelated entries stay intact.
-          set(state => ({ vocab: existing ? [...state.vocab] : [...state.vocab, vocabEntry] }))
-          persisted = Boolean(useVocabStore.persist?.getOptions().storage) && isVocabEntryPersisted(entry.word, kind)
+          // Retain the original review and context while adding newly chosen senses.
+          set(state => ({ vocab: existing ? state.vocab.map(item => item === existing ? vocabEntry : item) : [...state.vocab, vocabEntry] }))
+          persisted = Boolean(useVocabStore.persist?.getOptions().storage) && isVocabEntryPersisted(entry.word, kind, input)
         } catch {
           // Persist updates memory first. Keep the entry usable for this
           // session, but require a successful retry before confirming Saved.
         }
-        if (persisted && (!existing || !wasPersisted)) {
+        if (persisted && (!existing || newSense || !wasPersisted)) {
           try {
             useSavedFeedbackStore.getState().recordSaved({
               kind: 'review', targetId: buildVocabFeedbackId(vocabEntry), surfacedAt: vocabEntry.savedAt,
@@ -137,7 +152,7 @@ export const useVocabStore = create<VocabState>()(
             }, vocabEntry.savedAt)
           } catch { /* Optional sync bookkeeping cannot invalidate the main write. */ }
         }
-        return { item: vocabEntry, changed: !existing, persisted }
+        return { item: vocabEntry, changed: !existing || Boolean(newSense), persisted }
       },
       removeWord: (word, kind = 'word') => {
         const removed = get().vocab.find(entry => entry.word === word && (entry.kind ?? 'word') === kind)
@@ -175,7 +190,7 @@ export const useVocabStore = create<VocabState>()(
       },
       getDueWords: (at = new Date()) => get().vocab.filter(entry => {
         const dueAt = entry.review?.dueAt ?? entry.savedAt
-        return new Date(dueAt).getTime() <= at.getTime()
+        return canReviewVocab(entry) && new Date(dueAt).getTime() <= at.getTime()
       }),
     }),
     {

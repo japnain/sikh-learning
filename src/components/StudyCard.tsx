@@ -713,14 +713,15 @@ export default function StudyCard({
           title={cardCopy.actionsTitle}
           description={cardCopy.actionsDescription}
           testId="study-verse-actions-sheet"
-          className="max-h-[min(72vh,38rem)] overflow-y-auto rounded-lg px-4 pb-5 pt-3"
+          className="study-verse-sheet max-h-[min(85dvh,38rem)] flex flex-col rounded-lg"
         >
-              <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-sand/25 dark:bg-dark-text/15" />
-              <div className="mb-4 flex items-start justify-between gap-3">
+              <header className="study-verse-sheet__header flex shrink-0 items-center justify-between gap-3 border-b border-sand/15 px-4 py-3 dark:border-dark-text/15">
+                <p className="font-sans text-sm font-semibold">{cardCopy.actionsTitle}</p>
+                <button type="button" onClick={closeActionSheet} aria-label={cardCopy.dismissActions} className="interactive-focus flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-parchment-low text-ink dark:bg-dark-surface dark:text-dark-text"><IconClose size={18} /></button>
+              </header>
+              <div className="study-verse-sheet__body min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-5">
+              <div className="mb-4">
                 <div>
-                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                    {cardCopy.actionsTitle}
-                  </p>
                   <p
                     lang={getScriptTextLang(scriptMode)}
                     className={`study-verse-source ${getScriptTextFontClass(scriptMode)} mt-2`}
@@ -760,14 +761,7 @@ export default function StudyCard({
                     </div>
                   ) : !actionIsStructural ? <p className="mt-2 font-sans text-sm text-ink/75 dark:text-dark-text/75">{supportCopy.verseMissingMeaning(meaningLanguageLabels[actionMeaningLanguage])}</p> : null}
                 </div>
-                <button
-                  type="button"
-                  onClick={closeActionSheet}
-                  aria-label={cardCopy.dismissActions}
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-parchment-low text-ink/68 dark:bg-dark-surface dark:text-dark-text/64"
-                >
-                  <IconClose size={16} />
-                </button>
+
               </div>
 
               <div className="study-verse-primary-actions">
@@ -933,6 +927,7 @@ export default function StudyCard({
                   ) : null}
                 </div>
               ) : null}
+              </div>
         </ModalSheet>
       )}
     </>

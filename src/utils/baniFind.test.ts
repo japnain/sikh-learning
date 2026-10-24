@@ -63,6 +63,14 @@ test('missing optional Roman support does not prevent searching scripture', () =
   expect(findBaniLines(entries, 'nam')).toEqual([])
 })
 
+test('finds displayed Devanagari without changing canonical scripture or its line destination', () => {
+  const entries = [entry('one', 'G', [line('ਸਤਿ ਨਾਮੁ ॥', 'sat naam', 82)])]
+  const original = JSON.stringify(entries)
+  expect(findBaniLines(entries, 'सति नामु')[0]).toMatchObject({ matchedField: 'devanagari', gurmukhi: 'ਸਤਿ ਨਾਮੁ ॥', verseId: 82, lineIndex: 0 })
+  expect(findBaniLines(entries, 'नामि')).toEqual([])
+  expect(JSON.stringify(entries)).toBe(original)
+})
+
 test('match emphasis preserves original diacritics, punctuation, whitespace and repeated matches', () => {
   const text = 'Socẖai,  socẖ na hovaī. Socẖai socẖ ॥'
   const fragments = getBaniFindFragments(text, 'SOCHAI SOCH')

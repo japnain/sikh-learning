@@ -1,7 +1,7 @@
 {
   "status": "passed",
-  "generatedAt": "2026-07-15T17:31:46.667Z",
-  "profile": "panth-prakash-english-v6",
+  "generatedAt": "2026-10-24T06:34:20.332Z",
+  "profile": "panth-prakash-english-v7",
   "source": {
     "rawPageCount": 1413,
     "readableEnglishPageCount": 637,
@@ -69,6 +69,18 @@
         ]
       }
     ]
+  },
+  "sourceNotes": {
+    "episodesWithAppendix": 80,
+    "sourcePageRange": [
+      536,
+      570
+    ],
+    "missingVolumeOneHeadings": [
+      39
+    ],
+    "volumeTwoAppendixAvailable": false,
+    "individuallyMappedReferences": false
   },
   "semantics": {
     "totalBlocks": 7979,

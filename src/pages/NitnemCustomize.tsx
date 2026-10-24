@@ -1,3 +1,4 @@
+import '../styles/settings.css'
 import NitnemCustomizePanel from '../components/NitnemCustomizePanel'
 import { useLocaleStore } from '../store/locale'
 import '../styles/nitnem-customize.css'

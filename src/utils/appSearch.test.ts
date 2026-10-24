@@ -1,8 +1,11 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
+import * as storyRepository from '../data/storyRepository'
+import * as libraryRepository from '../data/libraryRepository'
 import {
   getAngTargets,
   getAppSearchMatches,
   getLibrarySearchMatches,
+  getStorySearchMatches,
   isDirectLookupQuery,
 } from './appSearch'
 
@@ -87,8 +90,48 @@ test('finds library works and matching Panth Prakash chapters', async () => {
   await expect(getLibrarySearchMatches('Origin of the Khalsa')).resolves.toEqual(expect.arrayContaining([
     expect.objectContaining({
       label: 'Origin of the Khalsa',
-      path: '/library/panth-prakash-english/chapters/episode-001',
+      path: '/library/panth-prakash-english/chapters/episode-001?find=Origin+of+the+Khalsa',
       kind: 'library-chapter',
     }),
   ]))
+})
+
+test('finds stories by title, description, people, themes and series', async () => {
+  const catalog = vi.spyOn(storyRepository, 'loadStoryCatalog').mockResolvedValue({
+    version: 1,
+    collections: [],
+    stories: [{
+      id: 'shared-meal', title: 'A Shared Meal', subtitle: 'An open table',
+      description: 'A reflection on service.', people: ['Guru Nanak'], themes: ['Equality'],
+      series: { id: 'journeys', title: 'Journeys', order: 1 },
+      collectionId: 'wisdom', artwork: 'bowl', wordCount: 20, readingMinutes: 1, revision: 1,
+    }],
+  })
+  try {
+    for (const query of ['shared meal', 'service', 'Guru Nanak', 'equality', 'journeys']) {
+      await expect(getStorySearchMatches(query)).resolves.toEqual([expect.objectContaining({
+        label: 'A Shared Meal', kind: 'story', path: '/stories/shared-meal',
+      })])
+    }
+    await expect(getStorySearchMatches('missing phrase')).resolves.toEqual([])
+  } finally {
+    catalog.mockRestore()
+  }
+})
+
+test('book result queries are phrases the reader can highlight, not scattered independent terms', async () => {
+  const index = await libraryRepository.loadLibrarySearchIndex('panth-prakash-english')
+  const source = index.chapters![0]
+  const loader = vi.spyOn(libraryRepository, 'loadLibrarySearchIndex').mockResolvedValue({
+    ...index,
+    chapters: [{ ...source, title: 'A chapter', searchText: 'A Guru journey ends in battle.' }],
+  })
+  try {
+    await expect(getLibrarySearchMatches('Guru battle')).resolves.toEqual([])
+    await expect(getLibrarySearchMatches('Guru journey')).resolves.toEqual([
+      expect.objectContaining({ kind: 'library-chapter', path: expect.stringContaining('?find=Guru+journey') }),
+    ])
+  } finally {
+    loader.mockRestore()
+  }
 })
