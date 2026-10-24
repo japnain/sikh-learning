@@ -11,7 +11,7 @@
   "endSourcePage": 163,
   "wordCount": 2344,
   "charCount": 13744,
-  "startPosition": 17741,
+  "startPosition": 17740,
   "pages": [
     {
       "sourcePageNumber": 151,
@@ -863,5 +863,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-017",
-  "nextChapterId": "episode-019"
+  "nextChapterId": "episode-019",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 547,
+      "printPageNumber": 503,
+      "sourceHref": "EPUB/page_547.html",
+      "text": "1 Mata Gujri: The revered mother of Guru Gobind Singh. 2 Kamlot: A small hill settlement in the vicinity of Anandpur Sahib. 3 Kahloor: The name of hill principality in the hilly region next to Anandpur S ahib . 4 Jalandhar; A confederation of small seven hill states together known as Jalandhar principalities. 5 Dogras: Inhabitants of the hilly region of Jammu. 6 Sirhind : An important province and a military garrison of the Mughal empire, the present town of Fatehgarh Sahib. 7 Malerkotla : Another important town with a provincial jurisdiction under a Mughal highranking official (nawab) with a sizeable number of Mughal troops. 8 Doaba : The region between the rivers Sutlej and Beas in Punjab. 9 Sirsa : A small seasonal rivulet, a tributary of the Satluj that flows downstream from the hills between Anandpur Sahib and Kiratpur Sahib. 10 Sri Krishan, Kalyavan, Muchkund — According to a Puranic myth, Lord Krishna was once defeated in war by Kalyavan; a titan; Lord Krishna was chased by Kalyavan for a long distance. Krishna reached the spot where Muchkund was sleeping. Krishna woke up Muchkund with a nudge and himself disappeared behind cover. When Kalyavan reached Muchkund in chase of Krishna, his body was burnt by the fire emanating from Muchkund's body. Muchkund, a Suryavanshi king, had been blessed by gods with the power of burning anybody who disturbed him during sleep. 11 Lodhi Pathans: Ropar had a large population of Lodhi Pathans who owed their allegiance to the Mughal emperor. 12 Kotla : A small village on the outskirts of Ropar."
+    }
+  ]
 }

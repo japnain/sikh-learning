@@ -1,3 +1,4 @@
+import '../styles/library.css'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BANIS } from '../data/banis'
@@ -9,6 +10,8 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { useLanguageStore } from '../store/language'
+import { useStoryStore } from '../store/stories'
+import SavedStories from '../components/SavedStories'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
@@ -167,6 +170,8 @@ export default function Library() {
   const libraryCopy = copy.library
   const messages = LIBRARY_MESSAGES[locale]
   const { bookmarks, removeBookmark, restoreBookmark } = useBookmarksStore()
+  const savedStories = useStoryStore(state => state.saved)
+  const storyCount = Object.keys(savedStories).length
   const { favorites, removeFavorite, restoreFavorite } = useFavoritesStore()
   const { vocab } = useVocabStore()
   const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
@@ -217,6 +222,7 @@ export default function Library() {
     + words.length
     + inProgress.length
     + recentStudy.length
+    + storyCount
   ) > 0
 
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
@@ -251,8 +257,11 @@ export default function Library() {
       SOURCE_FULL_NAME[favorite.source],
       favorite.ang,
     ].filter(Boolean).join(' ')).includes(normalizedSavedQuery))
-  const hasSavedReadings = bookmarks.length + favorites.length > 0
-  const hasSavedMatches = visibleBookmarks.length + visibleFavorites.length > 0
+  const visibleStories = savedFilter === 'favorites' ? [] : Object.values(savedStories)
+    .filter(story => normalizeSavedSearch([story.title, story.subtitle, story.description, ...story.themes, ...story.people].join(' ')).includes(normalizedSavedQuery))
+    .sort((a, b) => Date.parse(b.savedAt) - Date.parse(a.savedAt))
+  const hasSavedReadings = bookmarks.length + favorites.length + storyCount > 0
+  const hasSavedMatches = visibleBookmarks.length + visibleFavorites.length + visibleStories.length > 0
   const bookmarksExpanded = Boolean(expanded.bookmarks || normalizedSavedQuery)
 
   const handleRemove = (removal: PendingRemoval) => {
@@ -315,7 +324,7 @@ export default function Library() {
         </div>
         <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-3">
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length + storyCount}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.bookmarks}</p>
           </div>
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
@@ -413,6 +422,8 @@ export default function Library() {
           ) : null}
         </div>
       ) : null}
+
+      <SavedStories stories={visibleStories} />
 
       {visibleFavorites.length > 0 && (
         <section

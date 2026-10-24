@@ -50,3 +50,16 @@ test('persists reader preference state updates', () => {
   expect(state.fontSize).toBe(22)
   expect(JSON.parse(localStorage.getItem('sikh-language')!).state.supportTextSize).toBe('large')
 })
+
+test('normalizes text size on changes and when restoring saved preferences', async () => {
+  useLanguageStore.getState().setFontSize(23)
+  expect(useLanguageStore.getState().fontSize).toBe(23)
+  useLanguageStore.getState().setFontSize(2)
+  expect(useLanguageStore.getState().fontSize).toBe(16)
+  useLanguageStore.getState().setFontSize(Infinity)
+  expect(useLanguageStore.getState().fontSize).toBe(22)
+  localStorage.setItem('sikh-language', JSON.stringify({ state: { fontSize: 90 }, version: 0 }))
+  await useLanguageStore.persist.rehydrate()
+  expect(useLanguageStore.getState().fontSize).toBe(34)
+  expect(typeof useLanguageStore.getState().setFontSize).toBe('function')
+})

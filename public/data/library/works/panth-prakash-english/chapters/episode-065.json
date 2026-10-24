@@ -11,7 +11,7 @@
   "endSourcePage": 443,
   "wordCount": 1840,
   "charCount": 10511,
-  "startPosition": 69070,
+  "startPosition": 69069,
   "pages": [
     {
       "sourcePageNumber": 433,
@@ -666,5 +666,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-064",
-  "nextChapterId": "episode-066"
+  "nextChapterId": "episode-066",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 563,
+      "printPageNumber": 519,
+      "sourceHref": "EPUB/page_563.html",
+      "text": "1 Sati : A woman of faith, fidelity and great determination who burns herself on the funeral pyre of her husband. According to ancient Hindu scriptures, to die along with one's husband in the form of a sati was considered an act of great sacrifice and piety. It is mentioned in fourth chapter of Prashar Smiriti that a woman who dies as a sati along with her husband, lives in heaven for as many years as there are number of hairs on the body of her husband. There are several other Puranic tales about sati sacrifice in the Hindu mythology such as \"Bhagwat Sikand\", \"Kalika Puran\". 2 Janmeja Yajna: King Jaumeja son of Prakrit, grandson of Abhimanyu, and great grandson of Arjuna who became an enemy of snakes because his father had died of a snake-bite by a snake \"Takshak\". To avenge the death of his father, king Janmeja organised a \"Sarapmedh\" Yajna in which innumerable number of snakes died by getting themselves burnt in the boiling couldren. Finally, king Janmeja stopped this sacrificial Yajna on the intervention of Rishi Aswik and saved the life of Takshak and his species. 3 Balraja: Balraja, the son of Virochan Rakshas or Titans who seized the reign of Gods by"
+    },
+    {
+      "sourcePageNumber": 564,
+      "printPageNumber": 520,
+      "sourceHref": "EPUB/page_564.html",
+      "text": "defeating the God Indira. Lord Vishnu, on the appeal of defeated gods, appeared in the guise of a dwarfsized Brahmin and begged for a piece of land equal in size of his two and a half steps. Balraja acceded to Vishnu's request. Thereupon, Vishnu, enlarging his bodily size, covered both earth and sky with his two steps, and pushed Balraja into the Nether world with his third step. But seeeing the faith and sincerity of Balraja towards Vishnu, Lord Vishnu volunteered to become a security guard at the door of Balraja's court. 4 Harish Chander: the 28th king of Suryavanshi Kshtriya kings and son of Trishanku, who was very compassionate and a great philanthropist. After handing over his whole kingdom in charity to sage Vishvamitra in the guise of a Brahmin, he had to sell himself as a slave to the family of a sweeper. 5 Pandavas : The five sons of king Pandu who lost their kingdom along with Arjuna's wife Draupdi to the Kaurvas in a game of dice and had to go in exile for a long time. 6 Guru Teg Bahadur : The ninth Sikh Guru, who sacrificed his life in order to protect the human right of Kashmiri Pandits for practicing their religion against the tyranny of Aurangzeb. 7 Guru Nanak's words : As mentioned on page 138of SriGuruGranthSahbinRaag asfollows: \"Das Baltan Bees Ravan Teesan ka Sunder Kahawai. Chalisi Pur Hoi Pachasi Pag Khisai Satthi ko Bodhepa Aavai. Sattar ka Mattheen, Asseehan ka Veyhar Na Pavai. Navai ka Sehjassni Mool No Janai Ap Bal. Dhandholam Dhundham Ditth Main Nanak Jag Dhuain ka Dhavalhar.\""
+    }
+  ]
 }

@@ -9,7 +9,7 @@ function TestModal({ open }: { open: boolean }) {
     <ModalSheet
       open={open}
       onClose={() => {}}
-      title="Reading settings"
+      title="Reading appearance"
       description="Change reading settings."
     >
       <button type="button">Close</button>

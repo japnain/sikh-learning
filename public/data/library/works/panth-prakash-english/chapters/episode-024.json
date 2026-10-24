@@ -11,7 +11,7 @@
   "endSourcePage": 213,
   "wordCount": 1054,
   "charCount": 6020,
-  "startPosition": 28268,
+  "startPosition": 28267,
   "pages": [
     {
       "sourcePageNumber": 209,
@@ -389,5 +389,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-023",
-  "nextChapterId": "episode-025"
+  "nextChapterId": "episode-025",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 550,
+      "printPageNumber": 506,
+      "sourceHref": "EPUB/page_550.html",
+      "text": "1 Talwandi Sabo: A small town in District Barnala in Punjab where Guru Gobind Singh stayed for a few months and enjoyed the hospitality of Rai Dalla. He also completed the final compilation of Sri Guru Granth Sahib here. 2 Rai Dalla : The legal custodian of Talwandi region. 3 Ogre : In medieval times, it was believed that some supernatural entity like the ogres gripped the populace of a particular region whenever the region was affected by some natural calamities or epidemics. One such ogre was believed to be holding his sway over the town of Bathinda. 4 Jallanwal, Baggar and Chhetoana: Names of villages through which Guru Gobind Singh passed on his way to Talwandi Sabo. 5 Makho : Name of another ogre whose spirit haunted Anandpur Sahib's rea and harassed the people there. 6 Pahul : Initiation ceremony of bringing a person into the Khalsa fold by administering the Amrit or Khandey-ki -Pahul through a codified ceremony. 7 Sodhi Kaul Sahib, originally a resident of Dhilwan but later on an inhabitant of Kothey Guru ke village whom the Guru initiated and kept him in his company."
+    }
+  ]
 }

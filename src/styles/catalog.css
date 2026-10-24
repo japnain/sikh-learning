@@ -712,7 +712,7 @@
   z-index: 60;
   display: grid;
   height: var(--epub-reader-topbar-height);
-  grid-template-columns: minmax(5.85rem, 1fr) minmax(0, 11rem) minmax(5.85rem, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: end;
   gap: 0.45rem;
   border-bottom: 1px solid rgb(var(--epub-rule) / 0.45);
@@ -751,6 +751,7 @@
 
 .epub-reader-topbar__title > * {
   display: block;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1034,8 +1035,10 @@
   bottom: max(0.55rem, var(--fixed-ui-safe-bottom)) !important;
   left: max(0.55rem, var(--safe-area-left));
   z-index: 90;
+  display: flex;
+  flex-direction: column;
   max-height: min(86dvh, 48rem);
-  overflow: hidden;
+  overflow: clip;
   border: 1px solid rgb(var(--epub-rule) / 0.48);
   border-radius: 14px;
   background: rgb(var(--epub-page-raised));
@@ -1064,6 +1067,7 @@
 
 .epub-reader-panel > header {
   display: flex;
+  flex: 0 0 auto;
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
@@ -1101,7 +1105,8 @@
 }
 
 .epub-reader-panel__body {
-  max-height: calc(min(86dvh, 48rem) - 7.2rem);
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 0.85rem 1rem 1rem;
@@ -1364,7 +1369,7 @@
   }
 
   .epub-reader-panel__body {
-    max-height: calc(100dvh - var(--safe-area-top) - var(--fixed-ui-safe-bottom) - 8.7rem);
+    min-height: 0;
   }
 }
 
@@ -1396,4 +1401,18 @@
   .epub-reader-topbar {
     position: absolute;
   }
+}
+
+/* Visual audit: readable matches and prose without changing directory order. */
+.rehat-find-match { background: #f1d49a; color: #2b1f17; border-radius: 2px; }
+.rehat-find-match[aria-current='true'] { background: #e9bd67; outline: 2px solid #805314; text-decoration: underline; text-underline-offset: .15em; }
+.dark .rehat-find-match { background: #594b2f; color: #fff3d6; }
+.dark .rehat-find-match[aria-current='true'] { background: #e9bd67; color: #241b0e; outline-color: #f5d791; }
+.rehat-reading-prose { max-width: 70ch; margin-inline: auto; overflow-wrap: anywhere; }
+.epub-reader-panel > header p:not(.eyebrow) { font-size: .8125rem; }
+.epub-segmented-control button[aria-pressed='true'] { background: rgb(var(--epub-ink)); border-color: rgb(var(--epub-ink)); color: rgb(var(--epub-page)); }
+@media (max-width: 379px) {
+  .epub-work-hero { grid-template-columns: minmax(0, 1fr); }
+  .epub-book-cover { width: 6rem; justify-self: center; }
+  .epub-work-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
 }

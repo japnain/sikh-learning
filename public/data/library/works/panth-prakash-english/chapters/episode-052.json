@@ -11,7 +11,7 @@
   "endSourcePage": 347,
   "wordCount": 559,
   "charCount": 3198,
-  "startPosition": 52983,
+  "startPosition": 52982,
   "pages": [
     {
       "sourcePageNumber": 345,
@@ -214,5 +214,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-051",
-  "nextChapterId": "episode-053"
+  "nextChapterId": "episode-053",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 558,
+      "printPageNumber": 514,
+      "sourceHref": "EPUB/page_558.html",
+      "text": "1 Chamba : Name of a hill state with its principal town Chamba situated on the right bank of the river Ravi. It was established by Sahilverma in 920 CE."
+    }
+  ]
 }

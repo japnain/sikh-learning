@@ -11,7 +11,7 @@
   "endSourcePage": 509,
   "wordCount": 751,
   "charCount": 4304,
-  "startPosition": 81392,
+  "startPosition": 81391,
   "pages": [
     {
       "sourcePageNumber": 503,
@@ -328,5 +328,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-075",
-  "nextChapterId": "episode-077"
+  "nextChapterId": "episode-077",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 568,
+      "printPageNumber": 524,
+      "sourceHref": "EPUB/page_568.html",
+      "text": "1 Gulab Rai : Sodhi Gulab Rai, a grandson of Suraj Mai, from the family lineage of Guru Hargobind Sahib. It is believed that he had initiated himself as a Khalsa and used to hold a religious congregation at Anandpur Sahib after the departure of Guru Gobind Singh from Anandpur Sahib. He had no offsprings. 2 Sulakhan : Name of a Masand at Sirhind. 3 Ramdas : Guru Ramdas was the fourth Sikh Guru in the ideological order (Sikhism) started by the first Sikh Guru, Guru Nanak. But all the Muslim historians have been addressing all the Sikh Gurus occupying the seat of Guru Nanak by the name Ramdas. Hence Bahadur Shah's greeting Gulab Rai as Ramdas. 4 Bhai Gurditta : Baba Gurditta, the eldest son of Guru Hargobind born in April 1 6 1 3 at Amritsar. He died in 1638 at Kiratpur Sahib. The seventh Sikh Guru, Guru Harrai was the son of Baba Gurditta. 5 Teg Bahadur: The Ninth Sikh Guru born in April 1621 atAmritsar. He occupied the Guru's seat in March 1665. He was executed by the orders of emperor Aurangzeb in Chandni Chowk, Delhi and attained martyrdom in 1675. 6 Ani Rai : the third son of Guru Hargobind born in 1 6 1 8 at Amritsar and died at Kiratpur S ahib . 7 Atal Rai : The fourth son of Guru Hargobind born in 1 6 1 9 and died in 1 628 at Amrits ar. 8 Suraj Mai : son of Guru Hargobind born in 1617 atAmritsar. The Sodhi families of Anandpur Sahib belonged his family line. Gulab Rai was the son of Suraj Mai. 9 Shyam Chand: Another son of Suraj Mai."
+    }
+  ]
 }

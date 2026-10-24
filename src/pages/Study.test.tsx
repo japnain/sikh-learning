@@ -110,8 +110,8 @@ async function openReaderAbout() {
 }
 
 async function openReaderSettings(section?: 'Study layers' | 'Text options') {
-  fireEvent.click(await screen.findByRole('button', { name: 'Reader Controls', exact: true }))
-  const sheet = screen.getByRole('dialog', { name: 'Reader Controls', exact: true })
+  fireEvent.click(await within(screen.getByTestId('study-reader-topbar')).findByRole('button', { name: 'Reading appearance', exact: true }))
+  const sheet = screen.getByRole('dialog', { name: 'Reading appearance', exact: true })
   if (section) expandReaderDetails(sheet, section)
   return sheet
 }

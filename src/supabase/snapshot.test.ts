@@ -14,7 +14,7 @@ import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
-import { applyRemoteSnapshot, exportLocalSnapshot } from './snapshot'
+import { applyRemoteSnapshot, exportLocalSnapshot, reconcileRemoteSnapshotWithLocalChanges } from './snapshot'
 import type { CloudRemoteSnapshot } from './types'
 
 const SAVED_AT = '2026-04-17T12:00:00.000Z'
@@ -81,9 +81,32 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.useRealTimers()
+  vi.restoreAllMocks()
 })
 
 describe('cloud snapshot v3', () => {
+  test('rolls back earlier profile and saved domains when a later cloud write fails', () => {
+    const remote = asRemoteSnapshot(exportLocalSnapshot())
+    remote.profile!.reader.fontSize = 34
+    remote.profile!.locale = 'pa'
+    remote.profile!.themeMode = 'dark'
+    const before = new Map(Object.keys(localStorage).map(key => [key, localStorage.getItem(key)]))
+    const originalLanguage = useLanguageStore.getState()
+    const originalTheme = useThemeStore.getState()
+    const write = localStorage.setItem.bind(localStorage)
+    let failed = false
+    vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+      if (!failed && key === 'sikh-vocab') { failed = true; throw new DOMException('Full', 'QuotaExceededError') }
+      write(key, value)
+    })
+    expect(() => applyRemoteSnapshot(remote)).toThrow('Full')
+    expect(useLanguageStore.getState()).toEqual(originalLanguage)
+    expect(useThemeStore.getState()).toEqual(originalTheme)
+    expect(useLocaleStore.getState().locale).toBe('en')
+    expect(document.documentElement.classList.contains('dark')).toBe(false)
+    expect(new Map(Object.keys(localStorage).map(key => [key, localStorage.getItem(key)]))).toEqual(before)
+  })
+
   test('cloud restoration cannot replace the intentional local practice with a restored general Study session', () => {
     const rehras = getNitnemOption('rehras-sahib')!
     const short = buildNitnemStudyPath(rehras)
@@ -416,4 +439,40 @@ describe('cloud snapshot v3', () => {
 
     setItem.mockRestore()
   })
+})
+
+
+test('an unchanged profile retains its clock after a remote snapshot round trip', () => {
+  const snapshot = exportLocalSnapshot()
+  const clock = '2024-01-01T12:00:00.000Z'
+  snapshot.profile.clientUpdatedAt = clock
+  applyRemoteSnapshot({ ...snapshot, generatedAt: clock })
+  const next = exportLocalSnapshot()
+  expect(next.profile.clientUpdatedAt).toBe(clock)
+  expect(next.profile.baseUpdatedAt).toBe(clock)
+})
+
+
+test('rebases unsent local edits without deleting new remote saves or falsely acknowledging the edits', () => {
+  useLanguageStore.getState().setFontSize(22)
+  const sent = exportLocalSnapshot()
+  useBookmarksStore.getState().addBookmark({ type: 'bani', title: 'Remote reading', source: 'G', ang: 2 })
+  const remote = asRemoteSnapshot(exportLocalSnapshot())
+  useBookmarksStore.getState().replaceBookmarks([])
+  vi.advanceTimersByTime(1000)
+  useLanguageStore.getState().setFontSize(34)
+  useBookmarksStore.getState().addBookmark({ type: 'bani', title: 'Local reading', source: 'G', ang: 3 })
+  const current = exportLocalSnapshot()
+  // A remote-only record is not part of the originally exported local metadata.
+  current.savedItems = current.savedItems.filter(record => record.payload?.title !== 'Remote reading' && record.naturalKey !== remote.savedItems![0].naturalKey)
+  const merged = reconcileRemoteSnapshotWithLocalChanges(remote, sent, current)
+  applyRemoteSnapshot(merged, remote)
+  expect(useLanguageStore.getState().fontSize).toBe(34)
+  expect(useBookmarksStore.getState().bookmarks.map(item => item.title)).toEqual(expect.arrayContaining(['Remote reading', 'Local reading']))
+  vi.advanceTimersByTime(1000)
+  const pending = exportLocalSnapshot()
+  expect(pending.profile.reader.fontSize).toBe(34)
+  expect(pending.profile.baseUpdatedAt).toBe(remote.profile!.clientUpdatedAt)
+  expect(pending.profile.clientUpdatedAt).not.toBe(remote.profile!.clientUpdatedAt)
+  expect(pending.savedItems.find(record => record.payload?.title === 'Local reading')?.deletedAt).toBeNull()
 })

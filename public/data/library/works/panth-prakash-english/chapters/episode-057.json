@@ -11,7 +11,7 @@
   "endSourcePage": 371,
   "wordCount": 607,
   "charCount": 3538,
-  "startPosition": 57275,
+  "startPosition": 57274,
   "pages": [
     {
       "sourcePageNumber": 369,
@@ -257,5 +257,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-056",
-  "nextChapterId": "episode-058"
+  "nextChapterId": "episode-058",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 560,
+      "printPageNumber": 516,
+      "sourceHref": "EPUB/page_560.html",
+      "text": "1 Jaali Din : Perhaps a reference to Jain-ud-Din Ahmad Khan who was a custodian of Sirhind during the reign, of Bahadar Shah and who participated in Mughal forces seige of Lohgarh in 1713. 2 Lohgarh : Mukhlisgarh which was changed into Lohgarh by Banda Singh and he made his headquarter here. Farukhsiar had sent forces to lay a seige to this fort."
+    }
+  ]
 }

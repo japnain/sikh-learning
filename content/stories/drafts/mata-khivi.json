@@ -1,0 +1,191 @@
+{
+  "id": "mata-khivi",
+  "title": "The Shade of a Shared Table",
+  "subtitle": "Mata Khivi and the community she sustained",
+  "description": "A name in the Guru Granth Sahib opens a fuller portrait of generosity, leadership and the household at Khadur.",
+  "collectionId": "seva-and-dignity",
+  "themes": [
+    "Langar",
+    "Hospitality",
+    "Dignity",
+    "Women in Sikh history"
+  ],
+  "people": [
+    "Mata Khivi",
+    "Guru Angad",
+    "Bibi Amro"
+  ],
+  "artwork": "bowl",
+  "wordCount": 653,
+  "readingMinutes": 4,
+  "revision": 3,
+  "language": "en",
+  "accountType": "Historical profile",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "A bowl of rice remains in the memory of a community long after the meal itself has gone. The rice is cooked in milk and enriched with ghee. Beside it stands a woman's name: Khivi. In the song of Satta and Balvand, preserved within the Guru Granth Sahib, the praise of the Gurus makes room for her work."
+    },
+    {
+      "id": "p2",
+      "text": "On Ang 967, the singers associate Khivi with shelter, generosity and langar, the community's shared meal. They give her the image of abundant shade and remember the food as rich and sustaining. Her name and contribution are held within the community's sacred text. That early praise gives a lasting presence to the woman whose household became part of the growing Sikh community at Khadur."
+    },
+    {
+      "id": "p3",
+      "text": "Shade is a form of welcome that a traveller can feel. It does not ask the person beneath it to admire its size before receiving relief. In the song, the image gives Khivi's presence a generous reach. The remembered food does something equally particular. Hunger is answered with something that can be eaten, and the household's resources become nourishment for people gathered around the Guru."
+    },
+    {
+      "id": "p5",
+      "text": "Macauliffe's later account places her beginnings at Matte di Sarai. She married Lahina, the man who would become Guru Angad. His family moved between settlements before making its home at Khadur. The children Macauliffe names are Amro, Dasu and Datu. Around this household, a wider gathering of disciples and visitors would take shape."
+    },
+    {
+      "id": "p6",
+      "text": "Lahina's meeting with Guru Nanak changed the direction of his life. In Macauliffe's telling, he returned to Khadur to settle his affairs and told his wife about the teacher he had found. When Guru Nanak later visited him there, Lahina and his wife welcomed him and placed their possessions at his disposal. Bread was being prepared and distributed to visitors. The household appears in the account as a place opening outward."
+    },
+    {
+      "id": "p8",
+      "text": "When Macauliffe describes Guru Angad's community at Khadur, offerings are directed towards the kitchen and the support of travellers and pilgrims."
+    },
+    {
+      "id": "p9",
+      "text": "His account gives the shared meal a place within the day. Visitors of different conditions sit together in a line to eat. Children are fed and receive instruction from the Guru. In the evening, food is distributed again, alongside the singing of hymns and the prayers of the community. Meals, learning and devotion give the gathering its daily rhythm."
+    },
+    {
+      "id": "p10",
+      "text": "The older verse connects Khivi with the distribution of food. It remembers the resources and care made available through her work."
+    },
+    {
+      "id": "p11",
+      "text": "There is another detail in the verse worth pausing over. It refers to the Guru in relation to Mata Khivi. Santbir Singh, writing about Guru Angad's institutions, draws attention to this turn in the language. Khivi herself becomes a point of recognition. Within the relationship, her name retains its presence, and her contribution receives the attention of the song."
+    },
+    {
+      "id": "p12",
+      "text": "Her daughter Amro enters Macauliffe's account through a different kind of giving. Before daylight, she sings Guru Nanak's hymns at the home into which she has married. Amar Das hears her from nearby. He is already searching for a teacher, and the hymn draws his attention. He asks her to sing it again and wants to know where she learned it. She tells him about her father, Guru Angad."
+    },
+    {
+      "id": "p13",
+      "text": "Amro agrees to take Amar Das to meet him. The introduction leads him to Khadur and begins the relationship of service remembered in the accounts of his life. He will become the third Guru. Here, however, the important movement is small enough to be overlooked: a woman knows a hymn, sings it, answers a question and makes an introduction. The story reaches its next turning through her voice."
+    },
+    {
+      "id": "p16",
+      "text": "The song keeps Khivi beside the langar and the richness of the meal. The household around her becomes part of a wider gathering, and what it receives is shared again. Within that movement, the bowl of rice remains: ordinary food, generously given, remembered with gratitude."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume II",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter I–V, pp. 1, 3, 8, 15–16, 26–27, 31–32. Life of Guru Angad, the Second Guru: Chapter I (Khivi and her family), Chapter III (the daily kitchen), Chapter IV (Satta and Balwand’s verses on Khivi), and Chapter V (Bibi Amro and Amar Das).",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_2/Life_of_Guru_Angad,_The_Second_Guru#1",
+      "id": "macauliffe-1909-v2",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume II; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume II, pp. 1, 3, 8, 15–16, 26–27, 31–32"
+      }
+    },
+    {
+      "id": "ggs-ang-967",
+      "role": "textual-anchor",
+      "title": "Guru Granth Sahib — primary Gurmukhi text",
+      "author": "Bhai Balvand and Bhai Satta",
+      "workDate": "Early Sikh composition; included in the Adi Granth (1604)",
+      "edition": "Gurmukhi digital transcription at SriGranth; publication year not established; accessed 23 October 2026. No modern English translation reproduced.",
+      "reference": "Ang 967: Ramkali ki Var Rai Balvand tatha Sattai Dum Aakhi, pauri 3. Textual anchor; it does not independently establish the narrated historical setting.",
+      "locator": {
+        "kind": "ang",
+        "value": "967"
+      },
+      "url": "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=967&g=1&h=0&r=0&t=0&p=0&k=0"
+    },
+    {
+      "id": "sikhri-angad-2026",
+      "role": "context",
+      "title": "Guru Angad Sahib: Cultivating the Sikh Mind, Body, and Community",
+      "author": "Santbir Singh",
+      "year": 2026,
+      "workDate": "31 August 2026",
+      "edition": "Sikh Research Institute article; contextual research only",
+      "reference": "Section Langar: Developing the Community and reference 14; includes a primary-text locator to Guru Granth Sahib Ang 967. Modern prose and translation are not reproduced.",
+      "locator": {
+        "kind": "section",
+        "value": "Langar: Developing the Community; reference 14"
+      },
+      "url": "https://sikhri.org/articles/guru-angad-sahib-cultivating-the-sikh-mind-body-and-community"
+    }
+  ],
+  "accountNote": "An expanded historical profile with a direct textual anchor in the Guru Granth Sahib, Ang 967, and later biographical context from Macauliffe. The shade and langar imagery is explained in original prose, not presented as a new translation of Gurbani. The source describes the community's daily routine; it does not document a personal timetable for Khivi or establish that she taught Amro the particular hymn heard by Amar Das. No kitchen conversations, instructions or private thoughts have been reconstructed.",
+  "editorialNote": "Original English profile prepared for Naamras. It develops the short edition through early textual testimony, the household passages and the community's practice of sharing food. Bibi Amro's separate contribution is presented without inventing a mother-to-daughter transmission scene. Santbir Singh is credited for the observation about the verse naming the Guru in relation to Khivi. Evidence limits are kept in these notes and the research dossier so the narrative can flow. This unpublished pilot awaits independent English and Sikh history/Gurmat review.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "Original English prose based on the underlying 1909 Macauliffe work and explanation of the historic primary-text anchor. Modern research is cited and a specific interpretive observation attributed; no modern translation, article prose or artwork is reproduced. The pilot has not received independent specialist review.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v2"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_2/Life_of_Guru_Angad,_The_Second_Guru#1"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original expanded English profile prepared for Naamras from the cited historic sources. No modern English translation or story adaptation is reproduced. Santbir Singh is credited for the contextual observation discussed in paragraph p11; independent review remains pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Langar",
+      "meaning": "The Sikh community kitchen and the shared meal it provides."
+    },
+    {
+      "term": "Ghee",
+      "meaning": "Clarified butter."
+    },
+    {
+      "term": "Mata",
+      "meaning": "Mother; an honorific expressing respect."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "sections": [
+    {
+      "id": "a-name-in-the-song",
+      "title": "A name in the song",
+      "startParagraphId": "p1"
+    },
+    {
+      "id": "the-household-at-khadur",
+      "title": "The household at Khadur",
+      "startParagraphId": "p5"
+    },
+    {
+      "id": "the-shared-meal",
+      "title": "The shared meal",
+      "startParagraphId": "p8"
+    },
+    {
+      "id": "a-voice-carried-onward",
+      "title": "A voice carried onward",
+      "startParagraphId": "p12"
+    }
+  ]
+}

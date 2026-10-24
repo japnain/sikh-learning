@@ -1,0 +1,145 @@
+{
+  "id": "the-sacred-thread",
+  "title": "A Thread That Would Not Break",
+  "subtitle": "Young Nanak asks what a sacred thread can hold.",
+  "description": "At a ceremony arranged by his family, Nanak questions whether a mark worn on the body can transform the life within it.",
+  "collectionId": "courage-and-conscience",
+  "themes": [
+    "Conscience",
+    "Integrity",
+    "Equality"
+  ],
+  "people": [
+    "Guru Nanak",
+    "Hardial",
+    "Baba Kalu"
+  ],
+  "artwork": "thread",
+  "wordCount": 482,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "Nanak’s father had arranged the ceremony. Relatives and neighbours gathered, the preliminary rites were completed, and Hardial, the family priest, was ready to place the sacred thread around the boy’s neck. Everything had reached the point at which the thread should be accepted."
+    },
+    {
+      "id": "p2",
+      "text": "In the traditional account, young Nanak put out his hand and caught it. He asked what the priest was doing, and what benefit wearing this thread would bring. The ceremony paused around a question about the very thing it had been assembled to confer."
+    },
+    {
+      "id": "p3",
+      "text": "Hardial explained the importance of the janeu. Within the caste order he described, the thread established the wearer’s recognized religious standing. Without it, the boy would be denied that standing. With it, the priest promised, honour could follow in this world and happiness in the next."
+    },
+    {
+      "id": "p4",
+      "text": "Nanak’s reply turned to the materials of a different thread. Its cotton would be compassion. Its strand would be contentment. Self-restraint would form its knot, and truth would give it strength. These qualities would make a thread for the soul, rather than an object resting against the body."
+    },
+    {
+      "id": "p5",
+      "text": "Such a thread could not be spoiled by dirt or destroyed by fire. It could not be lost in the way an ordinary cord could be lost. The cotton thread being offered had been bought and prepared for a ceremony. It would eventually wear out, be replaced, or fall away when the person who wore it died."
+    },
+    {
+      "id": "p6",
+      "text": "The priest appealed to the age of the custom and the authority of those who had followed it. Nanak was a child. The rite had come down through generations. Refusing it, Hardial argued, would leave him without the religious identity that others recognized."
+    },
+    {
+      "id": "p7",
+      "text": "Nanak answered by bringing conduct into the question. A person could steal, deceive, abuse others and still have a cotton thread placed on his body. The ceremony did not, by itself, stop those actions. When the old cord wore out, another could be provided, while the habits of the wearer remained unchanged."
+    },
+    {
+      "id": "p8",
+      "text": "Hardial became angry and challenged him to explain what a proper thread would be. Nanak returned to remembrance and praise of the Divine Name. The honour he spoke of came through that devotion, with the qualities already named: mercy, contentment, restraint and truth."
+    },
+    {
+      "id": "p9",
+      "text": "His response also turned attention to those whom the rite excluded. A cord could not make the tongue truthful, the hands honest or the feet careful about where they carried a person. Nor could its place in a social hierarchy establish the worth of those who were not permitted to wear it."
+    },
+    {
+      "id": "p10",
+      "text": "The gathering had been prepared to see a thread placed around a boy’s neck. What the account preserves instead is his demand that religious life reach further than its outward sign. The thread he asked for would be held together by the way a person lived, and would endure when the cotton had gone."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter II, pp. 16–18. Chapter II, opening janeu episode: from the family’s preparations for Nanak’s investiture through his responses on mercy, contentment, self-restraint, truth and the Name; before the account of Nanaki’s marriage.",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#16",
+      "id": "macauliffe-1909-v1",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume I; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume I, pp. 16–18"
+      }
+    },
+    {
+      "id": "ggs-ang-471",
+      "role": "textual-anchor",
+      "title": "Guru Granth Sahib — primary Gurmukhi text",
+      "author": "Guru Nanak",
+      "workDate": "Composition of Guru Nanak (1469–1539); included in the Adi Granth (1604)",
+      "edition": "Gurmukhi digital transcription at SriGranth; publication year not established; accessed 23 October 2026. No modern English translation reproduced.",
+      "reference": "Ang 471: Asa ki Var, Salok Mahala 1 beginning Daya kapah santokh sut and following thread saloks. Textual anchor; it does not independently establish the narrated historical setting.",
+      "locator": {
+        "kind": "ang",
+        "value": "471"
+      },
+      "url": "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=471&g=1&h=0&r=0&t=0&p=0&k=0"
+    }
+  ],
+  "accountNote": "This follows the childhood sacred-thread sakhi in Macauliffe’s 1909 narrative. The setting and exchange come from that traditional account, rather than a surviving transcript of the ceremony. Summaries of the accompanying verses are not presented as a new Gurbani translation.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Focuses on the ceremony and its central exchange. The longer sequence of verses is condensed into indirect prose. The description concerns the caste-based rite in this account and does not claim to describe every Hindu practice or practitioner. Dialogue is reported indirectly; descriptions of teachings are prose summaries, not translations of Gurbani. No independent historical or human expert review is claimed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on Max Arthur Macauliffe’s original 1909 public-domain work. No modern translation or modern story adaptation has been copied. This is a traditional account, not independently verified history.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v1"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#16"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Janeu",
+      "meaning": "The sacred thread used in the initiation rite described in this sakhi."
+    },
+    {
+      "term": "The Name",
+      "meaning": "Here, remembrance and praise of the Divine; this prose phrase summarizes the source’s religious language."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "water-at-haridwar",
+    "bhai-lalo"
+  ]
+}

@@ -446,7 +446,7 @@ test('saving reopened onboarding preserves the current page, query, and scroll p
   fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
   advanceOnboardingToMeanings()
   fireEvent.click(screen.getByTestId('onboarding-meaning-none'))
-  expect(screen.getByTestId('onboarding-preview-primary-action')).toHaveTextContent('Save changes')
+  expect(screen.getByTestId('onboarding-preview-primary-action')).toHaveTextContent('Done')
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
 
   await waitFor(() => {

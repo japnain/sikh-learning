@@ -5,6 +5,10 @@ import UIKit
 
 class NaamRasBridgeViewController: CAPBridgeViewController {
     override func capacitorDidLoad() {
+        if let background = UIColor(named: "LaunchBackground") {
+            webView?.backgroundColor = background
+            webView?.scrollView.backgroundColor = background
+        }
         bridge?.registerPluginInstance(NaamRasImageSharePlugin())
     }
 }

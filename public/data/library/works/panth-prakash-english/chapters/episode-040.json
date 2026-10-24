@@ -11,7 +11,7 @@
   "endSourcePage": 289,
   "wordCount": 1473,
   "charCount": 8425,
-  "startPosition": 41525,
+  "startPosition": 41524,
   "pages": [
     {
       "sourcePageNumber": 281,
@@ -537,5 +537,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-039",
-  "nextChapterId": "episode-041"
+  "nextChapterId": "episode-041",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 554,
+      "printPageNumber": 510,
+      "sourceHref": "EPUB/page_554.html",
+      "text": "1 Jeth : Name of a month in the Indian Calendar corresponding to the month of June. 2 Chhapar Chiri : A village on the Kharar - Banur Road near Mohali-Chandigarh It is the site of a battle between the forces of Banda Singh and Wazir Khan, custodian of Sirhind. Wazir was killed here in 1767 BS (1710 CE)."
+    }
+  ]
 }

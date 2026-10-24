@@ -7,6 +7,8 @@ export function getRouteDocumentTitle(pathname: string) {
 
   if (normalized === '/') return APP_NAME
   if (normalized === '/study' || normalized.startsWith('/study/')) return `Reader · ${APP_NAME}`
+  if (normalized.startsWith('/stories/')) return `Story Reader · ${APP_NAME}`
+  if (normalized === '/stories') return `Read · ${APP_NAME}`
   if (normalized === '/saved' || normalized === '/library') return `Saved · ${APP_NAME}`
   if (/^\/library\/[^/]+\/chapters\/[^/]+$/.test(normalized)) return `Book Reader · ${APP_NAME}`
   if (/^\/library\/[^/]+$/.test(normalized)) return `Book · ${APP_NAME}`

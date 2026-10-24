@@ -5,748 +5,242 @@ import { deleteCloudAccount, sendMagicLink, signInWithProvider, signOutOfCloud, 
 import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
-import { useActivityEventsStore } from '../store/activityEvents'
-import { getNaamrasSupabaseConfig } from '../supabase/config'
 
 const CLOUD_COPY = {
   en: {
-    eyebrow: 'Cloud Sync',
-    title: 'Keep NaamRas with you across devices.',
-    body: 'Supabase backs up bookmarks, vocab, reading progress, and reader preferences without changing the guest reading flow.',
-    notConfigured: 'This build is still running local-only. Add the Supabase environment variables to enable sign-in and sync.',
-    signedOut: 'Browsing stays anonymous. Sign in only when you want backup and cross-device sync.',
-    providersHint: 'Enable Apple and email OTP in Supabase Auth to match the App Store rollout.',
-    signInApple: 'Continue with Apple',
-    signInEmail: 'Send magic link',
-    emailPlaceholder: 'Email for magic link',
-    syncNow: 'Sync now',
-    signOut: 'Sign out',
-    deleteAccount: 'Delete cloud account',
+    eyebrow: 'Personal data', localTitle: 'Your reading stays on this device.', title: 'Optional cloud backup',
+    localSummary: 'This version does not automatically back up to an account. Keep a backup file to make your reading data recoverable.',
+    localDetail: 'Your saves, vocabulary, reading places, Nitnem history and preferences are stored in this browser. Clearing app or site data removes them. Use the backup file controls to keep a copy or move to another device.',
+    signedOut: 'Reading is available without an account. Sign in only if you want to back up the supported items below.',
+    connected: 'Your account keeps the supported items below in sync. A backup file includes the rest of your personal reading data.',
+    coverageTitle: 'Included in cloud backup',
+    coverage: 'Scripture and book bookmarks, saved scripture passages, vocabulary, reading progress, your most recent reading, selected Nitnem banis and the current day’s completions, core scripture-reader settings, app language and theme.',
+    exclusionsTitle: 'Keep these in a backup file',
+    exclusions: 'Story saves and reading places, earlier Nitnem history, weekly goals, tracking choices, separate places for each bani, an active Nitnem practice, book/story reading preferences, reading mode, supporting-text size, artwork and sound preferences stay on this device. A complete backup file includes them. Downloaded reading content is separate from personal-data backup.',
+    mergeHint: 'First sign-in combines supported data from this device with your account.',
+    signInApple: 'Continue with Apple', signInEmail: 'Email a sign-in link', emailLabel: 'Email address',
+    emailSent: 'Check your email for your sign-in link. You can keep reading while you wait.',
+    unavailable: 'Account sign-in is unavailable right now. You can keep reading and use a backup file.',
+    syncNow: 'Sync now', signOut: 'Sign out', deleteAccount: 'Delete cloud account',
     deleteTitle: 'Delete your cloud account?',
     deleteDescription: 'Your account and all synced NaamRas data will be permanently deleted. This cannot be undone.',
-    deleteLocalNote: 'Guest data on this device stays available until you clear the app or site data.',
-    deleteConfirm: 'Delete account permanently',
-    deleteCancel: 'Keep account',
-    deleting: 'Deleting account…',
-    queueReady: 'Changes are queued and will sync on the next successful connection.',
-    offline: 'You are offline. Local changes are still safe on this device.',
-    lastSynced: 'Last synced',
-    connectedAs: 'Connected as',
-    pendingChanges: 'Pending changes',
-    syncMode: 'Sync mode',
-    guestMode: 'Guest reading',
-    cloudMode: 'Cloud connected',
-    waiting: 'Waiting',
-    providers: 'Providers',
-    providerSupported: 'Supported',
-    providerNeedsSetup: 'Needs setup',
-    featureGuest: 'Guest reading stays open',
-    featureLibrary: 'Bookmarks, vocab, reading progress',
-    featureMerge: 'Offline queue with merge replay',
-    mergeHint: 'First sign-in merges this device into your account before syncing future changes.',
-    localOnlyStatus: 'Local only',
-    scriptureData: 'Scripture data',
-    scriptureProxyReady: 'Supabase BaniDB proxy ready',
-    scriptureFallbackReady: 'Public BaniDB fallback ready',
-    scriptureUnavailable: 'Scripture backend not configured',
-    signedOutStatus: 'Backup optional',
-    readyStatus: 'Cloud connected',
-    syncingStatus: 'Syncing now',
-    queuedStatus: 'Sync queued',
-    offlineStatus: 'Offline',
-    errorStatus: 'Needs attention',
-    authStatus: 'Opening sign-in',
+    deleteLocalNote: 'Reading data on this device stays available until you clear the app or site data.',
+    deleteConfirm: 'Delete account permanently', deleteCancel: 'Keep account', deleting: 'Deleting account…',
+    queueReady: 'Your changes are waiting for the next successful connection.',
+    offline: 'You are offline. Keep reading on this device; cloud backup will resume when you reconnect.',
+    error: 'Cloud backup could not finish. Your reading stays available on this device. Please try again.',
+    recovery: 'Device storage could not finish a data change. Cloud backup is paused. Free device storage, then restore your personal backup before syncing again.',
+    authError: 'Sign-in is unavailable right now. Please try again, or keep reading without an account.',
+    accountError: 'The account change could not be completed. Please try again.',
+    lastSynced: 'Last synced', notSynced: 'No completed sync yet', connectedAs: 'Connected as',
+    changesWaiting: 'Changes waiting', noChangesWaiting: 'No changes waiting',
+    localOnlyStatus: 'On this device', signedOutStatus: 'Optional', readyStatus: 'Connected',
+    syncingStatus: 'Syncing', queuedStatus: 'Changes waiting', offlineStatus: 'Offline',
+    errorStatus: 'Needs attention', authStatus: 'Opening sign-in', loadingStatus: 'Checking account',
   },
   pa: {
-    eyebrow: 'ਕਲਾਉਡ ਸਿੰਕ',
-    title: 'NaamRas ਨੂੰ ਹਰ ਡਿਵਾਈਸ ਤੇ ਨਾਲ ਰੱਖੋ।',
-    body: 'Supabase ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, ਪੜ੍ਹਨ ਤਰੱਕੀ ਅਤੇ ਰੀਡਰ ਪਸੰਦਾਂ ਦਾ ਬੈਕਅੱਪ ਰੱਖਦਾ ਹੈ, ਪਰ guest ਪੜ੍ਹਾਈ ਨੂੰ ਨਹੀਂ ਤੋੜਦਾ।',
-    notConfigured: 'ਇਹ build ਹਾਲੇ ਸਿਰਫ਼ local mode ਵਿੱਚ ਹੈ। Sign-in ਅਤੇ sync ਲਈ Supabase environment variables ਜੋੜੋ।',
-    signedOut: 'ਬ੍ਰਾਊਜ਼ਿੰਗ ਅਗਿਆਤ ਹੀ ਰਹਿੰਦੀ ਹੈ। Sign in ਕੇਵਲ ਤਦੋਂ ਕਰੋ ਜਦੋਂ ਤੁਸੀਂ backup ਅਤੇ cross-device sync ਚਾਹੁੰਦੇ ਹੋ।',
-    providersHint: 'App Store rollout ਲਈ Supabase Auth ਵਿੱਚ Apple ਅਤੇ email OTP ਚਾਲੂ ਕਰੋ।',
-    signInApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
-    signInEmail: 'Magic link ਭੇਜੋ',
-    emailPlaceholder: 'Magic link ਲਈ email',
-    syncNow: 'ਹੁਣੇ sync ਕਰੋ',
-    signOut: 'Sign out',
-    deleteAccount: 'ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਓ',
+    eyebrow: 'ਨਿੱਜੀ ਡਾਟਾ', localTitle: 'ਤੁਹਾਡੀ ਪੜ੍ਹਾਈ ਇਸ ਡਿਵਾਈਸ ਤੇ ਰਹਿੰਦੀ ਹੈ।', title: 'ਚੋਣਵਾਂ ਕਲਾਉਡ ਬੈਕਅੱਪ',
+    localSummary: 'ਇਸ ਵਰਜਨ ਵਿੱਚ ਖਾਤੇ ਨਾਲ ਆਪਣੇ ਆਪ ਬੈਕਅੱਪ ਨਹੀਂ ਹੁੰਦਾ। ਪੜ੍ਹਾਈ ਦਾ ਡਾਟਾ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਰੱਖੋ।',
+    localDetail: 'ਸੰਭਾਲੀਆਂ ਚੀਜ਼ਾਂ, ਸ਼ਬਦਾਵਲੀ, ਪੜ੍ਹਨ ਦੀਆਂ ਥਾਵਾਂ, ਨਿਤਨੇਮ ਦਾ ਇਤਿਹਾਸ ਅਤੇ ਪਸੰਦਾਂ ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਰਹਿੰਦੀਆਂ ਹਨ। ਐਪ ਜਾਂ ਸਾਈਟ ਦਾ ਡਾਟਾ ਸਾਫ਼ ਕਰਨ ਨਾਲ ਇਹ ਮਿਟ ਜਾਂਦੇ ਹਨ। ਨਕਲ ਰੱਖਣ ਜਾਂ ਦੂਜੇ ਡਿਵਾਈਸ ਤੇ ਲਿਜਾਣ ਲਈ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਾਲੇ ਬਟਨ ਵਰਤੋ।',
+    signedOut: 'ਬਿਨਾਂ ਖਾਤੇ ਦੇ ਵੀ ਪੜ੍ਹ ਸਕਦੇ ਹੋ। ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਚੀਜ਼ਾਂ ਦਾ ਬੈਕਅੱਪ ਚਾਹੀਦਾ ਹੋਵੇ ਤਾਂ ਹੀ ਸਾਈਨ ਇਨ ਕਰੋ।',
+    connected: 'ਤੁਹਾਡੇ ਖਾਤੇ ਰਾਹੀਂ ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਚੀਜ਼ਾਂ ਇਕਸਾਰ ਰਹਿੰਦੀਆਂ ਹਨ। ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਿੱਚ ਬਾਕੀ ਨਿੱਜੀ ਪੜ੍ਹਾਈ ਦਾ ਡਾਟਾ ਵੀ ਸ਼ਾਮਲ ਹੁੰਦਾ ਹੈ।',
+    coverageTitle: 'ਕਲਾਉਡ ਬੈਕਅੱਪ ਵਿੱਚ ਸ਼ਾਮਲ',
+    coverage: 'ਗੁਰਬਾਣੀ ਅਤੇ ਕਿਤਾਬਾਂ ਦੇ ਬੁੱਕਮਾਰਕ, ਸੰਭਾਲੇ ਗੁਰਬਾਣੀ ਅੰਸ਼, ਸ਼ਬਦਾਵਲੀ, ਪੜ੍ਹਾਈ ਦੀ ਤਰੱਕੀ, ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਪੜ੍ਹਨ ਦੀ ਥਾਂ, ਚੁਣੀਆਂ ਨਿਤਨੇਮ ਬਾਣੀਆਂ ਅਤੇ ਅੱਜ ਦੀ ਪੂਰਨਤਾ, ਗੁਰਬਾਣੀ ਰੀਡਰ ਦੀਆਂ ਮੁੱਖ ਸੈਟਿੰਗਾਂ, ਐਪ ਦੀ ਭਾਸ਼ਾ ਅਤੇ ਥੀਮ।',
+    exclusionsTitle: 'ਇਨ੍ਹਾਂ ਲਈ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਰੱਖੋ',
+    exclusions: 'ਸੰਭਾਲੀਆਂ ਕਹਾਣੀਆਂ ਅਤੇ ਉਨ੍ਹਾਂ ਦੀਆਂ ਪੜ੍ਹਨ ਥਾਵਾਂ, ਪੁਰਾਣਾ ਨਿਤਨੇਮ ਇਤਿਹਾਸ, ਹਫ਼ਤਾਵਾਰੀ ਟੀਚੇ, ਟਰੈਕਿੰਗ ਚੋਣਾਂ, ਹਰ ਬਾਣੀ ਦੀ ਵੱਖਰੀ ਥਾਂ, ਚੱਲਦੀ ਨਿਤਨੇਮ ਪੜ੍ਹਾਈ, ਕਿਤਾਬਾਂ ਜਾਂ ਕਹਾਣੀਆਂ ਦੀਆਂ ਰੀਡਰ ਪਸੰਦਾਂ, ਪੜ੍ਹਨ ਦਾ ਢੰਗ, ਸਹਾਇਕ ਲਿਖਤ ਦਾ ਆਕਾਰ, ਚਿੱਤਰ ਅਤੇ ਆਵਾਜ਼ ਦੀਆਂ ਪਸੰਦਾਂ ਇਸ ਡਿਵਾਈਸ ਤੇ ਰਹਿੰਦੀਆਂ ਹਨ। ਪੂਰੀ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਿੱਚ ਇਹ ਸ਼ਾਮਲ ਹਨ। ਡਾਊਨਲੋਡ ਕੀਤੀ ਪੜ੍ਹਨ ਸਮੱਗਰੀ ਨਿੱਜੀ ਡਾਟੇ ਦੇ ਬੈਕਅੱਪ ਤੋਂ ਵੱਖਰੀ ਹੈ।',
+    mergeHint: 'ਪਹਿਲੀ ਸਾਈਨ ਇਨ ਵੇਲੇ ਇਸ ਡਿਵਾਈਸ ਦਾ ਸਮਰਥਿਤ ਡਾਟਾ ਤੁਹਾਡੇ ਖਾਤੇ ਦੇ ਡਾਟੇ ਨਾਲ ਮਿਲਾਇਆ ਜਾਂਦਾ ਹੈ।',
+    signInApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ', signInEmail: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਈਮੇਲ ਕਰੋ', emailLabel: 'ਈਮੇਲ ਪਤਾ',
+    emailSent: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਲਈ ਆਪਣੀ ਈਮੇਲ ਵੇਖੋ। ਉਡੀਕ ਕਰਦੇ ਹੋਏ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।',
+    unavailable: 'ਇਸ ਵੇਲੇ ਖਾਤੇ ਵਿੱਚ ਸਾਈਨ ਇਨ ਨਹੀਂ ਹੋ ਸਕਦਾ। ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ ਅਤੇ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਰਤੋ।',
+    syncNow: 'ਹੁਣੇ ਸਿੰਕ ਕਰੋ', signOut: 'ਸਾਈਨ ਆਉਟ', deleteAccount: 'ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਓ',
     deleteTitle: 'ਆਪਣਾ ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਉਣਾ ਹੈ?',
-    deleteDescription: 'ਤੁਹਾਡਾ ਖਾਤਾ ਅਤੇ ਸਾਰਾ sync ਕੀਤਾ NaamRas ਡਾਟਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟ ਜਾਵੇਗਾ। ਇਹ ਵਾਪਸ ਨਹੀਂ ਹੋ ਸਕਦਾ।',
-    deleteLocalNote: 'ਇਸ ਡਿਵਾਈਸ ਦਾ guest ਡਾਟਾ ਤਦ ਤੱਕ ਰਹੇਗਾ ਜਦ ਤੱਕ ਤੁਸੀਂ app ਜਾਂ site data ਸਾਫ਼ ਨਹੀਂ ਕਰਦੇ।',
-    deleteConfirm: 'ਖਾਤਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਓ',
-    deleteCancel: 'ਖਾਤਾ ਰੱਖੋ',
-    deleting: 'ਖਾਤਾ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…',
-    queueReady: 'ਬਦਲਾਅ queue ਵਿੱਚ ਹਨ ਅਤੇ ਅਗਲੀ ਸਫਲ ਕਨੈਕਸ਼ਨ ਤੇ sync ਹੋ ਜਾਣਗੇ।',
-    offline: 'ਤੁਸੀਂ offline ਹੋ। Local ਬਦਲਾਅ ਇਸ ਡਿਵਾਈਸ ਤੇ ਸੁਰੱਖਿਅਤ ਹਨ।',
-    lastSynced: 'ਆਖਰੀ sync',
-    connectedAs: 'ਇਸ ਨਾਂ ਨਾਲ ਜੁੜੇ ਹੋਏ',
-    pendingChanges: 'ਬਾਕੀ ਬਦਲਾਅ',
-    syncMode: 'ਸਿੰਕ ਮੋਡ',
-    guestMode: 'Guest ਪੜ੍ਹਾਈ',
-    cloudMode: 'ਕਲਾਉਡ ਨਾਲ ਜੁੜਿਆ',
-    waiting: 'ਉਡੀਕ ਵਿੱਚ',
-    providers: 'ਪ੍ਰੋਵਾਈਡਰ',
-    providerSupported: 'ਸਮਰਥਿਤ',
-    providerNeedsSetup: 'ਸੈੱਟਅੱਪ ਲੋੜੀਂਦਾ',
-    featureGuest: 'Guest ਪੜ੍ਹਾਈ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ',
-    featureLibrary: 'ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, ਪੜ੍ਹਨ ਤਰੱਕੀ',
-    featureMerge: 'Offline queue ਅਤੇ merge replay',
-    mergeHint: 'ਪਹਿਲੀ sign-in ਇਸ ਡਿਵਾਈਸ ਦਾ ਡਾਟਾ ਤੁਹਾਡੇ account ਨਾਲ merge ਕਰਦੀ ਹੈ, ਫਿਰ ਅੱਗੇ sync ਹੁੰਦਾ ਹੈ।',
-    localOnlyStatus: 'ਸਿਰਫ਼ local',
-    scriptureData: 'Scripture data',
-    scriptureProxyReady: 'Supabase BaniDB proxy ready',
-    scriptureFallbackReady: 'Public BaniDB fallback ready',
-    scriptureUnavailable: 'Scripture backend not configured',
-    signedOutStatus: 'ਬੈਕਅੱਪ ਚੋਣਵਾਂ',
-    readyStatus: 'ਕਲਾਉਡ ਨਾਲ ਜੁੜਿਆ',
-    syncingStatus: 'ਹੁਣੇ sync ਹੋ ਰਿਹਾ',
-    queuedStatus: 'Sync queue ਵਿੱਚ',
-    offlineStatus: 'Offline',
-    errorStatus: 'ਧਿਆਨ ਚਾਹੀਦਾ',
-    authStatus: 'Sign-in ਖੁੱਲ ਰਹੀ ਹੈ',
+    deleteDescription: 'ਤੁਹਾਡਾ ਖਾਤਾ ਅਤੇ ਸਿੰਕ ਕੀਤਾ ਸਾਰਾ NaamRas ਡਾਟਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟ ਜਾਵੇਗਾ। ਇਹ ਵਾਪਸ ਨਹੀਂ ਹੋ ਸਕਦਾ।',
+    deleteLocalNote: 'ਇਸ ਡਿਵਾਈਸ ਦੀ ਪੜ੍ਹਾਈ ਦਾ ਡਾਟਾ ਤਦ ਤੱਕ ਰਹੇਗਾ ਜਦ ਤੱਕ ਤੁਸੀਂ ਐਪ ਜਾਂ ਸਾਈਟ ਦਾ ਡਾਟਾ ਸਾਫ਼ ਨਹੀਂ ਕਰਦੇ।',
+    deleteConfirm: 'ਖਾਤਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਓ', deleteCancel: 'ਖਾਤਾ ਰੱਖੋ', deleting: 'ਖਾਤਾ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…',
+    queueReady: 'ਤੁਹਾਡੇ ਬਦਲਾਅ ਅਗਲੇ ਸਫਲ ਕਨੈਕਸ਼ਨ ਦੀ ਉਡੀਕ ਕਰ ਰਹੇ ਹਨ।',
+    offline: 'ਇੰਟਰਨੈੱਟ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੈ। ਇਸ ਡਿਵਾਈਸ ਤੇ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ; ਦੁਬਾਰਾ ਜੁੜਨ ਤੇ ਕਲਾਉਡ ਬੈਕਅੱਪ ਜਾਰੀ ਹੋਵੇਗਾ।',
+    error: 'ਕਲਾਉਡ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਇਸ ਡਿਵਾਈਸ ਤੇ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+    recovery: 'ਡਿਵਾਈਸ ਦੀ ਸਟੋਰੇਜ ਡਾਟੇ ਦਾ ਬਦਲਾਅ ਪੂਰਾ ਨਹੀਂ ਕਰ ਸਕੀ। ਕਲਾਉਡ ਬੈਕਅੱਪ ਰੁਕਿਆ ਹੋਇਆ ਹੈ। ਸਟੋਰੇਜ ਖਾਲੀ ਕਰੋ ਅਤੇ ਮੁੜ ਸਿੰਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਨਿੱਜੀ ਬੈਕਅੱਪ ਵਾਪਸ ਲਿਆਓ।',
+    authError: 'ਇਸ ਵੇਲੇ ਸਾਈਨ ਇਨ ਨਹੀਂ ਹੋ ਸਕਦਾ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਬਿਨਾਂ ਖਾਤੇ ਦੇ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ।',
+    accountError: 'ਖਾਤੇ ਦਾ ਬਦਲਾਅ ਪੂਰਾ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+    lastSynced: 'ਆਖਰੀ ਸਿੰਕ', notSynced: 'ਹਾਲੇ ਕੋਈ ਸਿੰਕ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ', connectedAs: 'ਜੁੜਿਆ ਖਾਤਾ',
+    changesWaiting: 'ਬਦਲਾਅ ਉਡੀਕ ਵਿੱਚ', noChangesWaiting: 'ਕੋਈ ਬਦਲਾਅ ਬਾਕੀ ਨਹੀਂ',
+    localOnlyStatus: 'ਇਸ ਡਿਵਾਈਸ ਤੇ', signedOutStatus: 'ਚੋਣਵਾਂ', readyStatus: 'ਜੁੜਿਆ ਹੋਇਆ',
+    syncingStatus: 'ਸਿੰਕ ਹੋ ਰਿਹਾ ਹੈ', queuedStatus: 'ਬਦਲਾਅ ਉਡੀਕ ਵਿੱਚ', offlineStatus: 'ਆਫ਼ਲਾਈਨ',
+    errorStatus: 'ਧਿਆਨ ਚਾਹੀਦਾ', authStatus: 'ਸਾਈਨ ਇਨ ਖੁੱਲ ਰਹੀ ਹੈ', loadingStatus: 'ਖਾਤਾ ਜਾਂਚਿਆ ਜਾ ਰਿਹਾ ਹੈ',
   },
   hi: {
-    eyebrow: 'क्लाउड सिंक',
-    title: 'NaamRas को हर डिवाइस पर साथ रखिए।',
-    body: 'Supabase बुकमार्क, शब्द, पढ़ने की प्रगति और रीडर पसंदों का बैकअप रखता है, बिना guest reading flow को बदले।',
-    notConfigured: 'यह build अभी केवल local mode में है। Sign-in और sync के लिए Supabase environment variables जोड़िए।',
-    signedOut: 'ब्राउज़िंग गुमनाम ही रहती है। Sign in केवल तब करें जब आपको backup और cross-device sync चाहिए।',
-    providersHint: 'App Store rollout के लिए Supabase Auth में Apple और email OTP चालू कीजिए।',
-    signInApple: 'Apple के साथ जारी रखें',
-    signInEmail: 'Magic link भेजें',
-    emailPlaceholder: 'Magic link के लिए email',
-    syncNow: 'अभी sync करें',
-    signOut: 'Sign out',
-    deleteAccount: 'क्लाउड खाता मिटाएँ',
+    eyebrow: 'निजी डेटा', localTitle: 'आपकी पढ़ाई इसी डिवाइस पर रहती है।', title: 'वैकल्पिक क्लाउड बैकअप',
+    localSummary: 'इस संस्करण में खाते पर अपने आप बैकअप नहीं होता। पढ़ाई का डेटा वापस पाने के लिए बैकअप फ़ाइल रखें।',
+    localDetail: 'सहेजी गई चीज़ें, शब्दावली, पढ़ने की जगहें, नितनेम का इतिहास और पसंद इस ब्राउज़र में रहते हैं। ऐप या साइट का डेटा साफ़ करने पर ये मिट जाते हैं। कॉपी रखने या दूसरे डिवाइस पर ले जाने के लिए बैकअप फ़ाइल के बटन इस्तेमाल करें।',
+    signedOut: 'बिना खाते के भी पढ़ सकते हैं। नीचे दी गई चीज़ों का बैकअप चाहिए तो ही साइन इन करें।',
+    connected: 'आपका खाता नीचे दी गई चीज़ों को एक जैसा रखता है। बैकअप फ़ाइल में बाकी निजी पढ़ाई का डेटा भी शामिल होता है।',
+    coverageTitle: 'क्लाउड बैकअप में शामिल',
+    coverage: 'गुरबाणी और किताबों के बुकमार्क, सहेजे गुरबाणी अंश, शब्दावली, पढ़ने की प्रगति, सबसे हाल की पढ़ने की जगह, चुनी नितनेम बाणियाँ और आज की पूर्णता, गुरबाणी रीडर की मुख्य सेटिंग, ऐप की भाषा और थीम।',
+    exclusionsTitle: 'इनके लिए बैकअप फ़ाइल रखें',
+    exclusions: 'सहेजी कहानियाँ और उनकी पढ़ने की जगहें, पुराना नितनेम इतिहास, साप्ताहिक लक्ष्य, ट्रैकिंग विकल्प, हर बाणी की अलग जगह, जारी नितनेम अभ्यास, किताबों या कहानियों की रीडर पसंद, पढ़ने का तरीका, सहायक पाठ का आकार, चित्र और ध्वनि की पसंद इस डिवाइस पर रहती हैं। पूरी बैकअप फ़ाइल में ये शामिल हैं। डाउनलोड की गई पढ़ने की सामग्री निजी डेटा के बैकअप से अलग है।',
+    mergeHint: 'पहली साइन इन पर इस डिवाइस का समर्थित डेटा आपके खाते के डेटा से मिलाया जाता है।',
+    signInApple: 'Apple के साथ जारी रखें', signInEmail: 'साइन इन लिंक ईमेल करें', emailLabel: 'ईमेल पता',
+    emailSent: 'साइन इन लिंक के लिए अपनी ईमेल देखें। इंतज़ार करते हुए पढ़ना जारी रख सकते हैं।',
+    unavailable: 'अभी खाते में साइन इन उपलब्ध नहीं है। पढ़ना जारी रखें और बैकअप फ़ाइल इस्तेमाल करें।',
+    syncNow: 'अभी सिंक करें', signOut: 'साइन आउट', deleteAccount: 'क्लाउड खाता मिटाएँ',
     deleteTitle: 'अपना क्लाउड खाता मिटाना है?',
-    deleteDescription: 'आपका खाता और NaamRas में sync किया गया सारा डेटा हमेशा के लिए मिट जाएगा। इसे वापस नहीं लाया जा सकता।',
-    deleteLocalNote: 'इस डिवाइस का guest डेटा तब तक रहेगा जब तक आप app या site data साफ़ नहीं करते।',
-    deleteConfirm: 'खाता हमेशा के लिए मिटाएँ',
-    deleteCancel: 'खाता रखें',
-    deleting: 'खाता मिटाया जा रहा है…',
-    queueReady: 'बदलाव queue में हैं और अगली सफल कनेक्शन पर sync हो जाएंगे।',
-    offline: 'आप offline हैं। Local बदलाव इस डिवाइस पर सुरक्षित हैं।',
-    lastSynced: 'आखिरी sync',
-    connectedAs: 'इस रूप में जुड़े हैं',
-    pendingChanges: 'बाकी बदलाव',
-    syncMode: 'सिंक मोड',
-    guestMode: 'Guest reading',
-    cloudMode: 'क्लाउड जुड़ा हुआ',
-    waiting: 'प्रतीक्षा में',
-    providers: 'प्रोवाइडर',
-    providerSupported: 'समर्थित',
-    providerNeedsSetup: 'सेटअप चाहिए',
-    featureGuest: 'Guest reading खुली रहती है',
-    featureLibrary: 'बुकमार्क, शब्द, पढ़ने की प्रगति',
-    featureMerge: 'Offline queue और merge replay',
-    mergeHint: 'पहली sign-in इस डिवाइस के डेटा को आपके account के साथ merge करती है, फिर आगे sync चलता है।',
-    localOnlyStatus: 'केवल local',
-    scriptureData: 'Scripture data',
-    scriptureProxyReady: 'Supabase BaniDB proxy ready',
-    scriptureFallbackReady: 'Public BaniDB fallback ready',
-    scriptureUnavailable: 'Scripture backend not configured',
-    signedOutStatus: 'बैकअप वैकल्पिक',
-    readyStatus: 'क्लाउड जुड़ा हुआ',
-    syncingStatus: 'अभी sync हो रहा है',
-    queuedStatus: 'Sync queue में',
-    offlineStatus: 'Offline',
-    errorStatus: 'ध्यान चाहिए',
-    authStatus: 'Sign-in खुल रही है',
+    deleteDescription: 'आपका खाता और सिंक किया गया सारा NaamRas डेटा हमेशा के लिए मिट जाएगा। इसे वापस नहीं लाया जा सकता।',
+    deleteLocalNote: 'इस डिवाइस की पढ़ाई का डेटा तब तक रहेगा जब तक आप ऐप या साइट का डेटा साफ़ नहीं करते।',
+    deleteConfirm: 'खाता हमेशा के लिए मिटाएँ', deleteCancel: 'खाता रखें', deleting: 'खाता मिटाया जा रहा है…',
+    queueReady: 'आपके बदलाव अगले सफल कनेक्शन का इंतज़ार कर रहे हैं।',
+    offline: 'इंटरनेट से संपर्क नहीं है। इस डिवाइस पर पढ़ना जारी रखें; दोबारा जुड़ने पर क्लाउड बैकअप जारी होगा।',
+    error: 'क्लाउड बैकअप पूरा नहीं हो सका। इस डिवाइस पर पढ़ना जारी रख सकते हैं। कृपया फिर कोशिश करें।',
+    recovery: 'डिवाइस की स्टोरेज डेटा का बदलाव पूरा नहीं कर सकी। क्लाउड बैकअप रुका हुआ है। स्टोरेज खाली करें, फिर सिंक करने से पहले निजी बैकअप वापस लाएँ।',
+    authError: 'अभी साइन इन उपलब्ध नहीं है। फिर कोशिश करें या बिना खाते के पढ़ना जारी रखें।',
+    accountError: 'खाते का बदलाव पूरा नहीं हो सका। कृपया फिर कोशिश करें।',
+    lastSynced: 'आखिरी सिंक', notSynced: 'अभी कोई सिंक पूरा नहीं हुआ', connectedAs: 'जुड़ा खाता',
+    changesWaiting: 'बदलाव इंतज़ार में', noChangesWaiting: 'कोई बदलाव बाकी नहीं',
+    localOnlyStatus: 'इस डिवाइस पर', signedOutStatus: 'वैकल्पिक', readyStatus: 'जुड़ा हुआ',
+    syncingStatus: 'सिंक हो रहा है', queuedStatus: 'बदलाव इंतज़ार में', offlineStatus: 'ऑफ़लाइन',
+    errorStatus: 'ध्यान चाहिए', authStatus: 'साइन इन खुल रही है', loadingStatus: 'खाता जाँचा जा रहा है',
   },
 } as const
-
-type CloudCopy = {
-  [Key in keyof typeof CLOUD_COPY.en]: string
-}
-
-const PROVIDER_META = {
-  apple: {
-    name: 'Apple',
-    labelKey: 'signInApple',
-  },
-  email: {
-    name: 'Email',
-    labelKey: 'signInEmail',
-  },
-} as const
-
-type CloudSyncSurfaceState = 'loading' | 'ready' | 'empty' | 'degraded'
 
 function formatSyncTimestamp(value: string | null, locale: string) {
-  if (!value) return null
-
-  const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return null
-
-  return new Intl.DateTimeFormat(locale, {
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  }).format(date)
-}
-
-function getStatusView({
-  configured,
-  status,
-  currentUser,
-  syncQueued,
-  offline,
-  lastError,
-  copy,
-}: {
-  configured: boolean
-  status: string
-  currentUser: { id: string } | null
-  syncQueued: boolean
-  offline: boolean
-  lastError: string | null
-  copy: CloudCopy
-}) {
-  if (!configured) {
-    return {
-      label: copy.localOnlyStatus,
-      className: 'bg-sand/14 text-ink/72 dark:bg-dark-text/12 dark:text-dark-text/72',
-    }
-  }
-
-  if (offline || status === 'offline') {
-    return {
-      label: copy.offlineStatus,
-      className: 'bg-saffron/12 text-saffron dark:bg-saffron/15 dark:text-saffron-light',
-    }
-  }
-
-  if (lastError || status === 'error') {
-    return {
-      label: copy.errorStatus,
-      className: 'bg-[#b4553d]/12 text-[#b4553d] dark:bg-[#ffb29d]/12 dark:text-[#ffb29d]',
-    }
-  }
-
-  if (status === 'authenticating') {
-    return {
-      label: copy.authStatus,
-      className: 'bg-gold/12 text-gold-dark dark:bg-gold/12 dark:text-gold-light',
-    }
-  }
-
-  if (status === 'syncing') {
-    return {
-      label: copy.syncingStatus,
-      className: 'bg-gold/12 text-gold-dark dark:bg-gold/12 dark:text-gold-light',
-    }
-  }
-
-  if (currentUser && syncQueued) {
-    return {
-      label: copy.queuedStatus,
-      className: 'bg-gold/12 text-gold-dark dark:bg-gold/12 dark:text-gold-light',
-    }
-  }
-
-  if (currentUser) {
-    return {
-      label: copy.readyStatus,
-      className: 'bg-[#dfead8] text-[#3c6a3f] dark:bg-[#203224] dark:text-[#9fd8a3]',
-    }
-  }
-
-  return {
-    label: copy.signedOutStatus,
-    className: 'bg-gold/10 text-gold-dark dark:bg-gold/10 dark:text-gold-light',
-  }
-}
-
-function getCloudSyncSurfaceState({
-  configured,
-  status,
-  currentUser,
-  lastError,
-  offline,
-}: {
-  configured: boolean
-  status: string
-  currentUser: { id: string } | null
-  lastError: string | null
-  offline: boolean
-}): CloudSyncSurfaceState {
-  if (status === 'booting' || status === 'authenticating' || status === 'syncing') {
-    return 'loading'
-  }
-
-  if (offline || lastError || status === 'error') {
-    return 'degraded'
-  }
-
-  if (!configured || !currentUser) {
-    return 'empty'
-  }
-
-  return 'ready'
-}
-
-function getCloudSyncErrorCode({
-  status,
-  currentUser,
-  lastError,
-  offline,
-}: {
-  status: string
-  currentUser: { id: string } | null
-  lastError: string | null
-  offline: boolean
-}) {
-  if (!(offline || lastError || status === 'error')) return null
-  if (!currentUser && status === 'error') return 'supabase-bootstrap'
-  return 'cloud-sync'
-}
-
-function getCloudSyncSummary({
-  configured,
-  currentUser,
-  syncQueued,
-  offline,
-  lastError,
-  pendingEventsCount,
-}: {
-  configured: boolean
-  currentUser: { id: string } | null
-  syncQueued: boolean
-  offline: boolean
-  lastError: string | null
-  pendingEventsCount: number
-}) {
-  if (!configured) {
-    return 'Backup is local-only in this build. Scripture data is reported separately below.'
-  }
-
-  if (!currentUser) {
-    return pendingEventsCount > 0
-      ? `Guest reading stays open. ${pendingEventsCount} change${pendingEventsCount === 1 ? '' : 's'} will be ready whenever you choose backup.`
-      : 'Guest reading stays open. Sign in only when you want backup and quiet cross-device continuity.'
-  }
-
-  if (offline) {
-    return pendingEventsCount > 0
-      ? `Offline for now. ${pendingEventsCount} queued change${pendingEventsCount === 1 ? '' : 's'} stay safe on this device.`
-      : 'Offline for now. Local changes stay safe until the next connection.'
-  }
-
-  if (lastError) {
-    return 'Cloud continuity needs attention before the next backup can finish.'
-  }
-
-  if (syncQueued) {
-    return pendingEventsCount > 0
-      ? `${pendingEventsCount} queued change${pendingEventsCount === 1 ? '' : 's'} will travel on the next successful sync.`
-      : 'A sync is queued and will travel on the next successful connection.'
-  }
-
-  return 'Bookmarks, vocabulary, reading progress, and reader preferences follow you quietly.'
-}
-
-function getProviderAvailabilityView({
-  enabled,
-  statusView,
-  copy,
-}: {
-  enabled: boolean
-  statusView: { label: string; className: string }
-  copy: CloudCopy
-}) {
-  if (!enabled) {
-    return {
-      label: copy.providerNeedsSetup,
-      statusLabel: null,
-      statusClassName: null,
-      className: 'text-ink/68 dark:text-dark-text/64',
-    }
-  }
-
-  return {
-    label: copy.providerSupported,
-    statusLabel: statusView.label,
-    statusClassName: statusView.className,
-    className: 'text-ink dark:text-dark-text',
-  }
-}
-
-function getScriptureDataStatus(copy: CloudCopy) {
-  const config = getNaamrasSupabaseConfig()
-
-  if (config.enabled && config.functionsUrl) {
-    return copy.scriptureProxyReady
-  }
-
-  if (config.banidbDirectFallbackEnabled) {
-    return copy.scriptureFallbackReady
-  }
-
-  return copy.scriptureUnavailable
+  if (!value || !Number.isFinite(Date.parse(value))) return null
+  return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(value))
 }
 
 export default function CloudSyncPanel() {
   const locale = useLocaleStore(state => state.locale)
   const copy = CLOUD_COPY[locale]
-  const {
-    configured,
-    status,
-    currentUser,
-    availableProviders,
-    lastSyncedAt,
-    lastError,
-    syncQueued,
-  } = useCloudSyncStore()
-  const pendingEventsCount = useActivityEventsStore(state => state.pendingEvents.length)
+  const { configured, status, currentUser, availableProviders, lastSyncedAt, lastError, syncQueued } = useCloudSyncStore()
   const [magicLinkEmail, setMagicLinkEmail] = useState('')
+  const [emailSent, setEmailSent] = useState(false)
+  const [actionError, setActionError] = useState(false)
+  const [actionPending, setActionPending] = useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [isDeletingAccount, setIsDeletingAccount] = useState(false)
-
-  const supportedProviders = availableProviders.filter(
-    (provider): provider is keyof typeof PROVIDER_META => provider in PROVIDER_META
-  )
-  const supportsApple = supportedProviders.includes('apple')
-  const supportsEmail = supportedProviders.includes('email')
-  const isBusy = status === 'booting' || status === 'authenticating' || status === 'syncing' || isDeletingAccount
-  const formattedLastSynced = formatSyncTimestamp(lastSyncedAt, locale)
-  const isOffline = status === 'offline' || (typeof navigator !== 'undefined' && navigator.onLine === false)
-  const statusView = getStatusView({
-    configured,
-    status,
-    currentUser,
-    syncQueued,
-    offline: isOffline,
-    lastError,
-    copy,
-  })
-  const panelState = getCloudSyncSurfaceState({
-    configured,
-    status,
-    currentUser,
-    lastError,
-    offline: isOffline,
-  })
-  const panelError = getCloudSyncErrorCode({
-    status,
-    currentUser,
-    lastError,
-    offline: isOffline,
-  })
   const [detailsOpen, setDetailsOpen] = usePersistentDisclosure('more-cloud-sync', false)
-  const summary = getCloudSyncSummary({
-    configured,
-    currentUser,
-    syncQueued,
-    offline: isOffline,
-    lastError,
-    pendingEventsCount,
-  })
-  const scriptureDataStatus = getScriptureDataStatus(copy)
+  const isOffline = configured && (status === 'offline' || (typeof navigator !== 'undefined' && navigator.onLine === false))
+  const recoveryRequired = lastError === 'personal-data-restore-recovery-required'
+  const hasError = configured && Boolean(lastError || actionError || status === 'error')
+  const loading = configured && ['booting', 'authenticating', 'syncing'].includes(status)
+  const isBusy = loading || actionPending || isDeletingAccount
+  const panelState = loading ? 'loading' : hasError || isOffline ? 'degraded' : !configured || !currentUser ? 'empty' : 'ready'
+  const panelError = hasError || isOffline ? !currentUser && status === 'error' ? 'supabase-bootstrap' : 'cloud-sync' : undefined
+  const statusLabel = !configured ? copy.localOnlyStatus : isOffline ? copy.offlineStatus : hasError ? copy.errorStatus
+    : status === 'booting' ? copy.loadingStatus : status === 'authenticating' ? copy.authStatus : status === 'syncing' ? copy.syncingStatus
+      : currentUser && syncQueued ? copy.queuedStatus : currentUser ? copy.readyStatus : copy.signedOutStatus
+  const summary = !configured ? copy.localSummary : currentUser ? copy.connected : copy.signedOut
+  const statusClassName = hasError ? 'bg-[#b4553d]/12 text-[#b4553d] dark:bg-[#ffb29d]/12 dark:text-[#ffb29d]'
+    : currentUser && !isOffline && !loading && !syncQueued ? 'bg-[#dfead8] text-[#3c6a3f] dark:bg-[#203224] dark:text-[#9fd8a3]'
+      : 'bg-sand/14 text-ink/72 dark:bg-dark-text/12 dark:text-dark-text/72'
+  const formattedLastSynced = formatSyncTimestamp(lastSyncedAt, locale)
+  const supportsApple = availableProviders.includes('apple')
+  const supportsEmail = availableProviders.includes('email')
   const panelId = 'more-cloud-sync-panel'
+  const primaryButton = 'interactive-focus min-h-[48px] w-full rounded-lg bg-saffron px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45'
+  const secondaryButton = 'interactive-focus min-h-[48px] w-full rounded-lg border border-sand/15 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
+
+  async function runAction(operation: () => Promise<{ ok: boolean }>, sentEmail = false) {
+    if (actionPending) return
+    setActionPending(true)
+    setActionError(false)
+    setEmailSent(false)
+    try {
+      const result = await operation()
+      setActionError(!result.ok)
+      if (result.ok && sentEmail) setEmailSent(true)
+    } catch {
+      setActionError(true)
+    } finally {
+      setActionPending(false)
+    }
+  }
 
   async function handleDeleteAccount() {
     if (isDeletingAccount) return
-
     setIsDeletingAccount(true)
-    const result = await deleteCloudAccount()
-    setIsDeletingAccount(false)
-
-    if (result.ok) {
-      setDeleteDialogOpen(false)
+    setActionError(false)
+    try {
+      const result = await deleteCloudAccount()
+      if (result.ok) setDeleteDialogOpen(false)
+      else setActionError(true)
+    } catch {
+      setActionError(true)
+    } finally {
+      setIsDeletingAccount(false)
     }
   }
 
   return (
-    <section
-      className="section-shell mb-5 overflow-hidden"
-      aria-labelledby="more-cloud-sync-title"
-      data-testid="more-cloud-sync"
-      data-ai-surface="cloud-sync-panel"
-      data-ai-state={panelState}
-      data-ai-error={panelError ?? undefined}
-    >
+    <section className="section-shell mb-5 overflow-hidden" aria-labelledby="more-cloud-sync-title" lang={locale}
+      data-testid="more-cloud-sync" data-ai-surface="cloud-sync-panel" data-ai-state={panelState} data-ai-error={panelError}>
       <div className="relative px-5 pt-5 pb-4" data-ai-anchor="cloud-sync-summary">
-        <button
-          type="button"
-          onClick={() => setDetailsOpen(current => !current)}
-          aria-expanded={detailsOpen}
-          aria-controls={panelId}
-          className="interactive-focus relative flex w-full items-start justify-between gap-4 text-left"
-        >
+        <button type="button" onClick={() => setDetailsOpen(current => !current)} aria-expanded={detailsOpen} aria-controls={panelId}
+          className="interactive-focus relative flex w-full items-start justify-between gap-4 text-left">
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <p className="eyebrow">{copy.eyebrow}</p>
-              <span
-                className={`rounded-full px-3 py-1.5 font-sans text-[11px] font-semibold tracking-[0.12em] ${statusView.className}`}
-                data-ai-anchor="cloud-sync-status"
-              >
-                {statusView.label}
-              </span>
+              <span className={`rounded-full px-3 py-1.5 font-sans text-[11px] font-semibold tracking-[0.12em] ${statusClassName}`} data-ai-anchor="cloud-sync-status">{statusLabel}</span>
             </div>
-            <h2 id="more-cloud-sync-title" className="mt-3 font-display text-[1.85rem] leading-none text-ink dark:text-dark-text">
-              {copy.title}
-            </h2>
-            <p className="mt-3 max-w-[36ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
-              {summary}
-            </p>
-            <div
-              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64"
-              data-ai-surface="cloud-sync-metrics"
-              data-ai-state={panelState}
-            >
-              <span data-ai-anchor="cloud-sync-pending">
-                {pendingEventsCount === 0
-                  ? 'No changes waiting'
-                  : `${pendingEventsCount} change${pendingEventsCount === 1 ? '' : 's'} waiting`}
-              </span>
-              <span data-ai-anchor="cloud-sync-mode">{currentUser ? 'Cloud connected' : 'Backup optional'}</span>
-              <span data-ai-anchor="cloud-sync-last-synced">
-                {formattedLastSynced
-                  ? `Last backup ${formattedLastSynced}`
-                  : currentUser
-                    ? 'First backup ahead'
-                    : 'Not backed up yet'}
-              </span>
-              <span data-ai-anchor="scripture-data-status">{copy.scriptureData}: {scriptureDataStatus}</span>
-            </div>
+            <h2 id="more-cloud-sync-title" className="mt-3 font-display text-[1.85rem] leading-none text-ink dark:text-dark-text">{configured ? copy.title : copy.localTitle}</h2>
+            <p className="mt-3 max-w-[45ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">{summary}</p>
+            {configured && currentUser ? <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64" data-ai-surface="cloud-sync-metrics" data-ai-state={panelState}>
+              <span data-ai-anchor="cloud-sync-pending">{syncQueued ? copy.changesWaiting : copy.noChangesWaiting}</span>
+              <span data-ai-anchor="cloud-sync-last-synced">{formattedLastSynced ? `${copy.lastSynced}: ${formattedLastSynced}` : copy.notSynced}</span>
+            </div> : null}
           </div>
-          <span
-            className={`icon-surface mt-1 h-10 w-10 shrink-0 ${
-              detailsOpen ? 'text-ink/68 dark:text-dark-text/64' : 'text-gold-dark dark:text-gold-light'
-            }`}
-            aria-hidden="true"
-          >
-            {detailsOpen ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}
-          </span>
+          <span className="icon-surface mt-1 h-10 w-10 shrink-0 text-gold-dark dark:text-gold-light" aria-hidden="true">{detailsOpen ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}</span>
         </button>
       </div>
 
-      {detailsOpen ? (
-        <div id={panelId} className="px-5 pb-5">
-          {!configured ? (
-            <div className="hero-surface px-4 py-4" data-ai-surface="cloud-sync-local-only" data-ai-state="empty">
-              <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.notConfigured}</p>
-              <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.scriptureData}: {scriptureDataStatus}</p>
-              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/68 dark:text-dark-text/64">
-                <span className="chip-pill">{copy.featureGuest}</span>
-                <span className="chip-pill">{copy.featureLibrary}</span>
-                <span className="chip-pill">{copy.featureMerge}</span>
-              </div>
-            </div>
-          ) : (
-            <div
-              className="section-shell-quiet relative overflow-hidden px-4 py-4"
-              data-ai-surface="cloud-sync-account"
-              data-ai-state={panelState}
-              data-ai-error={panelError ?? undefined}
-            >
-              <div className="relative">
-                {currentUser ? (
-                  <>
-                    <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
-                      {copy.connectedAs}
-                    </p>
-                    <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-                      {currentUser.name ?? currentUser.email}
-                    </p>
-                    {currentUser.name ? (
-                      <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">{currentUser.email}</p>
-                    ) : null}
-                  </>
-                ) : (
-                  <>
-                    <p className="font-sans text-sm text-ink/72 dark:text-dark-text/72">{copy.signedOut}</p>
-                    <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.mergeHint}</p>
-                  </>
-                )}
+      {detailsOpen ? <div id={panelId} className="px-5 pb-5">
+        {!configured ? <div className="hero-surface px-4 py-4" data-ai-surface="cloud-sync-local-only" data-ai-state="empty">
+          <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.localDetail}</p>
+        </div> : <div className="section-shell-quiet px-4 py-4" data-ai-surface="cloud-sync-account" data-ai-state={panelState} data-ai-error={panelError}>
+          {currentUser ? <div>
+            <p className="eyebrow">{copy.connectedAs}</p>
+            <p className="mt-2 break-words font-sans text-base font-semibold text-ink dark:text-dark-text">{currentUser.name ?? currentUser.email}</p>
+            {currentUser.name ? <p className="mt-1 break-words font-sans text-xs text-ink/68 dark:text-dark-text/64">{currentUser.email}</p> : null}
+          </div> : <p className="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.mergeHint}</p>}
+          <div className="mt-4 space-y-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
+            <div><h3 className="font-semibold text-ink dark:text-dark-text">{copy.coverageTitle}</h3><p>{copy.coverage}</p></div>
+            <div><h3 className="font-semibold text-ink dark:text-dark-text">{copy.exclusionsTitle}</h3><p>{copy.exclusions}</p></div>
+          </div>
+          <div className="mt-4 space-y-2 font-sans text-xs leading-5" aria-live="polite" data-ai-anchor="cloud-sync-notices">
+            {isOffline ? <p className="text-saffron dark:text-saffron-light">{copy.offline}</p> : null}
+            {currentUser && syncQueued ? <p className="text-ink/68 dark:text-dark-text/64">{copy.queueReady}</p> : null}
+            {emailSent ? <p role="status" className="text-ink/72 dark:text-dark-text/72">{copy.emailSent}</p> : null}
+            {hasError ? <p role="alert" className="text-[#b4553d] dark:text-[#ffb29d]">{recoveryRequired ? copy.recovery : currentUser ? copy.error : copy.authError}</p> : null}
+          </div>
+          <div className="mt-4 grid gap-3">
+            {!currentUser ? <>
+              {supportsApple ? <button type="button" onClick={() => { void runAction(() => signInWithProvider('apple')) }} disabled={isBusy || isOffline} data-ai-action="cloud-sign-in-apple" className={primaryButton}>{copy.signInApple}</button> : null}
+              {supportsEmail ? <form className="grid gap-2" onSubmit={event => { event.preventDefault(); void runAction(() => sendMagicLink(magicLinkEmail.trim()), true) }}>
+                <label htmlFor="cloud-sign-in-email" className="font-sans text-xs font-semibold text-ink dark:text-dark-text">{copy.emailLabel}</label>
+                <input id="cloud-sign-in-email" value={magicLinkEmail} onChange={event => { setMagicLinkEmail(event.target.value); setEmailSent(false) }} type="email" autoComplete="email" required maxLength={254}
+                  className="interactive-focus min-h-[48px] w-full rounded-lg border border-sand/15 bg-white/75 px-4 py-3 font-sans text-sm text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text" />
+                <button type="submit" disabled={isBusy || isOffline || !magicLinkEmail.trim()} data-ai-action="cloud-sign-in-email" className={supportsApple ? secondaryButton : primaryButton}>{copy.signInEmail}</button>
+              </form> : null}
+              {!supportsApple && !supportsEmail ? <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.unavailable}</p> : null}
+            </> : <>
+              <button type="button" onClick={() => { void runAction(() => syncNow('manual')) }} disabled={isBusy || isOffline || recoveryRequired} data-ai-action="cloud-sync-now" className={primaryButton}>{copy.syncNow}</button>
+              <button type="button" onClick={() => { void runAction(signOutOfCloud) }} disabled={actionPending || isDeletingAccount} data-ai-action="cloud-sign-out" className={secondaryButton}>{copy.signOut}</button>
+              <button type="button" onClick={() => { setActionError(false); setDeleteDialogOpen(true) }} disabled={isBusy || isOffline} data-ai-action="cloud-delete-account"
+                className="interactive-focus min-h-[48px] w-full rounded-lg border border-[#b4553d]/28 bg-[#b4553d]/8 px-4 py-3 font-sans text-sm font-semibold text-[#9b3f2c] disabled:opacity-45 dark:border-[#ffb29d]/22 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">{copy.deleteAccount}</button>
+            </>}
+          </div>
+        </div>}
+      </div> : null}
 
-                <div className="mt-4 rounded-lg border border-sand/12 bg-white/80 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/75">
-                  <div className="flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64">
-                    <span>{copy.pendingChanges} {pendingEventsCount}</span>
-                    <span>{copy.lastSynced} {formattedLastSynced ?? copy.waiting}</span>
-                    <span>{copy.syncMode} {currentUser ? copy.cloudMode : copy.guestMode}</span>
-                  </div>
-                </div>
-
-                <p className="eyebrow mt-4">{copy.providers}</p>
-                <div className="mt-4 grid grid-cols-2 gap-2" data-ai-surface="cloud-sync-providers" data-ai-state={supportedProviders.length === 0 ? 'empty' : 'ready'}>
-                  {(Object.keys(PROVIDER_META) as Array<keyof typeof PROVIDER_META>).map(providerId => {
-                    const provider = PROVIDER_META[providerId]
-                    const enabled = supportedProviders.includes(providerId)
-                    const providerState = getProviderAvailabilityView({
-                      enabled,
-                      statusView,
-                      copy,
-                    })
-
-                    return (
-                      <div
-                        key={providerId}
-                        className={`rounded-lg border px-3 py-3 ${
-                          enabled
-                            ? 'border-gold/20 bg-white/85 dark:border-gold/15 dark:bg-dark-card/80'
-                            : 'border-sand/10 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/80'
-                        }`}
-                        data-ai-anchor={`cloud-provider-${providerId}`}
-                      >
-                        <p className="eyebrow">{provider.name}</p>
-                        <p className={`mt-2 font-sans text-sm font-semibold ${providerState.className}`}>
-                          {providerState.label}
-                        </p>
-                        {providerState.statusLabel ? (
-                          <p className={`mt-2 inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${providerState.statusClassName}`}>
-                            {providerState.statusLabel}
-                          </p>
-                        ) : null}
-                      </div>
-                    )
-                  })}
-                </div>
-
-                {!supportsApple || !supportsEmail ? (
-                  <p className="mt-4 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.providersHint}</p>
-                ) : null}
-
-                <div className="mt-4 space-y-2" aria-live="polite" data-ai-anchor="cloud-sync-notices">
-                  {isOffline ? (
-                    <p className="font-sans text-xs text-saffron dark:text-saffron-light">{copy.offline}</p>
-                  ) : null}
-
-                  {syncQueued ? (
-                    <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.queueReady}</p>
-                  ) : null}
-
-                  {lastError ? (
-                    <p className="font-sans text-xs text-[#b4553d] dark:text-[#ffb29d]">{lastError}</p>
-                  ) : null}
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/68 dark:text-dark-text/64">
-                  <span className="chip-pill">{copy.featureGuest}</span>
-                  <span className="chip-pill">{copy.featureLibrary}</span>
-                  <span className="chip-pill">{copy.featureMerge}</span>
-                </div>
-
-                <div className="mt-4 grid gap-2">
-                  {!currentUser ? (
-                    <>
-                      {supportedProviders.map((providerId, index) => {
-                        const provider = PROVIDER_META[providerId]
-                        const label = copy[provider.labelKey]
-                        const isEmail = providerId === 'email'
-                        const emailReady = magicLinkEmail.trim().includes('@')
-
-                        return (
-                          <div key={providerId} className="grid gap-2">
-                            {isEmail ? (
-                              <input
-                                value={magicLinkEmail}
-                                onChange={event => setMagicLinkEmail(event.target.value)}
-                                type="email"
-                                placeholder={copy.emailPlaceholder}
-                                className="w-full rounded-lg border border-sand/15 bg-white/75 px-4 py-3 font-sans text-sm text-ink outline-none focus:border-gold/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-                              />
-                            ) : null}
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (providerId === 'email') {
-                                  void sendMagicLink(magicLinkEmail)
-                                } else {
-                                  void signInWithProvider(providerId)
-                                }
-                              }}
-                              disabled={isBusy || (isEmail && !emailReady)}
-                              data-ai-action={`cloud-sign-in-${providerId}`}
-                              className={`w-full rounded-lg px-4 py-3 font-sans text-sm font-semibold disabled:opacity-45 ${
-                                index === 0
-                                  ? 'bg-saffron text-white'
-                                  : 'border border-sand/15 bg-white/70 text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
-                              }`}
-                            >
-                              {label}
-                            </button>
-                          </div>
-                        )
-                      })}
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => { void syncNow('manual') }}
-                        disabled={isBusy}
-                        data-ai-action="cloud-sync-now"
-                        className="w-full rounded-lg bg-saffron px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45"
-                      >
-                        {copy.syncNow}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => { void signOutOfCloud() }}
-                        disabled={isBusy}
-                        data-ai-action="cloud-sign-out"
-                        className="w-full rounded-lg border border-sand/15 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-                      >
-                        {copy.signOut}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDeleteDialogOpen(true)}
-                        disabled={isBusy}
-                        data-ai-action="cloud-delete-account"
-                        className="w-full rounded-lg border border-[#b4553d]/28 bg-[#b4553d]/8 px-4 py-3 font-sans text-sm font-semibold text-[#9b3f2c] disabled:opacity-45 dark:border-[#ffb29d]/22 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]"
-                      >
-                        {copy.deleteAccount}
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      ) : null}
-
-      <ModalSheet
-        open={deleteDialogOpen}
-        onClose={() => {
-          if (!isDeletingAccount) setDeleteDialogOpen(false)
-        }}
-        title={copy.deleteTitle}
-        description={copy.deleteDescription}
-        className="rounded-lg"
-        testId="cloud-delete-account-dialog"
-      >
-        <div className="px-5 py-5">
+      <ModalSheet open={deleteDialogOpen} onClose={() => { if (!isDeletingAccount) setDeleteDialogOpen(false) }} title={copy.deleteTitle} description={copy.deleteDescription} className="rounded-lg" testId="cloud-delete-account-dialog">
+        <div className="px-5 py-5" lang={locale}>
           <p className="eyebrow">{copy.deleteAccount}</p>
           <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">{copy.deleteTitle}</h2>
           <p className="mt-3 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/72">{copy.deleteDescription}</p>
           <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.deleteLocalNote}</p>
-          {lastError ? (
-            <p className="mt-3 font-sans text-xs leading-5 text-[#9b3f2c] dark:text-[#ffb29d]" aria-live="polite">
-              {lastError}
-            </p>
-          ) : null}
+          {hasError ? <p role="alert" className="mt-3 font-sans text-xs leading-5 text-[#9b3f2c] dark:text-[#ffb29d]">{copy.accountError}</p> : null}
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
-            <button
-              type="button"
-              onClick={() => setDeleteDialogOpen(false)}
-              disabled={isDeletingAccount}
-              className="interactive-focus min-h-[48px] rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/15 dark:text-dark-text"
-            >
-              {copy.deleteCancel}
-            </button>
-            <button
-              type="button"
-              onClick={() => { void handleDeleteAccount() }}
-              disabled={isDeletingAccount}
-              className="interactive-focus min-h-[48px] rounded-lg bg-[#a94732] px-4 font-sans text-sm font-semibold text-white disabled:opacity-45 dark:bg-[#d86f58] dark:text-[#160c09]"
-              data-testid="cloud-delete-account-confirm"
-            >
-              {isDeletingAccount ? copy.deleting : copy.deleteConfirm}
-            </button>
+            <button type="button" onClick={() => setDeleteDialogOpen(false)} disabled={isDeletingAccount} className={secondaryButton}>{copy.deleteCancel}</button>
+            <button type="button" onClick={() => { void handleDeleteAccount() }} disabled={isDeletingAccount} className="interactive-focus min-h-[48px] rounded-lg bg-[#a94732] px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45 dark:bg-[#d86f58] dark:text-[#160c09]" data-testid="cloud-delete-account-confirm">{isDeletingAccount ? copy.deleting : copy.deleteConfirm}</button>
           </div>
         </div>
       </ModalSheet>

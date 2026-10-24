@@ -11,7 +11,7 @@
   "endSourcePage": 367,
   "wordCount": 629,
   "charCount": 3806,
-  "startPosition": 56563,
+  "startPosition": 56562,
   "pages": [
     {
       "sourcePageNumber": 363,
@@ -271,5 +271,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-054",
-  "nextChapterId": "episode-056"
+  "nextChapterId": "episode-056",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 559,
+      "printPageNumber": 515,
+      "sourceHref": "EPUB/page_559.html",
+      "text": "1 Shams Khan alias Noor Khan, son of Pirkhan, a Pathan commander from Kasur, who was given custodianship of Jalandhar Doab as a reward for the services rendered by his father. He had his headquarters at Sultanpur Lodhi. He had displayed great courage in occupying Sirhind in 1710, but he was divested of the custodianship of Jalandhar Doab due to the conspiracy hatched by Mohammad Amin Khan, Cheen Bahadur against him. He was killed in 171 1 by Khalsa forces. 2 Bajida Khan alias Biazeed Khan, another army commander from Kasur who earned the title of Kutubudin from the emperor Bahadur Shah. He is also known bythe name of Kutubudin Khan Kheshgi. He fought in the war against Khalsa forces at Lohgarh. He was killed in 1711 by Khalsa forces near Raipur. 3 Mahawat Khan alias Khan Mahawat, son of the home minister (Khana-a-Khana) of Bahadur Shah, who escaped from Amingarh near Taraori on October 17, 1710 after being defeated by Khalsa forces. 4 Farzul Khan : Although no such name is recorded in history, but the possible reference seems to be to the name of Feroze Khan Mewati who orgainsed a Mughal force, after his initial defeat in the army of Mahawat Khan at Amingarh, and fought again against Khalsa forces on October 30, 1710 at Amingarh. He was given a custodianship of Sirhind for the services rendered by him. 5 Kunjpura : A small town on the outskirts of Karnal, once a powerful centre of Mughal empire which Banda Singh destroyed. 6 Samana : A strong centre of Mughal power in the Sirhind province with a strength of twenty two sub-custodians which was ransacked and destroyed by Banda Singh. 7 Sadhaura : A town in the Shivalik foothills which Banda Singh ransacked and destroyed before"
+    },
+    {
+      "sourcePageNumber": 560,
+      "printPageNumber": 516,
+      "sourceHref": "EPUB/page_560.html",
+      "text": "thefallofSirhind. 8 Yamuna areas: The areas of Saharanpur across the river Yamuna ruled by the Mughals but ransacked by Banda Singh's forces. 9 Farrukhsiar: Grandson of Bahadur Shah and son of Aazim Shah ascended to the Mughal throne at Delhi on January 10, 1713. He had to abdicate his throne on February 28, 1719. Banda Singh Bahadur attained martyrdom during his reign. 10 1784: It is wrongly mentioned as the date of Bahadur Shah's death. Bahadur Shah actually diedinl712A.D.orl769B.S. 11 Azam Shah: The third son ofAurangzeb born on July 9, 1653. he was the governor of Malwa region in the South during Aurangzeb's rule. He was defeated by his own brother Mohammad Muazzam alias Bahadur Shah on June 18, 1708 at the place of Jajoo."
+    }
+  ]
 }

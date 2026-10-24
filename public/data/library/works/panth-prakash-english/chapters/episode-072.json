@@ -11,7 +11,7 @@
   "endSourcePage": 491,
   "wordCount": 1488,
   "charCount": 8813,
-  "startPosition": 77824,
+  "startPosition": 77823,
   "pages": [
     {
       "sourcePageNumber": 483,
@@ -549,5 +549,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-071",
-  "nextChapterId": "episode-073"
+  "nextChapterId": "episode-073",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 566,
+      "printPageNumber": 522,
+      "sourceHref": "EPUB/page_566.html",
+      "text": "1 Darbar Sahib: The Harmandir or Golden Temple, established by the fourth Sikh Guru, Guru Ramdas at Amritsar is referred to as Darbar Sahib. 2 Fateh Darshan : Op. cit., p. 517. 3 Khande ki Pahul or Pahul: The initiation ceremony in which a Sikh partakes ' Amrit\" prepared by the five panj pyaras as prescribed by Guru Gobind Singh, adopts the Singh code of conduct, wears the five kakars or symbols of a true Khalsa and leads the life of an initiated or Amritdhari Gursikh. The Khalsa Panth was initiated by Guru Gobind Singh on the Vaisakhi day of 1699 at Anandpur Sahib by administering Khade-ki-Pahul or Amrit to his followers. 4 Six Ancient Sects of yogis or Khat Darshan means Six ancient (Hindu) scriptures. The six yogic sects are yogis, Janghams, Jains, Sanyasis, Bairagis and Madaris with their distinct symbols and code of conduct. 5 Bhai Buddha Ji : The famous Baba Buddha, son of Sugha Randhawa, born in 1506 at Kathu Nangal in District Amritsar of Punjab. His childhood name was Boorda. Guru Nanak blessed him and named him Baba Buddha. He lived a long life of more than one hundred years and served as a devout Sikh under the first six Sikh Gurus. He was appointed as the first head priest of Harmandir Sahib when Guru Granth Sahib was installed in the sanctum sanctorum of Harmandir. He expired in 1621. He was cremated by Guru Hargobind himself. It was one of the descendents of Bhai Buddhaji who intervened between the Tat Khalsa Singhs and Bandhayee Singhs during the controversy over the division of monetary offerings. 6 Bhai Salo : A devout Sikh follower of Guru Ramdas, the fourth Sikh Guru. He did great community service during the digging of the sacred tank around Harmandir. He died in 1628. It was his descendent, who acted as an arbitrator along with Baba Budhaji's descendent during the above mentioned dispute. 7 Bhai Bhagtu: A resident of Malwa region of village Bhagata Bhai ka. He served under Guru Arjun Dev ji during the construction of sacred tank and Harmandir. One of his descendents, Bhai Fateh Singh was appointed custodian of Samana by Baba Banda Singh Bahadur after the"
+    },
+    {
+      "sourcePageNumber": 567,
+      "printPageNumber": 523,
+      "sourceHref": "EPUB/page_567.html",
+      "text": "capture of Sirhind. The rulers of Kaithal also belonged to his dynasty. His grandson arbitrated during the offerings controversy. 8 Bhai Bahlo : A resident of village Fafrey Bhai Kay in Malwa and a devout follower of Guru Arjun Dev ji who served the Guru at Amritsar. He was deputed to preach and propagate Sikhism in Malwa by Guru Arjun Devji. He died in 1643. His grandson was one of the arbitrators between Tat Khalsa and Bandhayee Singhs. 9 Mani: Mythology believes there is a precious stone in the hood of some deadly cobras which have some magical qualities like those possessed by a proverbial Alchemist's stone."
+    }
+  ]
 }

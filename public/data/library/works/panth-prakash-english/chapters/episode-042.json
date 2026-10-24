@@ -11,7 +11,7 @@
   "endSourcePage": 293,
   "wordCount": 326,
   "charCount": 1943,
-  "startPosition": 43387,
+  "startPosition": 43386,
   "pages": [
     {
       "sourcePageNumber": 291,
@@ -158,5 +158,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-041",
-  "nextChapterId": "episode-043"
+  "nextChapterId": "episode-043",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 555,
+      "printPageNumber": 511,
+      "sourceHref": "EPUB/page_555.html",
+      "text": "1 Ram Rayyas : The splinter sect among the Sikhs who became followers of Ram Rai, the elder son of the seventh Sikh Guru, Guru Har Rai. The Guru had excommunicated him from the Sikh Panth for distorting the Gurbani's words in the court of Emperor Aurangzeb. He set up his own headquarters at Dehradun and came to be worshipped by people because of his spiritual powers. Later on, he was burnt alive by his fellow Masands. His followers are called Ram Rayaas. 2 Bhujangis : Another name for initiated Khalsa Singhs of a comparatively younger age group. 3 Ghudhani : Name of a village near Payal in District Ludhiana on the Khanna-Ludhiana Road."
+    }
+  ]
 }

@@ -11,7 +11,7 @@
   "endSourcePage": 337,
   "wordCount": 960,
   "charCount": 5406,
-  "startPosition": 50968,
+  "startPosition": 50967,
   "pages": [
     {
       "sourcePageNumber": 333,
@@ -405,5 +405,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-049",
-  "nextChapterId": "episode-051"
+  "nextChapterId": "episode-051",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 558,
+      "printPageNumber": 514,
+      "sourceHref": "EPUB/page_558.html",
+      "text": "1 Sudh Sain : Hill chief of Mandi region, presently in Himachal Pradesh. 2 The book : Reference is to the book of necromancy given by Alunia Sidh to Banda Singh before his conversion to the Khalsa fold."
+    }
+  ]
 }

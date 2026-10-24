@@ -11,7 +11,7 @@
   "endSourcePage": 483,
   "wordCount": 1814,
   "charCount": 11057,
-  "startPosition": 76010,
+  "startPosition": 76009,
   "pages": [
     {
       "sourcePageNumber": 473,
@@ -713,5 +713,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-070",
-  "nextChapterId": "episode-072"
+  "nextChapterId": "episode-072",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 566,
+      "printPageNumber": 522,
+      "sourceHref": "EPUB/page_566.html",
+      "text": "1 Tat Khalsa: The mainstream Khalsa who defected from Banda Ssingh and adhered to the basic tenets and ideology of the Khalsa Panth. 2 Fateh Darshan: The traditional mode of greetings among the Bandhayee Singhs, followers of Banda Singh Bahadur, after their separation from the mainstream (Tat Khalsa) Singhs. 3 Waheguru ji ki Fateh: : The traditional mode of Khalsa greetings of the Singhs belonging to Khalsa Panth, founded by Guru Gobind Singh. 4 Bishnoi: A name of a caste of people who are vegetarians and do not kill animals. They are Vaishnav Brahmins. 5 Bunga & Jhandas: A raised concrete platform between the main entrance and Akal Takht on which there are two identical Khalsa standards with saffron Khalsa flags in the precincts of Harmandir at Amritsar."
+    }
+  ]
 }

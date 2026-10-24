@@ -545,12 +545,12 @@ test('manual completion keeps visible focused Undo while the first-screen shortc
   expect(useNitemStore.getState().completedIds).toEqual([])
 })
 
-test('previews a real Hukamnama verse after an unmarked Raag and Mahala heading', () => {
+test.each(['ਤਿਲੰਗ ਮਹਲਾ ੪ ॥', 'ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ'])('previews a real Hukamnama verse after the unmarked heading %s', heading => {
   const hukam = buildReadyHukamnama()
   const verse = hukam.data!.entry.lines![0]
   hukam.data!.entry.lines = [{
     ...verse,
-    gurmukhi: 'ਤਿਲੰਗ ਮਹਲਾ ੪ ॥',
+    gurmukhi: heading,
     translation_en: 'Tilang, Fourth Guru.',
     transliteration: 'tilang mahalaa 4',
     isHeader: false,
@@ -561,7 +561,7 @@ test('previews a real Hukamnama verse after an unmarked Raag and Mahala heading'
   const preview = screen.getByTestId('home-hukamnama-card')
   expect(within(preview).getByText(verse.gurmukhi)).toHaveAttribute('lang', 'pa-Guru')
   expect(within(preview).getByText(verse.translation_en)).toBeInTheDocument()
-  expect(within(preview).queryByText('ਤਿਲੰਗ ਮਹਲਾ ੪ ॥')).not.toBeInTheDocument()
+  expect(within(preview).queryByText(heading)).not.toBeInTheDocument()
   expect(within(preview).queryByText('Tilang, Fourth Guru.')).not.toBeInTheDocument()
 })
 

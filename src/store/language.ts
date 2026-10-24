@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { normalizeReaderTextSize, READER_TEXT_SIZE } from '../utils/readerTextSize'
 import type {
   EnglishSource,
   HindiSource,
@@ -63,8 +64,8 @@ export const useLanguageStore = create<LanguageState>()(
       setLineSpacing: (lineSpacing) => set({ lineSpacing }),
       textAlign: 'left',
       setTextAlign: (textAlign) => set({ textAlign }),
-      fontSize: 22,
-      setFontSize: (n) => set({ fontSize: n }),
+      fontSize: READER_TEXT_SIZE.default,
+      setFontSize: (n) => set({ fontSize: normalizeReaderTextSize(n) }),
       supportTextSize: 'standard',
       setSupportTextSize: (supportTextSize) => set({ supportTextSize }),
       englishSource: 'bdb',
@@ -76,6 +77,12 @@ export const useLanguageStore = create<LanguageState>()(
       visraamSource: 'sttm',
       setVisraamSource: (visraamSource) => set({ visraamSource }),
     }),
-    { name: 'sikh-language' }
+    {
+      name: 'sikh-language',
+      merge: (persisted, current) => {
+        const saved = persisted && typeof persisted === 'object' ? persisted as Partial<LanguageState> : {}
+        return { ...current, ...saved, fontSize: normalizeReaderTextSize(saved.fontSize ?? current.fontSize) }
+      },
+    }
   )
 )

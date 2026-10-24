@@ -12,7 +12,7 @@ export default function NavBar() {
   const copy = getUiCopy(locale)
   const stackRef = useRef<HTMLDivElement | null>(null)
   const isBookRoute = /^\/library\/[^/]+(?:\/chapters\/[^/]+)?\/?$/.test(location.pathname)
-  const activeTabId = isBookRoute
+  const activeTabId = isBookRoute || location.pathname.startsWith('/stories')
     ? 'read'
     : location.pathname === '/' || location.pathname.startsWith('/nitnem/customize')
       ? 'home'

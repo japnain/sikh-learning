@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { describe, expect, test } from 'vitest'
@@ -56,6 +57,7 @@ interface TextBlock {
 }
 
 interface ChapterPayload extends ChapterIndexEntry {
+  sourceNotes?: Array<{ sourcePageNumber: number; printPageNumber: number; sourceHref: string; text: string }>
   pages: Array<{
     sourcePageNumber: number
     fileName: string
@@ -214,7 +216,7 @@ describe('Panth Prakash EPUB library integrity', () => {
 
     expect(work.revision).toContain('f9f801cc-243827eb')
     expect(provenance.workId).toBe(work.id)
-    expect(provenance.profile).toBe('panth-prakash-english-v6')
+    expect(provenance.profile).toBe('panth-prakash-english-v7')
     expect(provenance.generatedFrom).toHaveLength(2)
 
     for (const publication of work.publications) {
@@ -310,4 +312,42 @@ describe('Panth Prakash EPUB library integrity', () => {
       searchText: expect.stringContaining('origin of the Khalsa'),
     }))
   })
+})
+
+test('restores source appendix slices without inventing references or including them in the reading index', () => {
+  const index = readWorkJson<ChapterIndexEntry[]>('chapters.json')
+  const chapters = index.map(readChapterPayload)
+  const withNotes = chapters.filter(chapter => chapter.sourceNotes?.length)
+  expect(withNotes).toHaveLength(80)
+  const sourcePages = new Set<number>()
+  for (const chapter of withNotes) {
+    expect(chapter.volume).toBe(1)
+    for (const note of chapter.sourceNotes!) {
+      expect(note.sourceHref).toBe(`EPUB/page_${note.sourcePageNumber}.html`)
+      expect(note.printPageNumber).toBe(note.sourcePageNumber - 44)
+      const html = execFileSync('unzip', ['-p', path.join(WORK_ROOT, 'assets/volume-1.epub'), note.sourceHref], { encoding: 'utf8' })
+      const normalizedSource = html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim()
+      expect(normalizedSource, `${chapter.id}:${note.sourcePageNumber}`).toContain(note.text)
+      sourcePages.add(note.sourcePageNumber)
+    }
+  }
+  expect([...sourcePages].sort((a, b) => a - b)).toEqual(Array.from({ length: 35 }, (_, i) => i + 536))
+  expect(chapters[24].sourceNotes?.[0].text).toBe('No reference')
+  expect(chapters[25].sourceNotes?.[0].text).toBe('No reference')
+  expect(chapters[38].sourceNotes).toBeUndefined()
+  expect(chapters.slice(81).every(chapter => chapter.sourceNotes === undefined)).toBe(true)
+  expect(index.every(entry => !('sourceNotes' in entry))).toBe(true)
+})
+
+test('documents the exact verified repair and retains a printed-source artifact for editorial review', () => {
+  const first = readWorkJson<ChapterPayload>('chapters/episode-001.json')
+  const text = first.pages.flatMap(page => page.blocks.map(block => block.text)).join(' ')
+  expect(text).toContain('between the Sikh Gurus and the Mughals')
+  expect(text).not.toContain('S ikh')
+  expect(text).toContain("Delhi Ruler's Version44")
+  const provenance = readWorkJson<{ verifiedCorrections: Array<{ original: string; replacement: string; sourceUrl: string }>; unresolvedSourceArtifacts: Array<{ status: string }> }>('provenance.json')
+  expect(provenance.verifiedCorrections).toHaveLength(1)
+  expect(provenance.verifiedCorrections[0]).toMatchObject({ original: 'between the S ikh Gurus and the Mughals', replacement: 'between the Sikh Gurus and the Mughals' })
+  expect(provenance.verifiedCorrections[0].sourceUrl).toMatch(/#page=52$/)
+  expect(provenance.unresolvedSourceArtifacts[0].status).toBe('present-in-printed-source')
 })

@@ -11,7 +11,7 @@
   "endSourcePage": 331,
   "wordCount": 1532,
   "charCount": 9313,
-  "startPosition": 49436,
+  "startPosition": 49435,
   "pages": [
     {
       "sourcePageNumber": 325,
@@ -556,5 +556,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-048",
-  "nextChapterId": "episode-050"
+  "nextChapterId": "episode-050",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 557,
+      "printPageNumber": 513,
+      "sourceHref": "EPUB/page_557.html",
+      "text": "1 Darloo, Majhailoo, Nagloo, Nanday, Suhal, Jhandwal, Kanait, Dichhan, Chilahab, Ballash, Pammay, Dadhwal and Mians - names of races and castes among hill Rajputs."
+    }
+  ]
 }

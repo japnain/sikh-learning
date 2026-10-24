@@ -1,0 +1,124 @@
+{
+  "id": "guru-amar-das-service",
+  "title": "The Water He Carried",
+  "subtitle": "Amar Das on the road to Khadur",
+  "description": "Before he became the third Guru, Amar Das walked the road of service. One stormy night, that road brought him to a weaver’s door.",
+  "collectionId": "seva-and-dignity",
+  "themes": [
+    "Seva",
+    "Humility",
+    "Devotion",
+    "Belonging"
+  ],
+  "people": [
+    "Guru Amar Das",
+    "Guru Angad",
+    "Bibi Amro"
+  ],
+  "artwork": "river",
+  "wordCount": 518,
+  "readingMinutes": 3,
+  "revision": 2,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "Amar Das was already an older man when he found the teacher he had been seeking. He heard Bibi Amro singing a hymn of Guru Nanak and asked her to sing it again. When he learned that she had received it from her father, Guru Angad, he asked her to take him to Khadur. The visit became the beginning of a life of service."
+    },
+    {
+      "id": "p2",
+      "text": "In Macauliffe’s telling, that service had a daily rhythm. Amar Das rose before daylight at Goindwal and went to the river Beas for water, which he carried to Khadur for the Guru’s bath. As he walked, he recited the Japji. Later he brought water for the kitchen, cleaned its utensils, and collected firewood. In the evening he attended the prayers and served Guru Angad before returning to Goindwal. The account remembers the road between the two places as carefully as it remembers the work at either end."
+    },
+    {
+      "id": "p3",
+      "text": "One night, near the end of Guru Angad’s life, rain and cold winds kept people indoors. Before dawn the Guru asked for water. His first calls went unanswered. When one of his sons was awakened, he showed no willingness to go. Amar Das offered to fetch it. Guru Angad objected that he was too old for such a task, but Amar Das insisted that hearing the request had renewed his strength. He took a pitcher and set out."
+    },
+    {
+      "id": "p4",
+      "text": "He filled the vessel at the river and began the journey back, reciting the Japji as he went. In the darkness he had to feel his way. Near Khadur lived a group of weavers whose working pits had filled with rainwater. Amar Das struck his foot against a wooden peg and fell into one of them. Even in falling, the account says, he kept the water in the pitcher safe."
+    },
+    {
+      "id": "p5",
+      "text": "The noise woke the weavers. At first they thought a thief had come, but a woman recognised the sound of the prayer. It was only old Amru, she said: a man who had left his household affairs behind and spent his days carrying water and gathering wood for his Guru. She called him homeless and senseless. Amar Das endured the insults to himself, but when she disparaged Guru Angad, he rebuked her. Then he continued with the water."
+    },
+    {
+      "id": "p6",
+      "text": "The traditional account gives this encounter a miraculous sequel. It says that the woman lost her reason after the rebuke. When the weavers brought her to Guru Angad, he declared that she would recover, and that the wooden peg would grow green. He also answered the description of Amar Das as a man without a home: the one they had dismissed would become a refuge for people who had none, a support for those without support."
+    },
+    {
+      "id": "p7",
+      "text": "Guru Angad then installed Amar Das as his successor. Five copper coins and a coconut were placed before him, and Bhai Budha marked his forehead in the ceremony of Guruship. The man others had regarded as a servant now occupied the Guru’s seat. Behind that appointment lay the years of ordinary work: utensils cleaned, wood brought in, and water carried along the road before daybreak."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume II",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter V and VII, pp. 31–35, 41–44. Life of Guru Angad, the Second Guru, Chapter V (Bibi Amro, Amar Das’s arrival and daily service) and Chapter VII (the storm-night pitcher, weavers, and appointment as successor).",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_2/Life_of_Guru_Angad,_The_Second_Guru#31",
+      "id": "macauliffe-1909-v2",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume II; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume II, pp. 31–35, 41–44"
+      }
+    }
+  ],
+  "accountNote": "A retelling of the traditional account recorded by Macauliffe in 1909. The woman’s affliction and the Guru’s predictions of her recovery and of the wooden peg growing green are presented as elements of that account, rather than as independently verified historical events. Dialogue has been paraphrased, and no private thoughts or additional scenes have been invented.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. The narrative follows Macauliffe’s version of the episode. Independent specialist review has not been completed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on the original 1909 source; no modern translation copied.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v2"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_2/Life_of_Guru_Angad,_The_Second_Guru#31"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Seva",
+      "meaning": "Service offered without seeking personal reward."
+    },
+    {
+      "term": "Japji",
+      "meaning": "Guru Nanak’s foundational composition, read as part of Sikh morning prayer."
+    },
+    {
+      "term": "Guruship",
+      "meaning": "The office and spiritual responsibility of the Guru."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "mata-khivi",
+    "bhai-lalo"
+  ]
+}

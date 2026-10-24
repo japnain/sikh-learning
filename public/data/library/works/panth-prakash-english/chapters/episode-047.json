@@ -11,7 +11,7 @@
   "endSourcePage": 309,
   "wordCount": 288,
   "charCount": 1699,
-  "startPosition": 46089,
+  "startPosition": 46088,
   "pages": [
     {
       "sourcePageNumber": 307,
@@ -127,5 +127,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-046",
-  "nextChapterId": "episode-048"
+  "nextChapterId": "episode-048",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 556,
+      "printPageNumber": 512,
+      "sourceHref": "EPUB/page_556.html",
+      "text": "1 Aslam Khan: Alias Islam Khan, a descendent of the Maulvis of Kabul, son of Shafi Khan and a governor of Lahore at the time of emperor Bahadur Shah I, but he did not venture out of Lahore at that time. However, he sent his forces to join the Mughal force against Banda Singh in 1767. He died at Lahore in 1768 at Lahore. 2 Designated Prophet : Perhaps, the reference is to the birth of a \"Nehkalauk Avtar\" who would take birth in Kaliyuga at Sambhalpur in Moradabad district of U.P according to the myth recorded in the Hindu scripts and Vishnu Puran. He was supposed to eliminate all the evil doers and protect the saints."
+    },
+    {
+      "sourcePageNumber": 557,
+      "printPageNumber": 513,
+      "sourceHref": "EPUB/page_557.html",
+      "text": "3 Jaijon : An ancient town in the Jalandhar-Doab region on the right side of the Satluj."
+    }
+  ]
 }

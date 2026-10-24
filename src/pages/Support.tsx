@@ -2,26 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowLeft, IconArrowRight, IconCheck, IconExternalLink, IconShare } from '../components/icons'
 import { buildSupportMailto, getSupportEmail } from '../utils/appConfig'
+import { createSupportReport, downloadSupportReport } from '../utils/supportReport'
 
 const SUPPORT_ISSUE_URL = 'https://github.com/japnain/sikh-learning/issues/new?title=NaamRas%20support%3A%20'
-const SUPPORT_REPORT_TEMPLATE = `NaamRas support report
-
-Page or reading:
-Device model:
-Operating system and version:
-Browser or app version:
-
-What happened:
-
-Steps to reproduce:
-1.
-2.
-3.
-
-Expected result:
-
-Please remove private notes, account identifiers, saved passages, and personal information before sending.`
-
 const troubleshootingItems = [
   {
     title: 'A reading does not open',
@@ -41,14 +24,25 @@ export default function Support() {
   const supportEmail = getSupportEmail()
   const supportMailto = buildSupportMailto(supportEmail)
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'unavailable'>('idle')
+  const [report, setReport] = useState(createSupportReport)
+  const [downloadState, setDownloadState] = useState<'idle' | 'started' | 'unavailable'>('idle')
 
   const copyReportTemplate = async () => {
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable')
-      await navigator.clipboard.writeText(SUPPORT_REPORT_TEMPLATE)
+      await navigator.clipboard.writeText(report)
       setCopyState('copied')
     } catch {
       setCopyState('unavailable')
+    }
+  }
+
+  const downloadReport = () => {
+    try {
+      downloadSupportReport(report)
+      setDownloadState('started')
+    } catch {
+      setDownloadState('unavailable')
     }
   }
 
@@ -101,7 +95,7 @@ export default function Support() {
         </div>
         {!supportMailto ? (
           <p className="mt-3 font-sans text-xs leading-5 text-ink/72 dark:text-dark-text/62" data-testid="support-email-unavailable">
-            GitHub is the only verified public support endpoint in this build. A monitored email option will appear here only after it is configured.
+            You can prepare and save a report below without an account. GitHub reports are public and require a GitHub account. Private email support is not configured in this build.
           </p>
         ) : null}
       </section>
@@ -124,11 +118,20 @@ export default function Support() {
       <section className="section-shell-quiet mt-5 px-4 py-4" aria-labelledby="support-report-title">
         <p className="eyebrow">A Useful Report</p>
         <h2 id="support-report-title" className="mt-2 font-display text-2xl leading-none text-ink dark:text-dark-text">
-          Include context, not private content
+          Prepare a support report
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          Include your device model, operating-system or browser version, the page you were using, and the shortest steps that reproduce the issue. Do not post account identifiers, private notes, saved passages, or screenshots containing personal information.
+          Add what happened and review the report before sharing. Technical details contain only generic failure codes from this session, app version, and the kind of screen. Reading titles, search terms, saved content, account details, and device identifiers are excluded. Nothing is sent automatically from this form.
         </p>
+        <label htmlFor="support-report" className="mt-4 block font-sans text-sm font-semibold text-ink dark:text-dark-text">Report to review</label>
+        <textarea
+          id="support-report"
+          value={report}
+          onChange={event => { setReport(event.target.value); setCopyState('idle'); setDownloadState('idle') }}
+          rows={14}
+          spellCheck={false}
+          className="interactive-focus mt-2 w-full rounded-lg border border-sand/30 bg-parchment-card p-3 font-sans text-sm leading-6 text-ink dark:border-dark-text/20 dark:bg-dark-card dark:text-dark-text"
+        />
         <button
           type="button"
           onClick={copyReportTemplate}
@@ -136,12 +139,19 @@ export default function Support() {
           data-testid="support-copy-template"
         >
           {copyState === 'copied' ? <IconCheck size={15} /> : <IconShare size={15} />}
-          {copyState === 'copied' ? 'Report template copied' : 'Copy report template'}
+          {copyState === 'copied' ? 'Report copied' : 'Copy report'}
+        </button>
+        <button type="button" onClick={downloadReport} className="interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text sm:ml-3 sm:w-auto">
+          Download report
         </button>
         <p className="mt-2 font-sans text-xs leading-5 text-ink/66 dark:text-dark-text/58" aria-live="polite">
           {copyState === 'unavailable'
-            ? 'Copy is unavailable in this browser. Use the checklist above to write the report.'
-            : 'Paste the template into email or another contact channel and review it before sending.'}
+            ? 'Copy is unavailable here. Select the report text to copy it manually, or download the report.'
+            : downloadState === 'unavailable'
+              ? 'Download is unavailable here. Copy the report or select its text manually.'
+              : downloadState === 'started'
+                ? 'Download started. Your browser will confirm where the file is saved. It has not been sent.'
+                : 'Copy or download this report, then choose where to send it. Remove private information from anything you add.'}
         </p>
       </section>
 

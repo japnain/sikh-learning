@@ -8,9 +8,9 @@ import { getSourceReaderUnitLabel } from '../utils/sourceReaderMeta'
 import '../styles/bani-find.css'
 
 const COPY = {
-  en: { title: 'Find within this bani', hint: 'Search Gurmukhi or Roman transliteration.', placeholder: 'A word or phrase', empty: 'No matching lines in this reading.', count: (count: number, more: boolean) => `${count}${more ? '+' : ''} matching ${count === 1 ? 'line' : 'lines'}${more ? ' · refine your search' : ''}`, current: 'Current section' },
-  pa: { title: 'ਇਸ ਬਾਣੀ ਵਿੱਚ ਲੱਭੋ', hint: 'ਗੁਰਮੁਖੀ ਜਾਂ ਰੋਮਨ ਲਿਪੀ ਵਿੱਚ ਲੱਭੋ।', placeholder: 'ਸ਼ਬਦ ਜਾਂ ਪੰਕਤੀ', empty: 'ਇਸ ਪਾਠ ਵਿੱਚ ਮੇਲ ਖਾਂਦੀ ਪੰਕਤੀ ਨਹੀਂ ਮਿਲੀ।', count: (count: number, more: boolean) => `${count}${more ? '+' : ''} ਮੇਲ ਖਾਂਦੀਆਂ ਪੰਕਤੀਆਂ${more ? ' · ਖੋਜ ਹੋਰ ਸਪਸ਼ਟ ਕਰੋ' : ''}`, current: 'ਮੌਜੂਦਾ ਭਾਗ' },
-  hi: { title: 'इस बाणी में खोजें', hint: 'गुरमुखी या रोमन लिपि में खोजें।', placeholder: 'शब्द या पंक्ति', empty: 'इस पाठ में कोई मिलती पंक्ति नहीं मिली।', count: (count: number, more: boolean) => `${count}${more ? '+' : ''} मिलती पंक्तियाँ${more ? ' · खोज और स्पष्ट करें' : ''}`, current: 'वर्तमान भाग' },
+  en: { title: 'Find within this bani', hint: 'Search Gurmukhi, Devanagari or Roman transliteration.', placeholder: 'A word or phrase', empty: 'No matching lines in this reading.', count: (count: number, more: boolean) => `${count}${more ? '+' : ''} matching ${count === 1 ? 'line' : 'lines'}${more ? ' · refine your search' : ''}`, current: 'Current section' },
+  pa: { title: 'ਇਸ ਬਾਣੀ ਵਿੱਚ ਲੱਭੋ', hint: 'ਗੁਰਮੁਖੀ, ਦੇਵਨਾਗਰੀ ਜਾਂ ਰੋਮਨ ਲਿਪੀ ਵਿੱਚ ਲੱਭੋ।', placeholder: 'ਸ਼ਬਦ ਜਾਂ ਪੰਕਤੀ', empty: 'ਇਸ ਪਾਠ ਵਿੱਚ ਮੇਲ ਖਾਂਦੀ ਪੰਕਤੀ ਨਹੀਂ ਮਿਲੀ।', count: (count: number, more: boolean) => `${count}${more ? '+' : ''} ਮੇਲ ਖਾਂਦੀਆਂ ਪੰਕਤੀਆਂ${more ? ' · ਖੋਜ ਹੋਰ ਸਪਸ਼ਟ ਕਰੋ' : ''}`, current: 'ਮੌਜੂਦਾ ਭਾਗ' },
+  hi: { title: 'इस बाणी में खोजें', hint: 'गुरमुखी, देवनागरी या रोमन लिपि में खोजें।', placeholder: 'शब्द या पंक्ति', empty: 'इस पाठ में कोई मिलती पंक्ति नहीं मिली।', count: (count: number, more: boolean) => `${count}${more ? '+' : ''} मिलती पंक्तियाँ${more ? ' · खोज और स्पष्ट करें' : ''}`, current: 'वर्तमान भाग' },
 } as const
 
 interface Props {
@@ -55,7 +55,7 @@ export default function BaniFindPanel({ entries, onJump, currentEntryIndex, quer
           `${entries[hit.entryIndex].sourceName || entries[hit.entryIndex].scripture} · ${getSourceReaderUnitLabel(hit.source, locale, entries[hit.entryIndex].scripture)} ${hit.ang}`,
           hit.entryIndex === currentEntryIndex ? copy.current : null,
         ].filter(Boolean).join(' · ')}>
-          <span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}><FindText text={renderScriptText(hit.gurmukhi, scriptMode)} query={hit.matchedField === 'gurmukhi' ? renderScriptText(query, scriptMode) : ''} /></span>
+          <span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}><FindText text={renderScriptText(hit.gurmukhi, scriptMode)} query={hit.matchedField === 'gurmukhi' ? renderScriptText(query, scriptMode) : hit.matchedField === 'devanagari' && scriptMode === 'devanagari' ? query : ''} /></span>
           {hit.matchedField === 'transliteration' ? <span className="bani-find__roman" lang="en"><FindText text={hit.transliteration} query={query} /></span> : null}
           <small>{entries[hit.entryIndex].sourceName || entries[hit.entryIndex].scripture} · {getSourceReaderUnitLabel(hit.source, locale, entries[hit.entryIndex].scripture)} {hit.ang}{hit.entryIndex === currentEntryIndex ? ` · ${copy.current}` : ''}</small>
         </button>

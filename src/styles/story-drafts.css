@@ -1,0 +1,56 @@
+.story-draft-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .2rem .8rem;
+  padding: .7rem 1rem;
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-text));
+  border-bottom: 1px solid rgb(var(--color-border) / .45);
+  font-size: .75rem;
+  line-height: 1.6;
+}
+
+.story-draft-shelf {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+.story-draft-shelf > h1 {
+  margin: 1.5rem 0 .75rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+.story-draft-shelf p {
+  line-height: 1.8;
+}
+
+.story-draft-shelf ul {
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-draft-shelf li {
+  border-top: 1px solid rgb(var(--color-border) / .4);
+}
+
+.story-draft-shelf li a {
+  display: block;
+  padding: 1.25rem 0;
+  text-decoration: none;
+}
+
+.story-draft-shelf li h2 {
+  margin: .4rem 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.story-draft-shelf li span {
+  font-size: .8rem;
+}

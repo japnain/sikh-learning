@@ -1,7 +1,7 @@
 import type { User } from '@supabase/supabase-js'
 import { getNaamrasSupabaseClient } from './client'
 import { getNaamrasSupabaseConfig } from './config'
-import { applyRemoteSnapshot, exportLocalSnapshot } from './snapshot'
+import { applyRemoteSnapshot, exportLocalSnapshot, reconcileRemoteSnapshotWithLocalChanges } from './snapshot'
 import type {
   CloudLocalSnapshot,
   CloudRemoteSnapshot,
@@ -31,6 +31,89 @@ let currentUserId: string | null = null
 let applyingRemoteSnapshot = false
 let cleanupSubscriptions: Array<() => void> = []
 let onlineListenerBound = false
+let storeSubscriptionsBound = false
+let authListenerBound = false
+let accountGeneration = 0
+let localRevision = 0
+let restorePaused = false
+let restoreRecoveryRequired = false
+const RESTORE_RECOVERY_KEY = 'naamras-personal-data-restore-recovery'
+export const RESTORE_RECOVERY_ERROR = 'personal-data-restore-recovery-required'
+let inFlight: Promise<{ ok: boolean; skipped?: boolean; offline?: boolean; queued?: boolean; error?: unknown }> | null = null
+
+function invalidateRequests() {
+  accountGeneration += 1
+  if (syncTimer !== null && typeof window !== 'undefined') window.clearTimeout(syncTimer)
+  syncTimer = null
+  inFlight = null
+}
+
+function updateUser(user: User | null) {
+  const changed = currentUserId !== (user?.id ?? null)
+  if (changed) invalidateRequests()
+  currentUserId = user?.id ?? null
+  const syncStore = useCloudSyncStore.getState()
+  syncStore.setCurrentUser(user ? toCloudUserSummary(user) : null)
+  if (changed || !user) {
+    syncStore.setStatus(user ? 'ready' : 'signed-out')
+    syncStore.setLastSyncedAt(null)
+    syncStore.setLastError(null)
+    syncStore.setSyncQueued(Boolean(user))
+  }
+  if (restoreRecoveryRequired) markRestoreRecoveryRequired()
+  return changed
+}
+
+function markRestoreRecoveryRequired() {
+  restorePaused = true
+  restoreRecoveryRequired = true
+  const syncStore = useCloudSyncStore.getState()
+  syncStore.setStatus('error')
+  syncStore.setLastError(RESTORE_RECOVERY_ERROR)
+  syncStore.setSyncQueued(false)
+}
+
+/** Portable restores must not race an older request or upload a partially restored state. */
+export function pauseCloudSyncForRestore() {
+  invalidateRequests()
+  restorePaused = true
+  // Leave a recovery marker until either all writes or the rollback are verified.
+  // This also blocks automatic sync if the tab closes during a restore.
+  try {
+    localStorage.setItem(RESTORE_RECOVERY_KEY, 'pending')
+    if (localStorage.getItem(RESTORE_RECOVERY_KEY) !== 'pending') throw new Error('write-not-persisted')
+  } catch (error) { markRestoreRecoveryRequired(); throw error }
+  return (safeToResume = true) => {
+    if (!safeToResume) { markRestoreRecoveryRequired(); return }
+    try {
+      localStorage.removeItem(RESTORE_RECOVERY_KEY)
+      if (localStorage.getItem(RESTORE_RECOVERY_KEY) !== null) throw new Error('delete-not-persisted')
+    } catch (error) {
+      markRestoreRecoveryRequired()
+      throw new Error('restore-recovery-required', { cause: error })
+    }
+    restorePaused = false
+    restoreRecoveryRequired = false
+    const syncStore = useCloudSyncStore.getState()
+    syncStore.setLastError(null)
+    syncStore.setStatus(currentUserId ? 'ready' : syncStore.configured ? 'signed-out' : 'idle')
+    localRevision += 1
+    scheduleSync('personal-data-restore')
+  }
+}
+
+function bindAuthListener() {
+  if (authListenerBound) return
+  const client = getNaamrasSupabaseClient()
+  if (!client) return
+  const { data } = client.auth.onAuthStateChange((_event, session) => {
+    // Keep the callback synchronous; the timer starts network work outside Auth's lock.
+    const changed = updateUser(session?.user ?? null)
+    if (changed && session?.user) scheduleSync('auth-change')
+  })
+  cleanupSubscriptions.push(() => data.subscription.unsubscribe())
+  authListenerBound = true
+}
 
 type CloudSyncFailureKind = 'bootstrap' | 'sync' | 'auth' | 'account'
 
@@ -131,7 +214,9 @@ function validateCompleteMergeResult(
 
 function scheduleSync(reason: string) {
   if (typeof window === 'undefined') return
-  if (!currentUserId || applyingRemoteSnapshot) return
+  if (applyingRemoteSnapshot) return
+  localRevision += 1
+  if (!currentUserId || restorePaused) return
 
   useCloudSyncStore.getState().setSyncQueued(true)
 
@@ -146,9 +231,10 @@ function scheduleSync(reason: string) {
 }
 
 function bindStoreSubscriptions() {
-  if (cleanupSubscriptions.length > 0) return
+  if (storeSubscriptionsBound) return
+  storeSubscriptionsBound = true
 
-  cleanupSubscriptions = [
+  cleanupSubscriptions.push(...[
     useBookmarksStore.subscribe(() => scheduleSync('bookmarks')),
     useFavoritesStore.subscribe(() => scheduleSync('favorites')),
     useVocabStore.subscribe(() => scheduleSync('vocab')),
@@ -161,7 +247,7 @@ function bindStoreSubscriptions() {
     useOnboardingStore.subscribe(() => scheduleSync('onboarding')),
     useSundarGutkaLengthStore.subscribe(() => scheduleSync('reader-lengths')),
     useActivityEventsStore.subscribe(() => scheduleSync('activity-events')),
-  ]
+  ])
 }
 
 function bindOnlineListener() {
@@ -197,7 +283,9 @@ async function refreshCloudState() {
 
   syncStore.setStatus('booting')
 
+  const generation = accountGeneration
   const { data, error } = await client.auth.getSession()
+  if (generation !== accountGeneration) return
   if (error) {
     syncStore.setStatus('error')
     syncStore.setLastError(getCloudSyncFailureMessage('bootstrap'))
@@ -206,79 +294,88 @@ async function refreshCloudState() {
   }
 
   const user = data.session?.user ?? null
-  currentUserId = user?.id ?? null
-  syncStore.setCurrentUser(user ? toCloudUserSummary(user) : null)
+  updateUser(user)
   syncStore.setStatus(user ? 'ready' : 'signed-out')
   syncStore.setLastError(null)
+  if (restoreRecoveryRequired) markRestoreRecoveryRequired()
 }
 
-export async function syncNow(reason = 'manual') {
+export function syncNow(reason = 'manual'): Promise<{ ok: boolean; skipped?: boolean; offline?: boolean; queued?: boolean; error?: unknown }> {
   const client = getNaamrasSupabaseClient()
   const config = getNaamrasSupabaseConfig()
   const syncStore = useCloudSyncStore.getState()
-
-  if (!client || !config.enabled || !currentUserId) {
-    return { ok: false, skipped: true }
-  }
-
+  if (!client || !config.enabled || !currentUserId || restorePaused) return Promise.resolve({ ok: false, skipped: true })
+  if (inFlight) return inFlight
   if (typeof navigator !== 'undefined' && navigator.onLine === false) {
     syncStore.setStatus('offline')
     syncStore.setSyncQueued(true)
-    return { ok: false, offline: true }
+    return Promise.resolve({ ok: false, offline: true })
   }
-
+  if (syncTimer !== null) window.clearTimeout(syncTimer)
+  syncTimer = null
+  const generation = accountGeneration
+  const userId = currentUserId
+  const revision = localRevision
+  const isCurrent = () => generation === accountGeneration && currentUserId === userId && !restorePaused
   syncStore.setStatus('syncing')
   syncStore.setLastError(null)
-
-  try {
-    const snapshot = exportLocalSnapshot()
-    const functionResponse = await withQaControl('cloud-sync', async () => client.functions.invoke<MergeLocalStateResult>(config.mergeFunctionSlug, {
-      body: {
-        reason,
-        snapshot: toSupabaseMergeSnapshot(snapshot),
-      },
-    }))
-
-    if (functionResponse.error) {
+  const operation = (async () => {
+    try {
+      const snapshot = exportLocalSnapshot()
+      const response = await withQaControl('cloud-sync', async () => client.functions.invoke<MergeLocalStateResult>(config.mergeFunctionSlug, {
+        body: { reason, snapshot: toSupabaseMergeSnapshot(snapshot) },
+      }))
+      if (!isCurrent()) return { ok: false, skipped: true }
+      if (response.error) throw response.error
+      const result = response.data
+      validateCompleteMergeResult(result, snapshot)
+      const hasNewerChanges = localRevision !== revision
+      const incoming = hasNewerChanges
+        ? reconcileRemoteSnapshotWithLocalChanges(result.snapshot, snapshot, exportLocalSnapshot())
+        : result.snapshot
+      applyingRemoteSnapshot = true
+      try {
+        // Metadata is rebased to what the server actually acknowledged, not to
+        // the unsent edits preserved in incoming. The next export remains dirty.
+        if (hasNewerChanges) applyRemoteSnapshot(incoming, result.snapshot)
+        else applyRemoteSnapshot(incoming)
+        if (result.acknowledgedEventIds.length) useActivityEventsStore.getState().acknowledgeEvents(result.acknowledgedEventIds)
+      } finally { applyingRemoteSnapshot = false }
+      syncStore.setStatus('ready')
+      syncStore.setLastSyncedAt(result.mergedAt)
+      syncStore.setLastError(null)
+      syncStore.setSyncQueued(hasNewerChanges)
+      return hasNewerChanges ? { ok: false, queued: true } : { ok: true }
+    } catch (error) {
+      if (!isCurrent()) return { ok: false, skipped: true }
+      if (error instanceof Error && error.message === 'cloud-rollback-failed') {
+        try { pauseCloudSyncForRestore()(false) } catch { markRestoreRecoveryRequired() }
+        return { ok: false, error }
+      }
       syncStore.setStatus('error')
       syncStore.setLastError(getCloudSyncFailureMessage('sync'))
       syncStore.setSyncQueued(true)
-      return { ok: false, error: functionResponse.error }
+      return { ok: false, error }
     }
-
-    const result = functionResponse.data
-    validateCompleteMergeResult(result, snapshot)
-
-    applyingRemoteSnapshot = true
-    try {
-      applyRemoteSnapshot(result.snapshot)
-      if (result.acknowledgedEventIds.length) {
-        useActivityEventsStore.getState().acknowledgeEvents(result.acknowledgedEventIds)
-      }
-    } finally {
-      applyingRemoteSnapshot = false
-    }
-
-    syncStore.setStatus('ready')
-    syncStore.setLastSyncedAt(result.mergedAt)
-    syncStore.setLastError(null)
-    syncStore.setSyncQueued(false)
-
-    return { ok: true }
-  } catch (error) {
-    syncStore.setStatus('error')
-    syncStore.setLastError(getCloudSyncFailureMessage('sync'))
-    syncStore.setSyncQueued(true)
-    return { ok: false, error }
-  }
+  })()
+  inFlight = operation
+  void operation.finally(() => {
+    if (inFlight === operation) inFlight = null
+    if (isCurrent() && localRevision !== revision) scheduleSync('newer-local-changes')
+  })
+  return operation
 }
 
 export async function bootstrapCloudSync() {
   if (bootstrapPromise) return bootstrapPromise
 
   bootstrapPromise = (async () => {
+    try {
+      if (localStorage.getItem(RESTORE_RECOVERY_KEY)) markRestoreRecoveryRequired()
+    } catch { /* Normal local-storage errors remain covered by each write path. */ }
     useBookmarksStore.getState().hydrateCachedBookmarks()
     useFavoritesStore.getState().hydrateCachedFavorites()
+    bindAuthListener()
     await refreshCloudState()
     bindStoreSubscriptions()
     bindOnlineListener()
@@ -353,7 +450,7 @@ export async function sendMagicLink(email: string, redirectTo?: string) {
   }
 
   syncStore.setStatus('signed-out')
-  syncStore.setLastError('Check your email for the Supabase magic link.')
+  syncStore.setLastError(null)
   return { ok: true }
 }
 
@@ -363,7 +460,11 @@ export async function signOutOfCloud() {
 
   if (!client) return { ok: false }
 
+  invalidateRequests()
+  const userId = currentUserId
+  const generation = accountGeneration
   const { error } = await withQaControl('cloud-sync', async () => client.auth.signOut())
+  if (currentUserId && (currentUserId !== userId || generation !== accountGeneration)) return { ok: false, skipped: true }
 
   if (error) {
     syncStore.setStatus('error')
@@ -389,12 +490,17 @@ export async function deleteCloudAccount() {
     return { ok: false }
   }
 
+  invalidateRequests()
+  const generation = accountGeneration
+  const userId = currentUserId
+  const isCurrent = () => generation === accountGeneration && currentUserId === userId
   try {
     const response = await withQaControl('cloud-account-delete', async () => (
       client.functions.invoke<{ deleted?: boolean }>(config.deleteAccountFunctionSlug, {
         body: { confirmation: 'delete' },
       })
     ))
+    if (!isCurrent()) return { ok: false, skipped: true }
 
     if (response.error || !response.data?.deleted) {
       syncStore.setStatus('error')
@@ -408,6 +514,7 @@ export async function deleteCloudAccount() {
     }
 
     await client.auth.signOut({ scope: 'local' }).catch(() => undefined)
+    if (currentUserId && (currentUserId !== userId || generation !== accountGeneration)) return { ok: false, skipped: true }
     currentUserId = null
     syncStore.setCurrentUser(null)
     syncStore.setStatus('signed-out')
@@ -416,6 +523,7 @@ export async function deleteCloudAccount() {
     syncStore.setLastSyncedAt(null)
     return { ok: true }
   } catch (error) {
+    if (!isCurrent()) return { ok: false, skipped: true }
     syncStore.setStatus('error')
     syncStore.setLastError(getCloudSyncFailureMessage('account'))
     return { ok: false, error }
@@ -433,4 +541,11 @@ export function resetCloudSyncRuntimeForTests() {
   cleanupSubscriptions.forEach(cleanup => cleanup())
   cleanupSubscriptions = []
   onlineListenerBound = false
+  storeSubscriptionsBound = false
+  authListenerBound = false
+  accountGeneration += 1
+  localRevision = 0
+  restorePaused = false
+  restoreRecoveryRequired = false
+  inFlight = null
 }

@@ -11,7 +11,7 @@
   "endSourcePage": 219,
   "wordCount": 533,
   "charCount": 3100,
-  "startPosition": 29581,
+  "startPosition": 29580,
   "pages": [
     {
       "sourcePageNumber": 215,
@@ -221,5 +221,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-025",
-  "nextChapterId": "episode-027"
+  "nextChapterId": "episode-027",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 550,
+      "printPageNumber": 506,
+      "sourceHref": "EPUB/page_550.html",
+      "text": "No reference"
+    }
+  ]
 }

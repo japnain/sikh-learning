@@ -5,6 +5,7 @@ import { vi } from 'vitest'
 import * as banidb from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import Rehat from './Rehat'
+import { useLocaleStore } from '../store/locale'
 
 function LocationSpy() {
   const location = useLocation()
@@ -24,6 +25,7 @@ function renderRehat(path = '/banis/rehat') {
 }
 
 beforeEach(() => {
+  useLocaleStore.setState({ locale: 'en' })
   localStorage.clear()
   document.documentElement.classList.remove('dark')
   useScriptureCacheStore.getState().clearAll()
@@ -100,6 +102,7 @@ test('supports direct Rehat chapter URLs, chapter text search, and sanitized ren
   fireEvent.change(screen.getByTestId('rehat-chapter-text-search'), { target: { value: 'missing' } })
 
   expect(screen.getByText(/No matching text found/i)).toBeInTheDocument()
+  expect(screen.getByTestId('rehat-chapter-content')).toHaveTextContent(/Keep\s+seva/i)
 })
 
 test('adds bottom previous and next section controls to Rehat chapter pages', () => {
@@ -191,4 +194,32 @@ test('retries an exact Rehat chapter instead of leaving a dead end', async () =>
 
   expect(await screen.findByTestId('rehat-chapter-content')).toHaveTextContent(/amritvela/i)
   expect(fetchChapter).toHaveBeenCalledTimes(2)
+})
+
+test('find navigates every occurrence and keeps context visible on no match', () => {
+  const cache = useScriptureCacheStore.getState()
+  cache.setRehats([{ rehatId: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' }])
+  cache.setRehatChapter(1, { rehatId: 1, chapterId: 11, chapterName: 'Daily Discipline', alphabet: 'D', chapterContent: '<p>Seva begins here.</p><p>Another seva appears here.</p><p>Unmatched context.</p>' })
+  renderRehat('/banis/rehat/1/chapters/11')
+  fireEvent.change(screen.getByTestId('rehat-chapter-text-search'), { target: { value: 'seva' } })
+  expect(screen.getByRole('status')).toHaveTextContent('1 of 2 matches')
+  fireEvent.click(screen.getByRole('button', { name: 'Next match' }))
+  expect(screen.getByRole('status')).toHaveTextContent('2 of 2 matches')
+  expect(screen.getByTestId('rehat-chapter-content').querySelector('[aria-current="true"]')).toHaveAttribute('data-rehat-match', '1')
+  fireEvent.click(screen.getByRole('button', { name: 'Previous match' }))
+  expect(screen.getByRole('status')).toHaveTextContent('1 of 2 matches')
+  fireEvent.change(screen.getByTestId('rehat-chapter-text-search'), { target: { value: 'absent' } })
+  expect(screen.getByTestId('rehat-chapter-content')).toHaveTextContent('Unmatched context.')
+  expect(screen.getByRole('button', { name: 'Next match' })).toBeDisabled()
+  fireEvent.click(screen.getByRole('button', { name: 'Clear find' }))
+  expect(screen.getByTestId('rehat-chapter-content').querySelector('mark')).toBeNull()
+})
+
+test.each(['pa', 'hi'] as const)('uses %s controls and error recovery without translating source text', locale => {
+  useLocaleStore.setState({ locale })
+  renderRehat('/banis/rehat/invalid')
+  expect(screen.getByTestId('page-rehat')).toHaveAttribute('lang', locale === 'pa' ? 'pa-Guru' : 'hi')
+  expect(screen.getByRole('searchbox')).toHaveAccessibleName(locale === 'pa' ? 'ਰਹਿਤਾਂ ਲੱਭੋ' : 'रहत स्रोत खोजें')
+  expect(screen.getByTestId('rehat-error-state')).not.toHaveTextContent('This Rehat route is not valid')
+  expect(screen.getByRole('link', { name: locale === 'pa' ? 'ਰਹਿਤ ਤੇ ਵਾਪਸ' : 'रहत पर वापस' })).toBeInTheDocument()
 })

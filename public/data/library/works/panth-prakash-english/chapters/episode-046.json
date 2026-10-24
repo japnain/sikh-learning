@@ -11,7 +11,7 @@
   "endSourcePage": 307,
   "wordCount": 220,
   "charCount": 1225,
-  "startPosition": 45869,
+  "startPosition": 45868,
   "pages": [
     {
       "sourcePageNumber": 305,
@@ -109,5 +109,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-045",
-  "nextChapterId": "episode-047"
+  "nextChapterId": "episode-047",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 556,
+      "printPageNumber": 512,
+      "sourceHref": "EPUB/page_556.html",
+      "text": "1 Deep Singh : Baba Deep Singh Shaheed (a famous Sikh martyr), a resident of village Pahuwind of District Lahore now in Amritsar. He participated in many Sikh battles against the Mughals. He sacrificed his life while defending Harmandir Sahib at Amritsar against the Mughals invasion in 1817 at Ramsar. He was also a chief of one of the Sikh Misls."
+    }
+  ]
 }

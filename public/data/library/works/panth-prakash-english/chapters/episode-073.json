@@ -11,7 +11,7 @@
   "endSourcePage": 495,
   "wordCount": 816,
   "charCount": 4711,
-  "startPosition": 79312,
+  "startPosition": 79311,
   "pages": [
     {
       "sourcePageNumber": 491,
@@ -320,5 +320,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-072",
-  "nextChapterId": "episode-074"
+  "nextChapterId": "episode-074",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 567,
+      "printPageNumber": 523,
+      "sourceHref": "EPUB/page_567.html",
+      "text": "1 Kalals : Name of a community engaged in the distillation of wines or alcoholic drinks and their trading. The members of their community are also known by the name of Ahluwalias. 2 Akal: Means the Timeless or the God Almighty, the Divine power or Waheguru. The Sikhs and Singhs greet each other with the Khalsa greeting \"Sat Sri Akal\" and Nihang Singhs shout the slogan of \"Akal\", \"Akal\". 3 Khemkaran: A small town on the Indo-Pakistan border in District Ferozepur of Punjab. 4 Kambojs : Name of a backward class community of small marginal farmers engaged in agriculture of vegetable crops. They are very hardworking. 5 Bhai Mani Singh : A famous Sikh martyr, son of Choudhary Kala, belonging to Dulat subcaste of Jat Sikhs. He remained in Guru Tegh Bahadur's and Guru Gobind Singh's service since the age of five years. He got initiated into Khalsa Panth by Guru Gobind Singh himself and remained personal attendant of the Guru's two wives after Guru's departure from Anandpur Sahib. He prepared a copy of Sri Guru Granth Sahib under the guidance of Guru Gobind Singh. He was appointed the head priest of Harmandir by Mata Sundri in 1721. He also tried to organise a religious congregation of the Sikhs on the occasion of Diwali which was discontinued by the Mughal rulers. He got the permission to hold this congregation by paying a tax of rupee five thousand rupees. But, being unable to pay the amount due to the restriction put up by the Mughals, he was arrested and executed in 1737 by cutting his body into pieces. His place of martyrdom known as Shaheed Ganj is situated near the Lahore fort at Lahore. 6 Bhai Bhagtu : A Brar Jat, a devout Sikh follower of Guru Arjun Devji, who served the Guru during the construction of Harmandir at Amritsar. Among his descendents were Bhai Gurbax Singh, Bhai Desu Singh, the founder of Kaithal state. Desu Singh's son, S. Uday Singh patronised the Sikh bard kavi, Santokh Singh at Kaithal and made him write his masterpiece \"Gurpartap Suraj\" or \"Suraj Parkash\"."
+    }
+  ]
 }

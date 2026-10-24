@@ -11,7 +11,7 @@
   "endSourcePage": 297,
   "wordCount": 667,
   "charCount": 3907,
-  "startPosition": 43713,
+  "startPosition": 43712,
   "pages": [
     {
       "sourcePageNumber": 293,
@@ -266,5 +266,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-042",
-  "nextChapterId": "episode-044"
+  "nextChapterId": "episode-044",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 555,
+      "printPageNumber": 511,
+      "sourceHref": "EPUB/page_555.html",
+      "text": "1 Guru's injunction : Reference to Guru Gobind Singh ji's prophetic blessings of everlasting survival to the then Nawab of Malerkotla Nawab Sher Mohammad Khan's clan for his timely protest against the execution of the two innocent younger Sahibzadas by the Nawab of Sirhind Wazir Khan. 2 Sheikh Saddho ; A reference to Sheikh Sadar-u-Din, the founder of Malerkotla Pathans. He was married to the daughter of Behlol Lodhi and got the territorial custody over fifty villages in dowry. He had founded the town of Malerkotla. 3 Bhai Fateh Singh : He was from the family of Bhai Bhagtu a devout Sikh and contemporary of Guru Gobind Singh. 4 Hissar : A well-known district town of Punjab, now in the state of Haryana in the South-west. 5 Kaithal & Jind : Two district level towns in the Bangar belt of present Haryana State. 6 Panipat : An important town on the Grand truck road between Delhi and Lahore, now on National Highway No. 1 , at a distance of 70 kms from Delhi. It had been the scene of all battles between Indian rulers of Delhi and foreign invaders. It was the southern boundary of the region occupied by Banda Singh's Khalsa forces after the fall of Sirhind. 7 Moonak : A tehsil level town situated on the Tohana-Patran Road in District Sangrur of Punjab. 8 Karnal : An important city on the G.T Road or N.H.I, at a distance of 125 kms. from Delhi."
+    }
+  ]
 }

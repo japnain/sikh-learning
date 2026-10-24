@@ -1,6 +1,8 @@
-import { lazy, Suspense, useState, type ReactNode } from 'react'
+import '../styles/settings.css'
+import { lazy, Suspense, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import CloudSyncPanel from '../components/CloudSyncPanel'
+import PersonalDataPanel from '../components/PersonalDataPanel'
 import DisclosureSection from '../components/DisclosureSection'
 import SoundscapeControls from '../components/SoundscapeControls'
 import { useLanguageStore } from '../store/language'
@@ -24,6 +26,8 @@ import { IconArrowRight, IconExternalLink } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getPublicAppLinks } from '../utils/appConfig'
+import { getSavedReaderPresentation, setReaderPresentationPreference, subscribeReaderPresentation } from '../utils/readerPresentation'
+import { READER_TEXT_SIZE } from '../utils/readerTextSize'
 import '../styles/home-artwork.css'
 
 const HomeArtworkSettings = lazy(() => import('../components/HomeArtworkSettings'))
@@ -86,6 +90,13 @@ export default function More() {
     setTextAlign,
   } = useLanguageStore()
   const locale = useLocaleStore(s => s.locale)
+  const savedPresentation = useSyncExternalStore(subscribeReaderPresentation, getSavedReaderPresentation, () => null)
+  const presentation = savedPresentation ?? (meaningLanguage !== 'none' || showTransliteration ? 'study' : 'read')
+  const presentationCopy = locale === 'pa'
+    ? { title: 'ਪੜ੍ਹਨ ਦਾ ਢੰਗ', read: 'ਪਾਠ', study: 'ਅਧਿਐਨ', hint: 'ਪਾਠ ਵਿੱਚ ਸਿਰਫ਼ ਗੁਰਬਾਣੀ ਦਿਸਦੀ ਹੈ। ਅਰਥ ਅਤੇ ਉਚਾਰਨ ਲਈ ਅਧਿਐਨ ਚੁਣੋ।' }
+    : locale === 'hi'
+      ? { title: 'पढ़ने का तरीका', read: 'पाठ', study: 'अध्ययन', hint: 'पाठ में केवल गुरबाणी दिखती है। अर्थ और उच्चारण के लिए अध्ययन चुनें।' }
+      : { title: 'Reading mode', read: 'Read', study: 'Study', hint: 'Read shows Gurbani only. Choose Study to display your selected meanings and pronunciation help.' }
   const setLocale = useLocaleStore(s => s.setLocale)
   const openOnboarding = useOnboardingStore(s => s.openOnboarding)
   const themeMode = useThemeStore(s => s.mode)
@@ -187,7 +198,7 @@ export default function More() {
         </SettingsBlock>
       </div>
 
-      {artworkSettingsOpen ? <Suspense fallback={<div role="status" className="home-completion-notice">{locale === 'pa' ? 'ਚਿੱਤਰ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…' : locale === 'hi' ? 'चित्र लोड हो रहे हैं…' : 'Loading artworks…'}</div>}><HomeArtworkSettings open onClose={() => setArtworkSettingsOpen(false)} /></Suspense> : null}
+      {artworkSettingsOpen ? <Suspense fallback={<div role="status" className="section-shell-quiet px-4 py-3 font-sans text-sm text-ink dark:text-dark-text">{locale === 'pa' ? 'ਚਿੱਤਰ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…' : locale === 'hi' ? 'चित्र लोड हो रहे हैं…' : 'Loading artworks…'}</div>}><HomeArtworkSettings open onClose={() => setArtworkSettingsOpen(false)} /></Suspense> : null}
 
       <section
         id="daily-nitnem"
@@ -258,15 +269,17 @@ export default function More() {
 
           <div className="mt-4">
             <div className="flex justify-between mb-1">
-            <p className="font-sans text-sm text-ink dark:text-dark-text">{moreCopy.scriptSize}</p>
+            <label htmlFor="more-script-size" className="font-sans text-sm text-ink dark:text-dark-text">{moreCopy.scriptSize}</label>
             <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{fontSize}px</span>
             </div>
             <input
+              id="more-script-size"
               type="range"
-              min="16"
-              max="34"
-              step="2"
+              min={READER_TEXT_SIZE.min}
+              max={READER_TEXT_SIZE.max}
+              step={READER_TEXT_SIZE.step}
               value={fontSize}
+              aria-valuetext={`${fontSize}px`}
               onChange={e => setFontSize(Number(e.target.value))}
               className="w-full h-1 accent-gold"
             />
@@ -327,6 +340,17 @@ export default function More() {
           headingId="more-reading-support-title"
           testId="more-reading-support"
         >
+        <fieldset className="mb-4">
+          <legend className="font-sans text-sm text-ink dark:text-dark-text mb-2">{presentationCopy.title}</legend>
+          <div className="grid grid-cols-2 gap-2">
+            {(['read', 'study'] as const).map(mode => <button key={mode} type="button"
+              aria-pressed={presentation === mode} onClick={() => setReaderPresentationPreference(mode)}
+              className={`interactive-focus min-h-[48px] rounded-lg border px-3 font-sans text-sm ${presentation === mode ? 'border-saffron bg-saffron text-white' : 'border-sand/15 text-ink dark:border-dark-text/10 dark:text-dark-text'}`}>
+              {presentationCopy[mode]}
+            </button>)}
+          </div>
+          <p className="mt-2 font-sans text-xs leading-5 text-text-muted">{presentationCopy.hint}</p>
+        </fieldset>
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setShowTransliteration(!showTransliteration)}
@@ -364,13 +388,15 @@ export default function More() {
         </div>
 
         <div className="mt-4">
-          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.meaningLanguage}</p>
-          <div className="grid grid-cols-4 gap-2">
+          <p id="more-meaning-language" className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.meaningLanguage}</p>
+          <div className="grid grid-cols-4 gap-2" role="group" aria-labelledby="more-meaning-language">
             {(['none', 'en', 'pa', 'hi'] as const).map(option => {
               const selected = meaningLanguage === option
               return (
                 <button
                   key={option}
+                  type="button"
+                  aria-pressed={selected}
                   onClick={() => setMeaningLanguage(option)}
                   className={`rounded-lg px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
@@ -482,6 +508,7 @@ export default function More() {
       </DisclosureSection>
 
       <div className="mb-5">
+        <PersonalDataPanel />
         <CloudSyncPanel />
       </div>
 

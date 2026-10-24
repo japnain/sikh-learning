@@ -4,6 +4,7 @@ import type { AsyncIssue, AsyncStatus, MahanKoshEntry } from '../types'
 import { fetchMahanKoshEntries } from '../api/mahankosh'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { normalizeLookupWord } from '../utils/wordLookup'
+import { reportProviderFailure } from '../utils/diagnostics'
 
 type MahanKoshRequestState = {
   key: string
@@ -42,6 +43,7 @@ export function useMahanKosh(word: string) {
       })
       .catch(error => {
         if (cancelled) return
+        reportProviderFailure('mahankosh', error)
         setState(previous => ({
           key: operationKey,
           requestKey,

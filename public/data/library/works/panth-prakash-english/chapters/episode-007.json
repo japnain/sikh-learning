@@ -11,7 +11,7 @@
   "endSourcePage": 91,
   "wordCount": 938,
   "charCount": 5400,
-  "startPosition": 6682,
+  "startPosition": 6681,
   "pages": [
     {
       "sourcePageNumber": 87,
@@ -394,5 +394,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-006",
-  "nextChapterId": "episode-008"
+  "nextChapterId": "episode-008",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 541,
+      "printPageNumber": 497,
+      "sourceHref": "EPUB/page_541.html",
+      "text": "1 Mecca Madina : The most sacred place of the Muslims at Mecca in Saudi Arabia (U.A.E) where the Muslims go on a pilgrimage every year after fasting for 40 days in holy month of Ramadan/Ramzan for washing off their sins. 2 Kaaba : \"The Black Stone\", The most sacred shrine of the Muslims established by the first Muslim prophet Mohammad, a place of Muslim pilgrimage. 3 Haj : Literally meaning renunciation from sins. Muslims visit Mecca Madina to make a confession of their sins and to lead a life of piety and righteousness after this pilgrimage 4 Satguru : An epithet of reverence for a spiritual soul, a true embodiment of God. The Sikhs use it for Guru Nanak and other Sikh Gurus out of reverence. 5 Varuna : A Hindu Puranic name for a Sea-God who is believed to ride a crocodile. He is considered the reigning Deity of the West. 6 Khwaja Khizar : A Muslim name for Varuna - the Sea-god. The Muslims worship him as a God of vegetational fertility and growth."
+    }
+  ]
 }

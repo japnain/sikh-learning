@@ -1,5 +1,6 @@
 import { getMockBanidbResponse } from './banidbMock'
 import { getNaamrasSupabaseConfig, getNaamrasSupabaseFunctionUrl } from './config'
+import { reportProviderFailure } from '../utils/diagnostics'
 
 type BanidbProxyQueryValue = string | number | boolean | null | undefined
 
@@ -56,7 +57,7 @@ function buildDevProxyBanidbUrl(path: string, query?: Record<string, string>) {
   return url
 }
 
-export async function requestBanidb<T>(
+async function performBanidbRequest<T>(
   path: string,
   query?: BanidbProxyQuery,
   options?: { signal?: AbortSignal }
@@ -115,4 +116,15 @@ export async function requestBanidb<T>(
   const text = await response.text()
 
   return { response, data: parseResponseData<T>(text) }
+}
+
+export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery, options?: { signal?: AbortSignal }) {
+  try {
+    const result = await performBanidbRequest<T>(path, query, options)
+    if (!result.response.ok) reportProviderFailure('banidb')
+    return result
+  } catch (error) {
+    if (!options?.signal?.aborted) reportProviderFailure('banidb', error)
+    throw error
+  }
 }

@@ -11,7 +11,7 @@
   "endSourcePage": 81,
   "wordCount": 169,
   "charCount": 1021,
-  "startPosition": 5917,
+  "startPosition": 5916,
   "pages": [
     {
       "sourcePageNumber": 81,
@@ -91,5 +91,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-004",
-  "nextChapterId": "episode-006"
+  "nextChapterId": "episode-006",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 540,
+      "printPageNumber": 496,
+      "sourceHref": "EPUB/page_540.html",
+      "text": "1 The Daccan Udasi : Odyssey to the South. Guru Nanak undertook four udasis (odysseys) to the South, East, West and North of India and beyond during his lifetime to spread his mission. 2 Khurasan : An Eastern province in Iran from where the Mughals invaded India in early sixteenth century."
+    }
+  ]
 }

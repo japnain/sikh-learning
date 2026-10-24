@@ -9,8 +9,8 @@
   "publicationId": "volume-1",
   "startSourcePage": 47,
   "endSourcePage": 53,
-  "wordCount": 1409,
-  "charCount": 8126,
+  "wordCount": 1408,
+  "charCount": 8125,
   "startPosition": 1,
   "pages": [
     {
@@ -244,12 +244,12 @@
         {
           "id": "episode-001-p51-b001",
           "type": "verse",
-          "text": "He branded the Sikhs as mere subjects and ordinary public, He did not project the Sikhs as the Khalsa Panth with a distinct religion. Neither did he relate any account about the Sikh Gurus, Nor did he mention the manner of conflict between the S ikh Gurus and the Mughals .(15)",
+          "text": "He branded the Sikhs as mere subjects and ordinary public, He did not project the Sikhs as the Khalsa Panth with a distinct religion. Neither did he relate any account about the Sikh Gurus, Nor did he mention the manner of conflict between the Sikh Gurus and the Mughals .(15)",
           "lines": [
             "He branded the Sikhs as mere subjects and ordinary public,",
             "He did not project the Sikhs as the Khalsa Panth with a distinct religion.",
             "Neither did he relate any account about the Sikh Gurus,",
-            "Nor did he mention the manner of conflict between the S ikh Gurus and the Mughals ."
+            "Nor did he mention the manner of conflict between the Sikh Gurus and the Mughals ."
           ],
           "number": "15"
         },
@@ -533,5 +533,19 @@
     "type": "epub",
     "fileName": "vol1.epub"
   },
-  "nextChapterId": "episode-002"
+  "nextChapterId": "episode-002",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 536,
+      "printPageNumber": 492,
+      "sourceHref": "EPUB/page_536.html",
+      "text": "1 Dohra : A couplet : A verse in two lines, the last syllable of the second line rhyming with the last syllable of the first line or with a rhyme scheme of AA. 2 Chaupai: Averse in four lines or six even more lines. 3 Count Benoit De Boigne was a French general in the Maratha Army with its capital in Satara Poona. 4 General Peitre Perron : A French seaman who landed in India in 1780, and became an officer under De Boigne in the Maratha (Scindia) Army. He took over the command of the Maratha Army after De Boigne. The Maratha Army under the Command of general Perron was badly defeated by General Lake in 1 803 . 5 Sir David Ochterlony, An American by descent, who was a commander of the British forces in Bengal. His forces under the overall command of Lord Lake defeated the Maratha Army under the command of Jaswant Rao Holkar and captured Delhi in 1804. Later on, he was the British representative at Delhi dealing with the British relations with the Sikh State of Maharaja Ranjit Singh. 6 Nijmal Mughal, A leader of the Durrani faction in the court of Mansur Ali Nizamul-Mulk Mohammad Shah who invited Nadir Shah Durrani to plunder Delhi in 1739 A.D. 7 Nadir : Nadir Shah Durrani, A Persian Invader from Afghanistan who came to plunder Delhi on the invitation and support of Nijmal Mughal in 1749. 8 Ruhela : Najib-ud-Doula, the chief of the Ruhela Sect of the Ruhelkhand Region, east of Delhi who invited Ahmad Shah Abdali to invade Delhi. 9 Ahmad Shah: Ahmad Shah Abdali alias Durrani, son of Zaman Khan and the commander of Nadir Shah Durrani, who after the demise of Nadir Shah captured Kandhar, Balakh, Sind Punjab and Kashmir in 1747. He invaded Punjab eight times between 1747-1767. He desecrated and destroyed the Harmandir Sahib at Amritsar in 1761. He died in 1773. 10 Sri Guru Tegh Bahadur, the ninth Guru of the Sikhs who offered sacrifice of his life for the defence of the Hindus and their religion. He was executed in Delhi by the orders of Aurangzeb, the Mughal Emperor. 1 1 Khalsa Panth: The initiation of the Sikhs into an organised Religion with a distinct dress code, symbols and code of conduct made the Sikhs a distinct religion. 12 Reference to Guru Gobind Singh, the tenth Guru's resort to Armed struggle against the oppressor after exhausting all peaceful means for achieving the rights of the Indians. 13 The four sons of Guru Gobind Singh who sacrificed their lives for the Sikh cause. The two elder sons Baba Ajit Singh and Jujhar Singh attained martyrdom in the battle of Chamkaur Sahib, while the two younger sons Baba Zorawar Singh and Fateh Singh were bricked alive by ruler of Sirhind on their refusal to convert to Islam in 1704. 14 Bahadur Shah I, (Prince Muazam) son of Aurangzeb whom Guru Gobind Singh helped to"
+    },
+    {
+      "sourcePageNumber": 537,
+      "printPageNumber": 493,
+      "sourceHref": "EPUB/page_537.html",
+      "text": "capture the Delhi throne in 1707, after his victory over his brother prince Alam Shah. 15 The great Sikh Warrior Baba Banda Singh Bahadur who avenged the death of Tenth Guru and his two sons by executing the ruler of Sirhind and destroying Sirhind and capturing the whole of Punjab from the Mughals. 16 The mainstream Sikh faction of the Khalsa forces which developed ideological differences with Banda Bahadur leading to Banda Bahadur's execution and loss of the Sikh rule. 17 The reference to the Mughal emperor Jahangir who persecuted the fifth Sikh Guru, Guru Arjun in 1606, and Emperor Aurangzeb who executed the ninth Sikh Guru in 1675? 18 Sortha - Name given to one kind of poetical composition. 19 Bhai Mani Singh — Bhai Mani Singh became a follower of Guru Tegh Bahadur at the age of 5 years and spent the rest of his life in the service of, firstly, Guru Tegh Bahadur, and then Guru Gobind Singh from whom he received Amrit Pahul. He was appointed the granthi (priest) of Harmandir Sahib in 1778. He compiled the text of Guru Granth Sahib at Dam Dama Sahib in 1762-63 as dictated by Guru Gobind Singh. After a confrontation with the then Mughal emperor and on his refusal to convert to Islam, he was executed in 1794 and his body was cut into pieces by the executioner. 20 Bhai Taru Singh , an extremely devoted Sikh was arrested by the Mughal administration of Lahore on a false charge of harbouring robbers and decoits. He was executed on 1802 at Lahore when the executioner chopped off his scalp along with his hair unshorn. His memorial stands near the Railway Station of Lahore. He was a resident of village Poola, Tehsil & District Lahore now in Pakistan. 21 Zaman Shah, the son of Taimur Shah and the grandson of Ahmad Shah Abdali who invaded Punjab in 1797. 22 Rasul : Hazrat Mohammad, the Prophet and founder of Islam born in 571 A.D. at Mecca in Saudi Arabia."
+    }
+  ]
 }

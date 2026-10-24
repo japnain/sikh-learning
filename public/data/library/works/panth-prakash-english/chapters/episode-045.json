@@ -11,7 +11,7 @@
   "endSourcePage": 305,
   "wordCount": 408,
   "charCount": 2260,
-  "startPosition": 45461,
+  "startPosition": 45460,
   "pages": [
     {
       "sourcePageNumber": 303,
@@ -172,5 +172,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-044",
-  "nextChapterId": "episode-046"
+  "nextChapterId": "episode-046",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 556,
+      "printPageNumber": 512,
+      "sourceHref": "EPUB/page_556.html",
+      "text": "1 Salodi : Name of a village near Payal in district Ludhiana. S. Aali Singh, Mali Singh, the two brothers from this village had joined Banda Singh's force after resigning their jobs in Sirhind province's Mughal service of Wazir Khan."
+    }
+  ]
 }

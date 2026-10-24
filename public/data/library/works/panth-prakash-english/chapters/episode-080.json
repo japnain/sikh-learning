@@ -11,7 +11,7 @@
   "endSourcePage": 529,
   "wordCount": 1650,
   "charCount": 9600,
-  "startPosition": 84163,
+  "startPosition": 84162,
   "pages": [
     {
       "sourcePageNumber": 521,
@@ -608,5 +608,19 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-079",
-  "nextChapterId": "episode-081"
+  "nextChapterId": "episode-081",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 569,
+      "printPageNumber": 525,
+      "sourceHref": "EPUB/page_569.html",
+      "text": "1 Gangu Shahis : The followers of Gangu Shah, a resident of Garhshankar (Distt. Hoshiarpur) belonging to Bassi Kshtriya Caste. Gangu Dass, being a devout follower of Guru Amardas, was appointed a Masand for the propagation of Sikh religion in the hilly region. The Gangu Shahis established their independent religious sect and seat under the patronage of Jawahar Singh, The grandson of Gangu Shah. His followers are called Gangu Shahiahs. Wile Jawahar Singh's seat is at Khatkar Kalan, the birthplace of S. Bhagat Singh Shahid-a-Azam, Gangu Shahis have their seat at Daun, near Mohali/Chandigarh. 2 Bawani : Aprovince consisting of revenue jurisdiction over fifty two villages. 3 Rabab :A stringed musical instrument, originally from the middle east. Guru Nanak used to recite Gurbani to the music played on this instrument played on by his companion Mardana. 4 Ram Rai : The elder son of Guru Har Rai born in 1703. Once he presented a distorted version"
+    },
+    {
+      "sourcePageNumber": 570,
+      "printPageNumber": 526,
+      "sourceHref": "EPUB/page_570.html",
+      "text": "of Gurbani text in the court of Aurangzeb for which he was excommunicated from the Sikh Panth by Guru Har Rai. Thereupon, he started his own religious sect. 5 Bauli : A well with eighty-four steps at Goindwal constructed by Guru Amar Das. 6 Tithe : One tenth of one's income called Daswandh which Gursikhs are required to spend on religious and social causes."
+    }
+  ]
 }

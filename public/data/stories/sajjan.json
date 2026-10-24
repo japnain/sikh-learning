@@ -1,0 +1,141 @@
+{
+  "id": "sajjan",
+  "title": "The House That Hid Its Darkness",
+  "subtitle": "Sajjan’s welcome concealed a terrible cost.",
+  "description": "A host offers shelter to travellers. Guru Nanak answers with a hymn that asks what lies beneath a spotless surface.",
+  "collectionId": "lives-transformed",
+  "themes": [
+    "Truthfulness",
+    "Accountability",
+    "Transformation"
+  ],
+  "people": [
+    "Guru Nanak",
+    "Shaikh Sajjan",
+    "Bhai Mardana"
+  ],
+  "artwork": "doorway",
+  "wordCount": 466,
+  "readingMinutes": 3,
+  "revision": 1,
+  "language": "en",
+  "accountType": "Traditional sakhi",
+  "paragraphs": [
+    {
+      "id": "p1",
+      "text": "Shaikh Sajjan offered travellers a welcome that appeared to leave nobody out. He had provided a place of worship for Hindu guests and another for Muslim guests. People could stop, find shelter, and practise their faith. The arrangements gave his hospitality the appearance of care."
+    },
+    {
+      "id": "p2",
+      "text": "But the welcome was a disguise. In the account recorded by Macauliffe, Sajjan robbed the people who trusted him. When his guests retired for the night, he killed them by throwing them into a well. Afterwards he returned to the outward practices of a religious man, carrying a rosary and setting out his prayer carpet."
+    },
+    {
+      "id": "p3",
+      "text": "Guru Nanak and Mardana came to his lodging. Sajjan took the Guru’s appearance of spiritual contentment for a sign that he possessed worldly wealth. He expected to profit from his guests, and invited them, as usual, to go to sleep."
+    },
+    {
+      "id": "p4",
+      "text": "Before retiring, Guru Nanak asked to recite a hymn. Sajjan agreed. What followed did not begin with an accusation. It unfolded through images of things whose outward beauty concealed what they were within."
+    },
+    {
+      "id": "p5",
+      "text": "There was polished bronze, bright until rubbing exposed its darkness. There were splendid houses, decorated on every side but empty and failing inside. There were white herons at places of pilgrimage, their clean appearance concealing the living creatures they caught and devoured. Each image separated a convincing surface from the life beneath it."
+    },
+    {
+      "id": "p6",
+      "text": "The hymn also spoke of friendship that remained faithful when an account had to be answered for. Macauliffe notes that Sajjan’s name itself means friend. In a house where a traveller’s supposed friend became his murderer, that word carried the weight of the whole encounter."
+    },
+    {
+      "id": "p7",
+      "text": "The account says Sajjan recognized himself in what he heard. Guru Nanak had voiced the failings in the first person, yet Sajjan understood whose conduct they exposed. He bowed before the Guru and asked to be pardoned."
+    },
+    {
+      "id": "p8",
+      "text": "The response required him to face the lives behind the property he had collected. Guru Nanak joined forgiveness to an open acknowledgement of wrong and an effort to make reparation. Sajjan was asked to state what he had done. He confessed his crimes."
+    },
+    {
+      "id": "p9",
+      "text": "Then the Guru asked him to bring out everything he still held that had belonged to his victims. Sajjan produced it. He was instructed to distribute that property among the poor, and he obeyed. The change described in the story therefore reached beyond a moment of emotion: it altered what he did with the wealth his violence had brought him."
+    },
+    {
+      "id": "p10",
+      "text": "Sajjan became a follower of Guru Nanak. Macauliffe records the tradition that a dharmsal, a place for worship and gathering, was established where this meeting had taken place. The house remembered for a false welcome became associated with a different kind of shelter. Its new beginning followed the bringing of concealed wrongdoing into the open."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "reference": "Chapter IV, pp. 45–47. Chapter IV, Shaikh Sajjan episode: from the visit to the robber’s lodging through confession, restitution and the report of a dharmsal; immediately after the Mardana offerings episode.",
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#45",
+      "id": "macauliffe-1909-v1",
+      "role": "narrative",
+      "workDate": "1909; later synthesis of Sikh narrative and textual traditions",
+      "edition": "Original 1909 Oxford edition, Volume I; Wikisource transcription with linked page images",
+      "locator": {
+        "kind": "page",
+        "value": "Volume I, pp. 45–47"
+      }
+    },
+    {
+      "id": "ggs-ang-729",
+      "role": "textual-anchor",
+      "title": "Guru Granth Sahib — primary Gurmukhi text",
+      "author": "Guru Nanak",
+      "workDate": "Composition of Guru Nanak (1469–1539); included in the Adi Granth (1604)",
+      "edition": "Gurmukhi digital transcription at SriGranth; publication year not established; accessed 23 October 2026. No modern English translation reproduced.",
+      "reference": "Ang 729: Suhi Mahala 1 Ghar 6, Ujal kaiha chilkana, complete six-stanza shabad ending 6.1.3. Textual anchor; it does not independently establish the narrated historical setting.",
+      "locator": {
+        "kind": "ang",
+        "value": "729"
+      },
+      "url": "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=729&g=1&h=0&r=0&t=0&p=0&k=0"
+    }
+  ],
+  "accountNote": "This is the traditional Shaikh Sajjan account recorded by Macauliffe, including its connection between a hymn and Sajjan’s change of life. It is presented as a sakhi, not as a documented transcript. The source says that a dharmsal was later established at the site; that report is retained with attribution.",
+  "editorialNote": "Original English retelling for Naamras, based on the source listed below. Condenses the hymn’s imagery and reports the conversation without inventing direct quotations. Violence is stated briefly because it explains the wrongdoing for which the account demands reparation. The source’s comparisons with figures from other religions are omitted. Dialogue is reported indirectly; descriptions of teachings are prose summaries, not translations of Gurbani. No independent historical or human expert review is claimed.",
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New prose based on Max Arthur Macauliffe’s original 1909 public-domain work. No modern translation or modern story adaptation has been copied. This is a traditional account, not independently verified history.",
+    "records": [
+      {
+        "id": "original-source",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-1909-v1"
+        ],
+        "evidence": "Underlying original 1909 Macauliffe text, as identified by the original-edition page transcription and page-image links; no modern translation or modern annotations reproduced.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#45"
+      },
+      {
+        "id": "naamras-retelling",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original English narrative prepared for Naamras from the identified source; dialogue and verse summarized rather than a modern edition copied. Independent English and history/Gurmat review remain pending."
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Dharmsal",
+      "meaning": "An early place of Sikh worship and gathering; Macauliffe uses this term in a note on the account."
+    }
+  ],
+  "metadataRevision": 2,
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "relatedStoryIds": [
+    "the-needle",
+    "the-sacred-thread"
+  ]
+}

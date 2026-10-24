@@ -6,7 +6,7 @@
     "description": "The English translation of Rattan Singh Bhangoo’s Sri Gur Panth Prakash, presented as one continuous 169-episode work across two source volumes.",
     "language": "en",
     "source": "epub",
-    "revision": "panth-prakash-english-v6-f9f801cc-243827eb",
+    "revision": "panth-prakash-english-v7-f9f801cc-243827eb",
     "contributors": [
       {
         "name": "Rattan Singh Bhangoo",
@@ -64,11 +64,18 @@
       }
     ],
     "editionNote": "Reader edition generated from the English-facing pages in the supplied bilingual EPUB volumes. Episode boundaries come from the numbered headings in the body text.",
-    "sourceQualityNote": "The source EPUBs were generated with automated character recognition and contain OCR errors. This reader preserves the source wording, removes running headers, and excludes the corrupted source-language/transliteration pages from the default English reading sequence.",
+    "sourceQualityNote": "The source EPUBs contain OCR errors. One spacing repair is documented in provenance; other wording is preserved. Volume I appendix references are available by episode as unreviewed source OCR, without verified individual note links. Its appendix omits an Episode 39 heading. No references appendix is present in the supplied Volume II EPUB. Running headers and corrupted facing-page transliteration are excluded from the reading sequence.",
+    "historicalContext": "Rattan Singh Bhangoo’s nineteenth-century Punjabi verse chronicle traces Sikh history from Guru Nanak to the rise of the eighteenth-century misls. It draws on earlier Sikh writings and traditions passed through the author’s family, and presents the Khalsa’s emergence as a political community. Read it as an influential historical account with its own perspective: remembered traditions and the author’s explanations of events should be distinguished from contemporary documentation. This reader contains Kulwant Singh’s English translation, not the original Punjabi text.",
+    "historicalContextSources": [
+      {
+        "title": "Encyclopaedia of Sikhism — Prachin Panth Prakash (Punjabi University)",
+        "url": "https://eos.learnpunjabi.org/PRACHIN%20PANTH%20PRAKASH.html"
+      }
+    ],
     "totalPages": 1413,
     "totalSourcePages": 1413,
     "readablePages": 637,
-    "totalCharacters": 1287254,
+    "totalCharacters": 1287253,
     "totalChapters": 169,
     "provenancePath": "/data/library/works/panth-prakash-english/provenance.json",
     "searchIndexPath": "/data/library/works/panth-prakash-english/search-index.json",

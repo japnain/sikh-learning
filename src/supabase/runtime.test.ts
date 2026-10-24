@@ -1,6 +1,7 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useCloudSyncStore } from '../store/cloudSync'
+import { useLanguageStore } from '../store/language'
 import type {
   CloudActivityEvent,
   CloudLocalSnapshot,
@@ -23,12 +24,14 @@ const mocks = vi.hoisted(() => {
     studyEnabled: false,
   }
   const getSession = vi.fn()
+  const onAuthStateChange = vi.fn()
   const invoke = vi.fn()
   const exportLocalSnapshot = vi.fn()
   const applyRemoteSnapshot = vi.fn()
   const client = {
     auth: {
       getSession,
+      onAuthStateChange,
       signOut: vi.fn(),
       signInWithOAuth: vi.fn(),
       signInWithOtp: vi.fn(),
@@ -42,6 +45,7 @@ const mocks = vi.hoisted(() => {
     config,
     client,
     getSession,
+    onAuthStateChange,
     invoke,
     exportLocalSnapshot,
     applyRemoteSnapshot,
@@ -59,6 +63,7 @@ vi.mock('./client', () => ({
 vi.mock('./snapshot', () => ({
   exportLocalSnapshot: mocks.exportLocalSnapshot,
   applyRemoteSnapshot: mocks.applyRemoteSnapshot,
+  reconcileRemoteSnapshotWithLocalChanges: (remote: unknown) => remote,
 }))
 
 vi.mock('../qa/runtime', () => ({
@@ -69,6 +74,7 @@ import {
   bootstrapCloudSync,
   resetCloudSyncRuntimeForTests,
   toSupabaseMergeSnapshot,
+  syncNow, signOutOfCloud, deleteCloudAccount, pauseCloudSyncForRestore,
 } from './runtime'
 
 const EVENT: CloudActivityEvent = {
@@ -152,6 +158,8 @@ beforeEach(() => {
   vi.clearAllMocks()
   localStorage.clear()
   mocks.config.enabled = true
+  mocks.onAuthStateChange.mockReturnValue({ data: { subscription: { unsubscribe: vi.fn() } } })
+  mocks.client.auth.signOut.mockResolvedValue({ error: null })
   mocks.getSession.mockResolvedValue({
     data: {
       session: {
@@ -293,5 +301,122 @@ describe('cloud runtime completion contract', () => {
       status: 'idle',
       currentUser: null,
     })
+  })
+})
+
+
+afterEach(() => { resetCloudSyncRuntimeForTests(); vi.useRealTimers() })
+
+function deferredResponse() {
+  let resolve!: (value: { data: MergeLocalStateResult; error: null }) => void
+  const promise = new Promise<{ data: MergeLocalStateResult; error: null }>(done => { resolve = done })
+  return { promise, resolve: () => resolve({ data: completeResult(), error: null }) }
+}
+
+describe('cloud concurrency and auth lifecycle', () => {
+  test('never signs out a new account when an older account deletion finishes', async () => {
+    await bootstrapCloudSync()
+    let finish!: (value: unknown) => void
+    mocks.invoke.mockReturnValueOnce(new Promise(resolve => { finish = resolve }))
+    const deleting = deleteCloudAccount()
+    const listener = mocks.onAuthStateChange.mock.calls[0][0]
+    listener('SIGNED_IN', { user: { id: 'user-2', app_metadata: {}, user_metadata: {} } })
+    finish({ data: { deleted: true }, error: null })
+    await expect(deleting).resolves.toMatchObject({ skipped: true })
+    expect(mocks.client.auth.signOut).not.toHaveBeenCalled()
+    expect(useCloudSyncStore.getState().currentUser?.id).toBe('user-2')
+  })
+
+  test('retains a recovery pause across reload and resumes only after successful restore', async () => {
+    vi.useFakeTimers()
+    await bootstrapCloudSync()
+    pauseCloudSyncForRestore()(false)
+    resetCloudSyncRuntimeForTests()
+    mocks.invoke.mockClear()
+    await bootstrapCloudSync()
+    expect(mocks.invoke).not.toHaveBeenCalled()
+    expect(useCloudSyncStore.getState().lastError).toBe('personal-data-restore-recovery-required')
+    await expect(syncNow()).resolves.toMatchObject({ skipped: true })
+    pauseCloudSyncForRestore()(true)
+    await vi.advanceTimersByTimeAsync(800)
+    expect(mocks.invoke).toHaveBeenCalledTimes(1)
+    expect(useCloudSyncStore.getState().lastError).toBeNull()
+  })
+
+  test('pauses further uploads if a cloud snapshot cannot roll back', async () => {
+    await bootstrapCloudSync()
+    mocks.applyRemoteSnapshot.mockImplementationOnce(() => { throw new Error('cloud-rollback-failed') })
+    await expect(syncNow()).resolves.toMatchObject({ ok: false })
+    await expect(syncNow()).resolves.toMatchObject({ skipped: true })
+    expect(useCloudSyncStore.getState().lastError).toBe('personal-data-restore-recovery-required')
+  })
+
+  test('does not overwrite local edits made during a request and retries serially', async () => {
+    vi.useFakeTimers()
+    await bootstrapCloudSync()
+    mocks.applyRemoteSnapshot.mockClear()
+    const deferred = deferredResponse()
+    mocks.invoke.mockReturnValueOnce(deferred.promise)
+    const first = syncNow()
+    useLanguageStore.getState().setFontSize(34)
+    expect(syncNow()).toBe(first)
+    deferred.resolve()
+    await expect(first).resolves.toMatchObject({ ok: false, queued: true })
+    expect(mocks.applyRemoteSnapshot).toHaveBeenCalledWith(REMOTE_SNAPSHOT, REMOTE_SNAPSHOT)
+    expect(useLanguageStore.getState().fontSize).toBe(34)
+    expect(useCloudSyncStore.getState().syncQueued).toBe(true)
+    await vi.advanceTimersByTimeAsync(800)
+    expect(mocks.applyRemoteSnapshot).toHaveBeenCalledTimes(2)
+    expect(useCloudSyncStore.getState().syncQueued).toBe(false)
+  })
+
+  test('ignores late responses after sign-out', async () => {
+    await bootstrapCloudSync()
+    mocks.applyRemoteSnapshot.mockClear()
+    const deferred = deferredResponse()
+    mocks.invoke.mockReturnValueOnce(deferred.promise)
+    const first = syncNow()
+    await signOutOfCloud()
+    deferred.resolve()
+    await expect(first).resolves.toMatchObject({ skipped: true })
+    expect(mocks.applyRemoteSnapshot).not.toHaveBeenCalled()
+    expect(useCloudSyncStore.getState()).toMatchObject({ currentUser: null, status: 'signed-out' })
+  })
+
+  test('observes auth changes and rejects a previous account response', async () => {
+    vi.useFakeTimers()
+    await bootstrapCloudSync()
+    mocks.applyRemoteSnapshot.mockClear()
+    const deferred = deferredResponse()
+    mocks.invoke.mockReturnValueOnce(deferred.promise)
+    const first = syncNow()
+    const listener = mocks.onAuthStateChange.mock.calls[0][0]
+    listener('SIGNED_IN', { user: { id: 'user-2', app_metadata: {}, user_metadata: {} } })
+    deferred.resolve()
+    await first
+    expect(mocks.applyRemoteSnapshot).not.toHaveBeenCalled()
+    expect(useCloudSyncStore.getState().currentUser?.id).toBe('user-2')
+    await vi.advanceTimersByTimeAsync(800)
+    expect(mocks.applyRemoteSnapshot).toHaveBeenCalledTimes(1)
+    listener('SIGNED_OUT', null)
+    expect(useCloudSyncStore.getState()).toMatchObject({ currentUser: null, status: 'signed-out' })
+  })
+
+  test('does not upload or apply halfway through a portable restore', async () => {
+    vi.useFakeTimers()
+    await bootstrapCloudSync()
+    mocks.applyRemoteSnapshot.mockClear()
+    const deferred = deferredResponse()
+    mocks.invoke.mockReturnValueOnce(deferred.promise)
+    const first = syncNow()
+    const resume = pauseCloudSyncForRestore()
+    useLanguageStore.getState().setFontSize(26)
+    await expect(syncNow()).resolves.toMatchObject({ skipped: true })
+    deferred.resolve()
+    await first
+    expect(mocks.applyRemoteSnapshot).not.toHaveBeenCalled()
+    resume()
+    await vi.advanceTimersByTimeAsync(800)
+    expect(mocks.applyRemoteSnapshot).toHaveBeenCalledTimes(1)
   })
 })

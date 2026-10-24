@@ -1,11 +1,13 @@
+import '../styles/library.css'
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useVocabStore } from '../store/vocab'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
-import type { UiLocale, VocabEntry } from '../types'
+import { canReviewVocab, getVocabMeaning, vocabContextPath, vocabEntryKey, vocabSenseKey } from '../utils/vocabReview'
+import type { ScriptMode, UiLocale, VocabContext, VocabEntry, VocabSense } from '../types'
 
 type Mode = 'list' | 'flashcard' | 'review'
 
@@ -38,6 +40,12 @@ const VOCAB_COPY: Record<UiLocale, {
   dueNowLabel: string
   dueInDays: (days: number) => string
   savedShelfEyebrow: string
+  missingAnswer: string
+  missingAnswers: (count: number) => string
+  readInContext: string
+  otherSenses: string
+  languageFallback: (language: string) => string
+  languages: { en: string; pa: string; hi: string }
 }> = {
   en: {
     title: 'Vocabulary & Review',
@@ -72,6 +80,11 @@ const VOCAB_COPY: Record<UiLocale, {
     dueNowLabel: 'Due now',
     dueInDays: days => `Due in ${days} day${days === 1 ? '' : 's'}`,
     savedShelfEyebrow: 'Saved Meanings',
+    missingAnswer: 'No meaning saved yet. Open the original verse to choose a definition.',
+    missingAnswers: count => `${count} saved item${count === 1 ? '' : 's'} need a definition before review. They remain in your Word List.`,
+    readInContext: 'Read in context', otherSenses: 'Other saved meanings & contexts',
+    languageFallback: language => `Available answer in ${language}`,
+    languages: { en: 'English', pa: 'Punjabi', hi: 'Hindi' },
   },
   pa: {
     title: 'ਸ਼ਬਦ ਭੰਡਾਰ ਅਤੇ ਦੁਹਰਾਈ',
@@ -106,6 +119,11 @@ const VOCAB_COPY: Record<UiLocale, {
     dueNowLabel: 'ਹੁਣ ਬਾਕੀ',
     dueInDays: days => `${days} ਦਿਨਾਂ ਵਿੱਚ ਬਾਕੀ`,
     savedShelfEyebrow: 'ਸੰਭਾਲੇ ਅਰਥ',
+    missingAnswer: 'ਹਾਲੇ ਅਰਥ ਨਹੀਂ ਸੰਭਾਲਿਆ। ਅਰਥ ਚੁਣਨ ਲਈ ਮੂਲ ਪੰਕਤੀ ਖੋਲ੍ਹੋ।',
+    missingAnswers: count => `${count} ਸੰਭਾਲੇ ਸ਼ਬਦਾਂ ਨੂੰ ਦੁਹਰਾਈ ਤੋਂ ਪਹਿਲਾਂ ਅਰਥ ਦੀ ਲੋੜ ਹੈ। ਇਹ ਸ਼ਬਦ ਸੂਚੀ ਵਿੱਚ ਹਨ।`,
+    readInContext: 'ਪੰਕਤੀ ਵਿੱਚ ਪੜ੍ਹੋ', otherSenses: 'ਹੋਰ ਸੰਭਾਲੇ ਅਰਥ ਅਤੇ ਪੰਕਤੀਆਂ',
+    languageFallback: language => `ਉਪਲਬਧ ਉੱਤਰ: ${language}`,
+    languages: { en: 'ਅੰਗਰੇਜ਼ੀ', pa: 'ਪੰਜਾਬੀ', hi: 'ਹਿੰਦੀ' },
   },
   hi: {
     title: 'शब्द भंडार और रिव्यू',
@@ -140,6 +158,11 @@ const VOCAB_COPY: Record<UiLocale, {
     dueNowLabel: 'अभी ड्यू',
     dueInDays: days => `${days} दिन में ड्यू`,
     savedShelfEyebrow: 'सेव अर्थ',
+    missingAnswer: 'अभी अर्थ सहेजा नहीं गया। अर्थ चुनने के लिए मूल पंक्ति खोलें।',
+    missingAnswers: count => `${count} सहेजे शब्दों को रिव्यू से पहले अर्थ चाहिए। वे शब्द सूची में मौजूद हैं।`,
+    readInContext: 'पंक्ति में पढ़ें', otherSenses: 'अन्य सहेजे अर्थ और संदर्भ',
+    languageFallback: language => `उपलब्ध उत्तर: ${language}`,
+    languages: { en: 'अंग्रेज़ी', pa: 'पंजाबी', hi: 'हिंदी' },
   },
 }
 
@@ -149,6 +172,38 @@ function timeLabel(entry: VocabEntry, now: number, copy: typeof VOCAB_COPY.en): 
   if (diff <= 0) return copy.dueNowLabel
   const days = Math.ceil(diff / 86400000)
   return copy.dueInDays(days)
+}
+
+function SavedMeaning({ entry, language, scriptMode, copy }: { entry: VocabEntry | VocabSense; language: string; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en }) {
+  const meaning = getVocabMeaning(entry, language)
+  if (!meaning) return <p className="font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/74">{copy.missingAnswer}</p>
+  return <div>
+    {language !== 'none' && meaning.language !== language ? <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.languageFallback(copy.languages[meaning.language])}</p> : null}
+    <p lang={meaning.language === 'pa' ? getScriptTextLang(scriptMode) : meaning.language} className={`${meaning.language === 'pa' ? getScriptTextFontClass(scriptMode) : meaning.language === 'hi' ? 'font-devanagari' : 'font-sans'} font-medium leading-relaxed text-ink dark:text-dark-text`}>
+      {meaning.language === 'pa' ? renderScriptText(meaning.text, scriptMode) : meaning.text}
+    </p>
+    {meaning.source ? <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">{meaning.source.name}{meaning.source.entryId ? ` · ${meaning.source.entryId}` : ''}</p> : null}
+  </div>
+}
+
+function SavedContext({ context, scriptMode, copy }: { context?: VocabContext; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en }) {
+  const path = vocabContextPath(context)
+  if (!context?.line && !path) return null
+  return <div className="mt-3 space-y-2 border-t border-sand/15 pt-3 dark:border-dark-text/15">
+    {context?.line ? <blockquote lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-base leading-relaxed text-ink/80 dark:text-dark-text/85`}>{renderScriptText(context.line, scriptMode)}</blockquote> : null}
+    {path ? <Link className="interactive-focus inline-flex min-h-[44px] items-center rounded-lg px-2 font-sans text-sm font-semibold text-gold-dark dark:text-gold-light" to={path}>{copy.readInContext}<span aria-hidden="true"> →</span></Link> : null}
+  </div>
+}
+
+function OtherSenses({ entry, language, scriptMode, copy }: { entry: VocabEntry; language: string; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en }) {
+  if (!entry.senses?.length) return null
+  return <details className="mt-3">
+    <summary className="interactive-focus min-h-[44px] cursor-pointer py-3 font-sans text-sm text-gold-dark dark:text-gold-light">{copy.otherSenses} ({entry.senses.length})</summary>
+    <div className="space-y-4">{entry.senses.map(sense => <div key={vocabSenseKey(sense)} className="border-t border-sand/15 pt-3 dark:border-dark-text/15">
+      <SavedMeaning entry={sense} language={language} scriptMode={scriptMode} copy={copy} />
+      <SavedContext context={sense.context} scriptMode={scriptMode} copy={copy} />
+    </div>)}</div>
+  </details>
 }
 
 export default function Vocab() {
@@ -161,11 +216,15 @@ export default function Vocab() {
   const [mode, setMode] = useState<Mode>('list')
   const [cardIdx, setCardIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
-  const now = useCurrentTime()
+  const clock = useCurrentTime()
+  const [reviewedAt, setReviewedAt] = useState(0)
+  const [reviewQueue, setReviewQueue] = useState<string[]>([])
+  const now = Math.max(clock, reviewedAt)
+  const reviewableWords = useMemo(() => vocab.filter(canReviewVocab), [vocab])
 
   const dueWords = useMemo(
-    () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
-    [now, vocab]
+    () => reviewableWords.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
+    [now, reviewableWords]
   )
   const phraseCount = vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length
 
@@ -202,14 +261,22 @@ export default function Vocab() {
     )
   }
 
-  const reviewPool = mode === 'review' ? dueWords : vocab
-  const safeIdx = reviewPool.length > 0 ? cardIdx % reviewPool.length : 0
+  const entriesByKey = new Map(reviewableWords.map(entry => [vocabEntryKey(entry), entry]))
+  const reviewPool = mode === 'review'
+    ? reviewQueue.flatMap(key => entriesByKey.has(key) ? [entriesByKey.get(key)!] : [])
+    : reviewableWords
+  const safeIdx = mode === 'review' ? 0 : reviewPool.length > 0 ? cardIdx % reviewPool.length : 0
   const activeCard = reviewPool[safeIdx]
 
   const handleReview = (rating: 'again' | 'good' | 'easy') => {
-    if (!activeCard) return
+    if (!activeCard || !revealed) return
     reviewWord(activeCard.word, rating, activeCard.kind ?? 'word')
-    setCardIdx(index => index + 1)
+    setReviewedAt(Date.now())
+    const key = vocabEntryKey(activeCard)
+    setReviewQueue(queue => {
+      const remaining = queue.filter(item => item !== key && entriesByKey.has(item))
+      return rating === 'again' ? [...remaining, key] : remaining
+    })
     setRevealed(false)
   }
 
@@ -256,7 +323,10 @@ export default function Vocab() {
         {(Object.entries(copy.modes) as Array<[Mode, string]>).map(([nextMode, label]) => (
           <button
             key={nextMode}
-            onClick={() => { setMode(nextMode); setCardIdx(0); setRevealed(false) }}
+            onClick={() => {
+              setMode(nextMode); setCardIdx(0); setRevealed(false)
+              if (nextMode === 'review') setReviewQueue(useVocabStore.getState().getDueWords().map(vocabEntryKey))
+            }}
             aria-pressed={mode === nextMode}
             className={`min-h-[44px] rounded-md px-2 py-2 font-sans text-xs font-medium transition-colors duration-200 ${
               mode === nextMode ? 'bg-saffron text-white' : 'text-ink/68 dark:text-dark-text/68'
@@ -266,6 +336,8 @@ export default function Vocab() {
           </button>
         ))}
       </div>
+
+      {vocab.length > reviewableWords.length ? <p role="status" className="mb-4 font-sans text-sm leading-6 text-ink/75 dark:text-dark-text/75">{copy.missingAnswers(vocab.length - reviewableWords.length)}</p> : null}
 
       {(mode === 'flashcard' || mode === 'review') ? (
         reviewPool.length === 0 ? (
@@ -291,9 +363,9 @@ export default function Vocab() {
               onClick={() => setRevealed(r => !r)}
               aria-label={revealed ? copy.hideMeaning : copy.tapToReveal}
               aria-pressed={revealed}
-              className="interactive-focus w-full section-shell rounded-lg p-8 flex flex-col items-center min-h-[260px] justify-center gap-4 transition-colors duration-200"
+              className="interactive-focus vocab-flashcard w-full section-shell rounded-lg p-5 sm:p-8 flex flex-col items-center min-h-[260px] justify-center gap-4 transition-colors duration-200"
             >
-              <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-5xl text-ink dark:text-dark-text text-center`}>
+              <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} ${(activeCard.kind ?? 'word') === 'phrase' ? 'vocab-review-phrase' : 'vocab-review-word'} text-ink dark:text-dark-text text-center`}>
                 {renderScriptText(activeCard.word, scriptMode)}
               </p>
               <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-gold-dark dark:text-gold-light">
@@ -302,13 +374,7 @@ export default function Vocab() {
               <p className="font-sans text-sm text-ink/68 dark:text-dark-text/64">{activeCard.transliteration}</p>
               {revealed ? (
                 <div className="text-center">
-                  <p className="font-sans font-medium text-ink dark:text-dark-text">{activeCard.meaning_en}</p>
-                  {meaningLanguage === 'hi' && activeCard.meaning_hi && (
-                    <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{activeCard.meaning_hi}</p>
-                  )}
-                  {meaningLanguage === 'pa' && activeCard.meaning_pa && (
-                    <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/72 dark:text-dark-text/74 mt-1`}>{renderScriptText(activeCard.meaning_pa, scriptMode)}</p>
-                  )}
+                  <SavedMeaning entry={activeCard} language={meaningLanguage} scriptMode={scriptMode} copy={copy} />
                   <p className="font-sans text-xs text-gold-dark dark:text-gold-light mt-3">
                     {activeCard.context?.scripture ?? activeCard.scripture}
                     {activeCard.context?.ang ? ` · Ang ${activeCard.context.ang}` : ''}
@@ -319,29 +385,34 @@ export default function Vocab() {
               )}
             </button>
 
+            {revealed ? <div className="w-full"><SavedContext context={activeCard.context} scriptMode={scriptMode} copy={copy} /><OtherSenses entry={activeCard} language={meaningLanguage} scriptMode={scriptMode} copy={copy} /></div> : null}
+
             {mode === 'review' ? (
-              <div className="grid grid-cols-3 gap-3 w-full">
+              <div className="vocab-review-actions grid grid-cols-3 gap-3 w-full">
                 <button
                   onClick={() => handleReview('again')}
-                  className="py-3 rounded-lg bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px]"
+                  disabled={!revealed}
+                  className="disabled:opacity-40 py-3 rounded-lg bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px]"
                 >
                   {copy.again}
                 </button>
                 <button
                   onClick={() => handleReview('good')}
-                  className="py-3 rounded-lg bg-gold/15 text-gold-dark dark:text-gold-light font-sans text-sm font-semibold min-h-[44px]"
+                  disabled={!revealed}
+                  className="disabled:opacity-40 py-3 rounded-lg bg-gold/15 text-gold-dark dark:text-gold-light font-sans text-sm font-semibold min-h-[44px]"
                 >
                   {copy.good}
                 </button>
                 <button
                   onClick={() => handleReview('easy')}
-                  className="py-3 rounded-lg bg-saffron text-white font-sans text-sm font-semibold min-h-[44px]"
+                  disabled={!revealed}
+                  className="disabled:opacity-40 py-3 rounded-lg bg-saffron text-white font-sans text-sm font-semibold min-h-[44px]"
                 >
                   {copy.easy}
                 </button>
               </div>
             ) : (
-              <div className="flex gap-3 w-full">
+              <div className="vocab-review-actions flex gap-3 w-full">
                 <button
                   onClick={() => { setCardIdx(i => Math.max(0, i - 1)); setRevealed(false) }}
                   disabled={safeIdx === 0}
@@ -370,19 +441,13 @@ export default function Vocab() {
                 className="section-shell px-4 py-4 flex items-start justify-between gap-3 transition-colors duration-300"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2 mb-0.5">
+                  <div className="flex flex-col items-start gap-2 mb-0.5">
                     <span lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl text-ink dark:text-dark-text`}>
                       {renderScriptText(entry.word, scriptMode)}
                     </span>
                     <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{entry.transliteration}</span>
                   </div>
-                  <p className="font-sans text-sm text-ink/82 dark:text-dark-text/84">{entry.meaning_en}</p>
-                  {meaningLanguage === 'hi' && entry.meaning_hi && (
-                    <p className="font-sans text-xs text-ink/66 dark:text-dark-text/68">{entry.meaning_hi}</p>
-                  )}
-                  {meaningLanguage === 'pa' && entry.meaning_pa && (
-                    <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xs text-ink/66 dark:text-dark-text/68`}>{renderScriptText(entry.meaning_pa, scriptMode)}</p>
-                  )}
+                  <SavedMeaning entry={entry} language={meaningLanguage} scriptMode={scriptMode} copy={copy} />
                   <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
                     {(entry.kind ?? 'word') === 'phrase' ? copy.phraseReview : copy.wordReview}
                     {' · '}
@@ -391,12 +456,14 @@ export default function Vocab() {
                     {entry.context?.line ? ` · ${copy.verseSavedFrom}` : ''}
                   </p>
                   <p className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64 mt-1">
-                    {timeLabel(entry, now, copy)}
+                    {canReviewVocab(entry) ? timeLabel(entry, now, copy) : ''}
                   </p>
+                  <SavedContext context={entry.context} scriptMode={scriptMode} copy={copy} />
+                  <OtherSenses entry={entry} language={meaningLanguage} scriptMode={scriptMode} copy={copy} />
                 </div>
                 <button
                   onClick={() => removeWord(entry.word, entry.kind ?? 'word')}
-                  className="text-ink/30 dark:text-dark-text/30 font-sans text-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="text-ink/75 dark:text-dark-text/80 font-sans text-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label={copy.removeWord}
                 >
                   ✕

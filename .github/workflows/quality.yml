@@ -22,10 +22,24 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run qa:css-selectors
+      - name: Verify browser fixtures and startup budgets
+        run: node --test scripts/qa/browser-fixtures.test.mjs scripts/qa/startup-bundle-audit.test.mjs
       - run: npm run build
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+      - name: Production Bani, Home and Stories acceptance
+        run: node scripts/qa/browser-acceptance.mjs
       - run: npm run qa:a11y
         env:
           QA_A11Y_SERVER_MODE: preview
+          QA_DETERMINISTIC: '1'
+      - name: Keep browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-acceptance
+          path: tmp/browser-acceptance
+          if-no-files-found: ignore
       - run: npm test
       - name: Verify native catalog is current
         run: |

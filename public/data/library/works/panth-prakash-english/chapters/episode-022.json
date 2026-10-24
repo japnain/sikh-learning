@@ -11,7 +11,7 @@
   "endSourcePage": 199,
   "wordCount": 964,
   "charCount": 5563,
-  "startPosition": 25553,
+  "startPosition": 25552,
   "pages": [
     {
       "sourcePageNumber": 193,
@@ -386,5 +386,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-021",
-  "nextChapterId": "episode-023"
+  "nextChapterId": "episode-023",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 549,
+      "printPageNumber": 505,
+      "sourceHref": "EPUB/page_549.html",
+      "text": "1 Brar : Name of a martial race, a sub caste of Bhatti Rajputs. Guru Gobind Singh has written words of appreciation for Brars for their allegiance to him in \"Zafarnama\". 2 Jaal Pilloo : Name of a tree found in the Malwa forests at that time. 3 Kapoora : A Brar Jat, and custodian of Kot Kapoora on behalf of the Mughals, who betrayed Guru Gobind Singh even after being initiated by Guru Gobind Singh himself. He was hanged to death by Issey Khan for committing a fraud in business transactions. 4 Issey Khan Manjh, the Mughal custodian of Kot Issey Khan and the surrounding territory. He ordered Kapoora to be hanged for committing a robbery on the proceeds of revenue collection from Doaba, thus fulfilling the Guru's prophecy about Kapoora. 5 Abloo, Mehma, Doad, Matti, Kauni and Jhando Patti - names of several settlements/villages in the Malwa region now in the districts of Faridkot. 6 Chakk Bhai ka : Name of another village."
+    }
+  ]
 }

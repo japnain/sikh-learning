@@ -11,7 +11,7 @@
   "endSourcePage": 459,
   "wordCount": 1128,
   "charCount": 6602,
-  "startPosition": 72418,
+  "startPosition": 72417,
   "pages": [
     {
       "sourcePageNumber": 451,
@@ -485,5 +485,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-066",
-  "nextChapterId": "episode-068"
+  "nextChapterId": "episode-068",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 565,
+      "printPageNumber": 521,
+      "sourceHref": "EPUB/page_565.html",
+      "text": "1 Fatiha : Name given to an Islamic prayer which is recited for the peace of the departed soul and well-being of those who suffered from some affliction."
+    }
+  ]
 }

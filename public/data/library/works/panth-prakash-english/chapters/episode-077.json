@@ -11,7 +11,7 @@
   "endSourcePage": 511,
   "wordCount": 610,
   "charCount": 3529,
-  "startPosition": 82143,
+  "startPosition": 82142,
   "pages": [
     {
       "sourcePageNumber": 509,
@@ -254,5 +254,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-076",
-  "nextChapterId": "episode-078"
+  "nextChapterId": "episode-078",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 569,
+      "printPageNumber": 525,
+      "sourceHref": "EPUB/page_569.html",
+      "text": "1 Chakk : Chakk Nanaki, the earlier name of Anandpur Sahib which was founded by Guru Teg Bahadur after purchasing the land of village Makhowal in 1666. 2 Charan Pahul : The baptismal ceremony practised by Sikh gurus before Guru Gobind Singh created the Khalsa Panth through the initiation ceremony of administering Khande-ki -Pahul or Amrit. 3 Gurbakhsh Dass : Saint Gurbaksh Dass, disciple of Mahadev, an Udasi saint. Guru Gobind Singh had appointed him the caretaker of Guru Teg Bahadur's commemorative seat before his departure from Anandpur Sahib. 4 Place : The place referred is the place where Guru Teg Bahadur's severed head was cremated where Gurdwara Sisganj is now situated. 5 Gurbani :\"Sikhan Puttan Bhaeeyan Bhao Eko Jeha\", Sri Guru Granth Sahib. 6 Raipur : The name of a village, the native place of Gurbaksh Dass. 7 Patalpuri : The Sikh shrine at Kiratpur Sahib near Anandpur Sahib in Distt. Ropar, where Guru Hargobind breathed his last."
+    }
+  ]
 }

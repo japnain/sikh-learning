@@ -11,7 +11,7 @@
   "endSourcePage": 407,
   "wordCount": 1069,
   "charCount": 6247,
-  "startPosition": 63566,
+  "startPosition": 63565,
   "pages": [
     {
       "sourcePageNumber": 403,
@@ -378,5 +378,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-060",
-  "nextChapterId": "episode-062"
+  "nextChapterId": "episode-062",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 562,
+      "printPageNumber": 518,
+      "sourceHref": "EPUB/page_562.html",
+      "text": "1 Zakat : The octroi duty imposed on goods entering a region or a city during the Mughal rule. 2 Dogars : A subcaste of Punjab's Rajputs converted to Islam, very often occupied in cattle rearing. 3 Battu : A subcaste of Bhatti Rajputs and Muslims converts. They got converted into Islam under the influence of Baba Farid. 4 Bhatti : Indian Rajputs of Punjab region who converted to Islam during Mughal rule. Dulla Bhatti, a Robinhood figure, became very famous among them."
+    }
+  ]
 }

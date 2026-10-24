@@ -1,3 +1,4 @@
+import '../styles/reader.css'
 import { lazy, Suspense, useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad, type BaniFetchResult } from '../api/banidb'
@@ -55,6 +56,7 @@ import {
   getVisraamSourceLabels,
 } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
+import { READER_TEXT_SIZE } from '../utils/readerTextSize'
 import { formatGurbaniText, getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralGurbaniHeadingLine, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { findCanonicalBaniById } from '../utils/baniRouteResolver'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconClose, IconHeart, IconHeartFilled, IconMoreHorizontal } from '../components/icons'
@@ -2742,9 +2744,9 @@ export default function Study() {
                 <span aria-hidden="true">A</span>
                 <input
                   type="range"
-                  min="18"
-                  max="34"
-                  step="1"
+                  min={READER_TEXT_SIZE.min}
+                  max={READER_TEXT_SIZE.max}
+                  step={READER_TEXT_SIZE.step}
                   value={fontSize}
                   onChange={event => setFontSize(Number(event.target.value))}
                   aria-label={focusedReaderCopy.fontSize}

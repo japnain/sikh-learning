@@ -9,6 +9,9 @@ import {
 import { buildSessionResumePath, useProgressStore } from '../../store/progress'
 import { mockDocumentScroll } from '../../test/documentScroll'
 import { useBookmarksStore } from '../../store/bookmarks'
+import fs from 'node:fs'
+import path from 'node:path'
+import { configureLibraryRepositoryLoader } from '../../data/libraryRepository'
 
 const FIRST_EPISODE_PATH = '/library/panth-prakash-english/chapters/episode-001'
 let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
@@ -18,6 +21,7 @@ function renderReader(path = FIRST_EPISODE_PATH, state?: unknown) {
     <MemoryRouter initialEntries={[state === undefined ? path : { pathname: path, state }]}>
       <Routes>
         <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
+        <Route path="/library/:workId" element={<h1>Book contents</h1>} />
       </Routes>
     </MemoryRouter>
   )
@@ -42,6 +46,65 @@ describe('LibraryChapterReader', () => {
     documentScroll = null
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
+  })
+
+  test('failed direct chapter loads offer Retry and Back, and reconnect retries automatically', async () => {
+    let offline = true
+    configureLibraryRepositoryLoader(async resource => {
+      if (offline) throw new Error('offline')
+      return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', resource), 'utf8'))
+    })
+    renderReader()
+    await screen.findByRole('heading', { name: 'Section unavailable' })
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Back to book' })).toBeInTheDocument()
+    offline = false
+    fireEvent(window, new Event('online'))
+    expect(await screen.findByTestId('panth-chapter-reader')).toBeInTheDocument()
+  })
+
+  test('a missing chapter still offers an escape to the book', async () => {
+    const user = userEvent.setup()
+    renderReader('/library/panth-prakash-english/chapters/not-a-section')
+    await screen.findByRole('heading', { name: 'Section unavailable' })
+    expect(screen.getByText(/not in the current book/i)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Back to book' }))
+    expect(await screen.findByRole('heading', { name: 'Book contents' })).toBeInTheDocument()
+  })
+
+  test('search opens and highlights the actual matching passage and navigates additional passages', async () => {
+    const user = userEvent.setup()
+    const { container } = renderReader(`${FIRST_EPISODE_PATH}?find=Khalsa`)
+    await screen.findByTestId('panth-chapter-reader')
+    await waitFor(() => expect(document.activeElement).toHaveAttribute('data-reader-match', 'true'))
+    expect(container.querySelectorAll('mark.epub-search-highlight').length).toBeGreaterThan(1)
+    expect(screen.getByRole('status')).toHaveTextContent(/Passage 1 of/)
+    await user.click(screen.getByRole('button', { name: 'Next match' }))
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/Passage 2 of/))
+    expect(document.activeElement).toHaveAttribute('data-reader-match', 'true')
+    await user.click(screen.getByRole('button', { name: 'Clear search' }))
+    expect(container.querySelector('mark.epub-search-highlight')).toBeNull()
+  })
+
+  test('available episode references open preserved source notes and restore the invoking link', async () => {
+    const user = userEvent.setup()
+    configureLibraryRepositoryLoader(async resource => {
+      const value = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', resource), 'utf8'))
+      if (resource.endsWith('/chapters/episode-001.json')) {
+        value.pages[0].blocks.push({ id: 'test-reference', type: 'paragraph', text: 'A reference3' })
+        value.sourceNotes = [{ sourcePageNumber: 536, printPageNumber: 520, sourceHref: 'source-notes.xhtml', text: 'Original appendix wording.\nSecond source line.' }]
+      }
+      return value
+    })
+    renderReader()
+    await screen.findByTestId('panth-chapter-reader')
+    const reference = screen.getAllByRole('link', { name: 'Open source notes, reference 3' }).at(-1)!
+    await user.click(reference)
+    const sheet = screen.getByRole('dialog', { name: 'Source notes' })
+    expect(sheet).toHaveTextContent('Original appendix wording.')
+    expect(sheet).toHaveTextContent('reference numbers are not individually verified')
+    await user.keyboard('{Escape}')
+    await waitFor(() => expect(reference).toHaveFocus())
   })
 
   test('renders the cleaned EPUB as semantic verse without exposing source internals', async () => {
@@ -90,8 +153,8 @@ describe('LibraryChapterReader', () => {
 
     await user.keyboard('{Escape}')
     await waitFor(() => expect(screen.getByRole('button', { name: /open contents/i })).toHaveFocus())
-    await user.click(screen.getByRole('button', { name: /open reading settings/i }))
-    const settings = screen.getByRole('dialog', { name: /reading settings/i })
+    await user.click(screen.getByRole('button', { name: /reading appearance/i }))
+    const settings = screen.getByRole('dialog', { name: /reading appearance/i })
     await user.click(within(settings).getByRole('button', { name: 'Sepia' }))
 
     expect(reader).toHaveAttribute('data-palette', 'sepia')
@@ -100,8 +163,8 @@ describe('LibraryChapterReader', () => {
       expect.objectContaining({ state: expect.objectContaining({ palette: 'sepia' }) })
     )
 
-    await user.click(within(settings).getByRole('button', { name: /close reading settings/i }))
-    await waitFor(() => expect(screen.getByRole('button', { name: /open reading settings/i })).toHaveFocus())
+    await user.click(within(settings).getByRole('button', { name: /close reading appearance/i }))
+    await waitFor(() => expect(screen.getByRole('button', { name: /reading appearance/i })).toHaveFocus())
   })
 
   test('places fresh keyboard navigation at the reader toolbar', async () => {

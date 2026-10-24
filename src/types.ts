@@ -142,6 +142,20 @@ export interface ScriptureEntry {
   words: Word[]
 }
 
+export interface VocabDefinitionSource {
+  name: string
+  entryId?: string
+  url?: string
+}
+
+export interface VocabSense {
+  meaning_en: string
+  meaning_hi: string
+  meaning_pa: string
+  context?: VocabContext
+  definitionSource?: VocabDefinitionSource
+}
+
 export interface VocabEntry {
   kind?: VocabKind
   word: string
@@ -154,6 +168,8 @@ export interface VocabEntry {
   savedAt: string
   context?: VocabContext
   review?: VocabReviewState
+  definitionSource?: VocabDefinitionSource
+  senses?: VocabSense[]
 }
 
 export interface StudiedEntry {
@@ -358,6 +374,8 @@ export interface LibraryWork {
   publications?: LibraryPublication[]
   editionNote?: string
   sourceQualityNote?: string
+  historicalContext?: string
+  historicalContextSources?: Array<{ title: string; url: string }>
   totalPages: number
   totalChapters?: number
   totalSourcePages?: number
@@ -495,6 +513,7 @@ export interface LibraryChapterPayload {
   charCount?: number
   startPosition?: number
   pages: LibraryChapterPagePayload[]
+  sourceNotes?: Array<{ sourcePageNumber: number; printPageNumber: number; sourceHref: string; text: string }>
   previousChapterId?: string
   nextChapterId?: string
   source: {

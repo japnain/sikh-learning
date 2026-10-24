@@ -1,5 +1,6 @@
-import type { UiLocale, Word } from '../types'
+import type { UiLocale, VocabSense, Word } from '../types'
 import { useState } from 'react'
+import { hasVocabMeaning, hasVocabSense } from '../utils/vocabReview'
 import { getWordFamilyForWord } from '../data/wordFamilies'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
@@ -35,6 +36,11 @@ const REFERENCE_COPY: Record<UiLocale, {
   retained: string
   missing: string
   retry: (name: string) => string
+  chooseDefinition: string
+  useDefinition: string
+  selectedDefinition: string
+  studyDefinition: string
+  savingDefinition: (name: string) => string
 }> = {
   en: {
     title: word => `Word details for ${word}`, description: 'Study meaning, dictionary context, and an option to save this word for review.',
@@ -49,6 +55,9 @@ const REFERENCE_COPY: Record<UiLocale, {
     retained: 'Your previously loaded entry remains available below.',
     missing: 'No dictionary entry found for this form.',
     retry: name => `Try ${name} again`,
+    chooseDefinition: 'Choose a definition above to save an answer for review.',
+    useDefinition: 'Use this definition', selectedDefinition: 'Definition selected', studyDefinition: 'Use study meaning',
+    savingDefinition: name => `Review answer: ${name}`,
   },
   pa: {
     title: word => `${word} ਦੇ ਵੇਰਵੇ`, description: 'ਸ਼ਬਦ ਦੇ ਅਰਥ, ਸ਼ਬਦਕੋਸ਼ ਦੇ ਹਵਾਲੇ ਅਤੇ ਦੁਹਰਾਈ ਲਈ ਸੁਰੱਖਿਅਤ ਕਰਨ ਦੀ ਚੋਣ।',
@@ -63,6 +72,9 @@ const REFERENCE_COPY: Record<UiLocale, {
     retained: 'ਪਹਿਲਾਂ ਲੋਡ ਹੋਇਆ ਹਵਾਲਾ ਹੇਠਾਂ ਉਪਲਬਧ ਹੈ।',
     missing: 'ਇਸ ਰੂਪ ਲਈ ਸ਼ਬਦਕੋਸ਼ ਵਿੱਚ ਕੋਈ ਹਵਾਲਾ ਨਹੀਂ ਮਿਲਿਆ।',
     retry: name => `${name} ਮੁੜ ਅਜ਼ਮਾਓ`,
+    chooseDefinition: 'ਦੁਹਰਾਈ ਲਈ ਉੱਤਰ ਸੰਭਾਲਣ ਵਾਸਤੇ ਉੱਪਰੋਂ ਅਰਥ ਚੁਣੋ।',
+    useDefinition: 'ਇਹ ਅਰਥ ਵਰਤੋ', selectedDefinition: 'ਅਰਥ ਚੁਣਿਆ ਗਿਆ', studyDefinition: 'ਅਧਿਐਨ ਅਰਥ ਵਰਤੋ',
+    savingDefinition: name => `ਦੁਹਰਾਈ ਦਾ ਉੱਤਰ: ${name}`,
   },
   hi: {
     title: word => `${word} के विवरण`, description: 'शब्द का अर्थ, शब्दकोश के संदर्भ और दोहराने के लिए सहेजने का विकल्प।',
@@ -77,6 +89,9 @@ const REFERENCE_COPY: Record<UiLocale, {
     retained: 'पहले लोड हुआ संदर्भ नीचे उपलब्ध है।',
     missing: 'इस रूप के लिए शब्दकोश में कोई प्रविष्टि नहीं मिली।',
     retry: name => `${name} फिर आज़माएँ`,
+    chooseDefinition: 'दोहराने के लिए उत्तर सहेजने हेतु ऊपर से अर्थ चुनें।',
+    useDefinition: 'यह अर्थ चुनें', selectedDefinition: 'अर्थ चुना गया', studyDefinition: 'अध्ययन का अर्थ चुनें',
+    savingDefinition: name => `रिव्यू का उत्तर: ${name}`,
   },
 }
 
@@ -112,10 +127,8 @@ export default function WordPopover({
   const actualMeaningLanguage = preferredMeaning ? preferredLanguage : 'en'
   const englishFallback = Boolean(meaning && !preferredMeaning && preferredLanguage !== 'en')
   const { vocab, addWord } = useVocabStore()
-  const existingWord = vocab.some(v => v.word === word.gurmukhi && (v.kind ?? 'word') === 'word')
-  const isSaved = existingWord && isVocabEntryPersisted(word.gurmukhi)
+  const [definitionChoice, setDefinitionChoice] = useState<{ word: string; id: string } | null>(null)
   const [failedWord, setFailedWord] = useState<string | null>(null)
-  const sessionOnly = !isSaved && (existingWord || failedWord === word.gurmukhi)
   const wordFamily = getWordFamilyForWord(word.gurmukhi)
   const { entries, loading, refreshing, error, normalizedWord, retry } = useMahanKosh(word.gurmukhi)
   const {
@@ -129,15 +142,34 @@ export default function WordPopover({
   const visibleBanidbKoshEntries = banidbKoshEntries.slice(0, 3)
   const fullLookupUrl = visibleEntries[0]?.sourceUrl ?? buildMahanKoshUrl(normalizedWord || word.gurmukhi)
 
+  const context = { scripture, sourceId, ang, shabadId, verseId, line }
+  const definitionOptions: Array<{ id: string; sense: VocabSense }> = [
+    { id: 'study', sense: { meaning_en: word.meaning_en, meaning_hi: word.meaning_hi, meaning_pa: word.meaning_pa, definitionSource: { name: 'BaniDB' } } },
+    ...visibleEntries.map(entry => ({ id: `mahankosh-${entry.id}`, sense: {
+      meaning_en: '', meaning_hi: entry.description_hi || '', meaning_pa: entry.description || '',
+      definitionSource: { name: 'Mahankosh', entryId: String(entry.id), url: entry.sourceUrl },
+    } })),
+    ...visibleBanidbKoshEntries.map(entry => ({ id: `kosh-${entry.id}`, sense: {
+      meaning_en: '', meaning_hi: '', meaning_pa: entry.definitionUni?.trim() || '',
+      definitionSource: { name: 'BaniDB Kosh', entryId: String(entry.id) },
+    } })),
+  ].filter(option => hasVocabMeaning(option.sense))
+  const selectedId = definitionChoice?.word === word.gurmukhi ? definitionChoice.id : 'study'
+  const selectedDefinition = definitionOptions.find(option => option.id === selectedId)
+  const selectedSense = selectedDefinition ? { ...selectedDefinition.sense, context } : null
+  const existingWord = vocab.find(v => v.word === word.gurmukhi && (v.kind ?? 'word') === 'word')
+  const selectedAlreadySaved = Boolean(existingWord && selectedSense && hasVocabSense(existingWord, selectedSense))
+  const isSaved = selectedAlreadySaved && Boolean(selectedSense && isVocabEntryPersisted(word.gurmukhi, 'word', selectedSense))
+  const sessionOnly = !isSaved && (selectedAlreadySaved || failedWord === word.gurmukhi)
+  const selectDefinition = (id: string) => { setDefinitionChoice({ word: word.gurmukhi, id }); setFailedWord(null) }
+
   const handleSave = () => {
-    if (isSaved) return
+    if (isSaved || !selectedSense) return
     const result = addWord({
       kind: 'word',
       word: word.gurmukhi,
       transliteration: word.transliteration,
-      meaning_en: word.meaning_en,
-      meaning_hi: word.meaning_hi,
-      meaning_pa: word.meaning_pa,
+      ...selectedSense,
       scripture,
       sourceId,
       savedAt: new Date().toISOString(),
@@ -163,7 +195,7 @@ export default function WordPopover({
       testId="study-word-details-sheet"
     >
       <div data-ai-surface="word-popover" data-ai-state="ready" className="contents" lang={uiLang}>
-        <div className="relative overflow-y-auto px-6 pt-6">
+        <header className="study-word-header relative shrink-0 border-b border-sand/15 px-6 py-4 dark:border-dark-text/15">
           <button
             type="button"
             onClick={onClose}
@@ -175,6 +207,8 @@ export default function WordPopover({
           <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-3xl text-ink dark:text-dark-text mb-1 pr-[48px]`}>
             {renderScriptText(word.gurmukhi, scriptMode)}
           </p>
+        </header>
+        <div className="study-word-body min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pt-4">
           {word.transliteration && <p lang="pa-Latn" className="font-sans text-ink/68 dark:text-dark-text/64 text-sm mb-1">{word.transliteration}</p>}
           {englishFallback ? <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mb-1">{referenceCopy.englishFallback}</p> : null}
           {meaning ? (
@@ -183,6 +217,10 @@ export default function WordPopover({
               {actualMeaningLanguage === 'pa' ? renderScriptText(meaning, scriptMode) : meaning}
             </p>
           ) : <p data-testid="word-meaning-status" className="font-sans text-ink/68 dark:text-dark-text/64 text-sm italic mb-1">{referenceCopy.meaningUnavailable(referenceCopy.languages[preferredLanguage])}</p>}
+
+          {definitionOptions.some(option => option.id === 'study') && selectedId !== 'study' ? (
+            <button type="button" onClick={() => selectDefinition('study')} className="interactive-focus min-h-[44px] font-sans text-sm text-gold-dark dark:text-gold-light">{referenceCopy.studyDefinition}</button>
+          ) : null}
 
           {wordFamily ? (
             <section className="study-reader-word-reference mt-5 border-t border-sand/20 dark:border-dark-text/15 py-5">
@@ -289,6 +327,11 @@ export default function WordPopover({
                         {entry.description_hi}
                       </p>
                     )}
+                    {(entry.description?.trim() || entry.description_hi?.trim()) ? <button
+                      type="button" aria-label={`${selectedId === `mahankosh-${entry.id}` ? referenceCopy.selectedDefinition : referenceCopy.useDefinition} · Mahankosh ${entry.id}`} aria-pressed={selectedId === `mahankosh-${entry.id}`}
+                      onClick={() => selectDefinition(`mahankosh-${entry.id}`)}
+                      className="interactive-focus mt-2 min-h-[44px] rounded-lg border border-sand/20 px-3 font-sans text-sm text-ink dark:border-dark-text/20 dark:text-dark-text"
+                    >{selectedId === `mahankosh-${entry.id}` ? referenceCopy.selectedDefinition : referenceCopy.useDefinition}<span className="sr-only"> · Mahankosh {entry.id}</span></button> : null}
                   </article>
                 ))}
               </div>
@@ -337,17 +380,23 @@ export default function WordPopover({
                   <article key={entry.id} className="border-t border-sand/15 pt-3 first:border-t-0 first:pt-0 dark:border-dark-text/15">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg text-ink dark:text-dark-text`}>
-                        {renderScriptText(entry.wordUni || entry.word, scriptMode)}
+                        {renderScriptText(entry.wordUni || word.gurmukhi, scriptMode)}
                       </p>
                     </div>
                     <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink dark:text-dark-text leading-relaxed`}>
-                      {renderScriptText(entry.definitionUni || entry.definition, scriptMode)}
+                      {entry.definitionUni ? renderScriptText(entry.definitionUni, scriptMode) : referenceCopy.missing}
                     </p>
                     {entry.definition && entry.definitionUni !== entry.definition && (
-                      <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2 leading-relaxed">
-                        {entry.definition}
-                      </p>
+                      <details className="mt-3 font-sans text-sm leading-relaxed text-ink/80 dark:text-dark-text/80">
+                        <summary className="interactive-focus min-h-[44px] cursor-pointer py-3">{locale === 'pa' ? 'ਮੂਲ ਸਰੋਤ ਲਿਖਤ (ਪੁਰਾਣੀ ਲਿਪੀ-ਕੋਡਿੰਗ)' : locale === 'hi' ? 'मूल स्रोत पाठ (पुराना एन्कोडिंग)' : 'Original source text (legacy encoding)'}</summary>
+                        <p className="break-words whitespace-pre-wrap">{entry.definition}</p>
+                      </details>
                     )}
+                    {entry.definitionUni?.trim() ? <button
+                      type="button" aria-label={`${selectedId === `kosh-${entry.id}` ? referenceCopy.selectedDefinition : referenceCopy.useDefinition} · BaniDB Kosh ${entry.id}`} aria-pressed={selectedId === `kosh-${entry.id}`}
+                      onClick={() => selectDefinition(`kosh-${entry.id}`)}
+                      className="interactive-focus mt-2 min-h-[44px] rounded-lg border border-sand/20 px-3 font-sans text-sm text-ink dark:border-dark-text/20 dark:text-dark-text"
+                    >{selectedId === `kosh-${entry.id}` ? referenceCopy.selectedDefinition : referenceCopy.useDefinition}<span className="sr-only"> · BaniDB Kosh {entry.id}</span></button> : null}
                   </article>
                 ))}
               </div>
@@ -355,11 +404,13 @@ export default function WordPopover({
           </section>
         </div>
 
-        <div className="flex flex-col gap-2 mt-4 border-t border-sand/10 dark:border-gold/10 px-6 py-4 bg-[rgb(var(--color-surface)/0.95)] dark:bg-dark-card/95">
+        <div className="shrink-0 flex flex-col gap-2 border-t border-sand/10 dark:border-gold/10 px-6 py-4 bg-[rgb(var(--color-surface)/0.95)] dark:bg-dark-card/95">
+          <p role="status" className="font-sans text-sm leading-relaxed text-ink/75 dark:text-dark-text/75">{selectedDefinition ? referenceCopy.savingDefinition(selectedDefinition.sense.definitionSource?.name ?? 'BaniDB') : referenceCopy.chooseDefinition}</p>
           {sessionOnly ? <p role="alert" className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">{referenceCopy.sessionOnly}</p> : null}
           <button
             onClick={handleSave}
-            className={`interactive-focus flex-1 py-3 rounded-lg font-sans font-semibold text-sm min-h-[44px] transition-colors duration-150 flex items-center justify-center gap-2 ${
+            disabled={!selectedSense || isSaved}
+            className={`interactive-focus flex-1 py-3 rounded-lg font-sans font-semibold text-sm min-h-[44px] disabled:opacity-60 transition-colors duration-150 flex items-center justify-center gap-2 ${
               isSaved
                 ? 'bg-gold/20 text-gold-dark dark:text-gold-light'
                 : 'bg-saffron text-white'

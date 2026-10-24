@@ -11,7 +11,7 @@
   "endSourcePage": 429,
   "wordCount": 1339,
   "charCount": 7906,
-  "startPosition": 66996,
+  "startPosition": 66995,
   "pages": [
     {
       "sourcePageNumber": 421,
@@ -500,5 +500,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-062",
-  "nextChapterId": "episode-064"
+  "nextChapterId": "episode-064",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 563,
+      "printPageNumber": 519,
+      "sourceHref": "EPUB/page_563.html",
+      "text": "1 Kahi : the word \"Kahi\" literally meaning a spade, had three interpretations during the medieval times. i) In the Feudal Agricultural terminology, it meant to divide a standing crop by demarcating the field with a spade to determine the share of the landowner and his tenant before harvesting the crop. ii) In the war terminology, it meant to allow one's adversary after negotiated settlement to demarcate an area for his possession and make revenue collection. iii) In another interpretation in the same war terminology, it meant to send a contingent or more contingents of troops to bring provisions for the entrenched forces in a fort. It is in this sense that the Mughals, after surrounding the Banda Singh forces entrenched in a fort, allowed his troops to go out and bring provisions for themselves with the intended purpose of killing them when they went out. 2 Sonchi : Name of an ancient rural sport slightly similar to the game of Kabbadi where a single player enters the other half of the field and challenges his opponents to catch him jointly. It tested the grit and muscular strength of a player when he was overpowered by ten players from the opposite side."
+    }
+  ]
 }

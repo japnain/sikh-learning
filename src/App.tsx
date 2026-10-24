@@ -35,6 +35,8 @@ const VocabPage = lazy(() => import('./pages/Vocab'))
 const PrivacyPage = lazy(() => import('./pages/Privacy'))
 const SupportPage = lazy(() => import('./pages/Support'))
 const LibraryChapterReader = lazy(() => import('./pages/library/LibraryChapterReader'))
+const StoryReader = lazy(() => import('./pages/stories/StoryReader'))
+const StoryDraftPreview = import.meta.env.DEV ? lazy(() => import('./pages/stories/StoryDraftPreview')) : null
 const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
 
 const PUBLIC_DOCUMENT_PATHS = new Set(['/privacy', '/support'])
@@ -196,9 +198,12 @@ function AppShell() {
   const firstRunDestinationRef = useRef(`${location.pathname}${location.search}${location.hash}`)
   const isPublicDocument = isPublicDocumentPath(location.pathname)
   const isLibraryChapterReader = /^\/library\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
+  const isStoryReader = /^\/stories\/[^/]+\/?$/.test(location.pathname)
+    || (import.meta.env.DEV && /^\/stories\/drafts\/[^/]+\/?$/.test(location.pathname))
   const isFocusedReader = location.pathname === '/study'
     || location.pathname.startsWith('/study/')
     || isLibraryChapterReader
+    || isStoryReader
   const isFocusedEditor = /^\/nitnem\/customize\/?$/.test(location.pathname)
   const showPrimaryNavigation = !isPublicDocument && !isFocusedReader && !isFocusedEditor
   const showFirstRun = !isPublicDocument && !hasCompletedOnboarding && presentationMode === 'first-run'
@@ -211,8 +216,8 @@ function AppShell() {
   useAppScrollRestoration({
     mainContentRef,
     enabled: !showFirstRun,
-    routeHandlesOwnHash: isLibraryChapterReader,
-    routeHandlesOwnPosition: scriptureOwnsResumePosition,
+    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader,
+    routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader,
   })
   useRouteDocumentTitle(location.pathname)
   useNitemOfflineCache()
@@ -335,6 +340,10 @@ function AppShell() {
             <Suspense fallback={<RouteFallback />}>
               <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/stories" element={<Navigate to="/banis?collection=stories" replace />} />
+                <Route path="/stories/:storyId" element={<StoryReader />} />
+                {StoryDraftPreview && <Route path="/stories/drafts" element={<StoryDraftPreview />} />}
+                {StoryDraftPreview && <Route path="/stories/drafts/:storyId" element={<StoryDraftPreview />} />}
                 <Route path="/study" element={<StudyPage />} />
                 <Route path="/study/:scriptureId" element={<StudyPage />} />
                 <Route path="/h/:date" element={<HukamnamaShareRedirect />} />

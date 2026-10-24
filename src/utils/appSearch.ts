@@ -1,5 +1,7 @@
 import type { SearchResult } from '../api/banidb'
 import { loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../data/libraryRepository'
+import { loadStoryCatalog } from '../data/storyRepository'
+import { buildLibrarySearchPath, libraryMatchRanges, normalizeLibraryQuery } from './librarySearch'
 import { BANIS, READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
@@ -28,7 +30,7 @@ export interface AppSearchMatch {
   excerpt?: string
   path: string
   score: number
-  kind: 'read-route' | 'library-work' | 'library-chapter'
+  kind: 'read-route' | 'library-work' | 'library-chapter' | 'story'
   library?: {
     shortTitle: string
     chapterCount?: number
@@ -404,7 +406,6 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
   const normalizedQuery = normalizeLibrarySearchText(query)
   if (normalizedQuery.length < 2) return []
 
-  const queryTokens = normalizedQuery.split(' ').filter(Boolean)
   const [catalog, catalogIndex] = await Promise.all([
     loadLibraryWorkCatalog(),
     loadLibrarySearchIndex(),
@@ -434,22 +435,19 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
   const workIndexResults = await Promise.all(catalog.works.map(async work => {
     const searchIndex = await loadLibrarySearchIndex(work.id)
     return (searchIndex.chapters ?? []).flatMap((entry): AppSearchMatch[] => {
-      const normalizedTitle = normalizeLibrarySearchText(entry.title)
-      const normalizedText = normalizeLibrarySearchText(entry.searchText)
-      const exactTitle = normalizedTitle === normalizedQuery
-      const titleContains = normalizedTitle.includes(normalizedQuery)
-      const phraseMatch = normalizedText.includes(normalizedQuery)
-      const tokenMatch = queryTokens.length > 1 && queryTokens.every(token => normalizedText.includes(token))
-      if (!exactTitle && !titleContains && !phraseMatch && !tokenMatch) return []
+      const exactTitle = entry.title.toLowerCase() === normalizeLibraryQuery(query).toLowerCase()
+      const titleContains = libraryMatchRanges(entry.title, query).length > 0
+      const phraseMatch = libraryMatchRanges(entry.searchText, query).length > 0
+      if (!titleContains && !phraseMatch) return []
 
-      const score = exactTitle ? 132 : titleContains ? 112 : phraseMatch ? 78 : 60
+      const score = exactTitle ? 132 : titleContains ? 112 : 78
       const episodeLabel = entry.episodeNumber ? ` · Episode ${entry.episodeNumber}` : ''
       return [{
         key: `library-chapter-${entry.workId}-${entry.chapterId}`,
         label: entry.title,
         detail: `${work.shortTitle} · Volume ${entry.volume}${episodeLabel}`,
         excerpt: getSearchSnippet(entry.searchText, normalizedQuery),
-        path: entry.path,
+        path: buildLibrarySearchPath(entry.workId, entry.chapterId, query),
         score,
         kind: 'library-chapter',
         library: {
@@ -464,6 +462,27 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
   return [...workMatches, ...workIndexResults.flat()]
     .sort((left, right) => right.score - left.score || left.label.localeCompare(right.label))
     .slice(0, 8)
+}
+
+export async function getStorySearchMatches(query: string): Promise<AppSearchMatch[]> {
+  const needle = normalizeLibrarySearchText(query)
+  if (needle.length < 2) return []
+  const catalog = await loadStoryCatalog()
+  const tokens = needle.split(' ').filter(Boolean)
+  return catalog.stories.flatMap((story): AppSearchMatch[] => {
+    const title = normalizeLibrarySearchText(story.title)
+    const text = normalizeLibrarySearchText([
+      story.title, story.subtitle, story.description, story.series?.title,
+      ...story.people, ...story.themes,
+    ].filter(Boolean).join(' '))
+    if (!tokens.every(token => text.includes(token))) return []
+    return [{
+      key: `story-${story.id}`, kind: 'story', label: story.title,
+      detail: [...story.people, ...story.themes].join(' · '), excerpt: story.description,
+      path: `/stories/${encodeURIComponent(story.id)}`,
+      score: title === needle ? 140 : title.includes(needle) ? 110 : 75,
+    }]
+  }).sort((a, b) => b.score - a.score || a.label.localeCompare(b.label)).slice(0, 12)
 }
 
 function normalizeDirectLookupQuery(query: string) {

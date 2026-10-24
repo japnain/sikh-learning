@@ -1,0 +1,230 @@
+{
+  "id": "bhai-mardana",
+  "title": "The Music Beside the Journey",
+  "subtitle": "Bhai Mardana, companion and musician",
+  "description": "Across meals, journeys, captivity and loss, Mardana's rabab sounds beside Guru Nanak. A life remembered through several traditional accounts.",
+  "collectionId": "seva-and-dignity",
+  "themes": [
+    "Companionship",
+    "Music",
+    "Seva",
+    "Dignity"
+  ],
+  "people": [
+    "Bhai Mardana",
+    "Guru Nanak",
+    "Shahzada"
+  ],
+  "artwork": "journey",
+  "wordCount": 1354,
+  "readingMinutes": 7,
+  "revision": 3,
+  "language": "en",
+  "accountType": "Historical profile",
+  "sections": [
+    {
+      "id": "beside-the-singer",
+      "title": "Beside the singer",
+      "startParagraphId": "sultanpur"
+    },
+    {
+      "id": "what-he-carried",
+      "title": "What he carried",
+      "startParagraphId": "hunger"
+    },
+    {
+      "id": "two-villages",
+      "title": "Two villages",
+      "startParagraphId": "unwelcome"
+    },
+    {
+      "id": "a-song-passed-on",
+      "title": "A song passed on",
+      "startParagraphId": "a-song-heard"
+    },
+    {
+      "id": "music-in-captivity",
+      "title": "Music in captivity",
+      "startParagraphId": "saiyidpur"
+    },
+    {
+      "id": "the-place-remained",
+      "title": "The place remained",
+      "startParagraphId": "kartarpur"
+    }
+  ],
+  "paragraphs": [
+    {
+      "id": "sultanpur",
+      "text": "At Sultanpur, before the long journeys for which they would be remembered, Guru Nanak worked in Daulat Khan's stores. He gave from his provisions to people in need and spent his nights singing. Into this household came Mardana from Talwandi, the village from which Nanak himself had come. Mardana brought the skill of a musician. When Nanak sang, he accompanied him on the rabab."
+    },
+    {
+      "id": "the-rabab",
+      "text": "The rabab was a stringed instrument; Macauliffe, writing in 1909, also calls it a rebeck. He places Mardana within a hereditary community of minstrels. Music was therefore work Mardana knew, a practice he could offer. His presence in the account is first heard beside another person's voice, making an accompaniment through which the singing could be shared."
+    },
+    {
+      "id": "shared-evenings",
+      "text": "Others gathered around Nanak at Sultanpur. Some found employment through him. They came together to eat, and at night the singing continued. Before daylight, Nanak went to the Bein; when morning came, he returned to his duties. The account gives the life of that gathering a rhythm of work, food and devotion. Mardana's music belonged within it, before it belonged to the road."
+    },
+    {
+      "id": "companion",
+      "text": "The stories later take the two men through unfamiliar places, among people who welcome them and people who refuse them. Mardana plays, but he also speaks. He asks for food when he is hungry. He questions an answer he does not understand. His companionship is remembered through those exchanges as well as through his instrument."
+    },
+    {
+      "id": "hunger",
+      "text": "After the visit to Lalo, one traditional account follows them into a forest. Hunger overtook them, and Mardana complained. Guru Nanak directed him towards a village where he would be received. Mardana went and found the hospitality he needed. The journey could continue because someone had fed a traveller who arrived at a door."
+    },
+    {
+      "id": "gifts",
+      "text": "Later, in another village, the welcome grew more elaborate. People bowed before Mardana and offered money and clothes. He gathered their presents into bundles and brought them back to the Guru. What had begun as a search for something to eat had become a return laden with possessions."
+    },
+    {
+      "id": "the-bundles",
+      "text": "Guru Nanak laughed when he saw what Mardana carried. Asked about the bundles, Mardana explained that the villagers had given him these things and he had brought them to his master. The Guru answered that they belonged to neither of them. Mardana then asked what he should do with them."
+    },
+    {
+      "id": "letting-go",
+      "text": "The reply was to cast them away, and Mardana obeyed. Macauliffe follows the exchange with a warning about living upon religious offerings without the devotion such a position demands. The episode does not leave Mardana encumbered by the admiration he has received. He is able to put down the bundles and go on."
+    },
+    {
+      "id": "unwelcome",
+      "text": "Elsewhere the welcome was absent. In another traditional episode, a village refused Guru Nanak and Mardana shelter and subjected them to ridicule. They did not remain long. As they left, Mardana asked what the Guru wished for the people who had treated them in that way. Guru Nanak wished that they might stay where they were."
+    },
+    {
+      "id": "welcome",
+      "text": "The next village treated the travellers with care. They stayed for a night and departed the following morning. This time the Guru wished that the inhabitants would disperse. To Mardana the two answers seemed reversed: the people who had refused them were to remain together, while those who had welcomed them were to leave their homes."
+    },
+    {
+      "id": "the-question",
+      "text": "Mardana asked why. Guru Nanak explained that, if the first villagers moved elsewhere, they would carry their harmful conduct with them. The people of the second village could carry their goodness into other places. The difference lay in what would travel with each community."
+    },
+    {
+      "id": "a-song-heard",
+      "text": "In another traditional episode, the two men rested outside Pak Pattan. Shaikh Kamal, a disciple of Shaikh Brahm, was gathering firewood nearby. He saw Guru Nanak and Mardana together. Mardana was playing his rabab and singing a couplet about the one Divine, evoked through the images of a writing tablet, a pen and the writing itself."
+    },
+    {
+      "id": "carried-home",
+      "text": "Kamal came and sat beside them. He asked to hear the couplet again and learned it by heart. Then he picked up the wood he had gathered and returned to his teacher. He carried the verse home with him and repeated it to Shaikh Brahm. Hearing it, the Shaikh went out to welcome Guru Nanak."
+    },
+    {
+      "id": "the-conversation",
+      "text": "The meeting became a conversation in verse about devotion, religious dress and the way to the Divine. Later, when Shaikh Brahm asked to hear praise of the one God, the Guru called upon Mardana to play and recite from Asa ki Var. The musician who had first been heard outside the town was part of the encounter that followed."
+    },
+    {
+      "id": "saiyidpur",
+      "text": "The road also brought them into suffering that hospitality could not resolve. The traditional narrative places Guru Nanak and Mardana at Saiyidpur when Babur's forces attacked. Houses were plundered and people killed. The two men survived, but were taken into captivity. The Guru was assigned to carry loads, while Mardana was made to look after a horse."
+    },
+    {
+      "id": "the-captives",
+      "text": "Mardana saw women passing in distress and asked what had happened to them. Guru Nanak told him to play. Mardana answered that he could not: he was holding the horse. Even here, before the singing began, there was a practical difficulty. His hands were occupied by the work imposed upon a prisoner."
+    },
+    {
+      "id": "release-the-rein",
+      "text": "The Guru instructed him to remember Vahiguru and release the horse. Mardana did so and played in Asa. The hymn in the narrative turned towards the condition of the captives: lives overturned, former comforts gone, people exposed to violence. The music that had accompanied shared evenings at Sultanpur now accompanied a lament among prisoners."
+    },
+    {
+      "id": "the-wonder",
+      "text": "This traditional telling includes wonders. It describes the horse following Mardana without its rein while he played, and the Guru's load remaining above his head without support. Those details belong to the account's portrayal of the Guru. They do not remove the captivity around the two men or the suffering towards which the singing is directed."
+    },
+    {
+      "id": "release",
+      "text": "The story goes on to an encounter with Babur. Offered a favour for himself, Guru Nanak asked for the captives to be released. They would not leave without him. When they were allowed to return together, they found the devastation of the city. Mardana's rabab sounded again as the Guru sang of what had disappeared."
+    },
+    {
+      "id": "kartarpur",
+      "text": "At Kartarpur on the Ravi, the travellers became part of a settled community. Guru Nanak put aside his pilgrim's clothing and taught among the people who gathered there. Hymns continued to be composed and sung. The account names evening prayers and the recitation of Japji before daybreak."
+    },
+    {
+      "id": "illness",
+      "text": "There Mardana, now old and worn by the hardships of travel, fell ill. The narrative turns from the places they had visited to the body that had carried him through them. Guru Nanak asked how he wished that body to be treated after death. Mardana answered that the Guru's instruction had freed him from pride in it."
+    },
+    {
+      "id": "the-tomb",
+      "text": "The Guru then offered to have a tomb made so that Mardana would be remembered. Mardana's response returned to the distinction he had drawn. If he was being released from the body's enclosure, why should he be enclosed again in stone?"
+    },
+    {
+      "id": "the-river",
+      "text": "Macauliffe tells that Mardana died before daylight beside the river, with his attention fixed on the Divine. He describes the Guru and the Sikhs committing the body to the Ravi, reading Sohila and distributing karah prashad. His own footnote acknowledges other Sikh works in which Mardana was cremated. The manner of the final rites has more than one telling."
+    },
+    {
+      "id": "shahzada",
+      "text": "The narrative then turns to Mardana's son, Shahzada. Guru Nanak consoled him and the family. He asked Shahzada to remain with him in his father's capacity, promising him the same honour. The musician's death did not close the place he had held in the community."
+    },
+    {
+      "id": "the-place",
+      "text": "At the beginning, Mardana had come from Talwandi to accompany Nanak's singing. Near the end, his son was invited to continue that work. Between those moments lie the journeys and their questions: what to carry, whom to welcome, how to stand among the suffering, and how to let a body go. The next musician was given a place beside the Guru."
+    }
+  ],
+  "sources": [
+    {
+      "id": "macauliffe-mardana",
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, Volume I — Life of Guru Nanak",
+      "author": "Max Arthur Macauliffe",
+      "year": 1909,
+      "role": "narrative",
+      "workDate": "1909; a later synthesis of Janamsakhi traditions",
+      "edition": "Original Oxford: Clarendon Press edition, 1909; Wikisource transcription with original page links",
+      "reference": "Chapter III, printed p. 33 (Mardana at Sultanpur); chapter IV, pp. 44–45 (hospitality and gifts); chapter VI, pp. 80–81 (two villages); chapter IX, pp. 101–102, 105 (Shaikh Kamal, the song, and Asa ki Var), pp. 111–115 (captivity, release and lament at Saiyidpur); chapter XV, pp. 180–182 and printed p. 182, footnote 1 (Wikisource endnote 388) (Kartarpur, death, Shahzada and the variant final rites).",
+      "locator": {
+        "kind": "page",
+        "value": "33; 44–45; 80–81; 101–102, 105; 111–115; 180–182, printed p. 182 n. 1 (Wikisource endnote 388)"
+      },
+      "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#33"
+    }
+  ],
+  "accountNote": "A profile assembled from several traditional episodes in Macauliffe's 1909 Life of Guru Nanak. Section breaks distinguish separate episodes; they do not establish a continuous itinerary or independent chronology. The captivity narrative's miraculous elements remain attributed to the tradition. Macauliffe's account gives river disposal of Mardana's body and notes a cremation variant; neither is silently treated as the sole account. This is not independently verified history or a transcript of historical dialogue.",
+  "editorialNote": "Original English draft for Naamras based on the identified 1909 passages. Dialogue is indirect; no additional scenes, private thoughts or exact journey dates have been supplied. The profile does not make a claim about Mardana's conversion or authorship of the saloks associated with his name. Guru Nanak's hymns are described in prose, not newly translated or quoted as Gurbani. Independent English and Sikh history/Gurmat review are pending.",
+  "editorial": {
+    "credit": "Naamras editorial draft",
+    "historyReview": {
+      "status": "pending"
+    },
+    "englishReview": {
+      "status": "pending"
+    }
+  },
+  "rights": {
+    "status": "original-retelling",
+    "basis": "public-domain-source",
+    "note": "New English prose based on the original 1909 Macauliffe edition. No modern translation or encyclopedia prose has been copied. This draft's review status is recorded separately from its source rights.",
+    "records": [
+      {
+        "id": "macauliffe-original",
+        "material": "source-text",
+        "basis": "public-domain",
+        "sourceIds": [
+          "macauliffe-mardana"
+        ],
+        "evidence": "Narrative basis is Macauliffe's original 1909 Clarendon Press work, not a modern edited translation or reprint's added material. Selected printed-page transclusions were inspected on Wikisource.",
+        "url": "https://en.wikisource.org/wiki/The_Sikh_Religion/Volume_1/Life_of_Guru_Nanak#33",
+        "attribution": "Max Arthur Macauliffe, The Sikh Religion, Volume I (1909)."
+      },
+      {
+        "id": "naamras-prose",
+        "material": "retelling",
+        "basis": "original",
+        "evidence": "Original Naamras English draft prepared 23 October 2026 from the source passages listed in the research dossier; no third-party English adaptation reproduced.",
+        "attribution": "Naamras editorial draft"
+      }
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Rabab",
+      "meaning": "A stringed instrument associated with Bhai Mardana's accompaniment of Guru Nanak's singing."
+    },
+    {
+      "term": "Asa",
+      "meaning": "A musical measure used for compositions in the Sikh scriptural tradition."
+    },
+    {
+      "term": "Karah prashad",
+      "meaning": "A sweet preparation distributed as a shared blessing in Sikh gatherings."
+    },
+    {
+      "term": "Sohila",
+      "meaning": "A collection of hymns recited in Sikh daily prayer and at other occasions, including final rites."
+    }
+  ],
+  "metadataRevision": 1
+}

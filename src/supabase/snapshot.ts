@@ -11,7 +11,7 @@ import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import { readStoredThemeMode, useThemeStore } from '../store/theme'
+import { applyThemeToDocument, readStoredThemeMode, useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
 import { getNaamrasDeviceId } from './device'
 import { buildBookmarkNaturalKey, buildFavoriteNaturalKey } from './savedItemKeys'
@@ -124,8 +124,9 @@ function writeSnapshotMetadata(metadata: SnapshotMetadataMap) {
   if (!canUseStorage()) return false
 
   try {
-    globalThis.localStorage.setItem(SNAPSHOT_METADATA_STORAGE_KEY, JSON.stringify(metadata))
-    return true
+    const encoded = JSON.stringify(metadata)
+    globalThis.localStorage.setItem(SNAPSHOT_METADATA_STORAGE_KEY, encoded)
+    return globalThis.localStorage.getItem(SNAPSHOT_METADATA_STORAGE_KEY) === encoded
   } catch {
     // Local reading remains usable when browser storage is under pressure.
     return false
@@ -196,6 +197,10 @@ function buildVocabNaturalKey(record: Pick<VocabEntry, 'kind' | 'word'>) {
   return `${record.kind ?? 'word'}:${normalizeVocabWord(record.word)}`
 }
 
+function profileSemanticPayload(profile: Pick<CloudProfileRecord, 'locale' | 'darkMode' | 'themeMode' | 'reader' | 'onboarding'>) {
+  return { locale: profile.locale, darkMode: profile.darkMode, themeMode: profile.themeMode, reader: profile.reader, onboarding: profile.onboarding }
+}
+
 function extractProfileRecord(
   metadata: SnapshotMetadataMap,
   now: string
@@ -229,13 +234,7 @@ function extractProfileRecord(
     learningGoal: onboarding.learningGoal,
     presentationMode: onboarding.presentationMode,
   }
-  const semanticPayload = {
-    locale,
-    darkMode,
-    themeMode,
-    reader,
-    onboarding: onboardingState,
-  }
+  const semanticPayload = profileSemanticPayload({ locale, darkMode, themeMode, reader, onboarding: onboardingState })
   const key = metadataKey('profile', 'profile')
   const clock = resolveRecordClock(metadata, key, semanticPayload, now)
   const record: CloudProfileRecord = {
@@ -610,12 +609,7 @@ export function exportLocalSnapshot(): CloudLocalSnapshot {
 
 function semanticRecordPayload(record: SnapshotBackedRecord) {
   if ('locale' in record) {
-    return {
-      locale: record.locale,
-      darkMode: record.darkMode,
-      reader: record.reader,
-      onboarding: record.onboarding,
-    }
+    return profileSemanticPayload(record)
   }
 
   if ('scope' in record) return record.payload
@@ -796,17 +790,71 @@ function applyLearningProgress(records: CloudLearningProgressRecord[] | undefine
   }
 }
 
-export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undefined) {
+export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undefined, acknowledgedSnapshot = snapshot) {
   if (!snapshot) return
   if (snapshot.version !== CLOUD_SNAPSHOT_VERSION) {
     throw new Error(`Unsupported cloud snapshot version: ${String(snapshot.version)}`)
   }
 
-  applyProfileRecord(snapshot.profile)
-  applySavedItems(snapshot.savedItems)
-  applyVocabEntries(snapshot.vocabEntries)
-  applyLearningProgress(snapshot.learningProgress)
-  if (!syncRemoteSnapshotMetadata(snapshot)) {
-    throw new Error('Cloud snapshot metadata could not be persisted on this device.')
+  type Store = { getState: () => unknown; setState: (state: unknown, replace: true) => void; persist?: { getOptions: () => { name: string; version?: number; partialize?: (state: unknown) => unknown } } }
+  const stores = [useLocaleStore, useThemeStore, useLanguageStore, useSundarGutkaLengthStore, useOnboardingStore,
+    useBookmarksStore, useFavoritesStore, useVocabStore, useProgressStore, useReadingProgressStore,
+    useNitemStore, useNitnemHistoryStore, useActivityEventsStore] as unknown as Store[]
+  const originalStates = stores.map(store => store.getState())
+  const keys = [...stores.flatMap(store => store.persist ? [store.persist.getOptions().name] : []),
+    'sikh-bookmarks', 'sikh-favorites', SNAPSHOT_METADATA_STORAGE_KEY]
+  const previous = new Map(keys.map(key => [key, localStorage.getItem(key)]))
+  try {
+    applyProfileRecord(snapshot.profile)
+    applySavedItems(snapshot.savedItems)
+    applyVocabEntries(snapshot.vocabEntries)
+    applyLearningProgress(snapshot.learningProgress)
+    // Verify changed persisted stores as well as explicit saved-item writers.
+    // Browser wrappers can silently discard writes without throwing.
+    stores.forEach((store, index) => {
+      if (!store.persist || store.getState() === originalStates[index]) return
+      const options = store.persist.getOptions()
+      const state = options.partialize ? options.partialize(store.getState()) : store.getState()
+      if (localStorage.getItem(options.name) !== JSON.stringify({ state, version: options.version ?? 0 })) {
+        throw new Error('Cloud data could not be persisted on this device.')
+      }
+    })
+    if (!syncRemoteSnapshotMetadata(acknowledgedSnapshot ?? snapshot)) {
+      throw new Error('Cloud snapshot metadata could not be persisted on this device.')
+    }
+  } catch (error) {
+    stores.forEach((store, index) => { try { store.setState(originalStates[index], true) } catch { /* Restore every store even while writes are blocked. */ } })
+    applyThemeToDocument(useThemeStore.getState().dark)
+    let rollbackFailed = false
+    for (const [key, raw] of previous) {
+      try {
+        if (localStorage.getItem(key) === raw) continue
+        if (raw === null) localStorage.removeItem(key)
+        else localStorage.setItem(key, raw)
+        if (localStorage.getItem(key) !== raw) rollbackFailed = true
+      } catch { rollbackFailed = true }
+    }
+    if (rollbackFailed) throw new Error('cloud-rollback-failed', { cause: error })
+    throw error
+  }
+}
+
+
+/** Preserve only edits made after this request's export, while still accepting other remote work. */
+export function reconcileRemoteSnapshotWithLocalChanges(remote: CloudRemoteSnapshot, sent: CloudLocalSnapshot, current: CloudLocalSnapshot): CloudRemoteSnapshot {
+  const changed = (before: SnapshotBackedRecord | undefined, after: SnapshotBackedRecord) => !before
+    || serializeMetadataPayload(semanticRecordPayload(before)) !== serializeMetadataPayload(semanticRecordPayload(after))
+  const reconcile = <T extends SnapshotBackedRecord>(received: T[] | undefined, before: T[], after: T[], key: (record: T) => string) => {
+    const result = new Map((received ?? []).map(record => [key(record), record]))
+    const previous = new Map(before.map(record => [key(record), record]))
+    for (const record of after) if (changed(previous.get(key(record)), record)) result.set(key(record), record)
+    return [...result.values()]
+  }
+  return {
+    ...remote,
+    profile: changed(sent.profile, current.profile) ? current.profile : remote.profile,
+    savedItems: reconcile(remote.savedItems, sent.savedItems, current.savedItems, record => record.naturalKey),
+    vocabEntries: reconcile(remote.vocabEntries, sent.vocabEntries, current.vocabEntries, record => record.naturalKey),
+    learningProgress: reconcile(remote.learningProgress, sent.learningProgress, current.learningProgress, record => record.scope),
   }
 }

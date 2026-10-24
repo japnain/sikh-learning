@@ -11,7 +11,7 @@
   "endSourcePage": 323,
   "wordCount": 3059,
   "charCount": 17930,
-  "startPosition": 46377,
+  "startPosition": 46376,
   "pages": [
     {
       "sourcePageNumber": 309,
@@ -1032,5 +1032,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-047",
-  "nextChapterId": "episode-049"
+  "nextChapterId": "episode-049",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 557,
+      "printPageNumber": 513,
+      "sourceHref": "EPUB/page_557.html",
+      "text": "1 Kahloor : One of seven Hill Principalities known as \"Sapat Dhar\" around Anandpur Sahib. 2 Kiratpur : A small place on the bank of Satluj which was established by the sixth Sikh Guru, Guru Hargobind after purchasing the land from the king Tara Chand, the Hill chief of Kahloor in 1683 through the services of Baba Gurditta. Earlier, Guru Nanak had blessed this place when he met Sain Budhan Shah here in the jungle. 3 Anandpur : The birth place of Khalsa Panth where the Tenth Sikh Guru, Guru Gobind Singh initiated the Khalsa by administering Khande-ki-Pahul to the five beloved Sikhs and made them Khalsa Singhs. Earlier, Guru Tegh Bahadur had established this city near the river Satluj and foot hills of Shivalik range of mountains by purchasing the land in the territory of village Makhowal in 1666. It is now situated in District Ropar and Gurdwara Sri Keshgarh Sahib is known as one of five Sikh Takhts here. 4 Bilaspur : A name of a Hill principality. 5 Seven Hill Principalities or Sapat Dhar : The Seven Hill Principalities around Anandpur Sahib namely Kahloor, Katoch, Jaiswal, Jasrot, Himdoor, Dadhwal and Srinagar (Garhwal). They remained hostile and inimical to Guru Gobind Singh. 6 Mian: Name of one of the races among the Hill Rajputs. 7 Angad : A devout follower of Lord Rama who fought single handed against Ravana's soldiers in the court of Ravana. 8 Raj a Janak : The father of Sita, wife of Lord Rama, and the king of Mithila. The emperor Janak lived a life of extreme austerity even while being a king. 9 Shiva's Bow or Shiva's Dhanukh: The Bow of Lord Shiva which was kept in king Janak's custody. Lord Rama broke this Bow before his marriage with Sita, thus fulfilling the condition of being eligible for Sita's hand. 10 Kans : The king of Mathura, the son of Raja Ugarsen, born out of the mating of Ugrasen's wife with the ogre Darmil. Kans was the maternal uncle of Lord Krishna and enemy of Krishna. He usurped the throne from his stepfather ugrasen with the help of his father-in-law king Jarasandh, the king of Magadh. After hearing a prediction that he would be killed by the son of his own sister. He arrested his sister and her husband and put them in jail. He killed their seven offsprings. However, the 8th offspring Lord Krishna was saved because he was exchanged with the female child of Yashoda, both children being born at the same time. Later on, Lord Krishna killed Kansa by dragging him from his hair and restored the kingship of Mathura to his maternal grandfather Ugrasen."
+    }
+  ]
 }

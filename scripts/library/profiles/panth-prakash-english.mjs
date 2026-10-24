@@ -12,7 +12,7 @@ import {
 } from '../lib/curated-epub.mjs'
 
 const WORK_ID = 'panth-prakash-english'
-const PROFILE_VERSION = 'panth-prakash-english-v6'
+const PROFILE_VERSION = 'panth-prakash-english-v7'
 const MAX_BLOCK_CHARACTERS = 560
 const SOURCE_TOC_TITLE_FALLBACKS = new Map([
   [3, 'First Sikh Guni'],
@@ -89,6 +89,59 @@ function pageFiles(epub) {
     .sort((a, b) => a.sourcePageNumber - b.sourcePageNumber)
 }
 
+// Only exact source-page corrections corroborated against the same printed edition.
+// Keep an audit trail; never apply blanket dictionary replacements to this text.
+const VERIFIED_CORRECTIONS = [{
+  publicationId: 'volume-1', sourcePageNumber: 51,
+  original: 'between the S ikh Gurus and the Mughals',
+  replacement: 'between the Sikh Gurus and the Mughals',
+  evidence: 'Kulwant Singh, Volume I (2006), printed p. 7, verse 15; the PDF text reads Sikh without an internal space.',
+  sourceUrl: 'https://library.gurmat.info/download/sri-gur-panth-prakash-volume-1-history-of-the-10-gurus-rattan-singh-bhangoo-translation-kulwant-singh.pdf#page=52',
+}]
+
+function applyVerifiedCorrections(text, publicationId, sourcePageNumber) {
+  for (const correction of VERIFIED_CORRECTIONS) {
+    if (correction.publicationId !== publicationId || correction.sourcePageNumber !== sourcePageNumber) continue
+    if (!text.includes(correction.original)) throw new Error(`Correction source changed at ${publicationId}:${sourcePageNumber}`)
+    text = text.replace(correction.original, correction.replacement)
+  }
+  return text
+}
+
+// The supplied first volume has an explicit References appendix. Preserve its
+// episode-level partitions and original OCR prose without guessing note numbers.
+function extractSourceNotes(epubPath) {
+  const notesByEpisode = new Map()
+  let currentEpisodes = []
+  let lastEpisode = 0
+  for (let sourcePageNumber = 536; sourcePageNumber <= 570; sourcePageNumber += 1) {
+    const sourceHref = `EPUB/page_${sourcePageNumber}.html`
+    const text = normalizeWhitespace(htmlToText(readEpubFile(epubPath, sourceHref)))
+      .replace(/^(?:\d+\s+)?Sri Gur Panth Prakash(?:\s+\d+)?\s*/, '')
+    const append = fragment => {
+      if (!fragment.trim()) return
+      for (const episode of currentEpisodes) {
+        const notes = notesByEpisode.get(episode) ?? []
+        notes.push({ sourcePageNumber, printPageNumber: sourcePageNumber - 44, sourceHref, text: fragment.trim() })
+        notesByEpisode.set(episode, notes)
+      }
+    }
+    let cursor = 0
+    for (const match of text.matchAll(/\bEpisode\s+(\d+)(?:\s*&\s*(\d+))?\b/g)) {
+      const episode = Number(match[1])
+      // An inline cross-reference to an earlier episode is not a new heading.
+      if (episode <= lastEpisode || episode > 81) continue
+      append(text.slice(cursor, match.index))
+      currentEpisodes = match[2] ? [episode, Number(match[2])] : [episode]
+      lastEpisode = currentEpisodes.at(-1)
+      cursor = match.index + match[0].length
+    }
+    append(text.slice(cursor))
+  }
+  if (notesByEpisode.size !== 80 || notesByEpisode.has(39)) throw new Error('Volume I reference headings changed; review appendix extraction.')
+  return notesByEpisode
+}
+
 function extractPublication(epubPath, profile) {
   const epub = inspectEpub(epubPath)
   const sourcePages = pageFiles(epub)
@@ -99,7 +152,7 @@ function extractPublication(epubPath, profile) {
     const sourcePage = sourcePageByNumber.get(sourcePageNumber)
     if (!sourcePage) throw new Error(`${profile.id} is missing required readable page ${sourcePageNumber}`)
     const html = readEpubFile(epubPath, sourcePage.fileName)
-    const text = stripRunningHeader(htmlToText(html))
+    const text = applyVerifiedCorrections(stripRunningHeader(htmlToText(html)), profile.id, sourcePageNumber)
     if (!text) throw new Error(`${profile.id} readable page ${sourcePageNumber} has no text`)
     pages.push({
       publicationId: profile.id,
@@ -414,6 +467,11 @@ export function importPanthPrakashEnglish({ vol1Epub, vol2Epub, libraryRoot = 'p
   const extracted = PUBLICATION_PROFILES.map((profile, index) => extractPublication(sourcePaths[index], profile))
   const episodeDrafts = splitEpisodes(extracted)
   const chapters = buildChapters(episodeDrafts)
+  const sourceNotes = extractSourceNotes(sourcePaths[0])
+  for (const chapter of chapters) {
+    const notes = sourceNotes.get(chapter.episodeNumber)
+    if (notes) chapter.sourceNotes = notes
+  }
   const workRoot = path.join(resolveProjectPath(libraryRoot), 'works', WORK_ID)
 
   const publications = extracted.map((publication, index) => {
@@ -460,7 +518,9 @@ export function importPanthPrakashEnglish({ vol1Epub, vol2Epub, libraryRoot = 'p
     ],
     publications,
     editionNote: 'Reader edition generated from the English-facing pages in the supplied bilingual EPUB volumes. Episode boundaries come from the numbered headings in the body text.',
-    sourceQualityNote: 'The source EPUBs were generated with automated character recognition and contain OCR errors. This reader preserves the source wording, removes running headers, and excludes the corrupted source-language/transliteration pages from the default English reading sequence.',
+    sourceQualityNote: 'The source EPUBs contain OCR errors. One spacing repair is documented in provenance; other wording is preserved. Volume I appendix references are available by episode as unreviewed source OCR, without verified individual note links. Its appendix omits an Episode 39 heading. No references appendix is present in the supplied Volume II EPUB. Running headers and corrupted facing-page transliteration are excluded from the reading sequence.',
+    historicalContext: 'Rattan Singh Bhangoo’s nineteenth-century Punjabi verse chronicle traces Sikh history from Guru Nanak to the rise of the eighteenth-century misls. It draws on earlier Sikh writings and traditions passed through the author’s family, and presents the Khalsa’s emergence as a political community. Read it as an influential historical account with its own perspective: remembered traditions and the author’s explanations of events should be distinguished from contemporary documentation. This reader contains Kulwant Singh’s English translation, not the original Punjabi text.',
+    historicalContextSources: [{ title: 'Encyclopaedia of Sikhism — Prachin Panth Prakash (Punjabi University)', url: 'https://eos.learnpunjabi.org/PRACHIN%20PANTH%20PRAKASH.html' }],
     totalPages: rawSourcePages,
     totalSourcePages: rawSourcePages,
     readablePages: readablePageKeys.size,
@@ -529,6 +589,7 @@ export function importPanthPrakashEnglish({ vol1Epub, vol2Epub, libraryRoot = 'p
         { publicationId: 'volume-2', sourcePageNumber: 511, episodes: [131, 132] },
       ],
     },
+    sourceNotes: { episodesWithAppendix: sourceNotes.size, sourcePageRange: [536, 570], missingVolumeOneHeadings: [39], volumeTwoAppendixAvailable: false, individuallyMappedReferences: false },
     semantics: {
       totalBlocks: allBlocks.length,
       headings: allBlocks.filter(block => block.type === 'heading').length,
@@ -575,19 +636,23 @@ export function importPanthPrakashEnglish({ vol1Epub, vol2Epub, libraryRoot = 'p
       rules: [
         'Volume I retains odd-numbered EPUB source pages 47 through 535 inclusive.',
         'Volume II retains odd-numbered EPUB source pages 57 through 839 inclusive.',
-        'Preliminary matter, references, indexes, and corrupted source-language/transliteration facing pages are excluded from the default reading sequence.',
+        'Preliminary matter, indexes, and corrupted source-language/transliteration facing pages are excluded from the default reading sequence.',
+        'Volume I reference appendix source pages 536–570 are preserved separately by explicit episode heading; individual reference-number mapping is not claimed. No Episode 39 heading is present. Volume II has no supplied appendix.',
         'Episodes split on sequential in-body Episode 1 through Episode 169 headings; repeated “contd.” headings remain inside their episode.',
       ],
     },
     transformations: [
       'HTML tags and executable markup removed.',
       'Whitespace normalized and running Sri Gur Panth Prakash page headers removed.',
-      'Source wording and OCR spellings retained without silent correction.',
+      'Source wording and OCR spellings retained except exact corrections recorded below.',
+      'Volume I appendix is partitioned by increasing episode headings, retaining source page locators and OCR text. Notes do not change narrative reading positions or word counts.',
       'Meter labels, numbered verses, headings, notes, and residual prose represented as semantic blocks.',
       'Long blocks split at punctuation or whitespace for readable layout without changing word order.',
       'Redundant “Episode about/of” wording removed from display titles; body text remains unchanged.',
       'Episode 3 has no descriptive heading in the body; its display title is taken from the source volume’s contents page.',
     ],
+    verifiedCorrections: VERIFIED_CORRECTIONS,
+    unresolvedSourceArtifacts: [{ publicationId: 'volume-1', sourcePageNumber: 49, text: "Delhi Ruler's Version44", status: 'present-in-printed-source', evidence: 'The same-edition PDF, printed p. 5, also contains Version44. Retained rather than guessing what the number means.', sourceUrl: 'https://library.gurmat.info/download/sri-gur-panth-prakash-volume-1-history-of-the-10-gurus-rattan-singh-bhangoo-translation-kulwant-singh.pdf#page=50' }],
     locatorPolicy: 'Chapter startPosition is the one-based cumulative word position. Page locators retain publication ID, EPUB source href, source page number, and printed page number.',
   }
 

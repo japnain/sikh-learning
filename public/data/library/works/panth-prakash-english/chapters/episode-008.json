@@ -11,7 +11,7 @@
   "endSourcePage": 95,
   "wordCount": 385,
   "charCount": 2306,
-  "startPosition": 7620,
+  "startPosition": 7619,
   "pages": [
     {
       "sourcePageNumber": 91,
@@ -196,5 +196,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-007",
-  "nextChapterId": "episode-009"
+  "nextChapterId": "episode-009",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 541,
+      "printPageNumber": 497,
+      "sourceHref": "EPUB/page_541.html",
+      "text": "1 Maths : The centers of Hindu religion established by Adi Shankracharya in the 9th century. 2 Shivling or Ling Pujak : The phallic symbol/idol cast in stone and associated with Shiva representing the male energy mating with the female — mainly a symbol of human procreation and fertility."
+    }
+  ]
 }

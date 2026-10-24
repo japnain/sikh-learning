@@ -11,7 +11,7 @@
   "endSourcePage": 255,
   "wordCount": 1323,
   "charCount": 7744,
-  "startPosition": 35778,
+  "startPosition": 35777,
   "pages": [
     {
       "sourcePageNumber": 249,
@@ -501,5 +501,13 @@
     "fileName": "vol1.epub"
   },
   "previousChapterId": "episode-031",
-  "nextChapterId": "episode-033"
+  "nextChapterId": "episode-033",
+  "sourceNotes": [
+    {
+      "sourcePageNumber": 552,
+      "printPageNumber": 508,
+      "sourceHref": "EPUB/page_552.html",
+      "text": "1 Bangar : Southern-west part of arid zone of Punjab from Narnaul in the South up to Kaithal in the North, now part of Haryana."
+    }
+  ]
 }
