@@ -136,6 +136,32 @@ function createBaniVerse(baniDbId: number) {
         existsTaksal: 1,
         existsBuddhaDal: 1,
       },
+      // The browser length flow requests medium before switching to short.
+      // Identical bands collapse to short and the exact-length guard correctly
+      // rejects that result for medium, so this fixture needs distinct content.
+      ...(baniDbId === 21 ? [
+        {
+          text: 'ਸੋ ਦਰੁ ਤੇਰਾ ਕੇਹਾ ਸੋ ਘਰੁ ਕੇਹਾ ਜਿਤੁ ਬਹਿ ਸਰਬ ਸਮਾਲੇ ॥',
+          transliteration: 'so dhar teraa kehaa so ghar kehaa jit beh sarab samaale ||',
+          translation: 'Where is Your door, and where is Your home, where You sit and take care of all?',
+        },
+        {
+          text: 'ਹਰਿ ਕੇ ਸੰਤ ਜਨਾ ਕੀ ਹਉ ਬਲਿਹਾਰੀ ॥',
+          transliteration: 'har ke sa(n)t janaa kee hau balihaaree ||',
+          translation: 'I am a sacrifice to the humble Saints of the Lord.',
+        },
+        {
+          text: 'ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ ਸਤਿਗੁਰੂ ਮੈ ਪਾਇਆ ॥',
+          transliteration: 'ana(n)dh bhiaa meree maae satiguroo mai paiaa ||',
+          translation: 'I am in ecstasy, O my mother, for I have found my True Guru.',
+        },
+      ].map((line, index) => ({
+        ...createScriptureVerse({ ...line, verseId: baniDbId * 100 + index + 3, shabadId: baniDbId, pageNo, source }),
+        existsSGPC: 0,
+        existsMedium: index === 0 ? 1 : 0,
+        existsTaksal: index < 2 ? 1 : 0,
+        existsBuddhaDal: 1,
+      })) : []),
     ],
   }
 }
