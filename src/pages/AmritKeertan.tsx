@@ -469,7 +469,7 @@ export default function AmritKeertan() {
                     <IconArrowLeft size={15} />
                     {t("Previous section")}</Link>
                 ) : (
-                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text/68 dark:border-dark-text/10 dark:bg-white/[0.035] dark:text-dark-text/64">
+                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text-muted dark:border-dark-text/10 dark:bg-white/[0.035]">
                     {t("Previous section")}</span>
                 )}
 
@@ -481,7 +481,7 @@ export default function AmritKeertan() {
                     {t("Next section")}<IconArrowRight size={15} />
                   </Link>
                 ) : (
-                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text/68 dark:border-dark-text/10 dark:bg-white/[0.035] dark:text-dark-text/64">
+                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text-muted dark:border-dark-text/10 dark:bg-white/[0.035]">
                     {t("Next section")}</span>
                 )}
               </div>

@@ -49,7 +49,7 @@ const SHARE_COMPOSER_MODES = [
   { id: 'share-phone-light', viewport: { width: 390, height: 844 }, dark: false, textScale: 1 },
   { id: 'share-phone-dark', viewport: { width: 390, height: 844 }, dark: true, textScale: 1 },
   { id: 'share-reflow-200', viewport: { width: 320, height: 568 }, dark: false, textScale: 2 },
-  { id: 'share-reader-dock', viewport: { width: 390, height: 844 }, dark: true, textScale: 1, deep: true, hasTouch: true },
+  { id: 'share-scrolled-reader', viewport: { width: 390, height: 844 }, dark: true, textScale: 1, deep: true, hasTouch: true },
 ]
 function delay(duration) {
   return new Promise(resolve => setTimeout(resolve, duration))
@@ -160,7 +160,7 @@ async function scanPage(page) {
 async function createAuditContext(browser, mode) {
   const context = await browser.newContext({
     viewport: mode.viewport,
-    // The dock requires the scrolling touch header; a narrow desktop viewport keeps the fixed toolbar.
+    // Exercise the persistent header with touch as well as desktop input.
     hasTouch: Boolean(mode.hasTouch),
     colorScheme: mode.dark ? 'dark' : 'light',
     reducedMotion: 'reduce',
@@ -351,17 +351,24 @@ async function scanShareComposerMode(browser, mode) {
     const reducedMotion = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
     if (!reducedMotion) throw new Error('The share composer was not tested with reduced motion enabled.')
 
+    const readerHeader = page.getByTestId('study-reader-topbar')
+    const toolsTrigger = readerHeader.getByRole('button', { name: 'Reading tools', exact: true })
     if (mode.deep) {
       await page.mouse.move(mode.viewport.width / 2, mode.viewport.height / 2)
       await page.mouse.wheel(0, 900)
-      await page.getByRole('button', { name: 'Show reader controls', exact: true }).click()
-      await page.getByTestId('reader-dock').getByRole('button', { name: 'More', exact: true }).waitFor({ state: 'visible' })
+      await page.waitForFunction(() => window.scrollY >= 600, undefined, { timeout: 5_000 })
+      // Check geometry before clicking: Playwright could otherwise scroll a
+      // nonpersistent header back into view and conceal an inaccessible control.
+      for (const [locator, label] of [[readerHeader, 'Persistent reader header'], [toolsTrigger, 'Reading tools']]) {
+        const box = await locator.boundingBox()
+        if (!box || box.x < -1 || box.y < -1
+          || box.x + box.width > mode.viewport.width + 1
+          || box.y + box.height > mode.viewport.height + 1) {
+          throw new Error(`${label} did not remain inside the viewport after scrolling the reading.`)
+        }
+      }
     }
 
-    const dockTools = page.getByTestId('reader-dock').getByRole('button', { name: 'More', exact: true })
-    const toolsTrigger = await dockTools.isVisible()
-      ? dockTools
-      : page.getByRole('button', { name: 'Reading tools', exact: true })
     await toolsTrigger.evaluate(element => element.setAttribute('data-a11y-focus-return', 'reader-tools'))
     await toolsTrigger.click()
     const toolsDialog = page.getByRole('dialog', { name: 'Reading tools', exact: true })
