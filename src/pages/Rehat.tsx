@@ -15,7 +15,7 @@ const EMPTY_REHAT_CHAPTERS: RehatChapterSummary[] = []
 
 function MetadataChip({ children }: { children: ReactNode }) {
   return (
-    <span className="rounded-full border border-sand/15 bg-parchment-low px-2.5 py-1 font-sans text-[11px] font-medium text-ink/70 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/80">
+    <span className="rounded-full border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface-muted))] px-2.5 py-1 font-sans text-[13px] font-medium text-text/70 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/80">
       {children}
     </span>
   )
@@ -73,18 +73,18 @@ function Breadcrumbs({
   const { t } = useCompanionCopy()
   return (
     <nav
-      className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-ink/68 dark:text-dark-text/75"
+      className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-text/68 dark:text-dark-text/75"
       aria-label={t("Breadcrumb")}
       data-testid="rehat-breadcrumbs"
     >
-      <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
+      <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
         {t("Read")}</Link>
       <span aria-hidden="true">/</span>
       {rehat ? (
-        <Link to="/banis/rehat" className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light">
+        <Link to="/banis/rehat" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
           {t("Rehat")}</Link>
       ) : (
-        <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">{t("Rehat")}</span>
+        <span className="rounded-full px-2 py-1 text-text/70 dark:text-dark-text/80">{t("Rehat")}</span>
       )}
       {rehat ? (
         <>
@@ -92,19 +92,19 @@ function Breadcrumbs({
           {chapter ? (
             <Link
               to={`/banis/rehat/${rehat.rehatId}`}
-              className="interactive-focus rounded-full px-2 py-1 text-gold-dark dark:text-gold-light"
+              className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent"
             >
               {rehat.rehatName}
             </Link>
           ) : (
-            <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">{rehat.rehatName}</span>
+            <span className="rounded-full px-2 py-1 text-text/70 dark:text-dark-text/80">{rehat.rehatName}</span>
           )}
         </>
       ) : null}
       {chapter ? (
         <>
           <span aria-hidden="true">/</span>
-          <span className="rounded-full px-2 py-1 text-ink/70 dark:text-dark-text/80">{chapter.chapterName}</span>
+          <span className="rounded-full px-2 py-1 text-text/70 dark:text-dark-text/80">{chapter.chapterName}</span>
         </>
       ) : null}
     </nav>
@@ -128,7 +128,7 @@ function SearchField({
 }) {
   return (
     <div className="relative mt-4">
-      <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/64" />
+      <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text/30 dark:text-dark-text/64" />
       <input
         id={id}
         name={id}
@@ -144,7 +144,7 @@ function SearchField({
         value={value}
         onChange={event => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-sand/15 bg-parchment-card py-3 pl-9 pr-4 font-sans text-sm text-ink outline-none transition-colors duration-300 placeholder:text-ink/68 focus:border-saffron/40 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text dark:placeholder:text-dark-text/50"
+        className="w-full rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] py-3 pl-9 pr-4 font-sans text-sm text-text outline-none transition-colors duration-300 placeholder:text-text/68 focus:border-saffron/40 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text dark:placeholder:text-dark-text/50"
         data-testid={testId}
       />
     </div>
@@ -169,12 +169,12 @@ function RehatSectionNavCard({
   if (!chapter) {
     return (
       <div
-        className="flex min-h-[72px] items-center gap-3 rounded-lg border border-dashed border-sand/15 bg-parchment-low/70 px-4 py-3 text-ink/68 dark:border-dark-text/15 dark:bg-white/[0.035] dark:text-dark-text/64"
+        className="flex min-h-[72px] items-center gap-3 rounded-lg border border-dashed border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface-muted))]/70 px-4 py-3 text-text/68 dark:border-dark-text/15 dark:bg-white/[0.035] dark:text-dark-text/64"
         aria-disabled="true"
       >
         <span className="icon-surface h-8 w-8 shrink-0 opacity-55">{icon}</span>
         <div className="min-w-0">
-          <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em]">{label}</p>
+          <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.04em]">{label}</p>
           <p className="mt-1 font-sans text-sm font-medium">{emptyLabel}</p>
         </div>
       </div>
@@ -185,18 +185,18 @@ function RehatSectionNavCard({
     <Link
       to={`/banis/rehat/${rehatId}/chapters/${chapter.chapterId}`}
       aria-label={`${label}: ${chapter.chapterName}`}
-      className="interactive-focus flex min-h-[72px] items-center gap-3 rounded-lg border border-sand/15 bg-parchment-card px-4 py-3 text-left text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
+      className="interactive-focus flex min-h-[72px] items-center gap-3 rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-3 text-left text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
     >
-      {isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">{icon}</span> : null}
+      {isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-accent">{icon}</span> : null}
       <div className="min-w-0 flex-1">
-        <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
+        <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.04em] text-text/68 dark:text-dark-text/64">
           {label}
         </p>
-        <p className="mt-1 truncate font-sans text-sm font-semibold text-ink dark:text-dark-text">
+        <p className="mt-1 truncate font-sans text-sm font-semibold text-text dark:text-dark-text">
           {chapter.chapterName}
         </p>
       </div>
-      {!isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">{icon}</span> : null}
+      {!isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-accent">{icon}</span> : null}
     </Link>
   )
 }
@@ -220,12 +220,12 @@ function RehatSectionNavigation({
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="eyebrow">{t("Continue reading")}</p>
-          <p className="mt-1 font-sans text-sm text-ink/68 dark:text-dark-text/68">
+          <p className="mt-1 font-sans text-sm text-text/68 dark:text-dark-text/68">
             {t("Move section by section without returning to the chapter list.")}</p>
         </div>
         <Link
           to={`/banis/rehat/${rehatId}`}
-          className="interactive-focus shrink-0 rounded-full border border-sand/15 bg-parchment-low px-3 py-2 font-sans text-xs font-semibold text-ink/65 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/75"
+          className="interactive-focus shrink-0 rounded-full border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface-muted))] px-3 py-2 font-sans text-xs font-semibold text-text/65 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/75"
         >
           {t("Back to all sections")}</Link>
       </div>
@@ -408,7 +408,7 @@ export default function Rehat() {
   return (
     <div
       lang={lang}
-      className="page-shell max-w-3xl mx-auto min-h-screen bg-parchment text-ink transition-colors duration-300 animate-fade-in dark:bg-dark-bg dark:text-dark-text"
+      className="page-shell max-w-3xl mx-auto min-h-screen scripture-directory transition-colors duration-300 animate-fade-in"
       data-testid="page-rehat"
       data-page="rehat"
       data-ai-surface="rehat"
@@ -421,10 +421,10 @@ export default function Rehat() {
         <div className="directory-title-row flex flex-col items-start justify-between gap-4 sm:flex-row">
           <div className="min-w-0">
             <p className="eyebrow">{t("Read Directory")}</p>
-            <h1 id="rehat-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
+            <h1 id="rehat-title" className="mt-2 font-display text-4xl leading-none text-text dark:text-dark-text">
               {selectedChapter?.chapterName ?? selectedRehat?.rehatName ?? t('Rehat')}
             </h1>
-            <p className="mt-3 max-w-[42rem] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/90">
+            <p className="mt-3 max-w-[42rem] font-sans text-sm leading-6 text-text/70 dark:text-dark-text/90">
               {selectedChapter ? selectedRehat?.rehatName : t(editorial.summary)}
             </p>
           </div>
@@ -434,8 +434,8 @@ export default function Rehat() {
         </div>
 
         {selectedRehat && !selectedChapter ? (
-          <div className="mt-4 rounded-lg border border-sand/15 bg-parchment-card/58 px-4 py-4 dark:border-dark-text/12 dark:bg-white/[0.045]">
-            <p className="font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/78">
+          <div className="mt-4 rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))]/58 px-4 py-4 dark:border-dark-text/12 dark:bg-white/[0.045]">
+            <p className="font-sans text-sm leading-6 text-text/68 dark:text-dark-text/78">
               {t(editorial.context)}
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
@@ -443,7 +443,7 @@ export default function Rehat() {
               {editorial.sourceHref ? (
                 <a
                   href={editorial.sourceHref}
-                  className="interactive-focus rounded-full border border-gold/20 bg-gold/10 px-2.5 py-1 font-sans text-[11px] font-semibold text-gold-dark dark:border-gold/25 dark:bg-gold/10 dark:text-gold-light"
+                  className="interactive-focus rounded-full border border-gold/20 bg-gold/10 px-2.5 py-1 font-sans text-[13px] font-semibold text-accent dark:border-gold/25 dark:bg-gold/10 dark:text-accent"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -486,7 +486,7 @@ export default function Rehat() {
 
       {invalidRoute ? (
         <section className="section-shell-quiet mt-5 px-4 py-5" data-testid="rehat-error-state">
-          <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+          <p className="font-sans text-sm leading-6 text-text/65 dark:text-dark-text/70">
             {t("This Rehat route is not valid.")}</p>
           <Link
             to="/banis/rehat"
@@ -498,11 +498,11 @@ export default function Rehat() {
       ) : selectedRehatId && selectedChapterId ? (
         <section className="mt-5 space-y-4" data-testid="rehat-chapter-page">
           {loadingChapter ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-text/68 dark:text-dark-text/64">
               {t("Loading chapter...")}</p>
           ) : chapterIssue || !selectedChapter ? (
             <section className="section-shell-quiet px-4 py-5" role="alert" data-testid="rehat-error-state">
-              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+              <p className="font-sans text-sm leading-6 text-text/65 dark:text-dark-text/70">
                 {t("This Rehat chapter could not be loaded right now.")}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
@@ -513,7 +513,7 @@ export default function Rehat() {
                   {t("Retry")}</button>
                 <Link
                   to={selectedRehatId ? `/banis/rehat/${selectedRehatId}` : '/banis/rehat'}
-                  className="interactive-focus interactive-pill-link min-h-[44px] gap-2 rounded-lg border border-sand/15 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/20 dark:text-dark-text"
+                  className="interactive-focus interactive-pill-link min-h-[44px] gap-2 rounded-lg border border-[rgb(var(--color-border))]/15 px-4 font-sans text-sm font-semibold text-text dark:border-dark-text/20 dark:text-dark-text"
                 >
                   <IconArrowLeft size={14} />
                   {t("Back to chapters")}</Link>
@@ -525,10 +525,10 @@ export default function Rehat() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="eyebrow">{t("Rehat Chapter")}</p>
-                    <h2 className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+                    <h2 className="mt-2 font-display text-3xl leading-none text-text dark:text-dark-text">
                       {selectedChapter.chapterName}
                     </h2>
-                    <p className="mt-2 font-sans text-sm text-ink/68 dark:text-dark-text/68">
+                    <p className="mt-2 font-sans text-sm text-text/68 dark:text-dark-text/68">
                       {selectedRehat?.rehatName ?? `${t('Rehat')} ${selectedRehatId}`}
                     </p>
                   </div>
@@ -546,7 +546,7 @@ export default function Rehat() {
                 <button type="button" className="interactive-focus min-h-[44px] rounded-lg border px-3" onClick={() => updateChapterTextQuery('')}>{t("Clear find")}</button>
               </div> : null}
               <article ref={chapterContentRef} className="section-shell p-5" data-testid="rehat-chapter-content" lang="en">
-                <div className="rehat-reading-prose font-sans text-base leading-7 text-ink dark:text-dark-text [&_p]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
+                <div className="rehat-reading-prose font-sans text-base leading-7 text-text dark:text-dark-text [&_p]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
                   dangerouslySetInnerHTML={{ __html: chapterFind.html }} />
               </article>
 
@@ -562,17 +562,17 @@ export default function Rehat() {
         <section className="mt-5 space-y-3" data-testid="rehat-chapter-list-page">
           <Link
             to="/banis/rehat"
-            className="interactive-focus inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 dark:bg-dark-surface dark:text-dark-text/65"
+            className="interactive-focus inline-flex min-h-[40px] items-center gap-2 rounded-full bg-[rgb(var(--color-surface-muted))] px-3 py-2 font-sans text-xs font-medium text-text/65 transition-colors duration-300 dark:bg-dark-surface dark:text-dark-text/65"
           >
             <IconArrowLeft size={14} />
             {t("Back to rehats")}</Link>
 
           {loadingChapters ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-text/68 dark:text-dark-text/64">
               {t("Loading chapters...")}</p>
           ) : chapterListIssue ? (
             <section className="section-shell-quiet px-4 py-5" role="alert" data-testid="rehat-error-state">
-              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+              <p className="font-sans text-sm leading-6 text-text/65 dark:text-dark-text/70">
                 {t("Rehat chapters could not load right now.")}</p>
               <button
                 type="button"
@@ -582,25 +582,25 @@ export default function Rehat() {
                 {t("Retry")}</button>
             </section>
           ) : filteredChapters.length === 0 ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-text/68 dark:text-dark-text/64">
               {t("No chapters match this search yet.")}</p>
           ) : (
             filteredChapters.map(chapter => (
               <Link
                 key={chapter.chapterId}
                 to={`/banis/rehat/${selectedRehatId}/chapters/${chapter.chapterId}`}
-                className="block rounded-lg border border-sand/15 bg-parchment-card px-4 py-4 text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
+                className="block rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-4 text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="font-sans text-base font-semibold text-ink dark:text-dark-text">
+                    <p className="font-sans text-base font-semibold text-text dark:text-dark-text">
                       {chapter.chapterName}
                     </p>
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       <MetadataChip>{chapter.alphabet}</MetadataChip>
                     </div>
                   </div>
-                  <span className="icon-surface mt-1 h-8 w-8 shrink-0 text-saffron dark:text-gold-light">
+                  <span className="icon-surface mt-1 h-8 w-8 shrink-0 text-saffron dark:text-accent">
                     <IconArrowRight size={14} />
                   </span>
                 </div>
@@ -611,11 +611,11 @@ export default function Rehat() {
       ) : (
         <section className="mt-5 space-y-3" data-testid="rehat-list-page">
           {loadingRehats ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-text/68 dark:text-dark-text/64">
               {t("Loading rehats...")}</p>
           ) : rehatIssue ? (
             <section className="section-shell-quiet px-4 py-5" role="alert" data-testid="rehat-error-state">
-              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+              <p className="font-sans text-sm leading-6 text-text/65 dark:text-dark-text/70">
                 {t("Rehat could not load right now.")}</p>
               <button
                 type="button"
@@ -625,7 +625,7 @@ export default function Rehat() {
                 {t("Retry")}</button>
             </section>
           ) : filteredRehats.length === 0 ? (
-            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-ink/68 dark:text-dark-text/64">
+            <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-text/68 dark:text-dark-text/64">
               {t("No rehats match this search yet.")}</p>
           ) : (
             filteredRehats.map(rehat => {
@@ -635,14 +635,14 @@ export default function Rehat() {
                 <Link
                   key={rehat.rehatId}
                   to={`/banis/rehat/${rehat.rehatId}`}
-                  className="block rounded-lg border border-sand/15 bg-parchment-card px-4 py-4 text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
+                  className="block rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-4 text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <p className="font-sans text-base font-semibold text-ink dark:text-dark-text">
+                      <p className="font-sans text-base font-semibold text-text dark:text-dark-text">
                         {rehat.rehatName}
                       </p>
-                      <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
+                      <p className="mt-2 font-sans text-sm leading-6 text-text/68 dark:text-dark-text/70">
                         {t(rehatEditorial.summary)}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -650,7 +650,7 @@ export default function Rehat() {
                         {rehatEditorial.chips.map(chip => <MetadataChip key={chip}>{t(chip)}</MetadataChip>)}
                       </div>
                     </div>
-                    <span className="icon-surface mt-1 h-8 w-8 shrink-0 text-saffron dark:text-gold-light">
+                    <span className="icon-surface mt-1 h-8 w-8 shrink-0 text-saffron dark:text-accent">
                       <IconArrowRight size={14} />
                     </span>
                   </div>

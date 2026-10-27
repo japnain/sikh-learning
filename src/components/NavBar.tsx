@@ -70,23 +70,34 @@ export default function NavBar() {
 
     const updateHeight = () => {
       const isDesktopRail = window.matchMedia?.('(min-width: 1024px)').matches ?? window.innerWidth >= 1024
+      const nav = element.querySelector<HTMLElement>('.app-nav')
+      if (nav && !isDesktopRail) {
+        const styles = getComputedStyle(nav)
+        const available = nav.clientWidth - (parseFloat(styles.paddingLeft) || 0) - (parseFloat(styles.paddingRight) || 0)
+        const fourColumnWidth = (available - 3 * (parseFloat(styles.columnGap) || 0)) / 4
+        const requiredWidth = Math.max(0, ...Array.from(nav.querySelectorAll<HTMLElement>('.app-nav-tab__label'), label => label.scrollWidth + 8))
+        nav.dataset.expandedLabels = String(requiredWidth > fourColumnWidth && fourColumnWidth > 0)
+      }
       const reservedHeight = isDesktopRail ? 0 : Math.ceil(element.getBoundingClientRect().height)
       document.documentElement.style.setProperty('--nav-stack-height', `${reservedHeight}px`)
     }
 
     updateHeight()
+    let active = true
+    void document.fonts?.ready.then(() => { if (active) updateHeight() })
     const observer = new ResizeObserver(() => updateHeight())
     observer.observe(element)
     window.addEventListener('resize', updateHeight)
     window.visualViewport?.addEventListener('resize', updateHeight)
 
     return () => {
+      active = false
       observer.disconnect()
       window.removeEventListener('resize', updateHeight)
       window.visualViewport?.removeEventListener('resize', updateHeight)
       document.documentElement.style.setProperty('--nav-stack-height', '0px')
     }
-  }, [])
+  }, [locale])
 
   return (
     <>

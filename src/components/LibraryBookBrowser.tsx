@@ -55,7 +55,7 @@ export default function LibraryBookBrowser({ dataTestId, className = '' }: Libra
             <IconLibrary size={20} />
           </div>
           <div className="library-book-card__copy">
-            <p className="eyebrow">Curated EPUB · {work.publications?.length ?? 1} volume{work.publications?.length === 1 ? '' : 's'}</p>
+            <p className="eyebrow">Reading edition · {work.publications?.length ?? 1} volume{work.publications?.length === 1 ? '' : 's'}</p>
             <h3>{work.title}</h3>
             <p>{work.description}</p>
             <div>

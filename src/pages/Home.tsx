@@ -24,7 +24,8 @@ import { asSupportedSundarGutkaBaniId, normalizeSundarGutkaLength } from '../uti
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
 import type { SundarGutkaLength, UiLocale, VocabEntry } from '../types'
-import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralGurbaniHeadingLine, renderScriptText } from '../utils/readerDisplay'
+import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import { getHukamnamaPreviewLine } from '../utils/hukamnamaPreview'
 import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
 import { toLocalDayStamp } from '../utils/localDates'
@@ -441,10 +442,7 @@ export default function Home() {
     navigate(location.pathname, { replace: true, state: null })
   }, [location.state, location.pathname, navigate, openOnboarding])
 
-  const previewLine = hukamnama?.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim()
-    && !isStructuralGurbaniHeadingLine(line.gurmukhi)
-    && !/^ੴ\s*ਸਤਿਗੁਰ\s*ਪ੍ਰਸਾਦਿ\s*[।॥]*$/u.test(line.gurmukhi.trim()))
-    ?? hukamnama?.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim())
+  const previewLine = hukamnama ? getHukamnamaPreviewLine(hukamnama.entry, hukamnama.source) : undefined
   const meaning = !hukamnama || meaningLanguage === 'none' ? '' : previewLine
     ? getLineMeaningText(previewLine, meaningLanguage, englishSource)
     : getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)

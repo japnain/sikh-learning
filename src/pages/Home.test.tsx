@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
@@ -108,6 +108,8 @@ function buildReadyHukamnama(): ReturnType<typeof hukamnamaHook.useHukamnama> {
 }
 
 afterEach(() => {
+  // Unmount while the paired animation-frame timer mocks are still installed.
+  cleanup()
   vi.useRealTimers()
   vi.restoreAllMocks()
   document.documentElement.classList.remove('dark')
@@ -545,7 +547,7 @@ test('manual completion keeps visible focused Undo while the first-screen shortc
   expect(useNitemStore.getState().completedIds).toEqual([])
 })
 
-test.each(['ਤਿਲੰਗ ਮਹਲਾ ੪ ॥', 'ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ'])('previews a real Hukamnama verse after the unmarked heading %s', heading => {
+test.each(['ਤਿਲੰਗ ਮਹਲਾ ੪ ॥', 'ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ', 'ਧਨਾਸਰੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ'])('previews a real Hukamnama verse after the unmarked heading %s', heading => {
   const hukam = buildReadyHukamnama()
   const verse = hukam.data!.entry.lines![0]
   hukam.data!.entry.lines = [{

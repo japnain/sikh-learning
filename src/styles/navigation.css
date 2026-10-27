@@ -30,8 +30,9 @@
 
   .app-nav {
     display: grid;
-    min-height: 4.5rem;
+    min-height: 72px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    font-size: .8125rem;
     gap: 0.15rem;
     padding: 0.375rem max(0.875rem, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(0.875rem, var(--safe-area-left));
     overflow: hidden;
@@ -47,13 +48,13 @@
     position: relative;
     display: flex;
     min-width: 0;
-    min-height: 3.5rem;
+    min-height: 56px;
     touch-action: manipulation;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.2rem;
-    padding: 0.2rem 0.1rem 0.45rem;
+    padding: 4px 2px 8px;
     overflow: hidden;
     border-radius: 0.65rem;
     color: rgb(var(--color-text-muted));
@@ -70,8 +71,8 @@
 
   .app-nav-tab__icon {
     display: flex;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 28px;
+    height: 28px;
     align-items: center;
     justify-content: center;
   }
@@ -85,10 +86,11 @@
 
   .app-nav-tab__label {
     max-width: 100%;
-    overflow-wrap: anywhere;
-    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: nowrap;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.75rem;
+    font-size: inherit;
     font-weight: 550;
     line-height: 1.25;
   }
@@ -147,18 +149,23 @@ html {
   }
 
   .app-nav {
-    min-height: 4.5rem;
+    min-height: 72px;
     gap: 0.08rem;
     padding: 0.375rem max(8px, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(8px, var(--safe-area-left));
   }
 
   .app-nav-tab {
-    min-height: 3.5rem;
+    min-height: 56px;
   }
 
   .app-nav-tab__label {
-    font-size: 0.75rem;
+    font-size: inherit;
   }
+}
+
+/* Reflow whole labels when text is enlarged; never create a 3 + 1 row. */
+@media (max-width: 1023px) {
+  .app-nav[data-expanded-labels='true'] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (min-width: 1024px) {
@@ -195,8 +202,8 @@ html {
 
   .app-nav-tab__label {
     max-width: 4.2rem;
-    white-space: normal;
-    font-size: 0.75rem;
+    white-space: nowrap;
+    font-size: inherit;
   }
 
   html,

@@ -86,23 +86,46 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
   const copy = COPY[locale]
   const scriptMode = useLanguageStore(state => state.scriptMode)
   const lengths = useSundarGutkaLengthStore(state => state.lengths)
-  const offlineStatus = useNitnemOfflineStatusStore(state => state.status)
+  // A completed download can change the active reading's readiness while the
+  // overall routine remains 'preparing' or 'partial'. Recheck on progress too.
+  const offlineRevision = useNitnemOfflineStatusStore(state => `${state.signature}:${state.status}:${state.ready}:${state.retryRevision}`)
   const [allOpen, setAllOpen] = useState(false)
   const [lengthOption, setLengthOption] = useState<NitnemRouteOption | null>(null)
-  const [cachedPlace, setCachedPlace] = useState<{ path: string; line: string; status: typeof offlineStatus } | null>(null)
+  const [cachedPlace, setCachedPlace] = useState<{ path: string; line: string; revision: string } | null>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
+  const sheetListRef = useRef<HTMLOListElement>(null)
+  const sheetOpeningIdRef = useRef<string | null>(null)
   const lengthAbortRef = useRef<AbortController | null>(null)
   const lengthDestinationRef = useRef<{ optionId: string; origin: string; reading: BaniFetchResult; destination: BaniLengthDestination } | null>(null)
   useEffect(() => () => lengthAbortRef.current?.abort(), [])
   const closeLength = () => { lengthAbortRef.current?.abort(); lengthDestinationRef.current = null; setLengthOption(null) }
   const isDone = (option: NitnemRouteOption) => tracking && completed.has(option.id)
   const resumes = new Map(selected.map(option => [option.id, getResume(option)]))
+  const savedStudies = new Map(selected.map(option => [option.id,
+    !resumes.get(option.id) && !isDone(option) ? getSavedStudy?.(option) ?? null : null]))
+  const hasSavedStudy = [...savedStudies.values()].some(Boolean)
   const count = tracking ? selected.filter(isDone).length : 0
   const finished = tracking && selected.length > 0 && count === selected.length && !selected.some(option => resumes.get(option.id))
   const initialActive = selected.find(option => option.id === activeId) ?? selected.find(option => !isDone(option)) ?? selected[0]
   const { id: browsedId, index: activeIndex, announcement, railRef, cardsRef, browse, onScroll, onFocus, onKeyDown, onPointerDown, onPointerEnd, onWheel } =
     useNitnemRail(selected.map(option => option.id), initialActive?.id, initialBrowseId)
   const active = selected.find(option => option.id === browsedId)
+  useEffect(() => {
+    if (!allOpen) return
+    const frame = requestAnimationFrame(() => {
+      const list = sheetListRef.current
+      const row = list ? [...list.children].find(child => (child as HTMLElement).dataset.nitnemId === sheetOpeningIdRef.current) : null
+      if (!list || !row || list.clientHeight <= 0 || list.scrollHeight <= list.clientHeight) return
+      const viewport = list.getBoundingClientRect()
+      const bounds = row.getBoundingClientRect()
+      if (bounds.top < viewport.top || bounds.bottom > viewport.bottom) {
+        // Reveal the chosen bani inside the sheet only; keep Close focused and
+        // never move the underlying Home page or reposition after completion.
+        list.scrollTop += bounds.top - viewport.top - 8
+      }
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [allOpen])
   const readingPath = (option: NitnemRouteOption) => resumes.get(option.id) || getReadingPath?.(option) || buildNitnemStudyPath(option)
   const selectedLength = (option: NitnemRouteOption) => normalizeSundarGutkaLength(new URLSearchParams(readingPath(option).split('?')[1]).get('sgLength'))
   const lengthLabel = (option: NitnemRouteOption) => {
@@ -130,11 +153,11 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
       const matches = cached?.entries.filter(entry => !verseSource || entry.source === verseSource)
         .flatMap(entry => entry.lines ?? []).filter(line => !line.isHeader && line.verseId === verseId) ?? []
       const line = matches.length === 1 ? matches[0].gurmukhi : ''
-      setCachedPlace(cached ? { path: activePath, line, status: offlineStatus } : null)
+      setCachedPlace(cached ? { path: activePath, line, revision: offlineRevision } : null)
     }).catch(() => { if (!cancelled) setCachedPlace(null) })
     return () => { cancelled = true }
-  }, [activePath, offlineStatus])
-  const cachedActive = cachedPlace?.path === activePath && cachedPlace?.status === offlineStatus ? cachedPlace : null
+  }, [activePath, offlineRevision])
+  const cachedActive = cachedPlace?.path === activePath && cachedPlace?.revision === offlineRevision ? cachedPlace : null
   const title = (option: NitnemRouteOption, heading = false) => <>
     <span className={`${getScriptTextFontClass(scriptMode)} ${heading ? 'home-daily-script' : 'home-daily-row-script'}`}
       lang={getScriptTextLang(scriptMode)}>{renderScriptText(option.gurmukhiTitle, scriptMode)}</span>
@@ -179,7 +202,7 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
     </header>
     <div className="home-daily-summary" data-testid="home-nitnem-summary">
       <p>{tracking && selected.length > 0 ? copy.count(count, selected.length) : copy.order}</p>
-      {selected.length > 0 ? <button type="button" className="home-daily-all-link" onClick={() => setAllOpen(true)}>{copy.allCount(selected.length)}<IconArrowRight size={15} /></button> : null}
+      {selected.length > 0 ? <button type="button" className="home-daily-all-link" onClick={() => { sheetOpeningIdRef.current = browsedId ?? null; setAllOpen(true) }}>{copy.allCount(selected.length)}<IconArrowRight size={15} /></button> : null}
     </div>
     {tracking && selected.length > 0 ? <div className="home-daily-progress" role="progressbar"
       aria-label={copy.title} aria-valuemin={0} aria-valuemax={selected.length} aria-valuenow={count} aria-valuetext={copy.count(count, selected.length)}>
@@ -199,6 +222,7 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
           const done = isDone(option) && !resume
           const viewed = option.id === active.id
           const cached = viewed ? cachedActive : null
+          const savedStudy = savedStudies.get(option.id)
           const action = done ? copy.again : resume ? copy.resume : copy.begin
           return <article key={option.id} ref={element => { if (element) cardsRef.current.set(option.id, element); else cardsRef.current.delete(option.id) }}
             className={`home-daily-current${done ? ' is-complete' : ''}`} role="listitem"
@@ -220,8 +244,8 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
                 </Link>
                 {tracking ? completion(option, 'home-daily-complete') : null}
               </div>
-              {!resume && !done && getSavedStudy?.(option) ? <Link className="home-daily-saved-study" to={getSavedStudy(option)!}
-                aria-label={`${copy.savedStudy}: ${option.romanizedTitle}`} state={{ readerOrigin: '/' }} onClick={() => rememberHomeNitnemReturn(option.id)}>{copy.savedStudy}<IconArrowRight size={15} /></Link> : null}
+              {hasSavedStudy ? <div className="home-daily-study-slot">{savedStudy ? <Link className="home-daily-saved-study" to={savedStudy}
+                aria-label={`${copy.savedStudy}: ${option.romanizedTitle}`} state={{ readerOrigin: '/' }} onClick={() => rememberHomeNitnemReturn(option.id)}>{copy.savedStudy}<IconArrowRight size={15} /></Link> : <span className="home-daily-saved-study home-daily-study-placeholder" aria-hidden="true">{copy.savedStudy}<IconArrowRight size={15} /></span>}</div> : null}
             </div>
           </article>
         })}
@@ -245,7 +269,7 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
       <header className="home-daily-sheet-heading"><div><p>{tracking ? copy.count(count, selected.length) : copy.order}</p><h2>{copy.all}</h2></div>
         <button ref={closeRef} type="button" onClick={() => setAllOpen(false)} aria-label={copy.close}><IconClose size={21} /></button>
       </header>
-      <ol className="home-daily-sheet-list" aria-label={copy.title}>
+      <ol ref={sheetListRef} className="home-daily-sheet-list" aria-label={copy.title}>
         {selected.map((option, index) => <li key={option.id} data-nitnem-id={option.id} data-current={active?.id === option.id || undefined}>
           <Link to={readingPath(option)} state={{ readerOrigin: '/' }} className="home-daily-sheet-reading" onClick={event => openReading(option, event)}
             aria-label={`${resumes.get(option.id) ? copy.resume : isDone(option) ? copy.again : copy.begin}: ${option.romanizedTitle}`}>

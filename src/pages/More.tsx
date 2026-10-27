@@ -47,7 +47,7 @@ function SettingsBlock({
 }) {
   return (
     <div
-      className="section-shell px-4 py-4"
+      className="settings-block section-shell px-4 py-4"
       aria-labelledby={headingId}
       data-testid={testId}
     >
@@ -125,7 +125,7 @@ export default function More() {
   const publicLinks = getPublicAppLinks()
   return (
     <div className="page-shell animate-fade-in" data-testid="page-more" data-page="more" data-ai-surface="more" data-ai-state="ready">
-      <div className="mb-5">
+      <div className="more-page-heading mb-5">
         <p className="eyebrow">{moreCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">
           {editorial?.more.title ?? moreCopy.title}
@@ -135,7 +135,7 @@ export default function More() {
         </p>
       </div>
 
-      <div className="mb-5 grid gap-3 sm:grid-cols-2">
+      <div className="more-appearance-grid mb-5 grid gap-3 sm:grid-cols-2">
         <SettingsBlock
           title={moreCopy.appearanceTitle}
           description={moreCopy.appearanceDescription}
@@ -208,7 +208,6 @@ export default function More() {
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="eyebrow">{moreCopy.dailyRitual}</p>
             <h2 id="more-daily-nitnem-title" className="mt-2 font-display text-2xl leading-none text-ink dark:text-dark-text">
               {moreCopy.dailyNitnem}
             </h2>
@@ -233,7 +232,7 @@ export default function More() {
       <DisclosureSection
         storageKey="more-reader-defaults"
         title={moreCopy.readerDefaults}
-        summary={`${moreCopy.scriptLayoutDescription} ${moreCopy.readingSupportDescription}`}
+        summary={`${scriptModeLabels[scriptMode]} · ${fontSize}px · ${presentation === 'read' ? presentationCopy.read : presentationCopy.study}`}
         defaultOpen={false}
         className="section-shell-quiet p-4 mb-5"
         bodyClassName="mt-4 space-y-3"
@@ -521,7 +520,7 @@ export default function More() {
         />
       </div>
 
-      <section className="section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
+      <section className="more-about section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
         <p id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
           {editorial?.more.aboutBody ?? moreCopy.aboutBody}

@@ -18,8 +18,7 @@ const REFERENCE_COPY: Record<UiLocale, {
   close: string
   save: string
   saved: string
-  retrySave: string
-  sessionOnly: string
+  saveFailed: string
   englishFallback: string
   languages: { en: string; pa: string; hi: string }
   meaningUnavailable: (language: string) => string
@@ -44,8 +43,8 @@ const REFERENCE_COPY: Record<UiLocale, {
 }> = {
   en: {
     title: word => `Word details for ${word}`, description: 'Study meaning, dictionary context, and an option to save this word for review.',
-    close: 'Close word details', save: 'Save Word', saved: 'Saved', retrySave: 'Try saving again',
-    sessionOnly: 'Kept for this session. This device could not save the word. Try saving again.', englishFallback: 'English fallback',
+    close: 'Close word details', save: 'Save Word', saved: 'Saved',
+    saveFailed: 'This word could not be saved.', englishFallback: 'English fallback',
     languages: { en: 'English', pa: 'Punjabi', hi: 'Hindi' },
     meaningUnavailable: language => `No ${language} study meaning is available for this word. You can still explore the dictionaries below.`,
     family: 'Word Family', familyDescription: 'This word belongs to the following root:', rootMeaning: 'Root meaning (English)',
@@ -61,8 +60,8 @@ const REFERENCE_COPY: Record<UiLocale, {
   },
   pa: {
     title: word => `${word} ਦੇ ਵੇਰਵੇ`, description: 'ਸ਼ਬਦ ਦੇ ਅਰਥ, ਸ਼ਬਦਕੋਸ਼ ਦੇ ਹਵਾਲੇ ਅਤੇ ਦੁਹਰਾਈ ਲਈ ਸੁਰੱਖਿਅਤ ਕਰਨ ਦੀ ਚੋਣ।',
-    close: 'ਸ਼ਬਦ ਦੇ ਵੇਰਵੇ ਬੰਦ ਕਰੋ', save: 'ਸ਼ਬਦ ਸੁਰੱਖਿਅਤ ਕਰੋ', saved: 'ਸੁਰੱਖਿਅਤ ਕੀਤਾ', retrySave: 'ਮੁੜ ਸੁਰੱਖਿਅਤ ਕਰੋ',
-    sessionOnly: 'ਇਸ ਸੈਸ਼ਨ ਲਈ ਰੱਖਿਆ ਹੈ। ਇਹ ਡਿਵਾਈਸ ਸ਼ਬਦ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕਰ ਸਕਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।', englishFallback: 'ਉਪਲਬਧ ਅੰਗਰੇਜ਼ੀ ਅਰਥ',
+    close: 'ਸ਼ਬਦ ਦੇ ਵੇਰਵੇ ਬੰਦ ਕਰੋ', save: 'ਸ਼ਬਦ ਸੁਰੱਖਿਅਤ ਕਰੋ', saved: 'ਸੁਰੱਖਿਅਤ ਕੀਤਾ',
+    saveFailed: 'ਇਹ ਸ਼ਬਦ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।', englishFallback: 'ਉਪਲਬਧ ਅੰਗਰੇਜ਼ੀ ਅਰਥ',
     languages: { en: 'ਅੰਗਰੇਜ਼ੀ', pa: 'ਪੰਜਾਬੀ', hi: 'ਹਿੰਦੀ' },
     meaningUnavailable: language => `ਇਸ ਸ਼ਬਦ ਦੇ ${language} ਅਧਿਐਨ ਅਰਥ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਹੇਠਾਂ ਸ਼ਬਦਕੋਸ਼ ਵੇਖ ਸਕਦੇ ਹੋ।`,
     family: 'ਸ਼ਬਦ ਪਰਿਵਾਰ', familyDescription: 'ਇਹ ਸ਼ਬਦ ਇਸ ਮੂਲ ਨਾਲ ਸੰਬੰਧਿਤ ਹੈ:', rootMeaning: 'ਮੂਲ ਅਰਥ (ਅੰਗਰੇਜ਼ੀ)',
@@ -78,8 +77,8 @@ const REFERENCE_COPY: Record<UiLocale, {
   },
   hi: {
     title: word => `${word} के विवरण`, description: 'शब्द का अर्थ, शब्दकोश के संदर्भ और दोहराने के लिए सहेजने का विकल्प।',
-    close: 'शब्द के विवरण बंद करें', save: 'शब्द सहेजें', saved: 'सहेजा गया', retrySave: 'फिर सहेजें',
-    sessionOnly: 'इस सत्र के लिए रखा गया है। यह डिवाइस शब्द सहेज नहीं सका। फिर कोशिश करें।', englishFallback: 'उपलब्ध अंग्रेज़ी अर्थ',
+    close: 'शब्द के विवरण बंद करें', save: 'शब्द सहेजें', saved: 'सहेजा गया',
+    saveFailed: 'यह शब्द सहेजा नहीं जा सका।', englishFallback: 'उपलब्ध अंग्रेज़ी अर्थ',
     languages: { en: 'अंग्रेज़ी', pa: 'पंजाबी', hi: 'हिंदी' },
     meaningUnavailable: language => `इस शब्द का ${language} अध्ययन अर्थ उपलब्ध नहीं है। नीचे दिए गए शब्दकोश देख सकते हैं।`,
     family: 'शब्द परिवार', familyDescription: 'यह शब्द इस मूल से संबंधित है:', rootMeaning: 'मूल अर्थ (अंग्रेज़ी)',
@@ -160,7 +159,7 @@ export default function WordPopover({
   const existingWord = vocab.find(v => v.word === word.gurmukhi && (v.kind ?? 'word') === 'word')
   const selectedAlreadySaved = Boolean(existingWord && selectedSense && hasVocabSense(existingWord, selectedSense))
   const isSaved = selectedAlreadySaved && Boolean(selectedSense && isVocabEntryPersisted(word.gurmukhi, 'word', selectedSense))
-  const sessionOnly = !isSaved && (selectedAlreadySaved || failedWord === word.gurmukhi)
+  const saveFailed = !isSaved && (selectedAlreadySaved || failedWord === word.gurmukhi)
   const selectDefinition = (id: string) => { setDefinitionChoice({ word: word.gurmukhi, id }); setFailedWord(null) }
 
   const handleSave = () => {
@@ -406,7 +405,7 @@ export default function WordPopover({
 
         <div className="shrink-0 flex flex-col gap-2 border-t border-sand/10 dark:border-gold/10 px-6 py-4 bg-[rgb(var(--color-surface)/0.95)] dark:bg-dark-card/95">
           <p role="status" className="font-sans text-sm leading-relaxed text-ink/75 dark:text-dark-text/75">{selectedDefinition ? referenceCopy.savingDefinition(selectedDefinition.sense.definitionSource?.name ?? 'BaniDB') : referenceCopy.chooseDefinition}</p>
-          {sessionOnly ? <p role="alert" className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">{referenceCopy.sessionOnly}</p> : null}
+          {saveFailed ? <p role="alert" className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">{referenceCopy.saveFailed}</p> : null}
           <button
             onClick={handleSave}
             disabled={!selectedSense || isSaved}
@@ -417,7 +416,7 @@ export default function WordPopover({
             }`}
             data-ai-action="save-word"
           >
-            {isSaved ? <><IconCheck size={16} /> {referenceCopy.saved}</> : sessionOnly ? referenceCopy.retrySave : referenceCopy.save}
+            {isSaved ? <><IconCheck size={16} /> {referenceCopy.saved}</> : referenceCopy.save}
           </button>
         </div>
       </div>

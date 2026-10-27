@@ -4,6 +4,7 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import HomeDailyNitnem, { type HomeDailyNitnemProps } from './HomeDailyNitnem'
 import { buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
 import { useLanguageStore } from '../store/language'
+import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { getExactReadingKey, useReadingPlacesStore } from '../store/readingPlaces'
 import type { BaniFetchResult } from '../api/banidb'
@@ -22,6 +23,7 @@ beforeEach(() => {
   useLanguageStore.setState({ scriptMode: 'gurmukhi' })
   useSundarGutkaLengthStore.setState({ lengths: { ...DEFAULT_SUNDAR_GUTKA_LENGTHS } })
   useReadingPlacesStore.setState({ places: {} })
+  useNitnemOfflineStatusStore.setState({ status: 'checking', ready: 0, total: 0, signature: '', retryRevision: 0 })
   vi.clearAllMocks()
 })
 afterEach(() => vi.restoreAllMocks())
@@ -267,4 +269,62 @@ test('pointer focus on a peeking reading link does not reposition it before its 
   fireEvent.pointerUp(link)
   fireEvent.click(link)
   expect(onRead).toHaveBeenCalledExactlyOnceWith(selected[1], buildNitnemStudyPath(selected[1]))
+})
+
+
+test('a saved Study link keeps its exact destination separate from fresh daily practice', () => {
+  const saved = `${buildNitnemStudyPath(selected[0])}&resumeVerseId=42&resumeSource=G`
+  const onRead = vi.fn()
+  renderDaily({ getSavedStudy: item => item.id === selected[0].id ? saved : null, onRead })
+  expect(screen.getByRole('link', { name: 'Begin reading: Japji Sahib' })).toHaveAttribute('href', buildNitnemStudyPath(selected[0]))
+  const study = screen.getByRole('link', { name: 'Resume saved study: Japji Sahib' })
+  expect(study).toHaveAttribute('href', saved)
+  fireEvent.click(study)
+  expect(onRead).not.toHaveBeenCalled()
+  expect(defaults.onComplete).not.toHaveBeenCalled()
+})
+
+test('download progress refreshes exact offline availability before the whole routine is ready', async () => {
+  useNitnemOfflineStatusStore.setState({ status: 'preparing', ready: 0, total: 7, signature: 'routine' })
+  const cache = vi.spyOn(offlineCache, 'readBaniOfflineCache').mockResolvedValueOnce(null).mockResolvedValueOnce(readingFixture())
+  renderDaily()
+  await waitFor(() => expect(cache).toHaveBeenCalledOnce())
+  expect(screen.queryByText('Available offline')).not.toBeInTheDocument()
+  act(() => useNitnemOfflineStatusStore.setState({ ready: 1 }))
+  expect(await screen.findByText('Available offline')).toBeInTheDocument()
+  expect(cache).toHaveBeenCalledTimes(2)
+  expect(useNitnemOfflineStatusStore.getState().status).toBe('preparing')
+})
+
+test('a direct swipe can interrupt a pending arrow animation without keeping a stale card selected', () => {
+  renderDaily()
+  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
+  Object.defineProperty(list, 'clientWidth', { configurable: true, value: 340 })
+  within(list).getAllByRole('listitem').forEach((card, index) => Object.defineProperty(card, 'offsetLeft', { configurable: true, value: index * 320 }))
+  Object.defineProperty(list, 'scrollTo', { configurable: true, value: vi.fn() })
+  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  fireEvent.pointerDown(list)
+  list.scrollLeft = 960
+  fireEvent.scroll(list)
+  fireEvent.pointerUp(list)
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[3].id)
+  expect(defaults.onComplete).not.toHaveBeenCalled()
+})
+
+test('opening All banis reveals the browsed row within the list without moving focus from Close', async () => {
+  const frames: FrameRequestCallback[] = []
+  vi.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => { frames.push(callback); return frames.length })
+  renderDaily()
+  fireEvent.keyDown(screen.getByRole('list', { name: 'Daily Nitnem' }), { key: 'End' })
+  fireEvent.click(screen.getByRole('button', { name: 'All 7 banis' }))
+  const dialog = screen.getByRole('dialog', { name: 'Your Nitnem' })
+  const list = within(dialog).getByRole('list')
+  const last = within(list).getAllByRole('listitem').at(-1)!
+  Object.defineProperties(list, { clientHeight: { configurable: true, value: 500 }, scrollHeight: { configurable: true, value: 1000 } })
+  vi.spyOn(list, 'getBoundingClientRect').mockReturnValue({ top: 100, bottom: 600 } as DOMRect)
+  vi.spyOn(last, 'getBoundingClientRect').mockReturnValue({ top: 850, bottom: 980 } as DOMRect)
+  act(() => { frames.splice(0).forEach(callback => callback(0)) })
+  expect(list.scrollTop).toBe(742)
+  expect(within(dialog).getByRole('button', { name: 'Close your banis' })).toHaveFocus()
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[6].id)
 })

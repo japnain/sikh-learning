@@ -270,11 +270,13 @@ export default function PanthPrakashLibraryHome() {
       <section className="epub-edition-note" data-testid="panth-epub-coverage" aria-labelledby="epub-edition-note-title">
         <div>
           <p className="eyebrow">About this edition</p>
-          <h2 id="epub-edition-note-title">A clean reading edition from the supplied EPUBs</h2>
+          <h2 id="epub-edition-note-title">An English reading edition</h2>
         </div>
-        <p>
-          {work.editionNote ?? 'The original EPUB files are preserved while their text is organized into accessible reading sections.'}
-        </p>
+        <p>A chapter-by-chapter edition for reading and returning to Sikh history.</p>
+        {work.editionNote ? <details className="epub-edition-details">
+          <summary>Edition and source details</summary>
+          <p>{work.editionNote}</p>
+        </details> : null}
         {work.sourceQualityNote ? <p className="epub-source-quality">{work.sourceQualityNote}</p> : null}
         {work.historicalContext ? <aside className="epub-historical-context" aria-labelledby="epub-historical-context-title">
           <h3 id="epub-historical-context-title">Read with historical context</h3>

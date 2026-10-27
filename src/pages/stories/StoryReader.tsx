@@ -1,6 +1,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import ModalSheet from '../../components/ModalSheet'
+import ReaderHeader from '../../components/ReaderHeader'
 import StoryArtwork from '../../components/StoryArtwork'
 import {
   IconArrowLeft,
@@ -392,7 +393,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
 
   const toggleSaved = () => {
     const persisted = isSaved ? removeStory(story.id) : saveStory(storySummary(story))
-    setStatus(`${isSaved ? copy.storyRemoved : copy.storySaved}${persisted ? '' : ` ${copy.storage}`}`)
+    setStatus(persisted ? isSaved ? copy.storyRemoved : copy.storySaved : locale === 'pa' ? 'ਇਹ ਤਬਦੀਲੀ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ।' : locale === 'hi' ? 'यह बदलाव सहेजा नहीं जा सका।' : 'This change could not be saved.')
   }
 
   const finishStory = () => {
@@ -402,7 +403,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
     currentProgressRef.current = 1
     committedRef.current = `${lastParagraph.id}:1`
     const persisted = savePosition(story.id, { paragraphId: lastParagraph.id, progress: 1, revision: story.revision, finishedAt: new Date().toISOString() })
-    setStatus(`${copy.storyFinished}${persisted ? '' : ` ${copy.storage}`}`)
+    setStatus(persisted ? copy.storyFinished : locale === 'pa' ? 'ਇਹ ਤਬਦੀਲੀ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ।' : locale === 'hi' ? 'यह बदलाव सहेजा नहीं जा सका।' : 'This change could not be saved.')
     if (progressFillRef.current) progressFillRef.current.style.transform = 'scaleX(1)'
     progressRef.current?.setAttribute('aria-valuenow', '100')
     progressRef.current?.setAttribute('aria-valuetext', copy.progressValue(100))
@@ -424,12 +425,11 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
       data-line-height={lineHeight}
       style={readerStyle}
     >
-      <header ref={toolbarRef} className="story-reader-toolbar">
-        <Link to={backTo} onClick={commitPosition} className="story-icon-button" aria-label={copy.back(backLabel)}>
-          <IconArrowLeft size={21} />
-        </Link>
-        <span className="story-reader-toolbar-title" lang="en">{story.title}</span>
-        {hasContents ? <button
+      <ReaderHeader ref={toolbarRef} className="story-reader-toolbar"
+        title={story.title} subtitle={story.series?.title} titleLang="en"
+        back={<Link to={backTo} onClick={commitPosition} className="story-icon-button" aria-label={copy.back(backLabel)}><IconArrowLeft size={21} /></Link>}
+        actions={<>
+{hasContents ? <button
           type="button"
           className="story-icon-button"
           aria-label={copy.contents}
@@ -460,7 +460,8 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
         >
           {isSaved ? <IconBookmarkFilled size={20} /> : <IconBookmark size={20} />}
         </button> : null}
-        <div
+        </>}
+        progress={<div
           ref={progressRef}
           className="story-reading-progress"
           role="progressbar"
@@ -471,8 +472,8 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
           aria-valuetext={copy.progressValue(Math.round((initialPosition?.progress ?? 0) * 100))}
         >
           <span ref={progressFillRef} className="story-reading-progress-fill" style={{ transform: `scaleX(${initialPosition?.progress ?? 0})` }} />
-        </div>
-      </header>
+        </div>}
+      />
       {isOlderEdition && <p className="story-edition-notice" role="status">{copy.downloadedEdition}</p>}
       <article lang="en" ref={articleRef} tabIndex={-1} aria-labelledby="story-title" className="story-reader-content">
         <header className="story-reader-heading">

@@ -107,7 +107,9 @@ test('renders page heading', () => {
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
 
   expect(screen.getByRole('button', { name: /first letters/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /^SGGS$/i })).toBeInTheDocument()
+  expect(within(screen.getByRole('group', { name: 'Search within' })).getByRole('button', { name: /^Sri Guru Granth Sahib Ji$/i })).toBeInTheDocument()
+  expect(within(screen.getByRole('group', { name: 'Match Gurmukhi' })).getByRole('button', { name: /first letters/i })).toBeInTheDocument()
+  expect(screen.getAllByText(/^Auto detect$/i)).toHaveLength(1)
 })
 
 test('uses a search-first default input with stable search attributes', () => {
@@ -194,7 +196,7 @@ test('renders the main content sections including Rehat', () => {
   openReadCollection('Sources')
   expect(screen.queryByTestId('banis-open-rehat')).not.toBeInTheDocument()
   expect(screen.queryByTestId('banis-open-amrit-keertan')).not.toBeInTheDocument()
-  expect(screen.getByRole('heading', { name: /Scripture source browser/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /Choose a source/i })).toBeInTheDocument()
   expect(screen.getByText(/Open scripture by Ang or choose a Vaar directly/i)).toBeInTheDocument()
 
   openReadCollection('Books')
@@ -284,7 +286,7 @@ test('keeps scripture sources separate from EPUB books', async () => {
     'href',
     '/library/panth-prakash-english'
   )
-  expect(panthCard).toHaveTextContent(/Curated EPUB/i)
+  expect(panthCard).toHaveTextContent(/Reading edition/i)
   expect(panthCard).toHaveTextContent(/169 episodes/i)
   expect(panthCard).toHaveTextContent(/2 volumes/i)
   expect(within(panthCard).queryByRole('button', { name: /show quick page numbers/i })).not.toBeInTheDocument()
@@ -441,7 +443,7 @@ test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other
   const featuredFlow = screen.getByTestId('banis-featured-flow')
   expect(featuredFlow).toHaveClass('read-featured-flow-card')
   expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
-  expect(within(featuredFlow).getByText(/Begin devotional flow/i)).toHaveClass(
+  expect(within(featuredFlow).getByText(/Begin Ardaas/i)).toHaveClass(
     'read-featured-flow-card__cta',
     'text-cream'
   )
@@ -645,7 +647,7 @@ test('front-loads canonical bani routes for short romanized queries like jap', a
 
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'jap' } })
 
-  expect(await screen.findByText(/^In the app$/i)).toBeInTheDocument()
+  expect(await screen.findByText(/^Open a reading$/i)).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Japji Sahib/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Jaap Sahib/i })).toBeInTheDocument()
 
