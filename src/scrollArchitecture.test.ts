@@ -98,23 +98,23 @@ test('keeps persistent reader chrome measured and out of WebKit viewport-layer f
   )
 
   expect(readerCss).toMatch(
-    /\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*auto;[^}]*min-height:\s*var\(--study-reader-topbar-min-height\);/s
+    /\.study-reader-topbar\s*\{[^}]*position:\s*sticky;[^}]*top:\s*0;[^}]*height:\s*auto;[^}]*min-height:\s*var\(--study-reader-topbar-min-height\);/s
   )
   // The header may grow for enlarged interface text. Its measured height owns
-  // both document reservation and verse clearance; hook geometry tests verify
+  // verse clearance while native flow reserves space; hook geometry tests verify
   // measurement/reflow rather than assuming a fixed number of header pixels.
   expect(readerCss).toMatch(
-    /\.page-shell\[data-page='study'\]\s*\{[^}]*--study-reader-topbar-height:\s*var\(--study-reader-topbar-min-height\);[^}]*padding:\s*var\(--study-reader-topbar-height\)/s
+    /\.page-shell\[data-page='study'\]\s*\{[^}]*--study-reader-topbar-height:\s*var\(--study-reader-topbar-min-height\);[^}]*padding:\s*0\s+var\(--study-reader-inset-right\)/s
   )
   expect(readerCss).toMatch(
     /\.study-reader-body\s*\[data-testid='study-line'\]\s*\{[^}]*scroll-margin-top:\s*calc\(var\(--study-reader-topbar-height\)\s*\+\s*1rem\);/s
   )
-  expect(readerCss).not.toMatch(/\.study-reader-topbar\s*\{[^}]*position:\s*sticky;/s)
+  expect(readerCss).not.toMatch(/\.study-reader-topbar\s*\{[^}]*position:\s*fixed;/s)
   expect(readerCss).not.toMatch(
     /\.study-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
   )
   expect(readerCss).toMatch(
-    /\.reader-header\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*visibility:\s*visible;/s
+    /\.reader-header\.study-reader-topbar\s*\{[^}]*position:\s*sticky;[^}]*visibility:\s*visible;/s
   )
   expect(readerCss).not.toMatch(
     /\.study-reader-topbar\s*\{[^}]*position:\s*absolute;/s
@@ -167,4 +167,14 @@ test('keeps global scroll APIs behind the app-scroll utility', () => {
     .map(filePath => path.relative(process.cwd(), filePath))
 
   expect(offenders).toEqual([])
+})
+
+test('keeps the scripture header in native flow without nested clipping layers', () => {
+  expect(readerHeaderCss).toMatch(
+    /body:has\(\.study-reader-topbar\),\s*#root:has\(\.study-reader-topbar\),\s*\.app-shell:has\(\.study-reader-topbar\),\s*\.page-shell\[data-page='study'\]\s*\{[^}]*overflow-x:\s*visible;/s
+  )
+  expect(readerCss).toMatch(
+    /\.study-reader-topbar\s*\{[^}]*width:\s*calc\(100% \+ var\(--study-reader-inset-left\) \+ var\(--study-reader-inset-right\)\);[^}]*margin:\s*0 calc\(-1 \* var\(--study-reader-inset-right\)\) 0 calc\(-1 \* var\(--study-reader-inset-left\)\);/s
+  )
+  expect(readerCss).not.toMatch(/padding(?:-top)?:\s*var\(--study-reader-topbar-height\)/)
 })
