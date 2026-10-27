@@ -6,6 +6,8 @@ const indexCss = fs.readFileSync(path.join(process.cwd(), 'src/index.css'), 'utf
 const navigationCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/navigation.css'), 'utf8')
 const catalogCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/catalog.css'), 'utf8')
 const readerCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/reader.css'), 'utf8')
+const readerHeaderCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/persistent-reader-header.css'), 'utf8')
+const readerHeaderSource = fs.readFileSync(path.join(process.cwd(), 'src/components/ReaderHeader.tsx'), 'utf8')
 const tokensCss = fs.readFileSync(path.join(process.cwd(), 'src/styles/tokens.css'), 'utf8')
 const navBarSource = fs.readFileSync(path.join(process.cwd(), 'src/components/NavBar.tsx'), 'utf8')
 const appSource = fs.readFileSync(path.join(process.cwd(), 'src/App.tsx'), 'utf8')
@@ -47,7 +49,7 @@ test('uses the native document as the sole primary vertical scroller', () => {
   expect(indexCss).not.toContain('-webkit-overflow-scrolling')
 })
 
-test('keeps touch-reader chrome document-attached and out of WebKit viewport-layer failure modes', () => {
+test('keeps persistent reader chrome measured and out of WebKit viewport-layer failure modes', () => {
   expect(indexHtml).toContain(
     '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />'
   )
@@ -69,18 +71,30 @@ test('keeps touch-reader chrome document-attached and out of WebKit viewport-lay
     /\.app-shell\s*>\s*\*\s*\{[^}]*position:\s*relative;/s
   )
 
-  expect(catalogCss).toMatch(
-    /\.epub-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*height:\s*var\(--epub-reader-topbar-height\);/s
+  // The shared component overrides legacy EPUB chrome with an in-flow sticky
+  // heading. Its measured height clears focused passages as interface text grows.
+  expect(readerHeaderSource).toContain("import '../styles/persistent-reader-header.css'")
+  expect(readerHeaderSource).toContain('header.getBoundingClientRect().height')
+  expect(readerHeaderSource).toContain("page.style.setProperty('--reader-header-height', `${height}px`)")
+  expect(readerHeaderSource).toContain('new ResizeObserver(measure)')
+  expect(readerHeaderSource).toContain('observer?.observe(header)')
+  expect(readerHeaderCss).toMatch(
+    /\.reader-header:is\(\.study-reader-topbar,\.story-reader-toolbar,\.epub-reader-topbar\)\s*\{[^}]*height:\s*auto;[^}]*min-height:\s*calc\(var\(--safe-area-top\)\s*\+\s*64px\);/s
   )
-  expect(catalogCss).toMatch(
-    /\.epub-reader-main\s*\{[^}]*padding:\s*calc\(var\(--epub-reader-topbar-height\)\s*\+/s
+  expect(readerHeaderCss).toMatch(
+    /\.reader-header:is\(\.story-reader-toolbar,\.epub-reader-topbar\)\s*\{[^}]*position:\s*sticky;[^}]*top:\s*0;/s
   )
-  expect(catalogCss).not.toMatch(/\.epub-reader-topbar\s*\{[^}]*position:\s*sticky;/s)
+  expect(readerHeaderCss).toMatch(
+    /\.epub-reader-shell:has\(>\s*\.reader-header\)\s*\.epub-reader-main\s*\{[^}]*padding-top:\s*clamp\(/s
+  )
+  expect(readerHeaderCss).toMatch(
+    /\.epub-reader-shell:has\(>\s*\.reader-header\)\s*\[data-reader-block\]\s*\{[^}]*scroll-margin-top:\s*calc\(var\(--reader-header-height,var\(--epub-reader-topbar-height\)\)\s*\+\s*1rem\);/s
+  )
   expect(catalogCss).not.toMatch(
     /\.epub-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
   )
-  expect(catalogCss).toMatch(
-    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)\s*\{\s*\.epub-reader-topbar\s*\{\s*position:\s*absolute;/s
+  expect(readerHeaderCss).not.toMatch(
+    /\.reader-header[^{}]*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
   )
 
   expect(readerCss).toMatch(
@@ -100,7 +114,10 @@ test('keeps touch-reader chrome document-attached and out of WebKit viewport-lay
     /\.study-reader-topbar\s*\{[^}]*(?:backface-visibility|contain|filter|perspective|transform|will-change)\s*:/s
   )
   expect(readerCss).toMatch(
-    /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-reader-topbar\s*\{[^}]*position:\s*absolute;/s
+    /\.reader-header\.study-reader-topbar\s*\{[^}]*position:\s*fixed;[^}]*visibility:\s*visible;/s
+  )
+  expect(readerCss).not.toMatch(
+    /\.study-reader-topbar\s*\{[^}]*position:\s*absolute;/s
   )
   expect(readerCss).toMatch(
     /@media \(hover:\s*none\) and \(pointer:\s*coarse\)[\s\S]*?\.study-reader-ang-navigation\s*\{[^}]*position:\s*static;/s
