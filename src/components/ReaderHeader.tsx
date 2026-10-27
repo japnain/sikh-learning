@@ -24,16 +24,30 @@ export default function ReaderHeader({ className = '', ref, title, subtitle, tit
     const header = headerRef.current
     const page = header?.parentElement
     if (!header || !page) return
+    let measuredWidth = 0
+    let measuredRootFontSize = ''
     const measure = () => {
-      header.dataset.enlargedText = String(Number.parseFloat(getComputedStyle(document.documentElement).fontSize) >= 24)
+      measuredRootFontSize = getComputedStyle(document.documentElement).fontSize
+      const enlargedText = String(Number.parseFloat(measuredRootFontSize) >= 24)
+      if (header.dataset.enlargedText !== enlargedText) header.dataset.enlargedText = enlargedText
       const height = Math.ceil(header.getBoundingClientRect().height)
-      if (height > 0) page.style.setProperty('--reader-header-height', `${height}px`)
+      measuredWidth = header.clientWidth
+      if (height > 0 && page.style.getPropertyValue('--reader-header-height') !== `${height}px`) {
+        page.style.setProperty('--reader-header-height', `${height}px`)
+      }
+    }
+    const measureViewportChange = () => {
+      // Browser chrome expands and collapses during a touch scroll. Keep those
+      // height-only events free of header writes and height measurements,
+      // while still responding to orientation and browser text enlargement.
+      if (header.clientWidth !== measuredWidth
+        || getComputedStyle(document.documentElement).fontSize !== measuredRootFontSize) measure()
     }
     measure()
     const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure)
     observer?.observe(header)
-    window.addEventListener('resize', measure)
-    return () => { observer?.disconnect(); window.removeEventListener('resize', measure) }
+    window.addEventListener('resize', measureViewportChange)
+    return () => { observer?.disconnect(); window.removeEventListener('resize', measureViewportChange) }
   }, [])
   const Title = heading ? 'h1' : 'p'
   return <header {...props} ref={headerRef} className={`reader-header ${className}`} data-reader-header="persistent">

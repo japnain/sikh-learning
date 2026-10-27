@@ -1,10 +1,10 @@
 import { act, render } from '@testing-library/react'
 import { useReaderHeaderLayout } from './useReaderHeaderLayout'
-import { restoreReaderAnchor } from '../utils/readerAnchor'
+import { captureReaderAnchor, restoreReaderAnchor } from '../utils/readerAnchor'
 
 const geometry = vi.hoisted(() => ({
   width: 390, title: 120, label: 70, value: 25, normalHeight: 108, expandedHeight: 184, top: 0,
-  observers: [] as Array<() => void>,
+  observers: [] as Array<(entries: Array<{ target: Element }>) => void>,
 }))
 vi.mock('../utils/appScroll', () => ({ getAppScrollTop: () => geometry.top }))
 vi.mock('../utils/readerAnchor', () => ({
@@ -32,12 +32,16 @@ function rect(width: number, height = 0): DOMRect {
 async function frames() {
   await act(async () => { await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))) })
 }
+function resizeObserved(selector = '.study-reader-topbar') {
+  const target = document.querySelector(selector)!
+  geometry.observers.forEach(callback => callback([{ target }]))
+}
 
 beforeEach(() => {
   Object.assign(geometry, { width: 390, title: 120, label: 70, value: 25, normalHeight: 108, expandedHeight: 184, top: 0, observers: [] })
   disconnect = vi.fn()
   vi.stubGlobal('ResizeObserver', class {
-    constructor(callback: () => void) { geometry.observers.push(callback) }
+    constructor(callback: (entries: Array<{ target: Element }>) => void) { geometry.observers.push(callback) }
     observe() {}
     disconnect = disconnect
   })
@@ -58,6 +62,7 @@ beforeEach(() => {
   fontsDescriptor = Object.getOwnPropertyDescriptor(document, 'fonts')
   fonts = Object.assign(new EventTarget(), { ready: Promise.resolve() })
   Object.defineProperty(document, 'fonts', { configurable: true, value: fonts })
+  vi.mocked(captureReaderAnchor).mockClear()
   vi.mocked(restoreReaderAnchor).mockClear()
 })
 afterEach(() => {
@@ -90,11 +95,11 @@ test('returns to the normal arrangement after widening without getting stuck in 
   const page = getByTestId('measured-reader')
   expect(page.querySelector('.study-reader-topbar')).toHaveAttribute('data-reflow', 'true')
   geometry.width = 760
-  act(() => geometry.observers.forEach(callback => callback()))
+  act(() => resizeObserved())
   await frames()
   expect(page.querySelector('.study-reader-topbar')).toHaveAttribute('data-reflow', 'false')
   expect(page.style.getPropertyValue('--study-reader-topbar-height')).toBe('108px')
-  act(() => geometry.observers.forEach(callback => callback()))
+  act(() => resizeObserved())
   await frames()
   expect(page.style.getPropertyValue('--study-reader-topbar-height')).toBe('108px')
 })
@@ -120,7 +125,7 @@ test('does not move a deep reading while a modal owns focus and scroll restorati
   const page = getByTestId('measured-reader')
   page.setAttribute('aria-hidden', 'true')
   geometry.title = 300
-  act(() => geometry.observers.forEach(callback => callback()))
+  act(() => resizeObserved())
   await frames()
   expect(page.style.getPropertyValue('--study-reader-topbar-height')).toBe('184px')
   expect(restoreReaderAnchor).not.toHaveBeenCalled()
@@ -128,11 +133,59 @@ test('does not move a deep reading while a modal owns focus and scroll restorati
 
 test('disconnects observers and discards queued font/resize measurements after leaving the reader', async () => {
   const { unmount } = render(<Harness />)
-  act(() => geometry.observers.forEach(callback => callback()))
+  act(() => resizeObserved())
   unmount()
   geometry.top = 900
   act(() => fonts.dispatchEvent(new Event('loadingdone')))
   await frames()
   expect(disconnect).toHaveBeenCalledOnce()
+  expect(restoreReaderAnchor).not.toHaveBeenCalled()
+})
+
+test('ignores mobile browser height-only resizes during a deep reading', async () => {
+  geometry.top = 900
+  render(<Harness />)
+  await frames()
+  vi.mocked(document.createRange).mockClear()
+  vi.mocked(captureReaderAnchor).mockClear()
+  vi.mocked(restoreReaderAnchor).mockClear()
+  act(() => {
+    window.dispatchEvent(new Event('resize'))
+    window.dispatchEvent(new Event('resize'))
+    window.dispatchEvent(new Event('resize'))
+  })
+  await frames()
+  expect(document.createRange).not.toHaveBeenCalled()
+  expect(captureReaderAnchor).not.toHaveBeenCalled()
+  expect(restoreReaderAnchor).not.toHaveBeenCalled()
+})
+
+test('ignores scripture height changes but still measures a new header width', async () => {
+  geometry.top = 900
+  const { getByTestId } = render(<Harness />)
+  await frames()
+  vi.mocked(document.createRange).mockClear()
+  vi.mocked(captureReaderAnchor).mockClear()
+  act(() => resizeObserved('[data-testid="measured-reader"]'))
+  await frames()
+  expect(document.createRange).not.toHaveBeenCalled()
+  expect(captureReaderAnchor).not.toHaveBeenCalled()
+
+  geometry.width = 280
+  act(() => window.dispatchEvent(new Event('resize')))
+  await frames()
+  expect(document.createRange).toHaveBeenCalled()
+  expect(getByTestId('measured-reader').style.getPropertyValue('--study-reader-topbar-height')).toBe('184px')
+})
+
+test('does not scan scripture anchors when a repeated header measurement leaves layout unchanged', async () => {
+  geometry.top = 900
+  render(<Harness />)
+  await frames()
+  vi.mocked(captureReaderAnchor).mockClear()
+  vi.mocked(restoreReaderAnchor).mockClear()
+  act(() => resizeObserved())
+  await frames()
+  expect(captureReaderAnchor).not.toHaveBeenCalled()
   expect(restoreReaderAnchor).not.toHaveBeenCalled()
 })

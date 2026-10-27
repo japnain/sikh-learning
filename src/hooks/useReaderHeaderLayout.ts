@@ -15,17 +15,22 @@ export function useReaderHeaderLayout(routeIdentity: string, layoutRevision?: st
     if (!page || !header || !identity || !title) return
     let disposed = false
     let frame: number | null = null
+    let measuredWidth = 0
 
-    const textWidth = (element: HTMLElement) => {
+    const textWidths = (elements: HTMLElement[]) => {
       // Range measures the text rather than the width allocated to its block.
-      // Temporarily disabling wrapping also works after the header has reflowed.
-      const previous = element.style.whiteSpace
-      element.style.whiteSpace = 'nowrap'
-      const range = document.createRange()
-      range.selectNodeContents(element)
-      const width = typeof range.getBoundingClientRect === 'function' ? range.getBoundingClientRect().width : element.scrollWidth
-      element.style.whiteSpace = previous
-      return width
+      // Unwrap together so each label does not force a separate layout. Labels
+      // that are already nowrap need no temporary style mutation at all.
+      const wrapping = elements.filter(element => getComputedStyle(element).whiteSpace !== 'nowrap')
+        .map(element => ({ element, previous: element.style.whiteSpace }))
+      wrapping.forEach(({ element }) => { element.style.whiteSpace = 'nowrap' })
+      const widths = elements.map(element => {
+        const range = document.createRange()
+        range.selectNodeContents(element)
+        return typeof range.getBoundingClientRect === 'function' ? range.getBoundingClientRect().width : element.scrollWidth
+      })
+      wrapping.forEach(({ element, previous }) => { element.style.whiteSpace = previous })
+      return widths
     }
     const measure = () => {
       if (disposed || !header.isConnected || header.clientWidth <= 0) return
@@ -36,16 +41,18 @@ export function useReaderHeaderLayout(routeIdentity: string, layoutRevision?: st
         - 2 * flank - pixels(identityStyle.paddingLeft) - pixels(identityStyle.paddingRight)
       const length = identity.querySelector<HTMLElement>('.study-reader-length-control')
       const lengthStyle = length ? getComputedStyle(length) : null
-      const longestLengthLabel = length ? Math.max(0, ...Array.from(length.querySelectorAll<HTMLElement>('span,strong')).map(textWidth)) : 0
       const lengthInset = lengthStyle ? pixels(lengthStyle.paddingLeft) + pixels(lengthStyle.paddingRight)
         + pixels(lengthStyle.borderLeftWidth) + pixels(lengthStyle.borderRightWidth) : 0
-      const reflow = textWidth(title) > normalIdentityWidth + 1 || longestLengthLabel + lengthInset > normalIdentityWidth + 1
+      const [titleWidth, ...labelWidths] = textWidths([title, ...Array.from(length?.querySelectorAll<HTMLElement>('span,strong') ?? [])])
+      const reflow = titleWidth > normalIdentityWidth + 1 || Math.max(0, ...labelWidths) + lengthInset > normalIdentityWidth + 1
       const before = header.dataset.reflow === 'true'
-      const anchor = getAppScrollTop() > 0 && !page.closest('[inert],[aria-hidden="true"]') ? captureReaderAnchor() : null
-      header.dataset.reflow = String(reflow)
+      const previousHeight = pixels(page.style.getPropertyValue('--study-reader-topbar-height'))
+      const layoutChanged = before !== reflow || previousHeight !== Math.ceil(header.getBoundingClientRect().height)
+      const anchor = layoutChanged && getAppScrollTop() > 0 && !page.closest('[inert],[aria-hidden="true"]') ? captureReaderAnchor() : null
+      if (header.dataset.reflow !== String(reflow)) header.dataset.reflow = String(reflow)
       const height = Math.ceil(header.getBoundingClientRect().height)
       if (height <= 0) return
-      const previousHeight = pixels(page.style.getPropertyValue('--study-reader-topbar-height'))
+      measuredWidth = header.clientWidth
       if (previousHeight !== height) page.style.setProperty('--study-reader-topbar-height', `${height}px`)
       if (anchor && (previousHeight !== height || before !== reflow)) {
         restoreReaderAnchor({ ...anchor, viewportTop: Math.max(anchor.viewportTop, getReaderViewportTop()) })
@@ -55,11 +62,21 @@ export function useReaderHeaderLayout(routeIdentity: string, layoutRevision?: st
       if (frame !== null) cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => { frame = null; measure() })
     }
+    const scheduleWidthChange = () => {
+      // Mobile browser chrome changes viewport height throughout a swipe.
+      // The reader's title and wrapping only need remeasurement at a new width.
+      if (header.clientWidth !== measuredWidth) schedule()
+    }
     measure()
-    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(schedule)
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(entries => {
+      // Keep real header/font growth responsive without measuring it again
+      // whenever the scripture page's height changes.
+      if (entries.some(entry => entry.target === header)) schedule()
+      else scheduleWidthChange()
+    })
     observer?.observe(header)
     observer?.observe(page)
-    window.addEventListener('resize', schedule)
+    window.addEventListener('resize', scheduleWidthChange)
     window.addEventListener('orientationchange', schedule)
     window.addEventListener('pageshow', schedule)
     document.fonts?.addEventListener?.('loadingdone', schedule)
@@ -68,7 +85,7 @@ export function useReaderHeaderLayout(routeIdentity: string, layoutRevision?: st
       disposed = true
       if (frame !== null) cancelAnimationFrame(frame)
       observer?.disconnect()
-      window.removeEventListener('resize', schedule)
+      window.removeEventListener('resize', scheduleWidthChange)
       window.removeEventListener('orientationchange', schedule)
       window.removeEventListener('pageshow', schedule)
       document.fonts?.removeEventListener?.('loadingdone', schedule)

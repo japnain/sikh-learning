@@ -18,6 +18,52 @@ function sourceLine(key: string, top: number, height: number) {
 afterEach(() => { document.body.innerHTML = ''; vi.restoreAllMocks() })
 
 describe('semantic reader anchors', () => {
+  it('finds a deep reading in a long Bani without measuring every offscreen verse', () => {
+    vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
+    const host = document.createElement('main')
+    const count = 4096
+    const rowTop = (index: number) => index * 100 + Math.floor(index / 3) * 40
+    let scrollTop = rowTop(3100) + 40
+    const readRect = vi.fn(function (this: HTMLElement) {
+      const index = Number(this.dataset.index)
+      return rect(rowTop(index) - scrollTop, rowTop(index + 1) - rowTop(index))
+    })
+    for (let index = 0; index < count; index += 1) {
+      const line = document.createElement('p')
+      line.dataset.readerAnchor = `long-bani:${index}`
+      line.dataset.index = String(index)
+      line.getBoundingClientRect = readRect
+      host.append(line)
+    }
+    document.body.append(host)
+
+    for (const index of [3100, 4050, 12]) {
+      scrollTop = rowTop(index) + 40
+      readRect.mockClear()
+      expect(captureReaderAnchor()).toMatchObject({ key: `long-bani:${index}`, viewportTop: 16 })
+      expect(readRect.mock.calls.length).toBeLessThan(20)
+    }
+  })
+
+  it('prefers upcoming body text in a passage gap and handles the end of the reading', () => {
+    vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
+    sourceLine('previous:0', -300, 100)
+    const heading = sourceLine('next-heading:0', 1000, 80)
+    heading.dataset.lineKind = 'header'
+    const body = sourceLine('next-body:0', 1100, 200)
+    expect(captureReaderAnchor()).toMatchObject({ key: 'next-body:0', viewportTop: 1100 })
+    vi.mocked(heading.getBoundingClientRect).mockReturnValue(rect(-200, 80))
+    vi.mocked(body.getBoundingClientRect).mockReturnValue(rect(-100, 90))
+    expect(captureReaderAnchor()).toBeNull()
+  })
+
+  it('retains a heading-only reading before the first line is visible', () => {
+    vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
+    const heading = sourceLine('heading-only:0', 1000, 80)
+    heading.dataset.lineKind = 'header'
+    expect(captureReaderAnchor()).toMatchObject({ key: 'heading-only:0', viewportTop: 1000 })
+  })
+
   it('anchors the visible body after preceding metadata and content-detected headings at enlarged native geometry', () => {
     vi.spyOn(appScroll, 'getAppViewportBounds').mockReturnValue({ top: 0, bottom: 844, height: 844 })
     const previous = sourceLine('bani-21-12-0:2', 130, 80)
