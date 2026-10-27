@@ -562,7 +562,7 @@ export default function Rehat() {
         <section className="mt-5 space-y-3" data-testid="rehat-chapter-list-page">
           <Link
             to="/banis/rehat"
-            className="interactive-focus inline-flex min-h-[40px] items-center gap-2 rounded-full bg-[rgb(var(--color-surface-muted))] px-3 py-2 font-sans text-xs font-medium text-text/65 transition-colors duration-300 dark:bg-dark-surface dark:text-dark-text/65"
+            className="interactive-focus inline-flex min-h-[40px] items-center gap-2 rounded-full bg-[rgb(var(--color-surface-muted))] px-3 py-2 font-sans text-xs font-medium text-text-muted transition-colors duration-300 dark:bg-dark-surface"
           >
             <IconArrowLeft size={14} />
             {t("Back to rehats")}</Link>
