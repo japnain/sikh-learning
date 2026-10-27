@@ -1,0 +1,80 @@
+/* A quiet, universal interface frame. Scripture retains its own script font. */
+.reader-header:is(.study-reader-topbar,.story-reader-toolbar,.epub-reader-topbar) {
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) auto;
+  align-items:center;
+  gap:.25rem .5rem;
+  height:auto;
+  min-height:calc(var(--safe-area-top) + 64px);
+  padding:calc(var(--safe-area-top) + .35rem) max(.75rem,var(--safe-area-right)) .35rem max(.75rem,var(--safe-area-left));
+  border-bottom:1px solid rgb(var(--color-border) / .3);
+  background:rgb(var(--color-bg));
+  color:rgb(var(--color-text));
+  font-family:'Plus Jakarta Sans',sans-serif;
+  visibility:visible;
+}
+.reader-header:is(.story-reader-toolbar,.epub-reader-topbar) { position:sticky; top:0; z-index:40; }
+.reader-header.epub-reader-topbar { background:rgb(var(--epub-page)); color:rgb(var(--epub-ink)); border-bottom-color:rgb(var(--epub-rule) / .4); }
+.reader-header :is(button,a):focus-visible { outline:2px solid rgb(var(--color-focus)); outline-offset:2px; }
+.reader-header > :is(button,a), .reader-header .reader-header__actions > :is(button,a) {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  width:44px;
+  height:44px;
+  min-width:44px;
+  min-height:44px;
+  padding:0;
+  border:0;
+  border-radius:.4rem;
+  background:transparent;
+  color:inherit;
+}
+.reader-header .reader-header__identity { min-width:0; padding:.2rem .25rem; text-align:center; }
+.reader-header .reader-header__title {
+  margin:0;
+  padding:0;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.0625rem;
+  font-weight:500;
+  line-height:1.45;
+  letter-spacing:-.025em;
+  color:inherit;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.reader-header .reader-header__title.font-gurmukhi { font-family:'Noto Serif Gurmukhi',serif; letter-spacing:0; padding-block:.2em; }
+.reader-header .reader-header__title.font-devanagari { font-family:'Noto Serif Devanagari','Noto Sans Devanagari',serif; letter-spacing:0; padding-block:.2em; }
+.reader-header .reader-header__subtitle { display:block; margin:.2rem 0 0; font-size:.8125rem; line-height:1.4; font-weight:400; letter-spacing:0; color:rgb(var(--color-text-muted)); }
+.reader-header.epub-reader-topbar .reader-header__subtitle { color:rgb(var(--epub-muted)); }
+.reader-header .reader-header__actions { display:flex; align-items:center; justify-self:end; gap:0; }
+.reader-header .reader-header__actions :is(.study-reader-aa,.story-appearance-trigger span) { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.0625rem; font-weight:500; letter-spacing:-.06em; }
+.reader-header .reader-header__secondary { grid-column:1 / -1; min-width:0; width:100%; }
+.reader-header .study-reader-presentation-bar { width:100%; margin-top:.25rem; padding-inline:.25rem; border-top:1px solid rgb(var(--color-border) / .25); }
+.reader-header .study-reader-section-icon { display:none; }
+.reader-header[data-reflow='true'] .reader-header__title { overflow:visible; white-space:normal; overflow-wrap:break-word; }
+.reader-header[data-reflow='true'] .reader-header__secondary { grid-row:3; }
+.epub-reader-shell:has(> .reader-header) .epub-reader-main { padding-top:clamp(1.5rem,5vw,4.5rem); }
+.epub-reader-shell:has(> .reader-header) [data-reader-block] { scroll-margin-top:calc(var(--reader-header-height,var(--epub-reader-topbar-height)) + 1rem); }
+@media(max-width:440px) {
+  .reader-header:is(.study-reader-topbar,.story-reader-toolbar,.epub-reader-topbar) { grid-template-columns:44px minmax(0,1fr); }
+  .reader-header .reader-header__actions { grid-row:1; grid-column:2; }
+  .reader-header .reader-header__identity { grid-row:2; grid-column:1 / -1; padding:.1rem .5rem .3rem; }
+  .reader-header .reader-header__title { white-space:normal; overflow-wrap:break-word; }
+  .reader-header .reader-header__secondary { grid-row:3; }
+}
+/* Text enlargement keeps its readable type size while optional context makes
+   room for scripture. The source is also available in the reading itself. */
+@media(max-width:600px) {
+  .reader-header[data-enlarged-text='true'] { gap:4px 8px; padding:calc(var(--safe-area-top) + 4px) 12px 6px; }
+  .reader-header[data-enlarged-text='true'] .reader-header__identity { padding:0 4px 2px; }
+  .reader-header.study-reader-topbar[data-enlarged-text='true'] .reader-header__subtitle { display:none; }
+  .reader-header[data-enlarged-text='true'] .study-reader-presentation-bar { flex-wrap:nowrap; gap:8px; min-height:44px; margin-top:2px; padding:2px 0 0; }
+  .reader-header[data-enlarged-text='true'] .study-reader-mode { flex:1 1 auto; width:auto; gap:8px; }
+  .reader-header[data-enlarged-text='true'] .study-reader-mode label > span { padding:4px; }
+  .reader-header[data-enlarged-text='true'] .study-reader-section-trigger { flex:0 0 44px; width:44px; height:44px; justify-content:center; gap:0; }
+  .reader-header[data-enlarged-text='true'] .study-reader-section-trigger > :is(span,small) { display:none; }
+  .reader-header[data-enlarged-text='true'] .study-reader-section-icon { display:block; }
+}

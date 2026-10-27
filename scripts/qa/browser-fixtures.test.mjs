@@ -29,6 +29,14 @@ test('hosted-proxy preflight is local and deep-reader content has stable unique 
   assert.equal(deterministicProviderResponse('https://api.banidb.com/v2/hukamnamas').data.shabads[0].verses.length, 1)
 })
 
+test('distinct-length QA data is opt-in and does not mutate the default corpus', () => {
+  const url = 'https://api.banidb.com/v2/banis/21'
+  const original = deterministicProviderResponse(url).data.verses
+  const distinct = deterministicProviderResponse(url, null, 'GET', { distinctBaniLengths: true }).data.verses
+  assert(distinct.filter(verse => verse.existsSGPC).length < distinct.filter(verse => verse.existsMedium).length)
+  assert.deepEqual(deterministicProviderResponse(url).data.verses, original)
+})
+
 test('browser routes fulfill providers, pass only app-origin assets, and fail closed for other external requests', async () => {
   let handler
   const context = { addInitScript: async () => {}, route: async (_pattern, callback) => { handler = callback } }

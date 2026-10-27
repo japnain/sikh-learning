@@ -4,15 +4,14 @@ import type { StoryArtwork as ArtworkKind } from '../types/stories'
 export default function StoryArtwork({ kind, className = '' }: { kind: ArtworkKind; className?: string }) {
   return (
     <svg viewBox="0 0 480 320" fill="none" className={`story-artwork story-artwork--${kind} ${className}`} aria-hidden="true" focusable="false">
-      <rect width="480" height="320" fill="currentColor" opacity=".07" />
-      <g stroke="currentColor" strokeWidth="1.25" opacity=".55">
+      <g stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity=".85">
         {kind === 'river' && <>
           <circle cx="330" cy="88" r="34" fill="currentColor" fillOpacity=".08" />
           {[166, 184, 206, 232, 262, 296].map((y, i) => <path key={y} d={`M-30 ${y} Q110 ${y - 45 - i * 3} 240 ${y} T520 ${y - 10}`} />)}
           <path d="M84 150 Q142 106 208 151 M286 150 Q356 111 424 150" opacity=".4" />
         </>}
         {kind === 'bowl' && <>
-          <path d="M124 174 Q144 254 240 254 Q336 254 356 174 Z" fill="currentColor" fillOpacity=".05" />
+          <path d="M124 174 Q144 254 240 254 Q336 254 356 174 Z" fill="currentColor" fillOpacity=".1" />
           <ellipse cx="240" cy="174" rx="116" ry="23" />
           <ellipse cx="240" cy="174" rx="99" ry="15" opacity=".5" />
           <path d="M196 133 C172 106 212 96 193 70 M240 130 C218 104 256 91 239 61 M284 133 C262 106 299 95 282 72 M172 266 H308" />
@@ -33,7 +32,7 @@ export default function StoryArtwork({ kind, className = '' }: { kind: ArtworkKi
           <path d="M111 200 C126 256 168 276 211 288 M366 145 C374 115 402 95 422 88" />
         </>}
         {kind === 'light' && <>
-          <path d="M173 224 Q240 268 307 224 L289 262 H191 Z M240 223 V178 C203 151 244 127 241 94 C280 144 272 164 240 178" fill="currentColor" fillOpacity=".04" />
+          <path d="M173 224 Q240 268 307 224 L289 262 H191 Z M240 223 V178 C203 151 244 127 241 94 C280 144 272 164 240 178" fill="currentColor" fillOpacity=".1" />
           <circle cx="240" cy="164" r="85" strokeDasharray="1 9" />
           <circle cx="240" cy="164" r="110" strokeDasharray="1 12" opacity=".5" />
           <path d="M155 278 H325" />

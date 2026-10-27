@@ -20,6 +20,7 @@ import {
 } from '../../components/icons'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
 import ModalSheet from '../../components/ModalSheet'
+import ReaderHeader from '../../components/ReaderHeader'
 import {
   loadLibraryChapter,
   loadLibraryChapterIndex,
@@ -75,21 +76,21 @@ const BOOK_SAVE_COPY = {
     remove: 'Remove this saved book section',
     saved: 'Book section saved.',
     removed: 'Book section removed from Saved.',
-    storage: 'This change is only available for this session because device storage is unavailable.',
+    storage: 'This bookmark could not be saved.',
   },
   pa: {
     save: 'ਕਿਤਾਬ ਦਾ ਇਹ ਭਾਗ ਸੰਭਾਲੋ',
     remove: 'ਕਿਤਾਬ ਦਾ ਇਹ ਸੰਭਾਲਿਆ ਭਾਗ ਹਟਾਓ',
     saved: 'ਕਿਤਾਬ ਦਾ ਭਾਗ ਸੰਭਾਲਿਆ ਗਿਆ।',
     removed: 'ਕਿਤਾਬ ਦਾ ਭਾਗ ਸੰਭਾਲੇ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ।',
-    storage: 'ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਾ ਹੋਣ ਕਾਰਨ ਇਹ ਬਦਲਾਅ ਸਿਰਫ਼ ਇਸ ਸੈਸ਼ਨ ਲਈ ਹੈ।',
+    storage: 'ਇਹ ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।',
   },
   hi: {
     save: 'पुस्तक का यह भाग सहेजें',
     remove: 'पुस्तक का यह सहेजा भाग हटाएँ',
     saved: 'पुस्तक का भाग सहेजा गया।',
     removed: 'पुस्तक का भाग सहेजे से हटा दिया गया।',
-    storage: 'डिवाइस स्टोरेज उपलब्ध न होने के कारण यह बदलाव केवल इस सत्र के लिए है।',
+    storage: 'यह बुकमार्क सहेजा नहीं जा सका।',
   },
 } as const
 
@@ -626,20 +627,13 @@ export default function LibraryChapterReader() {
       data-measure={measure}
       style={readerStyle}
     >
-      <header className="epub-reader-topbar" data-testid="panth-reader-topbar">
-        <Link
-          to={readerOrigin}
-          className="epub-reader-topbar__back interactive-focus"
-          aria-label={backLabel}
-        >
-          <IconArrowLeft size={18} />
-        </Link>
-        <div className="epub-reader-topbar__title">
-          <span>{work.shortTitle}</span>
-          <strong>{chapterLabel(chapter)}</strong>
-        </div>
-        <div className="epub-reader-topbar__actions">
-          <button
+      <ReaderHeader className="epub-reader-topbar" data-testid="panth-reader-topbar"
+        title={work.shortTitle} subtitle={chapterLabel(chapter)}
+        back={<Link to={readerOrigin} className="epub-reader-topbar__back interactive-focus" aria-label={backLabel}><IconArrowLeft size={18} /></Link>}
+        actions={<>
+          <button ref={contentsTriggerRef} type="button" onClick={() => setActivePanel('contents')} aria-label="Open contents" aria-haspopup="dialog" aria-expanded={activePanel === 'contents'}><IconLibrary size={18} /></button>
+          <button ref={settingsTriggerRef} type="button" onClick={() => setActivePanel('display')} aria-label="Reading appearance" aria-haspopup="dialog" aria-expanded={activePanel === 'display'}><span aria-hidden="true" className="study-reader-aa">Aa</span></button>
+<button
             type="button"
             onClick={toggleChapterBookmark}
             aria-label={chapterBookmark ? bookSaveCopy.remove : bookSaveCopy.save}
@@ -648,17 +642,9 @@ export default function LibraryChapterReader() {
           >
             {chapterBookmark ? <IconBookmarkFilled size={18} /> : <IconBookmark size={18} />}
           </button>
-          <button ref={contentsTriggerRef} type="button" onClick={() => setActivePanel('contents')} aria-label="Open contents">
-            <IconLibrary size={18} />
-          </button>
-          <button ref={settingsTriggerRef} type="button" onClick={() => setActivePanel('display')} aria-label="Reading appearance">
-            <span aria-hidden="true" className="study-reader-aa">Aa</span>
-          </button>
-        </div>
-        <div className="epub-reader-progress" aria-hidden="true">
-          <span ref={progressBarRef} />
-        </div>
-      </header>
+        </>}
+        progress={<div className="epub-reader-progress" aria-hidden="true"><span ref={progressBarRef} /></div>}
+      />
 
       <div className="sr-only" aria-live="polite" aria-atomic="true">{savedNotice}</div>
 

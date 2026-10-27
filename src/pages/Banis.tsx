@@ -1,5 +1,6 @@
 import '../styles/catalog.css'
 import '../styles/reader.css'
+import '../styles/read-discovery.css'
 import { lazy, Suspense, useState, useCallback, useRef, useEffect, useMemo, type ImgHTMLAttributes, type ReactNode } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
@@ -200,7 +201,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directOpen: 'Direct open',
     searching: 'Searching',
     ready: 'Ready',
-    inApp: 'In the app',
+    inApp: 'Open a reading',
     exactFirst: 'Exact destinations first',
     libraryMatches: 'From the library',
     gurbaniMatches: 'Gurbani matches',
@@ -232,11 +233,11 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     recent: 'Recent',
     clear: 'Clear',
     searchResultsAbove: 'Search results are shown above.',
-    featuredFlowEyebrow: 'Featured flow',
+    featuredFlowEyebrow: 'Daily devotion',
     featuredFlowChip: 'Devotional flow',
     featuredFlowTitle: 'Ardaas + Hukamnama',
     featuredFlowBody: ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek,
-    beginFlow: 'Begin devotional flow',
+    beginFlow: 'Begin Ardaas',
     banisEyebrow: 'Daily practice',
     banisTitle: 'Banis for every part of the day',
     banisBody: 'Morning, evening, and complete daily readings.',
@@ -244,7 +245,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     sourcesTitle: 'Open each source in its own structure',
     sourcesBody: 'Browse scripture by Ang and Bhai Gurdas Ji Vaaran by Vaar.',
     sourceCatalogEyebrow: 'Source editions',
-    sourceCatalogTitle: 'Scripture source browser',
+    sourceCatalogTitle: 'Choose a source',
     sourceCatalogBody: 'Open scripture by Ang or choose a Vaar directly.',
     companionEyebrow: 'Companion reader',
     companionTitle: 'Guidance and practice',
@@ -253,7 +254,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     rehatBody: 'Conduct, practice, and chapter-level reading.',
     booksEyebrow: 'Books',
     booksTitle: 'History and memory in longer form',
-    booksBody: 'Open chapter-based works without mixing them into scripture sources.',
+    booksBody: 'Explore Sikh history through complete books and their chapters.',
     booksCatalogEyebrow: 'Book collection',
     booksCatalogTitle: 'Historical books',
     booksCatalogBody: 'Browse available volumes, chapters, and full-text search.',
@@ -300,7 +301,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directOpen: 'ਸਿੱਧਾ ਖੋਲ੍ਹੋ',
     searching: 'ਖੋਜ ਜਾਰੀ ਹੈ',
     ready: 'ਤਿਆਰ',
-    inApp: 'ਐਪ ਵਿੱਚ',
+    inApp: 'ਪਾਠ ਖੋਲ੍ਹੋ',
     exactFirst: 'ਸਿੱਧੇ ਰਸਤੇ ਪਹਿਲਾਂ',
     libraryMatches: 'ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚੋਂ',
     gurbaniMatches: 'ਗੁਰਬਾਣੀ ਮੇਲ',
@@ -336,7 +337,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     featuredFlowChip: 'ਸ਼ਰਧਾ ਦਾ ਕ੍ਰਮ',
     featuredFlowTitle: 'ਅਰਦਾਸ + ਹੁਕਮਨਾਮਾ',
     featuredFlowBody: 'ਪਹਿਲਾਂ ਸਾਂਝੀ ਸਿੱਖ ਅਰਦਾਸ ਕਰੋ, ਫਿਰ ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਤੋਂ ਹੁਕਮਨਾਮਾ ਲੈ ਕੇ ਮਨਨ ਕਰੋ।',
-    beginFlow: 'ਪਾਠ-ਕ੍ਰਮ ਸ਼ੁਰੂ ਕਰੋ',
+    beginFlow: 'ਅਰਦਾਸ ਸ਼ੁਰੂ ਕਰੋ',
     banisEyebrow: 'ਰੋਜ਼ਾਨਾ ਅਭਿਆਸ',
     banisTitle: 'ਦਿਨ ਦੇ ਹਰ ਵੇਲੇ ਲਈ ਬਾਣੀਆਂ',
     banisBody: 'ਸਵੇਰ, ਸ਼ਾਮ ਅਤੇ ਪੂਰੇ ਰੋਜ਼ਾਨਾ ਪਾਠ।',
@@ -344,7 +345,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     sourcesTitle: 'ਹਰ ਸਰੋਤ ਨੂੰ ਉਸਦੀ ਆਪਣੀ ਬਣਤਰ ਵਿੱਚ ਖੋਲ੍ਹੋ',
     sourcesBody: 'ਗ੍ਰੰਥ ਅੰਗ ਅਨੁਸਾਰ ਅਤੇ ਭਾਈ ਗੁਰਦਾਸ ਜੀ ਦੀਆਂ ਵਾਰਾਂ ਵਾਰ ਅਨੁਸਾਰ ਖੋਲ੍ਹੋ।',
     sourceCatalogEyebrow: 'ਮੂਲ ਸਰੋਤ',
-    sourceCatalogTitle: 'ਗੁਰਬਾਣੀ ਸਰੋਤ ਬ੍ਰਾਊਜ਼ਰ',
+    sourceCatalogTitle: 'ਸਰੋਤ ਚੁਣੋ',
     sourceCatalogBody: 'ਅੰਗ ਜਾਂ ਵਾਰ ਚੁਣ ਕੇ ਸਿੱਧਾ ਪਾਠ ਖੋਲ੍ਹੋ।',
     companionEyebrow: 'ਸਹਾਇਕ ਪਾਠਕ',
     companionTitle: 'ਰਹਿਨੁਮਾਈ ਅਤੇ ਅਭਿਆਸ',
@@ -353,7 +354,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     rehatBody: 'ਆਚਰਨ, ਅਭਿਆਸ ਅਤੇ ਅਧਿਆਇ ਅਨੁਸਾਰ ਪੜ੍ਹਾਈ।',
     booksEyebrow: 'ਕਿਤਾਬਾਂ',
     booksTitle: 'ਇਤਿਹਾਸ ਅਤੇ ਯਾਦ ਲੰਮੇ ਰੂਪ ਵਿੱਚ',
-    booksBody: 'ਕਿਤਾਬਾਂ ਨੂੰ ਗੁਰਬਾਣੀ ਸਰੋਤਾਂ ਨਾਲ ਮਿਲਾਏ ਬਿਨਾਂ ਅਧਿਆਇ ਅਨੁਸਾਰ ਪੜ੍ਹੋ।',
+    booksBody: 'ਸੰਪੂਰਨ ਕਿਤਾਬਾਂ ਅਤੇ ਅਧਿਆਵਾਂ ਰਾਹੀਂ ਸਿੱਖ ਇਤਿਹਾਸ ਪੜ੍ਹੋ।',
     booksCatalogEyebrow: 'ਕਿਤਾਬ ਸੰਗ੍ਰਹਿ',
     booksCatalogTitle: 'ਇਤਿਹਾਸਕ ਕਿਤਾਬਾਂ',
     booksCatalogBody: 'ਉਪਲਬਧ ਜਿਲਦਾਂ, ਅਧਿਆਇ ਅਤੇ ਪੂਰੀ ਲਿਖਤ ਖੋਜੋ।',
@@ -400,7 +401,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directOpen: 'सीधे खोलें',
     searching: 'खोज जारी है',
     ready: 'तैयार',
-    inApp: 'ऐप में',
+    inApp: 'पाठ खोलें',
     exactFirst: 'सीधे रास्ते पहले',
     libraryMatches: 'लाइब्रेरी से',
     gurbaniMatches: 'गुरबाणी मिलान',
@@ -436,7 +437,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     featuredFlowChip: 'श्रद्धा का क्रम',
     featuredFlowTitle: 'अरदास + हुकमनामा',
     featuredFlowBody: 'पहले सामूहिक सिख अरदास करें, फिर श्री गुरु ग्रंथ साहिब जी से हुकमनामा लेकर मनन करें।',
-    beginFlow: 'पाठ-क्रम शुरू करें',
+    beginFlow: 'अरदास शुरू करें',
     banisEyebrow: 'दैनिक अभ्यास',
     banisTitle: 'दिन के हर समय के लिए बाणियाँ',
     banisBody: 'सुबह, शाम और पूरे दैनिक पाठ।',
@@ -444,7 +445,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     sourcesTitle: 'हर स्रोत को उसकी अपनी रचना में खोलें',
     sourcesBody: 'ग्रंथ को अंग और भाई गुरदास जी की वारों को वार के अनुसार खोलें।',
     sourceCatalogEyebrow: 'मूल स्रोत',
-    sourceCatalogTitle: 'गुरबाणी स्रोत ब्राउज़र',
+    sourceCatalogTitle: 'स्रोत चुनें',
     sourceCatalogBody: 'अंग या वार चुनकर सीधे पाठ खोलें।',
     companionEyebrow: 'सहायक पाठक',
     companionTitle: 'मार्गदर्शन और अभ्यास',
@@ -453,7 +454,7 @@ const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     rehatBody: 'आचरण, अभ्यास और अध्याय के अनुसार पढ़ना।',
     booksEyebrow: 'किताबें',
     booksTitle: 'इतिहास और स्मृति लंबे रूप में',
-    booksBody: 'किताबों को गुरबाणी स्रोतों में मिलाए बिना अध्याय के अनुसार पढ़ें।',
+    booksBody: 'पूरी किताबों और उनके अध्यायों के माध्यम से सिख इतिहास पढ़ें।',
     booksCatalogEyebrow: 'किताब संग्रह',
     booksCatalogTitle: 'ऐतिहासिक किताबें',
     booksCatalogBody: 'उपलब्ध खंड, अध्याय और पूरी किताब में खोजें।',
@@ -509,6 +510,16 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   transliteration: { type: 4, placeholder: 'Transliteration', minLength: 2 },
   ang: { type: -1, placeholder: 'Open an ang or Vaar', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
+}
+const SEARCH_MODE_GROUPS: Array<{ key: 'gurmukhi' | 'latin' | 'location'; modes: SearchMode[] }> = [
+  { key: 'gurmukhi', modes: ['first-letters', 'first-letters-anywhere', 'gurmukhi'] },
+  { key: 'latin', modes: ['english', 'transliteration'] },
+  { key: 'location', modes: ['ang'] },
+]
+const SEARCH_REFINEMENT_COPY: Record<UiLocale, Record<'gurmukhi' | 'latin' | 'location' | 'source', string>> = {
+  en: { gurmukhi: 'Match Gurmukhi', latin: 'English & Romanized text', location: 'Go to a location', source: 'Search within' },
+  pa: { gurmukhi: 'ਗੁਰਮੁਖੀ ਵਿੱਚ ਖੋਜ', latin: 'ਅੰਗਰੇਜ਼ੀ ਅਤੇ ਰੋਮਨ ਲਿਪੀ', location: 'ਅੰਗ ਜਾਂ ਵਾਰ ਖੋਲ੍ਹੋ', source: 'ਸਰੋਤ ਚੁਣੋ' },
+  hi: { gurmukhi: 'गुरमुखी में खोजें', latin: 'अंग्रेज़ी और रोमन लिपि', location: 'अंग या वार खोलें', source: 'स्रोत चुनें' },
 }
 const READ_SEARCH_EXAMPLES = ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam']
 const SEARCH_RESULTS_PAGE_SIZE = 12
@@ -886,14 +897,14 @@ function MetadataChip({
   children: ReactNode
   onClick?: () => void
 }) {
-  const className = 'rounded-full bg-gold/10 dark:bg-gold/10 border border-gold/15 dark:border-gold/20 px-2 py-1 font-sans text-[10px] text-gold-dark dark:text-gold-light'
+  const className = 'read-metadata font-sans'
 
   if (!onClick) {
     return <span className={className}>{children}</span>
   }
 
   return (
-    <button type="button" onClick={onClick} className={`${className} transition-colors duration-300 hover:bg-gold/15`}>
+    <button type="button" onClick={onClick} className={`${className} read-metadata--action`}>
       {children}
     </button>
   )
@@ -1055,7 +1066,7 @@ function AppSearchResultGroup({
                   </p>
                 ) : null}
               </div>
-              <span className="chip-pill">{copy.browse}</span>
+              <IconArrowRight size={18} className="shrink-0" aria-hidden="true" />
             </div>
           </button>
         )
@@ -1637,55 +1648,56 @@ export default function Banis() {
             {searchStatusMessage}
           </p>
         </div>
-        <div className="mt-3 flex flex-wrap items-center gap-2">
+        {!searchOptionsOpen && <div className="read-search-summary mt-3 flex flex-wrap items-center gap-2">
           <MetadataChip>{searchMode === 'auto-detect' ? copy.autoDetect : searchModeLabels[searchMode]}</MetadataChip>
-          {searchSource !== 'all' && <MetadataChip>{SEARCH_SOURCE_LABELS[searchSource]}</MetadataChip>}
+          {searchSource !== 'all' && <MetadataChip>{SOURCE_READER_META[searchSource].name}</MetadataChip>}
           {directLookupActive && <MetadataChip>{copy.directOpen}</MetadataChip>}
-          {hasActiveSearch && !directLookupActive && (
-            <MetadataChip>{searching ? copy.searching : copy.ready}</MetadataChip>
-          )}
-        </div>
+        </div>}
 
         {searchOptionsOpen && (
           <div id="banis-search-options-panel">
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode]) => {
-                const selected = searchMode === mode
-                return (
+            <button
+              type="button"
+              className="read-refinement-choice read-refinement-auto"
+              aria-pressed={searchMode === 'auto-detect'}
+              onClick={() => setSearchMode('auto-detect')}
+            >
+              {copy.autoDetect}
+            </button>
+            {SEARCH_MODE_GROUPS.map(group => (
+              <fieldset key={group.key} className="read-refinement-group">
+                <legend>{SEARCH_REFINEMENT_COPY[locale][group.key]}</legend>
+                <div className="read-refinement-options">
+                  {group.modes.map(mode => (
                     <button
                       key={mode}
+                      type="button"
                       onClick={() => setSearchMode(mode)}
-                      aria-pressed={selected}
-                      className={`min-h-[44px] rounded-lg px-3 py-2 font-sans text-xs font-medium transition-all duration-300 ${
-                        selected
-                          ? 'bg-saffron text-white'
-                          : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                    }`}
+                      aria-pressed={searchMode === mode}
+                      className="read-refinement-choice"
+                    >
+                      {searchModeLabels[mode]}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+            <fieldset className="read-refinement-group">
+              <legend>{SEARCH_REFINEMENT_COPY[locale].source}</legend>
+              <div className="read-refinement-sources">
+                {(Object.keys(SEARCH_SOURCE_LABELS) as SearchSource[]).map(value => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setSearchSource(value)}
+                    aria-pressed={searchSource === value}
+                    className="read-refinement-choice"
                   >
-                    {searchModeLabels[mode]}
+                    {value === 'all' ? copy.allSources : SOURCE_READER_META[value].name}
                   </button>
-                )
-              })}
-            </div>
-            <div className="flex flex-wrap gap-2 mt-3">
-              {(Object.keys(SEARCH_SOURCE_LABELS) as SearchSource[]).map(value => {
-                const selected = searchSource === value
-                return (
-                    <button
-                      key={value}
-                      onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
-                      aria-pressed={selected}
-                      className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border transition-all duration-300 ${
-                        selected
-                          ? 'bg-saffron text-white border-saffron'
-                          : 'bg-parchment-card dark:bg-dark-card text-ink/68 dark:text-dark-text/64 border-sand/15 dark:border-dark-text/10'
-                    }`}
-                  >
-                    {value === 'all' ? copy.allSources : SEARCH_SOURCE_LABELS[value]}
-                  </button>
-                )
-              })}
-            </div>
+                ))}
+              </div>
+            </fieldset>
           </div>
           )}
           {directLookupActive && searchQuery.trim() && (
@@ -1739,7 +1751,6 @@ export default function Banis() {
               matches={immediateAppSearchMatches}
               query={searchQuery}
               groupLabel={copy.inApp}
-              groupHint={copy.exactFirst}
               testId="banis-search-app-results"
               aiResultGroup="in-app"
               resultAnchor
@@ -2035,7 +2046,6 @@ export default function Banis() {
         >
           <div className="flex items-center justify-between gap-3">
             <p className="eyebrow">{copy.featuredFlowEyebrow}</p>
-            <span className="chip-pill shrink-0">{copy.featuredFlowChip}</span>
           </div>
           <div className="mt-3 flex items-start justify-between gap-4">
             <div className="min-w-0">
@@ -2394,7 +2404,6 @@ export default function Banis() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="eyebrow">{copy.sourceCatalogEyebrow}</p>
                   <h2 id="read-source-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
                     {copy.sourceCatalogTitle}
                   </h2>
@@ -2402,7 +2411,6 @@ export default function Banis() {
                     {copy.sourceCatalogBody}
                   </p>
                 </div>
-                <span className="chip-pill shrink-0">{copy.browse}</span>
               </div>
 
               <div className="mt-4">
@@ -2477,7 +2485,6 @@ export default function Banis() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="eyebrow">{copy.booksCatalogEyebrow}</p>
                   <h2 id="read-books-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
                     {copy.booksCatalogTitle}
                   </h2>
@@ -2485,7 +2492,6 @@ export default function Banis() {
                     {copy.booksCatalogBody}
                   </p>
                 </div>
-                <span className="chip-pill shrink-0">{copy.browse}</span>
               </div>
 
               <div className="mt-4">

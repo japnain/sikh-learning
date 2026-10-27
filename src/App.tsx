@@ -1,3 +1,4 @@
+import './styles/support-surfaces.css'
 import { lazy, Suspense, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import NavBar from './components/NavBar'
@@ -65,81 +66,56 @@ function PersonalHukamnamaShareRedirect() {
   )
 }
 
-function SkeletonBlock({ className }: { className: string }) {
-  return (
-    <div
-      className={`rounded-full bg-parchment-card/72 dark:bg-dark-text/10 ${className}`}
-      aria-hidden="true"
-    />
-  )
+function SkeletonBlock({ className = '' }: { className?: string }) {
+  return <div className={`route-skeleton__block ${className}`} aria-hidden="true" />
 }
 
 function RouteFallback() {
+  const { pathname } = useLocation()
+  const reader = /^\/(?:study(?:\/|$)|stories\/[^/]+|library\/[^/]+\/chapters\/)/.test(pathname)
+    || /^\/banis\/rehat\/[^/]+\/chapters\//.test(pathname)
+  const family = reader ? 'reader' : pathname === '/' ? 'home' : /^\/(?:banis|library)/.test(pathname) ? 'catalog' : 'page'
+  const lines = <div className="route-skeleton__lines">{[0, 1, 2, 3, 4].map(line => <SkeletonBlock key={line} />)}</div>
+
   return (
     <div
       lang="en"
-      className="page-shell"
+      className={`page-shell route-skeleton route-skeleton--${family}`}
       data-testid="route-fallback"
       data-ai-surface="route-fallback"
       data-ai-state="loading"
       data-ai-flow="route-transition"
+      data-layout={family}
       aria-busy="true"
-      aria-label="Loading page content"
+      aria-label={reader ? 'Loading reading' : 'Loading page content'}
     >
-      <div className="space-y-5 animate-pulse">
-        <div className="flex items-center justify-between px-1">
-          <SkeletonBlock className="h-3 w-20 bg-gold/15 dark:bg-gold/10" />
-          <div
-            className="h-10 w-10 rounded-full border border-sand/15 bg-parchment-card/80 dark:border-dark-text/10 dark:bg-dark-surface/75"
-            aria-hidden="true"
-          />
-        </div>
-
-        <section className="hero-surface overflow-hidden px-5 py-6">
-          <div className="space-y-3">
-            <SkeletonBlock className="h-3 w-14 bg-gold/15 dark:bg-gold/10" />
-            <SkeletonBlock className="h-10 w-[76%] rounded-[24px]" />
-            <SkeletonBlock className="h-4 w-[48%] bg-parchment-card/60 dark:bg-dark-text/8" />
-          </div>
-        </section>
-
-        <section className="section-shell-quiet p-4">
-          <div className="space-y-3">
-            <SkeletonBlock className="h-3 w-24 bg-gold/12 dark:bg-gold/8" />
-            <SkeletonBlock className="h-4 w-[88%] bg-parchment-card/62 dark:bg-dark-text/8" />
-            <SkeletonBlock className="h-4 w-[68%] bg-parchment-card/58 dark:bg-dark-text/7" />
-          </div>
-        </section>
-
-        <div className="grid grid-cols-2 gap-3">
-          <section className="section-shell px-4 py-4">
-            <div className="space-y-3">
-              <SkeletonBlock className="h-3 w-16 bg-gold/12 dark:bg-gold/8" />
-              <SkeletonBlock className="h-9 w-12 rounded-[20px]" />
-              <SkeletonBlock className="h-3 w-20 bg-parchment-card/58 dark:bg-dark-text/7" />
-            </div>
-          </section>
-
-          <section className="section-shell px-4 py-4">
-            <div className="space-y-3">
-              <SkeletonBlock className="h-3 w-20 bg-gold/12 dark:bg-gold/8" />
-              <SkeletonBlock className="h-9 w-12 rounded-[20px]" />
-              <SkeletonBlock className="h-3 w-16 bg-parchment-card/58 dark:bg-dark-text/7" />
-            </div>
-          </section>
-        </div>
-
-        <section className="section-shell p-4">
-          <div className="space-y-3">
-            <SkeletonBlock className="h-3 w-20 bg-gold/12 dark:bg-gold/8" />
-            <div className="space-y-2">
-              <SkeletonBlock className="h-12 w-full rounded-[22px] bg-parchment-low/85 dark:bg-dark-surface/90" />
-              <SkeletonBlock className="h-12 w-full rounded-[22px] bg-parchment-low/80 dark:bg-dark-surface/85" />
-              <SkeletonBlock className="h-12 w-full rounded-[22px] bg-parchment-low/75 dark:bg-dark-surface/80" />
-            </div>
-          </div>
-        </section>
+      <div className="route-skeleton__header" aria-hidden="true">
+        <SkeletonBlock className="route-skeleton__control" />
+        <SkeletonBlock className="route-skeleton__title" />
+        <SkeletonBlock className="route-skeleton__control" />
       </div>
+      {reader ? (
+        <div className="route-skeleton__reading" aria-hidden="true">
+          <SkeletonBlock className="route-skeleton__reading-title" />
+          {lines}{lines}{lines}
+        </div>
+      ) : family === 'home' ? (
+        <div className="route-skeleton__home" aria-hidden="true">
+          <SkeletonBlock className="route-skeleton__home-art" />
+          <div className="route-skeleton__ritual">
+            <SkeletonBlock className="route-skeleton__title" />
+            <SkeletonBlock className="route-skeleton__reading-title" />
+            {lines}
+            <SkeletonBlock className="route-skeleton__action" />
+          </div>
+        </div>
+      ) : (
+        <div aria-hidden="true">
+          {family === 'catalog' ? <SkeletonBlock className="route-skeleton__catalog-art" /> : null}
+          <SkeletonBlock className="route-skeleton__search" />
+          {lines}{lines}
+        </div>
+      )}
     </div>
   )
 }

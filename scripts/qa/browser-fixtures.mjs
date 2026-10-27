@@ -24,7 +24,7 @@ export function resolveBrowserExecutable() {
   return executable
 }
 
-export function deterministicProviderResponse(requestUrl, postData, method = 'GET', { longHukamnama = false } = {}) {
+export function deterministicProviderResponse(requestUrl, postData, method = 'GET', { longHukamnama = false, distinctBaniLengths = false } = {}) {
   const url = new URL(requestUrl)
   const knownProvider = url.hostname === 'api.banidb.com' || url.pathname.startsWith('/__banidb/v2/')
     || url.pathname.endsWith('/banidb-proxy') || (url.hostname === 'backend.searchgurbani.com' && url.pathname === '/api/res/mahan-kosh/view')
@@ -39,8 +39,13 @@ export function deterministicProviderResponse(requestUrl, postData, method = 'GE
     // Keep daily-Hukamnama content aligned with the controlled browser clock.
     if (providerPath === '/v2/hukamnamas') providerPath = '/v2/hukamnamas/2026/04/05'
     const data = getMockBanidbResponse(providerPath, query)
+    // Keep the chooser-transition case deterministic with an opt-in Short
+    // subset. This changes synthetic QA data only, never shipped scripture.
+    if (distinctBaniLengths && providerPath === '/v2/banis/21' && data?.verses?.length > 1) {
+      data.verses[1].existsSGPC = 0
+    }
     // Synthetic repetitions are confined to the deep-reader layout case. They
-    // provide enough scrollable content to exercise the dock with unique keys.
+    // provide enough scrollable content to exercise the persistent header with unique keys.
     if (longHukamnama && providerPath.startsWith('/v2/hukamnamas') && data?.shabads?.[0]?.verses?.length) {
       const template = data.shabads[0].verses[0]
       data.shabads[0].verses = Array.from({ length: 18 }, (_, index) => ({ ...template, verseId: 900_000 + index }))

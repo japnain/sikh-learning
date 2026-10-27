@@ -1,0 +1,138 @@
+/* Discovery keeps its artwork-first composition while allowing the copy to
+   determine the image frame's height at larger interface text sizes. */
+.read-room-hero__copy {
+  min-height: clamp(12rem, 40vw, 32rem);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.read-room-hero__art {
+  position: relative;
+  align-self: stretch;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.read-room-hero__art img {
+  position: absolute;
+  inset: 0;
+}
+
+.read-room-shell .read-quick-find-card__heading > button {
+  font-size: .8125rem !important;
+  white-space: normal;
+  max-width: 10rem;
+}
+
+.read-quick-find-card__heading {
+  grid-template-columns: minmax(0, 1fr) minmax(44px, auto);
+}
+
+.read-room-shell :is(.read-section-copy, .read-extra-source-card__body, .read-collection-intro__body) {
+  font-size: .9375rem !important;
+  line-height: 1.65;
+}
+
+.read-room-shell :is(.chip-pill, .read-index-state) {
+  font-size: .8125rem !important;
+  letter-spacing: .015em;
+}
+
+.read-room-shell .read-quick-find-card :is(.text-xs, .text-\[10px\], .text-\[11px\]) {
+  font-size: .8125rem;
+  line-height: 1.6;
+}
+
+.read-room-shell .read-quick-find-card h3 {
+  font-size: .875rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.read-room-shell [data-testid='banis-search-gurbani-result'] > button p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.read-room-shell [data-testid='banis-search-gurbani-result'] > button .font-gurmukhi {
+  font-size: 1.125rem;
+}
+
+#banis-search-options-panel {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgb(var(--color-border) / .4);
+  padding-top: 1rem;
+}
+
+.read-refinement-group { min-width: 0; }
+.read-refinement-group legend {
+  margin-bottom: .5rem;
+  font-size: .8125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: rgb(var(--color-text-muted));
+}
+.read-refinement-options { display: flex; flex-wrap: wrap; gap: .5rem; }
+.read-refinement-options > button { flex: 1 1 7rem; }
+.read-refinement-sources { display: grid; gap: .5rem; }
+.read-refinement-choice {
+  min-width: 0;
+  min-height: 44px;
+  padding: .65rem .8rem;
+  border: 1px solid rgb(var(--color-border) / .55);
+  border-radius: .5rem;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-text));
+  overflow-wrap: anywhere;
+}
+.read-refinement-auto { justify-self: start; }
+.read-room-shell .read-quick-find-card button[aria-pressed='true'] {
+  background: rgb(var(--color-text)) !important;
+  color: rgb(var(--color-bg)) !important;
+  border-color: rgb(var(--color-text)) !important;
+}
+.read-room-shell .read-featured-flow-card__cta {
+  background: rgb(var(--color-text)) !important;
+  color: rgb(var(--color-bg)) !important;
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  font-size: .875rem !important;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.read-room-shell .read-search-summary .read-metadata {
+  background: transparent !important;
+  border: 0;
+  padding-inline: 0;
+  color: rgb(var(--color-text-muted)) !important;
+}
+
+@media (max-width: 360px) {
+  .read-room-shell .read-quick-find-card__heading {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'eyebrow' 'title' 'action';
+  }
+  .read-room-shell .read-quick-find-card__heading > button { justify-self: start; margin-top: .5rem; }
+}
+
+.read-room-shell :is(.read-index-row__detail, .read-vaar-link__label) {
+  font-size: .8125rem;
+  line-height: 1.6;
+}
+.read-metadata {
+  display: inline-flex;
+  align-items: center;
+  padding: .2rem .3rem;
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: rgb(var(--color-text-muted));
+  border-radius: .3rem;
+}
+.read-metadata--action { text-decoration: underline; text-decoration-color: rgb(var(--color-border)); text-underline-offset: .2em; }
+.read-metadata--action:hover { background: rgb(var(--color-surface-muted)); color: rgb(var(--color-text)); }

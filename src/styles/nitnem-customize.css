@@ -20,14 +20,14 @@
 .nitnem-editor-library :where(button, input):focus-visible { outline: 2px solid var(--editor-accent); outline-offset: 3px; }
 .nitnem-editor button:disabled { opacity: .35; cursor: not-allowed; }
 .nitnem-editor-intro { padding: 1.2rem 0 1rem; }
-.nitnem-editor-eyebrow { margin: 0; font-size: .75rem; line-height: 1.7; letter-spacing: .13em; text-transform: uppercase; color: var(--editor-accent); }
+.nitnem-editor-eyebrow { margin: 0; font-size: .8125rem; line-height: 1.7; letter-spacing: .13em; text-transform: uppercase; color: var(--editor-accent); }
 .nitnem-editor-intro h1 { max-width: 12ch; margin: 0; font-family: var(--editor-heading-font); font-size: 2.75rem; font-weight: 500; line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
 .nitnem-editor-intro h1 em { color: var(--editor-accent); font-weight: 500; }
 .nitnem-editor-intro > p { max-width: 38ch; margin: .75rem 0 0; font-size: .875rem; line-height: 1.7; color: var(--editor-muted); }
 .nitnem-editor-intro > .nitnem-editor-recovered { color: var(--editor-accent); }
 .nitnem-editor-intro > .nitnem-editor-draft-warning { font-size: .8125rem; }
 .nitnem-editor-selection-count { margin: 0 0 .75rem; font-size: .8125rem; line-height: 1.7; color: var(--editor-accent); }
-.nitnem-editor-hint { font-size: .75rem; line-height: 1.7; color: var(--editor-muted); margin: .5rem 0 1rem; }
+.nitnem-editor-hint { font-size: .8125rem; line-height: 1.7; color: var(--editor-muted); margin: .5rem 0 1rem; }
 .nitnem-editor-list { padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--editor-line); }
 .nitnem-editor-row { border-bottom: 1px solid var(--editor-line); }
 .nitnem-editor-bani-details > summary { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr) auto; align-items: center; gap: .75rem; min-height: 5.8rem; padding-block: .8rem; cursor: pointer; list-style: none; }
@@ -36,14 +36,14 @@
 .nitnem-editor-bani { min-width: 0; }
 .nitnem-editor-bani-title { font-size: 1.2rem; line-height: 1.85; margin: 0; font-weight: 400; overflow-wrap: anywhere; }
 .nitnem-editor-bani-name { font-size: .8125rem; line-height: 1.6; color: var(--editor-muted); margin: .05rem 0 0; overflow-wrap: anywhere; }
-.nitnem-editor-period { font-size: .75rem; line-height: 1.7; color: var(--editor-muted); margin: .3rem 0 0; }
+.nitnem-editor-period { font-size: .8125rem; line-height: 1.7; color: var(--editor-muted); margin: .3rem 0 0; }
 .nitnem-editor-edit { display: inline-flex; align-items: center; justify-content: flex-end; min-width: 44px; min-height: 44px; gap: .4rem; color: var(--editor-muted); font-size: .8125rem; }
 .nitnem-editor-edit svg { flex-shrink: 0; transform: rotate(90deg); transition: transform .2s; }
 .nitnem-editor-bani-details[open] .nitnem-editor-edit { color: var(--editor-accent); }
 .nitnem-editor-bani-details[open] .nitnem-editor-edit svg { transform: rotate(-90deg); }
 .nitnem-editor-bani-adjustments { margin: 0 0 1rem 2rem; padding: .75rem 0 0; border-top: 1px solid var(--editor-line); }
 .nitnem-editor-length { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: .5rem .75rem; margin-bottom: .75rem; }
-.nitnem-editor-length > label { color: var(--editor-muted); font-size: .75rem; }
+.nitnem-editor-length > label { color: var(--editor-muted); font-size: .8125rem; }
 .nitnem-editor-length select { min-width: 0; width: 100%; padding: .4rem .5rem; border: 1px solid var(--editor-line); border-radius: .25rem; color: var(--editor-ink); background: var(--editor-surface); font-size: 1rem; }
 .nitnem-editor-length > p { grid-column: 1/-1; margin: 0; font-size: .8125rem; line-height: 1.7; color: var(--editor-muted); }
 .nitnem-editor-length > p > button { display: inline; text-align: left; text-decoration: underline; text-underline-offset: .25rem; }
@@ -62,13 +62,13 @@
 .nitnem-editor-offline h2 { margin: 0; font-size: .8125rem; line-height: 1.6; font-weight: 500; }
 .nitnem-editor-offline p { margin: .4rem 0 0; font-size: .8125rem; line-height: 1.7; color: var(--editor-muted); }
 .nitnem-editor-offline .nitnem-editor-offline-draft { color: var(--editor-accent); }
-.nitnem-editor-offline > button { display: flex; align-items: center; gap: .65rem; min-height: 44px; color: var(--editor-accent); font-size: .75rem; }
+.nitnem-editor-offline > button { display: flex; align-items: center; gap: .65rem; min-height: 44px; color: var(--editor-accent); font-size: .8125rem; }
 .nitnem-editor-offline > button svg { flex: none; }
 .nitnem-editor-goal { scroll-margin-top: 1.5rem; padding: 1.5rem 0; margin-top: 1rem; border-top: 1px solid var(--editor-line); display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .75rem; align-items: center; }
 .nitnem-editor-goal > div { grid-column: 1/-1; }
 .nitnem-editor-goal h2 { font-family: var(--editor-heading-font); font-size: 1.875rem; line-height: 1.15; font-weight: 500; margin: .5rem 0 0; }
-.nitnem-editor-goal p:not(.nitnem-editor-eyebrow) { font-size: .75rem; line-height: 1.7; color: var(--editor-muted); margin: .65rem 0; }
-.nitnem-editor-goal > label { font-size: .75rem; }
+.nitnem-editor-goal p:not(.nitnem-editor-eyebrow) { font-size: .875rem; line-height: 1.7; color: var(--editor-muted); margin: .65rem 0; }
+.nitnem-editor-goal > label { font-size: .8125rem; }
 .nitnem-editor-goal > select { min-width: 0; max-width: 100%; padding: .4rem .6rem; border: 1px solid var(--editor-line); border-radius: .25rem; background: var(--editor-surface); color: var(--editor-ink); font-size: 1rem; }
 .nitnem-editor-tracking { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .8rem 0; border-block: 1px solid var(--editor-line); }
 .nitnem-editor-tracking > div > span { font-size: .8125rem; }
@@ -79,7 +79,7 @@
 .nitnem-editor-tracking button[aria-checked='true']::before { background: var(--editor-accent); border-color: var(--editor-accent); }
 .nitnem-editor-tracking button[aria-checked='true'] > span { transform: translateX(24px); background: var(--editor-bg); }
 .nitnem-editor-footer { position: sticky; bottom: max(calc(var(--nav-stack-height,0px) + var(--nav-bottom-offset,0px)),var(--safe-area-bottom,0px)); z-index: 20; background: var(--editor-bg); border-top: 1px solid var(--editor-line); padding: .65rem 0; margin-top: 1rem; box-shadow: 0 -.5rem .65rem var(--editor-bg); }
-.nitnem-editor-save-state { min-height: 1.5em; font-size: .75rem; line-height: 1.5; color: var(--editor-muted); margin: 0 0 .5rem; }
+.nitnem-editor-save-state { min-height: 1.5em; font-size: .8125rem; line-height: 1.5; color: var(--editor-muted); margin: 0 0 .5rem; }
 .nitnem-editor-save-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.6fr); align-items: stretch; gap: .75rem; }
 .nitnem-editor-cancel, .nitnem-editor-save { min-width: 0; padding: .5rem .75rem; font-size: .875rem !important; border-radius: .25rem; line-height: 1.5; }
 .nitnem-editor-cancel { color: var(--editor-muted); text-align: center; border: 1px solid var(--editor-line); }

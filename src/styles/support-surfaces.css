@@ -1,0 +1,23 @@
+/* Directory canvases belong to the same app palette as Home and Read. */
+.scripture-directory { background: rgb(var(--color-bg)); color: rgb(var(--color-text)); }
+
+.route-skeleton { color: rgb(var(--color-text)); }
+.route-skeleton__block { background: rgb(var(--color-text) / .08); border-radius: .35rem; height: .85rem; }
+.route-skeleton__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.route-skeleton__control { width: 44px; height: 44px; flex: 0 0 44px; }
+.route-skeleton__title { width: 45%; height: 1.5rem; margin-right: auto; }
+.route-skeleton[data-layout='reader'] { max-width: 52rem; }
+.route-skeleton__reading { max-width: 38rem; margin: 3rem auto 0; }
+.route-skeleton__reading-title { width: 60%; height: 2.5rem; margin: 2rem 0; }
+.route-skeleton__lines { display: grid; gap: 1.1rem; margin: 2rem 0; }
+.route-skeleton__lines > :nth-child(2n) { width: 93%; }
+.route-skeleton__lines > :last-child { width: 68%; }
+.route-skeleton__home { display: grid; gap: 1.5rem; }
+.route-skeleton__home-art { min-height: 28rem; height: 65svh; }
+.route-skeleton__ritual { padding: 1.25rem; border: 1px solid rgb(var(--color-border) / .25); border-radius: .75rem; }
+.route-skeleton__catalog-art { height: 15rem; margin-bottom: 1.5rem; }
+.route-skeleton__search, .route-skeleton__action { height: 48px; }
+.route-skeleton__action { margin-top: 2rem; }
+@media (min-width: 760px) { .route-skeleton__home { grid-template-columns: 1.1fr 1fr; align-items: start; } }
+@media (prefers-reduced-motion: no-preference) { .route-skeleton__block { animation: route-skeleton-pulse 1.8s ease-in-out infinite alternate; } }
+@keyframes route-skeleton-pulse { to { opacity: .45; } }

@@ -23,20 +23,10 @@
     margin-bottom: 0;
   }
 
-  [data-page='more'] > :nth-child(1),
-  [data-page='more'] > :nth-child(2),
-  [data-page='more'] > :last-child {
+  [data-page='more'] > .more-page-heading,
+  [data-page='more'] > .more-appearance-grid,
+  [data-page='more'] > .more-about {
     grid-column: 1 / -1;
-  }
-
-  [data-page='more'] > :nth-child(3),
-  [data-page='more'] > :nth-child(5) {
-    grid-column: 1;
-  }
-
-  [data-page='more'] > :nth-child(4),
-  [data-page='more'] > :nth-child(6) {
-    grid-column: 2;
   }
 
   [data-page='privacy'],
@@ -65,3 +55,14 @@
 @media (min-width: 760px) {
   [data-page='more']:has(> [data-testid='more-reader-defaults'][data-state='open']) > [data-testid='more-daily-nitnem-link'] { grid-column: 1 / -1; }
 }
+
+.settings-block > .eyebrow { margin-bottom: .65rem; }
+[data-page='more'] > .more-appearance-grid > .settings-block {
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid rgb(var(--color-border) / .35);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+[data-page='more'] > .more-appearance-grid > .settings-block > p + p { margin-top: -.25rem; }

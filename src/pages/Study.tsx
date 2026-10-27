@@ -1,5 +1,5 @@
 import '../styles/reader.css'
-import { lazy, Suspense, useState, useEffect, useMemo, useRef, useCallback } from 'react'
+import { lazy, Suspense, useState, useEffect, useMemo, useRef, useCallback, type MouseEvent } from 'react'
 import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad, type BaniFetchResult } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
@@ -11,7 +11,7 @@ import { useHukamnama } from '../hooks/useHukamnama'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import SoundscapeControls from '../components/SoundscapeControls'
 import StudyCard from '../components/StudyCard'
-import ReaderDock from '../components/ReaderDock'
+import ReaderHeader from '../components/ReaderHeader'
 import ReaderFinishPanel from '../components/ReaderFinishPanel'
 import BaniLengthControl from '../components/BaniLengthControl'
 import { getBaniLengthDestinationLabel } from '../components/baniLengthCopy'
@@ -25,7 +25,7 @@ import { getSelectedNitnemReading } from '../utils/nitnemReadingIdentity'
 import { useNitnemPracticeStore } from '../store/nitnemPractice'
 import { isActiveNitnemPracticeReading } from '../utils/nitnemPractice'
 import WordPopover from '../components/WordPopover'
-import { useReaderInteraction, type ReaderWordContext } from '../hooks/useReaderInteraction'
+import { hasReaderSelection, type ReaderWordContext } from '../hooks/useReaderInteraction'
 import { useReaderPresentation, type ReaderPresentation } from '../hooks/useReaderPresentation'
 import { captureReaderAnchor, findVisibleReaderLine, getReaderBodyLines, getReaderViewportTop, restoreReaderAnchor, type ReaderAnchor } from '../utils/readerAnchor'
 import { getSavedReturnIdentity, isSafeSavedReturnPath, isScriptureBookmark, useBookmarksStore } from '../store/bookmarks'
@@ -358,8 +358,6 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   bookmarkRemoved: string
   bookmarkExists: string
   storageUnavailable: string
-  positionSessionOnly: string
-  retryPosition: string
   savedOffline: string
   retainedReading: string
   tryLive: string
@@ -389,9 +387,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     bookmarkSaved: 'Bookmark saved.',
     bookmarkRemoved: 'Bookmark removed.',
     bookmarkExists: 'This passage is already bookmarked.',
-    storageUnavailable: 'Saved for this session, but device storage is unavailable. Free some space and try again.',
-    positionSessionOnly: 'Your place is kept for this session. This device couldn’t save it.',
-    retryPosition: 'Retry saving place',
+    storageUnavailable: 'This change could not be saved.',
     savedOffline: 'Showing the passage already saved on this device because the live source is unavailable.',
     retainedReading: 'The live source is unavailable. Your open reading is still here; saving it for offline use could not be confirmed.',
     tryLive: 'Try live copy',
@@ -421,9 +417,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     bookmarkSaved: 'ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।',
     bookmarkRemoved: 'ਬੁੱਕਮਾਰਕ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
     bookmarkExists: 'ਇਹ ਪਾਠ ਪਹਿਲਾਂ ਹੀ ਬੁੱਕਮਾਰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ।',
-    storageUnavailable: 'ਇਸ ਸੈਸ਼ਨ ਲਈ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ, ਪਰ ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਕੁਝ ਜਗ੍ਹਾ ਖਾਲੀ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
-    positionSessionOnly: 'ਪਾਠ ਵਿੱਚ ਤੁਹਾਡਾ ਸਥਾਨ ਇਸ ਸੈਸ਼ਨ ਲਈ ਰੱਖਿਆ ਹੈ। ਇਹ ਡਿਵਾਈਸ ਇਸਨੂੰ ਸੰਭਾਲ ਨਹੀਂ ਸਕਿਆ।',
-    retryPosition: 'ਸਥਾਨ ਮੁੜ ਸੰਭਾਲੋ',
+    storageUnavailable: 'ਇਹ ਤਬਦੀਲੀ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ।',
     savedOffline: 'ਲਾਈਵ ਸਰੋਤ ਉਪਲਬਧ ਨਾ ਹੋਣ ਕਰਕੇ ਇਸ ਡਿਵਾਈਸ ਤੇ ਪਹਿਲਾਂ ਸੰਭਾਲਿਆ ਪਾਠ ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ।',
     retainedReading: 'ਲਾਈਵ ਸਰੋਤ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਤੁਹਾਡਾ ਖੁੱਲ੍ਹਾ ਪਾਠ ਮੌਜੂਦ ਹੈ; ਆਫ਼ਲਾਈਨ ਲਈ ਸੰਭਾਲੇ ਜਾਣ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ।',
     tryLive: 'ਲਾਈਵ ਕਾਪੀ ਅਜ਼ਮਾਓ',
@@ -453,9 +447,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
     bookmarkSaved: 'बुकमार्क सेव हो गया।',
     bookmarkRemoved: 'बुकमार्क हटा दिया गया।',
     bookmarkExists: 'यह अंश पहले से बुकमार्क किया हुआ है।',
-    storageUnavailable: 'इस सत्र के लिए सेव है, लेकिन डिवाइस स्टोरेज उपलब्ध नहीं है। कुछ जगह खाली करके फिर कोशिश करें।',
-    positionSessionOnly: 'आपका स्थान इस सत्र के लिए रखा है। यह डिवाइस उसे सहेज नहीं सका।',
-    retryPosition: 'स्थान फिर सहेजें',
+    storageUnavailable: 'यह बदलाव सहेजा नहीं जा सका।',
     savedOffline: 'लाइव स्रोत उपलब्ध न होने के कारण इस डिवाइस पर पहले से सहेजा पाठ दिखाया जा रहा है।',
     retainedReading: 'लाइव स्रोत उपलब्ध नहीं है। आपका खुला पाठ मौजूद है; ऑफ़लाइन सहेजे जाने की पुष्टि नहीं हो सकी।',
     tryLive: 'लाइव प्रति आज़माएँ',
@@ -963,7 +955,6 @@ export default function Study() {
   const setTextAlign = useLanguageStore(s => s.setTextAlign)
 
   const updateSession = useProgressStore(state => state.updateSession)
-  const [positionSessionOnly, setPositionSessionOnly] = useState(Boolean((location.state as { nitnemSessionOnly?: boolean } | null)?.nitnemSessionOnly))
   const explorationRef = useRef<{ route: string; anchor: ReaderAnchor } | null>(null)
   const [hasExploration, setHasExploration] = useState(false)
   const sectionsOriginRef = useRef<ReaderAnchor | null>(null)
@@ -978,8 +969,6 @@ export default function Study() {
       practicePersisted = practice.updatePath(`/study?${params}`)
     }
     const persisted = sessionPersisted && practicePersisted
-    if (!persisted) setPositionSessionOnly(true)
-    else if (session.resumeVerseId && session.resumeVerseId > 0) setPositionSessionOnly(false)
     return persisted
   }, [searchParamsString, updateSession])
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
@@ -1062,8 +1051,19 @@ export default function Study() {
     if (resumeVerseIdParam && resumeSettledRef.current !== searchParamsString) return
     rememberReadingPosition()
   } })
-  const readerInteraction = useReaderInteraction(searchParamsString, readerSheetOpen)
-  const changeReaderPresentation = (mode: ReaderPresentation) => { readerInteraction.clearWord(); changePresentation(mode) }
+  const wordTriggerRef = useRef<HTMLElement | null>(null)
+  const wordGestureRef = useRef<{ x: number; y: number; at: number; top: number } | null>(null)
+  const changeReaderPresentation = (mode: ReaderPresentation) => { setExploredWord(null); changePresentation(mode) }
+  const openReaderWord = (context: ReaderWordContext, event: MouseEvent<HTMLElement>) => {
+    if (readerSheetOpen || hasReaderSelection()) return
+    const start = wordGestureRef.current
+    if (event.detail !== 0 && start && (Date.now() - start.at >= 450
+      || Math.abs(start.x - event.clientX) >= 10 || Math.abs(start.y - event.clientY) >= 10
+      || Math.abs(start.top - getAppScrollTop()) >= 10)) return
+    wordTriggerRef.current = event.currentTarget
+    rememberReadingPosition()
+    setExploredWord(context)
+  }
   const presentationCopy = locale === 'pa'
     ? { read: 'ਪਾਠ', study: 'ਅਧਿਐਨ', sections: 'ਪਾਠ ਦੇ ਭਾਗ', jump: 'ਪਾਠ ਦੇ ਭਾਗ', tools: 'ਪਾਠ ਦੇ ਸਾਧਨ', listen: 'ਸੁਣੋ', close: 'ਬੰਦ ਕਰੋ', position: 'ਪਾਠ ਵਿੱਚ ਸਥਾਨ' }
     : locale === 'hi'
@@ -1096,8 +1096,7 @@ export default function Study() {
     deferReaderFocus(() => {
       const active = document.activeElement
       if (active instanceof HTMLElement && active !== document.body && !active.closest('[inert],[hidden]')) return
-      const target = document.querySelector<HTMLButtonElement>('.reader-dock:not([hidden]) .reader-dock__actions button')
-        ?? document.querySelector<HTMLButtonElement>('.study-reader-topbar .study-reader-settings-action')
+      const target = document.querySelector<HTMLButtonElement>('.study-reader-topbar [data-ai-action="open-reader-settings"]')
       target?.focus({ preventScroll: true })
     }, 2)
   }
@@ -1251,9 +1250,11 @@ export default function Study() {
     const removeSettledScrollListener = addAppScrollSettledListener(() => { syncVisibleVerse() })
     window.addEventListener('resize', syncAfterResizeSettles)
     const syncBeforeSuspension = () => {
-      if (document.visibilityState === 'hidden') syncVisibleVerse()
+      if (document.visibilityState === 'hidden') syncVisibleVerse(true)
     }
-    const syncBeforePageHide = () => { syncVisibleVerse() }
+    // A previous storage write may have failed at this same position. Retry it
+    // when leaving without requiring a warning or a manual retry control.
+    const syncBeforePageHide = () => { syncVisibleVerse(true) }
     // Suspension may stop momentum, timers, and animation frames before scrollend.
     window.addEventListener('pagehide', syncBeforePageHide)
     document.addEventListener('visibilitychange', syncBeforeSuspension)
@@ -1969,7 +1970,7 @@ export default function Study() {
     lengthAnchorRef.current = captureReaderAnchor()
     lengthDestinationRef.current = null
     rememberReadingPosition(lengthAnchorRef.current?.key)
-    readerInteraction.clearWord()
+    setExploredWord(null)
     setLengthOpen(true)
   }
   const closeBaniLengths = () => {
@@ -1979,8 +1980,7 @@ export default function Study() {
     deferReaderFocus(() => {
       const opener = lengthOpenerRef.current
       const target = opener?.isConnected && !opener.closest('[hidden],[inert]') ? opener
-        : document.querySelector<HTMLButtonElement>('.reader-dock:not([hidden]) [data-testid="bani-length-control"]')
-          ?? document.querySelector<HTMLButtonElement>('.study-reader-topbar [data-testid="bani-length-control"]')
+        : document.querySelector<HTMLButtonElement>('.study-reader-topbar [data-testid="bani-length-control"]')
       target?.focus({ preventScroll: true })
     }, 2)
   }
@@ -2016,10 +2016,10 @@ export default function Study() {
     }
     const practice = useNitnemPracticeStore.getState()
     if (practice.active && isActiveNitnemPracticeReading(currentPath, practice.active)) {
-      if (!practice.switchReading(practice.active.optionId, destination.path)) setPositionSessionOnly(true)
+      practice.switchReading(practice.active.optionId, destination.path)
     }
     setLengthOpen(false)
-    readerInteraction.clearWord()
+    setExploredWord(null)
     setSearchParams(new URLSearchParams(destination.path.split('?')[1]), { replace: true, state: location.state })
     if (destination.destination === 'beginning') {
       resetReaderViewport()
@@ -2192,7 +2192,7 @@ export default function Study() {
   const openReaderSections = () => {
     syncReadingPlaceRef.current?.()
     sectionsOriginRef.current = captureReaderAnchor()
-    readerInteraction.clearWord()
+    setExploredWord(null)
     setSectionsOpen(true)
   }
   const jumpToLine = (entryIndex: number, lineIndex?: number) => {
@@ -2214,7 +2214,6 @@ export default function Study() {
       const target = exactLine ?? bodyLines.find(line => Number(line.dataset.verseId) > 0) ?? bodyLines[0] ?? section
       scrollElementIntoAppView(target, { behavior: 'auto', block: 'start' })
       section.focus({ preventScroll: true })
-      readerInteraction.reveal()
     }, 2)
   }
   const jumpToEntry = (entryIndex: number) => jumpToLine(entryIndex)
@@ -2227,7 +2226,6 @@ export default function Study() {
     deferReaderFocus(() => {
       restoreReaderAnchor(saved.anchor)
       syncReadingPlaceRef.current?.(true)
-      readerInteraction.reveal()
     }, 2)
   }
   const continueHere = () => {
@@ -2270,28 +2268,12 @@ export default function Study() {
   const readerPageRef = useReaderHeaderLayout(searchParamsString, `${readerStatus}:${readerTitle}:${canChangeBaniLength}`)
   const previewMeaning = appearancePreview ? getLineMeaningText(appearancePreview, meaningLanguage, englishSource) : ''
   const readerStateTopbar = (
-    <div className="study-reader-topbar" data-testid="study-reader-topbar">
-      <button
-        onClick={handleReaderBack}
-        className="study-reader-back"
-        data-ai-action="study-back"
-        data-reader-back="true"
-      >
-        <IconArrowLeft size={18} /> {commonCopy.back}
-      </button>
-      <div className="study-reader-topbar__identity">
-        <h1
-          id="study-reader-title"
-          lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
-          className={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : 'font-display'}
-          title={readerTitle}
-        >
-          {readerTitle}
-        </h1>
-        <span>{entrySourceDisplay}</span>
-      </div>
-      <div className="study-reader-topbar__state-spacer" aria-hidden="true" />
-    </div>
+    <ReaderHeader className="study-reader-topbar" data-testid="study-reader-topbar"
+      title={readerTitle} subtitle={entrySourceDisplay} heading titleId="study-reader-title"
+      titleLang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
+      titleClassName={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : undefined}
+      back={<button onClick={handleReaderBack} className="study-reader-back" data-ai-action="study-back" data-reader-back="true"><IconArrowLeft size={18} /> {commonCopy.back}</button>}
+    />
   )
 
   if (!isApiMode) return null
@@ -2389,38 +2371,31 @@ export default function Study() {
       data-ai-state={readerStatus === 'degraded' ? 'degraded' : 'ready'}
       data-reader-presentation={presentation}
       data-support-text-size={supportTextSize}
-      data-reader-controls={readerInteraction.visible ? 'visible' : 'hidden'}
+      data-reader-controls="visible"
       data-reader-has-length={canChangeBaniLength ? 'true' : undefined}
       data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
       data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
     >
-      <div className="study-reader-topbar" data-testid="study-reader-topbar" inert={!readerInteraction.visible}>
-        <button
-          onClick={handleReaderBack}
-          className="study-reader-back"
-          data-ai-action="study-back"
-          data-reader-back="true"
-        >
-          <IconArrowLeft size={18} /> {commonCopy.back}
-        </button>
-        <div className="study-reader-topbar__identity">
-          <h1
-            id="study-reader-title"
-            lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
-            className={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : 'font-display'}
-            title={readerTitle}
-          >
-            {readerTitle}
-          </h1>
-          <span>{entrySourceDisplay}</span>
-          {canChangeBaniLength && effectiveSgLength ? <BaniLengthControl value={effectiveSgLength} onClick={openBaniLengths} className="study-reader-length-control" /> : null}
-        </div>
-        <div className="study-reader-topbar__actions">
-          <button type="button" onClick={openReaderSections} aria-label={presentationCopy.sections} title={presentationCopy.sections} aria-haspopup="dialog" className="study-reader-settings-action study-reader-contents-action"><span className="reader-dock__contents" aria-hidden="true">☷</span></button>
+      <ReaderHeader className="study-reader-topbar" data-testid="study-reader-topbar"
+        title={readerTitle} subtitle={entrySourceDisplay} heading titleId="study-reader-title"
+        titleLang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
+        titleClassName={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : undefined}
+        titleDetails={canChangeBaniLength && effectiveSgLength ? <BaniLengthControl value={effectiveSgLength} onClick={openBaniLengths} className="study-reader-length-control" /> : undefined}
+        back={<button onClick={handleReaderBack} className="study-reader-back" data-ai-action="study-back" data-reader-back="true"><IconArrowLeft size={18} /> {commonCopy.back}</button>}
+        actions={<>
           <button type="button" onClick={openReaderSettings} aria-label={studyCopy.readerControls} title={studyCopy.readerControls} className="study-reader-settings-action" data-ai-action="open-reader-settings"><span className="study-reader-aa" aria-hidden="true">Aa</span></button>
           <button ref={readerMenuButtonRef} type="button" onClick={event => openReaderTools(event.currentTarget)} aria-label={presentationCopy.tools} aria-haspopup="dialog" className="study-reader-settings-action"><IconMoreHorizontal size={21} /></button>
-        </div>
-        <div
+        </>}
+        secondary={<>
+<div className="study-reader-presentation-bar">
+        <fieldset className="study-reader-mode"><legend className="sr-only">{locale === 'en' ? 'Reading presentation' : studyCopy.readerControls}</legend>
+          {(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-top" value={mode} checked={presentation === mode} onChange={() => changeReaderPresentation(mode)} /><span>{presentationCopy[mode]}</span></label>)}
+        </fieldset>
+        <button className="study-reader-section-trigger" type="button" aria-label={presentationCopy.jump} aria-haspopup="dialog" aria-expanded={sectionsOpen} title={presentationCopy.sections} onClick={openReaderSections}><span>{presentationCopy.sections}</span><small>{currentReadingUnit} {currentAng}</small><span aria-hidden="true">⌄</span><svg className="study-reader-section-icon" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" /></svg></button>
+      </div>
+          {hasExploration ? <div className="study-reader-header-notice" data-testid="study-reader-context-actions"><div className="study-reader-return"><button type="button" onClick={returnToReading}>{locale === 'pa' ? 'ਪਿਛਲੀ ਥਾਂ ਵਾਪਸ ਜਾਓ' : locale === 'hi' ? 'पिछली जगह पर लौटें' : 'Return to previous place'}</button><button type="button" onClick={continueHere}>{locale === 'pa' ? 'ਇੱਥੋਂ ਜਾਰੀ ਰੱਖੋ' : locale === 'hi' ? 'यहाँ से जारी रखें' : 'Continue here'}</button></div></div> : null}
+        </>}
+        progress={<div
           ref={readerProgressTrackRef}
           className="study-reader-topbar__progress"
           role="progressbar"
@@ -2430,55 +2405,20 @@ export default function Study() {
           aria-valuenow={0}
         >
           <span ref={readerProgressBarRef} />
-        </div>
-      </div>
-
-      <div className="study-reader-presentation-bar" inert={!readerInteraction.visible}>
-        <fieldset className="study-reader-mode"><legend className="sr-only">{locale === 'en' ? 'Reading presentation' : studyCopy.readerControls}</legend>
-          {(['read', 'study'] as const).map(mode => <label key={mode}><input type="radio" name="reader-presentation-top" value={mode} checked={presentation === mode} onChange={() => changeReaderPresentation(mode)} /><span>{presentationCopy[mode]}</span></label>)}
-        </fieldset>
-        <button className="study-reader-section-trigger" type="button" aria-label={presentationCopy.jump} aria-haspopup="dialog" onClick={openReaderSections}><span>{presentationCopy.sections}</span><small>{currentReadingUnit} {currentAng}</small><span aria-hidden="true">⌄</span></button>
-      </div>
-
-
-      <ReaderDock
-        visible={readerInteraction.visible && (readerInteraction.deep || Boolean(readerInteraction.word) || positionSessionOnly || hasExploration) && !controlsOpen && !lengthOpen && !sectionsOpen && !readerMenuOpen && !exploredWord && !showBookmarkForm && !shareHighlightContent}
-        title={readerTitle}
-        location={`${currentReadingUnit} ${currentAng}`}
-        word={readerInteraction.word}
-        notice={positionSessionOnly || hasExploration ? <>
-          {positionSessionOnly ? <div role="note" aria-label={presentationCopy.position} data-testid="study-position-recovery"><p>{studyExperienceCopy.positionSessionOnly}</p><button type="button" data-ai-action="retry-reading-position" onClick={() => { syncReadingPlaceRef.current?.(true) }}>{studyExperienceCopy.retryPosition}</button></div> : null}
-          {hasExploration ? <div className="study-reader-return"><button type="button" onClick={returnToReading}>{locale === 'pa' ? 'ਪਿਛਲੀ ਥਾਂ ਵਾਪਸ ਜਾਓ' : locale === 'hi' ? 'पिछली जगह पर लौटें' : 'Return to previous place'}</button><button type="button" onClick={continueHere}>{locale === 'pa' ? 'ਇੱਥੋਂ ਜਾਰੀ ਰੱਖੋ' : locale === 'hi' ? 'यहाँ से जारी रखें' : 'Continue here'}</button></div> : null}
-        </> : undefined}
-        onBack={handleReaderBack}
-        onSections={openReaderSections}
-        length={canChangeBaniLength ? effectiveSgLength : null}
-        onLength={openBaniLengths}
-        onAppearance={openReaderSettings}
-        onMore={openReaderTools}
-        onHide={() => {
-          readerInteraction.hide()
-          deferReaderFocus(() => document.querySelector<HTMLButtonElement>('.reader-controls-reveal')?.focus({ preventScroll: true }))
-        }}
-        onExplore={() => { rememberReadingPosition(); setExploredWord(readerInteraction.word) }}
+        </div>}
       />
-      <span aria-live="polite" aria-atomic="true" className="sr-only" data-testid="study-position-announcement">{positionSessionOnly ? studyExperienceCopy.positionSessionOnly : ''}</span>
-      {!readerInteraction.visible && !readerInteraction.selectionActive ? <button type="button" className="reader-controls-reveal" onClick={() => {
-        readerInteraction.reveal()
-        deferReaderFocus(() => {
-          const target = document.querySelector<HTMLButtonElement>('.reader-dock:not([hidden]) .reader-dock__actions button')
-            ?? document.querySelector<HTMLButtonElement>('.study-reader-topbar button')
-          target?.focus({ preventScroll: true })
-        })
-      }} aria-label={locale === 'en' ? 'Show reader controls' : studyCopy.readerControls}><IconMoreHorizontal size={20} /><span>{locale === 'pa' ? 'ਕੰਟਰੋਲ' : locale === 'hi' ? 'नियंत्रण' : 'Controls'}</span></button> : null}
+
+
+
+
       {exploredWord ? <WordPopover word={exploredWord.word} scripture={exploredWord.entry.scripture} sourceId={exploredWord.entry.sourceAttribution === 'unavailable' ? undefined : exploredWord.entry.source} ang={exploredWord.line.ang} shabadId={hasExactLineIdentity(exploredWord.line) ? exploredWord.line.shabadId : undefined} verseId={hasExactLineIdentity(exploredWord.line) ? exploredWord.line.verseId : undefined} line={exploredWord.line.gurmukhi} onClose={() => {
-        const returnTarget = document.querySelector<HTMLButtonElement>('.reader-dock__word-heading button')
         setExploredWord(null)
-        // Re-enable the nonmodal controls after the dialog releases its focus
-        // scope and document lock, then return to the exact word action.
         deferReaderFocus(() => {
-          const target = returnTarget?.isConnected ? returnTarget : document.querySelector<HTMLButtonElement>('.reader-dock:not([hidden]) .reader-dock__actions button')
-          target?.focus({ preventScroll: true })
+          const target = wordTriggerRef.current?.isConnected ? wordTriggerRef.current : readerMenuButtonRef.current
+          if (target) {
+            if (target.tabIndex < 0) target.setAttribute('tabindex', '-1')
+            target.focus({ preventScroll: true })
+          }
         }, 2)
       }} /> : null}
 
@@ -2659,8 +2599,9 @@ export default function Study() {
         <div className="study-reader-sheet__heading"><h2 ref={contentsHeadingRef} tabIndex={-1}>{presentationCopy.sections}</h2><button type="button" aria-label={presentationCopy.close} onClick={() => setSectionsOpen(false)}><IconClose size={18} /></button></div>
         <div ref={contentsScrollRef} className="study-reader-sections-sheet__scroll" onScroll={event => { if (findQuery.trim()) findSession.current.scrollTop = event.currentTarget.scrollTop }}>
         {sectionsOpen ? <Suspense fallback={null}><BaniFindPanel entries={entries} onJump={jumpToLine} currentEntryIndex={safeActiveEntryIndex} query={findQuery} onQueryChange={query => { findSession.current.scrollTop = 0; setFindQuery(query) }} /></Suspense> : null}
-        <h3 className="study-reader-section-list__title">{presentationCopy.sections}</h3>
-        <ol className="study-reader-section-list">{entryOutline.map((item, index) => <li key={item.sectionId}><button type="button" aria-current={index === safeActiveEntryIndex ? 'location' : undefined} onClick={() => jumpToEntry(index)}><span className="study-reader-section-number">{String(index + 1).padStart(2, '0')}</span><span><span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}>{renderScriptText(item.title, scriptMode)}</span><small>{getSourceReaderUnit(item.entry.source, item.entry.scripture)} {item.entry.ang}{item.entry.writer ? ` · ${item.entry.writer}` : ''}</small></span></button></li>)}</ol>
+        <h3 className="study-reader-section-list__title">{locale === 'en' ? 'Source pages' : presentationCopy.sections}</h3>
+        <p className="study-reader-settings-note">{locale === 'en' ? 'Pages follow the source text. These are not pauri or composition divisions.' : entrySequenceCopy.entryOutlineBody}</p>
+        <ol className="study-reader-section-list">{entryOutline.map((item, index) => <li key={item.sectionId}><button type="button" aria-current={index === safeActiveEntryIndex ? 'location' : undefined} onClick={() => jumpToEntry(index)}><span className="study-reader-section-number">{getSourceReaderUnit(item.entry.source, item.entry.scripture)}<strong>{item.entry.ang}</strong></span><span><span className={getScriptTextFontClass(scriptMode)} lang={getScriptTextLang(scriptMode)}>{renderScriptText(item.title, scriptMode)}</span><small>{getSourceReaderUnit(item.entry.source, item.entry.scripture)} {item.entry.ang}{item.entry.writer ? ` · ${item.entry.writer}` : ''}</small></span></button></li>)}</ol>
         </div>
       </ModalSheet>
 
@@ -2796,9 +2737,10 @@ export default function Study() {
                 })}
               </div>
             </fieldset><fieldset className="study-reader-controls__group"><legend>{locale === 'pa' ? 'ਦਿੱਖ' : locale === 'hi' ? 'दिखावट' : 'Appearance'}</legend><div className="study-reader-controls__grid study-reader-controls__grid--three">{(['light', 'dark', 'system'] as const).map(mode => <button key={mode} type="button" aria-pressed={themeMode === mode} onClick={() => setThemeMode(mode)} className={readerControlOptionClass(themeMode === mode)}>{locale === 'pa' ? ({ light: 'ਹਲਕੀ', dark: 'ਗੂੜ੍ਹੀ', system: 'ਡਿਵਾਈਸ' }[mode]) : locale === 'hi' ? ({ light: 'हल्की', dark: 'गहरी', system: 'डिवाइस' }[mode]) : ({ light: 'Light', dark: 'Dark', system: 'System' }[mode])}</button>)}</div></fieldset>
+            <details className="study-reader-settings-disclosure"><summary><span>{locale === 'en' ? 'Pause guidance' : studyCopy.vishraam}</span><small>{showVishraam ? commonCopy.on : commonCopy.off}</small><span aria-hidden="true">⌄</span></summary><div className="study-reader-settings-disclosure__body">
             <fieldset className="study-reader-controls__group">
               <legend>{locale === 'en' ? 'Pause marks' : studyCopy.vishraam}</legend>
-              <p className="study-reader-settings-note">{locale === 'pa' ? 'ਪਾਠ ਵਿੱਚ ਠਹਿਰਾਓ ਲਈ ਦ੍ਰਿਸ਼ ਸੰਕੇਤ। ਗੁਰਬਾਣੀ ਦੇ ਮੂਲ ਵਿਸ਼ਰਾਮ ਚਿੰਨ੍ਹ ਦਿਸਦੇ ਰਹਿੰਦੇ ਹਨ।' : locale === 'hi' ? 'पाठ में विराम के दृश्य संकेत। मूल गुरबाणी के विराम चिह्न दिखाई देते रहते हैं।' : 'Visual pause guidance; scripture punctuation stays visible.'}</p>
+              <p className="study-reader-settings-note">{locale === 'pa' ? 'ਪਾਠ ਵਿੱਚ ਠਹਿਰਾਓ ਲਈ ਦ੍ਰਿਸ਼ ਸੰਕੇਤ। ਗੁਰਬਾਣੀ ਦੇ ਮੂਲ ਵਿਸ਼ਰਾਮ ਚਿੰਨ੍ਹ ਦਿਸਦੇ ਰਹਿੰਦੇ ਹਨ।' : locale === 'hi' ? 'पाठ में विराम के दृश्य संकेत। मूल गुरबाणी के विराम चिह्न दिखाई देते रहते हैं।' : 'Underlines show reading pauses, not links. Turn guidance off for a plain reading; original scripture punctuation stays visible.'}</p>
                 <button
                   type="button"
                   onClick={() => setShowVishraam(!showVishraam)}
@@ -2826,6 +2768,7 @@ export default function Study() {
                 </div>
               )}
             </fieldset>
+            </div></details>
             <details className="study-reader-settings-disclosure"><summary><span>{locale === 'en' ? 'Study layers' : focusedReaderCopy.readingLayers}</span><small>{meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}</small><span aria-hidden="true">⌄</span></summary><div className="study-reader-settings-disclosure__body"><p className="study-reader-settings-note">{locale === 'en' ? 'These layers appear in Study. Your choices stay saved when you switch to Read.' : focusedReaderCopy.settingsDescription}</p>
             <fieldset className="study-reader-controls__group"><legend>{locale === 'pa' ? 'ਅਰਥ ਅਤੇ ਲਿਪੀਅੰਤਰਨ ਦਾ ਆਕਾਰ' : locale === 'hi' ? 'अर्थ और लिप्यंतरण का आकार' : 'Meaning and transliteration size'}</legend><div className="study-reader-controls__grid study-reader-controls__grid--three">{(['standard', 'large', 'extra-large'] as const).map(size => <button key={size} type="button" aria-pressed={supportTextSize === size} onClick={() => setSupportTextSize(size)} className={readerControlOptionClass(supportTextSize === size)}>{locale === 'pa' ? ({ standard: 'ਆਮ', large: 'ਵੱਡਾ', 'extra-large': 'ਹੋਰ ਵੱਡਾ' }[size]) : locale === 'hi' ? ({ standard: 'सामान्य', large: 'बड़ा', 'extra-large': 'और बड़ा' }[size]) : ({ standard: 'Standard', large: 'Large', 'extra-large': 'Extra large' }[size])}</button>)}</div></fieldset>
             <fieldset className="study-reader-controls__group">
@@ -3062,7 +3005,7 @@ export default function Study() {
         </div>
       )}
 
-      <div id="study-reading-content" aria-label={presentationCopy[presentation]} className="study-reading-content" data-testid="study-entry-list" onPointerDown={readerInteraction.onPointerDown} onClick={readerInteraction.onContentClick}>
+      <div id="study-reading-content" aria-label={presentationCopy[presentation]} className="study-reading-content" data-testid="study-entry-list" onPointerDown={event => { wordGestureRef.current = { x: event.clientX, y: event.clientY, at: Date.now(), top: getAppScrollTop() } }}>
         {renderedEntries.map(({ entry, entryIndex }) => {
           const shabadId = parseShabadId(entry)
           return (
@@ -3077,7 +3020,7 @@ export default function Study() {
               presentation={presentation}
               onOpenReaderAppearance={openReaderSettingsAt}
               onOpenSections={openReaderSections}
-              onPreviewWord={readerInteraction.previewWord}
+              onPreviewWord={openReaderWord}
               showAudioPlayer={false}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
@@ -3105,8 +3048,7 @@ export default function Study() {
           if (fresh) params.set('nitnemPractice', fresh.startedAt)
         }
         setSearchParams(params, { replace: true, state: { ...(location.state as object ?? {}), nitnemSessionOnly: sessionOnly } })
-        readerInteraction.reveal()
-        resetReaderViewport()
+          resetReaderViewport()
       }} />
 
       {isArdaasReaderFlow && (

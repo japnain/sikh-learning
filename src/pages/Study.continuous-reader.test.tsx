@@ -102,36 +102,36 @@ function ReaderNavigationProbe() {
   return <><button data-testid="route-switch" onClick={() => navigate('/study?source=G&ang=100&startAng=100&endAng=106&baniDbId=99&exactBani=1&bani=Another%20Reading')}>Another reading</button><output data-testid="reader-url">{location.search}</output></>
 }
 
-it('previews a Study word without opening a dialog and restores its Explore focus after dismissal', async () => {
+it('opens Study word details directly and returns focus without a bottom dock', async () => {
   renderLongReading()
   const words = (await screen.findAllByTestId('study-gurbani-line'))[0]!.querySelectorAll('[data-reader-word]')
   fireEvent.click(words[0]!)
-  const dock = screen.getByTestId('reader-dock')
-  expect(dock).toBeVisible()
-  expect(within(dock).getByRole('button', { name: 'Explore word' })).toBeInTheDocument()
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-  within(dock).getByRole('button', { name: 'Explore word' }).focus()
-  fireEvent.click(within(dock).getByRole('button', { name: 'Explore word' }))
   expect(await screen.findByRole('dialog')).toBeInTheDocument()
+  expect(screen.queryByTestId('reader-dock')).not.toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Close word details' }))
   await settleReaderFrames()
-  expect(within(dock).getByRole('button', { name: 'Explore word' })).toHaveFocus()
-  expect(dock).toBeVisible()
+  expect(words[0]).toHaveFocus()
+  expect(screen.getByTestId('study-reader-topbar')).toHaveAttribute('data-reader-header', 'persistent')
 })
 
-it('Read taps reveal controls without opening word lookup in Devanagari text', async () => {
+it('keeps the header and top modes available after Read taps and scrolling', async () => {
   renderLongReading()
   await screen.findByTestId('study-entry-list')
   act(() => useLanguageStore.getState().setScriptMode('devanagari'))
-  fireEvent.click(screen.getByRole('radio', { name: 'Read', exact: true }))
+  const header = screen.getByTestId('study-reader-topbar')
+  fireEvent.click(within(header).getByRole('radio', { name: 'Read', exact: true }))
   await settleReaderFrames()
   const line = screen.getAllByTestId('study-gurbani-line')[0]!
   fireEvent.click(line.querySelector('[data-reader-word]') ?? line)
-  expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-controls', 'hidden')
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-  fireEvent.click(line.querySelector('[data-reader-word]') ?? line)
+  fireEvent.wheel(line)
+  act(() => document.dispatchEvent(new Event('scrollend')))
+  await settleReaderFrames()
   expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-controls', 'visible')
-  expect(screen.queryByRole('button', { name: 'Explore word' })).not.toBeInTheDocument()
+  expect(header).not.toHaveAttribute('inert')
+  expect(within(header).getByRole('radio', { name: 'Study', exact: true })).toBeVisible()
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('reader-dock')).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Show reader controls' })).not.toBeInTheDocument()
 })
 
 it('a reading-route change dismisses the previous word and Read again removes the old resume target', async () => {
@@ -141,7 +141,6 @@ it('a reading-route change dismisses the previous word and Read again removes th
   expect(screen.getByTestId('reader-url')).not.toHaveTextContent('resumeVerseId')
   const line = (await screen.findAllByTestId('study-gurbani-line'))[0]!
   fireEvent.click(line.querySelector('[data-reader-word]')!)
-  fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Explore word' }))
   expect(await screen.findByRole('dialog')).toBeInTheDocument()
   fireEvent.click(screen.getByTestId('route-switch'))
   await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
@@ -152,7 +151,9 @@ it('switching to Read in appearance clears the previous Study word', async () =>
   renderLongReading()
   const line = (await screen.findAllByTestId('study-gurbani-line'))[0]!
   fireEvent.click(line.querySelector('[data-reader-word]')!)
-  fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Appearance', exact: true }))
+  fireEvent.click(screen.getByRole('button', { name: 'Close word details' }))
+  await settleReaderFrames()
+  fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Reading appearance', exact: true }))
   fireEvent.click(within(screen.getByRole('dialog')).getByRole('radio', { name: 'Read', exact: true }))
   fireEvent.click(screen.getByRole('button', { name: /close.*reader/i }))
   await settleReaderFrames()
@@ -160,7 +161,7 @@ it('switching to Read in appearance clears the previous Study word', async () =>
   expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-presentation', 'read')
 })
 
-it('offers deep presentation and Contents from More without duplicating the dock mode controls', async () => {
+it('offers Contents from More while keeping mode selection in the persistent header', async () => {
   renderLongReading()
   await screen.findByTestId('study-entry-list')
   fireEvent.click(screen.getByRole('button', { name: 'Reading tools', exact: true }))
@@ -170,7 +171,7 @@ it('offers deep presentation and Contents from More without duplicating the dock
   fireEvent.click(within(tools).getByRole('button', { name: 'Contents', exact: true }))
   expect(await screen.findByRole('dialog', { name: 'Contents' })).toBeInTheDocument()
   expect(screen.queryByRole('dialog', { name: 'Reading tools' })).not.toBeInTheDocument()
-  expect(screen.getByTestId('reader-dock').querySelector('fieldset')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('reader-dock')).not.toBeInTheDocument()
 })
 
 beforeEach(() => {
@@ -389,14 +390,14 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     await settleReaderFrames()
     act(() => document.dispatchEvent(new Event('scrollend')))
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796)
-    fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Continue here' }))
+    fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Continue here' }))
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883))
     expect(jumped).toContain('2883')
-    expect(screen.getByTestId('reader-dock')).toHaveTextContent('Ang 1386')
+    expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Ang 1386')
     expect(new URLSearchParams(useProgressStore.getState().currentSession!.resumePath.split('?')[1]).get('ang')).toBe('1386')
     expect(captureReaderAnchor()?.key).toBe('bani-21-1386-0:2')
 
-    fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Appearance', exact: true }))
+    fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Reading appearance', exact: true }))
     const appearance = screen.getByRole('dialog', { name: 'Reading appearance' })
     fireEvent.change(within(appearance).getByRole('slider', { name: 'Gurbani text size' }), { target: { value: '22' } })
     fireEvent.click(within(appearance).getByRole('radio', { name: 'Study', exact: true }))
@@ -411,10 +412,10 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     await settleReaderFrames()
     act(() => document.dispatchEvent(new Event('scrollend')))
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883)
-    fireEvent.click(within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Continue here' }))
+    fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Continue here' }))
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796))
     expect(jumped).toContain('2796')
-    expect(screen.getByTestId('reader-dock')).toHaveTextContent('Ang 12')
+    expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Ang 12')
     expect(screen.getAllByTestId('study-line').map(line => line.dataset.verseId)).toEqual(sourceOrder)
   } finally { measure.mockRestore() }
 })
@@ -456,7 +457,7 @@ function PositionResumeProbe() {
   return <button data-testid="request-deep-position" onClick={() => navigate(`${positionRehrasPath}&resumeVerseId=2883`)}>Open deep place</button>
 }
 
-it.each(['sikh-progress', 'naamras-reading-places', 'all'] as const)('keeps reading usable through %s write failure and retries the actual current place once', async failedKey => {
+it.each(['sikh-progress', 'naamras-reading-places', 'all'] as const)('keeps reading usable without autosave banners through %s write failure and recovers on the next save', async failedKey => {
   const cached = buildRehrasResumeResult()
   const cacheRead = vi.spyOn(baniOfflineCache, 'readBaniOfflineCache').mockResolvedValue(cached)
   const network = vi.spyOn(baniApi, 'fetchBani').mockResolvedValue(cached)
@@ -475,42 +476,27 @@ it.each(['sikh-progress', 'naamras-reading-places', 'all'] as const)('keeps read
   try {
     scroll!.setTop(5000 - 76)
     act(() => window.dispatchEvent(new Event('pagehide')))
-    const recovery = await screen.findByTestId('study-position-recovery')
-    expect(recovery).toBeVisible()
-    expect(screen.getByTestId('reader-dock')).toBeVisible()
+    expect(screen.queryByTestId('study-position-recovery')).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Retry saving place' })).not.toBeInTheDocument()
+    expect(screen.getByTestId('study-reader-topbar')).toBeVisible()
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883)
     expect(useReadingPlacesStore.getState().places[getExactReadingKey(positionRehrasPath)!]?.resumeVerseId).toBe(2883)
     if (failedKey !== 'naamras-reading-places') expect(localStorage.getItem('sikh-progress')).toBe(previousBytes.progress)
     if (failedKey !== 'sikh-progress') expect(localStorage.getItem('naamras-reading-places')).toBe(previousBytes.places)
     expect(useScriptureCacheStore.getState().getEntryById(cached.entries[1]!.id)?.gurmukhi).toBe(cached.entries[1]!.gurmukhi)
     expect(useScriptureCacheStore.getState().getAng('G', 1386)).toBeUndefined()
-    const announcement = screen.getByTestId('study-position-announcement')
-    const mutations: MutationRecord[] = []
-    const observer = new MutationObserver(records => mutations.push(...records))
-    observer.observe(announcement, { childList: true, characterData: true, subtree: true })
-    try {
-      const writesBeforeRetry = write.mock.calls.length
-      fireEvent.click(within(recovery).getByRole('button', { name: 'Retry saving place', exact: true }))
-      expect(write.mock.calls.length).toBeGreaterThan(writesBeforeRetry)
-      await act(async () => { await Promise.resolve() })
-      expect(screen.getByTestId('study-position-recovery')).toBe(recovery)
-      expect(mutations).toHaveLength(0)
-      rejectWrites = false
-      fireEvent.click(within(recovery).getByRole('button', { name: 'Retry saving place', exact: true }))
-      expect(screen.queryByTestId('study-position-recovery')).not.toBeInTheDocument()
-      expect(announcement).toBeEmptyDOMElement()
-      const persisted = JSON.parse(localStorage.getItem('naamras-reading-places')!).state.places
-      expect(persisted[getExactReadingKey(positionRehrasPath)!].resumeVerseId).toBe(2883)
-      expect(screen.getAllByTestId('study-line').map(line => line.dataset.verseId)).toEqual(['2650', '2883'])
-      if (failedKey === 'all') {
-        rejectWrites = true
-        scroll!.setTop(0)
-        fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Back', exact: true }))
-        expect(screen.getByRole('heading', { name: 'Browse readings' })).toBeInTheDocument()
-        expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2650)
-      }
-    } finally {
-      observer.disconnect()
+    expect(screen.queryByTestId('study-position-announcement')).not.toBeInTheDocument()
+    rejectWrites = false
+    act(() => window.dispatchEvent(new Event('pagehide')))
+    const persisted = JSON.parse(localStorage.getItem('naamras-reading-places')!).state.places
+    expect(persisted[getExactReadingKey(positionRehrasPath)!].resumeVerseId).toBe(2883)
+    expect(screen.getAllByTestId('study-line').map(line => line.dataset.verseId)).toEqual(['2650', '2883'])
+    if (failedKey === 'all') {
+      rejectWrites = true
+      scroll!.setTop(0)
+      fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Back', exact: true }))
+      expect(screen.getByRole('heading', { name: 'Browse readings' })).toBeInTheDocument()
+      expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2650)
     }
   } finally {
     rejectWrites = false
@@ -519,7 +505,7 @@ it.each(['sikh-progress', 'naamras-reading-places', 'all'] as const)('keeps read
   }
 })
 
-it('keeps a session-only place warning when its Retry is touched while an incoming target is unapplied', async () => {
+it('preserves an incoming target during a failed autosave without showing session or retry controls', async () => {
   const cached = buildRehrasResumeResult()
   const cacheRead = vi.spyOn(baniOfflineCache, 'readBaniOfflineCache').mockResolvedValue(cached)
   const network = vi.spyOn(baniApi, 'fetchBani').mockResolvedValue(cached)
@@ -538,19 +524,17 @@ it('keeps a session-only place warning when its Retry is touched while an incomi
   const windowRaf = vi.spyOn(window, 'requestAnimationFrame')
   try {
     await screen.findByTestId('study-entry-list')
-    await screen.findByTestId('study-position-recovery')
+    expect(screen.queryByTestId('study-position-recovery')).not.toBeInTheDocument()
     await settleReaderFrames()
     raf.mockImplementation(queueFrame)
     windowRaf.mockImplementation(queueFrame)
     useProgressStore.getState().updateSession({ scriptureId: 'G-1386', resumePath: positionRehrasPath, resumeVerseId: 2883, updatedAt: new Date().toISOString() })
     fireEvent.click(screen.getByTestId('request-deep-position'))
-    const retry = screen.getByRole('button', { name: 'Retry saving place', exact: true })
-    const writesBeforeRetry = write.mock.calls.length
-    fireEvent.pointerDown(retry, { pointerType: 'touch' })
-    fireEvent.click(retry)
-    expect(write.mock.calls).toHaveLength(writesBeforeRetry)
+    const writesBeforeSave = write.mock.calls.length
+    act(() => window.dispatchEvent(new Event('pagehide')))
+    expect(write.mock.calls).toHaveLength(writesBeforeSave)
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883)
-    expect(screen.getByTestId('study-position-recovery')).toBeVisible()
+    expect(screen.queryByRole('button', { name: 'Retry saving place' })).not.toBeInTheDocument()
     rejectWrites = false
     for (let round = 0; round < 6; round += 1) await act(async () => {
       const pending = Array.from(frames.values()); frames.clear()
@@ -648,7 +632,7 @@ it('releases an unavailable incoming verse so subsequent real reading continues 
   renderLongReading('&resumeVerseId=999999')
   await screen.findByTestId('study-entry-list')
   await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8100))
-  expect(screen.getByTestId('reader-dock')).toHaveTextContent('Ang 100')
+  expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Ang 100')
 })
 
 it.each(['empty', 'missing-target excerpt', 'matching-target excerpt', 'manually read excerpt', 'manually read matching excerpt'] as const)('retains incoming resume recovery and deliberate reading through Retry: %s', async recovery => {
@@ -823,16 +807,18 @@ it.each([false, true])('settles first-use support fonts after a presentation cha
   expect(target.getBoundingClientRect().top).toBeCloseTo(userIntendsToScroll ? 85 : 300, 0)
 })
 
-it('makes pause guidance understandable and available in Read without opening specialist options', async () => {
+it('groups pause guidance clearly while preserving source punctuation in Read', async () => {
   renderLongReading()
   const reading = await screen.findByTestId('study-entry-list')
   fireEvent.click(screen.getByRole('radio', { name: 'Read', exact: true }))
   const originalSource = within(reading).getAllByTestId('study-gurbani-line').map(line => line.textContent)
   fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Reading appearance', exact: true }))
   const appearance = await screen.findByRole('dialog', { name: 'Reading appearance' })
+  const disclosure = within(appearance).getByText('Pause guidance', { exact: true }).closest('details')!
+  expect(disclosure).not.toHaveAttribute('open')
+  fireEvent.click(disclosure.querySelector('summary')!)
   const marks = within(appearance).getByRole('group', { name: 'Pause marks' })
-  expect(marks.closest('details')).toBeNull()
-  expect(marks).toHaveTextContent('Visual pause guidance; scripture punctuation stays visible.')
+  expect(marks).toHaveTextContent('Underlines show reading pauses, not links.')
   const toggle = within(marks).getByRole('button', { name: 'Show pause guidance: Off' })
   expect(toggle).toHaveAttribute('aria-pressed', 'false')
   fireEvent.click(toggle)
@@ -1003,7 +989,7 @@ it('saves the visible verse when Back follows touch release before the settled-s
   expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8170)
 })
 
-it.each(['header', 'dock', 'finish'] as const)('keeps the authoritative incoming verse when %s Back is touched before cached content aligns', async control => {
+it.each(['header', 'finish'] as const)('keeps the authoritative incoming verse when %s Back is touched before cached content aligns', async control => {
   const cached = buildRehrasResumeResult()
   const cacheRead = vi.spyOn(baniOfflineCache, 'readBaniOfflineCache').mockResolvedValue(cached)
   const network = vi.spyOn(baniApi, 'fetchBani').mockResolvedValue(cached)
@@ -1022,9 +1008,7 @@ it.each(['header', 'dock', 'finish'] as const)('keeps the authoritative incoming
     expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883)
     const back = control === 'header'
       ? within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Back', exact: true })
-      : control === 'dock'
-        ? within(screen.getByTestId('reader-dock')).getByRole('button', { name: 'Return to previous screen', exact: true })
-        : screen.getByRole('button', { name: 'Return to today’s Nitnem', exact: true })
+      : screen.getByRole('button', { name: 'Return to today’s Nitnem', exact: true })
     expect(back).toHaveAttribute('data-reader-back', 'true')
     fireEvent.pointerDown(back, { pointerType: 'touch' })
     fireEvent.click(back)

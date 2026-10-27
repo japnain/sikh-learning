@@ -86,14 +86,14 @@ const ENGLISH_EDITORIAL_COPY: EditorialCopy = {
   },
   library: {
     body: "Return to what you marked, kept, or left mid-reading without breaking the thread of the practice.",
-    snapshotTitle: "What you keep here should stay within reach.",
+    snapshotTitle: "Your saved collection",
     reviewBody: "Saved words and phrases remain ready for short, steady review instead of falling out of the daily rhythm.",
   },
   more: {
-    title: "Shape the reading environment.",
-    body: "Reader choices inside NaamRas should feel deliberate, composed, and close to the text rather than busy for their own sake.",
-    promiseBody: "The aim is a premium daily reading room: calm surfaces, trustworthy controls, and a steady relationship to Gurbani each time you return.",
-    aboutBody: "NaamRas is a premium Gurbani reading app shaped for daily return, honest study, and real continuity between line, shabad, and lived reflection.",
+    title: "Reading preferences",
+    body: "Adjust appearance, language, and your daily reading preferences.",
+    promiseBody: "A quiet place for Gurbani, daily Nitnem, and study.",
+    aboutBody: "NaamRas brings Gurbani, daily Nitnem, Sikh stories, and historical books together in one reading app.",
   },
   onboarding: {
     brandBody: "NaamRas should open like a composed reading room: calm, guided, and already pointed toward the kind of return you want to build.",

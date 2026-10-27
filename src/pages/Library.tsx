@@ -260,6 +260,7 @@ export default function Library() {
   const visibleStories = savedFilter === 'favorites' ? [] : Object.values(savedStories)
     .filter(story => normalizeSavedSearch([story.title, story.subtitle, story.description, ...story.themes, ...story.people].join(' ')).includes(normalizedSavedQuery))
     .sort((a, b) => Date.parse(b.savedAt) - Date.parse(a.savedAt))
+  const showShelfMetrics = bookmarks.length + storyCount + favorites.length + phrases.length > 0 || Boolean(lastSaved)
   const hasSavedReadings = bookmarks.length + favorites.length + storyCount > 0
   const hasSavedMatches = visibleBookmarks.length + visibleFavorites.length + visibleStories.length > 0
   const bookmarksExpanded = Boolean(expanded.bookmarks || normalizedSavedQuery)
@@ -310,32 +311,32 @@ export default function Library() {
         <aside className="library-shelf-rail" aria-label={messages.overview}>
       <section
         className="hero-surface ornate-top p-5 mb-5"
-        aria-labelledby="library-snapshot-title"
+        aria-label={messages.overview}
         data-testid="library-snapshot"
       >
-        <div className="flex items-start justify-between gap-3">
+        {showShelfMetrics ? <><div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">{libraryCopy.savedSnapshot}</p>
-            <p id="library-snapshot-title" className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
+            <p id="library-snapshot-title" className="font-display text-2xl text-ink dark:text-dark-text leading-tight">
               {editorial?.library.snapshotTitle ?? libraryCopy.returnKeep}
             </p>
           </div>
           <IconLibrary size={20} className="text-gold-dark dark:text-gold-light mt-1" />
         </div>
-        <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-3">
+        <div className="library-shelf-metrics">
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length + storyCount}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.bookmarks}</p>
+            <p className="library-shelf-metric-label">{libraryCopy.bookmarks}</p>
           </div>
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{favorites.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.favorites}</p>
+            <p className="library-shelf-metric-label">{libraryCopy.favorites}</p>
           </div>
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{phrases.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64 mt-1">{libraryCopy.phrases}</p>
+            <p className="library-shelf-metric-label">{libraryCopy.phrases}</p>
           </div>
         </div>
+        </> : null}
         {savedShelfNotice ? (
           <div aria-live="polite" className="mt-4 min-h-[1.5rem]">
             <p role="status" className="inline-flex rounded-full bg-gold/10 px-3 py-1.5 font-sans text-xs font-medium text-gold-dark dark:bg-gold/12 dark:text-gold-light">
@@ -344,7 +345,7 @@ export default function Library() {
           </div>
         ) : null}
         {!hasSavedShelfContent ? (
-          <div className="section-shell-quiet mt-5 p-4 border border-gold/12 dark:border-gold/16">
+          <div className="section-shell-quiet library-shelf-empty">
             <p className="eyebrow">{messages.startShelf}</p>
             <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
               {messages.emptyBody}
@@ -352,13 +353,13 @@ export default function Library() {
             <div className="mt-4 flex flex-wrap gap-2">
               <Link
                 to="/banis"
-                className="interactive-focus interactive-pill-link rounded-lg bg-saffron px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
+                className="interactive-focus interactive-pill-link rounded-lg bg-[rgb(var(--color-text))] px-4 py-2 font-sans text-sm font-semibold text-[rgb(var(--color-bg))]"
               >
                 {messages.browseRead}
               </Link>
               <Link
                 to="/vocab"
-                className="interactive-focus interactive-pill-link rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+                className="interactive-focus interactive-pill-link rounded-lg border border-sand/18 px-4 py-2 font-sans text-sm font-semibold text-ink dark:border-dark-text/10 dark:text-dark-text"
               >
                 Review Bank
               </Link>

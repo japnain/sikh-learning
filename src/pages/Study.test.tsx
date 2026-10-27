@@ -455,7 +455,8 @@ describe('Study reader title hierarchy', () => {
       level: 1,
       name: 'Personal Hukamnama',
     })
-    expect(heading).toHaveClass('font-display')
+    expect(heading).toHaveClass('reader-header__title')
+    expect(heading).not.toHaveClass('font-display')
     expect(heading).not.toHaveAttribute('lang')
     expect(screen.getAllByRole('heading', { level: 1 })).toEqual([heading])
   })
@@ -640,7 +641,7 @@ describe('Study renders all shabads on an ang', () => {
     })
     try {
       fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: 'Save verse', exact: true }))
-      expect(screen.getByRole('status')).toHaveTextContent('Saved for this session, but device storage is unavailable.')
+      expect(screen.getByRole('status')).toHaveTextContent('This change could not be saved.')
       expect(screen.getByRole('status')).not.toHaveTextContent('Verse saved to review.')
       const retained = useVocabStore.getState().vocab.find(item => item.kind === 'phrase')!
       expect(retained).toBeDefined()
@@ -792,7 +793,7 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
-    expect(within(screen.getByTestId('study-reader-topbar')).getByText('Vaar 40')).toBeInTheDocument()
+    expect(within(screen.getByTestId('study-reader-topbar')).getByRole('heading', { name: 'Vaar 40' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Vaar 39/i })).toBeEnabled()
     expect(within(screen.getByTestId('study-ang-navigation')).getByRole('button', { name: /Vaar 40/i })).toBeDisabled()
     expect(screen.queryByRole('button', { name: /Ang 39/i })).not.toBeInTheDocument()
