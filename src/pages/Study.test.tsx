@@ -1880,8 +1880,12 @@ describe('Study hukamnama mode', () => {
     render(<MemoryRouter initialEntries={[canonicalPath]}><Routes><Route path="/study" element={<Study />} /></Routes></MemoryRouter>)
     const lines = await screen.findAllByTestId('study-line')
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2632))
-    for (const line of lines) {
-      const top = line.dataset.verseId === '4001' ? 200 : -100
+    const targetIndex = lines.findIndex(line => line.dataset.verseId === '4001')
+    expect(targetIndex).toBeGreaterThanOrEqual(0)
+    for (const [index, line] of lines.entries()) {
+      // Model the actual stacked reader: subsequent verses are below the
+      // target, rather than placing every other verse above it.
+      const top = 200 + (index - targetIndex) * 1000
       vi.spyOn(line, 'getBoundingClientRect').mockReturnValue({ x: 0, y: top, top, right: 390, bottom: top + 60, left: 0, width: 390, height: 60, toJSON: () => ({}) })
     }
     fireEvent(document, new Event('scrollend'))

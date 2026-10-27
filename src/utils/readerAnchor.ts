@@ -36,23 +36,55 @@ export function getReaderBodyLines(lines: HTMLElement[]): HTMLElement[] {
   return body.length > 0 ? body : lines
 }
 
-export function findVisibleReaderLine(lines: HTMLElement[]): HTMLElement | null {
-  const top = getReaderViewportTop()
-  const viewport = getAppViewportBounds()
-  const visible = lines.filter(line => {
-    const rect = line.getBoundingClientRect()
-    return rect.bottom > top + 1 && rect.top < viewport.bottom
-  })
-  return getReaderBodyLines(visible)[0] ?? null
+type ReaderLines = ArrayLike<HTMLElement>
+
+const isBodyLine = (line: HTMLElement) => line.dataset.lineKind !== 'header' && line.dataset.readerStructural !== 'true'
+
+/** Scripture lines are stacked in document order, with no overlapping rows.
+ * Locate the reading edge without measuring every offscreen verse on a swipe.
+ * Read current geometry so wrapping, font changes and tall lines stay accurate.
+ */
+function firstLineBelow(lines: ReaderLines, top: number) {
+  let start = 0
+  let end = lines.length
+  while (start < end) {
+    const middle = start + Math.floor((end - start) / 2)
+    if (lines[middle].getBoundingClientRect().bottom <= top) start = middle + 1
+    else end = middle
+  }
+  return start
+}
+
+function visibleLineAt(lines: ReaderLines, top: number, bottom: number): HTMLElement | null {
+  let heading: HTMLElement | null = null
+  for (let index = firstLineBelow(lines, top + 1); index < lines.length; index += 1) {
+    const line = lines[index]
+    if (line.getBoundingClientRect().top >= bottom) break
+    if (isBodyLine(line)) return line
+    heading ??= line
+  }
+  return heading
+}
+
+export function findVisibleReaderLine(lines: ReaderLines): HTMLElement | null {
+  return visibleLineAt(lines, getReaderViewportTop(), getAppViewportBounds().bottom)
 }
 
 /** Keep a source line and the point within it stable when its support layers reflow. */
 export function captureReaderAnchor(root: ParentNode = document, preferredKey?: string): ReaderAnchor | null {
   const top = getReaderViewportTop()
-  const lines = Array.from(root.querySelectorAll<HTMLElement>('[data-reader-anchor]'))
-  const line = (preferredKey ? lines.find(item => item.dataset.readerAnchor === preferredKey) : null)
-    ?? findVisibleReaderLine(lines)
-    ?? getReaderBodyLines(lines).find(item => item.getBoundingClientRect().bottom > top)
+  const lines = root.querySelectorAll<HTMLElement>('[data-reader-anchor]')
+  let line = (preferredKey ? Array.from(lines).find(item => item.dataset.readerAnchor === preferredKey) : null)
+    ?? visibleLineAt(lines, top, getAppViewportBounds().bottom)
+  if (!line) {
+    // Before the reading starts (or between passages), prefer the next body
+    // line. A reading made entirely of headings still needs an anchor.
+    const nextIndex = firstLineBelow(lines, top)
+    for (let index = nextIndex; index < lines.length; index += 1) {
+      if (isBodyLine(lines[index])) { line = lines[index]; break }
+    }
+    if (!line && !Array.from(lines).some(isBodyLine)) line = lines[nextIndex]
+  }
   if (!line?.dataset.readerAnchor) return null
   const rect = line.getBoundingClientRect()
   return {
