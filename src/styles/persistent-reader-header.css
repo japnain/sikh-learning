@@ -1,4 +1,10 @@
 /* A quiet, universal interface frame. Scripture retains its own script font. */
+/* Keep horizontal clipping on the document, so the pinned scripture header
+   scrolls without extra clipping layers between it and the viewport. */
+body:has(.study-reader-topbar),
+#root:has(.study-reader-topbar),
+.app-shell:has(.study-reader-topbar),
+.page-shell[data-page='study'] { overflow-x:visible; }
 .reader-header:is(.study-reader-topbar,.story-reader-toolbar,.epub-reader-topbar) {
   display:grid;
   grid-template-columns:44px minmax(0,1fr) auto;
