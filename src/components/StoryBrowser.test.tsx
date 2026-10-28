@@ -276,3 +276,12 @@ it('lets readers remove retained downloads even when all editions are older than
   expect(getStoredStoryIds()).toEqual([])
   expect(screen.queryByRole('button', { name: 'Remove downloads' })).not.toBeInTheDocument()
 })
+
+it('matches normalized person and theme tokens in either order', async () => {
+  const user = userEvent.setup()
+  open()
+  await screen.findByTestId('story-browser')
+  await user.type(screen.getByRole('searchbox'), 'HONÉST   nanak')
+  expect(screen.getAllByRole('heading', { level: 4 })).toHaveLength(1)
+  expect(screen.getByRole('heading', { level: 4, name: summaries[0].title })).toBeInTheDocument()
+})

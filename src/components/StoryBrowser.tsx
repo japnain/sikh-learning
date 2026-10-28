@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { downloadStoryCollection, getOfflineStoryIds, getStoredStoryIds, loadStoryCatalog, removeOfflineStories } from '../data/storyRepository'
 import { useStoryStore } from '../store/stories'
@@ -9,13 +9,9 @@ import { buildCurrentAppPath, buildLibraryReaderNavigationState } from '../utils
 import StoryArtwork from './StoryArtwork'
 import { IconArrowRight, IconBookmark, IconBookmarkFilled, IconSearch } from './icons'
 import '../styles/stories.css'
+import { matchesStorySearch } from '../utils/storySearch'
 
-const matchesStorySearch = (story: StorySummary, query: string) => (
-  [story.title, story.subtitle, story.description, story.series?.title ?? '', ...story.people, ...story.themes]
-    .join(' ').toLocaleLowerCase().includes(query.toLocaleLowerCase().trim())
-)
-
-export default function StoryBrowser() {
+export default function StoryBrowser({ showSearch = true, continuation }: { showSearch?: boolean; continuation?: ReactNode }) {
   const locale = useLocaleStore(state => state.locale)
   const copy = STORY_UI[locale]
   const location = useLocation()
@@ -23,7 +19,7 @@ export default function StoryBrowser() {
   const [catalog, setCatalog] = useState<StoryCatalog | null>(null)
   const [error, setError] = useState(false)
   const [request, setRequest] = useState(0)
-  const query = searchParams.get('storyQuery') ?? ''
+  const query = showSearch ? searchParams.get('storyQuery') ?? '' : ''
   const collection = searchParams.get('storyCollection') ?? 'all'
   const updateDiscovery = (nextQuery: string, nextCollection: string) => {
     const next = new URLSearchParams(searchParams)
@@ -98,13 +94,14 @@ export default function StoryBrowser() {
         <span className="story-count">{copy.count(catalog.stories.length)}</span>
       </header>
 
-      {continueStory && isBrowsing && <Link to={`/stories/${continueStory.id}`} state={navigationState} className="story-continue">
+      {isBrowsing && continuation}
+      {!continuation && continueStory && isBrowsing && <Link id={`story-continue-${continueStory.id}`} to={`/stories/${continueStory.id}`} state={navigationState} className="story-continue">
         <span><span className="eyebrow">{copy.continue}</span><strong lang="en">{continueStory.title}</strong><span>{copy.percent(Math.round(positions[continueStory.id].progress * 100))}</span></span><IconArrowRight size={19} />
       </Link>}
 
       {featured && isBrowsing && <article className="story-feature">
         <StoryArtwork kind={featured.artwork} />
-        <div className="story-feature-copy"><p className="eyebrow">{copy.begin}</p><h3 lang="en"><Link to={`/stories/${featured.id}`} state={navigationState}>{featured.title}</Link></h3><p lang="en">{featured.description}</p><Link to={`/stories/${featured.id}`} state={navigationState} className="story-read-link">{copy.read} <IconArrowRight size={16} /><span className="story-reading-time">{copy.minutes(featured.readingMinutes)}</span></Link></div>
+        <div className="story-feature-copy"><p className="eyebrow">{copy.begin}</p><h3 lang="en"><Link id={`story-feature-title-${featured.id}`} to={`/stories/${featured.id}`} state={navigationState}>{featured.title}</Link></h3><p lang="en">{featured.description}</p><Link id={`story-feature-read-${featured.id}`} to={`/stories/${featured.id}`} state={navigationState} className="story-read-link">{copy.read} <IconArrowRight size={16} /><span className="story-reading-time">{copy.minutes(featured.readingMinutes)}</span></Link></div>
       </article>}
 
       {isBrowsing && <details className="story-beginner-path">
@@ -114,11 +111,11 @@ export default function StoryBrowser() {
           { id: 'bhai-lalo', label: copy.pathWork },
           { id: 'mata-khivi', label: copy.pathCommunity },
           { id: 'guru-amar-das-service', label: copy.pathService },
-        ].filter(step => catalog.stories.some(story => story.id === step.id)).map(step => <li key={step.id}><Link to={`/stories/${step.id}`} state={navigationState}>{step.label}</Link></li>)}</ol>
+        ].filter(step => catalog.stories.some(story => story.id === step.id)).map(step => <li key={step.id}><Link id={`story-path-${step.id}`} to={`/stories/${step.id}`} state={navigationState}>{step.label}</Link></li>)}</ol>
       </details>}
 
       <div className="story-discovery">
-        <label className="story-search"><IconSearch size={18} /><span className="sr-only">{copy.search}</span><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder={copy.searchPlaceholder} /></label>
+        {showSearch && <label className="story-search"><IconSearch size={18} /><span className="sr-only">{copy.search}</span><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder={copy.searchPlaceholder} /></label>}
         <div className="story-collections" role="group" aria-label={copy.collections}>
           <button type="button" aria-pressed={collection === 'all'} onClick={() => setCollection('all')}>{copy.all}</button>
           {catalog.collections.map(item => <button type="button" key={item.id} lang="en" aria-pressed={collection === item.id} onClick={() => setCollection(item.id)}>{item.title}</button>)}
@@ -128,7 +125,7 @@ export default function StoryBrowser() {
       <div className="story-list-heading"><h3 lang={collection === 'all' ? storyUiLang(locale) : 'en'}>{collection === 'all' ? copy.explore : catalog.collections.find(item => item.id === collection)?.title}</h3><span role="status">{copy.count(stories.length)}</span></div>
       <div className="story-list">
         {stories.map(story => <article className="story-card" key={story.id}>
-          <Link className="story-card-link" to={`/stories/${story.id}`} state={navigationState}>
+          <Link id={`story-card-${story.id}`} className="story-card-link" to={`/stories/${story.id}`} state={navigationState}>
             <StoryArtwork kind={story.artwork} />
             <div className="story-card-copy"><p className="story-meta"><span lang="en">{story.people[0]}</span> <span aria-hidden="true">·</span> {copy.minutes(story.readingMinutes)}</p><h4 lang="en">{story.title}</h4><p className="story-card-description" lang="en">{story.description}</p>{story.series ? <span className="story-card-series"><span lang="en">{story.series.title}</span> · {copy.part(story.series.order)}</span> : null}<span className="story-card-theme"><span lang="en">{story.themes[0]}</span>{offlineIds.includes(story.id) && <span> · {copy.offline}</span>}{positions[story.id]?.revision === story.revision && positions[story.id]?.finishedAt && <span> · {copy.finished}</span>}</span></div>
           </Link>

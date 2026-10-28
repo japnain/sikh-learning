@@ -32,14 +32,15 @@ function renderDaily(props: Partial<HomeDailyNitnemProps> = {}) {
   return render(<MemoryRouter><HomeDailyNitnem {...defaults} {...props} /></MemoryRouter>)
 }
 
-test('exposes every selected reading directly without starting or completing practice while browsing', () => {
+test('the named index previews every selected reading without starting or completing practice', () => {
   const onRead = vi.fn()
   renderDaily({ onRead })
-  const carousel = within(screen.getByTestId('home-nitnem-carousel'))
-  expect(carousel.getAllByRole('listitem').map(card => card.getAttribute('data-nitnem-id'))).toEqual(selected.map(item => item.id))
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
-  expect(screen.getByRole('button', { name: 'Previous bani' })).toHaveAttribute('aria-disabled', 'true')
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  const index = screen.getByRole('tablist', { name: 'Your Nitnem' })
+  expect(within(index).getAllByRole('tab').map(tab => tab.getAttribute('data-nitnem-id'))).toEqual(selected.map(item => item.id))
+  expect(screen.getAllByRole('tabpanel')).toHaveLength(1)
+  expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Next bani' })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('tab', { name: 'Jaap Sahib' }))
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'jaap-sahib')
   expect(onRead).not.toHaveBeenCalled()
   expect(defaults.onComplete).not.toHaveBeenCalled()
@@ -47,18 +48,17 @@ test('exposes every selected reading directly without starting or completing pra
   expect(onRead).toHaveBeenCalledExactlyOnceWith(selected[1], buildNitnemStudyPath(selected[1]))
 })
 
-test('pagination respects personal order including completed cards and stops at each end', () => {
+test('the index respects personal order, includes completed readings and uses actual bani dayparts', () => {
   const order = [selected[4], selected[2], selected[0], selected[6]]
   renderDaily({ selected: order, activeId: order[0].id, completed: new Set([selected[6].id]) })
-  for (let index = 1; index < order.length; index++) fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[6].id)
-  expect(screen.getByRole('button', { name: 'Next bani' })).toHaveAttribute('aria-disabled', 'true')
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[6].id)
+  expect(screen.getAllByRole('tab').map(tab => tab.getAttribute('data-nitnem-id'))).toEqual(order.map(item => item.id))
+  fireEvent.click(screen.getByRole('tab', { name: 'Kirtan Sohila' }))
+  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-period', 'Night')
+  expect(screen.getByRole('tab', { name: 'Kirtan Sohila' })).toHaveAccessibleDescription('Complete today')
   expect(screen.getByRole('link', { name: 'Read again: Kirtan Sohila' })).toBeInTheDocument()
 })
 
-test('all banis keeps personal order and explicit completion while the same rail card remains reachable', () => {
+test('all banis keeps personal order and explicit completion while the selected reading stays reachable', () => {
   const customOrder = [selected[5], selected[0], selected[2], selected[4]]
   renderDaily({ selected: customOrder, completed: new Set([selected[0].id]) })
   fireEvent.click(screen.getByRole('button', { name: 'All 4 banis' }))
@@ -83,7 +83,7 @@ test('keeps exact saved routes and length separate from recorded completion', ()
   expect(within(screen.getByRole('dialog')).getByRole('link', { name: 'Continue reading: Rehras Sahib' })).toHaveAttribute('href', path)
 })
 
-test('manual completion holds the card and its focused control when the primary practice moves elsewhere', () => {
+test('manual completion holds the reading and focused Undo when the primary practice moves elsewhere', () => {
   const view = renderDaily()
   const complete = screen.getByRole('button', { name: 'Mark complete: Japji Sahib' })
   act(() => complete.focus())
@@ -95,45 +95,56 @@ test('manual completion holds the card and its focused control when the primary 
   expect(screen.getByRole('link', { name: 'Read again: Japji Sahib' })).toHaveAttribute('href', buildNitnemStudyPath(selected[0]))
 })
 
-test('a complete day retains every card for reading again and immediate undo', () => {
+test('a complete day retains all named readings, one selected reread action, and immediate undo', () => {
   renderDaily({ completed: new Set(selected.map(item => item.id)) })
   expect(screen.getByRole('heading', { name: 'Your Nitnem is complete.' })).toBeInTheDocument()
-  expect(screen.getByTestId('home-nitnem-carousel')).toBeInTheDocument()
-  expect(screen.getAllByRole('button', { name: /^Undo completion:/ })).toHaveLength(7)
-  expect(screen.getAllByRole('link', { name: /^Read again:/ })).toHaveLength(7)
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '7')
+  expect(screen.getAllByRole('tab')).toHaveLength(7)
+  expect(screen.getAllByRole('button', { name: /^Undo completion:/ })).toHaveLength(1)
+  expect(screen.getAllByRole('link', { name: /^Read again:/ })).toHaveLength(1)
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent('7 of 7 complete today')
+  fireEvent.click(screen.getByRole('tab', { name: 'Jaap Sahib' }))
+  expect(screen.getByRole('button', { name: 'Undo completion: Jaap Sahib' })).toBeInTheDocument()
 })
 
-test('tracking off removes completion language and still exposes every reading', () => {
+test('tracking off removes completion language and still exposes every reading by name', () => {
   renderDaily({ tracking: false, completed: new Set(selected.map(item => item.id)) })
   expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
   expect(screen.queryByRole('button', { name: /completion|complete/ })).not.toBeInTheDocument()
-  expect(screen.getAllByRole('link', { name: /^Begin reading:/ })).toHaveLength(7)
+  expect(screen.getAllByRole('tab')).toHaveLength(7)
+  expect(screen.queryByText(/complete today/)).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('tab', { name: 'Kirtan Sohila' }))
+  expect(screen.getByRole('link', { name: 'Begin reading: Kirtan Sohila' })).toBeInTheDocument()
 })
 
-test('empty selection provides one action and no empty rail', () => {
+test('empty selection provides one action and no empty index', () => {
   renderDaily({ selected: [], activeId: undefined })
   expect(screen.getByRole('link', { name: 'Choose your banis' })).toHaveAttribute('href', '/nitnem/customize')
-  expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
-  expect(screen.queryByTestId('home-nitnem-carousel')).not.toBeInTheDocument()
+  expect(screen.queryByRole('tablist')).not.toBeInTheDocument()
 })
 
-test('rail keyboard shortcuts and offscreen focus change presentation without consuming control keys', () => {
+test('index keyboard navigation selects and focuses names without consuming reading-control keys', () => {
   renderDaily()
-  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
-  fireEvent.keyDown(list, { key: 'End' })
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected.at(-1)!.id)
-  const link = screen.getByRole('link', { name: 'Begin reading: Jaap Sahib' })
-  act(() => link.focus())
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[1].id)
-  fireEvent.keyDown(link, { key: 'ArrowRight' })
+  const first = screen.getByRole('tab', { name: 'Japji Sahib' })
+  fireEvent.keyDown(first, { key: 'End' })
+  const last = screen.getByRole('tab', { name: 'Kirtan Sohila' })
+  expect(last).toHaveFocus()
+  expect(last).toHaveAttribute('aria-selected', 'true')
+  fireEvent.keyDown(last, { key: 'ArrowRight' })
+  expect(last).toHaveFocus()
+  fireEvent.keyDown(last, { key: 'Home' })
+  expect(first).toHaveFocus()
+  fireEvent.keyDown(first, { key: 'ArrowRight' })
+  expect(screen.getByRole('tab', { name: 'Jaap Sahib' })).toHaveFocus()
+  expect(screen.getByRole('tab', { name: 'Jaap Sahib' })).toHaveAttribute('tabindex', '0')
+  expect(first).toHaveAttribute('tabindex', '-1')
+  fireEvent.keyDown(screen.getByRole('link', { name: 'Begin reading: Jaap Sahib' }), { key: 'ArrowRight' })
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[1].id)
   expect(defaults.onComplete).not.toHaveBeenCalled()
 })
 
-test('reordering preserves the browsed ID and removal chooses a nearby card', () => {
+test('reordering preserves the browsed ID and removal chooses a nearby reading', () => {
   const view = renderDaily({ selected: selected.slice(0, 3) })
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  fireEvent.click(screen.getByRole('tab', { name: 'Jaap Sahib' }))
   view.rerender(<MemoryRouter><HomeDailyNitnem {...defaults} selected={[selected[2], selected[0], selected[1]]} /></MemoryRouter>)
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[1].id)
   view.rerender(<MemoryRouter><HomeDailyNitnem {...defaults} selected={[selected[2], selected[0]]} /></MemoryRouter>)
@@ -188,40 +199,40 @@ test('Apply forwards the verified payload and the announced destination despite 
   expect(new URLSearchParams(args[5].path.split('?')[1]).get('resumeSource')).toBe('G')
 })
 
-test('native scrolling updates the visible card without a reading or completion action', () => {
+test('scrolling the named index never changes the displayed reading or starts practice', () => {
   const onRead = vi.fn()
   renderDaily({ onRead })
-  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
-  Object.defineProperty(list, 'clientWidth', { configurable: true, value: 340 })
-  within(list).getAllByRole('listitem').forEach((card, index) => {
-    Object.defineProperty(card, 'offsetLeft', { configurable: true, value: index * 320 })
-  })
-  fireEvent(window, new Event('resize'))
-  list.scrollLeft = 640
-  fireEvent.scroll(list)
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[2].id)
-  expect(screen.getByRole('button', { name: 'Next bani' })).toHaveAttribute('aria-disabled', 'false')
+  const index = screen.getByRole('tablist')
+  index.scrollLeft = 640
+  fireEvent.scroll(index)
+  expect(screen.getByRole('tab', { name: 'Japji Sahib' })).toHaveAttribute('aria-selected', 'true')
   expect(onRead).not.toHaveBeenCalled()
   expect(defaults.onComplete).not.toHaveBeenCalled()
 })
 
-test('resizing preserves the browsed bani at its new horizontal position and respects reduced motion', () => {
-  vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList)
-  renderDaily()
-  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
-  const scroll = vi.fn()
-  Object.defineProperty(list, 'scrollTo', { configurable: true, value: scroll })
-  Object.defineProperty(list, 'clientWidth', { configurable: true, value: 340 })
-  const cards = within(list).getAllByRole('listitem')
-  cards.forEach((card, index) => Object.defineProperty(card, 'offsetLeft', { configurable: true, value: index * 320 }))
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
-  expect(scroll).toHaveBeenLastCalledWith({ left: 320, behavior: 'instant' })
-  cards.forEach((card, index) => Object.defineProperty(card, 'offsetLeft', { configurable: true, value: index * 560 }))
-  Object.defineProperty(list, 'clientWidth', { configurable: true, value: 580 })
-  fireEvent.scroll(list)
+test('resizing reveals the selected name within the index without scrolling Home or stealing focus', () => {
+  const view = renderDaily()
+  const index = screen.getByRole('tablist')
+  const tab = screen.getByRole('tab', { name: 'Kirtan Sohila' })
+  Object.defineProperties(index, { clientWidth: { configurable: true, value: 300 }, scrollWidth: { configurable: true, value: 1200 } })
+  vi.spyOn(index, 'getBoundingClientRect').mockReturnValue({ left: 20, right: 320 } as DOMRect)
+  vi.spyOn(tab, 'getBoundingClientRect').mockReturnValue({ left: 900, right: 1100 } as DOMRect)
+  const scrollHome = vi.spyOn(window, 'scrollTo')
+  fireEvent.click(tab)
+  expect(index.scrollLeft).toBe(784)
+  const complete = screen.getByRole('button', { name: 'Mark complete: Kirtan Sohila' })
+  act(() => complete.focus())
+  index.scrollLeft = 0
   fireEvent(window, new Event('resize'))
-  expect(scroll).toHaveBeenLastCalledWith({ left: 560, behavior: 'instant' })
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[1].id)
+  expect(index.scrollLeft).toBe(784)
+  expect(complete).toHaveFocus()
+  expect(scrollHome).not.toHaveBeenCalled()
+  index.scrollLeft = 0
+  view.rerender(<MemoryRouter><HomeDailyNitnem {...defaults} tracking={false} /></MemoryRouter>)
+  // A user may scroll the index to explore another name without selecting it.
+  // Unrelated state updates must not pull those names away under the pointer.
+  expect(index.scrollLeft).toBe(0)
+  expect(screen.getByRole('tab', { name: 'Kirtan Sohila' })).toHaveAttribute('aria-selected', 'true')
 })
 
 test('a cache response from a card left behind cannot show its snippet or offline badge on another bani', async () => {
@@ -231,7 +242,7 @@ test('a cache response from a card left behind cannot show its snippet or offlin
   const path = `${buildNitnemStudyPath(rehras)}&resumeVerseId=400&resumeSource=D`
   renderDaily({ selected: [rehras, selected[0]], activeId: rehras.id, getResume: item => item.id === rehras.id ? path : null })
   expect(cache).toHaveBeenCalledTimes(1)
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  fireEvent.click(screen.getByRole('tab', { name: 'Japji Sahib' }))
   expect(cache).toHaveBeenCalledTimes(2)
   await act(async () => { pending[0](readingFixture()); pending[1](null) })
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[0].id)
@@ -239,38 +250,14 @@ test('a cache response from a card left behind cannot show its snippet or offlin
   expect(screen.queryByText('Available offline')).not.toBeInTheDocument()
 })
 
-test('rapid pagination keeps its intended destination through intermediate smooth-scroll events', () => {
+test('rapid named selection preserves the latest choice through index scroll events', () => {
   renderDaily()
-  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
-  Object.defineProperty(list, 'clientWidth', { configurable: true, value: 340 })
-  within(list).getAllByRole('listitem').forEach((card, index) => Object.defineProperty(card, 'offsetLeft', { configurable: true, value: index * 320 }))
-  Object.defineProperty(list, 'scrollTo', { configurable: true, value: vi.fn() })
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
-  list.scrollLeft = 100
-  fireEvent.scroll(list)
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[1].id)
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  fireEvent.click(screen.getByRole('tab', { name: 'Jaap Sahib' }))
+  fireEvent.click(screen.getByRole('tab', { name: selected[2].romanizedTitle }))
+  fireEvent.scroll(screen.getByRole('tablist'))
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[2].id)
-  list.scrollLeft = 640
-  fireEvent.scroll(list)
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[2].id)
+  expect(defaults.onComplete).not.toHaveBeenCalled()
 })
-
-test('pointer focus on a peeking reading link does not reposition it before its click', () => {
-  const onRead = vi.fn()
-  renderDaily({ onRead })
-  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
-  const scroll = vi.fn()
-  Object.defineProperty(list, 'scrollTo', { configurable: true, value: scroll })
-  const link = screen.getByRole('link', { name: 'Begin reading: Jaap Sahib' })
-  fireEvent.pointerDown(link)
-  act(() => link.focus())
-  expect(scroll).not.toHaveBeenCalled()
-  fireEvent.pointerUp(link)
-  fireEvent.click(link)
-  expect(onRead).toHaveBeenCalledExactlyOnceWith(selected[1], buildNitnemStudyPath(selected[1]))
-})
-
 
 test('a saved Study link keeps its exact destination separate from fresh daily practice', () => {
   const saved = `${buildNitnemStudyPath(selected[0])}&resumeVerseId=42&resumeSource=G`
@@ -296,26 +283,11 @@ test('download progress refreshes exact offline availability before the whole ro
   expect(useNitnemOfflineStatusStore.getState().status).toBe('preparing')
 })
 
-test('a direct swipe can interrupt a pending arrow animation without keeping a stale card selected', () => {
-  renderDaily()
-  const list = screen.getByRole('list', { name: 'Daily Nitnem' })
-  Object.defineProperty(list, 'clientWidth', { configurable: true, value: 340 })
-  within(list).getAllByRole('listitem').forEach((card, index) => Object.defineProperty(card, 'offsetLeft', { configurable: true, value: index * 320 }))
-  Object.defineProperty(list, 'scrollTo', { configurable: true, value: vi.fn() })
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
-  fireEvent.pointerDown(list)
-  list.scrollLeft = 960
-  fireEvent.scroll(list)
-  fireEvent.pointerUp(list)
-  expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[3].id)
-  expect(defaults.onComplete).not.toHaveBeenCalled()
-})
-
 test('opening All banis reveals the browsed row within the list without moving focus from Close', async () => {
   const frames: FrameRequestCallback[] = []
   vi.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => { frames.push(callback); return frames.length })
   renderDaily()
-  fireEvent.keyDown(screen.getByRole('list', { name: 'Daily Nitnem' }), { key: 'End' })
+  fireEvent.keyDown(screen.getByRole('tab', { name: 'Japji Sahib' }), { key: 'End' })
   fireEvent.click(screen.getByRole('button', { name: 'All 7 banis' }))
   const dialog = screen.getByRole('dialog', { name: 'Your Nitnem' })
   const list = within(dialog).getByRole('list')

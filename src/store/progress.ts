@@ -4,6 +4,7 @@ import type { LibraryReaderLocator, StudiedEntry } from '../types'
 import { getUpdatedStreak } from '../utils/streak'
 import { queueActivityEvent } from './activityEvents'
 import { useReadingPlacesStore } from './readingPlaces'
+import { isSafeInternalAppPath } from '../utils/libraryReaderNavigation'
 
 export interface Session {
   scriptureId: string
@@ -64,7 +65,7 @@ export function buildSessionResumePath(session: Session | null | undefined): str
   if (!session) return null
 
   const basePath = session.resumePath || buildLegacyResumePath(session.scriptureId)
-  if (!basePath) return null
+  if (!basePath || !isSafeInternalAppPath(basePath)) return null
   if (isRetiredPanthPrakashResumePath(basePath)) return null
 
   if (session.readerLocator?.locations.blockId) {
@@ -95,7 +96,7 @@ function normalizeSession(session: Session | LegacySession | null | undefined): 
   }
 
   if ('resumePath' in session && typeof session.resumePath === 'string' && session.resumePath.trim()) {
-    if (isRetiredPanthPrakashResumePath(session.resumePath)) return null
+    if (!isSafeInternalAppPath(session.resumePath) || isRetiredPanthPrakashResumePath(session.resumePath)) return null
 
     const resumeVerseId = typeof session.resumeVerseId === 'number' && session.resumeVerseId > 0
       ? session.resumeVerseId
@@ -195,6 +196,13 @@ export const useProgressStore = create<ProgressState>()(
     {
       name: 'sikh-progress',
       version: 3,
+      merge: (persisted, current) => {
+        const stored = (persisted as Partial<ProgressState> | undefined) ?? {}
+        return { ...current, ...stored, currentSession: normalizeSession(stored.currentSession) }
+      },
+      onRehydrateStorage: () => state => {
+        if (state?.currentSession) useReadingPlacesStore.getState().remember(state.currentSession)
+      },
       migrate: (persistedState) => {
         const state = (persistedState as Partial<ProgressState> | undefined) ?? {}
 

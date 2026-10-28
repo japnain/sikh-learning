@@ -3,6 +3,7 @@ import * as storyRepository from '../data/storyRepository'
 import * as libraryRepository from '../data/libraryRepository'
 import {
   getAngTargets,
+  getAvailableSearchMeta,
   getAppSearchMatches,
   getLibrarySearchMatches,
   getStorySearchMatches,
@@ -108,7 +109,7 @@ test('finds stories by title, description, people, themes and series', async () 
     }],
   })
   try {
-    for (const query of ['shared meal', 'service', 'Guru Nanak', 'equality', 'journeys']) {
+    for (const query of ['shared meal', 'service', 'Guru Nanak', 'equality', 'journeys', 'NANAK équality']) {
       await expect(getStorySearchMatches(query)).resolves.toEqual([expect.objectContaining({
         label: 'A Shared Meal', kind: 'story', path: '/stories/shared-meal',
       })])
@@ -134,4 +135,29 @@ test('book result queries are phrases the reader can highlight, not scattered in
   } finally {
     loader.mockRestore()
   }
+})
+
+
+test('does not silently cap library full-text matches before the view can expand them', async () => {
+  const index = await libraryRepository.loadLibrarySearchIndex('panth-prakash-english')
+  const source = index.chapters![0]
+  const loader = vi.spyOn(libraryRepository, 'loadLibrarySearchIndex').mockResolvedValue({
+    ...index,
+    chapters: Array.from({ length: 19 }, (_, number) => ({ ...source, chapterId: `chapter-${number}`, title: `Matched chapter ${number}`, searchText: 'The unique searchable phrase appears here.' })),
+  })
+  try {
+    expect(await getLibrarySearchMatches('unique searchable phrase')).toHaveLength(19)
+  } finally { loader.mockRestore() }
+})
+
+test('every returned raag and writer remains available as a search facet', () => {
+  const results = Array.from({ length: 14 }, (_, number) => ({
+    shabadId: number + 1, verseId: number + 1, source: 'G', sourceName: 'SGGS', pageNo: 1,
+    gurmukhi: 'ਪਾਠ', transliteration: '', translation_en: '', raag: `Raag ${number}`, writer: `Writer ${number}`,
+  }))
+  const facets = getAvailableSearchMeta(results)
+  expect(facets.raags).toHaveLength(14)
+  expect(facets.writers).toHaveLength(14)
+  expect(facets.raags).toContain('Raag 13')
+  expect(facets.writers).toContain('Writer 13')
 })

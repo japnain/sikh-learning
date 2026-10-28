@@ -1,0 +1,21 @@
+.source-browse { color: rgb(var(--color-text)); }
+.source-browse-heading { display:flex; align-items:center; justify-content:space-between; gap:.75rem; width:100%; min-height:44px; text-align:start; font-size:.9375rem; font-weight:600; }
+.source-browse-heading > span:first-child { min-width:0; overflow-wrap:anywhere; }
+.source-browse-jump { display:grid; gap:.5rem; padding-bottom:1.25rem; }
+.source-browse-jump label { font-size:.875rem; font-weight:500; }
+.source-browse-jump__controls { display:flex; align-items:stretch; gap:.5rem; }
+.source-browse-jump input { min-width:0; flex:1; border:1px solid rgb(var(--color-border) / .65); border-radius:.5rem; padding:.65rem .8rem; min-height:44px; background:rgb(var(--color-bg)); color:inherit; font-size:1rem; }
+.source-browse-jump input:focus-visible { outline:2px solid rgb(var(--color-text)); outline-offset:2px; }
+.source-browse-jump__controls button { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:.5rem; padding:.65rem 1rem; min-width:70px; min-height:44px; background:rgb(var(--color-text)); color:rgb(var(--color-bg)); font-size:.875rem; }
+.source-browse-range { color:rgb(var(--color-text-muted)); font-size:.8125rem; line-height:1.6; }
+.source-browse-error { color:rgb(var(--color-text)); font-size:.875rem; border-inline-start:3px solid currentColor; padding-inline-start:.65rem; }
+.source-browse-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.5rem; margin-bottom:1rem; }
+.source-browse-grid a { display:flex; align-items:center; justify-content:center; min-height:44px; font-size:.875rem; padding:.5rem .15rem; }
+.source-browse-pagination { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.3rem .5rem; }
+.source-browse-pagination button { display:flex; align-items:center; gap:.25rem; min-height:44px; padding:.5rem; font-size:.875rem; }
+.source-browse-pagination button:disabled { opacity:.4; }
+.source-browse-pagination > span { font-size:.8125rem; color:rgb(var(--color-text-muted)); text-align:center; }
+.source-book-overview { display:grid; gap:.75rem; }
+.source-book-overview h3 { font-size:1.5rem; }
+.source-book-overview > a { display:flex; align-items:center; gap:.5rem; min-height:44px; font-size:.875rem; }
+@media (max-width:360px) { .source-browse-grid { gap:.3rem; } .source-browse-pagination > span { flex-basis:100%; order:-1; } }

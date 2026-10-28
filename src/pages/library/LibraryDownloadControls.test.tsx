@@ -6,6 +6,8 @@ import { beforeEach, expect, test, vi } from 'vitest'
 import type { LibraryWork } from '../../types'
 import * as repository from '../../data/libraryRepository'
 import LibraryDownloadControls from './LibraryDownloadControls'
+import { useLocaleStore } from '../../store/locale'
+import { LIBRARY_DOWNLOAD_COPY } from '../../content/libraryBookCopy'
 
 vi.mock('../../data/libraryRepository', async importOriginal => ({
   ...await importOriginal<typeof import('../../data/libraryRepository')>(),
@@ -17,9 +19,23 @@ const work = (JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public/data/l
 const ready = { workId: work.id, revision: work.revision!, downloaded: 81, total: 169, volumes: [{ volume: 1, downloaded: 81, total: 81 }, { volume: 2, downloaded: 0, total: 88 }] }
 
 beforeEach(() => {
+  useLocaleStore.setState({ locale: 'en' })
   vi.mocked(repository.getLibraryDownloadStatus).mockReset().mockResolvedValue(null)
   vi.mocked(repository.downloadLibraryWork).mockReset()
   vi.mocked(repository.removeDownloadedLibraryWork).mockReset().mockResolvedValue(undefined)
+})
+
+test.each(['pa', 'hi'] as const)('localizes download actions and recovery notices in %s', async locale => {
+  useLocaleStore.setState({ locale })
+  const copy = LIBRARY_DOWNLOAD_COPY[locale]
+  const user = userEvent.setup()
+  vi.mocked(repository.downloadLibraryWork).mockRejectedValue(new Error('Provider error in English'))
+  render(<LibraryDownloadControls work={work} />)
+  expect(screen.getByRole('heading', { name: copy.title })).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: copy.downloadBook }))
+  expect(await screen.findByRole('alert')).toHaveTextContent(copy.failed)
+  expect(screen.getByRole('button', { name: copy.downloadBook })).toBeEnabled()
+  expect(screen.queryByText('Provider error in English')).not.toBeInTheDocument()
 })
 
 test('reports readiness only after durable verification, then supports removal without touching bookmarks', async () => {

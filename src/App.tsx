@@ -174,11 +174,13 @@ function AppShell() {
   const firstRunDestinationRef = useRef(`${location.pathname}${location.search}${location.hash}`)
   const isPublicDocument = isPublicDocumentPath(location.pathname)
   const isLibraryChapterReader = /^\/library\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
+  const isRehatChapterReader = /^\/banis\/rehat\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
   const isStoryReader = /^\/stories\/[^/]+\/?$/.test(location.pathname)
     || (import.meta.env.DEV && /^\/stories\/drafts\/[^/]+\/?$/.test(location.pathname))
   const isFocusedReader = location.pathname === '/study'
     || location.pathname.startsWith('/study/')
     || isLibraryChapterReader
+    || isRehatChapterReader
     || isStoryReader
   const isFocusedEditor = /^\/nitnem\/customize\/?$/.test(location.pathname)
   const showPrimaryNavigation = !isPublicDocument && !isFocusedReader && !isFocusedEditor

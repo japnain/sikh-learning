@@ -102,63 +102,55 @@ afterEach(() => {
 })
 
 describe('Stories in the shared reading and Saved pages', () => {
-  it('opens a deep Stories collection URL, preserves separate searches, and returns from the real reader to the same shelf', async () => {
-    open('/banis?collection=stories&query=mercy&mode=english&storyQuery=Lalo&storyCollection=seva-and-dignity')
-    await screen.findByTestId('story-browser')
-    expect(screen.getByRole('tab', { name: 'Stories' })).toHaveAttribute('aria-selected', 'true')
-    expect(screen.getByRole('tabpanel', { name: 'Stories' })).toBeInTheDocument()
-    const search = screen.getByRole('searchbox', { name: /search stories by title, person or theme/i })
-    expect(search).toHaveValue('Lalo')
-    expect(screen.getByRole('button', { name: 'Seva & dignity' })).toHaveAttribute('aria-pressed', 'true')
-    expect(document.querySelector('#banis-search')).toBeNull()
+  it('migrates a deep Stories search to the shared input and returns from its reader to the same result', async () => {
+    open('/banis?collection=stories&storyQuery=Lalo&storyCollection=seva-and-dignity')
+    const results = await screen.findByTestId('banis-search-story-results')
+    expect(screen.getAllByRole('searchbox')).toHaveLength(1)
+    expect(screen.getByRole('searchbox', { name: 'Search stories' })).toHaveValue('Lalo')
+    expect(currentUrl().searchParams.get('query')).toBe('Lalo')
+    expect(currentUrl().searchParams.get('scope')).toBe('stories')
+    expect(currentUrl().searchParams.has('storyQuery')).toBe(false)
     expect(banidbApi.fetchBanisIndex).not.toHaveBeenCalled()
     expect(banidbApi.fetchSearch).not.toHaveBeenCalled()
 
-    fireEvent.change(search, { target: { value: 'Sajjan' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Lives transformed' }))
-    await waitFor(() => {
-      expect(currentUrl().searchParams.get('storyQuery')).toBe('Sajjan')
-      expect(currentUrl().searchParams.get('storyCollection')).toBe('lives-transformed')
-      expect(currentUrl().searchParams.get('query')).toBe('mercy')
-      expect(currentUrl().searchParams.get('mode')).toBe('english')
-    })
     const origin = `${currentUrl().pathname}${currentUrl().search}`
-    const card = screen.getByRole('heading', { level: 4, name: summaries[1].title }).closest('article')!
-    fireEvent.click(within(card).getByRole('link'))
-    await screen.findByRole('heading', { level: 1, name: summaries[1].title })
-    expect(currentUrl().pathname).toBe('/stories/sajjan')
+    fireEvent.click(within(results).getByRole('button', { name: /The Bread at Lalo’s Table/ }))
+    await screen.findByRole('heading', { level: 1, name: summaries[0].title })
+    expect(currentUrl().pathname).toBe('/stories/bhai-lalo')
     expect(screen.getByTestId('integration-location')).toHaveAttribute('data-state', JSON.stringify({ libraryReaderOrigin: origin }))
-
     fireEvent.click(screen.getByRole('link', { name: 'Back to stories' }))
+    await screen.findByTestId('banis-search-story-results')
+    expect(screen.getByRole('searchbox', { name: 'Search stories' })).toHaveValue('Lalo')
+    expect(currentUrl().searchParams.get('storyCollection')).toBe('seva-and-dignity')
+
+    fireEvent.click(screen.getByRole('button', { name: 'Back to browsing' }))
     await screen.findByTestId('story-browser')
-    expect(screen.getByRole('searchbox', { name: /search stories by title, person or theme/i })).toHaveValue('Sajjan')
-    expect(screen.getByRole('button', { name: 'Lives transformed' })).toHaveAttribute('aria-pressed', 'true')
-    expect(currentUrl().searchParams.get('query')).toBe('mercy')
-    expect(screen.queryByRole('heading', { level: 4, name: summaries[0].title })).not.toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Stories' })).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByRole('button', { name: 'Seva & dignity' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getAllByRole('searchbox')).toHaveLength(1)
+    expect(screen.getByRole('button', { name: 'Return to “Lalo”' })).toBeInTheDocument()
   })
 
-  it('restores scripture search when switching tabs and cancels a queued scripture request on return to Stories', async () => {
-    open('/banis?collection=stories&query=grace&mode=english&storyQuery=Lalo&storyCollection=seva-and-dignity')
-    await screen.findByTestId('story-browser')
-    expect(banidbApi.fetchBanisIndex).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByRole('tab', { name: 'Banis' }))
-    const scriptureSearch = document.querySelector('#banis-search') as HTMLInputElement
-    expect(scriptureSearch).toHaveValue('grace')
+  it('opening a collection cancels queued scripture search and retains a recoverable query', async () => {
+    open('/banis?query=grace&mode=english&storyCollection=seva-and-dignity')
     await waitFor(() => expect(banidbApi.fetchSearch).toHaveBeenCalled())
-    expect(vi.mocked(banidbApi.fetchSearch).mock.calls.every(([query]) => query === 'grace')).toBe(true)
-    expect(banidbApi.fetchBanisIndex).toHaveBeenCalledTimes(1)
-
-    fireEvent.change(scriptureSearch, { target: { value: 'kindness' } })
-    fireEvent.click(screen.getByRole('tab', { name: 'Stories' }))
+    const search = screen.getByRole('searchbox')
+    expect(search).toHaveValue('grace')
+    fireEvent.change(search, { target: { value: 'kindness' } })
+    fireEvent.click(within(screen.getByRole('group', { name: 'Read collections' })).getByRole('button', { name: 'Stories' }))
     await screen.findByTestId('story-browser')
-    // Wait past the real debounce: a queued scripture search must not run behind Stories.
+    // Collection navigation is an explicit search exit, including pending work.
     await act(async () => { await new Promise(resolve => window.setTimeout(resolve, 350)) })
     expect(vi.mocked(banidbApi.fetchSearch).mock.calls.some(([query]) => query === 'kindness')).toBe(false)
-    expect(screen.getByRole('searchbox', { name: /search stories by title, person or theme/i })).toHaveValue('Lalo')
+    expect(screen.getByRole('searchbox')).toHaveValue('')
+    expect(currentUrl().searchParams.has('query')).toBe(false)
+    expect(currentUrl().searchParams.get('previousQuery')).toBe('kindness')
     expect(screen.getByRole('button', { name: 'Seva & dignity' })).toHaveAttribute('aria-pressed', 'true')
-    expect(currentUrl().searchParams.get('query')).toBe('kindness')
-    expect(currentUrl().searchParams.get('storyQuery')).toBe('Lalo')
-    expect(currentUrl().searchParams.get('storyCollection')).toBe('seva-and-dignity')
+
+    fireEvent.click(screen.getByRole('button', { name: 'Return to “kindness”' }))
+    await waitFor(() => expect(vi.mocked(banidbApi.fetchSearch).mock.calls.some(([query]) => query === 'kindness')).toBe(true))
+    expect(screen.getByRole('searchbox')).toHaveValue('kindness')
+    expect(screen.queryByTestId('story-browser')).not.toBeInTheDocument()
   })
 
   it('counts stories as real Saved content and applies the shared search, remove and undo flow', async () => {

@@ -11,9 +11,9 @@ const reportDirectory = path.resolve(process.env.QA_BROWSER_OUTPUT ?? path.join(
 const skipServer = process.env.QA_BROWSER_SKIP_SERVER === '1'
 const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds))
 
-async function run(script, args = []) {
+async function run(script, args = [], environment = {}) {
   const child = spawn(process.execPath, [path.join(root, script), ...args], {
-    cwd: root, stdio: 'inherit', env: { ...process.env, QA_DETERMINISTIC: '1' },
+    cwd: root, stdio: 'inherit', env: { ...process.env, QA_DETERMINISTIC: '1', ...environment },
   })
   const [code, signal] = await once(child, 'exit')
   if (code !== 0) throw new Error(`${script} failed (${signal ?? code}).`)
@@ -59,7 +59,12 @@ async function main() {
     await run('scripts/qa/stories-reader-acceptance.mjs', [
       `--url=${baseUrl}`, '--published-only', '--deterministic', `--output=${path.join(reportDirectory, 'stories/acceptance.json')}`,
     ])
-    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces plus published Stories light/dark at 100/200% text.`)
+    await run('scripts/qa/read-discovery-acceptance.mjs', [], {
+      QA_BASE_URL: baseUrl,
+      QA_OUTPUT_DIR: path.join(reportDirectory, 'read-discovery'),
+      QA_CASES: '',
+    })
+    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories light/dark at 100/200% text, and Read discovery journeys.`)
   } finally {
     if (server && server.exitCode === null) {
       server.kill('SIGTERM')
