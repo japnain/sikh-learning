@@ -6,6 +6,7 @@ import { BANIS, READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, ty
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
 import { SOURCE_READER_META } from './sourceReaderMeta'
+import { matchesStorySearch, normalizeStorySearch } from './storySearch'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
@@ -399,7 +400,6 @@ export function getAppSearchMatches(
 
   return getReadRouteMatches(query, searchSource)
     .sort((left, right) => right.score - left.score || left.label.length - right.label.length || left.label.localeCompare(right.label))
-    .slice(0, 8)
 }
 
 export async function getLibrarySearchMatches(query: string): Promise<AppSearchMatch[]> {
@@ -461,28 +461,22 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
 
   return [...workMatches, ...workIndexResults.flat()]
     .sort((left, right) => right.score - left.score || left.label.localeCompare(right.label))
-    .slice(0, 8)
 }
 
 export async function getStorySearchMatches(query: string): Promise<AppSearchMatch[]> {
-  const needle = normalizeLibrarySearchText(query)
+  const needle = normalizeStorySearch(query)
   if (needle.length < 2) return []
   const catalog = await loadStoryCatalog()
-  const tokens = needle.split(' ').filter(Boolean)
   return catalog.stories.flatMap((story): AppSearchMatch[] => {
-    const title = normalizeLibrarySearchText(story.title)
-    const text = normalizeLibrarySearchText([
-      story.title, story.subtitle, story.description, story.series?.title,
-      ...story.people, ...story.themes,
-    ].filter(Boolean).join(' '))
-    if (!tokens.every(token => text.includes(token))) return []
+    const title = normalizeStorySearch(story.title)
+    if (!matchesStorySearch(story, query)) return []
     return [{
       key: `story-${story.id}`, kind: 'story', label: story.title,
       detail: [...story.people, ...story.themes].join(' · '), excerpt: story.description,
       path: `/stories/${encodeURIComponent(story.id)}`,
       score: title === needle ? 140 : title.includes(needle) ? 110 : 75,
     }]
-  }).sort((a, b) => b.score - a.score || a.label.localeCompare(b.label)).slice(0, 12)
+  }).sort((a, b) => b.score - a.score || a.label.localeCompare(b.label))
 }
 
 function normalizeDirectLookupQuery(query: string) {
@@ -564,7 +558,7 @@ export function groupSearchResults(searchResults: SearchResult[], filters?: { ra
 
 export function getAvailableSearchMeta(searchResults: SearchResult[]) {
   return {
-    raags: Array.from(new Set(searchResults.map(result => result.raag).filter(Boolean))).slice(0, 6),
-    writers: Array.from(new Set(searchResults.map(result => result.writer).filter(Boolean))).slice(0, 6),
+    raags: Array.from(new Set(searchResults.map(result => result.raag).filter(Boolean))).sort((a, b) => a.localeCompare(b)),
+    writers: Array.from(new Set(searchResults.map(result => result.writer).filter(Boolean))).sort((a, b) => a.localeCompare(b)),
   }
 }

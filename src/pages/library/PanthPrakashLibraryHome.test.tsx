@@ -3,7 +3,9 @@ import path from 'node:path'
 import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { configureLibraryRepositoryLoader } from '../../data/libraryRepository'
+import { configureLibraryRepositoryLoader, loadLibraryWorkCatalog } from '../../data/libraryRepository'
+import { useReadingPlacesStore } from '../../store/readingPlaces'
+import { useLocaleStore } from '../../store/locale'
 import { useProgressStore } from '../../store/progress'
 import PanthPrakashLibraryHome from './PanthPrakashLibraryHome'
 
@@ -30,6 +32,8 @@ function installTrackingLibraryLoader(requestedPaths: string[]) {
 
 describe('PanthPrakashLibraryHome', () => {
   beforeEach(() => {
+    useReadingPlacesStore.setState({ places: {} })
+    useLocaleStore.setState({ locale: 'en' })
     useProgressStore.setState({
       streak: 0,
       currentSession: null,
@@ -164,13 +168,14 @@ describe('PanthPrakashLibraryHome', () => {
     await screen.findByTestId('panth-library-home')
     expect(screen.queryByRole('link', { name: /continue reading/i })).not.toBeInTheDocument()
 
+    const revision = (await loadLibraryWorkCatalog()).workById['panth-prakash-english'].revision
     act(() => {
       useProgressStore.setState({
         currentSession: {
           scriptureId: 'panth-prakash-english-episode-001',
           resumePath: '/library/panth-prakash-english/chapters/episode-001',
           readerLocator: {
-            revision: 'panth-prakash-english-v3-f9f801cc-243827eb',
+            revision,
             href: '/library/panth-prakash-english/chapters/episode-001',
             type: 'application/xhtml+xml',
             locations: {
@@ -198,4 +203,35 @@ describe('PanthPrakashLibraryHome', () => {
       '/library/panth-prakash-english/chapters/episode-001#episode-001-p47-b003'
     )
   })
+
+ test.each(['pa', 'hi'] as const)('localizes book controls in %s while keeping the source edition English', async locale => {
+  useLocaleStore.setState({ locale })
+  renderLibraryHome()
+  const home = await screen.findByTestId('panth-library-home')
+  expect(home).toHaveAttribute('lang', locale)
+  expect(screen.getByRole('heading', { name: /Sri Gur Panth Prakash/i })).toHaveAttribute('lang', 'en')
+  expect(screen.getByRole('link', { name: locale === 'pa' ? 'ਪੜ੍ਹਨਾ ਸ਼ੁਰੂ ਕਰੋ' : 'पढ़ना शुरू करें' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: locale === 'pa' ? 'ਖੋਜੋ' : 'खोजें' })).toBeInTheDocument()
+})
+
+test('keeps the book continue link after reading a bani and refreshing durable places', async () => {
+  const work = (await loadLibraryWorkCatalog()).workById['panth-prakash-english']
+  useProgressStore.getState().updateSession({
+    scriptureId: `${work.id}-episode-001`, resumePath: `/library/${work.id}/chapters/episode-001`,
+    readerLocator: { revision: work.revision, href: `/library/${work.id}/chapters/episode-001`, type: 'text/html',
+      locations: { progression: .1, totalProgression: .01, position: 10, blockId: 'episode-001-p47-b003' } },
+    updatedAt: '2026-10-27T10:00:00Z',
+  })
+  useProgressStore.getState().updateSession({ scriptureId: 'G-1',
+    resumePath: '/study?source=G&ang=1&startAng=1&endAng=8&baniId=japji-sahib&baniDbId=2&exactBani=1',
+    resumeVerseId: 22, updatedAt: '2026-10-27T11:00:00Z' })
+  const stored = localStorage.getItem('naamras-reading-places')!
+  useReadingPlacesStore.setState({ places: {} })
+  localStorage.setItem('naamras-reading-places', stored)
+  await useReadingPlacesStore.persist.rehydrate()
+  useLocaleStore.setState({ locale: 'en' })
+  renderLibraryHome()
+  expect(await screen.findByRole('link', { name: 'Continue reading' })).toHaveAttribute('href', `/library/${work.id}/chapters/episode-001#episode-001-p47-b003`)
+})
+
 })

@@ -207,3 +207,29 @@ it('rolls mounted stores and disk back if hydration fails after some domains hav
   expect(useLanguageStore.getState().fontSize).toBe(24)
   expect(new Map(PERSONAL_DATA_KEYS.map(key => [key, localStorage.getItem(key)]))).toEqual(before)
 })
+
+it('replaces old mounted reading places before migrating the restored global session', async () => {
+  const { useProgressStore } = await import('../store/progress')
+  const incoming = createPersonalDataBackup()
+  const source = { scriptureId: 'G-20', resumePath: '/study?source=G&ang=20', resumeVerseId: 234, updatedAt: clock }
+  const book = {
+    scriptureId: 'panth-prakash-english-episode-001',
+    resumePath: '/library/panth-prakash-english/chapters/episode-001', updatedAt: clock,
+    readerLocator: {
+      href: '/library/panth-prakash-english/chapters/episode-001', type: 'application/xhtml+xml', revision: 'edition-1',
+      locations: { progression: .4, totalProgression: .1, position: 12, blockId: 'paragraph-12' },
+    },
+  }
+  const importedPlaces = { 'source:G': source, 'book:panth-prakash-english': book }
+  state(incoming, 'naamras-reading-places').places = importedPlaces
+  state(incoming, 'sikh-progress').currentSession = source
+  const previous = { scriptureId: 'D-1', resumePath: '/study?source=D&ang=1', resumeVerseId: 99, updatedAt: clock }
+  useReadingPlacesStore.setState({ places: { 'source:D': previous } })
+  useProgressStore.setState({ currentSession: previous })
+
+  await restorePersonalDataBackup(incoming, 'replace', { pauseSync: noRuntime.pauseSync })
+
+  expect(useReadingPlacesStore.getState().places).toEqual(importedPlaces)
+  expect(state(createPersonalDataBackup(), 'naamras-reading-places').places).toEqual(importedPlaces)
+  expect(useProgressStore.getState().currentSession).toEqual(source)
+})

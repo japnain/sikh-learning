@@ -1,11 +1,11 @@
 import '../styles/library.css'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BANIS } from '../data/banis'
 import { isBookBookmark, useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { useFavoritesStore, type FavoriteItem } from '../store/favorites'
 import { buildSessionResumePath, useProgressStore } from '../store/progress'
-import { useReadingProgressStore } from '../store/readingProgress'
+import { getReadingPlaceKey } from '../store/readingPlaces'
+import { useContinueReadings } from '../hooks/useContinueReadings'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
@@ -13,9 +13,9 @@ import { useLanguageStore } from '../store/language'
 import { useStoryStore } from '../store/stories'
 import SavedStories from '../components/SavedStories'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
-import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import {
+  buildLibraryReaderNavigationState,
   buildReaderOriginNavigationState,
 } from '../utils/libraryReaderNavigation'
 import { getUiCopy } from '../utils/uiCopy'
@@ -69,7 +69,9 @@ const LIBRARY_MESSAGES = {
     read: 'Read',
     chooseReading: 'Choose a bani, ang, or scripture section when you do not have an active reading session yet.',
     browseReadingBody: 'Open exact banis, angs, and scripture sections without leaving the Saved shelf behind.',
-    inProgress: 'In Progress',
+    inProgress: 'Continue reading',
+    allReadingPlaces: 'All reading places',
+    fewerReadingPlaces: 'Show fewer',
     readingHistory: 'Reading History',
     book: 'Book',
   },
@@ -97,6 +99,8 @@ const LIBRARY_MESSAGES = {
     chooseReading: 'ਜੇ ਕੋਈ ਪਾਠ ਜਾਰੀ ਨਹੀਂ ਹੈ ਤਾਂ ਬਾਣੀ, ਅੰਗ ਜਾਂ ਗ੍ਰੰਥ ਦਾ ਭਾਗ ਚੁਣੋ।',
     browseReadingBody: 'ਸੰਭਾਲੇ ਰੈਕ ਤੋਂ ਬਾਹਰ ਗਏ ਬਿਨਾਂ ਸਹੀ ਬਾਣੀ, ਅੰਗ ਜਾਂ ਗ੍ਰੰਥ ਭਾਗ ਖੋਲ੍ਹੋ।',
     inProgress: 'ਜਾਰੀ ਪਾਠ',
+    allReadingPlaces: 'ਪੜ੍ਹਨ ਦੀਆਂ ਸਾਰੀਆਂ ਥਾਵਾਂ',
+    fewerReadingPlaces: 'ਘੱਟ ਵੇਖੋ',
     readingHistory: 'ਪੜ੍ਹਨ ਦਾ ਇਤਿਹਾਸ',
     book: 'ਕਿਤਾਬ',
   },
@@ -124,6 +128,8 @@ const LIBRARY_MESSAGES = {
     chooseReading: 'यदि कोई पाठ जारी नहीं है तो बाणी, अंग या ग्रंथ का भाग चुनें।',
     browseReadingBody: 'सहेजी शेल्फ़ छोड़े बिना सटीक बाणी, अंग और ग्रंथ भाग खोलें।',
     inProgress: 'जारी पाठ',
+    allReadingPlaces: 'पढ़ने के सभी स्थान',
+    fewerReadingPlaces: 'कम दिखाएँ',
     readingHistory: 'पढ़ने का इतिहास',
     book: 'पुस्तक',
   },
@@ -176,7 +182,9 @@ export default function Library() {
   const { vocab } = useVocabStore()
   const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
   const { currentSession, studied } = useProgressStore()
-  const { getProgress } = useReadingProgressStore()
+  const readingPlaces = useContinueReadings()
+  const [showAllPlaces, setShowAllPlaces] = useState(false)
+  const inProgress = showAllPlaces ? readingPlaces : readingPlaces.slice(0, 4)
   const { getEntryById } = useScriptureCacheStore()
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
@@ -188,15 +196,9 @@ export default function Library() {
 
   const words = vocab.filter(item => (item.kind ?? 'word') === 'word')
   const phrases = vocab.filter(item => (item.kind ?? 'word') === 'phrase')
-  const resumePath = buildSessionResumePath(currentSession)
-  const inProgress = useMemo(
-    () => BANIS
-      .map(bani => ({ ...bani, ...getProgress(bani.id) }))
-      .filter(item => item.done > 0 && item.done < item.total)
-      .sort((a, b) => b.pct - a.pct)
-      .slice(0, 4),
-    [getProgress]
-  )
+  const currentPlace = currentSession ? readingPlaces.find(item => item.id === getReadingPlaceKey(currentSession.resumePath)) : null
+  const resumePath = currentPlace?.path ?? (currentSession?.resumePath.startsWith('/library/')
+    ? null : buildSessionResumePath(currentSession))
   const recentStudy = studied
     .slice(-3)
     .reverse()
@@ -542,20 +544,18 @@ export default function Library() {
             {inProgress.map(item => (
               <Link
                 key={item.id}
-                to={buildCanonicalBaniStudyPath(item)}
-                state={buildReaderOriginNavigationState(buildCanonicalBaniStudyPath(item), '/saved')}
+                to={item.path}
+                state={item.kind === 'story' ? buildLibraryReaderNavigationState('/saved') : buildReaderOriginNavigationState(item.path, '/saved')}
                 className="w-full section-shell interactive-focus interactive-card-link px-4 py-3 text-left"
               >
                 <div className="flex justify-between gap-3">
-                  <p className="font-sans text-sm text-ink dark:text-dark-text">{item.name}</p>
-                  <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{item.pct}%</p>
+                  <p className="font-sans text-sm text-ink dark:text-dark-text">{item.title}</p>
                 </div>
-                <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-2">
-                  <div className="h-full rounded-full bg-saffron" style={{ width: `${item.pct}%` }} />
-                </div>
+                <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">{item.detail}</p>
               </Link>
             ))}
           </div>
+          {readingPlaces.length > 4 ? <button type="button" className="mt-3 min-h-11 text-sm underline interactive-focus" aria-expanded={showAllPlaces} onClick={() => setShowAllPlaces(value => !value)}>{showAllPlaces ? messages.fewerReadingPlaces : messages.allReadingPlaces}</button> : null}
         </section>
       )}
 
