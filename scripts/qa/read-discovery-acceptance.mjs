@@ -75,12 +75,15 @@ async function run(name, config, test) {
     state.fixture.assertNoUnexpectedRequests()
     assert.deepEqual(state.errors, [], `${name}: no uncaught browser exceptions`)
     results.push({ name, config, status: 'passed', ...details })
-    fs.writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2))
     console.log(`PASS ${name}`)
   } catch (error) {
     await state.page.screenshot({ path: path.join(output, `failure-${name}.png`), fullPage: false }).catch(() => {})
-    throw error
-  } finally { await state.context.close() }
+    results.push({ name, config, status: 'failed', url: state.page.url(), error: error instanceof Error ? error.stack : String(error) })
+    console.error(`FAIL ${name}: ${error instanceof Error ? error.stack : String(error)}`)
+  } finally {
+    fs.writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2))
+    await state.context.close()
+  }
 }
 
 try {
@@ -121,11 +124,22 @@ try {
     await visit(page, '/banis?collection=stories')
     const input = page.locator('#banis-search')
     const scope = page.getByRole('group', { name: 'Result type', exact: true })
-    await scope.getByRole('button', { name: 'Stories', exact: true }).click()
+    const chooseScope = async (label, value) => {
+      await scope.getByRole('button', { name: label, exact: true }).click()
+      await page.waitForFunction(({ label, value }) => {
+        const selected = [...document.querySelectorAll('[aria-label="Result type"] button')]
+          .find(button => button.textContent === label)
+        return selected?.getAttribute('aria-pressed') === 'true'
+          && (new URL(location.href).searchParams.get('scope') ?? 'all') === value
+      }, { label, value })
+    }
+    await chooseScope('Stories', 'stories')
     await input.fill('Lalo')
     const stories = page.getByTestId('banis-search-story-results')
     await stories.locator('[data-read-launch]').first().waitFor()
     const searchUrl = page.url()
+    assert.equal(new URL(searchUrl).searchParams.get('scope'), 'stories', 'Typing preserves the selected scope before opening a result')
+    assert.equal(new URL(searchUrl).searchParams.get('query'), 'Lalo', 'The search URL is saved before opening a result')
     await stories.locator('[data-read-launch]').first().click()
     await page.locator('.story-reader-content').waitFor()
     await page.locator('[data-reader-header="persistent"] > :first-child').click()
@@ -140,15 +154,15 @@ try {
     await page.getByRole('button', { name: 'Return to “Lalo”', exact: true }).click()
     await stories.locator('[data-read-launch]').first().waitFor()
     assert.equal(await input.inputValue(), 'Lalo', 'The previous search can be recovered from another collection')
-    await scope.getByRole('button', { name: 'Books', exact: true }).click()
+    await chooseScope('Books', 'books')
     await input.fill('Panth Prakash')
     await page.getByTestId('banis-search-library-results').locator('[data-read-launch]').first().waitFor()
     assert.equal(await stories.count(), 0, 'Books scope excludes Story results')
-    await scope.getByRole('button', { name: 'Gurbani', exact: true }).click()
+    await chooseScope('Gurbani', 'gurbani')
     await input.fill('Japji')
     await page.getByTestId('banis-search-app-results').locator('[data-read-launch]').first().waitFor()
     assert.equal(await page.getByTestId('banis-search-library-results').count(), 0, 'Gurbani scope excludes book results')
-    await scope.getByRole('button', { name: 'All', exact: true }).click()
+    await chooseScope('All', 'all')
     await input.fill('Lalo')
     await stories.locator('[data-read-launch]').first().waitFor()
     await shot(page, 'search-all')
@@ -165,10 +179,16 @@ try {
     await page.locator('.epub-primary-action').click()
     await page.getByTestId('panth-chapter-text').waitFor()
     assert.equal(new URL(page.url()).pathname, bookPath)
+    await settle(page)
+    await page.waitForFunction(() => Boolean(JSON.parse(localStorage.getItem('naamras-reading-places') || '{}').state?.places?.['book:panth-prakash-english']?.readerLocator?.locations?.blockId))
+    const initialBlock = await page.evaluate(() => JSON.parse(localStorage.getItem('naamras-reading-places')).state.places['book:panth-prakash-english'].readerLocator.locations.blockId)
     const blocks = page.locator('[data-reader-block]')
     const target = blocks.nth(Math.min(12, await blocks.count() - 1))
     await target.evaluate(element => element.scrollIntoView({ block: 'start', behavior: 'instant' }))
-    await page.waitForFunction(() => Boolean(JSON.parse(localStorage.getItem('naamras-reading-places') || '{}').state?.places?.['book:panth-prakash-english']?.readerLocator?.locations?.blockId))
+    await page.waitForFunction(initialBlock => {
+      const savedBlock = JSON.parse(localStorage.getItem('naamras-reading-places') || '{}').state?.places?.['book:panth-prakash-english']?.readerLocator?.locations?.blockId
+      return scrollY > 0 && savedBlock && savedBlock !== initialBlock
+    }, initialBlock)
     await page.locator('[data-testid="panth-reader-topbar"] > a').click()
     // Reader Back keeps the original collection origin through the book overview.
     await page.getByTestId('read-books-browser').waitFor()
@@ -296,6 +316,8 @@ try {
   }
 
   assert(results.length > 0, 'QA_CASES did not match any Read acceptance journeys')
+  const failed = results.filter(result => result.status === 'failed')
+  assert.equal(failed.length, 0, `Read acceptance failures: ${failed.map(result => result.name).join(', ')}`)
   console.log(`Read discovery acceptance passed: ${results.length} journeys. Evidence: ${output}`)
 } catch (error) {
   results.push({ status: 'failed', error: error instanceof Error ? error.stack : String(error) })
