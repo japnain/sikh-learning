@@ -39,6 +39,14 @@ export function measureBaniReaderUi() {
     // Inspect the browsed card; focus/navigation checks reveal the others separately.
     const railCard = control.closest('[data-nitnem-card]')
     if (railCard && railCard.getAttribute('data-testid') !== 'home-nitnem-active-reading') continue
+    // Unselected names can sit outside the horizontal Folio index viewport.
+    // The Home journey selects every name by keyboard and checks its full bounds
+    // and ancestors while selected. Keep all clipping checks for the selected
+    // name, and for indexes that are not actually horizontally scrollable.
+    const index = control.closest('.home-daily-index[role="tablist"]')
+    if (index && control.matches('[role="tab"][aria-selected="false"]')
+      && ['auto', 'scroll'].includes(getComputedStyle(index).overflowX)
+      && index.scrollWidth > index.clientWidth + 2) continue
     const label = control instanceof HTMLInputElement && ['radio', 'checkbox'].includes(control.type)
       ? control.closest('label') : null
     const target = label ?? control
@@ -80,6 +88,55 @@ export function measureBaniReaderUi() {
     rootFontPx: Number.parseFloat(getComputedStyle(root).fontSize), viewport, documentWidth,
     focus, controls, scrollRegions, issues, warnings,
   }
+}
+
+async function checkHomeNitnemIndex(page, layout, checks) {
+  const index = page.getByTestId('home-nitnem-folio').getByRole('tablist')
+  await index.waitFor({ state: 'visible' })
+  const tabs = index.getByRole('tab')
+  const names = await tabs.evaluateAll(elements => elements.map(element => ({
+    id: element.id, name: element.getAttribute('aria-label')?.trim(), baniId: element.getAttribute('data-nitnem-id'),
+  })))
+  assert(names.length > 0 && names.every(tab => tab.id && tab.name && tab.baniId), 'Every Folio tab has an identity and accessible bani name.')
+  assert.equal(new Set(names.map(tab => tab.id)).size, names.length, 'Folio tab identities are unique.')
+  await index.scrollIntoViewIfNeeded()
+  await index.getByRole('tab', { selected: true }).focus()
+  const measurements = []
+  const inspectSelected = async expected => {
+    await page.waitForFunction(({ id, baniId }) => {
+      const selected = document.querySelector('.home-daily-index [role="tab"][aria-selected="true"]')
+      const panel = document.querySelector('[data-testid="home-nitnem-active-reading"]')
+      return selected?.id === id && document.activeElement === selected
+        && panel?.getAttribute('data-nitnem-id') === baniId && panel.getAttribute('aria-labelledby') === id
+    }, expected)
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))
+    const bounds = await index.evaluate(element => {
+      const selected = element.querySelector('[role="tab"][aria-selected="true"]')
+      const tab = selected.getBoundingClientRect()
+      const rail = element.getBoundingClientRect()
+      return { id: selected.id, left: tab.left, right: tab.right, top: tab.top, bottom: tab.bottom,
+        railLeft: rail.left, railRight: rail.right, railTop: rail.top, railBottom: rail.bottom }
+    })
+    assert(bounds.left >= bounds.railLeft - 2 && bounds.right <= bounds.railRight + 2
+      && bounds.top >= bounds.railTop - 2 && bounds.bottom <= bounds.railBottom + 2,
+    `Selected Folio name ${expected.name} is fully revealed inside its index: ${JSON.stringify(bounds)}`)
+    const selectedLayout = await page.evaluate(measureBaniReaderUi)
+    layout.issues.push(...selectedLayout.issues.map(issue => ({ ...issue, selectedFolioName: expected.name })))
+    measurements.push({ name: expected.name, ...bounds })
+  }
+  await page.keyboard.press('End')
+  await inspectSelected(names.at(-1))
+  await page.keyboard.press('Home')
+  await inspectSelected(names[0])
+  const nextKey = await index.getAttribute('aria-orientation') === 'vertical' ? 'ArrowDown' : 'ArrowRight'
+  for (const tab of names.slice(1)) {
+    await page.keyboard.press(nextKey)
+    await inspectSelected(tab)
+  }
+  await page.keyboard.press('Home')
+  await inspectSelected(names[0])
+  checks.push(`All ${names.length} named Folio tabs are keyboard reachable with End, Home and ${nextKey}; each selected tab stays fully inside its index, updates its reading pane, and passes the complete clipping probe.`)
+  return measurements
 }
 
 async function main() {
@@ -124,6 +181,7 @@ async function main() {
     const page = await context.newPage()
     const pageErrors = []
     const checks = []
+    let indexNavigation
     page.on('pageerror', error => pageErrors.push(error.message))
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
     await page.locator('[data-page]').first().waitFor({ state: 'visible', timeout: 20_000 })
@@ -163,13 +221,14 @@ async function main() {
       await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor({ state: 'visible' })
       checks.push('Changing medium to short applies verified reading text and updates the route.')
     } else if (surface === 'home') {
+      indexNavigation = await checkHomeNitnemIndex(page, layout, checks)
       await page.getByTestId('home-hero-primary-action').click()
       await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor({ state: 'visible' })
       checks.push('The daily Hukamnama action opens a ready reader.')
     }
     fixtures?.assertNoUnexpectedRequests()
     assert.deepEqual(pageErrors, [], 'No unhandled browser exceptions.')
-    const report = { deterministic, providerRequests: fixtures?.providerRequests, url, surface, locale, theme: dark ? 'dark' : 'light', textScale, checkedAt: new Date().toISOString(), checks, pageErrors, layout, violations }
+    const report = { deterministic, providerRequests: fixtures?.providerRequests, url, surface, locale, theme: dark ? 'dark' : 'light', textScale, checkedAt: new Date().toISOString(), checks, pageErrors, layout, indexNavigation, violations }
     if (output) fs.writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`)
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`)
     if (layout.issues.length || violations.length || layout.rootFontPx < 15.9 * textScale) process.exitCode = 1
