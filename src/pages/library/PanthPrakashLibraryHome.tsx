@@ -10,7 +10,11 @@ import {
   loadLibrarySearchIndex,
   loadLibraryWorkCatalog,
 } from '../../data/libraryRepository'
-import { buildSessionResumePath, useProgressStore } from '../../store/progress'
+import { useProgressStore } from '../../store/progress'
+import { buildBookReadingResumePath, getReadingPlaces, useReadingPlacesStore } from '../../store/readingPlaces'
+import { useLocaleStore } from '../../store/locale'
+import { LIBRARY_BOOK_COPY } from '../../content/libraryBookCopy'
+import type { UiLocale } from '../../types'
 import {
   buildLibraryReaderNavigationState,
   getLibraryReaderOrigin,
@@ -30,32 +34,37 @@ interface LibraryLoadState {
   chapters: LibraryChapterIndexEntry[]
 }
 
-function chapterLabel(chapter: Pick<LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
+function chapterLabel(chapter: Pick<LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>, locale: UiLocale = 'en') {
+  const copy = LIBRARY_BOOK_COPY[locale]
   return chapter.kind === 'episode' && chapter.episodeNumber
-    ? `Episode ${chapter.episodeNumber}`
-    : `Section ${chapter.chapterNumber}`
+    ? copy.episode(chapter.episodeNumber)
+    : copy.section(chapter.chapterNumber)
 }
 
 function chapterPath(workId: string, chapterId: string) {
   return `/library/${workId}/chapters/${chapterId}`
 }
 
-function estimatedReadingTime(chapter: Pick<LibraryChapterIndexEntry, 'wordCount' | 'pageCount'>) {
+function estimatedReadingTime(chapter: Pick<LibraryChapterIndexEntry, 'wordCount' | 'pageCount'>, locale: UiLocale) {
   const minutes = chapter.wordCount
     ? Math.ceil(chapter.wordCount / 225)
     : Math.max(1, Math.ceil(chapter.pageCount * 1.6))
-  return `${minutes} min`
+  return LIBRARY_BOOK_COPY[locale].minutes(minutes)
 }
 
-function contributorLine(work: LibraryWork) {
+function contributorLine(work: LibraryWork, locale: UiLocale) {
+  const copy = LIBRARY_BOOK_COPY[locale]
   const author = work.contributors?.find(contributor => contributor.role === 'author')?.name
   const translator = work.contributors?.find(contributor => contributor.role === 'translator')?.name
-  return [author ? `By ${author}` : null, translator ? `translated by ${translator}` : null]
+  return [author ? copy.byAuthor(author) : null, translator ? copy.translatedBy(translator) : null]
     .filter(Boolean)
     .join(' · ')
 }
 
 export default function PanthPrakashLibraryHome() {
+  const locale = useLocaleStore(state => state.locale)
+  const copy = LIBRARY_BOOK_COPY[locale]
+  const readingPlaces = useReadingPlacesStore(state => state.places)
   const { workId: routeWorkId } = useParams<{ workId: string }>()
   const location = useLocation()
   const navigate = useNavigate()
@@ -66,10 +75,10 @@ export default function PanthPrakashLibraryHome() {
     : requestedReaderOrigin
   const readerNavigationState = buildLibraryReaderNavigationState(readerOrigin)
   const readerOriginLabel = readerOrigin.startsWith('/saved')
-    ? 'Saved'
+    ? copy.saved
     : readerOrigin.startsWith('/banis')
-      ? 'All books'
-      : 'Back'
+      ? copy.allBooks
+      : copy.back
   const currentSession = useProgressStore(state => state.currentSession)
   const [loadState, setLoadState] = useState<LibraryLoadState>({
     key: workId,
@@ -124,14 +133,14 @@ export default function PanthPrakashLibraryHome() {
   const normalizedChapterQuery = chapterQuery.trim().toLowerCase()
   const filteredChapters = chapters.filter(chapter => {
       const matchesVolume = volumeFilter === 'all' || chapter.volume === volumeFilter
-      const haystack = `${chapterLabel(chapter)} ${chapter.title} volume ${chapter.volume}`.toLowerCase()
+      const haystack = `${chapterLabel(chapter)} ${chapterLabel(chapter, locale)} ${chapter.title} volume ${chapter.volume} ${copy.volume(chapter.volume)}`.toLowerCase()
       return matchesVolume && (!normalizedChapterQuery || haystack.includes(normalizedChapterQuery))
   })
 
   const visibleChapters = filteredChapters.slice(0, visibleCount)
-  const continueReadingPath = currentSession && currentSession.resumePath.startsWith(`/library/${workId}/chapters/`)
-    ? buildSessionResumePath(currentSession)
-    : null
+  const bookPlace = getReadingPlaces(readingPlaces, currentSession)[`book:${workId}`]
+  const savedBookPath = work ? buildBookReadingResumePath(bookPlace, work, chapters) : null
+  const continueReadingPath = savedBookPath === `/library/${workId}` ? null : savedBookPath
 
   useEffect(() => {
     const sequence = ++searchSequence.current
@@ -185,11 +194,11 @@ export default function PanthPrakashLibraryHome() {
       <SurfaceStateCard
         surface="epub-library-home"
         state="loading"
-        eyebrow="Books"
-        title="Opening the collection"
-        body="Preparing volumes and contents."
+        eyebrow={copy.books}
+        title={copy.openingCollection}
+        body={copy.preparingContents}
         page="library"
-        actions={[{ label: 'Back to books', onClick: () => navigate(readerOrigin), aiAction: 'leave-loading-library' }]}
+        actions={[{ label: copy.backToBooks, onClick: () => navigate(readerOrigin), aiAction: 'leave-loading-library' }]}
       />
     )
   }
@@ -199,20 +208,20 @@ export default function PanthPrakashLibraryHome() {
       <SurfaceStateCard
         surface="epub-library-home"
         state="degraded"
-        eyebrow="Books"
-        title="Book unavailable"
-        body="This book could not be loaded from the library catalog."
+        eyebrow={copy.books}
+        title={copy.bookUnavailable}
+        body={copy.bookUnavailableBody}
         page="library"
         actions={[{
-          label: 'Retry',
+          label: copy.retry,
           onClick: handleRetryLoad,
           aiAction: 'retry-library-work',
-        }, { label: 'Back to books', onClick: () => navigate(readerOrigin), aiAction: 'leave-unavailable-library', emphasis: 'secondary' }]}
+        }, { label: copy.backToBooks, onClick: () => navigate(readerOrigin), aiAction: 'leave-unavailable-library', emphasis: 'secondary' }]}
       />
     )
   }
 
-  const byline = contributorLine(work)
+  const byline = contributorLine(work, locale)
   const publications = work.publications ?? []
 
   return (
@@ -220,8 +229,9 @@ export default function PanthPrakashLibraryHome() {
       className="epub-work-shell page-shell animate-fade-in"
       data-testid="panth-library-home"
       data-page="library-work"
+      lang={locale}
     >
-      <nav className="epub-work-back" aria-label="Book navigation">
+      <nav className="epub-work-back" aria-label={copy.bookNavigation}>
         <Link to={readerOrigin} className="interactive-focus">
           <IconArrowLeft size={16} />
           {readerOriginLabel}
@@ -232,13 +242,13 @@ export default function PanthPrakashLibraryHome() {
         <div className="epub-book-cover" aria-hidden="true">
           <span className="epub-book-cover__mark">ੴ</span>
           <span>{work.shortTitle}</span>
-          <small>English edition</small>
+          <small>{copy.englishEdition}</small>
         </div>
         <div className="epub-work-hero__copy">
-          <p className="eyebrow">Historical book · {publications.length || 1} volume{publications.length === 1 ? '' : 's'}</p>
-          <h1>{work.title}</h1>
+          <p className="eyebrow">{copy.historicalBook(publications.length || 1)}</p>
+          <h1 lang="en">{work.title}</h1>
           {byline ? <p className="epub-work-byline">{byline}</p> : null}
-          <p className="epub-work-description">{work.description}</p>
+          <p lang="en" className="epub-work-description">{work.description}</p>
           <div className="epub-work-actions">
             {continueReadingPath ? (
               <Link
@@ -246,7 +256,7 @@ export default function PanthPrakashLibraryHome() {
                 state={readerNavigationState}
                 className="epub-primary-action interactive-focus"
               >
-                Continue reading
+                {copy.continueReading}
                 <IconArrowRight size={16} />
               </Link>
             ) : episodeChapters[0] ? (
@@ -255,13 +265,13 @@ export default function PanthPrakashLibraryHome() {
                 state={readerNavigationState}
                 className="epub-primary-action interactive-focus"
               >
-                Start reading
+                {copy.startReading}
                 <IconArrowRight size={16} />
               </Link>
             ) : null}
             <a href="#contents" className="epub-secondary-action interactive-focus">
               <IconLibrary size={16} />
-              View contents
+              {copy.viewContents}
             </a>
           </div>
         </div>
@@ -269,32 +279,32 @@ export default function PanthPrakashLibraryHome() {
 
       <section className="epub-edition-note" data-testid="panth-epub-coverage" aria-labelledby="epub-edition-note-title">
         <div>
-          <p className="eyebrow">About this edition</p>
-          <h2 id="epub-edition-note-title">An English reading edition</h2>
+          <p className="eyebrow">{copy.aboutEdition}</p>
+          <h2 id="epub-edition-note-title">{copy.editionTitle}</h2>
         </div>
-        <p>A chapter-by-chapter edition for reading and returning to Sikh history.</p>
+        <p>{copy.editionBody}</p>
         {work.editionNote ? <details className="epub-edition-details">
-          <summary>Edition and source details</summary>
-          <p>{work.editionNote}</p>
+          <summary>{copy.editionDetails}</summary>
+          <p lang="en">{work.editionNote}</p>
         </details> : null}
-        {work.sourceQualityNote ? <p className="epub-source-quality">{work.sourceQualityNote}</p> : null}
+        {work.sourceQualityNote ? <p lang="en" className="epub-source-quality">{work.sourceQualityNote}</p> : null}
         {work.historicalContext ? <aside className="epub-historical-context" aria-labelledby="epub-historical-context-title">
-          <h3 id="epub-historical-context-title">Read with historical context</h3>
-          <p>{work.historicalContext}</p>
+          <h3 id="epub-historical-context-title">{copy.historicalContext}</h3>
+          <p lang="en">{work.historicalContext}</p>
           {(work.historicalContextSources ?? []).filter(source => /^https:\/\//u.test(source.url)).map(source => <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>)}
         </aside> : null}
         <div className="epub-edition-stats">
-          <span>{episodeChapters.length} episodes</span>
-          <span>{publications.length || 1} volumes</span>
-          {work.readablePages ? <span>{work.readablePages} readable source pages</span> : null}
+          <span>{copy.episodes(episodeChapters.length)}</span>
+          <span>{copy.volumeCount(publications.length || 1)}</span>
+          {work.readablePages ? <span>{copy.readablePages(work.readablePages)}</span> : null}
         </div>
       </section>
 
       <section className="epub-volume-grid" aria-labelledby="epub-volumes-title">
         <div className="epub-section-heading">
           <div>
-            <p className="eyebrow">Volumes</p>
-            <h2 id="epub-volumes-title">Choose where to begin</h2>
+            <p className="eyebrow">{copy.volumes}</p>
+            <h2 id="epub-volumes-title">{copy.chooseStart}</h2>
           </div>
         </div>
         <div className="epub-volume-cards">
@@ -304,12 +314,12 @@ export default function PanthPrakashLibraryHome() {
               ?? chapters.find(chapter => chapter.volume === publication.volume)
             return (
               <article key={publication.id} className="epub-volume-card">
-                <p className="eyebrow">Volume {publication.volume}</p>
-                <h3>{publication.shortTitle ?? publication.title}</h3>
+                <p className="eyebrow">{copy.volume(publication.volume)}</p>
+                <h3 lang="en">{publication.shortTitle ?? publication.title}</h3>
                 <p>
                   {publication.episodeRange
-                    ? `Episodes ${publication.episodeRange[0]}–${publication.episodeRange[1]}`
-                    : `${chapters.filter(chapter => chapter.volume === publication.volume).length} sections`}
+                    ? copy.episodeRange(publication.episodeRange[0], publication.episodeRange[1])
+                    : copy.sections(chapters.filter(chapter => chapter.volume === publication.volume).length)}
                 </p>
                 <div className="epub-volume-card__meta">
                   {publication.publishedYear ? <span>{publication.publishedYear}</span> : null}
@@ -321,7 +331,7 @@ export default function PanthPrakashLibraryHome() {
                     state={readerNavigationState}
                     className="interactive-focus"
                   >
-                    Open volume
+                    {copy.openVolume}
                     <IconArrowRight size={15} />
                   </Link>
                 ) : null}
@@ -335,30 +345,30 @@ export default function PanthPrakashLibraryHome() {
 
       <section className="epub-search-panel" aria-labelledby="epub-search-title">
         <div>
-          <p className="eyebrow">Search this book</p>
-          <h2 id="epub-search-title">Find a person, place, or phrase</h2>
+          <p className="eyebrow">{copy.searchBook}</p>
+          <h2 id="epub-search-title">{copy.searchHeading}</h2>
         </div>
         <form onSubmit={handleBookSearchSubmit} className="epub-search-form" role="search">
-          <label htmlFor="epub-book-search">Search within {work.shortTitle}</label>
+          <label htmlFor="epub-book-search">{copy.searchWithin(work.shortTitle)}</label>
           <div>
             <IconSearch size={17} />
             <input
               id="epub-book-search"
               value={bookSearchQuery}
               onChange={event => setBookSearchQuery(event.target.value)}
-              placeholder="Try “origin of the Khalsa”"
+              placeholder={copy.searchPlaceholder}
             />
             <button type="submit" disabled={bookSearchStatus === 'searching'}>
-              {bookSearchStatus === 'searching' ? 'Searching…' : 'Search'}
+              {bookSearchStatus === 'searching' ? copy.searching : copy.search}
             </button>
           </div>
         </form>
 
-        {bookSearchStatus === 'empty' ? <p className="epub-search-status">No passages matched that search.</p> : null}
-        {bookSearchStatus === 'error' ? <p className="epub-search-status">Search is temporarily unavailable.</p> : null}
+        {bookSearchStatus === 'empty' ? <p className="epub-search-status">{copy.noMatches}</p> : null}
+        {bookSearchStatus === 'error' ? <p className="epub-search-status">{copy.searchUnavailable}</p> : null}
         {bookSearchResults.length ? (
           <div className="epub-search-results" data-testid="panth-full-text-results" aria-live="polite">
-            <p>Showing {Math.min(searchVisibleCount, bookSearchResults.length)} of {bookSearchResults.length} matching sections for “{submittedQuery}”.</p>
+            <p>{copy.searchResults(Math.min(searchVisibleCount, bookSearchResults.length), bookSearchResults.length, submittedQuery)}</p>
             {bookSearchResults.slice(0, searchVisibleCount).map(result => (
               <Link
                 key={result.chapterId}
@@ -366,13 +376,13 @@ export default function PanthPrakashLibraryHome() {
                 state={buildLibraryReaderNavigationState(`${location.pathname}?${new URLSearchParams({ q: submittedQuery })}`)}
                 className="interactive-focus"
               >
-                <span>Volume {result.volume} · {result.episodeNumber ? `Episode ${result.episodeNumber}` : 'Section'}</span>
-                <strong>{result.title}</strong>
-                <p>{result.snippet}</p>
-                <small>{result.matchCount} match{result.matchCount === 1 ? '' : 'es'} in this section</small>
+                <span>{copy.volume(result.volume)} · {result.episodeNumber ? copy.episode(result.episodeNumber) : copy.section()}</span>
+                <strong lang="en">{result.title}</strong>
+                <p lang="en">{result.snippet}</p>
+                <small>{copy.matches(result.matchCount)}</small>
               </Link>
             ))}
-            {searchVisibleCount < bookSearchResults.length ? <button type="button" className="epub-load-more interactive-focus" onClick={() => setSearchVisibleCount(count => count + 10)}>Show more matches</button> : null}
+            {searchVisibleCount < bookSearchResults.length ? <button type="button" className="epub-load-more interactive-focus" onClick={() => setSearchVisibleCount(count => count + 10)}>{copy.showMoreMatches}</button> : null}
           </div>
         ) : null}
       </section>
@@ -380,26 +390,26 @@ export default function PanthPrakashLibraryHome() {
       <section id="contents" className="epub-contents" data-testid="panth-chapter-browser" aria-labelledby="epub-contents-title">
         <div className="epub-section-heading">
           <div>
-            <p className="eyebrow">Contents</p>
-            <h2 id="epub-contents-title">Episodes and sections</h2>
+            <p className="eyebrow">{copy.contents}</p>
+            <h2 id="epub-contents-title">{copy.contentsHeading}</h2>
           </div>
-          <span>{filteredChapters.length} entries</span>
+          <span>{copy.entries(filteredChapters.length)}</span>
         </div>
 
         <div className="epub-contents-tools">
           <label>
-            <span>Search chapters and episodes</span>
+            <span>{copy.searchChapters}</span>
             <input
               value={chapterQuery}
               onChange={event => {
                 setChapterQuery(event.target.value)
                 setVisibleCount(INITIAL_VISIBLE_CHAPTERS)
               }}
-              placeholder="Episode or title"
+              placeholder={copy.chapterPlaceholder}
             />
           </label>
-          <div className="epub-volume-filter" aria-label="Filter contents by volume">
-            <button type="button" aria-pressed={volumeFilter === 'all'} onClick={() => setVolumeFilter('all')}>All</button>
+          <div className="epub-volume-filter" aria-label={copy.filterVolumes}>
+            <button type="button" aria-pressed={volumeFilter === 'all'} onClick={() => setVolumeFilter('all')}>{copy.all}</button>
             {publications.map(publication => (
               <button
                 key={publication.id}
@@ -407,14 +417,14 @@ export default function PanthPrakashLibraryHome() {
                 aria-pressed={volumeFilter === publication.volume}
                 onClick={() => setVolumeFilter(publication.volume)}
               >
-                Vol. {publication.volume}
+                {copy.shortVolume(publication.volume)}
               </button>
             ))}
           </div>
         </div>
 
         <p className="sr-only" aria-live="polite">
-          Showing {visibleChapters.length} of {filteredChapters.length} sections
+          {copy.showingSections(visibleChapters.length, filteredChapters.length)}
         </p>
         <ol className="epub-chapter-list">
           {visibleChapters.map(chapter => (
@@ -426,9 +436,9 @@ export default function PanthPrakashLibraryHome() {
               >
                 <span className="epub-chapter-number">{chapter.episodeNumber ?? chapter.chapterNumber}</span>
                 <span className="epub-chapter-copy">
-                  <small>Volume {chapter.volume} · {chapterLabel(chapter)}</small>
-                  <strong>{chapter.title}</strong>
-                  <span>{estimatedReadingTime(chapter)} read</span>
+                  <small>{copy.volume(chapter.volume)} · {chapterLabel(chapter, locale)}</small>
+                  <strong lang="en">{chapter.title}</strong>
+                  <span>{estimatedReadingTime(chapter, locale)}</span>
                 </span>
                 <IconArrowRight size={17} />
               </Link>
@@ -442,7 +452,7 @@ export default function PanthPrakashLibraryHome() {
             className="epub-load-more interactive-focus"
             onClick={() => setVisibleCount(count => count + INITIAL_VISIBLE_CHAPTERS)}
           >
-            Show more
+            {copy.showMore}
           </button>
         ) : null}
       </section>

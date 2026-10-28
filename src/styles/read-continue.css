@@ -1,0 +1,14 @@
+.read-continue { margin: 1.5rem 0 2rem; padding: 1.3rem 0; border-block: 1px solid rgb(145 104 57 / .22); display: grid; grid-template-columns: minmax(11rem, .7fr) minmax(0, 1.7fr); gap: 1.25rem; align-items: center; }
+.read-continue__intro h2 { margin: 0; font-family: var(--font-display, 'Cormorant Garamond', serif); font-size: 1.35rem; }
+.read-continue__intro p { margin: .4rem 0 0; font-size: .82rem; line-height: 1.65; opacity: .75; max-width: 34rem; }
+.read-continue__list { list-style: none; padding: 0; margin: 0; display: grid; gap: .15rem; }
+.read-continue__link { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .7rem .8rem; border-radius: .6rem; min-height: 48px; }
+.read-continue__link > span { min-width: 0; }
+.read-continue__link strong { font-size: .9rem; font-weight: 600; display: block; }
+.read-continue__link span span { display: block; margin-top: .2rem; font-size: .74rem; line-height: 1.5; opacity: .7; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.read-continue__link svg, .read-continue__start svg { flex-shrink: 0; }
+.read-continue__link:hover { background: rgb(145 104 57 / .08); }
+.read-continue__start { display: flex; gap: .8rem; align-items: center; justify-self: end; padding: .85rem 1rem; min-height: 48px; border: 1px solid rgb(145 104 57 / .35); border-radius: .6rem; font-size: .9rem; }
+@media (max-width: 640px) { .read-continue { grid-template-columns: 1fr; gap: .6rem; } .read-continue__link { padding-inline: 0; } .read-continue__start { justify-self: start; margin-top: .5rem; } }
+
+.read-continue__more { grid-column: 1 / -1; justify-self: end; min-height: 44px; padding: .55rem .8rem; font-size: .8rem; text-decoration: underline; text-underline-offset: .3em; }

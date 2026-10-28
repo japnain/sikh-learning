@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Session } from './progress'
+import type { LibraryChapterIndexEntry, LibraryWork } from '../types'
+import { isSourceReaderId, SOURCE_READER_META } from '../utils/sourceReaderMeta'
 
 const PLACE_LIMIT = 50
 export type ReadingPlaces = Record<string, Session>
@@ -25,17 +27,86 @@ export function getExactReadingKey(path: string): string | null {
   return [source, baniId, dbId, start, end, length ?? 'default'].join(':')
 }
 
-function normalizePlace(value: unknown): Session | null {
+/** Work and source identities survive switching readings; exact bani keys stay unchanged. */
+export function getReadingPlaceKey(path: string): string | null {
+  if (path.length > 2000) return null
+  const routeParams = new URLSearchParams(path.split('?')[1] ?? '')
+  if (routeParams.has('shabadId') || routeParams.has('hukamnamaDate') || routeParams.get('flow') === 'ardaas-hukamnama') return null
+  const exactKey = getExactReadingKey(path)
+  if (exactKey) return exactKey
+  const book = /^\/library\/([a-z][a-z0-9-]{0,119})\/chapters\/([a-z][a-z0-9-]{0,119})$/.exec(path)
+  if (book) return `book:${book[1]}`
+  const [pathname, search = ''] = path.split('?')
+  if (pathname !== '/study' || path.includes('#')) return null
+  const params = new URLSearchParams(search)
+  if ([...params.keys()].some(key => !['source', 'ang', 'resumeVerseId'].includes(key))) return null
+  const source = params.get('source')
+  const ang = Number(params.get('ang'))
+  return isSourceReaderId(source) && Number.isSafeInteger(ang) && ang > 0 && ang <= SOURCE_READER_META[source].max
+    ? `source:${source}` : null
+}
+
+export function normalizeReadingPlace(value: unknown): Session | null {
   if (!value || typeof value !== 'object') return null
   const session = value as Partial<Session>
-  if (typeof session.resumePath !== 'string' || !getExactReadingKey(session.resumePath)
-    || typeof session.scriptureId !== 'string' || !session.scriptureId
-    || typeof session.updatedAt !== 'string' || !Number.isFinite(Date.parse(session.updatedAt))
-    || !Number.isSafeInteger(session.resumeVerseId) || (session.resumeVerseId ?? 0) <= 0) return null
-  return {
-    scriptureId: session.scriptureId, resumePath: session.resumePath,
-    resumeVerseId: session.resumeVerseId, updatedAt: session.updatedAt,
+  if (typeof session.resumePath !== 'string'
+    || typeof session.scriptureId !== 'string' || !session.scriptureId || session.scriptureId.length > 250
+    || typeof session.updatedAt !== 'string' || !Number.isFinite(Date.parse(session.updatedAt))) return null
+  const key = getReadingPlaceKey(session.resumePath)
+  if (!key) return null
+  const base = { scriptureId: session.scriptureId, resumePath: session.resumePath, updatedAt: session.updatedAt }
+  if (key.startsWith('book:')) {
+    const locator = session.readerLocator
+    if (!locator) return base // Older sessions can safely resume at the chapter start.
+    const locations = locator.locations
+    if (locator.href !== session.resumePath || !['application/xhtml+xml', 'text/html'].includes(locator.type)
+      || !locations || !Number.isFinite(locations.progression) || locations.progression < 0 || locations.progression > 1
+      || !Number.isFinite(locations.totalProgression) || locations.totalProgression < 0 || locations.totalProgression > 1
+      || !Number.isSafeInteger(locations.position) || locations.position < 1
+      || (locations.blockId !== undefined && (typeof locations.blockId !== 'string' || !/^[a-zA-Z0-9_-]{1,200}$/.test(locations.blockId)))
+      || (locator.revision !== undefined && (typeof locator.revision !== 'string' || locator.revision.length > 200))) return null
+    return { ...base, readerLocator: {
+      href: locator.href, type: locator.type,
+      ...(locator.revision ? { revision: locator.revision } : {}),
+      ...(typeof locator.title === 'string' ? { title: locator.title.slice(0, 300) } : {}),
+      locations: { progression: locations.progression, totalProgression: locations.totalProgression,
+        position: locations.position, ...(locations.blockId ? { blockId: locations.blockId } : {}) },
+      ...(typeof locator.text?.highlight === 'string' ? { text: { highlight: locator.text.highlight.slice(0, 300) } } : {}),
+    } }
   }
+  if (session.resumeVerseId === undefined && key.startsWith('source:')) return base
+  if (!Number.isSafeInteger(session.resumeVerseId) || (session.resumeVerseId ?? 0) <= 0) return null
+  return { ...base, resumeVerseId: session.resumeVerseId }
+}
+
+function shouldKeepPlace(previous: Session | undefined, incoming: Session): boolean {
+  return Boolean(previous && (Date.parse(previous.updatedAt) > Date.parse(incoming.updatedAt)
+    || (previous.resumePath === incoming.resumePath
+      && ((!incoming.resumeVerseId && previous.resumeVerseId) || (!incoming.readerLocator && previous.readerLocator)))))
+}
+
+/** Revalidate older global sessions before considering them alongside durable places. */
+export function getReadingPlaces(places: ReadingPlaces, currentSession: Session | null): ReadingPlaces {
+  const result: ReadingPlaces = {}
+  for (const value of [...Object.values(places), currentSession]) {
+    const session = normalizeReadingPlace(value)
+    if (!session) continue
+    const key = getReadingPlaceKey(session.resumePath)!
+    if (!shouldKeepPlace(result[key], session)) result[key] = session
+  }
+  return boundedPlaces(result)
+}
+
+/** A changed edition may move block IDs: resume safely at its chapter, never a stale block. */
+export function buildBookReadingResumePath(session: Session | undefined, work: LibraryWork,
+  chapters?: readonly LibraryChapterIndexEntry[]): string | null {
+  const saved = normalizeReadingPlace(session)
+  if (!saved || getReadingPlaceKey(saved.resumePath) !== `book:${work.id}`) return null
+  const chapterId = saved.resumePath.split('/').at(-1)
+  if (chapters && !chapters.some(chapter => chapter.id === chapterId)) return `/library/${work.id}`
+  const locator = saved.readerLocator
+  return locator?.revision && locator.revision === work.revision && locator.locations.blockId
+    ? `${saved.resumePath}#${encodeURIComponent(locator.locations.blockId)}` : saved.resumePath
 }
 
 function boundedPlaces(places: ReadingPlaces): ReadingPlaces {
@@ -49,16 +120,16 @@ interface ReadingPlacesState {
   remember: (session: Session) => boolean
 }
 
-/** Local exact-bani continuity is independent of the one global cloud session. */
+/** Local reading continuity is independent of the one global cloud session. */
 export const useReadingPlacesStore = create<ReadingPlacesState>()(persist<ReadingPlacesState, [], [], { places: ReadingPlaces }>(
   (set, get) => ({
     places: {},
     remember: (input): boolean => {
-      const session = normalizePlace(input)
+      const session = normalizeReadingPlace(input)
       if (!session) return true
-      const key = getExactReadingKey(session.resumePath)!
+      const key = getReadingPlaceKey(session.resumePath)!
       const previous = get().places[key]
-      const keepNewer = previous && Date.parse(previous.updatedAt) > Date.parse(session.updatedAt)
+      const keepNewer = shouldKeepPlace(previous, session)
       try {
         // Even an older incoming place may retry a newer session-only place.
         // Never replace the newer verse while retrying its complete snapshot.
@@ -76,10 +147,10 @@ export const useReadingPlacesStore = create<ReadingPlacesState>()(persist<Readin
       const input = (persisted as Partial<ReadingPlacesState> | undefined)?.places
       const places: ReadingPlaces = {}
       for (const value of Object.values(input && typeof input === 'object' ? input : {})) {
-        const session = normalizePlace(value)
+        const session = normalizeReadingPlace(value)
         if (!session) continue
-        const key = getExactReadingKey(session.resumePath)!
-        if (!places[key] || Date.parse(session.updatedAt) >= Date.parse(places[key].updatedAt)) places[key] = session
+        const key = getReadingPlaceKey(session.resumePath)!
+        if (!shouldKeepPlace(places[key], session)) places[key] = session
       }
       return { ...current, places: boundedPlaces(places) }
     },

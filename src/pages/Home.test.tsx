@@ -326,14 +326,13 @@ test('manual completion and undo update today, retained history and the weekly s
   useNitnemHistoryStore.setState({ events: [historyEvent('2026-04-09'), historyEvent('2026-04-10')] })
   renderHome()
 
-  const progress = screen.getByRole('progressbar', { name: 'Daily Nitnem' })
+  const summary = screen.getByTestId('home-nitnem-summary')
   const week = screen.getByTestId('home-week')
-  expect(progress).toHaveAttribute('aria-valuenow', '0')
+  expect(summary).toHaveTextContent(`0 of ${DEFAULT_NITNEM_OPTION_IDS.length} complete today`)
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('2 / 5 days')
 
   fireEvent.click(screen.getByRole('button', { name: 'Mark complete: Japji Sahib' }))
-  expect(progress).toHaveAttribute('aria-valuenow', '1')
-  expect(progress).toHaveAttribute('aria-valuetext', `1 of ${DEFAULT_NITNEM_OPTION_IDS.length} complete today`)
+  expect(summary).toHaveTextContent(`1 of ${DEFAULT_NITNEM_OPTION_IDS.length} complete today`)
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('3 / 5 days')
   expect(within(week).getByLabelText('Saturday, April 11: Practice recorded')).toHaveAttribute('datetime', todayStamp())
@@ -342,7 +341,7 @@ test('manual completion and undo update today, retained history and the weekly s
   const navigator = openAllBanis()
   fireEvent.click(within(navigator).getByRole('button', { name: 'Undo completion: Japji Sahib' }))
   fireEvent.click(within(navigator).getByRole('button', { name: 'Close your banis' }))
-  expect(progress).toHaveAttribute('aria-valuenow', '0')
+  expect(summary).toHaveTextContent(`0 of ${DEFAULT_NITNEM_OPTION_IDS.length} complete today`)
   expect(screen.getByRole('button', { name: 'Mark complete: Japji Sahib' })).toHaveAttribute('aria-pressed', 'false')
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('2 / 5 days')
   expect(within(week).queryByLabelText('Saturday, April 11: Practice recorded')).not.toBeInTheDocument()
@@ -376,7 +375,7 @@ test('derives the week and streak from completion history rather than reading ac
   expect(within(week).getByText('2 day streak')).toBeInTheDocument()
   expect(within(week).queryByText('Best: 2')).not.toBeInTheDocument()
   expect(within(week).queryByText(/99/)).not.toBeInTheDocument()
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '0')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`0 of ${useNitemStore.getState().selectedIds.length} complete today`)
 })
 
 test('keeps completion controls and continuity hidden when tracking is disabled', () => {
@@ -513,13 +512,14 @@ test('saved book previews preserve Home as the book reader origin', () => {
   expect(screen.getByTestId('home-destination')).toHaveAttribute('data-location-state', JSON.stringify({ libraryReaderOrigin: '/' }))
 })
 
-test('all chosen banis are directly reachable in the rail and full navigator in personal order', () => {
+test('all chosen banis are named in the index and full navigator in personal order', () => {
   const selectedIds = ['kirtan-sohila', 'japji-sahib', 'jaap-sahib', 'anand-sahib', 'sukhmani-sahib']
   useNitemStore.setState({ selectedIds })
   renderHome()
-  const rail = within(screen.getByTestId('home-nitnem-carousel')).getByRole('list')
-  expect(within(rail).getAllByRole('listitem').map(card => card.getAttribute('data-nitnem-id'))).toEqual(selectedIds)
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  const index = screen.getByRole('tablist', { name: 'Your Nitnem' })
+  expect(within(index).getAllByRole('tab').map(tab => tab.getAttribute('data-nitnem-id'))).toEqual(selectedIds)
+  fireEvent.click(within(index).getByRole('tab', { name: 'Japji Sahib' }))
+  expect(within(index).getByRole('tab', { name: 'Japji Sahib' })).toHaveAttribute('aria-selected', 'true')
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'japji-sahib')
   expect(useNitnemPracticeStore.getState().active).toBeNull()
   expect(screen.getByTestId('home-nitnem-entry')).toHaveTextContent('Kirtan Sohila')
@@ -588,10 +588,14 @@ test('previews the body after the live Ashtpadi heading and standalone invocatio
   expect(hukam.data!.entry.lines).toEqual(originalLines)
 })
 
-test('native keyboard navigation goes directly from the current reading to the next bani', async () => {
+test('keyboard index navigation selects a bani and Tab reaches its exact reading action', async () => {
   const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
   renderHomeRoutes()
-  act(() => screen.getByTestId('home-nitnem-primary-action').focus())
+  act(() => screen.getByRole('tab', { name: 'Japji Sahib' }).focus())
+  await user.keyboard('{ArrowRight}')
+  expect(screen.getByRole('tab', { name: 'Jaap Sahib' })).toHaveFocus()
+  expect(screen.getByRole('tab', { name: 'Jaap Sahib' })).toHaveAttribute('aria-selected', 'true')
+  expect(useNitnemPracticeStore.getState().active).toBeNull()
   await user.tab()
 
   expect(screen.getByRole('link', { name: 'Begin reading: Jaap Sahib' })).toHaveFocus()
@@ -617,9 +621,11 @@ test('All banis is a dismissible native dialog and returns keyboard focus to its
   expect(opener).toHaveFocus()
 })
 
-test('the next bani opens its exact reading in one action without completing either reading', () => {
+test('selecting a named bani opens its exact reading without completing either reading', () => {
   useNitemStore.setState({ selectedIds: ['japji-sahib', 'jaap-sahib'], completionTrackingEnabled: true })
   renderHomeRoutes()
+  fireEvent.click(screen.getByRole('tab', { name: 'Jaap Sahib' }))
+  expect(useNitnemPracticeStore.getState().active).toBeNull()
   fireEvent.click(screen.getByRole('link', { name: 'Begin reading: Jaap Sahib' }))
 
   const destination = screen.getByTestId('home-destination')
@@ -644,7 +650,7 @@ test('All banis supports explicit completion and undo without opening or startin
   fireEvent.click(within(dialog).getByRole('button', { name: 'Undo completion: Jaap Sahib' }))
   expect(useNitemStore.getState().completedIds).toEqual([])
   fireEvent.click(within(dialog).getByRole('button', { name: 'Close your banis' }))
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '0')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`0 of ${useNitemStore.getState().selectedIds.length} complete today`)
 })
 
 test('removing the selected bani opens a remaining reading without changing the personal order', () => {
@@ -674,7 +680,7 @@ test('a completed reading starts again without reusing its saved verse', () => {
   expect(params.get('baniDbId')).toBe('4')
   expect(params.has('resumeVerseId')).toBe(false)
   fireEvent.click(within(dialog).getByRole('button', { name: 'Close your banis' }))
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '1')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`1 of ${useNitemStore.getState().selectedIds.length} complete today`)
 })
 
 test('keeps older exact Study places as a secondary action without starting today at an old verse', () => {
@@ -718,6 +724,7 @@ test('direct reading links preserve the selected length and exact Savaiye varian
   expect(current.get('sgLength')).toBe('long')
   expect(current.has('resumeVerseId')).toBe(false)
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveTextContent('Begin reading')
+  fireEvent.click(screen.getByRole('tab', { name: 'Tav Prasad Savaiye · Dheenan Ki' }))
   const next = screen.getByRole('link', { name: /Begin reading: Tav Prasad Savaiye/ })
   const variant = new URLSearchParams(next.getAttribute('href')!.split('?')[1])
   expect(variant.get('baniDbId')).toBe('7')
@@ -732,13 +739,13 @@ test('crossing local midnight resets today while retaining yesterday’s actual 
     completedDate: todayStamp(), completedIds: ['japji-sahib'],
   })
   renderHome()
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '1')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`1 of ${useNitemStore.getState().selectedIds.length} complete today`)
   act(() => vi.advanceTimersByTime(21000))
 
   expect(todayStamp()).toBe('2026-04-12')
   expect(useNitemStore.getState().completedDate).toBe('2026-04-12')
   expect(useNitemStore.getState().completedIds).toEqual([])
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '0')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`0 of ${useNitemStore.getState().selectedIds.length} complete today`)
   expect(screen.getByRole('button', { name: 'Mark complete: Japji Sahib' })).toHaveAttribute('aria-pressed', 'false')
   expect(within(screen.getByTestId('home-week')).getByLabelText('Saturday, April 11: Practice recorded')).toHaveAttribute('datetime', '2026-04-11')
   expect(within(screen.getByTestId('home-week')).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('1 / 7 days')
@@ -776,9 +783,11 @@ test('distinguishes one recorded practice day from completion of every selected 
   expect(screen.getByTestId('home-nitnem-finished')).toHaveTextContent('Your Nitnem is complete.')
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('1 / 7 days')
   expect(within(week).queryByText('Your weekly goal is met.')).not.toBeInTheDocument()
-  expect(screen.queryByTestId('home-nitnem-primary-action')).not.toBeInTheDocument()
-  expect(screen.getAllByRole('link', { name: /^Read again:/ })).toHaveLength(2)
-  expect(screen.getByTestId('home-nitnem-carousel')).toBeVisible()
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAccessibleName('Read again: Jaap Sahib')
+  expect(screen.getAllByRole('link', { name: /^Read again:/ })).toHaveLength(1)
+  expect(screen.getByRole('tablist', { name: 'Your Nitnem' })).toBeVisible()
+  fireEvent.click(screen.getByRole('tab', { name: 'Japji Sahib' }))
+  expect(screen.getByRole('link', { name: 'Read again: Japji Sahib' })).toBeVisible()
 })
 
 test('shows a met weekly goal from retained history without claiming today or the routine is complete', () => {
@@ -790,7 +799,7 @@ test('shows a met weekly goal from retained history without claiming today or th
   expect(within(week).getByRole('link', { name: 'Weekly goal' })).toHaveTextContent('2 / 2 days')
   expect(within(week).queryByText('Today’s practice is recorded.')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-nitnem-finished')).not.toBeInTheDocument()
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '0')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`0 of ${useNitemStore.getState().selectedIds.length} complete today`)
 })
 
 
@@ -954,7 +963,7 @@ test('a completed day keeps an unfinished intentional Long reading visible witho
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveTextContent('Continue reading')
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', activePath)
   expect(screen.queryByTestId('home-nitnem-finished')).not.toBeInTheDocument()
-  expect(screen.getByRole('progressbar', { name: 'Daily Nitnem' })).toHaveAttribute('aria-valuenow', '1')
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`1 of ${useNitemStore.getState().selectedIds.length} complete today`)
   expect(screen.getByText('Recorded today · Short')).toBeInTheDocument()
   expect(useNitnemHistoryStore.getState().events.at(-1)).toEqual(recorded)
   fireEvent.click(screen.getByRole('button', { name: 'Your bani' }))
@@ -1001,15 +1010,17 @@ test('switching a composite Rehras length preserves the resumed verse source ind
 })
 
 
-test('restores the card returned from the reader without retargeting an unfinished practice', () => {
+test('restores the bani returned from the reader without retargeting an unfinished practice', () => {
   startPractice('rehras-sahib', 555)
   const exact = useNitnemPracticeStore.getState().active!.readingPath
   rememberHomeNitnemReturn('jaap-sahib')
   renderHome()
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', 'jaap-sahib')
   expect(screen.getByTestId('home-nitnem-entry')).toHaveAttribute('href', exact)
+  expect(screen.getByRole('tab', { name: 'Jaap Sahib' })).toHaveAttribute('aria-selected', 'true')
+  fireEvent.click(screen.getByRole('tab', { name: 'Rehras Sahib' }))
   expect(screen.getByRole('link', { name: 'Continue reading: Rehras Sahib' })).toHaveAttribute('href', exact)
-  fireEvent.click(screen.getByRole('button', { name: 'Next bani' }))
+  fireEvent.click(screen.getByRole('tab', { name: 'Tav Prasad Savaiye · Sraavag Suddh' }))
   act(() => vi.advanceTimersByTime(60000))
   expect(useNitnemPracticeStore.getState().active!.readingPath).toBe(exact)
   expect(useNitemStore.getState().completedIds).toEqual([])

@@ -1,33 +1,15 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import {
-  SOURCE_READER_META,
-  type SourceReaderId,
-  type SourceReaderUnit,
-} from '../utils/sourceReaderMeta'
-import {
-  IconArrowLeft,
-  IconArrowRight,
-  IconChevronDown,
-  IconChevronUp,
-  IconLibrary,
-  IconSearch,
-} from './icons'
+import { useMemo, useState, type FormEvent, type MouseEvent } from 'react'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocaleStore } from '../store/locale'
+import type { UiLocale } from '../types'
+import { SOURCE_READER_META, getSourceReaderUnitLabel, type SourceReaderId } from '../utils/sourceReaderMeta'
+import { buildCurrentAppPath, buildLibraryReaderNavigationState, buildReaderOriginNavigationState } from '../utils/libraryReaderNavigation'
+import { rememberDiscoveryReturn } from '../utils/discoveryReturn'
+import { getSourceBrowsePage, parseSourceUnit } from '../utils/sourceBrowse'
+import { IconArrowLeft, IconArrowRight, IconChevronDown, IconChevronUp, IconLibrary } from './icons'
+import '../styles/source-browser.css'
 
-type ScriptureSourceSection = {
-  id: string
-  name: string
-  source?: SourceReaderId
-  totalAngs?: number
-  unit?: SourceReaderUnit
-  pagePathTemplate?: string
-  overviewPath?: string
-  overviewEyebrow?: string
-  overviewDescription?: string
-  overviewStats?: string[]
-  quickBrowseLabel?: string
-}
-
+type ScriptureSourceSection = { id: string; source?: SourceReaderId; overviewPath?: string }
 type ScriptureSourceBrowserProps = {
   dataTestId?: string
   defaultOpenSections?: string[]
@@ -35,232 +17,184 @@ type ScriptureSourceBrowserProps = {
   sectionClassName?: string
 }
 
-const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
-  { id: 'sggs', name: SOURCE_READER_META.G.name, source: 'G', totalAngs: SOURCE_READER_META.G.max, unit: SOURCE_READER_META.G.unit },
-  { id: 'dasam-granth', name: SOURCE_READER_META.D.name, source: 'D', totalAngs: SOURCE_READER_META.D.max, unit: SOURCE_READER_META.D.unit },
-  { id: 'bhai-gurdas-vaaran', name: SOURCE_READER_META.B.name, source: 'B', totalAngs: SOURCE_READER_META.B.max, unit: SOURCE_READER_META.B.unit },
-  {
-    id: 'panth-prakash-english',
-    name: 'Panth Prakash (English)',
-    overviewPath: '/library/panth-prakash-english',
-    overviewEyebrow: 'EPUB book reader',
-    overviewDescription:
-      'Open the EPUB-derived book reader for volume navigation, chapter reading, and full-text search across both supplied volumes.',
-    overviewStats: ['169 episodes', '2 EPUB volumes', 'English reading edition'],
-  },
+const SECTIONS: ScriptureSourceSection[] = [
+  { id: 'sggs', source: 'G' },
+  { id: 'dasam-granth', source: 'D' },
+  { id: 'bhai-gurdas-vaaran', source: 'B' },
+  { id: 'panth-prakash-english', overviewPath: '/library/panth-prakash-english' },
 ]
-
 const PAGE_SIZE = 50
+const COPY = {
+  en: {
+    names: { G: 'Sri Guru Granth Sahib Ji', D: 'Sri Dasam Granth Sahib Ji', B: 'Bhai Gurdas Ji Vaaran', A: 'Amrit Keertan' },
+    previous: 'Prev', next: 'Next', open: 'Open',
+    jump: (unit: string) => `Open a specific ${unit}`,
+    range: (unit: string, max: number) => `${unit} 1–${max}`,
+    invalid: (unit: string, max: number) => `Enter a whole ${unit} number from 1 to ${max}.`,
+    input: (name: string, unit: string) => `${name} ${unit} number`,
+    destination: (name: string, unit: string, value: number) => `Open ${name} ${unit.toLowerCase()} ${value}`,
+    page: (unit: string, first: number, last: number, total: number) => `${unit} ${first}–${last} of ${total}`,
+    previousPage: (name: string) => `Previous numbers in ${name}`,
+    nextPage: (name: string) => `Next numbers in ${name}`,
+    book: 'Panth Prakash (English)', edition: 'English reading edition',
+    bookDescription: 'Read the historical work across two volumes, with a chapter index and full-text search.',
+    bookDetail: '169 episodes · 2 volumes', openBook: 'Open Panth Prakash', openBookLabel: 'Open Panth Prakash book reader',
+  },
+  pa: {
+    names: { G: 'ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ', D: 'ਸ੍ਰੀ ਦਸਮ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ', B: 'ਭਾਈ ਗੁਰਦਾਸ ਜੀ ਦੀਆਂ ਵਾਰਾਂ', A: 'ਅੰਮ੍ਰਿਤ ਕੀਰਤਨ' },
+    previous: 'ਪਿਛਲੇ', next: 'ਅਗਲੇ', open: 'ਖੋਲ੍ਹੋ',
+    jump: (unit: string) => `ਕੋਈ ਖ਼ਾਸ ${unit} ਖੋਲ੍ਹੋ`,
+    range: (unit: string, max: number) => `${unit} 1–${max}`,
+    invalid: (unit: string, max: number) => `${unit} ਲਈ 1 ਤੋਂ ${max} ਤੱਕ ਪੂਰਾ ਅੰਕ ਭਰੋ।`,
+    input: (name: string, unit: string) => `${name} — ${unit} ਨੰਬਰ`,
+    destination: (name: string, unit: string, value: number) => `${name} — ${unit} ${value} ਖੋਲ੍ਹੋ`,
+    page: (unit: string, first: number, last: number, total: number) => `${unit} ${first}–${last}, ਕੁੱਲ ${total}`,
+    previousPage: (name: string) => `${name} ਦੇ ਪਿਛਲੇ ਨੰਬਰ`,
+    nextPage: (name: string) => `${name} ਦੇ ਅਗਲੇ ਨੰਬਰ`,
+    book: 'ਪੰਥ ਪ੍ਰਕਾਸ਼ (ਅੰਗਰੇਜ਼ੀ)', edition: 'ਅੰਗਰੇਜ਼ੀ ਪਾਠ ਸੰਸਕਰਨ',
+    bookDescription: 'ਦੋ ਭਾਗਾਂ ਵਿੱਚ ਇਤਿਹਾਸਕ ਰਚਨਾ ਪੜ੍ਹੋ; ਅਧਿਆਇ ਸੂਚੀ ਅਤੇ ਪੂਰੇ ਪਾਠ ਦੀ ਖੋਜ ਵੀ ਉਪਲਬਧ ਹੈ।',
+    bookDetail: '169 ਪ੍ਰਸੰਗ · 2 ਭਾਗ', openBook: 'ਪੰਥ ਪ੍ਰਕਾਸ਼ ਖੋਲ੍ਹੋ', openBookLabel: 'ਪੰਥ ਪ੍ਰਕਾਸ਼ ਪੁਸਤਕ ਖੋਲ੍ਹੋ',
+  },
+  hi: {
+    names: { G: 'श्री गुरु ग्रंथ साहिब जी', D: 'श्री दशम ग्रंथ साहिब जी', B: 'भाई गुरदास जी की वारें', A: 'अमृत कीर्तन' },
+    previous: 'पिछले', next: 'अगले', open: 'खोलें',
+    jump: (unit: string) => `कोई विशेष ${unit} खोलें`,
+    range: (unit: string, max: number) => `${unit} 1–${max}`,
+    invalid: (unit: string, max: number) => `${unit} के लिए 1 से ${max} तक पूर्ण अंक भरें।`,
+    input: (name: string, unit: string) => `${name} — ${unit} संख्या`,
+    destination: (name: string, unit: string, value: number) => `${name} — ${unit} ${value} खोलें`,
+    page: (unit: string, first: number, last: number, total: number) => `${unit} ${first}–${last}, कुल ${total}`,
+    previousPage: (name: string) => `${name} के पिछले नंबर`,
+    nextPage: (name: string) => `${name} के अगले नंबर`,
+    book: 'पंथ प्रकाश (अंग्रेज़ी)', edition: 'अंग्रेज़ी पाठ संस्करण',
+    bookDescription: 'दो खंडों में ऐतिहासिक रचना पढ़ें; अध्याय सूची और पूरे पाठ में खोज भी उपलब्ध है।',
+    bookDetail: '169 प्रसंग · 2 खंड', openBook: 'पंथ प्रकाश खोलें', openBookLabel: 'पंथ प्रकाश पुस्तक खोलें',
+  },
+} satisfies Record<UiLocale, unknown>
 
-function angLabel(section: ScriptureSourceSection) {
-  return section.unit ?? (section.pagePathTemplate ? 'Page' : 'Ang')
+function isPlainClick(event: MouseEvent<HTMLAnchorElement>) {
+  return event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
 }
 
-function buildPagePath(section: ScriptureSourceSection, ang: number) {
-  if (section.pagePathTemplate) {
-    return section.pagePathTemplate.includes(':pageNumber')
-      ? section.pagePathTemplate.replace(':pageNumber', String(ang))
-      : section.pagePathTemplate
+function AngPageBrowser({ section, locale }: { section: ScriptureSourceSection & { source: SourceReaderId }; locale: UiLocale }) {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [jumpValue, setJumpValue] = useState('')
+  const [invalid, setInvalid] = useState(false)
+  const copy = COPY[locale]
+  const source = section.source
+  const name = copy.names[source]
+  const total = SOURCE_READER_META[source].max
+  const unit = getSourceReaderUnitLabel(source, locale)
+  const pageKey = `sourcePage-${section.id}`
+  const page = getSourceBrowsePage(searchParams.get(pageKey), total)
+  const start = (page - 1) * PAGE_SIZE + 1
+  const end = Math.min(start + PAGE_SIZE - 1, total)
+  const origin = buildCurrentAppPath(location)
+  const inputId = `source-${section.id}-jump`
+  const rangeId = `${inputId}-range`
+  const errorId = `${inputId}-error`
+  const numberId = (value: number) => `source-${section.id}-${value}`
+  const pathFor = (value: number) => `/study?source=${source}&ang=${value}`
+  const setPage = (nextPage: number) => setSearchParams(current => {
+    const next = new URLSearchParams(current)
+    next.set(pageKey, String(nextPage))
+    return next
+  }, { replace: true, preventScrollReset: true })
+
+  const openExact = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const value = parseSourceUnit(jumpValue, total)
+    if (value === null) { setInvalid(true); return }
+    setInvalid(false)
+    const next = new URLSearchParams(searchParams)
+    next.set(pageKey, String(Math.floor((value - 1) / PAGE_SIZE) + 1))
+    const returnPath = `${location.pathname}?${next.toString()}${location.hash}`
+    // Replace the browse entry before pushing the reader, so browser Back and
+    // the reader's Back both return to the numbers containing this destination.
+    setSearchParams(next, { replace: true, preventScrollReset: true })
+    rememberDiscoveryReturn(returnPath, numberId(value))
+    navigate(pathFor(value), { state: buildReaderOriginNavigationState(pathFor(value), returnPath) })
   }
 
-  return `/study?source=${section.source}&ang=${ang}`
-}
-
-function buildPageLinkLabel(section: ScriptureSourceSection, ang: number) {
-  const label = angLabel(section).toLowerCase()
-  return `Open ${section.name.replace(' (English)', '')} ${label} ${ang}`
-}
-
-function SourceOverviewCard({
-  section,
-  isOpen,
-  onToggleQuickPages,
-  panelId,
-}: {
-  section: ScriptureSourceSection
-  isOpen: boolean
-  onToggleQuickPages: () => void
-  panelId: string
-}) {
   return (
-    <div
-      className="relative overflow-hidden rounded-lg border border-gold/25 bg-parchment-card p-4 shadow-soft dark:border-gold-light/25 dark:bg-dark-surface"
-    >
-      <div className="relative space-y-4">
-        <div className="flex items-start justify-between gap-4">
-          <div className="space-y-2">
-            <p className="font-sans text-[0.68rem] font-bold uppercase tracking-[0.24em] text-gold-dark dark:text-gold-light">
-              {section.overviewEyebrow ?? 'Source edition'}
-            </p>
-            <div>
-              <h3 className="font-serif text-2xl font-semibold leading-tight text-ink dark:text-dark-text">{section.name}</h3>
-              {section.overviewDescription ? (
-                <p className="mt-2 max-w-2xl font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">
-                  {section.overviewDescription}
-                </p>
-              ) : null}
-            </div>
-          </div>
-          <span className="icon-surface shrink-0 text-gold-dark dark:text-gold-light" aria-hidden="true">
-            <IconLibrary size={20} />
-          </span>
+    <div className="source-browse">
+      <form onSubmit={openExact} className="source-browse-jump" aria-label={`${name} — ${copy.jump(unit)}`} noValidate>
+        <label htmlFor={inputId}>{copy.jump(unit)}</label>
+        <div className="source-browse-jump__controls">
+          <input id={inputId} type="text" inputMode="numeric" autoComplete="off" enterKeyHint="go"
+            value={jumpValue} onChange={event => { setJumpValue(event.target.value); setInvalid(false) }}
+            aria-label={copy.input(name, unit)} aria-invalid={invalid || undefined}
+            aria-describedby={invalid ? `${rangeId} ${errorId}` : rangeId} placeholder={`1–${total}`} />
+          <button type="submit" className="interactive-focus">{copy.open}<IconArrowRight size={16} /></button>
         </div>
-
-        {section.overviewStats?.length ? (
-          <div className="flex flex-wrap gap-2" aria-label={`${section.name} edition details`}>
-            {section.overviewStats.map(stat => (
-              <span
-                key={stat}
-                className="rounded-full border border-gold/20 bg-white/70 px-3 py-1 font-sans text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink/65 dark:border-gold-light/20 dark:bg-white/5 dark:text-dark-text/65"
-              >
-                {stat}
-              </span>
-            ))}
-          </div>
-        ) : null}
-
-        <div className="flex flex-col gap-2">
-          {section.overviewPath ? (
-            <Link
-              to={section.overviewPath}
-              aria-label="Open Panth Prakash book reader"
-              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
-            >
-              Open Panth Prakash
-              <IconArrowRight size={16} />
-            </Link>
-          ) : null}
-
-          {section.pagePathTemplate ? (
-            <button
-              type="button"
-              onClick={onToggleQuickPages}
-              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold-dark dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
-              aria-label={isOpen ? 'Hide quick page numbers' : 'Show quick page numbers'}
-              aria-expanded={isOpen}
-              aria-controls={panelId}
-            >
-              <IconSearch size={15} />
-              {isOpen ? 'Hide quick pages' : 'Quick page numbers'}
-            </button>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
-  const [page, setPage] = useState(0)
-  if (!section.totalAngs) return null
-  const start = page * PAGE_SIZE + 1
-  const end = Math.min(start + PAGE_SIZE - 1, section.totalAngs)
-
-  return (
-    <div>
-      <div className="mb-4 grid grid-cols-5 gap-2">
-        {Array.from({ length: end - start + 1 }, (_, index) => start + index).map(ang => (
-          <Link
-            key={ang}
-            to={buildPagePath(section, ang)}
-            aria-label={buildPageLinkLabel(section, ang)}
-            className="section-shell interactive-focus interactive-card-link flex min-h-[44px] items-center justify-center rounded-lg py-2 text-center font-sans text-sm text-ink hover:text-gold-dark dark:text-dark-text dark:hover:text-gold-light"
-          >
-            {ang}
+        <span id={rangeId} className="source-browse-range">{copy.range(unit, total)}</span>
+        {invalid ? <p id={errorId} role="alert" className="source-browse-error">{copy.invalid(unit, total)}</p> : null}
+      </form>
+      <div className="source-browse-grid">
+        {Array.from({ length: end - start + 1 }, (_, index) => start + index).map(value => (
+          <Link key={value} id={numberId(value)} to={pathFor(value)}
+            state={buildReaderOriginNavigationState(pathFor(value), origin)}
+            onClick={event => { if (isPlainClick(event)) rememberDiscoveryReturn(origin, numberId(value)) }}
+            aria-label={copy.destination(name, unit, value)} className="section-shell interactive-focus interactive-card-link">
+            {value}
           </Link>
         ))}
       </div>
-      <div className="flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => setPage(current => Math.max(0, current - 1))}
-          disabled={page === 0}
-          className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold-dark disabled:opacity-30 dark:text-gold-light"
-        >
-          <IconArrowLeft size={14} />
-          Prev
-        </button>
-        <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">
-          {angLabel(section)} {start}–{end} of {section.totalAngs}
-        </span>
-        <button
-          type="button"
-          onClick={() => setPage(current => current + 1)}
-          disabled={end >= section.totalAngs}
-          className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold-dark disabled:opacity-30 dark:text-gold-light"
-        >
-          Next
-          <IconArrowRight size={14} />
-        </button>
+      <div className="source-browse-pagination">
+        <button type="button" onClick={() => setPage(page - 1)} disabled={page === 1}
+          aria-label={copy.previousPage(name)} className="interactive-focus"><IconArrowLeft size={14} />{copy.previous}</button>
+        <span role="status" aria-live="polite">{copy.page(unit, start, end, total)}</span>
+        <button type="button" onClick={() => setPage(page + 1)} disabled={end >= total}
+          aria-label={copy.nextPage(name)} className="interactive-focus">{copy.next}<IconArrowRight size={14} /></button>
       </div>
     </div>
   )
 }
 
-export default function ScriptureSourceBrowser({
-  dataTestId,
-  defaultOpenSections = [],
-  sectionIds,
-  sectionClassName = 'section-shell px-4 py-4',
-}: ScriptureSourceBrowserProps) {
-  const [expanded, setExpanded] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(defaultOpenSections.map(sectionId => [sectionId, true]))
-  )
-
-  const sections = useMemo(
-    () => sectionIds
-      ? SCRIPTURE_SOURCE_SECTIONS.filter(section => sectionIds.includes(section.id))
-      : SCRIPTURE_SOURCE_SECTIONS,
-    [sectionIds]
-  )
+export default function ScriptureSourceBrowser({ dataTestId, defaultOpenSections = [], sectionIds,
+  sectionClassName = 'section-shell px-4 py-4' }: ScriptureSourceBrowserProps) {
+  const locale = useLocaleStore(state => state.locale)
+  const copy = COPY[locale]
+  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const sections = useMemo(() => sectionIds ? SECTIONS.filter(section => sectionIds.includes(section.id)) : SECTIONS, [sectionIds])
+  const openSections = searchParams.has('sourceOpen')
+    ? searchParams.get('sourceOpen')!.split(',').filter(id => SECTIONS.some(section => section.id === id))
+    : defaultOpenSections
+  const toggle = (id: string) => setSearchParams(current => {
+    const next = new URLSearchParams(current)
+    next.set('sourceOpen', (openSections.includes(id) ? openSections.filter(key => key !== id) : [...openSections, id]).join(','))
+    return next
+  }, { replace: true, preventScrollReset: true })
+  const origin = buildCurrentAppPath(location)
 
   return (
-    <div className="space-y-3" data-component="scripture-source-browser" data-testid={dataTestId}>
+    <div className="space-y-3" data-component="scripture-source-browser" data-testid={dataTestId} lang={locale}>
       {sections.map(section => {
-        const isOpen = Boolean(expanded[section.id])
+        const isOpen = openSections.includes(section.id)
         const panelId = `${dataTestId ?? 'scripture-source'}-${section.id}`
-
-        if (section.overviewPath) {
-          return (
-            <div
-              key={section.id}
-              className={sectionClassName}
-              data-testid={`${section.id.replace('-english', '')}-source-card`}
-            >
-              <SourceOverviewCard
-                section={section}
-                isOpen={isOpen}
-                onToggleQuickPages={() => setExpanded(current => ({ ...current, [section.id]: !current[section.id] }))}
-                panelId={panelId}
-              />
-              {isOpen ? (
-                <div id={panelId} className="mt-4">
-                  <AngPageBrowser section={section} />
-                </div>
-              ) : null}
-            </div>
-          )
-        }
-
+        if (section.overviewPath) return (
+          <article key={section.id} className={`${sectionClassName} source-book-overview`} data-testid="panth-prakash-source-card">
+            <IconLibrary size={24} aria-hidden="true" />
+            <p className="source-browse-range">{copy.edition}</p><h3>{copy.book}</h3><p>{copy.bookDescription}</p><p>{copy.bookDetail}</p>
+            <Link to={section.overviewPath} state={buildLibraryReaderNavigationState(origin)}
+              id="source-panth-prakash-open" aria-label={copy.openBookLabel} className="interactive-focus"
+              onClick={event => { if (isPlainClick(event)) rememberDiscoveryReturn(origin, 'source-panth-prakash-open') }}>
+              {copy.openBook}<IconArrowRight size={16} />
+            </Link>
+          </article>
+        )
+        if (!section.source) return null
         return (
           <div key={section.id} className={sectionClassName}>
-            <button
-              type="button"
-              onClick={() => setExpanded(current => ({ ...current, [section.id]: !current[section.id] }))}
-              className="interactive-focus flex min-h-[44px] w-full items-center justify-between gap-3"
-              aria-expanded={isOpen}
-              aria-controls={panelId}
-            >
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{section.name}</p>
-              <span className="icon-surface h-8 w-8 text-gold-dark dark:text-gold-light">
-                {isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
-              </span>
+            <button id={`source-${section.id}-toggle`} type="button" onClick={() => toggle(section.id)}
+              className="interactive-focus source-browse-heading" aria-expanded={isOpen} aria-controls={panelId}>
+              <span>{copy.names[section.source]}</span>
+              <span className="icon-surface h-8 w-8" aria-hidden="true">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
             </button>
-            {isOpen ? (
-              <div id={panelId} className="mt-4">
-                <AngPageBrowser section={section} />
-              </div>
-            ) : null}
+            {isOpen ? <div id={panelId} className="mt-4"><AngPageBrowser section={{ ...section, source: section.source }} locale={locale} /></div> : null}
           </div>
         )
       })}

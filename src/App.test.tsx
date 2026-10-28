@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import App from './App'
@@ -512,6 +512,18 @@ test('keeps routine editing focused and restores primary navigation after leavin
   expect(screen.getByTestId('app-shell')).not.toHaveAttribute('data-navigation')
   fireEvent.click(screen.getByRole('button', { name: 'Cancel', exact: true }))
   expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
+})
+
+test('focuses Rehat chapters and restores primary navigation on the chapter directory', async () => {
+  window.history.replaceState({}, '', '/banis/rehat/1/chapters/11')
+  useOnboardingStore.setState({ hasCompletedOnboarding: true, isOnboardingOpen: false, presentationMode: 'overlay' })
+  render(<App />)
+  const header = await screen.findByTestId('rehat-reader-header', undefined, APP_TEST_WAIT)
+  expect(screen.getByTestId('app-shell')).toHaveAttribute('data-reader-focus', 'true')
+  expect(screen.queryByTestId('primary-nav')).not.toBeInTheDocument()
+  fireEvent.click(within(header).getByRole('link', { name: 'Back to chapters' }))
+  await screen.findByTestId('rehat-breadcrumbs', undefined, APP_TEST_WAIT)
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
 

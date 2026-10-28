@@ -614,7 +614,7 @@ test('supports direct ang lookup mode', async () => {
   renderBanis()
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
   fireEvent.click(screen.getByRole('button', { name: /ang \/ vaar/i }))
-  fireEvent.change(screen.getByRole('searchbox', { name: /search gurbani, meanings, or direct routes/i }), { target: { value: '12' } })
+  fireEvent.change(screen.getByRole('searchbox', { name: /search gurbani, books and stories/i }), { target: { value: '12' } })
 
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()
@@ -1117,4 +1117,106 @@ test('a stalled provider settles with usable local results and can be retried', 
     view.unmount()
     vi.useRealTimers()
   }
+})
+
+function BackToDiscovery() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  return <button onClick={() => navigate((location.state as { readerOrigin: string }).readerOrigin)}>Return to discovery</button>
+}
+
+test('collection navigation exits global results and makes the previous search recoverable', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  render(<MemoryRouter initialEntries={['/banis']}><Routes>
+    <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+  </Routes></MemoryRouter>)
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'truth' } })
+  await screen.findByTestId('banis-search-gurbani-result')
+  fireEvent.click(within(screen.getByRole('group', { name: 'Read collections' })).getByRole('button', { name: 'Books' }))
+  await screen.findByRole('tabpanel', { name: 'Books' })
+  expect(screen.getByRole('searchbox')).toHaveValue('')
+  expect(screen.queryByTestId('banis-search-gurbani-result')).not.toBeInTheDocument()
+  expect(screen.getByTestId('location')).toHaveTextContent('collection=books')
+  fireEvent.click(screen.getByRole('button', { name: 'Return to “truth”' }))
+  await screen.findByTestId('banis-search-gurbani-result')
+  expect(screen.getByRole('searchbox')).toHaveValue('truth')
+  expect(screen.queryByRole('tabpanel')).not.toBeInTheDocument()
+})
+
+test('book and story result types search only the selected content and keep a stable global input', async () => {
+  const scripture = vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  const books = vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([{
+    key: 'book-probe', kind: 'library-chapter', label: 'Nanak in history', detail: 'Panth Prakash', path: '/library/panth-prakash-english/chapters/episode-001', score: 90,
+  }])
+  const stories = vi.spyOn(appSearch, 'getStorySearchMatches').mockResolvedValue([{
+    key: 'story-probe', kind: 'story', label: 'Nanak at Lalo’s table', detail: 'Honest work', path: '/stories/bhai-lalo', score: 90,
+  }])
+  render(<MemoryRouter initialEntries={['/banis?collection=stories&query=Nanak&scope=books']}><Banis /></MemoryRouter>)
+  await screen.findByTestId('banis-search-library-results')
+  expect(books).toHaveBeenCalledWith('Nanak')
+  expect(stories).not.toHaveBeenCalled()
+  expect(scripture).not.toHaveBeenCalled()
+  expect(screen.getAllByRole('searchbox')).toHaveLength(1)
+  fireEvent.click(within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'Stories' }))
+  await screen.findByTestId('banis-search-story-results')
+  expect(screen.queryByTestId('banis-search-library-results')).not.toBeInTheDocument()
+  expect(screen.getByRole('searchbox')).toHaveValue('Nanak')
+  expect(scripture).not.toHaveBeenCalled()
+})
+
+test('book result previews disclose the full count and remember expanded results in the URL', async () => {
+  const matches = Array.from({ length: 17 }, (_, index): appSearch.AppSearchMatch => ({
+    key: `book-${index}`, kind: 'library-chapter', label: `History chapter ${index + 1}`,
+    detail: 'Panth Prakash', path: `/library/panth-prakash-english/chapters/episode-${index + 1}`, score: 80,
+  }))
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue(matches)
+  render(<MemoryRouter initialEntries={['/banis?query=history&scope=books']}><Banis /><LocationSpy /></MemoryRouter>)
+  const results = await screen.findByTestId('banis-search-library-results')
+  expect(within(results).getAllByRole('button')).toHaveLength(9)
+  expect(within(results).getByText('Showing 8 of 17 matches')).toBeInTheDocument()
+  fireEvent.click(within(results).getByRole('button', { name: 'Show all 17 matches' }))
+  expect(within(results).getAllByRole('button')).toHaveLength(18)
+  expect(screen.getByTestId('location')).toHaveTextContent('show=library')
+  fireEvent.click(within(results).getByRole('button', { name: 'Show fewer matches' }))
+  expect(within(results).getAllByRole('button')).toHaveLength(9)
+})
+
+test('returning from an exact bani restores its expanded directory and selected row', async () => {
+  render(<MemoryRouter initialEntries={['/banis']}><Routes>
+    <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+    <Route path="/study" element={<BackToDiscovery />} />
+  </Routes></MemoryRouter>)
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
+  fireEvent.click(screen.getByText('Long Compositions'))
+  const row = screen.getByText('Bavan Akhri').closest('button')!
+  const rowId = row.id
+  fireEvent.click(row)
+  fireEvent.click(await screen.findByRole('button', { name: 'Return to discovery' }))
+  await waitFor(() => expect(screen.getByText('Bavan Akhri')).toBeInTheDocument())
+  expect(screen.getByTestId('location')).toHaveTextContent('open=')
+  await waitFor(() => expect(document.getElementById(rowId)).toHaveFocus())
+})
+
+test('restores search facets and expanded page size from a direct return URL', async () => {
+  const matches = Array.from({ length: 17 }, (_, index) => ({ ...SEARCH_RESULT_FIXTURE,
+    shabadId: 3000 + index, verseId: 4000 + index, raag: 'Asa', writer: 'Guru Nanak',
+  }))
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue(matches)
+  render(<MemoryRouter initialEntries={['/banis?query=truth&raag=Asa&writer=Guru+Nanak&matches=24']}><Banis /></MemoryRouter>)
+  await waitFor(() => expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(17))
+  expect(screen.getAllByRole('button', { name: 'Asa' })[0]).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getAllByRole('button', { name: 'Guru Nanak' })[0]).toHaveAttribute('aria-pressed', 'true')
+  fireEvent.click(within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'Gurbani' }))
+  await waitFor(() => expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(12))
+  expect(screen.getByRole('button', { name: 'All Raags' })).toHaveAttribute('aria-pressed', 'true')
+})
+
+test('labels unavailable remote search as partial when a canonical reading still matches', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockRejectedValue(new Error('Unavailable'))
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
+  renderBanis()
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Japji Sahib' } })
+  await screen.findByTestId('banis-search-app-results')
+  await waitFor(() => expect(screen.getAllByText(/Some sources could not be searched/).length).toBeGreaterThan(0))
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
 })
