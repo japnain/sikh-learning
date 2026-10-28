@@ -1,6 +1,6 @@
 import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within, act } from '@testing-library/react'
-import { MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { BrowserRouter, MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Banis from './Banis'
 import * as banidbApi from '../api/banidb'
 import { sanitizeRehatHtml } from '../utils/rehatHtml'
@@ -1162,6 +1162,37 @@ test('book and story result types search only the selected content and keep a st
   expect(screen.queryByTestId('banis-search-library-results')).not.toBeInTheDocument()
   expect(screen.getByRole('searchbox')).toHaveValue('Nanak')
   expect(scripture).not.toHaveBeenCalled()
+})
+
+test('rapid scope selection and typing retain the selected scope across browser-router transitions', async () => {
+  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
+  vi.spyOn(appSearch, 'getStorySearchMatches').mockResolvedValue([{
+    key: 'story-fast-scope', kind: 'story', label: 'Lalo', detail: 'Honest work', path: '/stories/bhai-lalo', score: 90,
+  }])
+  window.history.replaceState(null, '', '/banis?collection=stories')
+  render(<BrowserRouter><Banis /><LocationSpy /></BrowserRouter>)
+  const scope = within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'Stories', exact: true })
+  const input = screen.getByRole('searchbox')
+  // Typing is an urgent update while the scope URL change is a Router transition.
+  act(() => {
+    fireEvent.click(scope)
+    fireEvent.change(input, { target: { value: 'Lalo' } })
+  })
+  await screen.findByTestId('banis-search-story-results')
+  expect(new URL(window.location.href).searchParams.get('scope')).toBe('stories')
+  expect(scope).toHaveAttribute('aria-pressed', 'true')
+  expect(input).toHaveValue('Lalo')
+  expect(new URL(window.location.href).searchParams.get('query')).toBe('Lalo')
+  expect(banidbApi.fetchSearch).not.toHaveBeenCalled()
+  const allScope = within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'All', exact: true })
+  act(() => {
+    fireEvent.click(allScope)
+    fireEvent.change(input, { target: { value: 'Lalo and Nanak' } })
+  })
+  await waitFor(() => expect(new URL(window.location.href).searchParams.get('query')).toBe('Lalo and Nanak'))
+  expect(new URL(window.location.href).searchParams.has('scope')).toBe(false)
+  expect(allScope).toHaveAttribute('aria-pressed', 'true')
 })
 
 test('book result previews disclose the full count and remember expanded results in the URL', async () => {
