@@ -35,13 +35,15 @@ import {
 } from '../utils/sundarGutkaLength'
 import { getSourceReaderUnit, SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import { getSearchModeLabels } from '../utils/translations'
-import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
+import { IconArrowRight, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import LibraryBookBrowser from '../components/LibraryBookBrowser'
-import { hasSearchMatch } from '../utils/searchHighlight'
+import AppSearchResultGroup from '../components/read/AppSearchResultGroup'
+import ReadSearchControls from '../components/read/ReadSearchControls'
 import {
   getAngTargets,
+  getAppSearchMatches,
   getAvailableSearchMeta,
   getLibrarySearchMatches,
   getStorySearchMatches,
@@ -53,6 +55,9 @@ import {
   type SearchSource,
 } from '../utils/appSearch'
 import { buildReadSearchPath } from '../utils/searchRoutes'
+import { rememberDiscoveryReturn, restoreDiscoveryReturn } from '../utils/discoveryReturn'
+import ReadContinue from '../components/ReadContinue'
+import { READ_SEARCH_UI, SEARCH_SCOPES, type SearchScope } from '../content/readSearchCopy'
 import { withSearchDeadline } from '../utils/searchDeadline'
 import {
   buildCurrentAppPath,
@@ -67,425 +72,26 @@ import {
 } from '../utils/appScroll'
 import { getSearchRevealScrollTop } from '../utils/searchReveal'
 import {
-  ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
   getReaderEditorialCopyForBani,
 } from '../content/readerEditorialCopy'
+import { READ_PAGE_COPY, READ_COLLECTIONS, type ReadCollection, type ReadPageCopy } from '../content/readPageCopy'
 import readHarmandirSrc from '../assets/living-library/read-harmandir.jpeg'
 import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.jpeg'
 import booksCourtSrc from '../assets/living-library/books-court.jpeg'
 
+function discoveryFocusId(value: string) {
+  let hash = 0
+  for (const character of value) hash = (Math.imul(hash, 31) + character.charCodeAt(0)) | 0
+  return `read-item-${(hash >>> 0).toString(36)}`
+}
+
 type Scripture = 'SGGS' | 'DG'
 const StoryBrowser = lazy(() => import('../components/StoryBrowser'))
 
-type ReadCollection = 'banis' | 'sources' | 'books' | 'stories'
 type ExactBani = Bani & { baniDbId: number }
 
-const READ_COLLECTIONS: ReadCollection[] = ['banis', 'sources', 'books', 'stories']
 const READ_SOURCE_SECTION_IDS = ['sggs', 'dasam-granth', 'bhai-gurdas-vaaran']
 
-type ReadPageCopy = {
-  title: string
-  heroEyebrow: string
-  heroBody: string
-  collectionsLabel: string
-  tabs: Record<ReadCollection, string>
-  find: string
-  searchTitle: string
-  searchLabel: string
-  searchPlaceholder: string
-  refine: string
-  simplify: string
-  autoDetect: string
-  directOpen: string
-  searching: string
-  ready: string
-  inApp: string
-  exactFirst: string
-  libraryMatches: string
-  gurbaniMatches: string
-  result: string
-  results: string
-  directDestination: string
-  directDestinations: string
-  partialSearch: string
-  allSources: string
-  openDirectTarget: (label: string, unit: string, value: string) => string
-  directLookupBody: string
-  noDirectTarget: string
-  matchedFor: string
-  meaning: string
-  allRaags: string
-  allWriters: string
-  unitLabels: Record<'Ang' | 'Vaar' | 'Page', string>
-  matchCount: (count: number) => string
-  libraryWorkDetail: (chapterCount: number) => string
-  libraryChapterDetail: (shortTitle: string, volume: number, episodeNumber?: number) => string
-  showingResults: (visible: number, total: number) => string
-  showMoreResults: string
-  noFilteredResults: string
-  clearFilters: string
-  noResultsTitle: string
-  noResultsBody: string
-  tryExamples: string
-  clearSearch: string
-  recent: string
-  clear: string
-  searchResultsAbove: string
-  featuredFlowEyebrow: string
-  featuredFlowChip: string
-  featuredFlowTitle: string
-  featuredFlowBody: string
-  beginFlow: string
-  banisEyebrow: string
-  banisTitle: string
-  banisBody: string
-  sourcesEyebrow: string
-  sourcesTitle: string
-  sourcesBody: string
-  sourceCatalogEyebrow: string
-  sourceCatalogTitle: string
-  sourceCatalogBody: string
-  companionEyebrow: string
-  companionTitle: string
-  companionBody: string
-  rehatTitle: string
-  rehatBody: string
-  booksEyebrow: string
-  booksTitle: string
-  booksBody: string
-  booksCatalogEyebrow: string
-  booksCatalogTitle: string
-  booksCatalogBody: string
-  directoryEyebrow: string
-  directoryTitle: string
-  directoryBody: string
-  sundarGroups: { nitnem: string; popular: string; other: string }
-  completeVaars: string
-  chooseVaar: string
-  amritTitle: string
-  amritBody: string
-  pin: string
-  unpin: string
-  browse: string
-  indexLoading: string
-  indexOffline: string
-  indexError: string
-  indexEmpty: string
-  retry: string
-  countLoading: string
-  countUnavailable: string
-  baniSingular: string
-  baniPlural: string
-  artworkUnavailable: string
-  artworkDescriptions: {
-    harmandir: string
-    guruNanak: string
-    court: string
-  }
-}
-
-const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
-  en: {
-    title: 'Read',
-    heroEyebrow: 'NaamRas library',
-    heroBody: 'Gurbani, daily banis, books, and Sikh stories.',
-    collectionsLabel: 'Read collections',
-    tabs: { banis: 'Banis', sources: 'Sources', books: 'Books', stories: 'Stories' },
-    find: 'Find',
-    searchTitle: 'Search Gurbani, books and stories',
-    searchLabel: 'Search Gurbani, meanings, or direct routes',
-    searchPlaceholder: 'Search Gurbani, first letters, transliteration, or meaning',
-    refine: 'Refine search',
-    simplify: 'Simplify',
-    autoDetect: 'Auto detect',
-    directOpen: 'Direct open',
-    searching: 'Searching',
-    ready: 'Ready',
-    inApp: 'Open a reading',
-    exactFirst: 'Exact destinations first',
-    libraryMatches: 'From the library',
-    gurbaniMatches: 'Gurbani matches',
-    result: 'result found',
-    results: 'results found',
-    directDestination: 'direct reading destination available',
-    directDestinations: 'direct reading destinations available',
-    partialSearch: 'Some sources could not be searched. Showing the results that are available.',
-    allSources: 'All',
-    openDirectTarget: (label, unit, value) => `Open ${label} ${unit} ${value}`,
-    directLookupBody: 'Direct source lookup without running a word search.',
-    noDirectTarget: 'No matching source can open that ang or Vaar.',
-    matchedFor: 'Matched for',
-    meaning: 'Meaning',
-    allRaags: 'All Raags',
-    allWriters: 'All Writers',
-    unitLabels: { Ang: 'Ang', Vaar: 'Vaar', Page: 'Page' },
-    matchCount: count => `${count} ${count === 1 ? 'match' : 'matches'}`,
-    libraryWorkDetail: chapterCount => `Book · ${chapterCount} chapters`,
-    libraryChapterDetail: (shortTitle, volume, episodeNumber) => `${shortTitle} · Volume ${volume}${episodeNumber ? ` · Episode ${episodeNumber}` : ''}`,
-    showingResults: (visible, total) => `Showing ${visible} of ${total} Gurbani matches.`,
-    showMoreResults: 'Show more matches',
-    noFilteredResults: 'No matches use both of these filters.',
-    clearFilters: 'Clear filters',
-    noResultsTitle: 'No matches yet',
-    noResultsBody: 'Try a full bani name, a Gurmukhi phrase, or a simpler spelling.',
-    tryExamples: 'Try an example',
-    clearSearch: 'Clear search',
-    recent: 'Recent',
-    clear: 'Clear',
-    searchResultsAbove: 'Search results are shown above.',
-    featuredFlowEyebrow: 'Daily devotion',
-    featuredFlowChip: 'Devotional flow',
-    featuredFlowTitle: 'Ardaas + Hukamnama',
-    featuredFlowBody: ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek,
-    beginFlow: 'Begin Ardaas',
-    banisEyebrow: 'Daily practice',
-    banisTitle: 'Banis for every part of the day',
-    banisBody: 'Morning, evening, and complete daily readings.',
-    sourcesEyebrow: 'Scripture sources',
-    sourcesTitle: 'Open each source in its own structure',
-    sourcesBody: 'Browse scripture by Ang and Bhai Gurdas Ji Vaaran by Vaar.',
-    sourceCatalogEyebrow: 'Source editions',
-    sourceCatalogTitle: 'Choose a source',
-    sourceCatalogBody: 'Open scripture by Ang or choose a Vaar directly.',
-    companionEyebrow: 'Companion reader',
-    companionTitle: 'Guidance and practice',
-    companionBody: 'Read Rehat through its complete chapter index.',
-    rehatTitle: 'Rehat',
-    rehatBody: 'Conduct, practice, and chapter-level reading.',
-    booksEyebrow: 'Books',
-    booksTitle: 'History and memory in longer form',
-    booksBody: 'Explore Sikh history through complete books and their chapters.',
-    booksCatalogEyebrow: 'Book collection',
-    booksCatalogTitle: 'Historical books',
-    booksCatalogBody: 'Browse available volumes, chapters, and full-text search.',
-    directoryEyebrow: 'Browse',
-    directoryTitle: 'Bani directories',
-    directoryBody: 'Daily prayers, complete scripture collections, Vaaran, and kirtan.',
-    sundarGroups: { nitnem: 'Nitnem', popular: 'Popular Bani', other: 'Other' },
-    completeVaars: 'complete Vaars',
-    chooseVaar: 'Choose a Vaar to open its complete sequence of Pauris.',
-    amritTitle: 'Amrit Keertan',
-    amritBody: 'Browse the complete section index',
-    pin: 'Pin',
-    unpin: 'Unpin',
-    browse: 'Read',
-    indexLoading: 'Loading the Sundar Gutka index…',
-    indexOffline: 'The Sundar Gutka index is offline. Check your connection, then try again.',
-    indexError: 'The Sundar Gutka index is unavailable right now. Try again shortly.',
-    indexEmpty: 'No Sundar Gutka entries are available right now.',
-    retry: 'Retry',
-    countLoading: 'Loading',
-    countUnavailable: 'Unavailable',
-    baniSingular: 'bani',
-    baniPlural: 'banis',
-    artworkUnavailable: 'Artwork unavailable',
-    artworkDescriptions: {
-      harmandir: 'Painted view of a gold-domed shrine beside a sarovar and surrounding buildings.',
-      guruNanak: 'Painted gathering beneath a flowering border, with seated and standing figures.',
-      court: 'Painted historical court gathering in an architectural courtyard.',
-    },
-  },
-  pa: {
-    title: 'ਪੜ੍ਹੋ',
-    heroEyebrow: 'ਨਾਮਰਸ ਲਾਇਬ੍ਰੇਰੀ',
-    heroBody: 'ਗੁਰਬਾਣੀ, ਰੋਜ਼ਾਨਾ ਬਾਣੀਆਂ, ਮੂਲ ਸਰੋਤ ਅਤੇ ਕਿਤਾਬਾਂ।',
-    collectionsLabel: 'ਪੜ੍ਹਨ ਦੀਆਂ ਸ਼੍ਰੇਣੀਆਂ',
-    tabs: { banis: 'ਬਾਣੀਆਂ', sources: 'ਸਰੋਤ', books: 'ਕਿਤਾਬਾਂ', stories: 'ਸਾਖੀਆਂ' },
-    find: 'ਖੋਜੋ',
-    searchTitle: 'ਗੁਰਬਾਣੀ, ਕਿਤਾਬਾਂ ਅਤੇ ਸਾਖੀਆਂ ਖੋਜੋ',
-    searchLabel: 'ਗੁਰਬਾਣੀ, ਅਰਥ ਜਾਂ ਸਿੱਧੇ ਰਸਤੇ ਖੋਜੋ',
-    searchPlaceholder: 'ਗੁਰਬਾਣੀ, ਪਹਿਲੇ ਅੱਖਰ, ਲਿਪਾਂਤਰ ਜਾਂ ਅਰਥ ਖੋਜੋ',
-    refine: 'ਖੋਜ ਸੁਧਾਰੋ',
-    simplify: 'ਸਧਾਰਨ ਕਰੋ',
-    autoDetect: 'ਆਪਣੇ ਆਪ ਪਛਾਣ',
-    directOpen: 'ਸਿੱਧਾ ਖੋਲ੍ਹੋ',
-    searching: 'ਖੋਜ ਜਾਰੀ ਹੈ',
-    ready: 'ਤਿਆਰ',
-    inApp: 'ਪਾਠ ਖੋਲ੍ਹੋ',
-    exactFirst: 'ਸਿੱਧੇ ਰਸਤੇ ਪਹਿਲਾਂ',
-    libraryMatches: 'ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚੋਂ',
-    gurbaniMatches: 'ਗੁਰਬਾਣੀ ਮੇਲ',
-    result: 'ਨਤੀਜਾ ਮਿਲਿਆ',
-    results: 'ਨਤੀਜੇ ਮਿਲੇ',
-    directDestination: 'ਸਿੱਧਾ ਪੜ੍ਹਨ ਵਾਲਾ ਰਸਤਾ ਉਪਲਬਧ',
-    directDestinations: 'ਸਿੱਧੇ ਪੜ੍ਹਨ ਵਾਲੇ ਰਸਤੇ ਉਪਲਬਧ',
-    partialSearch: 'ਕੁਝ ਸਰੋਤ ਖੋਜੇ ਨਹੀਂ ਜਾ ਸਕੇ। ਉਪਲਬਧ ਨਤੀਜੇ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ।',
-    allSources: 'ਸਾਰੇ',
-    openDirectTarget: (label, unit, value) => `${label} ${unit} ${value} ਖੋਲ੍ਹੋ`,
-    directLookupBody: 'ਸ਼ਬਦ ਖੋਜ ਚਲਾਏ ਬਿਨਾਂ ਸਰੋਤ ਸਿੱਧਾ ਖੋਲ੍ਹੋ।',
-    noDirectTarget: 'ਕੋਈ ਮੇਲ ਖਾਂਦਾ ਸਰੋਤ ਉਹ ਅੰਗ ਜਾਂ ਵਾਰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦਾ।',
-    matchedFor: 'ਇਸ ਲਈ ਮੇਲ',
-    meaning: 'ਅਰਥ',
-    allRaags: 'ਸਾਰੇ ਰਾਗ',
-    allWriters: 'ਸਾਰੇ ਰਚਨਾਕਾਰ',
-    unitLabels: { Ang: 'ਅੰਗ', Vaar: 'ਵਾਰ', Page: 'ਸਫ਼ਾ' },
-    matchCount: count => `${count} ਮੇਲ`,
-    libraryWorkDetail: chapterCount => `ਕਿਤਾਬ · ${chapterCount} ਅਧਿਆਇ`,
-    libraryChapterDetail: (shortTitle, volume, episodeNumber) => `${shortTitle} · ਜਿਲਦ ${volume}${episodeNumber ? ` · ਕੜੀ ${episodeNumber}` : ''}`,
-    showingResults: (visible, total) => `${total} ਵਿੱਚੋਂ ${visible} ਗੁਰਬਾਣੀ ਮੇਲ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ।`,
-    showMoreResults: 'ਹੋਰ ਮੇਲ ਦਿਖਾਓ',
-    noFilteredResults: 'ਇਹਨਾਂ ਦੋਵੇਂ ਫਿਲਟਰਾਂ ਨਾਲ ਕੋਈ ਮੇਲ ਨਹੀਂ ਹੈ।',
-    clearFilters: 'ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ',
-    noResultsTitle: 'ਹਾਲੇ ਕੋਈ ਮੇਲ ਨਹੀਂ',
-    noResultsBody: 'ਪੂਰਾ ਬਾਣੀ ਨਾਮ, ਗੁਰਮੁਖੀ ਵਾਕ ਜਾਂ ਸਧਾਰਨ ਲਿਖਤ ਅਜ਼ਮਾਓ।',
-    tryExamples: 'ਉਦਾਹਰਨ ਅਜ਼ਮਾਓ',
-    clearSearch: 'ਖੋਜ ਸਾਫ਼ ਕਰੋ',
-    recent: 'ਹਾਲੀਆ',
-    clear: 'ਸਾਫ਼ ਕਰੋ',
-    searchResultsAbove: 'ਖੋਜ ਨਤੀਜੇ ਉੱਪਰ ਦਿਖਾਏ ਗਏ ਹਨ।',
-    featuredFlowEyebrow: 'ਖ਼ਾਸ ਪਾਠ-ਕ੍ਰਮ',
-    featuredFlowChip: 'ਸ਼ਰਧਾ ਦਾ ਕ੍ਰਮ',
-    featuredFlowTitle: 'ਅਰਦਾਸ + ਹੁਕਮਨਾਮਾ',
-    featuredFlowBody: 'ਪਹਿਲਾਂ ਸਾਂਝੀ ਸਿੱਖ ਅਰਦਾਸ ਕਰੋ, ਫਿਰ ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਤੋਂ ਹੁਕਮਨਾਮਾ ਲੈ ਕੇ ਮਨਨ ਕਰੋ।',
-    beginFlow: 'ਅਰਦਾਸ ਸ਼ੁਰੂ ਕਰੋ',
-    banisEyebrow: 'ਰੋਜ਼ਾਨਾ ਅਭਿਆਸ',
-    banisTitle: 'ਦਿਨ ਦੇ ਹਰ ਵੇਲੇ ਲਈ ਬਾਣੀਆਂ',
-    banisBody: 'ਸਵੇਰ, ਸ਼ਾਮ ਅਤੇ ਪੂਰੇ ਰੋਜ਼ਾਨਾ ਪਾਠ।',
-    sourcesEyebrow: 'ਗੁਰਬਾਣੀ ਸਰੋਤ',
-    sourcesTitle: 'ਹਰ ਸਰੋਤ ਨੂੰ ਉਸਦੀ ਆਪਣੀ ਬਣਤਰ ਵਿੱਚ ਖੋਲ੍ਹੋ',
-    sourcesBody: 'ਗ੍ਰੰਥ ਅੰਗ ਅਨੁਸਾਰ ਅਤੇ ਭਾਈ ਗੁਰਦਾਸ ਜੀ ਦੀਆਂ ਵਾਰਾਂ ਵਾਰ ਅਨੁਸਾਰ ਖੋਲ੍ਹੋ।',
-    sourceCatalogEyebrow: 'ਮੂਲ ਸਰੋਤ',
-    sourceCatalogTitle: 'ਸਰੋਤ ਚੁਣੋ',
-    sourceCatalogBody: 'ਅੰਗ ਜਾਂ ਵਾਰ ਚੁਣ ਕੇ ਸਿੱਧਾ ਪਾਠ ਖੋਲ੍ਹੋ।',
-    companionEyebrow: 'ਸਹਾਇਕ ਪਾਠਕ',
-    companionTitle: 'ਰਹਿਨੁਮਾਈ ਅਤੇ ਅਭਿਆਸ',
-    companionBody: 'ਰਹਿਤ ਨੂੰ ਪੂਰੀ ਅਧਿਆਇ ਸੂਚੀ ਨਾਲ ਪੜ੍ਹੋ।',
-    rehatTitle: 'ਰਹਿਤ',
-    rehatBody: 'ਆਚਰਨ, ਅਭਿਆਸ ਅਤੇ ਅਧਿਆਇ ਅਨੁਸਾਰ ਪੜ੍ਹਾਈ।',
-    booksEyebrow: 'ਕਿਤਾਬਾਂ',
-    booksTitle: 'ਇਤਿਹਾਸ ਅਤੇ ਯਾਦ ਲੰਮੇ ਰੂਪ ਵਿੱਚ',
-    booksBody: 'ਸੰਪੂਰਨ ਕਿਤਾਬਾਂ ਅਤੇ ਅਧਿਆਵਾਂ ਰਾਹੀਂ ਸਿੱਖ ਇਤਿਹਾਸ ਪੜ੍ਹੋ।',
-    booksCatalogEyebrow: 'ਕਿਤਾਬ ਸੰਗ੍ਰਹਿ',
-    booksCatalogTitle: 'ਇਤਿਹਾਸਕ ਕਿਤਾਬਾਂ',
-    booksCatalogBody: 'ਉਪਲਬਧ ਜਿਲਦਾਂ, ਅਧਿਆਇ ਅਤੇ ਪੂਰੀ ਲਿਖਤ ਖੋਜੋ।',
-    directoryEyebrow: 'ਵੇਖੋ',
-    directoryTitle: 'ਬਾਣੀ ਸੂਚੀਆਂ',
-    directoryBody: 'ਰੋਜ਼ਾਨਾ ਪਾਠ, ਪੂਰੇ ਗ੍ਰੰਥ ਸੰਗ੍ਰਹਿ, ਵਾਰਾਂ ਅਤੇ ਕੀਰਤਨ।',
-    sundarGroups: { nitnem: 'ਨਿਤਨੇਮ', popular: 'ਪ੍ਰਸਿੱਧ ਬਾਣੀਆਂ', other: 'ਹੋਰ' },
-    completeVaars: 'ਪੂਰੀਆਂ ਵਾਰਾਂ',
-    chooseVaar: 'ਪਉੜੀਆਂ ਦਾ ਪੂਰਾ ਕ੍ਰਮ ਖੋਲ੍ਹਣ ਲਈ ਵਾਰ ਚੁਣੋ।',
-    amritTitle: 'ਅੰਮ੍ਰਿਤ ਕੀਰਤਨ',
-    amritBody: 'ਪੂਰੀ ਭਾਗ ਸੂਚੀ ਵੇਖੋ',
-    pin: 'ਪਿੰਨ ਕਰੋ',
-    unpin: 'ਪਿੰਨ ਹਟਾਓ',
-    browse: 'ਪੜ੍ਹੋ',
-    indexLoading: 'ਸੁੰਦਰ ਗੁਟਕਾ ਸੂਚੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…',
-    indexOffline: 'ਸੁੰਦਰ ਗੁਟਕਾ ਸੂਚੀ ਆਫ਼ਲਾਈਨ ਹੈ। ਕਨੈਕਸ਼ਨ ਵੇਖ ਕੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
-    indexError: 'ਸੁੰਦਰ ਗੁਟਕਾ ਸੂਚੀ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
-    indexEmpty: 'ਇਸ ਵੇਲੇ ਸੁੰਦਰ ਗੁਟਕਾ ਦੀ ਕੋਈ ਐਂਟਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
-    retry: 'ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ',
-    countLoading: 'ਲੋਡ ਹੋ ਰਿਹਾ',
-    countUnavailable: 'ਉਪਲਬਧ ਨਹੀਂ',
-    baniSingular: 'ਬਾਣੀ',
-    baniPlural: 'ਬਾਣੀਆਂ',
-    artworkUnavailable: 'ਚਿੱਤਰ ਉਪਲਬਧ ਨਹੀਂ',
-    artworkDescriptions: {
-      harmandir: 'ਸਰੋਵਰ ਅਤੇ ਆਲੇ-ਦੁਆਲੇ ਦੀਆਂ ਇਮਾਰਤਾਂ ਕੋਲ ਸੁਨਹਿਰੀ ਗੁੰਬਦ ਵਾਲੇ ਧਾਰਮਿਕ ਅਸਥਾਨ ਦਾ ਚਿੱਤਰ।',
-      guruNanak: 'ਫੁੱਲਦਾਰ ਹਾਸ਼ੀਏ ਹੇਠ ਬੈਠੀਆਂ ਅਤੇ ਖੜ੍ਹੀਆਂ ਸ਼ਖਸੀਅਤਾਂ ਦੀ ਚਿੱਤਰਿਤ ਸਭਾ।',
-      court: 'ਇਮਾਰਤੀ ਵਿਹੜੇ ਵਿੱਚ ਇਤਿਹਾਸਕ ਦਰਬਾਰੀ ਸਭਾ ਦਾ ਚਿੱਤਰ।',
-    },
-  },
-  hi: {
-    title: 'पढ़ें',
-    heroEyebrow: 'नामरस लाइब्रेरी',
-    heroBody: 'गुरबाणी, दैनिक बाणियाँ, मूल स्रोत और किताबें।',
-    collectionsLabel: 'पढ़ने की श्रेणियाँ',
-    tabs: { banis: 'बाणियाँ', sources: 'स्रोत', books: 'किताबें', stories: 'साखियाँ' },
-    find: 'खोजें',
-    searchTitle: 'गुरबाणी, किताबें और साखियाँ खोजें',
-    searchLabel: 'गुरबाणी, अर्थ या सीधे रास्ते खोजें',
-    searchPlaceholder: 'गुरबाणी, पहले अक्षर, लिप्यंतरण या अर्थ खोजें',
-    refine: 'खोज सुधारें',
-    simplify: 'सरल करें',
-    autoDetect: 'अपने आप पहचानें',
-    directOpen: 'सीधे खोलें',
-    searching: 'खोज जारी है',
-    ready: 'तैयार',
-    inApp: 'पाठ खोलें',
-    exactFirst: 'सीधे रास्ते पहले',
-    libraryMatches: 'लाइब्रेरी से',
-    gurbaniMatches: 'गुरबाणी मिलान',
-    result: 'नतीजा मिला',
-    results: 'नतीजे मिले',
-    directDestination: 'सीधा पढ़ने का रास्ता उपलब्ध',
-    directDestinations: 'सीधे पढ़ने के रास्ते उपलब्ध',
-    partialSearch: 'कुछ स्रोत खोजे नहीं जा सके। उपलब्ध नतीजे दिखाए जा रहे हैं।',
-    allSources: 'सभी',
-    openDirectTarget: (label, unit, value) => `${label} ${unit} ${value} खोलें`,
-    directLookupBody: 'शब्द खोज चलाए बिना स्रोत सीधे खोलें।',
-    noDirectTarget: 'कोई मिलता स्रोत उस अंग या वार को नहीं खोल सकता।',
-    matchedFor: 'इसके लिए मिलान',
-    meaning: 'अर्थ',
-    allRaags: 'सभी राग',
-    allWriters: 'सभी रचनाकार',
-    unitLabels: { Ang: 'अंग', Vaar: 'वार', Page: 'पृष्ठ' },
-    matchCount: count => `${count} मिलान`,
-    libraryWorkDetail: chapterCount => `किताब · ${chapterCount} अध्याय`,
-    libraryChapterDetail: (shortTitle, volume, episodeNumber) => `${shortTitle} · खंड ${volume}${episodeNumber ? ` · कड़ी ${episodeNumber}` : ''}`,
-    showingResults: (visible, total) => `${total} में से ${visible} गुरबाणी मिलान दिखाए जा रहे हैं।`,
-    showMoreResults: 'और मिलान दिखाएँ',
-    noFilteredResults: 'इन दोनों फ़िल्टरों के साथ कोई मिलान नहीं है।',
-    clearFilters: 'फ़िल्टर साफ़ करें',
-    noResultsTitle: 'अभी कोई मिलान नहीं',
-    noResultsBody: 'पूरा बाणी नाम, गुरमुखी वाक्य या सरल वर्तनी आज़माएँ।',
-    tryExamples: 'उदाहरण आज़माएँ',
-    clearSearch: 'खोज साफ़ करें',
-    recent: 'हाल की खोजें',
-    clear: 'साफ़ करें',
-    searchResultsAbove: 'खोज के नतीजे ऊपर दिखाए गए हैं।',
-    featuredFlowEyebrow: 'विशेष पाठ-क्रम',
-    featuredFlowChip: 'श्रद्धा का क्रम',
-    featuredFlowTitle: 'अरदास + हुकमनामा',
-    featuredFlowBody: 'पहले सामूहिक सिख अरदास करें, फिर श्री गुरु ग्रंथ साहिब जी से हुकमनामा लेकर मनन करें।',
-    beginFlow: 'अरदास शुरू करें',
-    banisEyebrow: 'दैनिक अभ्यास',
-    banisTitle: 'दिन के हर समय के लिए बाणियाँ',
-    banisBody: 'सुबह, शाम और पूरे दैनिक पाठ।',
-    sourcesEyebrow: 'गुरबाणी स्रोत',
-    sourcesTitle: 'हर स्रोत को उसकी अपनी रचना में खोलें',
-    sourcesBody: 'ग्रंथ को अंग और भाई गुरदास जी की वारों को वार के अनुसार खोलें।',
-    sourceCatalogEyebrow: 'मूल स्रोत',
-    sourceCatalogTitle: 'स्रोत चुनें',
-    sourceCatalogBody: 'अंग या वार चुनकर सीधे पाठ खोलें।',
-    companionEyebrow: 'सहायक पाठक',
-    companionTitle: 'मार्गदर्शन और अभ्यास',
-    companionBody: 'रहत को पूरी अध्याय सूची के साथ पढ़ें।',
-    rehatTitle: 'रहत',
-    rehatBody: 'आचरण, अभ्यास और अध्याय के अनुसार पढ़ना।',
-    booksEyebrow: 'किताबें',
-    booksTitle: 'इतिहास और स्मृति लंबे रूप में',
-    booksBody: 'पूरी किताबों और उनके अध्यायों के माध्यम से सिख इतिहास पढ़ें।',
-    booksCatalogEyebrow: 'किताब संग्रह',
-    booksCatalogTitle: 'ऐतिहासिक किताबें',
-    booksCatalogBody: 'उपलब्ध खंड, अध्याय और पूरी किताब में खोजें।',
-    directoryEyebrow: 'देखें',
-    directoryTitle: 'बाणी सूचियाँ',
-    directoryBody: 'दैनिक पाठ, पूरे ग्रंथ संग्रह, वारें और कीर्तन।',
-    sundarGroups: { nitnem: 'नितनेम', popular: 'लोकप्रिय बाणियाँ', other: 'अन्य' },
-    completeVaars: 'पूरी वारें',
-    chooseVaar: 'पउड़ियों का पूरा क्रम खोलने के लिए वार चुनें।',
-    amritTitle: 'अमृत कीर्तन',
-    amritBody: 'पूरी अनुभाग सूची देखें',
-    pin: 'पिन करें',
-    unpin: 'पिन हटाएँ',
-    browse: 'पढ़ें',
-    indexLoading: 'सुंदर गुटका सूची लोड हो रही है…',
-    indexOffline: 'सुंदर गुटका सूची ऑफ़लाइन है। कनेक्शन जाँचकर फिर कोशिश करें।',
-    indexError: 'सुंदर गुटका सूची अभी उपलब्ध नहीं है। थोड़ी देर बाद फिर कोशिश करें।',
-    indexEmpty: 'अभी सुंदर गुटका की कोई प्रविष्टि उपलब्ध नहीं है।',
-    retry: 'फिर कोशिश करें',
-    countLoading: 'लोड हो रहा',
-    countUnavailable: 'उपलब्ध नहीं',
-    baniSingular: 'बाणी',
-    baniPlural: 'बाणियाँ',
-    artworkUnavailable: 'चित्र उपलब्ध नहीं',
-    artworkDescriptions: {
-      harmandir: 'सरोवर और आसपास की इमारतों के पास सुनहरे गुंबद वाले धार्मिक स्थल का चित्र।',
-      guruNanak: 'फूलों की सीमा के नीचे बैठी और खड़ी आकृतियों की चित्रित सभा।',
-      court: 'स्थापत्य आँगन में ऐतिहासिक दरबारी सभा का चित्र।',
-    },
-  },
-}
 
 function isExactBani(bani: Bani): bani is ExactBani {
   return typeof bani.baniDbId === 'number'
@@ -511,18 +117,12 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   ang: { type: -1, placeholder: 'Open an ang or Vaar', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
 }
-const SEARCH_MODE_GROUPS: Array<{ key: 'gurmukhi' | 'latin' | 'location'; modes: SearchMode[] }> = [
-  { key: 'gurmukhi', modes: ['first-letters', 'first-letters-anywhere', 'gurmukhi'] },
-  { key: 'latin', modes: ['english', 'transliteration'] },
-  { key: 'location', modes: ['ang'] },
-]
-const SEARCH_REFINEMENT_COPY: Record<UiLocale, Record<'gurmukhi' | 'latin' | 'location' | 'source', string>> = {
-  en: { gurmukhi: 'Match Gurmukhi', latin: 'English & Romanized text', location: 'Go to a location', source: 'Search within' },
-  pa: { gurmukhi: 'ਗੁਰਮੁਖੀ ਵਿੱਚ ਖੋਜ', latin: 'ਅੰਗਰੇਜ਼ੀ ਅਤੇ ਰੋਮਨ ਲਿਪੀ', location: 'ਅੰਗ ਜਾਂ ਵਾਰ ਖੋਲ੍ਹੋ', source: 'ਸਰੋਤ ਚੁਣੋ' },
-  hi: { gurmukhi: 'गुरमुखी में खोजें', latin: 'अंग्रेज़ी और रोमन लिपि', location: 'अंग या वार खोलें', source: 'स्रोत चुनें' },
-}
 const READ_SEARCH_EXAMPLES = ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam']
 const SEARCH_RESULTS_PAGE_SIZE = 12
+function getSearchVisibleCount(value: string | null) {
+  const count = Number(value)
+  return Number.isSafeInteger(count) && count >= SEARCH_RESULTS_PAGE_SIZE ? count : SEARCH_RESULTS_PAGE_SIZE
+}
 const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
 const LATIN_SEARCH_PATTERN = /[A-Za-z]/
 
@@ -845,6 +445,8 @@ function IndexRow({
 }) {
   return (
     <button
+      id={discoveryFocusId(`${label} ${detail ?? ''}`)}
+      data-read-launch="true"
       onClick={onClick}
       className="read-index-row w-full text-left active:scale-[0.99] transition-transform duration-150"
     >
@@ -975,105 +577,6 @@ function ReadArtwork({
   )
 }
 
-function AppSearchResultGroup({
-  matches,
-  query,
-  groupLabel,
-  groupHint,
-  testId,
-  aiResultGroup,
-  resultAnchor,
-  className,
-  copy,
-  searchMode,
-  searchSource,
-  addRecent,
-  openSearchDestination,
-}: {
-  matches: AppSearchMatch[]
-  query: string
-  groupLabel: string
-  groupHint?: string
-  testId: string
-  aiResultGroup: string
-  resultAnchor: boolean
-  className: string
-  copy: ReadPageCopy
-  searchMode: SearchMode
-  searchSource: SearchSource
-  addRecent: (query: string, mode: SearchMode, source: SearchSource) => void
-  openSearchDestination: (path: string) => void
-}) {
-  const trimmedQuery = query.trim()
-
-  return (
-    <div
-      data-search-result-anchor={resultAnchor ? 'true' : undefined}
-      className={`nav-safe-results space-y-2 ${className}`}
-      data-testid={testId}
-      data-ai-result-group={aiResultGroup}
-    >
-      <div className="flex items-center justify-between gap-3 px-1">
-        <h3 className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/75 dark:text-dark-text/76">
-          {groupLabel}
-        </h3>
-        {groupHint ? (
-          <p className="font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
-            {groupHint}
-          </p>
-        ) : null}
-      </div>
-      {matches.map(match => {
-        const matchDetail = match.kind === 'library-work' && match.library
-          ? copy.libraryWorkDetail(match.library.chapterCount ?? 0)
-          : match.kind === 'library-chapter' && match.library
-            ? copy.libraryChapterDetail(
-                match.library.shortTitle,
-                match.library.volume ?? 1,
-                match.library.episodeNumber
-              )
-            : match.detail
-        const showMatchedQuery = trimmedQuery.length >= 2
-          && !hasSearchMatch(match.label, trimmedQuery)
-          && !hasSearchMatch(matchDetail, trimmedQuery)
-          && !hasSearchMatch(match.excerpt ?? '', trimmedQuery)
-
-        return (
-          <button
-            key={match.key}
-            onClick={() => {
-              addRecent(trimmedQuery, searchMode, searchSource)
-              openSearchDestination(match.path)
-            }}
-            className="w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 py-3 text-left transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:bg-saffron/12"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                  <SearchHighlight text={match.label} query={trimmedQuery} />
-                </p>
-                <p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">
-                  <SearchHighlight text={matchDetail} query={trimmedQuery} />
-                </p>
-                {match.excerpt ? (
-                  <p className="mt-2 line-clamp-3 font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
-                    <SearchHighlight text={match.excerpt} query={trimmedQuery} />
-                  </p>
-                ) : null}
-                {showMatchedQuery ? (
-                  <p className="mt-2 font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
-                    {copy.matchedFor} <SearchHighlight text={trimmedQuery} query={trimmedQuery} />
-                  </p>
-                ) : null}
-              </div>
-              <IconArrowRight size={18} className="shrink-0" aria-hidden="true" />
-            </div>
-          </button>
-        )
-      })}
-    </div>
-  )
-}
 
 export default function Banis() {
   const scriptMode = useLanguageStore(state => state.scriptMode)
@@ -1089,8 +592,13 @@ export default function Banis() {
   const activeCollection: ReadCollection = isReadCollectionParam(collectionParam) ? collectionParam : 'banis'
   const copy = READ_PAGE_COPY[locale]
   const searchModeLabels = getSearchModeLabels(locale)
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({})
-  const [searchQuery, setSearchQuery] = useState(() => searchParams.get('query') ?? '')
+  const expanded = useMemo<Record<string, boolean>>(() => Object.fromEntries(
+    (searchParams.get('open') ?? '').split(',').filter(key => key.length > 0 && key.length <= 200).map(key => [key, true])
+  ), [searchParams])
+  const searchScope = (SEARCH_SCOPES.includes(searchParams.get('scope') as SearchScope) ? searchParams.get('scope') : 'all') as SearchScope
+  const searchUi = READ_SEARCH_UI[locale]
+  const previousQuery = searchParams.get('previousQuery') ?? ''
+  const [searchQuery, setSearchQuery] = useState(() => searchParams.get('query') ?? (activeCollection === 'stories' ? searchParams.get('storyQuery') : null) ?? '')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [librarySearchResults, setLibrarySearchResults] = useState<AppSearchMatch[]>([])
   const [storySearchResults, setStorySearchResults] = useState<AppSearchMatch[]>([])
@@ -1103,14 +611,22 @@ export default function Banis() {
   const [searchSource, setSearchSource] = useState<SearchSource>(() => (
     isSearchSourceParam(initialSourceParam) ? initialSourceParam : 'all'
   ))
-  const [raagFilter, setRaagFilter] = useState<string>('all')
-  const [writerFilter, setWriterFilter] = useState<string>('all')
-  const [visibleSearchResultCount, setVisibleSearchResultCount] = useState(SEARCH_RESULTS_PAGE_SIZE)
+  const [raagFilter, setRaagFilter] = useState<string>(() => searchParams.get('raag') ?? 'all')
+  const [writerFilter, setWriterFilter] = useState<string>(() => searchParams.get('writer') ?? 'all')
+  const [visibleSearchResultCount, setVisibleSearchResultCount] = useState(() => getSearchVisibleCount(searchParams.get('matches')))
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
   const [sundarGutkaIssue, setSundarGutkaIssue] = useState<AsyncIssueCode | null>(null)
   const [sundarGutkaRequest, setSundarGutkaRequest] = useState(0)
-  const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
+  const toggle = (key: string) => setSearchParams(current => {
+    const next = new URLSearchParams(current)
+    const keys = new Set((next.get('open') ?? '').split(',').filter(Boolean))
+    if (keys.has(key)) keys.delete(key)
+    else keys.add(key)
+    if (keys.size) next.set('open', [...keys].join(','))
+    else next.delete('open')
+    return next
+  }, { replace: true })
   const searchOptionsOpen = expanded['search-options'] ?? false
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
@@ -1120,6 +636,7 @@ export default function Banis() {
   const searchInputRef = useRef<HTMLInputElement | null>(null)
   const searchCardRef = useRef<HTMLDivElement | null>(null)
   const searchLocationHydrationRef = useRef(false)
+  const pendingSearchScopeRef = useRef<SearchScope | null>(null)
   const searchStateRef = useRef({
     query: searchQuery,
     mode: searchMode,
@@ -1171,7 +688,7 @@ export default function Banis() {
   }, [])
 
   useEffect(() => {
-    if (activeCollection === 'stories') return
+    if (activeCollection !== 'banis') return
     let cancelled = false
 
     setLoadingSundarGutka(true)
@@ -1208,7 +725,9 @@ export default function Banis() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
-    const nextQuery = params.get('query') ?? ''
+    if ((params.get('scope') ?? 'all') === pendingSearchScopeRef.current) pendingSearchScopeRef.current = null
+    const legacyStoryQuery = params.get('collection') === 'stories' && !params.has('query') ? params.get('storyQuery') : null
+    const nextQuery = params.get('query') ?? legacyStoryQuery ?? ''
     const nextModeParam = params.get('mode')
     const nextSourceParam = params.get('source')
     const nextMode: SearchMode = isSearchModeParam(nextModeParam) ? nextModeParam : 'auto-detect'
@@ -1236,7 +755,16 @@ export default function Banis() {
     setSearchQuery(current => current === nextQuery ? current : nextQuery)
     setSearchMode(current => current === nextMode ? current : nextMode)
     setSearchSource(current => current === nextSource ? current : nextSource)
-  }, [location.search])
+    setRaagFilter(params.get('raag') ?? 'all')
+    setWriterFilter(params.get('writer') ?? 'all')
+    setVisibleSearchResultCount(getSearchVisibleCount(params.get('matches')))
+    if (legacyStoryQuery) {
+      params.set('query', legacyStoryQuery)
+      params.set('scope', 'stories')
+      params.delete('storyQuery')
+      setSearchParams(params, { replace: true })
+    }
+  }, [location.search, setSearchParams])
 
   useEffect(() => {
     if (searchLocationHydrationRef.current) {
@@ -1249,15 +777,25 @@ export default function Banis() {
       mode: searchMode,
       source: searchSource,
     })
-    const nextSearchParams = new URLSearchParams(searchPath.split('?')[1] ?? '')
-    if (activeCollection !== 'banis') {
-      nextSearchParams.set('collection', activeCollection)
+    const searchFields = new URLSearchParams(searchPath.split('?')[1] ?? '')
+    const nextSearchParams = new URLSearchParams(location.search)
+    // Typing can render before the Router commits a scope-change transition.
+    // Preserve that explicit selection when the urgent input update saves its URL.
+    if (pendingSearchScopeRef.current !== null) {
+      if (pendingSearchScopeRef.current === 'all') nextSearchParams.delete('scope')
+      else nextSearchParams.set('scope', pendingSearchScopeRef.current)
     }
-    const currentLocationParams = new URLSearchParams(location.search)
-    for (const qaControl of ['qaFail', 'qaEmpty', 'qaSlow', 'storyQuery', 'storyCollection']) {
-      const value = currentLocationParams.get(qaControl)
-      if (value) nextSearchParams.set(qaControl, value)
+    for (const key of ['query', 'mode', 'source']) {
+      const value = searchFields.get(key)
+      if (value) nextSearchParams.set(key, value)
+      else nextSearchParams.delete(key)
     }
+    for (const [key, value] of [['raag', raagFilter], ['writer', writerFilter]]) {
+      if (value !== 'all') nextSearchParams.set(key, value)
+      else nextSearchParams.delete(key)
+    }
+    if (visibleSearchResultCount > SEARCH_RESULTS_PAGE_SIZE) nextSearchParams.set('matches', String(visibleSearchResultCount))
+    else nextSearchParams.delete('matches')
 
     const nextSearch = nextSearchParams.toString()
     const nextPath = `${location.pathname}${nextSearch ? `?${nextSearch}` : ''}`
@@ -1266,25 +804,31 @@ export default function Banis() {
     if (nextPath === currentPath) return
 
     setSearchParams(new URLSearchParams(nextSearch), { replace: true })
-  }, [activeCollection, location.pathname, location.search, searchMode, searchQuery, searchSource, setSearchParams])
+  }, [activeCollection, location.pathname, location.search, searchMode, searchQuery, searchSource, raagFilter, writerFilter, visibleSearchResultCount, setSearchParams])
 
   const selectCollection = useCallback((collection: ReadCollection) => {
-    if (collection === 'stories') {
-      searchSequenceRef.current += 1
-      if (debounceRef.current) clearTimeout(debounceRef.current)
-      debounceRef.current = null
-      searchAbortRef.current?.abort()
-      searchAbortRef.current = null
-      setSearching(false)
-    }
+    searchSequenceRef.current += 1
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    debounceRef.current = null
+    searchAbortRef.current?.abort()
+    searchAbortRef.current = null
+    setSearching(false)
+    setSearchResults([])
+    setLibrarySearchResults([])
+    setStorySearchResults([])
+    setSearchIssue(null)
+    setSearchPartialIssue(null)
     const nextSearchParams = new URLSearchParams(location.search)
+    if (searchQuery.trim()) nextSearchParams.set('previousQuery', searchQuery.trim())
+    nextSearchParams.delete('query')
+    nextSearchParams.delete('storyQuery')
     if (collection === 'banis') {
       nextSearchParams.delete('collection')
     } else {
       nextSearchParams.set('collection', collection)
     }
     setSearchParams(nextSearchParams, { replace: false })
-  }, [location.search, setSearchParams])
+  }, [location.search, searchQuery, setSearchParams])
 
   useEffect(() => {
     const state = (location.state as { focusSearch?: boolean } | null) ?? null
@@ -1308,12 +852,9 @@ export default function Banis() {
     searchAbortRef.current?.abort()
     searchAbortRef.current = null
     setSearchQuery(query)
-    setRaagFilter('all')
-    setWriterFilter('all')
-    setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE)
     if (debounceRef.current) clearTimeout(debounceRef.current)
     const trimmed = query.trim()
-    const directLookup = isDirectSearch(trimmed, mode)
+    const directLookup = (searchScope === 'all' || searchScope === 'gurbani') && isDirectSearch(trimmed, mode)
     if (trimmed.length < getSearchMinimumLength(trimmed, mode)) {
       setSearchResults([])
       setLibrarySearchResults([])
@@ -1345,14 +886,15 @@ export default function Banis() {
       const isCurrent = () => searchSequenceRef.current === requestSequence && !controller.signal.aborted
       const remoteSets: SearchResult[][] = []
       let remoteSuccesses = 0
-      let localResultCount = 0
+      let localResultCount = searchScope === 'all' || searchScope === 'gurbani'
+        ? getAppSearchMatches(trimmed, source).length : 0
       let firstFailure: AsyncIssueCode | null = null
       const failed = (error: unknown) => {
         if (!isCurrent()) return
         firstFailure ??= resolveAsyncIssue(error).code
         setSearchPartialIssue(firstFailure)
       }
-      const tasks: Promise<unknown>[] = getBackendSearchTypes(trimmed, mode).map(searchType =>
+      const tasks: Promise<unknown>[] = (searchScope === 'all' || searchScope === 'gurbani' ? getBackendSearchTypes(trimmed, mode) : []).map(searchType =>
         withSearchDeadline(signal => fetchSearch(trimmed, searchType, source, 'read-search', signal), controller.signal)
           .then(results => {
             if (!isCurrent()) return
@@ -1362,13 +904,14 @@ export default function Banis() {
             revealSearchFeedback()
           }).catch(failed)
       )
-      if (source === 'all' && (mode === 'auto-detect' || mode === 'english' || mode === 'transliteration')) {
-        tasks.push(
-          withSearchDeadline(() => getLibrarySearchMatches(trimmed), controller.signal)
-            .then(results => { if (isCurrent()) { localResultCount += results.length; setLibrarySearchResults(results); revealSearchFeedback() } }).catch(failed),
-          withSearchDeadline(() => getStorySearchMatches(trimmed), controller.signal)
-            .then(results => { if (isCurrent()) { localResultCount += results.length; setStorySearchResults(results); revealSearchFeedback() } }).catch(failed),
-        )
+      const includeMetadata = (source === 'all' && (mode === 'auto-detect' || mode === 'english' || mode === 'transliteration'))
+      if (searchScope === 'books' || (searchScope === 'all' && includeMetadata)) {
+        tasks.push(withSearchDeadline(() => getLibrarySearchMatches(trimmed), controller.signal)
+          .then(results => { if (isCurrent()) { localResultCount += results.length; setLibrarySearchResults(results); revealSearchFeedback() } }).catch(failed))
+      }
+      if (searchScope === 'stories' || (searchScope === 'all' && includeMetadata)) {
+        tasks.push(withSearchDeadline(() => getStorySearchMatches(trimmed), controller.signal)
+          .then(results => { if (isCurrent()) { localResultCount += results.length; setStorySearchResults(results); revealSearchFeedback() } }).catch(failed))
       }
       await Promise.all(tasks)
       if (searchAbortRef.current === controller) searchAbortRef.current = null
@@ -1381,17 +924,26 @@ export default function Banis() {
       setSearching(false)
       revealSearchFeedback()
     }, 300)
-  }, [addRecent, revealSearchFeedback, searchMode, searchSource])
+  }, [addRecent, revealSearchFeedback, searchMode, searchSource, searchScope])
 
   const clearSearch = useCallback(() => {
-    handleSearch('', searchMode, searchSource)
+    setSearchParams(current => {
+      const next = new URLSearchParams(current)
+      if (searchQuery.trim()) next.set('previousQuery', searchQuery.trim())
+      next.delete('query')
+      return next
+    }, { replace: true })
+    searchSequenceRef.current += 1
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    searchAbortRef.current?.abort()
+    setSearching(false)
     setSearchResults([])
     setLibrarySearchResults([])
     setStorySearchResults([])
     setSearchIssue(null)
     setSearchPartialIssue(null)
     globalThis.requestAnimationFrame(() => searchInputRef.current?.focus())
-  }, [handleSearch, searchMode, searchSource])
+  }, [searchQuery, setSearchParams])
 
   const trySearchExample = useCallback((example: string) => {
     setSearchMode('auto-detect')
@@ -1400,19 +952,8 @@ export default function Banis() {
   }, [handleSearch, searchSource])
 
   useEffect(() => {
-    if (activeCollection === 'stories') {
-      searchSequenceRef.current += 1
-      if (debounceRef.current) clearTimeout(debounceRef.current)
-      debounceRef.current = null
-      searchAbortRef.current?.abort()
-      searchAbortRef.current = null
-      return
-    }
-    const trimmed = searchQuery.trim()
-    if (trimmed.length >= getSearchMinimumLength(trimmed, searchMode)) {
-      handleSearch(searchQuery, searchMode, searchSource)
-    }
-  }, [activeCollection, handleSearch, searchMode, searchSource, searchQuery])
+    handleSearch(searchQuery, searchMode, searchSource)
+  }, [handleSearch, searchMode, searchSource, searchQuery])
 
   const readSearchOrigin = buildCurrentAppPath(location)
   const openSearchDestination = (path: string) => {
@@ -1437,7 +978,7 @@ export default function Banis() {
         ?? item.gurmukhi
 
     if (canonicalBani) {
-      navigate(buildCanonicalBaniStudyPath(canonicalBani, {
+      openSearchDestination(buildCanonicalBaniStudyPath(canonicalBani, {
         baniDbId: item.id,
         baniId: canonicalBani.variantOf ?? canonicalBani.id,
         baniName: name,
@@ -1446,7 +987,7 @@ export default function Banis() {
     }
 
     if (exactBani) {
-      navigate(buildCanonicalBaniStudyPath(exactBani, {
+      openSearchDestination(buildCanonicalBaniStudyPath(exactBani, {
         baniDbId: item.id,
         baniId: exactBani.variantOf ?? exactBani.id,
         baniName: name,
@@ -1454,7 +995,7 @@ export default function Banis() {
       return
     }
 
-    navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
+    openSearchDestination(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
   }
 
   const sundarGutkaGroups = useMemo(() => {
@@ -1498,31 +1039,27 @@ export default function Banis() {
   const visibleGroupedSearchResults = groupedSearchResults.slice(0, visibleSearchResultCount)
   const hasActiveMetadataFilters = raagFilter !== 'all' || writerFilter !== 'all'
 
-  useEffect(() => {
-    setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE)
-  }, [raagFilter, writerFilter])
 
   const { raags: availableRaags, writers: availableWriters } = useMemo(
     () => getAvailableSearchMeta(searchResults),
     [searchResults]
   )
 
-  const directLookupActive = isDirectSearch(searchQuery.trim(), searchMode)
+  const directLookupActive = (searchScope === 'all' || searchScope === 'gurbani') && isDirectSearch(searchQuery.trim(), searchMode)
   const angTargets = useMemo(
     () => directLookupActive ? getAngTargets(searchQuery, searchSource) : [],
     [directLookupActive, searchQuery, searchSource]
   )
 
   const readRouteMatches = useAppSearchMatches(
-    directLookupActive ? '' : searchQuery.trim(),
+    directLookupActive || searchScope === 'stories' || searchScope === 'books' ? '' : searchQuery.trim(),
     searchSource
   )
   const immediateAppSearchMatches = getUniqueAppSearchMatches(readRouteMatches)
-    .slice(0, SEARCH_RESULTS_PAGE_SIZE)
   const deferredLibrarySearchMatches = getUniqueAppSearchMatches(
     librarySearchResults,
     immediateAppSearchMatches
-  ).slice(0, Math.max(SEARCH_RESULTS_PAGE_SIZE - immediateAppSearchMatches.length, 0))
+  )
   const appSearchMatchCount = (
     immediateAppSearchMatches.length
     + deferredLibrarySearchMatches.length
@@ -1536,7 +1073,12 @@ export default function Banis() {
       && !GURMUKHI_SEARCH_PATTERN.test(searchQuery)
     )
   )
-  const hasActiveSearch = activeCollection !== 'stories' && searchQuery.trim().length >= getSearchMinimumLength(searchQuery.trim(), searchMode)
+  const hasActiveSearch = searchQuery.trim().length >= getSearchMinimumLength(searchQuery.trim(), searchMode)
+  useEffect(() => {
+    if ((activeCollection === 'banis' && loadingSundarGutka) || (hasActiveSearch && searching)) return
+    return restoreDiscoveryReturn(buildCurrentAppPath(location))
+  }, [activeCollection, loadingSundarGutka, hasActiveSearch, searching, location])
+
   const searchStatusMessage = useMemo(() => {
     if (!hasActiveSearch) return ''
     if (searching) return copy.searching
@@ -1559,6 +1101,14 @@ export default function Banis() {
       data-page="banis"
       data-ai-surface="read"
       data-ai-state="ready"
+      onClickCapture={event => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        const target = (event.target as HTMLElement).closest<HTMLElement>('a, [data-read-launch="true"]')
+        if (!target) return
+        const href = target.getAttribute('href')
+        if (!target.hasAttribute('data-read-launch') && (!href?.startsWith('/') || href.startsWith('/banis?'))) return
+        rememberDiscoveryReturn(buildCurrentAppPath(location), target.id || null)
+      }}
     >
       <div className="read-room-stack">
         <section className="read-room-hero" aria-labelledby="read-room-title">
@@ -1584,7 +1134,7 @@ export default function Banis() {
             />
           </figure>
 
-          {activeCollection !== 'stories' ? <div
+          <div
             ref={searchCardRef}
             className="read-quick-find-card"
         aria-labelledby="banis-quick-find-title"
@@ -1605,106 +1155,31 @@ export default function Banis() {
         }
         data-ai-error={searchIssue || searchPartialIssue ? 'read-search' : undefined}
       >
-        <div className="read-quick-find-card__heading">
-          <div className="read-quick-find-card__title">
-            <p className="eyebrow">{copy.find}</p>
-            <h2 id="banis-quick-find-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-              {copy.searchTitle}
-            </h2>
-          </div>
-          <button
-            type="button"
-            onClick={() => toggle('search-options')}
-            className="shrink-0 rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-[11px] font-medium text-ink/65 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/80"
-            aria-expanded={searchOptionsOpen}
-            aria-controls="banis-search-options-panel"
-            data-ai-action="toggle-search-options"
-          >
-            {searchOptionsOpen ? copy.simplify : copy.refine}
-          </button>
-        </div>
+        <ReadSearchControls copy={copy} locale={locale} inputRef={searchInputRef}
+          query={searchQuery} mode={searchMode} source={searchSource} scope={searchScope}
+          optionsOpen={searchOptionsOpen} active={hasActiveSearch} status={searchStatusMessage} previousQuery={previousQuery}
+          onToggleOptions={() => toggle('search-options')}
+          onQuery={value => { setRaagFilter('all'); setWriterFilter('all'); setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE); handleSearch(value) }}
+          onMode={setSearchMode} onSource={setSearchSource} onExit={clearSearch}
+          onRecover={() => handleSearch(previousQuery)}
+          onScope={scope => {
+            pendingSearchScopeRef.current = scope
+            setSearchParams(current => {
+              const next = new URLSearchParams(current)
+              if (scope === 'all') next.delete('scope')
+              else next.set('scope', scope)
+              next.delete('raag'); next.delete('writer'); next.delete('matches')
+              return next
+            }, { replace: true })
+          }} />
 
-        <div className="read-search-control relative mt-4" data-ai-search-shell="read-smart-search">
-          <IconSearch size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/32 dark:text-dark-text/34" />
-          <input
-            ref={searchInputRef}
-            id="banis-search"
-            name="banis-search"
-            type="search"
-            aria-label={copy.searchLabel}
-            autoCapitalize="none"
-            autoCorrect="off"
-            autoComplete="off"
-            spellCheck={false}
-            enterKeyHint="search"
-            inputMode="search"
-            value={searchQuery}
-            onChange={e => handleSearch(e.target.value)}
-            placeholder={searchMode === 'ang' ? searchModeLabels.ang : copy.searchPlaceholder}
-            className="read-search-input w-full rounded-lg border border-sand/15 bg-parchment-card py-4 pl-11 pr-4 font-sans text-base text-ink outline-none transition-colors duration-300 placeholder:text-ink/36 focus:border-saffron/45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text dark:placeholder:text-dark-text/38"
-            data-ai-action="read-smart-search"
-          />
-          <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-            {searchStatusMessage}
-          </p>
-        </div>
-        {!searchOptionsOpen && <div className="read-search-summary mt-3 flex flex-wrap items-center gap-2">
-          <MetadataChip>{searchMode === 'auto-detect' ? copy.autoDetect : searchModeLabels[searchMode]}</MetadataChip>
-          {searchSource !== 'all' && <MetadataChip>{SOURCE_READER_META[searchSource].name}</MetadataChip>}
-          {directLookupActive && <MetadataChip>{copy.directOpen}</MetadataChip>}
-        </div>}
-
-        {searchOptionsOpen && (
-          <div id="banis-search-options-panel">
-            <button
-              type="button"
-              className="read-refinement-choice read-refinement-auto"
-              aria-pressed={searchMode === 'auto-detect'}
-              onClick={() => setSearchMode('auto-detect')}
-            >
-              {copy.autoDetect}
-            </button>
-            {SEARCH_MODE_GROUPS.map(group => (
-              <fieldset key={group.key} className="read-refinement-group">
-                <legend>{SEARCH_REFINEMENT_COPY[locale][group.key]}</legend>
-                <div className="read-refinement-options">
-                  {group.modes.map(mode => (
-                    <button
-                      key={mode}
-                      type="button"
-                      onClick={() => setSearchMode(mode)}
-                      aria-pressed={searchMode === mode}
-                      className="read-refinement-choice"
-                    >
-                      {searchModeLabels[mode]}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
-            ))}
-            <fieldset className="read-refinement-group">
-              <legend>{SEARCH_REFINEMENT_COPY[locale].source}</legend>
-              <div className="read-refinement-sources">
-                {(Object.keys(SEARCH_SOURCE_LABELS) as SearchSource[]).map(value => (
-                  <button
-                    key={value}
-                    type="button"
-                    onClick={() => setSearchSource(value)}
-                    aria-pressed={searchSource === value}
-                    className="read-refinement-choice"
-                  >
-                    {value === 'all' ? copy.allSources : SOURCE_READER_META[value].name}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
-          </div>
-          )}
           {directLookupActive && searchQuery.trim() && (
             <div data-search-result-anchor="true" className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-ang-results" data-ai-result-group="ang">
             {angTargets.length > 0 ? angTargets.map(target => (
               <button
                 key={target.source}
+                id={`read-direct-${target.source}`}
+                data-read-launch="true"
                 onClick={() => {
                   addRecent(searchQuery.trim(), searchMode, searchSource)
                   openSearchDestination(target.path)
@@ -1746,7 +1221,7 @@ export default function Banis() {
               {!searching ? <button type="button" className="read-search-clear mt-2" onClick={() => handleSearch(searchQuery, searchMode, searchSource)}>{copy.retry}</button> : null}
             </div>
           )}
-          {immediateAppSearchMatches.length > 0 && !directLookupActive && (
+          {hasActiveSearch && immediateAppSearchMatches.length > 0 && !directLookupActive && (
             <AppSearchResultGroup
               matches={immediateAppSearchMatches}
               query={searchQuery}
@@ -1762,7 +1237,7 @@ export default function Banis() {
               openSearchDestination={openSearchDestination}
             />
           )}
-          {searchResults.length > 0 && !directLookupActive && (
+          {hasActiveSearch && searchResults.length > 0 && !directLookupActive && (
             <div data-search-result-anchor={immediateAppSearchMatches.length === 0 ? 'true' : undefined} className="nav-safe-results mt-2 space-y-1" data-testid="banis-search-gurbani-results" data-ai-result-group="gurbani">
             <h3 className="px-1 pb-1 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/75 dark:text-dark-text/76">
               {copy.gurbaniMatches}
@@ -1824,6 +1299,7 @@ export default function Banis() {
                   onClick={() => {
                     setRaagFilter('all')
                     setWriterFilter('all')
+                    setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE)
                   }}
                 >
                   {copy.clearFilters}
@@ -1838,6 +1314,8 @@ export default function Banis() {
               >
                 <button
                   type="button"
+                  id={`read-verse-${r.verseId}`}
+                  data-read-launch="true"
                   onClick={() => openSearchResult(r)}
                   className="w-full text-left"
                 >
@@ -1883,7 +1361,7 @@ export default function Banis() {
             ) : null}
           </div>
         )}
-        {deferredLibrarySearchMatches.length > 0 && !directLookupActive && (
+        {hasActiveSearch && deferredLibrarySearchMatches.length > 0 && !directLookupActive && (
           <AppSearchResultGroup
             matches={deferredLibrarySearchMatches}
             query={searchQuery}
@@ -1899,7 +1377,7 @@ export default function Banis() {
             openSearchDestination={openSearchDestination}
           />
         )}
-        {storySearchResults.length > 0 && !directLookupActive ? <AppSearchResultGroup
+        {hasActiveSearch && storySearchResults.length > 0 && !directLookupActive ? <AppSearchResultGroup
           matches={storySearchResults} query={searchQuery} groupLabel={copy.tabs.stories}
           testId="banis-search-story-results" aiResultGroup="stories" resultAnchor={appSearchMatchCount === storySearchResults.length && searchResults.length === 0}
           className="mt-3" copy={copy} searchMode={searchMode} searchSource={searchSource}
@@ -1911,7 +1389,7 @@ export default function Banis() {
               {copy.noResultsTitle}
             </h3>
             <p className="mt-1 font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
-              {copy.noResultsBody}
+              {searchUi.emptyBody[searchScope]}
             </p>
             <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={copy.tryExamples}>
               {READ_SEARCH_EXAMPLES.map(example => (
@@ -1956,10 +1434,11 @@ export default function Banis() {
             </div>
           </div>
         )}
-          </div> : null}
+          </div>
         </section>
 
-        <div className="read-collection-tabs" role="tablist" aria-label={copy.collectionsLabel}>
+        <div className="read-browse-heading"><h2>{searchUi.browse}</h2></div>
+        <div className="read-collection-tabs" role={hasActiveSearch ? 'group' : 'tablist'} aria-label={copy.collectionsLabel}>
           {READ_COLLECTIONS.map((collection, index) => {
             const selected = activeCollection === collection
             return (
@@ -1967,12 +1446,13 @@ export default function Banis() {
                 key={collection}
                 id={`read-tab-${collection}`}
                 type="button"
-                role="tab"
-                aria-selected={selected}
-                aria-controls="read-active-collection-panel"
-                tabIndex={selected ? 0 : -1}
+                role={hasActiveSearch ? undefined : 'tab'}
+                aria-selected={hasActiveSearch ? undefined : selected}
+                aria-controls={hasActiveSearch ? undefined : 'read-active-collection-panel'}
+                tabIndex={hasActiveSearch || selected ? 0 : -1}
                 onClick={() => selectCollection(collection)}
                 onKeyDown={event => {
+                  if (hasActiveSearch) return
                   let nextIndex = index
                   if (event.key === 'ArrowRight') nextIndex = (index + 1) % READ_COLLECTIONS.length
                   else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + READ_COLLECTIONS.length) % READ_COLLECTIONS.length
@@ -1997,20 +1477,9 @@ export default function Banis() {
 
         {!hasActiveSearch && activeCollection === 'stories' ? (
           <div id="read-active-collection-panel" role="tabpanel" aria-labelledby="read-tab-stories" className="read-collection-panel">
-            <Suspense fallback={<p role="status" className="p-5 text-sm">Opening the story collection…</p>}>
-              <StoryBrowser />
+            <Suspense fallback={<p role="status" className="p-5 text-sm">{searchUi.openingStories}</p>}>
+              <StoryBrowser showSearch={false} continuation={<ReadContinue />} />
             </Suspense>
-          </div>
-        ) : null}
-
-        {hasActiveSearch ? (
-          <div
-            id="read-active-collection-panel"
-            role="tabpanel"
-            aria-labelledby={`read-tab-${activeCollection}`}
-            className="read-search-active-note"
-          >
-            {copy.searchResultsAbove}
           </div>
         ) : null}
 
@@ -2037,9 +1506,12 @@ export default function Banis() {
                 <p className="read-collection-intro__body">{copy.banisBody}</p>
               </div>
             </div>
+            <ReadContinue />
 
         <Link
           to="/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama"
+          state={{ readerOrigin: readSearchOrigin }}
+          id="read-ardaas-flow"
           className="read-featured-flow-card w-full text-left active:scale-[0.99] transition-transform duration-150"
           data-testid="banis-featured-flow"
           data-ai-action="open-ardaas-hukamnama-flow"
@@ -2163,7 +1635,7 @@ export default function Banis() {
                               labelLang={getScriptTextLang(scriptMode)}
                               labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
                               detailClassName="font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5"
-                              onClick={() => navigate(buildNitnemStudyPath(option))}
+                              onClick={() => openSearchDestination(buildNitnemStudyPath(option))}
                             />
                           ))
                         }
@@ -2249,7 +1721,7 @@ export default function Banis() {
                                   label={getBaniRowLabel(item)}
                                   detail={getReaderEditorialCopyForBani(item.id)?.dek ?? item.description}
                                   detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                  onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
+                                  onClick={() => openSearchDestination(buildCanonicalBaniStudyPath(item))}
                                 />
                               )
                             }
@@ -2264,7 +1736,7 @@ export default function Banis() {
                                   label={getBaniRowLabel(item)}
                                   detail={getReaderEditorialCopyForBani(item.id)?.dek}
                                   detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                  onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
+                                  onClick={() => openSearchDestination(buildCanonicalBaniStudyPath(item))}
                                 />
                               )
                             }
@@ -2277,7 +1749,7 @@ export default function Banis() {
                                   label={option.label}
                                   detail={option.detail}
                                   detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                  onClick={() => navigate(option.path)}
+                                  onClick={() => openSearchDestination(option.path)}
                                 />
                               ))
                             }
@@ -2288,7 +1760,7 @@ export default function Banis() {
                                 label={getBaniRowLabel(item)}
                                 detail={getReaderEditorialCopyForBani(item.id)?.dek}
                                 detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
+                                onClick={() => openSearchDestination(buildCanonicalBaniStudyPath(item))}
                               />
                             )
                           })}
@@ -2335,8 +1807,9 @@ export default function Banis() {
               {BHAI_GURDAS_VAARS.map(vaar => (
                 <Link
                   key={vaar}
+                  id={`read-vaar-${vaar}`}
                   to={`/study?source=B&ang=${vaar}`}
-                  state={{ readerOrigin: '/banis' }}
+                  state={{ readerOrigin: readSearchOrigin }}
                   className="read-vaar-link"
                   aria-label={`Open Bhai Gurdas Ji Vaar ${vaar}`}
                 >
@@ -2351,6 +1824,7 @@ export default function Banis() {
 
       <Link
         to="/banis/amrit-keertan"
+        id="read-amrit-keertan"
         className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
         data-testid="banis-open-amrit-keertan"
       >
@@ -2397,6 +1871,7 @@ export default function Banis() {
               </div>
             </div>
 
+            <ReadContinue />
             <section
               className="read-source-section"
               aria-labelledby="read-source-browser-title"
@@ -2448,6 +1923,7 @@ export default function Banis() {
               </div>
             </div>
 
+            <ReadContinue />
             <section className="read-companion-section" aria-labelledby="read-companion-title">
               <div className="read-section-header">
                 <p className="eyebrow">{copy.companionEyebrow}</p>
@@ -2462,6 +1938,7 @@ export default function Banis() {
               <div className="mt-4 grid gap-3">
                 <Link
                   to="/banis/rehat"
+                  id="read-rehat"
                   className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
                   data-testid="banis-open-rehat"
                 >

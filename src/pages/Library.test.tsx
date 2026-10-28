@@ -3,6 +3,9 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Library from './Library'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
+import { useReadingProgressStore } from '../store/readingProgress'
+import { useStoryStore } from '../store/stories'
+import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useProgressStore } from '../store/progress'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useVocabStore } from '../store/vocab'
@@ -23,6 +26,7 @@ function renderLibraryRoutes() {
       <Routes>
         <Route path="/saved" element={<><Library /><LocationSpy /></>} />
         <Route path="/study" element={<LocationSpy />} />
+        <Route path="/stories/:storyId" element={<LocationSpy />} />
         <Route path="/library/:workId/chapters/:chapterId" element={<LocationSpy />} />
       </Routes>
     </MemoryRouter>
@@ -31,6 +35,9 @@ function renderLibraryRoutes() {
 
 describe('Library saved shelf', () => {
   beforeEach(() => {
+    useReadingPlacesStore.setState({ places: {} })
+    useReadingProgressStore.setState({ progress: {} })
+    useStoryStore.setState({ saved: {}, positions: {} })
     localStorage.clear()
     useBookmarksStore.setState({ bookmarks: [] })
     useFavoritesStore.setState({ favorites: [] })
@@ -232,4 +239,33 @@ describe('Library saved shelf', () => {
       JSON.stringify({ libraryReaderOrigin: '/saved' })
     )
   })
+})
+
+test('Saved only offers actual saved locations, never overlapping bani coverage', () => {
+  useReadingPlacesStore.setState({ places: {} })
+  useProgressStore.setState({ currentSession: null })
+  useLocaleStore.setState({ locale: 'en' })
+  useReadingProgressStore.setState({ progress: { 'akal-ustat': [11], 'tav-prasad-savaiye': [11] } })
+  useProgressStore.getState().updateSession({ scriptureId: 'D-11',
+    resumePath: '/study?source=D&ang=11&startAng=11&endAng=13&baniId=tav-prasad-savaiye&baniDbId=6&exactBani=1',
+    resumeVerseId: 74957, updatedAt: '2026-10-27T11:00:00Z' })
+  render(<MemoryRouter><Library /></MemoryRouter>)
+  const readings = screen.getByTestId('library-in-progress')
+  expect(within(readings).queryByText('Akal Ustat')).not.toBeInTheDocument()
+  expect(within(readings).getByRole('link', { name: /Tav Prasad Savaiye/ })).toHaveAttribute('href', expect.stringContaining('resumeVerseId=74957'))
+  expect(readings).not.toHaveTextContent('%')
+})
+
+test('a story reading place returns to Saved after opening the story', async () => {
+  useLocaleStore.setState({ locale: 'en' })
+  useReadingPlacesStore.setState({ places: {} })
+  useProgressStore.setState({ currentSession: null })
+  useStoryStore.setState({
+    saved: { 'a-shared-meal': { id: 'a-shared-meal', title: 'A shared meal', subtitle: '', description: 'A story of sharing.', collectionId: 'wisdom', themes: [], people: [], artwork: 'bowl', wordCount: 100, readingMinutes: 1, revision: 1, savedAt: '2026-10-27T10:00:00Z' } },
+    positions: { 'a-shared-meal': { paragraphId: 'paragraph-two', progress: .3, revision: 1, updatedAt: '2026-10-27T11:00:00Z' } },
+  })
+  renderLibraryRoutes()
+  fireEvent.click(within(screen.getByTestId('library-in-progress')).getByRole('link', { name: /A shared meal/ }))
+  expect(await screen.findByTestId('location')).toHaveTextContent('/stories/a-shared-meal')
+  expect(screen.getByTestId('location')).toHaveAttribute('data-location-state', JSON.stringify({ libraryReaderOrigin: '/saved' }))
 })

@@ -79,10 +79,10 @@ test('keeps persistent reader chrome measured and out of WebKit viewport-layer f
   expect(readerHeaderSource).toContain('new ResizeObserver(measure)')
   expect(readerHeaderSource).toContain('observer?.observe(header)')
   expect(readerHeaderCss).toMatch(
-    /\.reader-header:is\(\.study-reader-topbar,\.story-reader-toolbar,\.epub-reader-topbar\)\s*\{[^}]*height:\s*auto;[^}]*min-height:\s*calc\(var\(--safe-area-top\)\s*\+\s*64px\);/s
+    /\.reader-header:is\(\.study-reader-topbar,\.story-reader-toolbar,\.epub-reader-topbar,\.rehat-reader-toolbar\)\s*\{[^}]*height:\s*auto;[^}]*min-height:\s*calc\(var\(--safe-area-top\)\s*\+\s*64px\);/s
   )
   expect(readerHeaderCss).toMatch(
-    /\.reader-header:is\(\.story-reader-toolbar,\.epub-reader-topbar\)\s*\{[^}]*position:\s*sticky;[^}]*top:\s*0;/s
+    /\.reader-header:is\(\.story-reader-toolbar,\.epub-reader-topbar,\.rehat-reader-toolbar\)\s*\{[^}]*position:\s*sticky;[^}]*top:\s*0;/s
   )
   expect(readerHeaderCss).toMatch(
     /\.epub-reader-shell:has\(>\s*\.reader-header\)\s*\.epub-reader-main\s*\{[^}]*padding-top:\s*clamp\(/s

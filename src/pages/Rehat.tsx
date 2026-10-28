@@ -1,9 +1,12 @@
 import '../styles/catalog.css'
+import '../styles/rehat-reader.css'
+import RehatReaderHeader from '../components/RehatReaderHeader'
+import { useEpubReaderStore } from '../store/epubReader'
 import { useCompanionCopy } from '../utils/companionCopy'
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchRehatChapter, fetchRehatChapters, fetchRehats } from '../api/banidb'
-import { IconArrowLeft, IconArrowRight, IconSearch } from '../components/icons'
+import { IconArrowLeft, IconArrowRight, IconChevronDown, IconChevronUp, IconClose, IconSearch } from '../components/icons'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import type { RehatChapterContent, RehatChapterSummary, RehatSummary } from '../types'
 import { sanitizeRehatHtml, stripHtmlTags } from '../utils/rehatHtml'
@@ -240,6 +243,10 @@ function RehatSectionNavigation({
 export default function Rehat() {
   const { t, lang } = useCompanionCopy()
   const { rehatId: rehatIdParam, chapterId: chapterIdParam } = useParams()
+  const isChapterRoute = Boolean(chapterIdParam)
+  const fontScale = useEpubReaderStore(state => state.fontScale)
+  const lineHeight = useEpubReaderStore(state => state.lineHeight)
+  const measure = useEpubReaderStore(state => state.measure)
   const selectedRehatId = parseNumericParam(rehatIdParam)
   const selectedChapterId = parseNumericParam(chapterIdParam)
   const rehats = useScriptureCacheStore(state => state.rehatList)
@@ -408,13 +415,40 @@ export default function Rehat() {
   return (
     <div
       lang={lang}
-      className="page-shell max-w-3xl mx-auto min-h-screen scripture-directory transition-colors duration-300 animate-fade-in"
+      className={isChapterRoute ? 'rehat-reader-shell' : 'page-shell max-w-3xl mx-auto min-h-screen scripture-directory transition-colors duration-300 animate-fade-in'}
+      style={isChapterRoute ? {
+        '--rehat-font-scale': fontScale,
+        '--rehat-line-height': { compact: 1.6, comfortable: 1.8, spacious: 2.05 }[lineHeight],
+        '--rehat-measure': { narrow: '40rem', standard: '48rem', wide: '58rem' }[measure],
+      } as CSSProperties : undefined}
       data-testid="page-rehat"
       data-page="rehat"
       data-ai-surface="rehat"
       data-ai-state={invalidRoute || rehatIssue || chapterListIssue || chapterIssue ? 'degraded' : loadingRehats || loadingChapters || loadingChapter ? 'loading' : 'ready'}
       data-ai-error={rehatIssue ? 'rehat-list' : chapterListIssue ? 'rehat-chapters' : chapterIssue || invalidRoute ? 'rehat-chapter' : undefined}
     >
+      {isChapterRoute ? <RehatReaderHeader
+        title={breadcrumbChapter?.chapterName ?? t('Chapter')}
+        subtitle={selectedRehat?.rehatName ?? t('Rehat')}
+        rehatId={selectedRehatId}
+        chapterId={selectedChapterId}
+        chapters={selectedChapters}
+        loading={loadingChapters}
+        error={chapterListIssue}
+        onRetry={retryChapterList}
+        search={<>
+          <SearchField id="rehat-chapter-text-search" label={t('Search inside this Rehat chapter')} value={chapterTextQuery} onChange={updateChapterTextQuery} placeholder={t('Search inside this chapter...')} testId="rehat-chapter-text-search" />
+          {chapterTextQuery.trim() ? <div className="rehat-find-controls" data-testid="rehat-find-controls">
+                <p role="status" aria-live="polite" aria-atomic="true">
+                  <span aria-hidden="true">{chapterFind.count ? activeMatch + 1 : 0} / {chapterFind.count}</span>
+                  <span className="sr-only">{chapterFind.count ? t('{current} of {total} matches', { current: activeMatch + 1, total: chapterFind.count }) : t('No matching text found in this chapter.')}</span>
+                </p>
+                <button type="button" className="interactive-focus" aria-label={t('Previous match')} title={t('Previous match')} disabled={!chapterFind.count} onClick={() => setActiveMatch(index => (index - 1 + chapterFind.count) % chapterFind.count)}><span aria-hidden="true"><IconChevronUp size={20} /></span></button>
+                <button type="button" className="interactive-focus" aria-label={t('Next match')} title={t('Next match')} disabled={!chapterFind.count} onClick={() => setActiveMatch(index => (index + 1) % chapterFind.count)}><span aria-hidden="true"><IconChevronDown size={20} /></span></button>
+                <button type="button" className="interactive-focus" aria-label={t('Clear find')} title={t('Clear find')} onClick={() => updateChapterTextQuery('')}><span aria-hidden="true"><IconClose size={20} /></span></button>
+              </div> : null}
+        </>}
+      /> : <>
       <Breadcrumbs rehat={selectedRehat} chapter={breadcrumbChapter} />
 
       <section className="hero-surface px-5 py-5" aria-labelledby="rehat-title">
@@ -463,15 +497,6 @@ export default function Rehat() {
             placeholder={t("Search rehats...")}
             testId="rehat-search"
           />
-        ) : selectedChapterId ? (
-          <SearchField
-            id="rehat-chapter-text-search"
-            label={t("Search inside this Rehat chapter")}
-            value={chapterTextQuery}
-            onChange={updateChapterTextQuery}
-            placeholder={t("Search inside this chapter...")}
-            testId="rehat-chapter-text-search"
-          />
         ) : (
           <SearchField
             id="rehat-chapter-search"
@@ -483,6 +508,8 @@ export default function Rehat() {
           />
         )}
       </section>
+
+      </>}
 
       {invalidRoute ? (
         <section className="section-shell-quiet mt-5 px-4 py-5" data-testid="rehat-error-state">
@@ -496,7 +523,7 @@ export default function Rehat() {
             {t("Back to Rehat")}</Link>
         </section>
       ) : selectedRehatId && selectedChapterId ? (
-        <section className="mt-5 space-y-4" data-testid="rehat-chapter-page">
+        <section className="rehat-reader-main space-y-6" data-testid="rehat-chapter-page">
           {loadingChapter ? (
             <p className="section-shell-quiet px-4 py-5 font-sans text-sm text-text/68 dark:text-dark-text/64">
               {t("Loading chapter...")}</p>
@@ -521,31 +548,13 @@ export default function Rehat() {
             </section>
           ) : (
             <>
-              <section className="section-shell px-4 py-4">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="eyebrow">{t("Rehat Chapter")}</p>
-                    <h2 className="mt-2 font-display text-3xl leading-none text-text dark:text-dark-text">
-                      {selectedChapter.chapterName}
-                    </h2>
-                    <p className="mt-2 font-sans text-sm text-text/68 dark:text-dark-text/68">
-                      {selectedRehat?.rehatName ?? `${t('Rehat')} ${selectedRehatId}`}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    <MetadataChip>{selectedChapter.alphabet}</MetadataChip>
-                    <MetadataChip>{wordCount} {t("words")}</MetadataChip>
-                  </div>
-                </div>
-              </section>
+              <div className="rehat-reader-source">
+                <span>{t('Rehat Chapter')}</span><span aria-hidden="true">·</span>
+                <span>{wordCount} {t('words')}</span>
+                {editorial.sourceHref ? <a className="interactive-focus underline underline-offset-4" href={editorial.sourceHref} target="_blank" rel="noreferrer">{t(editorial.sourceLabel ?? '')}</a> : null}
+              </div>
 
-              {chapterTextQuery.trim() ? <div className="section-shell-quiet flex flex-wrap items-center gap-3 px-4 py-3" data-testid="rehat-find-controls">
-                <p role="status" aria-live="polite">{chapterFind.count ? t('{current} of {total} matches', { current: activeMatch + 1, total: chapterFind.count }) : t('No matching text found in this chapter.')}</p>
-                <button type="button" className="interactive-focus min-h-[44px] rounded-lg border px-3" disabled={!chapterFind.count} onClick={() => setActiveMatch(index => (index - 1 + chapterFind.count) % chapterFind.count)}>{t("Previous match")}</button>
-                <button type="button" className="interactive-focus min-h-[44px] rounded-lg border px-3" disabled={!chapterFind.count} onClick={() => setActiveMatch(index => (index + 1) % chapterFind.count)}>{t("Next match")}</button>
-                <button type="button" className="interactive-focus min-h-[44px] rounded-lg border px-3" onClick={() => updateChapterTextQuery('')}>{t("Clear find")}</button>
-              </div> : null}
-              <article ref={chapterContentRef} className="section-shell p-5" data-testid="rehat-chapter-content" lang="en">
+              <article ref={chapterContentRef} className="rehat-reader-article" data-testid="rehat-chapter-content" lang="en">
                 <div className="rehat-reading-prose font-sans text-base leading-7 text-text dark:text-dark-text [&_p]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
                   dangerouslySetInnerHTML={{ __html: chapterFind.html }} />
               </article>

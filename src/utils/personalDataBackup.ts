@@ -212,8 +212,12 @@ async function preparePersonalStores() {
   const modules = await Promise.all([
     import('../store/language'), import('../store/locale'), import('../store/theme'), import('../store/onboarding'),
     import('../store/sundarGutkaLength'), import('../store/epubReader'), import('../store/homeArtwork'), import('../store/music'),
-    import('../store/recitation'), import('../store/vocab'), import('../store/progress'), import('../store/readingProgress'),
-    import('../store/readingPlaces'), import('../store/nitnemHistory'), import('../store/nitnemPractice'), import('../store/nitnem'), import('../store/recentSearch'),
+    import('../store/recitation'), import('../store/vocab'),
+    // Progress hydration migrates its current session into readingPlaces.
+    // Hydrate the restored places first so that migration cannot write stale
+    // mounted state over the backup's independent book and scripture places.
+    import('../store/readingPlaces'), import('../store/progress'), import('../store/readingProgress'),
+    import('../store/nitnemHistory'), import('../store/nitnemPractice'), import('../store/nitnem'), import('../store/recentSearch'),
   ])
   const [{ useBookmarksStore }, { useFavoritesStore }, { useStoryStore }] = await Promise.all([import('../store/bookmarks'), import('../store/favorites'), import('../store/stories')])
   type Store = { getState: () => unknown; setState: (value: unknown, replace: true) => void; persist?: { rehydrate: () => Promise<void> | void } }

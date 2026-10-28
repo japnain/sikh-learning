@@ -5,6 +5,7 @@ import { vi } from 'vitest'
 import * as banidb from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import Rehat from './Rehat'
+import { useEpubReaderStore } from '../store/epubReader'
 import { useLocaleStore } from '../store/locale'
 
 function LocationSpy() {
@@ -27,6 +28,7 @@ function renderRehat(path = '/banis/rehat') {
 beforeEach(() => {
   useLocaleStore.setState({ locale: 'en' })
   localStorage.clear()
+  useEpubReaderStore.getState().resetPreferences()
   document.documentElement.classList.remove('dark')
   useScriptureCacheStore.getState().clearAll()
 })
@@ -89,8 +91,11 @@ test('supports direct Rehat chapter URLs, chapter text search, and sanitized ren
   renderRehat('/banis/rehat/1/chapters/11')
 
   expect(screen.getByTestId('rehat-chapter-page')).toBeInTheDocument()
-  expect(screen.getByRole('searchbox', { name: 'Search inside this Rehat chapter' })).toBeInTheDocument()
-  expect(within(screen.getByTestId('rehat-breadcrumbs')).getByText('Daily Discipline')).toBeInTheDocument()
+  expect(screen.getByTestId('rehat-reader-header')).toHaveAttribute('data-reader-header', 'persistent')
+  expect(screen.getByRole('heading', { name: 'Daily Discipline', level: 1 })).toBeInTheDocument()
+  expect(screen.queryByTestId('rehat-breadcrumbs')).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Find in chapter' }))
+  expect(screen.getByRole('searchbox', { name: 'Search inside this Rehat chapter' })).toHaveFocus()
 
   const content = screen.getByTestId('rehat-chapter-content')
   expect(content).toHaveTextContent(/Keep\s+seva/i)
@@ -105,7 +110,7 @@ test('supports direct Rehat chapter URLs, chapter text search, and sanitized ren
   expect(screen.getByTestId('rehat-chapter-content')).toHaveTextContent(/Keep\s+seva/i)
 })
 
-test('adds bottom previous and next section controls to Rehat chapter pages', () => {
+test('keeps inline previous and next section controls to Rehat chapter pages', () => {
   const cache = useScriptureCacheStore.getState()
   cache.setRehats([{ rehatId: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' }])
   cache.setRehatChapters(1, [
@@ -201,6 +206,7 @@ test('find navigates every occurrence and keeps context visible on no match', ()
   cache.setRehats([{ rehatId: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' }])
   cache.setRehatChapter(1, { rehatId: 1, chapterId: 11, chapterName: 'Daily Discipline', alphabet: 'D', chapterContent: '<p>Seva begins here.</p><p>Another seva appears here.</p><p>Unmatched context.</p>' })
   renderRehat('/banis/rehat/1/chapters/11')
+  fireEvent.click(screen.getByRole('button', { name: 'Find in chapter' }))
   fireEvent.change(screen.getByTestId('rehat-chapter-text-search'), { target: { value: 'seva' } })
   expect(screen.getByRole('status')).toHaveTextContent('1 of 2 matches')
   fireEvent.click(screen.getByRole('button', { name: 'Next match' }))
@@ -210,9 +216,13 @@ test('find navigates every occurrence and keeps context visible on no match', ()
   expect(screen.getByRole('status')).toHaveTextContent('1 of 2 matches')
   fireEvent.change(screen.getByTestId('rehat-chapter-text-search'), { target: { value: 'absent' } })
   expect(screen.getByTestId('rehat-chapter-content')).toHaveTextContent('Unmatched context.')
+  expect(screen.getByRole('status')).toHaveTextContent('No matching text found in this chapter.')
+  expect(screen.getByRole('button', { name: 'Previous match' })).toBeDisabled()
   expect(screen.getByRole('button', { name: 'Next match' })).toBeDisabled()
   fireEvent.click(screen.getByRole('button', { name: 'Clear find' }))
   expect(screen.getByTestId('rehat-chapter-content').querySelector('mark')).toBeNull()
+  expect(screen.queryByTestId('rehat-find-controls')).not.toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search inside this Rehat chapter' })).toHaveValue('')
 })
 
 test.each(['pa', 'hi'] as const)('uses %s controls and error recovery without translating source text', locale => {
@@ -222,4 +232,36 @@ test.each(['pa', 'hi'] as const)('uses %s controls and error recovery without tr
   expect(screen.getByRole('searchbox')).toHaveAccessibleName(locale === 'pa' ? 'ਰਹਿਤਾਂ ਲੱਭੋ' : 'रहत स्रोत खोजें')
   expect(screen.getByTestId('rehat-error-state')).not.toHaveTextContent('This Rehat route is not valid')
   expect(screen.getByRole('link', { name: locale === 'pa' ? 'ਰਹਿਤ ਤੇ ਵਾਪਸ' : 'रहत पर वापस' })).toBeInTheDocument()
+})
+
+test('opens contents, keeps the current section identified, and navigates from the persistent header', async () => {
+  const user = userEvent.setup()
+  renderRehat('/banis/rehat/1/chapters/11')
+  await screen.findByTestId('rehat-chapter-content')
+  await user.click(screen.getByRole('button', { name: 'Rehat contents' }))
+  const sheet = screen.getByRole('dialog', { name: 'Rehat contents' })
+  expect(await within(sheet).findByRole('link', { name: 'Daily Discipline' })).toHaveAttribute('aria-current', 'page')
+  await user.click(within(sheet).getByRole('link', { name: 'Shared Conduct' }))
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  expect(screen.getByTestId('location')).toHaveTextContent('/banis/rehat/1/chapters/12')
+  expect(screen.getByTestId('rehat-reader-header')).toHaveAttribute('data-reader-header', 'persistent')
+})
+
+test('applies shared reading preferences without changing source content and restores focus after the sheet closes', async () => {
+  const user = userEvent.setup()
+  renderRehat('/banis/rehat/1/chapters/11')
+  const content = await screen.findByTestId('rehat-chapter-content')
+  const source = content.textContent
+  const trigger = screen.getByRole('button', { name: 'Reading appearance' })
+  await user.click(trigger)
+  const sheet = screen.getByRole('dialog', { name: 'Reading appearance' })
+  await user.click(within(sheet).getByRole('button', { name: 'Increase text size' }))
+  await user.click(within(sheet).getByRole('button', { name: 'Narrow', exact: true }))
+  expect(useEpubReaderStore.getState().fontScale).toBe(1.05)
+  expect(useEpubReaderStore.getState().measure).toBe('narrow')
+  expect(screen.getByTestId('page-rehat').style.getPropertyValue('--rehat-font-scale')).toBe('1.05')
+  expect(content.textContent).toBe(source)
+  await user.keyboard('{Escape}')
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  expect(trigger).toHaveFocus()
 })

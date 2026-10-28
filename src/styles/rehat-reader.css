@@ -1,0 +1,32 @@
+.rehat-reader-shell { min-height:100%; color:rgb(var(--color-text)); background:rgb(var(--color-bg)); }
+.rehat-reader-main { width:100%; max-width:var(--rehat-measure,48rem); margin-inline:auto; padding:clamp(1.5rem,5vw,3.5rem) max(1rem,var(--safe-area-right)) max(3rem,var(--safe-area-bottom)) max(1rem,var(--safe-area-left)); }
+.rehat-reader-shell .rehat-reading-prose { font-size:calc(1.0625rem * var(--rehat-font-scale,1)); line-height:var(--rehat-line-height,1.8); overflow-wrap:break-word; }
+.rehat-reading-prose :is(p,li,h1,h2,h3,h4,mark) { scroll-margin-top:calc(var(--reader-header-height,8rem) + 1rem); }
+.rehat-reader-shell .rehat-reader-article { padding:0; border:0; background:transparent; box-shadow:none; }
+.rehat-reader-source { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgb(var(--color-border) / .25); color:rgb(var(--color-text-muted)); font-size:.8125rem; }
+.rehat-reader-find { max-width:48rem; margin-inline:auto; padding:0 .25rem .5rem; }
+.rehat-reader-find > div:first-child { margin-top:.35rem; }
+.rehat-reader-find .rehat-find-controls { display:grid; grid-template-columns:minmax(0,1fr) repeat(3,44px); align-items:center; gap:4px; padding:4px 0 0; font-size:.8125rem; }
+.rehat-find-controls p { min-width:0; margin:0; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.rehat-find-controls button { display:grid; place-items:center; width:44px; height:44px; min-width:44px; min-height:44px; padding:0; border:1px solid rgb(var(--color-border) / .4); border-radius:.5rem; color:inherit; }
+.rehat-find-controls button:disabled { opacity:.45; }
+/* At enlarged text sizes the source remains in Contents; keep room for the
+   chapter and full-size Find input beneath the persistent heading. */
+@media(max-width:600px) {
+  .reader-header.rehat-reader-toolbar[data-enlarged-text='true'] .reader-header__subtitle { display:none; }
+}
+.rehat-reader-sheet { max-width:40rem; max-height:min(80dvh,46rem); overflow-y:auto; padding:1.25rem; font-family:'Plus Jakarta Sans',sans-serif; color:rgb(var(--color-text)); }
+.rehat-reader-sheet__heading { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.rehat-reader-sheet__heading h2 { font-size:1.25rem; font-weight:600; }
+.rehat-reader-sheet button { min-width:44px; min-height:44px; border-radius:.5rem; }
+.rehat-reader-sheet__heading button { display:grid; place-items:center; flex:none; }
+.rehat-reader-sheet__source { margin:.5rem 0 1rem; color:rgb(var(--color-text-muted)); font-size:.875rem; }
+.rehat-reader-sheet__chapter { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:52px; padding:.7rem .6rem; border-bottom:1px solid rgb(var(--color-border) / .25); line-height:1.5; }
+.rehat-reader-sheet__chapter[aria-current='page'] { color:rgb(var(--color-accent)); background:rgb(var(--color-accent) / .08); }
+.rehat-reader-setting { margin-top:1.5rem; }
+.rehat-reader-setting > p { margin-bottom:.6rem; font-size:.875rem; }
+.rehat-reader-setting > div { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; }
+.rehat-reader-setting button { flex:1; border:1px solid rgb(var(--color-border) / .4); padding:.5rem; }
+.rehat-reader-setting button[aria-pressed='true'] { border-color:rgb(var(--color-accent)); background:rgb(var(--color-accent) / .1); }
+.rehat-reader-setting button:disabled { opacity:.45; }
+.rehat-reader-setting__scale output { min-width:5rem; text-align:center; font-variant-numeric:tabular-nums; }

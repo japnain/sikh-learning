@@ -1,8 +1,9 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { buildNitnemStudyPath, getNitnemOption } from './nitnem'
 import { useProgressStore, type Session } from './progress'
-import { getExactReadingKey, useReadingPlacesStore } from './readingPlaces'
+import { buildBookReadingResumePath, getExactReadingKey, getReadingPlaceKey, useReadingPlacesStore } from './readingPlaces'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from './sundarGutkaLength'
+import type { LibraryWork, LibraryChapterIndexEntry } from '../types'
 import { getHomeNitnemResume } from '../utils/homeNitnemResume'
 
 afterEach(() => { vi.restoreAllMocks() })
@@ -78,7 +79,8 @@ test('an older arrival retries a newer session-only place without replacing its 
 })
 
 test.each([
-  '/study?source=G&ang=1',
+  '/study?source=G&ang=9999',
+  '/study?source=G&ang=1&baniId=incomplete',
   'https://example.com/study?source=G&exactBani=1',
   '/study?source=G&baniId=japji-sahib&baniDbId=2&startAng=8&endAng=1&exactBani=1',
 ])('ignores a non-exact or invalid reading identity: %s', path => {
@@ -107,4 +109,64 @@ test('bounds device storage while retaining the fifty most recent exact reading 
   expect(values).toHaveLength(50)
   expect(values.some(value => value.resumeVerseId === 1)).toBe(false)
   expect(values.some(value => value.resumeVerseId === 55)).toBe(true)
+})
+
+const bookSession: Session = {
+  scriptureId: 'panth-prakash-english-episode-001',
+  resumePath: '/library/panth-prakash-english/chapters/episode-001',
+  readerLocator: { revision: 'edition-1', href: '/library/panth-prakash-english/chapters/episode-001',
+    type: 'text/html', title: 'The origin of the Khalsa',
+    locations: { progression: .4, totalProgression: .01, position: 12, blockId: 'episode-001-p47-b003' } },
+  updatedAt: '2026-10-18T09:00:00Z',
+}
+
+test('book → bani → another source retains the book and each source across refresh', async () => {
+  useProgressStore.getState().updateSession(bookSession)
+  useProgressStore.getState().updateSession(sessionFor('japji-sahib', 123, '2026-10-18T10:00:00Z'))
+  for (const source of ['G', 'D']) useProgressStore.getState().updateSession({
+    scriptureId: `${source}-20`, resumePath: `/study?source=${source}&ang=20`, resumeVerseId: source === 'G' ? 234 : 345,
+    updatedAt: '2026-10-18T11:00:00Z',
+  })
+  const saved = localStorage.getItem('naamras-reading-places')!
+  useReadingPlacesStore.setState({ places: {} })
+  localStorage.setItem('naamras-reading-places', saved)
+  await useReadingPlacesStore.persist.rehydrate()
+  const places = useReadingPlacesStore.getState().places
+  const work = { id: 'panth-prakash-english', revision: 'edition-1' } as LibraryWork
+  expect(buildBookReadingResumePath(places['book:panth-prakash-english'], work)).toBe(`${bookSession.resumePath}#episode-001-p47-b003`)
+  expect(places['source:G'].resumeVerseId).toBe(234)
+  expect(places['source:D'].resumeVerseId).toBe(345)
+  expect(Object.keys(places)).toHaveLength(4)
+})
+
+test('migrates a legacy global book session before it is replaced by a bani', async () => {
+  localStorage.setItem('sikh-progress', JSON.stringify({ version: 3, state: { currentSession: bookSession } }))
+  await useProgressStore.persist.rehydrate()
+  useProgressStore.getState().updateSession(sessionFor('jaap-sahib', 222))
+  expect(useReadingPlacesStore.getState().places['book:panth-prakash-english']).toEqual(bookSession)
+})
+
+test('changed editions resume at chapter start, and removed chapters return to the work', () => {
+  const work = { id: 'panth-prakash-english', revision: 'edition-2' } as LibraryWork
+  expect(buildBookReadingResumePath(bookSession, work)).toBe(bookSession.resumePath)
+  expect(buildBookReadingResumePath(bookSession, work, [] as LibraryChapterIndexEntry[])).toBe('/library/panth-prakash-english')
+  expect(buildBookReadingResumePath(bookSession, { ...work, id: 'different-book' })).toBeNull()
+})
+
+test('rejects corrupt or cross-work book locators while preserving a valid independent place', async () => {
+  localStorage.setItem('naamras-reading-places', JSON.stringify({ version: 1, state: { places: {
+    valid: bookSession,
+    wrongHref: { ...bookSession, readerLocator: { ...bookSession.readerLocator, href: '/library/another-book/chapters/episode-001' } },
+    corrupt: { ...bookSession, readerLocator: { ...bookSession.readerLocator, locations: { progression: 3, totalProgression: -1, position: 1 } } },
+    external: { ...bookSession, resumePath: '//example.com/library/book/chapters/one' },
+    malformed: null,
+  } } }))
+  await useReadingPlacesStore.persist.rehydrate()
+  expect(useReadingPlacesStore.getState().places).toEqual({ [getReadingPlaceKey(bookSession.resumePath)!]: bookSession })
+})
+
+test.each(['shabadId=123', 'hukamnamaDate=2026-10-27', 'flow=ardaas-hukamnama'])('does not relabel competing reader content as an exact bani: %s', query => {
+  const session = sessionFor('japji-sahib', 123)
+  useProgressStore.getState().updateSession({ ...session, resumePath: `${session.resumePath}&${query}` })
+  expect(useReadingPlacesStore.getState().places).toEqual({})
 })
