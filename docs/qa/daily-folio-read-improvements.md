@@ -1,6 +1,6 @@
 # Daily Folio and Read improvements
 
-Implementation review for the approved Daily Folio direction and the 15-point Read audit. No deployment is included.
+Implementation and release verification for the approved Daily Folio direction and the 15-point Read audit.
 
 ## Daily Folio
 
@@ -62,4 +62,15 @@ All 15 focused Rehat tests, scoped ESLint, whitespace checks, both TypeScript pr
 
 ### Remaining environment limitation
 
-The production HTTP preview could not bind a localhost port (`listen EPERM`), and a separate CLI Chromium launch was also blocked by the sandbox. Consequently, the full production-preview Playwright suite has **not** run in this environment. The browser results above are actual component/runtime checks in the bundled review harness; they do not certify HTTP serving, service-worker behavior or live provider availability. The production acceptance runner is ready to run in CI or an environment where its preview and browser processes are permitted. No deployment or push is included.
+The production HTTP preview could not bind a localhost port (`listen EPERM`), and a separate CLI Chromium launch was also blocked by the sandbox. Consequently, the full production-preview Playwright suite has **not** run in this environment. The browser results above are actual component/runtime checks in the bundled review harness; they do not certify HTTP serving, service-worker behavior or live provider availability. Production HTTP acceptance is therefore run in GitHub Actions before merging the release.
+
+
+### Release protection for the existing scroll fix
+
+The release is built on master `4c2fec4e3079adc1cbe8161d95a11d5310b2913f`, including the native document-scrolling header fix. Fifteen scroll-critical runtime files are byte-for-byte unchanged, including the Bani reader, shared header, header measurement, interaction handlers, scroll restoration, viewport metrics and reading anchors. Shared header CSS only adds Rehat to existing selectors; existing Bani declarations are unchanged.
+
+The exact release candidate passed all 1,717 unit tests in 145 files, including 133 focused scroll regressions. These cover bounded long-Bani measurements, height-only viewport resizing, native scroll-end scheduling, touch deferral and cancellation of queued work. Full ESLint, both TypeScript projects, production build, CSS selector audit, startup budget and published-story verification also pass. The candidate measures 151.6 KiB gzipped JavaScript and 12.7 KiB gzipped CSS.
+
+CI runs production Bani/Home and Stories acceptance, all 18 reader/Folio scenarios, the 16 Read discovery journeys, accessibility checks and the full unit suite. The Folio layout check explicitly traverses every named tab with the keyboard and verifies that the selected title, focus and panel remain in view. Off-screen inactive names in the intentionally scrollable index are not treated as clipped controls.
+
+Automated browser checks exercise functional scrolling and anchor restoration in headless Chromium. They do not measure frame times or certify physical iPhone momentum performance. The release preserves the working scroll implementation and requires the regression checks to pass before merge.
