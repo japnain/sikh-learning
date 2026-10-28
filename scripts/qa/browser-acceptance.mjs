@@ -59,12 +59,17 @@ async function main() {
     await run('scripts/qa/stories-reader-acceptance.mjs', [
       `--url=${baseUrl}`, '--published-only', '--deterministic', `--output=${path.join(reportDirectory, 'stories/acceptance.json')}`,
     ])
+    await run('scripts/qa/reader-nitnem-polish.mjs', [], {
+      QA_BASE_URL: baseUrl,
+      QA_OUTPUT_DIR: path.join(reportDirectory, 'reader-nitnem'),
+      QA_CASES: '',
+    })
     await run('scripts/qa/read-discovery-acceptance.mjs', [], {
       QA_BASE_URL: baseUrl,
       QA_OUTPUT_DIR: path.join(reportDirectory, 'read-discovery'),
       QA_CASES: '',
     })
-    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories light/dark at 100/200% text, and Read discovery journeys.`)
+    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, and Read discovery journeys.`)
   } finally {
     if (server && server.exitCode === null) {
       server.kill('SIGTERM')
