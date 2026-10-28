@@ -636,6 +636,7 @@ export default function Banis() {
   const searchInputRef = useRef<HTMLInputElement | null>(null)
   const searchCardRef = useRef<HTMLDivElement | null>(null)
   const searchLocationHydrationRef = useRef(false)
+  const pendingSearchScopeRef = useRef<SearchScope | null>(null)
   const searchStateRef = useRef({
     query: searchQuery,
     mode: searchMode,
@@ -724,6 +725,7 @@ export default function Banis() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
+    if ((params.get('scope') ?? 'all') === pendingSearchScopeRef.current) pendingSearchScopeRef.current = null
     const legacyStoryQuery = params.get('collection') === 'stories' && !params.has('query') ? params.get('storyQuery') : null
     const nextQuery = params.get('query') ?? legacyStoryQuery ?? ''
     const nextModeParam = params.get('mode')
@@ -777,6 +779,12 @@ export default function Banis() {
     })
     const searchFields = new URLSearchParams(searchPath.split('?')[1] ?? '')
     const nextSearchParams = new URLSearchParams(location.search)
+    // Typing can render before the Router commits a scope-change transition.
+    // Preserve that explicit selection when the urgent input update saves its URL.
+    if (pendingSearchScopeRef.current !== null) {
+      if (pendingSearchScopeRef.current === 'all') nextSearchParams.delete('scope')
+      else nextSearchParams.set('scope', pendingSearchScopeRef.current)
+    }
     for (const key of ['query', 'mode', 'source']) {
       const value = searchFields.get(key)
       if (value) nextSearchParams.set(key, value)
@@ -1155,6 +1163,7 @@ export default function Banis() {
           onMode={setSearchMode} onSource={setSearchSource} onExit={clearSearch}
           onRecover={() => handleSearch(previousQuery)}
           onScope={scope => {
+            pendingSearchScopeRef.current = scope
             setSearchParams(current => {
               const next = new URLSearchParams(current)
               if (scope === 'all') next.delete('scope')
