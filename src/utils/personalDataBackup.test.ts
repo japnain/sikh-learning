@@ -7,6 +7,7 @@ import { useVocabStore } from '../store/vocab'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useNitemStore, buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
+import { useReadingVisibilityStore } from '../store/readingVisibility'
 
 const clock = '2026-10-20T10:00:00.000Z'
 const bookmark = { id: 'saved-a', title: 'Japji Sahib', type: 'bani', source: 'G', ang: 1, savedAt: clock }
@@ -19,6 +20,38 @@ function state(backup: ReturnType<typeof createPersonalDataBackup>, key: string)
 beforeEach(() => { localStorage.clear(); vi.restoreAllMocks() })
 
 describe('portable personal data', () => {
+  it('replace restores hidden places to the shelf while merge keeps device-local dismissals', async () => {
+    useReadingVisibilityStore.getState().hide('book:sample', clock)
+    const backup = createPersonalDataBackup()
+    expect(backup.data).not.toHaveProperty('naamras-reading-visibility')
+    await restorePersonalDataBackup(backup, 'merge', { pauseSync: noRuntime.pauseSync })
+    expect(useReadingVisibilityStore.getState().hidden).toEqual({ 'book:sample': clock })
+    await restorePersonalDataBackup(backup, 'replace', { pauseSync: noRuntime.pauseSync })
+    expect(useReadingVisibilityStore.getState().hidden).toEqual({})
+    expect(JSON.parse(localStorage.getItem('naamras-reading-visibility')!).state.hidden).toEqual({})
+  })
+
+  it('rolls shelf visibility back with personal data when replace hydration fails', async () => {
+    useReadingVisibilityStore.getState().hide('book:sample', clock)
+    const previousVisibility = localStorage.getItem('naamras-reading-visibility')
+    const backup = createPersonalDataBackup()
+    vi.spyOn(useReadingVisibilityStore.persist, 'rehydrate').mockRejectedValueOnce(new Error('hydrate failed'))
+    await expect(restorePersonalDataBackup(backup, 'replace', { pauseSync: noRuntime.pauseSync })).rejects.toThrow('restore-failed')
+    expect(localStorage.getItem('naamras-reading-visibility')).toBe(previousVisibility)
+    expect(useReadingVisibilityStore.getState().hidden).toEqual({ 'book:sample': clock })
+  })
+
+  it('migrates legacy recent searches and retains distinct scopes when merging backups', () => {
+    const legacy = createPersonalDataBackup()
+    const item = { query: 'Nanak', mode: 'auto-detect', source: 'all', pinned: true, savedAt: clock }
+    legacy.data['sikh-recent-search'] = { version: 1, state: { recent: [item] } }
+    const migrated = parsePersonalDataBackup(JSON.stringify(legacy))
+    expect(migrated.data['sikh-recent-search']).toEqual({ version: 2, state: { recent: [{ ...item, scope: 'all' }] } })
+    const incoming = createPersonalDataBackup()
+    state(incoming, 'sikh-recent-search').recent = [{ ...item, scope: 'stories' }]
+    expect(state(mergePersonalDataBackups(migrated, incoming), 'sikh-recent-search').recent).toHaveLength(2)
+  })
+
   it('exports valid legacy focused-reader sizes using the current shared range', () => {
     const state = { ...useLanguageStore.getState(), fontSize: 38 }
     localStorage.setItem('sikh-language', JSON.stringify({ state, version: 0 }))
@@ -169,7 +202,7 @@ it('round-trips actual public store actions including book locators, artwork, ac
   useNitemStore.getState().setWeeklyDayGoal(3)
   useLanguageStore.getState().setFontSize(30)
   useEpubReaderStore.getState().setFontScale(99)
-  expect(useEpubReaderStore.getState().fontScale).toBe(1.3)
+  expect(useEpubReaderStore.getState().fontScale).toBe(2)
   useEpubReaderStore.getState().setLineHeight('spacious')
   useHomeArtworkStore.getState().applyPreferences({ mode: 'daily', selectedId: 'court-mural' })
   useMusicStore.getState().setVolume(0.2)
@@ -185,7 +218,7 @@ it('round-trips actual public store actions including book locators, artwork, ac
   const after = createPersonalDataBackup()
   expect(summarizePersonalDataBackup(after)).toEqual(summarizePersonalDataBackup(backup))
   expect(useLanguageStore.getState().fontSize).toBe(30)
-  expect(useEpubReaderStore.getState()).toMatchObject({ fontScale: 1.3, lineHeight: 'spacious' })
+  expect(useEpubReaderStore.getState()).toMatchObject({ fontScale: 2, lineHeight: 'spacious' })
   expect(useNitnemPracticeStore.getState().active?.optionId).toBe('japji-sahib')
   expect(useNitemStore.getState().weeklyDayGoal).toBe(3)
   expect(useHomeArtworkStore.getState().mode).toBe('daily')

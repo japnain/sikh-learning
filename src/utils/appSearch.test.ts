@@ -1,6 +1,10 @@
 import { describe, expect, test, vi } from 'vitest'
 import * as storyRepository from '../data/storyRepository'
 import * as libraryRepository from '../data/libraryRepository'
+import { getBaniDiscovery } from '../content/baniDiscovery'
+import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
+import { READ_BANIDB_CATALOG_IDS } from '../data/banis'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import {
   getAngTargets,
   getAvailableSearchMeta,
@@ -60,10 +64,10 @@ test.each(['12', '੧੨', '१२'])('recognizes %s as a direct lookup in auto-
 
 test('includes standalone and browse-only reading destinations', () => {
   expect(getAppSearchMatches('Ardaas')).toEqual(expect.arrayContaining([
-    expect.objectContaining({ label: 'Ardaas', path: '/study?baniDbId=24&bani=Ardaas' }),
+    expect.objectContaining({ label: 'Ardaas (Prayer of Supplication)', path: '/study?baniDbId=24&bani=Ardaas' }),
   ]))
   expect(getAppSearchMatches('Zafarnama')).toEqual(expect.arrayContaining([
-    expect.objectContaining({ label: 'Zafarnama', kind: 'read-route' }),
+    expect.objectContaining({ label: 'Zafarnama (Letter of Victory)', kind: 'read-route' }),
   ]))
   expect(getAppSearchMatches('Bhai Gurdas')).toEqual(expect.arrayContaining([
     expect.objectContaining({ label: 'Bhai Gurdas Ji Vaaran', kind: 'read-route' }),
@@ -78,6 +82,66 @@ test('honors the selected source for app destinations', () => {
   expect(getAppSearchMatches('Amrit Keertan', 'A')).toEqual(expect.arrayContaining([
     expect.objectContaining({ path: '/banis/amrit-keertan' }),
   ]))
+})
+
+test.each([
+  ['Chandi Charitar Ustat', 12],
+  ['Seven Days in Gauri', 50],
+  ['Seven Days in Bilaval', 51],
+  ['Bhagat Bani in Raag Gauri', 56],
+  ['Opening Chapter', 19],
+  ['Ath Chandi Charitar', 12],
+  ['Gauri Vaar Kabir', 50],
+] as const)('finds discovery or legacy name %s with its exact route and researched context', (query, id) => {
+  const entry = getBaniDiscovery(id)!
+  const match = getAppSearchMatches(query).find(item => new URLSearchParams(item.path.split('?')[1]).get('baniDbId') === String(id))
+  expect(match).toMatchObject({ label: entry.name, excerpt: entry.summary, kind: 'read-route' })
+})
+
+test.each([
+  ['Tav Prasad Savaiye', [6, 7]],
+  ['Sri Bhagauti Astotr', [25, 26]],
+] as const)('preserves each distinct %s recension exactly once', (query, expectedIds) => {
+  const matches = getAppSearchMatches(query)
+  const ids = matches.map(match => Number(new URLSearchParams(match.path.split('?')[1]).get('baniDbId')))
+  expect(ids.slice().sort((a, b) => a - b)).toEqual([...expectedIds])
+  for (const match of matches) {
+    const id = Number(new URLSearchParams(match.path.split('?')[1]).get('baniDbId'))
+    expect(match.label).toBe(getBaniDiscovery(id)!.name)
+  }
+})
+
+test.each(['gurmukhi', 'hindi'] as const)('finds all 104 exact readings once from their offline provider %s names', script => {
+  for (const id of READ_BANIDB_CATALOG_IDS) {
+    const query = BANI_SCRIPT_NAMES[id]![script]
+    const matches = getAppSearchMatches(query).filter(match => new URLSearchParams(match.path.split('?')[1]).get('baniDbId') === String(id))
+    expect(matches, `${query} should resolve exact reading ${id} once`).toHaveLength(1)
+    expect(matches[0]).toMatchObject({ label: getBaniDiscovery(id)!.name, kind: 'read-route' })
+  }
+})
+
+test.each([
+  ['ਕੁਚਜੀ', 14],
+  [BANI_SCRIPT_NAMES[6]!.gurmukhi, 6],
+  [BANI_SCRIPT_NAMES[7]!.gurmukhi, 7],
+  [BANI_SCRIPT_NAMES[6]!.hindi, 6],
+  [BANI_SCRIPT_NAMES[7]!.hindi, 7],
+] as const)('keeps the displayed script name %s specific to exact reading %s', (query, expectedId) => {
+  const ids = getAppSearchMatches(query).map(match => Number(new URLSearchParams(match.path.split('?')[1]).get('baniDbId')))
+  expect(ids).toEqual([expectedId])
+})
+
+test('uses the selected adjustable reading length without creating duplicate routes', () => {
+  const previous = useSundarGutkaLengthStore.getState().lengths
+  try {
+    for (const length of ['short', 'medium', 'long', 'extralong'] as const) {
+      useSundarGutkaLengthStore.getState().setLength('rehras-sahib', length)
+      const matches = getAppSearchMatches('Rehras Sahib')
+      expect(matches).toHaveLength(1)
+      expect(new URLSearchParams(matches[0].path.split('?')[1]).get('sgLength')).toBe(length)
+      expect(new URLSearchParams(matches[0].path.split('?')[1]).get('baniDbId')).toBe('21')
+    }
+  } finally { useSundarGutkaLengthStore.setState({ lengths: previous }) }
 })
 
 test('finds library works and matching Panth Prakash chapters', async () => {
@@ -120,6 +184,43 @@ test('finds stories by title, description, people, themes and series', async () 
   }
 })
 
+test('keeps readable chapter matches when a newly discovered book index is unavailable', async () => {
+  const catalog = await libraryRepository.loadLibraryDiscoveryCatalog()
+  const index = await libraryRepository.loadLibrarySearchIndex('panth-prakash-english')
+  const newWork = { ...catalog.works[0], id: 'new-online-book', title: 'New Online Book', shortTitle: 'New Book' }
+  const discovery = vi.spyOn(libraryRepository, 'loadLibraryDiscoveryCatalog').mockResolvedValue({
+    works: [...catalog.works, newWork], workById: { ...catalog.workById, [newWork.id]: newWork },
+  })
+  const loader = vi.spyOn(libraryRepository, 'loadLibrarySearchIndex').mockImplementation(workId => workId === newWork.id
+    ? Promise.reject(new Error('New book is not downloaded')) : Promise.resolve(index))
+  try {
+    await expect(getLibrarySearchMatches('Origin of the Khalsa')).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ label: 'Origin of the Khalsa', kind: 'library-chapter' }),
+    ]))
+  } finally { loader.mockRestore(); discovery.mockRestore() }
+})
+
+test('missing catalog aliases do not suppress a readable chapter index', async () => {
+  const index = await libraryRepository.loadLibrarySearchIndex('panth-prakash-english')
+  const loader = vi.spyOn(libraryRepository, 'loadLibrarySearchIndex').mockImplementation(workId => workId
+    ? Promise.resolve(index) : Promise.reject(new Error('Alias catalog unavailable')))
+  try {
+    await expect(getLibrarySearchMatches('Origin of the Khalsa')).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ label: 'Origin of the Khalsa', kind: 'library-chapter' }),
+    ]))
+  } finally { loader.mockRestore() }
+})
+
+test('reports an unavailable search when every chapter index fails while retaining matching book routes', async () => {
+  const loader = vi.spyOn(libraryRepository, 'loadLibrarySearchIndex').mockRejectedValue(new Error('Indexes unavailable'))
+  try {
+    await expect(getLibrarySearchMatches('zz-no-known-book')).rejects.toThrow('Indexes unavailable')
+    await expect(getLibrarySearchMatches('Panth Prakash')).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ path: '/library/panth-prakash-english', kind: 'library-work' }),
+    ]))
+  } finally { loader.mockRestore() }
+})
+
 test('book result queries are phrases the reader can highlight, not scattered independent terms', async () => {
   const index = await libraryRepository.loadLibrarySearchIndex('panth-prakash-english')
   const source = index.chapters![0]
@@ -147,6 +248,21 @@ test('does not silently cap library full-text matches before the view can expand
   })
   try {
     expect(await getLibrarySearchMatches('unique searchable phrase')).toHaveLength(19)
+  } finally { loader.mockRestore() }
+})
+
+test('centres a book excerpt on the literal phrase even after punctuation changes normalized offsets', async () => {
+  const index = await libraryRepository.loadLibrarySearchIndex('panth-prakash-english')
+  const source = index.chapters![0]
+  const loader = vi.spyOn(libraryRepository, 'loadLibrarySearchIndex').mockResolvedValue({
+    ...index,
+    chapters: [{ ...source, title: 'An unrelated title', searchText: `${'A— —'.repeat(400)} The exact phrase appears here.` }],
+  })
+  try {
+    const [match] = await getLibrarySearchMatches('exact phrase')
+    expect(match.excerpt).toContain('exact phrase')
+    expect(match.path).toContain('?find=exact+phrase')
+    expect(match.excerpt!.length).toBeLessThan(230)
   } finally { loader.mockRestore() }
 })
 

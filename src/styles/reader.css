@@ -518,20 +518,6 @@
     0 12px 24px rgb(74 47 25 / 0.08);
 }
 
-.read-index-row {
-  margin-bottom: 0.35rem;
-  border: 1px solid rgb(var(--color-border) / 0.24);
-  border-radius: 0.95rem;
-  padding: 0.8rem 0.92rem;
-  background: rgb(var(--color-surface) / 0.82);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.34);
-}
-
-.read-index-row__title,
-.read-index-row__detail {
-  display: block;
-}
-
 .read-extra-source-card,
 .read-source-browser-card {
   position: relative;
@@ -647,7 +633,6 @@
 .read-quick-find-card,
 .read-featured-flow-card,
 .read-directory-card,
-.read-index-row,
 .read-extra-source-card,
 .read-source-browser-card {
   border-radius: var(--nr-radius-control);
@@ -718,29 +703,6 @@
     max-width: var(--nr-page-max);
   }
 
-  .read-room-stack {
-    display: grid;
-    grid-template-columns: minmax(17.5rem, 0.76fr) minmax(0, 1.24fr);
-    gap: var(--nr-layout-gap);
-    align-items: start;
-  }
-
-  .read-room-stack > :not(.read-room-hero) {
-    grid-column: 2;
-  }
-
-  .read-room-hero {
-    position: sticky;
-    top: max(1rem, calc(var(--safe-area-top) + 1rem));
-    grid-column: 1;
-    grid-row: 1 / span 8;
-    max-height: calc(100dvh - var(--nav-stack-height) - var(--safe-area-bottom) - 2.5rem);
-    overflow-y: auto;
-    border-right: 1px solid rgb(var(--color-border) / 0.28);
-    padding-right: var(--nr-layout-gap);
-    scrollbar-width: thin;
-  }
-
   .study-reader-layout {
     display: grid;
     grid-template-columns: var(--nr-reading-rail) minmax(0, 1fr);
@@ -803,12 +765,10 @@
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
   gap: 0.75rem !important;
+  container: read-discovery / inline-size;
 }
 
-.read-room-stack > .read-room-hero,
-.read-room-stack > .read-collection-tabs,
-.read-room-stack > .read-collection-panel,
-.read-room-stack > [role='tabpanel'] {
+.read-room-stack > * {
   grid-column: 1 !important;
 }
 
@@ -1015,7 +975,6 @@
 .read-quick-find-card input,
 .read-collection-tab,
 .read-directory-card,
-.read-index-row,
 .read-extra-source-card,
 .read-featured-flow-card,
 .read-source-section a,
@@ -1026,7 +985,6 @@
 .read-quick-find-card button:focus-visible,
 .read-collection-tab:focus-visible,
 .read-directory-card:focus-visible,
-.read-index-row:focus-visible,
 .read-extra-source-card:focus-visible,
 .read-featured-flow-card:focus-visible,
 .read-source-section a:focus-visible,
@@ -1135,7 +1093,12 @@
 
 .read-collection-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
+  min-width: 0;
+}
+
+.read-collection-panel > * {
   min-width: 0;
 }
 
@@ -1369,13 +1332,6 @@
   border-left: 2px solid rgb(var(--color-accent-strong) / 0.22) !important;
 }
 
-.read-index-row {
-  border-radius: 8px !important;
-  background: rgb(var(--color-surface) / 0.68) !important;
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
 .read-vaar-panel {
   margin-left: 0.5rem;
   padding: 0.8rem 0 0.2rem 0.8rem;
@@ -1560,9 +1516,13 @@
     grid-column: 1;
     grid-row: 2;
   }
+}
 
+/* The collection needs room for both its artwork and enlarged text, not just
+   a wide viewport. Keep this containment scoped to discovery, never readers. */
+@container read-discovery (min-width: 40rem) {
   .read-collection-panel {
-    grid-template-columns: minmax(0, 0.76fr) minmax(22rem, 1.24fr);
+    grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
     gap: 1.5rem 2rem;
     align-items: start;
   }

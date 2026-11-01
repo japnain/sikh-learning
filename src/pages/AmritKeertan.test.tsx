@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { StrictMode } from 'react'
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { afterEach, vi } from 'vitest'
 import * as banidb from '../api/banidb'
 import AmritKeertan from './AmritKeertan'
@@ -11,7 +11,10 @@ beforeEach(() => useLocaleStore.setState({ locale: 'en' }))
 
 function LocationSpy() {
   const location = useLocation()
-  return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
+  const navigate = useNavigate()
+  return <><div data-testid="location">{`${location.pathname}${location.search}`}</div>
+    <Link to={location.state?.readerOrigin ?? '/banis'}>Return to section</Link>
+    <button type="button" onClick={() => navigate(-1)}>Browser back</button></>
 }
 
 function renderAmritKeertan(path = '/banis/amrit-keertan') {
@@ -30,6 +33,25 @@ function renderAmritKeertan(path = '/banis/amrit-keertan') {
 
 afterEach(() => {
   vi.restoreAllMocks()
+})
+
+test.each(['Return to section', 'Browser back'])('preserves the Amrit discovery view and clicked row through %s', async returnControl => {
+  sessionStorage.clear()
+  renderAmritKeertan('/banis/amrit-keertan/1?readOrigin=%2Fbanis%3Fcollection%3Dbooks%26q%3Damrit')
+  await screen.findByText('ਪ੍ਰਭ ਪਾਸਿ ਜਨ ਕੀ ਅਰਦਾਸਿ ਤੂ ਸਚਾ ਸਾਂਈ ॥')
+  fireEvent.change(screen.getByTestId('amrit-keertan-search'), { target: { value: 'True Master' } })
+  fireEvent.click(within(screen.getByTestId('amrit-keertan-order-controls')).getByRole('button', { name: /Writer.*Author metadata/ }))
+  fireEvent.click(screen.getByRole('button', { name: 'English On' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Show source details' }))
+  fireEvent.click(screen.getByRole('button', { name: /Open AK Page 65 item 2 in Study/ }))
+  fireEvent.click(screen.getByRole(returnControl === 'Browser back' ? 'button' : 'link', { name: returnControl }))
+  await screen.findByRole('button', { name: 'Hide source details' })
+  expect(screen.getByTestId('amrit-keertan-search')).toHaveValue('True Master')
+  expect(screen.getByRole('button', { name: /Writer.*Author metadata/ })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('button', { name: 'English Off' })).toHaveAttribute('aria-pressed', 'false')
+  expect(screen.getAllByTestId('amrit-keertan-shabad-row')).toHaveLength(1)
+  expect(within(screen.getByTestId('amrit-keertan-breadcrumbs')).getByRole('link', { name: 'Read' })).toHaveAttribute('href', '/banis?collection=books&q=amrit')
+  await waitFor(() => expect(screen.getByRole('button', { name: /Open AK Page 65 item 2 in Study/ })).toHaveFocus())
 })
 
 test('renders Amrit Keertan sections and filters section search', async () => {

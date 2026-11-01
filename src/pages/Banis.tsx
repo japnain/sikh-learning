@@ -10,18 +10,13 @@ import {
   type BaniIndexItem,
 } from '../api/banidb'
 import {
-  BANIS,
   DG_CATEGORY_ORDER,
   READ_BANIDB_CATALOG_COUNT,
-  READ_DIRECTORY_DG_BANIS,
-  READ_DIRECTORY_SGGS_BANIS,
-  READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS,
-  READ_EXACT_DG_BANIS,
-  READ_EXACT_SGGS_BANIS,
   SGGS_CATEGORY_ORDER,
-  type Bani,
 } from '../data/banis'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
+import { subscribeLibraryDiscoveryCatalog } from '../data/libraryRepository'
+import { subscribeStoryCatalog } from '../data/storyRepository'
 import { resolveAsyncIssue } from '../qa/async'
 import { useRecentSearchStore } from '../store/recentSearch'
 import { useLanguageStore } from '../store/language'
@@ -29,10 +24,6 @@ import { useLocaleStore } from '../store/locale'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { AsyncIssueCode, SearchMode, UiLocale } from '../types'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
-import {
-  SUNDAR_GUTKA_SUPPORTED_BANIS,
-  isSundarGutkaLengthSupportedBaniId,
-} from '../utils/sundarGutkaLength'
 import { getSourceReaderUnit, SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import { getSearchModeLabels } from '../utils/translations'
 import { IconArrowRight, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
@@ -41,6 +32,10 @@ import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import LibraryBookBrowser from '../components/LibraryBookBrowser'
 import AppSearchResultGroup from '../components/read/AppSearchResultGroup'
 import ReadSearchControls from '../components/read/ReadSearchControls'
+import ReadBaniRow from '../components/read/ReadBaniRow'
+import { getBaniDiscovery, getBrowseBaniDiscovery } from '../content/baniDiscovery'
+import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
+import { buildReadBaniCatalog, type ReadBaniCatalogItem } from '../utils/readBaniCatalog'
 import {
   getAngTargets,
   getAppSearchMatches,
@@ -66,42 +61,22 @@ import {
 } from '../utils/libraryReaderNavigation'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import {
+  addAppScrollListener,
   getAppScrollTop,
   getAppViewportBounds,
   scrollAppTo,
 } from '../utils/appScroll'
 import { getSearchRevealScrollTop } from '../utils/searchReveal'
-import {
-  getReaderEditorialCopyForBani,
-} from '../content/readerEditorialCopy'
 import { READ_PAGE_COPY, READ_COLLECTIONS, type ReadCollection, type ReadPageCopy } from '../content/readPageCopy'
 import readHarmandirSrc from '../assets/living-library/read-harmandir.jpeg'
 import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.jpeg'
 import booksCourtSrc from '../assets/living-library/books-court.jpeg'
 
-function discoveryFocusId(value: string) {
-  let hash = 0
-  for (const character of value) hash = (Math.imul(hash, 31) + character.charCodeAt(0)) | 0
-  return `read-item-${(hash >>> 0).toString(36)}`
-}
-
 type Scripture = 'SGGS' | 'DG'
 const StoryBrowser = lazy(() => import('../components/StoryBrowser'))
 
-type ExactBani = Bani & { baniDbId: number }
-
 const READ_SOURCE_SECTION_IDS = ['sggs', 'dasam-granth', 'bhai-gurdas-vaaran']
 
-
-function isExactBani(bani: Bani): bani is ExactBani {
-  return typeof bani.baniDbId === 'number'
-}
-interface ResolvedRouteOption {
-  key: string
-  label: string
-  path: string
-  detail?: string
-}
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
   SGGS: { label: SOURCE_READER_META.G.name, icon: <IconLibrary size={18} />, categoryOrder: SGGS_CATEGORY_ORDER },
@@ -117,7 +92,6 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   ang: { type: -1, placeholder: 'Open an ang or Vaar', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Gurbani or ang', minLength: 2 },
 }
-const READ_SEARCH_EXAMPLES = ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam']
 const SEARCH_RESULTS_PAGE_SIZE = 12
 function getSearchVisibleCount(value: string | null) {
   const count = Number(value)
@@ -236,236 +210,21 @@ function refineLatinSearchResults(results: SearchResult[], query: string, mode: 
 }
 
 function isSearchModeParam(value: string | null): value is SearchMode {
-  return value !== null && value in SEARCH_MODE_META
+  return value !== null && Object.prototype.hasOwnProperty.call(SEARCH_MODE_META, value)
 }
 
 function isSearchSourceParam(value: string | null): value is SearchSource {
-  return value !== null && value in SEARCH_SOURCE_LABELS
+  return value !== null && Object.prototype.hasOwnProperty.call(SEARCH_SOURCE_LABELS, value)
 }
 
 function isReadCollectionParam(value: string | null): value is ReadCollection {
   return value !== null && READ_COLLECTIONS.includes(value as ReadCollection)
 }
 
-const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set<string>(READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS)
-const NITNEM_SUNDAR_GUTKA_BANIDB_IDS = new Set([2, 4, 6, 9, 10, 20, 21, 23])
-const POPULAR_SUNDAR_GUTKA_BANIDB_IDS = new Set([90, 30, 31, 22])
-const STANDALONE_BANIDB_NAMES = new Map([[24, 'Ardaas']])
-
-const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
-const EXACT_BANI_BY_BANIDB_ID = new Map(
-  [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
-    .flat()
-    .filter(isExactBani)
-    .map(bani => [bani.baniDbId, bani])
-)
-const DIRECTORY_BANIS_BY_SCRIPTURE = {
-  SGGS: READ_DIRECTORY_SGGS_BANIS,
-  DG: READ_DIRECTORY_DG_BANIS,
-} satisfies Record<Scripture, Bani[]>
-
 const BHAI_GURDAS_VAARS = Array.from(
   { length: SOURCE_READER_META.B.max },
   (_, index) => index + 1
 )
-
-const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
-  .flat()
-  .filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number')
-  .reduce<Map<string, ExactBani[]>>((groups, bani) => {
-    const baseId = bani.variantOf ?? bani.id
-    const list = groups.get(baseId) ?? []
-    list.push(bani)
-    groups.set(baseId, list)
-    return groups
-  }, new Map())
-
-function getBaniRowLabel(bani: Bani) {
-  if (!bani.variantOf) return bani.name
-
-  const exactVariants = EXACT_VARIANT_OPTIONS_BY_BASE_ID.get(bani.variantOf) ?? []
-  const baseLabel = exactVariants.find(option => !option.variantOf)?.name ?? bani.name
-
-  return bani.variantLabel ? `${baseLabel} · ${bani.variantLabel}` : bani.name
-}
-
-function normalizeBaniLabel(value: string) {
-  return value
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[’'`()]/g, '')
-    .replace(/[^a-z0-9\u0A00-\u0A7F]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-const SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL = new Map<string, string>([
-  ['ਜਪੁਜੀ ਸਾਹਿਬ', 'japji-sahib'],
-  ['japujee saahib', 'japji-sahib'],
-  ['japji sahib', 'japji-sahib'],
-  ['ਜਾਪੁ ਸਾਹਿਬ', 'jaap-sahib'],
-  ['jaap saahib', 'jaap-sahib'],
-  ['jaap sahib', 'jaap-sahib'],
-  ['ਤ੍ਵ ਪ੍ਰਸਾਦਿ ਸਵੱਯੇ ਸ੍ਰਾਵਗ ਸੁੱਧ', 'tav-prasad-savaiye'],
-  ["tavai prasaadh savaye sraavag sudh", 'tav-prasad-savaiye'],
-  ['tav prasad savaiye', 'tav-prasad-savaiye'],
-  ['ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ', 'chaupai-sahib'],
-  ['benatee chauapiee saahib', 'chaupai-sahib'],
-  ['benati chaupai sahib', 'chaupai-sahib'],
-  ['chaupai sahib', 'chaupai-sahib'],
-  ['ਅਨੰਦੁ ਸਾਹਿਬ', 'anand-sahib'],
-  ['anandh saahib', 'anand-sahib'],
-  ['anand sahib', 'anand-sahib'],
-  ['ਰਹਰਾਸਿ ਸਾਹਿਬ', 'rehras-sahib'],
-  ['raharaas saahib', 'rehras-sahib'],
-  ['raharaas sahib', 'rehras-sahib'],
-  ['rehras sahib', 'rehras-sahib'],
-  ['ਸੋਹਿਲਾ ਸਾਹਿਬ', 'kirtan-sohila'],
-  ['sohilaa saahib', 'kirtan-sohila'],
-  ['sohila sahib', 'kirtan-sohila'],
-  ['kirtan sohila', 'kirtan-sohila'],
-  ['ਸਲੋਕ ਮਹਲਾ ੯', 'salok-mahalla-9'],
-  ['salok mahalaa nauvaa', 'salok-mahalla-9'],
-  ['salok mahalla 9', 'salok-mahalla-9'],
-  ['ਸੁਖਮਨੀ ਸਾਹਿਬ', 'sukhmani-sahib'],
-  ['sukhamanee saahib', 'sukhmani-sahib'],
-  ['sukhmani sahib', 'sukhmani-sahib'],
-  ['ਆਸਾ ਦੀ ਵਾਰ', 'asa-di-var'],
-  ['aasaa dhee vaar', 'asa-di-var'],
-  ['asa di var', 'asa-di-var'],
-  ['ਆਰਤੀ', 'aarti'],
-  ['aaratee', 'aarti'],
-  ['aarti', 'aarti'],
-  ['ਲਾਵਾਂ', 'laavan'],
-  ['laavaan', 'laavan'],
-  ['laavan', 'laavan'],
-].map(([label, baniId]) => [normalizeBaniLabel(label), baniId]))
-
-function getCanonicalSundarGutkaBani(item: BaniIndexItem): Bani | null {
-  const candidates = [item.gurmukhi, item.transliteration]
-
-  for (const candidate of candidates) {
-    const canonicalId = SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL.get(normalizeBaniLabel(candidate))
-    if (!canonicalId) continue
-
-    const canonicalBani = CANONICAL_BANI_BY_ID.get(canonicalId)
-    if (canonicalBani && CANONICAL_SUNDAR_GUTKA_BANI_IDS.has(canonicalBani.id)) {
-      return canonicalBani
-    }
-  }
-
-  return null
-}
-
-function getNitnemRouteOptionsForBani(item: BaniIndexItem) {
-  const canonicalId = getCanonicalSundarGutkaBani(item)?.id
-  if (!canonicalId) return []
-
-  return NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === canonicalId)
-}
-
-function getSundarGutkaDisplayCopy(item: BaniIndexItem) {
-  const canonicalBani = getCanonicalSundarGutkaBani(item)
-  const exactBani = EXACT_BANI_BY_BANIDB_ID.get(item.id)
-
-  return {
-    label: item.gurmukhi,
-    detail: canonicalBani?.name ?? exactBani?.name ?? STANDALONE_BANIDB_NAMES.get(item.id) ?? item.transliteration,
-  }
-}
-
-function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
-  const baseId = bani.variantOf ?? bani.id
-  const nitnemOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === baseId)
-
-  if (isSundarGutkaLengthSupportedBaniId(baseId)) {
-    const routeOption = nitnemOptions[0] ?? null
-    const label = routeOption?.name ?? SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].name
-
-    return [{
-      key: routeOption?.id ?? baseId,
-      label,
-      path: routeOption
-        ? buildNitnemStudyPath(routeOption)
-        : buildCanonicalBaniStudyPath(bani, {
-            baniDbId: SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].baniDbId,
-            baniId: baseId,
-            baniName: SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].name,
-          }),
-    }] satisfies ResolvedRouteOption[]
-  }
-
-  if (nitnemOptions.length > 1) {
-    return nitnemOptions.map(option => ({
-      key: option.id,
-      label: nitnemOptions.length > 1 && option.variantLabel
-        ? `${bani.name} · ${option.variantLabel}`
-        : option.name,
-      path: buildNitnemStudyPath(option),
-      detail: getReaderEditorialCopyForBani(option.id)?.dek,
-    })) satisfies ResolvedRouteOption[]
-  }
-
-  const exactVariants = EXACT_VARIANT_OPTIONS_BY_BASE_ID.get(baseId) ?? []
-  if (exactVariants.length <= 1) return []
-
-  const baseLabel = exactVariants[0]?.name ?? bani.name
-
-  return exactVariants.map(option => {
-    return {
-      key: option.id,
-      label: option.variantLabel
-        ? `${baseLabel} · ${option.variantLabel}`
-        : option.name,
-      path: buildCanonicalBaniStudyPath(option),
-      detail: getReaderEditorialCopyForBani(option.id)?.dek,
-    } satisfies ResolvedRouteOption
-  })
-}
-
-function IndexRow({
-  label,
-  detail,
-  supplementalDetail,
-  onClick,
-  labelClassName,
-  detailClassName,
-  supplementalDetailClassName,
-  labelLang,
-}: {
-  label: string
-  detail?: string
-  supplementalDetail?: string
-  onClick: () => void
-  labelClassName?: string
-  detailClassName?: string
-  supplementalDetailClassName?: string
-  labelLang?: string
-}) {
-  return (
-    <button
-      id={discoveryFocusId(`${label} ${detail ?? ''}`)}
-      data-read-launch="true"
-      onClick={onClick}
-      className="read-index-row w-full text-left active:scale-[0.99] transition-transform duration-150"
-    >
-      <p lang={labelLang} className={`read-index-row__title ${labelClassName ?? 'font-sans text-sm text-ink dark:text-dark-text'}`}>
-        {label}
-      </p>
-      {detail ? (
-        <p className={`read-index-row__detail ${detailClassName ?? 'font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5'}`}>
-          {detail}
-        </p>
-      ) : null}
-      {supplementalDetail ? (
-        <p className={`read-index-row__detail ${supplementalDetailClassName ?? 'font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1'}`}>
-          {supplementalDetail}
-        </p>
-      ) : null}
-    </button>
-  )
-}
 
 function DirectoryCount({
   count,
@@ -615,9 +374,6 @@ export default function Banis() {
   const [writerFilter, setWriterFilter] = useState<string>(() => searchParams.get('writer') ?? 'all')
   const [visibleSearchResultCount, setVisibleSearchResultCount] = useState(() => getSearchVisibleCount(searchParams.get('matches')))
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
-  const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
-  const [sundarGutkaIssue, setSundarGutkaIssue] = useState<AsyncIssueCode | null>(null)
-  const [sundarGutkaRequest, setSundarGutkaRequest] = useState(0)
   const toggle = (key: string) => setSearchParams(current => {
     const next = new URLSearchParams(current)
     const keys = new Set((next.get('open') ?? '').split(',').filter(Boolean))
@@ -630,29 +386,88 @@ export default function Banis() {
   const searchOptionsOpen = expanded['search-options'] ?? false
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
+  const [recentExpanded, setRecentExpanded] = useState(false)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const pendingSearchRunRef = useRef<(() => void) | null>(null)
   const searchSequenceRef = useRef(0)
+  const metadataRevisionRef = useRef({ books: 0, stories: 0 })
   const searchAbortRef = useRef<AbortController | null>(null)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
   const searchCardRef = useRef<HTMLDivElement | null>(null)
   const searchLocationHydrationRef = useRef(false)
   const pendingSearchScopeRef = useRef<SearchScope | null>(null)
+  const revealGenerationRef = useRef(0)
+  const pendingRevealRef = useRef<number | null>(null)
   const searchStateRef = useRef({
     query: searchQuery,
     mode: searchMode,
     source: searchSource,
+    scope: searchScope,
   })
   searchStateRef.current = {
     query: searchQuery,
     mode: searchMode,
     source: searchSource,
+    scope: searchScope,
   }
 
+  const requestSearchReveal = useCallback(() => {
+    pendingRevealRef.current = ++revealGenerationRef.current
+  }, [])
+
+  useEffect(() => {
+    const refreshMetadata = (scope: 'books' | 'stories') => {
+      const current = searchStateRef.current
+      const includesMetadata = current.source === 'all' && ['auto-detect', 'english', 'transliteration'].includes(current.mode)
+      if (current.query.trim().length < 2 || (current.scope === 'all' && isDirectSearch(current.query.trim(), current.mode))
+        || (current.scope !== scope && !(current.scope === 'all' && includesMetadata))) return
+      const sequence = searchSequenceRef.current
+      const revision = ++metadataRevisionRef.current[scope]
+      const search = scope === 'books' ? getLibrarySearchMatches : getStorySearchMatches
+      void search(current.query.trim()).then(results => {
+        if (sequence !== searchSequenceRef.current || revision !== metadataRevisionRef.current[scope]) return
+        if (scope === 'books') setLibrarySearchResults(results)
+        else setStorySearchResults(results)
+      }).catch(() => { /* Keep usable results if a background catalog refresh fails. */ })
+    }
+    const unsubscribeBooks = subscribeLibraryDiscoveryCatalog(() => refreshMetadata('books'))
+    const unsubscribeStories = subscribeStoryCatalog(() => refreshMetadata('stories'))
+    return () => { unsubscribeBooks(); unsubscribeStories() }
+  }, [])
+
+  useEffect(() => {
+    const cancelReveal = () => {
+      revealGenerationRef.current += 1
+      pendingRevealRef.current = null
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (['Tab', 'Escape', 'PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown'].includes(event.key)) cancelReveal()
+    }
+    window.addEventListener('wheel', cancelReveal, { passive: true })
+    window.addEventListener('touchmove', cancelReveal, { passive: true })
+    window.addEventListener('pointerdown', cancelReveal, true)
+    const removeScrollListener = addAppScrollListener(cancelReveal)
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      cancelReveal()
+      window.removeEventListener('wheel', cancelReveal)
+      window.removeEventListener('touchmove', cancelReveal)
+      window.removeEventListener('pointerdown', cancelReveal, true)
+      removeScrollListener()
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
+
   const revealSearchFeedback = useCallback(() => {
-    if (typeof window === 'undefined') return
+    const generation = pendingRevealRef.current
+    if (typeof window === 'undefined' || generation === null) return
+    // Claim this explicit search intent before scheduling. Later providers must
+    // never reclaim the user's position while progressively filling results.
+    pendingRevealRef.current = null
 
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
+        if (generation !== revealGenerationRef.current) return
         const input = searchInputRef.current
         const card = searchCardRef.current
         const feedback = card?.querySelector<HTMLElement>('[data-search-result-anchor="true"]')
@@ -691,34 +506,24 @@ export default function Banis() {
     if (activeCollection !== 'banis') return
     let cancelled = false
 
-    setLoadingSundarGutka(true)
-    setSundarGutkaIssue(null)
     fetchBanisIndex()
       .then(data => {
         if (!cancelled) {
           setSundarGutkaBanis(data)
-          setSundarGutkaIssue(null)
         }
       })
-      .catch(error => {
-        if (!cancelled) {
-          setSundarGutkaBanis([])
-          setSundarGutkaIssue(resolveAsyncIssue(error).code)
-        }
-      })
-      .finally(() => {
-        if (!cancelled) setLoadingSundarGutka(false)
-      })
+      .catch(() => { /* Bundled script names keep the complete catalog usable offline. */ })
 
     return () => {
       cancelled = true
     }
-  }, [activeCollection, sundarGutkaRequest])
+  }, [activeCollection])
 
   useEffect(() => {
     return () => {
       searchSequenceRef.current += 1
       if (debounceRef.current) clearTimeout(debounceRef.current)
+      pendingSearchRunRef.current = null
       searchAbortRef.current?.abort()
     }
   }, [])
@@ -742,6 +547,7 @@ export default function Banis() {
       searchSequenceRef.current += 1
       if (debounceRef.current) clearTimeout(debounceRef.current)
       debounceRef.current = null
+      pendingSearchRunRef.current = null
       searchAbortRef.current?.abort()
       searchAbortRef.current = null
       setSearchResults([])
@@ -807,9 +613,12 @@ export default function Banis() {
   }, [activeCollection, location.pathname, location.search, searchMode, searchQuery, searchSource, raagFilter, writerFilter, visibleSearchResultCount, setSearchParams])
 
   const selectCollection = useCallback((collection: ReadCollection) => {
+    revealGenerationRef.current += 1
+    pendingRevealRef.current = null
     searchSequenceRef.current += 1
     if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = null
+    pendingSearchRunRef.current = null
     searchAbortRef.current?.abort()
     searchAbortRef.current = null
     setSearching(false)
@@ -851,11 +660,14 @@ export default function Banis() {
     const requestSequence = ++searchSequenceRef.current
     searchAbortRef.current?.abort()
     searchAbortRef.current = null
-    setSearchQuery(query)
     if (debounceRef.current) clearTimeout(debounceRef.current)
+    debounceRef.current = null
+    pendingSearchRunRef.current = null
     const trimmed = query.trim()
     const directLookup = (searchScope === 'all' || searchScope === 'gurbani') && isDirectSearch(trimmed, mode)
     if (trimmed.length < getSearchMinimumLength(trimmed, mode)) {
+      revealGenerationRef.current += 1
+      pendingRevealRef.current = null
       setSearchResults([])
       setLibrarySearchResults([])
       setStorySearchResults([])
@@ -880,7 +692,9 @@ export default function Banis() {
     setSearching(true)
     setSearchIssue(null)
     setSearchPartialIssue(null)
-    debounceRef.current = setTimeout(async () => {
+    const runSearch = async () => {
+      debounceRef.current = null
+      pendingSearchRunRef.current = null
       const controller = new AbortController()
       searchAbortRef.current = controller
       const isCurrent = () => searchSequenceRef.current === requestSequence && !controller.signal.aborted
@@ -906,12 +720,14 @@ export default function Banis() {
       )
       const includeMetadata = (source === 'all' && (mode === 'auto-detect' || mode === 'english' || mode === 'transliteration'))
       if (searchScope === 'books' || (searchScope === 'all' && includeMetadata)) {
+        const revision = metadataRevisionRef.current.books
         tasks.push(withSearchDeadline(() => getLibrarySearchMatches(trimmed), controller.signal)
-          .then(results => { if (isCurrent()) { localResultCount += results.length; setLibrarySearchResults(results); revealSearchFeedback() } }).catch(failed))
+          .then(results => { if (isCurrent()) { localResultCount += results.length; if (revision === metadataRevisionRef.current.books) setLibrarySearchResults(results); revealSearchFeedback() } }).catch(failed))
       }
       if (searchScope === 'stories' || (searchScope === 'all' && includeMetadata)) {
+        const revision = metadataRevisionRef.current.stories
         tasks.push(withSearchDeadline(() => getStorySearchMatches(trimmed), controller.signal)
-          .then(results => { if (isCurrent()) { localResultCount += results.length; setStorySearchResults(results); revealSearchFeedback() } }).catch(failed))
+          .then(results => { if (isCurrent()) { localResultCount += results.length; if (revision === metadataRevisionRef.current.stories) setStorySearchResults(results); revealSearchFeedback() } }).catch(failed))
       }
       await Promise.all(tasks)
       if (searchAbortRef.current === controller) searchAbortRef.current = null
@@ -920,13 +736,17 @@ export default function Banis() {
         setSearchIssue(firstFailure)
         setSearchPartialIssue(null)
       }
-      addRecent(trimmed, mode, source)
+      addRecent(trimmed, mode, source, searchScope)
       setSearching(false)
       revealSearchFeedback()
-    }, 300)
+    }
+    pendingSearchRunRef.current = runSearch
+    debounceRef.current = setTimeout(runSearch, 300)
   }, [addRecent, revealSearchFeedback, searchMode, searchSource, searchScope])
 
   const clearSearch = useCallback(() => {
+    revealGenerationRef.current += 1
+    pendingRevealRef.current = null
     setSearchParams(current => {
       const next = new URLSearchParams(current)
       if (searchQuery.trim()) next.set('previousQuery', searchQuery.trim())
@@ -936,6 +756,7 @@ export default function Banis() {
     searchSequenceRef.current += 1
     if (debounceRef.current) clearTimeout(debounceRef.current)
     searchAbortRef.current?.abort()
+    pendingSearchRunRef.current = null
     setSearching(false)
     setSearchResults([])
     setLibrarySearchResults([])
@@ -946,16 +767,46 @@ export default function Banis() {
   }, [searchQuery, setSearchParams])
 
   const trySearchExample = useCallback((example: string) => {
+    requestSearchReveal()
     setSearchMode('auto-detect')
-    handleSearch(example, 'auto-detect', searchSource)
+    setSearchQuery(example)
     globalThis.requestAnimationFrame(() => searchInputRef.current?.focus())
-  }, [handleSearch, searchSource])
+  }, [requestSearchReveal])
+
+  const submitSearch = useCallback(() => {
+    requestSearchReveal()
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    pendingSearchRunRef.current?.()
+    if (window.matchMedia?.('(pointer: coarse)').matches) searchInputRef.current?.blur()
+    revealSearchFeedback()
+  }, [requestSearchReveal, revealSearchFeedback])
+
+  const restoreRecentSearch = (item: typeof recent[number]) => {
+    requestSearchReveal()
+    pendingSearchScopeRef.current = item.scope
+    // Commit all search dimensions together; the URL hydration effect starts
+    // the request only after its query, mode, source and scope agree.
+    const fields = new URLSearchParams(buildReadSearchPath(item).split('?')[1] ?? '')
+    setSearchParams(current => {
+      const next = new URLSearchParams(current)
+      for (const key of ['query', 'mode', 'source']) {
+        const value = fields.get(key)
+        if (value) next.set(key, value)
+        else next.delete(key)
+      }
+      if (item.scope === 'all') next.delete('scope')
+      else next.set('scope', item.scope)
+      next.delete('raag'); next.delete('writer'); next.delete('matches')
+      return next
+    }, { replace: true })
+  }
 
   useEffect(() => {
     handleSearch(searchQuery, searchMode, searchSource)
   }, [handleSearch, searchMode, searchSource, searchQuery])
 
   const readSearchOrigin = buildCurrentAppPath(location)
+  const addScopedRecent = (query: string, mode: SearchMode, source: SearchSource) => addRecent(query, mode, source, searchScope)
   const openSearchDestination = (path: string) => {
     navigate(path, {
       state: path.startsWith('/stories/') ? buildLibraryReaderNavigationState(readSearchOrigin) : buildReaderOriginNavigationState(path, readSearchOrigin),
@@ -966,71 +817,38 @@ export default function Banis() {
     openSearchDestination(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
   }
 
-  const openSundarGutkaBani = (item: BaniIndexItem) => {
-    const canonicalBani = getCanonicalSundarGutkaBani(item)
-    const exactBani = EXACT_BANI_BY_BANIDB_ID.get(item.id)
-    const name = canonicalBani && isSundarGutkaLengthSupportedBaniId(canonicalBani.id)
-      ? SUNDAR_GUTKA_SUPPORTED_BANIS[canonicalBani.id].name
-      : canonicalBani?.name
-        ?? exactBani?.name
-        ?? STANDALONE_BANIDB_NAMES.get(item.id)
-        ?? item.transliteration
-        ?? item.gurmukhi
+  const baniCatalog = useMemo(() => buildReadBaniCatalog(sundarGutkaBanis), [sundarGutkaBanis])
+  const sundarGutkaGroups = baniCatalog.sundarGutka.map(group => ({
+    ...group,
+    label: copy.sundarGroups[group.key],
+  }))
+  const sundarGutkaCount = sundarGutkaGroups.reduce((count, group) => count + group.items.length, 0)
+  const scriptureGroups = (Object.keys(SCRIPTURE_META) as Scripture[]).reduce<Record<Scripture, Array<{ category: string; label: string; items: ReadBaniCatalogItem[] }>>>((groups, scripture) => {
+    groups[scripture] = SCRIPTURE_META[scripture].categoryOrder.map(category => ({
+      category,
+      label: category === 'Raag Sections' ? copy.bhagatSelections : category,
+      items: baniCatalog.scriptures[scripture].filter(item => item.bani?.category === category),
+    })).filter(group => group.items.length > 0)
+    return groups
+  }, { SGGS: [], DG: [] })
 
-    if (canonicalBani) {
-      openSearchDestination(buildCanonicalBaniStudyPath(canonicalBani, {
-        baniDbId: item.id,
-        baniId: canonicalBani.variantOf ?? canonicalBani.id,
-        baniName: name,
-      }))
-      return
-    }
-
-    if (exactBani) {
-      openSearchDestination(buildCanonicalBaniStudyPath(exactBani, {
-        baniDbId: item.id,
-        baniId: exactBani.variantOf ?? exactBani.id,
-        baniName: name,
-      }))
-      return
-    }
-
-    openSearchDestination(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
+  const openBani = (item: ReadBaniCatalogItem) => {
+    const nitnemOption = NITNEM_ROUTE_OPTIONS.find(option => option.baniDbId === item.baniDbId)
+    if (nitnemOption) openSearchDestination(buildNitnemStudyPath(nitnemOption))
+    else if (item.bani) openSearchDestination(buildCanonicalBaniStudyPath(item.bani))
+    else if (item.baniDbId === 24) openSearchDestination('/study?baniDbId=24&bani=Ardaas')
   }
-
-  const sundarGutkaGroups = useMemo(() => {
-    const nitnem = sundarGutkaBanis.filter(item => NITNEM_SUNDAR_GUTKA_BANIDB_IDS.has(item.id))
-    const popular = sundarGutkaBanis.filter(item => POPULAR_SUNDAR_GUTKA_BANIDB_IDS.has(item.id))
-    const other = sundarGutkaBanis.filter(item => (
-      !NITNEM_SUNDAR_GUTKA_BANIDB_IDS.has(item.id)
-      && !POPULAR_SUNDAR_GUTKA_BANIDB_IDS.has(item.id)
-    ))
-
-    return [
-      { key: 'nitnem', label: copy.sundarGroups.nitnem, items: nitnem },
-      { key: 'popular', label: copy.sundarGroups.popular, items: popular },
-      { key: 'other', label: copy.sundarGroups.other, items: other },
-    ].filter(group => group.items.length > 0)
-  }, [copy.sundarGroups, sundarGutkaBanis])
-
-  const scriptureGroups = useMemo(() => {
-    return (Object.keys(SCRIPTURE_META) as Scripture[]).reduce<Record<Scripture, Array<{ category: string; items: Bani[] }>>>((groups, scripture) => {
-      const items = DIRECTORY_BANIS_BY_SCRIPTURE[scripture]
-      const orderedCategories = SCRIPTURE_META[scripture].categoryOrder
-
-      groups[scripture] = orderedCategories
-        .map(category => ({
-          category,
-          items: items.filter(item => item.category === category),
-        }))
-        .filter(group => group.items.length > 0)
-
-      return groups
-    }, {
-      SGGS: [],
-      DG: [],
-    })
-  }, [])
+  const renderBaniRow = (item: ReadBaniCatalogItem) => {
+    const hindiTitle = scriptMode === 'devanagari' && item.baniDbId
+      ? BANI_SCRIPT_NAMES[item.baniDbId]?.hindi : undefined
+    return (
+      <ReadBaniRow key={item.identity} identity={item.identity}
+        entry={(item.baniDbId ? getBaniDiscovery(item.baniDbId) : getBrowseBaniDiscovery(item.bani!))!}
+        scriptTitle={hindiTitle ?? (item.scriptTitle ? renderScriptText(item.scriptTitle, scriptMode) : undefined)}
+        scriptLang={getScriptTextLang(scriptMode)} scriptClassName={getScriptTextFontClass(scriptMode)}
+        onOpen={() => openBani(item)} />
+    )
+  }
 
   const groupedSearchResults = useMemo(
     () => groupSearchResults(searchResults, { raag: raagFilter, writer: writerFilter }),
@@ -1075,9 +893,9 @@ export default function Banis() {
   )
   const hasActiveSearch = searchQuery.trim().length >= getSearchMinimumLength(searchQuery.trim(), searchMode)
   useEffect(() => {
-    if ((activeCollection === 'banis' && loadingSundarGutka) || (hasActiveSearch && searching)) return
+    if (hasActiveSearch && searching) return
     return restoreDiscoveryReturn(buildCurrentAppPath(location))
-  }, [activeCollection, loadingSundarGutka, hasActiveSearch, searching, location])
+  }, [hasActiveSearch, searching, location])
 
   const searchStatusMessage = useMemo(() => {
     if (!hasActiveSearch) return ''
@@ -1159,10 +977,13 @@ export default function Banis() {
           query={searchQuery} mode={searchMode} source={searchSource} scope={searchScope}
           optionsOpen={searchOptionsOpen} active={hasActiveSearch} status={searchStatusMessage} previousQuery={previousQuery}
           onToggleOptions={() => toggle('search-options')}
-          onQuery={value => { setRaagFilter('all'); setWriterFilter('all'); setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE); handleSearch(value) }}
-          onMode={setSearchMode} onSource={setSearchSource} onExit={clearSearch}
-          onRecover={() => handleSearch(previousQuery)}
+          onQuery={value => { requestSearchReveal(); setRaagFilter('all'); setWriterFilter('all'); setVisibleSearchResultCount(SEARCH_RESULTS_PAGE_SIZE); setSearchQuery(value) }}
+          onSubmit={submitSearch}
+          onMode={mode => { requestSearchReveal(); setSearchMode(mode) }}
+          onSource={source => { requestSearchReveal(); setSearchSource(source) }} onExit={clearSearch}
+          onRecover={() => { requestSearchReveal(); setSearchQuery(previousQuery) }}
           onScope={scope => {
+            requestSearchReveal()
             pendingSearchScopeRef.current = scope
             setSearchParams(current => {
               const next = new URLSearchParams(current)
@@ -1181,7 +1002,7 @@ export default function Banis() {
                 id={`read-direct-${target.source}`}
                 data-read-launch="true"
                 onClick={() => {
-                  addRecent(searchQuery.trim(), searchMode, searchSource)
+                  addRecent(searchQuery.trim(), searchMode, searchSource, searchScope)
                   openSearchDestination(target.path)
                 }}
                 className="w-full rounded-lg border border-sand/15 bg-parchment-card px-3 py-3 text-left transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card"
@@ -1209,7 +1030,7 @@ export default function Banis() {
               <button
                 type="button"
                 className="read-search-clear mt-3"
-                onClick={() => handleSearch(searchQuery, searchMode, searchSource)}
+                onClick={() => { requestSearchReveal(); handleSearch(searchQuery, searchMode, searchSource) }}
               >
                 {copy.retry}
               </button>
@@ -1218,7 +1039,7 @@ export default function Banis() {
           {searchPartialIssue && !searchIssue && !directLookupActive && (
             <div data-search-feedback-anchor="true" role="status" className="read-search-partial nav-safe-results mt-3 rounded-lg border px-4 py-3 font-sans text-sm">
               {copy.partialSearch}
-              {!searching ? <button type="button" className="read-search-clear mt-2" onClick={() => handleSearch(searchQuery, searchMode, searchSource)}>{copy.retry}</button> : null}
+              {!searching ? <button type="button" className="read-search-clear mt-2" onClick={() => { requestSearchReveal(); handleSearch(searchQuery, searchMode, searchSource) }}>{copy.retry}</button> : null}
             </div>
           )}
           {hasActiveSearch && immediateAppSearchMatches.length > 0 && !directLookupActive && (
@@ -1233,7 +1054,7 @@ export default function Banis() {
               copy={copy}
               searchMode={searchMode}
               searchSource={searchSource}
-              addRecent={addRecent}
+              addRecent={addScopedRecent}
               openSearchDestination={openSearchDestination}
             />
           )}
@@ -1373,7 +1194,7 @@ export default function Banis() {
             copy={copy}
             searchMode={searchMode}
             searchSource={searchSource}
-            addRecent={addRecent}
+            addRecent={addScopedRecent}
             openSearchDestination={openSearchDestination}
           />
         )}
@@ -1381,7 +1202,7 @@ export default function Banis() {
           matches={storySearchResults} query={searchQuery} groupLabel={copy.tabs.stories}
           testId="banis-search-story-results" aiResultGroup="stories" resultAnchor={appSearchMatchCount === storySearchResults.length && searchResults.length === 0}
           className="mt-3" copy={copy} searchMode={searchMode} searchSource={searchSource}
-          addRecent={addRecent} openSearchDestination={openSearchDestination}
+          addRecent={addScopedRecent} openSearchDestination={openSearchDestination}
         /> : null}
         {hasActiveSearch && !searching && !searchIssue && !searchPartialIssue && searchResults.length === 0 && appSearchMatchCount === 0 && !directLookupActive && (
           <section data-search-feedback-anchor="true" className="read-search-empty nav-safe-results mt-3" aria-labelledby="read-search-empty-title">
@@ -1392,7 +1213,7 @@ export default function Banis() {
               {searchUi.emptyBody[searchScope]}
             </p>
             <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={copy.tryExamples}>
-              {READ_SEARCH_EXAMPLES.map(example => (
+              {searchUi.examples[searchScope].map(example => (
                 <button key={example} type="button" className="read-search-example" onClick={() => trySearchExample(example)}>
                   {example}
                 </button>
@@ -1407,23 +1228,19 @@ export default function Banis() {
           <div className="mt-2">
             <div className="flex justify-between items-center mb-1">
               <p className="font-sans text-[10px] text-ink/75 dark:text-dark-text/76 uppercase tracking-wider">{copy.recent}</p>
-              <button onClick={clearRecent} className="font-sans text-[10px] text-ink/75 dark:text-dark-text/76">{copy.clear}</button>
+              {recent.some(item => !item.pinned) && <button onClick={() => { clearRecent(); setRecentExpanded(false) }} className="font-sans text-[10px] text-ink/75 dark:text-dark-text/76">{searchUi.clearHistory}</button>}
             </div>
             <div className="space-y-2">
-              {recent.map(item => (
-                <div key={`${item.query}-${item.mode}-${item.source}`} className="flex items-center gap-2">
+              {(recentExpanded ? recent : recent.slice(0, 3)).map(item => (
+                <div key={`${item.query}-${item.mode}-${item.source}-${item.scope}`} className="flex items-center gap-2">
                   <button
-                    onClick={() => {
-                      setSearchMode(item.mode)
-                      setSearchSource(item.source)
-                      handleSearch(item.query, item.mode, item.source)
-                    }}
+                    onClick={() => restoreRecentSearch(item)}
                     className="flex-1 text-left font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-2 text-ink/68 dark:text-dark-text/64 active:scale-95 transition-transform duration-150"
                   >
-                    {item.query} · {searchModeLabels[item.mode]} · {item.source === 'all' ? copy.allSources : SEARCH_SOURCE_LABELS[item.source]}
+                    {item.query} · {searchUi.scopes[item.scope]} · {searchModeLabels[item.mode]} · {item.source === 'all' ? copy.allSources : SEARCH_SOURCE_LABELS[item.source]}
                   </button>
                   <button
-                    onClick={() => togglePinned(item.query, item.mode, item.source)}
+                    onClick={() => togglePinned(item.query, item.mode, item.source, item.scope)}
                     aria-label={`${item.pinned ? copy.unpin : copy.pin} ${item.query}`}
                     className="min-h-[40px] min-w-[40px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/68 dark:text-dark-text/64"
                   >
@@ -1432,6 +1249,10 @@ export default function Banis() {
                 </div>
               ))}
             </div>
+            {recent.length > 3 && <button type="button" className="read-search-clear mt-2" aria-expanded={recentExpanded}
+              onClick={() => setRecentExpanded(value => !value)}>
+              {recentExpanded ? searchUi.fewerRecent : searchUi.moreRecent(recent.length)}
+            </button>}
           </div>
         )}
           </div>
@@ -1568,8 +1389,7 @@ export default function Banis() {
           </div>
           <span className="ml-3 flex shrink-0 items-center gap-2">
             <DirectoryCount
-              count={loadingSundarGutka || sundarGutkaIssue ? null : sundarGutkaBanis.length}
-              issue={Boolean(sundarGutkaIssue)}
+              count={sundarGutkaCount}
               copy={copy}
               testId="banis-directory-sundar-gutka-count"
             />
@@ -1581,20 +1401,9 @@ export default function Banis() {
           <div
             id="banis-sundar-gutka-panel"
             className="mt-2 ml-2"
-            data-ai-state={loadingSundarGutka ? 'loading' : sundarGutkaIssue ? 'degraded' : sundarGutkaBanis.length ? 'ready' : 'empty'}
+            data-ai-state="ready"
           >
-            {loadingSundarGutka ? (
-              <p role="status" className="font-sans text-xs text-ink/75 dark:text-dark-text/76 px-2 py-3">{copy.indexLoading}</p>
-            ) : sundarGutkaIssue ? (
-              <div role="alert" className="read-index-state">
-                <p>{sundarGutkaIssue === 'offline' ? copy.indexOffline : copy.indexError}</p>
-                <button type="button" onClick={() => setSundarGutkaRequest(request => request + 1)}>
-                  {copy.retry}
-                </button>
-              </div>
-            ) : sundarGutkaGroups.length === 0 ? (
-              <p role="status" className="read-index-state">{copy.indexEmpty}</p>
-            ) : sundarGutkaGroups.map(group => {
+            {sundarGutkaGroups.map(group => {
               const groupKey = `sundar-gutka-${group.key}`
               return (
                 <div key={group.key} className="mb-2">
@@ -1619,41 +1428,8 @@ export default function Banis() {
                     </span>
                   </button>
                   {expanded[groupKey] && (
-                    <div id={`${groupKey}-panel`} className="mt-1 ml-2">
-                      {group.items.flatMap(item => {
-                        const routeOptions = group.key === 'nitnem'
-                          ? getNitnemRouteOptionsForBani(item)
-                          : []
-
-                        if (routeOptions.length > 0) {
-                          return routeOptions.map(option => (
-                            <IndexRow
-                              key={`${item.id}-${option.id}`}
-                              label={renderScriptText(option.gurmukhiTitle, scriptMode)}
-                              detail={showTransliteration ? option.romanizedTitle : undefined}
-                              supplementalDetail={meaningLanguage === 'en' ? getReaderEditorialCopyForBani(option.id)?.dek : undefined}
-                              labelLang={getScriptTextLang(scriptMode)}
-                              labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
-                              detailClassName="font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5"
-                              onClick={() => openSearchDestination(buildNitnemStudyPath(option))}
-                            />
-                          ))
-                        }
-
-                        const displayCopy = getSundarGutkaDisplayCopy(item)
-
-                        return (
-                          <IndexRow
-                            key={item.id}
-                            label={renderScriptText(displayCopy.label, scriptMode)}
-                            detail={showTransliteration ? displayCopy.detail : undefined}
-                            labelLang={getScriptTextLang(scriptMode)}
-                            labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
-                            detailClassName="font-sans text-xs text-gold-dark dark:text-gold-light mt-0.5"
-                            onClick={() => openSundarGutkaBani(item)}
-                          />
-                        )
-                      })}
+                    <div id={`${groupKey}-panel`} className="read-bani-group-panel mt-1 ml-2">
+                      {group.items.map(renderBaniRow)}
                     </div>
                   )}
                 </div>
@@ -1668,7 +1444,7 @@ export default function Banis() {
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
         const groups = scriptureGroups[scripture]
-        const baniCount = DIRECTORY_BANIS_BY_SCRIPTURE[scripture].filter(isExactBani).length
+        const baniCount = baniCatalog.scriptures[scripture].length
 
         return (
           <div key={scripture}>
@@ -1701,9 +1477,9 @@ export default function Banis() {
                         data-open={expanded[groupKey] ? 'true' : 'false'}
                         aria-expanded={Boolean(expanded[groupKey])}
                         aria-controls={`${groupKey}-panel`}
-                        aria-label={`${group.category}, ${group.items.length} readings`}
+                        aria-label={`${group.label}, ${group.items.length} readings`}
                       >
-                        <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">{group.category}</p>
+                        <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wider">{group.label}</p>
                         <span className="ml-3 flex shrink-0 items-center gap-2">
                           <span aria-hidden="true" className="min-w-6 text-right font-sans text-[11px] tabular-nums text-ink/75 dark:text-dark-text/76">
                             {group.items.length}
@@ -1712,58 +1488,8 @@ export default function Banis() {
                         </span>
                       </button>
                       {expanded[groupKey] && (
-                        <div id={`${groupKey}-panel`} className="mt-1 ml-2">
-                          {group.items.flatMap(item => {
-                            if (!isExactBani(item)) {
-                              return (
-                                <IndexRow
-                                  key={item.id}
-                                  label={getBaniRowLabel(item)}
-                                  detail={getReaderEditorialCopyForBani(item.id)?.dek ?? item.description}
-                                  detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                  onClick={() => openSearchDestination(buildCanonicalBaniStudyPath(item))}
-                                />
-                              )
-                            }
-
-                            if (item.variantOf) {
-                              const baseItemVisible = group.items.some(candidate => !candidate.variantOf && candidate.id === item.variantOf)
-                              if (baseItemVisible) return []
-
-                              return (
-                                <IndexRow
-                                  key={item.id}
-                                  label={getBaniRowLabel(item)}
-                                  detail={getReaderEditorialCopyForBani(item.id)?.dek}
-                                  detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                  onClick={() => openSearchDestination(buildCanonicalBaniStudyPath(item))}
-                                />
-                              )
-                            }
-
-                            const routeOptions = getExactRouteOptionsForBani(item)
-                            if (routeOptions.length > 0) {
-                              return routeOptions.map(option => (
-                                <IndexRow
-                                  key={option.key}
-                                  label={option.label}
-                                  detail={option.detail}
-                                  detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                  onClick={() => openSearchDestination(option.path)}
-                                />
-                              ))
-                            }
-
-                            return (
-                              <IndexRow
-                                key={item.id}
-                                label={getBaniRowLabel(item)}
-                                detail={getReaderEditorialCopyForBani(item.id)?.dek}
-                                detailClassName="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/70 mt-1"
-                                onClick={() => openSearchDestination(buildCanonicalBaniStudyPath(item))}
-                              />
-                            )
-                          })}
+                        <div id={`${groupKey}-panel`} className="read-bani-group-panel mt-1 ml-2">
+                          {group.items.map(renderBaniRow)}
                         </div>
                       )}
                     </div>
@@ -1824,6 +1550,7 @@ export default function Banis() {
 
       <Link
         to="/banis/amrit-keertan"
+        state={{ readerOrigin: readSearchOrigin }}
         id="read-amrit-keertan"
         className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
         data-testid="banis-open-amrit-keertan"
@@ -1938,6 +1665,7 @@ export default function Banis() {
               <div className="mt-4 grid gap-3">
                 <Link
                   to="/banis/rehat"
+                  state={{ readerOrigin: readSearchOrigin }}
                   id="read-rehat"
                   className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-lg border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
                   data-testid="banis-open-rehat"

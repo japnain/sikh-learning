@@ -1,0 +1,140 @@
+vite v8.1.4 building client environment for production...
+[2Ktransforming...Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 457 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                          4.75 kB │ gzip:  1.49 kB
+dist/assets/00-quiet-parchment-DJXG5kF_.jpg             13.27 kB
+dist/assets/02-interior-audience-DtJk7JDs.jpg           17.51 kB
+dist/assets/05-string-and-tabla-BbwK_bgM.jpg            21.04 kB
+dist/assets/04-fort-procession-BUjkSv4l.jpg             21.12 kB
+dist/assets/09-rider-and-attendants-xf92JdUE.jpg        24.08 kB
+dist/assets/plus-jakarta-sans-latin-eXO_dkmS.woff2      27.34 kB
+dist/assets/06-devotional-interior-BHhaonQ6.jpg         27.73 kB
+dist/assets/noto-serif-gurmukhi-TxFyNM2L.woff2          28.32 kB
+dist/assets/08-miniature-collage-7i0uTTs8.jpg           28.80 kB
+dist/assets/12-golden-court-assembly-D8vE8Jc1.jpg       29.99 kB
+dist/assets/13-gurmukhi-floral-medallion-C1Plsk-D.jpg   30.42 kB
+dist/assets/01-court-mural-BuZ6wI80.jpg                 33.18 kB
+dist/assets/03-court-assembly-CPJvOyFc.jpg              35.39 kB
+dist/assets/10-falconer-on-horseback-lno-kgP5.jpg       35.79 kB
+dist/assets/14-ceremonial-arms-display-DTOnNxVT.jpg     37.55 kB
+dist/assets/cormorant-garamond-latin-CUoBjw-S.woff2     37.64 kB
+dist/assets/07-waterside-temple-NheweDGH.jpg            41.07 kB
+dist/assets/11-floral-teacher-mural-2KZ_jTgm.jpg        49.80 kB
+dist/assets/05-string-and-tabla-CUB1Oo0W.jpg            92.63 kB
+dist/assets/noto-sans-devanagari-DgzKy5OM.woff2        121.18 kB
+dist/assets/06-devotional-interior-By1UXuqT.jpg        123.50 kB
+dist/assets/04-fort-procession-BDi8B6PU.jpg            169.79 kB
+dist/assets/books-court-VfsqChTe.jpeg                  178.28 kB
+dist/assets/11-floral-teacher-mural-C7HFslQC.jpg       181.11 kB
+dist/assets/09-rider-and-attendants-BU7gInOj.jpg       182.42 kB
+dist/assets/13-gurmukhi-floral-medallion-B5mib2O4.jpg  199.49 kB
+dist/assets/03-court-assembly-DDy8j-Jv.jpg             277.72 kB
+dist/assets/read-harmandir-C8Hn5bHB.jpeg               325.89 kB
+dist/assets/hero-eclipse-Jxbmp_9i.avif                 337.67 kB
+dist/assets/12-golden-court-assembly-C_VLyaWD.jpg      349.66 kB
+dist/assets/saved-mural-landscape-DHfeQcl8.avif        420.21 kB
+dist/assets/07-waterside-temple-DyvN5d4g.jpg           443.33 kB
+dist/assets/08-miniature-collage-OJY6rA7-.jpg          455.04 kB
+dist/assets/banis-guru-nanak-FMEuKE3f.jpeg             488.89 kB
+dist/assets/00-quiet-parchment-oTWXzqpA.jpg            522.50 kB
+dist/assets/14-ceremonial-arms-display-gZqHgTjn.jpg    526.03 kB
+dist/assets/02-interior-audience-BkR5HpuJ.jpg          616.28 kB
+dist/assets/01-court-mural-B2UTOHq0.jpg                826.74 kB
+dist/assets/10-falconer-on-horseback-CIQvQGJB.jpg      877.04 kB
+dist/assets/BaniFindPanel-CWH0WyXG.css                   1.21 kB │ gzip:  0.50 kB
+dist/assets/settings-ONrFPCI8.css                        1.82 kB │ gzip:  0.61 kB
+dist/assets/Study-CR3TTyer.css                           2.51 kB │ gzip:  0.84 kB
+dist/assets/library-tools-CK3a25Q6.css                   2.69 kB │ gzip:  0.87 kB
+dist/assets/library-BsIaESVe.css                         4.04 kB │ gzip:  1.33 kB
+dist/assets/Rehat-DBVYwgvo.css                           5.36 kB │ gzip:  1.52 kB
+dist/assets/ReaderHeader-DKbwPA2Y.css                    5.76 kB │ gzip:  1.45 kB
+dist/assets/BaniLengthControl-vXicXoPX.css               6.67 kB │ gzip:  1.68 kB
+dist/assets/home-artwork-CWoyPm3U.css                   10.38 kB │ gzip:  2.34 kB
+dist/assets/Banis-D5hrv-Vg.css                          14.19 kB │ gzip:  3.18 kB
+dist/assets/NitnemCustomize-B6-wT6Xa.css                14.46 kB │ gzip:  2.92 kB
+dist/assets/ShareHighlightSheet-DPreLfJH.css            16.80 kB │ gzip:  3.41 kB
+dist/assets/stories-CgIJaVCj.css                        20.83 kB │ gzip:  4.56 kB
+dist/assets/Home-XttU8LhZ.css                           23.48 kB │ gzip:  4.85 kB
+dist/assets/catalog-DwvgfNG2.css                        26.38 kB │ gzip:  5.22 kB
+dist/assets/readerEditorialCopy-DolJaSpe.css            60.93 kB │ gzip: 10.34 kB
+dist/assets/index-DyTBCOOi.css                          61.39 kB │ gzip: 13.16 kB
+dist/assets/readerTextSize-bY3kSemG.js                   0.17 kB │ gzip:  0.16 kB
+dist/assets/async-DoZaQxop.js                            0.36 kB │ gzip:  0.25 kB
+dist/assets/homeArtworkCatalog-nHElDmah.js               0.48 kB │ gzip:  0.29 kB
+dist/assets/recitation-Br6usg2H.js                       0.58 kB │ gzip:  0.30 kB
+dist/assets/useCurrentTime-DTfJ-7Bw.js                   0.59 kB │ gzip:  0.33 kB
+dist/assets/savedStudyPath-Dv__pgCG.js                   0.64 kB │ gzip:  0.34 kB
+dist/assets/rolldown-runtime-QTnfLwEv.js                 0.69 kB │ gzip:  0.42 kB
+dist/assets/libraryReaderNavigation-pPeGBOM2.js          0.70 kB │ gzip:  0.39 kB
+dist/assets/epubReader-S19G5eR0.js                       0.71 kB │ gzip:  0.43 kB
+dist/assets/readingProgress-Bva_4Ta6.js                  0.77 kB │ gzip:  0.49 kB
+dist/assets/sundarGutkaLength-BIX5Z-0S.js                0.81 kB │ gzip:  0.49 kB
+dist/assets/readingVisibility-LI-gCXiD.js                0.95 kB │ gzip:  0.53 kB
+dist/assets/librarySearch-DwkNHkdl.js                    0.99 kB │ gzip:  0.55 kB
+dist/assets/sourceReaderMeta-C8TiiN3L.js                 1.00 kB │ gzip:  0.59 kB
+dist/assets/nitnemPractice-DH_s2EgJ.js                   1.20 kB │ gzip:  0.61 kB
+dist/assets/language-DNK1CrwU.js                         1.29 kB │ gzip:  0.58 kB
+dist/assets/homeArtwork-BUUGNZ-R.js                      1.34 kB │ gzip:  0.77 kB
+dist/assets/nitnemPractice-RGuNbnbA.js                   1.56 kB │ gzip:  0.70 kB
+dist/assets/sundarGutkaLength-p2tkOTJu.js                1.57 kB │ gzip:  0.67 kB
+dist/assets/ReaderHeader-1bTpa1Li.js                     1.65 kB │ gzip:  0.81 kB
+dist/assets/ModalSheet-CpzJ3jBg.js                       1.92 kB │ gzip:  1.00 kB
+dist/assets/discoveryReturn-DecEJiPv.js                  2.21 kB │ gzip:  1.02 kB
+dist/assets/stories-Bch5hl18.js                          2.22 kB │ gzip:  1.00 kB
+dist/assets/useBani-u-gIboFA.js                          2.30 kB │ gzip:  1.01 kB
+dist/assets/homeArtwork-DicSEzlf.js                      2.34 kB │ gzip:  1.06 kB
+dist/assets/scriptureCache-DDp-UIbu.js                   2.54 kB │ gzip:  0.88 kB
+dist/assets/StoryArtwork-BsyoKegi.js                     2.69 kB │ gzip:  1.13 kB
+dist/assets/progress-B9QXNY8W.js                         3.57 kB │ gzip:  1.48 kB
+dist/assets/useContinueReadings-Dae-GksZ.js              3.84 kB │ gzip:  1.79 kB
+dist/assets/storyRepository-DtjoiCao.js                  4.11 kB │ gzip:  1.76 kB
+dist/assets/vocab-BdNGho1x.js                            4.34 kB │ gzip:  1.86 kB
+dist/assets/readingPlaces-B2B-zSs_.js                    4.40 kB │ gzip:  1.83 kB
+dist/assets/nitnemHistory-C264m1Rr.js                    5.40 kB │ gzip:  2.17 kB
+dist/assets/BaniFindPanel-CZncVTv2.js                    5.67 kB │ gzip:  2.59 kB
+dist/assets/BaniLengthSheet-DkB_moLX.js                  6.24 kB │ gzip:  2.23 kB
+dist/assets/StoryBrowser-UNJMZTgC.js                     7.59 kB │ gzip:  2.53 kB
+dist/assets/Privacy-CklKYaJw.js                          7.63 kB │ gzip:  2.30 kB
+dist/assets/Support-BFJOkbmF.js                          7.95 kB │ gzip:  2.80 kB
+dist/assets/HomeArtworkSettings-Cu5NwENE.js              9.30 kB │ gzip:  3.25 kB
+dist/assets/libraryRepository-BDwkFF5r.js               11.11 kB │ gzip:  3.94 kB
+dist/assets/storyValidation-p4LLDRpc.js                 11.68 kB │ gzip:  3.98 kB
+dist/assets/BaniLengthControl-By7D3vc4.js               14.96 kB │ gzip:  5.43 kB
+dist/assets/companionCopy-BcsWXlsY.js                   16.96 kB │ gzip:  4.47 kB
+dist/assets/personalDataBackup-DF3xgXsc.js              17.96 kB │ gzip:  6.23 kB
+dist/assets/SoundscapeControls-eQKREF5W.js              18.54 kB │ gzip:  5.89 kB
+dist/assets/Vocab-DyScjKWP.js                           18.73 kB │ gzip:  5.29 kB
+dist/assets/AmritKeertan-q1Ii7ebS.js                    20.88 kB │ gzip:  5.31 kB
+dist/assets/runtime-Cf5Nndip.js                         21.11 kB │ gzip:  6.80 kB
+dist/assets/storyUi-pLaBM53h.js                         22.07 kB │ gzip:  5.91 kB
+dist/assets/Library-CnZq9spg.js                         25.49 kB │ gzip:  7.19 kB
+dist/assets/StoryReader-DulVsU9y.js                     27.77 kB │ gzip:  8.75 kB
+dist/assets/NitnemCustomize-gTBsKqAF.js                 28.83 kB │ gzip:  8.37 kB
+dist/assets/PanthPrakashLibraryHome-qW1-L_Sd.js         28.93 kB │ gzip:  8.30 kB
+dist/assets/hukamnamaArtDirection-BwdY6tEX.js           31.41 kB │ gzip:  7.55 kB
+dist/assets/LibraryChapterReader-Dy_Y2DDk.js            34.15 kB │ gzip: 10.68 kB
+dist/assets/Rehat-0mwMGgBx.js                           34.89 kB │ gzip: 10.23 kB
+dist/assets/vendor-router-C-MOpsPZ.js                   42.88 kB │ gzip: 15.29 kB
+dist/assets/vendor-misc-D3O3RdN8.js                     48.94 kB │ gzip: 16.60 kB
+dist/assets/Home-Dlcci24Q.js                            57.09 kB │ gzip: 17.50 kB
+dist/assets/More-DwoqH3ey.js                            58.68 kB │ gzip: 14.55 kB
+dist/assets/readerEditorialCopy-B-GXmW2v.js             65.17 kB │ gzip: 20.67 kB
+dist/assets/recentSearch-ptoI5FSR.js                    70.95 kB │ gzip: 22.13 kB
+dist/assets/ShareHighlightSheet-BMYvMK90.js             82.56 kB │ gzip: 23.55 kB
+dist/assets/Banis-DWewPFhh.js                           94.31 kB │ gzip: 26.27 kB
+dist/assets/Study--47jgGo4.js                          173.15 kB │ gzip: 48.82 kB
+dist/assets/vendor-react-CC1klYW5.js                   189.64 kB │ gzip: 59.65 kB
+dist/assets/vendor-backend-hlb84bwW.js                 189.96 kB │ gzip: 48.50 kB
+dist/assets/index-D64GrYP7.js                          198.13 kB │ gzip: 58.02 kB
+
+[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - vite:asset (61%)
+  - vite:css (28%)
+  - vite:css-post (9%)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+
+✓ built in 9.73s

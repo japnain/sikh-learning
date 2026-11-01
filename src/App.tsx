@@ -194,8 +194,8 @@ function AppShell() {
   useAppScrollRestoration({
     mainContentRef,
     enabled: !showFirstRun,
-    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader,
-    routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader,
+    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader || isRehatChapterReader,
+    routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader || isRehatChapterReader,
   })
   useRouteDocumentTitle(location.pathname)
   useNitemOfflineCache()

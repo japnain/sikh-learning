@@ -7,6 +7,7 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import Rehat from './Rehat'
 import { useEpubReaderStore } from '../store/epubReader'
 import { useLocaleStore } from '../store/locale'
+import { useReadingPlacesStore } from '../store/readingPlaces'
 
 function LocationSpy() {
   const location = useLocation()
@@ -31,6 +32,7 @@ beforeEach(() => {
   useEpubReaderStore.getState().resetPreferences()
   document.documentElement.classList.remove('dark')
   useScriptureCacheStore.getState().clearAll()
+  useReadingPlacesStore.setState({ places: {} })
 })
 
 afterEach(() => {
@@ -53,6 +55,22 @@ test('renders the Rehat list with breadcrumbs and list search', async () => {
 
   expect(screen.getByText('Tankhah Nama')).toBeInTheDocument()
   expect(screen.queryByText('Sikh Rehat Maryada')).not.toBeInTheDocument()
+})
+
+test('keeps the Books discovery origin through Rehat and chapter navigation', async () => {
+  render(<MemoryRouter initialEntries={[{ pathname: '/banis/rehat', state: { readerOrigin: '/banis?collection=books&q=rehat' } }]}>
+    <Routes>
+      <Route path="/banis/rehat/*" element={<Rehat />} />
+      <Route path="/banis/rehat/:rehatId" element={<Rehat />} />
+      <Route path="/banis/rehat/:rehatId/chapters/:chapterId" element={<Rehat />} />
+    </Routes>
+  </MemoryRouter>)
+  fireEvent.click(await screen.findByRole('link', { name: /Sikh Rehat Maryada/ }))
+  expect(screen.getByRole('link', { name: 'Read', exact: true })).toHaveAttribute('href', '/banis?collection=books&q=rehat')
+  fireEvent.click(await screen.findByRole('link', { name: /Daily Discipline/ }))
+  await screen.findByTestId('rehat-chapter-content')
+  fireEvent.click(screen.getByRole('link', { name: 'Back to chapters' }))
+  expect(screen.getByRole('link', { name: 'Read', exact: true })).toHaveAttribute('href', '/banis?collection=books&q=rehat')
 })
 
 test('supports direct Rehat detail URLs with source-backed context and chapter filtering', async () => {
@@ -253,14 +271,22 @@ test('applies shared reading preferences without changing source content and res
   const content = await screen.findByTestId('rehat-chapter-content')
   const source = content.textContent
   const trigger = screen.getByRole('button', { name: 'Reading appearance' })
+  expect(trigger).toHaveAttribute('aria-expanded', 'false')
   await user.click(trigger)
+  expect(trigger).toHaveAttribute('aria-expanded', 'true')
   const sheet = screen.getByRole('dialog', { name: 'Reading appearance' })
   await user.click(within(sheet).getByRole('button', { name: 'Increase text size' }))
   await user.click(within(sheet).getByRole('button', { name: 'Narrow', exact: true }))
+  await user.click(within(sheet).getByRole('button', { name: 'Night', exact: true }))
   expect(useEpubReaderStore.getState().fontScale).toBe(1.05)
   expect(useEpubReaderStore.getState().measure).toBe('narrow')
+  expect(screen.getByTestId('page-rehat')).toHaveAttribute('data-palette', 'night')
+  expect(document.documentElement.classList.contains('dark')).toBe(false)
   expect(screen.getByTestId('page-rehat').style.getPropertyValue('--rehat-font-scale')).toBe('1.05')
   expect(content.textContent).toBe(source)
+  await user.click(within(sheet).getByRole('button', { name: 'Restore reading defaults' }))
+  expect(screen.getByTestId('page-rehat')).toHaveAttribute('data-palette', 'paper')
+  expect(useEpubReaderStore.getState().fontScale).toBe(1)
   await user.keyboard('{Escape}')
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   expect(trigger).toHaveFocus()

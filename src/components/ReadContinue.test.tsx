@@ -1,5 +1,5 @@
 import { beforeEach, expect, test, vi } from 'vitest'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import ReadContinue from './ReadContinue'
 import { buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
@@ -7,6 +7,7 @@ import { useLocaleStore } from '../store/locale'
 import { useProgressStore } from '../store/progress'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useStoryStore } from '../store/stories'
+import { useReadingVisibilityStore } from '../store/readingVisibility'
 
 vi.mock('../data/libraryRepository', () => ({
   loadLibraryWorkCatalog: async () => ({ works: [], workById: { 'test-book': { id: 'test-book', shortTitle: 'A Sikh history', revision: 'r1' } } }),
@@ -23,6 +24,7 @@ beforeEach(() => {
   useProgressStore.setState({ currentSession: null })
   useReadingPlacesStore.setState({ places: {} })
   useStoryStore.setState({ positions: {}, saved: {} })
+  useReadingVisibilityStore.setState({ hidden: {} })
 })
 
 test('new readers get a specific beginning that opens the exact Japji bani', () => {
@@ -77,4 +79,45 @@ test('offers the book overview until its edition has been validated', () => {
   render(<MemoryRouter><ReadContinue /></MemoryRouter>)
   expect(screen.getByRole('link', { name: /Saved chapter/ })).toHaveAttribute('href', '/library/test-book')
   expect(screen.queryByRole('heading', { name: 'Begin here' })).not.toBeInTheDocument()
+})
+
+test('includes the latest Rehat chapter and its source-verified paragraph in Continue reading', () => {
+  useReadingPlacesStore.getState().remember({ scriptureId: 'rehat-1-11', resumePath: '/banis/rehat/1/chapters/11', updatedAt: '2026-10-31T10:00:00Z',
+    readerLocator: { revision: 'r1', href: '/banis/rehat/1/chapters/11', type: 'text/html', title: 'Sikh Rehat Maryada · Daily Discipline',
+      locations: { progression: .4, totalProgression: .4, position: 2, blockId: 'rehat-r1-b-1' } } })
+  render(<MemoryRouter><ReadContinue /></MemoryRouter>)
+  expect(screen.getByRole('link', { name: /Sikh Rehat Maryada · Daily Discipline/ }))
+    .toHaveAttribute('href', '/banis/rehat/1/chapters/11#rehat-r1-b-1')
+})
+
+test('hides a reading place with undo without deleting its saved position', async () => {
+  const position = { paragraphId: 'paragraph-2', progress: .3, revision: 1, updatedAt: '2026-10-27T11:00:00Z' }
+  useStoryStore.setState({ positions: { 'a-shared-meal': position } })
+  render(<MemoryRouter><ReadContinue /></MemoryRouter>)
+  await screen.findByRole('link', { name: /A shared meal/ })
+  fireEvent.click(screen.getByRole('button', { name: 'Hide A shared meal from Continue reading' }))
+  expect(screen.queryByRole('link', { name: /A shared meal/ })).not.toBeInTheDocument()
+  expect(useStoryStore.getState().positions['a-shared-meal']).toEqual(position)
+  expect(screen.getByRole('button', { name: 'Undo' })).toHaveFocus()
+  expect(screen.queryByRole('link', { name: 'Read Japji Sahib' })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
+  expect(screen.getByRole('link', { name: /A shared meal/ })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Hide A shared meal from Continue reading' }))
+  act(() => useStoryStore.setState({ positions: { 'a-shared-meal': { ...position, updatedAt: '2026-10-28T11:00:00Z' } } }))
+  expect(await screen.findByRole('link', { name: /A shared meal/ })).toBeInTheDocument()
+})
+
+test('keeps hide and undo usable when device storage cannot be written', async () => {
+  useStoryStore.setState({ positions: { 'a-shared-meal': { paragraphId: 'paragraph-2', progress: .3, revision: 1, updatedAt: '2026-10-27T11:00:00Z' } } })
+  render(<MemoryRouter><ReadContinue /></MemoryRouter>)
+  await screen.findByRole('link', { name: /A shared meal/ })
+  const blockedStorage = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Storage unavailable') })
+  try {
+    fireEvent.click(screen.getByRole('button', { name: 'Hide A shared meal from Continue reading' }))
+    expect(screen.getByRole('button', { name: 'Undo' })).toHaveFocus()
+    fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
+    expect(screen.getByRole('link', { name: /A shared meal/ })).toBeInTheDocument()
+  } finally {
+    blockedStorage.mockRestore()
+  }
 })

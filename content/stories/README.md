@@ -18,6 +18,8 @@ Separate AI English and history/Gurmat reviews have passed all eleven current pa
 
 Human English editing and Sikh history/Gurmat review remain pending; the JSON review fields are reserved for those human records. AI review and source fidelity do not establish independent historicity or specialist approval. The Kanhaiya acquisition memo records the missing material and next steps; it is not a finished story.
 
+The [31 October Read remediation review](reviews/2026-10-31-read-remediation.md) records the current public package hashes, a fresh prose pass and eight targeted source-image rechecks, plus the outstanding independent review assignments and Panth Prakash source limits. It does not supersede the earlier, wider scan comparisons or complete the human review fields.
+
 ## Preview and validate
 
 Run the usual development server, then open `/stories/drafts` or `/stories/drafts/becoming-the-khalsa`. Drafts render with the actual story reader, including sections, appearance and the account sheet. Preview reading does not write Saved or published reading positions. Appearance remains the shared preference.

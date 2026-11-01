@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { loadLibraryWorkCatalog } from '../data/libraryRepository'
-import type { LibraryWork } from '../types'
+import { loadLibraryDiscoveryCatalog, subscribeLibraryDiscoveryCatalog } from '../data/libraryRepository'
+import type { LibraryWork, LibraryWorkCatalog } from '../types'
 import { useCompanionCopy } from '../utils/companionCopy'
 import '../styles/library-book-browser.css'
 import {
@@ -56,15 +56,19 @@ export default function LibraryBookBrowser({ dataTestId, className = '' }: Libra
 
   useEffect(() => {
     let cancelled = false
-    loadLibraryWorkCatalog()
-      .then(catalog => {
-        if (!cancelled) setState({ status: 'ready', works: catalog.works })
-      })
+    let refreshed = false
+    const update = (catalog: LibraryWorkCatalog) => {
+      if (!cancelled) setState({ status: 'ready', works: catalog.works })
+    }
+    const unsubscribe = subscribeLibraryDiscoveryCatalog(catalog => { refreshed = true; update(catalog) })
+    loadLibraryDiscoveryCatalog()
+      .then(catalog => { if (!refreshed) update(catalog) })
       .catch(() => {
         if (!cancelled) setState({ status: 'error', works: [], offline: !navigator.onLine })
       })
     return () => {
       cancelled = true
+      unsubscribe()
     }
   }, [attempt])
 

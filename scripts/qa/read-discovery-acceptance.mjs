@@ -60,6 +60,57 @@ async function fits(page, label) {
   assert(metrics.content <= metrics.width + 2, `${label}: no page-wide horizontal overflow (${metrics.content}/${metrics.width})`)
 }
 
+// Document overflow alone can pass when an ancestor clips inaccessible text or
+// controls. Check the content's actual horizontal bounds at every clipping edge.
+async function horizontallyAccessible(locator, label) {
+  assert(await locator.count() > 0, `${label}: expected content exists`)
+  const failures = await locator.evaluateAll(elements => {
+    const failures = []
+    for (const element of elements) {
+      const name = element.id || element.getAttribute('aria-label') || element.textContent?.trim().slice(0, 60)
+      const bounds = [{ left: 0, right: innerWidth, name: 'viewport' }]
+      for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
+        if (!['hidden', 'clip', 'auto', 'scroll'].includes(getComputedStyle(ancestor).overflowX)) continue
+        const rect = ancestor.getBoundingClientRect()
+        bounds.push({ left: rect.left + ancestor.clientLeft, right: rect.left + ancestor.clientLeft + ancestor.clientWidth,
+          name: ancestor.className || ancestor.tagName })
+      }
+      const rectangles = [element.getBoundingClientRect()]
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT)
+      while (walker.nextNode()) {
+        if (!walker.currentNode.textContent.trim()) continue
+        const range = document.createRange()
+        range.selectNodeContents(walker.currentNode)
+        rectangles.push(...range.getClientRects())
+      }
+      for (const rect of rectangles) {
+        if (rect.width <= 0 || rect.height <= 0) continue
+        const clipping = bounds.find(bound => rect.left < bound.left - 2 || rect.right > bound.right + 2)
+        if (clipping) {
+          failures.push({ element: name, clippedBy: clipping.name, left: rect.left, right: rect.right, bounds: clipping })
+          break
+        }
+      }
+    }
+    return failures
+  })
+  assert.deepEqual(failures, [], `${label}: content remains inside the viewport and clipping ancestors`)
+}
+
+async function reachableControl(page, locator, label) {
+  await locator.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+  await settle(page)
+  await horizontallyAccessible(locator, label)
+  const reachable = await locator.evaluate(element => {
+    const rect = element.getBoundingClientRect()
+    const x = rect.left + rect.width / 2
+    const y = rect.top + rect.height / 2
+    const hit = document.elementFromPoint(x, y)
+    return rect.top >= -2 && rect.bottom <= innerHeight + 2 && (hit === element || element.contains(hit))
+  })
+  assert(reachable, `${label}: scrolling exposes the control without a fixed overlay covering it`)
+}
+
 async function shot(page, name) {
   await settle(page)
   await fits(page, name)
@@ -223,6 +274,15 @@ try {
     const key = `${config.width}-${config.dark ? 'dark' : 'light'}-${config.scale * 100}`
     await run(`layout-${key}`, config, async ({ page }) => {
       await visit(page, '/banis')
+      const headingPlacement = await page.evaluate(() => {
+        const hero = document.querySelector('.read-room-hero').getBoundingClientRect()
+        const browse = document.querySelector('.read-browse-heading').getBoundingClientRect()
+        return { heroBottom: hero.bottom, browseTop: browse.top, heroLeft: hero.left, browseLeft: browse.left }
+      })
+      assert(headingPlacement.browseTop >= headingPlacement.heroBottom - 2,
+        'Browse collections follows the hero/search, rather than creating an implicit desktop column')
+      assert(Math.abs(headingPlacement.browseLeft - headingPlacement.heroLeft) <= 2,
+        'Browse collections shares the primary content column')
       await page.locator('#read-tab-banis').focus()
       await page.keyboard.press('ArrowRight')
       await page.waitForFunction(() => document.activeElement?.id === 'read-tab-sources'
@@ -239,8 +299,33 @@ try {
         await page.locator(`#read-tab-${collection}`).scrollIntoViewIfNeeded()
         await shot(page, `read-${collection}-${key}`)
         assert.equal(await page.locator(`#read-tab-${collection}`).getAttribute('aria-selected'), 'true')
+        if (collection === 'books') {
+          const card = page.getByTestId('panth-prakash-source-card')
+          await horizontallyAccessible(card.locator('.library-book-card__copy, .library-book-card__copy > *, a'), 'book text and action')
+          await reachableControl(page, page.locator('#read-book-panth-prakash-english'), 'Open book')
+          await shot(page, `read-book-action-${key}`)
+        }
+        if (collection === 'sources') {
+          // Four-digit Ang labels stress the real expanded surface, not merely
+          // the closed source heading photographed by the former layout check.
+          await visit(page, '/banis?collection=sources&sourceOpen=sggs&sourcePage-sggs=21')
+          await page.locator('#source-sggs-1001').waitFor()
+          const source = page.locator('#source-sggs-toggle').locator('..')
+          const numbers = source.locator('.source-browse-grid a')
+          assert.equal(await numbers.count(), 50)
+          await horizontallyAccessible(numbers, 'Ang 1001–1050')
+          await horizontallyAccessible(source.locator('.source-browse-jump input, .source-browse-jump button, .source-browse-pagination > *'), 'source jump and pagination')
+          await reachableControl(page, numbers.first(), 'First Ang in range')
+          await reachableControl(page, numbers.last(), 'Last Ang in range')
+          const next = source.getByRole('button', { name: 'Next numbers in Sri Guru Granth Sahib Ji', exact: true })
+          await reachableControl(page, next, 'Next Ang range')
+          await shot(page, `read-source-numbers-${key}`)
+          await next.click()
+          await page.locator('#source-sggs-1051').waitFor()
+          assert.equal(new URL(page.url()).searchParams.get('sourcePage-sggs'), '22')
+        }
       }
-      return { checks: ['all four collections render', 'keyboard arrows/Home/End choose and focus collections', 'no horizontal overflow at configured width and text scale'] }
+      return { checks: ['all four collections render', 'keyboard arrows/Home/End choose and focus collections', 'Browse heading occupies the correct column', 'book text/action are not clipped and Open book is reachable', 'expanded four-digit Ang links and pagination are not clipped; Next works', 'no horizontal overflow at configured width and text scale'] }
     })
     await run(`rehat-${key}`, config, async ({ page }) => {
       await visit(page, '/banis/rehat/1/chapters/11', '[data-testid="rehat-chapter-content"]')

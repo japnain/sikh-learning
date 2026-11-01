@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Story, StoryCatalog, StorySummary } from '../types/stories'
 import {
   configureStoryRepositoryLoader, downloadStoryCollection, getOfflineStoryIds, getStoredStoryIds, loadStory,
-  loadStoryCatalog, removeOfflineStories, resetStoryRepositoryCache, STORY_CACHE_KEY, STORY_REQUEST_TIMEOUT_MS, StoryStorageError,
+  loadStoryCatalog, refreshStoryCatalog, subscribeStoryCatalog, removeOfflineStories, resetStoryRepositoryCache, STORY_CACHE_KEY, STORY_REQUEST_TIMEOUT_MS, StoryStorageError,
 } from './storyRepository'
 import { parseCatalog, parseStory, sameStorySummary, storyPublicationErrors, storyReplacementErrors, validateStory } from './storyValidation'
 import { clearDiagnosticHistory, getDiagnosticHistory } from '../utils/diagnostics'
@@ -136,7 +136,7 @@ describe('story repository', () => {
     expect(getOfflineStoryIds()).toEqual(['a-shared-meal'])
     const nextCatalog = { ...catalog, stories: [{ ...firstSummary, revision: 2 }, secondSummary] }
     installLoader({ '/data/stories/catalog.json': nextCatalog })
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     expect(getOfflineStoryIds()).toEqual([])
     expect(JSON.parse(localStorage.getItem(STORY_CACHE_KEY)!).stories[first.id]).toEqual(first)
   })
@@ -221,7 +221,7 @@ describe('story repository', () => {
     // Saved text opens immediately; a completed catalog refresh discovers the
     // new metadata edition for subsequent opens.
     await expect(loadStory(first.id)).resolves.toEqual(first)
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     await vi.waitFor(() => expect(JSON.parse(localStorage.getItem(STORY_CACHE_KEY)!).stories[first.id]).toEqual(revised))
     const result = await loadStory(first.id)
     expect(result).toEqual(revised)
@@ -240,6 +240,56 @@ describe('story repository', () => {
     expect(getOfflineStoryIds()).toContain(first.id)
     await vi.advanceTimersByTimeAsync(STORY_REQUEST_TIMEOUT_MS)
     await expect(loadStoryCatalog()).resolves.toEqual(catalog)
+  })
+
+  it('opens the cached shelf immediately and publishes a verified background catalog update', async () => {
+    await downloadStoryCollection('everyday-wisdom')
+    let finish!: (value: unknown) => void
+    configureStoryRepositoryLoader(() => new Promise(resolve => { finish = resolve }))
+    const changed = { ...catalog, stories: [{ ...firstSummary, revision: 2 }, secondSummary] }
+    const listener = vi.fn()
+    const unsubscribe = subscribeStoryCatalog(listener)
+    try {
+      // No network settlement or timeout is needed to show the saved catalog.
+      await expect(loadStoryCatalog()).resolves.toEqual(catalog)
+      expect(listener).not.toHaveBeenCalled()
+      expect(getOfflineStoryIds()).toEqual([first.id])
+      finish(changed)
+      await expect(refreshStoryCatalog()).resolves.toEqual(changed)
+      expect(listener).toHaveBeenCalledExactlyOnceWith(changed)
+      expect(getOfflineStoryIds()).toEqual([])
+      expect(getStoredStoryIds()).toEqual([first.id])
+    } finally { unsubscribe() }
+  })
+
+  it('does not publish or restore a stale catalog refresh after downloads are removed', async () => {
+    await downloadStoryCollection()
+    let finish!: (value: unknown) => void
+    configureStoryRepositoryLoader(() => new Promise(resolve => { finish = resolve }))
+    const listener = vi.fn()
+    const unsubscribe = subscribeStoryCatalog(listener)
+    try {
+      await loadStoryCatalog()
+      const pending = refreshStoryCatalog()
+      removeOfflineStories()
+      finish(catalog)
+      await pending
+      expect(listener).not.toHaveBeenCalled()
+      expect(localStorage.getItem(STORY_CACHE_KEY)).toBeNull()
+    } finally { unsubscribe() }
+  })
+
+  it('retains the cached shelf and its downloads when a refreshed catalog is malformed', async () => {
+    await downloadStoryCollection()
+    configureStoryRepositoryLoader(async () => ({ ...catalog, stories: [firstSummary, firstSummary] }))
+    const listener = vi.fn()
+    const unsubscribe = subscribeStoryCatalog(listener)
+    try {
+      await expect(loadStoryCatalog()).resolves.toEqual(catalog)
+      await expect(refreshStoryCatalog()).resolves.toEqual(catalog)
+      expect(listener).not.toHaveBeenCalled()
+      expect(getOfflineStoryIds()).toEqual([first.id, second.id])
+    } finally { unsubscribe() }
   })
 
   it('bounds a cold request and permits retry after a timeout', async () => {
@@ -262,7 +312,7 @@ describe('story repository', () => {
       ? revisedCatalog : new Promise<never>(() => {}))
     configureStoryRepositoryLoader(loader)
     await expect(loadStory(first.id)).resolves.toEqual(first)
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     expect(JSON.parse(localStorage.getItem(STORY_CACHE_KEY)!).version).toBe(2)
     expect(getOfflineStoryIds()).toEqual([]) // Previous text is not labelled as the current edition.
     expect(getStoredStoryIds()).toEqual([first.id]) // Cleanup remains available for retained older text.
@@ -279,7 +329,7 @@ describe('story repository', () => {
     let finish!: (value: unknown) => void
     configureStoryRepositoryLoader(async resourcePath => resourcePath.endsWith('catalog.json')
       ? revisedCatalog : new Promise(resolve => { finish = resolve }))
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     await expect(loadStory(first.id)).resolves.toEqual(first)
     await vi.waitFor(() => expect(finish).toBeTypeOf('function'))
     expect(JSON.parse(localStorage.getItem(STORY_CACHE_KEY)!).stories[first.id]).toEqual(first)
@@ -295,7 +345,7 @@ describe('story repository', () => {
     await downloadStoryCollection('everyday-wisdom')
     installLoader({ '/data/stories/catalog.json': { ...catalog, stories: [{ ...firstSummary, revision: 2 }, secondSummary] },
       '/data/stories/a-shared-meal.json': { ...first, revision: 2, wordCount: 9000 } })
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     await expect(loadStory(first.id)).resolves.toEqual(first)
     await expect(downloadStoryCollection('everyday-wisdom')).rejects.toThrow('story could not be read')
     expect(getDiagnosticHistory()).toEqual([])
@@ -309,7 +359,7 @@ describe('story repository', () => {
     await downloadStoryCollection('everyday-wisdom')
     const revised = { ...first, revision: 2 }
     installLoader({ '/data/stories/catalog.json': { ...catalog, stories: [summary(revised), secondSummary] }, '/data/stories/a-shared-meal.json': revised })
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new DOMException('Quota exceeded', 'QuotaExceededError') })
     await expect(downloadStoryCollection('everyday-wisdom')).rejects.toBeInstanceOf(StoryStorageError)
     expect(JSON.parse(localStorage.getItem(STORY_CACHE_KEY)!).stories[first.id]).toEqual(first)
@@ -331,7 +381,7 @@ describe('story repository', () => {
     let finish!: (value: unknown) => void
     configureStoryRepositoryLoader(async resourcePath => resourcePath.endsWith('catalog.json')
       ? { ...catalog, stories: [summary(revised), secondSummary] } : new Promise(resolve => { finish = resolve }))
-    await loadStoryCatalog()
+    await refreshStoryCatalog()
     await loadStory(first.id)
     await vi.waitFor(() => expect(finish).toBeTypeOf('function'))
     removeOfflineStories()

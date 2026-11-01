@@ -1,0 +1,85 @@
+# SGGS and collected-bani discovery research — 2026-10-31
+
+AI-assisted editorial research for `src/content/baniDiscoverySggs.ts`. This register covers 43 discovery entries. It records what was checked; it does not certify an independent human Gurmat, historical or English editorial review.
+
+## Method and scope
+
+- Read fresh BaniDB metadata, all supplied source headings, the first ten and final five lines, and page lists from the locally captured provider responses. These establish the identity and boundaries of the actual reading, including anthologies.
+- Consulted the individual Sri Granth scripture pages linked below through ordinary web retrieval. Themes are concise editorial paraphrases of those passages, not newly supplied scripture translations. Where a page failed to load (notably Ang 431), the current provider payload and the accessible continuation supply the evidence.
+- Used the Guru Granth Sahib Project’s researched introductions to resolve the Bhatt/Mahalla authorship distinction and Laavan context. Used indexed primary SGPC Rehat Maryada text for Nitnem and the short Anand form. Direct SGPC document opening was limited by a large PDF or legacy-host errors; this is not represented as a full PDF review.
+- Preserved distinct compositions sharing a genre or similar title: both Bavan Akhris, both Pattis, all three Thitis, Sukhmana versus Sukhmani, Sri Mukhbaak parts 1/2 and all five Bhatt praise groups. No scripture, route IDs, recensions or provider content was changed in this module.
+- Count claims are limited to visible sequence markers and supplied headings. This was a contextual metadata review, not a line-by-line critical edition, manuscript comparison, recitation guide or claim that every provider variant has been independently proofread.
+
+## Entry evidence
+
+Provider links identify the exact app reading. Ang links identify the scripture passage checked for the stated context. The shared Savaiye introduction supports authorship distinctions; the individual Ang pages support each group’s heading and opening theme.
+
+| BaniDB ID | English display name | Supported claim | Consulted evidence |
+|---|---|---|---|
+| 1 | Gur Mantar (Waheguru) | Waheguru focus; mixed-source collection; Bhai Gurdas verse; provider labels the additional excerpt as Sarbloh. | [BaniDB 1](https://api.banidb.com/v2/banis/1); [Bhai Gurdas · Vaar 13, Pauri 2](https://wahe.world/readings/bhai-gurdas-varan/13/) |
+| 2 | Japji Sahib | Opening Japu, question of truthful living and hukam; morning Nitnem. | [Ang 1](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1); [BaniDB 2](https://api.banidb.com/v2/banis/2); [SGPC Rehat Maryada](https://sgpc.net/wp-content/uploads/2025/06/Sikh-Rehat-Maryada-English-n.pdf) |
+| 3 | Shabad Hazare | Seven noncontiguous shabads: first Mahalla 5, remaining six Mahalla 1; longing in the opening. | [BaniDB 3](https://api.banidb.com/v2/banis/3) |
+| 10 | Anand Sahib | Ramkali Mahalla 3 heading, ending marker 40; short service form is first five plus final pauri. | [Ang 917](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=917); [BaniDB 10](https://api.banidb.com/v2/banis/10); [SGPC Rehat Maryada](https://sgpc.net/wp-content/uploads/2025/06/Sikh-Rehat-Maryada-English-n.pdf) |
+| 11 | Laavan (The Four Marriage Hymns) | Suhi Mahalla 4, four stanzas on 773–774; spiritual progression and Anand Karaj use. | [Ang 773](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=773); [BaniDB 11](https://api.banidb.com/v2/banis/11); [Guru Granth Sahib Project · Introduction to Lavan](https://gurugranthsahib.io/bani/introduction/41/Introduction) |
+| 14 | Kuchji (The Unskilled Soul-Bride) | Suhi Mahalla 1 Kuchji heading; confession of shortcomings and longing. | [Ang 762](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=762); [BaniDB 14](https://api.banidb.com/v2/banis/14) |
+| 15 | Suchji (The Graceful Soul-Bride) | Suhi Mahalla 1 Suchji heading; Divine wealth, will and trust. | [Ang 762](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=762); [BaniDB 15](https://api.banidb.com/v2/banis/15) |
+| 16 | Gunvanti (The Virtuous Soul-Bride) | Suhi Mahalla 5 Gunvanti heading; humility before a Gursikh and request for guidance. | [Ang 763](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=763); [BaniDB 16](https://api.banidb.com/v2/banis/16) |
+| 17 | Funehe — Guru Arjan Sahib Ji | Mahalla 5 Funehe, 23 ending marker; recurring Harihan; longing and remembrance. | [Ang 1361](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1361); [Ang 1363](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1363); [BaniDB 17](https://api.banidb.com/v2/banis/17) |
+| 18 | Choubole — Guru Arjan Sahib Ji | Mahalla 5 Choubole, 11 ending marker; opening Samman address questions purchasing love. | [Ang 1363](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1363); [Ang 1364](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1364); [BaniDB 18](https://api.banidb.com/v2/banis/18) |
+| 21 | Rehras Sahib (Evening Prayer) | Evening Nitnem; composite SGGS/Dasam sequence, Anand excerpt; provider includes variant supplements. | [BaniDB 21](https://api.banidb.com/v2/banis/21); [SGPC Rehat Maryada](https://sgpc.net/wp-content/uploads/2025/06/Sikh-Rehat-Maryada-English-n.pdf) |
+| 22 | Aarti Aarta | Aarti Aarta provider anthology; Dhanasri Mahalla 1 Aarti on 663; cosmic worship imagery. | [Ang 663](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=663); [BaniDB 22](https://api.banidb.com/v2/banis/22) |
+| 23 | Kirtan Sohila (Night Prayer) | Bedtime Nitnem; five SGGS core shabads on 12–13; provider includes supplementary passages. | [Ang 12](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=12); [Ang 13](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=13); [BaniDB 23](https://api.banidb.com/v2/banis/23); [SGPC Rehat Maryada](https://sgpc.net/wp-content/uploads/2025/06/Sikh-Rehat-Maryada-English-n.pdf) |
+| 27 | Barah Maha Majh (The Twelve Months) | Barah Maha Majh Mahalla 5 heading; twelve-month frame and separation/reunion. | [Ang 133](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=133); [BaniDB 27](https://api.banidb.com/v2/banis/27) |
+| 30 | Salok Mahalla 9 — Guru Tegh Bahadur Ji | Mahalla 9 Saloks on 1426–1429; opening remembrance/fish image, later impermanence. | [Ang 1426](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1426); [Ang 1429](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1429); [BaniDB 30](https://api.banidb.com/v2/banis/30) |
+| 31 | Sukhmani Sahib | Gauri Sukhmani Mahalla 5; 24 salok/ashtpadi units and eight-stanza structure. | [Ang 262](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=262); [Ang 296](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=296); [BaniDB 31](https://api.banidb.com/v2/banis/31) |
+| 32 | Sukhmana Sahib — Guru Ram Das Ji’s Ashtpadis | Provider collects 24 Mahalla 4 ashtpadis, six each in Bilaval, Nat, Kanara and Kalyan. | [BaniDB 32](https://api.banidb.com/v2/banis/32) |
+| 33 | Bavan Akhri — Guru Arjan Sahib Ji | Gauri Bavan Akhri Mahalla 5; alphabetic form with salok/pauri pattern. | [Ang 250](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=250); [BaniDB 33](https://api.banidb.com/v2/banis/33) |
+| 34 | Sidh Gosht (Dialogue with the Siddhs) | Ramkali Mahalla 1 Sidh Gosht; dialogue opening; source span 938–946. | [Ang 938](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=938); [BaniDB 34](https://api.banidb.com/v2/banis/34) |
+| 35 | Dakhni Onkar | Ramkali Mahalla 1 Dakhni Onkar; alphabetic teaching; refrain addresses the scholar and Naam. | [Ang 930](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=930); [Ang 938](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=938); [BaniDB 35](https://api.banidb.com/v2/banis/35) |
+| 36 | Dukh Bhanjani Sahib | Provider assembles Mahalla 5 Gauri/Bilaval/Sorath shabads; opening Dukh Bhanjan refrain. | [Ang 218](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=218); [BaniDB 36](https://api.banidb.com/v2/banis/36) |
+| 38 | Raag Mala (Garland of Raags) | Raag Mala heading at 1429; personified musical families; continuation through 1430. | [Ang 1429](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1429); [BaniDB 38](https://api.banidb.com/v2/banis/38) |
+| 39 | Bavan Akhri — Bhagat Kabir Ji | Gauri Purbi Bavan Akhri Kabir heading; opening limits of perishable letters. | [Ang 340](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=340); [BaniDB 39](https://api.banidb.com/v2/banis/39) |
+| 40 | Ghorian (Wedding Songs) | Vadahans Mahalla 4 Ghorian; selected reading is four stanzas entirely on 575. | [Ang 575](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=575); [BaniDB 40](https://api.banidb.com/v2/banis/40) |
+| 41 | Karhale (The Wandering Mind) | Gauri Purbi Mahalla 4 Karhale; selected ten-stanza reading on 234; mind/camel address. | [Ang 234](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=234); [BaniDB 41](https://api.banidb.com/v2/banis/41) |
+| 42 | Birhade (Songs of Longing) | Asa Mahalla 5 Birhade heading, chhant rhythm designation; repeated Beloved address on 431–432. | [Ang 432](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=432); [BaniDB 42](https://api.banidb.com/v2/banis/42) |
+| 43 | Patti Likhi — Guru Nanak Sahib Ji | Asa Mahalla 1 Patti Likhi; alphabetic teaching; opening One Creator of all. | [Ang 432](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=432); [BaniDB 43](https://api.banidb.com/v2/banis/43) |
+| 44 | Patti — Guru Amar Das Ji | Asa Mahalla 3 Patti heading independently verified on 434; mortality and virtue in opening. | [Ang 434](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=434); [BaniDB 44](https://api.banidb.com/v2/banis/44) |
+| 45 | Ruti (The Seasons) — Guru Arjan Sahib Ji | Ramkali Mahalla 5 Ruti; salok/chhant pairs; seasonal frame on 927–929. | [Ang 927](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=927); [Ang 929](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=929); [BaniDB 45](https://api.banidb.com/v2/banis/45) |
+| 46 | Ramkali Sadd (The Call) | Ramkali Sadd on 923; Sundar signature and Ram Das succession on 924; six ending marker. | [Ang 923](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=923); [Ang 924](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=924); [BaniDB 46](https://api.banidb.com/v2/banis/46) |
+| 47 | Thiti — Bhagat Kabir Ji | Gauri Thiti Kabir heading; lunar-day form and inward teaching on 343–344. | [Ang 343](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=343); [Ang 344](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=344); [BaniDB 47](https://api.banidb.com/v2/banis/47) |
+| 48 | Thiti — Guru Nanak Sahib Ji | Bilaval Mahalla 1 Thiti heading; One Creator beyond birth and social distinctions. | [Ang 838](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=838); [BaniDB 48](https://api.banidb.com/v2/banis/48) |
+| 49 | Thiti — Guru Arjan Sahib Ji (Gauri) | Thiti Gauri Mahalla 5 heading, despite legacy route identifier containing majh; salok/pauri form. | [Ang 296](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=296); [BaniDB 49](https://api.banidb.com/v2/banis/49) |
+| 52 | Vanjara (The Spiritual Trader) | Siri Raag Mahalla 4 Vanjara; trader metaphor, Naam as lasting wealth. | [Ang 81](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=81); [BaniDB 52](https://api.banidb.com/v2/banis/52) |
+| 77 | Saloks of Bhagat Kabir Ji | Kabir salok collection; embedded Mahalla headings; Namdev and Ravidas voices near close. | [Ang 1364](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1364); [Ang 1377](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1377) |
+| 78 | Saloks of Sheikh Farid Ji | Farid salok collection; Mahalla 3 response on 1378 and other Guru headings in provider. | [Ang 1377](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1377); [Ang 1378](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1378); [BaniDB 78](https://api.banidb.com/v2/banis/78) |
+| 79 | Savaiye Sri Mukhbaak — Guru Arjan Sahib Ji, Part 1 | First Sri Mukhbaak Mahalla 5 sequence; Creator-praise opening on 1385. | [Ang 1385](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1385); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+| 80 | Savaiye Sri Mukhbaak — Guru Arjan Sahib Ji, Part 2 | Second Sri Mukhbaak Mahalla 5 sequence opens on 1387; frailty and attachment. | [Ang 1387](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1387); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+| 81 | Bhatt Savaiye in Praise of Guru Nanak Sahib Ji | Bhatt-authored praise of First Guru, not attribution of authorship to Guru Nanak. | [Ang 1389](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1389); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+| 82 | Bhatt Savaiye in Praise of Guru Angad Sahib Ji | Bhatt-authored praise of Second Guru; Nanak blessing and Lehna in opening on 1391. | [Ang 1391](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1391); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+| 83 | Bhatt Savaiye in Praise of Guru Amar Das Ji | Bhatt-authored praise of Third Guru; distinct heading at 1392 and multiple poet voices. | [Ang 1392](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1392); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+| 84 | Bhatt Savaiye in Praise of Guru Ram Das Ji | Bhatt-authored praise of Fourth Guru; distinct heading at 1396 and multiple poet voices. | [Ang 1396](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1396); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+| 85 | Bhatt Savaiye in Praise of Guru Arjan Sahib Ji | Bhatt-authored praise of Fifth Guru; distinct from Guru Arjan’s own Sri Mukhbaak sequences. | [Ang 1406](https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1406); [Savaiye introduction](https://gurugranthsahib.io/bani/introduction/89/Introduction) |
+
+## Material corrections and boundaries
+
+- The five `Savaiye Mahalla 1–5` groups praise the named Gurus; their authors are the Bhatts. Guru Arjan Sahib Ji’s two Sri Mukhbaak groups remain separate.
+- ID 49’s actual heading is Thiti Gauri Mahalla 5. The English display name uses Gauri even though the stable legacy identifier contains “majh.”
+- ID 32 is the multi-raag Sukhmana collection of Guru Ram Das Ji’s ashtpadis. It is not an alternate spelling of Guru Arjan Sahib Ji’s Sukhmani.
+- Shabad Hazare, Rehras, Aarti Aarta, Dukh Bhanjani and the expanded Sohila route are collected readings. A single opening Ang is not the extent of each anthology. Gur Mantar’s provider includes additional source material; its number 13 must not be presented as SGGS Ang 13.
+- Kabir and Farid salok collections contain other named voices. The collection label does not override an individual verse’s author marker.
+- Raag Mala copy describes the text and its position only. It makes no disputed authorship or universal recitation claim. Dukh Bhanjani copy describes devotional meaning without promising medical outcomes.
+
+## Verification and remaining review
+
+The 43-key assignment is complete, with a nonempty English name, summary, detail and source references for every entry. Standalone TypeScript compilation passed with `tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --skipLibCheck src/content/baniDiscoverySggs.ts`. Root integration tests cover rendering and catalogue coverage separately.
+
+A named independent reviewer with Gurbani and Sikh literary expertise should review the interpretive summaries, English glosses (particularly Kuchji/Suchji/Gunvanti), and anthology presentation. A separate English editor should review readability and consistency. No such sign-off has been invented or marked complete.
+
+## Provider evidence snapshot
+
+The following captured responses were inspected locally; hashes make the reviewed version identifiable. They are diagnostic files, not replacements for scripture assets.
+
+| Snapshot | SHA-256 |
+|---|---|
+| `tmp/read-remediation-20261031/bani-provider-1-53.json` | `4ca9800460e8404f6154c052f404bc55f9abf314685884bc923094596c0243b6` |
+| `tmp/read-remediation-20261031/bani-provider-55-107.json` | `a955d43ed9326cf207cc1394b9343bef15818f19508104da8c9dcd51caea8df0` |

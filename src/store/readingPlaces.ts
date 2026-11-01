@@ -36,6 +36,8 @@ export function getReadingPlaceKey(path: string): string | null {
   if (exactKey) return exactKey
   const book = /^\/library\/([a-z][a-z0-9-]{0,119})\/chapters\/([a-z][a-z0-9-]{0,119})$/.exec(path)
   if (book) return `book:${book[1]}`
+  const rehat = /^\/banis\/rehat\/([1-9]\d{0,8})\/chapters\/([1-9]\d{0,8})$/.exec(path)
+  if (rehat) return `rehat:${rehat[1]}`
   const [pathname, search = ''] = path.split('?')
   if (pathname !== '/study' || path.includes('#')) return null
   const params = new URLSearchParams(search)
@@ -55,7 +57,7 @@ export function normalizeReadingPlace(value: unknown): Session | null {
   const key = getReadingPlaceKey(session.resumePath)
   if (!key) return null
   const base = { scriptureId: session.scriptureId, resumePath: session.resumePath, updatedAt: session.updatedAt }
-  if (key.startsWith('book:')) {
+  if (key.startsWith('book:') || key.startsWith('rehat:')) {
     const locator = session.readerLocator
     if (!locator) return base // Older sessions can safely resume at the chapter start.
     const locations = locator.locations

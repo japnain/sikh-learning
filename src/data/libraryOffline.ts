@@ -4,6 +4,8 @@ const CACHE_NAME = 'naamras-library-downloads-v1'
 const CACHE_ORIGIN = 'https://naamras.local'
 const RESOURCE_PREFIX = '/__naamras-library-downloads/'
 const BLOCK_TYPES = new Set(['line', 'heading', 'invocation', 'meter', 'verse', 'paragraph', 'note'])
+const DOWNLOAD_TOKEN_HEADER = 'x-naamras-download-token'
+const parsedDownloads = new Map<string, { storage: CacheStorage; token: string; value: Promise<LibraryDownload | null> }>()
 
 export interface LibraryDownload {
   schema: 1
@@ -80,16 +82,27 @@ export async function requireLibraryDownloadStorage(): Promise<void> {
   catch { throw new Error('This browser cannot save downloads right now. Reading online is still available.') }
 }
 
-/** Durable reads are always validated. Memory caches may be reset without deleting downloads. */
+export function resetLibraryDownloadMemory(): void {
+  parsedDownloads.clear()
+}
+
+/** Check durable presence/version on every read; parse each unchanged entry once. */
 export async function readLibraryDownload(workId: string): Promise<LibraryDownload | null> {
   if (typeof caches === 'undefined') return null
   try {
     const cache = await caches.open(CACHE_NAME)
     const response = await cache.match(request(workId))
-    if (!response) return null
-    const value: unknown = await response.json()
-    return validateLibraryDownload(value) && value.work.id === workId ? value : null
-  } catch { return null }
+    if (!response) { parsedDownloads.delete(workId); return null }
+    const token = response.headers.get(DOWNLOAD_TOKEN_HEADER)
+    const previous = parsedDownloads.get(workId)
+    if (token && previous?.storage === caches && previous.token === token) return previous.value
+    parsedDownloads.delete(workId)
+    const value = response.json().then((data: unknown) => validateLibraryDownload(data) && data.work.id === workId ? data : null).catch(() => null)
+    // Older downloads have no version token. Continue validating those reads
+    // until the user replaces the download, rather than assume it is unchanged.
+    if (token) parsedDownloads.set(workId, { storage: caches, token, value })
+    return await value
+  } catch { parsedDownloads.delete(workId); return null }
 }
 
 async function readDownloads(): Promise<LibraryDownload[]> {
@@ -101,6 +114,10 @@ async function readDownloads(): Promise<LibraryDownload[]> {
       .map(key => readLibraryDownload(decodeURIComponent(new URL(key.url).pathname.slice(RESOURCE_PREFIX.length)))))
     return downloads.filter((item): item is LibraryDownload => item !== null)
   } catch { return [] }
+}
+
+export async function readDownloadedLibraryWorks(): Promise<LibraryWork[]> {
+  return (await readDownloads()).map(item => item.work)
 }
 
 export async function readDownloadedLibraryResource<T>(path: string): Promise<T | null> {
@@ -128,7 +145,9 @@ export async function writeLibraryDownload(download: LibraryDownload): Promise<v
   try {
     const cache = await caches.open(CACHE_NAME)
     const encoded = JSON.stringify(download)
-    await cache.put(request(download.work.id), new Response(encoded, { headers: { 'content-type': 'application/json' } }))
+    const token = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`
+    await cache.put(request(download.work.id), new Response(encoded, { headers: { 'content-type': 'application/json', [DOWNLOAD_TOKEN_HEADER]: token } }))
+    parsedDownloads.delete(download.work.id)
     const persisted = await readLibraryDownload(download.work.id)
     if (!persisted || JSON.stringify(persisted) !== encoded) throw new Error('Verification failed')
   } catch {
@@ -141,6 +160,7 @@ export async function removeLibraryDownload(workId: string): Promise<void> {
   const cache = await caches.open(CACHE_NAME)
   await cache.delete(request(workId))
   if (await cache.match(request(workId))) throw new Error('The download could not be removed. Please try again.')
+  parsedDownloads.delete(workId)
 }
 
 export async function getLibraryDownloadStatus(workId: string): Promise<LibraryDownloadStatus | null> {

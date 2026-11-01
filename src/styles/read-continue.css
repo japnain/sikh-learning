@@ -2,6 +2,10 @@
 .read-continue__intro h2 { margin: 0; font-family: var(--font-display, 'Cormorant Garamond', serif); font-size: 1.35rem; }
 .read-continue__intro p { margin: .4rem 0 0; font-size: .82rem; line-height: 1.65; opacity: .75; max-width: 34rem; }
 .read-continue__list { list-style: none; padding: 0; margin: 0; display: grid; gap: .15rem; }
+.read-continue__list > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.read-continue__hide { display: grid; place-items: center; min-width: 44px; min-height: 44px; border-radius: .6rem; opacity: .7; }
+.read-continue__hide:hover { opacity: 1; background: rgb(145 104 57 / .08); }
+.read-continue__feedback { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-size: .82rem; }
 .read-continue__link { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .7rem .8rem; border-radius: .6rem; min-height: 48px; }
 .read-continue__link > span { min-width: 0; }
 .read-continue__link strong { font-size: .9rem; font-weight: 600; display: block; }

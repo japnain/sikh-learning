@@ -1,7 +1,7 @@
 import '../styles/catalog.css'
 import { useCompanionCopy, getCompanionText } from '../utils/companionCopy'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {
   fetchAmritKeertanIndex,
   fetchAmritKeertanShabads,
@@ -11,6 +11,9 @@ import {
 import { IconArrowLeft, IconArrowRight, IconSearch } from '../components/icons'
 import { useLanguageStore } from '../store/language'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+
+import { buildCurrentAppPath, isSafeInternalAppPath } from '../utils/libraryReaderNavigation'
+import { rememberDiscoveryReturn, restoreDiscoveryReturn } from '../utils/discoveryReturn'
 
 const AMRIT_KEERTAN_SECTION_COUNT = 113
 const AMRIT_KEERTAN_HEADER_PAGE_SIZE = 18
@@ -163,6 +166,21 @@ export default function AmritKeertan() {
   const { t, lang, locale } = useCompanionCopy()
   const scriptMode = useLanguageStore(state => state.scriptMode)
   const navigate = useNavigate()
+  const location = useLocation()
+  const currentPath = buildCurrentAppPath(location)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const originCandidate = searchParams.get('readOrigin') ?? location.state?.readerOrigin
+  const readOrigin = isSafeInternalAppPath(originCandidate) && originCandidate.split('?')[0] === '/banis'
+    ? originCandidate : '/banis?collection=books'
+  const navigationState = { readerOrigin: readOrigin }
+  const updateView = (changes: Record<string, string | null>) => setSearchParams(current => {
+    const next = new URLSearchParams(current)
+    for (const [key, value] of Object.entries(changes)) {
+      if (value === null) next.delete(key)
+      else next.set(key, value)
+    }
+    return next
+  }, { replace: true, state: location.state })
   const { headerId } = useParams()
   const selectedHeaderId = headerId ? Number(headerId) : null
   const [headers, setHeaders] = useState<AmritKeertanHeader[]>([])
@@ -173,11 +191,18 @@ export default function AmritKeertan() {
   const [shabadIssuesByHeader, setShabadIssuesByHeader] = useState<Record<number, boolean>>({})
   const [shabadLoadAttempts, setShabadLoadAttempts] = useState<Record<number, number>>({})
   const fetchingHeaderIdsRef = useRef(new Set<number>())
-  const [query, setQuery] = useState('')
-  const [visibleHeaderCount, setVisibleHeaderCount] = useState(AMRIT_KEERTAN_HEADER_PAGE_SIZE)
-  const [sortMode, setSortMode] = useState<AmritKeertanSortMode>('book')
-  const [showEnglishPreview, setShowEnglishPreview] = useState(true)
-  const [expandedDetailsKey, setExpandedDetailsKey] = useState<string | null>(null)
+  const query = (searchParams.get('q') ?? '').slice(0, 240)
+  const setQuery = (value: string) => updateView({ q: value.slice(0, 240) || null, shown: null })
+  const requestedCount = Number(searchParams.get('shown'))
+  const visibleHeaderCount = Number.isSafeInteger(requestedCount) && requestedCount >= AMRIT_KEERTAN_HEADER_PAGE_SIZE
+    ? Math.min(500, requestedCount) : AMRIT_KEERTAN_HEADER_PAGE_SIZE
+  const candidateSort = searchParams.get('sort')
+  const sortMode: AmritKeertanSortMode = AMRIT_KEERTAN_SORT_OPTIONS.some(option => option.id === candidateSort)
+    ? candidateSort as AmritKeertanSortMode : 'book'
+  const setSortMode = (value: AmritKeertanSortMode) => updateView({ sort: value === 'book' ? null : value })
+  const showEnglishPreview = searchParams.get('english') !== 'off'
+  const expandedDetailsKey = searchParams.get('details')
+  const setExpandedDetailsKey = (value: string | null) => updateView({ details: value })
 
   useEffect(() => {
     let cancelled = false
@@ -304,7 +329,12 @@ export default function AmritKeertan() {
     if (Number.isFinite(bookPosition)) params.set('akItem', String(bookPosition))
     if (shabad.amritPageNo) params.set('akPage', String(shabad.amritPageNo))
 
-    navigate(`/study?${params.toString()}`)
+    const originParams = new URLSearchParams(location.search)
+    originParams.set('readOrigin', readOrigin)
+    const origin = `${location.pathname}?${originParams.toString()}`
+    rememberDiscoveryReturn(buildCurrentAppPath(location), `amrit-shabad-${getShabadKey(shabad)}`)
+    rememberDiscoveryReturn(origin, `amrit-shabad-${getShabadKey(shabad)}`)
+    navigate(`/study?${params.toString()}`, { state: { readerOrigin: origin } })
   }
 
   const retryHeaders = () => {
@@ -322,6 +352,11 @@ export default function AmritKeertan() {
     }))
   }
 
+  useEffect(() => {
+    if (loadingHeaders || (selectedHeaderId && !selectedHeaderLoaded)) return
+    return restoreDiscoveryReturn(currentPath)
+  }, [currentPath, loadingHeaders, selectedHeaderId, selectedHeaderLoaded])
+
   const searchPlaceholder = selectedHeader
     ? t('Search this section by shabad, source, raag, writer, English, or ang...')
     : t('Search Amrit Keertan sections...')
@@ -338,11 +373,11 @@ export default function AmritKeertan() {
         aria-label={t("Breadcrumb")}
         data-testid="amrit-keertan-breadcrumbs"
       >
-        <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
+        <Link to={readOrigin} className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
           {t("Read")}</Link>
         <span aria-hidden="true">/</span>
         {selectedHeader ? (
-          <Link to="/banis/amrit-keertan" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
+          <Link state={navigationState} to="/banis/amrit-keertan" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
             {t("Amrit Keertan")}</Link>
         ) : (
           <span className="rounded-full px-2 py-1 text-text/70 dark:text-dark-text/80">{t("Amrit Keertan")}</span>
@@ -374,11 +409,11 @@ export default function AmritKeertan() {
             id="amrit-keertan-search"
             name="amrit-keertan-search"
             type="search"
+            maxLength={240}
             aria-label={selectedHeader ? t('Search this Amrit Keertan section') : t('Search Amrit Keertan sections')}
             value={query}
             onChange={event => {
               setQuery(event.target.value)
-              setVisibleHeaderCount(AMRIT_KEERTAN_HEADER_PAGE_SIZE)
             }}
             placeholder={searchPlaceholder}
             className="w-full rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] py-3 pl-9 pr-4 font-sans text-sm text-text outline-none transition-colors duration-300 placeholder:text-text/68 focus:border-saffron/40 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text dark:placeholder:text-dark-text/50"
@@ -428,7 +463,7 @@ export default function AmritKeertan() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => setShowEnglishPreview(value => !value)}
+                      onClick={() => updateView({ english: showEnglishPreview ? 'off' : null })}
                       aria-pressed={showEnglishPreview}
                       className="interactive-focus rounded-full border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-3 py-2 font-sans text-xs font-semibold text-text/70 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/80"
                     >
@@ -463,25 +498,27 @@ export default function AmritKeertan() {
               <div className="grid gap-2 sm:grid-cols-2" data-testid="amrit-keertan-page-nav">
                 {previousHeader ? (
                   <Link
+                    state={navigationState}
                     to={`/banis/amrit-keertan/${previousHeader.headerId}`}
                     className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-3 font-sans text-sm font-semibold text-text/75 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/90"
                   >
                     <IconArrowLeft size={15} />
                     {t("Previous section")}</Link>
                 ) : (
-                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text-muted dark:border-dark-text/10 dark:bg-white/[0.035]">
+                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text/68 dark:border-dark-text/10 dark:bg-white/[0.035] dark:text-dark-text/64">
                     {t("Previous section")}</span>
                 )}
 
                 {nextHeader ? (
                   <Link
+                    state={navigationState}
                     to={`/banis/amrit-keertan/${nextHeader.headerId}`}
                     className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
                   >
                     {t("Next section")}<IconArrowRight size={15} />
                   </Link>
                 ) : (
-                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text-muted dark:border-dark-text/10 dark:bg-white/[0.035]">
+                  <span className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[rgb(var(--color-border))]/10 bg-[rgb(var(--color-surface-muted))] px-4 py-3 font-sans text-sm text-text/68 dark:border-dark-text/10 dark:bg-white/[0.035] dark:text-dark-text/64">
                     {t("Next section")}</span>
                 )}
               </div>
@@ -524,6 +561,7 @@ export default function AmritKeertan() {
                       >
                         <button
                           type="button"
+                          id={`amrit-shabad-${shabadKey}`}
                           onClick={() => openShabad(shabad, bookPosition)}
                           className="interactive-focus w-full rounded-md text-left"
                           aria-label={t('Open AK Page {page} item {item} in Study', { page: shabad.amritPageNo || t('unknown'), item: bookPosition })}
@@ -607,6 +645,7 @@ export default function AmritKeertan() {
               <p className="font-sans text-sm text-text/68 dark:text-dark-text/70">
                 {t("This Amrit Keertan section was not found.")}</p>
               <Link
+                state={navigationState}
                 to="/banis/amrit-keertan"
                 className="interactive-focus interactive-pill-link mt-4 min-h-[44px] rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
               >
@@ -645,6 +684,7 @@ export default function AmritKeertan() {
                 return (
                   <Link
                     key={header.headerId}
+                    state={navigationState}
                     to={`/banis/amrit-keertan/${header.headerId}`}
                     className="block rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-4 text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
                   >
@@ -680,7 +720,7 @@ export default function AmritKeertan() {
                 {visibleHeaders.length < filteredHeaders.length ? (
                   <button
                     type="button"
-                    onClick={() => setVisibleHeaderCount(count => count + AMRIT_KEERTAN_HEADER_PAGE_SIZE)}
+                    onClick={() => updateView({ shown: String(visibleHeaderCount + AMRIT_KEERTAN_HEADER_PAGE_SIZE) })}
                     className="interactive-focus min-h-[48px] rounded-lg border border-gold/30 bg-[rgb(var(--color-surface))] px-5 font-sans text-sm font-semibold text-accent dark:border-gold/35 dark:bg-dark-card dark:text-accent"
                     data-testid="amrit-keertan-show-more"
                   >

@@ -1,0 +1,557 @@
+{
+  "source": "https://api.banidb.com/v2/banis",
+  "indexRetrievedAt": "2026-10-31T16:56:25.192Z",
+  "providerItemCount": 104,
+  "providerIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107
+  ],
+  "absentIdsWithin1To107": [
+    20,
+    37,
+    54
+  ],
+  "metadataItemCount": 104,
+  "hashedPayloadCount": 104,
+  "exactTextHashDuplicateGroups": [],
+  "exactUnicodeNameDuplicateGroups": {},
+  "unicodeNameCoverage": {
+    "gurmukhi": 104,
+    "hindi": 104
+  },
+  "scriptNamesPath": "src/content/baniScriptNames.ts",
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://api.banidb.com/v2/banis/1"
+    },
+    {
+      "id": 2,
+      "url": "https://api.banidb.com/v2/banis/2"
+    },
+    {
+      "id": 3,
+      "url": "https://api.banidb.com/v2/banis/3"
+    },
+    {
+      "id": 4,
+      "url": "https://api.banidb.com/v2/banis/4"
+    },
+    {
+      "id": 5,
+      "url": "https://api.banidb.com/v2/banis/5"
+    },
+    {
+      "id": 6,
+      "url": "https://api.banidb.com/v2/banis/6"
+    },
+    {
+      "id": 7,
+      "url": "https://api.banidb.com/v2/banis/7"
+    },
+    {
+      "id": 8,
+      "url": "https://api.banidb.com/v2/banis/8"
+    },
+    {
+      "id": 9,
+      "url": "https://api.banidb.com/v2/banis/9"
+    },
+    {
+      "id": 10,
+      "url": "https://api.banidb.com/v2/banis/10"
+    },
+    {
+      "id": 11,
+      "url": "https://api.banidb.com/v2/banis/11"
+    },
+    {
+      "id": 12,
+      "url": "https://api.banidb.com/v2/banis/12"
+    },
+    {
+      "id": 13,
+      "url": "https://api.banidb.com/v2/banis/13"
+    },
+    {
+      "id": 14,
+      "url": "https://api.banidb.com/v2/banis/14"
+    },
+    {
+      "id": 15,
+      "url": "https://api.banidb.com/v2/banis/15"
+    },
+    {
+      "id": 16,
+      "url": "https://api.banidb.com/v2/banis/16"
+    },
+    {
+      "id": 17,
+      "url": "https://api.banidb.com/v2/banis/17"
+    },
+    {
+      "id": 18,
+      "url": "https://api.banidb.com/v2/banis/18"
+    },
+    {
+      "id": 19,
+      "url": "https://api.banidb.com/v2/banis/19"
+    },
+    {
+      "id": 21,
+      "url": "https://api.banidb.com/v2/banis/21"
+    },
+    {
+      "id": 22,
+      "url": "https://api.banidb.com/v2/banis/22"
+    },
+    {
+      "id": 23,
+      "url": "https://api.banidb.com/v2/banis/23"
+    },
+    {
+      "id": 24,
+      "url": "https://api.banidb.com/v2/banis/24"
+    },
+    {
+      "id": 25,
+      "url": "https://api.banidb.com/v2/banis/25"
+    },
+    {
+      "id": 26,
+      "url": "https://api.banidb.com/v2/banis/26"
+    },
+    {
+      "id": 27,
+      "url": "https://api.banidb.com/v2/banis/27"
+    },
+    {
+      "id": 28,
+      "url": "https://api.banidb.com/v2/banis/28"
+    },
+    {
+      "id": 29,
+      "url": "https://api.banidb.com/v2/banis/29"
+    },
+    {
+      "id": 30,
+      "url": "https://api.banidb.com/v2/banis/30"
+    },
+    {
+      "id": 31,
+      "url": "https://api.banidb.com/v2/banis/31"
+    },
+    {
+      "id": 32,
+      "url": "https://api.banidb.com/v2/banis/32"
+    },
+    {
+      "id": 33,
+      "url": "https://api.banidb.com/v2/banis/33"
+    },
+    {
+      "id": 34,
+      "url": "https://api.banidb.com/v2/banis/34"
+    },
+    {
+      "id": 35,
+      "url": "https://api.banidb.com/v2/banis/35"
+    },
+    {
+      "id": 36,
+      "url": "https://api.banidb.com/v2/banis/36"
+    },
+    {
+      "id": 38,
+      "url": "https://api.banidb.com/v2/banis/38"
+    },
+    {
+      "id": 39,
+      "url": "https://api.banidb.com/v2/banis/39"
+    },
+    {
+      "id": 40,
+      "url": "https://api.banidb.com/v2/banis/40"
+    },
+    {
+      "id": 41,
+      "url": "https://api.banidb.com/v2/banis/41"
+    },
+    {
+      "id": 42,
+      "url": "https://api.banidb.com/v2/banis/42"
+    },
+    {
+      "id": 43,
+      "url": "https://api.banidb.com/v2/banis/43"
+    },
+    {
+      "id": 44,
+      "url": "https://api.banidb.com/v2/banis/44"
+    },
+    {
+      "id": 45,
+      "url": "https://api.banidb.com/v2/banis/45"
+    },
+    {
+      "id": 46,
+      "url": "https://api.banidb.com/v2/banis/46"
+    },
+    {
+      "id": 47,
+      "url": "https://api.banidb.com/v2/banis/47"
+    },
+    {
+      "id": 48,
+      "url": "https://api.banidb.com/v2/banis/48"
+    },
+    {
+      "id": 49,
+      "url": "https://api.banidb.com/v2/banis/49"
+    },
+    {
+      "id": 50,
+      "url": "https://api.banidb.com/v2/banis/50"
+    },
+    {
+      "id": 51,
+      "url": "https://api.banidb.com/v2/banis/51"
+    },
+    {
+      "id": 52,
+      "url": "https://api.banidb.com/v2/banis/52"
+    },
+    {
+      "id": 53,
+      "url": "https://api.banidb.com/v2/banis/53"
+    },
+    {
+      "id": 55,
+      "url": "https://api.banidb.com/v2/banis/55"
+    },
+    {
+      "id": 56,
+      "url": "https://api.banidb.com/v2/banis/56"
+    },
+    {
+      "id": 57,
+      "url": "https://api.banidb.com/v2/banis/57"
+    },
+    {
+      "id": 58,
+      "url": "https://api.banidb.com/v2/banis/58"
+    },
+    {
+      "id": 59,
+      "url": "https://api.banidb.com/v2/banis/59"
+    },
+    {
+      "id": 60,
+      "url": "https://api.banidb.com/v2/banis/60"
+    },
+    {
+      "id": 61,
+      "url": "https://api.banidb.com/v2/banis/61"
+    },
+    {
+      "id": 62,
+      "url": "https://api.banidb.com/v2/banis/62"
+    },
+    {
+      "id": 63,
+      "url": "https://api.banidb.com/v2/banis/63"
+    },
+    {
+      "id": 64,
+      "url": "https://api.banidb.com/v2/banis/64"
+    },
+    {
+      "id": 65,
+      "url": "https://api.banidb.com/v2/banis/65"
+    },
+    {
+      "id": 66,
+      "url": "https://api.banidb.com/v2/banis/66"
+    },
+    {
+      "id": 67,
+      "url": "https://api.banidb.com/v2/banis/67"
+    },
+    {
+      "id": 68,
+      "url": "https://api.banidb.com/v2/banis/68"
+    },
+    {
+      "id": 69,
+      "url": "https://api.banidb.com/v2/banis/69"
+    },
+    {
+      "id": 70,
+      "url": "https://api.banidb.com/v2/banis/70"
+    },
+    {
+      "id": 71,
+      "url": "https://api.banidb.com/v2/banis/71"
+    },
+    {
+      "id": 72,
+      "url": "https://api.banidb.com/v2/banis/72"
+    },
+    {
+      "id": 73,
+      "url": "https://api.banidb.com/v2/banis/73"
+    },
+    {
+      "id": 74,
+      "url": "https://api.banidb.com/v2/banis/74"
+    },
+    {
+      "id": 75,
+      "url": "https://api.banidb.com/v2/banis/75"
+    },
+    {
+      "id": 76,
+      "url": "https://api.banidb.com/v2/banis/76"
+    },
+    {
+      "id": 77,
+      "url": "https://api.banidb.com/v2/banis/77"
+    },
+    {
+      "id": 78,
+      "url": "https://api.banidb.com/v2/banis/78"
+    },
+    {
+      "id": 79,
+      "url": "https://api.banidb.com/v2/banis/79"
+    },
+    {
+      "id": 80,
+      "url": "https://api.banidb.com/v2/banis/80"
+    },
+    {
+      "id": 81,
+      "url": "https://api.banidb.com/v2/banis/81"
+    },
+    {
+      "id": 82,
+      "url": "https://api.banidb.com/v2/banis/82"
+    },
+    {
+      "id": 83,
+      "url": "https://api.banidb.com/v2/banis/83"
+    },
+    {
+      "id": 84,
+      "url": "https://api.banidb.com/v2/banis/84"
+    },
+    {
+      "id": 85,
+      "url": "https://api.banidb.com/v2/banis/85"
+    },
+    {
+      "id": 86,
+      "url": "https://api.banidb.com/v2/banis/86"
+    },
+    {
+      "id": 87,
+      "url": "https://api.banidb.com/v2/banis/87"
+    },
+    {
+      "id": 88,
+      "url": "https://api.banidb.com/v2/banis/88"
+    },
+    {
+      "id": 89,
+      "url": "https://api.banidb.com/v2/banis/89"
+    },
+    {
+      "id": 90,
+      "url": "https://api.banidb.com/v2/banis/90"
+    },
+    {
+      "id": 91,
+      "url": "https://api.banidb.com/v2/banis/91"
+    },
+    {
+      "id": 92,
+      "url": "https://api.banidb.com/v2/banis/92"
+    },
+    {
+      "id": 93,
+      "url": "https://api.banidb.com/v2/banis/93"
+    },
+    {
+      "id": 94,
+      "url": "https://api.banidb.com/v2/banis/94"
+    },
+    {
+      "id": 95,
+      "url": "https://api.banidb.com/v2/banis/95"
+    },
+    {
+      "id": 96,
+      "url": "https://api.banidb.com/v2/banis/96"
+    },
+    {
+      "id": 97,
+      "url": "https://api.banidb.com/v2/banis/97"
+    },
+    {
+      "id": 98,
+      "url": "https://api.banidb.com/v2/banis/98"
+    },
+    {
+      "id": 99,
+      "url": "https://api.banidb.com/v2/banis/99"
+    },
+    {
+      "id": 100,
+      "url": "https://api.banidb.com/v2/banis/100"
+    },
+    {
+      "id": 101,
+      "url": "https://api.banidb.com/v2/banis/101"
+    },
+    {
+      "id": 102,
+      "url": "https://api.banidb.com/v2/banis/102"
+    },
+    {
+      "id": 103,
+      "url": "https://api.banidb.com/v2/banis/103"
+    },
+    {
+      "id": 104,
+      "url": "https://api.banidb.com/v2/banis/104"
+    },
+    {
+      "id": 105,
+      "url": "https://api.banidb.com/v2/banis/105"
+    },
+    {
+      "id": 106,
+      "url": "https://api.banidb.com/v2/banis/106"
+    },
+    {
+      "id": 107,
+      "url": "https://api.banidb.com/v2/banis/107"
+    }
+  ],
+  "snapshotSha256": {
+    "bani-provider-index.json": "0a50d7e3bc9496a779536cff342c583131e9cf3a616fb03b5d96d0eb24c7d168",
+    "bani-provider-1-53.json": "4ca9800460e8404f6154c052f404bc55f9abf314685884bc923094596c0243b6",
+    "bani-provider-55-107.json": "a955d43ed9326cf207cc1394b9343bef15818f19508104da8c9dcd51caea8df0",
+    "bani-provider-text-hashes.json": "7b7696b4b69f02127fe7e5c77ac37807b4b64378ee399d1b156fcec9d39c741b"
+  },
+  "notes": [
+    "Index is real public-provider data, not deterministic app QA fixtures.",
+    "Index timestamp is recorded by the root browser capture; reduced per-bani snapshots contain no individual retrieval timestamp and were captured in the same 2026-10-31 session.",
+    "Per-bani metadata includes first 10 lines, last 5 lines, heading rows, page ranges and provider metadata; full texts remained in root browser memory for hashing.",
+    "Hash equality checks exact captured full Unicode text only; absence of identical hashes does not exclude overlap, shared verses or meaningful variants.",
+    "Absent provider IDs 20, 37 and 54 are catalog gaps, not missing app entries.",
+    "Gurmukhi and Hindi script names are copied verbatim, not new translations or editorial corrections."
+  ]
+}

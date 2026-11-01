@@ -1,10 +1,11 @@
 import '../styles/catalog.css'
 import '../styles/rehat-reader.css'
 import RehatReaderHeader from '../components/RehatReaderHeader'
+import { REHAT_PALETTE_CLASSES } from '../utils/rehatAppearance'
 import { useEpubReaderStore } from '../store/epubReader'
 import { useCompanionCopy } from '../utils/companionCopy'
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { fetchRehatChapter, fetchRehatChapters, fetchRehats } from '../api/banidb'
 import { IconArrowLeft, IconArrowRight, IconChevronDown, IconChevronUp, IconClose, IconSearch } from '../components/icons'
 import { useScriptureCacheStore } from '../store/scriptureCache'
@@ -12,6 +13,16 @@ import type { RehatChapterContent, RehatChapterSummary, RehatSummary } from '../
 import { sanitizeRehatHtml, stripHtmlTags } from '../utils/rehatHtml'
 import { highlightRehatHtml } from '../utils/rehatFind'
 import { scrollElementIntoAppView } from '../utils/appScroll'
+import { isSafeInternalAppPath } from '../utils/libraryReaderNavigation'
+import { prepareRehatReadingHtml } from '../utils/rehatReadingPosition'
+import { useRehatReadingPosition } from '../hooks/useRehatReadingPosition'
+
+function useRehatOrigin() {
+  const location = useLocation()
+  const candidate = location.state?.readerOrigin
+  return isSafeInternalAppPath(candidate) && candidate.split('?')[0] === '/banis'
+    ? candidate : '/banis?collection=books'
+}
 
 const SGPC_REHIT_MARYADA_SOURCE = 'https://sandiegogurdwara.org/SikhRehat_SGPC_English.pdf'
 const EMPTY_REHAT_CHAPTERS: RehatChapterSummary[] = []
@@ -74,17 +85,19 @@ function Breadcrumbs({
   chapter: RehatChapterContent | RehatChapterSummary | null
 }) {
   const { t } = useCompanionCopy()
+  const readOrigin = useRehatOrigin()
+  const navigationState = { readerOrigin: readOrigin }
   return (
     <nav
       className="mb-4 flex flex-wrap items-center gap-2 font-sans text-xs text-text/68 dark:text-dark-text/75"
       aria-label={t("Breadcrumb")}
       data-testid="rehat-breadcrumbs"
     >
-      <Link to="/banis" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
+      <Link to={readOrigin} className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
         {t("Read")}</Link>
       <span aria-hidden="true">/</span>
       {rehat ? (
-        <Link to="/banis/rehat" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
+        <Link state={navigationState} to="/banis/rehat" className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent">
           {t("Rehat")}</Link>
       ) : (
         <span className="rounded-full px-2 py-1 text-text/70 dark:text-dark-text/80">{t("Rehat")}</span>
@@ -94,7 +107,7 @@ function Breadcrumbs({
           <span aria-hidden="true">/</span>
           {chapter ? (
             <Link
-              to={`/banis/rehat/${rehat.rehatId}`}
+              state={navigationState} to={`/banis/rehat/${rehat.rehatId}`}
               className="interactive-focus rounded-full px-2 py-1 text-accent dark:text-accent"
             >
               {rehat.rehatName}
@@ -164,6 +177,7 @@ function RehatSectionNavCard({
   rehatId: number
 }) {
   const { t } = useCompanionCopy()
+  const navigationState = { readerOrigin: useRehatOrigin() }
   const isPrevious = direction === 'previous'
   const label = t(isPrevious ? 'Previous section' : 'Next section')
   const emptyLabel = t(isPrevious ? 'Start of source' : 'End of source')
@@ -186,7 +200,7 @@ function RehatSectionNavCard({
 
   return (
     <Link
-      to={`/banis/rehat/${rehatId}/chapters/${chapter.chapterId}`}
+      state={navigationState} to={`/banis/rehat/${rehatId}/chapters/${chapter.chapterId}`}
       aria-label={`${label}: ${chapter.chapterName}`}
       className="interactive-focus flex min-h-[72px] items-center gap-3 rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-3 text-left text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
     >
@@ -214,6 +228,7 @@ function RehatSectionNavigation({
   nextChapter: RehatChapterSummary | null
 }) {
   const { t } = useCompanionCopy()
+  const navigationState = { readerOrigin: useRehatOrigin() }
   return (
     <nav
       className="section-shell space-y-4 px-4 py-4"
@@ -227,7 +242,7 @@ function RehatSectionNavigation({
             {t("Move section by section without returning to the chapter list.")}</p>
         </div>
         <Link
-          to={`/banis/rehat/${rehatId}`}
+          state={navigationState} to={`/banis/rehat/${rehatId}`}
           className="interactive-focus shrink-0 rounded-full border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface-muted))] px-3 py-2 font-sans text-xs font-semibold text-text/65 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/75"
         >
           {t("Back to all sections")}</Link>
@@ -242,11 +257,15 @@ function RehatSectionNavigation({
 
 export default function Rehat() {
   const { t, lang } = useCompanionCopy()
+  const location = useLocation()
+  const readOrigin = useRehatOrigin()
+  const navigationState = { readerOrigin: readOrigin }
   const { rehatId: rehatIdParam, chapterId: chapterIdParam } = useParams()
   const isChapterRoute = Boolean(chapterIdParam)
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
   const measure = useEpubReaderStore(state => state.measure)
+  const palette = useEpubReaderStore(state => state.palette)
   const selectedRehatId = parseNumericParam(rehatIdParam)
   const selectedChapterId = parseNumericParam(chapterIdParam)
   const rehats = useScriptureCacheStore(state => state.rehatList)
@@ -266,6 +285,7 @@ export default function Rehat() {
   const [chapterTextSearch, setChapterTextSearch] = useState({ key: '', value: '' })
   const [activeMatch, setActiveMatch] = useState(0)
   const chapterContentRef = useRef<HTMLElement>(null)
+  const readerRootRef = useRef<HTMLDivElement>(null)
   const selectedChapterKey = selectedRehatId && selectedChapterId ? `${selectedRehatId}-${selectedChapterId}` : null
   const cachedSelectedChapters = selectedRehatId ? rehatChapterListCache[String(selectedRehatId)] : undefined
   const selectedChapters = useMemo(
@@ -403,7 +423,14 @@ export default function Rehat() {
     () => stripHtmlTags(selectedChapter?.chapterContent ?? ''),
     [selectedChapter?.chapterContent]
   )
-  const chapterFind = useMemo(() => highlightRehatHtml(sanitizeRehatHtml(selectedChapter?.chapterContent ?? ''), chapterTextQuery, activeMatch), [selectedChapter?.chapterContent, chapterTextQuery, activeMatch])
+  const reading = useMemo(() => prepareRehatReadingHtml(sanitizeRehatHtml(selectedChapter?.chapterContent ?? '')), [selectedChapter?.chapterContent])
+  const chapterFind = useMemo(() => highlightRehatHtml(reading.html, chapterTextQuery, activeMatch), [reading.html, chapterTextQuery, activeMatch])
+  const { openAppearance, closeAppearance } = useRehatReadingPosition({
+    rootRef: chapterContentRef, rehatId: selectedRehatId, chapterId: selectedChapterId,
+    sourceTitle: selectedRehat?.rehatName ?? '', chapterTitle: selectedChapter?.chapterName ?? '',
+    revision: reading.revision, renderedHtml: chapterFind.html, finding: Boolean(chapterTextQuery.trim()),
+    hash: location.hash,
+  })
   useEffect(() => {
     if (!chapterTextQuery.trim() || !chapterFind.count) return
     const target = chapterContentRef.current?.querySelector<HTMLElement>(`[data-rehat-match="${activeMatch}"]`)
@@ -414,8 +441,10 @@ export default function Rehat() {
 
   return (
     <div
+      ref={readerRootRef}
       lang={lang}
-      className={isChapterRoute ? 'rehat-reader-shell' : 'page-shell max-w-3xl mx-auto min-h-screen scripture-directory transition-colors duration-300 animate-fade-in'}
+      className={isChapterRoute ? `rehat-reader-shell ${REHAT_PALETTE_CLASSES[palette]}` : 'page-shell max-w-3xl mx-auto min-h-screen scripture-directory transition-colors duration-300 animate-fade-in'}
+      data-palette={isChapterRoute ? palette : undefined}
       style={isChapterRoute ? {
         '--rehat-font-scale': fontScale,
         '--rehat-line-height': { compact: 1.6, comfortable: 1.8, spacious: 2.05 }[lineHeight],
@@ -436,6 +465,10 @@ export default function Rehat() {
         loading={loadingChapters}
         error={chapterListIssue}
         onRetry={retryChapterList}
+        readOrigin={readOrigin}
+        onAppearanceOpen={openAppearance}
+        onAppearanceClose={closeAppearance}
+        onFindClose={() => updateChapterTextQuery('')}
         search={<>
           <SearchField id="rehat-chapter-text-search" label={t('Search inside this Rehat chapter')} value={chapterTextQuery} onChange={updateChapterTextQuery} placeholder={t('Search inside this chapter...')} testId="rehat-chapter-text-search" />
           {chapterTextQuery.trim() ? <div className="rehat-find-controls" data-testid="rehat-find-controls">
@@ -516,7 +549,7 @@ export default function Rehat() {
           <p className="font-sans text-sm leading-6 text-text/65 dark:text-dark-text/70">
             {t("This Rehat route is not valid.")}</p>
           <Link
-            to="/banis/rehat"
+            state={navigationState} to="/banis/rehat"
             className="interactive-focus interactive-pill-link mt-4 min-h-[44px] gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
           >
             <IconArrowLeft size={14} />
@@ -539,7 +572,7 @@ export default function Rehat() {
                 >
                   {t("Retry")}</button>
                 <Link
-                  to={selectedRehatId ? `/banis/rehat/${selectedRehatId}` : '/banis/rehat'}
+                  state={navigationState} to={selectedRehatId ? `/banis/rehat/${selectedRehatId}` : '/banis/rehat'}
                   className="interactive-focus interactive-pill-link min-h-[44px] gap-2 rounded-lg border border-[rgb(var(--color-border))]/15 px-4 font-sans text-sm font-semibold text-text dark:border-dark-text/20 dark:text-dark-text"
                 >
                   <IconArrowLeft size={14} />
@@ -548,6 +581,10 @@ export default function Rehat() {
             </section>
           ) : (
             <>
+              <div className="rehat-reader-opening">
+                <p lang="en">{selectedRehat?.rehatName ?? t('Rehat')}</p>
+                <h1 lang="en">{selectedChapter.chapterName}</h1>
+              </div>
               <div className="rehat-reader-source">
                 <span>{t('Rehat Chapter')}</span><span aria-hidden="true">·</span>
                 <span>{wordCount} {t('words')}</span>
@@ -555,7 +592,7 @@ export default function Rehat() {
               </div>
 
               <article ref={chapterContentRef} className="rehat-reader-article" data-testid="rehat-chapter-content" lang="en">
-                <div className="rehat-reading-prose font-sans text-base leading-7 text-text dark:text-dark-text [&_p]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
+                <div className="rehat-reading-prose font-sans text-base leading-7 [&_p]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
                   dangerouslySetInnerHTML={{ __html: chapterFind.html }} />
               </article>
 
@@ -570,7 +607,7 @@ export default function Rehat() {
       ) : selectedRehatId ? (
         <section className="mt-5 space-y-3" data-testid="rehat-chapter-list-page">
           <Link
-            to="/banis/rehat"
+            state={navigationState} to="/banis/rehat"
             className="interactive-focus inline-flex min-h-[40px] items-center gap-2 rounded-full bg-[rgb(var(--color-surface-muted))] px-3 py-2 font-sans text-xs font-medium text-text-muted transition-colors duration-300 dark:bg-dark-surface"
           >
             <IconArrowLeft size={14} />
@@ -597,7 +634,7 @@ export default function Rehat() {
             filteredChapters.map(chapter => (
               <Link
                 key={chapter.chapterId}
-                to={`/banis/rehat/${selectedRehatId}/chapters/${chapter.chapterId}`}
+                state={navigationState} to={`/banis/rehat/${selectedRehatId}/chapters/${chapter.chapterId}`}
                 className="block rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-4 text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
               >
                 <div className="flex items-start justify-between gap-4">
@@ -643,7 +680,7 @@ export default function Rehat() {
               return (
                 <Link
                   key={rehat.rehatId}
-                  to={`/banis/rehat/${rehat.rehatId}`}
+                  state={navigationState} to={`/banis/rehat/${rehat.rehatId}`}
                   className="block rounded-lg border border-[rgb(var(--color-border))]/15 bg-[rgb(var(--color-surface))] px-4 py-4 text-text transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
                 >
                   <div className="flex items-start justify-between gap-4">

@@ -2,19 +2,21 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { SearchMode } from '../types'
 import { isDirectLookupQuery, type SearchSource } from '../utils/appSearch'
+import { SEARCH_SCOPES, type SearchScope } from '../content/readSearchCopy'
 
 export interface RecentSearchItem {
   query: string
   mode: SearchMode
   source: SearchSource
+  scope: SearchScope
   pinned: boolean
   savedAt: string
 }
 
 export interface RecentSearchState {
   recent: RecentSearchItem[]
-  addRecent: (query: string, mode: SearchMode, source: SearchSource) => void
-  togglePinned: (query: string, mode: SearchMode, source: SearchSource) => void
+  addRecent: (query: string, mode: SearchMode, source: SearchSource, scope?: SearchScope) => void
+  togglePinned: (query: string, mode: SearchMode, source: SearchSource, scope?: SearchScope) => void
   clearRecent: () => void
 }
 
@@ -41,8 +43,8 @@ function normalizeStoredSource(value: unknown): SearchSource {
     : 'all'
 }
 
-function getRecentIdentity(item: Pick<RecentSearchItem, 'query' | 'mode' | 'source'>) {
-  return `${item.query}\u0000${item.mode}\u0000${item.source}`
+function getRecentIdentity(item: Pick<RecentSearchItem, 'query' | 'mode' | 'source' | 'scope'>) {
+  return `${item.query}\u0000${item.mode}\u0000${item.source}\u0000${item.scope}`
 }
 
 export function migrateRecentSearchState(persistedState: unknown) {
@@ -65,6 +67,7 @@ export function migrateRecentSearchState(persistedState: unknown) {
       query,
       mode: normalizeStoredMode(item.mode),
       source: normalizeStoredSource(item.source),
+      scope: SEARCH_SCOPES.includes(item.scope as SearchScope) ? item.scope as SearchScope : 'all',
       pinned: item.pinned === true,
       savedAt: typeof item.savedAt === 'string' && !Number.isNaN(Date.parse(item.savedAt))
         ? item.savedAt
@@ -83,18 +86,20 @@ export const useRecentSearchStore = create<RecentSearchState>()(
   persist(
     (set, get) => ({
       recent: [],
-      addRecent: (query, mode, source) => {
+      addRecent: (query, mode, source, scope = 'all') => {
         const trimmed = query.trim()
         const directLookup = mode === 'ang' || (mode === 'auto-detect' && isDirectLookupQuery(trimmed))
         if (!trimmed || (!directLookup && trimmed.length < 2)) return
-        const existing = get().recent.find(item => item.query === trimmed && item.mode === mode && item.source === source)
-        const current = get().recent.filter(item => !(item.query === trimmed && item.mode === mode && item.source === source))
+        const identity = getRecentIdentity({ query: trimmed, mode, source, scope })
+        const existing = get().recent.find(item => getRecentIdentity(item) === identity)
+        const current = get().recent.filter(item => getRecentIdentity(item) !== identity)
         set({
           recent: [
             {
               query: trimmed,
               mode,
               source,
+              scope,
               pinned: existing?.pinned ?? false,
               savedAt: new Date().toISOString(),
             },
@@ -104,20 +109,20 @@ export const useRecentSearchStore = create<RecentSearchState>()(
             .slice(0, 12),
         })
       },
-      togglePinned: (query, mode, source) => set(state => ({
+      togglePinned: (query, mode, source, scope = 'all') => set(state => ({
         recent: state.recent
           .map(item =>
-            item.query === query && item.mode === mode && item.source === source
+            getRecentIdentity(item) === getRecentIdentity({ query, mode, source, scope })
               ? { ...item, pinned: !item.pinned }
               : item
           )
           .sort((a, b) => Number(b.pinned) - Number(a.pinned) || new Date(b.savedAt).getTime() - new Date(a.savedAt).getTime()),
       })),
-      clearRecent: () => set({ recent: [] }),
+      clearRecent: () => set(state => ({ recent: state.recent.filter(item => item.pinned) })),
     }),
     {
       name: 'sikh-recent-search',
-      version: 1,
+      version: 2,
       migrate: persistedState => migrateRecentSearchState(persistedState) as RecentSearchState,
     }
   )

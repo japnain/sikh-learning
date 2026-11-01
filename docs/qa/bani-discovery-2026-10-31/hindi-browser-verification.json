@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-31",
+  "mode": "devanagari",
+  "transliterationPreference": false,
+  "verifiedAgainst": "Real BaniDB index snapshot",
+  "names": {
+    "checked": 104,
+    "mismatches": []
+  },
+  "geometry": {
+    "viewport": 320,
+    "rootText": "32px",
+    "theme": "",
+    "rows": 105,
+    "unique": 105,
+    "missingContext": 0,
+    "scriptNames": 104,
+    "checked": 976,
+    "clipped": [],
+    "contrast": [
+      {
+        "sel": ".read-bani-row__name",
+        "ratio": 11.64
+      },
+      {
+        "sel": ".read-bani-row__summary",
+        "ratio": 6.12
+      },
+      {
+        "sel": ".read-bani-row__details > summary",
+        "ratio": 5.35
+      }
+    ]
+  }
+}

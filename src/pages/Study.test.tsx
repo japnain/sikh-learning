@@ -689,7 +689,7 @@ describe('Study renders all shabads on an ang', () => {
       </MemoryRouter>
     )
 
-    expect((await screen.findAllByText('Sundar Gutka')).length).toBeGreaterThan(0)
+    expect((await screen.findAllByTestId('study-line')).length).toBeGreaterThan(0)
     fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
     fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save verse/i }))
     const phrase = useVocabStore.getState().vocab.find(item => item.kind === 'phrase')!

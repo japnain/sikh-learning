@@ -148,6 +148,134 @@ it('opens continuous English prose and reveals the actual sources on demand', as
   await waitFor(() => expect(accountButton).toHaveFocus())
 })
 
+it('finds matching passages and moves reading position and focus only after dismissing the search sheet', async () => {
+  const user = userEvent.setup()
+  renderReader()
+  await waitFor(() => expect(screen.getByRole('article')).toHaveFocus())
+  const findButton = screen.getByRole('button', { name: 'Find in story' })
+  await user.click(findButton)
+  const input = screen.getByRole('searchbox', { name: 'Find words in this story' })
+  expect(input).toHaveFocus()
+  await user.type(input, 'CITY')
+  const dialog = screen.getByRole('dialog', { name: 'Find in story' })
+  expect(within(dialog).getByRole('status')).toHaveTextContent('2 matches in 2 passages')
+  expect(within(dialog).getAllByRole('button', { name: /Go to passage/ })).toHaveLength(2)
+  expect(documentScroll.getTop()).toBe(0)
+  await user.click(within(dialog).getByRole('button', { name: 'Go to passage 3' }))
+  await waitFor(() => expect(document.getElementById('milk-p03')).toHaveFocus())
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  expect(documentScroll.getTop()).toBe(1804)
+  expect(useStoryStore.getState().positions[story.id]).toMatchObject({ paragraphId: 'milk-p03', revision: 1 })
+  expect(screen.getByRole('article').querySelectorAll('mark')).toHaveLength(2)
+  expect(document.getElementById('milk-p03')).toHaveAttribute('data-find-current', 'true')
+  await user.click(findButton)
+  expect(screen.getByRole('searchbox')).toHaveValue('CITY')
+  expect(screen.getByRole('button', { name: 'Go to passage 3' })).toHaveAttribute('aria-current', 'location')
+  await user.click(screen.getByRole('button', { name: 'Clear story search' }))
+  expect(screen.getByRole('searchbox')).toHaveValue('')
+  expect(screen.getByRole('searchbox')).toHaveFocus()
+  expect(document.querySelectorAll('.story-prose mark')).toHaveLength(0)
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(findButton).toHaveFocus())
+  expect(documentScroll.getTop()).toBe(1804)
+})
+
+it('treats punctuation and markup literally without changing the story text', async () => {
+  const text = 'A sign said [a+b], then [A+B]. It also showed <b>milk</b>.'
+  mocks.loadStory.mockResolvedValue({ ...story, paragraphs: story.paragraphs.map((paragraph, index) => index === 1 ? { ...paragraph, text } : paragraph) })
+  const user = userEvent.setup()
+  renderReader()
+  await user.click(await screen.findByRole('button', { name: 'Find in story' }))
+  const input = screen.getByRole('searchbox')
+  fireEvent.change(input, { target: { value: '[a+b]' } })
+  expect(within(screen.getByRole('dialog')).getByRole('status')).toHaveTextContent('2 matches in 1 passage')
+  expect(Array.from(document.querySelectorAll('.story-prose mark'), mark => mark.textContent)).toEqual(['[a+b]', '[A+B]'])
+  expect(document.getElementById('milk-p02')).toHaveTextContent(text)
+  fireEvent.change(input, { target: { value: '<b>' } })
+  expect(document.querySelector('.story-prose mark')).toHaveTextContent('<b>')
+  expect(document.querySelector('.story-prose b')).toBeNull()
+  fireEvent.change(input, { target: { value: '.*' } })
+  expect(within(screen.getByRole('dialog')).getByRole('status')).toHaveTextContent('No matches in this story.')
+  expect(screen.queryByRole('button', { name: /Go to passage/ })).not.toBeInTheDocument()
+  expect(document.querySelectorAll('.story-prose mark')).toHaveLength(0)
+  expect(document.getElementById('milk-p02')).toHaveTextContent(text)
+})
+
+it('finds section headings and keeps an explicit search choice when initial fonts finish later', async () => {
+  let finishLoadingFonts!: () => void
+  const ready = new Promise<void>(resolve => { finishLoadingFonts = resolve })
+  const originalFonts = Object.getOwnPropertyDescriptor(document, 'fonts')
+  Object.defineProperty(document, 'fonts', { configurable: true, value: { ready } })
+  mocks.loadStory.mockResolvedValue({
+    ...story,
+    sections: [
+      { id: 'the-beginning', title: 'The beginning', startParagraphId: 'milk-p01' },
+      { id: 'the-answer', title: 'An unexpected answer', startParagraphId: 'milk-p02' },
+    ],
+  } satisfies Story)
+  const user = userEvent.setup()
+  try {
+    renderReader()
+    await user.click(await screen.findByRole('button', { name: 'Story contents' }))
+    await user.click(screen.getByRole('button', { name: 'Find in story' }))
+    await waitFor(() => expect(screen.getByRole('searchbox')).toHaveFocus())
+    await user.type(screen.getByRole('searchbox'), 'unexpected')
+    expect(within(screen.getByRole('dialog')).getByRole('status')).toHaveTextContent('1 match in 1 passage')
+    await user.click(screen.getByRole('button', { name: 'Go to passage 2' }))
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'An unexpected answer' })).toHaveFocus())
+    expect(documentScroll.getTop()).toBe(1244)
+    await act(async () => { finishLoadingFonts(); await ready })
+    expect(documentScroll.getTop()).toBe(1244)
+    expect(useStoryStore.getState().positions[story.id]?.paragraphId).toBe('milk-p02')
+  } finally {
+    finishLoadingFonts()
+    if (originalFonts) Object.defineProperty(document, 'fonts', originalFonts)
+    else Reflect.deleteProperty(document, 'fonts')
+  }
+})
+
+it('keeps sectioned stories to three pinned actions and opens Find from Contents with working focus return', async () => {
+  mocks.loadStory.mockResolvedValue({
+    ...story,
+    sections: [
+      { id: 'the-beginning', title: 'The beginning', startParagraphId: 'milk-p01' },
+      { id: 'the-answer', title: 'An unexpected answer', startParagraphId: 'milk-p02' },
+    ],
+  } satisfies Story)
+  const user = userEvent.setup()
+  renderReader()
+  const contentsButton = await screen.findByRole('button', { name: 'Story contents' })
+  const actions = document.querySelector<HTMLElement>('.story-reader-toolbar .reader-header__actions')!
+  expect(within(actions).getAllByRole('button')).toHaveLength(3)
+  expect(within(actions).queryByRole('button', { name: 'Find in story' })).not.toBeInTheDocument()
+  await user.click(contentsButton)
+  await user.click(within(screen.getByRole('dialog', { name: 'In this story' })).getByRole('button', { name: 'Find in story' }))
+  const input = screen.getByRole('searchbox', { name: 'Find words in this story' })
+  await waitFor(() => expect(input).toHaveFocus())
+  await user.type(input, 'flower')
+  expect(within(screen.getByRole('dialog', { name: 'Find in story' })).getByRole('status')).toHaveTextContent('1 match in 1 passage')
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(contentsButton).toHaveFocus())
+  await user.click(contentsButton)
+  await user.click(screen.getByRole('button', { name: 'Find in story' }))
+  expect(screen.getByRole('searchbox')).toHaveValue('flower')
+})
+
+it.each([
+  ['pa', 'ਕਹਾਣੀ ਵਿੱਚ ਖੋਜੋ', 'ਇਸ ਕਹਾਣੀ ਵਿੱਚ ਸ਼ਬਦ ਲੱਭੋ', 'ਪੈਰਾ 2 ਉੱਤੇ ਜਾਓ', 'ਕਹਾਣੀ ਦੀ ਖੋਜ ਮਿਟਾਓ'],
+  ['hi', 'कहानी में खोजें', 'इस कहानी में शब्द खोजें', 'अनुच्छेद 2 पर जाएँ', 'कहानी की खोज मिटाएँ'],
+] as const)('localizes Story Find controls for %s while identifying English excerpts', async (locale, title, label, passage, clear) => {
+  useLocaleStore.setState({ locale })
+  const user = userEvent.setup()
+  renderReader()
+  await user.click(await screen.findByRole('button', { name: title }))
+  await user.type(screen.getByRole('searchbox', { name: label }), 'flower')
+  const result = screen.getByRole('button', { name: passage })
+  expect(result.querySelector('[lang="en"]')).toHaveTextContent('flower')
+  await user.click(screen.getByRole('button', { name: clear }))
+  expect(screen.getByRole('searchbox')).toHaveValue('')
+})
+
 it('saves to the existing Saved flow, persists the save, and removes it again', async () => {
   const user = userEvent.setup()
   const firstView = renderReader({ origin: '/saved' })
@@ -186,7 +314,7 @@ it('provides a route back to Stories when the story does not exist', async () =>
   expect(screen.getByRole('heading', { name: 'Stories collection' })).toBeInTheDocument()
 })
 
-it('uses and updates shared Book preferences and the global app theme', async () => {
+it('shares reading preferences and page colors with Books without changing the app theme', async () => {
   useEpubReaderStore.setState({ fontScale: 1.15, lineHeight: 'spacious', measure: 'narrow' })
   const user = userEvent.setup()
   renderReader()
@@ -196,14 +324,92 @@ it('uses and updates shared Book preferences and the global app theme', async ()
   const dialog = screen.getByRole('dialog', { name: 'Reading appearance' })
   expect(within(dialog).getByRole('slider', { name: 'Text size' })).toHaveValue('1.15')
   await user.click(within(dialog).getByRole('button', { name: 'Increase text size' }))
-  await user.click(within(dialog).getByRole('button', { name: 'Natural' }))
+  await user.click(within(dialog).getByRole('button', { name: 'Comfort' }))
   await user.click(within(dialog).getByRole('button', { name: 'Wide' }))
-  await user.click(within(dialog).getByRole('button', { name: 'Dark' }))
-  expect(useEpubReaderStore.getState()).toMatchObject({ fontScale: 1.2, lineHeight: 'comfortable', measure: 'wide' })
-  expect(useThemeStore.getState().mode).toBe('dark')
+  await user.click(within(dialog).getByRole('button', { name: 'Night' }))
+  expect(useEpubReaderStore.getState()).toMatchObject({ fontScale: 1.2, lineHeight: 'comfortable', measure: 'wide', palette: 'night' })
+  expect(useThemeStore.getState().mode).toBe('light')
+  expect(dialog).toHaveClass('story-reader-panel--night')
+  expect(within(dialog).getByRole('region', { name: 'Text preview' })).toHaveTextContent(story.paragraphs[0].text)
   await user.keyboard('{Escape}')
   await waitFor(() => expect(appearanceButton).toHaveFocus())
   expect(screen.getByRole('article').parentElement).toHaveAttribute('data-measure', 'wide')
+  expect(screen.getByRole('article').parentElement).toHaveAttribute('data-palette', 'night')
+  // Opening appearance before the prose must not skip the story's introduction.
+  expect(documentScroll.getTop()).toBe(0)
+})
+
+it('resets shared reading preferences without resetting the app theme', async () => {
+  useEpubReaderStore.setState({ fontScale: 1.3, lineHeight: 'spacious', measure: 'wide', palette: 'sepia' })
+  useThemeStore.getState().setMode('dark')
+  const user = userEvent.setup()
+  renderReader()
+  await user.click(await screen.findByRole('button', { name: 'Reading appearance' }))
+  await user.click(screen.getByRole('button', { name: 'Reset reading settings' }))
+  expect(useEpubReaderStore.getState()).toMatchObject(DEFAULT_EPUB_READER_PREFERENCES)
+  expect(useThemeStore.getState().mode).toBe('dark')
+  expect(screen.getByRole('dialog')).toHaveClass('story-reader-panel--paper')
+})
+
+it('preserves the exact visible paragraph offset when appearance changes midway through it', async () => {
+  const user = userEvent.setup()
+  renderReader()
+  await waitFor(() => expect(screen.getByRole('article')).toHaveFocus())
+  act(() => {
+    documentScroll.setTop(1475)
+    mocks.settled.forEach(callback => callback())
+  })
+  const paragraph = document.getElementById('milk-p02')!
+  const previousTop = paragraph.getBoundingClientRect().top
+  await user.click(screen.getByRole('button', { name: 'Reading appearance' }))
+  fireEvent.change(screen.getByRole('slider', { name: 'Text size' }), { target: { value: '1.2' } })
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(paragraph.getBoundingClientRect().top).toBe(previousTop))
+  expect(documentScroll.getTop()).toBe(1575)
+})
+
+it('supports 200% story text and preserves the visible paragraph when the appearance sheet closes', async () => {
+  const user = userEvent.setup()
+  renderReader()
+  await waitFor(() => expect(screen.getByRole('article')).toHaveFocus())
+  act(() => {
+    documentScroll.setTop(1475)
+    mocks.settled.forEach(callback => callback())
+  })
+  const paragraph = document.getElementById('milk-p02')!
+  const previousTop = paragraph.getBoundingClientRect().top
+  await user.click(screen.getByRole('button', { name: 'Reading appearance' }))
+  const slider = screen.getByRole('slider', { name: 'Text size' })
+  expect(slider).toHaveAttribute('max', '2')
+  fireEvent.change(slider, { target: { value: '2' } })
+  expect(screen.getByText('200%')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Increase text size' })).toBeDisabled()
+  expect(useEpubReaderStore.getState().fontScale).toBe(2)
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(paragraph.getBoundingClientRect().top).toBe(previousTop))
+  expect(documentScroll.getTop()).toBe(1975)
+})
+
+it('does no paragraph measurement during a swipe and finds the settled place without scanning long stories', async () => {
+  const paragraphs = Array.from({ length: 512 }, (_, index) => ({ id: `long-${index}`, text: `Paragraph ${index}.` }))
+  mocks.loadStory.mockResolvedValue({ ...story, paragraphs })
+  const geometry = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+    const index = this.id.startsWith('long-') ? Number(this.id.slice(5)) : -1
+    const top = index < 0 ? 0 : 900 + index * 500 - documentScroll.getTop()
+    const height = index < 0 ? 0 : 300
+    return { x: 0, y: top, top, bottom: top + height, left: 0, right: 600, width: 600, height, toJSON: () => ({}) }
+  })
+  renderReader()
+  await waitFor(() => expect(screen.getByRole('article')).toHaveFocus())
+  geometry.mockClear()
+  act(() => {
+    documentScroll.setTop(200000)
+    fireEvent.scroll(document)
+  })
+  expect(geometry).not.toHaveBeenCalled()
+  act(() => mocks.settled.forEach(callback => callback()))
+  expect(geometry.mock.calls.length).toBeLessThan(20)
+  expect(useStoryStore.getState().positions[story.id].paragraphId).toBe('long-398')
 })
 
 it('resumes the saved paragraph and keeps it anchored when type size changes', async () => {
@@ -544,7 +750,7 @@ it('localizes reader controls while keeping original English prose identified', 
   expect(heading.closest('article')).toHaveAttribute('lang', 'en')
   await user.click(screen.getByRole('button', { name: 'ਪਾਠ ਦੀ ਦਿੱਖ' }))
   expect(screen.getByRole('slider', { name: 'ਲਿਖਤ ਦਾ ਆਕਾਰ' })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: 'ਗੂੜ੍ਹਾ' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'ਰਾਤ' })).toBeInTheDocument()
 })
 
 it('identifies an older downloaded edition without swapping the active text', async () => {

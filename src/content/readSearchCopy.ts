@@ -8,6 +8,8 @@ export const READ_SEARCH_UI: Record<UiLocale, {
   exit: string; recover: (query: string) => string; metadataHint: string; openingStories: string;
   searchLabels: Record<SearchScope, string>; placeholders: Record<SearchScope, string>;
   emptyBody: Record<SearchScope, string>;
+  examples: Record<SearchScope, readonly string[]>;
+  clearHistory: string; moreRecent: (count: number) => string; fewerRecent: string;
 }> = {
   en: {
     scopes: { all: 'All', gurbani: 'Gurbani', books: 'Books', stories: 'Stories' },
@@ -18,6 +20,8 @@ export const READ_SEARCH_UI: Record<UiLocale, {
     searchLabels: { all: 'Search Gurbani, books and stories', gurbani: 'Search Gurbani', books: 'Search books', stories: 'Search stories' },
     placeholders: { all: 'Find a bani, book, story, or passage', gurbani: 'Gurbani, first letters, transliteration, or meaning', books: 'Book title, chapter, person, or phrase', stories: 'Story title, person, or theme' },
     emptyBody: { all: 'Try a bani name, book title, person, or simpler phrase.', gurbani: 'Try a full bani name, a Gurmukhi phrase, or a simpler spelling.', books: 'Try a book title, person, place, or a shorter phrase.', stories: 'Try a story title, person, or theme such as service.' },
+    examples: { all: ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam'], gurbani: ['Japji Sahib', 'ਵਾਹਿਗੁਰੂ', 'hukam'], books: ['Panth Prakash', 'Khalsa', 'Banda Singh'], stories: ['Nanak', 'Lalo', 'service'] },
+    clearHistory: 'Clear history', moreRecent: count => `Show all ${count} searches`, fewerRecent: 'Show fewer searches',
   },
   pa: {
     scopes: { all: 'ਸਾਰੇ', gurbani: 'ਗੁਰਬਾਣੀ', books: 'ਕਿਤਾਬਾਂ', stories: 'ਸਾਖੀਆਂ' },
@@ -28,6 +32,8 @@ export const READ_SEARCH_UI: Record<UiLocale, {
     searchLabels: { all: 'ਗੁਰਬਾਣੀ, ਕਿਤਾਬਾਂ ਅਤੇ ਸਾਖੀਆਂ ਖੋਜੋ', gurbani: 'ਗੁਰਬਾਣੀ ਖੋਜੋ', books: 'ਕਿਤਾਬਾਂ ਖੋਜੋ', stories: 'ਸਾਖੀਆਂ ਖੋਜੋ' },
     placeholders: { all: 'ਬਾਣੀ, ਕਿਤਾਬ, ਸਾਖੀ ਜਾਂ ਪਾਠ ਖੋਜੋ', gurbani: 'ਗੁਰਬਾਣੀ, ਪਹਿਲੇ ਅੱਖਰ, ਲਿਪਾਂਤਰ ਜਾਂ ਅਰਥ', books: 'ਕਿਤਾਬ, ਅਧਿਆਇ, ਵਿਅਕਤੀ ਜਾਂ ਵਾਕ', stories: 'ਸਾਖੀ ਦਾ ਸਿਰਲੇਖ, ਵਿਅਕਤੀ ਜਾਂ ਵਿਸ਼ਾ' },
     emptyBody: { all: 'ਬਾਣੀ, ਕਿਤਾਬ, ਵਿਅਕਤੀ ਜਾਂ ਛੋਟਾ ਵਾਕ ਅਜ਼ਮਾਓ।', gurbani: 'ਪੂਰਾ ਬਾਣੀ ਨਾਮ, ਗੁਰਮੁਖੀ ਵਾਕ ਜਾਂ ਸੌਖੀ ਵਰਤਨੀ ਅਜ਼ਮਾਓ।', books: 'ਕਿਤਾਬ ਦਾ ਨਾਮ, ਵਿਅਕਤੀ, ਥਾਂ ਜਾਂ ਛੋਟਾ ਵਾਕ ਅਜ਼ਮਾਓ।', stories: 'ਸਾਖੀ ਦਾ ਸਿਰਲੇਖ, ਵਿਅਕਤੀ ਜਾਂ ਸੇਵਾ ਵਰਗਾ ਵਿਸ਼ਾ ਅਜ਼ਮਾਓ।' },
+    examples: { all: ['ਜਪੁਜੀ ਸਾਹਿਬ', 'ਵਾਹਿਗੁਰੂ', 'ਹੁਕਮ'], gurbani: ['ਜਪੁਜੀ ਸਾਹਿਬ', 'ਵਾਹਿਗੁਰੂ', 'ਹੁਕਮ'], books: ['Panth Prakash', 'Khalsa', 'Banda Singh'], stories: ['Nanak', 'Lalo', 'service'] },
+    clearHistory: 'ਖੋਜ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ', moreRecent: count => `ਸਾਰੀਆਂ ${count} ਖੋਜਾਂ ਵੇਖੋ`, fewerRecent: 'ਘੱਟ ਖੋਜਾਂ ਵੇਖੋ',
   },
   hi: {
     scopes: { all: 'सभी', gurbani: 'गुरबाणी', books: 'किताबें', stories: 'साखियाँ' },
@@ -38,5 +44,7 @@ export const READ_SEARCH_UI: Record<UiLocale, {
     searchLabels: { all: 'गुरबाणी, किताबें और साखियाँ खोजें', gurbani: 'गुरबाणी खोजें', books: 'किताबें खोजें', stories: 'साखियाँ खोजें' },
     placeholders: { all: 'बाणी, किताब, साखी या पाठ खोजें', gurbani: 'गुरबाणी, पहले अक्षर, लिप्यंतरण या अर्थ', books: 'किताब, अध्याय, व्यक्ति या वाक्य', stories: 'साखी का शीर्षक, व्यक्ति या विषय' },
     emptyBody: { all: 'बाणी, किताब, व्यक्ति या छोटा वाक्य आज़माएँ।', gurbani: 'पूरा बाणी नाम, गुरमुखी वाक्य या सरल वर्तनी आज़माएँ।', books: 'किताब का नाम, व्यक्ति, स्थान या छोटा वाक्य आज़माएँ।', stories: 'साखी का शीर्षक, व्यक्ति या सेवा जैसा विषय आज़माएँ।' },
+    examples: { all: ['जपुजी साहिब', 'ਵਾਹਿਗੁਰੂ', 'हुकम'], gurbani: ['जपुजी साहिब', 'ਵਾਹਿਗੁਰੂ', 'हुकम'], books: ['Panth Prakash', 'Khalsa', 'Banda Singh'], stories: ['Nanak', 'Lalo', 'service'] },
+    clearHistory: 'खोज इतिहास साफ़ करें', moreRecent: count => `सभी ${count} खोजें देखें`, fewerRecent: 'कम खोजें देखें',
   },
 }

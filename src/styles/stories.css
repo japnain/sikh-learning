@@ -66,7 +66,44 @@
 .story-saved-row p { margin-top: .3rem; }
 .story-saved-notice { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding: .7rem; }
 
-.story-reader { min-height: 100dvh; background: rgb(var(--color-bg)); padding-bottom: max(3rem, var(--safe-area-bottom)); }
+.story-reader { min-height: 100vh; min-height: 100svh; background: rgb(var(--color-bg)); color: rgb(var(--color-text)); padding-bottom: max(3rem, var(--safe-area-bottom)); }
+/* Reader page colors are shared with books, independent of the app theme.
+   Repeat them on the portalled sheet so every control has the same contrast. */
+.story-reader[data-palette], .story-reader-panel {
+  --color-bg: 248 246 240;
+  --color-surface: 255 253 248;
+  --color-surface-muted: 242 238 228;
+  --color-text: 35 33 29;
+  --color-text-muted: 105 99 88;
+  --color-border: 198 188 168;
+  --color-accent: 137 91 35;
+  --color-accent-strong: 137 91 35;
+  --color-focus: 137 91 35;
+  color-scheme: light;
+}
+.story-reader[data-palette='sepia'], .story-reader-panel--sepia {
+  --color-bg: 244 234 211;
+  --color-surface: 250 242 223;
+  --color-surface-muted: 237 224 198;
+  --color-text: 58 43 27;
+  --color-text-muted: 112 89 62;
+  --color-border: 190 164 124;
+  --color-accent: 139 77 30;
+  --color-accent-strong: 139 77 30;
+  --color-focus: 139 77 30;
+}
+.story-reader[data-palette='night'], .story-reader-panel--night {
+  --color-bg: 24 25 24;
+  --color-surface: 32 33 31;
+  --color-surface-muted: 39 40 37;
+  --color-text: 229 224 211;
+  --color-text-muted: 167 162 150;
+  --color-border: 77 75 69;
+  --color-accent: 224 177 96;
+  --color-accent-strong: 224 177 96;
+  --color-focus: 224 177 96;
+  color-scheme: dark;
+}
 .story-reader-toolbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: .25rem; min-height: calc(3.8rem + var(--safe-area-top)); padding: calc(var(--safe-area-top) + .3rem) max(.75rem, var(--safe-area-right)) .3rem max(.75rem, var(--safe-area-left)); background: rgb(var(--color-bg) / .97); border-bottom: 1px solid rgb(var(--color-border) / .3); }
 .story-appearance-trigger { font-family: Georgia, serif; font-size: 1.15rem; letter-spacing: -.07em; }
 .story-reading-progress { position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; overflow: hidden; pointer-events: none; }
@@ -81,11 +118,25 @@
 .story-reader-meta button { min-height: 44px; text-decoration: underline; text-underline-offset: .3em; }
 .story-reader-artwork { height: auto; max-height: 15rem; aspect-ratio: 2.3; margin: 1.4rem 0 2.4rem; border-radius: .45rem; }
 .story-prose { font: 400 calc(1.25rem * var(--story-font-scale, 1))/var(--story-line-height, 1.8) 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: .003em; overflow-wrap: break-word; text-rendering: optimizeLegibility; }
-.story-paragraph { margin: 0 0 1.35em; scroll-margin-top: calc(5rem + var(--safe-area-top)); }
+.story-paragraph { margin: 0 0 1.35em; scroll-margin-top: calc(var(--reader-header-height, calc(64px + var(--safe-area-top))) + 1.5rem); }
 .story-prose > .story-paragraph:first-of-type::first-letter { float: left; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 3.5em; line-height: .8; padding: .07em .12em 0 0; color: rgb(var(--color-accent-strong)); }
-.story-section-heading { margin: 2.3em 0 .8em; font: 600 1.4em/1.25 'Cormorant Garamond', Georgia, serif; letter-spacing: -.01em; scroll-margin-top: calc(5rem + var(--safe-area-top)); text-wrap: balance; }
+.story-section-heading { margin: 2.3em 0 .8em; font: 600 1.4em/1.25 'Cormorant Garamond', Georgia, serif; letter-spacing: -.01em; scroll-margin-top: calc(var(--reader-header-height, calc(64px + var(--safe-area-top))) + 1.5rem); text-wrap: balance; }
 .story-section-heading:first-child { margin-top: 0; }
 .story-section-heading:focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: .3rem; }
+.story-paragraph:focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: .3rem; }
+.story-find-highlight { color: inherit; background: rgb(var(--color-accent) / .22); border-radius: .1em; }
+[data-find-current='true'] .story-find-highlight { outline: 1px solid rgb(var(--color-accent)); outline-offset: 1px; }
+.story-find-label { display: block; font-weight: 600; margin-bottom: .4rem; }
+.story-find-input { display: flex; align-items: center; gap: .25rem; min-width: 0; border: 1px solid rgb(var(--color-border)); border-radius: .5rem; padding-inline: .65rem .25rem; background: rgb(var(--color-bg)); }
+.story-find-input:focus-within { outline: 2px solid rgb(var(--color-focus)); outline-offset: 2px; }
+.story-find-input input { width: 100%; min-width: 0; min-height: 44px; padding-block: .55rem; color: inherit; background: transparent; font-size: 1rem; }
+.story-find-input input:focus-visible { outline: none; }
+.story-find-status { margin-block: .75rem; color: rgb(var(--color-text-muted)); font-size: .875rem; }
+.story-find-results { display: grid; grid-template-columns: minmax(0, 1fr); gap: .5rem; min-width: 0; margin: 0; padding: 0; list-style: none; }
+.story-find-results li { min-width: 0; }
+.story-find-results button { display: grid; gap: .35rem; width: 100%; min-width: 0; min-height: 44px; padding: .8rem; border: 1px solid rgb(var(--color-border) / .5); border-radius: .5rem; text-align: start; overflow-wrap: anywhere; }
+.story-find-results button > span:first-child { color: rgb(var(--color-text-muted)); font-size: .8125rem; }
+.story-find-results button[aria-current='location'] { border-color: rgb(var(--color-accent)); }
 .story-reader-footer { display: grid; justify-items: center; gap: 1.2rem; padding: 1.5rem 0; }
 .story-end-mark { color: rgb(var(--color-accent)); font-size: 1.2rem; }
 .story-reader-end-copy { text-align: center; font: italic 1rem/1.7 Georgia, serif; color: rgb(var(--color-text-muted)); }
@@ -105,11 +156,14 @@
 .story-reader-state-card { max-width: 34rem; margin: 15vh auto; }
 .story-reader-state-card h1 { margin: 1rem 0; font: 600 2.5rem/1.1 'Cormorant Garamond', Georgia, serif; }
 .story-reader-state-card > p:not(.story-reader-eyebrow) { font-size: .85rem; line-height: 1.8; color: rgb(var(--color-text-muted)); margin-bottom: 1.5rem; }
-.story-reader-panel.story-reader-panel { --modal-sheet-bottom: max(12px, var(--fixed-ui-safe-bottom, 0px)); display: flex; flex-direction: column; inset-inline: 12px; max-height: calc(100dvh - var(--modal-sheet-bottom) - max(12px, var(--safe-area-top, 0px))); min-width: 0; min-height: 0; border-radius: 1rem; color: rgb(var(--color-text)); }
+.story-reader-panel.story-reader-panel { --modal-sheet-bottom: max(12px, var(--fixed-ui-safe-bottom, 0px)); display: flex; flex-direction: column; inset-inline: 12px; max-height: calc(100dvh - var(--modal-sheet-bottom) - max(12px, var(--safe-area-top, 0px))); min-width: 0; min-height: 0; border-radius: 1rem; background: rgb(var(--color-surface)); border-color: rgb(var(--color-border) / .5); color: rgb(var(--color-text)); }
 .story-panel-header { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: start; gap: clamp(8px, .5rem, 16px); flex: 0 0 auto; min-width: 0; padding: clamp(12px, .75rem, 20px); border-bottom: 1px solid rgb(var(--color-border) / .3); }
 .story-panel-header h2 { min-width: 0; align-self: center; font: 600 1.6rem/1.1 'Cormorant Garamond', Georgia, serif; overflow-wrap: anywhere; hyphens: auto; }
 .story-panel-body { flex: 1 1 auto; min-width: 0; min-height: 0; overflow-y: auto; max-height: min(65dvh, 40rem); padding: clamp(16px, 1.3rem, 24px); overscroll-behavior: contain; font-size: .9375rem; line-height: 1.8; overflow-wrap: anywhere; }
 .story-settings-note { color: rgb(var(--color-text-muted)); margin-bottom: 1rem; font-size: .875rem; }
+.story-appearance-preview { max-height: 12rem; overflow: auto; overscroll-behavior: contain; margin: 0 0 1.4rem; padding: 1rem; border: 1px solid rgb(var(--color-border) / .4); border-radius: .4rem; background: rgb(var(--color-bg)); }
+.story-appearance-preview:focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 2px; }
+.story-appearance-preview p { font: 400 calc(1.25rem * var(--story-font-scale, 1))/var(--story-line-height, 1.8) 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; overflow-wrap: break-word; }
 .story-setting-group { margin: 0 0 1.4rem; min-width: 0; }
 .story-setting-group legend { margin-bottom: .6rem; font-size: .75rem; font-weight: 600; }
 .story-setting-options { display: flex; gap: .4rem; flex-wrap: wrap; }

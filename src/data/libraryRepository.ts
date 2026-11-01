@@ -11,7 +11,7 @@ import type {
 } from '../types'
 import { resolveAppPath } from '../utils/basePath'
 import { reportProviderFailure } from '../utils/diagnostics'
-import { isLibraryChapter, readDownloadedLibraryResource, readLibraryDownload, writeLibraryDownload, removeLibraryDownload, requireLibraryDownloadStorage } from './libraryOffline'
+import { isLibraryChapter, readDownloadedLibraryResource, readDownloadedLibraryWorks, readLibraryDownload, writeLibraryDownload, removeLibraryDownload, requireLibraryDownloadStorage, resetLibraryDownloadMemory } from './libraryOffline'
 export { getLibraryDownloadStatus } from './libraryOffline'
 export type { LibraryDownloadStatus } from './libraryOffline'
 
@@ -65,6 +65,12 @@ async function loadJson<T>(path: string): Promise<T> {
 }
 let manifestPromise: Promise<LibraryManifest> | null = null
 let workCatalogPromise: Promise<LibraryWorkCatalog> | null = null
+let discoveryPromise: Promise<LibraryWorkCatalog> | null = null
+let discoveryRefreshPromise: Promise<LibraryWorkCatalog> | null = null
+let publishedCatalogPromise: Promise<LibraryWorkCatalog> | null = null
+let activeDiscovery: LibraryWorkCatalog | null = null
+let requestGeneration = 0
+const discoveryListeners = new Set<(catalog: LibraryWorkCatalog) => void>()
 const searchIndexPromises = new Map<string, Promise<LibrarySearchIndex>>()
 const pageIndexPromises = new Map<string, Promise<LibraryPageIndexEntry[]>>()
 const episodeIndexPromises = new Map<string, Promise<LibraryEpisodeIndexEntry[]>>()
@@ -96,14 +102,94 @@ export function configureLibraryRepositoryLoader(loader: LibraryJsonLoader | nul
 }
 
 export function resetLibraryRepositoryCache() {
+  requestGeneration += 1
   manifestPromise = null
   workCatalogPromise = null
+  discoveryPromise = null
+  discoveryRefreshPromise = null
+  publishedCatalogPromise = null
+  activeDiscovery = null
+  resetLibraryDownloadMemory()
   searchIndexPromises.clear()
   pageIndexPromises.clear()
   episodeIndexPromises.clear()
   pagePromises.clear()
   chapterIndexPromises.clear()
   chapterPromises.clear()
+}
+
+function catalogFromWorks(works: LibraryWork[]): LibraryWorkCatalog {
+  return { works, workById: createIndexMap(works) }
+}
+
+function mergeWorks(preferred: LibraryWork[], fallback: LibraryWork[]): LibraryWork[] {
+  const ids = new Set(preferred.map(work => work.id))
+  return [...preferred, ...fallback.filter(work => !ids.has(work.id))]
+}
+
+export function subscribeLibraryDiscoveryCatalog(listener: (catalog: LibraryWorkCatalog) => void): () => void {
+  discoveryListeners.add(listener)
+  return () => { discoveryListeners.delete(listener) }
+}
+
+function loadPublishedLibraryCatalog(): Promise<LibraryWorkCatalog> {
+  if (!publishedCatalogPromise) {
+    const promise = (async () => {
+      const manifest = await loadRemoteJson<LibraryManifest>(DEFAULT_MANIFEST_PATH)
+      if (!manifest || typeof manifest.workCatalogPath !== 'string' || !/^\/data\/library\/[^?#\\]+$/u.test(manifest.workCatalogPath)
+        || manifest.workCatalogPath.includes('..')) throw new Error('The book catalog could not be read.')
+      const works = await loadRemoteJson<LibraryWork[]>(manifest.workCatalogPath)
+      if (!Array.isArray(works) || !works.every(work => work && typeof work.id === 'string' && /^[a-z0-9-]+$/u.test(work.id)
+        && typeof work.title === 'string' && typeof work.shortTitle === 'string'
+        && typeof work.description === 'string' && typeof work.language === 'string')
+        || new Set(works.map(work => work.id)).size !== works.length) throw new Error('The book catalog could not be read.')
+      return catalogFromWorks(works)
+    })()
+    publishedCatalogPromise = promise
+    void promise.catch(() => { if (publishedCatalogPromise === promise) publishedCatalogPromise = null })
+  }
+  return publishedCatalogPromise
+}
+
+/** Discovery is independent of the metadata pinned to an offline reading edition. */
+export function refreshLibraryDiscoveryCatalog(): Promise<LibraryWorkCatalog> {
+  if (!discoveryRefreshPromise) {
+    const generation = requestGeneration
+    const promise = (async () => {
+      const { works } = await loadPublishedLibraryCatalog()
+      const catalog = catalogFromWorks(mergeWorks(works, await readDownloadedLibraryWorks()))
+      if (generation === requestGeneration) {
+        activeDiscovery = catalog
+        discoveryPromise = Promise.resolve(catalog)
+        discoveryListeners.forEach(listener => listener(catalog))
+      }
+      return catalog
+    })().catch(async error => {
+      const downloaded = await readDownloadedLibraryWorks()
+      if (generation === requestGeneration) discoveryRefreshPromise = null
+      if (downloaded.length) return catalogFromWorks(mergeWorks(activeDiscovery?.works ?? [], downloaded))
+      throw error
+    })
+    discoveryRefreshPromise = promise
+  }
+  return discoveryRefreshPromise
+}
+
+export function loadLibraryDiscoveryCatalog(): Promise<LibraryWorkCatalog> {
+  if (!discoveryPromise) {
+    const generation = requestGeneration
+    const promise = readDownloadedLibraryWorks().then(works => {
+      if (generation !== requestGeneration) throw new Error('The book catalog request was cancelled.')
+      if (works.length) {
+        void refreshLibraryDiscoveryCatalog().catch(() => {})
+        return activeDiscovery ?? catalogFromWorks(works)
+      }
+      return refreshLibraryDiscoveryCatalog()
+    })
+    discoveryPromise = promise
+    void promise.catch(() => { if (discoveryPromise === promise) discoveryPromise = null })
+  }
+  return discoveryPromise
 }
 
 export async function loadLibraryManifest() {
@@ -137,15 +223,29 @@ export async function loadLibraryWorkCatalog() {
     })
   }
 
-  return workCatalogPromise
+  const catalog = await workCatalogPromise
+  // Readers retain the downloaded edition's metadata, while newly discovered
+  // works remain reachable without making cached book opening wait on network.
+  return activeDiscovery ? catalogFromWorks(mergeWorks(catalog.works, activeDiscovery.works)) : catalog
+}
+
+export async function loadLibraryWork(workId: string): Promise<LibraryWork | undefined> {
+  return (await loadLibraryWorkCatalog()).workById[workId]
+    ?? (await refreshLibraryDiscoveryCatalog()).workById[workId]
+}
+
+export class LibraryEditionUpdateRequiredError extends Error {
+  constructor() {
+    super('A newer edition of this book is available. Update the downloaded book to open this section. Your saved sections are still available.')
+    this.name = 'LibraryEditionUpdateRequiredError'
+  }
 }
 
 export async function loadLibrarySearchIndex(workId?: string) {
   const key = workId ?? '__catalog__'
   return loadCached(searchIndexPromises, key, () => (
     workId
-      ? loadLibraryWorkCatalog().then(catalog => {
-          const work = catalog.workById[workId]
+      ? loadLibraryWork(workId).then(work => {
           if (!work) throw new Error(`Unknown library work: ${workId}`)
           return loadJson<LibrarySearchIndex>(work.searchIndexPath ?? `/data/library/works/${workId}/search-index.json`)
         })
@@ -155,9 +255,8 @@ export async function loadLibrarySearchIndex(workId?: string) {
 
 export async function loadLibraryPageIndex(workId: string) {
   return loadCached(pageIndexPromises, workId, () => (
-    loadLibraryWorkCatalog()
-      .then(async catalog => {
-        const work = catalog.workById[workId]
+    loadLibraryWork(workId)
+      .then(async work => {
         if (!work?.pageIndexPath) throw new Error(`Unknown page-indexed library work: ${workId}`)
         return loadJson<LibraryPageIndexEntry[]>(work.pageIndexPath)
       })
@@ -166,9 +265,8 @@ export async function loadLibraryPageIndex(workId: string) {
 
 export async function loadLibraryEpisodeIndex(workId: string) {
   return loadCached(episodeIndexPromises, workId, () => (
-    loadLibraryWorkCatalog()
-      .then(async catalog => {
-        const work = catalog.workById[workId]
+    loadLibraryWork(workId)
+      .then(async work => {
         if (!work?.episodeIndexPath) return []
         return loadJson<LibraryEpisodeIndexEntry[]>(work.episodeIndexPath)
       })
@@ -178,9 +276,8 @@ export async function loadLibraryEpisodeIndex(workId: string) {
 export async function loadLibraryPage(workId: string, pageNumber: number) {
   const key = `${workId}:${pageNumber}`
   return loadCached(pagePromises, key, () => (
-    loadLibraryWorkCatalog()
-      .then(async catalog => {
-        const work = catalog.workById[workId]
+    loadLibraryWork(workId)
+      .then(async work => {
         if (!work?.pagePathTemplate) return null
         const pagePath = work.pagePathTemplate.replace(':pageNumber', String(pageNumber))
         return loadJson<LibraryPagePayload>(pagePath)
@@ -190,9 +287,8 @@ export async function loadLibraryPage(workId: string, pageNumber: number) {
 
 export async function loadLibraryChapterIndex(workId: string) {
   return loadCached(chapterIndexPromises, workId, () => (
-    loadLibraryWorkCatalog()
-      .then(async catalog => {
-        const work = catalog.workById[workId]
+    loadLibraryWork(workId)
+      .then(async work => {
         if (!work?.chapterIndexPath) throw new Error(`Unknown chapter-indexed library work: ${workId}`)
         return loadJson<LibraryChapterIndexEntry[]>(work.chapterIndexPath)
       })
@@ -203,11 +299,10 @@ export async function loadLibraryChapter(workId: string, chapterId: string) {
   const key = `${workId}:${chapterId}`
   return loadCached(chapterPromises, key, () => (
     Promise.all([
-      loadLibraryWorkCatalog(),
+      loadLibraryWork(workId),
       loadLibraryChapterIndex(workId),
     ])
-      .then(async ([catalog, chapters]) => {
-        const work = catalog.workById[workId]
+      .then(async ([work, chapters]) => {
         if (!work?.chapterPathTemplate) return null
 
         const exactChapter = chapters.find(chapter => chapter.id === chapterId)
@@ -223,6 +318,14 @@ export async function loadLibraryChapter(workId: string, chapterId: string) {
 
         if (!resolvedChapter) return null
         const chapterPath = work.chapterPathTemplate.replace(':chapterId', resolvedChapter.id)
+        const downloaded = await readLibraryDownload(workId)
+        if (downloaded && !downloaded.chapters[resolvedChapter.id]) {
+          // An uncached chapter URL can now serve a different edition. Verify
+          // the published revision before attaching downloaded metadata to it.
+          // A failed catalog check must not silently fall back to old metadata.
+          const published = (await loadPublishedLibraryCatalog()).workById[workId]
+          if (!published || published.revision !== downloaded.work.revision) throw new LibraryEditionUpdateRequiredError()
+        }
         const chapter = await loadJson<LibraryChapterPayload>(chapterPath)
         if (!isLibraryChapter(chapter, workId, resolvedChapter.id)) throw new Error('This book section could not be verified. Please try again.')
         return chapter

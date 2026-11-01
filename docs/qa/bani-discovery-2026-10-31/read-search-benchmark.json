@@ -1,0 +1,77 @@
+{
+  "indexBytes": 1410266,
+  "downloadBytes": 4842288,
+  "chapters": 169,
+  "search": [
+    {
+      "query": "Khalsa",
+      "count": 121,
+      "coldMs": {
+        "median": 2.57,
+        "max": 13.06
+      },
+      "warmMs": {
+        "median": 0.79,
+        "max": 6.75
+      }
+    },
+    {
+      "query": "Guru Nanak",
+      "count": 32,
+      "coldMs": {
+        "median": 2.81,
+        "max": 3.76
+      },
+      "warmMs": {
+        "median": 1.1,
+        "max": 2.01
+      }
+    },
+    {
+      "query": "the",
+      "count": 169,
+      "coldMs": {
+        "median": 2.37,
+        "max": 2.76
+      },
+      "warmMs": {
+        "median": 0.7,
+        "max": 0.8
+      }
+    },
+    {
+      "query": "Anandpur",
+      "count": 13,
+      "coldMs": {
+        "median": 2.62,
+        "max": 3.08
+      },
+      "warmMs": {
+        "median": 1.07,
+        "max": 1.44
+      }
+    },
+    {
+      "query": "definitely-no-match",
+      "count": 0,
+      "coldMs": {
+        "median": 2.38,
+        "max": 2.68
+      },
+      "warmMs": {
+        "median": 0.8,
+        "max": 0.81
+      }
+    }
+  ],
+  "eightOfflineReadsMs": {
+    "memoized": {
+      "median": 20.14,
+      "max": 33.25
+    },
+    "legacy": {
+      "median": 95.44,
+      "max": 100.68
+    }
+  }
+}

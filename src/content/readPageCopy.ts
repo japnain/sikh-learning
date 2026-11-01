@@ -84,6 +84,7 @@ export type ReadPageCopy = {
   directoryTitle: string
   directoryBody: string
   sundarGroups: { nitnem: string; popular: string; other: string }
+  bhagatSelections: string
   completeVaars: string
   chooseVaar: string
   amritTitle: string
@@ -189,6 +190,7 @@ export const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directoryTitle: 'Bani directories',
     directoryBody: 'Daily prayers, complete scripture collections, Vaaran, and kirtan.',
     sundarGroups: { nitnem: 'Nitnem', popular: 'Popular Bani', other: 'Other' },
+    bhagatSelections: 'Bhagat Bani & Selections',
     completeVaars: 'complete Vaars',
     chooseVaar: 'Choose a Vaar to open its complete sequence of Pauris.',
     amritTitle: 'Amrit Keertan',
@@ -196,9 +198,9 @@ export const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     pin: 'Pin',
     unpin: 'Unpin',
     browse: 'Read',
-    indexLoading: 'Loading the Sundar Gutka index…',
-    indexOffline: 'The Sundar Gutka index is offline. Check your connection, then try again.',
-    indexError: 'The Sundar Gutka index is unavailable right now. Try again shortly.',
+    indexLoading: 'Refreshing Gurmukhi titles…',
+    indexOffline: 'Gurmukhi titles could not refresh while offline. Every bani can still be opened below.',
+    indexError: 'Gurmukhi titles could not refresh. Every bani can still be opened below.',
     indexEmpty: 'No Sundar Gutka entries are available right now.',
     retry: 'Retry',
     countLoading: 'Loading',
@@ -292,6 +294,7 @@ export const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directoryTitle: 'ਬਾਣੀ ਸੂਚੀਆਂ',
     directoryBody: 'ਰੋਜ਼ਾਨਾ ਪਾਠ, ਪੂਰੇ ਗ੍ਰੰਥ ਸੰਗ੍ਰਹਿ, ਵਾਰਾਂ ਅਤੇ ਕੀਰਤਨ।',
     sundarGroups: { nitnem: 'ਨਿਤਨੇਮ', popular: 'ਪ੍ਰਸਿੱਧ ਬਾਣੀਆਂ', other: 'ਹੋਰ' },
+    bhagatSelections: 'ਭਗਤ ਬਾਣੀ ਅਤੇ ਚੋਣਵੇਂ ਪਾਠ',
     completeVaars: 'ਪੂਰੀਆਂ ਵਾਰਾਂ',
     chooseVaar: 'ਪਉੜੀਆਂ ਦਾ ਪੂਰਾ ਕ੍ਰਮ ਖੋਲ੍ਹਣ ਲਈ ਵਾਰ ਚੁਣੋ।',
     amritTitle: 'ਅੰਮ੍ਰਿਤ ਕੀਰਤਨ',
@@ -299,9 +302,9 @@ export const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     pin: 'ਪਿੰਨ ਕਰੋ',
     unpin: 'ਪਿੰਨ ਹਟਾਓ',
     browse: 'ਪੜ੍ਹੋ',
-    indexLoading: 'ਸੁੰਦਰ ਗੁਟਕਾ ਸੂਚੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…',
-    indexOffline: 'ਸੁੰਦਰ ਗੁਟਕਾ ਸੂਚੀ ਆਫ਼ਲਾਈਨ ਹੈ। ਕਨੈਕਸ਼ਨ ਵੇਖ ਕੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
-    indexError: 'ਸੁੰਦਰ ਗੁਟਕਾ ਸੂਚੀ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+    indexLoading: 'ਗੁਰਮੁਖੀ ਸਿਰਲੇਖ ਤਾਜ਼ਾ ਹੋ ਰਹੇ ਹਨ…',
+    indexOffline: 'ਆਫ਼ਲਾਈਨ ਹੋਣ ਕਾਰਨ ਗੁਰਮੁਖੀ ਸਿਰਲੇਖ ਤਾਜ਼ਾ ਨਹੀਂ ਹੋ ਸਕੇ। ਹੇਠਾਂ ਹਰ ਬਾਣੀ ਅਜੇ ਵੀ ਖੋਲ੍ਹੀ ਜਾ ਸਕਦੀ ਹੈ।',
+    indexError: 'ਗੁਰਮੁਖੀ ਸਿਰਲੇਖ ਤਾਜ਼ਾ ਨਹੀਂ ਹੋ ਸਕੇ। ਹੇਠਾਂ ਹਰ ਬਾਣੀ ਅਜੇ ਵੀ ਖੋਲ੍ਹੀ ਜਾ ਸਕਦੀ ਹੈ।',
     indexEmpty: 'ਇਸ ਵੇਲੇ ਸੁੰਦਰ ਗੁਟਕਾ ਦੀ ਕੋਈ ਐਂਟਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
     retry: 'ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ',
     countLoading: 'ਲੋਡ ਹੋ ਰਿਹਾ',
@@ -395,6 +398,7 @@ export const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     directoryTitle: 'बाणी सूचियाँ',
     directoryBody: 'दैनिक पाठ, पूरे ग्रंथ संग्रह, वारें और कीर्तन।',
     sundarGroups: { nitnem: 'नितनेम', popular: 'लोकप्रिय बाणियाँ', other: 'अन्य' },
+    bhagatSelections: 'भगत बाणी और चुने हुए पाठ',
     completeVaars: 'पूरी वारें',
     chooseVaar: 'पउड़ियों का पूरा क्रम खोलने के लिए वार चुनें।',
     amritTitle: 'अमृत कीर्तन',
@@ -402,9 +406,9 @@ export const READ_PAGE_COPY: Record<UiLocale, ReadPageCopy> = {
     pin: 'पिन करें',
     unpin: 'पिन हटाएँ',
     browse: 'पढ़ें',
-    indexLoading: 'सुंदर गुटका सूची लोड हो रही है…',
-    indexOffline: 'सुंदर गुटका सूची ऑफ़लाइन है। कनेक्शन जाँचकर फिर कोशिश करें।',
-    indexError: 'सुंदर गुटका सूची अभी उपलब्ध नहीं है। थोड़ी देर बाद फिर कोशिश करें।',
+    indexLoading: 'गुरमुखी शीर्षक ताज़ा हो रहे हैं…',
+    indexOffline: 'ऑफ़लाइन होने के कारण गुरमुखी शीर्षक ताज़ा नहीं हो सके। नीचे हर बाणी अभी भी खोली जा सकती है।',
+    indexError: 'गुरमुखी शीर्षक ताज़ा नहीं हो सके। नीचे हर बाणी अभी भी खोली जा सकती है।',
     indexEmpty: 'अभी सुंदर गुटका की कोई प्रविष्टि उपलब्ध नहीं है।',
     retry: 'फिर कोशिश करें',
     countLoading: 'लोड हो रहा',

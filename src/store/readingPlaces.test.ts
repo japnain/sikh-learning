@@ -170,3 +170,24 @@ test.each(['shabadId=123', 'hukamnamaDate=2026-10-27', 'flow=ardaas-hukamnama'])
   useProgressStore.getState().updateSession({ ...session, resumePath: `${session.resumePath}&${query}` })
   expect(useReadingPlacesStore.getState().places).toEqual({})
 })
+
+test('retains a Rehat source’s latest chapter independently of books and bani after reload', async () => {
+  const path = '/banis/rehat/1/chapters/11'
+  const rehat: Session = { scriptureId: 'rehat-1-11', resumePath: path, updatedAt: '2026-10-31T10:00:00Z',
+    readerLocator: { href: path, type: 'text/html', revision: 'revision1', title: 'Sikh Rehat Maryada · Daily Discipline',
+      locations: { position: 4, progression: .4, totalProgression: .4, blockId: 'rehat-revision1-text1-1' } } }
+  expect(getReadingPlaceKey(path)).toBe('rehat:1')
+  expect(getReadingPlaceKey('/banis/rehat/1/chapters/12')).toBe('rehat:1')
+  expect(getReadingPlaceKey('/banis/rehat/2/chapters/11')).toBe('rehat:2')
+  useReadingPlacesStore.getState().remember(rehat)
+  useReadingPlacesStore.getState().remember(bookSession)
+  useProgressStore.getState().updateSession(sessionFor('japji-sahib', 100))
+  const persisted = localStorage.getItem('naamras-reading-places')!
+  useReadingPlacesStore.setState({ places: {} })
+  localStorage.setItem('naamras-reading-places', persisted)
+  await useReadingPlacesStore.persist.rehydrate()
+  expect(useReadingPlacesStore.getState().places['rehat:1']).toEqual(rehat)
+  expect(Object.keys(useReadingPlacesStore.getState().places)).toHaveLength(3)
+  useReadingPlacesStore.getState().remember({ ...rehat, readerLocator: { ...rehat.readerLocator!, href: '/banis/rehat/2/chapters/11' }, updatedAt: '2026-10-31T11:00:00Z' })
+  expect(useReadingPlacesStore.getState().places['rehat:1']).toEqual(rehat)
+})

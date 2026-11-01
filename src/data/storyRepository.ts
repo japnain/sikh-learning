@@ -16,6 +16,7 @@ interface StoryCache {
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> => !!value && typeof value === 'object' && !Array.isArray(value)
+let parsedCache: { raw: string; value: StoryCache | null } | undefined
 
 export class StoryStorageError extends Error {
   constructor() {
@@ -28,6 +29,10 @@ function readCache(): StoryCache | null {
   try {
     const raw = globalThis.localStorage?.getItem(STORY_CACHE_KEY)
     if (!raw) return null
+    if (parsedCache?.raw === raw) return parsedCache.value
+    // Read the current storage value on every access, but validate unchanged
+    // text only once. This also notices changes from another tab or eviction.
+    parsedCache = { raw, value: null }
     const value: unknown = JSON.parse(raw)
     if (!isRecord(value) || ![1, 2].includes(value.version as number) || !isRecord(value.stories)) return null
     if (value.version === 2 && !isRecord(value.downloadedSummaries)) return null
@@ -48,7 +53,9 @@ function readCache(): StoryCache | null {
       stories[id] = story
       downloadedSummaries[id] = summary
     }
-    return { version: 2, catalog, stories, downloadedSummaries }
+    const result: StoryCache = { version: 2, catalog, stories, downloadedSummaries }
+    parsedCache = { raw, value: result }
+    return result
   } catch { return null }
 }
 
@@ -84,6 +91,12 @@ let catalogPromise: Promise<StoryCatalog> | undefined
 let activeCatalog: StoryCatalog | undefined
 let requestGeneration = 0
 const storyPromises = new Map<string, Promise<Story | null>>()
+const catalogListeners = new Set<(catalog: StoryCatalog) => void>()
+
+export function subscribeStoryCatalog(listener: (catalog: StoryCatalog) => void): () => void {
+  catalogListeners.add(listener)
+  return () => { catalogListeners.delete(listener) }
+}
 
 async function requestJson(resourcePath: string): Promise<unknown> {
   const controller = new AbortController()
@@ -108,6 +121,7 @@ export function resetStoryRepositoryCache(): void {
   requestGeneration += 1
   catalogPromise = undefined
   activeCatalog = undefined
+  parsedCache = undefined
   storyPromises.clear()
 }
 
@@ -118,6 +132,17 @@ export function configureStoryRepositoryLoader(loader: JsonLoader | null): void 
 }
 
 export function loadStoryCatalog(): Promise<StoryCatalog> {
+  const cached = activeCatalog ?? readCache()?.catalog
+  if (cached) {
+    activeCatalog = cached
+    void refreshStoryCatalog().catch(() => {})
+    return Promise.resolve(cached)
+  }
+  return refreshStoryCatalog()
+}
+
+/** A shelf can show cached metadata immediately while this request refreshes it. */
+export function refreshStoryCatalog(): Promise<StoryCatalog> {
   if (!catalogPromise) {
     const generation = requestGeneration
     catalogPromise = (async () => {
@@ -127,12 +152,15 @@ export function loadStoryCatalog(): Promise<StoryCatalog> {
         if (generation === requestGeneration) {
           activeCatalog = catalog
           persistCache(catalog)
+          catalogListeners.forEach(listener => listener(catalog))
         }
         return catalog
       } catch (error) {
         const cached = readCache()
         if (cached) {
-          if (generation === requestGeneration) activeCatalog = cached.catalog
+          if (generation === requestGeneration) {
+            activeCatalog = cached.catalog
+          }
           return cached.catalog
         }
         throw error
@@ -154,7 +182,8 @@ function loadCurrentStory(id: string, catalog: StoryCatalog, generation: number)
   if (!summary) return Promise.resolve(null)
   const cached = readCache()?.stories[id]
   if (cached && sameSummary(cached, summary)) return Promise.resolve(cached)
-  const pending = storyPromises.get(id)
+  const editionKey = JSON.stringify(summary)
+  const pending = storyPromises.get(editionKey)
   if (pending) return pending
   const promise = (async () => {
     const story = parseStory(await requestJson(`/data/stories/${id}.json`))
@@ -164,12 +193,12 @@ function loadCurrentStory(id: string, catalog: StoryCatalog, generation: number)
     return story
   })().catch((error: unknown) => {
     if (generation === requestGeneration) {
-      storyPromises.delete(id)
+      storyPromises.delete(editionKey)
       if (!cached) reportProviderFailure('stories', error)
     }
     throw error
   })
-  storyPromises.set(id, promise)
+  storyPromises.set(editionKey, promise)
   return promise
 }
 
@@ -180,11 +209,11 @@ export function loadStory(id: string): Promise<Story | null> {
   if (downloaded) {
     // Previously verified editions open immediately, even after discovering a
     // new catalog. Failed, malformed or timed-out updates leave them untouched.
-    void loadStoryCatalog().then(catalog => generation === requestGeneration
+    void refreshStoryCatalog().then(catalog => generation === requestGeneration
       ? loadCurrentStory(id, catalog, generation) : null).catch(() => {})
     return Promise.resolve(downloaded)
   }
-  return loadStoryCatalog().then(catalog => loadCurrentStory(id, catalog, generation))
+  return refreshStoryCatalog().then(catalog => loadCurrentStory(id, catalog, generation))
 }
 
 /** All verified saved editions, including previous editions retained during refresh. */
@@ -209,7 +238,7 @@ export async function downloadStoryCollection(
   const ensureActive = () => {
     if (generation !== requestGeneration) throw new Error('The offline story download was cancelled.')
   }
-  const catalog = await loadStoryCatalog()
+  const catalog = await refreshStoryCatalog()
   ensureActive()
   if (collectionId !== undefined && !catalog.collections.some((collection) => collection.id === collectionId)) {
     throw new Error('This story collection could not be found.')
