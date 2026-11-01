@@ -5,6 +5,10 @@ export type EpubReaderLineHeight = 'compact' | 'comfortable' | 'spacious'
 export type EpubReaderMeasure = 'narrow' | 'standard' | 'wide'
 export type EpubReaderPalette = 'paper' | 'sepia' | 'night'
 
+export const EPUB_FONT_SCALE_MIN = 0.85
+export const EPUB_FONT_SCALE_MAX = 2
+export const EPUB_FONT_SCALE_STEP = 0.05
+
 export interface EpubReaderPreferences {
   fontScale: number
   lineHeight: EpubReaderLineHeight
@@ -28,7 +32,8 @@ export const DEFAULT_EPUB_READER_PREFERENCES: EpubReaderPreferences = {
 }
 
 function clampFontScale(fontScale: number) {
-  return Math.min(1.3, Math.max(0.85, Math.round(fontScale * 20) / 20))
+  if (!Number.isFinite(fontScale)) return DEFAULT_EPUB_READER_PREFERENCES.fontScale
+  return Math.min(EPUB_FONT_SCALE_MAX, Math.max(EPUB_FONT_SCALE_MIN, Math.round(fontScale * 20) / 20))
 }
 
 export const useEpubReaderStore = create<EpubReaderState>()(

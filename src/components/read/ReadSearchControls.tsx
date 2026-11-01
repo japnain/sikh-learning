@@ -31,6 +31,7 @@ type Props = {
   status: string
   previousQuery: string
   onQuery: (value: string) => void
+  onSubmit: () => void
   onMode: (value: SearchMode) => void
   onSource: (value: SearchSource) => void
   onScope: (value: SearchScope) => void
@@ -40,7 +41,7 @@ type Props = {
 }
 
 export default function ReadSearchControls({ copy, locale, inputRef, query, mode, source, scope, optionsOpen,
-  active, status, previousQuery, onQuery, onMode, onSource, onScope, onToggleOptions, onExit, onRecover }: Props) {
+  active, status, previousQuery, onQuery, onSubmit, onMode, onSource, onScope, onToggleOptions, onExit, onRecover }: Props) {
   const labels = getSearchModeLabels(locale)
   const ui = READ_SEARCH_UI[locale]
   const hasGurbaniOptions = scope === 'all' || scope === 'gurbani'
@@ -55,7 +56,8 @@ export default function ReadSearchControls({ copy, locale, inputRef, query, mode
         {optionsOpen ? copy.simplify : copy.refine}
       </button>}
     </div>
-    <div className="read-search-control relative mt-4" data-ai-search-shell="read-smart-search">
+    <form className="read-search-control relative mt-4" data-ai-search-shell="read-smart-search"
+      role="search" onSubmit={event => { event.preventDefault(); onSubmit() }}>
       <IconSearch size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/32 dark:text-dark-text/34" />
       <input ref={inputRef} id="banis-search" name="banis-search" type="search"
         aria-label={ui.searchLabels[scope]} autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck={false}
@@ -64,7 +66,7 @@ export default function ReadSearchControls({ copy, locale, inputRef, query, mode
         className="read-search-input w-full rounded-lg border border-sand/15 bg-parchment-card py-4 pl-11 pr-4 font-sans text-base text-ink outline-none transition-colors duration-300 placeholder:text-ink/36 focus:border-saffron/45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text dark:placeholder:text-dark-text/38"
         data-ai-action="read-smart-search" />
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">{status}</p>
-    </div>
+    </form>
     <div className="read-search-kinds" role="group" aria-label={ui.scopeLabel}>
       {SEARCH_SCOPES.map(value => <button type="button" key={value} aria-pressed={scope === value} onClick={() => onScope(value)}>{ui.scopes[value]}</button>)}
     </div>

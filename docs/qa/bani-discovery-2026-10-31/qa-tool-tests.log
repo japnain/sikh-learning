@@ -1,0 +1,25 @@
+✔ production, dev proxy and hosted proxy use the same BaniDB fixtures (2.3225ms)
+✔ daily Hukamnama and dictionary fixtures are stable and known (0.359667ms)
+✔ hosted-proxy preflight is local and deep-reader content has stable unique keys (0.155333ms)
+✔ distinct-length QA data is opt-in and does not mutate the default corpus (0.234917ms)
+✔ browser routes fulfill providers, pass only app-origin assets, and fail closed for other external requests (1.713083ms)
+✔ accepts exact passed native suites and records their identities (1.809792ms)
+✔ rejects incomplete, unrelated, duplicate, skipped, or failing results (2.245292ms)
+✔ explicit false preserves the full export/font suite and smoke UI coverage (1.730875ms)
+✔ full UI and UI-only suites have distinct explicit coverage expectations (0.111416ms)
+✔ reject unknown, missing, duplicate, positional, and invalid flag values (0.388083ms)
+✔ creates only a new canonical evidence leaf, including missing parents (8.9815ms)
+✔ rejects existing empty/nonempty evidence directories and files without overwrite (4.0105ms)
+✔ rejects the input itself, input descendants, and input ancestors (2.418417ms)
+✔ resolves symlink aliases before rejecting input overlap or existing output (3.396292ms)
+✔ rejects a dangling output symlink and validates every input path (2.524709ms)
+✔ counts transitive static chunks once and excludes lazy imports (9.026167ms)
+✔ fails on a transitive eager backend import and on byte budgets (2.063375ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 524.444375

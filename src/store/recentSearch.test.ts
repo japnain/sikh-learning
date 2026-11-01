@@ -19,6 +19,7 @@ test('keeps a pinned search pinned when it is repeated', () => {
     query: 'Japji Sahib',
     mode: 'auto-detect',
     source: 'G',
+    scope: 'all',
     pinned: true,
     savedAt: '2026-07-25T13:00:00.000Z',
   }])
@@ -45,6 +46,7 @@ test('migrates legacy searches to all sources and repairs an invalid legacy mode
       query: 'Japji Sahib',
       mode: 'auto-detect',
       source: 'all',
+      scope: 'all',
       pinned: true,
       savedAt: '2026-07-25T12:00:00.000Z',
     }],
@@ -59,4 +61,34 @@ test('stores a one-digit auto-detected direct lookup', () => {
     mode: 'auto-detect',
     source: 'A',
   })
+})
+
+test('keeps identical searches distinct across scopes and pins only the selected scope', () => {
+  const store = useRecentSearchStore.getState()
+  store.addRecent('Nanak', 'auto-detect', 'all', 'books')
+  store.addRecent('Nanak', 'auto-detect', 'all', 'stories')
+  store.togglePinned('Nanak', 'auto-detect', 'all', 'stories')
+  store.addRecent('Nanak', 'auto-detect', 'all', 'stories')
+
+  expect(useRecentSearchStore.getState().recent).toEqual([
+    expect.objectContaining({ query: 'Nanak', scope: 'stories', pinned: true }),
+    expect.objectContaining({ query: 'Nanak', scope: 'books', pinned: false }),
+  ])
+})
+
+test('clearing history preserves pinned searches', () => {
+  const store = useRecentSearchStore.getState()
+  store.addRecent('Nanak', 'auto-detect', 'all', 'stories')
+  store.togglePinned('Nanak', 'auto-detect', 'all', 'stories')
+  store.addRecent('Khalsa', 'auto-detect', 'all', 'books')
+  store.clearRecent()
+  expect(useRecentSearchStore.getState().recent).toEqual([
+    expect.objectContaining({ query: 'Nanak', scope: 'stories', pinned: true }),
+  ])
+})
+
+test('migration defaults missing or invalid scope safely without merging distinct scopes', () => {
+  const common = { query: 'Nanak', mode: 'auto-detect', source: 'all', pinned: false, savedAt: '2026-07-25T12:00:00.000Z' }
+  const migrated = migrateRecentSearchState({ recent: [common, { ...common, scope: '__proto__' }, { ...common, scope: 'books' }, { ...common, scope: 'stories' }] })
+  expect(migrated.recent.map(item => item.scope)).toEqual(['all', 'books', 'stories'])
 })

@@ -14,6 +14,7 @@ import { normalizeReaderTextSize } from './readerTextSize'
 
 export const PERSONAL_BACKUP_MAX_BYTES = 16 * 1024 * 1024
 const FORMAT = 'naamras-personal-data'
+const READING_VISIBILITY_KEY = 'naamras-reading-visibility'
 type RecordValue = Record<string, unknown>
 type Check = (value: unknown) => boolean
 const record = (value: unknown): value is RecordValue => Boolean(value && typeof value === 'object' && !Array.isArray(value))
@@ -67,7 +68,7 @@ const domains = {
   'sikh-theme': { version: 1, defaults: { mode: 'system', dark: false }, check: shape({ mode: oneOf('system', 'light', 'dark'), dark: bool }) },
   'sikh-onboarding': { version: 0, defaults: { hasCompletedOnboarding: false, isOnboardingOpen: false, presentationMode: 'overlay', learningLevel: 'beginner', audience: 'adult', learningGoal: 'read' }, check: shape({ hasCompletedOnboarding: bool, isOnboardingOpen: bool, presentationMode: oneOf('first-run', 'overlay'), learningLevel: oneOf('beginner', 'familiar', 'daily-reader'), audience: oneOf('child', 'teen', 'adult'), learningGoal: oneOf('read', 'understand', 'habit') }) },
   'sikh-sundar-gutka-lengths': { version: 2, defaults: { lengths: DEFAULT_SUNDAR_GUTKA_LENGTHS }, check: shape({ lengths: value => map(oneOf('short', 'medium', 'long', 'extralong'))(value) && Object.keys(value as RecordValue).every(key => key in DEFAULT_SUNDAR_GUTKA_LENGTHS) }) },
-  'sikh-epub-reader-preferences': { version: 1, defaults: { fontScale: 1, lineHeight: 'comfortable', measure: 'standard', palette: 'paper' }, check: shape({ fontScale: number(0.85, 1.3), lineHeight: oneOf('compact', 'comfortable', 'spacious'), measure: oneOf('narrow', 'standard', 'wide'), palette: oneOf('paper', 'sepia', 'night') }) },
+  'sikh-epub-reader-preferences': { version: 1, defaults: { fontScale: 1, lineHeight: 'comfortable', measure: 'standard', palette: 'paper' }, check: shape({ fontScale: number(0.85, 2), lineHeight: oneOf('compact', 'comfortable', 'spacious'), measure: oneOf('narrow', 'standard', 'wide'), palette: oneOf('paper', 'sepia', 'night') }) },
   'naamras-home-artwork': { version: 1, defaults: { mode: 'fixed', selectedId: 'eclipse', visitIndex: -1, pendingVisit: false }, check: shape({ mode: oneOf('fixed', 'daily', 'visit'), selectedId: nonempty, visitIndex: number(-1, 100), pendingVisit: bool }) },
   'sikh-music': { version: 2, defaults: { selectedSoundId: null, selectedPresetId: null, volume: 0.6 }, check: shape({ selectedSoundId: nullable(text), selectedPresetId: nullable(oneOf('settle', 'focus', 'night')), volume: number(0, 1) }) },
   'sikh-recitation': { version: 0, defaults: { currentShabadId: null, currentTime: 0, playbackRate: 1 }, check: shape({ currentShabadId: nullable(integer), currentTime: number(), playbackRate: number(0.25, 4) }) },
@@ -78,7 +79,7 @@ const domains = {
   'naamras-nitnem-history': { version: 1, defaults: { events: [], remoteDays: {} }, check: shape({ events: value => list(record)(value) && normalizeNitnemCompletionEvents(value).length === (value as unknown[]).length, remoteDays: map(shape({ revision: text, updatedAt: date })) }) },
   'naamras-nitnem-practice': { version: 1, defaults: { active: null }, check: shape({ active: value => value === null || normalizeNitnemPractice(value) !== null }) },
   'sikh-nitnem': { version: 5, defaults: { completedDate: toLocalDayStamp(new Date()), completedIds: [], selectedIds: [...DEFAULT_NITNEM_OPTION_IDS], completionTrackingEnabled: true, weeklyDayGoal: 7 }, check: shape({ completedDate: day, completedIds: list(nitnemId, 50), selectedIds: value => list(nitnemId, 50)(value) && (value as unknown[]).length > 0, completionTrackingEnabled: bool, weeklyDayGoal: number(1, 7) }) },
-  'sikh-recent-search': { version: 1, defaults: { recent: [] }, check: shape({ recent: list(shape({ query: nonempty, mode: oneOf('first-letters', 'first-letters-anywhere', 'gurmukhi', 'english', 'transliteration', 'ang', 'auto-detect'), source: oneOf('all', 'G', 'D', 'B', 'A'), pinned: bool, savedAt: date }), 200) }) },
+  'sikh-recent-search': { version: 2, defaults: { recent: [] }, check: shape({ recent: list(shape({ query: nonempty, mode: oneOf('first-letters', 'first-letters-anywhere', 'gurmukhi', 'english', 'transliteration', 'ang', 'auto-detect'), source: oneOf('all', 'G', 'D', 'B', 'A'), scope: oneOf('all', 'gurbani', 'books', 'stories'), pinned: bool, savedAt: date }), 200) }) },
 } satisfies Record<string, Domain>
 export const PERSONAL_DATA_KEYS = [...Object.keys(domains), 'sikh-bookmarks', 'sikh-favorites', 'naamras-story-state-v1', 'naamras-reader-presentation', 'naamras-ui-disclosure'] as const
 export interface PersonalDataBackup { format: typeof FORMAT; version: 1; createdAt: string; data: Record<string, unknown> }
@@ -103,8 +104,10 @@ function normalizeData(data: unknown): Record<string, unknown> {
   const result: Record<string, unknown> = {}
   for (const [key, domain] of Object.entries(domains)) {
     const value = data[key]
-    if (!record(value) || value.version !== domain.version || !record(value.state) || Object.keys(value).some(key => key !== 'version' && key !== 'state')) throw new Error('version')
-    const state = { ...domain.defaults, ...value.state }
+    const legacySearches = key === 'sikh-recent-search' && record(value) && value.version === 1
+    if (!record(value) || (!legacySearches && value.version !== domain.version) || !record(value.state) || Object.keys(value).some(key => key !== 'version' && key !== 'state')) throw new Error('version')
+    const state: RecordValue = { ...domain.defaults, ...value.state }
+    if (legacySearches && Array.isArray(state.recent)) state.recent = state.recent.map(item => record(item) ? { ...item, scope: 'all' } : item)
     if (!domain.check(state)) throw new Error('state')
     result[key] = { version: domain.version, state }
   }
@@ -197,7 +200,7 @@ export function mergePersonalDataBackups(current: PersonalDataBackup, imported: 
   stateOf(merged, 'sikh-reading-progress').progress = Object.fromEntries([...new Set([...Object.keys(readingA), ...Object.keys(readingB)])].map(key => [key, [...new Set([...(readingA[key] as number[] ?? []), ...(readingB[key] as number[] ?? [])])]]))
   const storiesA = current.data['naamras-story-state-v1'] as RecordValue, storiesB = imported.data['naamras-story-state-v1'] as RecordValue
   merged.data['naamras-story-state-v1'] = { version: 1, saved: mergeMap(storiesA.saved as RecordValue, storiesB.saved as RecordValue, 'savedAt'), positions: mergeMap(storiesA.positions as RecordValue, storiesB.positions as RecordValue) }
-  stateOf(merged, 'sikh-recent-search').recent = union(rows(stateOf(current, 'sikh-recent-search').recent), rows(stateOf(imported, 'sikh-recent-search').recent), item => { const value = item as RecordValue; return `${value.mode}:${value.source}:${value.query}` }).sort((a, b) => String((b as RecordValue).savedAt).localeCompare(String((a as RecordValue).savedAt))).slice(0, 200)
+  stateOf(merged, 'sikh-recent-search').recent = union(rows(stateOf(current, 'sikh-recent-search').recent), rows(stateOf(imported, 'sikh-recent-search').recent), item => { const value = item as RecordValue; return `${value.mode}:${value.source}:${value.scope}:${value.query}` }).sort((a, b) => String((b as RecordValue).savedAt).localeCompare(String((a as RecordValue).savedAt))).slice(0, 200)
   return parsePersonalDataBackup(JSON.stringify(merged))
 }
 export function summarizePersonalDataBackup(backup: PersonalDataBackup) {
@@ -218,6 +221,7 @@ async function preparePersonalStores() {
     // mounted state over the backup's independent book and scripture places.
     import('../store/readingPlaces'), import('../store/progress'), import('../store/readingProgress'),
     import('../store/nitnemHistory'), import('../store/nitnemPractice'), import('../store/nitnem'), import('../store/recentSearch'),
+    import('../store/readingVisibility'),
   ])
   const [{ useBookmarksStore }, { useFavoritesStore }, { useStoryStore }] = await Promise.all([import('../store/bookmarks'), import('../store/favorites'), import('../store/stories')])
   type Store = { getState: () => unknown; setState: (value: unknown, replace: true) => void; persist?: { rehydrate: () => Promise<void> | void } }
@@ -260,7 +264,8 @@ export async function restorePersonalDataBackup(input: PersonalDataBackup, mode:
     // Imports may yield to an in-flight cloud response or another local action.
     // Pause first, then capture the rollback baseline with no await before writes.
     rollbackStores = prepared?.captureRollback()
-    previous = new Map(PERSONAL_DATA_KEYS.map(key => [key, storage.getItem(key)]))
+    const writeKeys = mode === 'replace' ? [...PERSONAL_DATA_KEYS, READING_VISIBILITY_KEY] : PERSONAL_DATA_KEYS
+    previous = new Map(writeKeys.map(key => [key, storage.getItem(key)]))
     const result = mode === 'merge' ? mergePersonalDataBackups(createPersonalDataBackup(storage), validated, storage) : validated
     stateOf(result, 'sikh-onboarding').isOnboardingOpen = false
     stateOf(result, 'sikh-onboarding').presentationMode = 'overlay'
@@ -276,6 +281,14 @@ export async function restorePersonalDataBackup(input: PersonalDataBackup, mode:
         storage.setItem(key, encoded)
         if (storage.getItem(key) !== encoded) throw new Error('write-not-persisted')
       }
+    }
+    if (mode === 'replace') {
+      // Shelf dismissal is device-local. Restored reading places should be
+      // visible, while a failed restore must retain the previous preferences.
+      touched.push(READING_VISIBILITY_KEY)
+      const visibleShelf = JSON.stringify({ version: 1, state: { hidden: {} } })
+      storage.setItem(READING_VISIBILITY_KEY, visibleShelf)
+      if (storage.getItem(READING_VISIBILITY_KEY) !== visibleShelf) throw new Error('write-not-persisted')
     }
     storesStarted = true
     await (options.rehydrate ?? prepared!.apply)()

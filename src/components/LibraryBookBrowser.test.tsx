@@ -1,12 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
-import { loadLibraryWorkCatalog } from '../data/libraryRepository'
+import { loadLibraryDiscoveryCatalog, subscribeLibraryDiscoveryCatalog } from '../data/libraryRepository'
 import { useLocaleStore } from '../store/locale'
 import type { LibraryWork, UiLocale } from '../types'
 import LibraryBookBrowser from './LibraryBookBrowser'
 
-vi.mock('../data/libraryRepository', () => ({ loadLibraryWorkCatalog: vi.fn() }))
+vi.mock('../data/libraryRepository', () => ({ loadLibraryDiscoveryCatalog: vi.fn(), subscribeLibraryDiscoveryCatalog: vi.fn(() => () => {}) }))
 
 const work: LibraryWork = {
   id: 'panth-prakash-english', title: 'Sri Gur Panth Prakash', shortTitle: 'Panth Prakash',
@@ -26,19 +26,19 @@ function renderCatalog() {
 beforeEach(() => {
   vi.resetAllMocks()
   useLocaleStore.setState({ locale: 'en' })
-  vi.mocked(loadLibraryWorkCatalog).mockResolvedValue(catalog)
+  vi.mocked(loadLibraryDiscoveryCatalog).mockResolvedValue(catalog)
 })
 afterEach(() => { vi.restoreAllMocks() })
 
 test('recovers a failed catalog request in place and preserves its reader return destination', async () => {
-  vi.mocked(loadLibraryWorkCatalog).mockRejectedValueOnce(new Error('Unavailable'))
+  vi.mocked(loadLibraryDiscoveryCatalog).mockRejectedValueOnce(new Error('Unavailable'))
   renderCatalog()
   expect(await screen.findByText('The book catalog could not be loaded.')).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Try again' }))
   expect(screen.getByRole('status')).toHaveTextContent('Opening the book catalog…')
   const open = await screen.findByRole('link', { name: 'Open Panth Prakash book reader' })
   expect(open).toHaveAttribute('id', 'read-book-panth-prakash-english')
-  expect(loadLibraryWorkCatalog).toHaveBeenCalledTimes(2)
+  expect(loadLibraryDiscoveryCatalog).toHaveBeenCalledTimes(2)
   expect(screen.getByTestId('panth-prakash-source-card').querySelector('.epub-book-cover')).toBeInTheDocument()
   fireEvent.click(open)
   expect(screen.getByTestId('location')).toHaveTextContent('"path":"/library/panth-prakash-english"')
@@ -47,11 +47,33 @@ test('recovers a failed catalog request in place and preserves its reader return
 
 test('explains an offline failure and allows retry after reconnecting', async () => {
   vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false)
-  vi.mocked(loadLibraryWorkCatalog).mockRejectedValueOnce(new Error('Offline'))
+  vi.mocked(loadLibraryDiscoveryCatalog).mockRejectedValueOnce(new Error('Offline'))
   renderCatalog()
   expect(await screen.findByText('You are offline. Connect to load the book catalog, then try again.')).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Try again' }))
   expect(await screen.findByRole('link', { name: 'Open Panth Prakash book reader' })).toBeInTheDocument()
+})
+
+test('updates an already mounted shelf when background discovery adds a book and unsubscribes on exit', async () => {
+  const unsubscribe = vi.fn()
+  vi.mocked(subscribeLibraryDiscoveryCatalog).mockReturnValue(unsubscribe)
+  const view = renderCatalog()
+  await screen.findByRole('heading', { name: work.title })
+  const added = { ...work, id: 'another-book', title: 'Another book', shortTitle: 'Another book' }
+  act(() => vi.mocked(subscribeLibraryDiscoveryCatalog).mock.calls[0][0]({ works: [work, added], workById: { [work.id]: work, [added.id]: added } }))
+  expect(screen.getByRole('link', { name: 'Open Another book book reader' })).toHaveAttribute('href', '/library/another-book')
+  view.unmount()
+  expect(unsubscribe).toHaveBeenCalledOnce()
+})
+
+test('keeps a newer background catalog if the original cached load settles later', async () => {
+  let finish!: (value: typeof catalog) => void
+  vi.mocked(loadLibraryDiscoveryCatalog).mockReturnValue(new Promise(resolve => { finish = resolve }))
+  renderCatalog()
+  const added = { ...work, id: 'another-book', title: 'Another book', shortTitle: 'Another book' }
+  act(() => vi.mocked(subscribeLibraryDiscoveryCatalog).mock.calls[0][0]({ works: [work, added], workById: { [work.id]: work, [added.id]: added } }))
+  await act(async () => finish(catalog))
+  expect(screen.getByRole('heading', { name: 'Another book' })).toBeInTheDocument()
 })
 
 test.each([
@@ -74,7 +96,7 @@ test.each([
   ['hi', 'अभी कोई चुनी हुई पुस्तक नहीं जोड़ी गई है।'],
 ] as const)('localizes the %s empty catalog', async (locale: UiLocale, message) => {
   useLocaleStore.setState({ locale })
-  vi.mocked(loadLibraryWorkCatalog).mockResolvedValue({ works: [], workById: {} })
+  vi.mocked(loadLibraryDiscoveryCatalog).mockResolvedValue({ works: [], workById: {} })
   renderCatalog()
   expect(await screen.findByText(message)).toBeInTheDocument()
 })

@@ -1,0 +1,605 @@
+{
+  "researchedAt": "2026-10-31",
+  "method": "Checked canonical headings and opening text at SriGranth; genre and performance context checked against the Sikh Research Institute Guru Granth Sahib Project; matched exact BaniDB provider data supplied by root. Summaries paraphrase the opening content rather than claiming an exhaustive interpretation.",
+  "entries": [
+    {
+      "baniDbId": 50,
+      "appId": "gauri-vaar-kabir",
+      "displayName": "Seven Days in Gauri (Bhagat Kabir Ji)",
+      "context": "Bhagat Kabir Ji uses the seven weekdays to encourage daily praise and remembrance of the Divine in this Gauri composition.",
+      "authorship": "Bhagat Kabir Ji",
+      "form": "seven-weekday poem",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=344",
+        "https://gurugranthsahib.io/bani/introduction/93/Introduction"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/50",
+      "providerPages": [
+        344,
+        345
+      ],
+      "claimSupport": "The heading explicitly identifies seven weekdays. Preserve this exact reading; it is not an additional ballad Vaar."
+    },
+    {
+      "baniDbId": 51,
+      "appId": "bilaval-mahalla-3-vaar-sat",
+      "displayName": "Seven Days in Bilaval (Guru Amar Das Ji)",
+      "context": "Guru Amar Das Ji uses the weekdays as a framework for remembering the Divine presence and finding peace through the Name.",
+      "authorship": "Guru Amar Das Ji",
+      "form": "seven-weekday poem",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=841",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=849",
+        "https://gurugranthsahib.io/bani/introduction/93/Introduction"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/51",
+      "providerPages": [
+        841,
+        842
+      ],
+      "claimSupport": "Provider selection ends at the first ten-stanza sequence (10|1) on Ang 842; do not conflate it with the following Bilaval sequence or the Fourth Guru Vaar."
+    },
+    {
+      "baniDbId": 86,
+      "appId": "sri-raag-ki-vaar",
+      "displayName": "Sri Raag Vaar",
+      "context": "Guru Ram Das Ji’s Sri Raag Vaar opens with saloks connecting love of truth with reflection on the Guru’s word.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=83",
+        "https://gurugranthsahibdictionary.io/dictionary/english/glossary/V"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/86",
+      "providerPages": [
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91
+      ],
+      "claimSupport": "Vaar heading: Fourth Guru; opening saloks: Third Guru."
+    },
+    {
+      "baniDbId": 87,
+      "appId": "var-majh",
+      "displayName": "Majh Vaar",
+      "context": "Guru Nanak Dev Ji’s Majh Vaar opens by praising the Guru as a source of light and peace, then examines changing human attachments.",
+      "authorship": "Guru Nanak Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=137"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/87",
+      "providerPages": [
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151
+      ],
+      "claimSupport": "Heading identifies First Guru and the Malik Murid/Chandrahara Sohiya tune."
+    },
+    {
+      "baniDbId": 88,
+      "appId": "gauri-ki-vaar-m4",
+      "displayName": "Gauri Vaar (Guru Ram Das Ji)",
+      "context": "Guru Ram Das Ji’s Gauri Vaar opens with the True Guru’s equal regard for everyone and the importance of sincere devotion.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=300",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=318"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/88",
+      "providerPages": [
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317
+      ],
+      "claimSupport": "Fourth Guru Gauri Vaar, distinct from ID89."
+    },
+    {
+      "baniDbId": 89,
+      "appId": "gauri-ki-vaar-m5",
+      "displayName": "Gauri Vaar (Guru Arjan Dev Ji)",
+      "context": "Guru Arjan Dev Ji’s Gauri Vaar opens with remembrance of the Divine Name and spiritual company as support through suffering.",
+      "authorship": "Guru Arjan Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=318",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=300"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/89",
+      "providerPages": [
+        318,
+        319,
+        320,
+        321,
+        322,
+        323
+      ],
+      "claimSupport": "Fifth Guru Gauri Vaar, distinct from ID88."
+    },
+    {
+      "baniDbId": 90,
+      "appId": "asa-di-var",
+      "displayName": "Asa Di Vaar",
+      "context": "Guru Nanak Dev Ji’s Asa Vaar joins pauris and saloks in reflection on the Guru’s guidance and the Divine present throughout creation.",
+      "authorship": "Guru Nanak Dev Ji (Vaar); Guru Angad Dev Ji (some saloks); Guru Ram Das Ji (accompanying chhants)",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=462",
+        "https://gurugranthsahib.io/bani/details/AKV/1/5",
+        "https://gurugranthsahib.io/bani/introduction/104/MusicalDimension"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/90",
+      "providerPages": [
+        448,
+        449,
+        462,
+        463,
+        null,
+        464,
+        465,
+        466,
+        467,
+        468,
+        450,
+        469,
+        470,
+        471,
+        472,
+        473,
+        451,
+        474,
+        475
+      ],
+      "claimSupport": "Actual provider sequence begins with Fourth Guru chhants on Ang 448 and interleaves Ang448–451 material with the Vaar on Ang462–475; preserve that sequence."
+    },
+    {
+      "baniDbId": 91,
+      "appId": "var-gujri",
+      "displayName": "Gujari Vaar (Guru Amar Das Ji)",
+      "context": "Guru Amar Das Ji’s Gujari Vaar contrasts possessive attachment with a life guided by the Guru and remembrance of the Divine.",
+      "authorship": "Guru Amar Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=508",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=517"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/91",
+      "providerPages": [
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517
+      ],
+      "claimSupport": "Third Guru Gujari Vaar, distinct from ID92."
+    },
+    {
+      "baniDbId": 92,
+      "appId": "gujari-vaar-mahalla-5",
+      "displayName": "Gujari Vaar (Guru Arjan Dev Ji)",
+      "context": "Guru Arjan Dev Ji’s Gujari Vaar opens with a call to remember the Guru inwardly, in speech, in seeing and in listening.",
+      "authorship": "Guru Arjan Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=517",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=508"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/92",
+      "providerPages": [
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524
+      ],
+      "claimSupport": "Fifth Guru Gujari Vaar, distinct from ID91."
+    },
+    {
+      "baniDbId": 93,
+      "appId": "bihagare-ki-vaar",
+      "displayName": "Bihagara Vaar",
+      "context": "Guru Ram Das Ji’s Bihagara Vaar opens with saloks on finding peace through serving the Guru and receiving the Divine Name.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=548"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/93",
+      "providerPages": [
+        548,
+        549,
+        550,
+        551,
+        552,
+        553,
+        554,
+        555,
+        556
+      ],
+      "claimSupport": "Fourth Guru Vaar; opening saloks belong to Third Guru."
+    },
+    {
+      "baniDbId": 94,
+      "appId": "var-vadahans",
+      "displayName": "Vadhans Vaar",
+      "context": "Guru Ram Das Ji’s Vadhans Vaar opens with saloks that use swan imagery for those absorbed in the Guru’s word and the True Name.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=585"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/94",
+      "providerPages": [
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594
+      ],
+      "claimSupport": "Fourth Guru Vaar; opening saloks belong to Third Guru."
+    },
+    {
+      "baniDbId": 95,
+      "appId": "var-sorath",
+      "displayName": "Sorath Vaar",
+      "context": "Guru Ram Das Ji’s Sorath Vaar opens with the image of a devoted bride to explore inner truth and love of the Divine.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=642"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/95",
+      "providerPages": [
+        642,
+        643,
+        644,
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653,
+        654
+      ],
+      "claimSupport": "Fourth Guru Vaar; opening salok belongs to First Guru."
+    },
+    {
+      "baniDbId": 96,
+      "appId": "jaitsri-vaar-m5",
+      "displayName": "Jaitsri Vaar",
+      "context": "Guru Arjan Dev Ji’s Jaitsri Vaar opens by affirming the Divine presence through all time and the value of remembrance.",
+      "authorship": "Guru Arjan Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=705"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/96",
+      "providerPages": [
+        705,
+        706,
+        707,
+        708,
+        709,
+        710
+      ],
+      "claimSupport": "Heading explicitly states Fifth Guru and Vaar with saloks."
+    },
+    {
+      "baniDbId": 97,
+      "appId": "var-suhi",
+      "displayName": "Suhi Vaar",
+      "context": "Guru Amar Das Ji’s Suhi Vaar opens with bride imagery that contrasts devotion to the Divine with attachment and divided love.",
+      "authorship": "Guru Amar Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=785"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/97",
+      "providerPages": [
+        785,
+        786,
+        787,
+        788,
+        789,
+        790,
+        791,
+        792
+      ],
+      "claimSupport": "Heading identifies Third Guru and Vaar with saloks."
+    },
+    {
+      "baniDbId": 98,
+      "appId": "var-bilaval",
+      "displayName": "Bilaval Vaar",
+      "context": "Guru Ram Das Ji’s Bilaval Vaar begins with praise and attention to the Guru’s teaching, picturing the renewed mind as a flourishing garden.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=849",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=841"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/98",
+      "providerPages": [
+        849,
+        850,
+        851,
+        852,
+        853,
+        854,
+        855
+      ],
+      "claimSupport": "Fourth Guru ballad Vaar; not the Seven Days work ID51."
+    },
+    {
+      "baniDbId": 99,
+      "appId": "var-ramkali-m3",
+      "displayName": "Ramkali Vaar (Guru Amar Das Ji)",
+      "context": "Guru Amar Das Ji’s Ramkali Vaar opens with a field-and-seed image of the Guru’s wisdom, the Divine Name and freedom from ego.",
+      "authorship": "Guru Amar Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=947",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=957",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=966"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/99",
+      "providerPages": [
+        947,
+        948,
+        949,
+        950,
+        951,
+        952,
+        953,
+        954,
+        955,
+        956
+      ],
+      "claimSupport": "Third Guru Ramkali Vaar, distinct from IDs100/101."
+    },
+    {
+      "baniDbId": 100,
+      "appId": "var-ramkali-m5",
+      "displayName": "Ramkali Vaar (Guru Arjan Dev Ji)",
+      "context": "Guru Arjan Dev Ji’s Ramkali Vaar opens by praising the Guru’s role in overcoming ego and reuniting the separated with the Divine.",
+      "authorship": "Guru Arjan Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=957",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=947",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=966"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/100",
+      "providerPages": [
+        957,
+        958,
+        959,
+        960,
+        961,
+        962,
+        963,
+        964,
+        965,
+        966
+      ],
+      "claimSupport": "Fifth Guru Ramkali Vaar, distinct from IDs99/101."
+    },
+    {
+      "baniDbId": 101,
+      "appId": "var-ramkali-rai-balvand",
+      "displayName": "Ramkali Vaar (Satta and Balvand)",
+      "context": "Satta and Balvand’s Ramkali Vaar celebrates the continuity of Guruship from Guru Nanak Dev Ji through Guru Arjan Dev Ji.",
+      "authorship": "Rai Balvand and Satta",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=966",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=967",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=968"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/101",
+      "providerPages": [
+        966,
+        967,
+        968
+      ],
+      "claimSupport": "Heading names both Balvand and Satta; Ang967 honours Mata Khivi and langar, Ang968 explicitly honours Guru Arjan."
+    },
+    {
+      "baniDbId": 102,
+      "appId": "var-maru",
+      "displayName": "Maru Vaar (Guru Amar Das Ji)",
+      "context": "Guru Amar Das Ji’s Maru Vaar opens with a salok that uses buying and selling to explore the recognition and worth of virtue.",
+      "authorship": "Guru Amar Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1086",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1094"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/102",
+      "providerPages": [
+        1086,
+        1087,
+        1088,
+        1089,
+        1090,
+        1091,
+        1092,
+        1093,
+        1094
+      ],
+      "claimSupport": "Third Guru Maru Vaar, with First Guru opening salok; distinct from ID103."
+    },
+    {
+      "baniDbId": 103,
+      "appId": "maru-vaar-mahalla-5-dakhane",
+      "displayName": "Maru Vaar (Guru Arjan Dev Ji)",
+      "context": "Guru Arjan Dev Ji’s Maru Vaar pairs pauris with dakhane verses, beginning with devotion and longing for the Divine beloved.",
+      "authorship": "Guru Arjan Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1094",
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1086"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/103",
+      "providerPages": [
+        1094,
+        1095,
+        1096,
+        1097,
+        1098,
+        1099,
+        1100,
+        1101,
+        1102
+      ],
+      "claimSupport": "Heading names Fifth Guru and dakhane; distinct from ID102."
+    },
+    {
+      "baniDbId": 104,
+      "appId": "basant-ki-vaar",
+      "displayName": "Basant Vaar",
+      "context": "Guru Arjan Dev Ji’s brief Basant Vaar uses spring and blossoming as images of renewal through the Divine Name and spiritual company.",
+      "authorship": "Guru Arjan Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1193"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/104",
+      "providerPages": [
+        1193
+      ],
+      "claimSupport": "Fifth Guru; primary text uses spring/green growth images."
+    },
+    {
+      "baniDbId": 105,
+      "appId": "var-sarang",
+      "displayName": "Sarang Vaar",
+      "context": "Guru Ram Das Ji’s Sarang Vaar opens with saloks portraying the Guru as the key that unlocks attachment within the mind.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1237"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/105",
+      "providerPages": [
+        1237,
+        1238,
+        1239,
+        1240,
+        1241,
+        1242,
+        1243,
+        1244,
+        1245,
+        1246,
+        1247,
+        1248,
+        1249,
+        1250,
+        1251
+      ],
+      "claimSupport": "Fourth Guru Vaar; first salok belongs to Second Guru."
+    },
+    {
+      "baniDbId": 106,
+      "appId": "var-mallar",
+      "displayName": "Malhar Vaar",
+      "context": "Guru Nanak Dev Ji’s Malhar Vaar opens with a salok likening the joy of meeting the Guru to rain reviving the earth.",
+      "authorship": "Guru Nanak Dev Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1278"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/106",
+      "providerPages": [
+        1278,
+        1279,
+        1280,
+        1281,
+        1282,
+        1283,
+        1284,
+        1285,
+        1286,
+        1287,
+        1288,
+        1289,
+        1290,
+        1291
+      ],
+      "claimSupport": "First Guru Vaar; opening salok belongs to Third Guru."
+    },
+    {
+      "baniDbId": 107,
+      "appId": "kanare-ki-vaar",
+      "displayName": "Kanara Vaar",
+      "context": "Guru Ram Das Ji’s Kanara Vaar opens with a call to hold the Divine Name in the heart, practise humility and overcome ego.",
+      "authorship": "Guru Ram Das Ji",
+      "form": "pauri-based Vaar",
+      "primarySourceUrls": [
+        "https://www.srigranth.org/servlet/gurbani.gurbani?Action=Page&Param=1312"
+      ],
+      "providerUrl": "https://api.banidb.com/v2/banis/107",
+      "providerPages": [
+        1312,
+        1313,
+        1314,
+        1315,
+        1316,
+        1317,
+        1318
+      ],
+      "claimSupport": "Primary heading is Fourth Guru, not Fifth Guru; preceding Ang1312 chhant has a separate Fifth Guru heading."
+    }
+  ]
+}

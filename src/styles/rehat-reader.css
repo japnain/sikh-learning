@@ -1,11 +1,19 @@
 .rehat-reader-shell { min-height:100%; color:rgb(var(--color-text)); background:rgb(var(--color-bg)); }
+:is(.rehat-reader-shell,.rehat-reader-sheet).rehat-palette--paper { --color-bg:248 246 240; --color-text:35 33 29; --color-text-muted:105 99 88; --color-border:198 188 168; --color-accent:137 91 35; --rehat-raised:255 253 248; color-scheme:light; }
+:is(.rehat-reader-shell,.rehat-reader-sheet).rehat-palette--sepia { --color-bg:244 234 211; --color-text:58 43 27; --color-text-muted:112 89 62; --color-border:190 164 124; --color-accent:139 77 30; --rehat-raised:250 242 223; color-scheme:light; }
+:is(.rehat-reader-shell,.rehat-reader-sheet).rehat-palette--night { --color-bg:24 25 24; --color-text:229 224 211; --color-text-muted:167 162 150; --color-border:77 75 69; --color-accent:224 177 96; --rehat-raised:32 33 31; color-scheme:dark; }
 .rehat-reader-main { width:100%; max-width:var(--rehat-measure,48rem); margin-inline:auto; padding:clamp(1.5rem,5vw,3.5rem) max(1rem,var(--safe-area-right)) max(3rem,var(--safe-area-bottom)) max(1rem,var(--safe-area-left)); }
+.rehat-reader-opening { margin-bottom:1.5rem; }
+.rehat-reader-opening p { margin:0 0 .6rem; font:500 .875rem/1.5 'Plus Jakarta Sans',sans-serif; color:rgb(var(--color-text-muted)); }
+.rehat-reader-opening h1 { margin:0; font:500 clamp(1.7rem,5vw,2.5rem)/1.3 'Plus Jakarta Sans',sans-serif; letter-spacing:-.03em; overflow-wrap:break-word; }
 .rehat-reader-shell .rehat-reading-prose { font-size:calc(1.0625rem * var(--rehat-font-scale,1)); line-height:var(--rehat-line-height,1.8); overflow-wrap:break-word; }
 .rehat-reading-prose :is(p,li,h1,h2,h3,h4,mark) { scroll-margin-top:calc(var(--reader-header-height,8rem) + 1rem); }
 .rehat-reader-shell .rehat-reader-article { padding:0; border:0; background:transparent; box-shadow:none; }
 .rehat-reader-source { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgb(var(--color-border) / .25); color:rgb(var(--color-text-muted)); font-size:.8125rem; }
 .rehat-reader-find { max-width:48rem; margin-inline:auto; padding:0 .25rem .5rem; }
 .rehat-reader-find > div:first-child { margin-top:.35rem; }
+.rehat-reader-shell .rehat-reader-find input { color:rgb(var(--color-text)); background:rgb(var(--rehat-raised)); border-color:rgb(var(--color-border) / .5); }
+.rehat-reader-shell .rehat-reader-find input::placeholder { color:rgb(var(--color-text-muted)); }
 .rehat-reader-find .rehat-find-controls { display:grid; grid-template-columns:minmax(0,1fr) repeat(3,44px); align-items:center; gap:4px; padding:4px 0 0; font-size:.8125rem; }
 .rehat-find-controls p { min-width:0; margin:0; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
 .rehat-find-controls button { display:grid; place-items:center; width:44px; height:44px; min-width:44px; min-height:44px; padding:0; border:1px solid rgb(var(--color-border) / .4); border-radius:.5rem; color:inherit; }
@@ -16,6 +24,7 @@
   .reader-header.rehat-reader-toolbar[data-enlarged-text='true'] .reader-header__subtitle { display:none; }
 }
 .rehat-reader-sheet { max-width:40rem; max-height:min(80dvh,46rem); overflow-y:auto; padding:1.25rem; font-family:'Plus Jakarta Sans',sans-serif; color:rgb(var(--color-text)); }
+.rehat-reader-sheet[class*='rehat-palette--'] { background:rgb(var(--rehat-raised)); border-color:rgb(var(--color-border) / .5); }
 .rehat-reader-sheet__heading { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
 .rehat-reader-sheet__heading h2 { font-size:1.25rem; font-weight:600; }
 .rehat-reader-sheet button { min-width:44px; min-height:44px; border-radius:.5rem; }
@@ -30,3 +39,10 @@
 .rehat-reader-setting button[aria-pressed='true'] { border-color:rgb(var(--color-accent)); background:rgb(var(--color-accent) / .1); }
 .rehat-reader-setting button:disabled { opacity:.45; }
 .rehat-reader-setting__scale output { min-width:5rem; text-align:center; font-variant-numeric:tabular-nums; }
+.rehat-reader-reset { width:100%; margin-top:1.5rem; padding:.6rem; border:1px solid rgb(var(--color-border) / .5); color:rgb(var(--color-text)); }
+/* Reader palettes belong to the page, even when the surrounding app uses another theme. */
+.rehat-reader-shell [data-testid='rehat-section-navigation'] { color:rgb(var(--color-text)); background:rgb(var(--rehat-raised)); border-color:rgb(var(--color-border) / .5); }
+.rehat-reader-shell [data-testid='rehat-section-navigation'] :is(p,span,a,div) { color:inherit; border-color:rgb(var(--color-border) / .5); }
+.rehat-reader-shell .rehat-reader-main > p,
+.rehat-reader-shell .rehat-reader-main [role='alert'] { color:rgb(var(--color-text)); background:rgb(var(--rehat-raised)); }
+.rehat-reader-shell .rehat-reader-main [role='alert'] :is(p,a) { color:inherit; }

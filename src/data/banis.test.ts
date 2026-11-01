@@ -33,7 +33,7 @@ describe('named BaniDB catalog', () => {
     expect(sggsIds.filter(id => dasamIds.includes(id))).toEqual([])
   })
 
-  it('does not remove a source bani because it is also available in Sundar Gutka', () => {
+  it('retains the full canonical source catalog independently of discovery placement', () => {
     expect(exactIds(READ_DIRECTORY_SGGS_BANIS)).toEqual(exactIds(READ_EXACT_SGGS_BANIS))
     expect(exactIds(READ_DIRECTORY_DG_BANIS)).toEqual(exactIds(READ_EXACT_DG_BANIS))
   })

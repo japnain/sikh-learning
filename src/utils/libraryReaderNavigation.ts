@@ -45,7 +45,10 @@ export function buildReaderOriginNavigationState(
 ): ReaderOriginNavigationState | undefined {
   const safeOrigin = isSafeInternalAppPath(origin) ? origin : '/banis'
 
-  if (destination === '/study' || destination.startsWith('/study?')) {
+  const pathname = destination.split(/[?#]/, 1)[0]
+  if (pathname === '/study'
+    || pathname === '/banis/rehat' || pathname.startsWith('/banis/rehat/')
+    || pathname === '/banis/amrit-keertan' || pathname.startsWith('/banis/amrit-keertan/')) {
     return { readerOrigin: safeOrigin }
   }
 

@@ -16,7 +16,7 @@ export interface ContinueReading {
   detail: string
   path: string
   updatedAt: string
-  kind: 'bani' | 'source' | 'book' | 'story'
+  kind: 'bani' | 'source' | 'book' | 'story' | 'rehat'
 }
 
 const COPY = {
@@ -63,6 +63,12 @@ export function useContinueReadings() {
     const copy = COPY[locale]
     const items: ContinueReading[] = []
     for (const [id, session] of Object.entries(sessions)) {
+      if (id.startsWith('rehat:')) {
+        items.push({ id, title: session.readerLocator?.title || 'Rehat',
+          detail: session.readerLocator?.locations.blockId ? copy.savedPassage : copy.chapterStart,
+          path: buildSessionResumePath(session) || session.resumePath, updatedAt: session.updatedAt, kind: 'rehat' })
+        continue
+      }
       if (id.startsWith('book:')) {
         const book = books[id.slice(5)]
         if (!book) {

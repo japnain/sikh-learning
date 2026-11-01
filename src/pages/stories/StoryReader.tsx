@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import ModalSheet from '../../components/ModalSheet'
 import ReaderHeader from '../../components/ReaderHeader'
@@ -11,19 +11,20 @@ import {
   IconCheck,
   IconClose,
   IconExternalLink,
+  IconSearch,
 } from '../../components/icons'
 import { sameStorySummary } from '../../data/storyValidation'
 import { loadStory, loadStoryCatalog } from '../../data/storyRepository'
-import { useEpubReaderStore, type EpubReaderLineHeight, type EpubReaderMeasure } from '../../store/epubReader'
+import { EPUB_FONT_SCALE_MIN, EPUB_FONT_SCALE_MAX, EPUB_FONT_SCALE_STEP, useEpubReaderStore, type EpubReaderLineHeight, type EpubReaderMeasure, type EpubReaderPalette } from '../../store/epubReader'
 import { useLocaleStore } from '../../store/locale'
 import { STORY_UI, storyUiLang } from '../../utils/storyUi'
+import { STORY_FIND_UI } from '../../utils/storyFindUi'
 import { useStoryStore } from '../../store/stories'
-import { useThemeStore } from '../../store/theme'
 import type { Story, StoryCatalog, StorySummary } from '../../types/stories'
 import {
-  addAppScrollListener,
   addAppScrollSettledListener,
   focusElementWithoutAppScroll,
+  getAppScrollTop,
   getAppViewportBounds,
   scrollAppTo,
   scrollElementIntoAppView,
@@ -31,13 +32,48 @@ import {
 import { buildLibraryReaderNavigationState, getLibraryReaderOrigin } from '../../utils/libraryReaderNavigation'
 import '../../styles/stories.css'
 
-type ReaderPanel = 'appearance' | 'account' | 'contents' | null
+type ReaderPanel = 'appearance' | 'account' | 'contents' | 'find' | null
 type StoryLoadState =
   | { key: string; status: 'loading' | 'error' }
   | { key: string; status: 'ready'; story: Story | null; catalog: StoryCatalog | null }
 
 const LINE_HEIGHTS: Record<EpubReaderLineHeight, string> = { compact: '1.6', comfortable: '1.8', spacious: '2' }
 const MEASURES: Record<EpubReaderMeasure, string> = { narrow: '32rem', standard: '38rem', wide: '44rem' }
+const PANEL_PALETTES: Record<EpubReaderPalette, string> = { paper: 'story-reader-panel--paper', sepia: 'story-reader-panel--sepia', night: 'story-reader-panel--night' }
+const APPEARANCE_COPY = {
+  en: { description: 'Text size, spacing, width and page color are shared with Books and Rehat. Your app theme stays separate.', pageColor: 'Page color', paper: 'Paper', sepia: 'Sepia', night: 'Night', reset: 'Reset reading settings', compact: 'Compact', comfortable: 'Comfort', spacious: 'Spacious', preview: 'Text preview' },
+  pa: { description: 'ਲਿਖਤ ਦਾ ਆਕਾਰ, ਫ਼ਾਸਲਾ, ਚੌੜਾਈ ਅਤੇ ਪੰਨੇ ਦਾ ਰੰਗ ਕਿਤਾਬਾਂ ਅਤੇ ਰਹਿਤ ਨਾਲ ਸਾਂਝੇ ਹਨ। ਐਪ ਦਾ ਥੀਮ ਵੱਖਰਾ ਰਹਿੰਦਾ ਹੈ।', pageColor: 'ਪੰਨੇ ਦਾ ਰੰਗ', paper: 'ਕਾਗਜ਼', sepia: 'ਸੇਪੀਆ', night: 'ਰਾਤ', reset: 'ਪਾਠ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਮੁੜ ਸੈੱਟ ਕਰੋ', compact: 'ਨੇੜੇ', comfortable: 'ਸਧਾਰਨ', spacious: 'ਖੁੱਲ੍ਹਾ', preview: 'ਲਿਖਤ ਦੀ ਝਲਕ' },
+  hi: { description: 'अक्षरों का आकार, अंतर, चौड़ाई और पन्ने का रंग किताबों और रहित के साथ साझा हैं। ऐप की थीम अलग रहती है।', pageColor: 'पन्ने का रंग', paper: 'कागज़', sepia: 'सेपिया', night: 'रात', reset: 'पाठ की सेटिंग रीसेट करें', compact: 'पास', comfortable: 'सामान्य', spacious: 'खुला', preview: 'पाठ का पूर्वावलोकन' },
+}
+type AppearanceAnchor = { paragraphId: string; offset: number } | { scrollTop: number }
+type StoryFindRange = { start: number; end: number }
+
+function storyMatchRanges(text: string, query: string): StoryFindRange[] {
+  if (!query) return []
+  // Treat punctuation and markup as literal text, including regular-expression
+  // metacharacters. Match offsets always refer to the original prose.
+  const pattern = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'giu')
+  return Array.from(text.matchAll(pattern), match => ({ start: match.index, end: match.index + match[0].length }))
+}
+
+function StoryHighlightedText({ text, ranges }: { text: string; ranges: StoryFindRange[] }) {
+  if (!ranges.length) return <>{text}</>
+  const content: ReactNode[] = []
+  let cursor = 0
+  for (const range of ranges) {
+    content.push(text.slice(cursor, range.start), <mark key={range.start} className="story-find-highlight">{text.slice(range.start, range.end)}</mark>)
+    cursor = range.end
+  }
+  content.push(text.slice(cursor))
+  return <>{content}</>
+}
+
+function storyFindExcerpt(text: string, range: StoryFindRange) {
+  const start = Math.max(0, range.start - 65)
+  const end = Math.min(text.length, range.end + 100)
+  return `${start > 0 ? '…' : ''}${text.slice(start, end)}${end < text.length ? '…' : ''}`
+}
+
 function StoryChoiceGroup<T extends string>({ title, options, value, onChange }: {
   title: string
   options: ReadonlyArray<{ value: T; label: string }>
@@ -132,7 +168,11 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   const locale = useLocaleStore(state => state.locale)
   const copy = STORY_UI[locale]
   const preview = import.meta.env.DEV && requestedPreview
+  const appearanceCopy = APPEARANCE_COPY[locale]
+  const findCopy = STORY_FIND_UI[locale]
   const [panel, setPanel] = useState<ReaderPanel>(null)
+  const [findQuery, setFindQuery] = useState('')
+  const [selectedFindParagraph, setSelectedFindParagraph] = useState<string | null>(null)
   const [status, setStatus] = useState('')
   const [initialPosition] = useState(() => {
     const position = preview ? undefined : useStoryStore.getState().positions[story.id]
@@ -150,16 +190,18 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
   const measure = useEpubReaderStore(state => state.measure)
+  const palette = useEpubReaderStore(state => state.palette)
   const setFontScale = useEpubReaderStore(state => state.setFontScale)
   const setLineHeight = useEpubReaderStore(state => state.setLineHeight)
   const setMeasure = useEpubReaderStore(state => state.setMeasure)
-  const themeMode = useThemeStore(state => state.mode)
-  const setThemeMode = useThemeStore(state => state.setMode)
+  const setPalette = useEpubReaderStore(state => state.setPalette)
+  const resetPreferences = useEpubReaderStore(state => state.resetPreferences)
   const articleRef = useRef<HTMLElement | null>(null)
   const toolbarRef = useRef<HTMLElement | null>(null)
   const paragraphRefs = useRef(new Map<string, HTMLParagraphElement>())
   const sectionHeadingRefs = useRef(new Map<string, HTMLHeadingElement>())
-  const pendingSectionRef = useRef<string | null>(null)
+  const pendingDestinationRef = useRef<{ paragraphId: string; section: boolean } | null>(null)
+  const findInputRef = useRef<HTMLInputElement | null>(null)
   const progressRef = useRef<HTMLDivElement | null>(null)
   const progressFillRef = useRef<HTMLSpanElement | null>(null)
   const activeParagraphRef = useRef(initialPosition?.paragraphId ?? story.paragraphs[0]?.id ?? '')
@@ -167,13 +209,23 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   const restoredRef = useRef(false)
   const pendingRestoreRef = useRef<(() => void) | null>(null)
   const committedRef = useRef('')
-  const appearanceAnchorRef = useRef<string | null>(null)
-  const lastAppearanceRef = useRef(`${fontScale}:${lineHeight}:${measure}`)
+  const appearanceAnchorRef = useRef<AppearanceAnchor | null>(null)
+  const appearanceChangedRef = useRef(false)
+  const lastAppearanceRef = useRef(`${fontScale}:${lineHeight}:${measure}:${palette}`)
   const panelRef = useRef<ReaderPanel>(null)
   const nextStory = catalog?.stories.find(candidate => candidate.id === nextStoryId)
   const latestSummary = catalog?.stories.find(candidate => candidate.id === story.id)
   const isOlderEdition = latestSummary && !sameStorySummary(story, latestSummary)
   const sections = story.sections
+  const normalizedFindQuery = findQuery.trim()
+  const findPassages = useMemo(() => story.paragraphs.map((paragraph, index) => {
+    const section = sections?.find(item => item.startParagraphId === paragraph.id)
+    const ranges = storyMatchRanges(paragraph.text, normalizedFindQuery)
+    const headingRanges = storyMatchRanges(section?.title ?? '', normalizedFindQuery)
+    return { paragraph, index, section, ranges, headingRanges }
+  }), [story.paragraphs, sections, normalizedFindQuery])
+  const findResults = findPassages.filter(passage => passage.ranges.length || passage.headingRanges.length)
+  const findMatchCount = findResults.reduce((count, passage) => count + passage.ranges.length + passage.headingRanges.length, 0)
   const hasContents = Boolean(sections && sections.length > 1)
   const activeParagraphIndex = story.paragraphs.findIndex(paragraph => paragraph.id === activeParagraphRef.current)
   const activeSection = sections?.filter(section => story.paragraphs.findIndex(paragraph => paragraph.id === section.startParagraphId) <= activeParagraphIndex).at(-1)
@@ -185,10 +237,9 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   const storyRoute = preview ? '/stories/drafts' : '/stories'
 
   const readPosition = useCallback(() => {
-    const paragraphs = story.paragraphs.map(paragraph => ({ id: paragraph.id, node: paragraphRefs.current.get(paragraph.id) }))
-      .filter((paragraph): paragraph is { id: string; node: HTMLParagraphElement } => Boolean(paragraph.node))
-    const first = paragraphs[0]?.node.getBoundingClientRect()
-    const last = paragraphs.at(-1)?.node.getBoundingClientRect()
+    const paragraphs = story.paragraphs
+    const first = paragraphRefs.current.get(paragraphs[0]?.id ?? '')?.getBoundingClientRect()
+    const last = paragraphRefs.current.get(paragraphs.at(-1)?.id ?? '')?.getBoundingClientRect()
     // A hidden or not-yet-laid-out view must not replace a real saved position.
     if (!first || !last || last.bottom <= first.top) {
       return { paragraphId: activeParagraphRef.current, progress: currentProgressRef.current }
@@ -198,16 +249,32 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
       viewport.top + Math.min(120, viewport.height * 0.22),
       (toolbarRef.current?.getBoundingClientRect().bottom ?? viewport.top) + 24,
     )
-    let paragraphId = paragraphs[0].id
-    for (const paragraph of paragraphs) {
-      const sectionHeading = sectionHeadingRefs.current.get(paragraph.id)
-      if ((sectionHeading ?? paragraph.node).getBoundingClientRect().top > readingLine) break
-      paragraphId = paragraph.id
+    // Prose remains in document order. Find the current paragraph with a
+    // logarithmic number of geometry reads, only after scrolling settles.
+    let low = 0
+    let high = paragraphs.length - 1
+    let activeIndex = 0
+    while (low <= high) {
+      const middle = (low + high) >>> 1
+      const id = paragraphs[middle].id
+      const target = sectionHeadingRefs.current.get(id) ?? paragraphRefs.current.get(id)
+      if (target && target.getBoundingClientRect().top <= readingLine) {
+        activeIndex = middle
+        low = middle + 1
+      } else high = middle - 1
     }
     const atEnd = last.bottom <= viewport.bottom - 24 && first.top < readingLine
     const progress = atEnd ? 1 : Math.max(0, Math.min(1, (readingLine - first.top) / (last.bottom - first.top)))
-    return { paragraphId, progress: Math.round(progress * 1000) / 1000 }
+    return { paragraphId: paragraphs[activeIndex].id, progress: Math.round(progress * 1000) / 1000 }
   }, [story.paragraphs])
+
+  const captureAppearanceAnchor = () => {
+    const position = readPosition()
+    if (position.progress === 0) return { scrollTop: getAppScrollTop() }
+    const target = sectionHeadingRefs.current.get(position.paragraphId) ?? paragraphRefs.current.get(position.paragraphId)
+    const readingTop = (toolbarRef.current?.getBoundingClientRect().bottom ?? getAppViewportBounds().top) + 24
+    return target ? { paragraphId: position.paragraphId, offset: target.getBoundingClientRect().top - readingTop } : null
+  }
 
   const copyRef = useRef(copy)
   useEffect(() => {
@@ -244,6 +311,11 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
 
   useEffect(() => {
     panelRef.current = panel
+    if (panel !== 'find') return
+    // Contents and Find share the same sheet. Switching its contents does
+    // not remount the dialog, so move focus to the newly available input.
+    const frame = window.requestAnimationFrame(() => findInputRef.current?.focus())
+    return () => window.cancelAnimationFrame(frame)
   }, [panel])
 
   useEffect(() => {
@@ -289,47 +361,44 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   }, [hash, initialPosition, story.paragraphs, updateProgress])
 
   useEffect(() => {
-    let progressFrame: number | null = null
-    const onScroll = () => {
-      if (progressFrame !== null) return
-      progressFrame = window.requestAnimationFrame(() => {
-        progressFrame = null
-        updateProgress()
-      })
-    }
     const onVisibilityChange = () => {
       if (document.visibilityState === 'hidden') commitPosition()
     }
     const removeSettledListener = addAppScrollSettledListener(commitPosition)
-    const removeScrollListener = addAppScrollListener(onScroll)
     window.addEventListener('pagehide', commitPosition)
     document.addEventListener('visibilitychange', onVisibilityChange)
     return () => {
       commitPosition()
       removeSettledListener()
-      removeScrollListener()
-      if (progressFrame !== null) window.cancelAnimationFrame(progressFrame)
       window.removeEventListener('pagehide', commitPosition)
       document.removeEventListener('visibilitychange', onVisibilityChange)
     }
-  }, [commitPosition, updateProgress])
+  }, [commitPosition])
 
   useEffect(() => {
-    const appearance = `${fontScale}:${lineHeight}:${measure}`
+    const appearance = `${fontScale}:${lineHeight}:${measure}:${palette}`
     if (lastAppearanceRef.current !== appearance) {
       lastAppearanceRef.current = appearance
-      if (restoredRef.current) appearanceAnchorRef.current ??= activeParagraphRef.current
+      appearanceChangedRef.current = true
     }
-    if (!appearanceAnchorRef.current || panel) return
+    if (!appearanceAnchorRef.current || !appearanceChangedRef.current || panel) return
     // ModalSheet restores the locked page offset on dismissal. Restore the
     // paragraph after that paint so a larger font keeps the reader's place.
     let secondFrame: number | null = null
     const firstFrame = window.requestAnimationFrame(() => {
       secondFrame = window.requestAnimationFrame(() => {
-        const anchorId = appearanceAnchorRef.current ?? ''
-        const target = sectionHeadingRefs.current.get(anchorId) ?? paragraphRefs.current.get(anchorId)
+        const anchor = appearanceAnchorRef.current
         appearanceAnchorRef.current = null
-        if (target) scrollElementIntoAppView(target, { block: 'start', behavior: 'auto' })
+        appearanceChangedRef.current = false
+        if (!anchor) return
+        if ('scrollTop' in anchor) scrollAppTo({ top: anchor.scrollTop, behavior: 'auto' })
+        else {
+          const target = sectionHeadingRefs.current.get(anchor.paragraphId) ?? paragraphRefs.current.get(anchor.paragraphId)
+          if (target) {
+            const readingTop = (toolbarRef.current?.getBoundingClientRect().bottom ?? getAppViewportBounds().top) + 24
+            scrollAppTo({ top: Math.max(0, getAppScrollTop() + target.getBoundingClientRect().top - readingTop - anchor.offset), behavior: 'auto' })
+          }
+        }
         updateProgress()
       })
     })
@@ -337,18 +406,18 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
       window.cancelAnimationFrame(firstFrame)
       if (secondFrame !== null) window.cancelAnimationFrame(secondFrame)
     }
-  }, [fontScale, lineHeight, measure, panel, updateProgress])
+  }, [fontScale, lineHeight, measure, palette, panel, updateProgress])
 
   useEffect(() => {
-    if (panel || !pendingSectionRef.current) return
-    const paragraphId = pendingSectionRef.current
-    pendingSectionRef.current = null
+    if (panel || !pendingDestinationRef.current) return
+    const { paragraphId, section } = pendingDestinationRef.current
+    pendingDestinationRef.current = null
     let secondFrame: number | null = null
     // Let the sheet release its scroll lock and restore its opener first.
-    // The selected section then owns both reading position and keyboard focus.
+    // The selected section or search passage then owns position and focus.
     const firstFrame = window.requestAnimationFrame(() => {
       secondFrame = window.requestAnimationFrame(() => {
-        const target = sectionHeadingRefs.current.get(paragraphId) ?? paragraphRefs.current.get(paragraphId)
+        const target = (section ? sectionHeadingRefs.current.get(paragraphId) : null) ?? paragraphRefs.current.get(paragraphId)
         if (!target) return
         activeParagraphRef.current = paragraphId
         restoredRef.current = true
@@ -364,12 +433,16 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   }, [panel, commitPosition])
 
   const changeAppearance = (change: () => void) => {
-    if (restoredRef.current) appearanceAnchorRef.current ??= activeParagraphRef.current
+    if (restoredRef.current) appearanceAnchorRef.current ??= captureAppearanceAnchor()
     change()
   }
 
   const openPanel = (nextPanel: Exclude<ReaderPanel, null>) => {
     commitPosition()
+    if (nextPanel === 'appearance') {
+      appearanceAnchorRef.current = restoredRef.current ? captureAppearanceAnchor() : null
+      appearanceChangedRef.current = false
+    }
     panelRef.current = nextPanel
     setPanel(nextPanel)
   }
@@ -385,9 +458,9 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
     }
   }
 
-  const openSection = (paragraphId: string) => {
+  const openSection = (paragraphId: string, section = true) => {
     pendingRestoreRef.current = null
-    pendingSectionRef.current = paragraphId
+    pendingDestinationRef.current = { paragraphId, section }
     closePanel()
   }
 
@@ -414,7 +487,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
     '--story-line-height': LINE_HEIGHTS[lineHeight],
     '--story-measure': MEASURES[measure],
   } as CSSProperties
-  const panelTitle = panel === 'appearance' ? copy.appearance : panel === 'contents' ? copy.inStory : copy.account
+  const panelTitle = panel === 'appearance' ? copy.appearance : panel === 'contents' ? copy.inStory : panel === 'find' ? findCopy.title : copy.account
 
   return (
     <div
@@ -423,10 +496,11 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
       data-page="story-reader"
       data-measure={measure}
       data-line-height={lineHeight}
+      data-palette={palette}
       style={readerStyle}
     >
       <ReaderHeader ref={toolbarRef} className="story-reader-toolbar"
-        title={story.title} subtitle={story.series?.title} titleLang="en"
+        title={story.title} titleLang="en"
         back={<Link to={backTo} onClick={commitPosition} className="story-icon-button" aria-label={copy.back(backLabel)}><IconArrowLeft size={21} /></Link>}
         actions={<>
 {hasContents ? <button
@@ -440,6 +514,16 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
             <path d="M4 6h16M4 12h16M4 18h10" />
           </svg>
+        </button> : null}
+        {!hasContents ? <button
+          type="button"
+          className="story-icon-button"
+          aria-label={findCopy.title}
+          aria-haspopup="dialog"
+          aria-expanded={panel === 'find'}
+          onClick={() => openPanel('find')}
+        >
+          <IconSearch size={20} />
         </button> : null}
         <button
           type="button"
@@ -484,13 +568,12 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
           <div className="story-reader-meta" lang={storyUiLang(locale)}>
             <span>{copy.minutes(story.readingMinutes)}</span>
             <span aria-hidden="true">·</span>
-            <button type="button" onClick={() => openPanel('account')} aria-haspopup="dialog">{copy.account}</button>
+            <button type="button" onClick={() => openPanel('account')} aria-haspopup="dialog" aria-expanded={panel === 'account'}>{copy.account}</button>
           </div>
           <StoryArtwork kind={story.artwork} className="story-reader-artwork" />
         </header>
         <div className="story-prose">
-          {story.paragraphs.map(paragraph => {
-            const section = sections?.find(item => item.startParagraphId === paragraph.id)
+          {findPassages.map(({ paragraph, section, ranges, headingRanges }) => {
             return <Fragment key={paragraph.id}>
               {section ? <h2
                 id={`story-section-${section.id}`}
@@ -500,16 +583,19 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
                   if (node) sectionHeadingRefs.current.set(paragraph.id, node)
                   else sectionHeadingRefs.current.delete(paragraph.id)
                 }}
-              >{section.title}</h2> : null}
+                data-find-current={selectedFindParagraph === paragraph.id && headingRanges.length > 0 ? 'true' : undefined}
+              ><StoryHighlightedText text={section.title} ranges={headingRanges} /></h2> : null}
             <p
               id={paragraph.id}
+              tabIndex={-1}
               ref={node => {
                 if (node) paragraphRefs.current.set(paragraph.id, node)
                 else paragraphRefs.current.delete(paragraph.id)
               }}
               className="story-paragraph"
+              data-find-current={selectedFindParagraph === paragraph.id && ranges.length > 0 ? 'true' : undefined}
             >
-              {paragraph.text}
+              <StoryHighlightedText text={paragraph.text} ranges={ranges} />
             </p>
             </Fragment>
           })}
@@ -552,10 +638,11 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
           onClose={closePanel}
           title={panelTitle}
           description={panel === 'appearance'
-            ? copy.appearanceDescription
-            : panel === 'contents' ? copy.contentsDescription : copy.accountDescription}
-          className="story-reader-panel"
+            ? appearanceCopy.description
+            : panel === 'contents' ? copy.contentsDescription : panel === 'find' ? findCopy.description : copy.accountDescription}
+          className={`story-reader-panel ${PANEL_PALETTES[palette]}`}
           testId="story-reader-panel"
+          initialFocusRef={panel === 'find' ? findInputRef : undefined}
         >
           <header className="story-panel-header" lang={storyUiLang(locale)}>
             <h2>{panelTitle}</h2>
@@ -566,33 +653,68 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
           <div className="story-panel-body" lang={storyUiLang(locale)}>
             {panel === 'appearance' ? (
               <>
-                <p className="story-settings-note">{copy.appearanceDescription}</p>
+                <p className="story-settings-note">{appearanceCopy.description}</p>
                 <fieldset className="story-setting-group">
                   <legend>{copy.textSize}</legend>
                   <div className="story-font-size">
-                    <button type="button" aria-label={copy.decrease} disabled={fontScale <= 0.85} onClick={() => changeAppearance(() => setFontScale(fontScale - 0.05))}>
+                    <button type="button" aria-label={copy.decrease} disabled={fontScale <= EPUB_FONT_SCALE_MIN} onClick={() => changeAppearance(() => setFontScale(fontScale - EPUB_FONT_SCALE_STEP))}>
                       <span aria-hidden="true">A−</span>
                     </button>
                     <input
                       type="range"
                       aria-label={copy.textSize}
-                      min="0.85"
-                      max="1.3"
-                      step="0.05"
+                      min={EPUB_FONT_SCALE_MIN}
+                      max={EPUB_FONT_SCALE_MAX}
+                      step={EPUB_FONT_SCALE_STEP}
                       value={fontScale}
                       onChange={event => changeAppearance(() => setFontScale(Number(event.target.value)))}
                     />
-                    <button type="button" aria-label={copy.increase} disabled={fontScale >= 1.3} onClick={() => changeAppearance(() => setFontScale(fontScale + 0.05))}>
+                    <button type="button" aria-label={copy.increase} disabled={fontScale >= EPUB_FONT_SCALE_MAX} onClick={() => changeAppearance(() => setFontScale(fontScale + EPUB_FONT_SCALE_STEP))}>
                       <span aria-hidden="true">A+</span>
                     </button>
                     <output>{Math.round(fontScale * 100)}%</output>
                   </div>
                 </fieldset>
-                <StoryChoiceGroup title={copy.lineSpacing} options={[{ value: 'compact', label: copy.closeSpacing }, { value: 'comfortable', label: copy.natural }, { value: 'spacious', label: copy.open }]} value={lineHeight} onChange={value => changeAppearance(() => setLineHeight(value))} />
+                <div className="story-appearance-preview" role="region" aria-label={appearanceCopy.preview} tabIndex={0} style={readerStyle}>
+                  <p lang="en">{story.paragraphs.find(paragraph => paragraph.id === activeParagraphRef.current)?.text ?? story.paragraphs[0]?.text}</p>
+                </div>
+                <StoryChoiceGroup title={copy.lineSpacing} options={[{ value: 'compact', label: appearanceCopy.compact }, { value: 'comfortable', label: appearanceCopy.comfortable }, { value: 'spacious', label: appearanceCopy.spacious }]} value={lineHeight} onChange={value => changeAppearance(() => setLineHeight(value))} />
                 <StoryChoiceGroup title={copy.width} options={[{ value: 'narrow', label: copy.narrow }, { value: 'standard', label: copy.standard }, { value: 'wide', label: copy.wide }]} value={measure} onChange={value => changeAppearance(() => setMeasure(value))} />
-                <StoryChoiceGroup title={copy.theme} options={[{ value: 'light', label: copy.light }, { value: 'dark', label: copy.dark }, { value: 'system', label: copy.system }]} value={themeMode} onChange={setThemeMode} />
+                <StoryChoiceGroup<EpubReaderPalette> title={appearanceCopy.pageColor} options={[{ value: 'paper', label: appearanceCopy.paper }, { value: 'sepia', label: appearanceCopy.sepia }, { value: 'night', label: appearanceCopy.night }]} value={palette} onChange={value => changeAppearance(() => setPalette(value))} />
+                <button type="button" className="story-text-button" onClick={() => changeAppearance(resetPreferences)}>{appearanceCopy.reset}</button>
+              </>
+            ) : panel === 'find' ? (
+              <>
+                <label className="story-find-label" htmlFor="story-find-query">{findCopy.label}</label>
+                <div className="story-find-input">
+                  <input ref={findInputRef} id="story-find-query" type="search" maxLength={200} value={findQuery}
+                    placeholder={findCopy.placeholder} aria-describedby="story-find-status" autoComplete="off"
+                    onChange={event => { setFindQuery(event.target.value); setSelectedFindParagraph(null) }} />
+                  {findQuery ? <button type="button" className="story-icon-button" aria-label={findCopy.clear}
+                    onClick={() => { setFindQuery(''); setSelectedFindParagraph(null); findInputRef.current?.focus() }}><IconClose size={18} /></button> : null}
+                </div>
+                <p id="story-find-status" className="story-find-status" role="status" aria-live="polite">
+                  {!normalizedFindQuery ? findCopy.hint : findResults.length ? findCopy.summary(findMatchCount, findResults.length) : findCopy.empty}
+                </p>
+                {findResults.length ? <ol className="story-find-results" aria-label={findCopy.results}>
+                  {findResults.map(({ paragraph, index, section, ranges, headingRanges }) => {
+                    const text = ranges.length ? paragraph.text : section!.title
+                    const excerpt = storyFindExcerpt(text, ranges[0] ?? headingRanges[0])
+                    return <li key={paragraph.id}><button type="button" aria-label={findCopy.passage(index + 1)}
+                      aria-describedby={`story-find-excerpt-${paragraph.id}`}
+                      aria-current={selectedFindParagraph === paragraph.id ? 'location' : undefined}
+                      onClick={() => { setSelectedFindParagraph(paragraph.id); openSection(paragraph.id, !ranges.length) }}>
+                      <span>{findCopy.passage(index + 1)}</span>
+                      <span id={`story-find-excerpt-${paragraph.id}`} lang="en"><StoryHighlightedText text={excerpt} ranges={storyMatchRanges(excerpt, normalizedFindQuery)} /></span>
+                    </button></li>
+                  })}
+                </ol> : null}
               </>
             ) : panel === 'contents' ? (
+              <>
+              <button type="button" className="story-action-button" onClick={() => openPanel('find')}>
+                <IconSearch size={18} />{findCopy.title}
+              </button>
               <nav aria-label={copy.sections}>
                 <ol className="story-contents-list">
                   {sections?.map((section, index) => <li key={section.id}>
@@ -602,6 +724,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
                   </li>)}
                 </ol>
               </nav>
+              </>
             ) : (
               <>
                 <p className="story-reader-eyebrow" lang="en">{story.accountType}</p>

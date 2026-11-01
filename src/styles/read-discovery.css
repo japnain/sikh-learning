@@ -121,7 +121,7 @@
   .read-room-shell .read-quick-find-card__heading > button { justify-self: start; margin-top: .5rem; }
 }
 
-.read-room-shell :is(.read-index-row__detail, .read-vaar-link__label) {
+.read-room-shell .read-vaar-link__label {
   font-size: .8125rem;
   line-height: 1.6;
 }
@@ -183,6 +183,23 @@
   text-underline-offset: .2em;
 }
 .read-browse-heading { margin-top: 1rem; padding-inline: .25rem; font-size: .9375rem; }
+.read-directory-list { container: read-directory / inline-size; }
+.read-bani-group-panel { min-width: 0; margin-left: 0 !important; }
+/* Nested groups must leave room for bilingual names when text is enlarged. */
+.read-directory-list > div > [id$='-panel'] { padding-inline: clamp(8px, .7rem, 12px); }
+@container read-directory (max-width: 22rem) {
+  .read-directory-list .read-directory-card:has(> span > .icon-surface) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 32px;
+    gap: 4px 8px;
+    min-width: 0;
+  }
+  .read-directory-card:has(> span > .icon-surface) > :first-child { grid-column: 1; grid-row: 1; min-width: 0; overflow-wrap: anywhere; }
+  .read-directory-card > span:has(> .icon-surface) { display: contents; }
+  .read-directory-card > span:has(> .icon-surface) > :not(.icon-surface) { grid-column: 1; grid-row: 2; min-width: 0; text-align: start; }
+  .read-directory-card > span > .icon-surface { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 32px; height: 32px; }
+  .read-directory-list .read-directory-card--nested { padding-left: 8px !important; }
+}
 .read-search-kinds > button:focus-visible, .read-search-recover:focus-visible {
   outline: 2px solid rgb(var(--color-accent-strong));
   outline-offset: 3px;

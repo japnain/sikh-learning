@@ -1,0 +1,12 @@
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+ Test Files  4 passed (4)
+      Tests  122 passed (122)
+   Start at  13:32:30
+   Duration  25.53s (transform 2.16s, setup 1.03s, import 2.19s, tests 20.32s, environment 1.48s)
+

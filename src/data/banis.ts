@@ -84,7 +84,7 @@ const EXACT_DG_BANIS: Bani[] = [
   browseOnlyBani({ id: 'zafarnama', name: 'Zafarnama', scripture: 'DG', source: 'D', startAng: 1389, endAng: 1389, category: 'Major Compositions', description: 'Guru Gobind Singh Ji\'s Persian letter to Aurangzeb.', type: 'browse-only' }),
 
   exactBani({ id: 'shabad-hazare-10', name: 'Shabad Hazare Patshahi 10', scripture: 'DG', source: 'D', startAng: 709, endAng: 712, category: 'Shorter Banis', description: 'Shabads of longing and love by Guru Gobind Singh Ji.', baniDbId: 5 }),
-  exactBani({ id: 'sastra-naam-mala', name: 'Shastar Naam Mala', scripture: 'DG', source: 'D', startAng: 717, endAng: 809, category: 'Shorter Banis', description: 'Meditation through the names of weapons.', baniDbId: 19 }),
+  exactBani({ id: 'sastra-naam-mala', name: 'Shastar Naam Mala', scripture: 'DG', source: 'D', startAng: 717, endAng: 718, category: 'Shorter Banis', description: 'The opening Bhagauti Ustat chapter, invoking protection through the names and imagery of weapons.', baniDbId: 19 }),
 ]
 
 const READ_ONLY_SGGS_EXACT_BANIS: Bani[] = [

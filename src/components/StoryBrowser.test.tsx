@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   configureStoryRepositoryLoader,
   downloadStoryCollection,
+  refreshStoryCatalog,
   getStoredStoryIds,
   getOfflineStoryIds,
 } from '../data/storyRepository'
@@ -94,6 +95,21 @@ afterEach(() => {
 })
 
 describe('StoryBrowser', () => {
+  it('shows the saved shelf during a hanging refresh, then updates its titles and offline status in place', async () => {
+    await downloadStoryCollection()
+    let finish!: (value: StoryCatalog) => void
+    configureStoryRepositoryLoader(() => new Promise<StoryCatalog>(resolve => { finish = resolve }))
+    open()
+    await screen.findByTestId('story-browser')
+    expect(screen.getByRole('heading', { level: 4, name: summaries[0].title })).toBeInTheDocument()
+    const revised = { ...catalog, stories: [{ ...summaries[0], title: 'A revised story title', revision: 2 }, ...summaries.slice(1)] }
+    await act(async () => { finish(revised); await refreshStoryCatalog() })
+    expect(screen.queryByRole('heading', { level: 4, name: summaries[0].title })).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 4, name: 'A revised story title' })).toBeInTheDocument()
+    expect(getOfflineStoryIds()).toEqual(summaries.slice(1).map(summary => summary.id))
+    expect(getStoredStoryIds()).toHaveLength(3)
+  })
+
   it('loads the catalog through the repository and combines person/theme search with collection filtering', async () => {
     const user = userEvent.setup()
     const loader = vi.fn(async (resourcePath: string) => fixture(resourcePath))

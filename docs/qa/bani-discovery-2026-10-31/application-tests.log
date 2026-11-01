@@ -1,0 +1,86 @@
+
+[vitest] core stores, API, utils, QA, and content (59 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+
+ Test Files  59 passed (59)
+      Tests  567 passed (567)
+   Start at  13:27:26
+   Duration  40.31s (transform 1.54s, setup 8.79s, import 1.27s, tests 1.45s, environment 20.96s)
+
+
+[vitest] data catalog support (8 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+
+ Test Files  8 passed (8)
+      Tests  70 passed (70)
+   Start at  13:28:06
+   Duration  11.58s (transform 594ms, setup 1.44s, import 119ms, tests 6.37s, environment 2.68s)
+
+
+[vitest] pages and readers (19 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+ Test Files  19 passed (19)
+      Tests  426 passed (426)
+   Start at  13:28:18
+   Duration  74.16s (transform 1.90s, setup 2.77s, import 3.23s, tests 59.29s, environment 6.56s)
+
+
+[vitest] components, hooks, and app shell (48 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+ Test Files  48 passed (48)
+      Tests  453 passed (453)
+   Start at  13:29:33
+   Duration  49.82s (transform 1.98s, setup 5.90s, import 2.92s, tests 19.67s, environment 15.50s)
+
+
+[vitest] Panth Prakash repository integrity (1 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  13:30:24
+   Duration  1.02s (transform 416ms, setup 550ms, import 6ms, tests 21ms, environment 326ms)
+
+
+[vitest] native library file integrity (1 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  13:30:25
+   Duration  1.27s (transform 382ms, setup 514ms, import 9ms, tests 306ms, environment 324ms)
+
+
+[vitest] miscellaneous tests (22 files)
+
+ RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+ Test Files  22 passed (22)
+      Tests  339 passed (339)
+   Start at  13:30:27
+   Duration  28.44s (transform 1.06s, setup 2.90s, import 991ms, tests 14.86s, environment 7.05s)
+

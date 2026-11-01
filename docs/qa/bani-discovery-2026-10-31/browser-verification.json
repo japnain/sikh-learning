@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-31",
+  "environment": "Rebuilt local HashRouter review harness using app components/styles and fixture-backed reader data. Catalogue and context are bundled production source.",
+  "catalogueChecks": [
+    {
+      "viewport": 390,
+      "rootText": "16px",
+      "theme": "dark",
+      "rows": 105,
+      "unique": 105,
+      "missingContext": 0,
+      "scriptNames": 104,
+      "checked": 976,
+      "clipped": [],
+      "contrast": [
+        {
+          "sel": ".read-bani-row__name",
+          "ratio": 14.05
+        },
+        {
+          "sel": ".read-bani-row__summary",
+          "ratio": 7.05
+        },
+        {
+          "sel": ".read-bani-row__details > summary",
+          "ratio": 7.2
+        }
+      ]
+    },
+    {
+      "viewport": 390,
+      "rootText": "16px",
+      "theme": "",
+      "rows": 105,
+      "unique": 105,
+      "missingContext": 0,
+      "scriptNames": 104,
+      "checked": 976,
+      "clipped": [],
+      "contrast": [
+        {
+          "sel": ".read-bani-row__name",
+          "ratio": 11.64
+        },
+        {
+          "sel": ".read-bani-row__summary",
+          "ratio": 6.12
+        },
+        {
+          "sel": ".read-bani-row__details > summary",
+          "ratio": 5.35
+        }
+      ]
+    },
+    {
+      "viewport": 320,
+      "rootText": "32px",
+      "theme": "",
+      "rows": 105,
+      "unique": 105,
+      "missingContext": 0,
+      "scriptNames": 104,
+      "checked": 976,
+      "clipped": [],
+      "contrast": [
+        {
+          "sel": ".read-bani-row__name",
+          "ratio": 11.64
+        },
+        {
+          "sel": ".read-bani-row__summary",
+          "ratio": 6.12
+        },
+        {
+          "sel": ".read-bani-row__details > summary",
+          "ratio": 5.35
+        }
+      ]
+    },
+    {
+      "viewport": 1200,
+      "rootText": "16px",
+      "theme": "",
+      "rows": 105,
+      "unique": 105,
+      "missingContext": 0,
+      "scriptNames": 104,
+      "checked": 976,
+      "clipped": [],
+      "contrast": [
+        {
+          "sel": ".read-bani-row__name",
+          "ratio": 11.64
+        },
+        {
+          "sel": ".read-bani-row__summary",
+          "ratio": 6.12
+        },
+        {
+          "sel": ".read-bani-row__details > summary",
+          "ratio": 5.35
+        }
+      ]
+    }
+  ],
+  "keyboard": {
+    "closed": true,
+    "focusReturned": true,
+    "route": "#/banis?open=sundar-gutka%2Csggs%2Cdg%2Csundar-gutka-nitnem%2Csundar-gutka-popular%2Csundar-gutka-other%2Csggs-Long+Compositions%2Csggs-Vars%2Csggs-Raag+Sections%2Csggs-Saloks+%26+Short+Banis%2Csggs-Swaiye%2Cdg-Bir+Ras%2Cdg-Major+Compositions%2Cdg-Supplemental+Banis%2Cdg-Shorter+Banis"
+  },
+  "limits": [
+    "Not a physical iPhone momentum-scroll test",
+    "Not production HTTP routing, VoiceOver or service-worker certification",
+    "Contrast computed from current foreground and composited ancestor backgrounds for sampled row tokens"
+  ]
+}

@@ -8,17 +8,27 @@ beforeEach(() => {
 test('keeps EPUB reading preferences in safe ranges', () => {
   const store = useEpubReaderStore.getState()
 
-  store.setFontScale(2)
+  store.setFontScale(3)
   store.setLineHeight('spacious')
   store.setMeasure('narrow')
   store.setPalette('sepia')
 
   expect(useEpubReaderStore.getState()).toEqual(expect.objectContaining({
-    fontScale: 1.3,
+    fontScale: 2,
     lineHeight: 'spacious',
     measure: 'narrow',
     palette: 'sepia',
   }))
+})
+
+test('supports double-size prose and rejects invalid text sizes', () => {
+  const store = useEpubReaderStore.getState()
+  store.setFontScale(2)
+  expect(useEpubReaderStore.getState().fontScale).toBe(2)
+  store.setFontScale(0)
+  expect(useEpubReaderStore.getState().fontScale).toBe(0.85)
+  store.setFontScale(Number.NaN)
+  expect(useEpubReaderStore.getState().fontScale).toBe(1)
 })
 
 test('resets EPUB reading preferences', () => {

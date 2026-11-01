@@ -1,12 +1,14 @@
 import type { SearchResult } from '../api/banidb'
-import { loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../data/libraryRepository'
+import { loadLibrarySearchIndex, loadLibraryDiscoveryCatalog } from '../data/libraryRepository'
 import { loadStoryCatalog } from '../data/storyRepository'
-import { buildLibrarySearchPath, libraryMatchRanges, normalizeLibraryQuery } from './librarySearch'
+import { buildLibrarySearchPath, normalizeLibraryQuery } from './librarySearch'
 import { BANIS, READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
 import { SOURCE_READER_META } from './sourceReaderMeta'
 import { matchesStorySearch, normalizeStorySearch } from './storySearch'
+import { getBaniDiscovery, getBrowseBaniDiscovery } from '../content/baniDiscovery'
+import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
@@ -61,11 +63,6 @@ export interface GroupedSearchResult {
   writer: string
   matchCount: number
 }
-
-const SCRIPTURE_META = {
-  SGGS: { label: SOURCE_READER_META.G.name },
-  DG: { label: SOURCE_READER_META.D.name },
-} as const
 
 export const SEARCH_SOURCE_LABELS: Record<SearchSource, string> = {
   all: 'All',
@@ -188,7 +185,7 @@ function normalizeBaniLabel(value: string) {
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/[’'`()]/g, '')
-    .replace(/[^a-z0-9\u0A00-\u0A7F]+/g, ' ')
+    .replace(/[^\u0900-\u097Fa-z0-9\u0A00-\u0A7F]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
 }
@@ -203,13 +200,11 @@ function normalizeLibrarySearchText(value: string) {
     .trim()
 }
 
-function getSearchSnippet(searchText: string, normalizedQuery: string) {
-  const normalizedText = normalizeLibrarySearchText(searchText)
-  const matchIndex = normalizedText.indexOf(normalizedQuery)
+function getSearchSnippet(searchText: string, matchIndex: number, matchLength: number) {
   if (matchIndex < 0) return searchText.slice(0, 180).replace(/\s+/g, ' ').trim()
 
   const start = Math.max(0, matchIndex - 70)
-  const end = Math.min(searchText.length, matchIndex + normalizedQuery.length + 130)
+  const end = Math.min(searchText.length, matchIndex + matchLength + 130)
   return searchText.slice(start, end).replace(/\s+/g, ' ').trim()
 }
 
@@ -328,11 +323,19 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
 
     return resolvedRoutes
       .flatMap((route): AppSearchMatch[] => {
+        const routeParams = new URLSearchParams(route.path.split('?')[1] ?? '')
+        const baniDbId = Number(routeParams.get('baniDbId'))
+        const discovery = getBaniDiscovery(baniDbId)
+        const scriptNames = BANI_SCRIPT_NAMES[baniDbId]
         const searchLabels = Array.from(new Set([
           route.label,
+          ...(discovery ? [discovery.name] : []),
+          ...(scriptNames ? [scriptNames.gurmukhi, scriptNames.hindi] : []),
           bani.name,
           bani.id.replace(/-/g, ' '),
-          ...(CANONICAL_SEARCH_LABELS_BY_ID.get(bani.id) ?? []),
+          // Historical full titles describe this exact reading, while the
+          // shorter family aliases below can still reveal both recensions.
+          ...(baniDbId === bani.baniDbId ? CANONICAL_SEARCH_LABELS_BY_ID.get(bani.id) ?? [] : []),
           ...(CANONICAL_BANI_ALIASES_BY_ID.get(bani.id) ?? []),
         ]))
 
@@ -341,8 +344,9 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
 
         return [{
           key: `read-${bani.id}-${route.key}`,
-          label: route.label,
-          detail: `${SCRIPTURE_META[bani.scripture as 'SGGS' | 'DG'].label} · ${bani.category}`,
+          label: discovery?.name ?? route.label,
+          detail: bani.category === 'Raag Sections' ? 'Bhagat Bani & Selections' : bani.category,
+          excerpt: discovery?.summary,
           path: route.path,
           score,
           kind: 'read-route',
@@ -353,8 +357,10 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
   const browseMatches = ROUTABLE_BROWSE_BANIS.flatMap((bani): AppSearchMatch[] => {
     if (searchSource !== 'all' && bani.source !== searchSource) return []
 
+    const discovery = getBrowseBaniDiscovery(bani)
     const searchLabels = [
       bani.name,
+      ...(discovery ? [discovery.name] : []),
       bani.id.replace(/-/g, ' '),
       ...(CANONICAL_BANI_ALIASES_BY_ID.get(bani.id) ?? []),
     ]
@@ -363,8 +369,9 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
 
     return [{
       key: `read-${bani.id}`,
-      label: bani.name,
+      label: discovery?.name ?? bani.name,
       detail: `${SOURCE_READER_META[bani.source].name} · ${bani.category}`,
+      excerpt: discovery?.summary,
       path: bani.id === 'amrit-keertan'
         ? '/banis/amrit-keertan'
         : buildCanonicalBaniStudyPath(bani),
@@ -375,13 +382,23 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
 
   const standaloneMatches = searchSource === 'all'
     ? STANDALONE_ROUTE_DESTINATIONS.flatMap((destination): AppSearchMatch[] => {
-        const score = getCanonicalRouteMatchScore(query, [destination.label, ...destination.aliases])
+        const params = new URLSearchParams(destination.path.split('?')[1] ?? '')
+        const baniDbId = Number(params.get('baniDbId'))
+        const discovery = getBaniDiscovery(baniDbId)
+        const scriptNames = BANI_SCRIPT_NAMES[baniDbId]
+        const score = getCanonicalRouteMatchScore(query, [
+          destination.label,
+          ...destination.aliases,
+          ...(discovery ? [discovery.name] : []),
+          ...(scriptNames ? [scriptNames.gurmukhi, scriptNames.hindi] : []),
+        ])
         if (score < 0) return []
 
         return [{
           key: `read-${destination.id}`,
-          label: destination.label,
+          label: discovery?.name ?? destination.label,
           detail: destination.detail,
+          excerpt: discovery?.summary,
           path: destination.path,
           score,
           kind: 'read-route',
@@ -389,7 +406,20 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
       })
     : []
 
-  return [...matches, ...browseMatches, ...standaloneMatches]
+  const distinct = new Map<string, AppSearchMatch>()
+  for (const match of [...matches, ...browseMatches, ...standaloneMatches]) {
+    const [pathname, search = ''] = match.path.split('?')
+    const params = new URLSearchParams(search)
+    const providerId = params.get('baniDbId')
+    // Display labels, old aliases, and family expansion can name the same
+    // destination. Exact provider/length/flow identity governs deduplication.
+    const identity = providerId
+      ? `${pathname}:bani:${providerId}:length:${params.get('sgLength') ?? ''}:flow:${params.get('flow') ?? ''}`
+      : match.path
+    const previous = distinct.get(identity)
+    if (!previous || match.score > previous.score) distinct.set(identity, match)
+  }
+  return [...distinct.values()]
 }
 
 export function getAppSearchMatches(
@@ -405,10 +435,13 @@ export function getAppSearchMatches(
 export async function getLibrarySearchMatches(query: string): Promise<AppSearchMatch[]> {
   const normalizedQuery = normalizeLibrarySearchText(query)
   if (normalizedQuery.length < 2) return []
+  const phrase = normalizeLibraryQuery(query).toLowerCase()
 
   const [catalog, catalogIndex] = await Promise.all([
-    loadLibraryWorkCatalog(),
-    loadLibrarySearchIndex(),
+    loadLibraryDiscoveryCatalog(),
+    // Aliases enrich discovery; their index must not hide usable downloaded
+    // chapter indexes when the network is unavailable.
+    loadLibrarySearchIndex().catch(() => ({ works: [] })),
   ])
   const aliasesByWorkId = new Map(catalogIndex.works.map(work => [work.id, work.aliases]))
   const workMatches: AppSearchMatch[] = []
@@ -432,13 +465,16 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
     })
   }
 
-  const workIndexResults = await Promise.all(catalog.works.map(async work => {
+  const workIndexResults = await Promise.allSettled(catalog.works.map(async work => {
     const searchIndex = await loadLibrarySearchIndex(work.id)
     return (searchIndex.chapters ?? []).flatMap((entry): AppSearchMatch[] => {
-      const exactTitle = entry.title.toLowerCase() === normalizeLibraryQuery(query).toLowerCase()
-      const titleContains = libraryMatchRanges(entry.title, query).length > 0
-      const phraseMatch = libraryMatchRanges(entry.searchText, query).length > 0
-      if (!titleContains && !phraseMatch) return []
+      const title = entry.title.toLowerCase()
+      const exactTitle = title === phrase
+      const titleContains = title.includes(phrase)
+      // Search needs existence and a snippet offset, not every occurrence.
+      // Reuse the literal phrase offset so snippets and reader highlights agree.
+      const phraseOffset = entry.searchText.toLowerCase().indexOf(phrase)
+      if (!titleContains && phraseOffset < 0) return []
 
       const score = exactTitle ? 132 : titleContains ? 112 : 78
       const episodeLabel = entry.episodeNumber ? ` · Episode ${entry.episodeNumber}` : ''
@@ -446,7 +482,7 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
         key: `library-chapter-${entry.workId}-${entry.chapterId}`,
         label: entry.title,
         detail: `${work.shortTitle} · Volume ${entry.volume}${episodeLabel}`,
-        excerpt: getSearchSnippet(entry.searchText, normalizedQuery),
+        excerpt: getSearchSnippet(entry.searchText, phraseOffset, phrase.length),
         path: buildLibrarySearchPath(entry.workId, entry.chapterId, query),
         score,
         kind: 'library-chapter',
@@ -459,7 +495,12 @@ export async function getLibrarySearchMatches(query: string): Promise<AppSearchM
     })
   }))
 
-  return [...workMatches, ...workIndexResults.flat()]
+  const readableIndexes = workIndexResults.filter(result => result.status === 'fulfilled')
+  if (!workMatches.length && !readableIndexes.length) {
+    const failure = workIndexResults.find(result => result.status === 'rejected')
+    if (failure) throw failure.reason
+  }
+  return [...workMatches, ...readableIndexes.flatMap(result => result.value)]
     .sort((left, right) => right.score - left.score || left.label.localeCompare(right.label))
 }
 

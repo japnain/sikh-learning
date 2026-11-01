@@ -3,6 +3,7 @@ import {
   Fragment,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -24,13 +25,17 @@ import ReaderHeader from '../../components/ReaderHeader'
 import {
   loadLibraryChapter,
   loadLibraryChapterIndex,
-  loadLibraryWorkCatalog,
+  loadLibraryWork,
+  LibraryEditionUpdateRequiredError,
   resetLibraryRepositoryCache,
 } from '../../data/libraryRepository'
 import { findLibraryBlockMatches, libraryMatchRanges, normalizeLibraryQuery } from '../../utils/librarySearch'
 import '../../styles/library-tools.css'
 import {
   useEpubReaderStore,
+  EPUB_FONT_SCALE_MIN,
+  EPUB_FONT_SCALE_MAX,
+  EPUB_FONT_SCALE_STEP,
   type EpubReaderLineHeight,
   type EpubReaderMeasure,
   type EpubReaderPalette,
@@ -55,6 +60,9 @@ import {
   getLibraryReaderOrigin,
 } from '../../utils/libraryReaderNavigation'
 
+import { captureProseAnchor, findProseReadingBlock, restoreProseAnchor, type ProseAnchor } from '../../utils/proseAnchor'
+import { BOOK_READER_COPY, type BookReaderCopy } from './bookReaderCopy'
+
 interface ChapterReaderState {
   work: LibraryWork
   chapter: LibraryChapterPayload
@@ -65,39 +73,15 @@ interface ChapterLoadState {
   key: string
   status: 'loading' | 'ready' | 'error'
   reader: ChapterReaderState | null
-  issue?: 'missing' | 'unavailable'
+  issue?: 'missing' | 'unavailable' | 'edition'
 }
 
 type ReaderPanel = 'contents' | 'display' | 'notes' | null
 
-const BOOK_SAVE_COPY = {
-  en: {
-    save: 'Save this book section',
-    remove: 'Remove this saved book section',
-    saved: 'Book section saved.',
-    removed: 'Book section removed from Saved.',
-    storage: 'This bookmark could not be saved.',
-  },
-  pa: {
-    save: 'ਕਿਤਾਬ ਦਾ ਇਹ ਭਾਗ ਸੰਭਾਲੋ',
-    remove: 'ਕਿਤਾਬ ਦਾ ਇਹ ਸੰਭਾਲਿਆ ਭਾਗ ਹਟਾਓ',
-    saved: 'ਕਿਤਾਬ ਦਾ ਭਾਗ ਸੰਭਾਲਿਆ ਗਿਆ।',
-    removed: 'ਕਿਤਾਬ ਦਾ ਭਾਗ ਸੰਭਾਲੇ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ।',
-    storage: 'ਇਹ ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।',
-  },
-  hi: {
-    save: 'पुस्तक का यह भाग सहेजें',
-    remove: 'पुस्तक का यह सहेजा भाग हटाएँ',
-    saved: 'पुस्तक का भाग सहेजा गया।',
-    removed: 'पुस्तक का भाग सहेजे से हटा दिया गया।',
-    storage: 'यह बुकमार्क सहेजा नहीं जा सका।',
-  },
-} as const
-
-function chapterLabel(chapter: Pick<LibraryChapterPayload | LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>) {
+function chapterLabel(chapter: Pick<LibraryChapterPayload | LibraryChapterIndexEntry, 'kind' | 'episodeNumber' | 'chapterNumber'>, copy: BookReaderCopy) {
   return chapter.kind === 'episode' && chapter.episodeNumber
-    ? `Episode ${chapter.episodeNumber}`
-    : `Section ${chapter.chapterNumber}`
+    ? copy.episode(chapter.episodeNumber)
+    : copy.section(chapter.chapterNumber)
 }
 
 function chapterPath(workId: string, chapterId: string) {
@@ -131,7 +115,7 @@ function HighlightedText({ text, query }: { text: string; query: string }) {
   return <>{parts}</>
 }
 
-function ReaderInlineText({ text, query, onOpenNotes }: { text: string; query: string; onOpenNotes?: (trigger: HTMLElement) => void }) {
+function ReaderInlineText({ text, query, onOpenNotes, copy }: { text: string; query: string; copy: BookReaderCopy; onOpenNotes?: (trigger: HTMLElement) => void }) {
   const normalized = text.replace(/\s+([,.;!?])/g, '$1')
   const markerPattern = /([A-Za-z)])(\d{1,3})(?=(?:[,.;:!?)]|\s|$))/g
   const content: ReactNode[] = []
@@ -141,7 +125,7 @@ function ReaderInlineText({ text, query, onOpenNotes }: { text: string; query: s
     const number = match[2]
     const numberStart = (match.index ?? 0) + match[1].length
     content.push(<HighlightedText key={`text-${cursor}`} text={normalized.slice(cursor, numberStart)} query={query} />)
-    content.push(<sup key={`${numberStart}-${number}`} className="epub-reading-footnote-marker">{onOpenNotes ? <a href="#source-notes" aria-label={`Open source notes, reference ${number}`} onClick={event => { event.preventDefault(); onOpenNotes(event.currentTarget) }}>{number}</a> : number}</sup>)
+    content.push(<sup key={`${numberStart}-${number}`} className="epub-reading-footnote-marker">{onOpenNotes ? <a href="#source-notes" aria-label={copy.openReference(number)} onClick={event => { event.preventDefault(); onOpenNotes(event.currentTarget) }}>{number}</a> : number}</sup>)
     cursor = numberStart + number.length
   }
 
@@ -149,7 +133,7 @@ function ReaderInlineText({ text, query, onOpenNotes }: { text: string; query: s
   return <>{content}</>
 }
 
-function ReaderBlock({ block, query, matched, register, onOpenNotes }: { block: LibraryTextBlock; query: string; matched: boolean; register: (blockId: string, node: HTMLElement | null) => void; onOpenNotes?: (trigger: HTMLElement) => void }) {
+function ReaderBlock({ block, query, matched, register, onOpenNotes, copy }: { block: LibraryTextBlock; copy: BookReaderCopy; query: string; matched: boolean; register: (blockId: string, node: HTMLElement | null) => void; onOpenNotes?: (trigger: HTMLElement) => void }) {
   const common = {
     id: block.id,
     ref: (node: HTMLElement | null) => register(block.id, node),
@@ -159,11 +143,11 @@ function ReaderBlock({ block, query, matched, register, onOpenNotes }: { block: 
   }
 
   if (block.type === 'heading') {
-    return <h2 {...common} className="epub-reading-heading"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></h2>
+    return <h2 {...common} className="epub-reading-heading"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} copy={copy} /></h2>
   }
 
   if (block.type === 'invocation') {
-    return <p {...common} className="epub-reading-invocation"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></p>
+    return <p {...common} className="epub-reading-invocation"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} copy={copy} /></p>
   }
 
   if (block.type === 'meter') {
@@ -175,7 +159,7 @@ function ReaderBlock({ block, query, matched, register, onOpenNotes }: { block: 
     return (
       <div {...common} className="epub-reading-verse">
         <div>
-          {lines.map((line, index) => <span key={`${block.id}-line-${index}`}><ReaderInlineText text={line} query={query} onOpenNotes={onOpenNotes} /></span>)}
+          {lines.map((line, index) => <span key={`${block.id}-line-${index}`}><ReaderInlineText text={line} query={query} onOpenNotes={onOpenNotes} copy={copy} /></span>)}
         </div>
         {block.number ? <span className="epub-reading-verse__number">{block.number}</span> : null}
       </div>
@@ -183,10 +167,10 @@ function ReaderBlock({ block, query, matched, register, onOpenNotes }: { block: 
   }
 
   if (block.type === 'note') {
-    return <aside {...common} className="epub-reading-note" aria-label="Note"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></aside>
+    return <aside {...common} className="epub-reading-note" aria-label={copy.note}><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} copy={copy} /></aside>
   }
 
-  return <p {...common} className="epub-reading-paragraph"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} /></p>
+  return <p {...common} className="epub-reading-paragraph"><ReaderInlineText text={block.text} query={query} onOpenNotes={onOpenNotes} copy={copy} /></p>
 }
 
 function SegmentedControl<T extends string>({
@@ -219,7 +203,10 @@ function SegmentedControl<T extends string>({
   )
 }
 
-function ReaderPanelShell({ title, description, palette, onClose, children }: {
+function ReaderPanelShell({ title, description, palette, onClose, children, closeLabel, readerLabel, panelId }: {
+  closeLabel: string
+  readerLabel: string
+  panelId: string
   title: string
   description: string
   palette: EpubReaderPalette
@@ -239,15 +226,15 @@ function ReaderPanelShell({ title, description, palette, onClose, children }: {
       title={title}
       description={description}
       className={`epub-reader-panel ${paletteClass}`}
-      testId={`epub-reader-${title.toLowerCase().replace(/\s+/g, '-')}`}
+      testId={`epub-reader-${panelId}`}
     >
         <header>
           <div>
-            <p className="eyebrow">Reader</p>
+            <p className="eyebrow">{readerLabel}</p>
             <h2 id="epub-reader-panel-title">{title}</h2>
             <p>{description}</p>
           </div>
-          <button type="button" onClick={onClose} aria-label={`Close ${title.toLowerCase()}`} autoFocus>
+          <button type="button" onClick={onClose} aria-label={closeLabel} autoFocus>
             <IconClose size={18} />
           </button>
         </header>
@@ -259,7 +246,7 @@ function ReaderPanelShell({ title, description, palette, onClose, children }: {
 export default function LibraryChapterReader() {
   const updateSession = useProgressStore(state => state.updateSession)
   const locale = useLocaleStore(state => state.locale)
-  const bookSaveCopy = BOOK_SAVE_COPY[locale]
+  const readerCopy = BOOK_READER_COPY[locale]
   const { addBookmark, removeBookmark, getBookBookmark } = useBookmarksStore()
   const { workId = 'panth-prakash-english', chapterId = '' } = useParams<{ workId: string; chapterId: string }>()
   const location = useLocation()
@@ -272,16 +259,25 @@ export default function LibraryChapterReader() {
   const [loadAttempt, setLoadAttempt] = useState(0)
   const [activePanel, setActivePanel] = useState<ReaderPanel>(null)
   const [tocQuery, setTocQuery] = useState('')
+  const [findDraft, setFindDraft] = useState(searchQuery)
+  const [pendingFindQuery, setPendingFindQuery] = useState<string | null>(null)
   const [savedNotice, setSavedNotice] = useState<string | null>(null)
   const blockNodes = useRef(new Map<string, HTMLElement>())
   const visibleBlockIdRef = useRef<string | null>(null)
   const committedBlockIdRef = useRef<string | null>(null)
   const didRestoreLocation = useRef(false)
   const readerShellRef = useRef<HTMLDivElement | null>(null)
+  const panelRef = useRef(activePanel)
+  useLayoutEffect(() => {
+    panelRef.current = activePanel
+  }, [activePanel])
+  const appearanceAnchorRef = useRef<ProseAnchor | null>(null)
+  const restoreAppearanceRef = useRef(false)
   const contentsTriggerRef = useRef<HTMLButtonElement | null>(null)
   const settingsTriggerRef = useRef<HTMLButtonElement | null>(null)
   const notesTriggerRef = useRef<HTMLElement | null>(null)
   const progressBarRef = useRef<HTMLSpanElement | null>(null)
+  const progressRef = useRef<HTMLDivElement | null>(null)
   const progressLabelRef = useRef<HTMLSpanElement | null>(null)
 
   const fontScale = useEpubReaderStore(state => state.fontScale)
@@ -303,14 +299,15 @@ export default function LibraryChapterReader() {
     blockNodes.current.clear()
     visibleBlockIdRef.current = null
     committedBlockIdRef.current = null
+    appearanceAnchorRef.current = null
+    restoreAppearanceRef.current = false
 
     Promise.all([
-      loadLibraryWorkCatalog(),
+      loadLibraryWork(workId),
       loadLibraryChapterIndex(workId),
       loadLibraryChapter(workId, chapterId),
     ])
-      .then(([catalog, chapters, chapter]) => {
-        const work = catalog.workById[workId]
+      .then(([work, chapters, chapter]) => {
         if (cancelled) return
         if (!work || !chapter) {
           setLoadState({ key: requestKey, status: 'error', reader: null, issue: 'missing' })
@@ -318,9 +315,9 @@ export default function LibraryChapterReader() {
         }
         setLoadState({ key: requestKey, status: 'ready', reader: { work, chapter, chapters } })
       })
-      .catch(() => {
+      .catch(error => {
         if (cancelled) return
-        setLoadState({ key: requestKey, status: 'error', reader: null, issue: 'unavailable' })
+        setLoadState({ key: requestKey, status: 'error', reader: null, issue: error instanceof LibraryEditionUpdateRequiredError ? 'edition' : 'unavailable' })
       })
 
     return () => {
@@ -335,7 +332,7 @@ export default function LibraryChapterReader() {
   }, [requestKey])
 
   useEffect(() => {
-    if (state !== 'error' || loadState.issue === 'missing') return
+    if (state !== 'error' || loadState.issue !== 'unavailable') return
     window.addEventListener('online', retryLoad)
     return () => window.removeEventListener('online', retryLoad)
   }, [state, loadState.issue, retryLoad])
@@ -417,14 +414,20 @@ export default function LibraryChapterReader() {
   const renderLocationProgress = useCallback((blockId: string) => {
     const locator = createLocator(blockId)
     if (!locator) return
-    const progressPercent = Math.max(1, locator.locations.totalProgression * 100)
+    const progressPercent = locator.locations.totalProgression * 100
     if (progressBarRef.current) {
       progressBarRef.current.style.transform = `scaleX(${progressPercent / 100})`
     }
     if (progressLabelRef.current) {
-      progressLabelRef.current.textContent = `${Math.round(locator.locations.totalProgression * 100)}% of book`
+      progressLabelRef.current.textContent = readerCopy.progressValue(Math.round(progressPercent))
     }
-  }, [createLocator])
+    progressRef.current?.setAttribute('aria-valuenow', String(Math.round(progressPercent)))
+    progressRef.current?.setAttribute('aria-valuetext', readerCopy.progressValue(Math.round(progressPercent)))
+  }, [createLocator, readerCopy])
+
+  useEffect(() => {
+    if (visibleBlockIdRef.current) renderLocationProgress(visibleBlockIdRef.current)
+  }, [renderLocationProgress])
 
   const commitLocation = useCallback((blockId: string) => {
     if (!reader || committedBlockIdRef.current === blockId) return
@@ -440,11 +443,78 @@ export default function LibraryChapterReader() {
     })
   }, [createLocator, reader, renderLocationProgress, updateSession])
 
+  const currentReadingBlockId = useCallback(() => {
+    const root = readerShellRef.current
+    return (root ? findProseReadingBlock(root, '[data-reader-block]')?.id : null)
+      ?? visibleBlockIdRef.current
+  }, [])
+
   const commitVisibleLocation = useCallback(() => {
+    if (panelRef.current || restoreAppearanceRef.current) return
     const finalBlock = isAppScrollAtEnd() ? chapterBlocks.at(-1) : null
-    const blockId = finalBlock?.id ?? visibleBlockIdRef.current
-    if (blockId) commitLocation(blockId)
-  }, [chapterBlocks, commitLocation])
+    const blockId = finalBlock?.id ?? currentReadingBlockId()
+    if (blockId) {
+      visibleBlockIdRef.current = blockId
+      commitLocation(blockId)
+    }
+  }, [chapterBlocks, commitLocation, currentReadingBlockId])
+
+  const openAppearance = () => {
+    const root = readerShellRef.current
+    appearanceAnchorRef.current = root ? captureProseAnchor(root, '[data-reader-block]') : null
+    if (appearanceAnchorRef.current) commitLocation(appearanceAnchorRef.current.id)
+    restoreAppearanceRef.current = false
+    setActivePanel('display')
+  }
+
+  const changeAppearance = (change: () => void) => {
+    restoreAppearanceRef.current = Boolean(appearanceAnchorRef.current)
+    change()
+  }
+
+  useEffect(() => {
+    if (activePanel || !restoreAppearanceRef.current) return
+    let secondFrame: number | null = null
+    // The sheet restores its locked offset first. Then retain the same point
+    // within the visible block after typography has reflowed underneath it.
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        const anchor = appearanceAnchorRef.current
+        const root = readerShellRef.current
+        if (anchor && root) {
+          restoreProseAnchor(root, anchor)
+          visibleBlockIdRef.current = anchor.id
+          renderLocationProgress(anchor.id)
+        }
+        restoreAppearanceRef.current = false
+        appearanceAnchorRef.current = null
+      })
+    })
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      if (secondFrame !== null) window.cancelAnimationFrame(secondFrame)
+    }
+  }, [activePanel, renderLocationProgress])
+
+  useEffect(() => {
+    if (activePanel || pendingFindQuery === null) return
+    let secondFrame: number | null = null
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        const firstMatch = findLibraryBlockMatches(chapterBlocks, pendingFindQuery)[0]
+        const params = new URLSearchParams(location.search)
+        if (pendingFindQuery) params.set('find', pendingFindQuery)
+        else params.delete('find')
+        if (firstMatch) didRestoreLocation.current = false
+        setPendingFindQuery(null)
+        navigate({ pathname: location.pathname, search: params.toString(), hash: firstMatch ? `#${encodeURIComponent(firstMatch.blockId)}` : location.hash }, { replace: true, state: location.state })
+      })
+    })
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      if (secondFrame !== null) window.cancelAnimationFrame(secondFrame)
+    }
+  }, [activePanel, chapterBlocks, location.hash, location.pathname, location.search, location.state, navigate, pendingFindQuery])
 
   const closeActivePanel = useCallback(() => {
     const trigger = activePanel === 'contents' ? contentsTriggerRef.current : activePanel === 'notes' ? notesTriggerRef.current : settingsTriggerRef.current
@@ -479,39 +549,18 @@ export default function LibraryChapterReader() {
           if (!location.hash) navigate({ pathname: location.pathname, search: location.search, hash: `#${encodeURIComponent(decodedBlockId!)}` }, { replace: true, state: location.state })
         }
       }
-      if (requestedBlockId) {
+      if (requestedBlockId && (shouldRestoreBlock || !visibleBlockIdRef.current)) {
         visibleBlockIdRef.current = requestedBlockId
         renderLocationProgress(requestedBlockId)
       }
     })
 
     const removeSettledScrollListener = addAppScrollSettledListener(commitVisibleLocation)
-    if (typeof IntersectionObserver === 'undefined') {
-      return () => {
-        window.cancelAnimationFrame(restoreFrame)
-        removeSettledScrollListener()
-      }
-    }
-    const observer = new IntersectionObserver(entries => {
-      const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0]
-      const blockId = visible?.target.getAttribute('data-reader-block')
-      if (blockId) visibleBlockIdRef.current = blockId
-    }, {
-      root: null,
-      rootMargin: '-18% 0px -65% 0px',
-      threshold: [0, 0.1, 0.5],
-    })
-
-    blockNodes.current.forEach(node => observer.observe(node))
-
     return () => {
       window.cancelAnimationFrame(restoreFrame)
       removeSettledScrollListener()
-      observer.disconnect()
     }
-  }, [chapterBlocks, commitVisibleLocation, location.hash, location.pathname, location.search, location.state, navigate, reader, renderLocationProgress, searchMatches, searchQuery])
+  }, [chapterBlocks, commitVisibleLocation, location.hash, location.key, location.pathname, location.search, location.state, navigate, reader, renderLocationProgress, searchMatches, searchQuery])
 
   useEffect(() => {
     if (!reader) return
@@ -540,11 +589,11 @@ export default function LibraryChapterReader() {
       <SurfaceStateCard
         surface="epub-chapter-reader"
         state="loading"
-        eyebrow="Reader"
-        title="Opening this section"
-        body="Preparing the reading edition."
+        eyebrow={readerCopy.reader}
+        title={readerCopy.opening}
+        body={readerCopy.preparing}
         page="library"
-        actions={[{ label: 'Back to book', onClick: () => navigate(`/library/${workId}`, { state: readerNavigationState }), aiAction: 'leave-loading-book-section' }]}
+        actions={[{ label: readerCopy.backBook, onClick: () => navigate(`/library/${workId}`, { state: readerNavigationState }), aiAction: 'leave-loading-book-section' }]}
       />
     )
   }
@@ -554,13 +603,13 @@ export default function LibraryChapterReader() {
       <SurfaceStateCard
         surface="epub-chapter-reader"
         state="degraded"
-        eyebrow="Reader"
-        title="Section unavailable"
-        body={loadState.issue === 'missing' ? 'This section is not in the current book. Open the contents to choose another section.' : navigator.onLine === false ? 'You are offline and this section has not been downloaded. Reconnect to try again, or return to the book.' : 'The connection or saved copy could not be read. Try again, or return to the book.'}
+        eyebrow={readerCopy.reader}
+        title={readerCopy.unavailable}
+        body={loadState.issue === 'edition' ? readerCopy.editionChanged : loadState.issue === 'missing' ? readerCopy.missing : navigator.onLine === false ? readerCopy.offline : readerCopy.failed}
         page="library"
         actions={[
-          { label: 'Retry', onClick: retryLoad, aiAction: 'retry-library-chapter' },
-          { label: 'Back to book', onClick: () => navigate(`/library/${workId}`, { state: readerNavigationState }), aiAction: 'leave-unavailable-book-section', emphasis: 'secondary' },
+          { label: readerCopy.retry, onClick: retryLoad, aiAction: 'retry-library-chapter' },
+          { label: readerCopy.backBook, onClick: () => navigate(`/library/${workId}`, { state: readerNavigationState }), aiAction: 'leave-unavailable-book-section', emphasis: 'secondary' },
         ]}
       />
     )
@@ -571,18 +620,24 @@ export default function LibraryChapterReader() {
   const nextChapter = currentIndex >= 0 && currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null
   const normalizedTocQuery = tocQuery.trim().toLowerCase()
   const filteredToc = normalizedTocQuery
-    ? chapters.filter(entry => `${chapterLabel(entry)} ${entry.title}`.toLowerCase().includes(normalizedTocQuery))
+    ? chapters.filter(entry => `${chapterLabel(entry, readerCopy)} ${entry.title}`.toLowerCase().includes(normalizedTocQuery))
     : chapters
   const readerStyle = {
     '--epub-font-scale': String(fontScale),
   } as CSSProperties
   const backLabel = readerOrigin.startsWith('/saved')
-    ? 'Back to Saved'
+    ? readerCopy.backSaved
     : readerOrigin.startsWith('/banis')
-      ? 'Back to Read'
-      : `Back to ${work.shortTitle}`
+      ? readerCopy.backRead
+      : readerCopy.backWork(work.shortTitle)
   const chapterBookmark = getBookBookmark(work.id, chapter.id)
+  const openContents = () => {
+    commitVisibleLocation()
+    setFindDraft(searchQuery)
+    setActivePanel('contents')
+  }
   const openSourceNotes = (trigger: HTMLElement) => {
+    commitVisibleLocation()
     notesTriggerRef.current = trigger
     setActivePanel('notes')
   }
@@ -595,24 +650,24 @@ export default function LibraryChapterReader() {
   const toggleChapterBookmark = () => {
     if (chapterBookmark) {
       const result = removeBookmark(chapterBookmark.id)
-      setSavedNotice(result.persisted ? bookSaveCopy.removed : bookSaveCopy.storage)
+      setSavedNotice(result.persisted ? readerCopy.removed : readerCopy.storage)
       return
     }
 
-    const blockId = visibleBlockIdRef.current ?? chapterBlocks[0]?.id
+    const blockId = currentReadingBlockId() ?? chapterBlocks[0]?.id
     const block = blockId ? chapterBlocks.find(item => item.id === blockId) : undefined
     const result = addBookmark({
       type: 'book',
-      title: `${work.shortTitle} · ${chapterLabel(chapter)}`,
+      title: `${work.shortTitle} · ${chapterLabel(chapter, readerCopy)}`,
       workId: work.id,
       chapterId: chapter.id,
-      chapterLabel: chapterLabel(chapter),
+      chapterLabel: chapterLabel(chapter, readerCopy),
       blockId,
       excerpt: block ? readerBlockText(block).slice(0, 360).trim() : chapter.title,
       description: chapter.title,
       returnPath: `${chapterPath(work.id, chapter.id)}${blockId ? `#${encodeURIComponent(blockId)}` : ''}`,
     })
-    setSavedNotice(result.persisted ? bookSaveCopy.saved : bookSaveCopy.storage)
+    setSavedNotice(result.persisted ? readerCopy.saved : readerCopy.storage)
   }
 
   return (
@@ -622,66 +677,77 @@ export default function LibraryChapterReader() {
       className="epub-reader-shell"
       data-testid="panth-chapter-reader"
       data-page="library-chapter"
+      lang={locale}
       data-palette={palette}
       data-line-height={lineHeight}
       data-measure={measure}
       style={readerStyle}
     >
       <ReaderHeader className="epub-reader-topbar" data-testid="panth-reader-topbar"
-        title={work.shortTitle} subtitle={chapterLabel(chapter)}
+        title={work.shortTitle}
+        titleLang="en"
         back={<Link to={readerOrigin} className="epub-reader-topbar__back interactive-focus" aria-label={backLabel}><IconArrowLeft size={18} /></Link>}
         actions={<>
-          <button ref={contentsTriggerRef} type="button" onClick={() => setActivePanel('contents')} aria-label="Open contents" aria-haspopup="dialog" aria-expanded={activePanel === 'contents'}><IconLibrary size={18} /></button>
-          <button ref={settingsTriggerRef} type="button" onClick={() => setActivePanel('display')} aria-label="Reading appearance" aria-haspopup="dialog" aria-expanded={activePanel === 'display'}><span aria-hidden="true" className="study-reader-aa">Aa</span></button>
-<button
+          <button ref={contentsTriggerRef} type="button" onClick={openContents} aria-label={readerCopy.openContents} aria-haspopup="dialog" aria-expanded={activePanel === 'contents'}><IconLibrary size={18} /></button>
+          <button ref={settingsTriggerRef} type="button" onClick={openAppearance} aria-label={readerCopy.appearance} aria-haspopup="dialog" aria-expanded={activePanel === 'display'}><span aria-hidden="true" className="study-reader-aa">Aa</span></button>
+          <button
             type="button"
             onClick={toggleChapterBookmark}
-            aria-label={chapterBookmark ? bookSaveCopy.remove : bookSaveCopy.save}
+            aria-label={chapterBookmark ? readerCopy.remove : readerCopy.save}
             aria-pressed={Boolean(chapterBookmark)}
             data-testid="panth-reader-bookmark"
           >
             {chapterBookmark ? <IconBookmarkFilled size={18} /> : <IconBookmark size={18} />}
           </button>
         </>}
-        progress={<div className="epub-reader-progress" aria-hidden="true"><span ref={progressBarRef} /></div>}
+        secondary={searchQuery ? <section className="epub-reader-find !mb-0 !border-0 !p-2" aria-label={readerCopy.find}>
+          <p role="status" aria-atomic="true" className="!mb-1">
+            <span aria-hidden="true">{searchMatches.length ? `${currentMatchIndex + 1} / ${searchMatches.length}` : '0 / 0'} · “{searchQuery}”</span>
+            <span className="sr-only">{searchMatches.length ? readerCopy.match(currentMatchIndex + 1, searchMatches.length, searchQuery) : readerCopy.noMatches(searchQuery)}</span>
+          </p>
+          <div>
+            <button type="button" aria-label={readerCopy.previous} disabled={currentMatchIndex === 0 || !searchMatches.length} onClick={() => goToSearchMatch(currentMatchIndex - 1)}><IconArrowLeft size={18} /></button>
+            <button type="button" aria-label={readerCopy.next} disabled={currentMatchIndex >= searchMatches.length - 1 || !searchMatches.length} onClick={() => goToSearchMatch(currentMatchIndex + 1)}><IconArrowRight size={18} /></button>
+            <button type="button" onClick={openContents}>{readerCopy.edit}</button>
+            <button type="button" aria-label={readerCopy.clear} onClick={() => {
+              const params = new URLSearchParams(location.search)
+              params.delete('find')
+              setFindDraft('')
+              navigate({ pathname: location.pathname, search: params.toString(), hash: location.hash }, { replace: true, state: location.state })
+            }}><IconClose size={18} /></button>
+          </div>
+        </section> : null}
+        progress={<div ref={progressRef} className="epub-reader-progress" role="progressbar" aria-label={readerCopy.progress} aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-valuetext={readerCopy.progressValue(0)}><span ref={progressBarRef} /></div>}
       />
 
       <div className="sr-only" aria-live="polite" aria-atomic="true">{savedNotice}</div>
 
       <div className="epub-reader-main" data-testid="panth-chapter-article">
-        {searchQuery ? <section className="epub-reader-find" aria-label="Find in this section">
-          <p role="status">{searchMatches.length ? `Passage ${currentMatchIndex + 1} of ${searchMatches.length} matching “${searchQuery}”` : `No text passage matches “${searchQuery}” in this section. The search may match its title.`}</p>
-          <div>
-            <button type="button" disabled={currentMatchIndex === 0 || !searchMatches.length} onClick={() => goToSearchMatch(currentMatchIndex - 1)}>Previous match</button>
-            <button type="button" disabled={currentMatchIndex >= searchMatches.length - 1} onClick={() => goToSearchMatch(currentMatchIndex + 1)}>Next match</button>
-            <button type="button" onClick={() => navigate({ pathname: location.pathname, hash: location.hash }, { replace: true, state: location.state })}>Clear search</button>
-          </div>
-        </section> : null}
         <header className="epub-reading-title">
-          <p>Volume {chapter.volume} · {chapterLabel(chapter)}</p>
-          <h1>{chapter.title}</h1>
+          <p>{readerCopy.volume(chapter.volume)} · {chapterLabel(chapter, readerCopy)}</p>
+          <h1 lang="en">{chapter.title}</h1>
           <div>
-            <span>{chapter.wordCount ? `${chapter.wordCount.toLocaleString()} words` : `${chapter.pages.length} reading pages`}</span>
-            <span ref={progressLabelRef}>0% of book</span>
+            <span>{chapter.wordCount ? readerCopy.words(chapter.wordCount) : readerCopy.pages(chapter.pages.length)}</span>
+            <span ref={progressLabelRef}>{readerCopy.progressValue(0)}</span>
           </div>
         </header>
 
-        <article className="epub-reading-body" data-testid="panth-chapter-text">
+        <article lang="en" className="epub-reading-body" data-testid="panth-chapter-text">
           {chapter.pages.map(page => (
             <Fragment key={`${page.sourcePageNumber}-${page.sourceHref ?? page.fileName}`}>
               {page.blocks.map(block => (
-                <ReaderBlock key={block.id} block={block} query={searchQuery} matched={matchedBlockIds.has(block.id)} register={registerBlock} onOpenNotes={chapter.sourceNotes?.length ? openSourceNotes : undefined} />
+                <ReaderBlock key={block.id} copy={readerCopy} block={block} query={searchQuery} matched={matchedBlockIds.has(block.id)} register={registerBlock} onOpenNotes={chapter.sourceNotes?.length ? openSourceNotes : undefined} />
               ))}
             </Fragment>
           ))}
         </article>
 
-        <section className="epub-source-notes-entry" aria-label="Source references">
-          {chapter.sourceNotes?.length ? <button id="source-notes" type="button" onClick={event => openSourceNotes(event.currentTarget)}>Read source notes for this episode</button>
-            : <p>The supplied reading package has no source-note appendix for this section.</p>}
+        <section className="epub-source-notes-entry" aria-label={readerCopy.sourceReferences}>
+          {chapter.sourceNotes?.length ? <button id="source-notes" type="button" onClick={event => openSourceNotes(event.currentTarget)}>{readerCopy.readNotes}</button>
+            : <p>{readerCopy.noNotes}</p>}
         </section>
 
-        <nav className="epub-reader-chapter-nav" aria-label="Section navigation">
+        <nav className="epub-reader-chapter-nav" aria-label={readerCopy.sectionNavigation}>
           {previousChapter ? (
             <Link
               to={chapterPath(work.id, previousChapter.id)}
@@ -689,7 +755,7 @@ export default function LibraryChapterReader() {
               className="interactive-focus"
             >
               <IconArrowLeft size={16} />
-              <span><small>Previous</small><strong>{chapterLabel(previousChapter)}</strong></span>
+              <span><small>{readerCopy.previousSection}</small><strong>{chapterLabel(previousChapter, readerCopy)}</strong></span>
             </Link>
           ) : <span />}
           {nextChapter ? (
@@ -698,28 +764,41 @@ export default function LibraryChapterReader() {
               state={readerNavigationState}
               className="interactive-focus"
             >
-              <span><small>Next</small><strong>{chapterLabel(nextChapter)}</strong></span>
+              <span><small>{readerCopy.nextSection}</small><strong>{chapterLabel(nextChapter, readerCopy)}</strong></span>
               <IconArrowRight size={16} />
             </Link>
           ) : null}
         </nav>
 
         <footer className="epub-reader-edition-link">
-          <Link to={`/library/${work.id}`} state={readerNavigationState}>About this reading edition</Link>
+          <Link to={`/library/${work.id}`} state={readerNavigationState}>{readerCopy.aboutEdition}</Link>
         </footer>
       </div>
 
       {activePanel === 'contents' ? (
         <ReaderPanelShell
-          title="Contents"
-          description={`${chapters.length} sections across ${work.publications?.length ?? 1} volumes.`}
+          title={readerCopy.contents}
+          panelId="contents" readerLabel={readerCopy.reader} closeLabel={readerCopy.closeContents}
+          description={readerCopy.contentsDescription(chapters.length, work.publications?.length ?? 1)}
           palette={palette}
           onClose={closeActivePanel}
         >
+          <form className="epub-reader-find" role="search" aria-label={readerCopy.find} onSubmit={event => {
+            event.preventDefault()
+            setPendingFindQuery(normalizeLibraryQuery(findDraft))
+            closeActivePanel()
+          }}>
+            <label className="epub-toc-search">
+              <span>{readerCopy.find}</span>
+              <input type="search" value={findDraft} onChange={event => setFindDraft(event.target.value)} aria-label={readerCopy.query} enterKeyHint="search" />
+            </label>
+            <button type="submit" className="mt-2">{readerCopy.submit}</button>
+          </form>
           <label className="epub-toc-search">
-            <span>Search contents</span>
-            <input value={tocQuery} onChange={event => setTocQuery(event.target.value)} placeholder="Episode or title" />
+            <span>{readerCopy.searchContents}</span>
+            <input value={tocQuery} onChange={event => setTocQuery(event.target.value)} placeholder={readerCopy.contentsPlaceholder} />
           </label>
+          {!filteredToc.length ? <p role="status">{readerCopy.noContents}</p> : null}
           <ol className="epub-reader-toc">
             {filteredToc.map(entry => (
               <li key={entry.id}>
@@ -730,7 +809,7 @@ export default function LibraryChapterReader() {
                   onClick={() => setActivePanel(null)}
                 >
                   <span>{entry.episodeNumber ?? entry.chapterNumber}</span>
-                  <span><small>Volume {entry.volume}</small><strong>{entry.title}</strong></span>
+                  <span><small>{readerCopy.volume(entry.volume)}</small><strong lang="en">{entry.title}</strong></span>
                 </Link>
               </li>
             ))}
@@ -739,72 +818,74 @@ export default function LibraryChapterReader() {
       ) : null}
 
       {activePanel === 'notes' && chapter.sourceNotes?.length ? <ReaderPanelShell
-        title="Source notes"
-        description="The source edition’s references for this episode. OCR wording is preserved; reference numbers are not individually verified."
+        title={readerCopy.notes}
+        panelId="source-notes" readerLabel={readerCopy.reader} closeLabel={readerCopy.closeNotes}
+        description={readerCopy.notesDescription}
         palette={palette}
         onClose={closeActivePanel}
       >
         {chapter.sourceNotes.map((note, index) => <section key={`${note.sourceHref}-${index}`} className="epub-source-note">
-          <h3>Volume {chapter.volume} · Source page {note.printPageNumber}</h3>
-          <p>{note.text}</p>
+          <h3>{readerCopy.volume(chapter.volume)} · {readerCopy.sourcePage(note.printPageNumber)}</h3>
+          <p lang="en">{note.text}</p>
         </section>)}
       </ReaderPanelShell> : null}
 
       {activePanel === 'display' ? (
         <ReaderPanelShell
-          title="Reading appearance"
-          description="Text size, spacing and width are shared with Stories. Page color applies only to books; the app theme stays separate."
+          title={readerCopy.appearance}
+          panelId="reading-appearance" readerLabel={readerCopy.reader} closeLabel={readerCopy.closeAppearance}
+          description={readerCopy.appearanceDescription}
           palette={palette}
           onClose={closeActivePanel}
         >
           <fieldset className="epub-setting-group">
-            <legend>Text size</legend>
+            <legend>{readerCopy.textSize}</legend>
             <label className="epub-font-slider">
               <span aria-hidden="true">A</span>
               <input
                 type="range"
-                min="0.85"
-                max="1.3"
-                step="0.05"
+                min={EPUB_FONT_SCALE_MIN}
+                max={EPUB_FONT_SCALE_MAX}
+                step={EPUB_FONT_SCALE_STEP}
                 value={fontScale}
-                onChange={event => setFontScale(Number(event.target.value))}
-                aria-label="Reading text size"
+                onChange={event => changeAppearance(() => setFontScale(Number(event.target.value)))}
+                aria-label={readerCopy.readingTextSize}
               />
               <span aria-hidden="true">A</span>
               <output>{Math.round(fontScale * 100)}%</output>
             </label>
           </fieldset>
           <SegmentedControl<EpubReaderLineHeight>
-            label="Line spacing"
+            label={readerCopy.lineSpacing}
             value={lineHeight}
             options={[
-              { value: 'compact', label: 'Compact' },
-              { value: 'comfortable', label: 'Comfort' },
-              { value: 'spacious', label: 'Spacious' },
+              { value: 'compact', label: readerCopy.compact },
+              { value: 'comfortable', label: readerCopy.comfortable },
+              { value: 'spacious', label: readerCopy.spacious },
             ]}
-            onChange={setLineHeight}
+            onChange={value => changeAppearance(() => setLineHeight(value))}
           />
           <SegmentedControl<EpubReaderMeasure>
-            label="Text width"
+            label={readerCopy.textWidth}
             value={measure}
             options={[
-              { value: 'narrow', label: 'Narrow' },
-              { value: 'standard', label: 'Standard' },
-              { value: 'wide', label: 'Wide' },
+              { value: 'narrow', label: readerCopy.narrow },
+              { value: 'standard', label: readerCopy.standard },
+              { value: 'wide', label: readerCopy.wide },
             ]}
-            onChange={setMeasure}
+            onChange={value => changeAppearance(() => setMeasure(value))}
           />
           <SegmentedControl<EpubReaderPalette>
-            label="Page color"
+            label={readerCopy.pageColor}
             value={palette}
             options={[
-              { value: 'paper', label: 'Paper' },
-              { value: 'sepia', label: 'Sepia' },
-              { value: 'night', label: 'Night' },
+              { value: 'paper', label: readerCopy.paper },
+              { value: 'sepia', label: readerCopy.sepia },
+              { value: 'night', label: readerCopy.night },
             ]}
-            onChange={setPalette}
+            onChange={value => changeAppearance(() => setPalette(value))}
           />
-          <button type="button" className="epub-reset-settings" onClick={resetPreferences}>Reset reading settings</button>
+          <button type="button" className="epub-reset-settings" onClick={() => changeAppearance(resetPreferences)}>{readerCopy.reset}</button>
         </ReaderPanelShell>
       ) : null}
     </div>

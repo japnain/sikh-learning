@@ -8,7 +8,7 @@ import { buildLibrarySearchPath, findLibraryChapterMatches, normalizeLibraryQuer
 import {
   loadLibraryChapterIndex,
   loadLibrarySearchIndex,
-  loadLibraryWorkCatalog,
+  loadLibraryWork,
 } from '../../data/libraryRepository'
 import { useProgressStore } from '../../store/progress'
 import { buildBookReadingResumePath, getReadingPlaces, useReadingPlacesStore } from '../../store/readingPlaces'
@@ -102,12 +102,12 @@ export default function PanthPrakashLibraryHome() {
     let cancelled = false
 
     Promise.all([
-      loadLibraryWorkCatalog(),
+      loadLibraryWork(workId),
       loadLibraryChapterIndex(workId),
     ])
-      .then(([catalog, loadedChapters]) => {
+      .then(([work, loadedChapters]) => {
         if (cancelled) return
-        const loadedWork = catalog.workById[workId] ?? null
+        const loadedWork = work ?? null
         setLoadState({
           key: workId,
           status: loadedWork ? 'ready' : 'error',

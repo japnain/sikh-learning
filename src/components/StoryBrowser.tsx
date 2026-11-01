@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
-import { downloadStoryCollection, getOfflineStoryIds, getStoredStoryIds, loadStoryCatalog, removeOfflineStories } from '../data/storyRepository'
+import { downloadStoryCollection, getOfflineStoryIds, getStoredStoryIds, loadStoryCatalog, removeOfflineStories, subscribeStoryCatalog } from '../data/storyRepository'
 import { useStoryStore } from '../store/stories'
 import { useLocaleStore } from '../store/locale'
 import { STORY_UI, storyUiLang } from '../utils/storyUi'
@@ -43,12 +43,17 @@ export default function StoryBrowser({ showSearch = true, continuation }: { show
 
   useEffect(() => {
     let active = true
-    loadStoryCatalog().then(value => {
+    let refreshed = false
+    const update = (value: StoryCatalog) => {
       if (active) { setCatalog(value); setOfflineIds(getOfflineStoryIds()); setStoredIds(getStoredStoryIds()); setError(false) }
+    }
+    const unsubscribe = subscribeStoryCatalog(value => { refreshed = true; update(value) })
+    loadStoryCatalog().then(value => {
+      if (!refreshed) update(value)
     }).catch(() => {
       if (active) setError(true)
     })
-    return () => { active = false }
+    return () => { active = false; unsubscribe() }
   }, [request])
 
   const stories = useMemo(() => catalog?.stories.filter(story => (
