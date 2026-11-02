@@ -1,0 +1,27 @@
+{
+  "fixture": "sukhmani-live-20261031.json",
+  "sourceUrl": "https://api.banidb.com/v2/banis/31",
+  "retrievalDate": "2026-10-31",
+  "recordedAt": "2026-10-31T17:02:42.671259+00:00",
+  "retrievalMethod": "Firecrawl interact, bounded Python urllib request to the public BaniDB URL; JSON parsed and selected auxiliary fields omitted before transport",
+  "timestampNote": "recordedAt is the acquisition record timestamp, not an asserted provider HTTP Date.",
+  "originalPayload": {
+    "sha256": "2692f9b09c3339ebbd9d23d02dae2057050b93981d184cdf5fd4faba81336a4c",
+    "bytes": 4159587,
+    "rowCount": 2019
+  },
+  "sanitization": "Removed only nested verse.translation, verse.transliteration, verse.larivaar, and verse.visraam. All 2019 rows, their order, original Unicode and legacy Gurmukhi text, header flags, paragraph numbers, verse IDs, pages, provider metadata, and absent shabad/source fields are preserved. No text normalization, canonical corrections, synthetic rows, or invented identifiers.",
+  "fixtureSha256": "33db917738613486e8146d78d2a794533f814b9bfcda8340034643a46a1151bc",
+  "fixtureBytes": 667391,
+  "structureValidation": {
+    "ashtpadiCount": 24,
+    "precedingSalokCount": 24,
+    "stanzasPerAshtpadi": 8,
+    "totalStanzas": 192,
+    "angRange": [
+      262,
+      296
+    ],
+    "scope": "Live provider rows; semantic reader normalization and UI jumps remain separate implementation/validation work"
+  }
+}

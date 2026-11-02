@@ -472,7 +472,18 @@ describe('Study reader title hierarchy', () => {
       path: '/study?source=D&ang=1428&startAng=1428&endAng=1428&baniDbId=26&exactBani=1&baniId=sri-bhagauti-astotr',
       title: 'Sri Bhagauti Astotr (Hazur Sahib)',
     },
-  ])('resolves BaniDB $baniDbId to its exact variant title', async ({ path, title }) => {
+  ])('resolves BaniDB $baniDbId to its exact variant title', async ({ baniDbId, path, title }) => {
+    // These are Dasam variants. The generic SGGS transport fixture is an
+    // attribution mismatch and correctly fails the exact-reading validator.
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+      const body = await request.json() as { path?: string }
+      if (body.path !== `/v2/banis/${baniDbId}`) return
+      return HttpResponse.json({
+        verses: MOCK_BANI_RESPONSE.verses.map(verse => ({
+          ...verse, source: { id: 'D', sourceId: 'D', english: 'Sri Dasam Granth Sahib Ji' },
+        })),
+      })
+    }))
     render(
       <MemoryRouter initialEntries={[path]}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -690,6 +701,8 @@ describe('Study renders all shabads on an ang', () => {
     )
 
     expect((await screen.findAllByTestId('study-line')).length).toBeGreaterThan(0)
+    expect(within(screen.getByTestId('study-reader-opening')).getByText('Sundar Gutka')).toBeInTheDocument()
+    expect(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Contents' })).toHaveTextContent('Page')
     fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
     fireEvent.click(within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save verse/i }))
     const phrase = useVocabStore.getState().vocab.find(item => item.kind === 'phrase')!
@@ -855,14 +868,17 @@ describe('Study soundscapes and tracking', () => {
       toJSON: () => ({}),
     })
 
+    vi.spyOn(screen.getByTestId('study-reader-topbar'), 'getBoundingClientRect').mockReturnValue({
+      x: 0, y: 0, top: 0, bottom: 140, left: 0, right: 390, width: 390, height: 140, toJSON: () => ({}),
+    })
     fireEvent(window, new Event('resize'))
 
     const progress = screen.getByRole('progressbar', { name: 'Reading position' })
     const progressBar = progress.firstElementChild as HTMLElement
-    await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '38'))
+    await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '41'))
 
     const settledTransform = progressBar.style.transform
-    expect(settledTransform).toMatch(/^scaleX\(0\.37/)
+    expect(settledTransform).toMatch(/^scaleX\(0\.41/)
     expect(progressBar.style.width).toBe('')
 
     documentScroll.setTop(700)
@@ -870,11 +886,11 @@ describe('Study soundscapes and tracking', () => {
       fireEvent.scroll(window)
     }
 
-    expect(progress).toHaveAttribute('aria-valuenow', '38')
+    expect(progress).toHaveAttribute('aria-valuenow', '41')
     expect(progressBar.style.transform).toBe(settledTransform)
 
     fireEvent(document, new Event('scrollend'))
-    await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '45'))
+    await waitFor(() => expect(progress).toHaveAttribute('aria-valuenow', '48'))
   })
 
   it('persists the visible verse on scroll end without work during active scrolling', async () => {

@@ -1,0 +1,130 @@
+{
+  "id": 70,
+  "length": null,
+  "name": "Raag Kedara",
+  "failures": [],
+  "disclosures": [
+    {
+      "sectionId": "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166",
+      "expanded": false,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166-shabad-1"
+      ],
+      "currentAfter": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166"
+      ],
+      "currentAfter": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166-shabad-1"
+      ],
+      "currentCorrect": true
+    }
+  ],
+  "checks": [
+    {
+      "sectionId": "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166-shabad-4",
+      "targetId": 22198,
+      "top": 128.859375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166-shabad-4"
+      ],
+      "currentViewport": {
+        "top": 413.296875,
+        "bottom": 499.03125,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166",
+      "targetId": 22165,
+      "top": 128.59375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166"
+      ],
+      "currentViewport": {
+        "top": 331.515625,
+        "bottom": 445.046875,
+        "panelTop": 157.953125,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22220",
+      "targetId": 22220,
+      "top": 128.90625,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22220"
+      ],
+      "currentViewport": {
+        "top": 446.046875,
+        "bottom": 531.78125,
+        "panelTop": 157.953125,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    }
+  ],
+  "layout": {
+    "rowFailures": [],
+    "minimumHitHeight": 44
+  },
+  "rows": 67,
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "presentation": "study",
+  "scroller": "HTML",
+  "originScrollY": 0,
+  "initiallyExpanded": [
+    "bani-70:bani-v1:67:b0970452bb89b42e:catalog-70-22166"
+  ],
+  "collapsedLinks": 2,
+  "expandedLinks": 8,
+  "expandedChildLinks": 6,
+  "returnDelta": 0,
+  "returnCleared": true,
+  "returnFocusVerse": "22168",
+  "state": "ready",
+  "passed": true,
+  "testMode": "390px Study light"
+}

@@ -1,0 +1,80 @@
+{
+  "environment": {
+    "viewport": "1280x900",
+    "theme": "light",
+    "presentation": "study"
+  },
+  "originScrollY": 39,
+  "events": [
+    {
+      "key": "Tab",
+      "tag": "BUTTON",
+      "label": "Close",
+      "text": "",
+      "expanded": null
+    },
+    {
+      "key": "Tab",
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "expanded": null
+    },
+    {
+      "key": "Tab",
+      "tag": "BUTTON",
+      "label": null,
+      "text": "ਰਾਮਕਲੀ ਸਦੁAng 923ਜਗਿ ਦਾਤਾ ਸੋਇ ਭਗਤਿ ਵਛਲੁ ਤਿਹੁ ਲੋਇ ਜੀਉ ॥",
+      "id": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623",
+      "expanded": null
+    },
+    {
+      "key": "Tab",
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Hide6 stanzas",
+      "id": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623",
+      "expanded": "true"
+    },
+    {
+      "key": "Space",
+      "expanded": "false",
+      "scrollDelta": 0,
+      "progressUnchanged": true,
+      "placesUnchanged": true
+    },
+    {
+      "key": "Enter",
+      "expanded": "true",
+      "scrollDelta": 0
+    },
+    {
+      "key": "Tab Tab",
+      "text": "Stanza 2Ang 923ਹਰਿ ਭਾਣਾ ਗੁਰ ਭਾਇਆ ਗੁਰੁ ਜਾਵੈ ਹਰਿ ਪ੍ਰਭ ਪਾਸਿ ਜੀਉ ॥",
+      "id": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-2"
+    },
+    {
+      "action": "keyboard-child-jump",
+      "expectedVerse": 21631,
+      "focusedVerse": "21631",
+      "sheetClosed": true,
+      "targetTop": 130.453125,
+      "headerBottom": 113.15625,
+      "returnPresent": true
+    },
+    {
+      "action": "keyboard-return",
+      "scrollDelta": 0,
+      "focusedVerse": "21625",
+      "returnCleared": true,
+      "placesUnchanged": false,
+      "savedPositionsUnchanged": true
+    },
+    {
+      "action": "keyboard-escape",
+      "closed": true,
+      "focusReturnedToContents": true
+    }
+  ],
+  "notes": "Contents trigger and Return button were focused programmatically as keyboard entry points. Navigation inside Contents used actual Tab, Space and Enter keys. Return preserved saved positions; timestamp refreshed."
+}

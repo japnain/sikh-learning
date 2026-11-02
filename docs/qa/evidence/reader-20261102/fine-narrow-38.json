@@ -1,0 +1,108 @@
+{
+  "environment": {
+    "width": 320,
+    "height": 740,
+    "dpr": 2,
+    "mobile": true,
+    "touch": true,
+    "theme": "dark",
+    "presentation": "read",
+    "gurmukhiTextSize": 34,
+    "rootFontPx": 32,
+    "textEnlargement": "Root font doubled from16px to32px; not a browser zoom or physical-device test."
+  },
+  "result": {
+    "id": 38,
+    "length": null,
+    "name": "Raag Maala",
+    "failures": [],
+    "disclosures": [],
+    "checks": [
+      {
+        "sectionId": "bani-38:bani-v1:62:f886d4647af98830:raag-maala-hindol",
+        "targetId": 9240,
+        "top": 207.765625,
+        "headerBottom": 175.796875,
+        "visible": true,
+        "focused": true,
+        "sheetClosed": true,
+        "currentIds": [
+          "bani-38:bani-v1:62:f886d4647af98830:raag-maala-hindol"
+        ],
+        "currentViewport": {
+          "top": 257.3125,
+          "bottom": 591.03125,
+          "panelTop": 134,
+          "panelBottom": 715,
+          "fits": true
+        },
+        "currentVisible": true,
+        "currentAncestorsExpanded": true
+      },
+      {
+        "sectionId": "bani-38:bani-v1:62:f886d4647af98830:raag-maala-opening",
+        "targetId": 9216,
+        "top": 207.921875,
+        "headerBottom": 175.796875,
+        "visible": true,
+        "focused": true,
+        "sheetClosed": true,
+        "currentIds": [
+          "bani-38:bani-v1:62:f886d4647af98830:raag-maala-opening"
+        ],
+        "currentViewport": {
+          "top": 309.328125,
+          "bottom": 539.0625,
+          "panelTop": 134,
+          "panelBottom": 715,
+          "fits": true
+        },
+        "currentVisible": true,
+        "currentAncestorsExpanded": true
+      },
+      {
+        "sectionId": "bani-38:bani-v1:62:f886d4647af98830:raag-maala-megh",
+        "targetId": 9266,
+        "top": 208.015625,
+        "headerBottom": 175.796875,
+        "visible": true,
+        "focused": true,
+        "sheetClosed": true,
+        "currentIds": [
+          "bani-38:bani-v1:62:f886d4647af98830:raag-maala-megh"
+        ],
+        "currentViewport": {
+          "top": 286.890625,
+          "bottom": 563.015625,
+          "panelTop": 134,
+          "panelBottom": 715,
+          "fits": true
+        },
+        "currentVisible": true,
+        "currentAncestorsExpanded": true
+      }
+    ],
+    "layout": {
+      "rowFailures": [],
+      "minimumHitHeight": 44
+    },
+    "rows": 62,
+    "viewport": {
+      "width": 320,
+      "height": 740,
+      "scrollWidth": 320
+    },
+    "presentation": "read",
+    "scroller": "HTML",
+    "originScrollY": 260,
+    "initiallyExpanded": [],
+    "collapsedLinks": 7,
+    "expandedLinks": 7,
+    "expandedChildLinks": 0,
+    "returnDelta": 0,
+    "returnCleared": true,
+    "returnFocusVerse": "9218",
+    "state": "ready",
+    "passed": true
+  }
+}

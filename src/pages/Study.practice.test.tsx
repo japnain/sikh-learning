@@ -72,7 +72,7 @@ async function loaded(count = 3) {
   await frames()
 }
 async function chooser() {
-  fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByTestId('bani-length-control'))
+  fireEvent.click(within(screen.getByTestId('study-reader-opening')).getByTestId('bani-length-control'))
   return screen.findByRole('dialog', { name: 'Bani length' })
 }
 async function selectLong(remember = false, waitForDestination = true) {
@@ -121,7 +121,7 @@ afterEach(() => { scroll.restore(); vi.restoreAllMocks() })
 test('an explicit shared Long URL opens Long without changing the saved usual Short version', async () => {
   open(pathWith({ sgLength: 'long' }))
   await loaded(4)
-  expect(within(screen.getByTestId('study-reader-topbar')).getByTestId('bani-length-control')).toHaveAccessibleName('Change bani length: Long')
+  expect(within(screen.getByTestId('study-reader-opening')).getByTestId('bani-length-control')).toHaveAccessibleName('Change bani length: Long')
   expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('short')
   expect(screen.getByTestId('practice-reader-url')).toHaveTextContent('sgLength=long')
 })

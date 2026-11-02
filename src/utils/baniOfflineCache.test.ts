@@ -4,13 +4,13 @@ import { fetchBani } from '../api/banidb'
 import { http, HttpResponse } from 'msw'
 import { MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
 import { server } from '../test/msw-server'
-import { BANIS } from '../data/banis'
+import { READ_EXACT_BANIS } from '../data/banis'
 import type { SundarGutkaLength } from '../types'
 import { NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { readBaniOfflineCache, setProtectedBaniOfflineReadings, writeBaniOfflineCache } from './baniOfflineCache'
 
 function buildResult(id: number, length: SundarGutkaLength | null = null): BaniFetchResult {
-  const source = BANIS.find(bani => bani.baniDbId === id)?.source ?? 'G'
+  const source = READ_EXACT_BANIS.find(bani => bani.baniDbId === id)?.source ?? 'G'
   return {
     entries: [{
       id: `bani-${id}-1-1`,

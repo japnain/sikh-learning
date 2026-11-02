@@ -1,0 +1,1797 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-02",
+  "description": "Reviewed local selection-row boundaries; explicit navigation metadata, not scripture or canonical/global hymn numbering. Original rows retained unchanged.",
+  "readings": [
+    {
+      "baniDbId": 66,
+      "fingerprint": "bani-v1:323:3e90cfa835fa2f7c",
+      "groups": [
+        {
+          "startVerseId": 21303,
+          "excerptVerseId": 21306,
+          "units": [
+            {
+              "startVerseId": 21306,
+              "endVerseId": 21315,
+              "kind": "shabad",
+              "opening": "ਸੰਤੁ ਮਿਲੈ ਕਿਛੁ ਸੁਨੀਐ ਕਹੀਐ ॥",
+              "closing": "ਭਰਿਆ ਹੋਇ ਸੁ ਕਬਹੁ ਨ ਡੋਲੈ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21304"
+        },
+        {
+          "startVerseId": 21316,
+          "excerptVerseId": 21317,
+          "units": [
+            {
+              "startVerseId": 21317,
+              "endVerseId": 21324,
+              "kind": "shabad",
+              "opening": "ਨਰੂ ਮਰੈ ਨਰੁ ਕਾਮਿ ਨ ਆਵੈ ॥",
+              "closing": "ਜਮ ਕਾ ਡੰਡੁ ਮੂੰਡ ਮਹਿ ਲਾਗੈ ॥੩॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21316"
+        },
+        {
+          "startVerseId": 21325,
+          "excerptVerseId": 21326,
+          "units": [
+            {
+              "startVerseId": 21326,
+              "endVerseId": 21333,
+              "kind": "shabad",
+              "opening": "ਆਕਾਸਿ ਗਗਨੁ ਪਾਤਾਲਿ ਗਗਨੁ ਹੈ ਚਹੁ ਦਿਸਿ ਗਗਨੁ ਰਹਾਇਲੇ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਰਾਮ ਨਾਮੁ ਨ ਛੋਡਉ ਸਹਜੇ ਹੋਇ ਸੁ ਹੋਇ ਰੇ ॥੩॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21325"
+        },
+        {
+          "startVerseId": 21334,
+          "excerptVerseId": 21336,
+          "units": [
+            {
+              "startVerseId": 21336,
+              "endVerseId": 21353,
+              "kind": "shabad",
+              "opening": "ਭੁਜਾ ਬਾਂਧਿ ਭਿਲਾ ਕਰਿ ਡਾਰਿਓ ॥",
+              "closing": "ਚਉਥੇ ਪਦ ਮਹਿ ਜਨ ਕੀ ਜਿੰਦੁ ॥੪॥੧॥੪॥"
+            }
+          ],
+          "id": "raag-fine-b-66-heading-21334",
+          "label": {
+            "en": "ਰਾਗੁ ਗੋਂਡ ਬਾਣੀ ਕਬੀਰ ਜੀਉ ਕੀ ਘਰੁ ੨",
+            "pa": "ਰਾਗੁ ਗੋਂਡ ਬਾਣੀ ਕਬੀਰ ਜੀਉ ਕੀ ਘਰੁ ੨",
+            "hi": "ਰਾਗੁ ਗੋਂਡ ਬਾਣੀ ਕਬੀਰ ਜੀਉ ਕੀ ਘਰੁ ੨"
+          },
+          "printedHeading": "ਰਾਗੁ ਗੋਂਡ ਬਾਣੀ ਕਬੀਰ ਜੀਉ ਕੀ ਘਰੁ ੨"
+        },
+        {
+          "startVerseId": 21354,
+          "excerptVerseId": 21355,
+          "units": [
+            {
+              "startVerseId": 21355,
+              "endVerseId": 21372,
+              "kind": "shabad",
+              "opening": "ਨਾ ਇਹੁ ਮਾਨਸੁ ਨਾ ਇਹੁ ਦੇਉ ॥",
+              "closing": "ਜਸ ਕਾਗਦ ਪਰ ਮਿਟੈ ਨ ਮੰਸੁ ॥੪॥੨॥੫॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21354"
+        },
+        {
+          "startVerseId": 21373,
+          "excerptVerseId": 21374,
+          "units": [
+            {
+              "startVerseId": 21374,
+              "endVerseId": 21391,
+              "kind": "shabad",
+              "opening": "ਤੂਟੇ ਤਾਗੇ ਨਿਖੁਟੀ ਪਾਨਿ ॥",
+              "closing": "ਇਨੑ ਮੁੰਡੀਅਨ ਭਜਿ ਸਰਨਿ ਕਬੀਰ ॥੪॥੩॥੬॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21373"
+        },
+        {
+          "startVerseId": 21392,
+          "excerptVerseId": 21393,
+          "units": [
+            {
+              "startVerseId": 21393,
+              "endVerseId": 21410,
+              "kind": "shabad",
+              "opening": "ਖਸਮੁ ਮਰੈ ਤਉ ਨਾਰਿ ਨ ਰੋਵੈ ॥",
+              "closing": "ਸੰਸਾਰੈ ਕੈ ਅੰਚਲਿ ਲਰੀ ॥੪॥੪॥੭॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21392"
+        },
+        {
+          "startVerseId": 21411,
+          "excerptVerseId": 21412,
+          "units": [
+            {
+              "startVerseId": 21412,
+              "endVerseId": 21432,
+              "kind": "shabad",
+              "opening": "ਗ੍ਰਿਹਿ ਸੋਭਾ ਜਾ ਕੈ ਰੇ ਨਾਹਿ ॥",
+              "closing": "ਕਹੁ ਕਬੀਰ ਗੁਰ ਕਿਰਪਾ ਛੂਟੇ ॥੫॥੫॥੮॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21411"
+        },
+        {
+          "startVerseId": 21433,
+          "excerptVerseId": 21434,
+          "units": [
+            {
+              "startVerseId": 21434,
+              "endVerseId": 21451,
+              "kind": "shabad",
+              "opening": "ਜੈਸੇ ਮੰਦਰ ਮਹਿ ਬਲਹਰ ਨਾ ਠਾਹਰੈ ॥",
+              "closing": "ਗੁਰਮੁਖਿ ਹੋਇ ਬਹੁਰਿ ਨਹੀ ਮਰਨਾ ॥੪॥੬॥੯॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21433"
+        },
+        {
+          "startVerseId": 21452,
+          "excerptVerseId": 21453,
+          "units": [
+            {
+              "startVerseId": 21453,
+              "endVerseId": 21470,
+              "kind": "shabad",
+              "opening": "ਕੂਟਨੁ ਸੋਇ ਜੁ ਮਨ ਕਉ ਕੂਟੈ ॥",
+              "closing": "ਧੰਨੁ ਗੁਰਦੇਵ ਅਤਿ ਰੂਪ ਬਿਚਖਨ ॥੪॥੭॥੧੦॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21452"
+        },
+        {
+          "startVerseId": 21471,
+          "excerptVerseId": 21472,
+          "units": [
+            {
+              "startVerseId": 21472,
+              "endVerseId": 21489,
+              "kind": "shabad",
+              "opening": "ਧੰਨੁ ਗੁਪਾਲ ਧੰਨੁ ਗੁਰਦੇਵ ॥",
+              "closing": "ਧੰਨੁ ਅਨਾਦਿ ਠਾਕੁਰ ਮਨੁ ਮਾਨਿਆ ॥੪॥੮॥੧੧॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21471"
+        },
+        {
+          "startVerseId": 21490,
+          "excerptVerseId": 21492,
+          "units": [
+            {
+              "startVerseId": 21492,
+              "endVerseId": 21506,
+              "kind": "shabad",
+              "opening": "ਅਸੁਮੇਧ ਜਗਨੇ ॥",
+              "closing": "ਭਜੁ ਨਾਮਾ ਤਰਸਿ ਭਵ ਸਿੰਧੰ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21490"
+        },
+        {
+          "startVerseId": 21507,
+          "excerptVerseId": 21508,
+          "units": [
+            {
+              "startVerseId": 21508,
+              "endVerseId": 21517,
+              "kind": "shabad",
+              "opening": "ਨਾਦ ਭ੍ਰਮੇ ਜੈਸੇ ਮਿਰਗਾਏ ॥",
+              "closing": "ਹਰਿ ਕੇ ਚਰਨ ਨਿਤ ਧਿਆਵੈ ਨਾਮਾ ॥੪॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21507"
+        },
+        {
+          "startVerseId": 21518,
+          "excerptVerseId": 21519,
+          "units": [
+            {
+              "startVerseId": 21519,
+              "endVerseId": 21524,
+              "kind": "shabad",
+              "opening": "ਮੋ ਕਉ ਤਾਰਿ ਲੇ ਰਾਮਾ ਤਾਰਿ ਲੇ ॥",
+              "closing": "ਤੇਰੇ ਨਾਮ ਅਵਿਲੰਬਿ ਬਹੁਤੁ ਜਨ ਉਧਰੇ ਨਾਮੇ ਕੀ ਨਿਜ ਮਤਿ ਏਹ ॥੨॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21518"
+        },
+        {
+          "startVerseId": 21525,
+          "excerptVerseId": 21526,
+          "units": [
+            {
+              "startVerseId": 21526,
+              "endVerseId": 21537,
+              "kind": "shabad",
+              "opening": "ਮੋਹਿ ਲਾਗਤੀ ਤਾਲਾਬੇਲੀ ॥",
+              "closing": "ਤੈਸੇ ਰਾਮ ਨਾਮਾ ਬਿਨੁ ਬਾਪੁਰੋ ਨਾਮਾ ॥੫॥੪॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21525"
+        },
+        {
+          "startVerseId": 21538,
+          "excerptVerseId": 21540,
+          "units": [
+            {
+              "startVerseId": 21540,
+              "endVerseId": 21557,
+              "kind": "shabad",
+              "opening": "ਹਰਿ ਹਰਿ ਕਰਤ ਮਿਟੇ ਸਭਿ ਭਰਮਾ ॥",
+              "closing": "ਜਾਸੁ ਜਪਤ ਭੈ ਅਪਦਾ ਟਰੀ ॥੪॥੧॥੫॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21538"
+        },
+        {
+          "startVerseId": 21558,
+          "excerptVerseId": 21559,
+          "units": [
+            {
+              "startVerseId": 21559,
+              "endVerseId": 21570,
+              "kind": "shabad",
+              "opening": "ਭੈਰਉ ਭੂਤ ਸੀਤਲਾ ਧਾਵੈ ॥",
+              "closing": "ਪ੍ਰਣਵੈ ਨਾਮਾ ਇਉ ਕਹੈ ਗੀਤਾ ॥੫॥੨॥੬॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21558"
+        },
+        {
+          "startVerseId": 21571,
+          "excerptVerseId": 21572,
+          "units": [
+            {
+              "startVerseId": 21572,
+              "endVerseId": 21582,
+              "kind": "shabad",
+              "opening": "ਆਜੁ ਨਾਮੇ ਬੀਠਲੁ ਦੇਖਿਆ ਮੂਰਖ ਕੋ ਸਮਝਾਊ ਰੇ ॥ ਰਹਾਉ ॥",
+              "closing": "ਨਾਮੇ ਸੋਈ ਸੇਵਿਆ ਜਹ ਦੇਹੁਰਾ ਨ ਮਸੀਤਿ ॥੪॥੩॥੭॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21571"
+        },
+        {
+          "startVerseId": 21583,
+          "excerptVerseId": 21585,
+          "units": [
+            {
+              "startVerseId": 21585,
+              "endVerseId": 21602,
+              "kind": "shabad",
+              "opening": "ਮੁਕੰਦ ਮੁਕੰਦ ਜਪਹੁ ਸੰਸਾਰ ॥",
+              "closing": "ਜਪਿ ਮੁਕੰਦ ਸੇਵਾ ਤਾਹੂ ਕੀ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21583"
+        },
+        {
+          "startVerseId": 21603,
+          "excerptVerseId": 21604,
+          "units": [
+            {
+              "startVerseId": 21604,
+              "endVerseId": 21621,
+              "kind": "shabad",
+              "opening": "ਜੇ ਓਹੁ ਅਠਸਠਿ ਤੀਰਥ ਨੑਾਵੈ ॥",
+              "closing": "ਕਹੁ ਰਵਿਦਾਸ ਪਾਪੀ ਨਰਕਿ ਸਿਧਾਰਿਆ ॥੪॥੨॥੧੧॥੭॥੨॥੪੯॥ ਜੋੜੁ ॥"
+            }
+          ],
+          "originalParentId": "catalog-66-21603"
+        }
+      ],
+      "nonBodyVerseIds": [
+        21303,
+        21304,
+        21305,
+        21316,
+        21325,
+        22797,
+        21334,
+        21335,
+        21354,
+        21373,
+        21392,
+        21411,
+        21433,
+        21452,
+        21471,
+        22798,
+        21490,
+        21491,
+        21507,
+        21518,
+        21525,
+        22799,
+        21538,
+        21539,
+        21558,
+        21571,
+        22800,
+        21583,
+        21584,
+        21603
+      ]
+    },
+    {
+      "baniDbId": 67,
+      "fingerprint": "bani-v1:375:1952508e4b9012c2",
+      "groups": [
+        {
+          "startVerseId": 21622,
+          "excerptVerseId": 21625,
+          "units": [
+            {
+              "startVerseId": 21625,
+              "endVerseId": 21630,
+              "kind": "stanza",
+              "opening": "ਜਗਿ ਦਾਤਾ ਸੋਇ ਭਗਤਿ ਵਛਲੁ ਤਿਹੁ ਲੋਇ ਜੀਉ ॥",
+              "closing": "ਜਗਿ ਅਮਰੁ ਅਟਲੁ ਅਤੋਲੁ ਠਾਕੁਰੁ ਭਗਤਿ ਤੇ ਹਰਿ ਪਾਇਆ ॥੧॥"
+            },
+            {
+              "startVerseId": 21631,
+              "endVerseId": 21636,
+              "kind": "stanza",
+              "opening": "ਹਰਿ ਭਾਣਾ ਗੁਰ ਭਾਇਆ ਗੁਰੁ ਜਾਵੈ ਹਰਿ ਪ੍ਰਭ ਪਾਸਿ ਜੀਉ ॥",
+              "closing": "ਹਰਿ ਧਾਰਿ ਕਿਰਪਾ ਸਤਿਗੁਰੁ ਮਿਲਾਇਆ ਧਨੁ ਧਨੁ ਕਹੈ ਸਾਬਾਸਿ ਜੀਉ ॥੨॥"
+            },
+            {
+              "startVerseId": 21637,
+              "endVerseId": 21642,
+              "kind": "stanza",
+              "opening": "ਮੇਰੇ ਸਿਖ ਸੁਣਹੁ ਪੁਤ ਭਾਈਹੋ ਮੇਰੈ ਹਰਿ ਭਾਣਾ ਆਉ ਮੈ ਪਾਸਿ ਜੀਉ ॥",
+              "closing": "ਧੁਰਿ ਲਿਖਿਆ ਪਰਵਾਣਾ ਫਿਰੈ ਨਾਹੀ ਗੁਰੁ ਜਾਇ ਹਰਿ ਪ੍ਰਭ ਪਾਸਿ ਜੀਉ ॥੩॥"
+            },
+            {
+              "startVerseId": 21643,
+              "endVerseId": 21648,
+              "kind": "stanza",
+              "opening": "ਸਤਿਗੁਰਿ ਭਾਣੈ ਆਪਣੈ ਬਹਿ ਪਰਵਾਰੁ ਸਦਾਇਆ ॥",
+              "closing": "ਸਭਿ ਸਿਖ ਬੰਧਪ ਪੁਤ ਭਾਈ ਰਾਮਦਾਸ ਪੈਰੀ ਪਾਇਆ ॥੪॥"
+            },
+            {
+              "startVerseId": 21649,
+              "endVerseId": 21654,
+              "kind": "stanza",
+              "opening": "ਅੰਤੇ ਸਤਿਗੁਰੁ ਬੋਲਿਆ ਮੈ ਪਿਛੈ ਕੀਰਤਨੁ ਕਰਿਅਹੁ ਨਿਰਬਾਣੁ ਜੀਉ ॥",
+              "closing": "ਰਾਮਦਾਸ ਸੋਢੀ ਤਿਲਕੁ ਦੀਆ ਗੁਰ ਸਬਦੁ ਸਚੁ ਨੀਸਾਣੁ ਜੀਉ ॥੫॥"
+            },
+            {
+              "startVerseId": 21655,
+              "endVerseId": 21660,
+              "kind": "stanza",
+              "opening": "ਸਤਿਗੁਰੁ ਪੁਰਖੁ ਜਿ ਬੋਲਿਆ ਗੁਰਸਿਖਾ ਮੰਨਿ ਲਈ ਰਜਾਇ ਜੀਉ ॥",
+              "closing": "ਕਹੈ ਸੁੰਦਰੁ ਸੁਣਹੁ ਸੰਤਹੁ ਸਭੁ ਜਗਤੁ ਪੈਰੀ ਪਾਇ ਜੀਉ ॥੬॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21623"
+        },
+        {
+          "startVerseId": 21662,
+          "excerptVerseId": 21664,
+          "units": [
+            {
+              "startVerseId": 21664,
+              "endVerseId": 21670,
+              "kind": "pauri",
+              "opening": "ਨਾਉ ਕਰਤਾ ਕਾਦਰੁ ਕਰੇ ਕਿਉ ਬੋਲੁ ਹੋਵੈ ਜੋਖੀਵਦੈ ॥",
+              "closing": "ਸਹਿ ਟਿਕਾ ਦਿਤੋਸੁ ਜੀਵਦੈ ॥੧॥"
+            },
+            {
+              "startVerseId": 21671,
+              "endVerseId": 21683,
+              "kind": "pauri",
+              "opening": "ਲਹਣੇ ਦੀ ਫੇਰਾਈਐ ਨਾਨਕਾ ਦੋਹੀ ਖਟੀਐ ॥",
+              "closing": "ਕਉਣੁ ਹਾਰੇ ਕਿਨਿ ਉਵਟੀਐ ॥੨॥"
+            },
+            {
+              "startVerseId": 21684,
+              "endVerseId": 21695,
+              "kind": "pauri",
+              "opening": "ਜਿਨਿ ਕੀਤੀ ਸੋ ਮੰਨਣਾ ਕੋ ਸਾਲੁ ਜਿਵਾਹੇ ਸਾਲੀ ॥",
+              "closing": "ਮਾਤਾ ਖੀਵੀ ਸਹੁ ਸੋਇ ਜਿਨਿ ਗੋਇ ਉਠਾਲੀ ॥੩॥"
+            },
+            {
+              "startVerseId": 21696,
+              "endVerseId": 21704,
+              "kind": "pauri",
+              "opening": "ਹੋਰਿਂਓ ਗੰਗ ਵਹਾਈਐ ਦੁਨਿਆਈ ਆਖੈ ਕਿ ਕਿਓਨੁ ॥",
+              "closing": "ਜਾਂ ਸੁਧੋਸੁ ਤਾਂ ਲਹਣਾ ਟਿਕਿਓਨੁ ॥੪॥"
+            },
+            {
+              "startVerseId": 21705,
+              "endVerseId": 21713,
+              "kind": "pauri",
+              "opening": "ਫੇਰਿ ਵਸਾਇਆ ਫੇਰੁਆਣਿ ਸਤਿਗੁਰਿ ਖਾਡੂਰੁ ॥",
+              "closing": "ਫੇਰਿ ਵਸਾਇਆ ਫੇਰੁਆਣਿ ਸਤਿਗੁਰਿ ਖਾਡੂਰੁ ॥੫॥"
+            },
+            {
+              "startVerseId": 21714,
+              "endVerseId": 21732,
+              "kind": "pauri",
+              "opening": "ਸੋ ਟਿਕਾ ਸੋ ਬੈਹਣਾ ਸੋਈ ਦੀਬਾਣੁ ॥",
+              "closing": "ਪਿਯੂ ਦਾਦੇ ਜੇਵਿਹਾ ਪੋਤ੍ਰਾ ਪਰਵਾਣੁ ॥੬॥"
+            },
+            {
+              "startVerseId": 21733,
+              "endVerseId": 21741,
+              "kind": "pauri",
+              "opening": "ਧੰਨੁ ਧੰਨੁ ਰਾਮਦਾਸ ਗੁਰੁ ਜਿਨਿ ਸਿਰਿਆ ਤਿਨੈ ਸਵਾਰਿਆ ॥",
+              "closing": "ਗੁਰੁ ਡਿਠਾ ਤਾਂ ਮਨੁ ਸਾਧਾਰਿਆ ॥੭॥"
+            },
+            {
+              "startVerseId": 21742,
+              "endVerseId": 21750,
+              "kind": "pauri",
+              "opening": "ਚਾਰੇ ਜਾਗੇ ਚਹੁ ਜੁਗੀ ਪੰਚਾਇਣੁ ਆਪੇ ਹੋਆ ॥",
+              "closing": "ਚਾਰੇ ਜਾਗੇ ਚਹੁ ਜੁਗੀ ਪੰਚਾਇਣੁ ਆਪੇ ਹੋਆ ॥੮॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21662"
+        },
+        {
+          "startVerseId": 21752,
+          "excerptVerseId": 21754,
+          "units": [
+            {
+              "startVerseId": 21754,
+              "endVerseId": 21763,
+              "kind": "shabad",
+              "opening": "ਕਾਇਆ ਕਲਾਲਨਿ ਲਾਹਨਿ ਮੇਲਉ ਗੁਰ ਕਾ ਸਬਦੁ ਗੁੜੁ ਕੀਨੁ ਰੇ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਸਗਲੇ ਮਦ ਛੂਛੇ ਇਹੈ ਮਹਾ ਰਸੁ ਸਾਚੋ ਰੇ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 21764,
+              "endVerseId": 21771,
+              "kind": "shabad",
+              "opening": "ਗੁੜੁ ਕਰਿ ਗਿਆਨੁ ਧਿਆਨੁ ਕਰਿ ਮਹੂਆ ਭਉ ਭਾਠੀ ਮਨ ਧਾਰਾ ॥",
+              "closing": "ਦਾਸੁ ਕਬੀਰੁ ਤਾਸੁ ਮਦ ਮਾਤਾ ਉਚਕਿ ਨ ਕਬਹੂ ਜਾਈ ॥੩॥੨॥"
+            },
+            {
+              "startVerseId": 21772,
+              "endVerseId": 21785,
+              "kind": "shabad",
+              "opening": "ਤੂੰ ਮੇਰੋ ਮੇਰੁ ਪਰਬਤੁ ਸੁਆਮੀ ਓਟ ਗਹੀ ਮੈ ਤੇਰੀ ॥",
+              "closing": "ਰਾਮ ਕਬੀਰਾ ਏਕ ਭਏ ਹੈ ਕੋਇ ਨ ਸਕੈ ਪਛਾਨੀ ॥੬॥੩॥"
+            },
+            {
+              "startVerseId": 21786,
+              "endVerseId": 21797,
+              "kind": "shabad",
+              "opening": "ਸੰਤਾ ਮਾਨਉ ਦੂਤਾ ਡਾਨਉ ਇਹ ਕੁਟਵਾਰੀ ਮੇਰੀ ॥",
+              "closing": "ਅੰਮ੍ਰਿਤ ਰਸੁ ਜਿਨਿ ਪਾਇਆ ਥਿਰੁ ਤਾ ਕਾ ਸੋਹਾਗੁ ॥੫॥੪॥"
+            },
+            {
+              "startVerseId": 21798,
+              "endVerseId": 21805,
+              "kind": "shabad",
+              "opening": "ਜਿਹ ਮੁਖ ਬੇਦੁ ਗਾਇਤ੍ਰੀ ਨਿਕਸੈ ਸੋ ਕਿਉ ਬ੍ਰਹਮਨੁ ਬਿਸਰੁ ਕਰੈ ॥",
+              "closing": "ਹਮਰੇ ਰਾਮ ਨਾਮ ਕਹਿ ਉਬਰੇ ਬੇਦ ਭਰੋਸੇ ਪਾਂਡੇ ਡੂਬਿ ਮਰਹਿ ॥੩॥੫॥"
+            },
+            {
+              "startVerseId": 21806,
+              "endVerseId": 21813,
+              "kind": "shabad",
+              "opening": "ਤਰਵਰੁ ਏਕੁ ਅਨੰਤ ਡਾਰ ਸਾਖਾ ਪੁਹਪ ਪਤ੍ਰ ਰਸ ਭਰੀਆ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਹਉ ਤਾ ਕਾ ਸੇਵਕੁ ਜਿਨਿ ਇਹੁ ਬਿਰਵਾ ਦੇਖਿਆ ॥੩॥੬॥"
+            },
+            {
+              "startVerseId": 21814,
+              "endVerseId": 21821,
+              "kind": "shabad",
+              "opening": "ਮੁੰਦ੍ਰਾ ਮੋਨਿ ਦਇਆ ਕਰਿ ਝੋਲੀ ਪਤ੍ਰ ਕਾ ਕਰਹੁ ਬੀਚਾਰੁ ਰੇ ॥",
+              "closing": "ਕਹਤੁ ਕਬੀਰੁ ਸੁਨਹੁ ਰੇ ਸੰਤਹੁ ਧਰਮੁ ਦਇਆ ਕਰਿ ਬਾੜੀ ॥੩॥੭॥"
+            },
+            {
+              "startVerseId": 21822,
+              "endVerseId": 21833,
+              "kind": "shabad",
+              "opening": "ਕਵਨ ਕਾਜ ਸਿਰਜੇ ਜਗ ਭੀਤਰਿ ਜਨਮਿ ਕਵਨ ਫਲੁ ਪਾਇਆ ॥",
+              "closing": "ਕਹਤ ਕਬੀਰ ਭੀਰ ਜਨ ਰਾਖਹੁ ਹਰਿ ਸੇਵਾ ਕਰਉ ਤੁਮੑਾਰੀ ॥੫॥੮॥"
+            },
+            {
+              "startVerseId": 21834,
+              "endVerseId": 21867,
+              "kind": "shabad",
+              "opening": "ਜਿਹ ਸਿਮਰਨਿ ਹੋਇ ਮੁਕਤਿ ਦੁਆਰੁ ॥",
+              "closing": "ਤਿਸ ਕੇ ਆਗੇ ਤੰਤੁ ਨ ਮੰਤੁ ॥੮॥੯॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21752"
+        },
+        {
+          "startVerseId": 21868,
+          "excerptVerseId": 21870,
+          "units": [
+            {
+              "startVerseId": 21870,
+              "endVerseId": 21887,
+              "kind": "shabad",
+              "opening": "ਬੰਧਚਿ ਬੰਧਨੁ ਪਾਇਆ ॥",
+              "closing": "ਕਹੈ ਕਬੀਰਾ ਸਾਰੰ ॥੪॥੧॥੧੦॥"
+            },
+            {
+              "startVerseId": 21888,
+              "endVerseId": 21893,
+              "kind": "shabad",
+              "opening": "ਚੰਦੁ ਸੂਰਜੁ ਦੁਇ ਜੋਤਿ ਸਰੂਪੁ ॥",
+              "closing": "ਕਹੈ ਕਬੀਰੁ ਨਿਰੰਜਨ ਅਲੇਖੁ ॥੨॥੨॥੧੧॥"
+            },
+            {
+              "startVerseId": 21894,
+              "endVerseId": 21899,
+              "kind": "shabad",
+              "opening": "ਦੁਨੀਆ ਹੁਸੀਆਰ ਬੇਦਾਰ ਜਾਗਤ ਮੁਸੀਅਤ ਹਉ ਰੇ ਭਾਈ ॥",
+              "closing": "ਕਹਿ ਕਮੀਰ ਕੁਲ ਜਾਤਿ ਪਾਂਤਿ ਤਜਿ ਚੀਟੀ ਹੋਇ ਚੁਨਿ ਖਾਈ ॥੨॥੩॥੧੨॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21868"
+        },
+        {
+          "startVerseId": 21900,
+          "excerptVerseId": 21902,
+          "units": [
+            {
+              "startVerseId": 21902,
+              "endVerseId": 21911,
+              "kind": "shabad",
+              "opening": "ਆਨੀਲੇ ਕਾਗਦੁ ਕਾਟੀਲੇ ਗੂਡੀ ਆਕਾਸ ਮਧੇ ਭਰਮੀਅਲੇ ॥",
+              "closing": "ਅੰਤਰਿ ਬਾਹਰਿ ਕਾਜ ਬਿਰੂਧੀ ਚੀਤੁ ਸੁ ਬਾਰਿਕ ਰਾਖੀਅਲੇ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 21912,
+              "endVerseId": 21921,
+              "kind": "shabad",
+              "opening": "ਬੇਦ ਪੁਰਾਨ ਸਾਸਤ੍ਰ ਆਨੰਤਾ ਗੀਤ ਕਬਿਤ ਨ ਗਾਵਉਗੋ ॥",
+              "closing": "ਨਾਮਾ ਕਹੈ ਚਿਤੁ ਹਰਿ ਸਿਉ ਰਾਤਾ ਸੁੰਨ ਸਮਾਧਿ ਸਮਾਉਗੋ ॥੪॥੨॥"
+            },
+            {
+              "startVerseId": 21922,
+              "endVerseId": 21929,
+              "kind": "shabad",
+              "opening": "ਮਾਇ ਨ ਹੋਤੀ ਬਾਪੁ ਨ ਹੋਤਾ ਕਰਮੁ ਨ ਹੋਤੀ ਕਾਇਆ ॥",
+              "closing": "ਨਾਮਾ ਪ੍ਰਣਵੈ ਪਰਮ ਤਤੁ ਹੈ ਸਤਿਗੁਰ ਹੋਇ ਲਖਾਇਆ ॥੩॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21900"
+        },
+        {
+          "startVerseId": 21930,
+          "excerptVerseId": 21931,
+          "units": [
+            {
+              "startVerseId": 21931,
+              "endVerseId": 21940,
+              "kind": "shabad",
+              "opening": "ਬਾਨਾਰਸੀ ਤਪੁ ਕਰੈ ਉਲਟਿ ਤੀਰਥ ਮਰੈ ਅਗਨਿ ਦਹੈ ਕਾਇਆ ਕਲਪੁ ਕੀਜੈ ॥",
+              "closing": "ਜਸਰਥ ਰਾਇ ਨੰਦੁ ਰਾਜਾ ਮੇਰਾ ਰਾਮ ਚੰਦੁ ਪ੍ਰਣਵੈ ਨਾਮਾ ਤਤੁ ਰਸੁ ਅੰਮ੍ਰਿਤੁ ਪੀਜੈ ॥੪॥੪॥"
+            }
+          ],
+          "id": "raag-fine-b-67-heading-21930",
+          "label": {
+            "en": "ਰਾਮਕਲੀ ਘਰੁ ੨ ॥",
+            "pa": "ਰਾਮਕਲੀ ਘਰੁ ੨ ॥",
+            "hi": "ਰਾਮਕਲੀ ਘਰੁ ੨ ॥"
+          },
+          "printedHeading": "ਰਾਮਕਲੀ ਘਰੁ ੨ ॥"
+        },
+        {
+          "startVerseId": 21941,
+          "excerptVerseId": 21943,
+          "units": [
+            {
+              "startVerseId": 21943,
+              "endVerseId": 21950,
+              "kind": "shabad",
+              "opening": "ਪੜੀਐ ਗੁਨੀਐ ਨਾਮੁ ਸਭੁ ਸੁਨੀਐ ਅਨਭਉ ਭਾਉ ਨ ਦਰਸੈ ॥",
+              "closing": "ਮੋਹਿ ਅਧਾਰੁ ਨਾਮੁ ਨਾਰਾਇਨ ਜੀਵਨ ਪ੍ਰਾਨ ਧਨ ਮੋਰੇ ॥੩॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21941"
+        },
+        {
+          "startVerseId": 21951,
+          "excerptVerseId": 21953,
+          "units": [
+            {
+              "startVerseId": 21953,
+              "endVerseId": 21991,
+              "kind": "shabad",
+              "opening": "ਇੜਾ ਪਿੰਗੁਲਾ ਅਉਰ ਸੁਖਮਨਾ ਤੀਨਿ ਬਸਹਿ ਇਕ ਠਾਈ ॥",
+              "closing": "ਬੇਣੀ ਜਾਚੈ ਤੇਰਾ ਨਾਮੁ ॥੯॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-67-21951"
+        }
+      ],
+      "nonBodyVerseIds": [
+        21622,
+        21623,
+        21624,
+        21661,
+        21662,
+        21663,
+        21992,
+        21751,
+        21752,
+        21753,
+        22791,
+        21868,
+        21869,
+        22792,
+        21900,
+        21901,
+        21930,
+        22794,
+        21941,
+        21942,
+        22796,
+        21951,
+        21952
+      ]
+    },
+    {
+      "baniDbId": 69,
+      "fingerprint": "bani-v1:152:c13949e9f3eae7fd",
+      "groups": [
+        {
+          "startVerseId": 22017,
+          "excerptVerseId": 22020,
+          "units": [
+            {
+              "startVerseId": 22020,
+              "endVerseId": 22029,
+              "kind": "shabad",
+              "opening": "ਪਡੀਆ ਕਵਨ ਕੁਮਤਿ ਤੁਮ ਲਾਗੇ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਰਾਮੈ ਰਮਿ ਛੂਟਹੁ ਨਾਹਿ ਤ ਬੂਡੇ ਭਾਈ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 22030,
+              "endVerseId": 22039,
+              "kind": "shabad",
+              "opening": "ਬਨਹਿ ਬਸੇ ਕਿਉ ਪਾਈਐ ਜਉ ਲਉ ਮਨਹੁ ਨ ਤਜਹਿ ਬਿਕਾਰ ॥",
+              "closing": "ਅੰਤਰਗਤਿ ਹਰਿ ਭੇਟਿਆ ਅਬ ਮੇਰਾ ਮਨੁ ਕਤਹੂ ਨ ਜਾਇ ॥੪॥੨॥"
+            },
+            {
+              "startVerseId": 22040,
+              "endVerseId": 22049,
+              "kind": "shabad",
+              "opening": "ਰਿਧਿ ਸਿਧਿ ਜਾ ਕਉ ਫੁਰੀ ਤਬ ਕਾਹੂ ਸਿਉ ਕਿਆ ਕਾਜ ॥",
+              "closing": "ਕਹੁ ਕਬੀਰ ਕੰਚਨੁ ਭਇਆ ਭ੍ਰਮੁ ਗਇਆ ਸਮੁਦ੍ਰੈ ਪਾਰਿ ॥੪॥੩॥"
+            },
+            {
+              "startVerseId": 22050,
+              "endVerseId": 22059,
+              "kind": "shabad",
+              "opening": "ਉਦਕ ਸਮੁੰਦ ਸਲਲ ਕੀ ਸਾਖਿਆ ਨਦੀ ਤਰੰਗ ਸਮਾਵਹਿਗੇ ॥",
+              "closing": "ਕਹੁ ਕਬੀਰ ਜੋ ਨਾਮਿ ਸਮਾਨੇ ਸੁੰਨ ਰਹਿਆ ਲਿਵ ਸੋਈ ॥੪॥੪॥"
+            },
+            {
+              "startVerseId": 22060,
+              "endVerseId": 22065,
+              "kind": "shabad",
+              "opening": "ਜਉ ਤੁਮੑ ਮੋ ਕਉ ਦੂਰਿ ਕਰਤ ਹਉ ਤਉ ਤੁਮ ਮੁਕਤਿ ਬਤਾਵਹੁ ॥",
+              "closing": "ਅਬ ਤਉ ਬਿਮਲ ਭਏ ਘਟ ਹੀ ਮਹਿ ਕਹਿ ਕਬੀਰ ਮਨੁ ਮਾਨਿਆ ॥੨॥੫॥"
+            },
+            {
+              "startVerseId": 22066,
+              "endVerseId": 22070,
+              "kind": "shabad",
+              "opening": "ਜਿਨਿ ਗੜ ਕੋਟ ਕੀਏ ਕੰਚਨ ਕੇ ਛੋਡਿ ਗਇਆ ਸੋ ਰਾਵਨੁ ॥੧॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਤੇ ਅੰਤੇ ਮੁਕਤੇ ਜਿਨੑ ਹਿਰਦੈ ਰਾਮ ਰਸਾਇਨੁ ॥੨॥੬॥"
+            },
+            {
+              "startVerseId": 22071,
+              "endVerseId": 22078,
+              "kind": "shabad",
+              "opening": "ਦੇਹੀ ਗਾਵਾ ਜੀਉ ਧਰ ਮਹਤਉ ਬਸਹਿ ਪੰਚ ਕਿਰਸਾਨਾ ॥",
+              "closing": "ਅਬ ਕੀ ਬਾਰ ਬਖਸਿ ਬੰਦੇ ਕਉ ਬਹੁਰਿ ਨ ਭਉਜਲਿ ਫੇਰਾ ॥੩॥੭॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22018"
+        },
+        {
+          "startVerseId": 22079,
+          "excerptVerseId": 22081,
+          "units": [
+            {
+              "startVerseId": 22081,
+              "endVerseId": 22096,
+              "kind": "shabad",
+              "opening": "ਅਨਭਉ ਕਿਨੈ ਨ ਦੇਖਿਆ ਬੈਰਾਗੀਅੜੇ ॥",
+              "closing": "ਮੋ ਕਉ ਭਉਜਲੁ ਪਾਰਿ ਉਤਾਰਿ ਵਣਾਹੰਬੈ ॥੮॥੧॥੮॥"
+            },
+            {
+              "startVerseId": 22097,
+              "endVerseId": 22102,
+              "kind": "shabad",
+              "opening": "ਰਾਜਨ ਕਉਨੁ ਤੁਮਾਰੈ ਆਵੈ ॥",
+              "closing": "ਕਬੀਰ ਕੋ ਠਾਕੁਰੁ ਅਨਦ ਬਿਨੋਦੀ ਜਾਤਿ ਨ ਕਾਹੂ ਕੀ ਮਾਨੀ ॥੨॥੯॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22079"
+        },
+        {
+          "startVerseId": 22103,
+          "excerptVerseId": 22104,
+          "units": [
+            {
+              "startVerseId": 22104,
+              "endVerseId": 22105,
+              "kind": "salok",
+              "opening": "ਗਗਨ ਦਮਾਮਾ ਬਾਜਿਓ ਪਰਿਓ ਨੀਸਾਨੈ ਘਾਉ ॥",
+              "closing": "ਖੇਤੁ ਜੁ ਮਾਂਡਿਓ ਸੂਰਮਾ ਅਬ ਜੂਝਨ ਕੋ ਦਾਉ ॥੧॥"
+            },
+            {
+              "startVerseId": 22106,
+              "endVerseId": 22107,
+              "kind": "salok",
+              "opening": "ਸੂਰਾ ਸੋ ਪਹਿਚਾਨੀਐ ਜੁ ਲਰੈ ਦੀਨ ਕੇ ਹੇਤ ॥",
+              "closing": "ਪੁਰਜਾ ਪੁਰਜਾ ਕਟਿ ਮਰੈ ਕਬਹੂ ਨ ਛਾਡੈ ਖੇਤੁ ॥੨॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22103"
+        },
+        {
+          "startVerseId": 22108,
+          "excerptVerseId": 22110,
+          "units": [
+            {
+              "startVerseId": 22110,
+              "endVerseId": 22119,
+              "kind": "shabad",
+              "opening": "ਚਾਰਿ ਮੁਕਤਿ ਚਾਰੈ ਸਿਧਿ ਮਿਲਿ ਕੈ ਦੂਲਹ ਪ੍ਰਭ ਕੀ ਸਰਨਿ ਪਰਿਓ ॥",
+              "closing": "ਨਾਮਾ ਕਹੈ ਭਗਤਿ ਬਸਿ ਕੇਸਵ ਅਜਹੂੰ ਬਲਿ ਕੇ ਦੁਆਰ ਖਰੋ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22108"
+        },
+        {
+          "startVerseId": 22120,
+          "excerptVerseId": 22121,
+          "units": [
+            {
+              "startVerseId": 22121,
+              "endVerseId": 22130,
+              "kind": "shabad",
+              "opening": "ਦੀਨੁ ਬਿਸਾਰਿਓ ਰੇ ਦਿਵਾਨੇ ਦੀਨੁ ਬਿਸਾਰਿਓ ਰੇ ॥",
+              "closing": "ਰਾਮੁ ਨਾਮੁ ਜਾਨਿਓ ਨਹੀ ਕੈਸੇ ਉਤਰਸਿ ਪਾਰਿ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22120"
+        },
+        {
+          "startVerseId": 22131,
+          "excerptVerseId": 22133,
+          "units": [
+            {
+              "startVerseId": 22133,
+              "endVerseId": 22138,
+              "kind": "shabad",
+              "opening": "ਚੰਦ ਸਤ ਭੇਦਿਆ ਨਾਦ ਸਤ ਪੂਰਿਆ ਸੂਰ ਸਤ ਖੋੜਸਾ ਦਤੁ ਕੀਆ ॥",
+              "closing": "ਬਦਤਿ ਜੈਦੇਉ ਜੈਦੇਵ ਕਉ ਰੰਮਿਆ ਬ੍ਰਹਮੁ ਨਿਰਬਾਣੁ ਲਿਵ ਲੀਣੁ ਪਾਇਆ ॥੨॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22131"
+        },
+        {
+          "startVerseId": 22139,
+          "excerptVerseId": 22140,
+          "units": [
+            {
+              "startVerseId": 22140,
+              "endVerseId": 22147,
+              "kind": "shabad",
+              "opening": "ਰਾਮੁ ਸਿਮਰੁ ਪਛੁਤਾਹਿਗਾ ਮਨ ॥",
+              "closing": "ਕਹਤੁ ਕਬੀਰੁ ਸੁਨਹੁ ਰੇ ਸੰਤਹੁ ਸਾਧਸੰਗਤਿ ਤਰਿ ਜਾਂਹਿਗਾ ॥੩॥੧॥"
+            }
+          ],
+          "id": "raag-fine-b-69-heading-22139",
+          "label": {
+            "en": "ਕਬੀਰੁ ॥ ਮਾਰੂ ॥",
+            "pa": "ਕਬੀਰੁ ॥ ਮਾਰੂ ॥",
+            "hi": "ਕਬੀਰੁ ॥ ਮਾਰੂ ॥"
+          },
+          "printedHeading": "ਕਬੀਰੁ ॥ ਮਾਰੂ ॥"
+        },
+        {
+          "startVerseId": 22148,
+          "excerptVerseId": 22150,
+          "units": [
+            {
+              "startVerseId": 22150,
+              "endVerseId": 22155,
+              "kind": "shabad",
+              "opening": "ਐਸੀ ਲਾਲ ਤੁਝ ਬਿਨੁ ਕਉਨੁ ਕਰੈ ॥",
+              "closing": "ਕਹਿ ਰਵਿਦਾਸੁ ਸੁਨਹੁ ਰੇ ਸੰਤਹੁ ਹਰਿ ਜੀਉ ਤੇ ਸਭੈ ਸਰੈ ॥੨॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22148"
+        },
+        {
+          "startVerseId": 22156,
+          "excerptVerseId": 22157,
+          "units": [
+            {
+              "startVerseId": 22157,
+              "endVerseId": 22164,
+              "kind": "shabad",
+              "opening": "ਸੁਖ ਸਾਗਰ ਸੁਰਿਤਰੁ ਚਿੰਤਾਮਨਿ ਕਾਮਧੇਨ ਬਸਿ ਜਾ ਕੇ ਰੇ ॥",
+              "closing": "ਕਹਿ ਰਵਿਦਾਸ ਉਦਾਸ ਦਾਸ ਮਤਿ ਜਨਮ ਮਰਨ ਭੈ ਭਾਗੀ ॥੩॥੨॥੧੫॥"
+            }
+          ],
+          "originalParentId": "catalog-69-22156"
+        }
+      ],
+      "nonBodyVerseIds": [
+        22017,
+        22018,
+        22019,
+        22787,
+        22079,
+        22080,
+        22103,
+        22788,
+        22108,
+        22109,
+        22120,
+        22789,
+        22131,
+        22132,
+        22139,
+        22790,
+        22148,
+        22149,
+        22156
+      ]
+    },
+    {
+      "baniDbId": 70,
+      "fingerprint": "bani-v1:67:b0970452bb89b42e",
+      "groups": [
+        {
+          "startVerseId": 22165,
+          "excerptVerseId": 22168,
+          "units": [
+            {
+              "startVerseId": 22168,
+              "endVerseId": 22177,
+              "kind": "shabad",
+              "opening": "ਉਸਤਤਿ ਨਿੰਦਾ ਦੋਊ ਬਿਬਰਜਿਤ ਤਜਹੁ ਮਾਨੁ ਅਭਿਮਾਨਾ ॥",
+              "closing": "ਨਿਰਭਉ ਪੂਰਿ ਰਹੇ ਭ੍ਰਮੁ ਭਾਗਾ ਕਹਿ ਕਬੀਰ ਜਨ ਦਾਸਾ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 22178,
+              "endVerseId": 22187,
+              "kind": "shabad",
+              "opening": "ਕਿਨਹੀ ਬਨਜਿਆ ਕਾਂਸੀ ਤਾਂਬਾ ਕਿਨਹੀ ਲਉਗ ਸੁਪਾਰੀ ॥",
+              "closing": "ਕਹਤੁ ਕਬੀਰੁ ਸੁਨਹੁ ਰੇ ਸੰਤਹੁ ਨਿਬਹੀ ਖੇਪ ਹਮਾਰੀ ॥੪॥੨॥"
+            },
+            {
+              "startVerseId": 22188,
+              "endVerseId": 22197,
+              "kind": "shabad",
+              "opening": "ਰੀ ਕਲਵਾਰਿ ਗਵਾਰਿ ਮੂਢ ਮਤਿ ਉਲਟੋ ਪਵਨੁ ਫਿਰਾਵਉ ॥",
+              "closing": "ਉਬਟ ਚਲੰਤੇ ਇਹੁ ਮਦੁ ਪਾਇਆ ਜੈਸੇ ਖੋਂਦ ਖੁਮਾਰੀ ॥੪॥੩॥"
+            },
+            {
+              "startVerseId": 22198,
+              "endVerseId": 22207,
+              "kind": "shabad",
+              "opening": "ਕਾਮ ਕ੍ਰੋਧ ਤ੍ਰਿਸਨਾ ਕੇ ਲੀਨੇ ਗਤਿ ਨਹੀ ਏਕੈ ਜਾਨੀ ॥",
+              "closing": "ਕਹੁ ਕਬੀਰ ਜਿਹ ਰਾਮੁ ਨ ਚੇਤਿਓ ਬੂਡੇ ਬਹੁਤੁ ਸਿਆਨੇ ॥੪॥੪॥"
+            },
+            {
+              "startVerseId": 22208,
+              "endVerseId": 22213,
+              "kind": "shabad",
+              "opening": "ਟੇਢੀ ਪਾਗ ਟੇਢੇ ਚਲੇ ਲਾਗੇ ਬੀਰੇ ਖਾਨ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਅੰਤ ਕੀ ਬੇਰ ਆਇ ਲਾਗੋ ਕਾਲੁ ਨਿਦਾਨਿ ॥੨॥੫॥"
+            },
+            {
+              "startVerseId": 22214,
+              "endVerseId": 22219,
+              "kind": "shabad",
+              "opening": "ਚਾਰਿ ਦਿਨ ਅਪਨੀ ਨਉਬਤਿ ਚਲੇ ਬਜਾਇ ॥",
+              "closing": "ਕਹਤੁ ਕਬੀਰੁ ਰਾਮੁ ਕੀ ਨ ਸਿਮਰਹੁ ਜਨਮੁ ਅਕਾਰਥੁ ਜਾਇ ॥੨॥੬॥"
+            }
+          ],
+          "originalParentId": "catalog-70-22166"
+        },
+        {
+          "startVerseId": 22220,
+          "excerptVerseId": 22222,
+          "units": [
+            {
+              "startVerseId": 22222,
+              "endVerseId": 22230,
+              "kind": "shabad",
+              "opening": "ਖਟੁ ਕਰਮ ਕੁਲ ਸੰਜੁਗਤੁ ਹੈ ਹਰਿ ਭਗਤਿ ਹਿਰਦੈ ਨਾਹਿ ॥",
+              "closing": "ਐਸੇ ਦੁਰਮਤਿ ਨਿਸਤਰੇ ਤੂ ਕਿਉ ਨ ਤਰਹਿ ਰਵਿਦਾਸ ॥੩॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-70-22220"
+        }
+      ],
+      "nonBodyVerseIds": [
+        22165,
+        22166,
+        22167,
+        22786,
+        22220,
+        22221
+      ]
+    },
+    {
+      "baniDbId": 71,
+      "fingerprint": "bani-v1:554:ebd9eff3450e68a7",
+      "groups": [
+        {
+          "startVerseId": 22231,
+          "excerptVerseId": 22234,
+          "units": [
+            {
+              "startVerseId": 22234,
+              "endVerseId": 22243,
+              "kind": "shabad",
+              "opening": "ਇਹੁ ਧਨੁ ਮੇਰੇ ਹਰਿ ਕੋ ਨਾਉ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਹਉ ਤਾ ਕੋ ਦਾਸੁ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 22244,
+              "endVerseId": 22253,
+              "kind": "shabad",
+              "opening": "ਨਾਂਗੇ ਆਵਨੁ ਨਾਂਗੇ ਜਾਨਾ ॥",
+              "closing": "ਚਲੇ ਜੁਆਰੀ ਦੁਇ ਹਥ ਝਾਰਿ ॥੪॥੨॥"
+            },
+            {
+              "startVerseId": 22254,
+              "endVerseId": 22266,
+              "kind": "shabad",
+              "opening": "ਮੈਲਾ ਬ੍ਰਹਮਾ ਮੈਲਾ ਇੰਦੁ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਤੇ ਜਨ ਪਰਵਾਨ ॥ ਨਿਰਮਲ ਤੇ ਜੋ ਰਾਮਹਿ ਜਾਨ ॥੬॥੩॥"
+            },
+            {
+              "startVerseId": 22267,
+              "endVerseId": 22276,
+              "kind": "shabad",
+              "opening": "ਮਨੁ ਕਰਿ ਮਕਾ ਕਿਬਲਾ ਕਰਿ ਦੇਹੀ ॥",
+              "closing": "ਮੁਸਿ ਮੁਸਿ ਮਨੂਆ ਸਹਜਿ ਸਮਾਨਾ ॥੪॥੪॥"
+            },
+            {
+              "startVerseId": 22277,
+              "endVerseId": 22285,
+              "kind": "shabad",
+              "opening": "ਗੰਗਾ ਕੈ ਸੰਗਿ ਸਲਿਤਾ ਬਿਗਰੀ ॥ ਸੋ ਸਲਿਤਾ ਗੰਗਾ ਹੋਇ ਨਿਬਰੀ ॥੧॥",
+              "closing": "ਸੋ ਕਬੀਰੁ ਰਾਮੈ ਹੋਇ ਨਿਬਰਿਓ ॥੪॥੫॥"
+            },
+            {
+              "startVerseId": 22286,
+              "endVerseId": 22295,
+              "kind": "shabad",
+              "opening": "ਮਾਥੇ ਤਿਲਕੁ ਹਥਿ ਮਾਲਾ ਬਾਨਾਂ ॥",
+              "closing": "ਕਬੀਰ ਕਾ ਮਰਮੁ ਰਾਮ ਪਹਿਚਾਨਾਂ ॥੪॥੬॥"
+            },
+            {
+              "startVerseId": 22296,
+              "endVerseId": 22305,
+              "kind": "shabad",
+              "opening": "ਉਲਟਿ ਜਾਤਿ ਕੁਲ ਦੋਊ ਬਿਸਾਰੀ ॥",
+              "closing": "ਆਪੁ ਖੋਜਿ ਖੋਜਿ ਮਿਲੇ ਕਬੀਰਾ ॥੪॥੭॥"
+            },
+            {
+              "startVerseId": 22306,
+              "endVerseId": 22315,
+              "kind": "shabad",
+              "opening": "ਨਿਰਧਨ ਆਦਰੁ ਕੋਈ ਨ ਦੇਇ ॥",
+              "closing": "ਜਾ ਕੇ ਹਿਰਦੈ ਨਾਮੁ ਨ ਹੋਈ ॥੪॥੮॥"
+            },
+            {
+              "startVerseId": 22316,
+              "endVerseId": 22337,
+              "kind": "shabad",
+              "opening": "ਗੁਰ ਸੇਵਾ ਤੇ ਭਗਤਿ ਕਮਾਈ ॥",
+              "closing": "ਬਹੁ ਬਿਧਿ ਕਹਿਓ ਪੁਕਾਰਿ ਪੁਕਾਰਿ ॥੫॥੧॥੯॥"
+            },
+            {
+              "startVerseId": 22338,
+              "endVerseId": 22351,
+              "kind": "shabad",
+              "opening": "ਸਿਵ ਕੀ ਪੁਰੀ ਬਸੈ ਬੁਧਿ ਸਾਰੁ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਤਾ ਕਾ ਅੰਤੁ ਨ ਪਾਰੁ ॥੩॥੨॥੧੦॥"
+            },
+            {
+              "startVerseId": 22352,
+              "endVerseId": 22369,
+              "kind": "shabad",
+              "opening": "ਸੋ ਮੁਲਾਂ ਜੋ ਮਨ ਸਿਉ ਲਰੈ ॥",
+              "closing": "ਕਬੀਰ ਕਾ ਸੁਆਮੀ ਰਹਿਆ ਸਮਾਇ ॥੪॥੩॥੧੧॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22232"
+        },
+        {
+          "startVerseId": 22370,
+          "excerptVerseId": 22371,
+          "units": [
+            {
+              "startVerseId": 22371,
+              "endVerseId": 22388,
+              "kind": "shabad",
+              "opening": "ਜੋ ਪਾਥਰ ਕਉ ਕਹਤੇ ਦੇਵ ॥",
+              "closing": "ਰਾਮ ਭਗਤ ਹੈ ਸਦਾ ਸੁਖਾਲੇ ॥੪॥੪॥੧੨॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22370"
+        },
+        {
+          "startVerseId": 22389,
+          "excerptVerseId": 22389,
+          "units": [
+            {
+              "startVerseId": 22389,
+              "endVerseId": 22410,
+              "kind": "shabad",
+              "opening": "ਜਲ ਮਹਿ ਮੀਨ ਮਾਇਆ ਕੇ ਬੇਧੇ ॥",
+              "closing": "ਤਬ ਛੂਟੇ ਜਬ ਸਾਧੂ ਪਾਇਆ ॥੫॥੫॥੧੩॥"
+            },
+            {
+              "startVerseId": 22411,
+              "endVerseId": 22424,
+              "kind": "shabad",
+              "opening": "ਜਬ ਲਗੁ ਮੇਰੀ ਮੇਰੀ ਕਰੈ ॥",
+              "closing": "ਕੇਵਲ ਰਾਮ ਰਹਹੁ ਲਿਵ ਲਾਇ ॥੩॥੬॥੧੪॥"
+            },
+            {
+              "startVerseId": 22425,
+              "endVerseId": 22442,
+              "kind": "shabad",
+              "opening": "ਸਤਰਿ ਸੈਇ ਸਲਾਰ ਹੈ ਜਾ ਕੇ ॥",
+              "closing": "ਭਿਸਤੁ ਨਜੀਕਿ ਰਾਖੁ ਰਹਮਾਨਾ ॥੪॥੭॥੧੫॥"
+            },
+            {
+              "startVerseId": 22443,
+              "endVerseId": 22452,
+              "kind": "shabad",
+              "opening": "ਸਭੁ ਕੋਈ ਚਲਨ ਕਹਤ ਹੈ ਊਹਾਂ ॥",
+              "closing": "ਸਾਧਸੰਗਤਿ ਬੈਕੁੰਠੈ ਆਹਿ ॥੪॥੮॥੧੬॥"
+            },
+            {
+              "startVerseId": 22453,
+              "endVerseId": 22466,
+              "kind": "shabad",
+              "opening": "ਕਿਉ ਲੀਜੈ ਗਢੁ ਬੰਕਾ ਭਾਈ ॥",
+              "closing": "ਦਾਸੁ ਕਮੀਰੁ ਚੜਿੑਓ ਗੜੑ ਊਪਰਿ ਰਾਜੁ ਲੀਓ ਅਬਿਨਾਸੀ ॥੬॥੯॥੧੭॥"
+            },
+            {
+              "startVerseId": 22467,
+              "endVerseId": 22474,
+              "kind": "shabad",
+              "opening": "ਗੰਗ ਗੁਸਾਇਨਿ ਗਹਿਰ ਗੰਭੀਰ ॥",
+              "closing": "ਜਲ ਥਲ ਰਾਖਨ ਹੈ ਰਘੁਨਾਥ ॥੩॥੧੦॥੧੮॥"
+            }
+          ],
+          "id": "raag-fine-b-71-heading-22389",
+          "label": {
+            "en": "Following shabads",
+            "pa": "ਅਗਲੇ ਸ਼ਬਦ",
+            "hi": "अगले शबद"
+          },
+          "editorialLabel": true
+        },
+        {
+          "startVerseId": 22475,
+          "excerptVerseId": 22477,
+          "units": [
+            {
+              "startVerseId": 22477,
+              "endVerseId": 22510,
+              "kind": "ashtpadi",
+              "opening": "ਅਗਮ ਦ੍ਰੁਗਮ ਗੜਿ ਰਚਿਓ ਬਾਸ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਸੋ ਪ੍ਰਾਨੀ ਤਰੈ ॥੮॥੧॥"
+            },
+            {
+              "startVerseId": 22511,
+              "endVerseId": 22543,
+              "kind": "ashtpadi",
+              "opening": "ਕੋਟਿ ਸੂਰ ਜਾ ਕੈ ਪਰਗਾਸ ॥",
+              "closing": "ਦੇਹਿ ਅਭੈ ਪਦੁ ਮਾਂਗਉ ਦਾਨ ॥੮॥੨॥੧੮॥੨੦॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22475"
+        },
+        {
+          "startVerseId": 22544,
+          "excerptVerseId": 22546,
+          "units": [
+            {
+              "startVerseId": 22546,
+              "endVerseId": 22555,
+              "kind": "shabad",
+              "opening": "ਰੇ ਜਿਹਬਾ ਕਰਉ ਸਤ ਖੰਡ ॥",
+              "closing": "ਅਨੰਤ ਰੂਪ ਤੇਰੇ ਨਾਰਾਇਣਾ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 22556,
+              "endVerseId": 22563,
+              "kind": "shabad",
+              "opening": "ਪਰ ਧਨ ਪਰ ਦਾਰਾ ਪਰਹਰੀ ॥",
+              "closing": "ਨਾ ਸੋਹੈ ਬਤੀਸ ਲਖਨਾ ॥੩॥੨॥"
+            },
+            {
+              "startVerseId": 22564,
+              "endVerseId": 22572,
+              "kind": "shabad",
+              "opening": "ਦੂਧੁ ਕਟੋਰੈ ਗਡਵੈ ਪਾਨੀ ॥ ਕਪਲ ਗਾਇ ਨਾਮੈ ਦੁਹਿ ਆਨੀ ॥੧॥",
+              "closing": "ਨਾਮੇ ਹਰਿ ਕਾ ਦਰਸਨੁ ਭਇਆ ॥੪॥੩॥"
+            },
+            {
+              "startVerseId": 22573,
+              "endVerseId": 22582,
+              "kind": "shabad",
+              "opening": "ਮੈ ਬਉਰੀ ਮੇਰਾ ਰਾਮੁ ਭਤਾਰੁ ॥",
+              "closing": "ਨਾਮੇ ਸ੍ਰੀਰੰਗੁ ਭੇਟਲ ਸੋਈ ॥੪॥੪॥"
+            },
+            {
+              "startVerseId": 22583,
+              "endVerseId": 22593,
+              "kind": "shabad",
+              "opening": "ਕਬਹੂ ਖੀਰਿ ਖਾਡ ਘੀਉ ਨ ਭਾਵੈ ॥",
+              "closing": "ਜਿਹ ਗੁਰੁ ਮਿਲੈ ਤਿਹ ਪਾਰਿ ਉਤਾਰੈ ॥੪॥੫॥"
+            },
+            {
+              "startVerseId": 22594,
+              "endVerseId": 22601,
+              "kind": "shabad",
+              "opening": "ਹਸਤ ਖੇਲਤ ਤੇਰੇ ਦੇਹੁਰੇ ਆਇਆ ॥",
+              "closing": "ਭਗਤ ਜਨਾਂ ਕਉ ਦੇਹੁਰਾ ਫਿਰੈ ॥੩॥੬॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22544"
+        },
+        {
+          "startVerseId": 22602,
+          "excerptVerseId": 22604,
+          "units": [
+            {
+              "startVerseId": 22604,
+              "endVerseId": 22621,
+              "kind": "shabad",
+              "opening": "ਜੈਸੀ ਭੂਖੇ ਪ੍ਰੀਤਿ ਅਨਾਜ ॥",
+              "closing": "ਗੋਬਿਦੁ ਬਸੈ ਹਮਾਰੈ ਚੀਤਿ ॥੪॥੧॥੭॥"
+            },
+            {
+              "startVerseId": 22622,
+              "endVerseId": 22639,
+              "kind": "shabad",
+              "opening": "ਘਰ ਕੀ ਨਾਰਿ ਤਿਆਗੈ ਅੰਧਾ ॥",
+              "closing": "ਇਨ ਬਿਧਿ ਸੰਤਹੁ ਉਤਰਹੁ ਪਾਰਿ ॥੪॥੨॥੮॥"
+            },
+            {
+              "startVerseId": 22640,
+              "endVerseId": 22652,
+              "kind": "shabad",
+              "opening": "ਸੰਡਾ ਮਰਕਾ ਜਾਇ ਪੁਕਾਰੇ ॥",
+              "closing": "ਕਹਿ ਨਾਮਦੇਉ ਹਮ ਨਰਹਰਿ ਧਿਆਵਹ ਰਾਮੁ ਅਭੈ ਪਦ ਦਾਤਾ ॥੫॥੩॥੯॥"
+            },
+            {
+              "startVerseId": 22653,
+              "endVerseId": 22710,
+              "kind": "shabad",
+              "opening": "ਸੁਲਤਾਨੁ ਪੂਛੈ ਸੁਨੁ ਬੇ ਨਾਮਾ ॥",
+              "closing": "ਨਾਮੇ ਨਾਰਾਇਨ ਨਾਹੀ ਭੇਦੁ ॥੨੮॥੧॥੧੦॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22602"
+        },
+        {
+          "startVerseId": 22711,
+          "excerptVerseId": 22712,
+          "units": [
+            {
+              "startVerseId": 22712,
+              "endVerseId": 22749,
+              "kind": "shabad",
+              "opening": "ਜਉ ਗੁਰਦੇਉ ਤ ਮਿਲੈ ਮੁਰਾਰਿ ॥",
+              "closing": "ਨਾਮਦੇਉ ਗੁਰ ਕੀ ਸਰਣਾਈ ॥੯॥੧॥੨॥੧੧॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22711"
+        },
+        {
+          "startVerseId": 22750,
+          "excerptVerseId": 22752,
+          "units": [
+            {
+              "startVerseId": 22752,
+              "endVerseId": 22769,
+              "kind": "shabad",
+              "opening": "ਬਿਨੁ ਦੇਖੇ ਉਪਜੈ ਨਹੀ ਆਸਾ ॥",
+              "closing": "ਰਿਦੈ ਰਾਮੁ ਕੀ ਨ ਜਪਸਿ ਅਭਾਗ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22750"
+        },
+        {
+          "startVerseId": 22770,
+          "excerptVerseId": 22771,
+          "units": [
+            {
+              "startVerseId": 22771,
+              "endVerseId": 22780,
+              "kind": "shabad",
+              "opening": "ਆਉ ਕਲੰਦਰ ਕੇਸਵਾ ॥",
+              "closing": "ਨਾਮੇ ਕਾ ਸੁਆਮੀ ਅੰਤਰਜਾਮੀ ਫਿਰੇ ਸਗਲ ਬੇਦੇਸਵਾ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-71-22770"
+        }
+      ],
+      "nonBodyVerseIds": [
+        22231,
+        22232,
+        22233,
+        22370,
+        22781,
+        22475,
+        22476,
+        22782,
+        22544,
+        22545,
+        22784,
+        22602,
+        22603,
+        22711,
+        22785,
+        22750,
+        22751,
+        22770
+      ]
+    },
+    {
+      "baniDbId": 72,
+      "fingerprint": "bani-v1:181:aa713652a7ba390e",
+      "groups": [
+        {
+          "startVerseId": 22841,
+          "excerptVerseId": 22844,
+          "units": [
+            {
+              "startVerseId": 22844,
+              "endVerseId": 22851,
+              "kind": "shabad",
+              "opening": "ਮਉਲੀ ਧਰਤੀ ਮਉਲਿਆ ਅਕਾਸੁ ॥",
+              "closing": "ਕਬੀਰ ਕੋ ਸੁਆਮੀ ਸਭ ਸਮਾਨ ॥੩॥੧॥"
+            },
+            {
+              "startVerseId": 22852,
+              "endVerseId": 22865,
+              "kind": "shabad",
+              "opening": "ਪੰਡਿਤ ਜਨ ਮਾਤੇ ਪੜਿੑ ਪੁਰਾਨ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਭਜਿ ਰਾਮ ਨਾਮ ॥੩॥੨॥"
+            },
+            {
+              "startVerseId": 22866,
+              "endVerseId": 22878,
+              "kind": "shabad",
+              "opening": "ਜੋਇ ਖਸਮੁ ਹੈ ਜਾਇਆ ॥",
+              "closing": "ਕਹੁ ਕਬੀਰ ਸਮਝਾਈ ॥੩॥੩॥"
+            },
+            {
+              "startVerseId": 22879,
+              "endVerseId": 22900,
+              "kind": "shabad",
+              "opening": "ਪ੍ਰਹਲਾਦ ਪਠਾਏ ਪੜਨ ਸਾਲ ॥",
+              "closing": "ਪ੍ਰਹਲਾਦ ਉਧਾਰੇ ਅਨਿਕ ਬਾਰ ॥੫॥੪॥"
+            },
+            {
+              "startVerseId": 22901,
+              "endVerseId": 22914,
+              "kind": "shabad",
+              "opening": "ਇਸੁ ਤਨ ਮਨ ਮਧੇ ਮਦਨ ਚੋਰ ॥",
+              "closing": "ਸੁਖ ਸਾਗਰ ਗੁਨ ਰਉ ਕਬੀਰ ॥੩॥੫॥"
+            },
+            {
+              "startVerseId": 22915,
+              "endVerseId": 22928,
+              "kind": "shabad",
+              "opening": "ਨਾਇਕੁ ਏਕੁ ਬਨਜਾਰੇ ਪਾਚ ॥",
+              "closing": "ਸਹਜ ਸਮਾਨੋ ਤ ਭਰਮ ਭਾਜ ॥੩॥੬॥"
+            }
+          ],
+          "originalParentId": "catalog-72-22842"
+        },
+        {
+          "startVerseId": 22929,
+          "excerptVerseId": 22931,
+          "units": [
+            {
+              "startVerseId": 22931,
+              "endVerseId": 22940,
+              "kind": "shabad",
+              "opening": "ਮਾਤਾ ਜੂਠੀ ਪਿਤਾ ਭੀ ਜੂਠਾ ਜੂਠੇ ਹੀ ਫਲ ਲਾਗੇ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਤੇਈ ਨਰ ਸੂਚੇ ਸਾਚੀ ਪਰੀ ਬਿਚਾਰਾ ॥੪॥੧॥੭॥"
+            }
+          ],
+          "originalParentId": "catalog-72-22929"
+        },
+        {
+          "startVerseId": 22941,
+          "excerptVerseId": 22943,
+          "units": [
+            {
+              "startVerseId": 22943,
+              "endVerseId": 22956,
+              "kind": "shabad",
+              "opening": "ਕਤ ਜਾਈਐ ਰੇ ਘਰ ਲਾਗੋ ਰੰਗੁ ॥",
+              "closing": "ਗੁਰ ਕਾ ਸਬਦੁ ਕਾਟੈ ਕੋਟਿ ਕਰਮ ॥੩॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-72-22941"
+        },
+        {
+          "startVerseId": 22957,
+          "excerptVerseId": 22959,
+          "units": [
+            {
+              "startVerseId": 22959,
+              "endVerseId": 22966,
+              "kind": "shabad",
+              "opening": "ਸਾਹਿਬੁ ਸੰਕਟਵੈ ਸੇਵਕੁ ਭਜੈ ॥",
+              "closing": "ਨਾਰਾਇਣੁ ਸੁਪ੍ਰਸੰਨ ਹੋਇ ਤ ਸੇਵਕੁ ਨਾਮਾ ॥੩॥੧॥"
+            },
+            {
+              "startVerseId": 22967,
+              "endVerseId": 22976,
+              "kind": "shabad",
+              "opening": "ਲੋਭ ਲਹਰਿ ਅਤਿ ਨੀਝਰ ਬਾਜੈ ॥",
+              "closing": "ਮੋ ਕਉ ਬਾਹ ਦੇਹਿ ਬਾਹ ਦੇਹਿ ਬੀਠੁਲਾ ॥੪॥੨॥"
+            },
+            {
+              "startVerseId": 22977,
+              "endVerseId": 22984,
+              "kind": "shabad",
+              "opening": "ਸਹਜ ਅਵਲਿ ਧੂੜਿ ਮਣੀ ਗਾਡੀ ਚਾਲਤੀ ॥",
+              "closing": "ਅਪਨੇ ਭਗਤ ਪਰ ਕਰਿ ਦਇਆ ॥੩॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-72-22957"
+        },
+        {
+          "startVerseId": 22985,
+          "excerptVerseId": 22987,
+          "units": [
+            {
+              "startVerseId": 22987,
+              "endVerseId": 23004,
+              "kind": "shabad",
+              "opening": "ਤੁਝਹਿ ਸੁਝੰਤਾ ਕਛੂ ਨਾਹਿ ॥",
+              "closing": "ਤਿਸੁ ਜਾਤਿ ਨ ਜਨਮੁ ਨ ਜੋਨਿ ਕਾਮੁ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-72-22985"
+        },
+        {
+          "startVerseId": 23005,
+          "excerptVerseId": 23007,
+          "units": [
+            {
+              "startVerseId": 23007,
+              "endVerseId": 23016,
+              "kind": "shabad",
+              "opening": "ਸੁਰਹ ਕੀ ਜੈਸੀ ਤੇਰੀ ਚਾਲ ॥",
+              "closing": "ਮਤਿ ਕੋਊ ਮਾਰੈ ਈਂਟ ਢੇਮ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-72-23005"
+        }
+      ],
+      "nonBodyVerseIds": [
+        22841,
+        22842,
+        22843,
+        23017,
+        22929,
+        22930,
+        23018,
+        22941,
+        22942,
+        23019,
+        22957,
+        22958,
+        23020,
+        22985,
+        22986,
+        23021,
+        23005,
+        23006
+      ]
+    },
+    {
+      "baniDbId": 73,
+      "fingerprint": "bani-v1:87:e456ed2ab6fb505e",
+      "groups": [
+        {
+          "startVerseId": 23024,
+          "excerptVerseId": 23028,
+          "units": [
+            {
+              "startVerseId": 23028,
+              "endVerseId": 23037,
+              "kind": "shabad",
+              "opening": "ਕਹਾ ਨਰ ਗਰਬਸਿ ਥੋਰੀ ਬਾਤ ॥",
+              "closing": "ਕਹਤ ਕਬੀਰੁ ਰਾਮ ਭਜੁ ਬਉਰੇ ਜਨਮੁ ਅਕਾਰਥ ਜਾਤ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 23038,
+              "endVerseId": 23047,
+              "kind": "shabad",
+              "opening": "ਰਾਜਾਸ੍ਰਮ ਮਿਤਿ ਨਹੀ ਜਾਨੀ ਤੇਰੀ ॥",
+              "closing": "ਕਹੁ ਕਬੀਰ ਸਾਧੂ ਕੋ ਪ੍ਰੀਤਮੁ ਤਿਸੁ ਮੂਰਤਿ ਬਲਿਹਾਰੀ ॥੪॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-73-23026"
+        },
+        {
+          "startVerseId": 23048,
+          "excerptVerseId": 23050,
+          "units": [
+            {
+              "startVerseId": 23050,
+              "endVerseId": 23067,
+              "kind": "shabad",
+              "opening": "ਕਾਏਂ ਰੇ ਮਨ ਬਿਖਿਆ ਬਨ ਜਾਇ ॥",
+              "closing": "ਨਿਰਭੈ ਹੋਇ ਭਜੀਐ ਭਗਵਾਨ ॥੪॥੧॥"
+            },
+            {
+              "startVerseId": 23068,
+              "endVerseId": 23073,
+              "kind": "shabad",
+              "opening": "ਬਦਹੁ ਕੀ ਨ ਹੋਡ ਮਾਧਉ ਮੋ ਸਿਉ ॥",
+              "closing": "ਕਹਤ ਨਾਮਦੇਉ ਤੂੰ ਮੇਰੋ ਠਾਕੁਰੁ ਜਨੁ ਊਰਾ ਤੂ ਪੂਰਾ ॥੨॥੨॥"
+            },
+            {
+              "startVerseId": 23074,
+              "endVerseId": 23079,
+              "kind": "shabad",
+              "opening": "ਦਾਸ ਅਨਿੰਨ ਮੇਰੋ ਨਿਜ ਰੂਪ ॥",
+              "closing": "ਨਾਮਦੇਵ ਜਾ ਕੇ ਜੀਅ ਐਸੀ ਤੈਸੋ ਤਾ ਕੈ ਪ੍ਰੇਮ ਪ੍ਰਗਾਸ ॥੨॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-73-23048"
+        },
+        {
+          "startVerseId": 23080,
+          "excerptVerseId": 23082,
+          "units": [
+            {
+              "startVerseId": 23082,
+              "endVerseId": 23089,
+              "kind": "shabad",
+              "opening": "ਤੈ ਨਰ ਕਿਆ ਪੁਰਾਨੁ ਸੁਨਿ ਕੀਨਾ ॥",
+              "closing": "ਪਰਮਾਨੰਦ ਸਾਧਸੰਗਤਿ ਮਿਲਿ ਕਥਾ ਪੁਨੀਤ ਨ ਚਾਲੀ ॥੩॥੧॥੬॥"
+            },
+            {
+              "startVerseId": 23090,
+              "endVerseId": 23090,
+              "kind": "shabad",
+              "opening": "ਛਾਡਿ ਮਨ ਹਰਿ ਬਿਮੁਖਨ ਕੋ ਸੰਗੁ ॥",
+              "closing": "ਛਾਡਿ ਮਨ ਹਰਿ ਬਿਮੁਖਨ ਕੋ ਸੰਗੁ ॥"
+            }
+          ],
+          "originalParentId": "catalog-73-23080"
+        },
+        {
+          "startVerseId": 23091,
+          "excerptVerseId": 23093,
+          "units": [
+            {
+              "startVerseId": 23093,
+              "endVerseId": 23098,
+              "kind": "shabad",
+              "opening": "ਹਰਿ ਕੇ ਸੰਗ ਬਸੇ ਹਰਿ ਲੋਕ ॥",
+              "closing": "ਸੂਰਦਾਸ ਮਨੁ ਪ੍ਰਭਿ ਹਥਿ ਲੀਨੋ ਦੀਨੋ ਇਹੁ ਪਰਲੋਕ ॥੨॥੧॥੮॥"
+            }
+          ],
+          "id": "raag-fine-b-73-heading-23091",
+          "label": {
+            "en": "ਸਾਰੰਗ ਮਹਲਾ ੫ ਸੂਰਦਾਸ ॥",
+            "pa": "ਸਾਰੰਗ ਮਹਲਾ ੫ ਸੂਰਦਾਸ ॥",
+            "hi": "ਸਾਰੰਗ ਮਹਲਾ ੫ ਸੂਰਦਾਸ ॥"
+          },
+          "printedHeading": "ਸਾਰੰਗ ਮਹਲਾ ੫ ਸੂਰਦਾਸ ॥"
+        },
+        {
+          "startVerseId": 23099,
+          "excerptVerseId": 23101,
+          "units": [
+            {
+              "startVerseId": 23101,
+              "endVerseId": 23106,
+              "kind": "shabad",
+              "opening": "ਹਰਿ ਬਿਨੁ ਕਉਨੁ ਸਹਾਈ ਮਨ ਕਾ ॥",
+              "closing": "ਕਹੈ ਕਬੀਰੁ ਸੁਨਹੁ ਰੇ ਸੰਤਹੁ ਇਹੁ ਮਨੁ ਉਡਨ ਪੰਖੇਰੂ ਬਨ ਕਾ ॥੨॥੧॥੯॥"
+            }
+          ],
+          "id": "raag-fine-b-73-heading-23099",
+          "label": {
+            "en": "ਸਾਰੰਗ ਕਬੀਰ ਜੀਉ ॥",
+            "pa": "ਸਾਰੰਗ ਕਬੀਰ ਜੀਉ ॥",
+            "hi": "ਸਾਰੰਗ ਕਬੀਰ ਜੀਉ ॥"
+          },
+          "printedHeading": "ਸਾਰੰਗ ਕਬੀਰ ਜੀਉ ॥"
+        }
+      ],
+      "nonBodyVerseIds": [
+        23024,
+        23025,
+        23026,
+        23027,
+        23107,
+        23048,
+        23049,
+        23108,
+        23080,
+        23081,
+        23110,
+        23091,
+        23092,
+        23109,
+        23099,
+        23100
+      ]
+    },
+    {
+      "baniDbId": 74,
+      "fingerprint": "bani-v1:70:c4caa54d385787d1",
+      "groups": [
+        {
+          "startVerseId": 23111,
+          "excerptVerseId": 23114,
+          "units": [
+            {
+              "startVerseId": 23114,
+              "endVerseId": 23140,
+              "kind": "shabad",
+              "opening": "ਸੇਵੀਲੇ ਗੋਪਾਲ ਰਾਇ ਅਕੁਲ ਨਿਰੰਜਨ ॥",
+              "closing": "ਸਗਲ ਭਗਤ ਜਾ ਚੈ ਨੀਸਾਣਿ ॥੫॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-74-23112"
+        },
+        {
+          "startVerseId": 23141,
+          "excerptVerseId": 23142,
+          "units": [
+            {
+              "startVerseId": 23142,
+              "endVerseId": 23149,
+              "kind": "shabad",
+              "opening": "ਮੋ ਕਉ ਤੂੰ ਨ ਬਿਸਾਰਿ ਤੂ ਨ ਬਿਸਾਰਿ ॥",
+              "closing": "ਫੇਰਿ ਦੀਆ ਦੇਹੁਰਾ ਨਾਮੇ ਕਉ ਪੰਡੀਅਨ ਕਉ ਪਿਛਵਾਰਲਾ ॥੩॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-74-23141"
+        },
+        {
+          "startVerseId": 23150,
+          "excerptVerseId": 23152,
+          "units": [
+            {
+              "startVerseId": 23152,
+              "endVerseId": 23159,
+              "kind": "shabad",
+              "opening": "ਨਾਗਰ ਜਨਾਂ ਮੇਰੀ ਜਾਤਿ ਬਿਖਿਆਤ ਚੰਮਾਰੰ ॥",
+              "closing": "ਅਬ ਬਿਪ੍ਰ ਪਰਧਾਨ ਤਿਹਿ ਕਰਹਿ ਡੰਡਉਤਿ ਤੇਰੇ ਨਾਮ ਸਰਣਾਇ ਰਵਿਦਾਸੁ ਦਾਸਾ ॥੩॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-74-23150"
+        },
+        {
+          "startVerseId": 23160,
+          "excerptVerseId": 23161,
+          "units": [
+            {
+              "startVerseId": 23161,
+              "endVerseId": 23168,
+              "kind": "shabad",
+              "opening": "ਹਰਿ ਜਪਤ ਤੇਊ ਜਨਾ ਪਦਮ ਕਵਲਾਸ ਪਤਿ ਤਾਸ ਸਮ ਤੁਲਿ ਨਹੀ ਆਨ ਕੋਊ ॥",
+              "closing": "ਆਚਾਰ ਸਹਿਤ ਬਿਪ੍ਰ ਕਰਹਿ ਡੰਡਉਤਿ ਤਿਨ ਤਨੈ ਰਵਿਦਾਸ ਦਾਸਾਨ ਦਾਸਾ ॥੩॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-74-23160"
+        },
+        {
+          "startVerseId": 23169,
+          "excerptVerseId": 23171,
+          "units": [
+            {
+              "startVerseId": 23171,
+              "endVerseId": 23178,
+              "kind": "shabad",
+              "opening": "ਮਿਲਤ ਪਿਆਰੋ ਪ੍ਰਾਨ ਨਾਥੁ ਕਵਨ ਭਗਤਿ ਤੇ ॥",
+              "closing": "ਜੋਈ ਜੋਈ ਕੀਨੋ ਸੋਈ ਸੋਈ ਦੇਖਿਓ ॥੩॥੧॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-74-23169"
+        }
+      ],
+      "nonBodyVerseIds": [
+        23111,
+        23112,
+        23113,
+        23141,
+        23179,
+        23150,
+        23151,
+        23160,
+        23180,
+        23169,
+        23170
+      ]
+    },
+    {
+      "baniDbId": 76,
+      "fingerprint": "bani-v1:117:aebc555bf06435cf",
+      "groups": [
+        {
+          "startVerseId": 23191,
+          "excerptVerseId": 23194,
+          "units": [
+            {
+              "startVerseId": 23194,
+              "endVerseId": 23203,
+              "kind": "shabad",
+              "opening": "ਮਰਨ ਜੀਵਨ ਕੀ ਸੰਕਾ ਨਾਸੀ ॥",
+              "closing": "ਮਨੁ ਭਇਆ ਜਗਜੀਵਨ ਲੀਣਾ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23192"
+        },
+        {
+          "startVerseId": 23204,
+          "excerptVerseId": 23205,
+          "units": [
+            {
+              "startVerseId": 23205,
+              "endVerseId": 23218,
+              "kind": "shabad",
+              "opening": "ਅਲਹੁ ਏਕੁ ਮਸੀਤਿ ਬਸਤੁ ਹੈ ਅਵਰੁ ਮੁਲਖੁ ਕਿਸੁ ਕੇਰਾ ॥",
+              "closing": "ਕੇਵਲ ਨਾਮੁ ਜਪਹੁ ਰੇ ਪ੍ਰਾਨੀ ਤਬ ਹੀ ਨਿਹਚੈ ਤਰਨਾ ॥੬॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23204"
+        },
+        {
+          "startVerseId": 23219,
+          "excerptVerseId": 23220,
+          "units": [
+            {
+              "startVerseId": 23220,
+              "endVerseId": 23229,
+              "kind": "shabad",
+              "opening": "ਅਵਲਿ ਅਲਹ ਨੂਰੁ ਉਪਾਇਆ ਕੁਦਰਤਿ ਕੇ ਸਭ ਬੰਦੇ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਮੇਰੀ ਸੰਕਾ ਨਾਸੀ ਸਰਬ ਨਿਰੰਜਨੁ ਡੀਠਾ ॥੪॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23219"
+        },
+        {
+          "startVerseId": 23230,
+          "excerptVerseId": 23231,
+          "units": [
+            {
+              "startVerseId": 23231,
+              "endVerseId": 23240,
+              "kind": "shabad",
+              "opening": "ਬੇਦ ਕਤੇਬ ਕਹਹੁ ਮਤ ਝੂਠੇ ਝੂਠਾ ਜੋ ਨ ਬਿਚਾਰੈ ॥",
+              "closing": "ਕਹਿ ਕਬੀਰ ਭਿਸਤਿ ਤੇ ਚੂਕਾ ਦੋਜਕ ਸਿਉ ਮਨੁ ਮਾਨਿਆ ॥੪॥੪॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23230"
+        },
+        {
+          "startVerseId": 23241,
+          "excerptVerseId": 23242,
+          "units": [
+            {
+              "startVerseId": 23242,
+              "endVerseId": 23249,
+              "kind": "shabad",
+              "opening": "ਸੁੰਨ ਸੰਧਿਆ ਤੇਰੀ ਦੇਵ ਦੇਵਾਕਰ ਅਧਪਤਿ ਆਦਿ ਸਮਾਈ ॥",
+              "closing": "ਕਬੀਰ ਦਾਸ ਤੇਰੀ ਆਰਤੀ ਕੀਨੀ ਨਿਰੰਕਾਰ ਨਿਰਬਾਨੀ ॥੩॥੫॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23241"
+        },
+        {
+          "startVerseId": 23250,
+          "excerptVerseId": 23252,
+          "units": [
+            {
+              "startVerseId": 23252,
+              "endVerseId": 23261,
+              "kind": "shabad",
+              "opening": "ਮਨ ਕੀ ਬਿਰਥਾ ਮਨੁ ਹੀ ਜਾਨੈ ਕੈ ਬੂਝਲ ਆਗੈ ਕਹੀਐ ॥",
+              "closing": "ਨਾਮਾ ਕਹੈ ਜਗਜੀਵਨੁ ਪਾਇਆ ਹਿਰਦੈ ਅਲਖ ਬਿਡਾਣੀ ॥੪॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23250"
+        },
+        {
+          "startVerseId": 23262,
+          "excerptVerseId": 23263,
+          "units": [
+            {
+              "startVerseId": 23263,
+              "endVerseId": 23270,
+              "kind": "shabad",
+              "opening": "ਆਦਿ ਜੁਗਾਦਿ ਜੁਗਾਦਿ ਜੁਗੋ ਜੁਗੁ ਤਾ ਕਾ ਅੰਤੁ ਨ ਜਾਨਿਆ ॥",
+              "closing": "ਤੂ ਦਇਆਲੁ ਰਤਨੁ ਲਾਲੁ ਨਾਮਾ ਸਾਚਿ ਸਮਾਇਲਾ ॥੩॥੨॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23262"
+        },
+        {
+          "startVerseId": 23271,
+          "excerptVerseId": 23272,
+          "units": [
+            {
+              "startVerseId": 23272,
+              "endVerseId": 23281,
+              "kind": "shabad",
+              "opening": "ਅਕੁਲ ਪੁਰਖ ਇਕੁ ਚਲਿਤੁ ਉਪਾਇਆ ॥",
+              "closing": "ਅਮਰੁ ਹੋਇ ਸਦ ਆਕੁਲ ਰਹੈ ॥੪॥੩॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23271"
+        },
+        {
+          "startVerseId": 23282,
+          "excerptVerseId": 23284,
+          "units": [
+            {
+              "startVerseId": 23284,
+              "endVerseId": 23305,
+              "kind": "shabad",
+              "opening": "ਤਨਿ ਚੰਦਨੁ ਮਸਤਕਿ ਪਾਤੀ ॥",
+              "closing": "ਬਿਨੁ ਸਤਿਗੁਰ ਬਾਟ ਨ ਪਾਵੈ ॥੫॥੧॥"
+            }
+          ],
+          "originalParentId": "catalog-76-23282"
+        }
+      ],
+      "nonBodyVerseIds": [
+        23191,
+        23192,
+        23193,
+        23204,
+        23219,
+        23230,
+        23241,
+        23306,
+        23250,
+        23251,
+        23262,
+        23271,
+        23307,
+        23282,
+        23283
+      ]
+    }
+  ]
+}

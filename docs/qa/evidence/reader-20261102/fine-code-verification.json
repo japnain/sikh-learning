@@ -1,0 +1,279 @@
+{
+  "vitest": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/pages/Study.test.tsx",
+      "src/components/StudyCard.test.tsx",
+      "src/components/ModalSheet.test.tsx",
+      "src/components/BaniFindPanel.test.tsx",
+      "src/utils/baniFind.test.ts",
+      "src/utils/baniSections.test.ts",
+      "src/utils/baniSections.live.test.ts",
+      "src/utils/baniSectionProfiles.test.ts",
+      "src/utils/baniSectionProfiles.catalog.test.ts",
+      "src/utils/catalogBaniProfiles.live.test.ts",
+      "src/content/baniSections/dasamCompositeProfiles.test.ts",
+      "src/content/baniSections/sggsProfiles.test.ts",
+      "src/hooks/useBani.test.tsx",
+      "src/utils/baniReadingValidation.test.ts",
+      "src/utils/baniReadingValidation.live.test.ts",
+      "src/scrollArchitecture.test.ts",
+      "src/utils/appScroll.test.ts",
+      "src/utils/readerAnchor.test.ts",
+      "src/hooks/useReaderPresentation.test.tsx",
+      "src/hooks/useReaderHeaderLayout.test.tsx",
+      "src/components/ReaderHeader.test.tsx",
+      "src/content/baniSections/compositionFineProfiles.test.ts",
+      "src/content/baniSections/raagFineProfilesA.test.ts",
+      "src/content/baniSections/raagFineProfilesB.test.ts",
+      "--configLoader",
+      "runner",
+      "--no-cache",
+      "--maxWorkers=2"
+    ],
+    "testFiles": [
+      "src/pages/Study.test.tsx",
+      "src/components/StudyCard.test.tsx",
+      "src/components/ModalSheet.test.tsx",
+      "src/components/BaniFindPanel.test.tsx",
+      "src/utils/baniFind.test.ts",
+      "src/utils/baniSections.test.ts",
+      "src/utils/baniSections.live.test.ts",
+      "src/utils/baniSectionProfiles.test.ts",
+      "src/utils/baniSectionProfiles.catalog.test.ts",
+      "src/utils/catalogBaniProfiles.live.test.ts",
+      "src/content/baniSections/dasamCompositeProfiles.test.ts",
+      "src/content/baniSections/sggsProfiles.test.ts",
+      "src/hooks/useBani.test.tsx",
+      "src/utils/baniReadingValidation.test.ts",
+      "src/utils/baniReadingValidation.live.test.ts",
+      "src/scrollArchitecture.test.ts",
+      "src/utils/appScroll.test.ts",
+      "src/utils/readerAnchor.test.ts",
+      "src/hooks/useReaderPresentation.test.tsx",
+      "src/hooks/useReaderHeaderLayout.test.tsx",
+      "src/components/ReaderHeader.test.tsx",
+      "src/content/baniSections/compositionFineProfiles.test.ts",
+      "src/content/baniSections/raagFineProfilesA.test.ts",
+      "src/content/baniSections/raagFineProfilesB.test.ts"
+    ],
+    "exitCode": 0,
+    "seconds": 72.57,
+    "log": "tmp/reader-live/fine-final-vitest.log",
+    "filesPassed": 24,
+    "testsPassed": 718,
+    "failed": 0,
+    "reportedDurationSeconds": 69.97
+  },
+  "typescript-app": {
+    "command": [
+      "npx",
+      "tsc",
+      "-p",
+      "tsconfig.app.json",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ],
+    "exitCode": 0,
+    "seconds": 20.06,
+    "log": "tmp/reader-live/fine-final-typescript-app.log"
+  },
+  "typescript-node": {
+    "command": [
+      "npx",
+      "tsc",
+      "-p",
+      "tsconfig.node.json",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ],
+    "exitCode": 0,
+    "seconds": 2.15,
+    "log": "tmp/reader-live/fine-final-typescript-node.log"
+  },
+  "lint": {
+    "command": [
+      "npx",
+      "eslint",
+      "src/content/baniSections/compositionFineProfiles.ts",
+      "src/content/baniSections/compositionFineProfiles.test.ts",
+      "src/content/baniSections/raagFineProfilesA.ts",
+      "src/content/baniSections/raagFineProfilesA.test.ts",
+      "src/content/baniSections/raagFineProfilesB.ts",
+      "src/content/baniSections/raagFineProfilesB.test.ts",
+      "src/content/baniSections/profileTypes.ts",
+      "src/content/baniSections/index.ts",
+      "src/utils/baniSectionProfiles.ts",
+      "src/utils/baniSectionProfiles.test.ts",
+      "src/utils/baniSectionProfiles.catalog.test.ts",
+      "src/components/BaniContentsSections.tsx",
+      "src/pages/Study.tsx",
+      "scripts/qa/bani-sections/generateCompositionFineProfiles.ts",
+      "scripts/qa/bani-sections/compositionFineAnchors.ts"
+    ],
+    "exitCode": 0,
+    "seconds": 6.49,
+    "log": "tmp/reader-live/fine-final-lint.log"
+  },
+  "build": {
+    "command": [
+      "npx",
+      "vite",
+      "build",
+      "--configLoader",
+      "runner",
+      "--outDir",
+      "tmp/reader-refinement-build",
+      "--emptyOutDir"
+    ],
+    "exitCode": 0,
+    "seconds": 32.02,
+    "log": "tmp/reader-live/fine-final-build.log",
+    "studyChunk": {
+      "file": "Study-Do2yHL1P.js",
+      "rawKB": 541.05,
+      "gzipKB": 99.69
+    },
+    "warnings": [
+      "Study lazy chunk exceeds the default 500 kB raw warning threshold.",
+      "Browserslist caniuse-lite metadata is 8 months old.",
+      "Plugin timing advisory: vite:asset and vite:css."
+    ]
+  },
+  "startup": {
+    "command": [
+      "node",
+      "scripts/qa/startup-bundle-audit.mjs",
+      "tmp/reader-refinement-build"
+    ],
+    "exitCode": 0,
+    "seconds": 0.34,
+    "log": "tmp/reader-live/fine-final-startup.log",
+    "javascriptGzipKiB": 151.4,
+    "cssGzipKiB": 12.8,
+    "javascriptRawKiB": 483.4,
+    "cssRawKiB": 60.0,
+    "initialAssets": 13,
+    "backendRemainsLazy": true
+  },
+  "reviewedFilesSha256": {
+    "src/content/baniSections/compositionFineProfiles.ts": "30bc6daa4da53a228268b7251fc4f255d4e0ece122a97befba68d4118ea18280",
+    "src/content/baniSections/compositionFineProfiles.test.ts": "18102a642763c619e2affa15b495db4aa9380f9e09bdba5dc0f3a3ec9a9ce57c",
+    "src/content/baniSections/raagFineProfilesA.ts": "22cc59df730233f00691e48742a1f34bae6fa21d1cd54cc1d921186b08d627d1",
+    "src/content/baniSections/raagFineProfilesA.test.ts": "5abc8a1f449628e6a4e09b4cd75c391c56634d44b6c89ec92a69abca59776663",
+    "src/content/baniSections/raagFineProfilesB.ts": "8cb878b4d9acf25532558c7d1f14b9ec320fcedb0415f47c9135924bfe31a804",
+    "src/content/baniSections/raagFineProfilesB.test.ts": "534ad115a382b579d8f52889ae2c36276dd794523a24d88b465261b04af2d999",
+    "src/content/baniSections/profileTypes.ts": "b4c14759da3d1d5d11ad67a822cc0aff22d0c09f582da20021c6d88f60435f29",
+    "src/content/baniSections/index.ts": "203e753755e57a9f7245da69c9b6d744ca25d41c344880a128ee9ea0619f6a2c",
+    "src/utils/baniSectionProfiles.ts": "d5426892c6faf4180d6b7724c52a4de9f540023bcdf7efe63d092b2ef83ae498",
+    "src/utils/baniSectionProfiles.test.ts": "36149356173995db73ddb25c43d365601c819f11926608f78511cf7647bab07c",
+    "src/utils/baniSectionProfiles.catalog.test.ts": "1909b482d6e4c136afc9dc26795776c5798b89b56aa7a8f422f2a824e8dcd362",
+    "src/components/BaniContentsSections.tsx": "5f7560264b176b85b0696bd1fc256c7c8228dc3dd7b2e52e7fc189d80b085549",
+    "src/pages/Study.tsx": "d4cb020316fb7fcc58c746cfdfbe741d493b946f68b125d046902895716b1a95",
+    "scripts/qa/bani-sections/generateCompositionFineProfiles.ts": "63d416db1f18daee7fd14d2aa92f1b9686af41de09ed946ddab705a342992328",
+    "scripts/qa/bani-sections/compositionFineAnchors.ts": "f61f4339b1df210dee654e227ea966c6cd278aae61383e1374b6cc6e04ebec82",
+    "scripts/qa/raag-fine-a-profile-generator.ts": "b42e96cd2a628eec39155dfee81eabc9b2a10b3e6c4363160c0c4c6af593d283",
+    "scripts/qa/generate-raag-fine-a-profiles.test.ts": "66c150ea57a16f5e25edb5385287c9b1488b0da3b04dd35b0d85eaee5d9d9d29",
+    "scripts/qa/raag-fine-a.vitest.config.ts": "79366bb24c5e2f837d1f5b6fb17bddc43f71d5b784eaff3d49f698046b76e519",
+    "src/components/BaniContentsSections.test.tsx": "7051050fc3e4b82b1a2230dc96cb4bc1d7dcc653ac69158f18a1d3b0711e848c",
+    "src/pages/Study.continuous-reader.test.tsx": "8bd9b59db59cb5b0abb6ffe478d1e4b8585085897e13ddeb360013c2d3055bf2",
+    "src/styles/reader.css": "39261f03628880537a2690464a58c7687d6f16208211000a38a1b764d26fc5e9",
+    "scripts/qa/fixtures/bani-fine-sections-browser-20261102.json": "672b739262cf9270cd85e6e8f1576f7048e9afb61856413d4d2c2eca89f44efe"
+  },
+  "lintGeneratorA": {
+    "command": [
+      "npx",
+      "eslint",
+      "scripts/qa/raag-fine-a-profile-generator.ts",
+      "scripts/qa/generate-raag-fine-a-profiles.test.ts",
+      "scripts/qa/raag-fine-a.vitest.config.ts"
+    ],
+    "exitCode": 0,
+    "seconds": 1.57,
+    "log": "tmp/reader-live/fine-final-lint-generator-a.log"
+  },
+  "lintFileCount": 18,
+  "completedAt": "2026-11-02T18:49:47.755438+00:00",
+  "supplementalVerification": {
+    "verifiedAt": "2026-11-02T19:27:17.916235+00:00",
+    "uiIntegration": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/components/BaniContentsSections.test.tsx",
+        "src/pages/Study.continuous-reader.test.tsx",
+        "--configLoader",
+        "runner",
+        "--no-cache",
+        "--maxWorkers=2",
+        "--reporter=dot"
+      ],
+      "exitCode": 0,
+      "filesPassed": 2,
+      "testsPassed": 75,
+      "failed": 0,
+      "reportedDurationSeconds": 22.89,
+      "componentTests": 6,
+      "studyContinuousTests": 69,
+      "log": "tmp/reader-live/fine-verified-ui-integration.log"
+    },
+    "uiTestLint": {
+      "files": [
+        "src/components/BaniContentsSections.test.tsx",
+        "src/pages/Study.continuous-reader.test.tsx"
+      ],
+      "exitCode": 0,
+      "log": "tmp/reader-live/fine-verified-ui-lint.log"
+    },
+    "cssSelectorAudit": {
+      "command": [
+        "node",
+        "scripts/qa/css-selector-audit.mjs"
+      ],
+      "exitCode": 0,
+      "filesPassed": 28
+    },
+    "combinedVitest": {
+      "filesPassed": 26,
+      "testsPassed": 793,
+      "failed": 0
+    },
+    "priorReviewHashesRechecked": true,
+    "priorReviewHashMismatches": [],
+    "freshBrowserValidation": {
+      "status": "blocked-at-recorded-time",
+      "completed": false,
+      "reason": "Prior Chrome connection hung and its tool was removed. The replacement computer interface reports a locked Mac; its in-app browser also hung while opening the preview. A process check confirms a Node listener on port4199, but the current execution environment cannot connect to it and starting Vite there is denied with EPERM. This is a validation-connection blocker. No fresh live visual or end-to-end browser pass is claimed.",
+      "historical": true,
+      "supersededBy": "docs/qa/evidence/reader-20261102/fine-browser-checkpoint.json",
+      "note": "This block preserves the connection state when supplemental code verification was recorded. The later completed browser audit is recorded in the linked checkpoint; this is not the current browser status."
+    }
+  },
+  "navigationInventory": {
+    "readings": 104,
+    "lengthVersions": 114,
+    "rootTargets": 2446,
+    "childTargets": 395,
+    "allTargets": 2841,
+    "modifiedReadings": 20,
+    "modifiedRootTargets": 303,
+    "modifiedChildTargets": 395,
+    "modifiedAllTargets": 698
+  },
+  "priorRegressionLimitations": [
+    "Study.continuous-reader.test.tsx and BaniContentsSections.test.tsx are owned and verified separately by their active agents.",
+    "This run includes no UI/browser validation.",
+    "Build is Vite output plus startup audit, not npm build public-copy/story verification.",
+    "No application files were edited by this regression task."
+  ],
+  "limitations": [
+    "This code-verification run did not include a browser pass. Later completed browser, visual and keyboard coverage is recorded in docs/qa/evidence/reader-20261102/fine-browser-checkpoint.json. Physical iPhone/Safari and VoiceOver speech remain outstanding.",
+    "Build verification is isolated Vite output plus startup audit, not npm build public-copy/story verification, app-store/native build or deployment.",
+    "Broad regression evidence was retained after confirming every reviewed implementation hash still matches; the two supplemental UI files were newly tested and linted."
+  ]
+}

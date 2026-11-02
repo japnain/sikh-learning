@@ -184,6 +184,18 @@ export const READ_BANIDB_CATALOG_IDS = Array.from(new Set([
 
 export const READ_BANIDB_CATALOG_COUNT = READ_BANIDB_CATALOG_IDS.length
 
+const baniRouteSources = new Map<number, Bani['source']>(READ_EXACT_BANIS.flatMap(bani =>
+  typeof bani.baniDbId === 'number' ? [[bani.baniDbId, bani.source] as const] : [],
+))
+// Ardaas has an exact route outside the scripture directories. G is the
+// existing route fallback only; missing provider attribution stays neutral.
+baniRouteSources.set(24, 'G')
+
+/** Route context, never evidence of the original scripture's attribution. */
+export function getBaniRouteSource(baniDbId: number): Bani['source'] | undefined {
+  return baniRouteSources.get(baniDbId)
+}
+
 export const READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS = [
   'japji-sahib',
   'jaap-sahib',

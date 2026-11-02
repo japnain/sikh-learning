@@ -83,6 +83,10 @@ export default function ModalSheet({
             bottom: 'var(--modal-sheet-bottom, calc(var(--nav-stack-height, 0px) + 0.75rem + var(--fixed-ui-safe-bottom)))',
           }}
           data-testid={testId}
+          onEscapeKeyDown={event => {
+            // Escape belongs to the active input method until composition ends.
+            if (event.isComposing) event.preventDefault()
+          }}
           onOpenAutoFocus={event => {
             const activeElement = returnFocusCandidate ?? document.activeElement
             // Strict Mode replays the mount after focus has entered the sheet.

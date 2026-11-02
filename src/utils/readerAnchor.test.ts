@@ -164,7 +164,7 @@ describe('semantic reader anchors', () => {
     const anchor = captureReaderAnchor()!
     vi.mocked(current.getBoundingClientRect).mockReturnValue(rect(320, 240))
 
-    restoreReaderAnchor(anchor)
+    expect(restoreReaderAnchor(anchor)).toBe(current)
 
     expect(scroll).toHaveBeenCalledWith({ top: 1376, behavior: 'auto' })
   })
@@ -172,7 +172,7 @@ describe('semantic reader anchors', () => {
   it('does not move to a different passage if the anchored source no longer exists', () => {
     const scroll = vi.spyOn(appScroll, 'scrollAppTo').mockImplementation(() => {})
     sourceLine('different-route:0', 50, 100)
-    restoreReaderAnchor({ key: 'previous-route:0', fraction: 0, viewportTop: 80 })
+    expect(restoreReaderAnchor({ key: 'previous-route:0', fraction: 0, viewportTop: 80 })).toBeUndefined()
     expect(scroll).not.toHaveBeenCalled()
   })
 

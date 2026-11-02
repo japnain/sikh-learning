@@ -1,0 +1,412 @@
+{
+  "environment": {
+    "width": 320,
+    "height": 740,
+    "dpr": 2,
+    "mobile": true,
+    "touch": true,
+    "theme": "dark",
+    "presentation": "read",
+    "gurmukhiTextSize": 34,
+    "rootFontPx": 32
+  },
+  "result": {
+    "id": 31,
+    "length": null,
+    "name": "Sukhmani Sahib",
+    "failures": [],
+    "disclosures": [
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-5",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-6",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-7",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-8",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-9",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-10",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-11",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-12",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-13",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-14",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-15",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-16",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-17",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-18",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-19",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-20",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-21",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-22",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-23",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-24",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [],
+        "currentAfter": [],
+        "currentCorrect": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-24",
+        "expanded": true,
+        "scrollDelta": 0,
+        "stateCorrect": true,
+        "panelCorrect": true,
+        "progressUnchanged": true,
+        "savedPlacesUnchanged": true,
+        "currentBefore": [
+          "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+        ],
+        "currentAfter": [
+          "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+        ],
+        "currentCorrect": true
+      }
+    ],
+    "checks": [
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-13",
+        "targetId": 6247,
+        "top": 207.90625,
+        "headerBottom": 175.796875,
+        "visible": true,
+        "focused": true,
+        "sheetClosed": true,
+        "currentIds": [
+          "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-13"
+        ],
+        "currentViewport": {
+          "top": 287.3125,
+          "bottom": 562.4375,
+          "panelTop": 134,
+          "panelBottom": 715,
+          "fits": true
+        },
+        "currentVisible": true,
+        "currentAncestorsExpanded": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1",
+        "targetId": 5232,
+        "top": 207.5,
+        "headerBottom": 175.796875,
+        "visible": true,
+        "focused": true,
+        "sheetClosed": true,
+        "currentIds": [
+          "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+        ],
+        "currentViewport": {
+          "top": 287.328125,
+          "bottom": 562.453125,
+          "panelTop": 134,
+          "panelBottom": 715,
+          "fits": true
+        },
+        "currentVisible": true,
+        "currentAncestorsExpanded": true
+      },
+      {
+        "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-24-stanza-8",
+        "targetId": 7239,
+        "top": 208.203125,
+        "headerBottom": 175.796875,
+        "visible": true,
+        "focused": true,
+        "sheetClosed": true,
+        "currentIds": [
+          "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-24-stanza-8"
+        ],
+        "currentViewport": {
+          "top": 286.5625,
+          "bottom": 561.6875,
+          "panelTop": 134,
+          "panelBottom": 715,
+          "fits": true
+        },
+        "currentVisible": true,
+        "currentAncestorsExpanded": true
+      }
+    ],
+    "layout": {
+      "rowFailures": [],
+      "minimumHitHeight": 44
+    },
+    "rows": 2019,
+    "viewport": {
+      "width": 320,
+      "height": 740,
+      "scrollWidth": 320
+    },
+    "presentation": "read",
+    "scroller": "HTML",
+    "originScrollY": 0,
+    "initiallyExpanded": [],
+    "collapsedLinks": 24,
+    "expandedLinks": 216,
+    "expandedChildLinks": 192,
+    "returnDelta": 0,
+    "returnCleared": true,
+    "returnFocusVerse": "5228",
+    "state": "ready",
+    "passed": true
+  }
+}

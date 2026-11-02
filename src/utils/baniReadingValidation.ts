@@ -1,10 +1,9 @@
 import type { BaniFetchResult } from '../api/banidb'
-import { BANIS } from '../data/banis'
+import { getBaniRouteSource } from '../data/banis'
 import type { ScriptureEntry, SundarGutkaLength } from '../types'
 import { SUNDAR_GUTKA_LENGTH_ORDER } from './sundarGutkaLength'
 
 const sourceScriptures = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' } as const
-const expectedSources = new Map(BANIS.flatMap(bani => bani.baniDbId ? [[bani.baniDbId, bani.source] as const] : []))
 
 function isLength(value: unknown): value is SundarGutkaLength {
   return SUNDAR_GUTKA_LENGTH_ORDER.some(length => length === value)
@@ -16,7 +15,7 @@ function isExactEntry(value: unknown, baniDbId: number): value is ScriptureEntry
   const source = entry.source
   const sourceUnavailable = entry.sourceAttribution === 'unavailable'
   const sourceIsConsistent = sourceUnavailable
-    ? source === expectedSources.get(baniDbId)
+    ? source === getBaniRouteSource(baniDbId)
       && entry.scripture === 'Sundar Gutka'
       && entry.sourceName === 'Sundar Gutka'
       && entry.sourceMeta === null
@@ -56,7 +55,7 @@ export function normalizeCachedBaniReading(
     && value.normalizationRevision !== 2
     && value.entries.some(entry => entry.id === `bani-${baniDbId}-${entry.ang}-0`
       && (entry.shabadId == null || entry.shabadId === 0))) return null
-  const expectedSource = expectedSources.get(baniDbId)
+  const expectedSource = getBaniRouteSource(baniDbId)
   if (!expectedSource) return value
   let changed = false
   const entries = value.entries.map(entry => {
@@ -86,8 +85,9 @@ export function isExactBaniReading(
 
   if (data.resolvedLength === null ? data.availableLengths.length > 0 : !data.availableLengths.includes(data.resolvedLength)) return false
 
-  // Composite banis legitimately include more than one scripture. Their canonical source must still occur.
-  const expectedSource = expectedSources.get(baniDbId)
+  // Composite banis can contain several sources. Keep the expected route
+  // context, including the explicit neutral fallback when attribution is absent.
+  const expectedSource = getBaniRouteSource(baniDbId)
   if (expectedSource && !data.entries.some(entry => entry.source === expectedSource)) return false
 
   if (!sgLength || data.resolvedLength === sgLength) return true

@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-01",
+  "environment": "Local Vite preview, Chromium390x844 mobile/touch Study/Light",
+  "method": "Choose last section via Contents; Stay; settled scroll and pagehide; reopen Contents; scroll upward500px and save again.",
+  "cases": [
+    {
+      "id": 25,
+      "target": 3788,
+      "expectedBody": 3789,
+      "before": {
+        "scrollY": 4031,
+        "maxScroll": 4031,
+        "targetTop": 175.15625,
+        "headerBottom": 112.34375
+      },
+      "reads": [
+        {
+          "stage": "after-stay",
+          "scrollY": 4025,
+          "verseId": 3789,
+          "returnVisible": false
+        },
+        {
+          "stage": "unchanged-scrollend-pagehide",
+          "scrollY": 4025,
+          "verseId": 3789,
+          "returnVisible": false
+        },
+        {
+          "stage": "after-manual-movement",
+          "scrollY": 3525,
+          "verseId": 3780,
+          "returnVisible": false
+        }
+      ],
+      "current": [
+        "Chaupai"
+      ],
+      "passed": true
+    },
+    {
+      "id": 30,
+      "target": 5226,
+      "expectedBody": 5226,
+      "before": {
+        "scrollY": 20951,
+        "maxScroll": 20951,
+        "targetTop": 140,
+        "headerBottom": 112.34375
+      },
+      "reads": [
+        {
+          "stage": "after-stay",
+          "scrollY": 20945,
+          "verseId": 5226,
+          "returnVisible": false
+        },
+        {
+          "stage": "unchanged-scrollend-pagehide",
+          "scrollY": 20945,
+          "verseId": 5226,
+          "returnVisible": false
+        },
+        {
+          "stage": "after-manual-movement",
+          "scrollY": 20445,
+          "verseId": 5223,
+          "returnVisible": false
+        }
+      ],
+      "current": [
+        "Salok 57"
+      ],
+      "passed": true
+    },
+    {
+      "id": 78,
+      "target": 26316,
+      "expectedBody": 26316,
+      "before": {
+        "scrollY": 50809,
+        "maxScroll": 50809,
+        "targetTop": 190.015625,
+        "headerBottom": 112.34375
+      },
+      "reads": [
+        {
+          "stage": "after-stay",
+          "scrollY": 50802,
+          "verseId": 26316,
+          "returnVisible": false
+        },
+        {
+          "stage": "unchanged-scrollend-pagehide",
+          "scrollY": 50802,
+          "verseId": 26316,
+          "returnVisible": false
+        },
+        {
+          "stage": "after-manual-movement",
+          "scrollY": 50302,
+          "verseId": 24095,
+          "returnVisible": false
+        }
+      ],
+      "current": [
+        "Salok 130"
+      ],
+      "passed": true
+    }
+  ]
+}

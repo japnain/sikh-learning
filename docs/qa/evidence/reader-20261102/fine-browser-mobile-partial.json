@@ -1,0 +1,859 @@
+{
+  "description": "Completed 390px Study/light live audit batches. Partial evidence; incomplete runs are excluded.",
+  "runs": [
+    {
+      "id": 31,
+      "length": null,
+      "name": "Sukhmani Sahib",
+      "failures": [],
+      "disclosures": [
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-5",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-6",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-7",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-8",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-9",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-10",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-11",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-12",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-13",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-14",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-15",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-16",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-17",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-18",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-19",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-20",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-21",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-22",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-23",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-24",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3"
+          ],
+          "currentCorrect": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4",
+          "expanded": true,
+          "scrollDelta": 0,
+          "stateCorrect": true,
+          "panelCorrect": true,
+          "progressUnchanged": true,
+          "savedPlacesUnchanged": true,
+          "currentBefore": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4"
+          ],
+          "currentAfter": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4"
+          ],
+          "currentCorrect": true
+        }
+      ],
+      "checks": [
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-3",
+          "targetId": 5261,
+          "top": 128.796875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-3"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-4",
+          "targetId": 5271,
+          "top": 129.09375,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-4"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-5",
+          "targetId": 5281,
+          "top": 128.71875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-5"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-6",
+          "targetId": 5291,
+          "top": 128.6875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-6"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-7",
+          "targetId": 5301,
+          "top": 129.3125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-7"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-8",
+          "targetId": 5311,
+          "top": 128.9375,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-1-stanza-8"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2",
+          "targetId": 5321,
+          "top": 129.25,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-1",
+          "targetId": 5325,
+          "top": 128.78125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-1"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-2",
+          "targetId": 5335,
+          "top": 129.078125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-2"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-3",
+          "targetId": 5345,
+          "top": 128.71875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-3"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-4",
+          "targetId": 5355,
+          "top": 129.015625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-4"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-5",
+          "targetId": 5365,
+          "top": 129.3125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-5"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-6",
+          "targetId": 5375,
+          "top": 129.265625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-6"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-7",
+          "targetId": 5385,
+          "top": 128.890625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-7"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-8",
+          "targetId": 5395,
+          "top": 129.171875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-2-stanza-8"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3",
+          "targetId": 5405,
+          "top": 129.15625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-1",
+          "targetId": 5409,
+          "top": 129.296875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-1"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-2",
+          "targetId": 5419,
+          "top": 129.28125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-2"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-3",
+          "targetId": 5429,
+          "top": 129.265625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-3"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-4",
+          "targetId": 5439,
+          "top": 129.21875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-4"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-5",
+          "targetId": 5449,
+          "top": 128.515625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-5"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-6",
+          "targetId": 5459,
+          "top": 128.828125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-6"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-7",
+          "targetId": 5469,
+          "top": 129.140625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-7"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-8",
+          "targetId": 5479,
+          "top": 128.796875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-3-stanza-8"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4",
+          "targetId": 5489,
+          "top": 129.125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-1",
+          "targetId": 5493,
+          "top": 129.265625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-1"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-2",
+          "targetId": 5502,
+          "top": 129.015625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-2"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-3",
+          "targetId": 5512,
+          "top": 128.984375,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-3"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-4",
+          "targetId": 5522,
+          "top": 129.28125,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-4"
+          ],
+          "currentAncestorsExpanded": true
+        },
+        {
+          "sectionId": "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-5",
+          "targetId": 5532,
+          "top": 129.25,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "focused": true,
+          "sheetClosed": true,
+          "currentIds": [
+            "bani-31:bani-v1:2019:c1b22c8d9185fae1:ashtpadi-4-stanza-5"
+          ],
+          "currentAncestorsExpanded": true
+        }
+      ],
+      "layout": {
+        "rowFailures": [],
+        "minimumHitHeight": 44
+      },
+      "rows": 2019,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390
+      },
+      "presentation": "study",
+      "scroller": "HTML",
+      "originScrollY": 0,
+      "initiallyExpanded": [],
+      "collapsedLinks": 24,
+      "expandedLinks": 216,
+      "expandedChildLinks": 192,
+      "returnDelta": 0,
+      "returnCleared": true,
+      "returnFocusVerse": "5234",
+      "state": "ready",
+      "passed": true
+    }
+  ]
+}

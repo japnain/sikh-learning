@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-01",
+  "server": "http://127.0.0.1:4199",
+  "baniDbId": 31,
+  "rows": 2019,
+  "sections": 24,
+  "conditions": [
+    "390×844 mobile/touch, Read and Study",
+    "App Light and Dark themes",
+    "320×740 mobile/touch, Gurbani font 34px"
+  ],
+  "horizontalOverflow": false,
+  "primaryScroller": "HTML",
+  "studyLightSamples": [
+    {
+      "name": "first",
+      "verseId": 5232,
+      "targetText": "ਸਲੋਕੁ ॥\n\nShalok:",
+      "top": 122.390625,
+      "headerBottom": 112.34375,
+      "width": 390,
+      "scrollWidth": 390,
+      "current": [
+        "Ashtpadi 1\nAng 262\nਸਿਮਰਉ ਸਿਮਰਿ ਸਿਮਰਿ ਸੁਖੁ ਪਾਵਉ ॥"
+      ],
+      "returnDelta": 0,
+      "returnCleared": true
+    },
+    {
+      "name": "middle",
+      "verseId": 6247,
+      "targetText": "ਸਲੋਕੁ ॥\n\nShalok:",
+      "top": 128.828125,
+      "headerBottom": 112.34375,
+      "width": 390,
+      "scrollWidth": 390,
+      "current": [
+        "Ashtpadi 13\nAng 279\nਸੰਤ ਕੈ ਦੂਖਨਿ ਆਰਜਾ ਘਟੈ ॥"
+      ],
+      "returnDelta": 0,
+      "returnCleared": true
+    },
+    {
+      "name": "last",
+      "verseId": 7166,
+      "targetText": "ਸਲੋਕੁ ॥\n\nShalok:",
+      "top": 129.03125,
+      "headerBottom": 112.34375,
+      "width": 390,
+      "scrollWidth": 390,
+      "current": [
+        "Ashtpadi 24\nAng 295\nਪੂਰੇ ਗੁਰ ਕਾ ਸੁਨਿ ਉਪਦੇਸੁ ॥"
+      ],
+      "returnDelta": 0,
+      "returnCleared": true
+    }
+  ],
+  "visualReview": "Opening, Contents, preceding salok jump, appearance preview, large Gurbani text and both reader presentations inspected in attached browser screenshots.",
+  "limitations": [
+    "Chromium device emulation; no physical iPhone validation.",
+    "Screenshot files were not saved because the browser tool rejected the requested workspace path."
+  ]
+}
