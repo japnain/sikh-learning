@@ -11,6 +11,7 @@ export function measureBaniReaderUi() {
   const selectors = [
     '.home-masthead :is(a,button)', '.home-nitnem-entry', '.home-daily :is(a,button)',
     '.home-daily-sheet :is(a,button)', '.study-reader-topbar :is(a,button)',
+    '.study-reader-opening :is(a,button)',
     '.reader-dock:not([hidden]) :is(a,button)', '.bani-length-sheet :is(button,input,summary)',
     '.bani-find :is(button,input)', '.reader-finish :is(a,button)',
     '.study-reader-sections-sheet :is(button,input)', '.study-reader-settings-sheet :is(button,input,select)',
@@ -190,7 +191,7 @@ async function main() {
     await page.addStyleTag({ content: `html { font-size: ${textScale * 100}% !important; }` })
     await page.evaluate(async () => { await document.fonts.ready; await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))) })
     if (surface === 'length') {
-      await page.getByTestId('study-reader-topbar').getByTestId('bani-length-control').click()
+      await page.getByTestId('study-reader-opening').getByTestId('bani-length-control').click()
       await page.getByTestId('bani-length-sheet').waitFor({ state: 'visible' })
     } else if (surface === 'find') {
       await page.locator('.study-reader-section-trigger').click()
