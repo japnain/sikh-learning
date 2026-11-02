@@ -1,0 +1,97 @@
+{
+  "id": 74,
+  "length": null,
+  "name": "Raag Malaar",
+  "failures": [],
+  "disclosures": [],
+  "checks": [
+    {
+      "sectionId": "bani-74:bani-v1:70:c4caa54d385787d1:catalog-74-23150",
+      "targetId": 23150,
+      "top": 129.078125,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-74:bani-v1:70:c4caa54d385787d1:catalog-74-23150"
+      ],
+      "currentViewport": {
+        "top": 414.03125,
+        "bottom": 499.765625,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-74:bani-v1:70:c4caa54d385787d1:catalog-74-23112",
+      "targetId": 23111,
+      "top": 128.59375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-74:bani-v1:70:c4caa54d385787d1:catalog-74-23112"
+      ],
+      "currentViewport": {
+        "top": 255.5625,
+        "bottom": 341.296875,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-74:bani-v1:70:c4caa54d385787d1:catalog-74-23169",
+      "targetId": 23169,
+      "top": 129.125,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-74:bani-v1:70:c4caa54d385787d1:catalog-74-23169"
+      ],
+      "currentViewport": {
+        "top": 475.296875,
+        "bottom": 561.03125,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    }
+  ],
+  "layout": {
+    "rowFailures": [],
+    "minimumHitHeight": 44
+  },
+  "rows": 70,
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "presentation": "study",
+  "scroller": "HTML",
+  "originScrollY": 0,
+  "initiallyExpanded": [],
+  "collapsedLinks": 5,
+  "expandedLinks": 5,
+  "expandedChildLinks": 0,
+  "returnDelta": 0,
+  "returnCleared": true,
+  "returnFocusVerse": "23114",
+  "state": "ready",
+  "passed": true,
+  "testMode": "390px Study light",
+  "theme": "light",
+  "rootFont": "16px"
+}

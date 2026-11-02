@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-01",
+  "keyboard": {
+    "baniId": 2,
+    "section": "Pauri 38",
+    "verseId": 383,
+    "before": {
+      "scrollTopAfterEnter": 52666,
+      "scrollTopAfterTab": 49410,
+      "tabFocused": "Earlier Ang 8 heading"
+    },
+    "after": {
+      "scrollTopAfterEnter": 52666,
+      "scrollTopAfterTab": 52666,
+      "focusedVerseAfterEnter": 383,
+      "focusedVerseAfterTab": 383
+    },
+    "method": "Actual browser Enter and Tab key events",
+    "passed": true
+  },
+  "ime": {
+    "method": "Simulated browser composition and Escape events",
+    "composingOpen": true,
+    "closedAfterComposition": true,
+    "focusRestored": true
+  },
+  "nestedReturn": {
+    "before": {
+      "scrollY": 4025,
+      "verseId": 3789
+    },
+    "after": {
+      "scrollY": 4025,
+      "verseId": 3789,
+      "current": [
+        "Chaupai"
+      ]
+    },
+    "passed": true
+  }
+}

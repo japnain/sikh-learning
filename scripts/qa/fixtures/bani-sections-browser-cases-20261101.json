@@ -1,0 +1,4789 @@
+[
+  {
+    "id": 1,
+    "baniName": "Gur Mantar",
+    "baniId": "gur-mantar",
+    "source": "G",
+    "startAng": 13,
+    "endAng": 13,
+    "requestedlength": null,
+    "rows": 11,
+    "sections": 1,
+    "fingerprint": "bani-v1:11:6bef38f65a625a22",
+    "routeUrl": "/study?baniDbId=1&bani=Gur+Mantar&startAng=13&endAng=13&baniId=gur-mantar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1,
+        "label": "ਗੁਰ ਮੰਤ੍ਰ",
+        "targetText": "ਅੰਮ੍ਰਿਤ ਵੇਲੇ ਦਾ ਜਾਪ",
+        "excerpt": "ਵਾਹਿਗੁਰੂ ਗੁਰ ਮੰਤ੍ਰ ਹੈ ਜਪਿ ਹਉਮੈ ਖੋਈ।",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 1,
+        "label": "ਗੁਰ ਮੰਤ੍ਰ",
+        "targetText": "ਅੰਮ੍ਰਿਤ ਵੇਲੇ ਦਾ ਜਾਪ",
+        "excerpt": "ਵਾਹਿਗੁਰੂ ਗੁਰ ਮੰਤ੍ਰ ਹੈ ਜਪਿ ਹਉਮੈ ਖੋਈ।",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 1,
+        "label": "ਗੁਰ ਮੰਤ੍ਰ",
+        "targetText": "ਅੰਮ੍ਰਿਤ ਵੇਲੇ ਦਾ ਜਾਪ",
+        "excerpt": "ਵਾਹਿਗੁਰੂ ਗੁਰ ਮੰਤ੍ਰ ਹੈ ਜਪਿ ਹਉਮੈ ਖੋਈ।",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 2,
+    "baniName": "Japji Sahib",
+    "baniId": "japji-sahib",
+    "source": "G",
+    "startAng": 1,
+    "endAng": 8,
+    "requestedlength": null,
+    "rows": 385,
+    "sections": 40,
+    "fingerprint": "bani-v1:385:7ee45e6262c9411e",
+    "routeUrl": "/study?baniDbId=2&bani=Japji+Sahib&startAng=1&endAng=8&baniId=japji-sahib&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 14,
+        "label": "Opening salok",
+        "targetText": "ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ ॥",
+        "excerpt": "ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 20,
+        "startVerseId": 183,
+        "label": "Pauri 20",
+        "targetText": "ਭਰੀਐ ਹਥੁ ਪੈਰੁ ਤਨੁ ਦੇਹ ॥",
+        "excerpt": "ਭਰੀਐ ਹਥੁ ਪੈਰੁ ਤਨੁ ਦੇਹ ॥",
+        "entryIndex": 3,
+        "lineIndex": 35
+      },
+      "last": {
+        "sectionIndex": 39,
+        "startVerseId": 391,
+        "label": "Closing salok",
+        "targetText": "ਪਵਣੁ ਗੁਰੂ ਪਾਣੀ ਪਿਤਾ ਮਾਤਾ ਧਰਤਿ ਮਹਤੁ ॥",
+        "excerpt": "ਪਵਣੁ ਗੁਰੂ ਪਾਣੀ ਪਿਤਾ ਮਾਤਾ ਧਰਤਿ ਮਹਤੁ ॥",
+        "entryIndex": 7,
+        "lineIndex": 32
+      }
+    }
+  },
+  {
+    "id": 3,
+    "baniName": "Shabad Hazare",
+    "baniId": "shabad-hazare",
+    "source": "G",
+    "startAng": 96,
+    "endAng": 795,
+    "requestedlength": null,
+    "rows": 106,
+    "sections": 7,
+    "fingerprint": "bani-v1:106:5e6e3571544fbc7d",
+    "routeUrl": "/study?baniDbId=3&bani=Shabad+Hazare&startAng=96&endAng=795&baniId=shabad-hazare&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 397,
+        "label": "Shabad 1",
+        "targetText": "ਸ਼ਬਦ ਹਜ਼ਾਰੇ",
+        "excerpt": "ਮੇਰਾ ਮਨੁ ਲੋਚੈ ਗੁਰ ਦਰਸਨ ਤਾਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 447,
+        "label": "Shabad 4",
+        "targetText": "ਤਿਲੰਗ ਮਃ ੧ ॥",
+        "excerpt": "ਇਆਨੜੀਏ ਮਾਨੜਾ ਕਾਇ ਕਰੇਹਿ ॥",
+        "entryIndex": 4,
+        "lineIndex": 10
+      },
+      "last": {
+        "sectionIndex": 6,
+        "startVerseId": 491,
+        "label": "Shabad 7",
+        "targetText": "ਬਿਲਾਵਲੁ ਮਹਲਾ ੧ ॥",
+        "excerpt": "ਮਨੁ ਮੰਦਰੁ ਤਨੁ ਵੇਸ ਕਲੰਦਰੁ ਘਟ ਹੀ ਤੀਰਥਿ ਨਾਵਾ ॥",
+        "entryIndex": 7,
+        "lineIndex": 12
+      }
+    }
+  },
+  {
+    "id": 4,
+    "baniName": "Jaap Sahib",
+    "baniId": "jaap-sahib",
+    "source": "D",
+    "startAng": 1,
+    "endAng": 10,
+    "requestedlength": null,
+    "rows": 808,
+    "sections": 22,
+    "fingerprint": "bani-v1:808:e798019fe576c48b",
+    "routeUrl": "/study?baniDbId=4&bani=Jaap+Sahib&startAng=1&endAng=10&baniId=jaap-sahib&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 508,
+        "label": "Chhapai · 1",
+        "targetText": "ਛਪੈ ਛੰਦ ॥ ਤ੍ਵ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਚੱਕ੍ਰ ਚਿਹਨ ਅਰੁ ਬਰਨ ਜਾਤਿ ਅਰੁ ਪਾਤਿ ਨਹਿਨ ਜਿਹ ॥",
+        "entryIndex": 0,
+        "lineIndex": 4
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 897,
+        "label": "Chachri · 99–102",
+        "targetText": "ਚਾਚਰੀ ਛੰਦ ॥",
+        "excerpt": "ਨ ਸੱਤ੍ਰੈ ॥",
+        "entryIndex": 5,
+        "lineIndex": 22
+      },
+      "last": {
+        "sectionIndex": 21,
+        "startVerseId": 1299,
+        "label": "Bhujang Prayaat · 197–199",
+        "targetText": "ਭੁਜੰਗ ਪ੍ਰਯਾਤ ਛੰਦ ॥",
+        "excerpt": "ਨਮਸਤੁਲ ਪ੍ਰਨਾਮੇ ਸਮਸਤੁਲ ਪ੍ਰਣਾਸੇ ॥",
+        "entryIndex": 9,
+        "lineIndex": 68
+      }
+    }
+  },
+  {
+    "id": 5,
+    "baniName": "Shabad Hazare Patshahi 10",
+    "baniId": "shabad-hazare-10",
+    "source": "D",
+    "startAng": 709,
+    "endAng": 712,
+    "requestedlength": null,
+    "rows": 89,
+    "sections": 10,
+    "fingerprint": "bani-v1:89:bfeb94ea35dbe746",
+    "routeUrl": "/study?baniDbId=5&bani=Shabad+Hazare+Patshahi+10&startAng=709&endAng=712&baniId=shabad-hazare-10&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1315,
+        "label": "Shabad 1",
+        "targetText": "ਰਾਮਕਲੀ ਪਾਤਸਾਹੀ ੧੦ ॥",
+        "excerpt": "ਰੇ ਮਨ ਐਸੋ ਕਰ ਸੰਨਿਆਸਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 1361,
+        "label": "Shabad 6",
+        "targetText": "ਖਿਆਲ ਪਾਤਿਸਾਹੀ ੧੦ ॥",
+        "excerpt": "ਮਿਤ੍ਰ ਪਿਆਰੇ ਨੂੰ ਹਾਲੁ ਮੁਰੀਦਾਂ ਦਾ ਕਹਣਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 1393,
+        "label": "Shabad 10",
+        "targetText": "ਰਾਗ ਦੇਵਗੰਧਾਰੀ ਪਾਤਿਸਾਹੀ ੧੦ ॥",
+        "excerpt": "ਬਿਨੁ ਹਰਿ ਨਾਮ ਨ ਬਾਚਨ ਪੈਹੈ ॥",
+        "entryIndex": 3,
+        "lineIndex": 11
+      }
+    }
+  },
+  {
+    "id": 6,
+    "baniName": "Tav Prasad Savaiye",
+    "baniId": "tav-prasad-savaiye",
+    "source": "D",
+    "startAng": 11,
+    "endAng": 13,
+    "requestedlength": null,
+    "rows": 43,
+    "sections": 10,
+    "fingerprint": "bani-v1:43:3c20ca6b14423107",
+    "routeUrl": "/study?baniDbId=6&bani=Tav+Prasad+Savaiye&startAng=11&endAng=13&baniId=tav-prasad-savaiye&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1405,
+        "label": "Savaiyya 1",
+        "targetText": "ਸ੍ਰਾਵਗ ਸੁੱਧ ਸਮੂਹ ਸਿਧਾਨ ਕੇ ਦੇਖਿ ਫਿਰਿਓ ਘਰ ਜੋਗ ਜਤੀ ਕੇ ॥",
+        "excerpt": "ਸ੍ਰਾਵਗ ਸੁੱਧ ਸਮੂਹ ਸਿਧਾਨ ਕੇ ਦੇਖਿ ਫਿਰਿਓ ਘਰ ਜੋਗ ਜਤੀ ਕੇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 1425,
+        "label": "Savaiyya 6",
+        "targetText": "ਬੀਰ ਅਪਾਰ ਬਡੇ ਬਰਿਆਰ ਅਬਿਚਾਰਹਿ ਸਾਰ ਕੀ ਧਾਰ ਭਛੱਯਾ ॥",
+        "excerpt": "ਬੀਰ ਅਪਾਰ ਬਡੇ ਬਰਿਆਰ ਅਬਿਚਾਰਹਿ ਸਾਰ ਕੀ ਧਾਰ ਭਛੱਯਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 11
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 1441,
+        "label": "Savaiyya 10",
+        "targetText": "ਕਾਹੂ ਲੈ ਪਾਹਨ ਪੂਜ ਧਰਯੋ ਸਿਰ ਕਾਹੂ ਲੈ ਲਿੰਗੁ ਗਰੇ ਲਟਕਾਇਓ ॥",
+        "excerpt": "ਕਾਹੂ ਲੈ ਪਾਹਨ ਪੂਜ ਧਰਯੋ ਸਿਰ ਕਾਹੂ ਲੈ ਲਿੰਗੁ ਗਰੇ ਲਟਕਾਇਓ ॥",
+        "entryIndex": 2,
+        "lineIndex": 27
+      }
+    }
+  },
+  {
+    "id": 7,
+    "baniName": "Tav Prasad Savaiye (Dheenan Ki)",
+    "baniId": "tav-prasad-savaiye-dinan-ki",
+    "source": "D",
+    "startAng": 11,
+    "endAng": 37,
+    "requestedlength": null,
+    "rows": 43,
+    "sections": 10,
+    "fingerprint": "bani-v1:43:ca844f0ee627efca",
+    "routeUrl": "/study?baniDbId=7&bani=Tav+Prasad+Savaiye+%28Dheenan+Ki%29&startAng=11&endAng=37&baniId=tav-prasad-savaiye-dinan-ki&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1491,
+        "label": "Savaiyya 1",
+        "targetText": "ਦੀਨਨ ਕੀ ਪ੍ਰਤਿਪਾਲ ਕਰੈ ਨਿਤ ਸੰਤ ਉਬਾਰਿ ਗਨੀਮਨ ਗਾਰੈ ॥",
+        "excerpt": "ਦੀਨਨ ਕੀ ਪ੍ਰਤਿਪਾਲ ਕਰੈ ਨਿਤ ਸੰਤ ਉਬਾਰਿ ਗਨੀਮਨ ਗਾਰੈ ॥",
+        "entryIndex": 1,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 1511,
+        "label": "Savaiyya 6",
+        "targetText": "ਰੋਗਨ ਤੇ ਅਰ ਸੋਗਨ ਤੇ ਜਲ ਜੋਗਨ ਤੇ ਬਹੁ ਭਾਂਤਿ ਬਚਾਵੈ ॥",
+        "excerpt": "ਰੋਗਨ ਤੇ ਅਰ ਸੋਗਨ ਤੇ ਜਲ ਜੋਗਨ ਤੇ ਬਹੁ ਭਾਂਤਿ ਬਚਾਵੈ ॥",
+        "entryIndex": 1,
+        "lineIndex": 21
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 1527,
+        "label": "Savaiyya 10",
+        "targetText": "ਤੀਰਥ ਕੋਟ ਕੀਏ ਇਸਨਾਨ ਦੀਏ ਬਹੁ ਦਾਨ ਮਹਾ ਬ੍ਰਤ ਧਾਰੇ ॥",
+        "excerpt": "ਤੀਰਥ ਕੋਟ ਕੀਏ ਇਸਨਾਨ ਦੀਏ ਬਹੁ ਦਾਨ ਮਹਾ ਬ੍ਰਤ ਧਾਰੇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 37
+      }
+    }
+  },
+  {
+    "id": 8,
+    "baniName": "Akal Ustat Chaupai",
+    "baniId": "akal-ustat-chaupai",
+    "source": "D",
+    "startAng": 11,
+    "endAng": 11,
+    "requestedlength": null,
+    "rows": 49,
+    "sections": 11,
+    "fingerprint": "bani-v1:49:d7168b3fba83e4db",
+    "routeUrl": "/study?baniDbId=8&bani=Akal+Ustat+Chaupai&startAng=11&endAng=11&baniId=akal-ustat-chaupai&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1534,
+        "label": "Opening",
+        "targetText": "ਉਤਾਰ ਖਾਸੇ ਦਸਖਤ ਕਾ ॥ ਪਾਤਿਸਾਹੀ ੧੦ ॥",
+        "excerpt": "ਅਕਾਲ ਪੁਰਖ ਕੀ ਰਛਾ ਹਮਨੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 1556,
+        "label": "Chaupai 5",
+        "targetText": "ਜਲ ਥਲ ਮਹੀਅਲ ਜਾਹਿ ਬਸੇਰਾ ॥੪॥",
+        "excerpt": "ਜਲ ਥਲ ਮਹੀਅਲ ਜਾਹਿ ਬਸੇਰਾ ॥੪॥",
+        "entryIndex": 0,
+        "lineIndex": 24
+      },
+      "last": {
+        "sectionIndex": 10,
+        "startVerseId": 1576,
+        "label": "Chaupai 10",
+        "targetText": "ਅਬਗਤ ਦੇਵ ਅਛੈ ਅਨ ਭਰਮਾ ॥੯॥",
+        "excerpt": "ਅਬਗਤ ਦੇਵ ਅਛੈ ਅਨ ਭਰਮਾ ॥੯॥",
+        "entryIndex": 0,
+        "lineIndex": 44
+      }
+    }
+  },
+  {
+    "id": 9,
+    "baniName": "Chaupai Sahib",
+    "baniId": "chaupai-sahib",
+    "source": "D",
+    "startAng": 1386,
+    "endAng": 1388,
+    "requestedlength": "short",
+    "rows": 104,
+    "sections": 25,
+    "fingerprint": "bani-v1:104:130fb7ffebcc7e43",
+    "routeUrl": "/study?baniDbId=9&bani=Chaupai+Sahib&startAng=1386&endAng=1388&baniId=chaupai-sahib&source=D&sgLength=short",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1625,
+        "label": "Chaupai 377",
+        "targetText": "ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ॥",
+        "excerpt": "ਹਮਰੀ ਕਰੋ ਹਾਥ ਦੈ ਰੱਛਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 12,
+        "startVerseId": 1675,
+        "label": "Chaupai 389",
+        "targetText": "ਜਬ ਉਦਕਰਖ ਕਰਾ ਕਰਤਾਰਾ ॥",
+        "excerpt": "ਜਬ ਉਦਕਰਖ ਕਰਾ ਕਰਤਾਰਾ ॥",
+        "entryIndex": 1,
+        "lineIndex": 8
+      },
+      "last": {
+        "sectionIndex": 24,
+        "startVerseId": 1723,
+        "label": "Chaupai 401",
+        "targetText": "ਖੜਗ ਕੇਤ ਮੈ ਸਰਣਿ ਤਿਹਾਰੀ ॥",
+        "excerpt": "ਖੜਗ ਕੇਤ ਮੈ ਸਰਣਿ ਤਿਹਾਰੀ ॥",
+        "entryIndex": 2,
+        "lineIndex": 8
+      }
+    }
+  },
+  {
+    "id": 9,
+    "baniName": "Chaupai Sahib",
+    "baniId": "chaupai-sahib",
+    "source": "D",
+    "startAng": 1386,
+    "endAng": 290,
+    "requestedlength": "medium",
+    "rows": 130,
+    "sections": 31,
+    "fingerprint": "bani-v1:130:0d291fbd9eb1db41",
+    "routeUrl": "/study?baniDbId=9&bani=Chaupai+Sahib&startAng=1386&endAng=290&baniId=chaupai-sahib&source=D&sgLength=medium",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1625,
+        "label": "Chaupai 377",
+        "targetText": "ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ॥",
+        "excerpt": "ਹਮਰੀ ਕਰੋ ਹਾਥ ਦੈ ਰੱਛਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 15,
+        "startVerseId": 1687,
+        "label": "Chaupai 392",
+        "targetText": "ਤਾ ਕੋ ਕਰਿ ਪਾਹਨ ਅਨੁਮਾਨਤ ॥",
+        "excerpt": "ਤਾ ਕੋ ਕਰਿ ਪਾਹਨ ਅਨੁਮਾਨਤ ॥",
+        "entryIndex": 1,
+        "lineIndex": 20
+      },
+      "last": {
+        "sectionIndex": 30,
+        "startVerseId": 1751,
+        "label": "Dohra 864",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਸਗਲ ਦੁਆਰ ਕਉ ਛਾਡਿ ਕੈ ਗਹਯੋ ਤੁਹਾਰੋ ਦੁਆਰ ॥",
+        "entryIndex": 3,
+        "lineIndex": 5
+      }
+    }
+  },
+  {
+    "id": 9,
+    "baniName": "Chaupai Sahib",
+    "baniId": "chaupai-sahib",
+    "source": "D",
+    "startAng": 1385,
+    "endAng": 290,
+    "requestedlength": "long",
+    "rows": 173,
+    "sections": 42,
+    "fingerprint": "bani-v1:173:9285d066ffc8e0e2",
+    "routeUrl": "/study?baniDbId=9&bani=Chaupai+Sahib&startAng=1385&endAng=290&baniId=chaupai-sahib&source=D&sgLength=long",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1581,
+        "label": "Dohra 366",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਮਹਾ ਕਾਲ ਕੀ ਸਰਨਿ ਜੇ ਪਰੇ ਸੁ ਲਏ ਬਚਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 21,
+        "startVerseId": 1667,
+        "label": "Chaupai 387",
+        "targetText": "ਘਟ ਘਟ ਕੇ ਅੰਤਰ ਕੀ ਜਾਨਤ ॥",
+        "excerpt": "ਘਟ ਘਟ ਕੇ ਅੰਤਰ ਕੀ ਜਾਨਤ ॥",
+        "entryIndex": 2,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 41,
+        "startVerseId": 1751,
+        "label": "Dohra 864",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਸਗਲ ਦੁਆਰ ਕਉ ਛਾਡਿ ਕੈ ਗਹਯੋ ਤੁਹਾਰੋ ਦੁਆਰ ॥",
+        "entryIndex": 4,
+        "lineIndex": 5
+      }
+    }
+  },
+  {
+    "id": 10,
+    "baniName": "Anand Sahib",
+    "baniId": "anand-sahib",
+    "source": "G",
+    "startAng": 917,
+    "endAng": 922,
+    "requestedlength": null,
+    "rows": 211,
+    "sections": 40,
+    "fingerprint": "bani-v1:211:f1cd139ade6ff3e6",
+    "routeUrl": "/study?baniDbId=10&bani=Anand+Sahib&startAng=917&endAng=922&baniId=anand-sahib&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1786,
+        "label": "Pauri 1",
+        "targetText": "ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ ਸਤਿਗੁਰੂ ਮੈ ਪਾਇਆ ॥",
+        "excerpt": "ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ ਸਤਿਗੁਰੂ ਮੈ ਪਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 20,
+        "startVerseId": 1890,
+        "label": "Pauri 21",
+        "targetText": "ਜੇ ਕੋ ਸਿਖੁ ਗੁਰੂ ਸੇਤੀ ਸਨਮੁਖੁ ਹੋਵੈ ॥",
+        "excerpt": "ਜੇ ਕੋ ਸਿਖੁ ਗੁਰੂ ਸੇਤੀ ਸਨਮੁਖੁ ਹੋਵੈ ॥",
+        "entryIndex": 2,
+        "lineIndex": 32
+      },
+      "last": {
+        "sectionIndex": 39,
+        "startVerseId": 1988,
+        "label": "Pauri 40",
+        "targetText": "ਅਨਦੁ ਸੁਣਹੁ ਵਡਭਾਗੀਹੋ ਸਗਲ ਮਨੋਰਥ ਪੂਰੇ ॥",
+        "excerpt": "ਅਨਦੁ ਸੁਣਹੁ ਵਡਭਾਗੀਹੋ ਸਗਲ ਮਨੋਰਥ ਪੂਰੇ ॥",
+        "entryIndex": 5,
+        "lineIndex": 26
+      }
+    }
+  },
+  {
+    "id": 11,
+    "baniName": "Laavan",
+    "baniId": "laavan",
+    "source": "G",
+    "startAng": 773,
+    "endAng": 774,
+    "requestedlength": null,
+    "rows": 26,
+    "sections": 4,
+    "fingerprint": "bani-v1:26:89de54d9183a42ed",
+    "routeUrl": "/study?baniDbId=11&bani=Laavan&startAng=773&endAng=774&baniId=laavan&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 1996,
+        "label": "Laav 1",
+        "targetText": "ਹਰਿ ਪਹਿਲੜੀ ਲਾਵ ਪਰਵਿਰਤੀ ਕਰਮ ਦ੍ਰਿੜਾਇਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
+        "excerpt": "ਹਰਿ ਪਹਿਲੜੀ ਲਾਵ ਪਰਵਿਰਤੀ ਕਰਮ ਦ੍ਰਿੜਾਇਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 2,
+        "startVerseId": 2008,
+        "label": "Laav 3",
+        "targetText": "ਹਰਿ ਤੀਜੜੀ ਲਾਵ ਮਨਿ ਚਾਉ ਭਇਆ ਬੈਰਾਗੀਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
+        "excerpt": "ਹਰਿ ਤੀਜੜੀ ਲਾਵ ਮਨਿ ਚਾਉ ਭਇਆ ਬੈਰਾਗੀਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
+        "entryIndex": 1,
+        "lineIndex": 7
+      },
+      "last": {
+        "sectionIndex": 3,
+        "startVerseId": 2014,
+        "label": "Laav 4",
+        "targetText": "ਹਰਿ ਚਉਥੜੀ ਲਾਵ ਮਨਿ ਸਹਜੁ ਭਇਆ ਹਰਿ ਪਾਇਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
+        "excerpt": "ਹਰਿ ਚਉਥੜੀ ਲਾਵ ਮਨਿ ਸਹਜੁ ਭਇਆ ਹਰਿ ਪਾਇਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
+        "entryIndex": 1,
+        "lineIndex": 13
+      }
+    }
+  },
+  {
+    "id": 12,
+    "baniName": "Ath Chandi Charitar",
+    "baniId": "ath-chandi-charitar",
+    "source": "D",
+    "startAng": 119,
+    "endAng": 119,
+    "requestedlength": null,
+    "rows": 26,
+    "sections": 2,
+    "fingerprint": "bani-v1:26:a20afadc86861d48",
+    "routeUrl": "/study?baniDbId=12&bani=Ath+Chandi+Charitar&startAng=119&endAng=119&baniId=ath-chandi-charitar&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2021,
+        "label": "Bhujang Prayaat · 257–261",
+        "targetText": "ਭੁਜੰਗ ਪ੍ਰਯਾਤ ਛੰਦ ॥",
+        "excerpt": "ਭਰੈ ਜੋਗਣੀ ਪਤ੍ਰ ਚਉਸਠ ਚਾਰੰ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 2042,
+        "label": "Dohra 262",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਜੇ ਜੇ ਤੁਮਰੇ ਧਿਆਨ ਕੋ ਨਿਤ ਉਠਿ ਧਿਐਹੈ ਸੰਤ ॥",
+        "entryIndex": 0,
+        "lineIndex": 22
+      },
+      "last": {
+        "sectionIndex": 1,
+        "startVerseId": 2042,
+        "label": "Dohra 262",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਜੇ ਜੇ ਤੁਮਰੇ ਧਿਆਨ ਕੋ ਨਿਤ ਉਠਿ ਧਿਐਹੈ ਸੰਤ ॥",
+        "entryIndex": 0,
+        "lineIndex": 22
+      }
+    }
+  },
+  {
+    "id": 13,
+    "baniName": "Vaar Sri Bhagauti Ji Ki",
+    "baniId": "vaar-sri-bhagauti-ji-ki",
+    "source": "D",
+    "startAng": 119,
+    "endAng": 127,
+    "requestedlength": null,
+    "rows": 357,
+    "sections": 55,
+    "fingerprint": "bani-v1:357:0b8390d368251f0f",
+    "routeUrl": "/study?baniDbId=13&bani=Vaar+Sri+Bhagauti+Ji+Ki&startAng=119&endAng=127&baniId=vaar-sri-bhagauti-ji-ki&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2051,
+        "label": "Pauri 1",
+        "targetText": "ਪਉੜੀ ॥",
+        "excerpt": "ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 5
+      },
+      "middle": {
+        "sectionIndex": 27,
+        "startVerseId": 2209,
+        "label": "Pauri 28",
+        "targetText": "ਚੋਬੀਂ ਧਉਂਸ ਬਜਾਈ ਦਲਾਂ ਮੁਕਾਬਲਾ ॥",
+        "excerpt": "ਚੋਬੀਂ ਧਉਂਸ ਬਜਾਈ ਦਲਾਂ ਮੁਕਾਬਲਾ ॥",
+        "entryIndex": 4,
+        "lineIndex": 21
+      },
+      "last": {
+        "sectionIndex": 54,
+        "startVerseId": 2396,
+        "label": "Pauri 55",
+        "targetText": "ਸੁੰਭ ਨਿਸੁੰਭ ਪਠਾਇਆ ਜਮ ਦੇ ਧਾਮ ਨੋ ॥",
+        "excerpt": "ਸੁੰਭ ਨਿਸੁੰਭ ਪਠਾਇਆ ਜਮ ਦੇ ਧਾਮ ਨੋ ॥",
+        "entryIndex": 8,
+        "lineIndex": 40
+      }
+    }
+  },
+  {
+    "id": 14,
+    "baniName": "Kuchji",
+    "baniId": "kuchji",
+    "source": "G",
+    "startAng": 762,
+    "endAng": 762,
+    "requestedlength": null,
+    "rows": 19,
+    "sections": 1,
+    "fingerprint": "bani-v1:19:8cf4676dfe4328a1",
+    "routeUrl": "/study?baniDbId=14&bani=Kuchji&startAng=762&endAng=762&baniId=kuchji&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2404,
+        "label": "ਕੁਚਜੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਮੰਞੁ ਕੁਚਜੀ ਅੰਮਾਵਣਿ ਡੋਸੜੇ ਹਉ ਕਿਉ ਸਹੁ ਰਾਵਣਿ ਜਾਉ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 2404,
+        "label": "ਕੁਚਜੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਮੰਞੁ ਕੁਚਜੀ ਅੰਮਾਵਣਿ ਡੋਸੜੇ ਹਉ ਕਿਉ ਸਹੁ ਰਾਵਣਿ ਜਾਉ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 2404,
+        "label": "ਕੁਚਜੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਮੰਞੁ ਕੁਚਜੀ ਅੰਮਾਵਣਿ ਡੋਸੜੇ ਹਉ ਕਿਉ ਸਹੁ ਰਾਵਣਿ ਜਾਉ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 15,
+    "baniName": "Suchji",
+    "baniId": "suchji",
+    "source": "G",
+    "startAng": 762,
+    "endAng": 762,
+    "requestedlength": null,
+    "rows": 11,
+    "sections": 1,
+    "fingerprint": "bani-v1:11:425d458b90665b57",
+    "routeUrl": "/study?baniDbId=15&bani=Suchji&startAng=762&endAng=762&baniId=suchji&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2423,
+        "label": "ਸੁਚਜੀ",
+        "targetText": "ਸੂਹੀ ਮਹਲਾ ੧ ਸੁਚਜੀ ॥",
+        "excerpt": "ਜਾ ਤੂ ਤਾ ਮੈ ਸਭੁ ਕੋ ਤੂ ਸਾਹਿਬੁ ਮੇਰੀ ਰਾਸਿ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 2423,
+        "label": "ਸੁਚਜੀ",
+        "targetText": "ਸੂਹੀ ਮਹਲਾ ੧ ਸੁਚਜੀ ॥",
+        "excerpt": "ਜਾ ਤੂ ਤਾ ਮੈ ਸਭੁ ਕੋ ਤੂ ਸਾਹਿਬੁ ਮੇਰੀ ਰਾਸਿ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 2423,
+        "label": "ਸੁਚਜੀ",
+        "targetText": "ਸੂਹੀ ਮਹਲਾ ੧ ਸੁਚਜੀ ॥",
+        "excerpt": "ਜਾ ਤੂ ਤਾ ਮੈ ਸਭੁ ਕੋ ਤੂ ਸਾਹਿਬੁ ਮੇਰੀ ਰਾਸਿ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 16,
+    "baniName": "Gunvanti",
+    "baniId": "gunvanti",
+    "source": "G",
+    "startAng": 763,
+    "endAng": 763,
+    "requestedlength": null,
+    "rows": 14,
+    "sections": 1,
+    "fingerprint": "bani-v1:14:4fd998804ba2a34c",
+    "routeUrl": "/study?baniDbId=16&bani=Gunvanti&startAng=763&endAng=763&baniId=gunvanti&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2434,
+        "label": "ਗੁਣਵੰਤੀ",
+        "targetText": "ਸੂਹੀ ਮਹਲਾ ੫ ਗੁਣਵੰਤੀ ॥",
+        "excerpt": "ਜੋ ਦੀਸੈ ਗੁਰਸਿਖੜਾ ਤਿਸੁ ਨਿਵਿ ਨਿਵਿ ਲਾਗਉ ਪਾਇ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 2434,
+        "label": "ਗੁਣਵੰਤੀ",
+        "targetText": "ਸੂਹੀ ਮਹਲਾ ੫ ਗੁਣਵੰਤੀ ॥",
+        "excerpt": "ਜੋ ਦੀਸੈ ਗੁਰਸਿਖੜਾ ਤਿਸੁ ਨਿਵਿ ਨਿਵਿ ਲਾਗਉ ਪਾਇ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 2434,
+        "label": "ਗੁਣਵੰਤੀ",
+        "targetText": "ਸੂਹੀ ਮਹਲਾ ੫ ਗੁਣਵੰਤੀ ॥",
+        "excerpt": "ਜੋ ਦੀਸੈ ਗੁਰਸਿਖੜਾ ਤਿਸੁ ਨਿਵਿ ਨਿਵਿ ਲਾਗਉ ਪਾਇ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 17,
+    "baniName": "Funehe Mahalla 5",
+    "baniId": "funehe",
+    "source": "G",
+    "startAng": 1361,
+    "endAng": 1363,
+    "requestedlength": null,
+    "rows": 95,
+    "sections": 23,
+    "fingerprint": "bani-v1:95:89ad67cffc0a9c23",
+    "routeUrl": "/study?baniDbId=17&bani=Funehe+Mahalla+5&startAng=1361&endAng=1363&baniId=funehe&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2448,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਹਾਥਿ ਕਲੰਮ ਅਗੰਮ ਮਸਤਕਿ ਲੇਖਾਵਤੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 2495,
+        "label": "Stanza 12",
+        "targetText": "ਮਿਤ ਕਾ ਚਿਤੁ ਅਨੂਪੁ ਮਰੰਮੁ ਨ ਜਾਨੀਐ ॥",
+        "excerpt": "ਮਿਤ ਕਾ ਚਿਤੁ ਅਨੂਪੁ ਮਰੰਮੁ ਨ ਜਾਨੀਐ ॥",
+        "entryIndex": 1,
+        "lineIndex": 28
+      },
+      "last": {
+        "sectionIndex": 22,
+        "startVerseId": 2539,
+        "label": "Stanza 23",
+        "targetText": "ਵੈਦਾ ਸੰਦਾ ਸੰਗੁ ਇਕਠਾ ਹੋਇਆ ॥",
+        "excerpt": "ਵੈਦਾ ਸੰਦਾ ਸੰਗੁ ਇਕਠਾ ਹੋਇਆ ॥",
+        "entryIndex": 2,
+        "lineIndex": 30
+      }
+    }
+  },
+  {
+    "id": 18,
+    "baniName": "Choubole Mahalla 5",
+    "baniId": "choubole",
+    "source": "G",
+    "startAng": 1363,
+    "endAng": 1364,
+    "requestedlength": null,
+    "rows": 24,
+    "sections": 11,
+    "fingerprint": "bani-v1:24:fc9d63ac6fc298d0",
+    "routeUrl": "/study?baniDbId=18&bani=Choubole+Mahalla+5&startAng=1363&endAng=1364&baniId=choubole&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2543,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸੰਮਨ ਜਉ ਇਸ ਪ੍ਰੇਮ ਕੀ ਦਮ ਕੵਿਹੁ ਹੋਤੀ ਸਾਟ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 2555,
+        "label": "Stanza 6",
+        "targetText": "ਮੂਸਨ ਮਰਮੁ ਨ ਜਾਨਈ ਮਰਤ ਹਿਰਤ ਸੰਸਾਰ ॥",
+        "excerpt": "ਮੂਸਨ ਮਰਮੁ ਨ ਜਾਨਈ ਮਰਤ ਹਿਰਤ ਸੰਸਾਰ ॥",
+        "entryIndex": 1,
+        "lineIndex": 5
+      },
+      "last": {
+        "sectionIndex": 10,
+        "startVerseId": 2565,
+        "label": "Stanza 11",
+        "targetText": "ਮਗਨੁ ਭਇਓ ਪ੍ਰਿਅ ਪ੍ਰੇਮ ਸਿਉ ਸੂਧ ਨ ਸਿਮਰਤ ਅੰਗ ॥",
+        "excerpt": "ਮਗਨੁ ਭਇਓ ਪ੍ਰਿਅ ਪ੍ਰੇਮ ਸਿਉ ਸੂਧ ਨ ਸਿਮਰਤ ਅੰਗ ॥",
+        "entryIndex": 1,
+        "lineIndex": 15
+      }
+    }
+  },
+  {
+    "id": 19,
+    "baniName": "Shastar Naam Mala",
+    "baniId": "sastra-naam-mala",
+    "source": "D",
+    "startAng": 717,
+    "endAng": 718,
+    "requestedlength": null,
+    "rows": 61,
+    "sections": 27,
+    "fingerprint": "bani-v1:61:a2352917bb2bf00b",
+    "routeUrl": "/study?baniDbId=19&bani=Shastar+Naam+Mala&startAng=717&endAng=718&baniId=sastra-naam-mala&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2572,
+        "label": "Dohra 1",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਸਾਗ ਸਰੋਹੀ ਸੈਫ ਅਸਿ ਤੀਰ ਤੁਪਕ ਤਰਵਾਰਿ ॥",
+        "entryIndex": 0,
+        "lineIndex": 5
+      },
+      "middle": {
+        "sectionIndex": 13,
+        "startVerseId": 2599,
+        "label": "Dohra 14",
+        "targetText": "ਛੁਰੀ ਕਲਮ ਰਿਪੁ ਕਰਦ ਭਨਿ ਖੰਜਰ ਬੁਗਦਾ ਨਾਇ ॥",
+        "excerpt": "ਛੁਰੀ ਕਲਮ ਰਿਪੁ ਕਰਦ ਭਨਿ ਖੰਜਰ ਬੁਗਦਾ ਨਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 32
+      },
+      "last": {
+        "sectionIndex": 26,
+        "startVerseId": 2625,
+        "label": "Dohra 27",
+        "targetText": "ਸੈਫ ਸਰੋਹੀ ਸਤ੍ਰੁ ਅਰਿ ਸਾਰੰਗਾਰਿ ਜਿਹ ਨਾਮ ॥",
+        "excerpt": "ਸੈਫ ਸਰੋਹੀ ਸਤ੍ਰੁ ਅਰਿ ਸਾਰੰਗਾਰਿ ਜਿਹ ਨਾਮ ॥",
+        "entryIndex": 1,
+        "lineIndex": 13
+      }
+    }
+  },
+  {
+    "id": 21,
+    "baniName": "Rehras Sahib",
+    "baniId": "rehras-sahib",
+    "source": "G",
+    "startAng": 8,
+    "endAng": 1429,
+    "requestedlength": "short",
+    "rows": 306,
+    "sections": 15,
+    "fingerprint": "bani-v1:306:e63c0a1cf63df4a0",
+    "routeUrl": "/study?baniDbId=21&bani=Rehras+Sahib&startAng=8&endAng=1429&baniId=rehras-sahib&source=G&sgLength=short",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2648,
+        "label": "Shabad 1",
+        "targetText": "ਸੋ ਦਰੁ ਰਾਗੁ ਆਸਾ ਮਹਲਾ ੧",
+        "excerpt": "ਸੋ ਦਰੁ ਤੇਰਾ ਕੇਹਾ ਸੋ ਘਰੁ ਕੇਹਾ ਜਿਤੁ ਬਹਿ ਸਰਬ ਸਮਾਲੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 7,
+        "startVerseId": 2779,
+        "label": "Shabad 8",
+        "targetText": "ਆਸਾ ਮਹਲਾ ੧ ॥",
+        "excerpt": "ਤਿਤੁ ਸਰਵਰੜੈ ਭਈਲੇ ਨਿਵਾਸਾ ਪਾਣੀ ਪਾਵਕੁ ਤਿਨਹਿ ਕੀਆ ॥",
+        "entryIndex": 4,
+        "lineIndex": 4
+      },
+      "last": {
+        "sectionIndex": 14,
+        "startVerseId": 3254,
+        "label": "Salok",
+        "targetText": "ਸਲੋਕ ਮਹਲਾ ੫ ॥",
+        "excerpt": "ਤੇਰਾ ਕੀਤਾ ਜਾਤੋ ਨਾਹੀ ਮੈਨੋ ਜੋਗੁ ਕੀਤੋਈ ॥",
+        "entryIndex": 11,
+        "lineIndex": 6
+      }
+    }
+  },
+  {
+    "id": 21,
+    "baniName": "Rehras Sahib",
+    "baniId": "rehras-sahib",
+    "source": "G",
+    "startAng": 469,
+    "endAng": 518,
+    "requestedlength": "medium",
+    "rows": 337,
+    "sections": 19,
+    "fingerprint": "bani-v1:337:eb510162788a880e",
+    "routeUrl": "/study?baniDbId=21&bani=Rehras+Sahib&startAng=469&endAng=518&baniId=rehras-sahib&source=G&sgLength=medium",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2639,
+        "label": "Salok",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਦੁਖੁ ਦਾਰੂ ਸੁਖੁ ਰੋਗੁ ਭਇਆ ਜਾ ਸੁਖੁ ਤਾਮਿ ਨ ਹੋਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 9,
+        "startVerseId": 2786,
+        "label": "Shabad 9",
+        "targetText": "ਆਸਾ ਮਹਲਾ ੫ ॥",
+        "excerpt": "ਭਈ ਪਰਾਪਤਿ ਮਾਨੁਖ ਦੇਹੁਰੀਆ ॥",
+        "entryIndex": 5,
+        "lineIndex": 11
+      },
+      "last": {
+        "sectionIndex": 18,
+        "startVerseId": 3274,
+        "label": "Salok",
+        "targetText": "ਮਃ ੫ ॥",
+        "excerpt": "ਰਖੇ ਰਖਣਹਾਰਿ ਆਪਿ ਉਬਾਰਿਅਨੁ ॥",
+        "entryIndex": 15,
+        "lineIndex": 6
+      }
+    }
+  },
+  {
+    "id": 21,
+    "baniName": "Rehras Sahib",
+    "baniId": "rehras-sahib",
+    "source": "G",
+    "startAng": 451,
+    "endAng": 518,
+    "requestedlength": "long",
+    "rows": 439,
+    "sections": 34,
+    "fingerprint": "bani-v1:439:b26a7f198b6c6d4d",
+    "routeUrl": "/study?baniDbId=21&bani=Rehras+Sahib&startAng=451&endAng=518&baniId=rehras-sahib&source=G&sgLength=long",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2635,
+        "label": "Shabad",
+        "targetText": "ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥",
+        "excerpt": "ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 17,
+        "startVerseId": 3044,
+        "label": "Dohra",
+        "targetText": "ਕਬਿਬਾਚ ॥ ਦੋਹਰਾ ॥",
+        "excerpt": "ਜੋ ਨਿਜ ਪ੍ਰਭ ਮੋ ਸੋ ਕਹਾ ਸੋ ਕਹਿਹੋਂ ਜਗ ਮਾਹਿ ॥",
+        "entryIndex": 14,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 33,
+        "startVerseId": 3274,
+        "label": "Salok",
+        "targetText": "ਮਃ ੫ ॥",
+        "excerpt": "ਰਖੇ ਰਖਣਹਾਰਿ ਆਪਿ ਉਬਾਰਿਅਨੁ ॥",
+        "entryIndex": 26,
+        "lineIndex": 6
+      }
+    }
+  },
+  {
+    "id": 21,
+    "baniName": "Rehras Sahib",
+    "baniId": "rehras-sahib",
+    "source": "G",
+    "startAng": 1291,
+    "endAng": 518,
+    "requestedlength": "extralong",
+    "rows": 521,
+    "sections": 47,
+    "fingerprint": "bani-v1:521:178faf415b2ca6bd",
+    "routeUrl": "/study?baniDbId=21&bani=Rehras+Sahib&startAng=1291&endAng=518&baniId=rehras-sahib&source=G&sgLength=extralong",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 2629,
+        "label": "Salok",
+        "targetText": "ਸਲੋਕ ਮਃ ੧ ॥",
+        "excerpt": "ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨੁ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 23,
+        "startVerseId": 3053,
+        "label": "Dohra",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਤਿਨ ਬੇਦੀਅਨ ਕੀ ਕੁਲ ਬਿਖੈ ਪ੍ਰਗਟੇ ਨਾਨਕ ਰਾਇ ॥",
+        "entryIndex": 15,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 46,
+        "startVerseId": 3274,
+        "label": "Salok",
+        "targetText": "ਮਃ ੫ ॥",
+        "excerpt": "ਰਖੇ ਰਖਣਹਾਰਿ ਆਪਿ ਉਬਾਰਿਅਨੁ ॥",
+        "entryIndex": 35,
+        "lineIndex": 6
+      }
+    }
+  },
+  {
+    "id": 22,
+    "baniName": "Aarti",
+    "baniId": "aarti",
+    "source": "G",
+    "startAng": 663,
+    "endAng": 290,
+    "requestedlength": "short",
+    "rows": 61,
+    "sections": 7,
+    "fingerprint": "bani-v1:61:bbe238744b1e0708",
+    "routeUrl": "/study?baniDbId=22&bani=Aarti&startAng=663&endAng=290&baniId=aarti&source=G&sgLength=short",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3389,
+        "label": "Shabad 1",
+        "targetText": "ਧਨਾਸਰੀ ਮਹਲਾ ੧ ਆਰਤੀ",
+        "excerpt": "ਗਗਨ ਮੈ ਥਾਲੁ ਰਵਿ ਚੰਦੁ ਦੀਪਕ ਬਨੇ ਤਾਰਿਕਾ ਮੰਡਲ ਜਨਕ ਮੋਤੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 3424,
+        "label": "Shabad 4",
+        "targetText": "ਪ੍ਰਭਾਤੀ ॥",
+        "excerpt": "ਸੁੰਨ ਸੰਧਿਆ ਤੇਰੀ ਦੇਵ ਦੇਵਾਕਰ ਅਧਪਤਿ ਆਦਿ ਸਮਾਈ ॥",
+        "entryIndex": 3,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 6,
+        "startVerseId": 3462,
+        "label": "Dohra",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਸਗਲ ਦੁਆਰ ਕਉ ਛਾਡਿ ਕੈ ਗਹਯੋ ਤੁਹਾਰੋ ਦੁਆਰ ॥",
+        "entryIndex": 5,
+        "lineIndex": 5
+      }
+    }
+  },
+  {
+    "id": 22,
+    "baniName": "Aarti",
+    "baniId": "aarti",
+    "source": "G",
+    "startAng": 663,
+    "endAng": 10,
+    "requestedlength": "medium",
+    "rows": 82,
+    "sections": 11,
+    "fingerprint": "bani-v1:82:2f8e41ffa18a3663",
+    "routeUrl": "/study?baniDbId=22&bani=Aarti&startAng=663&endAng=10&baniId=aarti&source=G&sgLength=medium",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3389,
+        "label": "Shabad 1",
+        "targetText": "ਧਨਾਸਰੀ ਮਹਲਾ ੧ ਆਰਤੀ",
+        "excerpt": "ਗਗਨ ਮੈ ਥਾਲੁ ਰਵਿ ਚੰਦੁ ਦੀਪਕ ਬਨੇ ਤਾਰਿਕਾ ਮੰਡਲ ਜਨਕ ਮੋਤੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 3443,
+        "label": "Savaiyya",
+        "targetText": "ਸ੍ਵੈਯਾ ॥",
+        "excerpt": "ਯਾ ਤੇ ਪ੍ਰਸੰਨ ਭਏ ਹੈ ਮਹਾ ਮੁਨ ਦੇਵਨ ਕੇ ਤਪ ਮੈ ਸੁਖ ਪਾਵੈ ॥",
+        "entryIndex": 5,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 10,
+        "startVerseId": 3546,
+        "label": "Jaap excerpt · 199",
+        "targetText": "ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਵਰਤੀ ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਭੁਗਤੇ ॥",
+        "excerpt": "ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਵਰਤੀ ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਭੁਗਤੇ ॥",
+        "entryIndex": 10,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 22,
+    "baniName": "Aarti",
+    "baniId": "aarti",
+    "source": "G",
+    "startAng": 80,
+    "endAng": 10,
+    "requestedlength": "long",
+    "rows": 230,
+    "sections": 39,
+    "fingerprint": "bani-v1:230:0cd823dea4726a52",
+    "routeUrl": "/study?baniDbId=22&bani=Aarti&startAng=80&endAng=10&baniId=aarti&source=G&sgLength=long",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3284,
+        "label": "Dohra",
+        "targetText": "ਦੋਹਰਾ ॥",
+        "excerpt": "ਲੋਪ ਚੰਡਕਾ ਹੋਇ ਗਈ ਸੁਰਪਤਿ ਕੌ ਦੇ ਰਾਜ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 19,
+        "startVerseId": 3414,
+        "label": "Shabad 3",
+        "targetText": "ਸ੍ਰੀ ਸੈਣੁ ॥",
+        "excerpt": "ਧੂਪ ਦੀਪ ਘ੍ਰਿਤ ਸਾਜਿ ਆਰਤੀ ॥",
+        "entryIndex": 14,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 38,
+        "startVerseId": 3546,
+        "label": "Jaap excerpt · 199",
+        "targetText": "ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਵਰਤੀ ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਭੁਗਤੇ ॥",
+        "excerpt": "ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਵਰਤੀ ਚੱਤ੍ਰ ਚੱਕ੍ਰ ਭੁਗਤੇ ॥",
+        "entryIndex": 22,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 23,
+    "baniName": "Kirtan Sohila",
+    "baniId": "kirtan-sohila",
+    "source": "G",
+    "startAng": 12,
+    "endAng": 13,
+    "requestedlength": "short",
+    "rows": 54,
+    "sections": 5,
+    "fingerprint": "bani-v1:54:60bee5bc027edfc8",
+    "routeUrl": "/study?baniDbId=23&bani=Kirtan+Sohila&startAng=12&endAng=13&baniId=kirtan-sohila&source=G&sgLength=short",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3594,
+        "label": "Sohila · Shabad 1",
+        "targetText": "ਸੋਹਿਲਾ ਰਾਗੁ ਗਉੜੀ ਦੀਪਕੀ ਮਹਲਾ ੧",
+        "excerpt": "ਜੈ ਘਰਿ ਕੀਰਤਿ ਆਖੀਐ ਕਰਤੇ ਕਾ ਹੋਇ ਬੀਚਾਰੋ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 2,
+        "startVerseId": 3614,
+        "label": "Sohila · Shabad 3",
+        "targetText": "ਰਾਗੁ ਧਨਾਸਰੀ ਮਹਲਾ ੧ ॥",
+        "excerpt": "ਗਗਨ ਮੈ ਥਾਲੁ ਰਵਿ ਚੰਦੁ ਦੀਪਕ ਬਨੇ ਤਾਰਿਕਾ ਮੰਡਲ ਜਨਕ ਮੋਤੀ ॥",
+        "entryIndex": 1,
+        "lineIndex": 1
+      },
+      "last": {
+        "sectionIndex": 4,
+        "startVerseId": 3638,
+        "label": "Sohila · Shabad 5",
+        "targetText": "ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥",
+        "excerpt": "ਕਰਉ ਬੇਨੰਤੀ ਸੁਣਹੁ ਮੇਰੇ ਮੀਤਾ ਸੰਤ ਟਹਲ ਕੀ ਬੇਲਾ ॥",
+        "entryIndex": 1,
+        "lineIndex": 25
+      }
+    }
+  },
+  {
+    "id": 23,
+    "baniName": "Kirtan Sohila",
+    "baniId": "kirtan-sohila",
+    "source": "G",
+    "startAng": 12,
+    "endAng": 8,
+    "requestedlength": "medium",
+    "rows": 61,
+    "sections": 6,
+    "fingerprint": "bani-v1:61:c83ee1c0af1ac104",
+    "routeUrl": "/study?baniDbId=23&bani=Kirtan+Sohila&startAng=12&endAng=8&baniId=kirtan-sohila&source=G&sgLength=medium",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3594,
+        "label": "Sohila · Shabad 1",
+        "targetText": "ਸੋਹਿਲਾ ਰਾਗੁ ਗਉੜੀ ਦੀਪਕੀ ਮਹਲਾ ੧",
+        "excerpt": "ਜੈ ਘਰਿ ਕੀਰਤਿ ਆਖੀਐ ਕਰਤੇ ਕਾ ਹੋਇ ਬੀਚਾਰੋ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 3627,
+        "label": "Sohila · Shabad 4",
+        "targetText": "ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੪ ॥",
+        "excerpt": "ਕਾਮਿ ਕਰੋਧਿ ਨਗਰੁ ਬਹੁ ਭਰਿਆ ਮਿਲਿ ਸਾਧੂ ਖੰਡਲ ਖੰਡਾ ਹੇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 14
+      },
+      "last": {
+        "sectionIndex": 5,
+        "startVerseId": 3652,
+        "label": "Japji closing salok",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਪਵਣੁ ਗੁਰੂ ਪਾਣੀ ਪਿਤਾ ਮਾਤਾ ਧਰਤਿ ਮਹਤੁ ॥",
+        "entryIndex": 2,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 23,
+    "baniName": "Kirtan Sohila",
+    "baniId": "kirtan-sohila",
+    "source": "G",
+    "startAng": 626,
+    "endAng": 8,
+    "requestedlength": "long",
+    "rows": 86,
+    "sections": 10,
+    "fingerprint": "bani-v1:86:6611a5af3e33fbdb",
+    "routeUrl": "/study?baniDbId=23&bani=Kirtan+Sohila&startAng=626&endAng=8&baniId=kirtan-sohila&source=G&sgLength=long",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3551,
+        "label": "Sorath · Mahalla 5",
+        "targetText": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+        "excerpt": "ਗੁਰ ਕਾ ਸਬਦੁ ਰਖਵਾਰੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 3606,
+        "label": "Sohila · Shabad 2",
+        "targetText": "ਰਾਗੁ ਆਸਾ ਮਹਲਾ ੧ ॥",
+        "excerpt": "ਛਿਅ ਘਰ ਛਿਅ ਗੁਰ ਛਿਅ ਉਪਦੇਸ ॥",
+        "entryIndex": 4,
+        "lineIndex": 12
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 3652,
+        "label": "Japji closing salok",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਪਵਣੁ ਗੁਰੂ ਪਾਣੀ ਪਿਤਾ ਮਾਤਾ ਧਰਤਿ ਮਹਤੁ ॥",
+        "entryIndex": 6,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 23,
+    "baniName": "Kirtan Sohila",
+    "baniId": "kirtan-sohila",
+    "source": "G",
+    "startAng": 626,
+    "endAng": 10,
+    "requestedlength": "extralong",
+    "rows": 145,
+    "sections": 16,
+    "fingerprint": "bani-v1:145:7229c3cd45b95741",
+    "routeUrl": "/study?baniDbId=23&bani=Kirtan+Sohila&startAng=626&endAng=10&baniId=kirtan-sohila&source=G&sgLength=extralong",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3551,
+        "label": "Sorath · Mahalla 5",
+        "targetText": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+        "excerpt": "ਗੁਰ ਕਾ ਸਬਦੁ ਰਖਵਾਰੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 1
+      },
+      "middle": {
+        "sectionIndex": 8,
+        "startVerseId": 3627,
+        "label": "Sohila · Shabad 4",
+        "targetText": "ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੪ ॥",
+        "excerpt": "ਕਾਮਿ ਕਰੋਧਿ ਨਗਰੁ ਬਹੁ ਭਰਿਆ ਮਿਲਿ ਸਾਧੂ ਖੰਡਲ ਖੰਡਾ ਹੇ ॥",
+        "entryIndex": 6,
+        "lineIndex": 14
+      },
+      "last": {
+        "sectionIndex": 15,
+        "startVerseId": 3695,
+        "label": "Jaap excerpt · Bhujang Prayaat · 197–199",
+        "targetText": "ਭੁਜੰਗ ਪ੍ਰਯਾਤ ਛੰਦ ॥",
+        "excerpt": "ਨਮਸਤੁਲ ਪ੍ਰਨਾਮੇ ਸਮਸਤੁਲ ਪ੍ਰਣਾਸੇ ॥",
+        "entryIndex": 11,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 24,
+    "baniName": "Ardaas",
+    "source": "G",
+    "startAng": 119,
+    "endAng": 119,
+    "requestedlength": null,
+    "rows": 29,
+    "sections": 1,
+    "fingerprint": "bani-v1:29:e4ceed9285768686",
+    "routeUrl": "/study?baniDbId=24&bani=Ardaas&startAng=119&endAng=119&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3708,
+        "label": "Ardaas",
+        "targetText": "ਅਰਦਾਸ",
+        "excerpt": "ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 3708,
+        "label": "Ardaas",
+        "targetText": "ਅਰਦਾਸ",
+        "excerpt": "ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 3708,
+        "label": "Ardaas",
+        "targetText": "ਅਰਦਾਸ",
+        "excerpt": "ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 25,
+    "baniName": "Sri Bhagauti Astotr",
+    "baniId": "sri-bhagauti-astotr",
+    "source": "D",
+    "startAng": 1428,
+    "endAng": 1428,
+    "requestedlength": null,
+    "rows": 54,
+    "sections": 2,
+    "fingerprint": "bani-v1:54:c73f28266d66a7ba",
+    "routeUrl": "/study?baniDbId=25&bani=Sri+Bhagauti+Astotr&startAng=1428&endAng=1428&baniId=sri-bhagauti-astotr&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3743,
+        "label": "Bhagauti Astotr",
+        "targetText": "ਭੁਯੰਗ ਪ੍ਰਯਾਤ ਛੰਦ",
+        "excerpt": "ਨਮੋ ਸ੍ਰੀ ਭਗੌਤੀ ਬਢੈਲੀ ਸਰੋਹੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 4
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 3788,
+        "label": "Chaupai",
+        "targetText": "ਚੌਪਈ ॥",
+        "excerpt": "ਇਹ ਅਸਤੋ੍ਰਤ ਗੁਰ ਦਸਮੇਸੈਂ ॥",
+        "entryIndex": 0,
+        "lineIndex": 49
+      },
+      "last": {
+        "sectionIndex": 1,
+        "startVerseId": 3788,
+        "label": "Chaupai",
+        "targetText": "ਚੌਪਈ ॥",
+        "excerpt": "ਇਹ ਅਸਤੋ੍ਰਤ ਗੁਰ ਦਸਮੇਸੈਂ ॥",
+        "entryIndex": 0,
+        "lineIndex": 49
+      }
+    }
+  },
+  {
+    "id": 26,
+    "baniName": "Sri Bhagauti Astotr (Hazur Sahib)",
+    "baniId": "sri-bhagauti-astotr-hazur-sahib",
+    "source": "D",
+    "startAng": 1428,
+    "endAng": 1428,
+    "requestedlength": null,
+    "rows": 40,
+    "sections": 1,
+    "fingerprint": "bani-v1:40:580a5c6cca7bacc8",
+    "routeUrl": "/study?baniDbId=26&bani=Sri+Bhagauti+Astotr+%28Hazur+Sahib%29&startAng=1428&endAng=1428&baniId=sri-bhagauti-astotr-hazur-sahib&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3795,
+        "label": "Bhagauti Astotr",
+        "targetText": "ਅਸਤੋਤ੍ਰ ਸ੍ਰੀ ਭਗਉਤੀ ਜੀ ਕਾ",
+        "excerpt": "ਨਮੋ ਸ੍ਰੀ ਭਗੌਤੀ ਬਢੇਲੀ ਸਰੋਹੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 3795,
+        "label": "Bhagauti Astotr",
+        "targetText": "ਅਸਤੋਤ੍ਰ ਸ੍ਰੀ ਭਗਉਤੀ ਜੀ ਕਾ",
+        "excerpt": "ਨਮੋ ਸ੍ਰੀ ਭਗੌਤੀ ਬਢੇਲੀ ਸਰੋਹੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 3795,
+        "label": "Bhagauti Astotr",
+        "targetText": "ਅਸਤੋਤ੍ਰ ਸ੍ਰੀ ਭਗਉਤੀ ਜੀ ਕਾ",
+        "excerpt": "ਨਮੋ ਸ੍ਰੀ ਭਗੌਤੀ ਬਢੇਲੀ ਸਰੋਹੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      }
+    }
+  },
+  {
+    "id": 27,
+    "baniName": "Barah Maha (Majh)",
+    "baniId": "barah-maha-majh",
+    "source": "G",
+    "startAng": 133,
+    "endAng": 136,
+    "requestedlength": null,
+    "rows": 130,
+    "sections": 14,
+    "fingerprint": "bani-v1:130:032f7a47a87ebac3",
+    "routeUrl": "/study?baniDbId=27&bani=Barah+Maha+%28Majh%29&startAng=133&endAng=136&baniId=barah-maha-majh&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3836,
+        "label": "Opening",
+        "targetText": "ਕਿਰਤਿ ਕਰਮ ਕੇ ਵੀਛੁੜੇ ਕਰਿ ਕਿਰਪਾ ਮੇਲਹੁ ਰਾਮ ॥",
+        "excerpt": "ਕਿਰਤਿ ਕਰਮ ਕੇ ਵੀਛੁੜੇ ਕਰਿ ਕਿਰਪਾ ਮੇਲਹੁ ਰਾਮ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 7,
+        "startVerseId": 3900,
+        "label": "Assu",
+        "targetText": "ਅਸੁਨਿ ਪ੍ਰੇਮ ਉਮਾਹੜਾ ਕਿਉ ਮਿਲੀਐ ਹਰਿ ਜਾਇ ॥",
+        "excerpt": "ਅਸੁਨਿ ਪ੍ਰੇਮ ਉਮਾਹੜਾ ਕਿਉ ਮਿਲੀਐ ਹਰਿ ਜਾਇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 38
+      },
+      "last": {
+        "sectionIndex": 13,
+        "startVerseId": 3955,
+        "label": "Closing",
+        "targetText": "ਜਿਨਿ ਜਿਨਿ ਨਾਮੁ ਧਿਆਇਆ ਤਿਨ ਕੇ ਕਾਜ ਸਰੇ ॥",
+        "excerpt": "ਜਿਨਿ ਜਿਨਿ ਨਾਮੁ ਧਿਆਇਆ ਤਿਨ ਕੇ ਕਾਜ ਸਰੇ ॥",
+        "entryIndex": 3,
+        "lineIndex": 16
+      }
+    }
+  },
+  {
+    "id": 28,
+    "baniName": "Barah Maha Savaiyaa",
+    "baniId": "barah-maha-savaiyaa",
+    "source": "D",
+    "startAng": 383,
+    "endAng": 384,
+    "requestedlength": null,
+    "rows": 54,
+    "sections": 13,
+    "fingerprint": "bani-v1:54:9018f2721a86d0ae",
+    "routeUrl": "/study?baniDbId=28&bani=Barah+Maha+Savaiyaa&startAng=383&endAng=384&baniId=barah-maha-savaiyaa&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 3966,
+        "label": "Savaiyya 867",
+        "targetText": "ਫਾਗੁਨ ਮੈ ਸਖੀ ਡਾਰਿ ਗੁਲਾਲ ਸਭੈ ਹਰਿ ਸਿਉ ਬਨ ਬੀਚ ਰਮੈ ॥",
+        "excerpt": "ਫਾਗੁਨ ਮੈ ਸਖੀ ਡਾਰਿ ਗੁਲਾਲ ਸਭੈ ਹਰਿ ਸਿਉ ਬਨ ਬੀਚ ਰਮੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 6,
+        "startVerseId": 3990,
+        "label": "Savaiyya 873",
+        "targetText": "ਮੇਘ ਪਰੈ ਕਬਹੂੰ ਉਘਰੈ ਸਖੀ ਛਾਇ ਲਗੈ ਦ੍ਰੁਮ ਕੀ ਸੁਖਦਾਈ ॥",
+        "excerpt": "ਮੇਘ ਪਰੈ ਕਬਹੂੰ ਉਘਰੈ ਸਖੀ ਛਾਇ ਲਗੈ ਦ੍ਰੁਮ ਕੀ ਸੁਖਦਾਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 26
+      },
+      "last": {
+        "sectionIndex": 12,
+        "startVerseId": 4014,
+        "label": "Savaiyya 879",
+        "targetText": "ਸ੍ਯਾਮ ਚਿਤਾਰਿ ਸਭੈ ਤਹ ਗ੍ਵਾਰਨਿ ਸ੍ਯਾਮ ਕਹੈ ਜੁ ਹੁਤੀ ਬਡਭਾਗੀ ॥",
+        "excerpt": "ਸ੍ਯਾਮ ਚਿਤਾਰਿ ਸਭੈ ਤਹ ਗ੍ਵਾਰਨਿ ਸ੍ਯਾਮ ਕਹੈ ਜੁ ਹੁਤੀ ਬਡਭਾਗੀ ॥",
+        "entryIndex": 1,
+        "lineIndex": 10
+      }
+    }
+  },
+  {
+    "id": 29,
+    "baniName": "Akal Ustat",
+    "baniId": "akal-ustat",
+    "source": "D",
+    "startAng": 11,
+    "endAng": 38,
+    "requestedlength": null,
+    "rows": 1091,
+    "sections": 18,
+    "fingerprint": "bani-v1:1091:8a5b8554a1b009b0",
+    "routeUrl": "/study?baniDbId=29&bani=Akal+Ustat&startAng=11&endAng=38&baniId=akal-ustat&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 4022,
+        "label": "Opening",
+        "targetText": "ਉਤਾਰ ਖਾਸੇ ਦਸਖਤ ਕਾ ॥ ਪਾਤਿਸਾਹੀ ੧੦ ॥",
+        "excerpt": "ਅਕਾਲ ਪੁਰਖ ਕੀ ਰਛਾ ਹਮਨੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 9,
+        "startVerseId": 4596,
+        "label": "Totak · 141–160",
+        "targetText": "ਤ੍ਵ ਪ੍ਰਸਾਦਿ ॥ ਤੋਟਕ ਛੰਦ ॥",
+        "excerpt": "ਜਯ ਜੰਪਤ ਜੁੱਗਣ ਜੂਹ ਜੁਅੰ ॥",
+        "entryIndex": 19,
+        "lineIndex": 42
+      },
+      "last": {
+        "sectionIndex": 17,
+        "startVerseId": 5088,
+        "label": "Padhri · 267–271",
+        "targetText": "ਤ੍ਵ ਪ੍ਰਸਾਦਿ ॥ ਪਾਧੜੀ ਛੰਦ ॥",
+        "excerpt": "ਅਦ੍ਵੈ ਅਨਾਸ ਆਸਨ ਅਡੋਲ ॥",
+        "entryIndex": 27,
+        "lineIndex": 54
+      }
+    }
+  },
+  {
+    "id": 30,
+    "baniName": "Salok Mahalla 9",
+    "baniId": "salok-mahalla-9",
+    "source": "G",
+    "startAng": 1426,
+    "endAng": 1429,
+    "requestedlength": null,
+    "rows": 117,
+    "sections": 57,
+    "fingerprint": "bani-v1:117:193ae0ea698ad886",
+    "routeUrl": "/study?baniDbId=30&bani=Salok+Mahalla+9&startAng=1426&endAng=1429&baniId=salok-mahalla-9&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 5113,
+        "label": "Salok 1",
+        "targetText": "ਗੁਨ ਗੋਬਿੰਦ ਗਾਇਓ ਨਹੀ ਜਨਮੁ ਅਕਾਰਥ ਕੀਨੁ ॥",
+        "excerpt": "ਗੁਨ ਗੋਬਿੰਦ ਗਾਇਓ ਨਹੀ ਜਨਮੁ ਅਕਾਰਥ ਕੀਨੁ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 28,
+        "startVerseId": 5169,
+        "label": "Salok 29",
+        "targetText": "ਜੋ ਪ੍ਰਾਨੀ ਨਿਸਿ ਦਿਨੁ ਭਜੈ ਰੂਪ ਰਾਮ ਤਿਹ ਜਾਨੁ ॥",
+        "excerpt": "ਜੋ ਪ੍ਰਾਨੀ ਨਿਸਿ ਦਿਨੁ ਭਜੈ ਰੂਪ ਰਾਮ ਤਿਹ ਜਾਨੁ ॥",
+        "entryIndex": 1,
+        "lineIndex": 38
+      },
+      "last": {
+        "sectionIndex": 56,
+        "startVerseId": 5226,
+        "label": "Salok 57",
+        "targetText": "ਰਾਮ ਨਾਮੁ ਉਰ ਮੈ ਗਹਿਓ ਜਾ ਕੈ ਸਮ ਨਹੀ ਕੋਇ ॥",
+        "excerpt": "ਰਾਮ ਨਾਮੁ ਉਰ ਮੈ ਗਹਿਓ ਜਾ ਕੈ ਸਮ ਨਹੀ ਕੋਇ ॥",
+        "entryIndex": 3,
+        "lineIndex": 19
+      }
+    }
+  },
+  {
+    "id": 31,
+    "baniName": "Sukhmani Sahib",
+    "baniId": "sukhmani-sahib",
+    "source": "G",
+    "startAng": 262,
+    "endAng": 296,
+    "requestedlength": null,
+    "rows": 2019,
+    "sections": 24,
+    "fingerprint": "bani-v1:2019:c1b22c8d9185fae1",
+    "routeUrl": "/study?baniDbId=31&bani=Sukhmani+Sahib&startAng=262&endAng=296&baniId=sukhmani-sahib&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 5232,
+        "label": "Ashtpadi 1",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਸਿਮਰਉ ਸਿਮਰਿ ਸਿਮਰਿ ਸੁਖੁ ਪਾਵਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 12,
+        "startVerseId": 6247,
+        "label": "Ashtpadi 13",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਸੰਤ ਕੈ ਦੂਖਨਿ ਆਰਜਾ ਘਟੈ ॥",
+        "entryIndex": 17,
+        "lineIndex": 39
+      },
+      "last": {
+        "sectionIndex": 23,
+        "startVerseId": 7166,
+        "label": "Ashtpadi 24",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਪੂਰੇ ਗੁਰ ਕਾ ਸੁਨਿ ਉਪਦੇਸੁ ॥",
+        "entryIndex": 33,
+        "lineIndex": 5
+      }
+    }
+  },
+  {
+    "id": 32,
+    "baniName": "Sukhmana Sahib",
+    "baniId": "sukhmana-sahib",
+    "source": "G",
+    "startAng": 833,
+    "endAng": 1326,
+    "requestedlength": null,
+    "rows": 464,
+    "sections": 24,
+    "fingerprint": "bani-v1:464:9a8e7fc67e1130d2",
+    "routeUrl": "/study?baniDbId=32&bani=Sukhmana+Sahib&startAng=833&endAng=1326&baniId=sukhmana-sahib&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 7250,
+        "label": "Bilaval · Ashtpadi 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਆਪੈ ਆਪੁ ਖਾਇ ਹਉ ਮੇਟੈ ਅਨਦਿਨੁ ਹਰਿ ਰਸ ਗੀਤ ਗਵਈਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 12,
+        "startVerseId": 7504,
+        "label": "Kanara · Ashtpadi 1",
+        "targetText": "ਕਾਨੜਾ ਅਸਟਪਦੀਆ ਮਹਲਾ ੪ ਘਰੁ ੧",
+        "excerpt": "ਜਪਿ ਮਨ ਰਾਮ ਨਾਮੁ ਸੁਖੁ ਪਾਵੈਗੋ ॥",
+        "entryIndex": 9,
+        "lineIndex": 1
+      },
+      "last": {
+        "sectionIndex": 23,
+        "startVerseId": 7716,
+        "label": "Kalyan · Ashtpadi 6",
+        "targetText": "ਕਲਿਆਨੁ ਮਹਲਾ ੪ ॥",
+        "excerpt": "ਰਾਮਾ ਹਮ ਦਾਸਨ ਦਾਸ ਕਰੀਜੈ ॥",
+        "entryIndex": 16,
+        "lineIndex": 11
+      }
+    }
+  },
+  {
+    "id": 33,
+    "baniName": "Bavan Akhri",
+    "baniId": "bavan-akhri",
+    "source": "G",
+    "startAng": 250,
+    "endAng": 262,
+    "requestedlength": null,
+    "rows": 674,
+    "sections": 57,
+    "fingerprint": "bani-v1:674:e643c7e83d588d0c",
+    "routeUrl": "/study?baniDbId=33&bani=Bavan+Akhri&startAng=250&endAng=262&baniId=bavan-akhri&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 7737,
+        "label": "Opening salok",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਗੁਰਦੇਵ ਮਾਤਾ ਗੁਰਦੇਵ ਪਿਤਾ ਗੁਰਦੇਵ ਸੁਆਮੀ ਪਰਮੇਸੁਰਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 28,
+        "startVerseId": 8068,
+        "label": "Pauri 28",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਠਠਾ ਮਨੂਆ ਠਾਹਹਿ ਨਾਹੀ ॥ ਜੋ ਸਗਲ ਤਿਆਗਿ ਏਕਹਿ ਲਪਟਾਹੀ ॥",
+        "entryIndex": 5,
+        "lineIndex": 53
+      },
+      "last": {
+        "sectionIndex": 56,
+        "startVerseId": 8398,
+        "label": "Closing salok",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਗੁਰਦੇਵ ਮਾਤਾ ਗੁਰਦੇਵ ਪਿਤਾ ਗੁਰਦੇਵ ਸੁਆਮੀ ਪਰਮੇਸੁਰਾ ॥",
+        "entryIndex": 12,
+        "lineIndex": 1
+      }
+    }
+  },
+  {
+    "id": 34,
+    "baniName": "Sidh Gosht",
+    "baniId": "sidh-gosht",
+    "source": "G",
+    "startAng": 938,
+    "endAng": 946,
+    "requestedlength": null,
+    "rows": 406,
+    "sections": 73,
+    "fingerprint": "bani-v1:406:9b1cc0a1e8cc191d",
+    "routeUrl": "/study?baniDbId=34&bani=Sidh+Gosht&startAng=938&endAng=946&baniId=sidh-gosht&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 8413,
+        "label": "Stanza 1",
+        "targetText": "ਸਿਧ ਸਭਾ ਕਰਿ ਆਸਣਿ ਬੈਠੇ ਸੰਤ ਸਭਾ ਜੈਕਾਰੋ ॥",
+        "excerpt": "ਸਿਧ ਸਭਾ ਕਰਿ ਆਸਣਿ ਬੈਠੇ ਸੰਤ ਸਭਾ ਜੈਕਾਰੋ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 36,
+        "startVerseId": 8595,
+        "label": "Stanza 37",
+        "targetText": "ਗੁਰਮੁਖਿ ਸਾਸਤ੍ਰ ਸਿਮ੍ਰਿਤਿ ਬੇਦ ॥",
+        "excerpt": "ਗੁਰਮੁਖਿ ਸਾਸਤ੍ਰ ਸਿਮ੍ਰਿਤਿ ਬੇਦ ॥",
+        "entryIndex": 4,
+        "lineIndex": 14
+      },
+      "last": {
+        "sectionIndex": 72,
+        "startVerseId": 8810,
+        "label": "Stanza 73",
+        "targetText": "ਤੇਰੀ ਗਤਿ ਮਿਤਿ ਤੂਹੈ ਜਾਣਹਿ ਕਿਆ ਕੋ ਆਖਿ ਵਖਾਣੈ ॥",
+        "excerpt": "ਤੇਰੀ ਗਤਿ ਮਿਤਿ ਤੂਹੈ ਜਾਣਹਿ ਕਿਆ ਕੋ ਆਖਿ ਵਖਾਣੈ ॥",
+        "entryIndex": 8,
+        "lineIndex": 32
+      }
+    }
+  },
+  {
+    "id": 35,
+    "baniName": "Onkar",
+    "baniId": "onkar",
+    "source": "G",
+    "startAng": 929,
+    "endAng": 938,
+    "requestedlength": null,
+    "rows": 400,
+    "sections": 54,
+    "fingerprint": "bani-v1:400:f8685353e823b7a7",
+    "routeUrl": "/study?baniDbId=35&bani=Onkar&startAng=929&endAng=938&baniId=onkar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 8819,
+        "label": "Stanza 1",
+        "targetText": "ਓਅੰਕਾਰਿ ਬ੍ਰਹਮਾ ਉਤਪਤਿ ॥",
+        "excerpt": "ਓਅੰਕਾਰਿ ਬ੍ਰਹਮਾ ਉਤਪਤਿ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 27,
+        "startVerseId": 9011,
+        "label": "Stanza 28",
+        "targetText": "ਟੂਟੈ ਨੇਹੁ ਕਿ ਬੋਲਹਿ ਸਹੀ ॥",
+        "excerpt": "ਟੂਟੈ ਨੇਹੁ ਕਿ ਬੋਲਹਿ ਸਹੀ ॥",
+        "entryIndex": 4,
+        "lineIndex": 26
+      },
+      "last": {
+        "sectionIndex": 53,
+        "startVerseId": 9212,
+        "label": "Stanza 54",
+        "targetText": "ਪਾਧਾ ਗੁਰਮੁਖਿ ਆਖੀਐ ਚਾਟੜਿਆ ਮਤਿ ਦੇਇ ॥",
+        "excerpt": "ਪਾਧਾ ਗੁਰਮੁਖਿ ਆਖੀਐ ਚਾਟੜਿਆ ਮਤਿ ਦੇਇ ॥",
+        "entryIndex": 9,
+        "lineIndex": 3
+      }
+    }
+  },
+  {
+    "id": 36,
+    "baniName": "Dukh Bhanjani Sahib",
+    "baniId": "dukh-bhanjani",
+    "source": "G",
+    "startAng": 218,
+    "endAng": 623,
+    "requestedlength": null,
+    "rows": 301,
+    "sections": 34,
+    "fingerprint": "bani-v1:301:3e764540dda33b8c",
+    "routeUrl": "/study?baniDbId=36&bani=Dukh+Bhanjani+Sahib&startAng=218&endAng=623&baniId=dukh-bhanjani&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 25748,
+        "label": "Shabad 1",
+        "targetText": "ਦੁਖ ਭੰਜਨੀ ਸਾਹਿਬ",
+        "excerpt": "ਦੁਖ ਭੰਜਨੁ ਤੇਰਾ ਨਾਮੁ ਜੀ ਦੁਖ ਭੰਜਨੁ ਤੇਰਾ ਨਾਮੁ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 17,
+        "startVerseId": 25935,
+        "label": "Shabad 18",
+        "targetText": "ਰਾਗੁ ਬਿਲਾਵਲੁ ਮਹਲਾ ੫ ਦੁਪਦੇ ਘਰੁ ੫",
+        "excerpt": "ਅਵਰਿ ਉਪਾਵ ਸਭਿ ਤਿਆਗਿਆ ਦਾਰੂ ਨਾਮੁ ਲਇਆ ॥",
+        "entryIndex": 13,
+        "lineIndex": 8
+      },
+      "last": {
+        "sectionIndex": 33,
+        "startVerseId": 26052,
+        "label": "Shabad 34",
+        "targetText": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+        "excerpt": "ਠਾਢਿ ਪਾਈ ਕਰਤਾਰੇ ॥",
+        "entryIndex": 24,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 38,
+    "baniName": "Raag Maala",
+    "baniId": "raag-maala",
+    "source": "G",
+    "startAng": 1429,
+    "endAng": 1430,
+    "requestedlength": null,
+    "rows": 62,
+    "sections": 1,
+    "fingerprint": "bani-v1:62:f886d4647af98830",
+    "routeUrl": "/study?baniDbId=38&bani=Raag+Maala&startAng=1429&endAng=1430&baniId=raag-maala&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9216,
+        "label": "ਰਾਗ ਮਾਲਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ॥",
+        "excerpt": "ਰਾਗ ਏਕ ਸੰਗਿ ਪੰਚ ਬਰੰਗਨ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 9216,
+        "label": "ਰਾਗ ਮਾਲਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ॥",
+        "excerpt": "ਰਾਗ ਏਕ ਸੰਗਿ ਪੰਚ ਬਰੰਗਨ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 9216,
+        "label": "ਰਾਗ ਮਾਲਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ॥",
+        "excerpt": "ਰਾਗ ਏਕ ਸੰਗਿ ਪੰਚ ਬਰੰਗਨ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 39,
+    "baniName": "Bavan Akhri Kabir Ji",
+    "baniId": "bavan-akhri-kabir",
+    "source": "G",
+    "startAng": 340,
+    "endAng": 343,
+    "requestedlength": null,
+    "rows": 168,
+    "sections": 45,
+    "fingerprint": "bani-v1:168:792399c84f4c132c",
+    "routeUrl": "/study?baniDbId=39&bani=Bavan+Akhri+Kabir+Ji&startAng=340&endAng=343&baniId=bavan-akhri-kabir&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9281,
+        "label": "Stanza 1",
+        "targetText": "ਬਾਵਨ ਅਛਰ ਲੋਕ ਤ੍ਰੈ ਸਭੁ ਕਛੁ ਇਨ ਹੀ ਮਾਹਿ ॥",
+        "excerpt": "ਬਾਵਨ ਅਛਰ ਲੋਕ ਤ੍ਰੈ ਸਭੁ ਕਛੁ ਇਨ ਹੀ ਮਾਹਿ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 22,
+        "startVerseId": 9357,
+        "label": "Stanza 23",
+        "targetText": "ਥਥਾ ਅਥਾਹ ਥਾਹ ਨਹੀ ਪਾਵਾ ॥",
+        "excerpt": "ਥਥਾ ਅਥਾਹ ਥਾਹ ਨਹੀ ਪਾਵਾ ॥",
+        "entryIndex": 1,
+        "lineIndex": 30
+      },
+      "last": {
+        "sectionIndex": 44,
+        "startVerseId": 9438,
+        "label": "Stanza 45",
+        "targetText": "ਬਾਵਨ ਅਖਰ ਜੋਰੇ ਆਨਿ ॥",
+        "excerpt": "ਬਾਵਨ ਅਖਰ ਜੋਰੇ ਆਨਿ ॥",
+        "entryIndex": 3,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 40,
+    "baniName": "Ghorian",
+    "baniId": "ghorian",
+    "source": "G",
+    "startAng": 575,
+    "endAng": 575,
+    "requestedlength": null,
+    "rows": 27,
+    "sections": 4,
+    "fingerprint": "bani-v1:27:9d172a98c076b89c",
+    "routeUrl": "/study?baniDbId=40&bani=Ghorian&startAng=575&endAng=575&baniId=ghorian&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9446,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਦੇਹ ਤੇਜਣਿ ਜੀ ਰਾਮਿ ਉਪਾਈਆ ਰਾਮ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 2,
+        "startVerseId": 9461,
+        "label": "Stanza 3",
+        "targetText": "ਕੜੀਆਲੁ ਮੁਖੇ ਗੁਰਿ ਗਿਆਨੁ ਦ੍ਰਿੜਾਇਆ ਰਾਮ ॥",
+        "excerpt": "ਕੜੀਆਲੁ ਮੁਖੇ ਗੁਰਿ ਗਿਆਨੁ ਦ੍ਰਿੜਾਇਆ ਰਾਮ ॥",
+        "entryIndex": 0,
+        "lineIndex": 15
+      },
+      "last": {
+        "sectionIndex": 3,
+        "startVerseId": 9467,
+        "label": "Stanza 4",
+        "targetText": "ਘੋੜੀ ਤੇਜਣਿ ਦੇਹ ਰਾਮਿ ਉਪਾਈਆ ਰਾਮ ॥",
+        "excerpt": "ਘੋੜੀ ਤੇਜਣਿ ਦੇਹ ਰਾਮਿ ਉਪਾਈਆ ਰਾਮ ॥",
+        "entryIndex": 0,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 41,
+    "baniName": "Karhale",
+    "baniId": "karhale",
+    "source": "G",
+    "startAng": 234,
+    "endAng": 234,
+    "requestedlength": null,
+    "rows": 24,
+    "sections": 10,
+    "fingerprint": "bani-v1:24:72c15c2a3de80506",
+    "routeUrl": "/study?baniDbId=41&bani=Karhale&startAng=234&endAng=234&baniId=karhale&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9473,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਕਰਹਲੇ ਮਨ ਪਰਦੇਸੀਆ ਕਿਉ ਮਿਲੀਐ ਹਰਿ ਮਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 9487,
+        "label": "Stanza 6",
+        "targetText": "ਮਨ ਕਰਹਲਾ ਤੂੰ ਮੀਤੁ ਮੇਰਾ ਪਾਖੰਡੁ ਲੋਭੁ ਤਜਾਇ ॥",
+        "excerpt": "ਮਨ ਕਰਹਲਾ ਤੂੰ ਮੀਤੁ ਮੇਰਾ ਪਾਖੰਡੁ ਲੋਭੁ ਤਜਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 14
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 9495,
+        "label": "Stanza 10",
+        "targetText": "ਮਨ ਕਰਹਲਾ ਗੁਰਿ ਮੰਨਿਆ ਗੁਰਮੁਖਿ ਕਾਰ ਕਮਾਇ ॥",
+        "excerpt": "ਮਨ ਕਰਹਲਾ ਗੁਰਿ ਮੰਨਿਆ ਗੁਰਮੁਖਿ ਕਾਰ ਕਮਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 22
+      }
+    }
+  },
+  {
+    "id": 42,
+    "baniName": "Birhade",
+    "baniId": "birhade",
+    "source": "G",
+    "startAng": 431,
+    "endAng": 432,
+    "requestedlength": null,
+    "rows": 27,
+    "sections": 3,
+    "fingerprint": "bani-v1:27:90491565c7217ce1",
+    "routeUrl": "/study?baniDbId=42&bani=Birhade&startAng=431&endAng=432&baniId=birhade&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9497,
+        "label": "Shabad 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਪਾਰਬ੍ਰਹਮੁ ਪ੍ਰਭੁ ਸਿਮਰੀਐ ਪਿਆਰੇ ਦਰਸਨ ਕਉ ਬਲਿ ਜਾਉ ॥੧॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 9509,
+        "label": "Shabad 2",
+        "targetText": "ਜਨਮ ਮਰਣ ਦੁਖੁ ਕਟੀਐ ਪਿਆਰੇ ਜਬ ਭੇਟੈ ਹਰਿ ਰਾਇ ॥੧॥",
+        "excerpt": "ਜਨਮ ਮਰਣ ਦੁਖੁ ਕਟੀਐ ਪਿਆਰੇ ਜਬ ਭੇਟੈ ਹਰਿ ਰਾਇ ॥੧॥",
+        "entryIndex": 0,
+        "lineIndex": 11
+      },
+      "last": {
+        "sectionIndex": 2,
+        "startVerseId": 9517,
+        "label": "Shabad 3",
+        "targetText": "ਸਭ ਬਿਧਿ ਤੁਮ ਹੀ ਜਾਨਤੇ ਪਿਆਰੇ ਕਿਸੁ ਪਹਿ ਕਹਉ ਸੁਨਾਇ ॥੧॥",
+        "excerpt": "ਸਭ ਬਿਧਿ ਤੁਮ ਹੀ ਜਾਨਤੇ ਪਿਆਰੇ ਕਿਸੁ ਪਹਿ ਕਹਉ ਸੁਨਾਇ ॥੧॥",
+        "entryIndex": 1,
+        "lineIndex": 2
+      }
+    }
+  },
+  {
+    "id": 43,
+    "baniName": "Patti Likhi",
+    "baniId": "patti-likhi",
+    "source": "G",
+    "startAng": 432,
+    "endAng": 434,
+    "requestedlength": null,
+    "rows": 74,
+    "sections": 35,
+    "fingerprint": "bani-v1:74:21fd22f1779862e5",
+    "routeUrl": "/study?baniDbId=43&bani=Patti+Likhi&startAng=432&endAng=434&baniId=patti-likhi&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9526,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸਸੈ ਸੋਇ ਸ੍ਰਿਸਟਿ ਜਿਨਿ ਸਾਜੀ ਸਭਨਾ ਸਾਹਿਬੁ ਏਕੁ ਭਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 17,
+        "startVerseId": 9565,
+        "label": "Stanza 18",
+        "targetText": "ਣਾਣੈ ਰਵਤੁ ਰਹੈ ਘਟ ਅੰਤਰਿ ਹਰਿ ਗੁਣ ਗਾਵੈ ਸੋਈ ॥",
+        "excerpt": "ਣਾਣੈ ਰਵਤੁ ਰਹੈ ਘਟ ਅੰਤਰਿ ਹਰਿ ਗੁਣ ਗਾਵੈ ਸੋਈ ॥",
+        "entryIndex": 1,
+        "lineIndex": 16
+      },
+      "last": {
+        "sectionIndex": 34,
+        "startVerseId": 9598,
+        "label": "Stanza 35",
+        "targetText": "ਆਇੜੈ ਆਪਿ ਕਰੇ ਜਿਨਿ ਛੋਡੀ ਜੋ ਕਿਛੁ ਕਰਣਾ ਸੁ ਕਰਿ ਰਹਿਆ ॥",
+        "excerpt": "ਆਇੜੈ ਆਪਿ ਕਰੇ ਜਿਨਿ ਛੋਡੀ ਜੋ ਕਿਛੁ ਕਰਣਾ ਸੁ ਕਰਿ ਰਹਿਆ ॥",
+        "entryIndex": 2,
+        "lineIndex": 16
+      }
+    }
+  },
+  {
+    "id": 44,
+    "baniName": "Patti Mahalla 3",
+    "baniId": "patti-mahalla-3",
+    "source": "G",
+    "startAng": 434,
+    "endAng": 435,
+    "requestedlength": null,
+    "rows": 39,
+    "sections": 18,
+    "fingerprint": "bani-v1:39:9917922cd8cce158",
+    "routeUrl": "/study?baniDbId=44&bani=Patti+Mahalla+3&startAng=434&endAng=435&baniId=patti-mahalla-3&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9600,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਅਯੋ ਅੰਙੈ ਸਭੁ ਜਗੁ ਆਇਆ ਕਾਖੈ ਘੰਙੈ ਕਾਲੁ ਭਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 9,
+        "startVerseId": 9621,
+        "label": "Stanza 10",
+        "targetText": "ਪਪੈ ਪਾਰਿ ਨ ਪਵਹੀ ਮੂੜੇ ਪਰਪੰਚਿ ਤੂੰ ਪਲਚਿ ਰਹਿਆ ॥",
+        "excerpt": "ਪਪੈ ਪਾਰਿ ਨ ਪਵਹੀ ਮੂੜੇ ਪਰਪੰਚਿ ਤੂੰ ਪਲਚਿ ਰਹਿਆ ॥",
+        "entryIndex": 1,
+        "lineIndex": 9
+      },
+      "last": {
+        "sectionIndex": 17,
+        "startVerseId": 9637,
+        "label": "Stanza 18",
+        "targetText": "ਤੇਰਾ ਅੰਤੁ ਨ ਜਾਈ ਲਖਿਆ ਅਕਥੁ ਨ ਜਾਈ ਹਰਿ ਕਥਿਆ ॥",
+        "excerpt": "ਤੇਰਾ ਅੰਤੁ ਨ ਜਾਈ ਲਖਿਆ ਅਕਥੁ ਨ ਜਾਈ ਹਰਿ ਕਥਿਆ ॥",
+        "entryIndex": 1,
+        "lineIndex": 25
+      }
+    }
+  },
+  {
+    "id": 45,
+    "baniName": "Ruti Mahalla 5",
+    "baniId": "ruti-mahalla-5",
+    "source": "G",
+    "startAng": 927,
+    "endAng": 929,
+    "requestedlength": null,
+    "rows": 98,
+    "sections": 8,
+    "fingerprint": "bani-v1:98:2e54e2c40eec94f8",
+    "routeUrl": "/study?baniDbId=45&bani=Ruti+Mahalla+5&startAng=927&endAng=929&baniId=ruti-mahalla-5&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9639,
+        "label": "Opening saloks and chhant",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਜਸੁ ਗਾਵਹੁ ਵਡਭਾਗੀਹੋ ਕਰਿ ਕਿਰਪਾ ਭਗਵੰਤ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 9691,
+        "label": "Sarad · Assu / Katak",
+        "targetText": "ਸਲੋਕ ॥",
+        "excerpt": "ਰੁਤਿ ਸਰਦ ਅਡੰਬਰੋ ਅਸੂ ਕਤਕੇ ਹਰਿ ਪਿਆਸ ਜੀਉ ॥",
+        "entryIndex": 1,
+        "lineIndex": 27
+      },
+      "last": {
+        "sectionIndex": 7,
+        "startVerseId": 9727,
+        "label": "Closing saloks and chhant",
+        "targetText": "ਸਲੋਕ ॥",
+        "excerpt": "ਚਰਣ ਬਿਰਾਜਿਤ ਸਭ ਊਪਰੇ ਮਿਟਿਆ ਸਗਲ ਕਲੇਸੁ ਜੀਉ ॥",
+        "entryIndex": 2,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 46,
+    "baniName": "Ramkali Sadd",
+    "baniId": "ramkali-sadd",
+    "source": "G",
+    "startAng": 923,
+    "endAng": 924,
+    "requestedlength": null,
+    "rows": 39,
+    "sections": 6,
+    "fingerprint": "bani-v1:39:702a530c156a29f0",
+    "routeUrl": "/study?baniDbId=46&bani=Ramkali+Sadd&startAng=923&endAng=924&baniId=ramkali-sadd&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9739,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਜਗਿ ਦਾਤਾ ਸੋਇ ਭਗਤਿ ਵਛਲੁ ਤਿਹੁ ਲੋਇ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 9760,
+        "label": "Stanza 4",
+        "targetText": "ਸਤਿਗੁਰਿ ਭਾਣੈ ਆਪਣੈ ਬਹਿ ਪਰਵਾਰੁ ਸਦਾਇਆ ॥",
+        "excerpt": "ਸਤਿਗੁਰਿ ਭਾਣੈ ਆਪਣੈ ਬਹਿ ਪਰਵਾਰੁ ਸਦਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 21
+      },
+      "last": {
+        "sectionIndex": 5,
+        "startVerseId": 9772,
+        "label": "Stanza 6",
+        "targetText": "ਸਤਿਗੁਰੁ ਪੁਰਖੁ ਜਿ ਬੋਲਿਆ ਗੁਰਸਿਖਾ ਮੰਨਿ ਲਈ ਰਜਾਇ ਜੀਉ ॥",
+        "excerpt": "ਸਤਿਗੁਰੁ ਪੁਰਖੁ ਜਿ ਬੋਲਿਆ ਗੁਰਸਿਖਾ ਮੰਨਿ ਲਈ ਰਜਾਇ ਜੀਉ ॥",
+        "entryIndex": 1,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 47,
+    "baniName": "Thitanti Kabir Ji",
+    "baniId": "thitanti-kabir",
+    "source": "G",
+    "startAng": 343,
+    "endAng": 344,
+    "requestedlength": null,
+    "rows": 74,
+    "sections": 17,
+    "fingerprint": "bani-v1:74:501390b338e4b0bf",
+    "routeUrl": "/study?baniDbId=47&bani=Thitanti+Kabir+Ji&startAng=343&endAng=344&baniId=thitanti-kabir&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9778,
+        "label": "Opening salok",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਪੰਦ੍ਰਹ ਥਿਤੰੀ ਸਾਤ ਵਾਰ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 8,
+        "startVerseId": 9816,
+        "label": "Stanza 8",
+        "targetText": "ਸਾਤੈਂ ਸਤਿ ਕਰਿ ਬਾਚਾ ਜਾਣਿ ॥",
+        "excerpt": "ਸਾਤੈਂ ਸਤਿ ਕਰਿ ਬਾਚਾ ਜਾਣਿ ॥",
+        "entryIndex": 0,
+        "lineIndex": 38
+      },
+      "last": {
+        "sectionIndex": 16,
+        "startVerseId": 9848,
+        "label": "Stanza 16",
+        "targetText": "ਪੂਨਿਉ ਪੂਰਾ ਚੰਦ ਅਕਾਸ ॥",
+        "excerpt": "ਪੂਨਿਉ ਪੂਰਾ ਚੰਦ ਅਕਾਸ ॥",
+        "entryIndex": 1,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 48,
+    "baniName": "Thiti Mahalla 1",
+    "baniId": "thiti-mahalla-1",
+    "source": "G",
+    "startAng": 838,
+    "endAng": 840,
+    "requestedlength": null,
+    "rows": 122,
+    "sections": 20,
+    "fingerprint": "bani-v1:122:8263be9066a489fc",
+    "routeUrl": "/study?baniDbId=48&bani=Thiti+Mahalla+1&startAng=838&endAng=840&baniId=thiti-mahalla-1&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9852,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਏਕਮ ਏਕੰਕਾਰੁ ਨਿਰਾਲਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 9917,
+        "label": "Stanza 11",
+        "targetText": "ਨਾਉ ਨਉਮੀ ਨਵੇ ਨਾਥ ਨਵ ਖੰਡਾ ॥ ਘਟਿ ਘਟਿ ਨਾਥੁ ਮਹਾ ਬਲਵੰਡਾ ॥",
+        "excerpt": "ਨਾਉ ਨਉਮੀ ਨਵੇ ਨਾਥ ਨਵ ਖੰਡਾ ॥ ਘਟਿ ਘਟਿ ਨਾਥੁ ਮਹਾ ਬਲਵੰਡਾ ॥",
+        "entryIndex": 1,
+        "lineIndex": 58
+      },
+      "last": {
+        "sectionIndex": 19,
+        "startVerseId": 9969,
+        "label": "Stanza 20",
+        "targetText": "ਘਰੁ ਦਰੁ ਥਾਪਿ ਥਿਰੁ ਥਾਨਿ ਸੁਹਾਵੈ ॥",
+        "excerpt": "ਘਰੁ ਦਰੁ ਥਾਪਿ ਥਿਰੁ ਥਾਨਿ ਸੁਹਾਵੈ ॥",
+        "entryIndex": 2,
+        "lineIndex": 51
+      }
+    }
+  },
+  {
+    "id": 49,
+    "baniName": "Thiti Mahalla 5 (Gauri)",
+    "baniId": "thiiti-majh",
+    "source": "G",
+    "startAng": 296,
+    "endAng": 300,
+    "requestedlength": null,
+    "rows": 210,
+    "sections": 17,
+    "fingerprint": "bani-v1:210:dc6f61c317abda4f",
+    "routeUrl": "/study?baniDbId=49&bani=Thiti+Mahalla+5+%28Gauri%29&startAng=296&endAng=300&baniId=thiiti-majh&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18000,
+        "label": "Salok + Pauri 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਏਕਮ ਏਕੰਕਾਰੁ ਪ੍ਰਭੁ ਕਰਉ ਬੰਦਨਾ ਧਿਆਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 8,
+        "startVerseId": 18101,
+        "label": "Salok + Pauri 9",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਨਉਮੀ ਨਵੇ ਛਿਦ੍ਰ ਅਪਵੀਤ ॥",
+        "entryIndex": 2,
+        "lineIndex": 31
+      },
+      "last": {
+        "sectionIndex": 16,
+        "startVerseId": 18198,
+        "label": "Salok + Pauri 17",
+        "targetText": "ਸਲੋਕੁ ॥",
+        "excerpt": "ਕੋਈ ਗਾਵੈ ਕੋ ਸੁਣੈ ਕੋਈ ਕਰੈ ਬੀਚਾਰੁ ॥",
+        "entryIndex": 4,
+        "lineIndex": 18
+      }
+    }
+  },
+  {
+    "id": 50,
+    "baniName": "Gauri Vaar Kabir Ji",
+    "baniId": "gauri-vaar-kabir",
+    "source": "G",
+    "startAng": 344,
+    "endAng": 345,
+    "requestedlength": null,
+    "rows": 35,
+    "sections": 8,
+    "fingerprint": "bani-v1:35:ad30da3876b1c5ec",
+    "routeUrl": "/study?baniDbId=50&bani=Gauri+Vaar+Kabir+Ji&startAng=344&endAng=345&baniId=gauri-vaar-kabir&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18210,
+        "label": "Sunday",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਆਦਿਤ ਕਰੈ ਭਗਤਿ ਆਰੰਭ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 18230,
+        "label": "Thursday",
+        "targetText": "ਬ੍ਰਿਹਸਪਤਿ ਬਿਖਿਆ ਦੇਇ ਬਹਾਇ ॥",
+        "excerpt": "ਬ੍ਰਿਹਸਪਤਿ ਬਿਖਿਆ ਦੇਇ ਬਹਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 20
+      },
+      "last": {
+        "sectionIndex": 7,
+        "startVerseId": 18241,
+        "label": "Closing stanza",
+        "targetText": "ਜਬ ਲਗੁ ਘਟ ਮਹਿ ਦੂਜੀ ਆਨ ॥",
+        "excerpt": "ਜਬ ਲਗੁ ਘਟ ਮਹਿ ਦੂਜੀ ਆਨ ॥",
+        "entryIndex": 1,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 51,
+    "baniName": "Bilaval Mahalla 3 Vaar Sat",
+    "baniId": "bilaval-mahalla-3-vaar-sat",
+    "source": "G",
+    "startAng": 841,
+    "endAng": 842,
+    "requestedlength": null,
+    "rows": 64,
+    "sections": 10,
+    "fingerprint": "bani-v1:64:80cfb3b453a5b818",
+    "routeUrl": "/study?baniDbId=51&bani=Bilaval+Mahalla+3+Vaar+Sat&startAng=841&endAng=842&baniId=bilaval-mahalla-3-vaar-sat&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18245,
+        "label": "Sunday",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਆਦਿਤ ਵਾਰਿ ਆਦਿ ਪੁਰਖੁ ਹੈ ਸੋਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 18280,
+        "label": "Thursday",
+        "targetText": "ਵੀਰਵਾਰਿ ਵੀਰ ਭਰਮਿ ਭੁਲਾਏ ॥",
+        "excerpt": "ਵੀਰਵਾਰਿ ਵੀਰ ਭਰਮਿ ਭੁਲਾਏ ॥",
+        "entryIndex": 0,
+        "lineIndex": 35
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 18303,
+        "label": "Closing stanza 2",
+        "targetText": "ਪੰਦ੍ਰਹ ਥਿਤਂੀ ਤੈ ਸਤ ਵਾਰ ॥",
+        "excerpt": "ਪੰਦ੍ਰਹ ਥਿਤਂੀ ਤੈ ਸਤ ਵਾਰ ॥",
+        "entryIndex": 1,
+        "lineIndex": 3
+      }
+    }
+  },
+  {
+    "id": 52,
+    "baniName": "Vanjara",
+    "baniId": "vanjara",
+    "source": "G",
+    "startAng": 81,
+    "endAng": 82,
+    "requestedlength": null,
+    "rows": 45,
+    "sections": 6,
+    "fingerprint": "bani-v1:45:f8cc8a887576fb94",
+    "routeUrl": "/study?baniDbId=52&bani=Vanjara&startAng=81&endAng=82&baniId=vanjara&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18309,
+        "label": "Stanza 1",
+        "targetText": "ੴ ਸਤਿ ਨਾਮੁ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਹਰਿ ਹਰਿ ਉਤਮੁ ਨਾਮੁ ਹੈ ਜਿਨਿ ਸਿਰਿਆ ਸਭੁ ਕੋਇ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 18331,
+        "label": "Stanza 4",
+        "targetText": "ਮਨ ਹਰਿ ਹਰਿ ਪ੍ਰੀਤਿ ਲਗਾਇ ॥",
+        "excerpt": "ਮਨ ਹਰਿ ਹਰਿ ਪ੍ਰੀਤਿ ਲਗਾਇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 12
+      },
+      "last": {
+        "sectionIndex": 5,
+        "startVerseId": 18345,
+        "label": "Stanza 6",
+        "targetText": "ਹਰਿ ਧਿਆਵਹੁ ਹਰਿ ਪ੍ਰਭੁ ਸਤਿ ॥",
+        "excerpt": "ਹਰਿ ਧਿਆਵਹੁ ਹਰਿ ਪ੍ਰਭੁ ਸਤਿ ॥",
+        "entryIndex": 1,
+        "lineIndex": 26
+      }
+    }
+  },
+  {
+    "id": 53,
+    "baniName": "Ugardanti",
+    "baniId": "ugardanti",
+    "source": "D",
+    "startAng": 1428,
+    "endAng": 1428,
+    "requestedlength": null,
+    "rows": 308,
+    "sections": 7,
+    "fingerprint": "bani-v1:308:12f5ed538d0ec7a7",
+    "routeUrl": "/study?baniDbId=53&bani=Ugardanti&startAng=1428&endAng=1428&baniId=ugardanti&source=D",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18358,
+        "label": "Bhagvati Chhand 1",
+        "targetText": "ਛੰਦ ॥",
+        "excerpt": "ਨਮੋ ਉਗ੍ਰਦੰਤੀ ਅਨੰਤੀ ਸੈਵਯਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 4
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 18502,
+        "label": "Bhagvati Chhand 4",
+        "targetText": "ਭਗਵਤੀ ਛੰਦ ਚੌਥਾ ॥੪॥",
+        "excerpt": "ਤੁਹੀ ਜੋਤ ਜਵਾਲਾ ਮੁਖੀ ਹੋਇ ਦਿਖਾਨੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 148
+      },
+      "last": {
+        "sectionIndex": 6,
+        "startVerseId": 18648,
+        "label": "Chaupai",
+        "targetText": "ਚੋਪਈ ॥",
+        "excerpt": "ਖਟ ਛੰਦ ਭਗਵਤੀ ਮਹਾਂ ਪੁਨੀਤੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 294
+      }
+    }
+  },
+  {
+    "id": 55,
+    "baniName": "Raag Siri Raag (Kabir Ji Ka)",
+    "baniId": "raag-siri-raag-kabir",
+    "source": "G",
+    "startAng": 91,
+    "endAng": 93,
+    "requestedlength": null,
+    "rows": 74,
+    "sections": 5,
+    "fingerprint": "bani-v1:74:4816984c4285b2a8",
+    "routeUrl": "/study?baniDbId=55&bani=Raag+Siri+Raag+%28Kabir+Ji+Ka%29&startAng=91&endAng=93&baniId=raag-siri-raag-kabir&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18662,
+        "label": "ਸਿਰੀਰਾਗੁ ਕਬੀਰ ਜੀਉ ਕਾ ॥ ਏਕੁ ਸੁਆਨੁ ਕੈ ਘਰਿ ਗਾਵਣਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਜਨਨੀ ਜਾਨਤ ਸੁਤੁ ਬਡਾ ਹੋਤੁ ਹੈ ਇਤਨਾ ਕੁ ਨ ਜਾਨੈ ਜਿ ਦਿਨ ਦਿਨ ਅਵਧ ਘਟਤੁ ਹੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 2,
+        "startVerseId": 18690,
+        "label": "ਸ੍ਰੀਰਾਗੁ ਭਗਤ ਕਬੀਰ ਜੀਉ ਕਾ ॥",
+        "targetText": "ਸ੍ਰੀਰਾਗੁ ਭਗਤ ਕਬੀਰ ਜੀਉ ਕਾ ॥",
+        "excerpt": "ਅਚਰਜ ਏਕੁ ਸੁਨਹੁ ਰੇ ਪੰਡੀਆ ਅਬ ਕਿਛੁ ਕਹਨੁ ਨ ਜਾਈ ॥",
+        "entryIndex": 1,
+        "lineIndex": 24
+      },
+      "last": {
+        "sectionIndex": 4,
+        "startVerseId": 18726,
+        "label": "ਸਿਰੀਰਾਗੁ ॥",
+        "targetText": "ਸਿਰੀਰਾਗੁ ॥",
+        "excerpt": "ਤੋਹੀ ਮੋਹੀ ਮੋਹੀ ਤੋਹੀ ਅੰਤਰੁ ਕੈਸਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 26
+      }
+    }
+  },
+  {
+    "id": 56,
+    "baniName": "Raag Gauri",
+    "baniId": "raag-gauri",
+    "source": "G",
+    "startAng": 323,
+    "endAng": 346,
+    "requestedlength": null,
+    "rows": 1130,
+    "sections": 78,
+    "fingerprint": "bani-v1:1130:11f91be2aeadfc06",
+    "routeUrl": "/study?baniDbId=56&bani=Raag+Gauri&startAng=323&endAng=346&baniId=raag-gauri&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 18735,
+        "label": "ਗਉੜੀ ਗੁਆਰੇਰੀ ਸ੍ਰੀ ਕਬੀਰ ਜੀਉ ਕੇ ਚਉਪਦੇ ੧੪ ॥",
+        "targetText": "ੴ ਸਤਿਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਅਬ ਮੋਹਿ ਜਲਤ ਰਾਮ ਜਲੁ ਪਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 39,
+        "startVerseId": 19185,
+        "label": "ਰਾਗੁ ਗਉੜੀ ਚੇਤੀ ॥",
+        "targetText": "ਰਾਗੁ ਗਉੜੀ ਚੇਤੀ ॥",
+        "excerpt": "ਦੇਖੌ ਭਾਈ ਗੵਾਨ ਕੀ ਆਈ ਆਂਧੀ ॥",
+        "entryIndex": 8,
+        "lineIndex": 43
+      },
+      "last": {
+        "sectionIndex": 77,
+        "startVerseId": 19835,
+        "label": "ਗਉੜੀ ਬੈਰਾਗਣਿ",
+        "targetText": "ਗਉੜੀ ਬੈਰਾਗਣਿ",
+        "excerpt": "ਸਤਜੁਗਿ ਸਤੁ ਤੇਤਾ ਜਗੀ ਦੁਆਪਰਿ ਪੂਜਾਚਾਰ ॥",
+        "entryIndex": 23,
+        "lineIndex": 17
+      }
+    }
+  },
+  {
+    "id": 57,
+    "baniName": "Raag Asa",
+    "baniId": "raag-asa",
+    "source": "G",
+    "startAng": 475,
+    "endAng": 488,
+    "requestedlength": null,
+    "rows": 584,
+    "sections": 51,
+    "fingerprint": "bani-v1:584:ae7a6d3a20c75646",
+    "routeUrl": "/study?baniDbId=57&bani=Raag+Asa&startAng=475&endAng=488&baniId=raag-asa&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 19856,
+        "label": "ਆਸਾ ਸ੍ਰੀ ਕਬੀਰ ਜੀਉ ॥",
+        "targetText": "ੴ ਸਤਿਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਗੁਰ ਚਰਣ ਲਾਗਿ ਹਮ ਬਿਨਵਤਾ ਪੂਛਤ ਕਹ ਜੀਉ ਪਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 25,
+        "startVerseId": 20155,
+        "label": "ਆਸਾ ॥",
+        "targetText": "ਆਸਾ ॥",
+        "excerpt": "ਹਮ ਘਰਿ ਸੂਤੁ ਤਨਹਿ ਨਿਤ ਤਾਨਾ ਕੰਠਿ ਜਨੇਊ ਤੁਮਾਰੇ ॥",
+        "entryIndex": 7,
+        "lineIndex": 20
+      },
+      "last": {
+        "sectionIndex": 50,
+        "startVerseId": 20415,
+        "label": "ਆਸਾ ॥",
+        "targetText": "ਆਸਾ ॥",
+        "excerpt": "ਬੋਲੈ ਸੇਖ ਫਰੀਦੁ ਪਿਆਰੇ ਅਲਹ ਲਗੇ ॥",
+        "entryIndex": 13,
+        "lineIndex": 23
+      }
+    }
+  },
+  {
+    "id": 58,
+    "baniName": "Raag Gujri",
+    "baniId": "raag-gujri",
+    "source": "G",
+    "startAng": 524,
+    "endAng": 526,
+    "requestedlength": null,
+    "rows": 104,
+    "sections": 8,
+    "fingerprint": "bani-v1:104:84d84fd2c592d6de",
+    "routeUrl": "/study?baniDbId=58&bani=Raag+Gujri&startAng=524&endAng=526&baniId=raag-gujri&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 20433,
+        "label": "ਸ੍ਰੀ ਕਬੀਰ ਜੀਉ ਕਾ ਚਉਪਦਾ ਘਰੁ ੨ ਦੂਜਾ ॥",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਚਾਰਿ ਪਾਵ ਦੁਇ ਸਿੰਗ ਗੁੰਗ ਮੁਖ ਤਬ ਕੈਸੇ ਗੁਨ ਗਈਹੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 20480,
+        "label": "ਗੂਜਰੀ ਸ੍ਰੀ ਰਵਿਦਾਸ ਜੀ ਕੇ ਪਦੇ ਘਰੁ ੩",
+        "targetText": "ਗੂਜਰੀ ਸ੍ਰੀ ਰਵਿਦਾਸ ਜੀ ਕੇ ਪਦੇ ਘਰੁ ੩",
+        "excerpt": "ਦੂਧੁ ਤ ਬਛਰੈ ਥਨਹੁ ਬਿਟਾਰਿਓ ॥",
+        "entryIndex": 1,
+        "lineIndex": 24
+      },
+      "last": {
+        "sectionIndex": 7,
+        "startVerseId": 20518,
+        "label": "ਗੂਜਰੀ ਸ੍ਰੀ ਜੈਦੇਵ ਜੀਉ ਕਾ ਪਦਾ ਘਰੁ ੪",
+        "targetText": "ਗੂਜਰੀ ਸ੍ਰੀ ਜੈਦੇਵ ਜੀਉ ਕਾ ਪਦਾ ਘਰੁ ੪",
+        "excerpt": "ਪਰਮਾਦਿ ਪੁਰਖਮਨੋਪਿਮੰ ਸਤਿ ਆਦਿ ਭਾਵ ਰਤੰ ॥",
+        "entryIndex": 2,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 59,
+    "baniName": "Raag Sorath",
+    "baniId": "raag-sorath",
+    "source": "G",
+    "startAng": 654,
+    "endAng": 659,
+    "requestedlength": null,
+    "rows": 282,
+    "sections": 6,
+    "fingerprint": "bani-v1:282:98d38340c11add4c",
+    "routeUrl": "/study?baniDbId=59&bani=Raag+Sorath&startAng=654&endAng=659&baniId=raag-sorath&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 20533,
+        "label": "ਰਾਗੁ ਸੋਰਠਿ ਬਾਣੀ ਭਗਤ ਕਬੀਰ ਜੀ ਕੀ ਘਰੁ ੧",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਬੁਤ ਪੂਜਿ ਪੂਜਿ ਹਿੰਦੂ ਮੂਏ ਤੁਰਕ ਮੂਏ ਸਿਰੁ ਨਾਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 20681,
+        "label": "ਰਾਗੁ ਸੋਰਠਿ ਬਾਣੀ ਭਗਤ ਨਾਮਦੇ ਜੀ ਕੀ ਘਰੁ ੨",
+        "targetText": "ਰਾਗੁ ਸੋਰਠਿ ਬਾਣੀ ਭਗਤ ਨਾਮਦੇ ਜੀ ਕੀ ਘਰੁ ੨",
+        "excerpt": "ਜਬ ਦੇਖਾ ਤਬ ਗਾਵਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 56
+      },
+      "last": {
+        "sectionIndex": 5,
+        "startVerseId": 20795,
+        "label": "ਰਾਗੁ ਸੋਰਠਿ ਬਾਣੀ ਭਗਤ ਭੀਖਨ ਕੀ",
+        "targetText": "ਰਾਗੁ ਸੋਰਠਿ ਬਾਣੀ ਭਗਤ ਭੀਖਨ ਕੀ",
+        "excerpt": "ਨੈਨਹੁ ਨੀਰੁ ਬਹੈ ਤਨੁ ਖੀਨਾ ਭਏ ਕੇਸ ਦੁਧ ਵਾਨੀ ॥",
+        "entryIndex": 5,
+        "lineIndex": 27
+      }
+    }
+  },
+  {
+    "id": 60,
+    "baniName": "Raag Dhanasri",
+    "baniId": "raag-dhanasri",
+    "source": "G",
+    "startAng": 691,
+    "endAng": 695,
+    "requestedlength": null,
+    "rows": 169,
+    "sections": 7,
+    "fingerprint": "bani-v1:169:2257c41cd6216718",
+    "routeUrl": "/study?baniDbId=60&bani=Raag+Dhanasri&startAng=691&endAng=695&baniId=raag-dhanasri&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 20805,
+        "label": "ਰਾਗੁ ਧਨਾਸਰੀ ਬਾਣੀ ਭਗਤ ਕਬੀਰ ਜੀ ਕੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸਨਕ ਸਨੰਦ ਮਹੇਸ ਸਮਾਨਾਂ ॥ ਸੇਖਨਾਗਿ ਤੇਰੋ ਮਰਮੁ ਨ ਜਾਨਾਂ ॥੧॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 20927,
+        "label": "ਧਨਾਸਰੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ ਤ੍ਰਿਲੋਚਨ",
+        "targetText": "ਧਨਾਸਰੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ ਤ੍ਰਿਲੋਚਨ",
+        "excerpt": "ਨਾਰਾਇਣ ਨਿੰਦਸਿ ਕਾਇ ਭੂਲੀ ਗਵਾਰੀ ॥",
+        "entryIndex": 4,
+        "lineIndex": 1
+      },
+      "last": {
+        "sectionIndex": 6,
+        "startVerseId": 20961,
+        "label": "ਧੰਨਾ ॥",
+        "targetText": "ਧੰਨਾ ॥",
+        "excerpt": "ਗੋਪਾਲ ਤੇਰਾ ਆਰਤਾ ॥",
+        "entryIndex": 4,
+        "lineIndex": 35
+      }
+    }
+  },
+  {
+    "id": 61,
+    "baniName": "Raag Jaitsri",
+    "baniId": "raag-jaitsri",
+    "source": "G",
+    "startAng": 710,
+    "endAng": 710,
+    "requestedlength": null,
+    "rows": 16,
+    "sections": 1,
+    "fingerprint": "bani-v1:16:ab61f538389ea194",
+    "routeUrl": "/study?baniDbId=61&bani=Raag+Jaitsri&startAng=710&endAng=710&baniId=raag-jaitsri&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 20971,
+        "label": "ਰਾਗੁ ਜੈਤਸਰੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਨਾਥ ਕਛੂਅ ਨ ਜਾਨਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 20971,
+        "label": "ਰਾਗੁ ਜੈਤਸਰੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਨਾਥ ਕਛੂਅ ਨ ਜਾਨਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 20971,
+        "label": "ਰਾਗੁ ਜੈਤਸਰੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਨਾਥ ਕਛੂਅ ਨ ਜਾਨਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 62,
+    "baniName": "Raag Todi (Bhagat Bani)",
+    "baniId": "raag-todi-bhagat",
+    "source": "G",
+    "startAng": 718,
+    "endAng": 718,
+    "requestedlength": null,
+    "rows": 24,
+    "sections": 3,
+    "fingerprint": "bani-v1:24:75de79287a4293e4",
+    "routeUrl": "/study?baniDbId=62&bani=Raag+Todi+%28Bhagat+Bani%29&startAng=718&endAng=718&baniId=raag-todi-bhagat&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 20987,
+        "label": "Shabad 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਕੋਈ ਬੋਲੈ ਨਿਰਵਾ ਕੋਈ ਬੋਲੈ ਦੂਰਿ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 20996,
+        "label": "Shabad 2",
+        "targetText": "ਕਉਨ ਕੋ ਕਲੰਕੁ ਰਹਿਓ ਰਾਮ ਨਾਮੁ ਲੇਤ ਹੀ ॥",
+        "excerpt": "ਕਉਨ ਕੋ ਕਲੰਕੁ ਰਹਿਓ ਰਾਮ ਨਾਮੁ ਲੇਤ ਹੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 9
+      },
+      "last": {
+        "sectionIndex": 2,
+        "startVerseId": 26318,
+        "label": "Shabad 3",
+        "targetText": "ਤੀਨਿ ਛੰਦੇ ਖੇਲੁ ਆਛੈ ॥੧॥ ਰਹਾਉ ॥",
+        "excerpt": "ਤੀਨਿ ਛੰਦੇ ਖੇਲੁ ਆਛੈ ॥੧॥ ਰਹਾਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 15
+      }
+    }
+  },
+  {
+    "id": 63,
+    "baniName": "Raag Tilang (Kabir Ji)",
+    "baniId": "raag-tilang-kabir",
+    "source": "G",
+    "startAng": 727,
+    "endAng": 727,
+    "requestedlength": null,
+    "rows": 33,
+    "sections": 3,
+    "fingerprint": "bani-v1:33:0a4c751be3691e7f",
+    "routeUrl": "/study?baniDbId=63&bani=Raag+Tilang+%28Kabir+Ji%29&startAng=727&endAng=727&baniId=raag-tilang-kabir&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 21002,
+        "label": "Shabad 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਬੇਦ ਕਤੇਬ ਇਫਤਰਾ ਭਾਈ ਦਿਲ ਕਾ ਫਿਕਰੁ ਨ ਜਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 21015,
+        "label": "Shabad 2",
+        "targetText": "ਨਾਮਦੇਵ ਜੀ ॥",
+        "excerpt": "ਮੈ ਅੰਧੁਲੇ ਕੀ ਟੇਕ ਤੇਰਾ ਨਾਮੁ ਖੁੰਦਕਾਰਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 13
+      },
+      "last": {
+        "sectionIndex": 2,
+        "startVerseId": 26327,
+        "label": "Shabad 3",
+        "targetText": "ਹਲੇ ਯਾਰਾਂ ਹਲੇ ਯਾਰਾਂ ਖੁਸਿਖਬਰੀ ॥",
+        "excerpt": "ਹਲੇ ਯਾਰਾਂ ਹਲੇ ਯਾਰਾਂ ਖੁਸਿਖਬਰੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 22
+      }
+    }
+  },
+  {
+    "id": 64,
+    "baniName": "Raag Suhi",
+    "baniId": "raag-suhi",
+    "source": "G",
+    "startAng": 792,
+    "endAng": 794,
+    "requestedlength": null,
+    "rows": 133,
+    "sections": 4,
+    "fingerprint": "bani-v1:133:06d3e062a058457e",
+    "routeUrl": "/study?baniDbId=64&bani=Raag+Suhi&startAng=792&endAng=794&baniId=raag-suhi&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 21024,
+        "label": "ਕਬੀਰ ਕੇ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਅਵਤਰਿ ਆਇ ਕਹਾ ਤੁਮ ਕੀਨਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 2,
+        "startVerseId": 21129,
+        "label": "ਰਾਗੁ ਸੂਹੀ ਬਾਣੀ ਸੇਖ ਫਰੀਦ ਜੀ ਕੀ ॥",
+        "targetText": "ਰਾਗੁ ਸੂਹੀ ਬਾਣੀ ਸੇਖ ਫਰੀਦ ਜੀ ਕੀ ॥",
+        "excerpt": "ਤਪਿ ਤਪਿ ਲੁਹਿ ਲੁਹਿ ਹਾਥ ਮਰੋਰਉ ॥",
+        "entryIndex": 2,
+        "lineIndex": 21
+      },
+      "last": {
+        "sectionIndex": 3,
+        "startVerseId": 21148,
+        "label": "ਸੂਹੀ ਲਲਿਤ ॥",
+        "targetText": "ਸੂਹੀ ਲਲਿਤ ॥",
+        "excerpt": "ਬੇੜਾ ਬੰਧਿ ਨ ਸਕਿਓ ਬੰਧਨ ਕੀ ਵੇਲਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 40
+      }
+    }
+  },
+  {
+    "id": 65,
+    "baniName": "Raag Bilaval",
+    "baniId": "raag-bilaval",
+    "source": "G",
+    "startAng": 855,
+    "endAng": 858,
+    "requestedlength": null,
+    "rows": 150,
+    "sections": 16,
+    "fingerprint": "bani-v1:150:0658d811bf652fcd",
+    "routeUrl": "/study?baniDbId=65&bani=Raag+Bilaval&startAng=855&endAng=858&baniId=raag-bilaval&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 21156,
+        "label": "ਕਬੀਰ ਜੀਉ ਕੀ",
+        "targetText": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਐਸੋ ਇਹੁ ਸੰਸਾਰੁ ਪੇਖਨਾ ਰਹਨੁ ਨ ਕੋਊ ਪਈਹੈ ਰੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 8,
+        "startVerseId": 21233,
+        "label": "ਬਿਲਾਵਲੁ ॥",
+        "targetText": "ਬਿਲਾਵਲੁ ॥",
+        "excerpt": "ਇਨਿੑ ਮਾਇਆ ਜਗਦੀਸ ਗੁਸਾਈ ਤੁਮੑਰੇ ਚਰਨ ਬਿਸਾਰੇ ॥",
+        "entryIndex": 2,
+        "lineIndex": 4
+      },
+      "last": {
+        "sectionIndex": 15,
+        "startVerseId": 21291,
+        "label": "ਬਾਣੀ ਸਧਨੇ ਕੀ ਰਾਗੁ ਬਿਲਾਵਲੁ",
+        "targetText": "ਬਾਣੀ ਸਧਨੇ ਕੀ ਰਾਗੁ ਬਿਲਾਵਲੁ",
+        "excerpt": "ਨ੍ਰਿਪ ਕੰਨਿਆ ਕੇ ਕਾਰਨੈ ਇਕੁ ਭਇਆ ਭੇਖਧਾਰੀ ॥",
+        "entryIndex": 3,
+        "lineIndex": 26
+      }
+    }
+  },
+  {
+    "id": 66,
+    "baniName": "Raag Gond",
+    "baniId": "raag-gond",
+    "source": "G",
+    "startAng": 870,
+    "endAng": 875,
+    "requestedlength": null,
+    "rows": 323,
+    "sections": 19,
+    "fingerprint": "bani-v1:323:3e90cfa835fa2f7c",
+    "routeUrl": "/study?baniDbId=66&bani=Raag+Gond&startAng=870&endAng=875&baniId=raag-gond&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 21303,
+        "label": "ਕਬੀਰ ਜੀ ਘਰੁ ੧",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸੰਤੁ ਮਿਲੈ ਕਿਛੁ ਸੁਨੀਐ ਕਹੀਐ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 9,
+        "startVerseId": 21471,
+        "label": "ਗੋਂਡ ॥",
+        "targetText": "ਗੋਂਡ ॥",
+        "excerpt": "ਧੰਨੁ ਗੁਪਾਲ ਧੰਨੁ ਗੁਰਦੇਵ ॥",
+        "entryIndex": 3,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 18,
+        "startVerseId": 21603,
+        "label": "ਗੋਂਡ ॥",
+        "targetText": "ਗੋਂਡ ॥",
+        "excerpt": "ਜੇ ਓਹੁ ਅਠਸਠਿ ਤੀਰਥ ਨੑਾਵੈ ॥",
+        "entryIndex": 5,
+        "lineIndex": 27
+      }
+    }
+  },
+  {
+    "id": 67,
+    "baniName": "Raag Ramkali (Sadd)",
+    "baniId": "raag-ramkali-sadd",
+    "source": "G",
+    "startAng": 923,
+    "endAng": 974,
+    "requestedlength": null,
+    "rows": 375,
+    "sections": 7,
+    "fingerprint": "bani-v1:375:1952508e4b9012c2",
+    "routeUrl": "/study?baniDbId=67&bani=Raag+Ramkali+%28Sadd%29&startAng=923&endAng=974&baniId=raag-ramkali-sadd&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 21622,
+        "label": "ਰਾਮਕਲੀ ਸਦੁ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਜਗਿ ਦਾਤਾ ਸੋਇ ਭਗਤਿ ਵਛਲੁ ਤਿਹੁ ਲੋਇ ਜੀਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 21868,
+        "label": "ਰਾਮਕਲੀ ਘਰੁ ੨ ਬਾਣੀ ਕਬੀਰ ਜੀ ਕੀ",
+        "targetText": "ਰਾਮਕਲੀ ਘਰੁ ੨ ਬਾਣੀ ਕਬੀਰ ਜੀ ਕੀ",
+        "excerpt": "ਬੰਧਚਿ ਬੰਧਨੁ ਪਾਇਆ ॥",
+        "entryIndex": 7,
+        "lineIndex": 45
+      },
+      "last": {
+        "sectionIndex": 6,
+        "startVerseId": 21951,
+        "label": "ਰਾਮਕਲੀ ਬਾਣੀ ਬੇਣੀ ਜੀਉ ਕੀ",
+        "targetText": "ਰਾਮਕਲੀ ਬਾਣੀ ਬੇਣੀ ਜੀਉ ਕੀ",
+        "excerpt": "ਇੜਾ ਪਿੰਗੁਲਾ ਅਉਰ ਸੁਖਮਨਾ ਤੀਨਿ ਬਸਹਿ ਇਕ ਠਾਈ ॥",
+        "entryIndex": 10,
+        "lineIndex": 7
+      }
+    }
+  },
+  {
+    "id": 68,
+    "baniName": "Raag Mali Gaura",
+    "baniId": "raag-mali-gaura",
+    "source": "G",
+    "startAng": 988,
+    "endAng": 988,
+    "requestedlength": null,
+    "rows": 24,
+    "sections": 3,
+    "fingerprint": "bani-v1:24:a0de1791b87cef85",
+    "routeUrl": "/study?baniDbId=68&bani=Raag+Mali+Gaura&startAng=988&endAng=988&baniId=raag-mali-gaura&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 21993,
+        "label": "Shabad 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਧਨਿ ਧੰਨਿ ਓ ਰਾਮ ਬੇਨੁ ਬਾਜੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 22006,
+        "label": "Shabad 2",
+        "targetText": "ਮੇਰੋ ਬਾਪੁ ਮਾਧਉ ਤੂ ਧਨੁ ਕੇਸੌ ਸਾਂਵਲੀਓ ਬੀਠੁਲਾਇ ॥੧॥ ਰਹਾਉ ॥",
+        "excerpt": "ਮੇਰੋ ਬਾਪੁ ਮਾਧਉ ਤੂ ਧਨੁ ਕੇਸੌ ਸਾਂਵਲੀਓ ਬੀਠੁਲਾਇ ॥੧॥ ਰਹਾਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 13
+      },
+      "last": {
+        "sectionIndex": 2,
+        "startVerseId": 22011,
+        "label": "Shabad 3",
+        "targetText": "ਸਭੈ ਘਟ ਰਾਮੁ ਬੋਲੈ ਰਾਮਾ ਬੋਲੈ ॥",
+        "excerpt": "ਸਭੈ ਘਟ ਰਾਮੁ ਬੋਲੈ ਰਾਮਾ ਬੋਲੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 18
+      }
+    }
+  },
+  {
+    "id": 69,
+    "baniName": "Raag Maru",
+    "baniId": "raag-maru",
+    "source": "G",
+    "startAng": 1102,
+    "endAng": 1106,
+    "requestedlength": null,
+    "rows": 152,
+    "sections": 8,
+    "fingerprint": "bani-v1:152:c13949e9f3eae7fd",
+    "routeUrl": "/study?baniDbId=69&bani=Raag+Maru&startAng=1102&endAng=1106&baniId=raag-maru&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 22017,
+        "label": "ਰਾਗੁ ਮਾਰੂ ਬਾਣੀ ਕਬੀਰ ਜੀਉ ਕੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਪਡੀਆ ਕਵਨ ਕੁਮਤਿ ਤੁਮ ਲਾਗੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 22120,
+        "label": "ਮਾਰੂ ਕਬੀਰ ਜੀਉ ॥",
+        "targetText": "ਮਾਰੂ ਕਬੀਰ ਜੀਉ ॥",
+        "excerpt": "ਦੀਨੁ ਬਿਸਾਰਿਓ ਰੇ ਦਿਵਾਨੇ ਦੀਨੁ ਬਿਸਾਰਿਓ ਰੇ ॥",
+        "entryIndex": 3,
+        "lineIndex": 24
+      },
+      "last": {
+        "sectionIndex": 7,
+        "startVerseId": 22156,
+        "label": "ਮਾਰੂ ॥",
+        "targetText": "ਮਾਰੂ ॥",
+        "excerpt": "ਸੁਖ ਸਾਗਰ ਸੁਰਿਤਰੁ ਚਿੰਤਾਮਨਿ ਕਾਮਧੇਨ ਬਸਿ ਜਾ ਕੇ ਰੇ ॥",
+        "entryIndex": 4,
+        "lineIndex": 27
+      }
+    }
+  },
+  {
+    "id": 70,
+    "baniName": "Raag Kedara",
+    "baniId": "raag-kedara",
+    "source": "G",
+    "startAng": 1123,
+    "endAng": 1124,
+    "requestedlength": null,
+    "rows": 67,
+    "sections": 2,
+    "fingerprint": "bani-v1:67:b0970452bb89b42e",
+    "routeUrl": "/study?baniDbId=70&bani=Raag+Kedara&startAng=1123&endAng=1124&baniId=raag-kedara&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 22165,
+        "label": "ਰਾਗੁ ਕੇਦਾਰਾ ਬਾਣੀ ਕਬੀਰ ਜੀਉ ਕੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਉਸਤਤਿ ਨਿੰਦਾ ਦੋਊ ਬਿਬਰਜਿਤ ਤਜਹੁ ਮਾਨੁ ਅਭਿਮਾਨਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 22220,
+        "label": "ਰਾਗੁ ਕੇਦਾਰਾ ਬਾਣੀ ਰਵਿਦਾਸ ਜੀਉ ਕੀ",
+        "targetText": "ਰਾਗੁ ਕੇਦਾਰਾ ਬਾਣੀ ਰਵਿਦਾਸ ਜੀਉ ਕੀ",
+        "excerpt": "ਖਟੁ ਕਰਮ ਕੁਲ ਸੰਜੁਗਤੁ ਹੈ ਹਰਿ ਭਗਤਿ ਹਿਰਦੈ ਨਾਹਿ ॥",
+        "entryIndex": 1,
+        "lineIndex": 21
+      },
+      "last": {
+        "sectionIndex": 1,
+        "startVerseId": 22220,
+        "label": "ਰਾਗੁ ਕੇਦਾਰਾ ਬਾਣੀ ਰਵਿਦਾਸ ਜੀਉ ਕੀ",
+        "targetText": "ਰਾਗੁ ਕੇਦਾਰਾ ਬਾਣੀ ਰਵਿਦਾਸ ਜੀਉ ਕੀ",
+        "excerpt": "ਖਟੁ ਕਰਮ ਕੁਲ ਸੰਜੁਗਤੁ ਹੈ ਹਰਿ ਭਗਤਿ ਹਿਰਦੈ ਨਾਹਿ ॥",
+        "entryIndex": 1,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 71,
+    "baniName": "Raag Bhairao",
+    "baniId": "raag-bhairao",
+    "source": "G",
+    "startAng": 1157,
+    "endAng": 1167,
+    "requestedlength": null,
+    "rows": 554,
+    "sections": 8,
+    "fingerprint": "bani-v1:554:ebd9eff3450e68a7",
+    "routeUrl": "/study?baniDbId=71&bani=Raag+Bhairao&startAng=1157&endAng=1167&baniId=raag-bhairao&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 22231,
+        "label": "ਭੈਰਉ ਬਾਣੀ ਭਗਤਾ ਕੀ ॥ ਕਬੀਰ ਜੀਉ ਘਰੁ ੧",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਇਹੁ ਧਨੁ ਮੇਰੇ ਹਰਿ ਕੋ ਨਾਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 22602,
+        "label": "ਭੈਰਉ ਨਾਮਦੇਉ ਜੀਉ ਘਰੁ ੨",
+        "targetText": "ਭੈਰਉ ਨਾਮਦੇਉ ਜੀਉ ਘਰੁ ੨",
+        "excerpt": "ਜੈਸੀ ਭੂਖੇ ਪ੍ਰੀਤਿ ਅਨਾਜ ॥",
+        "entryIndex": 7,
+        "lineIndex": 31
+      },
+      "last": {
+        "sectionIndex": 7,
+        "startVerseId": 22770,
+        "label": "ਨਾਮਦੇਵ ॥",
+        "targetText": "ਨਾਮਦੇਵ ॥",
+        "excerpt": "ਆਉ ਕਲੰਦਰ ਕੇਸਵਾ ॥",
+        "entryIndex": 10,
+        "lineIndex": 39
+      }
+    }
+  },
+  {
+    "id": 72,
+    "baniName": "Raag Basant",
+    "baniId": "raag-basant",
+    "source": "G",
+    "startAng": 1193,
+    "endAng": 1196,
+    "requestedlength": null,
+    "rows": 181,
+    "sections": 6,
+    "fingerprint": "bani-v1:181:aa713652a7ba390e",
+    "routeUrl": "/study?baniDbId=72&bani=Raag+Basant&startAng=1193&endAng=1196&baniId=raag-basant&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 22841,
+        "label": "ਕਬੀਰ ਜੀ ਘਰੁ ੧",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਮਉਲੀ ਧਰਤੀ ਮਉਲਿਆ ਅਕਾਸੁ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 3,
+        "startVerseId": 22957,
+        "label": "ਬਸੰਤੁ ਬਾਣੀ ਨਾਮਦੇਉ ਜੀ ਕੀ",
+        "targetText": "ਬਸੰਤੁ ਬਾਣੀ ਨਾਮਦੇਉ ਜੀ ਕੀ",
+        "excerpt": "ਸਾਹਿਬੁ ਸੰਕਟਵੈ ਸੇਵਕੁ ਭਜੈ ॥",
+        "entryIndex": 2,
+        "lineIndex": 40
+      },
+      "last": {
+        "sectionIndex": 5,
+        "startVerseId": 23005,
+        "label": "ਬਸੰਤੁ ਕਬੀਰ ਜੀਉ",
+        "targetText": "ਬਸੰਤੁ ਕਬੀਰ ਜੀਉ",
+        "excerpt": "ਸੁਰਹ ਕੀ ਜੈਸੀ ਤੇਰੀ ਚਾਲ ॥",
+        "entryIndex": 3,
+        "lineIndex": 41
+      }
+    }
+  },
+  {
+    "id": 73,
+    "baniName": "Raag Sarang",
+    "baniId": "raag-sarang",
+    "source": "G",
+    "startAng": 1251,
+    "endAng": 1253,
+    "requestedlength": null,
+    "rows": 87,
+    "sections": 3,
+    "fingerprint": "bani-v1:87:e456ed2ab6fb505e",
+    "routeUrl": "/study?baniDbId=73&bani=Raag+Sarang&startAng=1251&endAng=1253&baniId=raag-sarang&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 23024,
+        "label": "ਕਬੀਰ ਜੀ ॥",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਕਹਾ ਨਰ ਗਰਬਸਿ ਥੋਰੀ ਬਾਤ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 23048,
+        "label": "ਸਾਰੰਗ ਬਾਣੀ ਨਾਮਦੇਉ ਜੀ ਕੀ ॥",
+        "targetText": "ਸਾਰੰਗ ਬਾਣੀ ਨਾਮਦੇਉ ਜੀ ਕੀ ॥",
+        "excerpt": "ਕਾਏਂ ਰੇ ਮਨ ਬਿਖਿਆ ਬਨ ਜਾਇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 15
+      },
+      "last": {
+        "sectionIndex": 2,
+        "startVerseId": 23080,
+        "label": "ਸਾਰੰਗ ॥",
+        "targetText": "ਸਾਰੰਗ ॥",
+        "excerpt": "ਤੈ ਨਰ ਕਿਆ ਪੁਰਾਨੁ ਸੁਨਿ ਕੀਨਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 4
+      }
+    }
+  },
+  {
+    "id": 74,
+    "baniName": "Raag Malaar",
+    "baniId": "raag-malaar",
+    "source": "G",
+    "startAng": 1292,
+    "endAng": 1293,
+    "requestedlength": null,
+    "rows": 70,
+    "sections": 5,
+    "fingerprint": "bani-v1:70:c4caa54d385787d1",
+    "routeUrl": "/study?baniDbId=74&bani=Raag+Malaar&startAng=1292&endAng=1293&baniId=raag-malaar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 23111,
+        "label": "ਰਾਗੁ ਮਲਾਰ ਬਾਣੀ ਭਗਤ ਨਾਮਦੇਵ ਜੀਉ ਕੀ॥",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸੇਵੀਲੇ ਗੋਪਾਲ ਰਾਇ ਅਕੁਲ ਨਿਰੰਜਨ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 2,
+        "startVerseId": 23150,
+        "label": "ਮਲਾਰ ਬਾਣੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ",
+        "targetText": "ਮਲਾਰ ਬਾਣੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ",
+        "excerpt": "ਨਾਗਰ ਜਨਾਂ ਮੇਰੀ ਜਾਤਿ ਬਿਖਿਆਤ ਚੰਮਾਰੰ ॥",
+        "entryIndex": 1,
+        "lineIndex": 1
+      },
+      "last": {
+        "sectionIndex": 4,
+        "startVerseId": 23169,
+        "label": "ਮਲਾਰ",
+        "targetText": "ਮਲਾਰ",
+        "excerpt": "ਮਿਲਤ ਪਿਆਰੋ ਪ੍ਰਾਨ ਨਾਥੁ ਕਵਨ ਭਗਤਿ ਤੇ ॥",
+        "entryIndex": 1,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 75,
+    "baniName": "Raag Kanara",
+    "baniId": "raag-kanara",
+    "source": "G",
+    "startAng": 1318,
+    "endAng": 1318,
+    "requestedlength": null,
+    "rows": 9,
+    "sections": 1,
+    "fingerprint": "bani-v1:9:86f8ae77d05bb39b",
+    "routeUrl": "/study?baniDbId=75&bani=Raag+Kanara&startAng=1318&endAng=1318&baniId=raag-kanara&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 23182,
+        "label": "ਰਾਗੁ ਕਾਨੜਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਐਸੋ ਰਾਮ ਰਾਇ ਅੰਤਰਜਾਮੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 0,
+        "startVerseId": 23182,
+        "label": "ਰਾਗੁ ਕਾਨੜਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਐਸੋ ਰਾਮ ਰਾਇ ਅੰਤਰਜਾਮੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 0,
+        "startVerseId": 23182,
+        "label": "ਰਾਗੁ ਕਾਨੜਾ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਐਸੋ ਰਾਮ ਰਾਇ ਅੰਤਰਜਾਮੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 76,
+    "baniName": "Raag Prabhati",
+    "baniId": "raag-prabhati",
+    "source": "G",
+    "startAng": 1349,
+    "endAng": 1351,
+    "requestedlength": null,
+    "rows": 117,
+    "sections": 9,
+    "fingerprint": "bani-v1:117:aebc555bf06435cf",
+    "routeUrl": "/study?baniDbId=76&bani=Raag+Prabhati&startAng=1349&endAng=1351&baniId=raag-prabhati&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 23191,
+        "label": "ਬਿਭਾਸ ਪ੍ਰਭਾਤੀ ਬਾਣੀ ਭਗਤ ਕਬੀਰ ਜੀ ਕੀ",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਮਰਨ ਜੀਵਨ ਕੀ ਸੰਕਾ ਨਾਸੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 23241,
+        "label": "ਪ੍ਰਭਾਤੀ ॥",
+        "targetText": "ਪ੍ਰਭਾਤੀ ॥",
+        "excerpt": "ਸੁੰਨ ਸੰਧਿਆ ਤੇਰੀ ਦੇਵ ਦੇਵਾਕਰ ਅਧਪਤਿ ਆਦਿ ਸਮਾਈ ॥",
+        "entryIndex": 1,
+        "lineIndex": 19
+      },
+      "last": {
+        "sectionIndex": 8,
+        "startVerseId": 23282,
+        "label": "ਪ੍ਰਭਾਤੀ ਭਗਤ ਬੇਣੀ ਜੀ ਕੀ",
+        "targetText": "ਪ੍ਰਭਾਤੀ ਭਗਤ ਬੇਣੀ ਜੀ ਕੀ",
+        "excerpt": "ਤਨਿ ਚੰਦਨੁ ਮਸਤਕਿ ਪਾਤੀ ॥",
+        "entryIndex": 2,
+        "lineIndex": 24
+      }
+    }
+  },
+  {
+    "id": 77,
+    "baniName": "Salok Bhagat Kabir Jio Ke",
+    "baniId": "salok-bhagat-kabir",
+    "source": "G",
+    "startAng": 1364,
+    "endAng": 1377,
+    "requestedlength": null,
+    "rows": 494,
+    "sections": 243,
+    "fingerprint": "bani-v1:494:5990186599450ee1",
+    "routeUrl": "/study?baniDbId=77&bani=Salok+Bhagat+Kabir+Jio+Ke&startAng=1364&endAng=1377&baniId=salok-bhagat-kabir&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 23312,
+        "label": "Salok 1",
+        "targetText": "ਕਬੀਰ ਮੇਰੀ ਸਿਮਰਨੀ ਰਸਨਾ ਊਪਰਿ ਰਾਮੁ ॥",
+        "excerpt": "ਕਬੀਰ ਮੇਰੀ ਸਿਮਰਨੀ ਰਸਨਾ ਊਪਰਿ ਰਾਮੁ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 121,
+        "startVerseId": 23554,
+        "label": "Salok 122",
+        "targetText": "ਕਬੀਰ ਦੇਖਿ ਕੈ ਕਿਹ ਕਹਉ ਕਹੇ ਨ ਕੋ ਪਤੀਆਇ ॥",
+        "excerpt": "ਕਬੀਰ ਦੇਖਿ ਕੈ ਕਿਹ ਕਹਉ ਕਹੇ ਨ ਕੋ ਪਤੀਆਇ ॥",
+        "entryIndex": 6,
+        "lineIndex": 35
+      },
+      "last": {
+        "sectionIndex": 242,
+        "startVerseId": 23801,
+        "label": "Salok 243",
+        "targetText": "ਕਬੀਰ ਜਉ ਗ੍ਰਿਹੁ ਕਰਹਿ ਤ ਧਰਮੁ ਕਰੁ ਨਾਹੀ ਤ ਕਰੁ ਬੈਰਾਗੁ ॥",
+        "excerpt": "ਕਬੀਰ ਜਉ ਗ੍ਰਿਹੁ ਕਰਹਿ ਤ ਧਰਮੁ ਕਰੁ ਨਾਹੀ ਤ ਕਰੁ ਬੈਰਾਗੁ ॥",
+        "entryIndex": 13,
+        "lineIndex": 23
+      }
+    }
+  },
+  {
+    "id": 78,
+    "baniName": "Salok Sheikh Farid Ji",
+    "baniId": "salok-farid",
+    "source": "G",
+    "startAng": 1377,
+    "endAng": 1384,
+    "requestedlength": null,
+    "rows": 298,
+    "sections": 130,
+    "fingerprint": "bani-v1:298:a9bc3e2513ff1159",
+    "routeUrl": "/study?baniDbId=78&bani=Salok+Sheikh+Farid+Ji&startAng=1377&endAng=1384&baniId=salok-farid&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 23806,
+        "label": "Salok 1",
+        "targetText": "ਜਿਤੁ ਦਿਹਾੜੈ ਧਨ ਵਰੀ ਸਾਹੇ ਲਏ ਲਿਖਾਇ ॥",
+        "excerpt": "ਜਿਤੁ ਦਿਹਾੜੈ ਧਨ ਵਰੀ ਸਾਹੇ ਲਏ ਲਿਖਾਇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 65,
+        "startVerseId": 23951,
+        "label": "Salok 66",
+        "targetText": "ਚਲਿ ਚਲਿ ਗਈਆਂ ਪੰਖੀਆਂ ਜਿਨੑੀ ਵਸਾਏ ਤਲ ॥",
+        "excerpt": "ਚਲਿ ਚਲਿ ਗਈਆਂ ਪੰਖੀਆਂ ਜਿਨੑੀ ਵਸਾਏ ਤਲ ॥",
+        "entryIndex": 4,
+        "lineIndex": 15
+      },
+      "last": {
+        "sectionIndex": 129,
+        "startVerseId": 26316,
+        "label": "Salok 130",
+        "targetText": "ਸਭਨਾ ਮਨ ਮਾਣਿਕ ਠਾਹਣੁ ਮੂਲਿ ਮਚਾਂਗਵਾ ॥",
+        "excerpt": "ਸਭਨਾ ਮਨ ਮਾਣਿਕ ਠਾਹਣੁ ਮੂਲਿ ਮਚਾਂਗਵਾ ॥",
+        "entryIndex": 7,
+        "lineIndex": 39
+      }
+    }
+  },
+  {
+    "id": 79,
+    "baniName": "Savaiye Sri Mukhbaak Mahalla 5 - 1",
+    "baniId": "savaiye-sri-mukhbaak-m5-1",
+    "source": "G",
+    "startAng": 1385,
+    "endAng": 1387,
+    "requestedlength": null,
+    "rows": 55,
+    "sections": 9,
+    "fingerprint": "bani-v1:55:c62a670a2acc9f86",
+    "routeUrl": "/study?baniDbId=79&bani=Savaiye+Sri+Mukhbaak+Mahalla+5+-+1&startAng=1385&endAng=1387&baniId=savaiye-sri-mukhbaak-m5-1&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24099,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਆਦਿ ਪੁਰਖ ਕਰਤਾਰ ਕਰਣ ਕਾਰਣ ਸਭ ਆਪੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 24124,
+        "label": "Savaiyya 5",
+        "targetText": "ਨਿਰੰਕਾਰੁ ਆਕਾਰ ਅਛਲ ਪੂਰਨ ਅਬਿਨਾਸੀ ॥",
+        "excerpt": "ਨਿਰੰਕਾਰੁ ਆਕਾਰ ਅਛਲ ਪੂਰਨ ਅਬਿਨਾਸੀ ॥",
+        "entryIndex": 1,
+        "lineIndex": 8
+      },
+      "last": {
+        "sectionIndex": 8,
+        "startVerseId": 24148,
+        "label": "Savaiyya 9",
+        "targetText": "ਪ੍ਰਭ ਦਾਤਉ ਦਾਤਾਰ ਪਰੵਿਉ ਜਾਚਕੁ ਇਕੁ ਸਰਨਾ ॥",
+        "excerpt": "ਪ੍ਰਭ ਦਾਤਉ ਦਾਤਾਰ ਪਰੵਿਉ ਜਾਚਕੁ ਇਕੁ ਸਰਨਾ ॥",
+        "entryIndex": 1,
+        "lineIndex": 32
+      }
+    }
+  },
+  {
+    "id": 80,
+    "baniName": "Savaiye Sri Mukhbaak Mahalla 5 - 2",
+    "baniId": "savaiye-sri-mukhbaak-m5-2",
+    "source": "G",
+    "startAng": 1387,
+    "endAng": 1389,
+    "requestedlength": null,
+    "rows": 71,
+    "sections": 11,
+    "fingerprint": "bani-v1:71:5bbd5c510c77c3fd",
+    "routeUrl": "/study?baniDbId=80&bani=Savaiye+Sri+Mukhbaak+Mahalla+5+-+2&startAng=1387&endAng=1389&baniId=savaiye-sri-mukhbaak-m5-2&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24155,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਕਾਚੀ ਦੇਹ ਮੋਹ ਫੁਨਿ ਬਾਂਧੀ ਸਠ ਕਠੋਰ ਕੁਚੀਲ ਕੁਗਿਆਨੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 24191,
+        "label": "Savaiyya 6",
+        "targetText": "ਪ੍ਰਾਨ ਮਾਨ ਦਾਨ ਮਗ ਜੋਹਨ ਹੀਤੁ ਚੀਤੁ ਦੇ ਲੇ ਲੇ ਪਾਰੀ ॥",
+        "excerpt": "ਪ੍ਰਾਨ ਮਾਨ ਦਾਨ ਮਗ ਜੋਹਨ ਹੀਤੁ ਚੀਤੁ ਦੇ ਲੇ ਲੇ ਪਾਰੀ ॥",
+        "entryIndex": 1,
+        "lineIndex": 8
+      },
+      "last": {
+        "sectionIndex": 10,
+        "startVerseId": 24222,
+        "label": "Savaiyya 11",
+        "targetText": "ਉਦਮੁ ਕਰਿ ਲਾਗੇ ਬਹੁ ਭਾਤੀ ਬਿਚਰਹਿ ਅਨਿਕ ਸਾਸਤ੍ਰ ਬਹੁ ਖਟੂਆ ॥",
+        "excerpt": "ਉਦਮੁ ਕਰਿ ਲਾਗੇ ਬਹੁ ਭਾਤੀ ਬਿਚਰਹਿ ਅਨਿਕ ਸਾਸਤ੍ਰ ਬਹੁ ਖਟੂਆ ॥",
+        "entryIndex": 2,
+        "lineIndex": 9
+      }
+    }
+  },
+  {
+    "id": 81,
+    "baniName": "Savaiye Mahalla 1",
+    "baniId": "savaiye-mahalla-1",
+    "source": "G",
+    "startAng": 1389,
+    "endAng": 1390,
+    "requestedlength": null,
+    "rows": 53,
+    "sections": 10,
+    "fingerprint": "bani-v1:53:d210275f75c5f4bb",
+    "routeUrl": "/study?baniDbId=81&bani=Savaiye+Mahalla+1&startAng=1389&endAng=1390&baniId=savaiye-mahalla-1&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24227,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਇਕ ਮਨਿ ਪੁਰਖੁ ਧਿਆਇ ਬਰਦਾਤਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 24250,
+        "label": "Savaiyya 6",
+        "targetText": "ਰਾਜੁ ਜੋਗੁ ਮਾਣਿਓ ਬਸਿਓ ਨਿਰਵੈਰੁ ਰਿਦੰਤਰਿ ॥",
+        "excerpt": "ਰਾਜੁ ਜੋਗੁ ਮਾਣਿਓ ਬਸਿਓ ਨਿਰਵੈਰੁ ਰਿਦੰਤਰਿ ॥",
+        "entryIndex": 1,
+        "lineIndex": 4
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 24274,
+        "label": "Savaiyya 10",
+        "targetText": "ਗੁਣ ਗਾਵਹਿ ਨਵ ਨਾਥ ਧੰਨਿ ਗੁਰੁ ਸਾਚਿ ਸਮਾਇਓ ॥",
+        "excerpt": "ਗੁਣ ਗਾਵਹਿ ਨਵ ਨਾਥ ਧੰਨਿ ਗੁਰੁ ਸਾਚਿ ਸਮਾਇਓ ॥",
+        "entryIndex": 1,
+        "lineIndex": 28
+      }
+    }
+  },
+  {
+    "id": 82,
+    "baniName": "Savaiye Mahalla 2",
+    "baniId": "savaiye-mahalla-2",
+    "source": "G",
+    "startAng": 1391,
+    "endAng": 1392,
+    "requestedlength": null,
+    "rows": 53,
+    "sections": 10,
+    "fingerprint": "bani-v1:53:d7f48f6d3205b991",
+    "routeUrl": "/study?baniDbId=82&bani=Savaiye+Mahalla+2&startAng=1391&endAng=1392&baniId=savaiye-mahalla-2&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24280,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸੋਈ ਪੁਰਖੁ ਧੰਨੁ ਕਰਤਾ ਕਾਰਣ ਕਰਤਾਰੁ ਕਰਣ ਸਮਰਥੋ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 5,
+        "startVerseId": 24307,
+        "label": "Savaiyya 6",
+        "targetText": "ਸਦਾ ਅਕਲ ਲਿਵ ਰਹੈ ਕਰਨ ਸਿਉ ਇਛਾ ਚਾਰਹ ॥",
+        "excerpt": "ਸਦਾ ਅਕਲ ਲਿਵ ਰਹੈ ਕਰਨ ਸਿਉ ਇਛਾ ਚਾਰਹ ॥",
+        "entryIndex": 1,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 9,
+        "startVerseId": 24327,
+        "label": "Savaiyya 10",
+        "targetText": "ਅਮਿਅ ਦ੍ਰਿਸਟਿ ਸੁਭ ਕਰੈ ਹਰੈ ਅਘ ਪਾਪ ਸਕਲ ਮਲ ॥",
+        "excerpt": "ਅਮਿਅ ਦ੍ਰਿਸਟਿ ਸੁਭ ਕਰੈ ਹਰੈ ਅਘ ਪਾਪ ਸਕਲ ਮਲ ॥",
+        "entryIndex": 1,
+        "lineIndex": 20
+      }
+    }
+  },
+  {
+    "id": 83,
+    "baniName": "Savaiye Mahalla 3",
+    "baniId": "savaiye-mahalla-3",
+    "source": "G",
+    "startAng": 1392,
+    "endAng": 1396,
+    "requestedlength": null,
+    "rows": 125,
+    "sections": 22,
+    "fingerprint": "bani-v1:125:b214fea2f054c96e",
+    "routeUrl": "/study?baniDbId=83&bani=Savaiye+Mahalla+3&startAng=1392&endAng=1396&baniId=savaiye-mahalla-3&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24333,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸੋਈ ਪੁਰਖੁ ਸਿਵਰਿ ਸਾਚਾ ਜਾ ਕਾ ਇਕੁ ਨਾਮੁ ਅਛਲੁ ਸੰਸਾਰੇ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 24393,
+        "label": "Savaiyya 12",
+        "targetText": "ਤੈ ਪਢਿਅਉ ਇਕੁ ਮਨਿ ਧਰਿਅਉ ਇਕੁ ਕਰਿ ਇਕੁ ਪਛਾਣਿਓ ॥",
+        "excerpt": "ਤੈ ਪਢਿਅਉ ਇਕੁ ਮਨਿ ਧਰਿਅਉ ਇਕੁ ਕਰਿ ਇਕੁ ਪਛਾਣਿਓ ॥",
+        "entryIndex": 2,
+        "lineIndex": 20
+      },
+      "last": {
+        "sectionIndex": 21,
+        "startVerseId": 24454,
+        "label": "Savaiyya 22",
+        "targetText": "ਘਨਹਰ ਬੂੰਦ ਬਸੁਅ ਰੋਮਾਵਲਿ ਕੁਸਮ ਬਸੰਤ ਗਨੰਤ ਨ ਆਵੈ ॥",
+        "excerpt": "ਘਨਹਰ ਬੂੰਦ ਬਸੁਅ ਰੋਮਾਵਲਿ ਕੁਸਮ ਬਸੰਤ ਗਨੰਤ ਨ ਆਵੈ ॥",
+        "entryIndex": 4,
+        "lineIndex": 9
+      }
+    }
+  },
+  {
+    "id": 84,
+    "baniName": "Savaiye Mahalla 4",
+    "baniId": "savaiye-mahalla-4",
+    "source": "G",
+    "startAng": 1396,
+    "endAng": 1406,
+    "requestedlength": null,
+    "rows": 323,
+    "sections": 60,
+    "fingerprint": "bani-v1:323:b72f57cfa8f49bbb",
+    "routeUrl": "/study?baniDbId=84&bani=Savaiye+Mahalla+4&startAng=1396&endAng=1406&baniId=savaiye-mahalla-4&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24781,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਇਕ ਮਨਿ ਪੁਰਖੁ ਨਿਰੰਜਨੁ ਧਿਆਵਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 30,
+        "startVerseId": 24636,
+        "label": "Savaiyya 31",
+        "targetText": "ਜਿਹ ਅੰਮ੍ਰਿਤ ਬਚਨ ਬਾਣੀ ਸਾਧੂ ਜਨ ਜਪਹਿ ਕਰਿ ਬਿਚਿਤਿ ਚਾਓ ॥",
+        "excerpt": "ਜਿਹ ਅੰਮ੍ਰਿਤ ਬਚਨ ਬਾਣੀ ਸਾਧੂ ਜਨ ਜਪਹਿ ਕਰਿ ਬਿਚਿਤਿ ਚਾਓ ॥",
+        "entryIndex": 5,
+        "lineIndex": 30
+      },
+      "last": {
+        "sectionIndex": 59,
+        "startVerseId": 24774,
+        "label": "Savaiyya 60",
+        "targetText": "ਤੂ ਸਤਿਗੁਰੁ ਚਹੁ ਜੁਗੀ ਆਪਿ ਆਪੇ ਪਰਮੇਸਰੁ ॥",
+        "excerpt": "ਤੂ ਸਤਿਗੁਰੁ ਚਹੁ ਜੁਗੀ ਆਪਿ ਆਪੇ ਪਰਮੇਸਰੁ ॥",
+        "entryIndex": 10,
+        "lineIndex": 20
+      }
+    }
+  },
+  {
+    "id": 85,
+    "baniName": "Savaiye Mahalla 5",
+    "baniId": "savaiye-mahalla-5",
+    "source": "G",
+    "startAng": 1406,
+    "endAng": 1409,
+    "requestedlength": null,
+    "rows": 106,
+    "sections": 21,
+    "fingerprint": "bani-v1:106:aba88f0deab1acf9",
+    "routeUrl": "/study?baniDbId=85&bani=Savaiye+Mahalla+5&startAng=1406&endAng=1409&baniId=savaiye-mahalla-5&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24887,
+        "label": "Savaiyya 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਸਿਮਰੰ ਸੋਈ ਪੁਰਖੁ ਅਚਲੁ ਅਬਿਨਾਸੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 24837,
+        "label": "Soratha 2",
+        "targetText": "ਭਵਜਲੁ ਸਾਇਰੁ ਸੇਤੁ ਨਾਮੁ ਹਰੀ ਕਾ ਬੋਹਿਥਾ ॥",
+        "excerpt": "ਭਵਜਲੁ ਸਾਇਰੁ ਸੇਤੁ ਨਾਮੁ ਹਰੀ ਕਾ ਬੋਹਿਥਾ ॥",
+        "entryIndex": 2,
+        "lineIndex": 13
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 24881,
+        "label": "Savaiyya 21",
+        "targetText": "ਦੇਵ ਪੁਰੀ ਮਹਿ ਗਯਉ ਆਪਿ ਪਰਮੇਸ੍ਵਰ ਭਾਯਉ ॥",
+        "excerpt": "ਦੇਵ ਪੁਰੀ ਮਹਿ ਗਯਉ ਆਪਿ ਪਰਮੇਸ੍ਵਰ ਭਾਯਉ ॥",
+        "entryIndex": 3,
+        "lineIndex": 24
+      }
+    }
+  },
+  {
+    "id": 86,
+    "baniName": "Sri Raag Ki Vaar",
+    "baniId": "sri-raag-ki-vaar",
+    "source": "G",
+    "startAng": 83,
+    "endAng": 91,
+    "requestedlength": null,
+    "rows": 377,
+    "sections": 21,
+    "fingerprint": "bani-v1:377:63a35853ef743997",
+    "routeUrl": "/study?baniDbId=86&bani=Sri+Raag+Ki+Vaar&startAng=83&endAng=91&baniId=sri-raag-ki-vaar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 9976,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਹਰਿ ਇਕੋ ਕਰਤਾ ਇਕੁ ਇਕੋ ਦੀਬਾਣੁ ਹਰਿ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 10141,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਜੋ ਮਿਲਿਆ ਹਰਿ ਦੀਬਾਣ ਸਿਉ ਸੋ ਸਭਨੀ ਦੀਬਾਣੀ ਮਿਲਿਆ ॥",
+        "entryIndex": 3,
+        "lineIndex": 29
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 10335,
+        "label": "Pauri 21",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਹਉ ਢਾਢੀ ਹਰਿ ਪ੍ਰਭ ਖਸਮ ਕਾ ਹਰਿ ਕੈ ਦਰਿ ਆਇਆ ॥",
+        "entryIndex": 8,
+        "lineIndex": 17
+      }
+    }
+  },
+  {
+    "id": 87,
+    "baniName": "Vaar Manjh Ki",
+    "baniId": "var-majh",
+    "source": "G",
+    "startAng": 137,
+    "endAng": 151,
+    "requestedlength": null,
+    "rows": 661,
+    "sections": 28,
+    "fingerprint": "bani-v1:661:98e353aa83acb7d6",
+    "routeUrl": "/study?baniDbId=87&bani=Vaar+Manjh+Ki&startAng=137&endAng=151&baniId=var-majh&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 10354,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਤੂੰ ਕਰਤਾ ਪੁਰਖੁ ਅਗੰਮੁ ਹੈ ਆਪਿ ਸ੍ਰਿਸਟਿ ਉਪਾਤੀ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 14,
+        "startVerseId": 10706,
+        "label": "Pauri 15",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਸਤਿਗੁਰੁ ਸੇਵਿ ਨਿਸੰਗੁ ਭਰਮੁ ਚੁਕਾਈਐ ॥",
+        "entryIndex": 7,
+        "lineIndex": 56
+      },
+      "last": {
+        "sectionIndex": 27,
+        "startVerseId": 26089,
+        "label": "ਰਾਗੁ ਗਉੜੀ ਗੁਆਰੇਰੀ ਮਹਲਾ ੧ ਚਉਪਦੇ ਦੁਪਦੇ",
+        "targetText": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਭਉ ਮੁਚੁ ਭਾਰਾ ਵਡਾ ਤੋਲੁ ॥",
+        "entryIndex": 14,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 88,
+    "baniName": "Gauri Ki Vaar M4",
+    "baniId": "gauri-ki-vaar-m4",
+    "source": "G",
+    "startAng": 300,
+    "endAng": 317,
+    "requestedlength": null,
+    "rows": 672,
+    "sections": 33,
+    "fingerprint": "bani-v1:672:65beaafe6ed15432",
+    "routeUrl": "/study?baniDbId=88&bani=Gauri+Ki+Vaar+M4&startAng=300&endAng=317&baniId=gauri-ki-vaar-m4&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 11014,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੪ ॥",
+        "excerpt": "ਤੂ ਸਚਾ ਸਾਹਿਬੁ ਸਚੁ ਹੈ ਸਚੁ ਸਚਾ ਗੋਸਾਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 16,
+        "startVerseId": 11354,
+        "label": "Pauri 17",
+        "targetText": "ਸਲੋਕ ਮਃ ੪ ॥",
+        "excerpt": "ਸਚੁ ਸਚਾ ਸਤਿਗੁਰੁ ਅਮਰੁ ਹੈ ਜਿਸੁ ਅੰਦਰਿ ਹਰਿ ਉਰਿ ਧਾਰਿਆ ॥",
+        "entryIndex": 10,
+        "lineIndex": 1
+      },
+      "last": {
+        "sectionIndex": 32,
+        "startVerseId": 11659,
+        "label": "Pauri 33",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਤੂੰ ਸਚਾ ਸਾਹਿਬੁ ਅਤਿ ਵਡਾ ਤੁਹਿ ਜੇਵਡੁ ਤੂੰ ਵਡ ਵਡੇ ॥",
+        "entryIndex": 17,
+        "lineIndex": 19
+      }
+    }
+  },
+  {
+    "id": 89,
+    "baniName": "Gauri Ki Vaar M5",
+    "baniId": "gauri-ki-vaar-m5",
+    "source": "G",
+    "startAng": 318,
+    "endAng": 323,
+    "requestedlength": null,
+    "rows": 273,
+    "sections": 21,
+    "fingerprint": "bani-v1:273:09dad367a25b2583",
+    "routeUrl": "/study?baniDbId=89&bani=Gauri+Ki+Vaar+M5&startAng=318&endAng=323&baniId=gauri-ki-vaar-m5&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 11686,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਜੋ ਤੁਧੁ ਭਾਵੈ ਸੋ ਭਲਾ ਸਚੁ ਤੇਰਾ ਭਾਣਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 11813,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਇਹ ਨੀਸਾਣੀ ਸਾਧ ਕੀ ਜਿਸੁ ਭੇਟਤ ਤਰੀਐ ॥",
+        "entryIndex": 2,
+        "lineIndex": 32
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 11944,
+        "label": "Pauri 21",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਮਨੁ ਰਤਾ ਗੋਵਿੰਦ ਸੰਗਿ ਸਚੁ ਭੋਜਨੁ ਜੋੜੇ ॥",
+        "entryIndex": 5,
+        "lineIndex": 15
+      }
+    }
+  },
+  {
+    "id": 90,
+    "baniName": "Asa Di Var",
+    "baniId": "asa-di-var",
+    "source": "G",
+    "startAng": 448,
+    "endAng": 475,
+    "requestedlength": null,
+    "rows": 758,
+    "sections": 24,
+    "fingerprint": "bani-v1:758:35e2254790e5e4c3",
+    "routeUrl": "/study?baniDbId=90&bani=Asa+Di+Var&startAng=448&endAng=475&baniId=asa-di-var&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 24888,
+        "label": "Pauri 1",
+        "targetText": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+        "excerpt": "ਆਪੀਨੑੈ ਆਪੁ ਸਾਜਿਓ ਆਪੀਨੑੈ ਰਚਿਓ ਨਾਉ ॥",
+        "entryIndex": 0,
+        "lineIndex": 0
+      },
+      "middle": {
+        "sectionIndex": 12,
+        "startVerseId": 25417,
+        "label": "Pauri 13",
+        "targetText": "ਆਸਾ ਮਹਲਾ ੪ ॥",
+        "excerpt": "ਸਤਿਗੁਰ ਵਿਟਹੁ ਵਾਰਿਆ ਜਿਤੁ ਮਿਲਿਐ ਖਸਮੁ ਸਮਾਲਿਆ ॥",
+        "entryIndex": 33,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 23,
+        "startVerseId": 25728,
+        "label": "Pauri 24",
+        "targetText": "ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥",
+        "excerpt": "ਵਡੇ ਕੀਆ ਵਡਿਆਈਆ ਕਿਛੁ ਕਹਣਾ ਕਹਣੁ ਨ ਜਾਇ ॥",
+        "entryIndex": 61,
+        "lineIndex": 0
+      }
+    }
+  },
+  {
+    "id": 91,
+    "baniName": "Gujari Ki Vaar",
+    "baniId": "var-gujri",
+    "source": "G",
+    "startAng": 508,
+    "endAng": 517,
+    "requestedlength": null,
+    "rows": 379,
+    "sections": 22,
+    "fingerprint": "bani-v1:379:b8c1cc549723fd50",
+    "routeUrl": "/study?baniDbId=91&bani=Gujari+Ki+Vaar&startAng=508&endAng=517&baniId=var-gujri&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 11959,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਆਪਣਾ ਆਪੁ ਉਪਾਇਓਨੁ ਤਦਹੁ ਹੋਰੁ ਨ ਕੋਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 12144,
+        "label": "Pauri 12",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਮਾਇਆ ਮੋਹੁ ਪਰੇਤੁ ਹੈ ਕਾਮੁ ਕ੍ਰੋਧੁ ਅਹੰਕਾਰਾ ॥",
+        "entryIndex": 5,
+        "lineIndex": 7
+      },
+      "last": {
+        "sectionIndex": 21,
+        "startVerseId": 12323,
+        "label": "Pauri 22",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਆਪੇ ਜਗਤੁ ਉਪਾਇਓਨੁ ਕਰਿ ਪੂਰਾ ਥਾਟੁ ॥",
+        "entryIndex": 9,
+        "lineIndex": 18
+      }
+    }
+  },
+  {
+    "id": 92,
+    "baniName": "Gujari Vaar Mahalla 5",
+    "baniId": "gujari-vaar-mahalla-5",
+    "source": "G",
+    "startAng": 517,
+    "endAng": 524,
+    "requestedlength": null,
+    "rows": 334,
+    "sections": 21,
+    "fingerprint": "bani-v1:334:52fc32096a838c35",
+    "routeUrl": "/study?baniDbId=92&bani=Gujari+Vaar+Mahalla+5&startAng=517&endAng=524&baniId=gujari-vaar-mahalla-5&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 12338,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੫ ॥",
+        "excerpt": "ਅਕੁਲ ਨਿਰੰਜਨ ਪੁਰਖੁ ਅਗਮੁ ਅਪਾਰੀਐ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 12498,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੫ ॥",
+        "excerpt": "ਤੇਰੇ ਕੀਤੇ ਕੰਮ ਤੁਧੈ ਹੀ ਗੋਚਰੇ ॥",
+        "entryIndex": 3,
+        "lineIndex": 45
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 12654,
+        "label": "Pauri 21",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਸਿਮਰਿ ਸਿਮਰਿ ਦਾਤਾਰੁ ਮਨੋਰਥ ਪੂਰਿਆ ॥",
+        "entryIndex": 7,
+        "lineIndex": 3
+      }
+    }
+  },
+  {
+    "id": 93,
+    "baniName": "Bihagare Ki Vaar",
+    "baniId": "bihagare-ki-vaar",
+    "source": "G",
+    "startAng": 548,
+    "endAng": 556,
+    "requestedlength": null,
+    "rows": 348,
+    "sections": 21,
+    "fingerprint": "bani-v1:348:085b3b4ccd0b8688",
+    "routeUrl": "/study?baniDbId=93&bani=Bihagare+Ki+Vaar&startAng=548&endAng=556&baniId=bihagare-ki-vaar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 12673,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਸਭ ਤੇਰੀ ਤੂ ਸਭਸ ਦਾ ਸਭ ਤੁਧੁ ਉਪਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 12840,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੪ ॥",
+        "excerpt": "ਆਪੇ ਚਾਟਸਾਲ ਆਪਿ ਹੈ ਪਾਧਾ ਆਪੇ ਚਾਟੜੇ ਪੜਣ ਕਉ ਆਣੇ ॥",
+        "entryIndex": 4,
+        "lineIndex": 28
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 13004,
+        "label": "Pauri 21",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਆਪੇ ਜੰਤ ਉਪਾਇਅਨੁ ਆਪੇ ਆਧਾਰੁ ॥",
+        "entryIndex": 8,
+        "lineIndex": 29
+      }
+    }
+  },
+  {
+    "id": 94,
+    "baniName": "Vadahans Ki Vaar",
+    "baniId": "var-vadahans",
+    "source": "G",
+    "startAng": 585,
+    "endAng": 594,
+    "requestedlength": null,
+    "rows": 367,
+    "sections": 21,
+    "fingerprint": "bani-v1:367:6c14372f7773e9ab",
+    "routeUrl": "/study?baniDbId=94&bani=Vadahans+Ki+Vaar&startAng=585&endAng=594&baniId=var-vadahans&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 13021,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਤੂ ਆਪੇ ਹੀ ਆਪਿ ਆਪਿ ਹੈ ਆਪਿ ਕਾਰਣੁ ਕੀਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 13207,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਗੁਰਸਿਖਾਂ ਮਨਿ ਹਰਿ ਪ੍ਰੀਤਿ ਹੈ ਗੁਰੁ ਪੂਜਣ ਆਵਹਿ ॥",
+        "entryIndex": 5,
+        "lineIndex": 10
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 13368,
+        "label": "Pauri 21",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਤੂ ਆਪੇ ਆਪਿ ਆਪਿ ਸਭੁ ਕਰਤਾ ਕੋਈ ਦੂਜਾ ਹੋਇ ਸੁ ਅਵਰੋ ਕਹੀਐ ॥",
+        "entryIndex": 9,
+        "lineIndex": 21
+      }
+    }
+  },
+  {
+    "id": 95,
+    "baniName": "Sorath Ki Vaar",
+    "baniId": "var-sorath",
+    "source": "G",
+    "startAng": 642,
+    "endAng": 654,
+    "requestedlength": null,
+    "rows": 494,
+    "sections": 29,
+    "fingerprint": "bani-v1:494:54beddbfadbec703",
+    "routeUrl": "/study?baniDbId=95&bani=Sorath+Ki+Vaar&startAng=642&endAng=654&baniId=var-sorath&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 13388,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਤੂ ਆਪੇ ਸਿਸਟਿ ਕਰਤਾ ਸਿਰਜਣਹਾਰਿਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 14,
+        "startVerseId": 13641,
+        "label": "Pauri 15",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਧਨੁ ਸੰਪੈ ਮਾਇਆ ਸੰਚੀਐ ਅੰਤੇ ਦੁਖਦਾਈ ॥",
+        "entryIndex": 6,
+        "lineIndex": 11
+      },
+      "last": {
+        "sectionIndex": 28,
+        "startVerseId": 13864,
+        "label": "Pauri 29",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਤੂ ਕਰਣ ਕਾਰਣ ਸਮਰਥੁ ਹਹਿ ਕਰਤੇ ਮੈ ਤੁਝ ਬਿਨੁ ਅਵਰੁ ਨ ਕੋਈ ॥",
+        "entryIndex": 11,
+        "lineIndex": 33
+      }
+    }
+  },
+  {
+    "id": 96,
+    "baniName": "Jaitsri M5 Vaar Saloka Naal",
+    "baniId": "jaitsri-vaar-m5",
+    "source": "G",
+    "startAng": 705,
+    "endAng": 710,
+    "requestedlength": null,
+    "rows": 224,
+    "sections": 20,
+    "fingerprint": "bani-v1:224:d8641d2774971383",
+    "routeUrl": "/study?baniDbId=96&bani=Jaitsri+M5+Vaar+Saloka+Naal&startAng=705&endAng=710&baniId=jaitsri-vaar-m5&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 13882,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ॥",
+        "excerpt": "ਹਰਿ ਏਕੁ ਨਿਰੰਜਨੁ ਗਾਈਐ ਸਭ ਅੰਤਰਿ ਸੋਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 13992,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕ ॥",
+        "excerpt": "ਹਰਿ ਬਿਨੁ ਕਛੂ ਨ ਲਾਗਈ ਭਗਤਨ ਕਉ ਮੀਠਾ ॥",
+        "entryIndex": 3,
+        "lineIndex": 14
+      },
+      "last": {
+        "sectionIndex": 19,
+        "startVerseId": 14092,
+        "label": "Pauri 20",
+        "targetText": "ਸਲੋਕ ॥",
+        "excerpt": "ਪ੍ਰਭ ਦਇਆਲ ਬੇਅੰਤ ਪੂਰਨ ਇਕੁ ਏਹੁ ॥",
+        "entryIndex": 5,
+        "lineIndex": 19
+      }
+    }
+  },
+  {
+    "id": 97,
+    "baniName": "Vaar Suhi Ki",
+    "baniId": "var-suhi",
+    "source": "G",
+    "startAng": 785,
+    "endAng": 792,
+    "requestedlength": null,
+    "rows": 328,
+    "sections": 20,
+    "fingerprint": "bani-v1:328:8692e17a83ef585e",
+    "routeUrl": "/study?baniDbId=97&bani=Vaar+Suhi+Ki&startAng=785&endAng=792&baniId=var-suhi&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 14105,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਆਪੇ ਤਖਤੁ ਰਚਾਇਓਨੁ ਆਕਾਸ ਪਤਾਲਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 2
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 14276,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕ ਮਃ ੧ ॥",
+        "excerpt": "ਸਚਾ ਅਮਰੁ ਚਲਾਇਓਨੁ ਕਰਿ ਸਚੁ ਫੁਰਮਾਣੁ ॥",
+        "entryIndex": 4,
+        "lineIndex": 6
+      },
+      "last": {
+        "sectionIndex": 19,
+        "startVerseId": 14419,
+        "label": "Pauri 20",
+        "targetText": "ਸਲੋਕ ਮਃ ੨ ॥",
+        "excerpt": "ਹਉ ਕਿਆ ਸਾਲਾਹੀ ਕਿਰਮ ਜੰਤੁ ਵਡੀ ਤੇਰੀ ਵਡਿਆਈ ॥",
+        "entryIndex": 6,
+        "lineIndex": 49
+      }
+    }
+  },
+  {
+    "id": 98,
+    "baniName": "Bilaval Ki Vaar",
+    "baniId": "var-bilaval",
+    "source": "G",
+    "startAng": 849,
+    "endAng": 855,
+    "requestedlength": null,
+    "rows": 238,
+    "sections": 13,
+    "fingerprint": "bani-v1:238:762038b2ee68c06e",
+    "routeUrl": "/study?baniDbId=98&bani=Bilaval+Ki+Vaar&startAng=849&endAng=855&baniId=var-bilaval&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 14435,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੪ ॥",
+        "excerpt": "ਤੂ ਹਰਿ ਪ੍ਰਭੁ ਆਪਿ ਅਗੰਮੁ ਹੈ ਸਭਿ ਤੁਧੁ ਉਪਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 6,
+        "startVerseId": 14543,
+        "label": "Pauri 7",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਜਿਸ ਨੋ ਹਰਿ ਭਗਤਿ ਸਚੁ ਬਖਸੀਅਨੁ ਸੋ ਸਚਾ ਸਾਹੁ ॥",
+        "entryIndex": 2,
+        "lineIndex": 31
+      },
+      "last": {
+        "sectionIndex": 12,
+        "startVerseId": 14654,
+        "label": "Pauri 13",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਕੋਈ ਨਿੰਦਕੁ ਹੋਵੈ ਸਤਿਗੁਰੂ ਕਾ ਫਿਰਿ ਸਰਣਿ ਗੁਰ ਆਵੈ ॥",
+        "entryIndex": 5,
+        "lineIndex": 35
+      }
+    }
+  },
+  {
+    "id": 99,
+    "baniName": "Ramkali Ki Vaar M3",
+    "baniId": "var-ramkali-m3",
+    "source": "G",
+    "startAng": 947,
+    "endAng": 956,
+    "requestedlength": null,
+    "rows": 491,
+    "sections": 21,
+    "fingerprint": "bani-v1:491:202365e438eab278",
+    "routeUrl": "/study?baniDbId=99&bani=Ramkali+Ki+Vaar+M3&startAng=947&endAng=956&baniId=var-ramkali-m3&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 14673,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੩ ॥",
+        "excerpt": "ਸਚੈ ਤਖਤੁ ਰਚਾਇਆ ਬੈਸਣ ਕਉ ਜਾਂਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 10,
+        "startVerseId": 14874,
+        "label": "Pauri 11",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਹਰਿ ਕਾ ਮੰਦਰੁ ਆਖੀਐ ਕਾਇਆ ਕੋਟੁ ਗੜੁ ॥",
+        "entryIndex": 4,
+        "lineIndex": 26
+      },
+      "last": {
+        "sectionIndex": 20,
+        "startVerseId": 15143,
+        "label": "Pauri 21",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਆਪੇ ਆਪਿ ਵਰਤਦਾ ਆਪਿ ਤਾੜੀ ਲਾਈਅਨੁ ॥",
+        "entryIndex": 9,
+        "lineIndex": 32
+      }
+    }
+  },
+  {
+    "id": 100,
+    "baniName": "Ramkali Ki Vaar M5",
+    "baniId": "var-ramkali-m5",
+    "source": "G",
+    "startAng": 957,
+    "endAng": 966,
+    "requestedlength": null,
+    "rows": 454,
+    "sections": 22,
+    "fingerprint": "bani-v1:454:a04aecabd01a498f",
+    "routeUrl": "/study?baniDbId=100&bani=Ramkali+Ki+Vaar+M5&startAng=957&endAng=966&baniId=var-ramkali-m5&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 15164,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਥਟਣਹਾਰੈ ਥਾਟੁ ਆਪੇ ਹੀ ਥਟਿਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 15435,
+        "label": "Pauri 12",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਵਡਿਆਈ ਸਚੇ ਨਾਮ ਕੀ ਹਉ ਜੀਵਾ ਸੁਣਿ ਸੁਣੇ ॥",
+        "entryIndex": 6,
+        "lineIndex": 0
+      },
+      "last": {
+        "sectionIndex": 21,
+        "startVerseId": 15600,
+        "label": "Pauri 22",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਆਪੇ ਕੀਤੋ ਰਚਨੁ ਆਪੇ ਹੀ ਰਤਿਆ ॥",
+        "entryIndex": 9,
+        "lineIndex": 18
+      }
+    }
+  },
+  {
+    "id": 101,
+    "baniName": "Ramkali Ki Vaar Rai Balvand",
+    "baniId": "var-ramkali-rai-balvand",
+    "source": "G",
+    "startAng": 966,
+    "endAng": 968,
+    "requestedlength": null,
+    "rows": 90,
+    "sections": 8,
+    "fingerprint": "bani-v1:90:6c42bfa6b8dc1baa",
+    "routeUrl": "/study?baniDbId=101&bani=Ramkali+Ki+Vaar+Rai+Balvand&startAng=966&endAng=968&baniId=var-ramkali-rai-balvand&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 15618,
+        "label": "Pauri 1",
+        "targetText": "ਨਾਉ ਕਰਤਾ ਕਾਦਰੁ ਕਰੇ ਕਿਉ ਬੋਲੁ ਹੋਵੈ ਜੋਖੀਵਦੈ ॥",
+        "excerpt": "ਨਾਉ ਕਰਤਾ ਕਾਦਰੁ ਕਰੇ ਕਿਉ ਬੋਲੁ ਹੋਵੈ ਜੋਖੀਵਦੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 4,
+        "startVerseId": 15659,
+        "label": "Pauri 5",
+        "targetText": "ਫੇਰਿ ਵਸਾਇਆ ਫੇਰੁਆਣਿ ਸਤਿਗੁਰਿ ਖਾਡੂਰੁ ॥",
+        "excerpt": "ਫੇਰਿ ਵਸਾਇਆ ਫੇਰੁਆਣਿ ਸਤਿਗੁਰਿ ਖਾਡੂਰੁ ॥",
+        "entryIndex": 1,
+        "lineIndex": 30
+      },
+      "last": {
+        "sectionIndex": 7,
+        "startVerseId": 15696,
+        "label": "Pauri 8",
+        "targetText": "ਚਾਰੇ ਜਾਗੇ ਚਹੁ ਜੁਗੀ ਪੰਚਾਇਣੁ ਆਪੇ ਹੋਆ ॥",
+        "excerpt": "ਚਾਰੇ ਜਾਗੇ ਚਹੁ ਜੁਗੀ ਪੰਚਾਇਣੁ ਆਪੇ ਹੋਆ ॥",
+        "entryIndex": 2,
+        "lineIndex": 28
+      }
+    }
+  },
+  {
+    "id": 102,
+    "baniName": "Maru Vaar M3",
+    "baniId": "var-maru",
+    "source": "G",
+    "startAng": 1086,
+    "endAng": 1094,
+    "requestedlength": null,
+    "rows": 347,
+    "sections": 22,
+    "fingerprint": "bani-v1:347:d8c7751fcac3ad3b",
+    "routeUrl": "/study?baniDbId=102&bani=Maru+Vaar+M3&startAng=1086&endAng=1094&baniId=var-maru&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 15708,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਗੁਰ ਤੇ ਗਿਆਨੁ ਪਾਇਆ ਅਤਿ ਖੜਗੁ ਕਰਾਰਾ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 15872,
+        "label": "Pauri 12",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+        "excerpt": "ਮਨਮੁਖ ਕਾਲੁ ਵਿਆਪਦਾ ਮੋਹਿ ਮਾਇਆ ਲਾਗੇ ॥",
+        "entryIndex": 4,
+        "lineIndex": 20
+      },
+      "last": {
+        "sectionIndex": 21,
+        "startVerseId": 16033,
+        "label": "Pauri 22",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਆਪੇ ਕਰਿ ਕਰਿ ਵੇਖਦਾ ਆਪੇ ਸਭੁ ਸਚਾ ॥",
+        "entryIndex": 7,
+        "lineIndex": 41
+      }
+    }
+  },
+  {
+    "id": 103,
+    "baniName": "Maru Vaar Mahalla 5 Dakhane",
+    "baniId": "maru-vaar-mahalla-5-dakhane",
+    "source": "G",
+    "startAng": 1094,
+    "endAng": 1102,
+    "requestedlength": null,
+    "rows": 418,
+    "sections": 23,
+    "fingerprint": "bani-v1:418:fc53eef868256afc",
+    "routeUrl": "/study?baniDbId=103&bani=Maru+Vaar+Mahalla+5+Dakhane&startAng=1094&endAng=1102&baniId=maru-vaar-mahalla-5-dakhane&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 16055,
+        "label": "Pauri 1",
+        "targetText": "ਤੂ ਚਉ ਸਜਣ ਮੈਡਿਆ ਡੇਈ ਸਿਸੁ ਉਤਾਰਿ ॥",
+        "excerpt": "ਤੂ ਸਚਾ ਸਾਹਿਬੁ ਸਚੁ ਸਚੁ ਸਭੁ ਧਾਰਿਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 11,
+        "startVerseId": 16252,
+        "label": "Pauri 12",
+        "targetText": "ਡਖਣੇ ਮਃ ੫ ॥",
+        "excerpt": "ਮਨੁ ਲੋਚੈ ਹਰਿ ਮਿਲਣ ਕਉ ਕਿਉ ਦਰਸਨੁ ਪਾਈਆ ॥",
+        "entryIndex": 4,
+        "lineIndex": 21
+      },
+      "last": {
+        "sectionIndex": 22,
+        "startVerseId": 16452,
+        "label": "Pauri 23",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਕੀਮਤਿ ਕਹਣੁ ਨ ਜਾਈਐ ਸਚੁ ਸਾਹ ਅਡੋਲੈ ॥",
+        "entryIndex": 8,
+        "lineIndex": 22
+      }
+    }
+  },
+  {
+    "id": 104,
+    "baniName": "Basant Ki Vaar",
+    "baniId": "basant-ki-vaar",
+    "source": "G",
+    "startAng": 1193,
+    "endAng": 1193,
+    "requestedlength": null,
+    "rows": 18,
+    "sections": 3,
+    "fingerprint": "bani-v1:18:3ed37893661945ff",
+    "routeUrl": "/study?baniDbId=104&bani=Basant+Ki+Vaar&startAng=1193&endAng=1193&baniId=basant-ki-vaar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 16473,
+        "label": "Pauri 1",
+        "targetText": "ਹਰਿ ਕਾ ਨਾਮੁ ਧਿਆਇ ਕੈ ਹੋਹੁ ਹਰਿਆ ਭਾਈ ॥",
+        "excerpt": "ਹਰਿ ਕਾ ਨਾਮੁ ਧਿਆਇ ਕੈ ਹੋਹੁ ਹਰਿਆ ਭਾਈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 1,
+        "startVerseId": 16478,
+        "label": "Pauri 2",
+        "targetText": "ਪੰਜੇ ਬਧੇ ਮਹਾਬਲੀ ਕਰਿ ਸਚਾ ਢੋਆ ॥",
+        "excerpt": "ਪੰਜੇ ਬਧੇ ਮਹਾਬਲੀ ਕਰਿ ਸਚਾ ਢੋਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 8
+      },
+      "last": {
+        "sectionIndex": 2,
+        "startVerseId": 16483,
+        "label": "Pauri 3",
+        "targetText": "ਕਿਥਹੁ ਉਪਜੈ ਕਹ ਰਹੈ ਕਹ ਮਾਹਿ ਸਮਾਵੈ ॥",
+        "excerpt": "ਕਿਥਹੁ ਉਪਜੈ ਕਹ ਰਹੈ ਕਹ ਮਾਹਿ ਸਮਾਵੈ ॥",
+        "entryIndex": 0,
+        "lineIndex": 13
+      }
+    }
+  },
+  {
+    "id": 105,
+    "baniName": "Sarang Ki Vaar",
+    "baniId": "var-sarang",
+    "source": "G",
+    "startAng": 1237,
+    "endAng": 1251,
+    "requestedlength": null,
+    "rows": 672,
+    "sections": 36,
+    "fingerprint": "bani-v1:672:4d91034517e32a29",
+    "routeUrl": "/study?baniDbId=105&bani=Sarang+Ki+Vaar&startAng=1237&endAng=1251&baniId=var-sarang&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 16491,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਹਲਾ ੨ ॥",
+        "excerpt": "ਆਪੇ ਆਪਿ ਨਿਰੰਜਨਾ ਜਿਨਿ ਆਪੁ ਉਪਾਇਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 18,
+        "startVerseId": 16848,
+        "label": "Pauri 19",
+        "targetText": "ਸਲੋਕ ਮਃ ੧ ॥",
+        "excerpt": "ਸਤਸੰਗਤਿ ਨਾਮੁ ਨਿਧਾਨੁ ਹੈ ਜਿਥਹੁ ਹਰਿ ਪਾਇਆ ॥",
+        "entryIndex": 7,
+        "lineIndex": 37
+      },
+      "last": {
+        "sectionIndex": 35,
+        "startVerseId": 17142,
+        "label": "Pauri 36",
+        "targetText": "ਸਲੋਕ ਮਃ ੫ ॥",
+        "excerpt": "ਵਡਾ ਆਪਿ ਅਗੰਮੁ ਹੈ ਵਡੀ ਵਡਿਆਈ ॥",
+        "entryIndex": 14,
+        "lineIndex": 16
+      }
+    }
+  },
+  {
+    "id": 106,
+    "baniName": "Vaar Mallar Ki",
+    "baniId": "var-mallar",
+    "source": "G",
+    "startAng": 1278,
+    "endAng": 1291,
+    "requestedlength": null,
+    "rows": 606,
+    "sections": 28,
+    "fingerprint": "bani-v1:606:f73f6b67eb1cd41b",
+    "routeUrl": "/study?baniDbId=106&bani=Vaar+Mallar+Ki&startAng=1278&endAng=1291&baniId=var-mallar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 17162,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਹਲਾ ੩ ॥",
+        "excerpt": "ਆਪੀਨੑੈ ਆਪੁ ਸਾਜਿ ਆਪੁ ਪਛਾਣਿਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 14,
+        "startVerseId": 17423,
+        "label": "Pauri 15",
+        "targetText": "ਸਲੋਕ ਮਃ ੩ ॥",
+        "excerpt": "ਇਕਿ ਵਣ ਖੰਡਿ ਬੈਸਹਿ ਜਾਇ ਸਦੁ ਨ ਦੇਵਹੀ ॥",
+        "entryIndex": 6,
+        "lineIndex": 29
+      },
+      "last": {
+        "sectionIndex": 27,
+        "startVerseId": 17750,
+        "label": "Pauri 28",
+        "targetText": "ਸਲੋਕ ਮਃ ੧ ॥",
+        "excerpt": "ਤੂੰ ਆਪੇ ਆਪਿ ਵਰਤਦਾ ਆਪਿ ਬਣਤ ਬਣਾਈ ॥",
+        "entryIndex": 13,
+        "lineIndex": 29
+      }
+    }
+  },
+  {
+    "id": 107,
+    "baniName": "Kanare Ki Vaar",
+    "baniId": "kanare-ki-vaar",
+    "source": "G",
+    "startAng": 1312,
+    "endAng": 1318,
+    "requestedlength": null,
+    "rows": 234,
+    "sections": 15,
+    "fingerprint": "bani-v1:234:b690ce4dd86337d9",
+    "routeUrl": "/study?baniDbId=107&bani=Kanare+Ki+Vaar&startAng=1312&endAng=1318&baniId=kanare-ki-vaar&source=G",
+    "samples": {
+      "first": {
+        "sectionIndex": 0,
+        "startVerseId": 17769,
+        "label": "Pauri 1",
+        "targetText": "ਸਲੋਕ ਮਃ ੪ ॥",
+        "excerpt": "ਤੂੰ ਆਪੇ ਹੀ ਸਿਧ ਸਾਧਿਕੋ ਤੂ ਆਪੇ ਹੀ ਜੁਗ ਜੋਗੀਆ ॥",
+        "entryIndex": 0,
+        "lineIndex": 3
+      },
+      "middle": {
+        "sectionIndex": 7,
+        "startVerseId": 17888,
+        "label": "Pauri 8",
+        "targetText": "ਸਲੋਕੁ ਮਃ ੪ ॥",
+        "excerpt": "ਹਰਿ ਅਗਮੁ ਅਗੋਚਰੁ ਅਗਮੁ ਹਰਿ ਕਿਉ ਕਰਿ ਹਰਿ ਦਰਸਨੁ ਪਿਖਾ ॥",
+        "entryIndex": 4,
+        "lineIndex": 1
+      },
+      "last": {
+        "sectionIndex": 14,
+        "startVerseId": 17988,
+        "label": "Pauri 15",
+        "targetText": "ਸਲੋਕ ਮਃ ੪ ॥",
+        "excerpt": "ਕੋਈ ਗਾਵੈ ਕੋ ਸੁਣੈ ਕੋ ਉਚਰਿ ਸੁਨਾਵੈ ॥",
+        "entryIndex": 6,
+        "lineIndex": 24
+      }
+    }
+  }
+]

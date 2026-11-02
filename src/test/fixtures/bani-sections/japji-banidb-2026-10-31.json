@@ -1,0 +1,7350 @@
+{
+  "baniInfo": {
+    "baniID": 2,
+    "gurmukhi": "jpujI swihb",
+    "unicode": "ਜਪੁਜੀ ਸਾਹਿਬ",
+    "english": "japujee saahib",
+    "hindi": "जपुजी साहिब",
+    "en": "japujee saahib",
+    "hi": "जपुजी साहिब",
+    "ipa": "d͡ʒəpʊd͡ʒi sɑhɪb",
+    "ur": "جپجیِ ساهب",
+    "source": {
+      "sourceId": "G",
+      "gurmukhi": "sRI gurU gRMQ swihb jI",
+      "unicode": "ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ",
+      "english": "Sri Guru Granth Sahib Ji",
+      "pageNo": 1
+    },
+    "raag": {
+      "raagId": 1,
+      "gurmukhi": "jp",
+      "unicode": "ਜਪ",
+      "english": "Jap",
+      "raagWithPage": "Jap (1-8)"
+    },
+    "writer": {
+      "writerId": 1,
+      "gurmukhi": "mÚ 1",
+      "unicode": null,
+      "english": "Guru Nanak Dev Ji"
+    }
+  },
+  "verses": [
+    {
+      "header": 1,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 1,
+      "verse": {
+        "verseId": 12,
+        "verse": {
+          "gurmukhi": "<> siq nwmu krqw purKu inrBau inrvYru Akwl mUriq AjUnI sYBM gur pRswid ]",
+          "unicode": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 2,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 2,
+      "verse": {
+        "verseId": 13,
+        "verse": {
+          "gurmukhi": "] jpu ]",
+          "unicode": "॥ ਜਪੁ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 3,
+      "verse": {
+        "verseId": 14,
+        "verse": {
+          "gurmukhi": "Awid scu jugwid scu ]",
+          "unicode": "ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 3,
+      "verse": {
+        "verseId": 15,
+        "verse": {
+          "gurmukhi": "hY BI scu nwnk hosI BI scu ]1]",
+          "unicode": "ਹੈ ਭੀ ਸਚੁ ਨਾਨਕ ਹੋਸੀ ਭੀ ਸਚੁ ॥੧॥"
+        },
+        "pageNo": 1,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 4,
+      "verse": {
+        "verseId": 16,
+        "verse": {
+          "gurmukhi": "socY soic n hoveI jy socI lK vwr ]",
+          "unicode": "ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ ਜੇ ਸੋਚੀ ਲਖ ਵਾਰ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 4,
+      "verse": {
+        "verseId": 17,
+        "verse": {
+          "gurmukhi": "cupY cup n hoveI jy lwie rhw ilv qwr ]",
+          "unicode": "ਚੁਪੈ ਚੁਪ ਨ ਹੋਵਈ ਜੇ ਲਾਇ ਰਹਾ ਲਿਵ ਤਾਰ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 4,
+      "verse": {
+        "verseId": 18,
+        "verse": {
+          "gurmukhi": "BuiKAw BuK n auqrI jy bMnw purIAw Bwr ]",
+          "unicode": "ਭੁਖਿਆ ਭੁਖ ਨ ਉਤਰੀ ਜੇ ਬੰਨਾ ਪੁਰੀਆ ਭਾਰ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 4,
+      "verse": {
+        "verseId": 19,
+        "verse": {
+          "gurmukhi": "shs isAwxpw lK hoih q iek n clY nwil ]",
+          "unicode": "ਸਹਸ ਸਿਆਣਪਾ ਲਖ ਹੋਹਿ ਤ ਇਕ ਨ ਚਲੈ ਨਾਲਿ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 4,
+      "verse": {
+        "verseId": 20,
+        "verse": {
+          "gurmukhi": "ikv sicAwrw hoeIAY ikv kUVY qutY pwil ]",
+          "unicode": "ਕਿਵ ਸਚਿਆਰਾ ਹੋਈਐ ਕਿਵ ਕੂੜੈ ਤੁਟੈ ਪਾਲਿ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 4,
+      "verse": {
+        "verseId": 21,
+        "verse": {
+          "gurmukhi": "hukim rjweI clxw nwnk iliKAw nwil ]1]",
+          "unicode": "ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ ਨਾਨਕ ਲਿਖਿਆ ਨਾਲਿ ॥੧॥"
+        },
+        "pageNo": 1,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 5,
+      "verse": {
+        "verseId": 22,
+        "verse": {
+          "gurmukhi": "hukmI hovin Awkwr hukmu n kihAw jweI ]",
+          "unicode": "ਹੁਕਮੀ ਹੋਵਨਿ ਆਕਾਰ ਹੁਕਮੁ ਨ ਕਹਿਆ ਜਾਈ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 5,
+      "verse": {
+        "verseId": 23,
+        "verse": {
+          "gurmukhi": "hukmI hovin jIA hukim imlY vifAweI ]",
+          "unicode": "ਹੁਕਮੀ ਹੋਵਨਿ ਜੀਅ ਹੁਕਮਿ ਮਿਲੈ ਵਡਿਆਈ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 5,
+      "verse": {
+        "verseId": 24,
+        "verse": {
+          "gurmukhi": "hukmI auqmu nIcu hukim iliK duK suK pweIAih ]",
+          "unicode": "ਹੁਕਮੀ ਉਤਮੁ ਨੀਚੁ ਹੁਕਮਿ ਲਿਖਿ ਦੁਖ ਸੁਖ ਪਾਈਅਹਿ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 5,
+      "verse": {
+        "verseId": 25,
+        "verse": {
+          "gurmukhi": "ieknw hukmI bKsIs ieik hukmI sdw BvweIAih ]",
+          "unicode": "ਇਕਨਾ ਹੁਕਮੀ ਬਖਸੀਸ ਇਕਿ ਹੁਕਮੀ ਸਦਾ ਭਵਾਈਅਹਿ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 5,
+      "verse": {
+        "verseId": 26,
+        "verse": {
+          "gurmukhi": "hukmY AMdir sBu ko bwhir hukm n koie ]",
+          "unicode": "ਹੁਕਮੈ ਅੰਦਰਿ ਸਭੁ ਕੋ ਬਾਹਰਿ ਹੁਕਮ ਨ ਕੋਇ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 5,
+      "verse": {
+        "verseId": 27,
+        "verse": {
+          "gurmukhi": "nwnk hukmY jy buJY q haumY khY n koie ]2]",
+          "unicode": "ਨਾਨਕ ਹੁਕਮੈ ਜੇ ਬੁਝੈ ਤ ਹਉਮੈ ਕਹੈ ਨ ਕੋਇ ॥੨॥"
+        },
+        "pageNo": 1,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 28,
+        "verse": {
+          "gurmukhi": "gwvY ko qwxu hovY iksY qwxu ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਤਾਣੁ ਹੋਵੈ ਕਿਸੈ ਤਾਣੁ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 29,
+        "verse": {
+          "gurmukhi": "gwvY ko dwiq jwxY nIswxu ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਦਾਤਿ ਜਾਣੈ ਨੀਸਾਣੁ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 30,
+        "verse": {
+          "gurmukhi": "gwvY ko gux vifAweIAw cwr ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਗੁਣ ਵਡਿਆਈਆ ਚਾਰ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 31,
+        "verse": {
+          "gurmukhi": "gwvY ko ividAw ivKmu vIcwru ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਵਿਦਿਆ ਵਿਖਮੁ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 32,
+        "verse": {
+          "gurmukhi": "gwvY ko swij kry qnu Kyh ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਸਾਜਿ ਕਰੇ ਤਨੁ ਖੇਹ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 33,
+        "verse": {
+          "gurmukhi": "gwvY ko jIA lY iPir dyh ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਜੀਅ ਲੈ ਫਿਰਿ ਦੇਹ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 34,
+        "verse": {
+          "gurmukhi": "gwvY ko jwpY idsY dUir ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਜਾਪੈ ਦਿਸੈ ਦੂਰਿ ॥"
+        },
+        "pageNo": 1,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 35,
+        "verse": {
+          "gurmukhi": "gwvY ko vyKY hwdrw hdUir ]",
+          "unicode": "ਗਾਵੈ ਕੋ ਵੇਖੈ ਹਾਦਰਾ ਹਦੂਰਿ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 36,
+        "verse": {
+          "gurmukhi": "kQnw kQI n AwvY qoit ]",
+          "unicode": "ਕਥਨਾ ਕਥੀ ਨ ਆਵੈ ਤੋਟਿ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 37,
+        "verse": {
+          "gurmukhi": "kiQ kiQ kQI kotI koit koit ]",
+          "unicode": "ਕਥਿ ਕਥਿ ਕਥੀ ਕੋਟੀ ਕੋਟਿ ਕੋਟਿ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 38,
+        "verse": {
+          "gurmukhi": "dydw dy lYdy Qik pwih ]",
+          "unicode": "ਦੇਦਾ ਦੇ ਲੈਦੇ ਥਕਿ ਪਾਹਿ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 39,
+        "verse": {
+          "gurmukhi": "jugw jugMqir KwhI Kwih ]",
+          "unicode": "ਜੁਗਾ ਜੁਗੰਤਰਿ ਖਾਹੀ ਖਾਹਿ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 40,
+        "verse": {
+          "gurmukhi": "hukmI hukmu clwey rwhu ]",
+          "unicode": "ਹੁਕਮੀ ਹੁਕਮੁ ਚਲਾਏ ਰਾਹੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 6,
+      "verse": {
+        "verseId": 41,
+        "verse": {
+          "gurmukhi": "nwnk ivgsY vyprvwhu ]3]",
+          "unicode": "ਨਾਨਕ ਵਿਗਸੈ ਵੇਪਰਵਾਹੁ ॥੩॥"
+        },
+        "pageNo": 2,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 42,
+        "verse": {
+          "gurmukhi": "swcw swihbu swcu nwie BwiKAw Bwau Apwru ]",
+          "unicode": "ਸਾਚਾ ਸਾਹਿਬੁ ਸਾਚੁ ਨਾਇ ਭਾਖਿਆ ਭਾਉ ਅਪਾਰੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 43,
+        "verse": {
+          "gurmukhi": "AwKih mMgih dyih dyih dwiq kry dwqwru ]",
+          "unicode": "ਆਖਹਿ ਮੰਗਹਿ ਦੇਹਿ ਦੇਹਿ ਦਾਤਿ ਕਰੇ ਦਾਤਾਰੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 44,
+        "verse": {
+          "gurmukhi": "Pyir ik AgY rKIAY ijqu idsY drbwru ]",
+          "unicode": "ਫੇਰਿ ਕਿ ਅਗੈ ਰਖੀਐ ਜਿਤੁ ਦਿਸੈ ਦਰਬਾਰੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 45,
+        "verse": {
+          "gurmukhi": "muhO ik bolxu bolIAY ijqu suix Dry ipAwru ]",
+          "unicode": "ਮੁਹੌ ਕਿ ਬੋਲਣੁ ਬੋਲੀਐ ਜਿਤੁ ਸੁਣਿ ਧਰੇ ਪਿਆਰੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 46,
+        "verse": {
+          "gurmukhi": "AMimRq vylw scu nwau vifAweI vIcwru ]",
+          "unicode": "ਅੰਮ੍ਰਿਤ ਵੇਲਾ ਸਚੁ ਨਾਉ ਵਡਿਆਈ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 47,
+        "verse": {
+          "gurmukhi": "krmI AwvY kpVw ndrI moKu duAwru ]",
+          "unicode": "ਕਰਮੀ ਆਵੈ ਕਪੜਾ ਨਦਰੀ ਮੋਖੁ ਦੁਆਰੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 7,
+      "verse": {
+        "verseId": 48,
+        "verse": {
+          "gurmukhi": "nwnk eyvY jwxIAY sBu Awpy sicAwru ]4]",
+          "unicode": "ਨਾਨਕ ਏਵੈ ਜਾਣੀਐ ਸਭੁ ਆਪੇ ਸਚਿਆਰੁ ॥੪॥"
+        },
+        "pageNo": 2,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 49,
+        "verse": {
+          "gurmukhi": "QwipAw n jwie kIqw n hoie ]",
+          "unicode": "ਥਾਪਿਆ ਨ ਜਾਇ ਕੀਤਾ ਨ ਹੋਇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 50,
+        "verse": {
+          "gurmukhi": "Awpy Awip inrMjnu soie ]",
+          "unicode": "ਆਪੇ ਆਪਿ ਨਿਰੰਜਨੁ ਸੋਇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 51,
+        "verse": {
+          "gurmukhi": "ijin syivAw iqin pwieAw mwnu ]",
+          "unicode": "ਜਿਨਿ ਸੇਵਿਆ ਤਿਨਿ ਪਾਇਆ ਮਾਨੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 52,
+        "verse": {
+          "gurmukhi": "nwnk gwvIAY guxI inDwnu ]",
+          "unicode": "ਨਾਨਕ ਗਾਵੀਐ ਗੁਣੀ ਨਿਧਾਨੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 53,
+        "verse": {
+          "gurmukhi": "gwvIAY suxIAY min rKIAY Bwau ]",
+          "unicode": "ਗਾਵੀਐ ਸੁਣੀਐ ਮਨਿ ਰਖੀਐ ਭਾਉ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 54,
+        "verse": {
+          "gurmukhi": "duKu prhir suKu Gir lY jwie ]",
+          "unicode": "ਦੁਖੁ ਪਰਹਰਿ ਸੁਖੁ ਘਰਿ ਲੈ ਜਾਇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 55,
+        "verse": {
+          "gurmukhi": "gurmuiK nwdM gurmuiK vydM gurmuiK rihAw smweI ]",
+          "unicode": "ਗੁਰਮੁਖਿ ਨਾਦੰ ਗੁਰਮੁਖਿ ਵੇਦੰ ਗੁਰਮੁਖਿ ਰਹਿਆ ਸਮਾਈ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 56,
+        "verse": {
+          "gurmukhi": "guru eIsru guru gorKu brmw guru pwrbqI mweI ]",
+          "unicode": "ਗੁਰੁ ਈਸਰੁ ਗੁਰੁ ਗੋਰਖੁ ਬਰਮਾ ਗੁਰੁ ਪਾਰਬਤੀ ਮਾਈ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 57,
+        "verse": {
+          "gurmukhi": "jy hau jwxw AwKw nwhI khxw kQnu n jweI ]",
+          "unicode": "ਜੇ ਹਉ ਜਾਣਾ ਆਖਾ ਨਾਹੀ ਕਹਣਾ ਕਥਨੁ ਨ ਜਾਈ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 58,
+        "verse": {
+          "gurmukhi": "gurw iek dyih buJweI ]",
+          "unicode": "ਗੁਰਾ ਇਕ ਦੇਹਿ ਬੁਝਾਈ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 8,
+      "verse": {
+        "verseId": 59,
+        "verse": {
+          "gurmukhi": "sBnw jIAw kw ieku dwqw so mY ivsir n jweI ]5]",
+          "unicode": "ਸਭਨਾ ਜੀਆ ਕਾ ਇਕੁ ਦਾਤਾ ਸੋ ਮੈ ਵਿਸਰਿ ਨ ਜਾਈ ॥੫॥"
+        },
+        "pageNo": 2,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 9,
+      "verse": {
+        "verseId": 60,
+        "verse": {
+          "gurmukhi": "qIriQ nwvw jy iqsu Bwvw ivxu Bwxy ik nwie krI ]",
+          "unicode": "ਤੀਰਥਿ ਨਾਵਾ ਜੇ ਤਿਸੁ ਭਾਵਾ ਵਿਣੁ ਭਾਣੇ ਕਿ ਨਾਇ ਕਰੀ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 9,
+      "verse": {
+        "verseId": 61,
+        "verse": {
+          "gurmukhi": "jyqI isriT aupweI vyKw ivxu krmw ik imlY leI ]",
+          "unicode": "ਜੇਤੀ ਸਿਰਠਿ ਉਪਾਈ ਵੇਖਾ ਵਿਣੁ ਕਰਮਾ ਕਿ ਮਿਲੈ ਲਈ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 9,
+      "verse": {
+        "verseId": 62,
+        "verse": {
+          "gurmukhi": "miq ivic rqn jvwhr mwixk jy iek gur kI isK suxI ]",
+          "unicode": "ਮਤਿ ਵਿਚਿ ਰਤਨ ਜਵਾਹਰ ਮਾਣਿਕ ਜੇ ਇਕ ਗੁਰ ਕੀ ਸਿਖ ਸੁਣੀ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 9,
+      "verse": {
+        "verseId": 63,
+        "verse": {
+          "gurmukhi": "gurw iek dyih buJweI ]",
+          "unicode": "ਗੁਰਾ ਇਕ ਦੇਹਿ ਬੁਝਾਈ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 9,
+      "verse": {
+        "verseId": 64,
+        "verse": {
+          "gurmukhi": "sBnw jIAw kw ieku dwqw so mY ivsir n jweI ]6]",
+          "unicode": "ਸਭਨਾ ਜੀਆ ਕਾ ਇਕੁ ਦਾਤਾ ਸੋ ਮੈ ਵਿਸਰਿ ਨ ਜਾਈ ॥੬॥"
+        },
+        "pageNo": 2,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 65,
+        "verse": {
+          "gurmukhi": "jy jug cwry Awrjw hor dsUxI hoie ]",
+          "unicode": "ਜੇ ਜੁਗ ਚਾਰੇ ਆਰਜਾ ਹੋਰ ਦਸੂਣੀ ਹੋਇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 66,
+        "verse": {
+          "gurmukhi": "nvw KMfw ivic jwxIAY nwil clY sBu koie ]",
+          "unicode": "ਨਵਾ ਖੰਡਾ ਵਿਚਿ ਜਾਣੀਐ ਨਾਲਿ ਚਲੈ ਸਭੁ ਕੋਇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 67,
+        "verse": {
+          "gurmukhi": "cMgw nwau rKwie kY jsu kIriq jig lyie ]",
+          "unicode": "ਚੰਗਾ ਨਾਉ ਰਖਾਇ ਕੈ ਜਸੁ ਕੀਰਤਿ ਜਗਿ ਲੇਇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 68,
+        "verse": {
+          "gurmukhi": "jy iqsu ndir n AwveI q vwq n puCY ky ]",
+          "unicode": "ਜੇ ਤਿਸੁ ਨਦਰਿ ਨ ਆਵਈ ਤ ਵਾਤ ਨ ਪੁਛੈ ਕੇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 69,
+        "verse": {
+          "gurmukhi": "kItw AMdir kItu kir dosI dosu Dry ]",
+          "unicode": "ਕੀਟਾ ਅੰਦਰਿ ਕੀਟੁ ਕਰਿ ਦੋਸੀ ਦੋਸੁ ਧਰੇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 70,
+        "verse": {
+          "gurmukhi": "nwnk inrguix guxu kry guxvMiqAw guxu dy ]",
+          "unicode": "ਨਾਨਕ ਨਿਰਗੁਣਿ ਗੁਣੁ ਕਰੇ ਗੁਣਵੰਤਿਆ ਗੁਣੁ ਦੇ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 10,
+      "verse": {
+        "verseId": 71,
+        "verse": {
+          "gurmukhi": "qyhw koie n suJeI ij iqsu guxu koie kry ]7]",
+          "unicode": "ਤੇਹਾ ਕੋਇ ਨ ਸੁਝਈ ਜਿ ਤਿਸੁ ਗੁਣੁ ਕੋਇ ਕਰੇ ॥੭॥"
+        },
+        "pageNo": 2,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 11,
+      "verse": {
+        "verseId": 72,
+        "verse": {
+          "gurmukhi": "suixAY isD pIr suir nwQ ]",
+          "unicode": "ਸੁਣਿਐ ਸਿਧ ਪੀਰ ਸੁਰਿ ਨਾਥ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 11,
+      "verse": {
+        "verseId": 73,
+        "verse": {
+          "gurmukhi": "suixAY Driq Dvl Awkws ]",
+          "unicode": "ਸੁਣਿਐ ਧਰਤਿ ਧਵਲ ਆਕਾਸ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 11,
+      "verse": {
+        "verseId": 74,
+        "verse": {
+          "gurmukhi": "suixAY dIp loA pwqwl ]",
+          "unicode": "ਸੁਣਿਐ ਦੀਪ ਲੋਅ ਪਾਤਾਲ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 11,
+      "verse": {
+        "verseId": 75,
+        "verse": {
+          "gurmukhi": "suixAY poih n skY kwlu ]",
+          "unicode": "ਸੁਣਿਐ ਪੋਹਿ ਨ ਸਕੈ ਕਾਲੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 11,
+      "verse": {
+        "verseId": 76,
+        "verse": {
+          "gurmukhi": "nwnk Bgqw sdw ivgwsu ]",
+          "unicode": "ਨਾਨਕ ਭਗਤਾ ਸਦਾ ਵਿਗਾਸੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 11,
+      "verse": {
+        "verseId": 77,
+        "verse": {
+          "gurmukhi": "suixAY dUK pwp kw nwsu ]8]",
+          "unicode": "ਸੁਣਿਐ ਦੂਖ ਪਾਪ ਕਾ ਨਾਸੁ ॥੮॥"
+        },
+        "pageNo": 2,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 12,
+      "verse": {
+        "verseId": 78,
+        "verse": {
+          "gurmukhi": "suixAY eIsru brmw ieMdu ]",
+          "unicode": "ਸੁਣਿਐ ਈਸਰੁ ਬਰਮਾ ਇੰਦੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 12,
+      "verse": {
+        "verseId": 79,
+        "verse": {
+          "gurmukhi": "suixAY muiK swlwhx mMdu ]",
+          "unicode": "ਸੁਣਿਐ ਮੁਖਿ ਸਾਲਾਹਣ ਮੰਦੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 12,
+      "verse": {
+        "verseId": 80,
+        "verse": {
+          "gurmukhi": "suixAY jog jugiq qin Byd ]",
+          "unicode": "ਸੁਣਿਐ ਜੋਗ ਜੁਗਤਿ ਤਨਿ ਭੇਦ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 12,
+      "verse": {
+        "verseId": 81,
+        "verse": {
+          "gurmukhi": "suixAY swsq isimRiq vyd ]",
+          "unicode": "ਸੁਣਿਐ ਸਾਸਤ ਸਿਮ੍ਰਿਤਿ ਵੇਦ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 12,
+      "verse": {
+        "verseId": 82,
+        "verse": {
+          "gurmukhi": "nwnk Bgqw sdw ivgwsu ]",
+          "unicode": "ਨਾਨਕ ਭਗਤਾ ਸਦਾ ਵਿਗਾਸੁ ॥"
+        },
+        "pageNo": 2,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 12,
+      "verse": {
+        "verseId": 83,
+        "verse": {
+          "gurmukhi": "suixAY dUK pwp kw nwsu ]9]",
+          "unicode": "ਸੁਣਿਐ ਦੂਖ ਪਾਪ ਕਾ ਨਾਸੁ ॥੯॥"
+        },
+        "pageNo": 3,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 13,
+      "verse": {
+        "verseId": 84,
+        "verse": {
+          "gurmukhi": "suixAY squ sMqoKu igAwnu ]",
+          "unicode": "ਸੁਣਿਐ ਸਤੁ ਸੰਤੋਖੁ ਗਿਆਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 13,
+      "verse": {
+        "verseId": 85,
+        "verse": {
+          "gurmukhi": "suixAY ATsiT kw iesnwnu ]",
+          "unicode": "ਸੁਣਿਐ ਅਠਸਠਿ ਕਾ ਇਸਨਾਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 13,
+      "verse": {
+        "verseId": 86,
+        "verse": {
+          "gurmukhi": "suixAY piV piV pwvih mwnu ]",
+          "unicode": "ਸੁਣਿਐ ਪੜਿ ਪੜਿ ਪਾਵਹਿ ਮਾਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 13,
+      "verse": {
+        "verseId": 87,
+        "verse": {
+          "gurmukhi": "suixAY lwgY shij iDAwnu ]",
+          "unicode": "ਸੁਣਿਐ ਲਾਗੈ ਸਹਜਿ ਧਿਆਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 13,
+      "verse": {
+        "verseId": 88,
+        "verse": {
+          "gurmukhi": "nwnk Bgqw sdw ivgwsu ]",
+          "unicode": "ਨਾਨਕ ਭਗਤਾ ਸਦਾ ਵਿਗਾਸੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 13,
+      "verse": {
+        "verseId": 89,
+        "verse": {
+          "gurmukhi": "suixAY dUK pwp kw nwsu ]10]",
+          "unicode": "ਸੁਣਿਐ ਦੂਖ ਪਾਪ ਕਾ ਨਾਸੁ ॥੧੦॥"
+        },
+        "pageNo": 3,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 14,
+      "verse": {
+        "verseId": 90,
+        "verse": {
+          "gurmukhi": "suixAY srw guxw ky gwh ]",
+          "unicode": "ਸੁਣਿਐ ਸਰਾ ਗੁਣਾ ਕੇ ਗਾਹ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 14,
+      "verse": {
+        "verseId": 91,
+        "verse": {
+          "gurmukhi": "suixAY syK pIr pwiqswh ]",
+          "unicode": "ਸੁਣਿਐ ਸੇਖ ਪੀਰ ਪਾਤਿਸਾਹ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 14,
+      "verse": {
+        "verseId": 92,
+        "verse": {
+          "gurmukhi": "suixAY AMDy pwvih rwhu ]",
+          "unicode": "ਸੁਣਿਐ ਅੰਧੇ ਪਾਵਹਿ ਰਾਹੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 14,
+      "verse": {
+        "verseId": 93,
+        "verse": {
+          "gurmukhi": "suixAY hwQ hovY Asgwhu ]",
+          "unicode": "ਸੁਣਿਐ ਹਾਥ ਹੋਵੈ ਅਸਗਾਹੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 14,
+      "verse": {
+        "verseId": 94,
+        "verse": {
+          "gurmukhi": "nwnk Bgqw sdw ivgwsu ]",
+          "unicode": "ਨਾਨਕ ਭਗਤਾ ਸਦਾ ਵਿਗਾਸੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 14,
+      "verse": {
+        "verseId": 95,
+        "verse": {
+          "gurmukhi": "suixAY dUK pwp kw nwsu ]11]",
+          "unicode": "ਸੁਣਿਐ ਦੂਖ ਪਾਪ ਕਾ ਨਾਸੁ ॥੧੧॥"
+        },
+        "pageNo": 3,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 15,
+      "verse": {
+        "verseId": 96,
+        "verse": {
+          "gurmukhi": "mMny kI giq khI n jwie ]",
+          "unicode": "ਮੰਨੇ ਕੀ ਗਤਿ ਕਹੀ ਨ ਜਾਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 15,
+      "verse": {
+        "verseId": 97,
+        "verse": {
+          "gurmukhi": "jy ko khY ipCY pCuqwie ]",
+          "unicode": "ਜੇ ਕੋ ਕਹੈ ਪਿਛੈ ਪਛੁਤਾਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 15,
+      "verse": {
+        "verseId": 98,
+        "verse": {
+          "gurmukhi": "kwgid klm n ilKxhwru ]",
+          "unicode": "ਕਾਗਦਿ ਕਲਮ ਨ ਲਿਖਣਹਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 15,
+      "verse": {
+        "verseId": 99,
+        "verse": {
+          "gurmukhi": "mMny kw bih krin vIcwru ]",
+          "unicode": "ਮੰਨੇ ਕਾ ਬਹਿ ਕਰਨਿ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 15,
+      "verse": {
+        "verseId": 100,
+        "verse": {
+          "gurmukhi": "AYsw nwmu inrMjnu hoie ]",
+          "unicode": "ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 15,
+      "verse": {
+        "verseId": 101,
+        "verse": {
+          "gurmukhi": "jy ko mMin jwxY min koie ]12]",
+          "unicode": "ਜੇ ਕੋ ਮੰਨਿ ਜਾਣੈ ਮਨਿ ਕੋਇ ॥੧੨॥"
+        },
+        "pageNo": 3,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 16,
+      "verse": {
+        "verseId": 102,
+        "verse": {
+          "gurmukhi": "mMnY suriq hovY min buiD ]",
+          "unicode": "ਮੰਨੈ ਸੁਰਤਿ ਹੋਵੈ ਮਨਿ ਬੁਧਿ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 16,
+      "verse": {
+        "verseId": 103,
+        "verse": {
+          "gurmukhi": "mMnY sgl Bvx kI suiD ]",
+          "unicode": "ਮੰਨੈ ਸਗਲ ਭਵਣ ਕੀ ਸੁਧਿ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 16,
+      "verse": {
+        "verseId": 104,
+        "verse": {
+          "gurmukhi": "mMnY muih cotw nw Kwie ]",
+          "unicode": "ਮੰਨੈ ਮੁਹਿ ਚੋਟਾ ਨਾ ਖਾਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 16,
+      "verse": {
+        "verseId": 105,
+        "verse": {
+          "gurmukhi": "mMnY jm kY swiQ n jwie ]",
+          "unicode": "ਮੰਨੈ ਜਮ ਕੈ ਸਾਥਿ ਨ ਜਾਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 16,
+      "verse": {
+        "verseId": 106,
+        "verse": {
+          "gurmukhi": "AYsw nwmu inrMjnu hoie ]",
+          "unicode": "ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 16,
+      "verse": {
+        "verseId": 107,
+        "verse": {
+          "gurmukhi": "jy ko mMin jwxY min koie ]13]",
+          "unicode": "ਜੇ ਕੋ ਮੰਨਿ ਜਾਣੈ ਮਨਿ ਕੋਇ ॥੧੩॥"
+        },
+        "pageNo": 3,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 17,
+      "verse": {
+        "verseId": 108,
+        "verse": {
+          "gurmukhi": "mMnY mwrig Twk n pwie ]",
+          "unicode": "ਮੰਨੈ ਮਾਰਗਿ ਠਾਕ ਨ ਪਾਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 17,
+      "verse": {
+        "verseId": 109,
+        "verse": {
+          "gurmukhi": "mMnY piq isau prgtu jwie ]",
+          "unicode": "ਮੰਨੈ ਪਤਿ ਸਿਉ ਪਰਗਟੁ ਜਾਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 17,
+      "verse": {
+        "verseId": 110,
+        "verse": {
+          "gurmukhi": "mMnY mgu n clY pMQu ]",
+          "unicode": "ਮੰਨੈ ਮਗੁ ਨ ਚਲੈ ਪੰਥੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 17,
+      "verse": {
+        "verseId": 111,
+        "verse": {
+          "gurmukhi": "mMnY Drm syqI snbMDu ]",
+          "unicode": "ਮੰਨੈ ਧਰਮ ਸੇਤੀ ਸਨਬੰਧੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 17,
+      "verse": {
+        "verseId": 112,
+        "verse": {
+          "gurmukhi": "AYsw nwmu inrMjnu hoie ]",
+          "unicode": "ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 17,
+      "verse": {
+        "verseId": 113,
+        "verse": {
+          "gurmukhi": "jy ko mMin jwxY min koie ]14]",
+          "unicode": "ਜੇ ਕੋ ਮੰਨਿ ਜਾਣੈ ਮਨਿ ਕੋਇ ॥੧੪॥"
+        },
+        "pageNo": 3,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 18,
+      "verse": {
+        "verseId": 114,
+        "verse": {
+          "gurmukhi": "mMnY pwvih moKu duAwru ]",
+          "unicode": "ਮੰਨੈ ਪਾਵਹਿ ਮੋਖੁ ਦੁਆਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 18,
+      "verse": {
+        "verseId": 115,
+        "verse": {
+          "gurmukhi": "mMnY prvwrY swDwru ]",
+          "unicode": "ਮੰਨੈ ਪਰਵਾਰੈ ਸਾਧਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 18,
+      "verse": {
+        "verseId": 116,
+        "verse": {
+          "gurmukhi": "mMnY qrY qwry guru isK ]",
+          "unicode": "ਮੰਨੈ ਤਰੈ ਤਾਰੇ ਗੁਰੁ ਸਿਖ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 18,
+      "verse": {
+        "verseId": 117,
+        "verse": {
+          "gurmukhi": "mMnY nwnk Bvih n iBK ]",
+          "unicode": "ਮੰਨੈ ਨਾਨਕ ਭਵਹਿ ਨ ਭਿਖ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 18,
+      "verse": {
+        "verseId": 118,
+        "verse": {
+          "gurmukhi": "AYsw nwmu inrMjnu hoie ]",
+          "unicode": "ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 18,
+      "verse": {
+        "verseId": 119,
+        "verse": {
+          "gurmukhi": "jy ko mMin jwxY min koie ]15]",
+          "unicode": "ਜੇ ਕੋ ਮੰਨਿ ਜਾਣੈ ਮਨਿ ਕੋਇ ॥੧੫॥"
+        },
+        "pageNo": 3,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 120,
+        "verse": {
+          "gurmukhi": "pMc prvwx pMc prDwnu ]",
+          "unicode": "ਪੰਚ ਪਰਵਾਣ ਪੰਚ ਪਰਧਾਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 121,
+        "verse": {
+          "gurmukhi": "pMcy pwvih drgih mwnu ]",
+          "unicode": "ਪੰਚੇ ਪਾਵਹਿ ਦਰਗਹਿ ਮਾਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 122,
+        "verse": {
+          "gurmukhi": "pMcy sohih dir rwjwnu ]",
+          "unicode": "ਪੰਚੇ ਸੋਹਹਿ ਦਰਿ ਰਾਜਾਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 123,
+        "verse": {
+          "gurmukhi": "pMcw kw guru eyku iDAwnu ]",
+          "unicode": "ਪੰਚਾ ਕਾ ਗੁਰੁ ਏਕੁ ਧਿਆਨੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 124,
+        "verse": {
+          "gurmukhi": "jy ko khY krY vIcwru ]",
+          "unicode": "ਜੇ ਕੋ ਕਹੈ ਕਰੈ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 125,
+        "verse": {
+          "gurmukhi": "krqy kY krxY nwhI sumwru ]",
+          "unicode": "ਕਰਤੇ ਕੈ ਕਰਣੈ ਨਾਹੀ ਸੁਮਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 126,
+        "verse": {
+          "gurmukhi": "DOlu Drmu dieAw kw pUqu ]",
+          "unicode": "ਧੌਲੁ ਧਰਮੁ ਦਇਆ ਕਾ ਪੂਤੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 127,
+        "verse": {
+          "gurmukhi": "sMqoKu Qwip riKAw ijin sUiq ]",
+          "unicode": "ਸੰਤੋਖੁ ਥਾਪਿ ਰਖਿਆ ਜਿਨਿ ਸੂਤਿ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 128,
+        "verse": {
+          "gurmukhi": "jy ko buJY hovY sicAwru ]",
+          "unicode": "ਜੇ ਕੋ ਬੁਝੈ ਹੋਵੈ ਸਚਿਆਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 129,
+        "verse": {
+          "gurmukhi": "DvlY aupir kyqw Bwru ]",
+          "unicode": "ਧਵਲੈ ਉਪਰਿ ਕੇਤਾ ਭਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 130,
+        "verse": {
+          "gurmukhi": "DrqI horu prY horu horu ]",
+          "unicode": "ਧਰਤੀ ਹੋਰੁ ਪਰੈ ਹੋਰੁ ਹੋਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 131,
+        "verse": {
+          "gurmukhi": "iqs qy Bwru qlY kvxu joru ]",
+          "unicode": "ਤਿਸ ਤੇ ਭਾਰੁ ਤਲੈ ਕਵਣੁ ਜੋਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 132,
+        "verse": {
+          "gurmukhi": "jIA jwiq rMgw ky nwv ]",
+          "unicode": "ਜੀਅ ਜਾਤਿ ਰੰਗਾ ਕੇ ਨਾਵ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 133,
+        "verse": {
+          "gurmukhi": "sBnw iliKAw vuVI klwm ]",
+          "unicode": "ਸਭਨਾ ਲਿਖਿਆ ਵੁੜੀ ਕਲਾਮ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 134,
+        "verse": {
+          "gurmukhi": "eyhu lyKw iliK jwxY koie ]",
+          "unicode": "ਏਹੁ ਲੇਖਾ ਲਿਖਿ ਜਾਣੈ ਕੋਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 135,
+        "verse": {
+          "gurmukhi": "lyKw iliKAw kyqw hoie ]",
+          "unicode": "ਲੇਖਾ ਲਿਖਿਆ ਕੇਤਾ ਹੋਇ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 136,
+        "verse": {
+          "gurmukhi": "kyqw qwxu suAwilhu rUpu ]",
+          "unicode": "ਕੇਤਾ ਤਾਣੁ ਸੁਆਲਿਹੁ ਰੂਪੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 137,
+        "verse": {
+          "gurmukhi": "kyqI dwiq jwxY kOxu kUqu ]",
+          "unicode": "ਕੇਤੀ ਦਾਤਿ ਜਾਣੈ ਕੌਣੁ ਕੂਤੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 138,
+        "verse": {
+          "gurmukhi": "kIqw pswau eyko kvwau ]",
+          "unicode": "ਕੀਤਾ ਪਸਾਉ ਏਕੋ ਕਵਾਉ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 139,
+        "verse": {
+          "gurmukhi": "iqs qy hoey lK drIAwau ]",
+          "unicode": "ਤਿਸ ਤੇ ਹੋਏ ਲਖ ਦਰੀਆਉ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 140,
+        "verse": {
+          "gurmukhi": "kudriq kvx khw vIcwru ]",
+          "unicode": "ਕੁਦਰਤਿ ਕਵਣ ਕਹਾ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 141,
+        "verse": {
+          "gurmukhi": "vwirAw n jwvw eyk vwr ]",
+          "unicode": "ਵਾਰਿਆ ਨ ਜਾਵਾ ਏਕ ਵਾਰ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 142,
+        "verse": {
+          "gurmukhi": "jo quDu BwvY sweI BlI kwr ]",
+          "unicode": "ਜੋ ਤੁਧੁ ਭਾਵੈ ਸਾਈ ਭਲੀ ਕਾਰ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 19,
+      "verse": {
+        "verseId": 143,
+        "verse": {
+          "gurmukhi": "qU sdw slwmiq inrMkwr ]16]",
+          "unicode": "ਤੂ ਸਦਾ ਸਲਾਮਤਿ ਨਿਰੰਕਾਰ ॥੧੬॥"
+        },
+        "pageNo": 3,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 144,
+        "verse": {
+          "gurmukhi": "AsMK jp AsMK Bwau ]",
+          "unicode": "ਅਸੰਖ ਜਪ ਅਸੰਖ ਭਾਉ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 145,
+        "verse": {
+          "gurmukhi": "AsMK pUjw AsMK qp qwau ]",
+          "unicode": "ਅਸੰਖ ਪੂਜਾ ਅਸੰਖ ਤਪ ਤਾਉ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 146,
+        "verse": {
+          "gurmukhi": "AsMK grMQ muiK vyd pwT ]",
+          "unicode": "ਅਸੰਖ ਗਰੰਥ ਮੁਖਿ ਵੇਦ ਪਾਠ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 147,
+        "verse": {
+          "gurmukhi": "AsMK jog min rhih audws ]",
+          "unicode": "ਅਸੰਖ ਜੋਗ ਮਨਿ ਰਹਹਿ ਉਦਾਸ ॥"
+        },
+        "pageNo": 3,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 148,
+        "verse": {
+          "gurmukhi": "AsMK Bgq gux igAwn vIcwr ]",
+          "unicode": "ਅਸੰਖ ਭਗਤ ਗੁਣ ਗਿਆਨ ਵੀਚਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 149,
+        "verse": {
+          "gurmukhi": "AsMK sqI AsMK dwqwr ]",
+          "unicode": "ਅਸੰਖ ਸਤੀ ਅਸੰਖ ਦਾਤਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 150,
+        "verse": {
+          "gurmukhi": "AsMK sUr muh BK swr ]",
+          "unicode": "ਅਸੰਖ ਸੂਰ ਮੁਹ ਭਖ ਸਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 151,
+        "verse": {
+          "gurmukhi": "AsMK moin ilv lwie qwr ]",
+          "unicode": "ਅਸੰਖ ਮੋਨਿ ਲਿਵ ਲਾਇ ਤਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 152,
+        "verse": {
+          "gurmukhi": "kudriq kvx khw vIcwru ]",
+          "unicode": "ਕੁਦਰਤਿ ਕਵਣ ਕਹਾ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 153,
+        "verse": {
+          "gurmukhi": "vwirAw n jwvw eyk vwr ]",
+          "unicode": "ਵਾਰਿਆ ਨ ਜਾਵਾ ਏਕ ਵਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 154,
+        "verse": {
+          "gurmukhi": "jo quDu BwvY sweI BlI kwr ]",
+          "unicode": "ਜੋ ਤੁਧੁ ਭਾਵੈ ਸਾਈ ਭਲੀ ਕਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 20,
+      "verse": {
+        "verseId": 155,
+        "verse": {
+          "gurmukhi": "qU sdw slwmiq inrMkwr ]17]",
+          "unicode": "ਤੂ ਸਦਾ ਸਲਾਮਤਿ ਨਿਰੰਕਾਰ ॥੧੭॥"
+        },
+        "pageNo": 4,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 156,
+        "verse": {
+          "gurmukhi": "AsMK mUrK AMD Gor ]",
+          "unicode": "ਅਸੰਖ ਮੂਰਖ ਅੰਧ ਘੋਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 157,
+        "verse": {
+          "gurmukhi": "AsMK cor hrwmKor ]",
+          "unicode": "ਅਸੰਖ ਚੋਰ ਹਰਾਮਖੋਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 158,
+        "verse": {
+          "gurmukhi": "AsMK Amr kir jwih jor ]",
+          "unicode": "ਅਸੰਖ ਅਮਰ ਕਰਿ ਜਾਹਿ ਜੋਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 159,
+        "verse": {
+          "gurmukhi": "AsMK glvF hiqAw kmwih ]",
+          "unicode": "ਅਸੰਖ ਗਲਵਢ ਹਤਿਆ ਕਮਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 160,
+        "verse": {
+          "gurmukhi": "AsMK pwpI pwpu kir jwih ]",
+          "unicode": "ਅਸੰਖ ਪਾਪੀ ਪਾਪੁ ਕਰਿ ਜਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 161,
+        "verse": {
+          "gurmukhi": "AsMK kUiVAwr kUVy iPrwih ]",
+          "unicode": "ਅਸੰਖ ਕੂੜਿਆਰ ਕੂੜੇ ਫਿਰਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 162,
+        "verse": {
+          "gurmukhi": "AsMK mlyC mlu BiK Kwih ]",
+          "unicode": "ਅਸੰਖ ਮਲੇਛ ਮਲੁ ਭਖਿ ਖਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 163,
+        "verse": {
+          "gurmukhi": "AsMK inMdk isir krih Bwru ]",
+          "unicode": "ਅਸੰਖ ਨਿੰਦਕ ਸਿਰਿ ਕਰਹਿ ਭਾਰੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 164,
+        "verse": {
+          "gurmukhi": "nwnku nIcu khY vIcwru ]",
+          "unicode": "ਨਾਨਕੁ ਨੀਚੁ ਕਹੈ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 165,
+        "verse": {
+          "gurmukhi": "vwirAw n jwvw eyk vwr ]",
+          "unicode": "ਵਾਰਿਆ ਨ ਜਾਵਾ ਏਕ ਵਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 166,
+        "verse": {
+          "gurmukhi": "jo quDu BwvY sweI BlI kwr ]",
+          "unicode": "ਜੋ ਤੁਧੁ ਭਾਵੈ ਸਾਈ ਭਲੀ ਕਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 21,
+      "verse": {
+        "verseId": 167,
+        "verse": {
+          "gurmukhi": "qU sdw slwmiq inrMkwr ]18]",
+          "unicode": "ਤੂ ਸਦਾ ਸਲਾਮਤਿ ਨਿਰੰਕਾਰ ॥੧੮॥"
+        },
+        "pageNo": 4,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 168,
+        "verse": {
+          "gurmukhi": "AsMK nwv AsMK Qwv ]",
+          "unicode": "ਅਸੰਖ ਨਾਵ ਅਸੰਖ ਥਾਵ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 169,
+        "verse": {
+          "gurmukhi": "AgMm AgMm AsMK loA ]",
+          "unicode": "ਅਗੰਮ ਅਗੰਮ ਅਸੰਖ ਲੋਅ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 170,
+        "verse": {
+          "gurmukhi": "AsMK khih isir Bwru hoie ]",
+          "unicode": "ਅਸੰਖ ਕਹਹਿ ਸਿਰਿ ਭਾਰੁ ਹੋਇ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 171,
+        "verse": {
+          "gurmukhi": "AKrI nwmu AKrI swlwh ]",
+          "unicode": "ਅਖਰੀ ਨਾਮੁ ਅਖਰੀ ਸਾਲਾਹ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 172,
+        "verse": {
+          "gurmukhi": "AKrI igAwnu gIq gux gwh ]",
+          "unicode": "ਅਖਰੀ ਗਿਆਨੁ ਗੀਤ ਗੁਣ ਗਾਹ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 173,
+        "verse": {
+          "gurmukhi": "AKrI ilKxu bolxu bwix ]",
+          "unicode": "ਅਖਰੀ ਲਿਖਣੁ ਬੋਲਣੁ ਬਾਣਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 174,
+        "verse": {
+          "gurmukhi": "AKrw isir sMjogu vKwix ]",
+          "unicode": "ਅਖਰਾ ਸਿਰਿ ਸੰਜੋਗੁ ਵਖਾਣਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 175,
+        "verse": {
+          "gurmukhi": "ijin eyih ilKy iqsu isir nwih ]",
+          "unicode": "ਜਿਨਿ ਏਹਿ ਲਿਖੇ ਤਿਸੁ ਸਿਰਿ ਨਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 176,
+        "verse": {
+          "gurmukhi": "ijv Purmwey iqv iqv pwih ]",
+          "unicode": "ਜਿਵ ਫੁਰਮਾਏ ਤਿਵ ਤਿਵ ਪਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 177,
+        "verse": {
+          "gurmukhi": "jyqw kIqw qyqw nwau ]",
+          "unicode": "ਜੇਤਾ ਕੀਤਾ ਤੇਤਾ ਨਾਉ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 178,
+        "verse": {
+          "gurmukhi": "ivxu nwvY nwhI ko Qwau ]",
+          "unicode": "ਵਿਣੁ ਨਾਵੈ ਨਾਹੀ ਕੋ ਥਾਉ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 179,
+        "verse": {
+          "gurmukhi": "kudriq kvx khw vIcwru ]",
+          "unicode": "ਕੁਦਰਤਿ ਕਵਣ ਕਹਾ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 180,
+        "verse": {
+          "gurmukhi": "vwirAw n jwvw eyk vwr ]",
+          "unicode": "ਵਾਰਿਆ ਨ ਜਾਵਾ ਏਕ ਵਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 181,
+        "verse": {
+          "gurmukhi": "jo quDu BwvY sweI BlI kwr ]",
+          "unicode": "ਜੋ ਤੁਧੁ ਭਾਵੈ ਸਾਈ ਭਲੀ ਕਾਰ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 22,
+      "verse": {
+        "verseId": 182,
+        "verse": {
+          "gurmukhi": "qU sdw slwmiq inrMkwr ]19]",
+          "unicode": "ਤੂ ਸਦਾ ਸਲਾਮਤਿ ਨਿਰੰਕਾਰ ॥੧੯॥"
+        },
+        "pageNo": 4,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 183,
+        "verse": {
+          "gurmukhi": "BrIAY hQu pYru qnu dyh ]",
+          "unicode": "ਭਰੀਐ ਹਥੁ ਪੈਰੁ ਤਨੁ ਦੇਹ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 184,
+        "verse": {
+          "gurmukhi": "pwxI DoqY auqrsu Kyh ]",
+          "unicode": "ਪਾਣੀ ਧੋਤੈ ਉਤਰਸੁ ਖੇਹ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 185,
+        "verse": {
+          "gurmukhi": "mUq plIqI kpVu hoie ]",
+          "unicode": "ਮੂਤ ਪਲੀਤੀ ਕਪੜੁ ਹੋਇ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 186,
+        "verse": {
+          "gurmukhi": "dy swbUxu leIAY Ehu Doie ]",
+          "unicode": "ਦੇ ਸਾਬੂਣੁ ਲਈਐ ਓਹੁ ਧੋਇ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 187,
+        "verse": {
+          "gurmukhi": "BrIAY miq pwpw kY sMig ]",
+          "unicode": "ਭਰੀਐ ਮਤਿ ਪਾਪਾ ਕੈ ਸੰਗਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 188,
+        "verse": {
+          "gurmukhi": "Ehu DopY nwvY kY rMig ]",
+          "unicode": "ਓਹੁ ਧੋਪੈ ਨਾਵੈ ਕੈ ਰੰਗਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 189,
+        "verse": {
+          "gurmukhi": "puMnI pwpI AwKxu nwih ]",
+          "unicode": "ਪੁੰਨੀ ਪਾਪੀ ਆਖਣੁ ਨਾਹਿ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 190,
+        "verse": {
+          "gurmukhi": "kir kir krxw iliK lY jwhu ]",
+          "unicode": "ਕਰਿ ਕਰਿ ਕਰਣਾ ਲਿਖਿ ਲੈ ਜਾਹੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 191,
+        "verse": {
+          "gurmukhi": "Awpy bIij Awpy hI Kwhu ]",
+          "unicode": "ਆਪੇ ਬੀਜਿ ਆਪੇ ਹੀ ਖਾਹੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 23,
+      "verse": {
+        "verseId": 192,
+        "verse": {
+          "gurmukhi": "nwnk hukmI Awvhu jwhu ]20]",
+          "unicode": "ਨਾਨਕ ਹੁਕਮੀ ਆਵਹੁ ਜਾਹੁ ॥੨੦॥"
+        },
+        "pageNo": 4,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 193,
+        "verse": {
+          "gurmukhi": "qIrQu qpu dieAw dqu dwnu ]",
+          "unicode": "ਤੀਰਥੁ ਤਪੁ ਦਇਆ ਦਤੁ ਦਾਨੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 194,
+        "verse": {
+          "gurmukhi": "jy ko pwvY iql kw mwnu ]",
+          "unicode": "ਜੇ ਕੋ ਪਾਵੈ ਤਿਲ ਕਾ ਮਾਨੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 195,
+        "verse": {
+          "gurmukhi": "suixAw mMinAw min kIqw Bwau ]",
+          "unicode": "ਸੁਣਿਆ ਮੰਨਿਆ ਮਨਿ ਕੀਤਾ ਭਾਉ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 196,
+        "verse": {
+          "gurmukhi": "AMqrgiq qIriQ mil nwau ]",
+          "unicode": "ਅੰਤਰਗਤਿ ਤੀਰਥਿ ਮਲਿ ਨਾਉ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 197,
+        "verse": {
+          "gurmukhi": "siB gux qyry mY nwhI koie ]",
+          "unicode": "ਸਭਿ ਗੁਣ ਤੇਰੇ ਮੈ ਨਾਹੀ ਕੋਇ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 198,
+        "verse": {
+          "gurmukhi": "ivxu gux kIqy Bgiq n hoie ]",
+          "unicode": "ਵਿਣੁ ਗੁਣ ਕੀਤੇ ਭਗਤਿ ਨ ਹੋਇ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 199,
+        "verse": {
+          "gurmukhi": "suAsiq AwiQ bwxI brmwau ]",
+          "unicode": "ਸੁਅਸਤਿ ਆਥਿ ਬਾਣੀ ਬਰਮਾਉ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 200,
+        "verse": {
+          "gurmukhi": "siq suhwxu sdw min cwau ]",
+          "unicode": "ਸਤਿ ਸੁਹਾਣੁ ਸਦਾ ਮਨਿ ਚਾਉ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 201,
+        "verse": {
+          "gurmukhi": "kvxu su vylw vKqu kvxu kvx iQiq kvxu vwru ]",
+          "unicode": "ਕਵਣੁ ਸੁ ਵੇਲਾ ਵਖਤੁ ਕਵਣੁ ਕਵਣ ਥਿਤਿ ਕਵਣੁ ਵਾਰੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 202,
+        "verse": {
+          "gurmukhi": "kvix is ruqI mwhu kvxu ijqu hoAw Awkwru ]",
+          "unicode": "ਕਵਣਿ ਸਿ ਰੁਤੀ ਮਾਹੁ ਕਵਣੁ ਜਿਤੁ ਹੋਆ ਆਕਾਰੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 203,
+        "verse": {
+          "gurmukhi": "vyl n pweIAw pMfqI ij hovY lyKu purwxu ]",
+          "unicode": "ਵੇਲ ਨ ਪਾਈਆ ਪੰਡਤੀ ਜਿ ਹੋਵੈ ਲੇਖੁ ਪੁਰਾਣੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 204,
+        "verse": {
+          "gurmukhi": "vKqu n pwieE kwdIAw ij ilKin lyKu kurwxu ]",
+          "unicode": "ਵਖਤੁ ਨ ਪਾਇਓ ਕਾਦੀਆ ਜਿ ਲਿਖਨਿ ਲੇਖੁ ਕੁਰਾਣੁ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 205,
+        "verse": {
+          "gurmukhi": "iQiq vwru nw jogI jwxY ruiq mwhu nw koeI ]",
+          "unicode": "ਥਿਤਿ ਵਾਰੁ ਨਾ ਜੋਗੀ ਜਾਣੈ ਰੁਤਿ ਮਾਹੁ ਨਾ ਕੋਈ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 206,
+        "verse": {
+          "gurmukhi": "jw krqw isrTI kau swjy Awpy jwxY soeI ]",
+          "unicode": "ਜਾ ਕਰਤਾ ਸਿਰਠੀ ਕਉ ਸਾਜੇ ਆਪੇ ਜਾਣੈ ਸੋਈ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 207,
+        "verse": {
+          "gurmukhi": "ikv kir AwKw ikv swlwhI ikau vrnI ikv jwxw ]",
+          "unicode": "ਕਿਵ ਕਰਿ ਆਖਾ ਕਿਵ ਸਾਲਾਹੀ ਕਿਉ ਵਰਨੀ ਕਿਵ ਜਾਣਾ ॥"
+        },
+        "pageNo": 4,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 208,
+        "verse": {
+          "gurmukhi": "nwnk AwKix sBu ko AwKY iek dU ieku isAwxw ]",
+          "unicode": "ਨਾਨਕ ਆਖਣਿ ਸਭੁ ਕੋ ਆਖੈ ਇਕ ਦੂ ਇਕੁ ਸਿਆਣਾ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 209,
+        "verse": {
+          "gurmukhi": "vfw swihbu vfI nweI kIqw jw kw hovY ]",
+          "unicode": "ਵਡਾ ਸਾਹਿਬੁ ਵਡੀ ਨਾਈ ਕੀਤਾ ਜਾ ਕਾ ਹੋਵੈ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 24,
+      "verse": {
+        "verseId": 210,
+        "verse": {
+          "gurmukhi": "nwnk jy ko AwpO jwxY AgY gieAw n sohY ]21]",
+          "unicode": "ਨਾਨਕ ਜੇ ਕੋ ਆਪੌ ਜਾਣੈ ਅਗੈ ਗਇਆ ਨ ਸੋਹੈ ॥੨੧॥"
+        },
+        "pageNo": 5,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 25,
+      "verse": {
+        "verseId": 211,
+        "verse": {
+          "gurmukhi": "pwqwlw pwqwl lK Awgwsw Awgws ]",
+          "unicode": "ਪਾਤਾਲਾ ਪਾਤਾਲ ਲਖ ਆਗਾਸਾ ਆਗਾਸ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 25,
+      "verse": {
+        "verseId": 212,
+        "verse": {
+          "gurmukhi": "EVk EVk Bwil Qky vyd khin iek vwq ]",
+          "unicode": "ਓੜਕ ਓੜਕ ਭਾਲਿ ਥਕੇ ਵੇਦ ਕਹਨਿ ਇਕ ਵਾਤ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 25,
+      "verse": {
+        "verseId": 213,
+        "verse": {
+          "gurmukhi": "shs ATwrh khin kqybw AsulU ieku Dwqu ]",
+          "unicode": "ਸਹਸ ਅਠਾਰਹ ਕਹਨਿ ਕਤੇਬਾ ਅਸੁਲੂ ਇਕੁ ਧਾਤੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 25,
+      "verse": {
+        "verseId": 214,
+        "verse": {
+          "gurmukhi": "lyKw hoie q ilKIAY lyKY hoie ivxwsu ]",
+          "unicode": "ਲੇਖਾ ਹੋਇ ਤ ਲਿਖੀਐ ਲੇਖੈ ਹੋਇ ਵਿਣਾਸੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 25,
+      "verse": {
+        "verseId": 215,
+        "verse": {
+          "gurmukhi": "nwnk vfw AwKIAY Awpy jwxY Awpu ]22]",
+          "unicode": "ਨਾਨਕ ਵਡਾ ਆਖੀਐ ਆਪੇ ਜਾਣੈ ਆਪੁ ॥੨੨॥"
+        },
+        "pageNo": 5,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 26,
+      "verse": {
+        "verseId": 216,
+        "verse": {
+          "gurmukhi": "swlwhI swlwih eyqI suriq n pweIAw ]",
+          "unicode": "ਸਾਲਾਹੀ ਸਾਲਾਹਿ ਏਤੀ ਸੁਰਤਿ ਨ ਪਾਈਆ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 26,
+      "verse": {
+        "verseId": 217,
+        "verse": {
+          "gurmukhi": "ndIAw AqY vwh pvih smuMid n jwxIAih ]",
+          "unicode": "ਨਦੀਆ ਅਤੈ ਵਾਹ ਪਵਹਿ ਸਮੁੰਦਿ ਨ ਜਾਣੀਅਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 26,
+      "verse": {
+        "verseId": 218,
+        "verse": {
+          "gurmukhi": "smuMd swh sulqwn igrhw syqI mwlu Dnu ]",
+          "unicode": "ਸਮੁੰਦ ਸਾਹ ਸੁਲਤਾਨ ਗਿਰਹਾ ਸੇਤੀ ਮਾਲੁ ਧਨੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 26,
+      "verse": {
+        "verseId": 219,
+        "verse": {
+          "gurmukhi": "kIVI quil n hovnI jy iqsu mnhu n vIsrih ]23]",
+          "unicode": "ਕੀੜੀ ਤੁਲਿ ਨ ਹੋਵਨੀ ਜੇ ਤਿਸੁ ਮਨਹੁ ਨ ਵੀਸਰਹਿ ॥੨੩॥"
+        },
+        "pageNo": 5,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 220,
+        "verse": {
+          "gurmukhi": "AMqu n isPqI khix n AMqu ]",
+          "unicode": "ਅੰਤੁ ਨ ਸਿਫਤੀ ਕਹਣਿ ਨ ਅੰਤੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 221,
+        "verse": {
+          "gurmukhi": "AMqu n krxY dyix n AMqu ]",
+          "unicode": "ਅੰਤੁ ਨ ਕਰਣੈ ਦੇਣਿ ਨ ਅੰਤੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 222,
+        "verse": {
+          "gurmukhi": "AMqu n vyKix suxix n AMqu ]",
+          "unicode": "ਅੰਤੁ ਨ ਵੇਖਣਿ ਸੁਣਣਿ ਨ ਅੰਤੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 223,
+        "verse": {
+          "gurmukhi": "AMqu n jwpY ikAw min mMqu ]",
+          "unicode": "ਅੰਤੁ ਨ ਜਾਪੈ ਕਿਆ ਮਨਿ ਮੰਤੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 224,
+        "verse": {
+          "gurmukhi": "AMqu n jwpY kIqw Awkwru ]",
+          "unicode": "ਅੰਤੁ ਨ ਜਾਪੈ ਕੀਤਾ ਆਕਾਰੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 225,
+        "verse": {
+          "gurmukhi": "AMqu n jwpY pwrwvwru ]",
+          "unicode": "ਅੰਤੁ ਨ ਜਾਪੈ ਪਾਰਾਵਾਰੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 226,
+        "verse": {
+          "gurmukhi": "AMq kwrix kyqy ibllwih ]",
+          "unicode": "ਅੰਤ ਕਾਰਣਿ ਕੇਤੇ ਬਿਲਲਾਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 227,
+        "verse": {
+          "gurmukhi": "qw ky AMq n pwey jwih ]",
+          "unicode": "ਤਾ ਕੇ ਅੰਤ ਨ ਪਾਏ ਜਾਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 228,
+        "verse": {
+          "gurmukhi": "eyhu AMqu n jwxY koie ]",
+          "unicode": "ਏਹੁ ਅੰਤੁ ਨ ਜਾਣੈ ਕੋਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 229,
+        "verse": {
+          "gurmukhi": "bhuqw khIAY bhuqw hoie ]",
+          "unicode": "ਬਹੁਤਾ ਕਹੀਐ ਬਹੁਤਾ ਹੋਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 230,
+        "verse": {
+          "gurmukhi": "vfw swihbu aUcw Qwau ]",
+          "unicode": "ਵਡਾ ਸਾਹਿਬੁ ਊਚਾ ਥਾਉ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 231,
+        "verse": {
+          "gurmukhi": "aUcy aupir aUcw nwau ]",
+          "unicode": "ਊਚੇ ਉਪਰਿ ਊਚਾ ਨਾਉ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 232,
+        "verse": {
+          "gurmukhi": "eyvfu aUcw hovY koie ]",
+          "unicode": "ਏਵਡੁ ਊਚਾ ਹੋਵੈ ਕੋਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 233,
+        "verse": {
+          "gurmukhi": "iqsu aUcy kau jwxY soie ]",
+          "unicode": "ਤਿਸੁ ਊਚੇ ਕਉ ਜਾਣੈ ਸੋਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 234,
+        "verse": {
+          "gurmukhi": "jyvfu Awip jwxY Awip Awip ]",
+          "unicode": "ਜੇਵਡੁ ਆਪਿ ਜਾਣੈ ਆਪਿ ਆਪਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 27,
+      "verse": {
+        "verseId": 235,
+        "verse": {
+          "gurmukhi": "nwnk ndrI krmI dwiq ]24]",
+          "unicode": "ਨਾਨਕ ਨਦਰੀ ਕਰਮੀ ਦਾਤਿ ॥੨੪॥"
+        },
+        "pageNo": 5,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 236,
+        "verse": {
+          "gurmukhi": "bhuqw krmu iliKAw nw jwie ]",
+          "unicode": "ਬਹੁਤਾ ਕਰਮੁ ਲਿਖਿਆ ਨਾ ਜਾਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 237,
+        "verse": {
+          "gurmukhi": "vfw dwqw iqlu n qmwie ]",
+          "unicode": "ਵਡਾ ਦਾਤਾ ਤਿਲੁ ਨ ਤਮਾਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 238,
+        "verse": {
+          "gurmukhi": "kyqy mMgih joD Apwr ]",
+          "unicode": "ਕੇਤੇ ਮੰਗਹਿ ਜੋਧ ਅਪਾਰ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 239,
+        "verse": {
+          "gurmukhi": "kyiqAw gxq nhI vIcwru ]",
+          "unicode": "ਕੇਤਿਆ ਗਣਤ ਨਹੀ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 240,
+        "verse": {
+          "gurmukhi": "kyqy Kip qutih vykwr ]",
+          "unicode": "ਕੇਤੇ ਖਪਿ ਤੁਟਹਿ ਵੇਕਾਰ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 241,
+        "verse": {
+          "gurmukhi": "kyqy lY lY mukru pwih ]",
+          "unicode": "ਕੇਤੇ ਲੈ ਲੈ ਮੁਕਰੁ ਪਾਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 242,
+        "verse": {
+          "gurmukhi": "kyqy mUrK KwhI Kwih ]",
+          "unicode": "ਕੇਤੇ ਮੂਰਖ ਖਾਹੀ ਖਾਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 243,
+        "verse": {
+          "gurmukhi": "kyiqAw dUK BUK sd mwr ]",
+          "unicode": "ਕੇਤਿਆ ਦੂਖ ਭੂਖ ਸਦ ਮਾਰ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 244,
+        "verse": {
+          "gurmukhi": "eyih iB dwiq qyrI dwqwr ]",
+          "unicode": "ਏਹਿ ਭਿ ਦਾਤਿ ਤੇਰੀ ਦਾਤਾਰ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 245,
+        "verse": {
+          "gurmukhi": "bMid KlwsI BwxY hoie ]",
+          "unicode": "ਬੰਦਿ ਖਲਾਸੀ ਭਾਣੈ ਹੋਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 246,
+        "verse": {
+          "gurmukhi": "horu AwiK n skY koie ]",
+          "unicode": "ਹੋਰੁ ਆਖਿ ਨ ਸਕੈ ਕੋਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 247,
+        "verse": {
+          "gurmukhi": "jy ko Kwieku AwKix pwie ]",
+          "unicode": "ਜੇ ਕੋ ਖਾਇਕੁ ਆਖਣਿ ਪਾਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 248,
+        "verse": {
+          "gurmukhi": "Ehu jwxY jyqIAw muih Kwie ]",
+          "unicode": "ਓਹੁ ਜਾਣੈ ਜੇਤੀਆ ਮੁਹਿ ਖਾਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 249,
+        "verse": {
+          "gurmukhi": "Awpy jwxY Awpy dyie ]",
+          "unicode": "ਆਪੇ ਜਾਣੈ ਆਪੇ ਦੇਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 250,
+        "verse": {
+          "gurmukhi": "AwKih is iB kyeI kyie ]",
+          "unicode": "ਆਖਹਿ ਸਿ ਭਿ ਕੇਈ ਕੇਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 251,
+        "verse": {
+          "gurmukhi": "ijs no bKsy isPiq swlwh ]",
+          "unicode": "ਜਿਸ ਨੋ ਬਖਸੇ ਸਿਫਤਿ ਸਾਲਾਹ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 28,
+      "verse": {
+        "verseId": 252,
+        "verse": {
+          "gurmukhi": "nwnk pwiqswhI pwiqswhu ]25]",
+          "unicode": "ਨਾਨਕ ਪਾਤਿਸਾਹੀ ਪਾਤਿਸਾਹੁ ॥੨੫॥"
+        },
+        "pageNo": 5,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 253,
+        "verse": {
+          "gurmukhi": "Amul gux Amul vwpwr ]",
+          "unicode": "ਅਮੁਲ ਗੁਣ ਅਮੁਲ ਵਾਪਾਰ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 254,
+        "verse": {
+          "gurmukhi": "Amul vwpwrIey Amul BMfwr ]",
+          "unicode": "ਅਮੁਲ ਵਾਪਾਰੀਏ ਅਮੁਲ ਭੰਡਾਰ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 255,
+        "verse": {
+          "gurmukhi": "Amul Awvih Amul lY jwih ]",
+          "unicode": "ਅਮੁਲ ਆਵਹਿ ਅਮੁਲ ਲੈ ਜਾਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 256,
+        "verse": {
+          "gurmukhi": "Amul Bwie Amulw smwih ]",
+          "unicode": "ਅਮੁਲ ਭਾਇ ਅਮੁਲਾ ਸਮਾਹਿ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 257,
+        "verse": {
+          "gurmukhi": "Amulu Drmu Amulu dIbwxu ]",
+          "unicode": "ਅਮੁਲੁ ਧਰਮੁ ਅਮੁਲੁ ਦੀਬਾਣੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 258,
+        "verse": {
+          "gurmukhi": "Amulu qulu Amulu prvwxu ]",
+          "unicode": "ਅਮੁਲੁ ਤੁਲੁ ਅਮੁਲੁ ਪਰਵਾਣੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 259,
+        "verse": {
+          "gurmukhi": "Amulu bKsIs Amulu nIswxu ]",
+          "unicode": "ਅਮੁਲੁ ਬਖਸੀਸ ਅਮੁਲੁ ਨੀਸਾਣੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 260,
+        "verse": {
+          "gurmukhi": "Amulu krmu Amulu Purmwxu ]",
+          "unicode": "ਅਮੁਲੁ ਕਰਮੁ ਅਮੁਲੁ ਫੁਰਮਾਣੁ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 261,
+        "verse": {
+          "gurmukhi": "Amulo Amulu AwiKAw n jwie ]",
+          "unicode": "ਅਮੁਲੋ ਅਮੁਲੁ ਆਖਿਆ ਨ ਜਾਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 262,
+        "verse": {
+          "gurmukhi": "AwiK AwiK rhy ilv lwie ]",
+          "unicode": "ਆਖਿ ਆਖਿ ਰਹੇ ਲਿਵ ਲਾਇ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 263,
+        "verse": {
+          "gurmukhi": "AwKih vyd pwT purwx ]",
+          "unicode": "ਆਖਹਿ ਵੇਦ ਪਾਠ ਪੁਰਾਣ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 264,
+        "verse": {
+          "gurmukhi": "AwKih pVy krih viKAwx ]",
+          "unicode": "ਆਖਹਿ ਪੜੇ ਕਰਹਿ ਵਖਿਆਣ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 265,
+        "verse": {
+          "gurmukhi": "AwKih brmy AwKih ieMd ]",
+          "unicode": "ਆਖਹਿ ਬਰਮੇ ਆਖਹਿ ਇੰਦ ॥"
+        },
+        "pageNo": 5,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 266,
+        "verse": {
+          "gurmukhi": "AwKih gopI qY goivMd ]",
+          "unicode": "ਆਖਹਿ ਗੋਪੀ ਤੈ ਗੋਵਿੰਦ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 267,
+        "verse": {
+          "gurmukhi": "AwKih eIsr AwKih isD ]",
+          "unicode": "ਆਖਹਿ ਈਸਰ ਆਖਹਿ ਸਿਧ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 268,
+        "verse": {
+          "gurmukhi": "AwKih kyqy kIqy buD ]",
+          "unicode": "ਆਖਹਿ ਕੇਤੇ ਕੀਤੇ ਬੁਧ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 269,
+        "verse": {
+          "gurmukhi": "AwKih dwnv AwKih dyv ]",
+          "unicode": "ਆਖਹਿ ਦਾਨਵ ਆਖਹਿ ਦੇਵ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 270,
+        "verse": {
+          "gurmukhi": "AwKih suir nr muin jn syv ]",
+          "unicode": "ਆਖਹਿ ਸੁਰਿ ਨਰ ਮੁਨਿ ਜਨ ਸੇਵ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 271,
+        "verse": {
+          "gurmukhi": "kyqy AwKih AwKix pwih ]",
+          "unicode": "ਕੇਤੇ ਆਖਹਿ ਆਖਣਿ ਪਾਹਿ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 272,
+        "verse": {
+          "gurmukhi": "kyqy kih kih auiT auiT jwih ]",
+          "unicode": "ਕੇਤੇ ਕਹਿ ਕਹਿ ਉਠਿ ਉਠਿ ਜਾਹਿ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 273,
+        "verse": {
+          "gurmukhi": "eyqy kIqy hoir kryih ]",
+          "unicode": "ਏਤੇ ਕੀਤੇ ਹੋਰਿ ਕਰੇਹਿ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 274,
+        "verse": {
+          "gurmukhi": "qw AwiK n skih kyeI kyie ]",
+          "unicode": "ਤਾ ਆਖਿ ਨ ਸਕਹਿ ਕੇਈ ਕੇਇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 275,
+        "verse": {
+          "gurmukhi": "jyvfu BwvY qyvfu hoie ]",
+          "unicode": "ਜੇਵਡੁ ਭਾਵੈ ਤੇਵਡੁ ਹੋਇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 276,
+        "verse": {
+          "gurmukhi": "nwnk jwxY swcw soie ]",
+          "unicode": "ਨਾਨਕ ਜਾਣੈ ਸਾਚਾ ਸੋਇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 277,
+        "verse": {
+          "gurmukhi": "jy ko AwKY boluivgwVu ]",
+          "unicode": "ਜੇ ਕੋ ਆਖੈ ਬੋਲੁਵਿਗਾੜੁ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 29,
+      "verse": {
+        "verseId": 278,
+        "verse": {
+          "gurmukhi": "qw ilKIAY isir gwvwrw gwvwru ]26]",
+          "unicode": "ਤਾ ਲਿਖੀਐ ਸਿਰਿ ਗਾਵਾਰਾ ਗਾਵਾਰੁ ॥੨੬॥"
+        },
+        "pageNo": 6,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 279,
+        "verse": {
+          "gurmukhi": "so dru kyhw so Gru kyhw ijqu bih srb smwly ]",
+          "unicode": "ਸੋ ਦਰੁ ਕੇਹਾ ਸੋ ਘਰੁ ਕੇਹਾ ਜਿਤੁ ਬਹਿ ਸਰਬ ਸਮਾਲੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 280,
+        "verse": {
+          "gurmukhi": "vwjy nwd Anyk AsMKw kyqy vwvxhwry ]",
+          "unicode": "ਵਾਜੇ ਨਾਦ ਅਨੇਕ ਅਸੰਖਾ ਕੇਤੇ ਵਾਵਣਹਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 281,
+        "verse": {
+          "gurmukhi": "kyqy rwg prI isau khIAin kyqy gwvxhwry ]",
+          "unicode": "ਕੇਤੇ ਰਾਗ ਪਰੀ ਸਿਉ ਕਹੀਅਨਿ ਕੇਤੇ ਗਾਵਣਹਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 282,
+        "verse": {
+          "gurmukhi": "gwvih quhno pauxu pwxI bYsMqru gwvY rwjw Drmu duAwry ]",
+          "unicode": "ਗਾਵਹਿ ਤੁਹਨੋ ਪਉਣੁ ਪਾਣੀ ਬੈਸੰਤਰੁ ਗਾਵੈ ਰਾਜਾ ਧਰਮੁ ਦੁਆਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 283,
+        "verse": {
+          "gurmukhi": "gwvih icqu gupqu iliK jwxih iliK iliK Drmu vIcwry ]",
+          "unicode": "ਗਾਵਹਿ ਚਿਤੁ ਗੁਪਤੁ ਲਿਖਿ ਜਾਣਹਿ ਲਿਖਿ ਲਿਖਿ ਧਰਮੁ ਵੀਚਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 284,
+        "verse": {
+          "gurmukhi": "gwvih eIsru brmw dyvI sohin sdw svwry ]",
+          "unicode": "ਗਾਵਹਿ ਈਸਰੁ ਬਰਮਾ ਦੇਵੀ ਸੋਹਨਿ ਸਦਾ ਸਵਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 285,
+        "verse": {
+          "gurmukhi": "gwvih ieMd iedwsix bYTy dyviqAw dir nwly ]",
+          "unicode": "ਗਾਵਹਿ ਇੰਦ ਇਦਾਸਣਿ ਬੈਠੇ ਦੇਵਤਿਆ ਦਰਿ ਨਾਲੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 286,
+        "verse": {
+          "gurmukhi": "gwvih isD smwDI AMdir gwvin swD ivcwry ]",
+          "unicode": "ਗਾਵਹਿ ਸਿਧ ਸਮਾਧੀ ਅੰਦਰਿ ਗਾਵਨਿ ਸਾਧ ਵਿਚਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 287,
+        "verse": {
+          "gurmukhi": "gwvin jqI sqI sMqoKI gwvih vIr krwry ]",
+          "unicode": "ਗਾਵਨਿ ਜਤੀ ਸਤੀ ਸੰਤੋਖੀ ਗਾਵਹਿ ਵੀਰ ਕਰਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 288,
+        "verse": {
+          "gurmukhi": "gwvin pMifq pVin rKIsr jugu jugu vydw nwly ]",
+          "unicode": "ਗਾਵਨਿ ਪੰਡਿਤ ਪੜਨਿ ਰਖੀਸਰ ਜੁਗੁ ਜੁਗੁ ਵੇਦਾ ਨਾਲੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 289,
+        "verse": {
+          "gurmukhi": "gwvih mohxIAw mnu mohin surgw mC pieAwly ]",
+          "unicode": "ਗਾਵਹਿ ਮੋਹਣੀਆ ਮਨੁ ਮੋਹਨਿ ਸੁਰਗਾ ਮਛ ਪਇਆਲੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 290,
+        "verse": {
+          "gurmukhi": "gwvin rqn aupwey qyry ATsiT qIrQ nwly ]",
+          "unicode": "ਗਾਵਨਿ ਰਤਨ ਉਪਾਏ ਤੇਰੇ ਅਠਸਠਿ ਤੀਰਥ ਨਾਲੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 291,
+        "verse": {
+          "gurmukhi": "gwvih joD mhwbl sUrw gwvih KwxI cwry ]",
+          "unicode": "ਗਾਵਹਿ ਜੋਧ ਮਹਾਬਲ ਸੂਰਾ ਗਾਵਹਿ ਖਾਣੀ ਚਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 292,
+        "verse": {
+          "gurmukhi": "gwvih KMf mMfl vrBMfw kir kir rKy Dwry ]",
+          "unicode": "ਗਾਵਹਿ ਖੰਡ ਮੰਡਲ ਵਰਭੰਡਾ ਕਰਿ ਕਰਿ ਰਖੇ ਧਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 293,
+        "verse": {
+          "gurmukhi": "syeI quDuno gwvih jo quDu Bwvin rqy qyry Bgq rswly ]",
+          "unicode": "ਸੇਈ ਤੁਧੁਨੋ ਗਾਵਹਿ ਜੋ ਤੁਧੁ ਭਾਵਨਿ ਰਤੇ ਤੇਰੇ ਭਗਤ ਰਸਾਲੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 294,
+        "verse": {
+          "gurmukhi": "hoir kyqy gwvin sy mY iciq n Awvin nwnku ikAw vIcwry ]",
+          "unicode": "ਹੋਰਿ ਕੇਤੇ ਗਾਵਨਿ ਸੇ ਮੈ ਚਿਤਿ ਨ ਆਵਨਿ ਨਾਨਕੁ ਕਿਆ ਵੀਚਾਰੇ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 295,
+        "verse": {
+          "gurmukhi": "soeI soeI sdw scu swihbu swcw swcI nweI ]",
+          "unicode": "ਸੋਈ ਸੋਈ ਸਦਾ ਸਚੁ ਸਾਹਿਬੁ ਸਾਚਾ ਸਾਚੀ ਨਾਈ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 296,
+        "verse": {
+          "gurmukhi": "hY BI hosI jwie n jwsI rcnw ijin rcweI ]",
+          "unicode": "ਹੈ ਭੀ ਹੋਸੀ ਜਾਇ ਨ ਜਾਸੀ ਰਚਨਾ ਜਿਨਿ ਰਚਾਈ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 297,
+        "verse": {
+          "gurmukhi": "rMgI rMgI BwqI kir kir ijnsI mwieAw ijin aupweI ]",
+          "unicode": "ਰੰਗੀ ਰੰਗੀ ਭਾਤੀ ਕਰਿ ਕਰਿ ਜਿਨਸੀ ਮਾਇਆ ਜਿਨਿ ਉਪਾਈ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 298,
+        "verse": {
+          "gurmukhi": "kir kir vyKY kIqw Awpxw ijv iqs dI vifAweI ]",
+          "unicode": "ਕਰਿ ਕਰਿ ਵੇਖੈ ਕੀਤਾ ਆਪਣਾ ਜਿਵ ਤਿਸ ਦੀ ਵਡਿਆਈ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 299,
+        "verse": {
+          "gurmukhi": "jo iqsu BwvY soeI krsI hukmu n krxw jweI ]",
+          "unicode": "ਜੋ ਤਿਸੁ ਭਾਵੈ ਸੋਈ ਕਰਸੀ ਹੁਕਮੁ ਨ ਕਰਣਾ ਜਾਈ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 30,
+      "verse": {
+        "verseId": 300,
+        "verse": {
+          "gurmukhi": "so pwiqswhu swhw pwiqswihbu nwnk rhxu rjweI ]27]",
+          "unicode": "ਸੋ ਪਾਤਿਸਾਹੁ ਸਾਹਾ ਪਾਤਿਸਾਹਿਬੁ ਨਾਨਕ ਰਹਣੁ ਰਜਾਈ ॥੨੭॥"
+        },
+        "pageNo": 6,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 31,
+      "verse": {
+        "verseId": 301,
+        "verse": {
+          "gurmukhi": "muMdw sMqoKu srmu pqu JolI iDAwn kI krih ibBUiq ]",
+          "unicode": "ਮੁੰਦਾ ਸੰਤੋਖੁ ਸਰਮੁ ਪਤੁ ਝੋਲੀ ਧਿਆਨ ਕੀ ਕਰਹਿ ਬਿਭੂਤਿ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 31,
+      "verse": {
+        "verseId": 302,
+        "verse": {
+          "gurmukhi": "iKMQw kwlu kuAwrI kwieAw jugiq fMfw prqIiq ]",
+          "unicode": "ਖਿੰਥਾ ਕਾਲੁ ਕੁਆਰੀ ਕਾਇਆ ਜੁਗਤਿ ਡੰਡਾ ਪਰਤੀਤਿ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 31,
+      "verse": {
+        "verseId": 303,
+        "verse": {
+          "gurmukhi": "AweI pMQI sgl jmwqI min jIqY jgu jIqu ]",
+          "unicode": "ਆਈ ਪੰਥੀ ਸਗਲ ਜਮਾਤੀ ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 31,
+      "verse": {
+        "verseId": 304,
+        "verse": {
+          "gurmukhi": "Awdysu iqsY Awdysu ]",
+          "unicode": "ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 31,
+      "verse": {
+        "verseId": 305,
+        "verse": {
+          "gurmukhi": "Awid AnIlu Anwid Anwhiq jugu jugu eyko vysu ]28]",
+          "unicode": "ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੨੮॥"
+        },
+        "pageNo": 6,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 32,
+      "verse": {
+        "verseId": 306,
+        "verse": {
+          "gurmukhi": "Bugiq igAwnu dieAw BMfwrix Git Git vwjih nwd ]",
+          "unicode": "ਭੁਗਤਿ ਗਿਆਨੁ ਦਇਆ ਭੰਡਾਰਣਿ ਘਟਿ ਘਟਿ ਵਾਜਹਿ ਨਾਦ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 32,
+      "verse": {
+        "verseId": 307,
+        "verse": {
+          "gurmukhi": "Awip nwQu nwQI sB jw kI iriD isiD Avrw swd ]",
+          "unicode": "ਆਪਿ ਨਾਥੁ ਨਾਥੀ ਸਭ ਜਾ ਕੀ ਰਿਧਿ ਸਿਧਿ ਅਵਰਾ ਸਾਦ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 32,
+      "verse": {
+        "verseId": 308,
+        "verse": {
+          "gurmukhi": "sMjogu ivjogu duie kwr clwvih lyKy Awvih Bwg ]",
+          "unicode": "ਸੰਜੋਗੁ ਵਿਜੋਗੁ ਦੁਇ ਕਾਰ ਚਲਾਵਹਿ ਲੇਖੇ ਆਵਹਿ ਭਾਗ ॥"
+        },
+        "pageNo": 6,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 32,
+      "verse": {
+        "verseId": 309,
+        "verse": {
+          "gurmukhi": "Awdysu iqsY Awdysu ]",
+          "unicode": "ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 32,
+      "verse": {
+        "verseId": 310,
+        "verse": {
+          "gurmukhi": "Awid AnIlu Anwid Anwhiq jugu jugu eyko vysu ]29]",
+          "unicode": "ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੨੯॥"
+        },
+        "pageNo": 7,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 33,
+      "verse": {
+        "verseId": 311,
+        "verse": {
+          "gurmukhi": "eykw mweI jugiq ivAweI iqin cyly prvwxu ]",
+          "unicode": "ਏਕਾ ਮਾਈ ਜੁਗਤਿ ਵਿਆਈ ਤਿਨਿ ਚੇਲੇ ਪਰਵਾਣੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 33,
+      "verse": {
+        "verseId": 312,
+        "verse": {
+          "gurmukhi": "ieku sMswrI ieku BMfwrI ieku lwey dIbwxu ]",
+          "unicode": "ਇਕੁ ਸੰਸਾਰੀ ਇਕੁ ਭੰਡਾਰੀ ਇਕੁ ਲਾਏ ਦੀਬਾਣੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 33,
+      "verse": {
+        "verseId": 313,
+        "verse": {
+          "gurmukhi": "ijv iqsu BwvY iqvY clwvY ijv hovY Purmwxu ]",
+          "unicode": "ਜਿਵ ਤਿਸੁ ਭਾਵੈ ਤਿਵੈ ਚਲਾਵੈ ਜਿਵ ਹੋਵੈ ਫੁਰਮਾਣੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 33,
+      "verse": {
+        "verseId": 314,
+        "verse": {
+          "gurmukhi": "Ehu vyKY Enw ndir n AwvY bhuqw eyhu ivfwxu ]",
+          "unicode": "ਓਹੁ ਵੇਖੈ ਓਨਾ ਨਦਰਿ ਨ ਆਵੈ ਬਹੁਤਾ ਏਹੁ ਵਿਡਾਣੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 33,
+      "verse": {
+        "verseId": 315,
+        "verse": {
+          "gurmukhi": "Awdysu iqsY Awdysu ]",
+          "unicode": "ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 33,
+      "verse": {
+        "verseId": 316,
+        "verse": {
+          "gurmukhi": "Awid AnIlu Anwid Anwhiq jugu jugu eyko vysu ]30]",
+          "unicode": "ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੩੦॥"
+        },
+        "pageNo": 7,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 34,
+      "verse": {
+        "verseId": 317,
+        "verse": {
+          "gurmukhi": "Awsxu loie loie BMfwr ]",
+          "unicode": "ਆਸਣੁ ਲੋਇ ਲੋਇ ਭੰਡਾਰ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 34,
+      "verse": {
+        "verseId": 318,
+        "verse": {
+          "gurmukhi": "jo ikCu pwieAw su eykw vwr ]",
+          "unicode": "ਜੋ ਕਿਛੁ ਪਾਇਆ ਸੁ ਏਕਾ ਵਾਰ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 34,
+      "verse": {
+        "verseId": 319,
+        "verse": {
+          "gurmukhi": "kir kir vyKY isrjxhwru ]",
+          "unicode": "ਕਰਿ ਕਰਿ ਵੇਖੈ ਸਿਰਜਣਹਾਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 34,
+      "verse": {
+        "verseId": 320,
+        "verse": {
+          "gurmukhi": "nwnk scy kI swcI kwr ]",
+          "unicode": "ਨਾਨਕ ਸਚੇ ਕੀ ਸਾਚੀ ਕਾਰ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 34,
+      "verse": {
+        "verseId": 321,
+        "verse": {
+          "gurmukhi": "Awdysu iqsY Awdysu ]",
+          "unicode": "ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 34,
+      "verse": {
+        "verseId": 322,
+        "verse": {
+          "gurmukhi": "Awid AnIlu Anwid Anwhiq jugu jugu eyko vysu ]31]",
+          "unicode": "ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੩੧॥"
+        },
+        "pageNo": 7,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 35,
+      "verse": {
+        "verseId": 323,
+        "verse": {
+          "gurmukhi": "iek dU jIBO lK hoih lK hovih lK vIs ]",
+          "unicode": "ਇਕ ਦੂ ਜੀਭੌ ਲਖ ਹੋਹਿ ਲਖ ਹੋਵਹਿ ਲਖ ਵੀਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 35,
+      "verse": {
+        "verseId": 324,
+        "verse": {
+          "gurmukhi": "lKu lKu gyVw AwKIAih eyku nwmu jgdIs ]",
+          "unicode": "ਲਖੁ ਲਖੁ ਗੇੜਾ ਆਖੀਅਹਿ ਏਕੁ ਨਾਮੁ ਜਗਦੀਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 35,
+      "verse": {
+        "verseId": 325,
+        "verse": {
+          "gurmukhi": "eyqu rwih piq pvVIAw cVIAY hoie iekIs ]",
+          "unicode": "ਏਤੁ ਰਾਹਿ ਪਤਿ ਪਵੜੀਆ ਚੜੀਐ ਹੋਇ ਇਕੀਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 35,
+      "verse": {
+        "verseId": 326,
+        "verse": {
+          "gurmukhi": "suix glw Awkws kI kItw AweI rIs ]",
+          "unicode": "ਸੁਣਿ ਗਲਾ ਆਕਾਸ ਕੀ ਕੀਟਾ ਆਈ ਰੀਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 35,
+      "verse": {
+        "verseId": 327,
+        "verse": {
+          "gurmukhi": "nwnk ndrI pweIAY kUVI kUVY TIs ]32]",
+          "unicode": "ਨਾਨਕ ਨਦਰੀ ਪਾਈਐ ਕੂੜੀ ਕੂੜੈ ਠੀਸ ॥੩੨॥"
+        },
+        "pageNo": 7,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 328,
+        "verse": {
+          "gurmukhi": "AwKix joru cupY nh joru ]",
+          "unicode": "ਆਖਣਿ ਜੋਰੁ ਚੁਪੈ ਨਹ ਜੋਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 329,
+        "verse": {
+          "gurmukhi": "joru n mMgix dyix n joru ]",
+          "unicode": "ਜੋਰੁ ਨ ਮੰਗਣਿ ਦੇਣਿ ਨ ਜੋਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 330,
+        "verse": {
+          "gurmukhi": "joru n jIvix mrix nh joru ]",
+          "unicode": "ਜੋਰੁ ਨ ਜੀਵਣਿ ਮਰਣਿ ਨਹ ਜੋਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 331,
+        "verse": {
+          "gurmukhi": "joru n rwij mwil min soru ]",
+          "unicode": "ਜੋਰੁ ਨ ਰਾਜਿ ਮਾਲਿ ਮਨਿ ਸੋਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 332,
+        "verse": {
+          "gurmukhi": "joru n surqI igAwin vIcwir ]",
+          "unicode": "ਜੋਰੁ ਨ ਸੁਰਤੀ ਗਿਆਨਿ ਵੀਚਾਰਿ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 333,
+        "verse": {
+          "gurmukhi": "joru n jugqI CutY sMswru ]",
+          "unicode": "ਜੋਰੁ ਨ ਜੁਗਤੀ ਛੁਟੈ ਸੰਸਾਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 334,
+        "verse": {
+          "gurmukhi": "ijsu hiQ joru kir vyKY soie ]",
+          "unicode": "ਜਿਸੁ ਹਥਿ ਜੋਰੁ ਕਰਿ ਵੇਖੈ ਸੋਇ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 36,
+      "verse": {
+        "verseId": 335,
+        "verse": {
+          "gurmukhi": "nwnk auqmu nIcu n koie ]33]",
+          "unicode": "ਨਾਨਕ ਉਤਮੁ ਨੀਚੁ ਨ ਕੋਇ ॥੩੩॥"
+        },
+        "pageNo": 7,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 336,
+        "verse": {
+          "gurmukhi": "rwqI ruqI iQqI vwr ]",
+          "unicode": "ਰਾਤੀ ਰੁਤੀ ਥਿਤੀ ਵਾਰ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 337,
+        "verse": {
+          "gurmukhi": "pvx pwxI AgnI pwqwl ]",
+          "unicode": "ਪਵਣ ਪਾਣੀ ਅਗਨੀ ਪਾਤਾਲ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 338,
+        "verse": {
+          "gurmukhi": "iqsu ivic DrqI Qwip rKI Drm swl ]",
+          "unicode": "ਤਿਸੁ ਵਿਚਿ ਧਰਤੀ ਥਾਪਿ ਰਖੀ ਧਰਮ ਸਾਲ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 339,
+        "verse": {
+          "gurmukhi": "iqsu ivic jIA jugiq ky rMg ]",
+          "unicode": "ਤਿਸੁ ਵਿਚਿ ਜੀਅ ਜੁਗਤਿ ਕੇ ਰੰਗ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 340,
+        "verse": {
+          "gurmukhi": "iqn ky nwm Anyk Anµq ]",
+          "unicode": "ਤਿਨ ਕੇ ਨਾਮ ਅਨੇਕ ਅਨੰਤ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 341,
+        "verse": {
+          "gurmukhi": "krmI krmI hoie vIcwru ]",
+          "unicode": "ਕਰਮੀ ਕਰਮੀ ਹੋਇ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 342,
+        "verse": {
+          "gurmukhi": "scw Awip scw drbwru ]",
+          "unicode": "ਸਚਾ ਆਪਿ ਸਚਾ ਦਰਬਾਰੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 343,
+        "verse": {
+          "gurmukhi": "iqQY sohin pMc prvwxu ]",
+          "unicode": "ਤਿਥੈ ਸੋਹਨਿ ਪੰਚ ਪਰਵਾਣੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 344,
+        "verse": {
+          "gurmukhi": "ndrI krim pvY nIswxu ]",
+          "unicode": "ਨਦਰੀ ਕਰਮਿ ਪਵੈ ਨੀਸਾਣੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 13,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 345,
+        "verse": {
+          "gurmukhi": "kc pkweI EQY pwie ]",
+          "unicode": "ਕਚ ਪਕਾਈ ਓਥੈ ਪਾਇ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 37,
+      "verse": {
+        "verseId": 346,
+        "verse": {
+          "gurmukhi": "nwnk gieAw jwpY jwie ]34]",
+          "unicode": "ਨਾਨਕ ਗਇਆ ਜਾਪੈ ਜਾਇ ॥੩੪॥"
+        },
+        "pageNo": 7,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 347,
+        "verse": {
+          "gurmukhi": "Drm KMf kw eyho Drmu ]",
+          "unicode": "ਧਰਮ ਖੰਡ ਕਾ ਏਹੋ ਧਰਮੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 14,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 348,
+        "verse": {
+          "gurmukhi": "igAwn KMf kw AwKhu krmu ]",
+          "unicode": "ਗਿਆਨ ਖੰਡ ਕਾ ਆਖਹੁ ਕਰਮੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 349,
+        "verse": {
+          "gurmukhi": "kyqy pvx pwxI vYsMqr kyqy kwn mhys ]",
+          "unicode": "ਕੇਤੇ ਪਵਣ ਪਾਣੀ ਵੈਸੰਤਰ ਕੇਤੇ ਕਾਨ ਮਹੇਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 350,
+        "verse": {
+          "gurmukhi": "kyqy brmy GwViq GVIAih rUp rMg ky vys ]",
+          "unicode": "ਕੇਤੇ ਬਰਮੇ ਘਾੜਤਿ ਘੜੀਅਹਿ ਰੂਪ ਰੰਗ ਕੇ ਵੇਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 15,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 351,
+        "verse": {
+          "gurmukhi": "kyqIAw krm BUmI myr kyqy kyqy DU aupdys ]",
+          "unicode": "ਕੇਤੀਆ ਕਰਮ ਭੂਮੀ ਮੇਰ ਕੇਤੇ ਕੇਤੇ ਧੂ ਉਪਦੇਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 352,
+        "verse": {
+          "gurmukhi": "kyqy ieMd cMd sUr kyqy kyqy mMfl dys ]",
+          "unicode": "ਕੇਤੇ ਇੰਦ ਚੰਦ ਸੂਰ ਕੇਤੇ ਕੇਤੇ ਮੰਡਲ ਦੇਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 16,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 353,
+        "verse": {
+          "gurmukhi": "kyqy isD buD nwQ kyqy kyqy dyvI vys ]",
+          "unicode": "ਕੇਤੇ ਸਿਧ ਬੁਧ ਨਾਥ ਕੇਤੇ ਕੇਤੇ ਦੇਵੀ ਵੇਸ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 354,
+        "verse": {
+          "gurmukhi": "kyqy dyv dwnv muin kyqy kyqy rqn smuMd ]",
+          "unicode": "ਕੇਤੇ ਦੇਵ ਦਾਨਵ ਮੁਨਿ ਕੇਤੇ ਕੇਤੇ ਰਤਨ ਸਮੁੰਦ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 17,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 355,
+        "verse": {
+          "gurmukhi": "kyqIAw KwxI kyqIAw bwxI kyqy pwq nirMd ]",
+          "unicode": "ਕੇਤੀਆ ਖਾਣੀ ਕੇਤੀਆ ਬਾਣੀ ਕੇਤੇ ਪਾਤ ਨਰਿੰਦ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 38,
+      "verse": {
+        "verseId": 356,
+        "verse": {
+          "gurmukhi": "kyqIAw surqI syvk kyqy nwnk AMqu n AMqu ]35]",
+          "unicode": "ਕੇਤੀਆ ਸੁਰਤੀ ਸੇਵਕ ਕੇਤੇ ਨਾਨਕ ਅੰਤੁ ਨ ਅੰਤੁ ॥੩੫॥"
+        },
+        "pageNo": 7,
+        "lineNo": 18,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 357,
+        "verse": {
+          "gurmukhi": "igAwn KMf mih igAwnu prcMfu ]",
+          "unicode": "ਗਿਆਨ ਖੰਡ ਮਹਿ ਗਿਆਨੁ ਪਰਚੰਡੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 358,
+        "verse": {
+          "gurmukhi": "iqQY nwd ibnod kof Anµdu ]",
+          "unicode": "ਤਿਥੈ ਨਾਦ ਬਿਨੋਦ ਕੋਡ ਅਨੰਦੁ ॥"
+        },
+        "pageNo": 7,
+        "lineNo": 19,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 359,
+        "verse": {
+          "gurmukhi": "srm KMf kI bwxI rUpu ]",
+          "unicode": "ਸਰਮ ਖੰਡ ਕੀ ਬਾਣੀ ਰੂਪੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 360,
+        "verse": {
+          "gurmukhi": "iqQY GwViq GVIAY bhuqu AnUpu ]",
+          "unicode": "ਤਿਥੈ ਘਾੜਤਿ ਘੜੀਐ ਬਹੁਤੁ ਅਨੂਪੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 361,
+        "verse": {
+          "gurmukhi": "qw kIAw glw kQIAw nw jwih ]",
+          "unicode": "ਤਾ ਕੀਆ ਗਲਾ ਕਥੀਆ ਨਾ ਜਾਹਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 362,
+        "verse": {
+          "gurmukhi": "jy ko khY ipCY pCuqwie ]",
+          "unicode": "ਜੇ ਕੋ ਕਹੈ ਪਿਛੈ ਪਛੁਤਾਇ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 1,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 363,
+        "verse": {
+          "gurmukhi": "iqQY GVIAY suriq miq min buiD ]",
+          "unicode": "ਤਿਥੈ ਘੜੀਐ ਸੁਰਤਿ ਮਤਿ ਮਨਿ ਬੁਧਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 39,
+      "verse": {
+        "verseId": 364,
+        "verse": {
+          "gurmukhi": "iqQY GVIAY surw isDw kI suiD ]36]",
+          "unicode": "ਤਿਥੈ ਘੜੀਐ ਸੁਰਾ ਸਿਧਾ ਕੀ ਸੁਧਿ ॥੩੬॥"
+        },
+        "pageNo": 8,
+        "lineNo": 2,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 365,
+        "verse": {
+          "gurmukhi": "krm KMf kI bwxI joru ]",
+          "unicode": "ਕਰਮ ਖੰਡ ਕੀ ਬਾਣੀ ਜੋਰੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 366,
+        "verse": {
+          "gurmukhi": "iqQY horu n koeI horu ]",
+          "unicode": "ਤਿਥੈ ਹੋਰੁ ਨ ਕੋਈ ਹੋਰੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 367,
+        "verse": {
+          "gurmukhi": "iqQY joD mhwbl sUr ]",
+          "unicode": "ਤਿਥੈ ਜੋਧ ਮਹਾਬਲ ਸੂਰ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 368,
+        "verse": {
+          "gurmukhi": "iqn mih rwmu rihAw BrpUr ]",
+          "unicode": "ਤਿਨ ਮਹਿ ਰਾਮੁ ਰਹਿਆ ਭਰਪੂਰ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 3,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 369,
+        "verse": {
+          "gurmukhi": "iqQY sIqo sIqw mihmw mwih ]",
+          "unicode": "ਤਿਥੈ ਸੀਤੋ ਸੀਤਾ ਮਹਿਮਾ ਮਾਹਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 370,
+        "verse": {
+          "gurmukhi": "qw ky rUp n kQny jwih ]",
+          "unicode": "ਤਾ ਕੇ ਰੂਪ ਨ ਕਥਨੇ ਜਾਹਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 371,
+        "verse": {
+          "gurmukhi": "nw Eih mrih n Twgy jwih ]",
+          "unicode": "ਨਾ ਓਹਿ ਮਰਹਿ ਨ ਠਾਗੇ ਜਾਹਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 372,
+        "verse": {
+          "gurmukhi": "ijn kY rwmu vsY mn mwih ]",
+          "unicode": "ਜਿਨ ਕੈ ਰਾਮੁ ਵਸੈ ਮਨ ਮਾਹਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 4,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 373,
+        "verse": {
+          "gurmukhi": "iqQY Bgq vsih ky loA ]",
+          "unicode": "ਤਿਥੈ ਭਗਤ ਵਸਹਿ ਕੇ ਲੋਅ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 374,
+        "verse": {
+          "gurmukhi": "krih Anµdu scw min soie ]",
+          "unicode": "ਕਰਹਿ ਅਨੰਦੁ ਸਚਾ ਮਨਿ ਸੋਇ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 375,
+        "verse": {
+          "gurmukhi": "sc KMif vsY inrMkwru ]",
+          "unicode": "ਸਚ ਖੰਡਿ ਵਸੈ ਨਿਰੰਕਾਰੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 5,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 376,
+        "verse": {
+          "gurmukhi": "kir kir vyKY ndir inhwl ]",
+          "unicode": "ਕਰਿ ਕਰਿ ਵੇਖੈ ਨਦਰਿ ਨਿਹਾਲ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 377,
+        "verse": {
+          "gurmukhi": "iqQY KMf mMfl vrBMf ]",
+          "unicode": "ਤਿਥੈ ਖੰਡ ਮੰਡਲ ਵਰਭੰਡ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 378,
+        "verse": {
+          "gurmukhi": "jy ko kQY q AMq n AMq ]",
+          "unicode": "ਜੇ ਕੋ ਕਥੈ ਤ ਅੰਤ ਨ ਅੰਤ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 379,
+        "verse": {
+          "gurmukhi": "iqQY loA loA Awkwr ]",
+          "unicode": "ਤਿਥੈ ਲੋਅ ਲੋਅ ਆਕਾਰ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 6,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 380,
+        "verse": {
+          "gurmukhi": "ijv ijv hukmu iqvY iqv kwr ]",
+          "unicode": "ਜਿਵ ਜਿਵ ਹੁਕਮੁ ਤਿਵੈ ਤਿਵ ਕਾਰ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 381,
+        "verse": {
+          "gurmukhi": "vyKY ivgsY kir vIcwru ]",
+          "unicode": "ਵੇਖੈ ਵਿਗਸੈ ਕਰਿ ਵੀਚਾਰੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 40,
+      "verse": {
+        "verseId": 382,
+        "verse": {
+          "gurmukhi": "nwnk kQnw krVw swru ]37]",
+          "unicode": "ਨਾਨਕ ਕਥਨਾ ਕਰੜਾ ਸਾਰੁ ॥੩੭॥"
+        },
+        "pageNo": 8,
+        "lineNo": 7,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 383,
+        "verse": {
+          "gurmukhi": "jqu pwhwrw DIrju suinAwru ]",
+          "unicode": "ਜਤੁ ਪਾਹਾਰਾ ਧੀਰਜੁ ਸੁਨਿਆਰੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 384,
+        "verse": {
+          "gurmukhi": "Ahrix miq vydu hQIAwru ]",
+          "unicode": "ਅਹਰਣਿ ਮਤਿ ਵੇਦੁ ਹਥੀਆਰੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 385,
+        "verse": {
+          "gurmukhi": "Bau Klw Agin qp qwau ]",
+          "unicode": "ਭਉ ਖਲਾ ਅਗਨਿ ਤਪ ਤਾਉ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 8,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 386,
+        "verse": {
+          "gurmukhi": "BWfw Bwau AMimRqu iqqu Fwil ]",
+          "unicode": "ਭਾਂਡਾ ਭਾਉ ਅੰਮ੍ਰਿਤੁ ਤਿਤੁ ਢਾਲਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 387,
+        "verse": {
+          "gurmukhi": "GVIAY sbdu scI tkswl ]",
+          "unicode": "ਘੜੀਐ ਸਬਦੁ ਸਚੀ ਟਕਸਾਲ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 388,
+        "verse": {
+          "gurmukhi": "ijn kau ndir krmu iqn kwr ]",
+          "unicode": "ਜਿਨ ਕਉ ਨਦਰਿ ਕਰਮੁ ਤਿਨ ਕਾਰ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 9,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 41,
+      "verse": {
+        "verseId": 389,
+        "verse": {
+          "gurmukhi": "nwnk ndrI ndir inhwl ]38]",
+          "unicode": "ਨਾਨਕ ਨਦਰੀ ਨਦਰਿ ਨਿਹਾਲ ॥੩੮॥"
+        },
+        "pageNo": 8,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 2,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 42,
+      "verse": {
+        "verseId": 390,
+        "verse": {
+          "gurmukhi": "sloku ]",
+          "unicode": "ਸਲੋਕੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 50,
+      "verse": {
+        "verseId": 391,
+        "verse": {
+          "gurmukhi": "pvxu gurU pwxI ipqw mwqw Driq mhqu ]",
+          "unicode": "ਪਵਣੁ ਗੁਰੂ ਪਾਣੀ ਪਿਤਾ ਮਾਤਾ ਧਰਤਿ ਮਹਤੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 10,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 50,
+      "verse": {
+        "verseId": 392,
+        "verse": {
+          "gurmukhi": "idvsu rwiq duie dweI dwieAw KylY sgl jgqu ]",
+          "unicode": "ਦਿਵਸੁ ਰਾਤਿ ਦੁਇ ਦਾਈ ਦਾਇਆ ਖੇਲੈ ਸਗਲ ਜਗਤੁ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 50,
+      "verse": {
+        "verseId": 393,
+        "verse": {
+          "gurmukhi": "cMigAweIAw buirAweIAw vwcY Drmu hdUir ]",
+          "unicode": "ਚੰਗਿਆਈਆ ਬੁਰਿਆਈਆ ਵਾਚੈ ਧਰਮੁ ਹਦੂਰਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 11,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 50,
+      "verse": {
+        "verseId": 394,
+        "verse": {
+          "gurmukhi": "krmI Awpo AwpxI ky nyVY ky dUir ]",
+          "unicode": "ਕਰਮੀ ਆਪੋ ਆਪਣੀ ਕੇ ਨੇੜੈ ਕੇ ਦੂਰਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 50,
+      "verse": {
+        "verseId": 395,
+        "verse": {
+          "gurmukhi": "ijnI nwmu iDAwieAw gey mskiq Gwil ]",
+          "unicode": "ਜਿਨੀ ਨਾਮੁ ਧਿਆਇਆ ਗਏ ਮਸਕਤਿ ਘਾਲਿ ॥"
+        },
+        "pageNo": 8,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    },
+    {
+      "header": 0,
+      "mangalPosition": null,
+      "existsSGPC": 1,
+      "existsMedium": 1,
+      "existsTaksal": 1,
+      "existsBuddhaDal": 1,
+      "paragraph": 50,
+      "verse": {
+        "verseId": 396,
+        "verse": {
+          "gurmukhi": "nwnk qy muK aujly kyqI CutI nwil ]1]",
+          "unicode": "ਨਾਨਕ ਤੇ ਮੁਖ ਉਜਲੇ ਕੇਤੀ ਛੁਟੀ ਨਾਲਿ ॥੧॥"
+        },
+        "pageNo": 8,
+        "lineNo": 12,
+        "updated": "2020-06-11 00:19:50"
+      }
+    }
+  ]
+}

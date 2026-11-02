@@ -1,0 +1,114 @@
+{
+  "id": 57,
+  "length": null,
+  "name": "Raag Asa",
+  "failures": [],
+  "disclosures": [
+    {
+      "sectionId": "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-20355",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-19859"
+      ],
+      "currentAfter": [
+        "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-19859"
+      ],
+      "currentCorrect": true
+    }
+  ],
+  "checks": [
+    {
+      "sectionId": "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-20173",
+      "targetId": 20173,
+      "top": 129.015625,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-20173"
+      ],
+      "currentViewport": {
+        "top": 413.578125,
+        "bottom": 499.3125,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-19859",
+      "targetId": 19856,
+      "top": 128.59375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-19859"
+      ],
+      "currentViewport": {
+        "top": 255.5625,
+        "bottom": 341.296875,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-20415",
+      "targetId": 20415,
+      "top": 128.765625,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-57:bani-v1:584:ae7a6d3a20c75646:catalog-57-20415"
+      ],
+      "currentViewport": {
+        "top": 413.203125,
+        "bottom": 498.9375,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    }
+  ],
+  "layout": {
+    "rowFailures": [],
+    "minimumHitHeight": 44
+  },
+  "rows": 584,
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "presentation": "study",
+  "scroller": "HTML",
+  "originScrollY": 0,
+  "initiallyExpanded": [],
+  "collapsedLinks": 52,
+  "expandedLinks": 54,
+  "expandedChildLinks": 2,
+  "returnDelta": 0,
+  "returnCleared": true,
+  "returnFocusVerse": "19856",
+  "state": "ready",
+  "passed": true,
+  "testMode": "390px Study light",
+  "theme": "light",
+  "rootFont": "16px"
+}

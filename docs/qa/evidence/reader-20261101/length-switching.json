@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-01",
+  "environment": "Local Vite preview, Chromium mobile/touch emulation, Study/Light",
+  "workflow": "Open Reading tools, Bani length; choose Long from Short; wait for verified destination; apply with Use for my Nitnem unchecked; reopen Contents and check section count.",
+  "cases": [
+    {
+      "id": 9,
+      "choices": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "destination": "Continue at the same verse in this length.",
+      "remember": false,
+      "url": "/study?baniDbId=9&bani=Benati+Chaupai+Sahib&startAng=1386&endAng=1388&baniId=chaupai-sahib&source=D&sgLength=long&ang=1386&exactBani=1&resumeVerseId=1627&resumeSource=D",
+      "rows": 173,
+      "expectedRows": 173,
+      "sections": 42,
+      "expectedSections": 42,
+      "width": 390,
+      "scrollWidth": 390,
+      "state": "ready",
+      "passed": true
+    },
+    {
+      "id": 22,
+      "choices": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "destination": "Continue at the same verse in this length.",
+      "remember": false,
+      "url": "/study?baniDbId=22&bani=Aarti&startAng=663&endAng=663&baniId=aarti&source=G&sgLength=long&ang=663&exactBani=1&resumeVerseId=3391&resumeSource=G",
+      "rows": 230,
+      "expectedRows": 230,
+      "sections": 39,
+      "expectedSections": 39,
+      "width": 390,
+      "scrollWidth": 390,
+      "state": "ready",
+      "passed": true
+    },
+    {
+      "id": 23,
+      "choices": [
+        "short",
+        "medium",
+        "long",
+        "extralong"
+      ],
+      "destination": "Continue at the same verse in this length.",
+      "remember": false,
+      "url": "/study?baniDbId=23&bani=Kirtan+Sohila&startAng=12&endAng=13&baniId=kirtan-sohila&source=G&sgLength=long&ang=12&exactBani=1&resumeVerseId=3596&resumeSource=G",
+      "rows": 86,
+      "expectedRows": 86,
+      "sections": 10,
+      "expectedSections": 10,
+      "width": 390,
+      "scrollWidth": 390,
+      "state": "ready",
+      "passed": true
+    },
+    {
+      "id": 21,
+      "choices": [
+        "short",
+        "medium",
+        "long",
+        "extralong"
+      ],
+      "destination": "Continue at the same verse in this length.",
+      "remember": false,
+      "url": "/study?baniDbId=21&bani=Rehras+Sahib&startAng=8&endAng=12&baniId=rehras-sahib&source=G&sgLength=long&ang=8&exactBani=1&resumeVerseId=2650&resumeSource=G",
+      "rows": 439,
+      "expectedRows": 439,
+      "sections": 34,
+      "expectedSections": 34,
+      "width": 320,
+      "scrollWidth": 320,
+      "state": "ready",
+      "passed": true
+    }
+  ]
+}

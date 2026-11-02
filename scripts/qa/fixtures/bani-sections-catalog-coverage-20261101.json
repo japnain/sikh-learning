@@ -1,0 +1,2062 @@
+{
+  "schemaVersion": 1,
+  "family": "catalog",
+  "evidence": "docs/qa/bani-catalog-structure-research-20261101.md",
+  "source": "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+  "readings": [
+    {
+      "baniDbId": 1,
+      "fingerprint": "bani-v1:11:6bef38f65a625a22",
+      "normalizedRowCount": 11,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        1
+      ],
+      "excerptVerseIds": [
+        3
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 3,
+      "fingerprint": "bani-v1:106:5e6e3571544fbc7d",
+      "normalizedRowCount": 106,
+      "expectedSectionCount": 7,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        397,
+        416,
+        434,
+        447,
+        468,
+        480,
+        491
+      ],
+      "excerptVerseIds": [
+        399,
+        418,
+        436,
+        448,
+        469,
+        481,
+        492
+      ],
+      "kinds": [
+        "shabad"
+      ]
+    },
+    {
+      "baniDbId": 14,
+      "fingerprint": "bani-v1:19:8cf4676dfe4328a1",
+      "normalizedRowCount": 19,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        2404
+      ],
+      "excerptVerseIds": [
+        2407
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 15,
+      "fingerprint": "bani-v1:11:425d458b90665b57",
+      "normalizedRowCount": 11,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        2423
+      ],
+      "excerptVerseIds": [
+        2424
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 16,
+      "fingerprint": "bani-v1:14:4fd998804ba2a34c",
+      "normalizedRowCount": 14,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        2434
+      ],
+      "excerptVerseIds": [
+        2435
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 17,
+      "fingerprint": "bani-v1:95:89ad67cffc0a9c23",
+      "normalizedRowCount": 95,
+      "expectedSectionCount": 23,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        2448,
+        2455,
+        2459,
+        2463,
+        2467,
+        2471,
+        2475,
+        2479,
+        2483,
+        2487,
+        2491,
+        2495,
+        2499,
+        2503,
+        2507,
+        2511,
+        2515,
+        2519,
+        2523,
+        2527,
+        2531,
+        2535,
+        2539
+      ],
+      "excerptVerseIds": [
+        2451,
+        2455,
+        2459,
+        2463,
+        2467,
+        2471,
+        2475,
+        2479,
+        2483,
+        2487,
+        2491,
+        2495,
+        2499,
+        2503,
+        2507,
+        2511,
+        2515,
+        2519,
+        2523,
+        2527,
+        2531,
+        2535,
+        2539
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 18,
+      "fingerprint": "bani-v1:24:fc9d63ac6fc298d0",
+      "normalizedRowCount": 24,
+      "expectedSectionCount": 11,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        2543,
+        2548,
+        2550,
+        2551,
+        2553,
+        2555,
+        2557,
+        2559,
+        2561,
+        2563,
+        2565
+      ],
+      "excerptVerseIds": [
+        2546,
+        2548,
+        2550,
+        2551,
+        2553,
+        2555,
+        2557,
+        2559,
+        2561,
+        2563,
+        2565
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 32,
+      "fingerprint": "bani-v1:464:9a8e7fc67e1130d2",
+      "normalizedRowCount": 464,
+      "expectedSectionCount": 24,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        7250,
+        7271,
+        7290,
+        7309,
+        7328,
+        7347,
+        7368,
+        7388,
+        7407,
+        7426,
+        7445,
+        7464,
+        7504,
+        7524,
+        7543,
+        7562,
+        7581,
+        7600,
+        7620,
+        7640,
+        7659,
+        7678,
+        7697,
+        7716
+      ],
+      "excerptVerseIds": [
+        7253,
+        7272,
+        7291,
+        7310,
+        7329,
+        7348,
+        7370,
+        7389,
+        7408,
+        7427,
+        7446,
+        7465,
+        7506,
+        7525,
+        7544,
+        7563,
+        7582,
+        7601,
+        7622,
+        7641,
+        7660,
+        7679,
+        7698,
+        7717
+      ],
+      "kinds": [
+        "ashtpadi"
+      ]
+    },
+    {
+      "baniDbId": 36,
+      "fingerprint": "bani-v1:301:3e764540dda33b8c",
+      "normalizedRowCount": 301,
+      "expectedSectionCount": 34,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        25748,
+        25782,
+        25793,
+        25804,
+        25815,
+        25826,
+        25837,
+        25844,
+        25855,
+        25866,
+        25881,
+        25888,
+        25895,
+        25902,
+        25909,
+        25916,
+        25927,
+        25935,
+        25943,
+        25950,
+        25957,
+        25964,
+        25971,
+        25978,
+        25989,
+        25996,
+        26003,
+        26010,
+        26017,
+        26024,
+        26031,
+        26038,
+        26045,
+        26052
+      ],
+      "excerptVerseIds": [
+        25750,
+        25783,
+        25794,
+        25805,
+        25816,
+        25827,
+        25838,
+        25845,
+        25856,
+        25867,
+        25882,
+        25889,
+        25896,
+        25903,
+        25910,
+        25917,
+        25928,
+        25937,
+        25944,
+        25951,
+        25958,
+        25965,
+        25972,
+        25979,
+        25990,
+        25997,
+        26004,
+        26011,
+        26018,
+        26025,
+        26032,
+        26039,
+        26046,
+        26053
+      ],
+      "kinds": [
+        "shabad"
+      ]
+    },
+    {
+      "baniDbId": 38,
+      "fingerprint": "bani-v1:62:f886d4647af98830",
+      "normalizedRowCount": 62,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        9216
+      ],
+      "excerptVerseIds": [
+        9218
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 40,
+      "fingerprint": "bani-v1:27:9d172a98c076b89c",
+      "normalizedRowCount": 27,
+      "expectedSectionCount": 4,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9446,
+        9455,
+        9461,
+        9467
+      ],
+      "excerptVerseIds": [
+        9449,
+        9455,
+        9461,
+        9467
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 41,
+      "fingerprint": "bani-v1:24:72c15c2a3de80506",
+      "normalizedRowCount": 24,
+      "expectedSectionCount": 10,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9473,
+        9479,
+        9481,
+        9483,
+        9485,
+        9487,
+        9489,
+        9491,
+        9493,
+        9495
+      ],
+      "excerptVerseIds": [
+        9476,
+        9479,
+        9481,
+        9483,
+        9485,
+        9487,
+        9489,
+        9491,
+        9493,
+        9495
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 42,
+      "fingerprint": "bani-v1:27:90491565c7217ce1",
+      "normalizedRowCount": 27,
+      "expectedSectionCount": 3,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9497,
+        9509,
+        9517
+      ],
+      "excerptVerseIds": [
+        9501,
+        9509,
+        9517
+      ],
+      "kinds": [
+        "shabad"
+      ]
+    },
+    {
+      "baniDbId": 43,
+      "fingerprint": "bani-v1:74:21fd22f1779862e5",
+      "normalizedRowCount": 74,
+      "expectedSectionCount": 35,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9526,
+        9533,
+        9535,
+        9537,
+        9539,
+        9541,
+        9543,
+        9545,
+        9547,
+        9549,
+        9551,
+        9553,
+        9555,
+        9557,
+        9559,
+        9561,
+        9563,
+        9565,
+        9567,
+        9569,
+        9571,
+        9573,
+        9575,
+        9577,
+        9579,
+        9581,
+        9583,
+        9585,
+        9587,
+        9589,
+        9591,
+        9593,
+        9595,
+        9596,
+        9598
+      ],
+      "excerptVerseIds": [
+        9529,
+        9533,
+        9535,
+        9537,
+        9539,
+        9541,
+        9543,
+        9545,
+        9547,
+        9549,
+        9551,
+        9553,
+        9555,
+        9557,
+        9559,
+        9561,
+        9563,
+        9565,
+        9567,
+        9569,
+        9571,
+        9573,
+        9575,
+        9577,
+        9579,
+        9581,
+        9583,
+        9585,
+        9587,
+        9589,
+        9591,
+        9593,
+        9595,
+        9596,
+        9598
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 44,
+      "fingerprint": "bani-v1:39:9917922cd8cce158",
+      "normalizedRowCount": 39,
+      "expectedSectionCount": 18,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9600,
+        9605,
+        9607,
+        9609,
+        9611,
+        9613,
+        9615,
+        9617,
+        9619,
+        9621,
+        9623,
+        9625,
+        9627,
+        9629,
+        9631,
+        9633,
+        9635,
+        9637
+      ],
+      "excerptVerseIds": [
+        9601,
+        9605,
+        9607,
+        9609,
+        9611,
+        9613,
+        9615,
+        9617,
+        9619,
+        9621,
+        9623,
+        9625,
+        9627,
+        9629,
+        9631,
+        9633,
+        9635,
+        9637
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 45,
+      "fingerprint": "bani-v1:98:2e54e2c40eec94f8",
+      "normalizedRowCount": 98,
+      "expectedSectionCount": 8,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9639,
+        9655,
+        9667,
+        9679,
+        9691,
+        9703,
+        9715,
+        9727
+      ],
+      "excerptVerseIds": [
+        9649,
+        9661,
+        9673,
+        9685,
+        9697,
+        9709,
+        9721,
+        9733
+      ],
+      "kinds": [
+        "chhand"
+      ]
+    },
+    {
+      "baniDbId": 46,
+      "fingerprint": "bani-v1:39:702a530c156a29f0",
+      "normalizedRowCount": 39,
+      "expectedSectionCount": 6,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9739,
+        9748,
+        9754,
+        9760,
+        9766,
+        9772
+      ],
+      "excerptVerseIds": [
+        9742,
+        9748,
+        9754,
+        9760,
+        9766,
+        9772
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 47,
+      "fingerprint": "bani-v1:74:501390b338e4b0bf",
+      "normalizedRowCount": 74,
+      "expectedSectionCount": 17,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9778,
+        9785,
+        9792,
+        9796,
+        9800,
+        9804,
+        9808,
+        9812,
+        9816,
+        9820,
+        9824,
+        9828,
+        9832,
+        9836,
+        9840,
+        9844,
+        9848
+      ],
+      "excerptVerseIds": [
+        9781,
+        9786,
+        9792,
+        9796,
+        9800,
+        9804,
+        9808,
+        9812,
+        9816,
+        9820,
+        9824,
+        9828,
+        9832,
+        9836,
+        9840,
+        9844,
+        9848
+      ],
+      "kinds": [
+        "opening-salok",
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 48,
+      "fingerprint": "bani-v1:122:8263be9066a489fc",
+      "normalizedRowCount": 122,
+      "expectedSectionCount": 20,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        9852,
+        9863,
+        9869,
+        9875,
+        9881,
+        9887,
+        9893,
+        9899,
+        9905,
+        9911,
+        9917,
+        9922,
+        9928,
+        9934,
+        9940,
+        9946,
+        9952,
+        9958,
+        9963,
+        9969
+      ],
+      "excerptVerseIds": [
+        9855,
+        9863,
+        9869,
+        9875,
+        9881,
+        9887,
+        9893,
+        9899,
+        9905,
+        9911,
+        9917,
+        9922,
+        9928,
+        9934,
+        9940,
+        9946,
+        9952,
+        9958,
+        9963,
+        9969
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 49,
+      "fingerprint": "bani-v1:210:dc6f61c317abda4f",
+      "normalizedRowCount": 210,
+      "expectedSectionCount": 17,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        18000,
+        18017,
+        18029,
+        18041,
+        18053,
+        18065,
+        18077,
+        18089,
+        18101,
+        18113,
+        18125,
+        18137,
+        18149,
+        18163,
+        18175,
+        18186,
+        18198
+      ],
+      "excerptVerseIds": [
+        18007,
+        18021,
+        18033,
+        18045,
+        18057,
+        18069,
+        18081,
+        18093,
+        18105,
+        18117,
+        18129,
+        18141,
+        18153,
+        18167,
+        18179,
+        18190,
+        18202
+      ],
+      "kinds": [
+        "pauri"
+      ]
+    },
+    {
+      "baniDbId": 50,
+      "fingerprint": "bani-v1:35:ad30da3876b1c5ec",
+      "normalizedRowCount": 35,
+      "expectedSectionCount": 8,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        18210,
+        18218,
+        18222,
+        18226,
+        18230,
+        18234,
+        18238,
+        18241
+      ],
+      "excerptVerseIds": [
+        18214,
+        18218,
+        18222,
+        18226,
+        18230,
+        18234,
+        18238,
+        18241
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 51,
+      "fingerprint": "bani-v1:64:80cfb3b453a5b818",
+      "normalizedRowCount": 64,
+      "expectedSectionCount": 10,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        18245,
+        18256,
+        18262,
+        18268,
+        18274,
+        18280,
+        18286,
+        18291,
+        18297,
+        18303
+      ],
+      "excerptVerseIds": [
+        18248,
+        18256,
+        18262,
+        18268,
+        18274,
+        18280,
+        18286,
+        18291,
+        18297,
+        18303
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 52,
+      "fingerprint": "bani-v1:45:f8cc8a887576fb94",
+      "normalizedRowCount": 45,
+      "expectedSectionCount": 6,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        18309,
+        18319,
+        18324,
+        18331,
+        18338,
+        18345
+      ],
+      "excerptVerseIds": [
+        18312,
+        18319,
+        18324,
+        18331,
+        18338,
+        18345
+      ],
+      "kinds": [
+        "stanza"
+      ]
+    },
+    {
+      "baniDbId": 55,
+      "fingerprint": "bani-v1:74:4816984c4285b2a8",
+      "normalizedRowCount": 74,
+      "expectedSectionCount": 5,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        18662,
+        18676,
+        18690,
+        18701,
+        18726
+      ],
+      "excerptVerseIds": [
+        18664,
+        18677,
+        18691,
+        18704,
+        18727
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 56,
+      "fingerprint": "bani-v1:1130:11f91be2aeadfc06",
+      "normalizedRowCount": 1130,
+      "expectedSectionCount": 78,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        18735,
+        18749,
+        18760,
+        18771,
+        18782,
+        18793,
+        18804,
+        18815,
+        18826,
+        18837,
+        18848,
+        18859,
+        18870,
+        18881,
+        18892,
+        18905,
+        18920,
+        18935,
+        18954,
+        18963,
+        18972,
+        18981,
+        18990,
+        18999,
+        19008,
+        19016,
+        19023,
+        19032,
+        19041,
+        19050,
+        19059,
+        19067,
+        19076,
+        19085,
+        19092,
+        19100,
+        19122,
+        19129,
+        19176,
+        19185,
+        19192,
+        19208,
+        19220,
+        19231,
+        19240,
+        19249,
+        19258,
+        19271,
+        19282,
+        19294,
+        19305,
+        19316,
+        19327,
+        19338,
+        19349,
+        19360,
+        19371,
+        19382,
+        19392,
+        19402,
+        19413,
+        19422,
+        19429,
+        19436,
+        19444,
+        19451,
+        19458,
+        19465,
+        19486,
+        19495,
+        19506,
+        19674,
+        19748,
+        19782,
+        19791,
+        19816,
+        19826,
+        19835
+      ],
+      "excerptVerseIds": [
+        18739,
+        18750,
+        18761,
+        18772,
+        18783,
+        18794,
+        18805,
+        18816,
+        18827,
+        18838,
+        18849,
+        18860,
+        18871,
+        18882,
+        18893,
+        18906,
+        18921,
+        18936,
+        18955,
+        18964,
+        18973,
+        18982,
+        18991,
+        19000,
+        19009,
+        19017,
+        19024,
+        19033,
+        19042,
+        19051,
+        19060,
+        19068,
+        19077,
+        19086,
+        19093,
+        19102,
+        19123,
+        19130,
+        19177,
+        19186,
+        19194,
+        19210,
+        19221,
+        19232,
+        19241,
+        19250,
+        19259,
+        19272,
+        19284,
+        19295,
+        19306,
+        19317,
+        19328,
+        19339,
+        19350,
+        19361,
+        19372,
+        19383,
+        19393,
+        19403,
+        19414,
+        19423,
+        19430,
+        19437,
+        19445,
+        19452,
+        19459,
+        19466,
+        19487,
+        19496,
+        19508,
+        19676,
+        19749,
+        19784,
+        19793,
+        19817,
+        19828,
+        19837
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 57,
+      "fingerprint": "bani-v1:584:ae7a6d3a20c75646",
+      "normalizedRowCount": 584,
+      "expectedSectionCount": 51,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        19856,
+        19870,
+        19882,
+        19900,
+        19911,
+        19922,
+        19933,
+        19944,
+        19955,
+        19968,
+        19979,
+        19988,
+        19999,
+        20010,
+        20024,
+        20037,
+        20050,
+        20062,
+        20075,
+        20088,
+        20101,
+        20114,
+        20127,
+        20137,
+        20146,
+        20155,
+        20164,
+        20173,
+        20182,
+        20191,
+        20200,
+        20208,
+        20215,
+        20222,
+        20233,
+        20244,
+        20255,
+        20267,
+        20278,
+        20289,
+        20300,
+        20309,
+        20316,
+        20328,
+        20337,
+        20346,
+        20355,
+        20372,
+        20384,
+        20403,
+        20415
+      ],
+      "excerptVerseIds": [
+        19860,
+        19871,
+        19883,
+        19901,
+        19912,
+        19923,
+        19934,
+        19945,
+        19956,
+        19969,
+        19980,
+        19989,
+        20000,
+        20012,
+        20025,
+        20038,
+        20051,
+        20063,
+        20076,
+        20089,
+        20102,
+        20115,
+        20129,
+        20138,
+        20147,
+        20156,
+        20165,
+        20174,
+        20183,
+        20192,
+        20202,
+        20209,
+        20216,
+        20223,
+        20234,
+        20245,
+        20256,
+        20268,
+        20279,
+        20290,
+        20301,
+        20310,
+        20318,
+        20329,
+        20338,
+        20347,
+        20356,
+        20374,
+        20385,
+        20405,
+        20416
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 58,
+      "fingerprint": "bani-v1:104:84d84fd2c592d6de",
+      "normalizedRowCount": 104,
+      "expectedSectionCount": 8,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        20433,
+        20447,
+        20458,
+        20472,
+        20480,
+        20494,
+        20506,
+        20518
+      ],
+      "excerptVerseIds": [
+        20437,
+        20448,
+        20460,
+        20473,
+        20482,
+        20496,
+        20507,
+        20520
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 59,
+      "fingerprint": "bani-v1:282:98d38340c11add4c",
+      "normalizedRowCount": 282,
+      "expectedSectionCount": 6,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        20533,
+        20566,
+        20642,
+        20681,
+        20725,
+        20795
+      ],
+      "excerptVerseIds": [
+        20536,
+        20567,
+        20644,
+        20683,
+        20727,
+        20797
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 60,
+      "fingerprint": "bani-v1:169:2257c41cd6216718",
+      "normalizedRowCount": 169,
+      "expectedSectionCount": 7,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        20805,
+        20847,
+        20903,
+        20927,
+        20944,
+        20954,
+        20961
+      ],
+      "excerptVerseIds": [
+        20808,
+        20849,
+        20905,
+        20929,
+        20945,
+        20955,
+        20962
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 61,
+      "fingerprint": "bani-v1:16:ab61f538389ea194",
+      "normalizedRowCount": 16,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        20971
+      ],
+      "excerptVerseIds": [
+        20974
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 62,
+      "fingerprint": "bani-v1:24:75de79287a4293e4",
+      "normalizedRowCount": 24,
+      "expectedSectionCount": 3,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        20987,
+        20996,
+        26318
+      ],
+      "excerptVerseIds": [
+        20990,
+        20996,
+        26318
+      ],
+      "kinds": [
+        "shabad"
+      ]
+    },
+    {
+      "baniDbId": 63,
+      "fingerprint": "bani-v1:33:0a4c751be3691e7f",
+      "normalizedRowCount": 33,
+      "expectedSectionCount": 3,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        21002,
+        21015,
+        26327
+      ],
+      "excerptVerseIds": [
+        21005,
+        21016,
+        26327
+      ],
+      "kinds": [
+        "shabad"
+      ]
+    },
+    {
+      "baniDbId": 64,
+      "fingerprint": "bani-v1:133:06d3e062a058457e",
+      "normalizedRowCount": 133,
+      "expectedSectionCount": 4,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        21024,
+        21087,
+        21129,
+        21148
+      ],
+      "excerptVerseIds": [
+        21028,
+        21089,
+        21130,
+        21149
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 65,
+      "fingerprint": "bani-v1:150:0658d811bf652fcd",
+      "normalizedRowCount": 150,
+      "expectedSectionCount": 16,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        21156,
+        21170,
+        21183,
+        21194,
+        21205,
+        21212,
+        21219,
+        21226,
+        21233,
+        21240,
+        21248,
+        21257,
+        21264,
+        21272,
+        21282,
+        21291
+      ],
+      "excerptVerseIds": [
+        21160,
+        21171,
+        21184,
+        21195,
+        21206,
+        21213,
+        21220,
+        21227,
+        21234,
+        21241,
+        21249,
+        21258,
+        21266,
+        21274,
+        21283,
+        21293
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 66,
+      "fingerprint": "bani-v1:323:3e90cfa835fa2f7c",
+      "normalizedRowCount": 323,
+      "expectedSectionCount": 19,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        21303,
+        21316,
+        21325,
+        21354,
+        21373,
+        21392,
+        21411,
+        21433,
+        21452,
+        21471,
+        21490,
+        21507,
+        21518,
+        21525,
+        21538,
+        21558,
+        21571,
+        21583,
+        21603
+      ],
+      "excerptVerseIds": [
+        21306,
+        21317,
+        21326,
+        21355,
+        21374,
+        21393,
+        21412,
+        21434,
+        21453,
+        21472,
+        21492,
+        21508,
+        21519,
+        21526,
+        21540,
+        21559,
+        21572,
+        21585,
+        21604
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 67,
+      "fingerprint": "bani-v1:375:1952508e4b9012c2",
+      "normalizedRowCount": 375,
+      "expectedSectionCount": 7,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        21622,
+        21662,
+        21752,
+        21868,
+        21900,
+        21941,
+        21951
+      ],
+      "excerptVerseIds": [
+        21625,
+        21664,
+        21754,
+        21870,
+        21902,
+        21943,
+        21953
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 68,
+      "fingerprint": "bani-v1:24:a0de1791b87cef85",
+      "normalizedRowCount": 24,
+      "expectedSectionCount": 3,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        21993,
+        22006,
+        22011
+      ],
+      "excerptVerseIds": [
+        21996,
+        22006,
+        22011
+      ],
+      "kinds": [
+        "shabad"
+      ]
+    },
+    {
+      "baniDbId": 69,
+      "fingerprint": "bani-v1:152:c13949e9f3eae7fd",
+      "normalizedRowCount": 152,
+      "expectedSectionCount": 8,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        22017,
+        22079,
+        22103,
+        22108,
+        22120,
+        22131,
+        22148,
+        22156
+      ],
+      "excerptVerseIds": [
+        22020,
+        22081,
+        22104,
+        22110,
+        22121,
+        22133,
+        22150,
+        22157
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 70,
+      "fingerprint": "bani-v1:67:b0970452bb89b42e",
+      "normalizedRowCount": 67,
+      "expectedSectionCount": 2,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        22165,
+        22220
+      ],
+      "excerptVerseIds": [
+        22168,
+        22222
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 71,
+      "fingerprint": "bani-v1:554:ebd9eff3450e68a7",
+      "normalizedRowCount": 554,
+      "expectedSectionCount": 8,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        22231,
+        22370,
+        22475,
+        22544,
+        22602,
+        22711,
+        22750,
+        22770
+      ],
+      "excerptVerseIds": [
+        22234,
+        22371,
+        22477,
+        22546,
+        22604,
+        22712,
+        22752,
+        22771
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 72,
+      "fingerprint": "bani-v1:181:aa713652a7ba390e",
+      "normalizedRowCount": 181,
+      "expectedSectionCount": 6,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        22841,
+        22929,
+        22941,
+        22957,
+        22985,
+        23005
+      ],
+      "excerptVerseIds": [
+        22844,
+        22931,
+        22943,
+        22959,
+        22987,
+        23007
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 73,
+      "fingerprint": "bani-v1:87:e456ed2ab6fb505e",
+      "normalizedRowCount": 87,
+      "expectedSectionCount": 3,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        23024,
+        23048,
+        23080
+      ],
+      "excerptVerseIds": [
+        23028,
+        23050,
+        23082
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 74,
+      "fingerprint": "bani-v1:70:c4caa54d385787d1",
+      "normalizedRowCount": 70,
+      "expectedSectionCount": 5,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        23111,
+        23141,
+        23150,
+        23160,
+        23169
+      ],
+      "excerptVerseIds": [
+        23114,
+        23142,
+        23152,
+        23161,
+        23171
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 75,
+      "fingerprint": "bani-v1:9:86f8ae77d05bb39b",
+      "normalizedRowCount": 9,
+      "expectedSectionCount": 1,
+      "reviewStatus": "reviewed-indivisible",
+      "startVerseIds": [
+        23182
+      ],
+      "excerptVerseIds": [
+        23185
+      ],
+      "kinds": [
+        "composition"
+      ]
+    },
+    {
+      "baniDbId": 76,
+      "fingerprint": "bani-v1:117:aebc555bf06435cf",
+      "normalizedRowCount": 117,
+      "expectedSectionCount": 9,
+      "reviewStatus": "reviewed-heading-groups",
+      "startVerseIds": [
+        23191,
+        23204,
+        23219,
+        23230,
+        23241,
+        23250,
+        23262,
+        23271,
+        23282
+      ],
+      "excerptVerseIds": [
+        23194,
+        23205,
+        23220,
+        23231,
+        23242,
+        23252,
+        23263,
+        23272,
+        23284
+      ],
+      "kinds": [
+        "provider-heading"
+      ]
+    },
+    {
+      "baniDbId": 79,
+      "fingerprint": "bani-v1:55:c62a670a2acc9f86",
+      "normalizedRowCount": 55,
+      "expectedSectionCount": 9,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24099,
+        24109,
+        24114,
+        24119,
+        24124,
+        24130,
+        24136,
+        24142,
+        24148
+      ],
+      "excerptVerseIds": [
+        24101,
+        24109,
+        24114,
+        24119,
+        24124,
+        24130,
+        24136,
+        24142,
+        24148
+      ],
+      "kinds": [
+        "savaiyya"
+      ]
+    },
+    {
+      "baniDbId": 80,
+      "fingerprint": "bani-v1:71:5bbd5c510c77c3fd",
+      "normalizedRowCount": 71,
+      "expectedSectionCount": 11,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24155,
+        24165,
+        24171,
+        24177,
+        24183,
+        24191,
+        24199,
+        24205,
+        24211,
+        24217,
+        24222
+      ],
+      "excerptVerseIds": [
+        24158,
+        24165,
+        24171,
+        24177,
+        24183,
+        24191,
+        24199,
+        24205,
+        24211,
+        24217,
+        24222
+      ],
+      "kinds": [
+        "savaiyya"
+      ]
+    },
+    {
+      "baniDbId": 81,
+      "fingerprint": "bani-v1:53:d210275f75c5f4bb",
+      "normalizedRowCount": 53,
+      "expectedSectionCount": 10,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24227,
+        24234,
+        24238,
+        24242,
+        24246,
+        24250,
+        24256,
+        24262,
+        24268,
+        24274
+      ],
+      "excerptVerseIds": [
+        24230,
+        24234,
+        24238,
+        24242,
+        24246,
+        24250,
+        24256,
+        24262,
+        24268,
+        24274
+      ],
+      "kinds": [
+        "savaiyya"
+      ]
+    },
+    {
+      "baniDbId": 82,
+      "fingerprint": "bani-v1:53:d7f48f6d3205b991",
+      "normalizedRowCount": 53,
+      "expectedSectionCount": 10,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24280,
+        24289,
+        24293,
+        24297,
+        24301,
+        24307,
+        24313,
+        24319,
+        24323,
+        24327
+      ],
+      "excerptVerseIds": [
+        24283,
+        24289,
+        24293,
+        24297,
+        24301,
+        24307,
+        24313,
+        24319,
+        24323,
+        24327
+      ],
+      "kinds": [
+        "savaiyya"
+      ]
+    },
+    {
+      "baniDbId": 83,
+      "fingerprint": "bani-v1:125:b214fea2f054c96e",
+      "normalizedRowCount": 125,
+      "expectedSectionCount": 22,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24333,
+        24344,
+        24348,
+        24352,
+        24356,
+        24362,
+        24366,
+        24370,
+        24374,
+        24380,
+        24387,
+        24393,
+        24399,
+        24405,
+        24411,
+        24417,
+        24423,
+        24429,
+        24435,
+        24442,
+        24448,
+        24454
+      ],
+      "excerptVerseIds": [
+        24336,
+        24344,
+        24348,
+        24352,
+        24356,
+        24362,
+        24366,
+        24370,
+        24374,
+        24380,
+        24387,
+        24393,
+        24399,
+        24405,
+        24411,
+        24417,
+        24423,
+        24429,
+        24435,
+        24442,
+        24448,
+        24454
+      ],
+      "kinds": [
+        "savaiyya"
+      ]
+    },
+    {
+      "baniDbId": 84,
+      "fingerprint": "bani-v1:323:b72f57cfa8f49bbb",
+      "normalizedRowCount": 323,
+      "expectedSectionCount": 60,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24781,
+        24472,
+        24476,
+        24480,
+        24484,
+        24490,
+        24496,
+        24502,
+        24508,
+        24514,
+        24518,
+        24524,
+        24528,
+        24532,
+        24537,
+        24542,
+        24547,
+        24552,
+        24557,
+        24563,
+        24569,
+        24575,
+        24580,
+        24585,
+        24590,
+        24595,
+        24601,
+        24606,
+        24611,
+        24616,
+        24636,
+        24642,
+        24648,
+        24654,
+        24658,
+        24663,
+        24667,
+        24671,
+        24676,
+        24681,
+        24686,
+        24691,
+        24696,
+        24702,
+        24706,
+        24710,
+        24714,
+        24718,
+        24722,
+        24726,
+        24734,
+        24738,
+        24742,
+        24746,
+        24752,
+        24756,
+        24760,
+        24764,
+        24768,
+        24774
+      ],
+      "excerptVerseIds": [
+        24460,
+        24472,
+        24476,
+        24480,
+        24484,
+        24490,
+        24496,
+        24502,
+        24508,
+        24514,
+        24518,
+        24524,
+        24528,
+        24532,
+        24537,
+        24542,
+        24547,
+        24552,
+        24557,
+        24563,
+        24569,
+        24575,
+        24580,
+        24585,
+        24590,
+        24595,
+        24601,
+        24606,
+        24611,
+        24616,
+        24636,
+        24642,
+        24648,
+        24654,
+        24658,
+        24663,
+        24667,
+        24671,
+        24676,
+        24681,
+        24686,
+        24691,
+        24696,
+        24702,
+        24706,
+        24710,
+        24714,
+        24718,
+        24722,
+        24726,
+        24734,
+        24738,
+        24742,
+        24746,
+        24752,
+        24756,
+        24760,
+        24764,
+        24768,
+        24774
+      ],
+      "kinds": [
+        "savaiyya"
+      ]
+    },
+    {
+      "baniDbId": 85,
+      "fingerprint": "bani-v1:106:aba88f0deab1acf9",
+      "normalizedRowCount": 106,
+      "expectedSectionCount": 21,
+      "reviewStatus": "reviewed-numbered-units",
+      "startVerseIds": [
+        24887,
+        24796,
+        24800,
+        24804,
+        24808,
+        24814,
+        24818,
+        24824,
+        24830,
+        24834,
+        24837,
+        24839,
+        24841,
+        24847,
+        24853,
+        24857,
+        24861,
+        24865,
+        24869,
+        24875,
+        24881
+      ],
+      "excerptVerseIds": [
+        24784,
+        24796,
+        24800,
+        24804,
+        24808,
+        24814,
+        24818,
+        24824,
+        24830,
+        24835,
+        24837,
+        24839,
+        24841,
+        24847,
+        24853,
+        24857,
+        24861,
+        24865,
+        24869,
+        24875,
+        24881
+      ],
+      "kinds": [
+        "savaiyya",
+        "soratha"
+      ]
+    }
+  ]
+}

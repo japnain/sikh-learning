@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+  "activation": "Data only; registry activation remains a separate root-owned visual gate.",
+  "profiles": [
+    {
+      "baniDbId": 4,
+      "fingerprint": "bani-v1:808:e798019fe576c48b",
+      "normalizedRowCount": 808,
+      "sectionCount": 22,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/4",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 5,
+      "fingerprint": "bani-v1:89:bfeb94ea35dbe746",
+      "normalizedRowCount": 89,
+      "sectionCount": 10,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/5",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 6,
+      "fingerprint": "bani-v1:43:3c20ca6b14423107",
+      "normalizedRowCount": 43,
+      "sectionCount": 10,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/6",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 7,
+      "fingerprint": "bani-v1:43:ca844f0ee627efca",
+      "normalizedRowCount": 43,
+      "sectionCount": 10,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/7",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 8,
+      "fingerprint": "bani-v1:49:d7168b3fba83e4db",
+      "normalizedRowCount": 49,
+      "sectionCount": 11,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/8",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 9,
+      "fingerprint": "bani-v1:104:130fb7ffebcc7e43",
+      "normalizedRowCount": 104,
+      "sectionCount": 25,
+      "resolvedLength": "short",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/9",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 9,
+      "fingerprint": "bani-v1:130:0d291fbd9eb1db41",
+      "normalizedRowCount": 130,
+      "sectionCount": 31,
+      "resolvedLength": "medium",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/9",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 9,
+      "fingerprint": "bani-v1:173:9285d066ffc8e0e2",
+      "normalizedRowCount": 173,
+      "sectionCount": 42,
+      "resolvedLength": "long",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/9",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 12,
+      "fingerprint": "bani-v1:26:a20afadc86861d48",
+      "normalizedRowCount": 26,
+      "sectionCount": 2,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/12",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 13,
+      "fingerprint": "bani-v1:357:0b8390d368251f0f",
+      "normalizedRowCount": 357,
+      "sectionCount": 55,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/13",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 19,
+      "fingerprint": "bani-v1:61:a2352917bb2bf00b",
+      "normalizedRowCount": 61,
+      "sectionCount": 27,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/19",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 21,
+      "fingerprint": "bani-v1:306:e63c0a1cf63df4a0",
+      "normalizedRowCount": 306,
+      "sectionCount": 15,
+      "resolvedLength": "short",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/21",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 21,
+      "fingerprint": "bani-v1:337:eb510162788a880e",
+      "normalizedRowCount": 337,
+      "sectionCount": 19,
+      "resolvedLength": "medium",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/21",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 21,
+      "fingerprint": "bani-v1:439:b26a7f198b6c6d4d",
+      "normalizedRowCount": 439,
+      "sectionCount": 34,
+      "resolvedLength": "long",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/21",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 21,
+      "fingerprint": "bani-v1:521:178faf415b2ca6bd",
+      "normalizedRowCount": 521,
+      "sectionCount": 47,
+      "resolvedLength": "extralong",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/21",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 22,
+      "fingerprint": "bani-v1:61:bbe238744b1e0708",
+      "normalizedRowCount": 61,
+      "sectionCount": 7,
+      "resolvedLength": "short",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/22",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 22,
+      "fingerprint": "bani-v1:82:2f8e41ffa18a3663",
+      "normalizedRowCount": 82,
+      "sectionCount": 11,
+      "resolvedLength": "medium",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/22",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 22,
+      "fingerprint": "bani-v1:230:0cd823dea4726a52",
+      "normalizedRowCount": 230,
+      "sectionCount": 39,
+      "resolvedLength": "long",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/22",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 23,
+      "fingerprint": "bani-v1:54:60bee5bc027edfc8",
+      "normalizedRowCount": 54,
+      "sectionCount": 5,
+      "resolvedLength": "short",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/23",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 23,
+      "fingerprint": "bani-v1:61:c83ee1c0af1ac104",
+      "normalizedRowCount": 61,
+      "sectionCount": 6,
+      "resolvedLength": "medium",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/23",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 23,
+      "fingerprint": "bani-v1:86:6611a5af3e33fbdb",
+      "normalizedRowCount": 86,
+      "sectionCount": 10,
+      "resolvedLength": "long",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/23",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 23,
+      "fingerprint": "bani-v1:145:7229c3cd45b95741",
+      "normalizedRowCount": 145,
+      "sectionCount": 16,
+      "resolvedLength": "extralong",
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/23",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 24,
+      "fingerprint": "bani-v1:29:e4ceed9285768686",
+      "normalizedRowCount": 29,
+      "sectionCount": 1,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/24",
+      "indivisible": true
+    },
+    {
+      "baniDbId": 25,
+      "fingerprint": "bani-v1:54:c73f28266d66a7ba",
+      "normalizedRowCount": 54,
+      "sectionCount": 2,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/25",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 26,
+      "fingerprint": "bani-v1:40:580a5c6cca7bacc8",
+      "normalizedRowCount": 40,
+      "sectionCount": 1,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/26",
+      "indivisible": true
+    },
+    {
+      "baniDbId": 28,
+      "fingerprint": "bani-v1:54:9018f2721a86d0ae",
+      "normalizedRowCount": 54,
+      "sectionCount": 13,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/28",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 29,
+      "fingerprint": "bani-v1:1091:8a5b8554a1b009b0",
+      "normalizedRowCount": 1091,
+      "sectionCount": 18,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/29",
+      "indivisible": false
+    },
+    {
+      "baniDbId": 53,
+      "fingerprint": "bani-v1:308:12f5ed538d0ec7a7",
+      "normalizedRowCount": 308,
+      "sectionCount": 7,
+      "resolvedLength": null,
+      "evidence": [
+        "docs/qa/bani-variant-structure-research-20261031.md",
+        "docs/qa/bani-other-structure-research-20261101.md"
+      ],
+      "sourceUrl": "https://api.banidb.com/v2/banis/53",
+      "indivisible": false
+    }
+  ]
+}

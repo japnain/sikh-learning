@@ -20,7 +20,7 @@ import type {
 } from '../types'
 import { requestBanidb } from '../supabase/banidb'
 import { withQaControl } from '../qa/runtime'
-import { BANIS } from '../data/banis'
+import { getBaniRouteSource } from '../data/banis'
 import {
   SUNDAR_GUTKA_LENGTH_EXISTS_KEY,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -828,7 +828,7 @@ export async function fetchBani(
       : null
 
     const supportedBaniId = getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
-    const canonicalSource = BANIS.find(bani => bani.baniDbId === baniDbId)?.source ?? 'G'
+    const fallbackSource = getBaniRouteSource(baniDbId) ?? 'G'
     const normalizedLengthOptions = supportedBaniId
       ? getNormalizedSundarGutkaLengthOptions(rawArray)
       : []
@@ -929,7 +929,7 @@ export async function fetchBani(
         const contextVerse = verses.find(verse => !verse.isHeader) ?? verses[0]
         const attributedSourceId = safeText(contextVerse?.source?.id) || safeText(contextVerse?.source?.sourceId)
         const sourceUnavailable = !attributedSourceId
-        const srcId = attributedSourceId || canonicalSource
+        const srcId = attributedSourceId || fallbackSource
         return buildEntry({
           id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}${occurrence > 1 ? `-part-${occurrence}` : ''}`,
           scripture: sourceUnavailable ? 'Sundar Gutka' : sourceMap[srcId] ?? 'SGGS',

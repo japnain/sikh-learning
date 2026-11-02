@@ -135,6 +135,32 @@ test('shows Gurmukhi text on front', () => {
   expect(screen.getByText(/ੴ/)).toBeInTheDocument()
 })
 
+test.each([0, 1])('opens the explicit action for source line %i without making Read text interactive, then restores focus', async lineIndex => {
+  useLanguageStore.setState({ showVishraam: false })
+  const onPreviewWord = vi.fn()
+  render(<StudyCard entry={introOnlyEntry} presentation="read" onPreviewWord={onPreviewWord} />)
+  const sourceLine = screen.getAllByTestId('study-line')[lineIndex]!
+  const scripture = within(sourceLine).getByTestId('study-gurbani-line')
+  const opener = within(sourceLine).getByRole('button', { name: /open verse actions/i })
+  const focus = vi.spyOn(opener, 'focus')
+
+  expect(scripture.textContent).toBe(introOnlyEntry.lines![lineIndex]!.gurmukhi)
+  expect(scripture.querySelector('[data-reader-word]')).toBeNull()
+  fireEvent.click(scripture)
+  expect(onPreviewWord).not.toHaveBeenCalled()
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  expect(opener).toHaveAttribute('aria-haspopup', 'dialog')
+  expect(opener).toHaveAttribute('aria-expanded', 'false')
+
+  fireEvent.click(opener)
+  expect(opener).toHaveAttribute('aria-expanded', 'true')
+  expect(within(screen.getByRole('dialog', { name: 'Verse actions' })).getByText(introOnlyEntry.lines![lineIndex]!.gurmukhi)).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Dismiss verse actions' }))
+  await waitFor(() => expect(opener).toHaveFocus())
+  expect(opener).toHaveAttribute('aria-expanded', 'false')
+  expect(focus).toHaveBeenCalledWith({ preventScroll: true })
+})
+
 test('keeps Gurbani as one selectable semantic line with one explicit keyboard word explorer', () => {
   useLanguageStore.setState({ showVishraam: false })
   render(<StudyCard entry={entry} />)
@@ -316,8 +342,13 @@ test('switches meaning language to Punjabi', () => {
 test('switches meaning language to Hindi with the selected source', () => {
   useLanguageStore.setState({ meaningLanguage: 'hi', hindiSource: 'sts' })
   render(<StudyCard entry={entry} />)
-  expect(screen.getByText('एकंकार सत')).toBeInTheDocument()
+  expect(screen.getByText('एकंकार सत')).toHaveAttribute('lang', 'hi')
+  expect(screen.getByText('एकंकार सत')).toHaveClass('font-devanagari')
   expect(screen.queryByText('One Creator Truth')).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: /open verse actions for line 1/i }))
+  const meaning = within(screen.getByRole('dialog', { name: 'Verse actions' })).getByText('एकंकार सत')
+  expect(meaning).toHaveAttribute('lang', 'hi')
+  expect(meaning).toHaveClass('font-devanagari')
 })
 
 test('uses the provided larivaar text when larivaar is enabled', () => {

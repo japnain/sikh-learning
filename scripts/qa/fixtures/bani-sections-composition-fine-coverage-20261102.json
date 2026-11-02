@@ -1,0 +1,31 @@
+{
+  "generatedFrom": "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+  "activation": "Replacement data only; registry and UI integration owned separately.",
+  "evidence": "docs/qa/bani-composition-fine-structure-20261102.md",
+  "profiles": [
+    {
+      "baniDbId": 24,
+      "fingerprint": "bani-v1:29:e4ceed9285768686",
+      "normalizedRows": 29,
+      "rootSections": 14,
+      "childSections": 0,
+      "totalTargets": 14
+    },
+    {
+      "baniDbId": 31,
+      "fingerprint": "bani-v1:2019:c1b22c8d9185fae1",
+      "normalizedRows": 2019,
+      "rootSections": 24,
+      "childSections": 192,
+      "totalTargets": 216
+    },
+    {
+      "baniDbId": 38,
+      "fingerprint": "bani-v1:62:f886d4647af98830",
+      "normalizedRows": 62,
+      "rootSections": 7,
+      "childSections": 0,
+      "totalTargets": 7
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { useLocaleStore } from '../store/locale'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningDetails, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralGurbaniHeadingLine, renderScriptText } from '../utils/readerDisplay'
 import { getEnglishSourceLabels, getHindiSourceLabels, getMeaningLanguageLabels, getPunjabiSourceLabels, getVisraamSourceLabels } from '../utils/translations'
 import { getSourceReaderUnit } from '../utils/sourceReaderMeta'
+import { focusElementWithoutAppScroll } from '../utils/appScroll'
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
 import { IconBookmark, IconBookmarkFilled, IconClose, IconMoreHorizontal, IconShare } from './icons'
@@ -18,6 +19,7 @@ interface Props {
   onOpenSections?: () => void
   onPreviewWord?: (context: ReaderWordContext, event: MouseEvent<HTMLElement>) => void
   firstPassage?: boolean
+  openingContextProvided?: boolean
   wordData?: Word[] | null
   showHeaderBlock?: boolean
   showAudioPlayer?: boolean
@@ -238,6 +240,7 @@ export default function StudyCard({
   onOpenSections,
   onPreviewWord,
   firstPassage = true,
+  openingContextProvided = false,
   wordData,
   showHeaderBlock = true,
   showAudioPlayer = false,
@@ -350,13 +353,13 @@ export default function StudyCard({
   useEffect(() => {
     if (activeWord || !restoreWordFocusRef.current) return
     restoreWordFocusRef.current = false
-    wordTriggerRef.current?.focus()
+    if (wordTriggerRef.current) focusElementWithoutAppScroll(wordTriggerRef.current)
   }, [activeWord])
 
   useEffect(() => {
     if (actionLine || !restoreActionFocusRef.current) return
     restoreActionFocusRef.current = false
-    actionTriggerRef.current?.focus()
+    if (actionTriggerRef.current) focusElementWithoutAppScroll(actionTriggerRef.current)
   }, [actionLine])
 
   useEffect(() => {
@@ -500,12 +503,12 @@ export default function StudyCard({
         tabIndex={-1}
         className="study-passage"
       >
-        <header className={`study-passage-heading${firstPassage ? ' study-passage-heading--opening' : ''}`}>
+        {(!firstPassage || !openingContextProvided) ? <header className={`study-passage-heading${firstPassage ? ' study-passage-heading--opening' : ''}`}>
           {firstPassage ? <p className="study-passage-source">{entry.sourceName || entry.scripture}</p> : <>
             <h2>{onOpenSections ? <button type="button" onClick={onOpenSections} aria-label={locale === 'en' ? `Jump to section: ${sectionEyebrow}` : sectionEyebrow ?? undefined}>{sectionEyebrow ?? `${getSourceReaderUnit(entry.source, entry.scripture)} ${entry.ang}`}<span aria-hidden="true">⌄</span></button> : sectionEyebrow ?? `${getSourceReaderUnit(entry.source, entry.scripture)} ${entry.ang}`}</h2>
             {onOpenReaderAppearance ? <button type="button" className="study-section-appearance" onClick={() => openReadingAppearance(0)} aria-label={cardCopy.readingAppearance}><span aria-hidden="true">Aa</span><span>{locale === 'en' ? 'Appearance' : cardCopy.readingAppearance}</span></button> : null}
           </>}
-        </header>
+        </header> : null}
 
         {showAudioPlayer && entry.shabadId ? (
           <div className="mb-4">
@@ -535,7 +538,7 @@ export default function StudyCard({
                     data-reader-plain={scriptMode === 'gurmukhi' ? 'true' : undefined}
                     className="relative"
                   >
-                    <button type="button" className="study-line-action absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full" aria-label={cardCopy.openActions(index + 1)} onClick={event => { actionTriggerRef.current = event.currentTarget; setActionLine(line); setMoreToolsOpen(true); setSourceLayersOpen(false) }}><IconMoreHorizontal size={16} /></button>
+                    <button type="button" className="study-line-action absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full" aria-label={cardCopy.openActions(index + 1)} aria-haspopup="dialog" aria-expanded={actionLine === line} onClick={event => { actionTriggerRef.current = event.currentTarget; setActionLine(line); setMoreToolsOpen(true); setSourceLayersOpen(false) }}><IconMoreHorizontal size={16} /></button>
                     <p
                       lang={getScriptTextLang(scriptMode)}
                       data-testid="study-gurbani-line"
@@ -555,7 +558,7 @@ export default function StudyCard({
                           {renderScriptText(introMeaning, scriptMode)}
                         </p>
                       ) : (
-                        <p data-reader-support="meaning" lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                        <p data-reader-support="meaning" lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`${meaningLanguage === 'hi' ? getScriptTextFontClass('devanagari') : 'font-sans'} text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                           {introMeaning}
                         </p>
                       )
@@ -611,6 +614,8 @@ export default function StudyCard({
                         setSourceLayersOpen(false)
                       }}
                       aria-label={cardCopy.openActions(sequenceIndex + 1)}
+                      aria-haspopup="dialog"
+                      aria-expanded={actionLine === line}
                       className={`study-line-action absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-transparent text-ink/68 transition-colors duration-300 hover:border-sand/20 hover:text-ink/65 dark:text-dark-text/64 dark:hover:border-dark-text/10 dark:hover:text-dark-text/65 ${
                         isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
                       }`}
@@ -671,7 +676,7 @@ export default function StudyCard({
                           {renderScriptText(meaningText, scriptMode)}
                         </p>
                       ) : (
-                        <p data-reader-support="meaning" lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${lineMeaningAlignmentClass}`}>
+                        <p data-reader-support="meaning" lang={meaningLanguage === 'hi' ? 'hi' : 'en'} className={`${meaningLanguage === 'hi' ? getScriptTextFontClass('devanagari') : 'font-sans'} text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${lineMeaningAlignmentClass}`}>
                           {meaningText}
                         </p>
                       )
@@ -746,9 +751,9 @@ export default function StudyCard({
                   ) : null}
                   {actionMeaning && (
                     <p
-                      lang={meaningLanguage === 'pa' ? getScriptTextLang('gurmukhi') : undefined}
+                      lang={actionMeaningLanguage === 'pa' ? getScriptTextLang('gurmukhi') : actionMeaningLanguage === 'hi' ? 'hi' : 'en'}
                       className={`study-verse-meaning mt-2 ${
-                        meaningLanguage === 'pa' ? getScriptTextFontClass('gurmukhi') : 'font-sans'
+                        actionMeaningLanguage === 'pa' ? getScriptTextFontClass('gurmukhi') : actionMeaningLanguage === 'hi' ? getScriptTextFontClass('devanagari') : 'font-sans'
                       }`}
                     >
                       {actionMeaning}

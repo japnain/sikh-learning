@@ -101,4 +101,5 @@ export function restoreReaderAnchor(anchor: ReaderAnchor, root: ParentNode = doc
   const rect = target.getBoundingClientRect()
   const delta = rect.top + rect.height * anchor.fraction - anchor.viewportTop
   if (Math.abs(delta) > 0.5) scrollAppTo({ top: Math.max(0, getAppScrollTop() + delta), behavior: 'auto' })
+  return target
 }

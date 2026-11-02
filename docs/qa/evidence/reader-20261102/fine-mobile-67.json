@@ -1,0 +1,194 @@
+{
+  "id": 67,
+  "length": null,
+  "name": "Raag Ramkali (Sadd)",
+  "failures": [],
+  "disclosures": [
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623",
+      "expanded": false,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentAfter": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623"
+      ],
+      "currentAfter": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21662",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentAfter": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21752",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentAfter": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21868",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentAfter": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21900",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentAfter": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623-stanza-1"
+      ],
+      "currentCorrect": true
+    }
+  ],
+  "checks": [
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21752-shabad-2",
+      "targetId": 21764,
+      "top": 129.28125,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21752-shabad-2"
+      ],
+      "currentViewport": {
+        "top": 398.875,
+        "bottom": 513.40625,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623",
+      "targetId": 21622,
+      "top": 128.59375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623"
+      ],
+      "currentViewport": {
+        "top": 255.5625,
+        "bottom": 369.09375,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21951",
+      "targetId": 21951,
+      "top": 128.640625,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21951"
+      ],
+      "currentViewport": {
+        "top": 413.875,
+        "bottom": 499.609375,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    }
+  ],
+  "layout": {
+    "rowFailures": [],
+    "minimumHitHeight": 44
+  },
+  "rows": 375,
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "presentation": "study",
+  "scroller": "HTML",
+  "originScrollY": 0,
+  "initiallyExpanded": [
+    "bani-67:bani-v1:375:1952508e4b9012c2:catalog-67-21623"
+  ],
+  "collapsedLinks": 8,
+  "expandedLinks": 37,
+  "expandedChildLinks": 29,
+  "returnDelta": 0,
+  "returnCleared": true,
+  "returnFocusVerse": "21625",
+  "state": "ready",
+  "passed": true,
+  "testMode": "390px Study light"
+}

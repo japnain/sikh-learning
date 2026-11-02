@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-01",
+  "family": "japji",
+  "method": "Actual HTTP preview in Chromium mobile/touch emulation, 390×844; Study presentation. Waits for fonts and four animation frames between UI transitions. DOM interactions test every distinct reading, first/middle/last unique section jumps, header clearance, single current marker, Return restoration, document and Contents overflow. This batch is automated geometry, not screenshot review of every case.",
+  "cases": [
+    {
+      "id": 2,
+      "length": null,
+      "name": "Japji Sahib",
+      "url": "/study?baniDbId=2&bani=Japji+Sahib&startAng=1&endAng=8&baniId=japji-sahib&source=G",
+      "expectedRows": 385,
+      "expectedSections": 40,
+      "checks": [
+        {
+          "index": 0,
+          "label": "Opening salok",
+          "verseId": 14,
+          "targetTop": 129.09375,
+          "targetBottom": 257.65625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "returnAvailable": true,
+          "currentCount": 1,
+          "currentLabel": "Opening salok",
+          "returnDelta": 0,
+          "returnCleared": true
+        },
+        {
+          "index": 20,
+          "label": "Pauri 20",
+          "verseId": 183,
+          "targetTop": 129.15625,
+          "targetBottom": 257.71875,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "returnAvailable": true,
+          "currentCount": 1,
+          "currentLabel": "Pauri 20",
+          "returnDelta": 0,
+          "returnCleared": true
+        },
+        {
+          "index": 39,
+          "label": "Closing salok",
+          "verseId": 391,
+          "targetTop": 129.390625,
+          "targetBottom": 298.640625,
+          "headerBottom": 112.34375,
+          "visible": true,
+          "returnAvailable": true,
+          "currentCount": 1,
+          "currentLabel": "Closing salok",
+          "returnDelta": 0,
+          "returnCleared": true
+        }
+      ],
+      "failures": [],
+      "rows": 385,
+      "width": 390,
+      "scrollWidth": 390,
+      "primaryScroller": "HTML",
+      "presentation": "study",
+      "sections": 40,
+      "readerState": "ready",
+      "passed": true
+    }
+  ]
+}

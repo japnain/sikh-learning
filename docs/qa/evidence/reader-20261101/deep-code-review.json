@@ -1,0 +1,128 @@
+{
+  "completedAt": "2026-11-02T17:49:33.430162+00:00",
+  "scope": "Read-only review of nested Contents Return, exact-line and Return focus, section language tags, IME Escape, shared anchor callers, exploration header layout timing, and localized source-unit labels confined to Contents.",
+  "applicationFilesEdited": [],
+  "browserCalls": 0,
+  "materialIssuesFound": [],
+  "reviewedFilesSha256": {
+    "src/pages/Study.tsx": "83137573ae374743d0aa946d2a9f85a982d169003d02f2286f8a9098223b1285",
+    "src/pages/Study.continuous-reader.test.tsx": "74abc9e13f20bd42205459b39e86f0fc5e8a50a659d5330fa420e0a05c13c3f5",
+    "src/components/ModalSheet.tsx": "8fb00b4ad7b549da17b0a8969bc230852a2e45344dc5d5c20439e37dc62f4fba",
+    "src/components/ModalSheet.test.tsx": "2887dc69e63cf88f3a9dfc341c6bb4feb4af9497494e5ec2223f8eddc24a2ff8",
+    "src/utils/readerAnchor.ts": "9df1e30f5930aa67257cb8a5483a77ddc661da2a9022d0c80a06fe478dd0e2c6",
+    "src/utils/readerAnchor.test.ts": "b80105760e930e0079e4ac77d25a5f923d9df22af7369dfa30a62d6a7ac43ad2"
+  },
+  "checks": {
+    "combinedVitest": {
+      "passed": true,
+      "files": 22,
+      "tests": 697,
+      "seconds": 52.62,
+      "includesAnchorCallerTests": true,
+      "flags": [
+        "--configLoader",
+        "runner",
+        "--no-cache",
+        "--maxWorkers=2"
+      ],
+      "log": "tmp/reader-live/verse-tools-final-20261102-vitest.log",
+      "testFiles": [
+        "src/pages/Study.continuous-reader.test.tsx",
+        "src/pages/Study.test.tsx",
+        "src/components/StudyCard.test.tsx",
+        "src/components/ModalSheet.test.tsx",
+        "src/components/BaniFindPanel.test.tsx",
+        "src/utils/baniFind.test.ts",
+        "src/utils/baniSections.test.ts",
+        "src/utils/baniSections.live.test.ts",
+        "src/utils/baniSectionProfiles.test.ts",
+        "src/utils/baniSectionProfiles.catalog.test.ts",
+        "src/utils/catalogBaniProfiles.live.test.ts",
+        "src/content/baniSections/dasamCompositeProfiles.test.ts",
+        "src/content/baniSections/sggsProfiles.test.ts",
+        "src/hooks/useBani.test.tsx",
+        "src/utils/baniReadingValidation.test.ts",
+        "src/utils/baniReadingValidation.live.test.ts",
+        "src/scrollArchitecture.test.ts",
+        "src/utils/appScroll.test.ts",
+        "src/utils/readerAnchor.test.ts",
+        "src/hooks/useReaderPresentation.test.tsx",
+        "src/hooks/useReaderHeaderLayout.test.tsx",
+        "src/components/ReaderHeader.test.tsx"
+      ]
+    },
+    "typescript": {
+      "passed": true,
+      "project": "tsconfig.app.json",
+      "incremental": false,
+      "priorLog": "tmp/reader-live/verse-tools-final-20261102-typescript.log",
+      "latestRecheck": {
+        "passed": true,
+        "reportedBy": "/root/reader_consistency",
+        "command": "npx tsc -p tsconfig.app.json --noEmit --incremental false",
+        "executionSessionId": 7413,
+        "exitCode": 0,
+        "output": ""
+      }
+    },
+    "focusedLint": {
+      "passed": true,
+      "files": [
+        "src/pages/Study.tsx",
+        "src/pages/Study.continuous-reader.test.tsx",
+        "src/components/ModalSheet.tsx",
+        "src/components/ModalSheet.test.tsx",
+        "src/utils/readerAnchor.ts",
+        "src/utils/readerAnchor.test.ts"
+      ],
+      "baselineLog": "tmp/reader-live/verse-tools-final-20261102-lint.log",
+      "latestChangedFileRecheck": {
+        "passed": true,
+        "files": [
+          "src/pages/Study.tsx"
+        ],
+        "reportedBy": "/root/reader_consistency",
+        "command": "npx eslint src/pages/Study.tsx",
+        "executionSessionId": 91141,
+        "exitCode": 0,
+        "output": "",
+        "scopeNote": "Other five reviewed files have unchanged hashes from the passing six-file focused lint run."
+      }
+    },
+    "productionBuild": {
+      "passed": true,
+      "outputDirectory": "tmp/reader-refinement-build",
+      "log": "tmp/reader-live/verse-tools-final-20261102-build.log"
+    },
+    "startupBudget": {
+      "passed": true,
+      "javascriptGzipKiB": 151.4,
+      "javascriptGzipBudgetKiB": 190.0,
+      "cssGzipKiB": 12.8,
+      "cssGzipBudgetKiB": 36.0,
+      "javascriptRawKiB": 483.4,
+      "javascriptRawBudgetKiB": 650.0,
+      "cssRawKiB": 60.0,
+      "cssRawBudgetKiB": 210.0,
+      "initialAssets": 13,
+      "backendRemainsLazy": true,
+      "log": "tmp/reader-live/verse-tools-final-20261102-startup.log"
+    }
+  },
+  "limitations": [
+    "This review and unit/integration verification do not substitute for the root agent live browser sweep.",
+    "Lint scope is the six reviewed application/test files; no full-repository lint claim."
+  ],
+  "regressionVerification": [
+    "The exploration header is measured before an exact jump even when ResizeObserver runs later.",
+    "The first jump and a subsequent jump after Stay both reserve the measured 87px header instead of the stale 80px value.",
+    "Delayed ResizeObserver delivery does not move the jumped viewport or lose its section marker."
+  ],
+  "copyReview": {
+    "englishOutputUnchanged": true,
+    "navigationHandlersUnchanged": true,
+    "localizedAttributionUnitsUseExistingHelper": true,
+    "unavailableSourceRetainsNeutralPageLabel": true,
+    "applicationEditsByReviewer": false
+  }
+}

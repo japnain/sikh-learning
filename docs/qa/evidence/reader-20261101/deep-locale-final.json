@@ -1,0 +1,22 @@
+{
+  "pa": {
+    "id": 24,
+    "locale": "pa-Guru",
+    "sourceBadge": "ਪੰਨਾ119",
+    "sourceSubtitle": "ਪੰਨਾ 119",
+    "englishPageInContents": false,
+    "sections": 1,
+    "overflow": false
+  },
+  "hi": {
+    "id": 67,
+    "locale": "hi",
+    "semanticUnit": "अंग 923",
+    "sourceBadge": "अंग923",
+    "sourceSubtitle": "अंग 923",
+    "sections": 7,
+    "overflow": false
+  },
+  "screenshotsReviewed": true,
+  "scope": "Contents units only; header/share labels unchanged."
+}

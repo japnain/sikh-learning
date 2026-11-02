@@ -1,0 +1,16 @@
+{
+  "fixture": "japji-banidb-2026-10-31.json",
+  "sourceUrl": "https://api.banidb.com/v2/banis/2",
+  "retrievalDate": "2026-10-31",
+  "recordedAt": "2026-10-31T16:57:05.065851+00:00",
+  "retrievalMethod": "Firecrawl scrape; maxAge=0; formats=[markdown]; toolDetail=compact",
+  "timestampNote": "recordedAt is the acquisition record timestamp, not an asserted provider HTTP Date.",
+  "originalPayload": {
+    "sha256": "4154ca3b0452bdd4b835ae515388c989c04a9b83e26e1341271be8cdddb64a64",
+    "bytes": 1051264,
+    "rowCount": 385
+  },
+  "sanitization": "Removed only nested verse.translation, verse.transliteration, verse.larivaar, and verse.visraam. All 385 rows, their order, original Unicode and legacy Gurmukhi text, header flags, verse IDs, pages, provider metadata, and absent shabad/source fields are preserved. No text normalization, canonical corrections, synthetic rows, or invented identifiers.",
+  "fixtureSha256": "d9b3f5534d9a3b7f988bfa387acc1c9dcfe2f91df83c7e1ba69d075436826e8c",
+  "fixtureBytes": 193196
+}

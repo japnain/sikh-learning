@@ -1,0 +1,214 @@
+{
+  "keyboard": {
+    "method": "Actual browser Enter, Enter, Tab events in Sukhmani; accepted Ashtpadi2 origin, Ashtpadi13 exploration, Return",
+    "origin": {
+      "scrollY": 11902,
+      "verse": "5321",
+      "saved": 5322
+    },
+    "returned": {
+      "focus": "5321",
+      "scrollY": 11902,
+      "saved": 5322
+    },
+    "afterTab": {
+      "scrollY": 11902,
+      "verse": "5321",
+      "control": "Open verse actions for line 52"
+    }
+  },
+  "find": [
+    {
+      "query": "ਸਿਮਰਉ",
+      "jump": {
+        "verse": "5239",
+        "top": 123.078125,
+        "headerBottom": 112.34375
+      },
+      "returned": {
+        "delta": 0,
+        "focus": "5321"
+      },
+      "preserved": "ਸਿਮਰਉ",
+      "sectionsAfterClear": 24
+    },
+    {
+      "query": "simar",
+      "jump": {
+        "verse": "5239",
+        "top": 123.078125,
+        "headerBottom": 112.34375
+      },
+      "returned": {
+        "delta": 0,
+        "focus": "5321"
+      },
+      "preserved": "simar",
+      "sectionsAfterClear": 24
+    }
+  ],
+  "visuals": [
+    {
+      "id": 57,
+      "case": "68-character Gurmukhi heading, target20127",
+      "viewport": [
+        320,
+        740
+      ],
+      "rootFontPx": 32,
+      "gurbaniFontPx": 34,
+      "theme": "dark",
+      "presentation": "read",
+      "targetIndex": 22,
+      "currentIndex": 22,
+      "overflow": false,
+      "visuallyReviewed": true
+    },
+    {
+      "id": 43,
+      "length": null,
+      "targetIndex": 34,
+      "currentIndex": 34,
+      "label": "Stanza 35",
+      "lang": "",
+      "excerpt": "ਆਇੜੈ ਆਪਿ ਕਰੇ ਜਿਨਿ ਛੋਡੀ ਜੋ ਕਿਛੁ ਕਰਣਾ ਸੁ ਕਰਿ ਰਹਿਆ ॥",
+      "viewport": [
+        320,
+        740
+      ],
+      "rootFont": "32px",
+      "theme": "dark",
+      "uiLocale": "en",
+      "currentTop": 252.046875,
+      "currentBottom": 596.96875,
+      "panelTop": 134,
+      "panelBottom": 715,
+      "overflow": false,
+      "visuallyReviewed": true
+    },
+    {
+      "id": 43,
+      "length": null,
+      "targetIndex": 32,
+      "currentIndex": 32,
+      "label": "Stanza 33",
+      "lang": "",
+      "excerpt": "ੜਾੜੈ ਰਾੜਿ ਕਰਹਿ ਕਿਆ ਪ੍ਰਾਣੀ ਤਿਸਹਿ ਧਿਆਵਹੁ ਜਿ ਅਮਰੁ ਹੋਆ ॥ ਤਿਸਹਿ ਧਿਆਵਹੁ ਸਚਿ ਸਮਾਵਹੁ ਓਸੁ ਵਿਟਹੁ ਕੁਰਬਾਣੁ ਕੀਆ ॥੩੩॥",
+      "viewport": [
+        320,
+        740
+      ],
+      "rootFont": "32px",
+      "theme": "dark",
+      "uiLocale": "en",
+      "currentTop": 166.015625,
+      "currentBottom": 683.71875,
+      "panelTop": 134,
+      "panelBottom": 715,
+      "overflow": false,
+      "visuallyReviewed": true
+    },
+    {
+      "id": 23,
+      "length": "extralong",
+      "case": "longest English Contents label",
+      "targetIndex": 15,
+      "viewport": [
+        320,
+        740
+      ],
+      "rootFontPx": 32,
+      "gurbaniFontPx": 34,
+      "theme": "dark",
+      "presentation": "read",
+      "visuallyReviewed": true
+    },
+    {
+      "id": 77,
+      "length": null,
+      "targetIndex": 242,
+      "currentIndex": 242,
+      "label": "Salok 243",
+      "lang": "",
+      "excerpt": "ਕਬੀਰ ਜਉ ਗ੍ਰਿਹੁ ਕਰਹਿ ਤ ਧਰਮੁ ਕਰੁ ਨਾਹੀ ਤ ਕਰੁ ਬੈਰਾਗੁ ॥",
+      "viewport": [
+        320,
+        740
+      ],
+      "rootFont": "32px",
+      "theme": "dark",
+      "uiLocale": "en",
+      "currentTop": 257.390625,
+      "currentBottom": 591.109375,
+      "panelTop": 134,
+      "panelBottom": 715,
+      "overflow": false,
+      "visuallyReviewed": true
+    },
+    {
+      "id": 67,
+      "case": "Hindi UI, Devanagari excerpts and preserved Gurmukhi heading labels",
+      "uiLocale": "hi",
+      "script": "devanagari",
+      "viewport": [
+        390,
+        844
+      ],
+      "theme": "light",
+      "presentation": "study",
+      "sections": 7,
+      "literalLabelLang": "pa-Guru",
+      "visuallyReviewed": true,
+      "overflow": false
+    },
+    {
+      "id": 24,
+      "locale": "pa-Guru",
+      "sections": 1,
+      "text": "ਪਾਠ ਦੇ ਭਾਗ\n\nਇਸ ਬਾਣੀ ਦੇ ਮੂਲ ਕ੍ਰਮ ਨੂੰ ਕਾਇਮ ਰੱਖਦਿਆਂ ਇਸ ਦੇ ਭਾਗਾਂ ਵਿਚ ਜਾਓ।\n\nਪਾਠ ਦੇ ਭਾਗ\nਭਾਗ\nਅਰਦਾਸ\nਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥\nਸਰੋਤ ਦੇ ਪੰਨੇ\n\nਪੰਨੇ ਸਰੋਤ ਦੇ ਕ੍ਰਮ ਵਿੱਚ ਹਨ। ਇਹ ਪਉੜੀਆਂ ਜਾਂ ਰਚਨਾ ਦੇ ਭਾਗ ਨਹੀਂ ਹਨ।\n\nPage\n119\nਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ ਗੁਰ ਨਾਨਕ ਲਈਂ ਧਿਆਇ ॥\nPage 119",
+      "overflow": false,
+      "case": "Punjabi UI, Ardaas single entry",
+      "viewport": [
+        390,
+        844
+      ],
+      "visuallyReviewed": true
+    },
+    {
+      "id": 87,
+      "length": null,
+      "targetIndex": 27,
+      "currentIndex": 27,
+      "label": "ਰਾਗੁ ਗਉੜੀ ਗੁਆਰੇਰੀ ਮਹਲਾ ੧ ਚਉਪਦੇ ਦੁਪਦੇ",
+      "lang": "pa-Guru",
+      "excerpt": "ਭਉ ਮੁਚੁ ਭਾਰਾ ਵਡਾ ਤੋਲੁ ॥",
+      "viewport": [
+        1280,
+        800
+      ],
+      "rootFont": "16px",
+      "theme": "light",
+      "uiLocale": "en",
+      "currentTop": 391.390625,
+      "currentBottom": 477.125,
+      "panelTop": 82,
+      "panelBottom": 787,
+      "overflow": false,
+      "visuallyReviewed": true
+    },
+    {
+      "id": 87,
+      "case": "landscape short viewport",
+      "viewport": [
+        740,
+        360
+      ],
+      "sheetTop": 12,
+      "sheetBottom": 348,
+      "overflow": false,
+      "closeHeight": 44,
+      "visuallyReviewed": true
+    }
+  ],
+  "screenshotNote": "Screenshots reviewed inline during this session; no screenshot files saved because browser file-path output was denied earlier. Scripted geometry and screenshot review are separate checks."
+}

@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { StrictMode, useState } from 'react'
 import { mockDocumentScroll } from '../test/documentScroll'
@@ -128,6 +128,45 @@ test('queued dismissal never restores focus to an opener removed by navigation',
   })
   expect(opener.isConnected).toBe(false)
   expect(destination).toHaveFocus()
+  expect(documentScroll.getTop()).toBe(320)
+
+  view.unmount()
+  documentScroll.restore()
+  document.documentElement.removeAttribute('style')
+})
+
+test('keeps Contents open for IME Escape and closes normally after composition ends', async () => {
+  function ContentsSearch() {
+    const [open, setOpen] = useState(false)
+    return <>
+      <button type="button" onClick={() => setOpen(true)}>Open contents</button>
+      <ModalSheet open={open} onClose={() => setOpen(false)} title="Contents" description="Find within this reading.">
+        <input aria-label="Find in this bani" />
+      </ModalSheet>
+    </>
+  }
+
+  const user = userEvent.setup()
+  const documentScroll = mockDocumentScroll({ top: 320 })
+  const view = render(<ContentsSearch />)
+  const opener = screen.getByRole('button', { name: 'Open contents' })
+  await user.click(opener)
+  const input = screen.getByRole('textbox', { name: 'Find in this bani' })
+  await waitFor(() => expect(input).toHaveFocus())
+
+  fireEvent.compositionStart(input, { data: 'ਸ' })
+  fireEvent.change(input, { target: { value: 'ਸ' } })
+  fireEvent.keyDown(input, { key: 'Escape', isComposing: true })
+  expect(screen.getByRole('dialog', { name: 'Contents' })).toBeInTheDocument()
+  expect(input).toHaveFocus()
+  expect(input).toHaveValue('ਸ')
+  expect(document.documentElement.style.overflow).toBe('hidden')
+  expect(documentScroll.getTop()).toBe(320)
+
+  fireEvent.compositionEnd(input, { data: 'ਸ' })
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Contents' })).not.toBeInTheDocument())
+  await waitFor(() => expect(opener).toHaveFocus())
   expect(documentScroll.getTop()).toBe(320)
 
   view.unmount()

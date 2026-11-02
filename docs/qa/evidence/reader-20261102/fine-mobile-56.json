@@ -1,0 +1,194 @@
+{
+  "id": 56,
+  "length": null,
+  "name": "Raag Gauri",
+  "failures": [],
+  "disclosures": [
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19129",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentAfter": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19465",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentAfter": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19506",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentAfter": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19674",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentAfter": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19748",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentAfter": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19791",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentAfter": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentCorrect": true
+    }
+  ],
+  "checks": [
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:raag-fine-a-56-19506-unit-2",
+      "targetId": 19510,
+      "top": 129.0625,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:raag-fine-a-56-19506-unit-2"
+      ],
+      "currentViewport": {
+        "top": 413.609375,
+        "bottom": 499.34375,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738",
+      "targetId": 18735,
+      "top": 128.59375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-18738"
+      ],
+      "currentViewport": {
+        "top": 255.5625,
+        "bottom": 341.296875,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19835",
+      "targetId": 19835,
+      "top": 128.5625,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-56:bani-v1:1130:11f91be2aeadfc06:catalog-56-19835"
+      ],
+      "currentViewport": {
+        "top": 413.46875,
+        "bottom": 499.203125,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    }
+  ],
+  "layout": {
+    "rowFailures": [],
+    "minimumHitHeight": 44
+  },
+  "rows": 1130,
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "presentation": "study",
+  "scroller": "HTML",
+  "originScrollY": 0,
+  "initiallyExpanded": [],
+  "collapsedLinks": 78,
+  "expandedLinks": 156,
+  "expandedChildLinks": 78,
+  "returnDelta": 0,
+  "returnCleared": true,
+  "returnFocusVerse": "18735",
+  "state": "ready",
+  "passed": true,
+  "testMode": "390px Study light",
+  "theme": "light",
+  "rootFont": "16px"
+}

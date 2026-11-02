@@ -1,4 +1,6 @@
+import * as baniSections from '../utils/baniSections'
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, useNavigate, useLocation } from 'react-router-dom'
 import { http, HttpResponse } from 'msw'
 import Study from './Study'
@@ -33,6 +35,7 @@ const verses = verseIds.map((verseId, index) => ({
 }))
 let scroll: ReturnType<typeof mockDocumentScroll> | null = null
 let restoreFonts: (() => void) | null = null
+let restoreClampedMocks: (() => void) | null = null
 
 function deferFontLayout() {
   const descriptor = Object.getOwnPropertyDescriptor(document, 'fonts')
@@ -164,9 +167,10 @@ it('switching to Read in appearance clears the previous Study word', async () =>
 it('offers Contents from More while keeping mode selection in the persistent header', async () => {
   renderLongReading()
   await screen.findByTestId('study-entry-list')
+  fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('radio', { name: 'Read', exact: true }))
   fireEvent.click(screen.getByRole('button', { name: 'Reading tools', exact: true }))
   const tools = screen.getByRole('dialog', { name: 'Reading tools' })
-  fireEvent.click(within(tools).getByRole('radio', { name: 'Read', exact: true }))
+  expect(within(tools).queryByRole('radio')).not.toBeInTheDocument()
   expect(screen.getByTestId('page-study')).toHaveAttribute('data-reader-presentation', 'read')
   fireEvent.click(within(tools).getByRole('button', { name: 'Contents', exact: true }))
   expect(await screen.findByRole('dialog', { name: 'Contents' })).toBeInTheDocument()
@@ -197,6 +201,8 @@ beforeEach(() => {
   }))
 })
 afterEach(() => {
+  restoreClampedMocks?.()
+  restoreClampedMocks = null
   scroll?.restore()
   scroll = null
   restoreFonts?.()
@@ -393,7 +399,7 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Continue here' }))
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2883))
     expect(jumped).toContain('2883')
-    expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Ang 1386')
+    expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Page 1386')
     expect(new URLSearchParams(useProgressStore.getState().currentSession!.resumePath.split('?')[1]).get('ang')).toBe('1386')
     expect(captureReaderAnchor()?.key).toBe('bani-21-1386-0:2')
 
@@ -415,7 +421,7 @@ it('keeps the deliberate Rehras body jump through preceding headers, enlarged te
     fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Continue here' }))
     await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(2796))
     expect(jumped).toContain('2796')
-    expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Ang 12')
+    expect(screen.getByTestId('study-reader-topbar')).toHaveTextContent('Page 12')
     expect(screen.getAllByTestId('study-line').map(line => line.dataset.verseId)).toEqual(sourceOrder)
   } finally { measure.mockRestore() }
 })
@@ -1088,4 +1094,585 @@ it('cancels delayed font realignment when the reader unmounts', async () => {
   await act(async () => { finishFonts() })
   await settleReaderFrames()
   expect(alignment).toHaveBeenCalledTimes(1)
+})
+
+
+it('keeps full opening context outside the compact toolbar and resets only text layout', async () => {
+  renderLongReading()
+  await screen.findByTestId('study-entry-list')
+  const header = screen.getByTestId('study-reader-topbar')
+  const opening = screen.getByTestId('study-reader-opening')
+  expect(opening.querySelector('.study-reader-opening__source')).toHaveTextContent('Sri Guru Granth Sahib Ji')
+  expect(header.querySelector('.reader-header__subtitle')).toBeNull()
+  expect(screen.getAllByTestId('study-card')[0]!.querySelector('.study-passage-source')).toBeNull()
+  const { scriptMode, englishSource, meaningLanguage } = useLanguageStore.getState()
+  fireEvent.click(within(header).getByRole('button', { name: 'Reading appearance' }))
+  const appearance = screen.getByRole('dialog', { name: 'Reading appearance' })
+  fireEvent.change(within(appearance).getByRole('slider', { name: 'Gurbani text size' }), { target: { value: '34' } })
+  fireEvent.click(within(appearance).getByRole('button', { name: 'Reset text layout' }))
+  expect(useLanguageStore.getState()).toMatchObject({
+    fontSize: 22, lineSpacing: 'relaxed', textAlign: 'left', supportTextSize: 'standard',
+    scriptMode, englishSource, meaningLanguage,
+  })
+})
+
+
+it('shows verified composition sections, marks the current pauri and jumps to its exact line', async () => {
+  const sectionSpy = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => {
+    const entry = entries[0]
+    if (!entry?.lines?.[3]) return []
+    return [1, 3].map((lineIndex, index) => ({
+      id: `checked-pauri-${index + 1}`, kind: 'pauri' as const, number: index + 1,
+      label: `Pauri ${index + 1}`, entryIndex: 0, lineIndex, source: 'G' as const,
+      verseId: entry.lines![lineIndex].verseId, ang: entry.lines![lineIndex].ang,
+      excerpt: entry.lines![lineIndex].gurmukhi,
+    }))
+  })
+  renderLongReading()
+  const lines = await screen.findAllByTestId('study-line')
+  vi.spyOn(screen.getByTestId('study-reader-topbar'), 'getBoundingClientRect').mockReturnValue({
+    x: 0, y: 0, top: 0, bottom: 80, left: 0, right: 390, width: 390, height: 80, toJSON: () => ({}),
+  })
+  lines.forEach((line, index) => vi.spyOn(line, 'getBoundingClientRect').mockReturnValue({
+    x: 0, y: 96 + (index - 3) * 100, top: 96 + (index - 3) * 100, bottom: 176 + (index - 3) * 100,
+    left: 0, right: 390, width: 390, height: 80, toJSON: () => ({}),
+  }))
+  const target = lines[1]!
+  const jump = vi.spyOn(target, 'scrollIntoView')
+  fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Contents' }))
+  const list = screen.getByTestId('bani-composition-sections')
+  expect(within(list).getByRole('button', { name: /Pauri 2/ })).toHaveAttribute('aria-current', 'location')
+  expect(screen.getByRole('dialog', { name: 'Contents' }).querySelectorAll('[aria-current="location"]')).toHaveLength(1)
+  fireEvent.click(within(list).getByRole('button', { name: /Pauri 1/ }))
+  await waitFor(() => expect(jump).toHaveBeenCalledWith({ behavior: 'auto', block: 'start' }))
+  expect(screen.queryByRole('dialog', { name: 'Contents' })).not.toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Return to previous place' })).toBeInTheDocument()
+  sectionSpy.mockRestore()
+})
+
+async function renderNestedContentsReading(presentation: 'Read' | 'Study') {
+  const sectionMock = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => entries.slice(0, 2).flatMap((entry, entryIndex) => {
+    if (!entry.lines?.[5]) return []
+    const section = (lineIndex: number, label: string, id: string, kind: string) => ({
+      id, kind, label, entryIndex, lineIndex, source: 'G' as const,
+      verseId: entry.lines![lineIndex].verseId, ang: entry.lines![lineIndex].ang,
+      excerpt: entry.lines![lineIndex].gurmukhi,
+    })
+    return [{
+      ...section(0, `Ashtpadi ${entryIndex + 1}`, `nested-ashtpadi-${entryIndex + 1}`, 'ashtpadi'),
+      children: [1, 5].map((lineIndex, stanza) => section(lineIndex, `Stanza ${stanza + 1}`, `nested-ashtpadi-${entryIndex + 1}-stanza-${stanza + 1}`, 'stanza')),
+    }]
+  }))
+  scroll = mockDocumentScroll({ top: 0, viewportHeight: 800, scrollHeight: 20000 })
+  const originalRect = HTMLElement.prototype.getBoundingClientRect
+  const rectMock = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+    const header = this.dataset.testid === 'study-reader-topbar'
+    if (!header && this.dataset.testid !== 'study-line') return originalRect.call(this)
+    const top = header ? 0 : 200 + (Number(this.dataset.verseId) - 8100) * 100 - scroll!.getTop()
+    const height = header ? 80 : 100
+    return { x: 0, y: top, top, bottom: top + height, left: 0, right: 390, width: 390, height, toJSON: () => ({}) }
+  })
+  const align = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(function (this: HTMLElement) {
+    if (this.dataset.testid === 'study-line') scroll!.setTop(200 + (Number(this.dataset.verseId) - 8100) * 100 - 96)
+  })
+  restoreClampedMocks = () => { sectionMock.mockRestore(); rectMock.mockRestore(); align.mockRestore() }
+  renderLongReading()
+  const lines = await screen.findAllByTestId('study-line')
+  await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBeTruthy())
+  if (presentation === 'Read') {
+    fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('radio', { name: 'Read', exact: true }))
+    await settleReaderFrames()
+  }
+  act(() => { scroll!.setTop(404); document.dispatchEvent(new Event('scrollend')) })
+  await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103))
+  const openContents = async () => {
+    fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Contents', exact: true }))
+    await settleReaderFrames()
+    return screen.getByTestId('bani-composition-sections')
+  }
+  const closeContents = async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+    await settleReaderFrames()
+  }
+  const group = (parent: number) => screen.getByTestId('bani-composition-sections')
+    .querySelector<HTMLElement>(`[data-reader-section-group="nested-ashtpadi-${parent}"]`)!
+  return { lines, align, openContents, closeContents, group }
+}
+
+it.each(['Read', 'Study'] as const)('expands and collapses nested Contents in %s without moving or saving the background reading', async presentation => {
+  const { lines, align, openContents, closeContents, group } = await renderNestedContentsReading(presentation)
+  const user = userEvent.setup()
+  const list = await openContents()
+  const savedSession = JSON.stringify(useProgressStore.getState().currentSession)
+  const persistedProgress = localStorage.getItem('sikh-progress')
+  const savedPlaces = JSON.stringify(useReadingPlacesStore.getState().places)
+  align.mockClear()
+  scroll!.scrollTo.mockClear()
+  expect(within(group(1)).getByRole('button', { name: /^Stanza 1/ })).toHaveAttribute('aria-current', 'location')
+  expect(group(1)).toHaveAttribute('data-current-ancestor', 'true')
+  expect(within(group(2)).queryByRole('button', { name: /^Stanza 1/ })).not.toBeInTheDocument()
+
+  act(() => within(group(2)).getByRole('button', { name: 'Show 2 stanzas Ashtpadi 2' }).focus())
+  await user.keyboard('{Enter}')
+  expect(within(group(2)).getByRole('button', { name: 'Hide 2 stanzas Ashtpadi 2' })).toHaveAttribute('aria-expanded', 'true')
+  expect(within(group(2)).getByRole('button', { name: /^Stanza 2/ })).toBeVisible()
+  fireEvent.click(within(group(1)).getByRole('button', { name: 'Hide 2 stanzas Ashtpadi 1' }))
+  expect(within(group(1)).getByRole('button', { name: /^Ashtpadi 1/ })).toHaveAttribute('aria-current', 'location')
+  expect(within(group(1)).queryByRole('button', { name: /^Stanza 1/ })).not.toBeInTheDocument()
+  fireEvent.click(within(group(1)).getByRole('button', { name: 'Show 2 stanzas Ashtpadi 1' }))
+  expect(within(group(1)).getByRole('button', { name: /^Stanza 1/ })).toHaveAttribute('aria-current', 'location')
+  expect(list.querySelectorAll('[aria-current="location"]')).toHaveLength(1)
+  await settleReaderFrames()
+
+  expect(scroll!.getTop()).toBe(404)
+  expect(scroll!.scrollTo).not.toHaveBeenCalled()
+  expect(align).not.toHaveBeenCalled()
+  expect(JSON.stringify(useProgressStore.getState().currentSession)).toBe(savedSession)
+  expect(localStorage.getItem('sikh-progress')).toBe(persistedProgress)
+  expect(JSON.stringify(useReadingPlacesStore.getState().places)).toBe(savedPlaces)
+  expect(screen.queryByRole('button', { name: 'Return to previous place' })).not.toBeInTheDocument()
+  expect(lines.map(line => Number(line.dataset.verseId))).toEqual(verseIds)
+  await closeContents()
+  expect(scroll!.getTop()).toBe(404)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103)
+})
+
+it.each(['Read', 'Study'] as const)('jumps to an exact nested child in %s, reveals its current path and Returns to the original saved place', async presentation => {
+  const { lines, align, openContents, closeContents, group } = await renderNestedContentsReading(presentation)
+  const user = userEvent.setup()
+  await openContents()
+  fireEvent.click(within(group(2)).getByRole('button', { name: 'Show 2 stanzas Ashtpadi 2' }))
+  act(() => within(group(2)).getByRole('button', { name: /^Stanza 2/ }).focus())
+  align.mockClear()
+  await user.keyboard('{Enter}')
+  await settleReaderFrames()
+  const target = lines.find(line => line.dataset.verseId === '8117')!
+  expect(screen.queryByRole('dialog', { name: 'Contents' })).not.toBeInTheDocument()
+  expect(align).toHaveBeenCalledTimes(1)
+  expect(align.mock.contexts[0]).toBe(target)
+  expect(target).toHaveFocus()
+  expect(target.getBoundingClientRect().top).toBe(96)
+  expect(scroll!.getTop()).toBe(1804)
+  act(() => { document.dispatchEvent(new Event('scrollend')); window.dispatchEvent(new Event('pagehide')) })
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103)
+  expect(JSON.parse(localStorage.getItem('sikh-progress')!).state.currentSession.resumeVerseId).toBe(8103)
+
+  const list = await openContents()
+  expect(group(2)).toHaveAttribute('data-current-ancestor', 'true')
+  expect(within(group(2)).getByRole('button', { name: 'Hide 2 stanzas Ashtpadi 2' })).toHaveAttribute('aria-expanded', 'true')
+  expect(within(group(2)).getByRole('button', { name: /^Stanza 2/ })).toHaveAttribute('aria-current', 'location')
+  expect(within(group(2)).getByRole('button', { name: /^Ashtpadi 2/ })).not.toHaveAttribute('aria-current')
+  expect(list.querySelectorAll('[aria-current="location"]')).toHaveLength(1)
+  expect(within(group(1)).getByRole('button', { name: 'Show 2 stanzas Ashtpadi 1' })).toHaveAttribute('aria-expanded', 'false')
+  await closeContents()
+  act(() => screen.getByRole('button', { name: 'Return to previous place' }).focus())
+  await user.keyboard('{Enter}')
+  await settleReaderFrames()
+  expect(scroll!.getTop()).toBe(404)
+  expect(lines.find(line => line.dataset.verseId === '8103')).toHaveFocus()
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103)
+  expect(screen.queryByRole('button', { name: 'Return to previous place' })).not.toBeInTheDocument()
+
+  const returnedList = await openContents()
+  expect(group(1)).toHaveAttribute('data-current-ancestor', 'true')
+  expect(within(group(1)).getByRole('button', { name: /^Stanza 1/ })).toHaveAttribute('aria-current', 'location')
+  expect(returnedList.querySelectorAll('[aria-current="location"]')).toHaveLength(1)
+  expect(within(group(2)).getByRole('button', { name: 'Show 2 stanzas Ashtpadi 2' })).toHaveAttribute('aria-expanded', 'false')
+  expect(screen.getAllByTestId('study-line').map(line => Number(line.dataset.verseId))).toEqual(verseIds)
+  await closeContents()
+})
+
+it.each(['body', 'heading'] as const)('keeps keyboard focus and the next Tab at an exact %s destination', async kind => {
+  server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+    const body = await request.json() as { path?: string }
+    if (body.path === '/v2/banis/99') return HttpResponse.json({ verses: verses.map((verse, index) => ({
+      ...verse, header: index === 17 && kind === 'heading' ? 2 : 0,
+    })) })
+  }))
+  const sectionSpy = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => {
+    const line = entries[1]?.lines?.[5]
+    return line ? [{
+      id: 'keyboard-destination', kind: 'composition', label: 'Keyboard destination',
+      entryIndex: 1, lineIndex: 5, source: 'G', verseId: line.verseId, ang: line.ang, excerpt: line.gurmukhi,
+    }] : []
+  })
+  renderLongReading()
+  const lines = await screen.findAllByTestId('study-line')
+  const target = lines.find(line => line.dataset.verseId === '8117')!
+  scroll = mockDocumentScroll({ top: 440, viewportHeight: 800, scrollHeight: 20000 })
+  const jump = vi.spyOn(target, 'scrollIntoView').mockImplementation(() => scroll!.setTop(1234))
+  const focus = vi.spyOn(target, 'focus')
+  const user = userEvent.setup()
+  try {
+    act(() => within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Contents' }).focus())
+    await user.keyboard('{Enter}')
+    act(() => within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Keyboard destination/ }).focus())
+    await user.keyboard('{Enter}')
+    await waitFor(() => expect(target).toHaveFocus())
+    expect(target).toHaveAttribute('tabindex', '-1')
+    expect(focus).toHaveBeenCalledWith({ preventScroll: true })
+    expect(jump).toHaveBeenCalledWith({ behavior: 'auto', block: 'start' })
+    expect(scroll.getTop()).toBe(1234)
+    await user.tab()
+    expect(target.querySelector('.study-line-action')).toHaveFocus()
+    expect(scroll.getTop()).toBe(1234)
+    expect(screen.getAllByTestId('study-line').map(line => Number(line.dataset.verseId))).toEqual(verseIds)
+  } finally {
+    focus.mockRestore()
+    jump.mockRestore()
+    sectionSpy.mockRestore()
+  }
+})
+
+it('measures the first exploration header before jumping even when ResizeObserver arrives later', async () => {
+  const observers = new Set<{ callback: ResizeObserverCallback; targets: Set<Element> }>()
+  const originalObserver = globalThis.ResizeObserver
+  vi.stubGlobal('ResizeObserver', class {
+    private record: { callback: ResizeObserverCallback; targets: Set<Element> }
+    constructor(callback: ResizeObserverCallback) {
+      this.record = { callback, targets: new Set() }
+      observers.add(this.record)
+    }
+    observe(target: Element) { this.record.targets.add(target) }
+    unobserve(target: Element) { this.record.targets.delete(target) }
+    disconnect() { observers.delete(this.record) }
+  })
+  scroll = mockDocumentScroll({ top: 0, viewportHeight: 800, scrollHeight: 20000 })
+  const width = vi.spyOn(Element.prototype, 'clientWidth', 'get').mockImplementation(function (this: Element) {
+    return this.classList.contains('study-reader-topbar') ? 390 : 0
+  })
+  const originalRect = HTMLElement.prototype.getBoundingClientRect
+  const measure = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+    const extra = document.querySelector('[aria-label="Continue here"]') ? 7 : 0
+    const header = this.classList.contains('study-reader-topbar')
+    if (!header && this.dataset.testid !== 'study-line') return originalRect.call(this)
+    const top = header ? 0 : 200 + (Number(this.dataset.verseId) - 8100) * 100 + extra - scroll!.getTop()
+    const height = header ? 80 + extra : 100
+    return { x: 0, y: top, top, bottom: top + height, left: 0, right: 390, width: 390, height, toJSON: () => ({}) }
+  })
+  const sections = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => {
+    const line = entries[1]?.lines?.[5]
+    return line ? [{ id: 'measured-destination', kind: 'composition', label: 'Measured destination',
+      entryIndex: 1, lineIndex: 5, source: 'G', verseId: line.verseId, ang: line.ang, excerpt: line.gurmukhi }] : []
+  })
+  const mounted = renderLongReading()
+  let jump: ReturnType<typeof vi.spyOn> | undefined
+  try {
+    const target = (await screen.findAllByTestId('study-line')).find(line => line.dataset.verseId === '8117')!
+    await settleReaderFrames()
+    const page = screen.getByTestId('page-study')
+    const header = screen.getByTestId('study-reader-topbar')
+    const emitHeaderResize = () => {
+      for (const observer of observers) if (observer.targets.has(header)) {
+        observer.callback([{ target: header } as ResizeObserverEntry], {} as ResizeObserver)
+      }
+    }
+    jump = vi.spyOn(target, 'scrollIntoView').mockImplementation(() => {
+      const reservedHeader = Number.parseFloat(page.style.getPropertyValue('--study-reader-topbar-height'))
+      const documentTop = target.getBoundingClientRect().top + scroll!.getTop()
+      scroll!.setTop(documentTop - reservedHeader - 16)
+    })
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      fireEvent.click(within(header).getByRole('button', { name: 'Contents', exact: true }))
+      fireEvent.click(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Measured destination/ }))
+      await settleReaderFrames()
+      expect(page.style.getPropertyValue('--study-reader-topbar-height')).toBe('87px')
+      expect(target.getBoundingClientRect().top).toBe(103)
+      const jumpedTop = scroll!.getTop()
+      act(emitHeaderResize)
+      await settleReaderFrames()
+      expect(scroll!.getTop()).toBe(jumpedTop)
+      fireEvent.click(within(header).getByRole('button', { name: 'Contents', exact: true }))
+      expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Measured destination/ })).toHaveAttribute('aria-current', 'location')
+      fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+      await settleReaderFrames()
+      fireEvent.click(screen.getByRole('button', { name: 'Continue here' }))
+      await settleReaderFrames()
+      act(emitHeaderResize)
+      await settleReaderFrames()
+      act(() => { scroll!.setTop(0); document.dispatchEvent(new Event('scrollend')) })
+    }
+  } finally {
+    mounted.unmount()
+    jump?.mockRestore()
+    sections.mockRestore()
+    measure.mockRestore()
+    width.mockRestore()
+    vi.stubGlobal('ResizeObserver', originalObserver)
+  }
+})
+
+it('keeps unattributed semantic sections neutral and omits unknown source pages', async () => {
+  const sectionSpy = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => {
+    const lines = entries[0]?.lines
+    if (!lines?.[3]) return []
+    return [1, 3].map((lineIndex, index) => ({
+      id: `checked-composition-${index}`, kind: 'composition', label: `Composition ${index + 1}`,
+      entryIndex: 0, lineIndex, source: null,
+      verseId: lines[lineIndex].verseId, ang: index === 0 ? 100 : null,
+      excerpt: lines[lineIndex].gurmukhi,
+    }))
+  })
+  renderLongReading()
+  await screen.findByTestId('study-entry-list')
+  fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Contents' }))
+  const list = screen.getByTestId('bani-composition-sections')
+  expect(within(list).getByRole('button', { name: /Composition 1/ })).toHaveTextContent('Page 100')
+  expect(within(list).getByRole('button', { name: /Composition 2/ }).querySelector('small')).toBeNull()
+  expect(within(list).queryByText(/Ang/)).not.toBeInTheDocument()
+  sectionSpy.mockRestore()
+})
+
+it.each(['en', 'hi'] as const)('identifies literal Gurmukhi section labels within a %s document', async locale => {
+  useLocaleStore.setState({ locale })
+  useLanguageStore.setState({ scriptMode: locale === 'hi' ? 'devanagari' : 'gurmukhi' })
+  const previousLang = document.documentElement.lang
+  document.documentElement.lang = locale
+  const literalLabel = 'ਗਉੜੀ ਮਹਲਾ ੧ ॥'
+  const translatedLabel = locale === 'hi' ? 'पउड़ी 2' : 'Pauri 2'
+  const sectionSpy = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => {
+    const lines = entries[0]?.lines
+    if (!lines?.[3]) return []
+    return [1, 3].map((lineIndex, index) => ({
+      id: `language-section-${index}`, kind: 'composition', label: index === 0 ? literalLabel : translatedLabel,
+      entryIndex: 0, lineIndex, source: 'G', verseId: lines[lineIndex].verseId,
+      ang: lines[lineIndex].ang, excerpt: lines[lineIndex].gurmukhi,
+    }))
+  })
+  try {
+    renderLongReading()
+    await screen.findByTestId('study-entry-list')
+    fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', {
+      name: locale === 'hi' ? 'पाठ के भाग' : 'Contents', exact: true,
+    }))
+    const list = screen.getByTestId('bani-composition-sections')
+    expect(within(list).getByText(literalLabel, { exact: true })).toHaveAttribute('lang', 'pa-Guru')
+    expect(within(list).getByText(translatedLabel, { exact: true })).not.toHaveAttribute('lang')
+    fireEvent.click(screen.getByRole('button', { name: locale === 'hi' ? 'बंद करें' : 'Close', exact: true }))
+    await settleReaderFrames()
+  } finally {
+    sectionSpy.mockRestore()
+    document.documentElement.lang = previousLang
+  }
+})
+
+async function renderClampedSectionReading() {
+  const captured = verses.slice(0, 7).map((verse, index) => ({
+    ...verse,
+    pageNo: index < 4 ? 100 : 101,
+    shabadId: index < 4 ? 9100 : 9101,
+    header: index === 4 ? 2 : 0,
+    verse: { unicode: index === 4 ? 'ਸਲੋਕੁ ॥' : `ਪੰਕਤੀ ${index + 1}` },
+  }))
+  server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', async ({ request }) => {
+    const body = await request.json() as { path?: string }
+    if (body.path === '/v2/banis/99') return HttpResponse.json({ verses: captured })
+  }))
+  const sectionMock = vi.spyOn(baniSections, 'getBaniSections').mockImplementation(entries => entries.flatMap((entry, entryIndex) => {
+    const line = entry.lines?.[0]
+    if (!line) return []
+    return [{
+      id: `clamped-section-${entryIndex}`, kind: 'composition', label: entryIndex === 0 ? 'Earlier section' : 'Final section',
+      entryIndex, lineIndex: 0, source: 'G', verseId: line.verseId, ang: line.ang,
+      excerpt: entry.lines?.find(item => !item.isHeader)?.gurmukhi ?? line.gurmukhi,
+    }]
+  }))
+  const documentTops = [200, 300, 400, 1700, 1900, 1990, 2090]
+  const heights = [100, 100, 100, 200, 90, 100, 100]
+  scroll = mockDocumentScroll({ top: 0, viewportHeight: 800, scrollHeight: 2550 })
+  const settleLayout = () => {
+    // The real Return/Stay slot is slightly taller. Removing it at the end of
+    // the reading shrinks the document and automatically clamps scrollY by 6px.
+    const extra = document.querySelector('[aria-label="Continue here"]') ? 6 : 0
+    scroll!.setScrollHeight(2550 + extra)
+    if (scroll!.getTop() > 1750 + extra) scroll!.setTop(1750 + extra)
+    return extra
+  }
+  const originalRect = HTMLElement.prototype.getBoundingClientRect
+  const rectMock = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+    const extra = settleLayout()
+    if (this.dataset.testid === 'study-reader-topbar') return {
+      x: 0, y: 0, top: 0, bottom: 80 + extra, left: 0, right: 390, width: 390, height: 80 + extra, toJSON: () => ({}),
+    }
+    if (this.dataset.testid !== 'study-line') return originalRect.call(this)
+    const index = Number(this.dataset.verseId) - 8100
+    const top = documentTops[index] + extra - scroll!.getTop()
+    return { x: 0, y: top, top, bottom: top + heights[index], left: 0, right: 390, width: 390, height: heights[index], toJSON: () => ({}) }
+  })
+  const scrollMock = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(function (this: HTMLElement) {
+    const index = Number(this.dataset.verseId) - 8100
+    if (!Number.isInteger(index) || index < 0 || index >= documentTops.length) return
+    const extra = settleLayout()
+    scroll!.setTop(Math.max(0, Math.min(1750 + extra, documentTops[index] + extra - (96 + extra))))
+  })
+  restoreClampedMocks = () => {
+    sectionMock.mockRestore()
+    rectMock.mockRestore()
+    scrollMock.mockRestore()
+  }
+  render(<MemoryRouter initialEntries={['/study?source=G&ang=100&startAng=100&endAng=101&baniDbId=99&exactBani=1&bani=Long%20Reading']}><Routes><Route path="/study" element={<><Study /><ReaderNavigationProbe /></>} /></Routes></MemoryRouter>)
+  await screen.findByTestId('study-entry-list')
+  await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8100))
+  const openContents = () => fireEvent.click(within(screen.getByTestId('study-reader-topbar')).getByRole('button', { name: 'Contents', exact: true }))
+  const closeContents = async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+    await settleReaderFrames()
+  }
+  const jumpToFinal = async () => {
+    openContents()
+    fireEvent.click(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Final section/ }))
+    await settleReaderFrames()
+    expect(scroll!.getTop()).toBe(1756)
+    // The preceding body row still crosses the reading edge after clamping.
+    expect(captureReaderAnchor()?.key).toBe('bani-99-100-9100:3')
+  }
+  return { openContents, closeContents, jumpToFinal, settleLayout }
+}
+
+it('keeps the deliberate final-section marker at a clamped viewport and preserves the independent Return origin', async () => {
+  const { openContents, closeContents, jumpToFinal } = await renderClampedSectionReading()
+  await jumpToFinal()
+  openContents()
+  const list = screen.getByTestId('bani-composition-sections')
+  expect(within(list).getByRole('button', { name: /Final section/ })).toHaveAttribute('aria-current', 'location')
+  expect(screen.getByRole('dialog', { name: 'Contents' }).querySelectorAll('[aria-current="location"]')).toHaveLength(1)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8100)
+  fireEvent.click(screen.getByRole('button', { name: 'Close', exact: true }))
+  await settleReaderFrames()
+  fireEvent.click(screen.getByRole('button', { name: 'Return to previous place' }))
+  await settleReaderFrames()
+  expect(scroll!.getTop()).toBe(0)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8100)
+  expect(screen.queryByRole('button', { name: 'Return to previous place' })).not.toBeInTheDocument()
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Earlier section/ })).toHaveAttribute('aria-current', 'location')
+  await closeContents()
+})
+
+it('Stay saves the first body after a clamped heading and retains it through header shrink, scrollend and pagehide', async () => {
+  const { openContents, closeContents, jumpToFinal, settleLayout } = await renderClampedSectionReading()
+  await jumpToFinal()
+  fireEvent.click(screen.getByRole('button', { name: 'Continue here' }))
+  act(() => { settleLayout(); document.dispatchEvent(new Event('scrollend')) })
+  await settleReaderFrames()
+  expect(scroll!.getTop()).toBe(1750)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).not.toBe(8104)
+  act(() => { document.dispatchEvent(new Event('scrollend')); window.dispatchEvent(new Event('pagehide')) })
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  expect(JSON.parse(localStorage.getItem('sikh-progress')!).state.currentSession.resumeVerseId).toBe(8105)
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Final section/ })).toHaveAttribute('aria-current', 'location')
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  await closeContents()
+})
+
+it('Return restores an accepted clamped destination after further exploration without replacing its body or marker', async () => {
+  const { openContents, closeContents, jumpToFinal } = await renderClampedSectionReading()
+  await jumpToFinal()
+  fireEvent.click(screen.getByRole('button', { name: 'Continue here' }))
+  await settleReaderFrames()
+  const acceptedTop = scroll!.getTop()
+  expect(acceptedTop).toBe(1750)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+
+  // Both subsequent jumps belong to the same exploration. Neither may replace
+  // the accepted semantic origin or its independent viewport anchor.
+  openContents()
+  fireEvent.click(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Earlier section/ }))
+  await settleReaderFrames()
+  expect(scroll!.getTop()).toBeLessThan(acceptedTop)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  await jumpToFinal()
+  fireEvent.click(screen.getByRole('button', { name: 'Return to previous place' }))
+  await settleReaderFrames()
+  expect(scroll!.getTop()).toBe(acceptedTop)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  act(() => { document.dispatchEvent(new Event('scrollend')); window.dispatchEvent(new Event('pagehide')) })
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Final section/ })).toHaveAttribute('aria-current', 'location')
+  expect(screen.queryByRole('button', { name: 'Return to previous place' })).not.toBeInTheDocument()
+  await closeContents()
+  act(() => { scroll!.setTop(1500); document.dispatchEvent(new Event('scrollend')) })
+  await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103))
+  act(() => { scroll!.setTop(acceptedTop); window.dispatchEvent(new Event('pagehide')) })
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103)
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Earlier section/ })).toHaveAttribute('aria-current', 'location')
+  await closeContents()
+})
+
+it.each(['mid-reading', 'accepted clamped'] as const)('keyboard Return continues from the %s origin without moving it on Tab', async origin => {
+  const { openContents, closeContents, jumpToFinal } = await renderClampedSectionReading()
+  const user = userEvent.setup()
+  const accepted = origin === 'accepted clamped'
+  if (accepted) {
+    await jumpToFinal()
+    act(() => screen.getByRole('button', { name: 'Continue here' }).focus())
+    await user.keyboard('{Enter}')
+    await settleReaderFrames()
+  } else {
+    act(() => { scroll!.setTop(1500); document.dispatchEvent(new Event('scrollend')) })
+    await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103))
+  }
+  const originTop = scroll!.getTop()
+  const originVerseId = accepted ? '8104' : '8103'
+  const resumeVerseId = accepted ? 8105 : 8103
+  const originLine = screen.getAllByTestId('study-line').find(line => line.dataset.verseId === originVerseId)!
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(resumeVerseId)
+
+  openContents()
+  act(() => within(screen.getByTestId('bani-composition-sections')).getByRole('button', {
+    name: accepted ? /Earlier section/ : /Final section/,
+  }).focus())
+  await user.keyboard('{Enter}')
+  await settleReaderFrames()
+  expect(scroll!.getTop()).not.toBe(originTop)
+
+  act(() => screen.getByRole('button', { name: 'Return to previous place' }).focus())
+  await user.keyboard('{Enter}')
+  await settleReaderFrames()
+  expect(scroll!.getTop()).toBe(originTop)
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(resumeVerseId)
+  expect(screen.queryByRole('button', { name: 'Return to previous place' })).not.toBeInTheDocument()
+  expect(document.activeElement?.tagName).toBe('ARTICLE')
+  expect(originLine).toHaveFocus()
+  expect(originLine).toHaveAttribute('tabindex', '-1')
+  await user.tab()
+  expect(originLine.querySelector('.study-line-action')).toHaveFocus()
+  expect(scroll!.getTop()).toBe(originTop)
+
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', {
+    name: accepted ? /Final section/ : /Earlier section/,
+  })).toHaveAttribute('aria-current', 'location')
+  await closeContents()
+})
+
+it('natural movement discards the accepted destination and resumes ordinary viewport saving and markers', async () => {
+  const { openContents, closeContents, jumpToFinal } = await renderClampedSectionReading()
+  await jumpToFinal()
+  fireEvent.click(screen.getByRole('button', { name: 'Continue here' }))
+  await settleReaderFrames()
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8105)
+  act(() => { scroll!.setTop(1500); document.dispatchEvent(new Event('scrollend')) })
+  await waitFor(() => expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103))
+  // Returning naturally to the same end position must not revive old intent.
+  act(() => { scroll!.setTop(1750); window.dispatchEvent(new Event('pagehide')) })
+  expect(useProgressStore.getState().currentSession?.resumeVerseId).toBe(8103)
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Earlier section/ })).toHaveAttribute('aria-current', 'location')
+  await closeContents()
+})
+
+it('does not reuse a final-section destination after changing the reading route', async () => {
+  const { openContents, closeContents, jumpToFinal } = await renderClampedSectionReading()
+  await jumpToFinal()
+  fireEvent.click(screen.getByTestId('route-switch'))
+  await settleReaderFrames()
+  act(() => scroll!.setTop(1750))
+  openContents()
+  expect(within(screen.getByTestId('bani-composition-sections')).getByRole('button', { name: /Earlier section/ })).toHaveAttribute('aria-current', 'location')
+  await closeContents()
 })

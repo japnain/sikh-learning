@@ -13,6 +13,7 @@ vi.mock('../utils/readerAnchor', () => ({
   getReaderViewportTop: () => (document.querySelector('.study-reader-topbar')?.getBoundingClientRect().bottom ?? 0) + 16,
 }))
 
+let originalRootFontSize: string
 let fontsDescriptor: PropertyDescriptor | undefined
 let fonts: EventTarget & { ready: Promise<void> }
 let disconnect: ReturnType<typeof vi.fn>
@@ -38,6 +39,8 @@ function resizeObserved(selector = '.study-reader-topbar') {
 }
 
 beforeEach(() => {
+  originalRootFontSize = document.documentElement.style.fontSize
+  document.documentElement.style.fontSize = '24px'
   Object.assign(geometry, { width: 390, title: 120, label: 70, value: 25, normalHeight: 108, expandedHeight: 184, top: 0, observers: [] })
   disconnect = vi.fn()
   vi.stubGlobal('ResizeObserver', class {
@@ -66,6 +69,7 @@ beforeEach(() => {
   vi.mocked(restoreReaderAnchor).mockClear()
 })
 afterEach(() => {
+  document.documentElement.style.fontSize = originalRootFontSize
   vi.restoreAllMocks()
   vi.unstubAllGlobals()
   if (fontsDescriptor) Object.defineProperty(document, 'fonts', fontsDescriptor)
@@ -188,4 +192,13 @@ test('does not scan scripture anchors when a repeated header measurement leaves 
   await frames()
   expect(captureReaderAnchor).not.toHaveBeenCalled()
   expect(restoreReaderAnchor).not.toHaveBeenCalled()
+})
+
+
+test('keeps a normal-size long title compact, with the full title retained in the document', () => {
+  document.documentElement.style.fontSize = '16px'
+  Object.assign(geometry, { width: 320, title: 500 })
+  const { getByTestId } = render(<Harness />)
+  expect(getByTestId('measured-reader').querySelector('.study-reader-topbar')).toHaveAttribute('data-reflow', 'false')
+  expect(getByTestId('measured-reader').style.getPropertyValue('--study-reader-topbar-height')).toBe('108px')
 })

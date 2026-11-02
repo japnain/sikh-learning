@@ -44,7 +44,10 @@ export function useReaderHeaderLayout(routeIdentity: string, layoutRevision?: st
       const lengthInset = lengthStyle ? pixels(lengthStyle.paddingLeft) + pixels(lengthStyle.paddingRight)
         + pixels(lengthStyle.borderLeftWidth) + pixels(lengthStyle.borderRightWidth) : 0
       const [titleWidth, ...labelWidths] = textWidths([title, ...Array.from(length?.querySelectorAll<HTMLElement>('span,strong') ?? [])])
-      const reflow = titleWidth > normalIdentityWidth + 1 || Math.max(0, ...labelWidths) + lengthInset > normalIdentityWidth + 1
+      // Normal-size titles have a full copy in the opening content. Only
+      // enlarged interface text should expand the persistent identity row.
+      const enlargedText = pixels(getComputedStyle(document.documentElement).fontSize) >= 24
+      const reflow = enlargedText && (titleWidth > normalIdentityWidth + 1 || Math.max(0, ...labelWidths) + lengthInset > normalIdentityWidth + 1)
       const before = header.dataset.reflow === 'true'
       const previousHeight = pixels(page.style.getPropertyValue('--study-reader-topbar-height'))
       const layoutChanged = before !== reflow || previousHeight !== Math.ceil(header.getBoundingClientRect().height)

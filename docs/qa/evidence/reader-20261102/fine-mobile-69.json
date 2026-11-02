@@ -1,0 +1,162 @@
+{
+  "id": 69,
+  "length": null,
+  "name": "Raag Maru",
+  "failures": [],
+  "disclosures": [
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018",
+      "expanded": false,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018-shabad-1"
+      ],
+      "currentAfter": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018"
+      ],
+      "currentAfter": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018-shabad-1"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22079",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018-shabad-1"
+      ],
+      "currentAfter": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018-shabad-1"
+      ],
+      "currentCorrect": true
+    },
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22103",
+      "expanded": true,
+      "scrollDelta": 0,
+      "stateCorrect": true,
+      "panelCorrect": true,
+      "progressUnchanged": true,
+      "savedPlacesUnchanged": true,
+      "currentBefore": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018-shabad-1"
+      ],
+      "currentAfter": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018-shabad-1"
+      ],
+      "currentCorrect": true
+    }
+  ],
+  "checks": [
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22079-shabad-2",
+      "targetId": 22097,
+      "top": 128.53125,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22079-shabad-2"
+      ],
+      "currentViewport": {
+        "top": 413.765625,
+        "bottom": 498.5,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018",
+      "targetId": 22017,
+      "top": 128.59375,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018"
+      ],
+      "currentViewport": {
+        "top": 255.5625,
+        "bottom": 340.296875,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    },
+    {
+      "sectionId": "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22156",
+      "targetId": 22156,
+      "top": 129.28125,
+      "headerBottom": 112.34375,
+      "visible": true,
+      "focused": true,
+      "sheetClosed": true,
+      "currentIds": [
+        "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22156"
+      ],
+      "currentViewport": {
+        "top": 413.234375,
+        "bottom": 498.96875,
+        "panelTop": 82,
+        "panelBottom": 831,
+        "fits": true
+      },
+      "currentVisible": true,
+      "currentAncestorsExpanded": true
+    }
+  ],
+  "layout": {
+    "rowFailures": [],
+    "minimumHitHeight": 44
+  },
+  "rows": 152,
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "presentation": "study",
+  "scroller": "HTML",
+  "originScrollY": 0,
+  "initiallyExpanded": [
+    "bani-69:bani-v1:152:c13949e9f3eae7fd:catalog-69-22018"
+  ],
+  "collapsedLinks": 9,
+  "expandedLinks": 20,
+  "expandedChildLinks": 11,
+  "returnDelta": 0,
+  "returnCleared": true,
+  "returnFocusVerse": "22020",
+  "state": "ready",
+  "passed": true,
+  "testMode": "390px Study light"
+}

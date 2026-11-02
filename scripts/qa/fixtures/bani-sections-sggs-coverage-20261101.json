@@ -1,0 +1,398 @@
+[
+  {
+    "baniDbId": 10,
+    "fingerprint": "bani-v1:211:f1cd139ade6ff3e6",
+    "normalizedRowCount": 211,
+    "sectionCount": 40,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/10",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-structure-research-20261031.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 11,
+    "fingerprint": "bani-v1:26:89de54d9183a42ed",
+    "normalizedRowCount": 26,
+    "sectionCount": 4,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/11",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 27,
+    "fingerprint": "bani-v1:130:032f7a47a87ebac3",
+    "normalizedRowCount": 130,
+    "sectionCount": 14,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/27",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 30,
+    "fingerprint": "bani-v1:117:193ae0ea698ad886",
+    "normalizedRowCount": 117,
+    "sectionCount": 57,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/30",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-structure-research-20261031.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 31,
+    "fingerprint": "bani-v1:2019:c1b22c8d9185fae1",
+    "normalizedRowCount": 2019,
+    "sectionCount": 24,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/31",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-structure-research-20261031.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 33,
+    "fingerprint": "bani-v1:674:e643c7e83d588d0c",
+    "normalizedRowCount": 674,
+    "sectionCount": 57,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/33",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 34,
+    "fingerprint": "bani-v1:406:9b1cc0a1e8cc191d",
+    "normalizedRowCount": 406,
+    "sectionCount": 73,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/34",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 35,
+    "fingerprint": "bani-v1:400:f8685353e823b7a7",
+    "normalizedRowCount": 400,
+    "sectionCount": 54,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/35",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 39,
+    "fingerprint": "bani-v1:168:792399c84f4c132c",
+    "normalizedRowCount": 168,
+    "sectionCount": 45,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/39",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 77,
+    "fingerprint": "bani-v1:494:5990186599450ee1",
+    "normalizedRowCount": 494,
+    "sectionCount": 243,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/77",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 78,
+    "fingerprint": "bani-v1:298:a9bc3e2513ff1159",
+    "normalizedRowCount": 298,
+    "sectionCount": 130,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/78",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 86,
+    "fingerprint": "bani-v1:377:63a35853ef743997",
+    "normalizedRowCount": 377,
+    "sectionCount": 21,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/86",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 87,
+    "fingerprint": "bani-v1:661:98e353aa83acb7d6",
+    "normalizedRowCount": 661,
+    "sectionCount": 28,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/87",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 88,
+    "fingerprint": "bani-v1:672:65beaafe6ed15432",
+    "normalizedRowCount": 672,
+    "sectionCount": 33,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/88",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 89,
+    "fingerprint": "bani-v1:273:09dad367a25b2583",
+    "normalizedRowCount": 273,
+    "sectionCount": 21,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/89",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 90,
+    "fingerprint": "bani-v1:758:35e2254790e5e4c3",
+    "normalizedRowCount": 758,
+    "sectionCount": 24,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/90",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 91,
+    "fingerprint": "bani-v1:379:b8c1cc549723fd50",
+    "normalizedRowCount": 379,
+    "sectionCount": 22,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/91",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 92,
+    "fingerprint": "bani-v1:334:52fc32096a838c35",
+    "normalizedRowCount": 334,
+    "sectionCount": 21,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/92",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 93,
+    "fingerprint": "bani-v1:348:085b3b4ccd0b8688",
+    "normalizedRowCount": 348,
+    "sectionCount": 21,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/93",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 94,
+    "fingerprint": "bani-v1:367:6c14372f7773e9ab",
+    "normalizedRowCount": 367,
+    "sectionCount": 21,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/94",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 95,
+    "fingerprint": "bani-v1:494:54beddbfadbec703",
+    "normalizedRowCount": 494,
+    "sectionCount": 29,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/95",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 96,
+    "fingerprint": "bani-v1:224:d8641d2774971383",
+    "normalizedRowCount": 224,
+    "sectionCount": 20,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/96",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 97,
+    "fingerprint": "bani-v1:328:8692e17a83ef585e",
+    "normalizedRowCount": 328,
+    "sectionCount": 20,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/97",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 98,
+    "fingerprint": "bani-v1:238:762038b2ee68c06e",
+    "normalizedRowCount": 238,
+    "sectionCount": 13,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/98",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 99,
+    "fingerprint": "bani-v1:491:202365e438eab278",
+    "normalizedRowCount": 491,
+    "sectionCount": 21,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/99",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 100,
+    "fingerprint": "bani-v1:454:a04aecabd01a498f",
+    "normalizedRowCount": 454,
+    "sectionCount": 22,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/100",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 101,
+    "fingerprint": "bani-v1:90:6c42bfa6b8dc1baa",
+    "normalizedRowCount": 90,
+    "sectionCount": 8,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/101",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 102,
+    "fingerprint": "bani-v1:347:d8c7751fcac3ad3b",
+    "normalizedRowCount": 347,
+    "sectionCount": 22,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/102",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 103,
+    "fingerprint": "bani-v1:418:fc53eef868256afc",
+    "normalizedRowCount": 418,
+    "sectionCount": 23,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/103",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 104,
+    "fingerprint": "bani-v1:18:3ed37893661945ff",
+    "normalizedRowCount": 18,
+    "sectionCount": 3,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/104",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 105,
+    "fingerprint": "bani-v1:672:4d91034517e32a29",
+    "normalizedRowCount": 672,
+    "sectionCount": 36,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/105",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 106,
+    "fingerprint": "bani-v1:606:f73f6b67eb1cd41b",
+    "normalizedRowCount": 606,
+    "sectionCount": 28,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/106",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  },
+  {
+    "baniDbId": 107,
+    "fingerprint": "bani-v1:234:b690ce4dd86337d9",
+    "normalizedRowCount": 234,
+    "sectionCount": 15,
+    "evidence": [
+      "https://api.banidb.com/v2/banis/107",
+      "scripts/qa/fixtures/bani-structure-snapshots-20261101.json.gz",
+      "docs/qa/bani-sggs-structure-research-20261101.md"
+    ],
+    "reference": "Complete captured stream replayed through production fetchBani; ordered checked section targets and excerpts resolved without scripture mutation."
+  }
+]
