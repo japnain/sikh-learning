@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, waitFor, within } from '@testing-librar
 import { beforeEach, expect, test, vi } from 'vitest'
 import HomeArtworkSettings from './HomeArtworkSettings'
 import { useHomeArtworkStore } from '../store/homeArtwork'
+import { homeArtworkCatalog } from '../data/homeArtworkCatalog'
 import { useLocaleStore } from '../store/locale'
 import { preloadHomeArtwork } from '../utils/homeArtwork'
 
@@ -16,9 +17,9 @@ beforeEach(() => {
   vi.mocked(preloadHomeArtwork).mockReset().mockResolvedValue(undefined)
 })
 
-test('shows fourteen gallery originals, Eclipse separately, and a visible Apply footer', () => {
+test('shows every gallery artwork, Eclipse separately, and a visible Apply footer', () => {
   render(<HomeArtworkSettings open onClose={() => {}} />)
-  expect(within(screen.getByTestId('home-artwork-gallery')).getAllByRole('button')).toHaveLength(14)
+  expect(within(screen.getByTestId('home-artwork-gallery')).getAllByRole('button')).toHaveLength(homeArtworkCatalog.length)
   expect(screen.getByRole('button', { name: /^Keep Eclipse landscape$/i })).toHaveAttribute('aria-pressed', 'true')
   expect(screen.getByRole('button', { name: /Apply to Home/i }).closest('footer')).toBeInTheDocument()
 })

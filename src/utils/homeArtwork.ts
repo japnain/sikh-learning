@@ -15,6 +15,7 @@ export interface HomeArtworkAsset {
   mat: string
   focalPosition: { x: number; y: number }
   protectedSubject?: ShareHighlightAsset['storyProfile']['protectedSubject']
+  credit?: { label: string; url: string }
 }
 
 export const ECLIPSE_ARTWORK: HomeArtworkAsset = {

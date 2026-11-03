@@ -1,5 +1,5 @@
 import { beforeEach, expect, test, vi } from 'vitest'
-import { shareHighlightHukamnamaAssetIds } from '../assets/share-highlights/manifest'
+import { homeArtworkCatalog } from '../data/homeArtworkCatalog'
 import { HOME_ARTWORK_COLLECTION_IDS, HOME_ARTWORK_STORAGE_KEY, getHomeArtworkId, normalizeHomeArtworkPreference, useHomeArtworkStore } from './homeArtwork'
 
 beforeEach(() => {
@@ -7,9 +7,9 @@ beforeEach(() => {
   localStorage.clear()
 })
 
-test('defaults to Eclipse and exposes exactly the existing fourteen artwork IDs', () => {
+test('defaults to Eclipse and keeps rotation aligned with the complete gallery', () => {
   expect(getHomeArtworkId(useHomeArtworkStore.getState())).toBe('eclipse')
-  expect(HOME_ARTWORK_COLLECTION_IDS).toEqual(shareHighlightHukamnamaAssetIds)
+  expect(HOME_ARTWORK_COLLECTION_IDS).toEqual(homeArtworkCatalog.map(asset => asset.id))
   expect(normalizeHomeArtworkPreference({ mode: 'invalid', selectedId: 'unknown' })).toEqual({ mode: 'fixed', selectedId: 'eclipse' })
 })
 
@@ -20,7 +20,7 @@ test('daily rotation uses the local calendar and stays stable across a DST day',
   const tomorrow = new Date(2026, 2, 9, 1)
   const first = getHomeArtworkId(preference, morning)
   expect(getHomeArtworkId(preference, evening)).toBe(first)
-  expect(getHomeArtworkId(preference, tomorrow)).toBe(HOME_ARTWORK_COLLECTION_IDS[(HOME_ARTWORK_COLLECTION_IDS.indexOf(first as typeof HOME_ARTWORK_COLLECTION_IDS[number]) + 1) % 14])
+  expect(getHomeArtworkId(preference, tomorrow)).toBe(HOME_ARTWORK_COLLECTION_IDS[(HOME_ARTWORK_COLLECTION_IDS.indexOf(first as typeof HOME_ARTWORK_COLLECTION_IDS[number]) + 1) % HOME_ARTWORK_COLLECTION_IDS.length])
 })
 
 test('visit rotation changes once per new Home mount, including a Strict Mode effect replay', () => {
