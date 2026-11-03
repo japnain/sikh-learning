@@ -246,6 +246,7 @@ export interface HukamnamaResult {
 }
 
 export interface SearchResult {
+  searchMatch?: { kind: 'meaning' | 'transliteration' | 'gurmukhi' | 'initials'; query: string; related: boolean }
   shabadId: number
   verseId: number
   source: string
@@ -256,10 +257,18 @@ export interface SearchResult {
   larivaar?: string
   transliteration: string
   translation_en: string
+  translations_en?: EnglishTranslations
   raag: string
   raagMeta?: ScriptureRaagMeta | null
   writer: string
   writerMeta?: ScriptureWriterMeta | null
+}
+
+export interface SearchPage {
+  results: SearchResult[]
+  totalResults: number
+  nextPage: number | null
+  page: number
 }
 
 export interface BaniIndexItem {
@@ -964,33 +973,73 @@ export async function fetchSearch(
   context: 'home-search' | 'read-search' = 'read-search',
   signal?: AbortSignal
 ): Promise<SearchResult[]> {
+  return (await fetchSearchPage(query, searchType, source, context, signal)).results
+}
+
+/** Fetch one provider page; callers decide when to request more matches. */
+export async function fetchSearchPage(
+  query: string,
+  searchType: number = 0,
+  source: SearchSource = 'all',
+  context: 'home-search' | 'read-search' = 'read-search',
+  signal?: AbortSignal,
+  page = 1,
+): Promise<SearchPage> {
+  if (!Number.isSafeInteger(page) || page < 1) throw new RangeError('Search page must be a positive integer.')
   return withQaControl(context, async () => {
     const encoded = encodeURIComponent(query)
-    const { response: res, data } = await requestBanidb<{ verses?: BaniVerse[] }>(`${API_PREFIX}/search/${encoded}`, {
+    const { response: res, data } = await requestBanidb<{
+      verses?: BaniVerse[]
+      resultsInfo?: {
+        totalResults?: unknown
+        pages?: { page?: unknown; resultsPerPage?: unknown; totalPages?: unknown }
+      }
+    }>(`${API_PREFIX}/search/${encoded}`, {
       searchtype: searchType,
       source,
+      // Older deployed proxies accept the original first-page query shape.
+      ...(page > 1 ? { page } : {}),
     }, { signal })
     if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
-    const verses = data.verses ?? []
+    const verses = Array.isArray(data?.verses) ? data.verses : []
 
-    return verses.map(v => ({
-      shabadId: v.shabadId,
-      verseId: v.verseId,
-      source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
-      pageNo: v.pageNo ?? null,
-      sourceName: getSourceDisplay(normalizeSourceMeta(v.source), v.source?.id ? toScripture(v.source.id) : ''),
-      sourceMeta: normalizeSourceMeta(v.source),
-      gurmukhi: getVerseText(v.verse),
-      larivaar: getVerseText(v.larivaar),
-      transliteration: getEnglishTransliteration(v.transliteration),
-      translation_en: getEnglish(v.translation),
-      raag: getRaagDisplay(normalizeRaagMeta(v.raag)),
-      raagMeta: normalizeRaagMeta(v.raag),
-      writer: getWriterDisplay(normalizeWriterMeta(v.writer)),
-      writerMeta: normalizeWriterMeta(v.writer),
-    }))
+    const results = verses.map(v => {
+      const sourceMeta = normalizeSourceMeta(v.source)
+      const resultSource = sourceMeta?.sourceId ?? (source === 'all' ? 'G' : source)
+      const translations = getEnglishTranslations(v.translation)
+      return {
+        shabadId: v.shabadId,
+        verseId: v.verseId,
+        source: resultSource,
+        pageNo: v.pageNo ?? sourceMeta?.pageNo ?? null,
+        sourceName: getSourceDisplay(sourceMeta, isSourceReaderId(resultSource) ? SOURCE_READER_META[resultSource].name : ''),
+        sourceMeta,
+        gurmukhi: getVerseText(v.verse),
+        larivaar: getVerseText(v.larivaar),
+        transliteration: getEnglishTransliteration(v.transliteration),
+        translation_en: translations.bdb || translations.ms || translations.ssk || '',
+        translations_en: translations,
+        raag: getRaagDisplay(normalizeRaagMeta(v.raag)),
+        raagMeta: normalizeRaagMeta(v.raag),
+        writer: getWriterDisplay(normalizeWriterMeta(v.writer)),
+        writerMeta: normalizeWriterMeta(v.writer),
+      }
+    })
+    const info = data?.resultsInfo
+    const pages = info?.pages
+    const validCount = (value: unknown): value is number => typeof value === 'number' && Number.isSafeInteger(value) && value >= 0
+    const totalResults = validCount(info?.totalResults) ? Math.max(results.length, info.totalResults) : results.length
+    const hasValidPagination = pages?.page === page
+      && validCount(pages?.resultsPerPage) && pages.resultsPerPage > 0
+      && validCount(pages?.totalPages) && pages.totalPages > page
+      && validCount(info?.totalResults) && info.totalResults > 0
+      && pages.totalPages === Math.ceil(info.totalResults / pages.resultsPerPage)
+    // Never follow provider URLs. Empty or inconsistent pages terminate safely,
+    // so malformed metadata cannot repeat a page or create an endless load loop.
+    const nextPage = results.length > 0 && hasValidPagination ? page + 1 : null
+    return { results, totalResults, nextPage, page }
   }, {
-    emptyValue: [],
+    emptyValue: { results: [], totalResults: 0, nextPage: null, page },
   })
 }
 

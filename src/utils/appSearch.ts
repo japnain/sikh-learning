@@ -50,6 +50,7 @@ export interface DirectAngTarget {
 }
 
 export interface GroupedSearchResult {
+  searchMatch?: SearchResult['searchMatch']
   key: string
   shabadId: number
   verseId: number
@@ -579,6 +580,7 @@ export function groupSearchResults(searchResults: SearchResult[], filters?: { ra
       continue
     }
     grouped.set(key, {
+      searchMatch: result.searchMatch,
       key,
       shabadId: result.shabadId,
       verseId: result.verseId,

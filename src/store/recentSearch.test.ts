@@ -63,6 +63,26 @@ test('stores a one-digit auto-detected direct lookup', () => {
   })
 })
 
+test.each(['auto-detect', 'gurmukhi'] as const)('stores a single ੴ scripture search in %s history', mode => {
+  const store = useRecentSearchStore.getState()
+  store.addRecent(' ੴ ', mode, 'G', 'gurbani')
+  store.togglePinned('ੴ', mode, 'G', 'gurbani')
+  store.addRecent('ੴ', mode, 'G', 'gurbani')
+
+  expect(useRecentSearchStore.getState().recent).toEqual([
+    expect.objectContaining({ query: 'ੴ', mode, source: 'G', scope: 'gurbani', pinned: true }),
+  ])
+})
+
+test('retains the minimum length for other one-character searches', () => {
+  const store = useRecentSearchStore.getState()
+  store.addRecent('ੴ', 'english', 'G')
+  store.addRecent('ੴ', 'transliteration', 'G')
+  store.addRecent('ਕ', 'gurmukhi', 'G')
+  store.addRecent('a', 'auto-detect', 'G')
+  expect(useRecentSearchStore.getState().recent).toEqual([])
+})
+
 test('keeps identical searches distinct across scopes and pins only the selected scope', () => {
   const store = useRecentSearchStore.getState()
   store.addRecent('Nanak', 'auto-detect', 'all', 'books')
