@@ -15,6 +15,7 @@ import { STORY_STATE_STORAGE_KEY, useStoryStore } from '../store/stories'
 import { useVocabStore } from '../store/vocab'
 import type { Story, StoryCatalog, StorySummary } from '../types/stories'
 import * as appSearch from '../utils/appSearch'
+import { clearGurbaniSearchSessions } from '../utils/gurbaniSearchSession'
 import Banis from './Banis'
 import Library from './Library'
 import StoryReader from './stories/StoryReader'
@@ -74,6 +75,7 @@ function currentUrl() {
 
 beforeEach(() => {
   vi.restoreAllMocks()
+  clearGurbaniSearchSessions()
   localStorage.clear()
   useLocaleStore.setState({ locale: 'en' })
   useLanguageStore.setState({ scriptMode: 'gurmukhi', showTransliteration: true, meaningLanguage: 'en' })
@@ -86,7 +88,7 @@ beforeEach(() => {
   useSavedFeedbackStore.getState().clearSaved()
   useVocabStore.setState({ vocab: [] })
   vi.spyOn(banidbApi, 'fetchBanisIndex').mockResolvedValue([])
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue({ results: [], page: 1, nextPage: null, totalResults: 0 })
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
   configureStoryRepositoryLoader(async resourcePath => {
     if (resourcePath === '/data/stories/catalog.json') return catalog
@@ -111,7 +113,7 @@ describe('Stories in the shared reading and Saved pages', () => {
     expect(currentUrl().searchParams.get('scope')).toBe('stories')
     expect(currentUrl().searchParams.has('storyQuery')).toBe(false)
     expect(banidbApi.fetchBanisIndex).not.toHaveBeenCalled()
-    expect(banidbApi.fetchSearch).not.toHaveBeenCalled()
+    expect(banidbApi.fetchSearchPage).not.toHaveBeenCalled()
 
     const origin = `${currentUrl().pathname}${currentUrl().search}`
     fireEvent.click(within(results).getByRole('button', { name: /The Bread at Lalo’s Table/ }))
@@ -133,7 +135,7 @@ describe('Stories in the shared reading and Saved pages', () => {
 
   it('opening a collection cancels queued scripture search and retains a recoverable query', async () => {
     open('/banis?query=grace&mode=english&storyCollection=seva-and-dignity')
-    await waitFor(() => expect(banidbApi.fetchSearch).toHaveBeenCalled())
+    await waitFor(() => expect(banidbApi.fetchSearchPage).toHaveBeenCalled())
     const search = screen.getByRole('searchbox')
     expect(search).toHaveValue('grace')
     fireEvent.change(search, { target: { value: 'kindness' } })
@@ -141,14 +143,14 @@ describe('Stories in the shared reading and Saved pages', () => {
     await screen.findByTestId('story-browser')
     // Collection navigation is an explicit search exit, including pending work.
     await act(async () => { await new Promise(resolve => window.setTimeout(resolve, 350)) })
-    expect(vi.mocked(banidbApi.fetchSearch).mock.calls.some(([query]) => query === 'kindness')).toBe(false)
+    expect(vi.mocked(banidbApi.fetchSearchPage).mock.calls.some(([query]) => query === 'kindness')).toBe(false)
     expect(screen.getByRole('searchbox')).toHaveValue('')
     expect(currentUrl().searchParams.has('query')).toBe(false)
     expect(currentUrl().searchParams.get('previousQuery')).toBe('kindness')
     expect(screen.getByRole('button', { name: 'Seva & dignity' })).toHaveAttribute('aria-pressed', 'true')
 
     fireEvent.click(screen.getByRole('button', { name: 'Return to “kindness”' }))
-    await waitFor(() => expect(vi.mocked(banidbApi.fetchSearch).mock.calls.some(([query]) => query === 'kindness')).toBe(true))
+    await waitFor(() => expect(vi.mocked(banidbApi.fetchSearchPage).mock.calls.some(([query]) => query === 'kindness')).toBe(true))
     expect(screen.getByRole('searchbox')).toHaveValue('kindness')
     expect(screen.queryByTestId('story-browser')).not.toBeInTheDocument()
   })
