@@ -89,7 +89,8 @@ export const useRecentSearchStore = create<RecentSearchState>()(
       addRecent: (query, mode, source, scope = 'all') => {
         const trimmed = query.trim()
         const directLookup = mode === 'ang' || (mode === 'auto-detect' && isDirectLookupQuery(trimmed))
-        if (!trimmed || (!directLookup && trimmed.length < 2)) return
+        const scriptureSymbol = trimmed === 'ੴ' && (mode === 'auto-detect' || mode === 'gurmukhi')
+        if (!trimmed || (!directLookup && !scriptureSymbol && trimmed.length < 2)) return
         const identity = getRecentIdentity({ query: trimmed, mode, source, scope })
         const existing = get().recent.find(item => getRecentIdentity(item) === identity)
         const current = get().recent.filter(item => getRecentIdentity(item) !== identity)

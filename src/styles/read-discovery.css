@@ -91,7 +91,6 @@
   color: rgb(var(--color-text));
   overflow-wrap: anywhere;
 }
-.read-refinement-auto { justify-self: start; }
 .read-room-shell .read-quick-find-card button[aria-pressed='true'] {
   background: rgb(var(--color-text)) !important;
   color: rgb(var(--color-bg)) !important;

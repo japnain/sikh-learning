@@ -15,6 +15,7 @@ import {
   fetchRehatChapters,
   fetchRehatChapter,
   fetchSearch,
+  fetchSearchPage,
 } from './banidb'
 import type { ScriptureEntry } from '../types'
 import { MOCK_CHAUPAI_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE, MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
@@ -211,6 +212,83 @@ describe('fetchSearch', () => {
     await fetchSearch('waheguru', 3, 'all', 'read-search', controller.signal)
 
     expect(fetchSpy.mock.calls[0]?.[1]?.signal).toBe(controller.signal)
+    fetchSpy.mockRestore()
+  })
+})
+
+describe('fetchSearchPage', () => {
+  const verse = {
+    verseId: 7, shabadId: 15, verse: { unicode: 'ਸਤਿ ਨਾਮੁ' },
+    transliteration: { english: 'sat naam' }, translation: { en: { bdb: 'The Name is Truth.' } },
+    source: { sourceId: 'D', english: 'Sri Dasam Granth Sahib Ji', pageNo: 8 },
+  }
+  function respond(data: unknown) {
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', () => HttpResponse.json(data as object)))
+  }
+
+  it('keeps first-page requests compatible while exposing additional upstream pages', async () => {
+    respond({ verses: [verse], resultsInfo: { totalResults: 2130, pageResults: 20,
+      pages: { page: 1, resultsPerPage: 20, totalPages: 107, nextPage: 'https://untrusted.example/private?page=88' },
+    } })
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    const result = await fetchSearchPage('peace', 3, 'all')
+    expect(result).toMatchObject({ page: 1, totalResults: 2130, nextPage: 2 })
+    expect(result.results).toHaveLength(1)
+    expect(JSON.parse(String(fetchSpy.mock.calls[0]?.[1]?.body))).toEqual({ path: '/v2/search/peace', query: { searchtype: '3', source: 'all' } })
+    expect(fetchSpy).toHaveBeenCalledTimes(1)
+    fetchSpy.mockRestore()
+  })
+
+  it('requests only the numeric next page and forwards cancellation', async () => {
+    respond({ verses: [verse], resultsInfo: { totalResults: 21,
+      pages: { page: 2, resultsPerPage: 20, totalPages: 2, nextPage: 'https://untrusted.example/private' },
+    } })
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    const controller = new AbortController()
+    const result = await fetchSearchPage('peace', 3, 'D', 'read-search', controller.signal, 2)
+    expect(result).toMatchObject({ page: 2, totalResults: 21, nextPage: null })
+    expect(JSON.parse(String(fetchSpy.mock.calls[0]?.[1]?.body))).toEqual({ path: '/v2/search/peace', query: { searchtype: '3', source: 'D', page: '2' } })
+    expect(fetchSpy.mock.calls[0]?.[1]?.signal).toBe(controller.signal)
+    fetchSpy.mockRestore()
+  })
+
+  it('preserves actual source IDs and every English translation with a readable fallback', async () => {
+    respond({ verses: [{ ...verse, translation: { en: { ms: 'Truth is His Name.', ssk: 'His Name is Truth.' } } }] })
+    const result = await fetchSearchPage('truth', 3, 'all')
+    expect(result.results[0]).toMatchObject({
+      source: 'D', sourceName: 'Sri Dasam Granth Sahib Ji', sourceMeta: { sourceId: 'D' }, pageNo: 8,
+      translation_en: 'Truth is His Name.', translations_en: { ms: 'Truth is His Name.', ssk: 'His Name is Truth.' },
+    })
+    expect(result).toMatchObject({ totalResults: 1, nextPage: null })
+  })
+
+  it.each([
+    undefined,
+    { totalResults: '50', pages: { page: 1, resultsPerPage: 20, totalPages: 3 } },
+    { totalResults: -1, pages: { page: 1, resultsPerPage: 20, totalPages: 3 } },
+    { totalResults: 50, pages: { page: 0, resultsPerPage: 20, totalPages: 3 } },
+    { totalResults: 50, pages: { page: 1, resultsPerPage: 0, totalPages: 3 } },
+    { totalResults: 50, pages: { page: 1, resultsPerPage: 20, totalPages: 999 } },
+    { totalResults: 50, pages: { page: 1, resultsPerPage: 20, totalPages: 3.5 } },
+    { totalResults: 50, pages: { page: 1, nextPage: 'https://untrusted.example/?page=2' } },
+  ])('terminates pagination safely for malformed metadata %#', async resultsInfo => {
+    respond({ verses: [verse], resultsInfo })
+    const result = await fetchSearchPage('truth', 3, 'all')
+    expect(result.results).toHaveLength(1)
+    expect(result.page).toBe(1)
+    expect(result.nextPage).toBeNull()
+    expect(result.totalResults).toBeGreaterThanOrEqual(1)
+  })
+
+  it('terminates on an empty page even when upstream claims more pages', async () => {
+    respond({ verses: [], resultsInfo: { totalResults: 50, pages: { page: 1, resultsPerPage: 20, totalPages: 3 } } })
+    expect(await fetchSearchPage('truth', 3, 'all')).toEqual({ results: [], totalResults: 50, nextPage: null, page: 1 })
+  })
+
+  it.each([0, -1, 1.5, Number.MAX_SAFE_INTEGER + 1])('rejects invalid requested page %s before making a request', async page => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    await expect(fetchSearchPage('truth', 3, 'all', 'read-search', undefined, page)).rejects.toThrow('positive integer')
+    expect(fetchSpy).not.toHaveBeenCalled()
     fetchSpy.mockRestore()
   })
 })

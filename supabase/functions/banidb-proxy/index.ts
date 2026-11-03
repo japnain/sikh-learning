@@ -3,6 +3,8 @@ export const BANIDB_CACHE_TTL_MS = 5 * 60 * 1000;
 export const BANIDB_MAX_CACHE_ENTRIES = 200;
 export const BANIDB_MAX_CACHE_BYTES = 32 * 1024 * 1024;
 export const BANIDB_MAX_REQUEST_BYTES = 4 * 1024;
+// An application safety bound, not a provider page-count claim.
+export const BANIDB_MAX_SEARCH_PAGE = 10_000;
 export const BANIDB_MAX_RESPONSE_BYTES = 8 * 1024 * 1024;
 export const BANIDB_RATE_LIMIT_WINDOW_MS = 60 * 1000;
 export const BANIDB_RATE_LIMIT_REQUESTS = 120;
@@ -19,8 +21,12 @@ const MOBILE_WEBVIEW_ORIGINS = new Set([
   // Retained for Ionic-compatible webviews used by local native tooling.
   "ionic://localhost",
 ]);
-const SEARCH_TYPES = new Set(["0", "1", "2", "3", "4", "8"]);
+const SEARCH_TYPES = new Set(["0", "1", "2", "3", "4", "6", "8"]);
 const SEARCH_SOURCES = new Set(["all", "G", "D", "B", "A", "R"]);
+const MAX_SEARCH_TEXT_LENGTH = 160;
+// A Unicode character can occupy four UTF-8 bytes, each encoded as %XX.
+// Leave room for the full decoded search limit, including Gurmukhi passages.
+const MAX_ENCODED_PATH_LENGTH = "/v2/search/".length + MAX_SEARCH_TEXT_LENGTH * 12;
 const POSITIVE_ID = "[1-9]\\d{0,8}";
 
 export interface BanidbCacheEntry {
@@ -37,6 +43,9 @@ export interface BanidbRateLimitEntry {
 
 interface BanidbProxyOptions {
   allowedOrigins?: readonly string[];
+  // Public project identification only; scripture remains readable by guests.
+  // An empty list fails closed. User data uses separate authenticated functions.
+  projectApiKeys?: readonly string[];
   cache?: Map<string, BanidbCacheEntry>;
   cacheTtlMs?: number;
   fetchImpl?: typeof fetch;
@@ -160,7 +169,7 @@ type RouteKind = "read" | "search";
 
 function validatePath(path: string): RouteKind {
   if (
-    path.length > 512 ||
+    path.length > MAX_ENCODED_PATH_LENGTH ||
     !path.startsWith("/v2/") ||
     path.includes("?") ||
     path.includes("#") ||
@@ -208,7 +217,7 @@ function validatePath(path: string): RouteKind {
 
   const searchMatch = path.match(/^\/v2\/search\/([^/]+)$/);
   if (searchMatch?.[1]) {
-    decodeTextSegment(searchMatch[1], 160);
+    decodeTextSegment(searchMatch[1], MAX_SEARCH_TEXT_LENGTH);
     return "search";
   }
 
@@ -249,7 +258,7 @@ function validateQuery(query: unknown, routeKind: RouteKind) {
 
   const normalized: Record<string, string> = {};
   for (const [key, value] of entries) {
-    if (!["searchtype", "source"].includes(key) || typeof value !== "string") {
+    if (!["searchtype", "source", "page"].includes(key) || typeof value !== "string") {
       throw new Error("Unsupported search query.");
     }
     normalized[key] = value;
@@ -258,9 +267,21 @@ function validateQuery(query: unknown, routeKind: RouteKind) {
   if (
     !SEARCH_TYPES.has(normalized.searchtype ?? "") ||
     !SEARCH_SOURCES.has(normalized.source ?? "") ||
-    entries.length !== 2
+    (entries.length !== 2 && entries.length !== 3)
   ) {
     throw new Error("Unsupported search query.");
+  }
+  if (normalized.page !== undefined) {
+    // Accept only canonical positive decimal integers. Reject exponents,
+    // fractions, signs and padding rather than letting the provider coerce them.
+    if (
+      !/^[1-9]\d{0,4}$/.test(normalized.page) ||
+      Number(normalized.page) > BANIDB_MAX_SEARCH_PAGE
+    ) {
+      throw new Error("Unsupported search page.");
+    }
+    // The omitted page and explicit page 1 address the same cached response.
+    if (normalized.page === "1") delete normalized.page;
   }
   return normalized;
 }
@@ -527,6 +548,9 @@ function successfulProxyResponse(
 
 export function createBanidbProxyHandler(options: BanidbProxyOptions = {}) {
   const additionalOrigins = options.allowedOrigins ?? [];
+  const projectApiKeys = new Set(
+    (options.projectApiKeys ?? []).map((key) => key.trim()).filter(Boolean),
+  );
   const cache = options.cache ?? new Map<string, BanidbCacheEntry>();
   const cacheTtlMs = options.cacheTtlMs ?? BANIDB_CACHE_TTL_MS;
   const fetchImpl = options.fetchImpl ?? fetch;
@@ -616,6 +640,14 @@ export function createBanidbProxyHandler(options: BanidbProxyOptions = {}) {
         { error: "Too many BaniDB requests. Please try again later." },
         429,
       );
+    }
+
+    if (projectApiKeys.size === 0) {
+      return limitedJson({ error: "Scripture proxy is not configured." }, 503);
+    }
+    const apiKey = request.headers.get("apikey");
+    if (!apiKey || !projectApiKeys.has(apiKey)) {
+      return limitedJson({ error: "A valid project API key is required." }, 401);
     }
 
     if (request.method !== "POST") {
@@ -792,10 +824,35 @@ function parseAdditionalOrigins(value: string | undefined) {
     .filter(Boolean) ?? [];
 }
 
+export function readBanidbProjectApiKeys(
+  readEnv: (name: string) => string | undefined,
+) {
+  const keys = new Set<string>();
+  // Hosted Edge Functions provide named publishable keys as a JSON object.
+  // Read no secret/service-role variables, and never return configuration in
+  // an HTTP response. Malformed or missing configuration cannot open access.
+  try {
+    const namedKeys: unknown = JSON.parse(readEnv("SUPABASE_PUBLISHABLE_KEYS") ?? "{}");
+    if (namedKeys && typeof namedKeys === "object" && !Array.isArray(namedKeys)) {
+      for (const value of Object.values(namedKeys)) {
+        if (typeof value === "string" && value.trim().startsWith("sb_publishable_")) {
+          keys.add(value.trim());
+        }
+      }
+    }
+  } catch {
+    // A legacy public key can still be used while named keys are configured.
+  }
+  const legacyKey = readEnv("SUPABASE_ANON_KEY")?.trim();
+  if (legacyKey) keys.add(legacyKey);
+  return [...keys];
+}
+
 const denoRuntime =
   (globalThis as typeof globalThis & { Deno?: DenoRuntime }).Deno;
 if (denoRuntime) {
   denoRuntime.serve(createBanidbProxyHandler({
+    projectApiKeys: readBanidbProjectApiKeys((name) => denoRuntime.env.get(name)),
     allowedOrigins: parseAdditionalOrigins(
       denoRuntime.env.get("BANIDB_ALLOWED_ORIGINS"),
     ),

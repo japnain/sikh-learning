@@ -1,0 +1,43 @@
+import type { UiLocale } from '../types'
+
+export const SEARCH_RESULTS_COPY = {
+  en: {
+    filters: 'Filter loaded matches', more: 'Load more Gurbani matches', loading: 'Loading more matches…',
+    remaining: 'More pages are available. Load the next page to keep exploring.',
+    failed: 'The next page could not be loaded. Your current results are still here.',
+    meaning: 'English meaning', transliteration: 'Transliteration',
+    tooLong: 'Use up to 160 characters. Try a shorter phrase from the line.',
+    phoneticNote: 'Matching Gurbani pronunciation, including common spelling variations. Add more words to narrow your search.',
+    searchingTerms: (terms: string[]) => `Searching translations for: ${terms.join(' · ')}`,
+    corrected: (from: string, to: string) => `Showing results for “${to}” (typed “${from}”).`,
+    exactWords: 'Exact words only',
+    relatedMeaning: 'Related meaning',
+    loaded: (count: number) => `${count} Gurbani ${count === 1 ? 'passage' : 'passages'} loaded`,
+  },
+  pa: {
+    filters: 'ਲੋਡ ਹੋਏ ਮੇਲ ਛਾਂਟੋ', more: 'ਹੋਰ ਗੁਰਬਾਣੀ ਮੇਲ ਲੋਡ ਕਰੋ', loading: 'ਹੋਰ ਮੇਲ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…',
+    remaining: 'ਹੋਰ ਪੰਨੇ ਉਪਲਬਧ ਹਨ। ਅੱਗੇ ਵੇਖਣ ਲਈ ਅਗਲਾ ਪੰਨਾ ਲੋਡ ਕਰੋ।',
+    failed: 'ਅਗਲਾ ਪੰਨਾ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਮੌਜੂਦਾ ਨਤੀਜੇ ਇੱਥੇ ਹੀ ਹਨ।',
+    meaning: 'ਅੰਗਰੇਜ਼ੀ ਅਰਥ', transliteration: 'ਲਿਪਾਂਤਰ',
+    tooLong: '160 ਅੱਖਰਾਂ ਤੱਕ ਲਿਖੋ। ਤੁਕ ਦਾ ਛੋਟਾ ਹਿੱਸਾ ਅਜ਼ਮਾਓ।',
+    phoneticNote: 'ਅੰਗਰੇਜ਼ੀ ਲਿਖਤ ਦੇ ਆਮ ਫ਼ਰਕਾਂ ਸਮੇਤ ਗੁਰਬਾਣੀ ਦੇ ਉਚਾਰਨ ਨਾਲ ਮੇਲ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ। ਖੋਜ ਸੀਮਤ ਕਰਨ ਲਈ ਹੋਰ ਸ਼ਬਦ ਲਿਖੋ।',
+    searchingTerms: (terms: string[]) => `ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਇਨ੍ਹਾਂ ਲਈ ਖੋਜ: ${terms.join(' · ')}`,
+    corrected: (from: string, to: string) => `“${to}” ਲਈ ਨਤੀਜੇ ਦਿਖਾਏ ਗਏ ਹਨ (ਤੁਸੀਂ “${from}” ਲਿਖਿਆ ਸੀ)।`,
+    exactWords: 'ਸਿਰਫ਼ ਲਿਖੇ ਹੋਏ ਸ਼ਬਦ',
+    relatedMeaning: 'ਸਬੰਧਤ ਅਰਥ',
+    loaded: (count: number) => `${count} ਗੁਰਬਾਣੀ ਮੇਲ ਲੋਡ ਹੋਏ`,
+  },
+  hi: {
+    filters: 'लोड हुए मिलान छाँटें', more: 'और गुरबाणी मिलान लोड करें', loading: 'और मिलान लोड हो रहे हैं…',
+    remaining: 'और पन्ने उपलब्ध हैं। आगे देखने के लिए अगला पन्ना लोड करें।',
+    failed: 'अगला पन्ना लोड नहीं हो सका। आपके मौजूदा परिणाम यहीं हैं।',
+    meaning: 'अंग्रेज़ी अर्थ', transliteration: 'लिप्यंतरण',
+    tooLong: '160 अक्षरों तक लिखें। पंक्ति का छोटा हिस्सा आज़माएँ।',
+    phoneticNote: 'वर्तनी के आम अंतर सहित गुरबाणी के उच्चारण से मिलान किया जा रहा है। खोज सीमित करने के लिए और शब्द लिखें।',
+    searchingTerms: (terms: string[]) => `अनुवादों में इनकी खोज: ${terms.join(' · ')}`,
+    corrected: (from: string, to: string) => `“${to}” के परिणाम दिखाए गए हैं (आपने “${from}” लिखा था)।`,
+    exactWords: 'केवल लिखे हुए शब्द',
+    relatedMeaning: 'संबंधित अर्थ',
+    loaded: (count: number) => `${count} गुरबाणी मिलान लोड हुए`,
+  },
+} satisfies Record<UiLocale, { filters: string; more: string; loading: string; remaining: string; failed: string; meaning: string; transliteration: string; tooLong: string; phoneticNote: string; searchingTerms: (terms: string[]) => string; corrected: (from: string, to: string) => string; exactWords: string; relatedMeaning: string; loaded: (count: number) => string }>

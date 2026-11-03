@@ -1,8 +1,10 @@
 import { beforeEach, vi } from 'vitest'
+import { flushSync } from 'react-dom'
 import { render, screen, fireEvent, waitFor, within, act } from '@testing-library/react'
 import { BrowserRouter, MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Banis from './Banis'
 import * as banidbApi from '../api/banidb'
+import { clearGurbaniSearchSessions } from '../utils/gurbaniSearchSession'
 import { sanitizeRehatHtml } from '../utils/rehatHtml'
 import Study from './Study'
 import PanthPrakashLibraryHome from './library/PanthPrakashLibraryHome'
@@ -67,8 +69,13 @@ const SEARCH_RESULT_FIXTURE: banidbApi.SearchResult = {
   writer: '',
 }
 
+function searchPage(results: banidbApi.SearchResult[], page = 1, nextPage: number | null = null, totalResults = results.length) {
+  return { results, page, nextPage, totalResults }
+}
+
 beforeEach(() => {
   vi.restoreAllMocks()
+  clearGurbaniSearchSessions()
   vi.spyOn(appSearch, 'getStorySearchMatches').mockResolvedValue([])
   localStorage.clear()
   useLocaleStore.setState({ locale: 'en' })
@@ -638,7 +645,7 @@ test('supports direct ang lookup mode', async () => {
 })
 
 test('auto-detects a numeric query as a direct lookup without a backend search', async () => {
-  const fetchSearch = vi.spyOn(banidbApi, 'fetchSearch')
+  const fetchSearch = vi.spyOn(banidbApi, 'fetchSearchPage')
   renderBanis()
 
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: '12' } })
@@ -681,7 +688,7 @@ test('front-loads canonical bani routes for short romanized queries like jap', a
 })
 
 test('searches Panth Prakash chapters alongside Gurbani destinations', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([]))
   render(
     <MemoryRouter initialEntries={['/banis']}>
       <Routes>
@@ -730,7 +737,7 @@ test('keeps exact routes and ready Gurbani ahead of late library results', async
     },
   }
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockReturnValue(pendingLibrarySearch)
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([SEARCH_RESULT_FIXTURE]))
 
   renderBanis()
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'jap' } })
@@ -760,7 +767,7 @@ test('keeps exact routes and ready Gurbani ahead of late library results', async
 
 test('accepts a short URL-hydrated query without restoring or rendering stale results', async () => {
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([SEARCH_RESULT_FIXTURE]))
 
   render(
     <MemoryRouter initialEntries={['/banis?query=staleprobe']}>
@@ -800,7 +807,8 @@ test('auto search queries both English meanings and romanized text for Roman-let
         : []
     })
 
-    expect(searchTypes).toEqual(expect.arrayContaining(['3', '4']))
+    expect(searchTypes).toEqual(expect.arrayContaining(['3', '8']))
+    expect(searchTypes).not.toContain('4')
   })
   await waitFor(() => {
     expect(screen.getByTestId('banis-search-gurbani-results')).toHaveTextContent('Death is not called bad')
@@ -824,12 +832,12 @@ test('removes fuzzy romanized noise when an English query has direct meaning mat
     transliteration: 'guraa ik dheh bujhaiee',
     translation_en: 'The Guru has given me this one understanding.',
   }
-  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (_query, searchType) => (
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(async (_query, searchType) => (
     searchType === 3
-      ? [meaningMatch]
-      : searchType === 4
-        ? [fuzzyRomanizedMatch]
-        : []
+      ? searchPage([meaningMatch])
+      : searchType === 8
+        ? searchPage([fuzzyRomanizedMatch])
+        : searchPage([])
   ))
 
   renderBanis()
@@ -864,15 +872,16 @@ test('auto search keeps Latin and Gurmukhi search modes for mixed-script queries
         : []
     })
 
-    expect(searchTypes).toEqual(expect.arrayContaining(['0', '1', '2', '3', '4', '8']))
+    expect(searchTypes).toEqual(expect.arrayContaining(['0', '1', '2', '3', '8']))
+    expect(searchTypes).not.toContain('4')
   })
 
   fetchSpy.mockRestore()
 })
 
 test('keeps fulfilled search results when another search source fails', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (_query, searchType) => {
-    if (searchType === 3) return [SEARCH_RESULT_FIXTURE]
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(async (_query, searchType) => {
+    if (searchType === 3) return searchPage([SEARCH_RESULT_FIXTURE])
     throw new Error('one search source unavailable')
   })
 
@@ -886,8 +895,8 @@ test('keeps fulfilled search results when another search source fails', async ()
 })
 
 test('does not show a contradictory empty state when a partial search returns no matches', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (_query, searchType) => {
-    if (searchType === 3) return []
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(async (_query, searchType) => {
+    if (searchType === 3) return searchPage([])
     throw new Error('one search source unavailable')
   })
 
@@ -900,9 +909,9 @@ test('does not show a contradictory empty state when a partial search returns no
 
 test('retries a failed search in place with the current query and filters', async () => {
   let unavailable = true
-  const fetchSearch = vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async () => {
+  const fetchSearch = vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(async () => {
     if (unavailable) throw new Error('search unavailable')
-    return [SEARCH_RESULT_FIXTURE]
+    return searchPage([SEARCH_RESULT_FIXTURE])
   })
 
   renderBanis()
@@ -919,8 +928,8 @@ test('retries a failed search in place with the current query and filters', asyn
 
 test('aborts stale backend searches when the query changes', async () => {
   const firstRequestSignals: AbortSignal[] = []
-  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(async (query, _searchType, _source, _context, signal) => {
-    if (query !== 'firstprobe') return []
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(async (query, _searchType, _source, _context, signal) => {
+    if (query !== 'firstprobe') return searchPage([])
     if (signal) firstRequestSignals.push(signal)
 
     return new Promise((resolve, reject) => {
@@ -953,7 +962,7 @@ test('paginates large Gurbani result sets and explains filter combinations with 
     raag: index % 2 === 0 ? 'Raag Asa' : 'Raag Gauri',
     writer: index % 2 === 0 ? 'Guru Nanak Dev Ji' : 'Guru Arjan Dev Ji',
   }))
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue(manyResults)
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage(manyResults))
 
   renderBanis()
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'paginationprobe' } })
@@ -966,6 +975,7 @@ test('paginates large Gurbani result sets and explains filter combinations with 
   fireEvent.click(screen.getByRole('button', { name: 'Show more matches' }))
   expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(15)
 
+  fireEvent.click(screen.getByText('Filter loaded matches'))
   fireEvent.click(screen.getAllByRole('button', { name: 'Raag Asa' })[0]!)
   fireEvent.click(screen.getAllByRole('button', { name: 'Guru Arjan Dev Ji' })[0]!)
 
@@ -975,17 +985,18 @@ test('paginates large Gurbani result sets and explains filter combinations with 
 })
 
 test('offers useful examples and a clear action when search has no matches', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([]))
 
   renderBanis()
   const searchInput = screen.getByRole('searchbox')
   fireEvent.change(searchInput, { target: { value: 'zzzz-no-match' } })
 
   expect(await screen.findByRole('heading', { name: /No matches yet/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: 'Japji Sahib' })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: 'ਵਾਹਿਗੁਰੂ' })).toBeInTheDocument()
+  const examples = within(screen.getByRole('group', { name: 'Try an example' }))
+  expect(examples.getByRole('button', { name: 'compassion' })).toBeInTheDocument()
+  expect(examples.getByRole('button', { name: 'ਸਤਿ ਨਾਮੁ' })).toBeInTheDocument()
 
-  fireEvent.click(screen.getByRole('button', { name: /Clear search/i }))
+  fireEvent.click(within(screen.getByRole('region', { name: 'No matches yet' })).getByRole('button', { name: 'Clear search', exact: true }))
 
   expect(searchInput).toHaveValue('')
   await waitFor(() => expect(searchInput).toHaveFocus())
@@ -994,14 +1005,14 @@ test('offers useful examples and a clear action when search has no matches', asy
 test('localizes Read controls while English searches always include the matching meaning', async () => {
   useLocaleStore.setState({ locale: 'pa' })
   useLanguageStore.setState({ showTransliteration: false, meaningLanguage: 'none' })
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([SEARCH_RESULT_FIXTURE]))
 
   renderBanis()
 
   expect(screen.getByRole('heading', { level: 1, name: 'ਪੜ੍ਹੋ' })).toBeInTheDocument()
   expect(screen.getByRole('tab', { name: 'ਬਾਣੀਆਂ' })).toHaveAttribute('aria-selected', 'true')
   expect(screen.getByRole('tab', { name: 'ਸਰੋਤ' })).toBeInTheDocument()
-  expect(screen.getByText('ਆਪਣੇ ਆਪ ਪਛਾਣ')).toBeInTheDocument()
+  expect(screen.getByText('ਆਪਣੇ ਆਪ ਪਛਾਣੋ')).toBeInTheDocument()
 
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'preferenceprobe' } })
   expect(await screen.findByText('ਸਤਿਨਾਮੁ')).toBeInTheDocument()
@@ -1088,7 +1099,7 @@ test('keeps the nav-safe page shell while lower sections still open after other 
 })
 
 test('shows books and stories independently while scripture searches are still pending', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(() => new Promise(() => {}))
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(() => new Promise(() => {}))
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([{ key: 'book', label: 'A local book', detail: 'Book', path: '/library/local', kind: 'library-work', score: 1 }])
   vi.mocked(appSearch.getStorySearchMatches).mockResolvedValue([{ key: 'story', label: 'A story of courage', detail: 'Courage', path: '/stories/courage', kind: 'story', score: 1 }])
   renderBanis()
@@ -1099,7 +1110,7 @@ test('shows books and stories independently while scripture searches are still p
 })
 
 test('a story result carries the complete global search origin to the reader', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([]))
   vi.mocked(appSearch.getStorySearchMatches).mockResolvedValue([{ key: 'story', label: 'A story of courage', detail: 'Courage', path: '/stories/courage', kind: 'story', score: 1 }])
   render(<MemoryRouter initialEntries={['/banis?query=courage']}><Routes>
     <Route path="/banis" element={<Banis />} /><Route path="/stories/:storyId" element={<LocationSpy />} />
@@ -1111,7 +1122,7 @@ test('a story result carries the complete global search origin to the reader', a
 
 test('a stalled provider settles with usable local results and can be retried', async () => {
   vi.useFakeTimers()
-  const search = vi.spyOn(banidbApi, 'fetchSearch').mockImplementation(() => new Promise(() => {}))
+  const search = vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(() => new Promise(() => {}))
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([{ key: 'book', label: 'A local book', detail: 'Book', path: '/library/local', kind: 'library-work', score: 1 }])
   const view = renderBanis()
   try {
@@ -1124,7 +1135,7 @@ test('a stalled provider settles with usable local results and can be retried', 
     expect(screen.getByTestId('banis-search-library-results')).toHaveTextContent('A local book')
     expect(screen.queryByText('No matches yet')).not.toBeInTheDocument()
 
-    search.mockResolvedValue([SEARCH_RESULT_FIXTURE])
+    search.mockResolvedValue(searchPage([SEARCH_RESULT_FIXTURE]))
     fireEvent.click(screen.getByRole('button', { name: 'Retry' }))
     await act(async () => { await vi.advanceTimersByTimeAsync(300) })
     expect(screen.getByTestId('banis-search-gurbani-results')).toHaveTextContent('ਸਤਿਨਾਮੁ')
@@ -1142,7 +1153,7 @@ function BackToDiscovery() {
 }
 
 test('collection navigation exits global results and makes the previous search recoverable', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([SEARCH_RESULT_FIXTURE]))
   render(<MemoryRouter initialEntries={['/banis']}><Routes>
     <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
   </Routes></MemoryRouter>)
@@ -1160,7 +1171,7 @@ test('collection navigation exits global results and makes the previous search r
 })
 
 test('book and story result types search only the selected content and keep a stable global input', async () => {
-  const scripture = vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([SEARCH_RESULT_FIXTURE])
+  const scripture = vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([SEARCH_RESULT_FIXTURE]))
   const books = vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([{
     key: 'book-probe', kind: 'library-chapter', label: 'Nanak in history', detail: 'Panth Prakash', path: '/library/panth-prakash-english/chapters/episode-001', score: 90,
   }])
@@ -1181,7 +1192,7 @@ test('book and story result types search only the selected content and keep a st
 })
 
 test('rapid scope selection and typing retain the selected scope across browser-router transitions', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue([])
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage([]))
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
   vi.spyOn(appSearch, 'getStorySearchMatches').mockResolvedValue([{
     key: 'story-fast-scope', kind: 'story', label: 'Lalo', detail: 'Honest work', path: '/stories/bhai-lalo', score: 90,
@@ -1200,7 +1211,7 @@ test('rapid scope selection and typing retain the selected scope across browser-
   expect(scope).toHaveAttribute('aria-pressed', 'true')
   expect(input).toHaveValue('Lalo')
   expect(new URL(window.location.href).searchParams.get('query')).toBe('Lalo')
-  expect(banidbApi.fetchSearch).not.toHaveBeenCalled()
+  expect(banidbApi.fetchSearchPage).not.toHaveBeenCalled()
   const allScope = within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'All', exact: true })
   act(() => {
     fireEvent.click(allScope)
@@ -1209,6 +1220,34 @@ test('rapid scope selection and typing retain the selected scope across browser-
   await waitFor(() => expect(new URL(window.location.href).searchParams.get('query')).toBe('Lalo and Nanak'))
   expect(new URL(window.location.href).searchParams.has('scope')).toBe(false)
   expect(allScope).toHaveAttribute('aria-pressed', 'true')
+})
+
+test('rapid intent selection and query replacement retain the newest submitted search', async () => {
+  const meaningResult = { ...SEARCH_RESULT_FIXTURE, translation_en: 'Compassion is the foundation of faith.' }
+  const scripture = vi.spyOn(banidbApi, 'fetchSearchPage').mockImplementation(async (query, type) => (
+    searchPage(query === 'compassion' && type === 3 ? [meaningResult] : [])
+  ))
+  vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
+  window.history.replaceState(null, '', '/banis?query=sat+nam&mode=transliteration&scope=gurbani')
+  render(<BrowserRouter><Banis /><LocationSpy /></BrowserRouter>)
+  const input = screen.getByRole('searchbox')
+  const meaningMode = screen.getByRole('button', { name: 'English meaning', exact: true })
+  // Commit the urgent intent change while its Router URL transition is pending,
+  // then replace the old phrase and submit without waiting for that transition.
+  act(() => {
+    flushSync(() => fireEvent.click(meaningMode))
+    fireEvent.change(input, { target: { value: 'compassion' } })
+    fireEvent.submit(screen.getByRole('search'))
+  })
+  await waitFor(() => expect(screen.getByTestId('banis-search-gurbani-results')).toHaveTextContent(meaningResult.translation_en))
+  const params = new URL(window.location.href).searchParams
+  expect(input).toHaveValue('compassion')
+  expect(params.get('query')).toBe('compassion')
+  expect(params.get('mode')).toBe('english')
+  expect(meaningMode).toHaveAttribute('aria-pressed', 'true')
+  expect(scripture.mock.calls.slice(-3).map(call => call.slice(0, 2))).toEqual([
+    ['compassion', 3], ['mercy', 3], ['kindness', 3],
+  ])
 })
 
 test('book result previews disclose the full count and remember expanded results in the URL', async () => {
@@ -1249,18 +1288,19 @@ test('restores search facets and expanded page size from a direct return URL', a
   const matches = Array.from({ length: 17 }, (_, index) => ({ ...SEARCH_RESULT_FIXTURE,
     shabadId: 3000 + index, verseId: 4000 + index, raag: 'Asa', writer: 'Guru Nanak',
   }))
-  vi.spyOn(banidbApi, 'fetchSearch').mockResolvedValue(matches)
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockResolvedValue(searchPage(matches))
   render(<MemoryRouter initialEntries={['/banis?query=truth&raag=Asa&writer=Guru+Nanak&matches=24']}><Banis /></MemoryRouter>)
   await waitFor(() => expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(17))
   expect(screen.getAllByRole('button', { name: 'Asa' })[0]).toHaveAttribute('aria-pressed', 'true')
   expect(screen.getAllByRole('button', { name: 'Guru Nanak' })[0]).toHaveAttribute('aria-pressed', 'true')
   fireEvent.click(within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'Gurbani' }))
   await waitFor(() => expect(screen.getAllByTestId('banis-search-gurbani-result')).toHaveLength(12))
+  fireEvent.click(screen.getByText('Filter loaded matches'))
   expect(screen.getByRole('button', { name: 'All Raags' })).toHaveAttribute('aria-pressed', 'true')
 })
 
 test('labels unavailable remote search as partial when a canonical reading still matches', async () => {
-  vi.spyOn(banidbApi, 'fetchSearch').mockRejectedValue(new Error('Unavailable'))
+  vi.spyOn(banidbApi, 'fetchSearchPage').mockRejectedValue(new Error('Unavailable'))
   vi.spyOn(appSearch, 'getLibrarySearchMatches').mockResolvedValue([])
   renderBanis()
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Japji Sahib' } })
