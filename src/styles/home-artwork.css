@@ -36,6 +36,8 @@
 .home-artwork-preview h3 { margin: .3rem 0; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; line-height: 1.1; font-weight: 500; }
 .home-artwork-preview > div > p:not(.home-artwork-eyebrow) { margin: .5rem 0 0; font-size: .8125rem; line-height: 1.6; color: var(--art-muted); }
 .home-artwork-retry { min-height: 44px; color: var(--art-accent); text-align: left; font-size: .875rem !important; text-decoration: underline; text-underline-offset: .25rem; }
+.home-artwork-source { display: inline-flex; align-items: center; min-height: 44px; gap: .25rem; color: var(--art-accent); font-size: .6875rem; line-height: 1.6; text-decoration: underline; text-underline-offset: .2rem; }
+.home-artwork-source:focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 3px; }
 .home-artwork-rhythm { margin-bottom: .75rem; border-top: 1px solid var(--art-line); }
 .home-artwork-rhythm > summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .75rem; min-height: 44px; padding-block: .5rem; cursor: pointer; list-style: none; }
 .home-artwork-rhythm > summary::-webkit-details-marker { display: none; }

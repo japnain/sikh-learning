@@ -13,9 +13,9 @@ const COPY = {
     close: 'Close artwork settings', rhythm: 'Artwork changes', fixed: 'Keep one', daily: 'Daily change', visit: 'Each visit',
     fixedNote: 'A favorite, always', dailyNote: 'A new painting each day', visitNote: 'A fresh welcome',
     fixedExplanation: 'Keep the artwork you choose each time you return.',
-    dailyExplanation: 'A new painting each day from your collection of fourteen.',
+    dailyExplanation: 'A new painting each day from your collection.',
     visitExplanation: 'Move through the collection each time you return to Home.',
-    original: 'The original atmosphere', collection: 'The collection', count: '14 works of art',
+    original: 'The original atmosphere', collection: 'The collection', count: `${homeArtworkCatalog.length} works of art`, source: 'Artwork source',
     preview: 'Preview', selected: 'Selected', cancel: 'Cancel', apply: 'Apply to Home', applying: 'Applying…',
     retry: 'Retry artwork', loading: 'Loading artwork…',
     unavailable: 'This artwork could not be loaded. Please choose another or try again.',
@@ -26,9 +26,9 @@ const COPY = {
     close: 'ਚਿੱਤਰ ਸੈਟਿੰਗਾਂ ਬੰਦ ਕਰੋ', rhythm: 'ਚਿੱਤਰ ਬਦਲਣਾ', fixed: 'ਇੱਕ ਰੱਖੋ', daily: 'ਹਰ ਰੋਜ਼', visit: 'ਹਰ ਵਾਰ',
     fixedNote: 'ਹਮੇਸ਼ਾ ਮਨਪਸੰਦ', dailyNote: 'ਰੋਜ਼ ਨਵਾਂ ਚਿੱਤਰ', visitNote: 'ਨਵਾਂ ਸਵਾਗਤ',
     fixedExplanation: 'ਹਰ ਵਾਰ ਵਾਪਸ ਆਉਣ ਉੱਤੇ ਆਪਣਾ ਚੁਣਿਆ ਚਿੱਤਰ ਰੱਖੋ।',
-    dailyExplanation: 'ਚੌਦਾਂ ਚਿੱਤਰਾਂ ਵਿੱਚੋਂ ਹਰ ਰੋਜ਼ ਨਵਾਂ ਚਿੱਤਰ।',
+    dailyExplanation: 'ਤੁਹਾਡੇ ਸੰਗ੍ਰਹਿ ਵਿੱਚੋਂ ਹਰ ਰੋਜ਼ ਨਵਾਂ ਚਿੱਤਰ।',
     visitExplanation: 'ਹੋਮ ਉੱਤੇ ਵਾਪਸ ਆਉਣ ਵੇਲੇ ਅਗਲਾ ਚਿੱਤਰ ਵੇਖੋ।',
-    original: 'ਅਸਲ ਮਾਹੌਲ', collection: 'ਸੰਗ੍ਰਹਿ', count: '14 ਚਿੱਤਰ',
+    original: 'ਅਸਲ ਮਾਹੌਲ', collection: 'ਸੰਗ੍ਰਹਿ', count: `${homeArtworkCatalog.length} ਚਿੱਤਰ`, source: 'ਚਿੱਤਰ ਦਾ ਸਰੋਤ',
     preview: 'ਝਲਕ', selected: 'ਚੁਣਿਆ', cancel: 'ਰੱਦ ਕਰੋ', apply: 'ਹੋਮ ਉੱਤੇ ਲਾਗੂ ਕਰੋ', applying: 'ਲਾਗੂ ਹੋ ਰਿਹਾ ਹੈ…',
     retry: 'ਚਿੱਤਰ ਮੁੜ ਲੋਡ ਕਰੋ', loading: 'ਚਿੱਤਰ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ…',
     unavailable: 'ਇਹ ਚਿੱਤਰ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਹੋਰ ਚੁਣੋ ਜਾਂ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
@@ -39,9 +39,9 @@ const COPY = {
     close: 'चित्र सेटिंग बंद करें', rhythm: 'चित्र बदलना', fixed: 'एक रखें', daily: 'हर दिन', visit: 'हर बार',
     fixedNote: 'हमेशा पसंदीदा', dailyNote: 'रोज नया चित्र', visitNote: 'नया स्वागत',
     fixedExplanation: 'हर बार लौटने पर अपना चुना हुआ चित्र रखें।',
-    dailyExplanation: 'चौदह चित्रों के संग्रह से हर दिन नया चित्र।',
+    dailyExplanation: 'आपके संग्रह से हर दिन नया चित्र।',
     visitExplanation: 'होम पर लौटने पर संग्रह का अगला चित्र देखें।',
-    original: 'मूल वातावरण', collection: 'संग्रह', count: '14 चित्र',
+    original: 'मूल वातावरण', collection: 'संग्रह', count: `${homeArtworkCatalog.length} चित्र`, source: 'चित्र का स्रोत',
     preview: 'झलक', selected: 'चुना गया', cancel: 'रद्द करें', apply: 'होम पर लागू करें', applying: 'लागू हो रहा है…',
     retry: 'चित्र फिर लोड करें', loading: 'चित्र लोड हो रहा है…',
     unavailable: 'यह चित्र लोड नहीं हो सका। दूसरा चुनें या फिर कोशिश करें।',
@@ -137,7 +137,8 @@ function ArtworkSettingsContent({ onClose }: { onClose: () => void }) {
               onError={() => { setFailedPreviewId(preview.id); setPreviewLoading(false) }} /> : null}
           </div>
           <div><p className="home-artwork-eyebrow">{copy.preview}</p><h3>{preview.displayName[locale]}</h3>
-            {failedPreviewId === preview.id ? <button type="button" className="home-artwork-retry" onClick={retryPreview} disabled={applying}>{copy.retry}</button> : previewLoading ? <p role="status">{copy.loading}</p> : <p>{copy.description}</p>}
+            {failedPreviewId === preview.id ? <button type="button" className="home-artwork-retry" onClick={retryPreview} disabled={applying}>{copy.retry}</button> : previewLoading ? <p role="status">{copy.loading}</p> : <p>{preview.localizedDescription[locale]}</p>}
+            {preview.credit ? <a className="home-artwork-source" href={preview.credit.url} target="_blank" rel="noreferrer">{copy.source} · {preview.credit.label}<span aria-hidden="true"> ↗</span></a> : null}
           </div>
         </div>
         <details className="home-artwork-rhythm">

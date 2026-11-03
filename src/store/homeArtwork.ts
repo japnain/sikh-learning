@@ -10,6 +10,7 @@ export const HOME_ARTWORK_COLLECTION_IDS = [
   'string-and-tabla', 'devotional-interior', 'waterside-temple', 'miniature-collage',
   'rider-and-attendants', 'falconer-on-horseback', 'floral-teacher-mural',
   'golden-court-assembly', 'gurmukhi-floral-medallion', 'ceremonial-arms-display',
+  'nanak-bala-mardana', 'nanak-companions', 'golden-temple-carpenter', 'akal-takht-simpson',
 ] as const
 
 export const HOME_ARTWORK_STORAGE_KEY = 'naamras-home-artwork'
