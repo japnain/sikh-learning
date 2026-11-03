@@ -92,7 +92,7 @@ body:has(.study-reader-topbar),
 .study-reader-opening { padding:1.2rem 0 1rem; }
 .study-reader-opening > p:first-child { margin:0; font-size:1.3rem; font-weight:500; line-height:1.6; overflow-wrap:break-word; }
 .study-reader-opening__source { margin:.25rem 0 0; color:rgb(var(--color-text-muted)); font-size:.8125rem; line-height:1.6; }
-.study-reader-opening > button { margin-top:.5rem; }
+.study-reader-opening > button { margin-top:.5rem; scroll-margin-top:calc(var(--study-reader-topbar-height) + 1rem); }
 .study-reader-exploration { display:flex; align-items:center; justify-content:center; gap:.25rem; min-height:44px; }
 .study-reader-exploration button { display:inline-flex; align-items:center; justify-content:center; gap:.25rem; min-width:44px; min-height:44px; padding:.25rem; color:rgb(var(--color-text)); font-size:.8125rem; }
 .study-reader-exploration button:last-child { color:rgb(var(--color-text-muted)); }
