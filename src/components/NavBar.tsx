@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactElement } from 'react'
+import { useLayoutEffect, useRef, type ReactElement } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useLocaleStore } from '../store/locale'
 import { NavHomeGlyph, NavReadGlyph, NavSavedGlyph, NavMoreGlyph } from './NavigationGlyphs'
@@ -64,37 +64,53 @@ export default function NavBar() {
     },
   ]
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = stackRef.current
     if (!element) return
+    const nav = element.querySelector<HTMLElement>('.app-nav')
+    if (!nav) return
+    const labels = Array.from(nav.querySelectorAll<HTMLElement>('.app-nav-tab__label'))
+    const desktop = window.matchMedia('(min-width: 1024px)')
+    let frame: number | null = null
+    let active = true
+    let lastHeight: number | null = null
 
     const updateHeight = () => {
-      const isDesktopRail = window.matchMedia?.('(min-width: 1024px)').matches ?? window.innerWidth >= 1024
-      const nav = element.querySelector<HTMLElement>('.app-nav')
-      if (nav && !isDesktopRail) {
+      frame = null
+      const isDesktopRail = desktop.matches
+      if (!isDesktopRail) {
         const styles = getComputedStyle(nav)
         const available = nav.clientWidth - (parseFloat(styles.paddingLeft) || 0) - (parseFloat(styles.paddingRight) || 0)
         const fourColumnWidth = (available - 3 * (parseFloat(styles.columnGap) || 0)) / 4
-        const requiredWidth = Math.max(0, ...Array.from(nav.querySelectorAll<HTMLElement>('.app-nav-tab__label'), label => label.scrollWidth + 8))
-        nav.dataset.expandedLabels = String(requiredWidth > fourColumnWidth && fourColumnWidth > 0)
+        const requiredWidth = Math.max(0, ...labels.map(label => label.scrollWidth + 8))
+        const expanded = String(requiredWidth > fourColumnWidth && fourColumnWidth > 0)
+        if (nav.dataset.expandedLabels !== expanded) nav.dataset.expandedLabels = expanded
       }
       const reservedHeight = isDesktopRail ? 0 : Math.ceil(element.getBoundingClientRect().height)
-      document.documentElement.style.setProperty('--nav-stack-height', `${reservedHeight}px`)
+      if (reservedHeight !== lastHeight) {
+        document.documentElement.style.setProperty('--nav-stack-height', `${reservedHeight}px`)
+        lastHeight = reservedHeight
+      }
     }
 
+    const scheduleMeasurement = () => {
+      if (frame === null && active) frame = window.requestAnimationFrame(updateHeight)
+    }
+
+    // Measure actual navigation changes, not mobile browser-toolbar animation.
+    // Height-only viewport resizes during scrolling must not relayout the page.
     updateHeight()
-    let active = true
-    void document.fonts?.ready.then(() => { if (active) updateHeight() })
-    const observer = new ResizeObserver(() => updateHeight())
+    void document.fonts?.ready.then(scheduleMeasurement)
+    const observer = new ResizeObserver(scheduleMeasurement)
     observer.observe(element)
-    window.addEventListener('resize', updateHeight)
-    window.visualViewport?.addEventListener('resize', updateHeight)
+    labels.forEach(label => observer.observe(label))
+    desktop.addEventListener('change', scheduleMeasurement)
 
     return () => {
       active = false
+      if (frame !== null) window.cancelAnimationFrame(frame)
       observer.disconnect()
-      window.removeEventListener('resize', updateHeight)
-      window.visualViewport?.removeEventListener('resize', updateHeight)
+      desktop.removeEventListener('change', scheduleMeasurement)
       document.documentElement.style.setProperty('--nav-stack-height', '0px')
     }
   }, [locale])

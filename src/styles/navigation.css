@@ -9,11 +9,11 @@
   .app-nav-stack {
     position: fixed;
     z-index: 70;
-    right: auto;
+    right: 0;
     bottom: var(--nav-bottom-offset);
-    left: 50%;
+    left: 0;
     width: 100%;
-    transform: translateX(-50%);
+    transform: none;
     pointer-events: none;
   }
 
@@ -29,35 +29,47 @@
   }
 
   .app-nav {
+    --nav-surface: 245 240 228;
+    --nav-ink: 83 94 108;
+    --nav-accent: 49 92 128;
+    --nav-line: 79 109 132;
     display: grid;
-    min-height: 72px;
+    min-height: 84px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     font-size: .8125rem;
     gap: 0.15rem;
     padding: 0.375rem max(0.875rem, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(0.875rem, var(--safe-area-left));
     overflow: hidden;
     border: 0;
-    border-top: 1px solid rgb(var(--color-accent) / 0.34);
+    border-top: 1px solid rgb(var(--nav-line) / 0.2);
     border-radius: 0;
-    background: rgb(var(--color-surface));
-    box-shadow: 0 -1px 0 rgb(var(--color-bg) / 0.7);
+    background: rgb(var(--nav-surface));
+    box-shadow: none;
     pointer-events: auto;
+  }
+
+  html.dark .app-nav,
+  html[data-theme='dark'] .app-nav {
+    --nav-surface: 20 35 49;
+    --nav-ink: 169 185 196;
+    --nav-accent: 179 209 229;
+    --nav-line: 145 173 194;
   }
 
   .app-nav-tab {
     position: relative;
     display: flex;
     min-width: 0;
-    min-height: 56px;
+    min-height: 70px;
     touch-action: manipulation;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.2rem;
-    padding: 4px 2px 8px;
+    gap: 4px;
+    padding: 10px 2px 4px;
     overflow: hidden;
     border-radius: 0.65rem;
-    color: rgb(var(--color-text-muted));
+    color: rgb(var(--nav-ink));
     outline: none;
     text-align: center;
     text-decoration: none;
@@ -71,17 +83,26 @@
 
   .app-nav-tab__icon {
     display: flex;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
+    flex: none;
     align-items: center;
     justify-content: center;
   }
 
-  .app-nav-tab__icon svg {
+  .app-nav-tab__icon svg,
+  .app-nav-tab__icon img {
     position: relative;
+    display: block;
     width: 100%;
     height: 100%;
     flex: none;
+  }
+
+  .app-nav-tab__icon img {
+    object-fit: contain;
+    image-rendering: pixelated;
+    user-select: none;
   }
 
   .app-nav-tab__label {
@@ -96,20 +117,20 @@
   }
 
   .app-nav-tab:hover {
-    color: rgb(var(--color-text));
+    color: rgb(var(--nav-accent));
   }
 
   .app-nav-tab:active {
-    background: rgb(var(--color-accent) / 0.08);
+    background: rgb(var(--nav-accent) / 0.08);
   }
 
   .app-nav-tab:focus-visible {
-    outline: 2px solid rgb(var(--color-focus));
+    outline: 2px solid rgb(var(--nav-accent));
     outline-offset: -2px;
   }
 
   .app-nav-tab[aria-current='page'] {
-    color: rgb(var(--color-accent));
+    color: rgb(var(--nav-accent));
   }
 
   .app-nav-tab[aria-current='page'] .app-nav-tab__label {
@@ -118,9 +139,9 @@
 
   .app-nav-tab__active-marker {
     position: absolute;
-    bottom: 0.2rem;
+    top: 1px;
     left: 50%;
-    width: 1rem;
+    width: 14px;
     height: 2px;
     border-radius: 1px;
     background: currentColor;
@@ -149,13 +170,13 @@ html {
   }
 
   .app-nav {
-    min-height: 72px;
+    min-height: 84px;
     gap: 0.08rem;
     padding: 0.375rem max(8px, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(8px, var(--safe-area-left));
   }
 
   .app-nav-tab {
-    min-height: 56px;
+    min-height: 70px;
   }
 
   .app-nav-tab__label {
@@ -187,7 +208,7 @@ html {
   }
 
   .app-nav {
-    border: 1px solid rgb(var(--color-accent) / .34);
+    border: 1px solid rgb(var(--nav-line) / .2);
     border-radius: 1rem;
     min-height: 0;
     grid-template-columns: minmax(0, 1fr);
