@@ -318,17 +318,20 @@ function toScripture(source: BaniSource): string {
 }
 
 function safeText(val: unknown): string {
-  if (typeof val === 'string') {
-    return val
-      .replace(/<[^>]*>/g, '')
-      .replace(/<\/?[^>]*$/g, '')
-      .trim()
-  }
-  return ''
+  if (typeof val !== 'string') return ''
+  // These values are rendered as React text, never as HTML. Parse provider
+  // formatting instead of repeatedly removing fragments that can form tags.
+  if (typeof DOMParser === 'undefined' || (!val.includes('<') && !val.includes('&'))) return val.trim()
+  // Some provider labels end with an orphan closing delimiter. Discard that
+  // exact suffix; a browser correctly treats it as literal text at EOF.
+  const source = val.trimEnd()
+  const parsed = new DOMParser().parseFromString(source.endsWith('</') ? source.slice(0, -2) : source, 'text/html')
+  parsed.querySelectorAll('script, style').forEach(element => element.remove())
+  return (parsed.body.textContent ?? '').trim()
 }
 
 function safeNestedText(val: unknown): string {
-  if (typeof val === 'string') return val
+  if (typeof val === 'string') return safeText(val)
   if (!val || typeof val !== 'object') return ''
 
   const record = val as Record<string, unknown>

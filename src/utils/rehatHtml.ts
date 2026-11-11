@@ -1,10 +1,19 @@
 export function stripHtmlTags(value: string) {
-  return value
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
+  if (typeof window === 'undefined' || typeof window.DOMParser === 'undefined') {
+    // This function returns plain text, never trusted HTML. Without a parser,
+    // preserve literal input rather than risk rebuilding tags with a regexp.
+    return value.replace(/\s+/g, ' ').trim()
+  }
+
+  const parsed = new window.DOMParser().parseFromString(value, 'text/html')
+  function readText(node: Node): string {
+    if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? ''
+    if (node.nodeType !== Node.ELEMENT_NODE) return ''
+    const tagName = (node as Element).tagName.toLowerCase()
+    if (tagName === 'script' || tagName === 'style') return ''
+    return ` ${Array.from(node.childNodes, readText).join('')} `
+  }
+  return Array.from(parsed.body.childNodes, readText).join('').replace(/\s+/g, ' ').trim()
 }
 
 const ALLOWED_REHAT_TAGS = new Set(['a', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'u', 'ul'])
@@ -20,12 +29,15 @@ function isSafeRehatHref(value: string) {
 
 export function sanitizeRehatHtml(value: string) {
   if (typeof window === 'undefined' || typeof window.DOMParser === 'undefined') {
-    return stripHtmlTags(value)
+    // The caller inserts this result as HTML. Encode every delimiter in one
+    // pass so even malformed/nested input remains literal text without a DOM.
+    const entities: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }
+    return value.replace(/[&<>"']/g, character => entities[character])
   }
 
   const parser = new window.DOMParser()
-  const document = parser.parseFromString(`<div>${value}</div>`, 'text/html')
-  const sourceRoot = document.body.firstElementChild
+  const document = parser.parseFromString(value, 'text/html')
+  const sourceRoot = document.body
   const outputRoot = document.createElement('div')
 
   function sanitizeNode(node: Node): Node {

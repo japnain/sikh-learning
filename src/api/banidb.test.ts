@@ -65,6 +65,35 @@ describe('reading request cancellation', () => {
 })
 
 describe('fetchAng', () => {
+  it('normalizes provider HTML as plain text without reconstructing malformed tags', async () => {
+    server.use(http.post('https://naamras-qa.supabase.co/functions/v1/banidb-proxy', () => HttpResponse.json({
+      verses: [{
+        verseId: 1,
+        shabadId: 1,
+        pageNo: 1,
+        verse: '<b>ੴ</b>',
+        transliteration: { english: '<i>ik</i><script>hidden()</script>' },
+        translation: {
+          en: { bdb: '<p title="a > b">Care &amp; service</p><style>hidden{}</style><img src=x onerror="bad()">' },
+          pu: { ss: { unicode: '<strong>ਸੇਵਾ</strong>' } },
+        },
+        source: { id: 'G', english: '<b>SGGS</b>' },
+        raag: { english: '<scr<script>ipt>bad()</scr</script>ipt>Asa' },
+        writer: { english: '<p title="a > b">Guru Nanak Dev Ji</p>' },
+      }],
+    })))
+
+    const entries = await fetchAng(1, 'G')
+    expect(entries[0].gurmukhi).toBe('ੴ')
+    expect(entries[0].transliteration).toBe('ik')
+    expect(entries[0].translation_en).toBe('Care & service')
+    expect(entries[0].translation_pa).toBe('ਸੇਵਾ')
+    expect(entries[0].writer).toBe('Guru Nanak Dev Ji')
+    expect(entries[0].sourceMeta?.english).toBe('SGGS')
+    expect(entries[0].raag).toContain('Asa')
+    expect(entries[0].raag).not.toContain('<script')
+  })
+
   it('routes scripture reads through the Supabase banidb proxy endpoint', async () => {
     const fetchSpy = vi.spyOn(globalThis, 'fetch')
 
