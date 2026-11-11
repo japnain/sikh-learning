@@ -230,7 +230,8 @@ test('saving a word remains available when the same text was saved only as a ver
   render(<WordPopover word={word} onClose={() => {}} />)
   fireEvent.click(screen.getByRole('button', { name: 'Save Word' }))
   expect(screen.getByRole('button', { name: 'Saved', exact: true })).toBeInTheDocument()
-  expect(useVocabStore.getState().vocab.map(entry => entry.kind)).toEqual(['phrase', 'word'])
+  expect(useVocabStore.getState().vocab).toHaveLength(2)
+  expect(useVocabStore.getState().vocab.map(entry => entry.kind)).toEqual(expect.arrayContaining(['phrase', 'word']))
 })
 
 

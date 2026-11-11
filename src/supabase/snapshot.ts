@@ -1,3 +1,4 @@
+import { beginLocalCollectionTransaction } from '../utils/localCollection'
 import type { VocabEntry } from '../types'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
@@ -718,17 +719,12 @@ function applySavedItems(savedItems: CloudSavedItemRecord[] | undefined) {
 
   const bookmarkStore = useBookmarksStore.getState()
   const favoriteStore = useFavoritesStore.getState()
-  const previousBookmarks = bookmarkStore.bookmarks
-  const previousFavorites = favoriteStore.favorites
   const bookmarksPersisted = bookmarkStore.replaceBookmarks(bookmarks)
   const favoritesPersisted = favoriteStore.replaceFavorites(favorites)
 
   if (bookmarksPersisted && favoritesPersisted) return
 
-  // Keep a partially applied snapshot from becoming the new local truth. A
-  // later retry can safely merge the same server result again.
-  if (bookmarksPersisted) bookmarkStore.replaceBookmarks(previousBookmarks)
-  if (favoritesPersisted) favoriteStore.replaceFavorites(previousFavorites)
+  // The enclosing transaction rolls back only this apply's item writes.
   throw new Error('Remote saved items could not be persisted on this device.')
 }
 
@@ -796,14 +792,16 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
     throw new Error(`Unsupported cloud snapshot version: ${String(snapshot.version)}`)
   }
 
-  type Store = { getState: () => unknown; setState: (state: unknown, replace: true) => void; persist?: { getOptions: () => { name: string; version?: number; partialize?: (state: unknown) => unknown } } }
+  type Store = { getState: () => unknown; setState: (state: unknown, replace: true) => void; persist?: { captureRollback?: () => () => void; getOptions: () => { name: string; version?: number; partialize?: (state: unknown) => unknown } } }
   const stores = [useLocaleStore, useThemeStore, useLanguageStore, useSundarGutkaLengthStore, useOnboardingStore,
     useBookmarksStore, useFavoritesStore, useVocabStore, useProgressStore, useReadingProgressStore,
     useNitemStore, useNitnemHistoryStore, useActivityEventsStore] as unknown as Store[]
   const originalStates = stores.map(store => store.getState())
+  const restoreStores = stores.map((store, index) => store.persist?.captureRollback?.() ?? (() => store.setState(originalStates[index], true)))
   const keys = [...stores.flatMap(store => store.persist ? [store.persist.getOptions().name] : []),
     'sikh-bookmarks', 'sikh-favorites', SNAPSHOT_METADATA_STORAGE_KEY]
   const previous = new Map(keys.map(key => [key, localStorage.getItem(key)]))
+  const collectionTransaction = beginLocalCollectionTransaction()
   try {
     applyProfileRecord(snapshot.profile)
     applySavedItems(snapshot.savedItems)
@@ -822,10 +820,12 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
     if (!syncRemoteSnapshotMetadata(acknowledgedSnapshot ?? snapshot)) {
       throw new Error('Cloud snapshot metadata could not be persisted on this device.')
     }
+    collectionTransaction.commit()
   } catch (error) {
-    stores.forEach((store, index) => { try { store.setState(originalStates[index], true) } catch { /* Restore every store even while writes are blocked. */ } })
+    restoreStores.forEach(restore => { try { restore() } catch { /* Restore every store even while writes are blocked. */ } })
     applyThemeToDocument(useThemeStore.getState().dark)
     let rollbackFailed = false
+    try { collectionTransaction.rollback() } catch { rollbackFailed = true }
     for (const [key, raw] of previous) {
       try {
         if (localStorage.getItem(key) === raw) continue
@@ -834,6 +834,8 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
         if (localStorage.getItem(key) !== raw) rollbackFailed = true
       } catch { rollbackFailed = true }
     }
+    useBookmarksStore.getState().hydrateCachedBookmarks()
+    useFavoritesStore.getState().hydrateCachedFavorites()
     if (rollbackFailed) throw new Error('cloud-rollback-failed', { cause: error })
     throw error
   }

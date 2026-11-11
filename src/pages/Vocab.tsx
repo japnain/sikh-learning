@@ -1,12 +1,17 @@
 import '../styles/library.css'
 import { useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useVocabStore } from '../store/vocab'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { canReviewVocab, getVocabMeaning, vocabContextPath, vocabEntryKey, vocabSenseKey } from '../utils/vocabReview'
+import { buildReaderOriginNavigationState } from '../utils/libraryReaderNavigation'
+import { formatSourceReaderReference } from '../utils/sourceReaderMeta'
+import { buildVocabReturnPath, readVocabView, rememberVocabView } from '../utils/vocabView'
+import type { VocabFilter, VocabSort } from '../utils/vocabView'
+import { VOCAB_CONTROLS_COPY } from '../utils/vocabControlsCopy'
 import type { ScriptMode, UiLocale, VocabContext, VocabEntry, VocabSense } from '../types'
 
 type Mode = 'list' | 'flashcard' | 'review'
@@ -35,7 +40,6 @@ const VOCAB_COPY: Record<UiLocale, {
   easy: string
   prev: string
   next: string
-  removeWord: string
   verseSavedFrom: string
   dueNowLabel: string
   dueInDays: (days: number) => string
@@ -50,17 +54,17 @@ const VOCAB_COPY: Record<UiLocale, {
   en: {
     title: 'Vocabulary & Review',
     back: 'Back',
-    emptyTitle: 'No saved words yet.',
-    emptyBody: 'Tap any word while studying and NaamRas will keep it here for steady review.',
+    emptyTitle: 'No saved words or phrases yet.',
+    emptyBody: 'Save a word or verse while reading to keep its meaning and context here for review.',
     reviewEyebrow: 'Review Loop',
-    reviewReady: count => `${count} saved item${count === 1 ? '' : 's'} are ready for spaced review.`,
-    reviewEmpty: 'Nothing is due right now. Keep saving words and phrases while reading.',
+    reviewReady: count => `${count} saved item${count === 1 ? ' is' : 's are'} ready to review.`,
+    reviewEmpty: 'Nothing is due. You can still browse your saved items.',
     totalSaved: 'Saved terms',
     dueNow: 'Due now',
     phrases: 'Phrases',
     dueBadge: count => `${count} due`,
     modes: {
-      list: 'Word List',
+      list: 'Saved List',
       flashcard: 'Flashcards',
       review: 'Review',
     },
@@ -75,13 +79,12 @@ const VOCAB_COPY: Record<UiLocale, {
     easy: 'Easy',
     prev: 'Prev',
     next: 'Next',
-    removeWord: 'Remove word',
     verseSavedFrom: 'Saved from verse',
     dueNowLabel: 'Due now',
     dueInDays: days => `Due in ${days} day${days === 1 ? '' : 's'}`,
     savedShelfEyebrow: 'Saved Meanings',
     missingAnswer: 'No meaning saved yet. Open the original verse to choose a definition.',
-    missingAnswers: count => `${count} saved item${count === 1 ? '' : 's'} need a definition before review. They remain in your Word List.`,
+    missingAnswers: count => `${count} saved item${count === 1 ? ' needs' : 's need'} a definition before review. ${count === 1 ? 'It remains' : 'They remain'} in your Saved List.`,
     readInContext: 'Read in context', otherSenses: 'Other saved meanings & contexts',
     languageFallback: language => `Available answer in ${language}`,
     languages: { en: 'English', pa: 'Punjabi', hi: 'Hindi' },
@@ -92,7 +95,7 @@ const VOCAB_COPY: Record<UiLocale, {
     emptyTitle: 'ਹਾਲੇ ਕੋਈ ਸੰਭਾਲੇ ਸ਼ਬਦ ਨਹੀਂ ਹਨ।',
     emptyBody: 'ਅਧਿਐਨ ਵੇਲੇ ਕਿਸੇ ਵੀ ਸ਼ਬਦ ਤੇ ਟੈਪ ਕਰੋ, ਨਾਮਰਸ ਉਸਨੂੰ ਇੱਥੇ ਦੁਹਰਾਈ ਲਈ ਸੰਭਾਲ ਲਵੇਗਾ।',
     reviewEyebrow: 'ਦੁਹਰਾਈ ਚੱਕਰ',
-    reviewReady: count => `${count} ਸੰਭਾਲੇ ਆਇਟਮ ਹੁਣ ਦੁਹਰਾਈ ਲਈ ਤਿਆਰ ਹਨ।`,
+    reviewReady: count => `${count} ਸੰਭਾਲੇ ਆਇਟਮ ਹੁਣ ਦੁਹਰਾਈ ਲਈ ਤਿਆਰ ${count === 1 ? 'ਹੈ' : 'ਹਨ'}।`,
     reviewEmpty: 'ਇਸ ਵੇਲੇ ਕੁਝ ਵੀ ਬਾਕੀ ਨਹੀਂ। ਪੜ੍ਹਦੇ ਸਮੇਂ ਸ਼ਬਦ ਅਤੇ ਵਾਕ ਸੰਭਾਲਦੇ ਰਹੋ।',
     totalSaved: 'ਸੰਭਾਲੇ ਸ਼ਬਦ',
     dueNow: 'ਹੁਣ ਬਾਕੀ',
@@ -114,7 +117,6 @@ const VOCAB_COPY: Record<UiLocale, {
     easy: 'ਸੌਖਾ',
     prev: 'ਪਿਛਲਾ',
     next: 'ਅਗਲਾ',
-    removeWord: 'ਸ਼ਬਦ ਹਟਾਓ',
     verseSavedFrom: 'ਪੰਕਤੀ ਤੋਂ ਸੰਭਾਲਿਆ',
     dueNowLabel: 'ਹੁਣ ਬਾਕੀ',
     dueInDays: days => `${days} ਦਿਨਾਂ ਵਿੱਚ ਬਾਕੀ`,
@@ -131,7 +133,7 @@ const VOCAB_COPY: Record<UiLocale, {
     emptyTitle: 'अभी कोई शब्द सेव नहीं है।',
     emptyBody: 'अध्ययन के समय किसी भी शब्द पर टैप करें, NaamRas उसे यहाँ स्थिर रिव्यू के लिए रख देगा।',
     reviewEyebrow: 'रिव्यू लूप',
-    reviewReady: count => `${count} सेव आइटम अब स्पेस्ड रिव्यू के लिए तैयार हैं।`,
+    reviewReady: count => `${count} सेव आइटम अब स्पेस्ड रिव्यू के लिए तैयार ${count === 1 ? 'है' : 'हैं'}।`,
     reviewEmpty: 'अभी कुछ भी ड्यू नहीं है। पढ़ते समय शब्द और वाक्यांश सेव करते रहें।',
     totalSaved: 'सेव शब्द',
     dueNow: 'अभी ड्यू',
@@ -153,7 +155,6 @@ const VOCAB_COPY: Record<UiLocale, {
     easy: 'आसान',
     prev: 'पिछला',
     next: 'अगला',
-    removeWord: 'शब्द हटाएँ',
     verseSavedFrom: 'पंक्ति से सेव',
     dueNowLabel: 'अभी ड्यू',
     dueInDays: days => `${days} दिन में ड्यू`,
@@ -186,45 +187,95 @@ function SavedMeaning({ entry, language, scriptMode, copy }: { entry: VocabEntry
   </div>
 }
 
-function SavedContext({ context, scriptMode, copy }: { context?: VocabContext; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en }) {
+function SavedContext({ context, scriptMode, copy, returnPath, rememberView }: { context?: VocabContext; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en; returnPath: string; rememberView: () => void }) {
   const path = vocabContextPath(context)
   if (!context?.line && !path) return null
-  return <div className="mt-3 space-y-2 border-t border-sand/15 pt-3 dark:border-dark-text/15">
+  return <div className="mt-3 space-y-2 [overflow-wrap:anywhere] border-t border-sand/15 pt-3 dark:border-dark-text/15">
     {context?.line ? <blockquote lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-base leading-relaxed text-ink/80 dark:text-dark-text/85`}>{renderScriptText(context.line, scriptMode)}</blockquote> : null}
-    {path ? <Link className="interactive-focus inline-flex min-h-[44px] items-center rounded-lg px-2 font-sans text-sm font-semibold text-gold-dark dark:text-gold-light" to={path}>{copy.readInContext}<span aria-hidden="true"> →</span></Link> : null}
+    {path ? <Link className="interactive-focus inline-flex min-h-[44px] items-center rounded-lg px-2 font-sans text-sm font-semibold text-gold-dark dark:text-gold-light" to={path} state={buildReaderOriginNavigationState(path, returnPath)} onClick={rememberView}>{copy.readInContext}<span aria-hidden="true"> →</span></Link> : null}
   </div>
 }
 
-function OtherSenses({ entry, language, scriptMode, copy }: { entry: VocabEntry; language: string; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en }) {
+function OtherSenses({ entry, language, scriptMode, copy, returnPath, rememberView }: { entry: VocabEntry; language: string; scriptMode: ScriptMode; copy: typeof VOCAB_COPY.en; returnPath: string; rememberView: () => void }) {
   if (!entry.senses?.length) return null
   return <details className="mt-3">
     <summary className="interactive-focus min-h-[44px] cursor-pointer py-3 font-sans text-sm text-gold-dark dark:text-gold-light">{copy.otherSenses} ({entry.senses.length})</summary>
     <div className="space-y-4">{entry.senses.map(sense => <div key={vocabSenseKey(sense)} className="border-t border-sand/15 pt-3 dark:border-dark-text/15">
       <SavedMeaning entry={sense} language={language} scriptMode={scriptMode} copy={copy} />
-      <SavedContext context={sense.context} scriptMode={scriptMode} copy={copy} />
+      <SavedContext context={sense.context} scriptMode={scriptMode} copy={copy} returnPath={returnPath} rememberView={rememberView} />
     </div>)}</div>
   </details>
 }
 
 export default function Vocab() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const [initialView] = useState(() => readVocabView(location.search))
   const locale = useLocaleStore(state => state.locale)
   const copy = VOCAB_COPY[locale]
-  const { vocab, removeWord, reviewWord } = useVocabStore()
+  const controls = VOCAB_CONTROLS_COPY[locale]
+  const { vocab, hasPendingChanges, removeWord, restoreWord, reviewWord, retryPersistence } = useVocabStore()
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
-  const [mode, setMode] = useState<Mode>('list')
-  const [cardIdx, setCardIdx] = useState(0)
-  const [revealed, setRevealed] = useState(false)
+  const [mode, setMode] = useState<Mode>(initialView.mode)
+  const [cardIdx, setCardIdx] = useState(initialView.cardIndex)
+  const [revealed, setRevealed] = useState(initialView.revealed)
+  const [query, setQuery] = useState(initialView.query)
+  const [kind, setKind] = useState<VocabFilter>(initialView.kind)
+  const [sort, setSort] = useState<VocabSort>(initialView.sort)
+  const [removedEntry, setRemovedEntry] = useState<VocabEntry | null>(null)
+  const [storageFailed, setStorageFailed] = useState(false)
+  const [notice, setNotice] = useState<'removed' | 'restored' | 'saved' | null>(null)
   const clock = useCurrentTime()
   const [reviewedAt, setReviewedAt] = useState(0)
-  const [reviewQueue, setReviewQueue] = useState<string[]>([])
+  const [reviewQueue, setReviewQueue] = useState<string[]>(() => initialView.reviewQueue ?? useVocabStore.getState().getDueWords().map(vocabEntryKey))
   const now = Math.max(clock, reviewedAt)
-  const reviewableWords = useMemo(() => vocab.filter(canReviewVocab), [vocab])
+  const filteredEntries = useMemo(() => {
+    const normalizedQuery = query.normalize('NFKC').toLocaleLowerCase().trim().replace(/\s+/g, ' ')
+    return vocab.filter(entry => {
+      if (kind !== 'all' && (entry.kind ?? 'word') !== kind) return false
+      if (!normalizedQuery) return true
+      const senses = [entry, ...(entry.senses ?? [])]
+      const searchable = [entry.word, renderScriptText(entry.word, scriptMode), entry.transliteration,
+        ...senses.flatMap(sense => [sense.meaning_en, sense.meaning_pa, sense.meaning_hi,
+          sense.context?.line, sense.context?.scripture, sense.context?.ang ? formatSourceReaderReference({source: sense.context.sourceId, value: sense.context.ang, locale}) : '',
+          sense.definitionSource?.name])].filter(Boolean).join(' ').normalize('NFKC').toLocaleLowerCase().replace(/\s+/g, ' ')
+      return searchable.includes(normalizedQuery)
+    }).sort((left, right) => {
+      const byDate = Date.parse(right.savedAt) - Date.parse(left.savedAt)
+      return (sort === 'oldest' ? -byDate : byDate) || left.word.localeCompare(right.word, locale)
+    })
+  }, [vocab, query, kind, sort, scriptMode, locale])
+  const allReviewable = useMemo(() => vocab.filter(canReviewVocab), [vocab])
+  const reviewableWords = useMemo(() => filteredEntries.filter(canReviewVocab), [filteredEntries])
+  const reference = (entry: VocabEntry) => entry.context?.ang
+    ? formatSourceReaderReference({ source: entry.context.sourceId, value: entry.context.ang, locale, scripture: entry.context.scripture })
+    : entry.context?.scripture ?? entry.scripture
+  const returnView = { mode, query, kind, sort, cardIndex: cardIdx, revealed, reviewQueue }
+  const returnPath = buildVocabReturnPath(returnView)
+  const rememberView = () => rememberVocabView(returnView)
+  const mutationNotice = notice || storageFailed || hasPendingChanges ? <div className="mb-4 space-y-2">
+    {notice ? <div role="status" className="section-shell flex flex-wrap items-center justify-between gap-3 px-4 py-3 font-sans text-sm">
+      <span>{controls[notice]}</span>
+      {removedEntry ? <button type="button" className="interactive-focus min-h-[44px] rounded-lg px-3 font-semibold text-gold-dark dark:text-gold-light" onClick={() => {
+        const result = restoreWord(removedEntry)
+        setRemovedEntry(null); setNotice('restored'); setStorageFailed(!result.persisted)
+      }}>{controls.undo}</button> : null}
+    </div> : null}
+    {storageFailed || hasPendingChanges ? <div role="alert" className="section-shell px-4 py-3 font-sans text-sm leading-6">
+      <p>{controls.storageWarning}</p>
+      <button type="button" className="interactive-focus mt-2 min-h-[44px] rounded-lg border border-current px-3 font-semibold" onClick={() => {
+        const persisted = retryPersistence()
+        setStorageFailed(!persisted)
+        if (persisted && !removedEntry) setNotice('saved')
+      }}>{controls.retry}</button>
+    </div> : null}
+  </div> : null
+
 
   const dueWords = useMemo(
-    () => reviewableWords.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
-    [now, reviewableWords]
+    () => allReviewable.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
+    [now, allReviewable]
   )
   const phraseCount = vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length
 
@@ -232,11 +283,12 @@ export default function Vocab() {
     return (
       <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab" data-ai-surface="vocab" data-ai-state="empty">
         <div className="flex items-center gap-3 mb-6">
-          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
+          <button onClick={() => navigate('/saved')} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
             &#8592; {copy.back}
           </button>
         </div>
 
+        {mutationNotice}
         <section className="vocab-empty-layout" aria-labelledby="vocab-empty-title" data-testid="vocab-empty-state">
           <div className="vocab-empty-intro">
             <p className="eyebrow">{copy.savedShelfEyebrow}</p>
@@ -262,6 +314,7 @@ export default function Vocab() {
   }
 
   const entriesByKey = new Map(reviewableWords.map(entry => [vocabEntryKey(entry), entry]))
+  const allReviewableKeys = new Set(allReviewable.map(vocabEntryKey))
   const reviewPool = mode === 'review'
     ? reviewQueue.flatMap(key => entriesByKey.has(key) ? [entriesByKey.get(key)!] : [])
     : reviewableWords
@@ -270,11 +323,12 @@ export default function Vocab() {
 
   const handleReview = (rating: 'again' | 'good' | 'easy') => {
     if (!activeCard || !revealed) return
-    reviewWord(activeCard.word, rating, activeCard.kind ?? 'word')
+    const result = reviewWord(activeCard.word, rating, activeCard.kind ?? 'word')
+    setStorageFailed(!result.persisted)
     setReviewedAt(Date.now())
     const key = vocabEntryKey(activeCard)
     setReviewQueue(queue => {
-      const remaining = queue.filter(item => item !== key && entriesByKey.has(item))
+      const remaining = queue.filter(item => item !== key && allReviewableKeys.has(item))
       return rating === 'again' ? [...remaining, key] : remaining
     })
     setRevealed(false)
@@ -284,7 +338,7 @@ export default function Vocab() {
     <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab" data-ai-surface="vocab" data-ai-state="ready">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
+          <button onClick={() => navigate('/saved')} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
             &#8592; {copy.back}
           </button>
           <div>
@@ -295,27 +349,41 @@ export default function Vocab() {
         <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.dueBadge(dueWords.length)}</span>
       </div>
 
-      <section className="section-shell p-5 mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
-        <div className="grid grid-cols-3 divide-x divide-sand/15 dark:divide-dark-text/10">
-          <div className="px-3 py-2">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.totalSaved}</p>
-            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{vocab.length}</p>
-          </div>
-          <div className="px-3 py-2">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.dueNow}</p>
-            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{dueWords.length}</p>
-          </div>
-          <div className="px-3 py-2">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.phrases}</p>
-            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{phraseCount}</p>
-          </div>
-        </div>
+      {mutationNotice}
+      <section className="mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
+        <h2 id="vocab-summary-title" className="sr-only">{copy.reviewEyebrow}</h2>
+        <dl className="flex flex-wrap gap-2 font-sans text-xs text-ink/80 dark:text-dark-text/85">
+          {[[copy.totalSaved, vocab.length], [copy.dueNow, dueWords.length], [copy.phrases, phraseCount]].map(([label, count]) => (
+            <div key={label} className="flex items-baseline gap-1.5 rounded-full bg-parchment-low px-3 py-1.5 dark:bg-dark-surface">
+              <dt>{label}</dt><dd className="font-semibold text-ink dark:text-dark-text">{count}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-2 font-sans text-xs leading-5 text-ink/74 dark:text-dark-text/76">
+          {dueWords.length > 0 ? copy.reviewReady(dueWords.length) : copy.reviewEmpty}
+        </p>
+      </section>
 
-        <div className="mt-4 border-t border-sand/15 pt-4 dark:border-dark-text/10">
-          <p id="vocab-summary-title" className="eyebrow">{copy.reviewEyebrow}</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
-            {dueWords.length > 0 ? copy.reviewReady(dueWords.length) : copy.reviewEmpty}
-          </p>
+      <section className="section-shell mb-4 space-y-3 p-4" aria-label={controls.search}>
+        <label className="block font-sans text-sm font-semibold" htmlFor="vocab-search">{controls.search}</label>
+        <input id="vocab-search" type="search" value={query} maxLength={500}
+          className="interactive-focus min-h-[48px] w-full rounded-lg border border-sand/30 bg-parchment-low px-3 font-sans text-base text-ink dark:border-dark-text/20 dark:bg-dark-bg dark:text-dark-text"
+          onChange={event => { setQuery(event.target.value); setCardIdx(0); setRevealed(false) }} />
+        <div className="flex flex-wrap gap-2" role="group" aria-label={controls.filter}>
+          {(['all', 'word', 'phrase'] as const).map(value => <button key={value} type="button"
+            aria-pressed={kind === value}
+            className={`interactive-focus min-h-[44px] rounded-full border px-4 font-sans text-sm ${kind === value ? 'border-saffron bg-saffron text-white' : 'border-sand/30 text-ink dark:border-dark-text/20 dark:text-dark-text'}`}
+            onClick={() => { setKind(value); setCardIdx(0); setRevealed(false) }}>{controls[value]}</button>)}
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="font-sans text-sm text-ink/75 dark:text-dark-text/80" role="status">{controls.matches(filteredEntries.length)}</p>
+          <label className="flex min-w-0 flex-wrap items-center gap-2 font-sans text-sm">
+            <span>{controls.sort}</span>
+            <select aria-label={controls.sort} value={sort} className="interactive-focus min-h-[44px] max-w-full rounded-lg border border-sand/30 bg-parchment-low px-2 text-ink dark:border-dark-text/20 dark:bg-dark-bg dark:text-dark-text"
+              onChange={event => { setSort(event.target.value === 'oldest' ? 'oldest' : 'newest'); setCardIdx(0); setRevealed(false) }}>
+              <option value="newest">{controls.newest}</option><option value="oldest">{controls.oldest}</option>
+            </select>
+          </label>
         </div>
       </section>
 
@@ -325,7 +393,7 @@ export default function Vocab() {
             key={nextMode}
             onClick={() => {
               setMode(nextMode); setCardIdx(0); setRevealed(false)
-              if (nextMode === 'review') setReviewQueue(useVocabStore.getState().getDueWords().map(vocabEntryKey))
+              if (nextMode === 'review') setReviewQueue(reviewableWords.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now).map(vocabEntryKey))
             }}
             aria-pressed={mode === nextMode}
             className={`min-h-[44px] rounded-md px-2 py-2 font-sans text-xs font-medium transition-colors duration-200 ${
@@ -337,9 +405,12 @@ export default function Vocab() {
         ))}
       </div>
 
-      {vocab.length > reviewableWords.length ? <p role="status" className="mb-4 font-sans text-sm leading-6 text-ink/75 dark:text-dark-text/75">{copy.missingAnswers(vocab.length - reviewableWords.length)}</p> : null}
+      {vocab.length > allReviewable.length ? <p role="status" className="mb-4 font-sans text-sm leading-6 text-ink/75 dark:text-dark-text/75">{copy.missingAnswers(vocab.length - allReviewable.length)}</p> : null}
 
-      {(mode === 'flashcard' || mode === 'review') ? (
+      {filteredEntries.length === 0 ? <section className="section-shell p-6 text-center" role="status">
+        <p className="font-sans text-sm">{controls.noMatches}</p>
+        <button type="button" className="interactive-focus mt-3 min-h-[44px] rounded-lg px-3 font-semibold text-gold-dark dark:text-gold-light" onClick={() => { setQuery(''); setKind('all'); setCardIdx(0); setRevealed(false) }}>{controls.clear}</button>
+      </section> : (mode === 'flashcard' || mode === 'review') ? (
         reviewPool.length === 0 ? (
           <div className="section-shell p-6 text-center">
             <p className="font-sans text-sm text-ink/68 dark:text-dark-text/70">
@@ -356,7 +427,7 @@ export default function Vocab() {
         ) : (
           <div className="flex flex-col items-center gap-6 mt-4" data-testid="vocab-review-card">
             <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 uppercase tracking-wide">
-              {safeIdx + 1} of {reviewPool.length}
+              {controls.cardCount(safeIdx + 1, reviewPool.length)}
             </p>
             <button
               type="button"
@@ -376,8 +447,7 @@ export default function Vocab() {
                 <div className="text-center">
                   <SavedMeaning entry={activeCard} language={meaningLanguage} scriptMode={scriptMode} copy={copy} />
                   <p className="font-sans text-xs text-gold-dark dark:text-gold-light mt-3">
-                    {activeCard.context?.scripture ?? activeCard.scripture}
-                    {activeCard.context?.ang ? ` · Ang ${activeCard.context.ang}` : ''}
+                    {reference(activeCard)}
                   </p>
                 </div>
               ) : (
@@ -385,7 +455,7 @@ export default function Vocab() {
               )}
             </button>
 
-            {revealed ? <div className="w-full"><SavedContext context={activeCard.context} scriptMode={scriptMode} copy={copy} /><OtherSenses entry={activeCard} language={meaningLanguage} scriptMode={scriptMode} copy={copy} /></div> : null}
+            {revealed ? <div className="w-full"><SavedContext context={activeCard.context} scriptMode={scriptMode} copy={copy} returnPath={returnPath} rememberView={rememberView} /><OtherSenses entry={activeCard} language={meaningLanguage} scriptMode={scriptMode} copy={copy} returnPath={returnPath} rememberView={rememberView} /></div> : null}
 
             {mode === 'review' ? (
               <div className="vocab-review-actions grid grid-cols-3 gap-3 w-full">
@@ -433,14 +503,14 @@ export default function Vocab() {
         )
       ) : (
         <section className="section-shell-quiet p-4" aria-labelledby="vocab-saved-list-title" data-testid="vocab-saved-list">
-          <p id="vocab-saved-list-title" className="eyebrow mb-3">{copy.savedShelfEyebrow}</p>
+          <h2 id="vocab-saved-list-title" className="eyebrow mb-3">{copy.savedShelfEyebrow}</h2>
           <div className="space-y-2">
-            {vocab.map((entry: VocabEntry) => (
+            {filteredEntries.map((entry: VocabEntry) => (
               <div
                 key={`${entry.kind ?? 'word'}-${entry.word}`}
                 className="section-shell px-4 py-4 flex items-start justify-between gap-3 transition-colors duration-300"
               >
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 [overflow-wrap:anywhere]">
                   <div className="flex flex-col items-start gap-2 mb-0.5">
                     <span lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl text-ink dark:text-dark-text`}>
                       {renderScriptText(entry.word, scriptMode)}
@@ -451,20 +521,23 @@ export default function Vocab() {
                   <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
                     {(entry.kind ?? 'word') === 'phrase' ? copy.phraseReview : copy.wordReview}
                     {' · '}
-                    {(entry.context?.scripture ?? entry.scripture)}
-                    {entry.context?.ang ? ` · Ang ${entry.context.ang}` : ''}
+                    {reference(entry)}
                     {entry.context?.line ? ` · ${copy.verseSavedFrom}` : ''}
                   </p>
                   <p className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64 mt-1">
                     {canReviewVocab(entry) ? timeLabel(entry, now, copy) : ''}
                   </p>
-                  <SavedContext context={entry.context} scriptMode={scriptMode} copy={copy} />
-                  <OtherSenses entry={entry} language={meaningLanguage} scriptMode={scriptMode} copy={copy} />
+                  <SavedContext context={entry.context} scriptMode={scriptMode} copy={copy} returnPath={returnPath} rememberView={rememberView} />
+                  <OtherSenses entry={entry} language={meaningLanguage} scriptMode={scriptMode} copy={copy} returnPath={returnPath} rememberView={rememberView} />
                 </div>
                 <button
-                  onClick={() => removeWord(entry.word, entry.kind ?? 'word')}
+                  onClick={() => {
+                    const result = removeWord(entry.word, entry.kind ?? 'word')
+                    if (result.item) { setRemovedEntry(result.item); setNotice('removed') }
+                    setStorageFailed(!result.persisted)
+                  }}
                   className="text-ink/75 dark:text-dark-text/80 font-sans text-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
-                  aria-label={copy.removeWord}
+                  aria-label={controls.remove(entry.kind ?? 'word', renderScriptText(entry.word, scriptMode))}
                 >
                   ✕
                 </button>

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { afterEach, describe, it, expect, vi } from 'vitest'
 import { http, HttpResponse } from 'msw'
 import {
   fetchAng,
@@ -21,6 +21,10 @@ import type { ScriptureEntry } from '../types'
 import { MOCK_CHAUPAI_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE, MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
 import { server } from '../test/msw-server'
 import { isExactBaniReading } from '../utils/baniReadingValidation'
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 function firstVisibleLine(entries: ScriptureEntry[]) {
   return entries
@@ -117,6 +121,8 @@ describe('fetchAng', () => {
   })
 
   it('throws on network error', async () => {
+    server.use(http.get('https://api.banidb.com/v2/angs/error/G', () =>
+      HttpResponse.json({ error: 'upstream failure' }, { status: 502 })))
     await expect(fetchAng('error' as unknown as number, 'G')).rejects.toThrow()
   })
 })
@@ -140,6 +146,8 @@ describe('fetchShabadWords', () => {
   })
 
   it('throws on network error', async () => {
+    server.use(http.get('https://api.banidb.com/v2/shabads/error', () =>
+      HttpResponse.json({ error: 'upstream failure' }, { status: 502 })))
     await expect(fetchShabadWords('error' as unknown as number)).rejects.toThrow()
   })
 })

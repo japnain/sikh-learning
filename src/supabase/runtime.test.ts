@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLanguageStore } from '../store/language'
+import { useBookmarksStore } from '../store/bookmarks'
 import type {
   CloudActivityEvent,
   CloudLocalSnapshot,
@@ -414,6 +415,23 @@ describe('cloud concurrency and auth lifecycle', () => {
     await vi.advanceTimersByTimeAsync(800)
     expect(mocks.applyRemoteSnapshot).toHaveBeenCalledTimes(2)
     expect(useCloudSyncStore.getState().syncQueued).toBe(false)
+  })
+
+  test('refreshes a durable other-tab save before handling a response even without a storage event', async () => {
+    await bootstrapCloudSync()
+    mocks.applyRemoteSnapshot.mockClear()
+    const deferred = deferredResponse()
+    mocks.invoke.mockReturnValueOnce(deferred.promise)
+    const syncing = syncNow('manual')
+    const bookmark = {
+      id: 'bookmark-other-tab', type: 'bani', title: 'Other tab save',
+      source: 'G', ang: 5, savedAt: '2026-04-17T12:01:00.000Z',
+    }
+    localStorage.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    deferred.resolve()
+    await expect(syncing).resolves.toMatchObject({ ok: false, queued: true })
+    expect(useBookmarksStore.getState().bookmarks).toEqual([bookmark])
+    expect(mocks.applyRemoteSnapshot).toHaveBeenCalledWith(REMOTE_SNAPSHOT, REMOTE_SNAPSHOT)
   })
 
   test('ignores late responses after sign-out', async () => {

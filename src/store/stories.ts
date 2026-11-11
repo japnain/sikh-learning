@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createLocalCollection } from '../utils/localCollection'
 import type { StorySummary } from '../types/stories'
 import { parseSummary } from '../data/storyValidation'
 
@@ -23,6 +24,7 @@ interface CachedStoryState {
 interface StoryState extends CachedStoryState {
   hydrateCachedStories: () => void
   saveStory: (summary: StorySummary) => boolean
+  restoreStory: (story: SavedStory) => boolean
   removeStory: (id: string) => boolean
   savePosition: (id: string, position: PositionInput) => boolean
 }
@@ -66,82 +68,120 @@ function emptyState(): CachedStoryState {
   return { saved: {}, positions: {} }
 }
 
-function storage(): Storage | null {
-  if (typeof window === 'undefined') return null
-  try {
-    return window.localStorage ?? null
-  } catch {
-    return null
-  }
+type StoryRecord = { kind: 'saved'; id: string; value: SavedStory }
+  | { kind: 'position'; id: string; value: StoryPosition }
+
+function normalizeSaved(value: unknown): SavedStory | null {
+  const summary = normalizeSummary(value)
+  return summary && isRecord(value) && isDate(value.savedAt)
+    ? { ...summary, savedAt: value.savedAt } : null
 }
 
-function readCachedState(): CachedStoryState {
-  const result = emptyState()
-  try {
-    const raw = storage()?.getItem(STORY_STATE_STORAGE_KEY)
-    if (!raw) return result
-    const value: unknown = JSON.parse(raw)
-    if (!isRecord(value) || value.version !== 1) return result
-    if (isRecord(value.saved)) {
-      for (const [id, candidate] of Object.entries(value.saved)) {
-        const summary = normalizeSummary(candidate)
-        if (summary && id === summary.id && isRecord(candidate) && isDate(candidate.savedAt)) {
-          result.saved[id] = { ...summary, savedAt: candidate.savedAt }
-        }
-      }
-    }
-    if (isRecord(value.positions)) {
-      for (const [id, candidate] of Object.entries(value.positions)) {
-        const position = normalizePosition(candidate)
-        if (isId(id) && position) result.positions[id] = position
-      }
-    }
-  } catch {
-    // Malformed or inaccessible local state never prevents reading.
+function normalizeRecord(value: unknown): StoryRecord | null {
+  if (!isRecord(value) || !isId(value.id)) return null
+  if (value.kind === 'saved') {
+    const saved = normalizeSaved(value.value)
+    return saved && saved.id === value.id ? { kind: 'saved', id: value.id, value: saved } : null
   }
-  return result
+  if (value.kind === 'position') {
+    const position = normalizePosition(value.value)
+    return position ? { kind: 'position', id: value.id, value: position } : null
+  }
+  return null
 }
 
-function persistState(state: CachedStoryState): boolean {
-  try {
-    const target = storage()
-    if (!target) return false
-    const serialized = JSON.stringify({ version: 1, saved: state.saved, positions: state.positions })
-    target.setItem(STORY_STATE_STORAGE_KEY, serialized)
-    return target.getItem(STORY_STATE_STORAGE_KEY) === serialized
-  } catch {
-    return false
-  }
+function stateToRecords(state: CachedStoryState): StoryRecord[] {
+  return [
+    ...Object.entries(state.saved).map(([id, value]): StoryRecord => ({ kind: 'saved', id, value })),
+    ...Object.entries(state.positions).map(([id, value]): StoryRecord => ({ kind: 'position', id, value })),
+  ]
 }
+
+function recordsToState(records: StoryRecord[]): CachedStoryState {
+  const state = emptyState()
+  for (const record of records) {
+    if (record.kind === 'saved') state.saved[record.id] = record.value
+    else state.positions[record.id] = record.value
+  }
+  return state
+}
+
+const storyCollection = createLocalCollection<StoryRecord>({
+  storageKey: STORY_STATE_STORAGE_KEY,
+  getId: record => `${record.kind}:${record.id}`,
+  normalize: normalizeRecord,
+  readLegacy: raw => {
+    const value: unknown = JSON.parse(raw ?? 'null')
+    if (!isRecord(value) || value.version !== 1) return []
+    const records: StoryRecord[] = []
+    for (const [kind, group] of [['saved', value.saved], ['position', value.positions]] as const) {
+      if (!isRecord(group)) continue
+      for (const [id, candidate] of Object.entries(group)) {
+        const record = normalizeRecord({ kind, id, value: candidate })
+        if (record) records.push(record)
+      }
+    }
+    return records
+  },
+  serializeLegacy: records => JSON.stringify({ version: 1, ...recordsToState(records) }),
+})
 
 /** Story reading and saves stay on this device, independently of cloud bookmarks. */
 export const useStoryStore = create<StoryState>()((set, get) => ({
-  ...readCachedState(),
-  hydrateCachedStories: () => set(readCachedState()),
+  ...recordsToState(storyCollection.read()),
+  hydrateCachedStories: () => {
+    const state = recordsToState(storyCollection.read(stateToRecords(get())))
+    if (JSON.stringify(state) !== JSON.stringify({ saved: get().saved, positions: get().positions })) set(state)
+  },
   saveStory: (input) => {
     const summary = normalizeSummary(input)
     if (!summary) return false
-    const previous = get().saved[summary.id]
-    const saved = {
-      ...get().saved,
-      [summary.id]: { ...summary, savedAt: previous?.savedAt ?? new Date().toISOString() },
-    }
-    set({ saved })
-    return persistState({ saved, positions: get().positions })
+    const current = storyCollection.read(stateToRecords(get()))
+    const previous = recordsToState(current).saved[summary.id]
+    const result = storyCollection.put({
+      kind: 'saved', id: summary.id,
+      value: { ...summary, savedAt: previous?.savedAt ?? new Date().toISOString() },
+    }, current)
+    set(recordsToState(result.items))
+    return result.persisted
+  },
+  restoreStory: (input) => {
+    const saved = normalizeSaved(input)
+    if (!saved) return false
+    const current = storyCollection.read(stateToRecords(get()))
+    // A save made meanwhile in another tab takes precedence over an old Undo.
+    const existing = recordsToState(current).saved[saved.id]
+    const result = storyCollection.put({ kind: 'saved', id: saved.id, value: existing ?? saved }, current)
+    set(recordsToState(result.items))
+    return result.persisted
   },
   removeStory: (id) => {
     if (!isId(id)) return false
-    const saved = { ...get().saved }
-    delete saved[id]
-    set({ saved })
-    return persistState({ saved, positions: get().positions })
+    const result = storyCollection.remove(`saved:${id}`, stateToRecords(get()))
+    set(recordsToState(result.items))
+    return result.persisted
   },
   savePosition: (id, input) => {
     if (!isId(id)) return false
     const position = normalizePosition({ ...input, updatedAt: new Date().toISOString() })
     if (!position) return false
-    const positions = { ...get().positions, [id]: position }
-    set({ positions })
-    return persistState({ saved: get().saved, positions })
+    const result = storyCollection.put({ kind: 'position', id, value: position }, stateToRecords(get()))
+    set(recordsToState(result.items))
+    return result.persisted
   },
 }))
+
+const setMemory = useStoryStore.setState
+useStoryStore.setState = ((...args: Parameters<typeof setMemory>) => {
+  storyCollection.clearPending()
+  setMemory(...args)
+}) as typeof setMemory
+
+const unsubscribeStories = storyCollection.subscribe(records => {
+  const state = recordsToState(records)
+  const current = useStoryStore.getState()
+  if (JSON.stringify(state) !== JSON.stringify({ saved: current.saved, positions: current.positions })) {
+    setMemory(state)
+  }
+})
+if (import.meta.hot) import.meta.hot.dispose(unsubscribeStories)

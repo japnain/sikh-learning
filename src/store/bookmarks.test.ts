@@ -182,3 +182,20 @@ test('reports when a bookmark cannot be persisted durably', () => {
   expect(result).toMatchObject({ changed: true, persisted: false })
   storage.mockRestore()
 })
+
+
+test('retains an unsaved bookmark through later saves and reports silently dropped writes', () => {
+  useBookmarksStore.getState().addBookmark({ type: 'bani', title: 'First', source: 'G', ang: 1 })
+  const write = vi.spyOn(localStorage, 'setItem').mockImplementation(() => {})
+  const second = useBookmarksStore.getState().addBookmark({ type: 'bani', title: 'Second', source: 'G', ang: 2 })
+  const third = useBookmarksStore.getState().addBookmark({ type: 'bani', title: 'Third', source: 'G', ang: 3 })
+  expect(second.persisted).toBe(false)
+  expect(third.persisted).toBe(false)
+  useBookmarksStore.getState().hydrateCachedBookmarks()
+  expect(useBookmarksStore.getState().bookmarks.map(item => item.title)).toEqual(['First', 'Second', 'Third'])
+  write.mockRestore()
+  expect(useBookmarksStore.getState().restoreBookmark(second.item!).persisted).toBe(true)
+  useBookmarksStore.setState({ bookmarks: [] })
+  useBookmarksStore.getState().hydrateCachedBookmarks()
+  expect(useBookmarksStore.getState().bookmarks.map(item => item.title)).toEqual(['First', 'Second'])
+})

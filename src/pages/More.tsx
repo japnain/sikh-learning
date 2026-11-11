@@ -6,6 +6,9 @@ import PersonalDataPanel from '../components/PersonalDataPanel'
 import DisclosureSection from '../components/DisclosureSection'
 import SoundscapeControls from '../components/SoundscapeControls'
 import { useLanguageStore } from '../store/language'
+import { useCloudSyncStore } from '../store/cloudSync'
+import { MORE_SETTINGS_COPY } from '../content/moreSettingsCopy'
+import { SAMPLE_ONBOARDING_LINE } from '../content/onboardingCopy'
 import { useLocaleStore } from '../store/locale'
 import { useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
@@ -21,12 +24,12 @@ import {
   getUiLocaleLabels,
   getVisraamSourceLabels,
 } from '../utils/translations'
-import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import { formatGurbaniText, getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { IconArrowRight, IconExternalLink } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getPublicAppLinks } from '../utils/appConfig'
-import { getSavedReaderPresentation, setReaderPresentationPreference, subscribeReaderPresentation } from '../utils/readerPresentation'
+import { getSavedReaderPresentation, isReaderPresentationPreferenceSaved, setReaderPresentationPreference, subscribeReaderPresentation } from '../utils/readerPresentation'
 import { READER_TEXT_SIZE } from '../utils/readerTextSize'
 import '../styles/home-artwork.css'
 
@@ -38,20 +41,23 @@ function SettingsBlock({
   children,
   headingId,
   testId,
+  headingLevel = 2,
 }: {
   title: string
   description?: string
   children: ReactNode
   headingId?: string
   testId?: string
+  headingLevel?: 2 | 3
 }) {
+  const Heading = headingLevel === 3 ? 'h3' : 'h2'
   return (
     <div
       className="settings-block section-shell px-4 py-4"
       aria-labelledby={headingId}
       data-testid={testId}
     >
-      <p id={headingId} className="eyebrow">{title}</p>
+      <Heading id={headingId} className="eyebrow">{title}</Heading>
       {description ? (
         <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-1 mb-3">
           {description}
@@ -72,6 +78,8 @@ export default function More() {
     setMeaningLanguage,
     fontSize,
     setFontSize,
+    supportTextSize,
+    setSupportTextSize,
     englishSource,
     setEnglishSource,
     punjabiSource,
@@ -90,6 +98,9 @@ export default function More() {
     setTextAlign,
   } = useLanguageStore()
   const locale = useLocaleStore(s => s.locale)
+  const settingsCopy = MORE_SETTINGS_COPY[locale]
+  const cloudConfigured = useCloudSyncStore(state => state.configured)
+  const presentationSaved = useSyncExternalStore(subscribeReaderPresentation, isReaderPresentationPreferenceSaved, () => true)
   const savedPresentation = useSyncExternalStore(subscribeReaderPresentation, getSavedReaderPresentation, () => null)
   const presentation = savedPresentation ?? (meaningLanguage !== 'none' || showTransliteration ? 'study' : 'read')
   const presentationCopy = locale === 'pa'
@@ -221,6 +232,7 @@ export default function More() {
         </div>
         <Link
           to="/nitnem/customize"
+          state={{ nitnemOrigin: '/more' }}
           className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
           data-testid="more-open-nitnem-customize"
         >
@@ -231,6 +243,7 @@ export default function More() {
 
       <DisclosureSection
         storageKey="more-reader-defaults"
+        headingLevel={2}
         title={moreCopy.readerDefaults}
         summary={`${scriptModeLabels[scriptMode]} · ${fontSize}px · ${presentation === 'read' ? presentationCopy.read : presentationCopy.study}`}
         defaultOpen={false}
@@ -244,6 +257,7 @@ export default function More() {
           description={moreCopy.scriptLayoutDescription}
           headingId="more-script-layout-title"
           testId="more-script-layout"
+          headingLevel={3}
         >
           <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.readingScript}</p>
           <div className="grid grid-cols-2 gap-2">
@@ -280,22 +294,16 @@ export default function More() {
               value={fontSize}
               aria-valuetext={`${fontSize}px`}
               onChange={e => setFontSize(Number(e.target.value))}
-              className="w-full h-1 accent-gold"
+              className="w-full min-h-[44px] accent-gold"
             />
-            <div className="flex justify-between mt-2">
-              <span className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64">{commonCopy.small}</span>
-              <span
-                lang={getScriptTextLang(scriptMode)}
-                className={`${getScriptTextFontClass(scriptMode)} text-gold-dark dark:text-gold-light`}
-                style={{ fontSize: `${fontSize}px` }}
-              >
-                {renderScriptText('ੴ', scriptMode)}
-              </span>
-              <span className="font-sans text-[10px] text-ink/68 dark:text-dark-text/64">{commonCopy.large}</span>
+            <div className="flex justify-between font-sans text-xs text-text-muted">
+              <span>{commonCopy.small}</span><span>{commonCopy.large}</span>
             </div>
           </div>
 
-          <div className="mt-4 grid grid-cols-2 gap-2">
+          <fieldset className="mt-4">
+            <legend className="mb-2 font-sans text-sm text-ink dark:text-dark-text">{settingsCopy.spacing}</legend>
+            <div className="grid grid-cols-2 gap-2">
             {Object.entries(lineSpacingLabels).map(([key, label]) => {
               const selected = lineSpacing === key
               return (
@@ -313,6 +321,11 @@ export default function More() {
                 </button>
               )
             })}
+            </div>
+          </fieldset>
+          <fieldset className="mt-4">
+            <legend className="mb-2 font-sans text-sm text-ink dark:text-dark-text">{settingsCopy.alignment}</legend>
+            <div className="grid grid-cols-2 gap-2">
             {Object.entries(textAlignmentLabels).map(([key, label]) => {
               const selected = textAlign === key
               return (
@@ -330,7 +343,8 @@ export default function More() {
                 </button>
               )
             })}
-          </div>
+            </div>
+          </fieldset>
         </SettingsBlock>
 
         <SettingsBlock
@@ -338,6 +352,7 @@ export default function More() {
           description={moreCopy.readingSupportDescription}
           headingId="more-reading-support-title"
           testId="more-reading-support"
+          headingLevel={3}
         >
         <fieldset className="mb-4">
           <legend className="font-sans text-sm text-ink dark:text-dark-text mb-2">{presentationCopy.title}</legend>
@@ -349,11 +364,13 @@ export default function More() {
             </button>)}
           </div>
           <p className="mt-2 font-sans text-xs leading-5 text-text-muted">{presentationCopy.hint}</p>
+          {!presentationSaved ? <p role="status" className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{settingsCopy.unsaved}</p> : null}
         </fieldset>
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setShowTransliteration(!showTransliteration)}
             aria-pressed={showTransliteration}
+            aria-describedby="more-study-support-note"
             className={`rounded-lg px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               showTransliteration
                 ? 'bg-saffron text-white'
@@ -388,7 +405,8 @@ export default function More() {
 
         <div className="mt-4">
           <p id="more-meaning-language" className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.meaningLanguage}</p>
-          <div className="grid grid-cols-4 gap-2" role="group" aria-labelledby="more-meaning-language">
+          <p id="more-study-support-note" className="mb-2 font-sans text-xs leading-5 text-text-muted">{settingsCopy.studyOnly}</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="group" aria-labelledby="more-meaning-language" aria-describedby="more-study-support-note">
             {(['none', 'en', 'pa', 'hi'] as const).map(option => {
               const selected = meaningLanguage === option
               return (
@@ -409,13 +427,36 @@ export default function More() {
             })}
           </div>
         </div>
+        <fieldset className="mt-4" aria-describedby="more-study-support-note">
+          <legend className="mb-2 font-sans text-sm text-ink dark:text-dark-text">{settingsCopy.supportSize}</legend>
+          <div className="grid grid-cols-3 gap-2">
+            {(['standard', 'large', 'extra-large'] as const).map(size => <button key={size} type="button"
+              aria-pressed={supportTextSize === size} onClick={() => setSupportTextSize(size)}
+              className={`interactive-focus min-h-[48px] rounded-lg border px-2 py-2 font-sans text-xs ${supportTextSize === size ? 'border-saffron bg-saffron text-white' : 'border-sand/15 text-ink dark:border-dark-text/10 dark:text-dark-text'}`}>
+              {settingsCopy.supportSizes[size]}
+            </button>)}
+          </div>
+        </fieldset>
         </SettingsBlock>
+
+        <section className="more-reader-preview section-shell p-4" aria-labelledby="more-reader-preview-title" data-testid="more-reader-preview" data-support-text-size={supportTextSize} data-reader-presentation={presentation}>
+          <h3 id="more-reader-preview-title" className="eyebrow mb-3">{settingsCopy.preview}</h3>
+          <div style={{ textAlign }}>
+            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text`} style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing === 'relaxed' ? 1.85 : 1.6 }}>
+              {formatGurbaniText(SAMPLE_ONBOARDING_LINE.gurmukhi, { scriptMode, larivaar, showVishraam: true })}
+            </p>
+            {presentation === 'study' && showTransliteration ? <p data-reader-support="transliteration" lang="pa-Latn">{SAMPLE_ONBOARDING_LINE.transliteration}</p> : null}
+            {presentation === 'study' && meaningLanguage !== 'none' ? <p data-reader-support="meaning" lang={meaningLanguage === 'pa' ? getScriptTextLang(scriptMode) : meaningLanguage} className={meaningLanguage === 'pa' ? getScriptTextFontClass(scriptMode) : meaningLanguage === 'hi' ? getScriptTextFontClass('devanagari') : 'font-sans'}>{meaningLanguage === 'pa' ? renderScriptText(SAMPLE_ONBOARDING_LINE.meaning.pa, scriptMode) : SAMPLE_ONBOARDING_LINE.meaning[meaningLanguage]}</p> : null}
+          </div>
+          <p className="mt-3 font-sans text-xs leading-5 text-text-muted">{settingsCopy.previewCaption}</p>
+        </section>
 
         <SettingsBlock
           title={moreCopy.translationSourceTitle}
           description={moreCopy.translationSourceDescription}
           headingId="more-translation-source-title"
           testId="more-translation-source"
+          headingLevel={3}
         >
           <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.englishTranslation}</p>
           <div className="grid gap-2">
@@ -507,8 +548,7 @@ export default function More() {
       </DisclosureSection>
 
       <div className="mb-5">
-        <PersonalDataPanel />
-        <CloudSyncPanel />
+        <PersonalDataPanel><CloudSyncPanel embedded /></PersonalDataPanel>
       </div>
 
       <div className="mb-5">
@@ -521,7 +561,7 @@ export default function More() {
       </div>
 
       <section className="more-about section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
-        <p id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</p>
+        <h2 id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</h2>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
           {editorial?.more.aboutBody ?? moreCopy.aboutBody}
         </p>
@@ -529,7 +569,7 @@ export default function More() {
           {moreCopy.aboutSource}
         </p>
         <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2">
-          {moreCopy.aboutTrust}
+          {cloudConfigured ? settingsCopy.cloudTrust : settingsCopy.deviceTrust}
         </p>
         <button
           type="button"
