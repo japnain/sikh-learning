@@ -26,6 +26,13 @@ export function resolveBrowserExecutable() {
 
 export function deterministicProviderResponse(requestUrl, postData, method = 'GET', { longHukamnama = false, distinctBaniLengths = false } = {}) {
   const url = new URL(requestUrl)
+  // Configured production builds discover providers during bootstrap. Keep that
+  // read deterministic without permitting real login requests from browser QA.
+  if (url.protocol === 'https:' && url.hostname.endsWith('.supabase.co') && url.pathname === '/auth/v1/settings') {
+    if (method === 'OPTIONS') return { status: 204, data: null }
+    if (method === 'GET') return { status: 200, data: { external: { email: true, apple: false } } }
+    return null
+  }
   const knownProvider = url.hostname === 'api.banidb.com' || url.pathname.startsWith('/__banidb/v2/')
     || url.pathname.endsWith('/banidb-proxy') || (url.hostname === 'backend.searchgurbani.com' && url.pathname === '/api/res/mahan-kosh/view')
   if (knownProvider && method === 'OPTIONS') return { status: 204, data: null }

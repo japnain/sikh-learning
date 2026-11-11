@@ -29,4 +29,6 @@ Before enabling native sign-in, implement and test URL handling and session exch
 
 ## Audit record
 
-See `docs/qa/backend-readiness-20261111.md` for observed production state, completed verification, and remaining external setup.
+The November 11, 2026 audit verified custom SMTP delivery, web redirects, authenticated save/restore, stale-write handling, deletion tombstones, user isolation, session refresh, sign-out, and account deletion against production. Both disposable QA accounts and their records were removed. The web production configuration now includes the public project URL and publishable key.
+
+See `docs/qa/backend-readiness-20261111.md` for the evidence and remaining native release limits.
