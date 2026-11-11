@@ -119,7 +119,7 @@ export default function PersonalDataPanel({ children }: { children?: ReactNode }
     <div className="mt-4 grid gap-2 sm:grid-cols-2">
       <button className={button} disabled={busy} onClick={() => { void download() }}>{copy.download}</button>
       <button className={button} disabled={busy} onClick={() => input.current?.click()}>{copy.upload}</button>
-      <input ref={input} type="file" accept="application/json,.json" className="sr-only" aria-label={copy.upload} tabIndex={-1} onChange={event => { const file = event.target.files?.[0]; if (file) void selectFile(file) }} />
+      <input ref={input} type="file" accept="application/json,.json" hidden aria-label={copy.upload} tabIndex={-1} onChange={event => { const file = event.target.files?.[0]; if (file) void selectFile(file) }} />
     </div>
     <p role="status" className="mt-3 font-sans text-sm leading-6 text-ink dark:text-dark-text">{busy ? copy.loading : notice}</p>
     {children}

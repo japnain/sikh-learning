@@ -57,8 +57,8 @@ const VOCAB_COPY: Record<UiLocale, {
     emptyTitle: 'No saved words or phrases yet.',
     emptyBody: 'Save a word or verse while reading to keep its meaning and context here for review.',
     reviewEyebrow: 'Review Loop',
-    reviewReady: count => `${count} saved item${count === 1 ? ' is' : 's are'} ready for spaced review.`,
-    reviewEmpty: 'Nothing is due right now. Keep saving words and phrases while reading.',
+    reviewReady: count => `${count} saved item${count === 1 ? ' is' : 's are'} ready to review.`,
+    reviewEmpty: 'Nothing is due. You can still browse your saved items.',
     totalSaved: 'Saved terms',
     dueNow: 'Due now',
     phrases: 'Phrases',
@@ -254,7 +254,7 @@ export default function Vocab() {
   const returnView = { mode, query, kind, sort, cardIndex: cardIdx, revealed, reviewQueue }
   const returnPath = buildVocabReturnPath(returnView)
   const rememberView = () => rememberVocabView(returnView)
-  const mutationNotice = <div className="mb-4 space-y-2">
+  const mutationNotice = notice || storageFailed || hasPendingChanges ? <div className="mb-4 space-y-2">
     {notice ? <div role="status" className="section-shell flex flex-wrap items-center justify-between gap-3 px-4 py-3 font-sans text-sm">
       <span>{controls[notice]}</span>
       {removedEntry ? <button type="button" className="interactive-focus min-h-[44px] rounded-lg px-3 font-semibold text-gold-dark dark:text-gold-light" onClick={() => {
@@ -270,7 +270,7 @@ export default function Vocab() {
         if (persisted && !removedEntry) setNotice('saved')
       }}>{controls.retry}</button>
     </div> : null}
-  </div>
+  </div> : null
 
 
   const dueWords = useMemo(
@@ -350,28 +350,18 @@ export default function Vocab() {
       </div>
 
       {mutationNotice}
-      <section className="section-shell p-5 mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
-        <div className="grid grid-cols-3 divide-x divide-sand/15 dark:divide-dark-text/10">
-          <div className="px-3 py-2">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.totalSaved}</p>
-            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{vocab.length}</p>
-          </div>
-          <div className="px-3 py-2">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.dueNow}</p>
-            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{dueWords.length}</p>
-          </div>
-          <div className="px-3 py-2">
-            <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/68 dark:text-dark-text/64">{copy.phrases}</p>
-            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{phraseCount}</p>
-          </div>
-        </div>
-
-        <div className="mt-4 border-t border-sand/15 pt-4 dark:border-dark-text/10">
-          <h2 id="vocab-summary-title" className="eyebrow">{copy.reviewEyebrow}</h2>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
-            {dueWords.length > 0 ? copy.reviewReady(dueWords.length) : copy.reviewEmpty}
-          </p>
-        </div>
+      <section className="mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
+        <h2 id="vocab-summary-title" className="sr-only">{copy.reviewEyebrow}</h2>
+        <dl className="flex flex-wrap gap-2 font-sans text-xs text-ink/80 dark:text-dark-text/85">
+          {[[copy.totalSaved, vocab.length], [copy.dueNow, dueWords.length], [copy.phrases, phraseCount]].map(([label, count]) => (
+            <div key={label} className="flex items-baseline gap-1.5 rounded-full bg-parchment-low px-3 py-1.5 dark:bg-dark-surface">
+              <dt>{label}</dt><dd className="font-semibold text-ink dark:text-dark-text">{count}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-2 font-sans text-xs leading-5 text-ink/74 dark:text-dark-text/76">
+          {dueWords.length > 0 ? copy.reviewReady(dueWords.length) : copy.reviewEmpty}
+        </p>
       </section>
 
       <section className="section-shell mb-4 space-y-3 p-4" aria-label={controls.search}>
