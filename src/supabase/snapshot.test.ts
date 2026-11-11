@@ -107,6 +107,25 @@ describe('cloud snapshot v3', () => {
     expect(new Map(Object.keys(localStorage).map(key => [key, localStorage.getItem(key)]))).toEqual(before)
   })
 
+  test('cloud apply with a stale tab baseline preserves newer saved additions and tombstones', () => {
+    const store = useBookmarksStore.getState()
+    const first = store.addBookmark({ type: 'bani', title: 'First', source: 'G', ang: 1 }).item!
+    const second = store.addBookmark({ type: 'bani', title: 'Second', source: 'G', ang: 2 }).item!
+    const baseline = [first, second]
+    const remote = asRemoteSnapshot(exportLocalSnapshot())
+    remote.savedItems = remote.savedItems?.filter(record => record.id !== second.id)
+    const remoteFirst = remote.savedItems?.find(record => record.id === first.id)
+    if (remoteFirst?.payload) remoteFirst.payload.title = 'Remote title'
+    store.removeBookmark(first.id)
+    const newer = store.addBookmark({ type: 'bani', title: 'Newer tab save', source: 'G', ang: 3 }).item!
+    // A background tab has not received the other tab's storage event yet.
+    useBookmarksStore.setState({ bookmarks: baseline })
+    applyRemoteSnapshot(remote)
+    useBookmarksStore.setState({ bookmarks: [] })
+    store.hydrateCachedBookmarks()
+    expect(useBookmarksStore.getState().bookmarks).toEqual([newer])
+  })
+
   test('cloud restoration cannot replace the intentional local practice with a restored general Study session', () => {
     const rehras = getNitnemOption('rehras-sahib')!
     const short = buildNitnemStudyPath(rehras)

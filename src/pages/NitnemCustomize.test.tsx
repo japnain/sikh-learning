@@ -6,6 +6,8 @@ import { useNitnemHistoryStore } from '../store/nitnemHistory'
 import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
 import NitnemCustomize from './NitnemCustomize'
 import { useLocaleStore } from '../store/locale'
+import { useLanguageStore } from '../store/language'
+import { renderScriptText } from '../utils/readerDisplay'
 import { clearNitnemDraft, NITNEM_DRAFT_KEY } from '../utils/nitnemDraft'
 
 const baniRequest = vi.hoisted(() => ({ loading: false, error: null as string | null, retry: vi.fn() }))
@@ -17,10 +19,11 @@ function LocationSpy() {
   const location = useLocation()
   return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
 }
-function renderCustomize() {
-  return render(<MemoryRouter initialEntries={['/nitnem/customize']}><Routes>
+function renderCustomize(nitnemOrigin?: string) {
+  return render(<MemoryRouter initialEntries={[{ pathname: '/nitnem/customize', state: { nitnemOrigin } }]}><Routes>
     <Route path="/nitnem/customize" element={<><NitnemCustomize /><LocationSpy /></>} />
     <Route path="/" element={<LocationSpy />} />
+    <Route path="/more" element={<LocationSpy />} />
   </Routes></MemoryRouter>)
 }
 function editBani(name: string) {
@@ -33,6 +36,7 @@ beforeEach(() => {
   localStorage.clear()
   clearNitnemDraft()
   useLocaleStore.setState({ locale: 'en' })
+  useLanguageStore.setState({ scriptMode: 'gurmukhi' })
   document.documentElement.classList.remove('dark')
   useNitemStore.setState({ completedDate: '2026-10-17', completedIds: [], selectedIds: [...DEFAULT_NITNEM_OPTION_IDS], completionTrackingEnabled: true, weeklyDayGoal: 7 })
   useNitnemHistoryStore.setState({ events: [] })
@@ -376,4 +380,37 @@ test.each([
   fireEvent.click(screen.getByRole('button', { name: new RegExp(add) }))
   expect(screen.getByRole('dialog', { name: add })).toBeInTheDocument()
   expect(screen.getByRole('searchbox', { name: search })).toBeInTheDocument()
+})
+
+
+test.each(['Back', 'Cancel', 'Save routine'])('%s returns to More when the editor was opened there', name => {
+  renderCustomize('/more')
+  fireEvent.click(screen.getByRole('button', { name, exact: true }))
+  expect(screen.getByTestId('location')).toHaveTextContent(/^\/more$/)
+})
+
+test('discarding changes returns to More and keeps the committed routine', () => {
+  renderCustomize('/more')
+  fireEvent.change(screen.getByLabelText('Your weekly goal'), { target: { value: '3' } })
+  fireEvent.click(screen.getByRole('button', { name: 'Cancel', exact: true }))
+  fireEvent.click(screen.getByRole('button', { name: 'Discard', exact: true }))
+  expect(screen.getByTestId('location')).toHaveTextContent(/^\/more$/)
+  expect(useNitemStore.getState().weeklyDayGoal).toBe(7)
+})
+
+test('an unrecognized return path falls back to Home', () => {
+  renderCustomize('https://example.com')
+  fireEvent.click(screen.getByRole('button', { name: 'Back', exact: true }))
+  expect(screen.getByTestId('location')).toHaveTextContent(/^\/$/)
+})
+
+test('available bani search matches the displayed Hindi title', () => {
+  useLanguageStore.setState({ scriptMode: 'devanagari' })
+  useNitemStore.setState({ selectedIds: ['rehras-sahib'] })
+  renderCustomize()
+  fireEvent.click(screen.getByRole('button', { name: /add a bani/i }))
+  const hindiTitle = renderScriptText('ਜਪੁਜੀ ਸਾਹਿਬ', 'devanagari')
+  fireEvent.change(screen.getByRole('searchbox', { name: 'Search available banis' }), { target: { value: hindiTitle } })
+  expect(screen.getByRole('button', { name: 'Add Japji Sahib' })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Add Salok Mahalla 9' })).not.toBeInTheDocument()
 })

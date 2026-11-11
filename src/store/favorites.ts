@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createLocalCollection } from '../utils/localCollection'
 import { createNaamrasObjectId } from '../supabase/device'
 import type { SavedMutationResult } from './bookmarks'
 import {
@@ -57,16 +58,6 @@ export function resolveFavoriteRouteMode(
 ): FavoriteRouteMode {
   return favorite.routeMode
     ?? (favorite.verseId ? 'verse' : favorite.shabadId ? 'shabad' : 'canonical')
-}
-
-function canUseStorage() {
-  if (typeof window === 'undefined') return false
-
-  try {
-    return typeof window.localStorage !== 'undefined'
-  } catch {
-    return false
-  }
 }
 
 function isOptionalString(value: unknown) {
@@ -141,31 +132,14 @@ export function normalizeStoredFavorites(value: unknown): FavoriteItem[] {
   })
 }
 
-function readCachedFavorites() {
-  if (!canUseStorage()) return []
-
-  try {
-    return normalizeStoredFavorites(JSON.parse(window.localStorage.getItem(FAVORITES_STORAGE_KEY) ?? 'null'))
-  } catch {
-    return []
-  }
-}
-
-function writeCachedFavorites(favorites: FavoriteItem[]) {
-  if (!canUseStorage()) return false
-
-  try {
-    // Keep Zustand's legacy envelope so existing clients can move between
-    // versions without discarding their favorites.
-    window.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify({
-      state: { favorites },
-      version: 1,
-    }))
-    return true
-  } catch {
-    return false
-  }
-}
+const favoriteCollection = createLocalCollection<FavoriteItem>({
+  storageKey: FAVORITES_STORAGE_KEY,
+  getId: favorite => favorite.id,
+  normalize: normalizeStoredFavorite,
+  readLegacy: raw => normalizeStoredFavorites(JSON.parse(raw ?? 'null')),
+  // Preserve the existing envelope for older clients and portable backups.
+  serializeLegacy: favorites => JSON.stringify({ state: { favorites }, version: 1 }),
+})
 
 function sameFavoriteLocation(left: FavoriteItem, right: NewFavoriteItem | FavoriteItem) {
   const leftRouteIdentity = getSavedReturnIdentity(left.returnPath)
@@ -186,14 +160,6 @@ function sameFavoriteLocation(left: FavoriteItem, right: NewFavoriteItem | Favor
   if (rightMode === 'verse') return left.shabadId === right.shabadId && left.verseId === right.verseId
   if (rightMode === 'shabad') return left.shabadId === right.shabadId
   return true
-}
-
-function setFavorites(
-  set: (partial: Partial<FavoritesState> | ((state: FavoritesState) => Partial<FavoritesState>)) => void,
-  favorites: FavoriteItem[]
-) {
-  set({ favorites })
-  return writeCachedFavorites(favorites)
 }
 
 function queueFavoriteActivity(eventType: 'added' | 'removed', favorite: FavoriteItem, occurredAt?: string) {
@@ -217,17 +183,23 @@ function queueFavoriteActivity(eventType: 'added' | 'removed', favorite: Favorit
 export const useFavoritesStore = create<FavoritesState>()((set, get) => ({
   favorites: [],
   hydrateCachedFavorites: () => {
-    set({ favorites: readCachedFavorites() })
+    const favorites = favoriteCollection.read(get().favorites)
+    if (JSON.stringify(favorites) !== JSON.stringify(get().favorites)) set({ favorites })
   },
   replaceFavorites: favorites => {
     const normalized = normalizeStoredFavorites(favorites)
-    const persisted = writeCachedFavorites(normalized)
-    if (persisted) set({ favorites: normalized })
-    return persisted
+    const result = favoriteCollection.replace(normalized, undefined, get().favorites)
+    if (result.persisted) set({ favorites: result.items })
+    return result.persisted
   },
   addFavorite: input => {
-    const existing = get().favorites.find(item => sameFavoriteLocation(item, input)) ?? null
-    if (existing) return { item: existing, changed: false, persisted: writeCachedFavorites(get().favorites) }
+    const current = favoriteCollection.read(get().favorites)
+    const existing = current.find(item => sameFavoriteLocation(item, input)) ?? null
+    if (existing) {
+      const result = favoriteCollection.put(existing, current)
+      set({ favorites: result.items })
+      return { item: existing, changed: false, persisted: result.persisted }
+    }
 
     const favorite: FavoriteItem = {
       ...input,
@@ -235,7 +207,9 @@ export const useFavoritesStore = create<FavoritesState>()((set, get) => ({
       id: createNaamrasObjectId('favorite'),
       savedAt: new Date().toISOString(),
     }
-    const persisted = setFavorites(set, [...get().favorites, favorite])
+    const result = favoriteCollection.put(favorite, current)
+    set({ favorites: result.items })
+    const persisted = result.persisted
     useSavedFeedbackStore.getState().recordSaved({
       kind: 'favorite',
       targetId: favorite.id,
@@ -245,19 +219,33 @@ export const useFavoritesStore = create<FavoritesState>()((set, get) => ({
     return { item: favorite, changed: true, persisted }
   },
   restoreFavorite: favorite => {
-    const existing = get().favorites.find(item => sameFavoriteLocation(item, favorite)) ?? null
-    if (existing) return { item: existing, changed: false, persisted: writeCachedFavorites(get().favorites) }
+    const current = favoriteCollection.read(get().favorites)
+    const existing = current.find(item => sameFavoriteLocation(item, favorite)) ?? null
+    if (existing) {
+      const result = favoriteCollection.put(existing, current)
+      set({ favorites: result.items })
+      return { item: existing, changed: false, persisted: result.persisted }
+    }
     const normalized = normalizeStoredFavorite(favorite)
     if (!normalized) return { item: null, changed: false, persisted: false }
-    const persisted = setFavorites(set, [...get().favorites, normalized])
+    const result = favoriteCollection.put(normalized, current)
+    set({ favorites: result.items })
+    const persisted = result.persisted
     queueFavoriteActivity('added', normalized)
     return { item: normalized, changed: true, persisted }
   },
   removeFavorite: id => {
-    const favorite = get().favorites.find(item => item.id === id) ?? null
-    if (!favorite) return { item: null, changed: false, persisted: true }
+    const current = favoriteCollection.read(get().favorites)
+    const favorite = current.find(item => item.id === id) ?? null
+    if (!favorite) {
+      const result = favoriteCollection.remove(id, current)
+      set({ favorites: result.items })
+      return { item: null, changed: false, persisted: result.persisted }
+    }
 
-    const persisted = setFavorites(set, get().favorites.filter(item => item.id !== id))
+    const result = favoriteCollection.remove(id, current)
+    set({ favorites: result.items })
+    const persisted = result.persisted
     queueFavoriteActivity('removed', favorite)
     return { item: favorite, changed: true, persisted }
   },
@@ -274,3 +262,16 @@ export const useFavoritesStore = create<FavoritesState>()((set, get) => ({
     }))
   },
 }))
+
+const setMemory = useFavoritesStore.setState
+useFavoritesStore.setState = ((...args: Parameters<typeof setMemory>) => {
+  favoriteCollection.clearPending()
+  setMemory(...args)
+}) as typeof setMemory
+
+const unsubscribeFavorites = favoriteCollection.subscribe(favorites => {
+  if (JSON.stringify(favorites) !== JSON.stringify(useFavoritesStore.getState().favorites)) {
+    setMemory({ favorites })
+  }
+})
+if (import.meta.hot) import.meta.hot.dispose(unsubscribeFavorites)

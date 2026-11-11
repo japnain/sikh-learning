@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom'
-import type { FocusContext, UiLocale } from '../types'
+import type { FocusContext, SoundCategory, UiLocale } from '../types'
 import { IconChevronDown, IconChevronUp, IconMusic, IconPause, IconPlay } from './icons'
 import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import {
   FOCUS_PRESETS,
-  SOUND_LIBRARY_TARGETS,
   SOUNDS,
   useMusicStore,
 } from '../store/music'
 import { useLocaleStore } from '../store/locale'
 
-const CATEGORY_LABELS: Record<UiLocale, Record<keyof typeof SOUND_LIBRARY_TARGETS, string>> = {
+const CATEGORY_LABELS: Record<UiLocale, Record<SoundCategory, string>> = {
   en: {
     rain: 'Storm',
     water: 'Water',
@@ -181,7 +180,8 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
   compactFallback: (context: string) => string
   fullBody: string
   fullLibrary: string
-  bundled: (count: number, total: number) => string
+  soundCount: (count: number) => string
+  presets: string
   presetReady: (presetName: string) => string
   defaultReady: string
   defaultSummary: string
@@ -193,15 +193,15 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
   playing: string
   selected: string
   playbackUnavailable: string
-  shipped: (count: number, target: number) => string
 }> = {
   en: {
     eyebrow: 'Study Soundscapes',
     compactReady: (context, soundName) => `${soundName} is ready for ${context.toLowerCase()}.`,
     compactFallback: context => `Pick a quieter bed for ${context.toLowerCase()} without pulling focus away from Gurbani.`,
-    fullBody: 'Ambient focus beds only. No melody, no vocals, no sharp transients, and no spoken overlap.',
+    fullBody: 'Choose a quiet background for reading, study, or reflection.',
     fullLibrary: 'Full library',
-    bundled: (count, total) => `${count}/${total} bundled`,
+    soundCount: count => `${count} sounds`,
+    presets: 'Listening presets',
     presetReady: presetName => `${presetName} preset ready`,
     defaultReady: 'Focus preset ready',
     defaultSummary: 'Choose a preset or an individual ambient track below.',
@@ -213,15 +213,15 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     playing: 'Playing',
     selected: 'Selected',
     playbackUnavailable: 'This sound could not be played. Check your connection and try again.',
-    shipped: (count, target) => `${count}/${target} shipped`,
   },
   pa: {
     eyebrow: 'ਅਧਿਐਨ ਸਾਊਂਡਸਕੇਪ',
     compactReady: (context, soundName) => `${soundName} ${context.toLowerCase()} ਲਈ ਤਿਆਰ ਹੈ।`,
     compactFallback: context => `${context.toLowerCase()} ਲਈ ਹੌਲਾ ਪਿਛੋਕੜ ਚੁਣੋ ਜੋ ਗੁਰਬਾਣੀ ਤੋਂ ਧਿਆਨ ਨਾ ਖਿੱਚੇ।`,
-    fullBody: 'ਕੇਵਲ ਧਿਆਨ ਲਈ ਆਸ-ਪਾਸ ਦੀਆਂ ਧੁਨਾਂ। ਨਾ ਕੋਈ ਧੁਨ, ਨਾ ਗਾਇਕੀ, ਨਾ ਤੀਖੇ ਝਟਕੇ, ਨਾ ਬੋਲੀ ਮਿਲਾਵਟ।',
+    fullBody: 'ਪਾਠ, ਅਧਿਐਨ ਜਾਂ ਮਨਨ ਲਈ ਸ਼ਾਂਤ ਪਿਛੋਕੜ ਚੁਣੋ।',
     fullLibrary: 'ਪੂਰੀ ਲਾਇਬ੍ਰੇਰੀ',
-    bundled: (count, total) => `${count}/${total} ਸ਼ਾਮਲ`,
+    soundCount: count => `${count} ਧੁਨਾਂ`,
+    presets: 'ਸੁਣਨ ਦੀਆਂ ਚੋਣਾਂ',
     presetReady: presetName => `${presetName} ਪ੍ਰੀਸੈਟ ਤਿਆਰ`,
     defaultReady: 'ਧਿਆਨ ਪ੍ਰੀਸੈਟ ਤਿਆਰ',
     defaultSummary: 'ਹੇਠਾਂ ਤੋਂ ਪ੍ਰੀਸੈਟ ਜਾਂ ਇਕੱਲਾ ਐਂਬੀਅਂਟ ਟਰੈਕ ਚੁਣੋ।',
@@ -233,15 +233,15 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     playing: 'ਚੱਲ ਰਿਹਾ',
     selected: 'ਚੁਣਿਆ',
     playbackUnavailable: 'ਇਹ ਧੁਨ ਨਹੀਂ ਚੱਲ ਸਕੀ। ਆਪਣਾ ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਜਾਂਚੋ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
-    shipped: (count, target) => `${count}/${target} ਸ਼ਾਮਲ`,
   },
   hi: {
     eyebrow: 'अध्ययन साउंडस्केप',
     compactReady: (context, soundName) => `${soundName} ${context.toLowerCase()} के लिए तैयार है।`,
     compactFallback: context => `${context.toLowerCase()} के लिए शांत पृष्ठभूमि चुनें जो गुरबाणी से ध्यान न खींचे।`,
-    fullBody: 'सिर्फ एकाग्रता के लिए वातावरण। न धुन, न स्वर, न तेज़ ट्रांज़िएंट, न बोली का ओवरलैप।',
+    fullBody: 'पाठ, अध्ययन या मनन के लिए शांत पृष्ठभूमि चुनें।',
     fullLibrary: 'पूरी लाइब्रेरी',
-    bundled: (count, total) => `${count}/${total} शामिल`,
+    soundCount: count => `${count} ध्वनियाँ`,
+    presets: 'सुनने की पसंद',
     presetReady: presetName => `${presetName} प्रीसेट तैयार`,
     defaultReady: 'फोकस प्रीसेट तैयार',
     defaultSummary: 'नीचे से कोई प्रीसेट या एकल एम्बिएंट ट्रैक चुनें।',
@@ -253,7 +253,6 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     playing: 'चल रहा',
     selected: 'चुना गया',
     playbackUnavailable: 'यह ध्वनि नहीं चल सकी। अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।',
-    shipped: (count, target) => `${count}/${target} शामिल`,
   },
 }
 
@@ -302,7 +301,6 @@ export default function SoundscapeControls({
   const visibleSounds = SOUNDS.filter(sound => sound.recommendedContexts.includes(context))
   const selectedSound = SOUNDS.find(sound => sound.id === selectedSoundId) ?? null
   const selectedPreset = FOCUS_PRESETS.find(preset => preset.id === selectedPresetId) ?? null
-  const targetLibraryCount = Object.values(SOUND_LIBRARY_TARGETS).reduce((sum, count) => sum + count, 0)
   const panelId = `soundscape-panel-${context}-${variant}`
 
   const selectedSoundText = selectedSound ? SOUND_TEXT[locale][selectedSound.id] ?? SOUND_TEXT.en[selectedSound.id] : null
@@ -322,13 +320,6 @@ export default function SoundscapeControls({
     )
     : copy.fullBody
 
-  const groupedSounds = Object.entries(categoryLabels).map(([category, label]) => ({
-    category,
-    label,
-    shipped: SOUNDS.filter(sound => sound.category === category),
-    target: SOUND_LIBRARY_TARGETS[category as keyof typeof SOUND_LIBRARY_TARGETS],
-  }))
-
   const handlePlaybackToggle = () => {
     if (!selectedSoundId) {
       activatePreset('focus')
@@ -345,7 +336,7 @@ export default function SoundscapeControls({
 
   const details = variant === 'compact' ? (
     <div id={panelId} hidden={!isExpanded}>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-3 gap-2" role="group" aria-label={copy.presets}>
         {FOCUS_PRESETS.map(preset => {
           const selected = selectedPresetId === preset.id
           const presetText = PRESET_TEXT[locale][preset.id] ?? PRESET_TEXT.en[preset.id]
@@ -355,6 +346,7 @@ export default function SoundscapeControls({
               key={preset.id}
               type="button"
               onClick={() => activatePreset(preset.id)}
+              aria-pressed={selected}
               className={`min-h-[56px] rounded-lg border px-3 py-3 text-left ${
                 selected
                   ? 'border-saffron bg-saffron text-white'
@@ -381,14 +373,14 @@ export default function SoundscapeControls({
           step="0.05"
           value={volume}
           onChange={event => setVolume(Number(event.target.value))}
-          className="h-1 flex-1 accent-gold"
+          className="min-h-[44px] min-w-0 flex-1 accent-gold"
           aria-label={copy.volume}
         />
       </div>
     </div>
   ) : (
     <div id={panelId} hidden={!isExpanded}>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-3 gap-2" role="group" aria-label={copy.presets}>
         {FOCUS_PRESETS.map(preset => {
           const selected = selectedPresetId === preset.id
           const presetText = PRESET_TEXT[locale][preset.id] ?? PRESET_TEXT.en[preset.id]
@@ -398,6 +390,7 @@ export default function SoundscapeControls({
               key={preset.id}
               type="button"
               onClick={() => activatePreset(preset.id)}
+              aria-pressed={selected}
               className={`min-h-[60px] rounded-lg px-3 py-3 text-left ${
                 selected
                   ? 'bg-saffron text-white'
@@ -422,20 +415,9 @@ export default function SoundscapeControls({
           step="0.05"
           value={volume}
           onChange={event => setVolume(Number(event.target.value))}
-          className="h-1 flex-1 accent-gold"
+          className="min-h-[44px] min-w-0 flex-1 accent-gold"
           aria-label={copy.volume}
         />
-      </div>
-
-      <div className="mt-5 grid grid-cols-2 gap-2">
-        {groupedSounds.map(group => (
-          <div key={group.category} className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-xs font-semibold text-ink dark:text-dark-text">{group.label}</p>
-            <p className="mt-1 font-sans text-[11px] text-ink/68 dark:text-dark-text/64">
-              {copy.shipped(group.shipped.length, group.target)}
-            </p>
-          </div>
-        ))}
       </div>
 
       <div className="mt-5 space-y-3">
@@ -448,6 +430,7 @@ export default function SoundscapeControls({
               key={sound.id}
               type="button"
               onClick={() => toggleSound(sound.id)}
+              aria-pressed={selected}
               className={`w-full rounded-lg border px-4 py-4 text-left ${
                 active
                   ? 'border-saffron bg-saffron text-white'
@@ -482,12 +465,12 @@ export default function SoundscapeControls({
   )
 
   return (
-    <section className={variant === 'compact' ? 'section-shell-quiet p-4' : 'section-shell p-4'}>
+    <section aria-labelledby={`${panelId}-heading`} className={variant === 'compact' ? 'section-shell-quiet p-4' : 'section-shell p-4'}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <IconMusic size={14} className="text-gold-dark dark:text-gold-light" />
-            <p className="eyebrow">{copy.eyebrow}</p>
+            <h2 id={`${panelId}-heading`} className="eyebrow">{copy.eyebrow}</h2>
           </div>
           <p className={`mt-2 font-sans text-sm ${variant === 'compact' ? 'text-ink dark:text-dark-text' : 'text-ink/68 dark:text-dark-text/70'}`}>
             {headerBody}
@@ -500,7 +483,7 @@ export default function SoundscapeControls({
               {copy.fullLibrary}
             </Link>
           ) : (
-            <span className="chip-pill">{copy.bundled(SOUNDS.length, targetLibraryCount)}</span>
+            <span className="chip-pill">{copy.soundCount(visibleSounds.length)}</span>
           )}
 
           <button
@@ -509,7 +492,7 @@ export default function SoundscapeControls({
             aria-expanded={isExpanded}
             aria-controls={panelId}
             aria-label={isExpanded ? copy.collapse : copy.expand}
-            className="icon-surface min-h-[40px] min-w-[40px] text-gold-dark dark:text-gold-light"
+            className="icon-surface min-h-[44px] min-w-[44px] text-gold-dark dark:text-gold-light"
           >
             {isExpanded ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
           </button>

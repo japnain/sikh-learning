@@ -134,3 +134,17 @@ test('reports when a favorite cannot be persisted durably', () => {
   expect(result).toMatchObject({ changed: true, persisted: false })
   storage.mockRestore()
 })
+
+
+test('reports silently discarded favorite writes and keeps the save usable during this session', () => {
+  const write = vi.spyOn(localStorage, 'setItem').mockImplementation(() => {})
+  const result = useFavoritesStore.getState().addFavorite({ title: 'Saved verse', source: 'G', ang: 1, shabadId: 10, verseId: 100, type: 'shabad', routeMode: 'verse' })
+  expect(result).toMatchObject({ changed: true, persisted: false })
+  useFavoritesStore.getState().hydrateCachedFavorites()
+  expect(useFavoritesStore.getState().favorites).toEqual([result.item])
+  write.mockRestore()
+  expect(useFavoritesStore.getState().restoreFavorite(result.item!).persisted).toBe(true)
+  useFavoritesStore.setState({ favorites: [] })
+  useFavoritesStore.getState().hydrateCachedFavorites()
+  expect(useFavoritesStore.getState().favorites).toEqual([result.item])
+})

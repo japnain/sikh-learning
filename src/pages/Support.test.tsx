@@ -2,10 +2,14 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import Support from './Support'
+import { useLocaleStore } from '../store/locale'
+import { useCloudSyncStore } from '../store/cloudSync'
 import { clearDiagnosticHistory, reportProviderFailure } from '../utils/diagnostics'
 
 beforeEach(() => {
   clearDiagnosticHistory()
+  useLocaleStore.setState({ locale: 'en' })
+  useCloudSyncStore.setState({ configured: false })
   Object.defineProperty(window.navigator, 'clipboard', {
     configurable: true,
     value: { writeText: vi.fn().mockResolvedValue(undefined) },
@@ -56,4 +60,24 @@ test('shows a configured public support inbox as the primary non-GitHub contact 
     'mailto:help%2Breader@naamras.example?subject=NaamRas%20support',
   )
   expect(screen.queryByTestId('support-email-unavailable')).not.toBeInTheDocument()
+})
+
+
+test('explains portable recovery when cloud is unavailable and only documents actual reader controls', () => {
+  render(<MemoryRouter><Support /></MemoryRouter>)
+  expect(screen.getByText(/Cloud backup is unavailable in this version/)).toBeInTheDocument()
+  expect(screen.getByTestId('page-support')).not.toHaveTextContent(/contrast|motion preferences|Connect cloud backup/)
+})
+
+test.each([
+  ['pa', 'ਰਿਪੋਰਟ ਕਾਪੀ ਕਰੋ', 'ਜਾਂਚ ਲਈ ਰਿਪੋਰਟ', 'ਮੁਸ਼ਕਲ ਦੁਬਾਰਾ ਆਉਣ ਦੇ ਕਦਮ'],
+  ['hi', 'रिपोर्ट कॉपी करें', 'जाँच के लिए रिपोर्ट', 'समस्या दोहराने के चरण'],
+] as const)('localizes support, recovery guidance, and the editable report in %s', async (locale, copy, label, steps) => {
+  useLocaleStore.setState({ locale })
+  render(<MemoryRouter><Support /></MemoryRouter>)
+  expect(screen.getByTestId('page-support')).toHaveAttribute('lang', locale)
+  expect(screen.getByTestId('page-support')).not.toHaveTextContent(/Common Fixes|Try these first|Download report|Cloud backup/)
+  expect((screen.getByRole('textbox', { name: label }) as HTMLTextAreaElement).value).toContain(steps)
+  fireEvent.click(screen.getByRole('button', { name: copy }))
+  await waitFor(() => expect(navigator.clipboard.writeText).toHaveBeenCalledWith(expect.stringContaining(steps)))
 })

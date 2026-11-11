@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createPersonalDataBackup, mergePersonalDataBackups, parsePersonalDataBackup, PERSONAL_DATA_KEYS, restorePersonalDataBackup, summarizePersonalDataBackup } from './personalDataBackup'
+import { createPersonalDataBackupResult, createPersonalDataBackup, mergePersonalDataBackups, parsePersonalDataBackup, PERSONAL_DATA_KEYS, restorePersonalDataBackupResult, restorePersonalDataBackup, summarizePersonalDataBackup } from './personalDataBackup'
 import { useLanguageStore } from '../store/language'
 import { useStoryStore } from '../store/stories'
 import { useNitnemHistoryStore } from '../store/nitnemHistory'
@@ -8,6 +8,7 @@ import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useNitemStore, buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
 import { useReadingVisibilityStore } from '../store/readingVisibility'
+import { getLocalCollectionSnapshotKey } from './localCollection'
 
 const clock = '2026-10-20T10:00:00.000Z'
 const bookmark = { id: 'saved-a', title: 'Japji Sahib', type: 'bani', source: 'G', ang: 1, savedAt: clock }
@@ -265,4 +266,94 @@ it('replaces old mounted reading places before migrating the restored global ses
   expect(useReadingPlacesStore.getState().places).toEqual(importedPlaces)
   expect(state(createPersonalDataBackup(), 'naamras-reading-places').places).toEqual(importedPlaces)
   expect(useProgressStore.getState().currentSession).toEqual(source)
+})
+
+
+describe('personal data recovery', () => {
+  it('exports all valid saved work and names damaged optional preferences without modifying storage', () => {
+    localStorage.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    localStorage.setItem('sikh-vocab', JSON.stringify({ version: 0, state: { vocab: [word] } }))
+    localStorage.setItem('naamras-ui-disclosure', '{bad json')
+    localStorage.setItem('naamras-reader-presentation', 'obsolete')
+    localStorage.setItem('sikh-theme', JSON.stringify({ version: 1, state: { mode: 'invalid' } }))
+    const before = { ...localStorage }
+    const { backup, omittedPreferences } = createPersonalDataBackupResult()
+    expect(omittedPreferences).toEqual(['sikh-theme', 'naamras-reader-presentation', 'naamras-ui-disclosure'])
+    expect(backup.data['naamras-ui-disclosure']).toEqual({})
+    expect(backup.data['naamras-reader-presentation']).toBeNull()
+    expect(summarizePersonalDataBackup(backup)).toMatchObject({ bookmarks: 1, words: 1 })
+    expect({ ...localStorage }).toEqual(before)
+    expect(parsePersonalDataBackup(JSON.stringify(backup))).toEqual(backup)
+  })
+
+  it.each(['sikh-bookmarks', 'sikh-favorites', 'sikh-vocab', 'naamras-story-state-v1'])('never silently drops malformed critical data from %s', key => {
+    localStorage.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    localStorage.setItem(key, key === 'sikh-bookmarks' ? JSON.stringify([bookmark, { id: 'bad' }]) : '{bad json')
+    expect(() => createPersonalDataBackupResult()).toThrow()
+  })
+
+  it('keeps storage access failures visible even for optional preferences', () => {
+    vi.spyOn(localStorage, 'getItem').mockImplementation(() => { throw new DOMException('Denied', 'SecurityError') })
+    expect(() => createPersonalDataBackupResult()).toThrow('Denied')
+  })
+
+  it('merges valid local and imported saves despite a damaged disclosure preference', async () => {
+    const incoming = createPersonalDataBackup()
+    incoming.data['sikh-bookmarks'] = [{ ...bookmark, id: 'incoming', ang: 2 }]
+    localStorage.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    localStorage.setItem('naamras-ui-disclosure', '{broken')
+    const { backup: restored, omittedPreferences } = await restorePersonalDataBackupResult(incoming, 'merge', noRuntime)
+    expect(omittedPreferences).toEqual(['naamras-ui-disclosure'])
+    expect(restored.data['sikh-bookmarks']).toHaveLength(2)
+    expect(restored.data['naamras-ui-disclosure']).toEqual({})
+    expect(createPersonalDataBackup().data['sikh-bookmarks']).toHaveLength(2)
+  })
+
+  it('rolls collection snapshot pointers back after a later hydration failure', async () => {
+    const incoming = createPersonalDataBackup()
+    useBookmarksStore.getState().replaceBookmarks([{ ...bookmark, type: 'bani' }])
+    const key = getLocalCollectionSnapshotKey('sikh-bookmarks')
+    const previous = localStorage.getItem(key)
+    const rehydrate = vi.fn().mockRejectedValueOnce(new Error('failed')).mockResolvedValue(undefined)
+    await expect(restorePersonalDataBackup(incoming, 'replace', { ...noRuntime, rehydrate })).rejects.toThrow('restore-failed')
+    expect(localStorage.getItem(key)).toBe(previous)
+    expect(createPersonalDataBackup().data['sikh-bookmarks']).toEqual([bookmark])
+  })
+})
+
+it('keeps recovery-required classification when storage reads fail during rollback notification', async () => {
+  const incoming = createPersonalDataBackup()
+  const resume = vi.fn()
+  const rehydrate = vi.fn(async () => {
+    vi.spyOn(localStorage, 'getItem').mockImplementation(() => { throw new DOMException('Unavailable', 'SecurityError') })
+    throw new Error('hydrate-failed')
+  })
+  await expect(restorePersonalDataBackup(incoming, 'replace', { rehydrate, pauseSync: () => resume })).rejects.toThrow('restore-rollback-failed')
+  expect(resume).toHaveBeenCalledWith(false)
+})
+
+it('allows explicit replace to recover a corrupt collection snapshot', async () => {
+  const incoming = createPersonalDataBackup()
+  incoming.data['sikh-bookmarks'] = [bookmark]
+  localStorage.setItem(getLocalCollectionSnapshotKey('sikh-bookmarks'), '{broken')
+  await restorePersonalDataBackup(incoming, 'replace', noRuntime)
+  expect(createPersonalDataBackup().data['sikh-bookmarks']).toEqual([bookmark])
+})
+
+it('keeps an unsaved vocabulary retry available when a later restore hydration fails', async () => {
+  useVocabStore.setState({ vocab: [] })
+  const incoming = createPersonalDataBackup()
+  const write = localStorage.setItem.bind(localStorage)
+  const failingWrite = vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+    if (key === 'sikh-vocab' || key.startsWith('naamras-collection-v1:sikh-vocab:')) throw new DOMException('Full', 'QuotaExceededError')
+    write(key, value)
+  })
+  useVocabStore.getState().addWord({ ...word, kind: 'word' })
+  expect(useVocabStore.getState().vocab).toHaveLength(1)
+  failingWrite.mockRestore()
+  vi.spyOn(useReadingVisibilityStore.persist, 'rehydrate').mockRejectedValueOnce(new Error('later hydration failed'))
+  await expect(restorePersonalDataBackup(incoming, 'replace', { pauseSync: noRuntime.pauseSync })).rejects.toThrow('restore-failed')
+  expect(useVocabStore.getState().vocab).toHaveLength(1)
+  expect(useVocabStore.getState().retryPersistence()).toBe(true)
+  expect(state(createPersonalDataBackup(), 'sikh-vocab').vocab).toHaveLength(1)
 })

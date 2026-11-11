@@ -58,6 +58,18 @@ describe('local story state', () => {
     expect(useStoryStore.getState().positions[summary.id].finishedAt).toBe('2026-10-21T08:00:00.000Z')
   })
 
+  it('Undo restores the original saved date while preserving a later reading position', () => {
+    const original = { ...summary, savedAt: '2026-09-01T08:00:00.000Z' }
+    expect(useStoryStore.getState().restoreStory(original)).toBe(true)
+    useStoryStore.getState().removeStory(summary.id)
+    useStoryStore.getState().savePosition(summary.id, { paragraphId: 'p8', progress: 0.75, revision: 1 })
+    expect(useStoryStore.getState().restoreStory(original)).toBe(true)
+    useStoryStore.setState({ saved: {}, positions: {} })
+    useStoryStore.getState().hydrateCachedStories()
+    expect(useStoryStore.getState().saved[summary.id]).toEqual(original)
+    expect(useStoryStore.getState().positions[summary.id].paragraphId).toBe('p8')
+  })
+
   it('rejects malformed saved entries and positions without dropping valid entries', () => {
     const savedAt = '2026-10-21T08:00:00.000Z'
     localStorage.setItem(STORY_STATE_STORAGE_KEY, JSON.stringify({
@@ -78,6 +90,10 @@ describe('local story state', () => {
     expect(Object.keys(useStoryStore.getState().positions)).toEqual([summary.id])
     localStorage.setItem(STORY_STATE_STORAGE_KEY, '{invalid json')
     expect(() => useStoryStore.getState().hydrateCachedStories()).not.toThrow()
+    expect(Object.keys(useStoryStore.getState().saved)).toEqual([summary.id])
+    expect(Object.keys(useStoryStore.getState().positions)).toEqual([summary.id])
+    localStorage.setItem(STORY_STATE_STORAGE_KEY, JSON.stringify({ version: 1, saved: {}, positions: {} }))
+    useStoryStore.getState().hydrateCachedStories()
     expect(useStoryStore.getState().saved).toEqual({})
     expect(useStoryStore.getState().positions).toEqual({})
   })
