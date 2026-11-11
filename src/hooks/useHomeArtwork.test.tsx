@@ -8,6 +8,16 @@ beforeEach(() => {
   useHomeArtworkStore.setState({ mode: 'visit', selectedId: 'eclipse', visitIndex: -1, pendingVisit: false, activeVisitToken: null, lastVisitToken: null, applyRevision: 0 })
 })
 
+test('the default painting is available on the first render and retains the image fallback', () => {
+  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: useHomeArtworkStore.getInitialState().selectedId })
+  const view = renderHook(() => useHomeArtwork())
+  expect(view.result.current.asset.id).toBe('golden-court-assembly')
+  act(() => view.result.current.onImageError())
+  expect(view.result.current.asset.id).toBe('eclipse')
+  act(() => { useHomeArtworkStore.getState().applyPreferences({ mode: 'fixed', selectedId: 'golden-court-assembly' }) })
+  expect(view.result.current.asset.id).toBe('golden-court-assembly')
+})
+
 test('Strict Mode and rerendering do not advance Each visit', () => {
   const wrapper = ({ children }: { children: ReactNode }) => <StrictMode>{children}</StrictMode>
   const first = renderHook(() => useHomeArtwork(), { wrapper })

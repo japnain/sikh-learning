@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import { homeArtworkCatalog } from '../data/homeArtworkCatalog'
 import { HOME_ARTWORK_COLLECTION_IDS } from '../store/homeArtwork'
-import { ECLIPSE_ARTWORK, getHomeArtworkImageStyle } from './homeArtwork'
+import { DEFAULT_HOME_ARTWORK, ECLIPSE_ARTWORK, getHomeArtworkImageStyle } from './homeArtwork'
 import { getHomeArtworkComposition } from './homeArtworkComposition'
 
 test('Eclipse keeps its original dimensions and focal metadata while Home shows its full composition', () => {
@@ -9,6 +9,10 @@ test('Eclipse keeps its original dimensions and focal metadata while Home shows 
   expect(getHomeArtworkImageStyle(ECLIPSE_ARTWORK)).toEqual({
     objectFit: 'contain', objectPosition: '50% 50%', backgroundColor: ECLIPSE_ARTWORK.mat,
   })
+})
+
+test('the immediate default keeps the verified gallery metadata', () => {
+  expect(DEFAULT_HOME_ARTWORK).toEqual(homeArtworkCatalog.find(asset => asset.id === DEFAULT_HOME_ARTWORK.id))
 })
 
 test('all Home artworks contain their complete original composition with their own mat', () => {

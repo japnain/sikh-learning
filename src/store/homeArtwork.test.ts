@@ -3,14 +3,14 @@ import { homeArtworkCatalog } from '../data/homeArtworkCatalog'
 import { HOME_ARTWORK_COLLECTION_IDS, HOME_ARTWORK_STORAGE_KEY, getHomeArtworkId, normalizeHomeArtworkPreference, useHomeArtworkStore } from './homeArtwork'
 
 beforeEach(() => {
-  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: 'eclipse', visitIndex: -1, pendingVisit: false, activeVisitToken: null, lastVisitToken: null })
+  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: useHomeArtworkStore.getInitialState().selectedId, visitIndex: -1, pendingVisit: false, activeVisitToken: null, lastVisitToken: null })
   localStorage.clear()
 })
 
-test('defaults to Eclipse and keeps rotation aligned with the complete gallery', () => {
-  expect(getHomeArtworkId(useHomeArtworkStore.getState())).toBe('eclipse')
+test('defaults to Golden court assembly and keeps rotation aligned with the complete gallery', () => {
+  expect(getHomeArtworkId(useHomeArtworkStore.getState())).toBe('golden-court-assembly')
   expect(HOME_ARTWORK_COLLECTION_IDS).toEqual(homeArtworkCatalog.map(asset => asset.id))
-  expect(normalizeHomeArtworkPreference({ mode: 'invalid', selectedId: 'unknown' })).toEqual({ mode: 'fixed', selectedId: 'eclipse' })
+  expect(normalizeHomeArtworkPreference({ mode: 'invalid', selectedId: 'unknown' })).toEqual({ mode: 'fixed', selectedId: 'golden-court-assembly' })
 })
 
 test('daily rotation uses the local calendar and stays stable across a DST day', () => {
@@ -56,6 +56,14 @@ test('fixed artwork and rotation choice survive rehydration without persisting m
   localStorage.setItem(HOME_ARTWORK_STORAGE_KEY, stored)
   await useHomeArtworkStore.persist.rehydrate()
   expect(getHomeArtworkId(useHomeArtworkStore.getState())).toBe('court-mural')
+})
+
+test('existing Eclipse and rotation preferences survive the new default', async () => {
+  for (const mode of ['fixed', 'daily', 'visit'] as const) {
+    localStorage.setItem(HOME_ARTWORK_STORAGE_KEY, JSON.stringify({ state: { mode, selectedId: 'eclipse' }, version: 1 }))
+    await useHomeArtworkStore.persist.rehydrate()
+    expect(useHomeArtworkStore.getState()).toMatchObject({ mode, selectedId: 'eclipse' })
+  }
 })
 
 test('storage failure preserves a usable in-memory selection and reports it to the caller', () => {

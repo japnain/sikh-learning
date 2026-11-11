@@ -11,6 +11,7 @@ import {
   useNitemStore,
 } from './nitnem'
 import { useSundarGutkaLengthStore } from './sundarGutkaLength'
+import { useScriptureCacheStore } from './scriptureCache'
 
 beforeEach(() => {
   vi.useFakeTimers()
@@ -283,6 +284,68 @@ test('storage access failure does not mutate a completion in memory', () => {
   expect(useNitnemHistoryStore.getState().events).toEqual([])
   expect(useActivityEventsStore.getState().pendingEvents).toEqual([])
   read.mockRestore()
+})
+
+test.each(['sikh-nitnem', 'naamras-nitnem-history', 'naamras-cloud-activity-events'])(
+  'completion recovers from cache pressure at %s and persists exactly once', async failedKey => {
+    const entry = { id: 'G-1-1', scripture: 'SGGS', ang: 1, gurmukhi: 'ੴ', transliteration: 'ik', translation_en: 'One', translation_hi: '', translation_pa: '', words: [] }
+    useScriptureCacheStore.getState().clearAll()
+    useScriptureCacheStore.getState().setAng('G', 1, [entry])
+    useScriptureCacheStore.getState().setStudyEntry(entry)
+    localStorage.setItem('sikh-bookmarks', 'personal saved items')
+    localStorage.setItem('naamras-bani-reading-v1:2:short', 'prepared offline reading')
+    const realWrite = localStorage.setItem.bind(localStorage)
+    const write = vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+      const cache = JSON.parse(localStorage.getItem('sikh-scripture-cache')!)
+      if (key === failedKey && Object.keys(cache.state.angCache).length > 0) {
+        throw new DOMException('The quota has been exceeded.', 'QuotaExceededError')
+      }
+      realWrite(key, value)
+    })
+    try {
+      expect(setNitnemCompletionSafely('japji-sahib', true)).toBe('changed')
+      expect(setNitnemCompletionSafely('japji-sahib', true)).toBe('unchanged')
+      await useActivityEventsStore.persist.rehydrate()
+      await useNitnemHistoryStore.persist.rehydrate()
+      await useNitemStore.persist.rehydrate()
+      expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(true)
+      expect(useNitnemHistoryStore.getState().events).toHaveLength(1)
+      expect(useActivityEventsStore.getState().pendingEvents).toHaveLength(1)
+      expect(useScriptureCacheStore.getState().getAng('G', 1)).toBeUndefined()
+      expect(useScriptureCacheStore.getState().studyEntries).toEqual([entry])
+      expect(localStorage.getItem('sikh-bookmarks')).toBe('personal saved items')
+      expect(localStorage.getItem('naamras-bani-reading-v1:2:short')).toBe('prepared offline reading')
+      expect(setNitnemCompletionSafely('japji-sahib', false)).toBe('changed')
+      expect(useNitnemHistoryStore.getState().events.map(event => event.completed)).toEqual([true, false])
+    } finally { write.mockRestore() }
+  },
+)
+
+test('unrecoverable quota failure stops after one retry without recording a false completion', () => {
+  useScriptureCacheStore.getState().clearAll()
+  useScriptureCacheStore.getState().setWords(1, [{ gurmukhi: 'ੴ', transliteration: 'ik', meaning_en: 'Cached meaning'.repeat(100), meaning_hi: '', meaning_pa: '' }])
+  const realWrite = localStorage.setItem.bind(localStorage)
+  const write = vi.spyOn(localStorage, 'setItem').mockImplementation((key, value) => {
+    if (key === 'naamras-cloud-activity-events') throw new DOMException('Full', 'QuotaExceededError')
+    realWrite(key, value)
+  })
+  try {
+    expect(setNitnemCompletionSafely('japji-sahib', true)).toBe('failed')
+    expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(false)
+    expect(useNitnemHistoryStore.getState().events).toEqual([])
+    expect(useActivityEventsStore.getState().pendingEvents).toEqual([])
+    const attemptedCompletions = write.mock.calls.filter(([key, value]) => key === 'naamras-cloud-activity-events' && JSON.parse(value).state.pendingEvents.length > 0)
+    expect(attemptedCompletions).toHaveLength(2)
+  } finally { write.mockRestore() }
+})
+
+test('a storage access restriction leaves the downloaded cache alone', () => {
+  useScriptureCacheStore.getState().setWords(1, [{ gurmukhi: 'ੴ', transliteration: 'ik', meaning_en: 'One', meaning_hi: '', meaning_pa: '' }])
+  const cached = localStorage.getItem('sikh-scripture-cache')
+  const write = vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new DOMException('Access denied', 'SecurityError') })
+  expect(setNitnemCompletionSafely('japji-sahib', true)).toBe('failed')
+  expect(localStorage.getItem('sikh-scripture-cache')).toBe(cached)
+  write.mockRestore()
 })
 
 test('safe completion respects an opt-out and resolves the local day at the action', () => {

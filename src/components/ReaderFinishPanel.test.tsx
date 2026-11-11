@@ -8,6 +8,8 @@ import { useNitnemHistoryStore } from '../store/nitnemHistory'
 import { useNitnemPracticeStore } from '../store/nitnemPractice'
 import { useProgressStore } from '../store/progress'
 import { useReadingPlacesStore } from '../store/readingPlaces'
+import { useScriptureCacheStore } from '../store/scriptureCache'
+import { limitLocalStorageToCurrentSize } from '../test/storageQuota'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { clearHomeNitnemReturn, getHomeNitnemReturn } from '../utils/homeNitnemNavigation'
 import ReaderFinishPanel from './ReaderFinishPanel'
@@ -293,6 +295,26 @@ test('a failed save shows a retryable message and keeps the reading uncompleted'
   expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   expect(useNitnemHistoryStore.getState().events).toHaveLength(1)
 })
+
+test.each(['Mark complete for today', 'Complete & continue'])(
+  'reader %s recovers from full storage and records one durable completion', async button => {
+    useScriptureCacheStore.getState().setAng('G', 1, [{
+      id: 'G-1-1', scripture: 'SGGS', ang: 1, gurmukhi: 'ੴ', transliteration: 'ik',
+      translation_en: 'Cached translation. '.repeat(1000), translation_hi: '', translation_pa: '', words: [],
+    }])
+    open()
+    const write = limitLocalStorageToCurrentSize()
+    fireEvent.click(screen.getByRole('button', { name: button }))
+    expect(screen.getByRole('status')).toHaveTextContent('Completed for today')
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    await act(async () => { await useNitemStore.persist.rehydrate() })
+    expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(true)
+    expect(useNitnemHistoryStore.getState().events).toHaveLength(1)
+    expect(useActivityEventsStore.getState().pendingEvents).toHaveLength(1)
+    expect(screen.getByTestId('destination')).toHaveTextContent(pathFor(button === 'Complete & continue' ? 'jaap-sahib' : 'japji-sahib'))
+    write.mockRestore()
+  },
+)
 
 test('a completed routine has a calm return action and never advances automatically', () => {
   useNitemStore.getState().markComplete('japji-sahib')

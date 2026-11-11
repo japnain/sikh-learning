@@ -57,6 +57,17 @@ const KOSH_CACHE_LIMIT = 120
 const REHAT_CHAPTER_LIST_CACHE_LIMIT = 20
 const REHAT_CHAPTER_CACHE_LIMIT = 40
 
+// These are downloaded copies. Studied entries, personal data and explicitly
+// prepared offline banis live separately and must survive storage recovery.
+const REBUILDABLE_CACHE_EMPTY = {
+  angCache: {}, angOrder: [], completeAngKeys: [],
+  wordCache: {}, wordOrder: [],
+  mahankoshCache: {}, mahankoshOrder: [],
+  banidbKoshCache: {}, banidbKoshOrder: [],
+  rehatList: [], rehatChapterListCache: {}, rehatChapterListOrder: [],
+  rehatChapterCache: {}, rehatChapterOrder: [],
+}
+
 function applyBoundedCache<T>(
   cache: Record<string, T>,
   order: string[],
@@ -227,3 +238,22 @@ export const useScriptureCacheStore = create<ScriptureCacheState>()(
     { name: 'sikh-scripture-cache' }
   )
 )
+
+/** Make room for an explicit personal-data save after a browser quota error. */
+export function releaseRebuildableScriptureCache(): boolean {
+  try {
+    const key = 'sikh-scripture-cache'
+    const previous = localStorage.getItem(key)
+    if (!previous) return false
+    const persisted: unknown = JSON.parse(previous)
+    if (!persisted || typeof persisted !== 'object' || !('state' in persisted)
+      || !persisted.state || typeof persisted.state !== 'object' || Array.isArray(persisted.state)) return false
+    const compact = JSON.stringify({ ...persisted, state: { ...persisted.state, ...REBUILDABLE_CACHE_EMPTY } })
+    if (compact.length >= previous.length) return false
+    // Write before updating the store: a blocked write must not discard the
+    // usable session cache. Rehydrate prevents the next cache write refilling it.
+    localStorage.setItem(key, compact)
+    void useScriptureCacheStore.persist.rehydrate()
+    return true
+  } catch { return false }
+}

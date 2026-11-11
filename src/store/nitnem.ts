@@ -6,6 +6,7 @@ import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils
 import { queueActivityEvent, useActivityEventsStore } from './activityEvents'
 import { getNitnemCompletedIds, getNitnemCompletionForDay, normalizeWeeklyDayGoal, useNitnemHistoryStore } from './nitnemHistory'
 import { getExactReadingKey } from './readingPlaces'
+import { releaseRebuildableScriptureCache } from './scriptureCache'
 
 export type NitnemGroup = 'Morning' | 'Evening' | 'Night' | 'Additional'
 
@@ -563,6 +564,11 @@ export const useNitemStore = create<NitemState>()(
 
 export type NitnemCompletionResult = 'changed' | 'unchanged' | 'unavailable' | 'failed'
 
+function isStorageQuotaError(error: unknown): boolean {
+  if (!error || typeof error !== 'object' || !('name' in error)) return false
+  return error.name === 'QuotaExceededError' || error.name === 'NS_ERROR_DOM_QUOTA_REACHED'
+}
+
 /** Keep an explicit completion honest if any of its three local writes fails. */
 export function setNitnemCompletionSafely(id: string, completed: boolean, readingPath?: string): NitnemCompletionResult {
   const routine = useNitemStore.getState()
@@ -581,27 +587,33 @@ export function setNitnemCompletionSafely(id: string, completed: boolean, readin
   } catch {
     return 'failed'
   }
-  try {
-    if (completed) routine.markComplete(id, readingPath)
-    else routine.unmarkComplete(id, readingPath)
-    return 'changed'
-  } catch {
-    // Zustand persistence updates memory before writing. Restore both sides; a
-    // storage exception must not leave an apparently successful completion.
-    const rollbacks = [
-      () => useNitemStore.setState({ completedDate: routine.completedDate, completedIds: routine.completedIds }),
-      () => useNitnemHistoryStore.setState({ events: history.events }),
-      () => useActivityEventsStore.setState({ pendingEvents: activity.pendingEvents }),
-    ]
-    for (const rollback of rollbacks) {
-      try { rollback() } catch { /* The memory update still precedes a failed write. */ }
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      if (completed) routine.markComplete(id, readingPath)
+      else routine.unmarkComplete(id, readingPath)
+      return 'changed'
+    } catch (error) {
+      // Zustand persistence updates memory before writing. Restore both sides; a
+      // storage exception must not leave an apparently successful completion.
+      const rollbacks = [
+        () => useNitemStore.setState({ completedDate: routine.completedDate, completedIds: routine.completedIds }),
+        () => useNitnemHistoryStore.setState({ events: history.events }),
+        () => useActivityEventsStore.setState({ pendingEvents: activity.pendingEvents }),
+      ]
+      for (const rollback of rollbacks) {
+        try { rollback() } catch { /* The memory update still precedes a failed write. */ }
+      }
+      keys.forEach((key, index) => {
+        try {
+          if (persisted[index] === null) localStorage.removeItem(key)
+          else localStorage.setItem(key, persisted[index]!)
+        } catch { /* Keep the UI retryable when device storage remains unavailable. */ }
+      })
+      // Both Home and Reader use this transaction. Roll back the partial event
+      // first, then retry once after reclaiming only replaceable downloaded data.
+      if (attempt === 0 && isStorageQuotaError(error) && releaseRebuildableScriptureCache()) continue
+      return 'failed'
     }
-    keys.forEach((key, index) => {
-      try {
-        if (persisted[index] === null) localStorage.removeItem(key)
-        else localStorage.setItem(key, persisted[index]!)
-      } catch { /* Keep the UI retryable when device storage remains unavailable. */ }
-    })
-    return 'failed'
   }
+  return 'failed'
 }

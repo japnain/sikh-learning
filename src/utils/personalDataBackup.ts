@@ -15,6 +15,7 @@ import '../store/stories'
 import '../store/vocab'
 import { getLocalCollectionSnapshotKeys, readResolvedLocalCollection, replaceLocalCollectionsFromLegacy } from './localCollection'
 import { resetReaderPresentationSessionPreference } from './readerPresentation'
+import { DEFAULT_HOME_ARTWORK } from './homeArtwork'
 
 export const PERSONAL_BACKUP_MAX_BYTES = 16 * 1024 * 1024
 const FORMAT = 'naamras-personal-data'
@@ -73,7 +74,7 @@ const domains = {
   'sikh-onboarding': { version: 0, defaults: { hasCompletedOnboarding: false, isOnboardingOpen: false, presentationMode: 'overlay', learningLevel: 'beginner', audience: 'adult', learningGoal: 'read' }, check: shape({ hasCompletedOnboarding: bool, isOnboardingOpen: bool, presentationMode: oneOf('first-run', 'overlay'), learningLevel: oneOf('beginner', 'familiar', 'daily-reader'), audience: oneOf('child', 'teen', 'adult'), learningGoal: oneOf('read', 'understand', 'habit') }) },
   'sikh-sundar-gutka-lengths': { version: 2, defaults: { lengths: DEFAULT_SUNDAR_GUTKA_LENGTHS }, check: shape({ lengths: value => map(oneOf('short', 'medium', 'long', 'extralong'))(value) && Object.keys(value as RecordValue).every(key => key in DEFAULT_SUNDAR_GUTKA_LENGTHS) }) },
   'sikh-epub-reader-preferences': { version: 1, defaults: { fontScale: 1, lineHeight: 'comfortable', measure: 'standard', palette: 'paper' }, check: shape({ fontScale: number(0.85, 2), lineHeight: oneOf('compact', 'comfortable', 'spacious'), measure: oneOf('narrow', 'standard', 'wide'), palette: oneOf('paper', 'sepia', 'night') }) },
-  'naamras-home-artwork': { version: 1, defaults: { mode: 'fixed', selectedId: 'eclipse', visitIndex: -1, pendingVisit: false }, check: shape({ mode: oneOf('fixed', 'daily', 'visit'), selectedId: nonempty, visitIndex: number(-1, 100), pendingVisit: bool }) },
+  'naamras-home-artwork': { version: 1, defaults: { mode: 'fixed', selectedId: DEFAULT_HOME_ARTWORK.id, visitIndex: -1, pendingVisit: false }, check: shape({ mode: oneOf('fixed', 'daily', 'visit'), selectedId: nonempty, visitIndex: number(-1, 100), pendingVisit: bool }) },
   'sikh-music': { version: 2, defaults: { selectedSoundId: null, selectedPresetId: null, volume: 0.6 }, check: shape({ selectedSoundId: nullable(text), selectedPresetId: nullable(oneOf('settle', 'focus', 'night')), volume: number(0, 1) }) },
   'sikh-recitation': { version: 0, defaults: { currentShabadId: null, currentTime: 0, playbackRate: 1 }, check: shape({ currentShabadId: nullable(integer), currentTime: number(), playbackRate: number(0.25, 4) }) },
   'sikh-vocab': { version: 0, defaults: { vocab: [] }, check: shape({ vocab: list(vocab) }) },

@@ -25,6 +25,7 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
+import { limitLocalStorageToCurrentSize } from '../test/storageQuota'
 
 function renderHome() {
   const view = render(<MemoryRouter><Home /></MemoryRouter>)
@@ -362,6 +363,23 @@ test('a failed Home completion stays uncompleted and retries without duplicate h
   const navigator = openAllBanis()
   expect(within(navigator).getByRole('button', { name: 'Undo completion: Japji Sahib' })).toHaveAttribute('aria-pressed', 'true')
   expect(useNitnemHistoryStore.getState().events).toHaveLength(1)
+})
+
+test('Home completes and undoes a bani when downloaded cache has filled storage', async () => {
+  useNitemStore.setState({ completionTrackingEnabled: true })
+  useScriptureCacheStore.getState().setAng('G', 1, [{ ...buildReadyHukamnama().data!.entry, translation_en: 'Cached translation. '.repeat(1000) }])
+  renderHome()
+  const write = limitLocalStorageToCurrentSize()
+  fireEvent.click(screen.getByRole('button', { name: 'Mark complete: Japji Sahib' }))
+  expect(screen.getByTestId('home-nitnem-summary')).toHaveTextContent(`1 of ${DEFAULT_NITNEM_OPTION_IDS.length} complete today`)
+  expect(screen.queryByText('This change could not be saved. Please try again.')).not.toBeInTheDocument()
+  await act(async () => { await useNitemStore.persist.rehydrate() })
+  expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(true)
+  const navigator = openAllBanis()
+  fireEvent.click(within(navigator).getByRole('button', { name: 'Undo completion: Japji Sahib' }))
+  expect(useNitemStore.getState().isComplete('japji-sahib')).toBe(false)
+  expect(useNitnemHistoryStore.getState().events.map(event => event.completed)).toEqual([true, false])
+  write.mockRestore()
 })
 
 test('derives the week and streak from completion history rather than reading activity', () => {
