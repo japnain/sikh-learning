@@ -17,7 +17,11 @@ The client discovers enabled Apple/email methods from public Auth settings and h
 
 ## Audio and optional features
 
-Leave `VITE_SUPABASE_AUDIO_BUCKET` blank to use bundled ambient audio. Configure it only after the files exist in a public bucket; configuring cloud accounts alone does not switch audio storage.
+Leave `VITE_SUPABASE_AUDIO_BUCKET` blank to use bundled ambient audio. To use backend audio, upload all six files from `public/audio/ambient/` to the public `naamras-audio` bucket under `ambient/`, verify them, and then configure `VITE_SUPABASE_AUDIO_BUCKET=naamras-audio` and `VITE_SUPABASE_AUDIO_PREFIX=ambient` in the deployment environment. Configuring cloud accounts alone does not switch audio storage.
+
+The public bucket permits playback without a user account. Do not add anonymous or authenticated upload, update, or delete policies: only the administrative upload workflow should manage these objects. Object URLs need no credential in their query string, and privileged upload credentials must never appear in browser code or committed configuration.
+
+The player tries backend audio first and retries the corresponding local MP3 once if playback cannot start. Keep the source copies during this migration so existing web builds and packaged native apps retain that fallback. A source copy in the repository does not mean it is downloaded for offline web use: the service worker does not precache MP3s. All six files total 43,809,438 bytes (41.78 MiB).
 
 `generate-study-response` is not deployed. Keep `VITE_SUPABASE_ENABLE_STUDY_AI` disabled unless a separately reviewed implementation is deployed. This is not required for reading or saved-state backup.
 

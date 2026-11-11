@@ -36,7 +36,7 @@ npm run dev
 
 ## Release Configuration
 
-Public Support and Privacy URLs, the Supabase project URL, and its browser publishable key are committed in `.env.production`. These client identifiers are public; Auth, RLS, and authenticated Edge Functions enforce access. No secret or service-role key belongs in a `VITE_` variable. Use `.env.example` when configuring another environment:
+Production configuration is stored in Vercel environment variables, outside Git. Copy `.env.example` to an ignored `.env.local` for development or `.env.production.local` for local production builds. Set the Support and Privacy URLs, Supabase project URL and browser publishable key explicitly for each environment. These client identifiers remain visible in the browser; Auth, RLS, and authenticated Edge Functions enforce access. No secret or service-role key belongs in a `VITE_` variable. Preview builds must not inherit production backend access by default. Use `.env.example` when configuring another environment:
 
 - `VITE_APP_VERSION`: release version included in anonymous diagnostics
 - `VITE_SUPPORT_URL`: verified public HTTPS support page
