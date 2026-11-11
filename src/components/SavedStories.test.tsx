@@ -43,6 +43,8 @@ beforeEach(() => {
 
 describe('SavedStories', () => {
   it('removes and restores a story without losing its reading position', async () => {
+    const originalSavedAt = '2025-01-01T00:00:00.000Z'
+    useStoryStore.setState({ saved: { [summary.id]: { ...summary, savedAt: originalSavedAt } } })
     const user = userEvent.setup()
     open()
     expect(screen.getByRole('link', { name: /The Bread at Lalo’s Table/ })).toHaveTextContent('In progress')
@@ -54,7 +56,7 @@ describe('SavedStories', () => {
 
     await user.click(screen.getByRole('button', { name: 'Undo' }))
     expect(screen.getByRole('link', { name: /The Bread at Lalo’s Table/ })).toBeInTheDocument()
-    expect(useStoryStore.getState().saved[summary.id]).toMatchObject(summary)
+    expect(useStoryStore.getState().saved[summary.id]).toMatchObject({ ...summary, savedAt: originalSavedAt })
     expect(JSON.parse(localStorage.getItem(STORY_STATE_STORAGE_KEY)!)).toMatchObject({
       saved: { [summary.id]: { title: summary.title } },
       positions: { [summary.id]: { paragraphId: 'p3', progress: 0.4 } },

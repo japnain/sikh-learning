@@ -11,6 +11,10 @@ import { DEFAULT_SUNDAR_GUTKA_LENGTHS } from '../store/sundarGutkaLength'
 import { toLocalDayStamp } from './localDates'
 import { READER_PRESENTATION_CHANGED_EVENT } from './readerPresentation'
 import { normalizeReaderTextSize } from './readerTextSize'
+import '../store/stories'
+import '../store/vocab'
+import { getLocalCollectionSnapshotKeys, readResolvedLocalCollection, replaceLocalCollectionsFromLegacy } from './localCollection'
+import { resetReaderPresentationSessionPreference } from './readerPresentation'
 
 export const PERSONAL_BACKUP_MAX_BYTES = 16 * 1024 * 1024
 const FORMAT = 'naamras-personal-data'
@@ -132,23 +136,69 @@ export function parsePersonalDataBackup(raw: string): PersonalDataBackup {
     || Object.keys(value).some(key => !['format', 'version', 'createdAt', 'data'].includes(key))) throw new Error('backup-format')
   return { format: FORMAT, version: 1, createdAt: value.createdAt as string, data: normalizeData(value.data) }
 }
-export function createPersonalDataBackup(storage: Storage = localStorage): PersonalDataBackup {
+/** Only presentation preferences can be recovered with defaults. Reading data stays strict. */
+const OPTIONAL_PREFERENCE_KEYS = new Set([
+  'sikh-language', 'sikh-ui-locale', 'sikh-theme', 'sikh-onboarding',
+  'sikh-sundar-gutka-lengths', 'sikh-epub-reader-preferences', 'naamras-home-artwork',
+  'sikh-music', 'sikh-recitation', 'naamras-reader-presentation', 'naamras-ui-disclosure',
+])
+export interface PersonalDataBackupResult { backup: PersonalDataBackup; omittedPreferences: string[] }
+
+export function createPersonalDataBackupResult(storage: Storage = localStorage): PersonalDataBackupResult {
   const data: Record<string, unknown> = {}
-  for (const [key, domain] of Object.entries(domains)) {
-    const raw = storage.getItem(key)
-    data[key] = raw ? JSON.parse(raw) : { version: domain.version, state: domain.defaults }
+  const omittedPreferences: string[] = []
+  const recoverPreference = (key: string, read: () => unknown, fallback: unknown) => {
+    try { return read() } catch (error) {
+      if (!OPTIONAL_PREFERENCE_KEYS.has(key)) throw error
+      omittedPreferences.push(key)
+      return structuredClone(fallback)
+    }
   }
-  // Earlier focused readers allowed 36–38px. The live language store clamps
-  // those values on hydration without rewriting its unchanged storage version.
-  const language = (data['sikh-language'] as { state?: RecordValue })?.state
-  if (language && number(16, 38)(language.fontSize)) language.fontSize = normalizeReaderTextSize(language.fontSize)
-  data['sikh-bookmarks'] = normalizeStoredBookmarks(JSON.parse(storage.getItem('sikh-bookmarks') ?? '[]'))
-  data['sikh-favorites'] = { version: 0, state: { favorites: normalizeStoredFavorites(JSON.parse(storage.getItem('sikh-favorites') ?? 'null')) } }
-  data['naamras-story-state-v1'] = JSON.parse(storage.getItem('naamras-story-state-v1') ?? '{"version":1,"saved":{},"positions":{}}')
-  data['naamras-reader-presentation'] = storage.getItem('naamras-reader-presentation')
-  data['naamras-ui-disclosure'] = JSON.parse(storage.getItem('naamras-ui-disclosure') ?? '{}')
-  return parsePersonalDataBackup(JSON.stringify({ format: FORMAT, version: 1, createdAt: new Date().toISOString(), data }))
+  for (const [key, domain] of Object.entries(domains)) {
+    // Storage failures are not corrupt preferences: keep them visible to the caller.
+    const raw = readResolvedLocalCollection(key, storage)
+    const fallback = { version: domain.version, state: domain.defaults }
+    data[key] = recoverPreference(key, () => {
+      const value = raw === null ? structuredClone(fallback) : JSON.parse(raw)
+      checkTree(value)
+      if (!OPTIONAL_PREFERENCE_KEYS.has(key)) return value
+      if (!record(value) || value.version !== domain.version || !record(value.state)
+        || Object.keys(value).some(field => field !== 'state' && field !== 'version')) throw new Error('preference-version')
+      const state: RecordValue = { ...domain.defaults, ...value.state }
+      // Older readers allowed 36–38px; preserve their supported migration.
+      if (key === 'sikh-language' && number(16, 38)(state.fontSize)) state.fontSize = normalizeReaderTextSize(state.fontSize)
+      if (!domain.check(state)) throw new Error('preference-state')
+      return { version: domain.version, state }
+    }, fallback)
+  }
+  const bookmarkData = JSON.parse(readResolvedLocalCollection('sikh-bookmarks', storage) ?? '[]')
+  const bookmarkRows = Array.isArray(bookmarkData) ? bookmarkData : bookmarkData?.state?.bookmarks
+  if (!bookmarks(bookmarkRows)) throw new Error('bookmarks')
+  data['sikh-bookmarks'] = normalizeStoredBookmarks(bookmarkRows)
+  const favoriteData = JSON.parse(readResolvedLocalCollection('sikh-favorites', storage) ?? '[]')
+  const favoriteRows = Array.isArray(favoriteData) ? favoriteData : favoriteData?.state?.favorites
+  if (!favorites(favoriteRows)) throw new Error('favorites')
+  data['sikh-favorites'] = { version: 0, state: { favorites: normalizeStoredFavorites(favoriteRows) } }
+  data['naamras-story-state-v1'] = JSON.parse(readResolvedLocalCollection('naamras-story-state-v1', storage) ?? '{"version":1,"saved":{},"positions":{}}')
+  const presentation = storage.getItem('naamras-reader-presentation')
+  data['naamras-reader-presentation'] = recoverPreference('naamras-reader-presentation', () => {
+    if (!oneOf('read', 'study', null)(presentation)) throw new Error('presentation')
+    return presentation
+  }, null)
+  const disclosure = storage.getItem('naamras-ui-disclosure')
+  data['naamras-ui-disclosure'] = recoverPreference('naamras-ui-disclosure', () => {
+    const value = JSON.parse(disclosure ?? '{}')
+    checkTree(value)
+    if (!map(bool)(value)) throw new Error('disclosure')
+    return value
+  }, {})
+  return { backup: parsePersonalDataBackup(JSON.stringify({ format: FORMAT, version: 1, createdAt: new Date().toISOString(), data })), omittedPreferences }
 }
+
+export function createPersonalDataBackup(storage: Storage = localStorage): PersonalDataBackup {
+  return createPersonalDataBackupResult(storage).backup
+}
+
 const stateOf = (backup: PersonalDataBackup, key: string): RecordValue => (backup.data[key] as { state: RecordValue }).state
 const rows = (value: unknown) => value as RecordValue[]
 function latest(left: unknown, right: unknown, clock = 'updatedAt') {
@@ -224,7 +274,7 @@ async function preparePersonalStores() {
     import('../store/readingVisibility'),
   ])
   const [{ useBookmarksStore }, { useFavoritesStore }, { useStoryStore }] = await Promise.all([import('../store/bookmarks'), import('../store/favorites'), import('../store/stories')])
-  type Store = { getState: () => unknown; setState: (value: unknown, replace: true) => void; persist?: { rehydrate: () => Promise<void> | void } }
+  type Store = { getState: () => unknown; setState: (value: unknown, replace: true) => void; persist?: { rehydrate: () => Promise<void> | void; captureRollback?: () => (() => void) } }
   const persisted = modules.flatMap(module => Object.values(module)).filter(value => typeof value === 'function' && 'persist' in value) as unknown as Store[]
   const stores = [...persisted, useBookmarksStore, useFavoritesStore, useStoryStore] as unknown as Store[]
   return {
@@ -233,22 +283,28 @@ async function preparePersonalStores() {
       useBookmarksStore.getState().hydrateCachedBookmarks()
       useFavoritesStore.getState().hydrateCachedFavorites()
       useStoryStore.getState().hydrateCachedStories()
-      window.dispatchEvent(new CustomEvent(READER_PRESENTATION_CHANGED_EVENT, { detail: localStorage.getItem('naamras-reader-presentation') }))
+      const presentation = localStorage.getItem('naamras-reader-presentation')
+      resetReaderPresentationSessionPreference()
+      window.dispatchEvent(new CustomEvent(READER_PRESENTATION_CHANGED_EVENT, { detail: presentation }))
     },
     captureRollback: () => {
       const originals = stores.map(store => store.getState())
+      const restoreSessionState = stores.map(store => store.persist?.captureRollback?.())
       return () => {
         // Zustand updates memory before its persistence write; continue restoring
         // every mounted store even if disk writes remain blocked.
         stores.forEach((store, index) => { try { store.setState(originals[index], true) } catch { /* Raw storage is restored separately below. */ } })
+        restoreSessionState.forEach(restore => restore?.())
         modules[2].applyThemeToDocument(modules[2].useThemeStore.getState().dark)
       }
     },
   }
 }
 
+type RestoreOptions = { storage?: Storage; rehydrate?: () => Promise<void>; pauseSync?: () => ((safeToResume?: boolean) => void) }
+
 /** Writes are verified before mounted stores change; any failure rolls back every touched key. */
-export async function restorePersonalDataBackup(input: PersonalDataBackup, mode: RestoreMode, options: { storage?: Storage; rehydrate?: () => Promise<void>; pauseSync?: () => ((safeToResume?: boolean) => void) } = {}) {
+export async function restorePersonalDataBackupResult(input: PersonalDataBackup, mode: RestoreMode, options: RestoreOptions = {}): Promise<PersonalDataBackupResult> {
   const storage = options.storage ?? localStorage
   const validated = parsePersonalDataBackup(JSON.stringify(input))
   const pauseSync = options.pauseSync ?? (await import('../supabase/runtime')).pauseCloudSyncForRestore
@@ -264,9 +320,11 @@ export async function restorePersonalDataBackup(input: PersonalDataBackup, mode:
     // Imports may yield to an in-flight cloud response or another local action.
     // Pause first, then capture the rollback baseline with no await before writes.
     rollbackStores = prepared?.captureRollback()
-    const writeKeys = mode === 'replace' ? [...PERSONAL_DATA_KEYS, READING_VISIBILITY_KEY] : PERSONAL_DATA_KEYS
+    const snapshotKeys = getLocalCollectionSnapshotKeys()
+    const writeKeys = [...PERSONAL_DATA_KEYS, ...snapshotKeys, ...(mode === 'replace' ? [READING_VISIBILITY_KEY] : [])]
     previous = new Map(writeKeys.map(key => [key, storage.getItem(key)]))
-    const result = mode === 'merge' ? mergePersonalDataBackups(createPersonalDataBackup(storage), validated, storage) : validated
+    const current = mode === 'merge' ? createPersonalDataBackupResult(storage) : null
+    const result = current ? mergePersonalDataBackups(current.backup, validated, storage) : validated
     stateOf(result, 'sikh-onboarding').isOnboardingOpen = false
     stateOf(result, 'sikh-onboarding').presentationMode = 'overlay'
     for (const key of PERSONAL_DATA_KEYS) {
@@ -290,11 +348,15 @@ export async function restorePersonalDataBackup(input: PersonalDataBackup, mode:
       storage.setItem(READING_VISIBILITY_KEY, visibleShelf)
       if (storage.getItem(READING_VISIBILITY_KEY) !== visibleShelf) throw new Error('write-not-persisted')
     }
+    touched.push(...snapshotKeys)
+    replaceLocalCollectionsFromLegacy(storage)
     storesStarted = true
     await (options.rehydrate ?? prepared!.apply)()
-    return result
+    return { backup: result, omittedPreferences: current?.omittedPreferences ?? [] }
   } catch (error) {
-    if (storesStarted) rollbackStores?.()
+    if (storesStarted) {
+      try { rollbackStores?.() } catch { rollbackFailed = true }
+    }
     for (const key of touched.reverse()) {
       try {
         const old = previous.get(key) ?? null
@@ -305,8 +367,17 @@ export async function restorePersonalDataBackup(input: PersonalDataBackup, mode:
       } catch { rollbackFailed = true }
     }
     if (storesStarted && options.rehydrate) { try { await options.rehydrate() } catch { rollbackFailed = true } }
-    if (storesStarted && typeof window !== 'undefined') window.dispatchEvent(new CustomEvent(READER_PRESENTATION_CHANGED_EVENT, { detail: storage.getItem('naamras-reader-presentation') }))
+    if (storesStarted && typeof window !== 'undefined') {
+      try { window.dispatchEvent(new CustomEvent(READER_PRESENTATION_CHANGED_EVENT, { detail: storage.getItem('naamras-reader-presentation') })) }
+      catch { rollbackFailed = true }
+    }
     if (rollbackFailed) throw new Error('restore-rollback-failed', { cause: error })
     throw new Error('restore-failed', { cause: error })
   } finally { resume(!rollbackFailed) }
+}
+
+
+/** Compatibility API for callers that only need the restored personal data. */
+export async function restorePersonalDataBackup(input: PersonalDataBackup, mode: RestoreMode, options: RestoreOptions = {}): Promise<PersonalDataBackup> {
+  return (await restorePersonalDataBackupResult(input, mode, options)).backup
 }

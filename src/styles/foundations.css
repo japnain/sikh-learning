@@ -13,8 +13,7 @@
 }
 
 [data-page]:not([data-page='home']):not([data-page='onboarding']) .section-shell,
-[data-page]:not([data-page='home']):not([data-page='onboarding']) .surface-primary,
-[data-page]:not([data-page='home']):not([data-page='onboarding']) .surface-spotlight {
+[data-page]:not([data-page='home']):not([data-page='onboarding']) .surface-primary {
   border-color: var(--nr-border);
   border-radius: var(--nr-radius-control);
   background: var(--nr-surface);

@@ -44,6 +44,7 @@
   [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] { grid-column: 1 / -1; }
   [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   [data-page='more'] [data-testid='more-translation-source'] { grid-column: 1 / -1; }
+  [data-page='more'] .more-reader-preview { grid-column: 1 / -1; }
 }
 [data-page='more'] .text-xs { font-size: .8125rem; line-height: 1.6; }
 [data-page='more'] button[aria-pressed='true'] { border-color: rgb(var(--color-text)); background: rgb(var(--color-text)); color: rgb(var(--color-bg)); }
@@ -57,12 +58,10 @@
 }
 
 .settings-block > .eyebrow { margin-bottom: .65rem; }
-[data-page='more'] > .more-appearance-grid > .settings-block {
-  padding: 1rem 0;
-  border: 0;
-  border-bottom: 1px solid rgb(var(--color-border) / .35);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-[data-page='more'] > .more-appearance-grid > .settings-block > p + p { margin-top: -.25rem; }
+[data-page='more'] > .more-appearance-grid > .settings-block > .eyebrow + p { margin-top: -.25rem; }
+/* Keep More's live sample readable before the reader route loads its styles. */
+.more-reader-preview [data-reader-support] { margin-top: .65rem; color: rgb(var(--color-text-muted)); font-size: calc(.96rem * var(--more-support-scale, 1)); line-height: 1.65; }
+.more-reader-preview [data-reader-support='transliteration'] { font-size: calc(.82rem * var(--more-support-scale, 1)); }
+.more-reader-preview[data-support-text-size='large'] { --more-support-scale: 1.15; }
+.more-reader-preview[data-support-text-size='extra-large'] { --more-support-scale: 1.3; }
+.more-reader-preview [data-reader-support].font-gurmukhi { font-size: calc(1.05rem * var(--more-support-scale, 1)); line-height: 1.9; }

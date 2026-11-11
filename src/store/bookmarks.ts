@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createLocalCollection } from '../utils/localCollection'
 import { persistBookmarkToCloud, removeBookmarkFromCloud } from '../supabase/bookmarks'
 import { createNaamrasObjectId } from '../supabase/device'
 import {
@@ -63,16 +64,6 @@ export function isBookBookmark(bookmark: Bookmark): bookmark is BookBookmark {
 
 export function isScriptureBookmark(bookmark: Bookmark): bookmark is ScriptureBookmark {
   return bookmark.type !== 'book'
-}
-
-function canUseStorage() {
-  if (typeof window === 'undefined') return false
-
-  try {
-    return typeof window.localStorage !== 'undefined'
-  } catch {
-    return false
-  }
 }
 
 function isOptionalString(value: unknown) {
@@ -186,26 +177,13 @@ export function normalizeStoredBookmarks(value: unknown): Bookmark[] {
   })
 }
 
-function readCachedBookmarks() {
-  if (!canUseStorage()) return []
-
-  try {
-    return normalizeStoredBookmarks(JSON.parse(window.localStorage.getItem(BOOKMARK_STORAGE_KEY) ?? 'null'))
-  } catch {
-    return []
-  }
-}
-
-function writeCachedBookmarks(bookmarks: Bookmark[]) {
-  if (!canUseStorage()) return false
-
-  try {
-    window.localStorage.setItem(BOOKMARK_STORAGE_KEY, JSON.stringify(bookmarks))
-    return true
-  } catch {
-    return false
-  }
-}
+const bookmarkCollection = createLocalCollection<Bookmark>({
+  storageKey: BOOKMARK_STORAGE_KEY,
+  getId: bookmark => bookmark.id,
+  normalize: normalizeStoredBookmark,
+  readLegacy: raw => normalizeStoredBookmarks(JSON.parse(raw ?? 'null')),
+  serializeLegacy: bookmarks => JSON.stringify(bookmarks),
+})
 
 function sameBookmarkLocation(left: Bookmark, right: NewBookmark | Bookmark) {
   if (left.type === 'book' || right.type === 'book') {
@@ -244,14 +222,6 @@ interface BookmarksState {
   getBookBookmark: (workId: string, chapterId: string) => BookBookmark | null
 }
 
-function setBookmarks(
-  set: (partial: Partial<BookmarksState> | ((state: BookmarksState) => Partial<BookmarksState>)) => void,
-  bookmarks: Bookmark[]
-) {
-  set({ bookmarks })
-  return writeCachedBookmarks(bookmarks)
-}
-
 function queueBookmarkActivity(eventType: 'added' | 'removed', bookmark: Bookmark, occurredAt?: string) {
   try {
     if (bookmark.type === 'book') {
@@ -284,18 +254,22 @@ function queueBookmarkActivity(eventType: 'added' | 'removed', bookmark: Bookmar
 export const useBookmarksStore = create<BookmarksState>()((set, get) => ({
   bookmarks: [],
   hydrateCachedBookmarks: () => {
-    set({ bookmarks: readCachedBookmarks() })
+    const bookmarks = bookmarkCollection.read(get().bookmarks)
+    if (JSON.stringify(bookmarks) !== JSON.stringify(get().bookmarks)) set({ bookmarks })
   },
   replaceBookmarks: (bookmarks) => {
     const normalized = normalizeStoredBookmarks(bookmarks)
-    const persisted = writeCachedBookmarks(normalized)
-    if (persisted) set({ bookmarks: normalized })
-    return persisted
+    const result = bookmarkCollection.replace(normalized, undefined, get().bookmarks)
+    if (result.persisted) set({ bookmarks: result.items })
+    return result.persisted
   },
   addBookmark: (input) => {
-    const existing = get().bookmarks.find(bookmark => sameBookmarkLocation(bookmark, input)) ?? null
+    const current = bookmarkCollection.read(get().bookmarks)
+    const existing = current.find(bookmark => sameBookmarkLocation(bookmark, input)) ?? null
     if (existing) {
-      return { item: existing, changed: false, persisted: writeCachedBookmarks(get().bookmarks) }
+      const result = bookmarkCollection.put(existing, current)
+      set({ bookmarks: result.items })
+      return { item: existing, changed: false, persisted: result.persisted }
     }
 
     const bookmark = {
@@ -303,7 +277,9 @@ export const useBookmarksStore = create<BookmarksState>()((set, get) => ({
       id: createNaamrasObjectId('bookmark'),
       savedAt: new Date().toISOString(),
     } as Bookmark
-    const persisted = setBookmarks(set, [...get().bookmarks, bookmark])
+    const result = bookmarkCollection.put(bookmark, current)
+    set({ bookmarks: result.items })
+    const persisted = result.persisted
     useSavedFeedbackStore.getState().recordSaved({
       kind: 'bookmark',
       targetId: bookmark.id,
@@ -314,17 +290,34 @@ export const useBookmarksStore = create<BookmarksState>()((set, get) => ({
     return { item: bookmark, changed: true, persisted }
   },
   restoreBookmark: (bookmark) => {
-    const existing = get().bookmarks.find(item => sameBookmarkLocation(item, bookmark)) ?? null
-    if (existing) return { item: existing, changed: false, persisted: writeCachedBookmarks(get().bookmarks) }
-    const persisted = setBookmarks(set, [...get().bookmarks, bookmark])
-    queueBookmarkActivity('added', bookmark)
-    return { item: bookmark, changed: true, persisted }
+    const normalized = normalizeStoredBookmark(bookmark)
+    if (!normalized) return { item: null, changed: false, persisted: false }
+    const current = bookmarkCollection.read(get().bookmarks)
+    const existing = current.find(item => sameBookmarkLocation(item, normalized)) ?? null
+    if (existing) {
+      const result = bookmarkCollection.put(existing, current)
+      set({ bookmarks: result.items })
+      return { item: existing, changed: false, persisted: result.persisted }
+    }
+    const result = bookmarkCollection.put(normalized, current)
+    set({ bookmarks: result.items })
+    const persisted = result.persisted
+    queueBookmarkActivity('added', normalized)
+    void persistBookmarkToCloud(normalized).catch(() => undefined)
+    return { item: normalized, changed: true, persisted }
   },
   removeBookmark: (id) => {
-    const bookmark = get().bookmarks.find(item => item.id === id) ?? null
-    if (!bookmark) return { item: null, changed: false, persisted: true }
+    const current = bookmarkCollection.read(get().bookmarks)
+    const bookmark = current.find(item => item.id === id) ?? null
+    if (!bookmark) {
+      const result = bookmarkCollection.remove(id, current)
+      set({ bookmarks: result.items })
+      return { item: null, changed: false, persisted: result.persisted }
+    }
 
-    const persisted = setBookmarks(set, get().bookmarks.filter(item => item.id !== id))
+    const result = bookmarkCollection.remove(id, current)
+    set({ bookmarks: result.items })
+    const persisted = result.persisted
     queueBookmarkActivity('removed', bookmark)
     void removeBookmarkFromCloud(bookmark).catch(() => undefined)
     return { item: bookmark, changed: true, persisted }
@@ -345,3 +338,16 @@ export const useBookmarksStore = create<BookmarksState>()((set, get) => ({
     return bookmark?.type === 'book' ? bookmark : null
   },
 }))
+
+const setMemory = useBookmarksStore.setState
+useBookmarksStore.setState = ((...args: Parameters<typeof setMemory>) => {
+  bookmarkCollection.clearPending()
+  setMemory(...args)
+}) as typeof setMemory
+
+const unsubscribeBookmarks = bookmarkCollection.subscribe(bookmarks => {
+  if (JSON.stringify(bookmarks) !== JSON.stringify(useBookmarksStore.getState().bookmarks)) {
+    setMemory({ bookmarks })
+  }
+})
+if (import.meta.hot) import.meta.hot.dispose(unsubscribeBookmarks)
