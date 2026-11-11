@@ -134,7 +134,7 @@ describe('Library saved shelf', () => {
   test('shows the zero state with reading destinations', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
 
-    const zeroState = screen.getByText(/Start the shelf/i).closest('.section-shell-quiet')
+    const zeroState = screen.getByText(/Start the shelf/i).closest('.library-shelf-empty')
     expect(zeroState).not.toBeNull()
     expect(within(zeroState as HTMLElement).getByRole('link', { name: /Browse Read/i })).toBeInTheDocument()
     expect(within(zeroState as HTMLElement).getByRole('link', { name: /Review Bank/i })).toBeInTheDocument()

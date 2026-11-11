@@ -290,7 +290,7 @@ export default function Library() {
           <p className="font-sans text-2xl text-ink dark:text-dark-text">{counts[kind]}</p><p className="library-shelf-metric-label">{filterLabels[kind]}</p>
         </div>)}</div> : null}
         {savedShelfNotice ? <p role="status" className="mt-3 font-sans text-xs text-gold-dark dark:text-gold-light">{savedShelfNotice}</p> : null}
-        {!hasSavedShelfContent ? <div className="section-shell-quiet library-shelf-empty">
+        {!hasSavedShelfContent ? <div className="library-shelf-empty">
           <h2 className="font-display text-2xl">{messages.startShelf}</h2><p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">{messages.emptyBody}</p>
           <div className="mt-4 flex flex-wrap gap-2"><Link to="/banis" className="interactive-focus interactive-pill-link rounded-lg bg-[rgb(var(--color-text))] px-4 py-2 font-sans text-sm font-semibold text-[rgb(var(--color-bg))]">{messages.browseRead}</Link><Link to="/vocab" className="interactive-focus interactive-pill-link rounded-lg border border-sand/18 px-4 py-2 font-sans text-sm font-semibold">{libraryCopy.reviewBank}</Link></div>
         </div> : null}
