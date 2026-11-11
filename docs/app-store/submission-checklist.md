@@ -1,5 +1,9 @@
 # NaamRas 1.0 Submission Checklist
 
+## Current Configuration Blocker — November 11, 2026
+
+The completed items below record the earlier local-only candidate. Web backend activation does not approve a native release. Production configuration is now hosted in Vercel, with local overrides held outside Git. `ios:sync` also loads those local overrides, so the native readiness gate checks Vite's effective production environment and blocks backend-enabled candidates until native authentication callbacks, Apple/email provider testing, account deletion, and updated App Privacy answers are ready. Re-run the checks for the actual candidate; do not reuse the earlier completion status.
+
 ## Source and Build — Complete
 
 - [x] App Store target is the Capacitor `App` scheme, matching `naamras.xyz` without a redesign.

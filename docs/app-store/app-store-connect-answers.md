@@ -1,6 +1,6 @@
 # NaamRas App Store Connect Answers
 
-These answers describe the initial iPhone 1.0 `App` build produced from the committed `.env.production`. Reassess every answer if Supabase, diagnostics, advertising, analytics, or new SDKs are enabled.
+These are draft answers for an explicitly local-only iPhone 1.0 `App` build. Web production now uses Supabase, and no `.env.production` is committed. The native release gate checks the effective Vite production environment, including ignored `.env.production.local` and shell overrides, before these answers can be reused. A web-configured native build is not approved: authentication callbacks and Apple/email provider flows still need native implementation and testing, followed by an App Privacy review. Reassess every answer if Supabase, diagnostics, advertising, analytics, or new SDKs are enabled.
 
 ## App Review Information
 
@@ -49,7 +49,7 @@ Use `Yes` for linkage because Khalis Foundation does not state that these logs a
 
 The app privacy manifest declares the same three data types, purposes, linkage, and tracking choices. The user-facing Privacy page discloses the direct BaniDB request and published server-log practice.
 
-The following remain local and are not declared as collected: guest preferences, bookmarks, vocabulary, progress, onboarding choices, and the local device id. No Supabase values or diagnostics endpoint are present in `.env.production`, and no advertising or analytics SDK is configured.
+For the reviewed local-only configuration, guest preferences, bookmarks, vocabulary, progress, onboarding choices, and the local device id remain on the device and are not declared as collected. Reuse that statement only after verifying that the effective native build environment has no Supabase or diagnostics configuration and that no advertising or analytics SDK is configured. Do not apply these answers to the currently configured web production build.
 
 Before submission, obtain BaniDB/Khalis Foundation confirmation of its API retention, linkage, IP use, and tracking practices. If it confirms that IP addresses are used to infer location or identify a device, also declare Coarse Location or Device ID as directed by the verified use. If it confirms qualifying deidentification before collection, linkage may be changed to `No`. Keep the conservative answers above until written evidence supports a narrower declaration.
 
