@@ -50,6 +50,8 @@ Any release that enables Supabase sign-in must deploy both `merge-local-state` a
 
 Saved-item sync v3 has a strict rollout order: first apply `supabase/schema/003_naamras_cloud_sync_v3.sql`, then deploy the updated `merge-local-state` Edge Function, and only then deploy the web/iOS client. The v3 Edge contract intentionally rejects older v2 snapshots so an installed stale client cannot collapse route-specific or book bookmarks; those clients keep their local data and can sync again after updating.
 
+For complete provisioning, including migration 004 and email delivery / redirect verification, see `docs/supabase-native-readiness.md`. The current web release remains local-only until those sign-in checks pass.
+
 ## Quality Checks
 
 ```bash

@@ -64,9 +64,9 @@ async function performBanidbRequest<T>(
 ) {
   const config = getNaamrasSupabaseConfig()
   const normalizedQuery = normalizeQuery(query)
+  options?.signal?.throwIfAborted()
 
   if (config.banidbMockEnabled) {
-    options?.signal?.throwIfAborted()
     const data = getMockBanidbResponse(path, normalizedQuery)
     return {
       response: new Response(JSON.stringify(data ?? { error: 'Not found.' }), {
@@ -79,11 +79,8 @@ async function performBanidbRequest<T>(
 
   const endpoint = getNaamrasSupabaseFunctionUrl(config.banidbFunctionSlug)
 
-  if (!config.enabled || !config.url || !endpoint) {
-    if (!config.banidbDirectFallbackEnabled) {
-      throw new Error('BaniDB requests need either Supabase or the public BaniDB fallback enabled.')
-    }
-
+  async function requestPublicBanidb() {
+    options?.signal?.throwIfAborted()
     const response = await fetch(
       (buildDevProxyBanidbUrl(path, normalizedQuery) ?? buildPublicBanidbUrl(config.banidbPublicOrigin, path, normalizedQuery)).toString(),
       { signal: options?.signal }
@@ -95,6 +92,13 @@ async function performBanidbRequest<T>(
     }
   }
 
+  if (!config.enabled || !config.url || !endpoint) {
+    if (!config.banidbDirectFallbackEnabled) {
+      throw new Error('BaniDB requests need either Supabase or the public BaniDB fallback enabled.')
+    }
+    return requestPublicBanidb()
+  }
+
   const headers: Record<string, string> = {
     'content-type': 'application/json',
   }
@@ -103,17 +107,32 @@ async function performBanidbRequest<T>(
     headers.authorization = `Bearer ${config.anonKey}`
   }
 
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers,
-    signal: options?.signal,
-    body: JSON.stringify({
-      path,
-      query: normalizedQuery,
-    }),
-  })
+  let response: Response
+  let text: string
+  try {
+    response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      signal: options?.signal,
+      body: JSON.stringify({
+        path,
+        query: normalizedQuery,
+      }),
+    })
+    text = await response.text()
+  } catch (error) {
+    options?.signal?.throwIfAborted()
+    // Fetch and response-body network failures reject with TypeError. Do not
+    // turn cancellation or unrelated programming errors into another request.
+    if (!config.banidbDirectFallbackEnabled || !(error instanceof TypeError)) throw error
+    return requestPublicBanidb()
+  }
 
-  const text = await response.text()
+  // Authentication, validation, not-found and rate-limit responses must keep
+  // their meaning; only an unavailable proxy warrants the public read route.
+  if (config.banidbDirectFallbackEnabled && response.status >= 500 && response.status <= 599) {
+    return requestPublicBanidb()
+  }
 
   return { response, data: parseResponseData<T>(text) }
 }

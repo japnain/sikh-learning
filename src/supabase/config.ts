@@ -47,7 +47,8 @@ export function getNaamrasSupabaseConfig(): NaamrasSupabaseConfig {
     functionsUrl: configuredFunctionsUrl
       ? trimTrailingSlashes(configuredFunctionsUrl)
       : (url ? deriveFunctionsUrl(url) : undefined),
-    audioBucket: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_AUDIO_BUCKET) ?? 'soundscrape',
+    // Cloud accounts do not imply that an audio bucket has been provisioned.
+    audioBucket: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_AUDIO_BUCKET),
     audioPrefix: normalizeOptionalValue(import.meta.env.VITE_SUPABASE_AUDIO_PREFIX) ?? 'ambient',
     banidbMockEnabled,
     banidbDirectFallbackEnabled,
