@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware'
+import { DEFAULT_HOME_ARTWORK } from '../utils/homeArtwork'
 
 export type HomeArtworkMode = 'fixed' | 'daily' | 'visit'
 
@@ -39,7 +40,7 @@ export function normalizeHomeArtworkPreference(input: unknown): HomeArtworkPrefe
   const value = (input ?? {}) as Partial<HomeArtworkPreference>
   return {
     mode: value.mode === 'daily' || value.mode === 'visit' ? value.mode : 'fixed',
-    selectedId: isHomeArtworkId(value.selectedId) ? value.selectedId : 'eclipse',
+    selectedId: isHomeArtworkId(value.selectedId) ? value.selectedId : DEFAULT_HOME_ARTWORK.id,
   }
 }
 
@@ -56,7 +57,7 @@ export function getHomeArtworkId(
     const index = Math.max(0, preference.visitIndex ?? 0) % HOME_ARTWORK_COLLECTION_IDS.length
     return HOME_ARTWORK_COLLECTION_IDS[index]
   }
-  return isHomeArtworkId(preference.selectedId) ? preference.selectedId : 'eclipse'
+  return isHomeArtworkId(preference.selectedId) ? preference.selectedId : DEFAULT_HOME_ARTWORK.id
 }
 
 let storageWriteFailed = false
@@ -76,7 +77,7 @@ export const useHomeArtworkStore = create<HomeArtworkState>()(
   persist(
     (set, get) => ({
       mode: 'fixed',
-      selectedId: 'eclipse',
+      selectedId: DEFAULT_HOME_ARTWORK.id,
       visitIndex: -1,
       pendingVisit: false,
       activeVisitToken: null,

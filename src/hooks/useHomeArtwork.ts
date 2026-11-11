@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useState } from 'react'
 import { getHomeArtworkId, useHomeArtworkStore } from '../store/homeArtwork'
-import { ECLIPSE_ARTWORK, getHomeArtworkImageStyle, type HomeArtworkAsset } from '../utils/homeArtwork'
+import { DEFAULT_HOME_ARTWORK, ECLIPSE_ARTWORK, getHomeArtworkImageStyle, type HomeArtworkAsset } from '../utils/homeArtwork'
 
 export function useHomeArtwork() {
   const preference = useHomeArtworkStore()
@@ -18,7 +18,7 @@ export function useHomeArtwork() {
   }, [beginVisit, endVisit, visitToken])
 
   useEffect(() => {
-    if (chosenId === 'eclipse' || catalog.length) return
+    if (chosenId === 'eclipse' || chosenId === DEFAULT_HOME_ARTWORK.id || catalog.length) return
     let cancelled = false
     void import('../data/homeArtworkCatalog').then(module => {
       if (!cancelled) setCatalog(module.homeArtworkCatalog)
@@ -46,7 +46,7 @@ export function useHomeArtwork() {
   }, [preference.mode])
 
   const asset = failedAttempt !== chosenAttempt && chosenId !== 'eclipse'
-    ? catalog.find(entry => entry.id === chosenId) ?? ECLIPSE_ARTWORK
+    ? chosenId === DEFAULT_HOME_ARTWORK.id ? DEFAULT_HOME_ARTWORK : catalog.find(entry => entry.id === chosenId) ?? ECLIPSE_ARTWORK
     : ECLIPSE_ARTWORK
   const onImageError = useCallback(() => setFailedAttempt(chosenAttempt), [chosenAttempt])
   return { asset, imageStyle: getHomeArtworkImageStyle(asset), onImageError, imageKey: `${asset.id}:${preference.applyRevision}` }

@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
 import eclipseSrc from '../assets/home-eclipse/hero-eclipse.avif'
+import goldenCourtAssemblySrc from '../assets/share-highlights/12-golden-court-assembly.jpg'
+import goldenCourtAssemblyThumbnail from '../assets/share-highlights/thumbnails/12-golden-court-assembly.jpg'
 import type { ShareHighlightAsset } from '../assets/share-highlights/manifest'
 
 export interface HomeArtworkAsset {
@@ -29,6 +31,21 @@ export const ECLIPSE_ARTWORK: HomeArtworkAsset = {
     hi: 'पहाड़ी दृश्य के ऊपर ग्रहण, यात्री, आग और सफेद गुंबद वाली इमारत।',
   },
   width: 1178, height: 1280, mat: '#19252d', focalPosition: { x: 0.5, y: 0.19 },
+}
+
+// Keep the default immediately available without loading the full gallery.
+export const DEFAULT_HOME_ARTWORK: HomeArtworkAsset = {
+  id: 'golden-court-assembly', src: goldenCourtAssemblySrc, thumbnail: goldenCourtAssemblyThumbnail,
+  name: 'Golden court assembly',
+  displayName: { en: 'Golden court assembly', pa: 'ਸੁਨਹਿਰੀ ਦਰਬਾਰੀ ਸਭਾ', hi: 'स्वर्णिम दरबारी सभा' },
+  description: 'A symmetrical golden court scene with seated figures and musicians.',
+  localizedDescription: {
+    en: 'A symmetrical golden court scene with seated figures and musicians.',
+    pa: 'ਬੈਠੇ ਪਾਤਰਾਂ ਅਤੇ ਸੰਗੀਤਕਾਰਾਂ ਵਾਲਾ ਸਮਮਿਤ ਸੁਨਹਿਰੀ ਦਰਬਾਰੀ ਦ੍ਰਿਸ਼।',
+    hi: 'बैठी आकृतियों और संगीतकारों वाला सममित स्वर्णिम दरबारी दृश्य।',
+  },
+  width: 1199, height: 1476, mat: '#252219', focalPosition: { x: 0.5, y: 0.56 },
+  protectedSubject: { bounds: { x: 0.05, y: 0.2, width: 0.9, height: 0.72 }, intent: 'keep-clear-of-text' },
 }
 
 /** Home preserves the complete composition; source and share-story metadata remain untouched. */
