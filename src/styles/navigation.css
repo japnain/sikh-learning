@@ -161,7 +161,9 @@ html {
 
 .page-shell :where(a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])) {
   scroll-margin-top: 1.25rem;
-  scroll-margin-bottom: calc(var(--nav-stack-height, 5rem) + var(--nav-bottom-offset) + 1.5rem);
+  /* The root scroll padding already reserves the dock. Counting it again
+     shifts centered controls above the viewport when enlarged text adds a row. */
+  scroll-margin-bottom: 1.5rem;
 }
 
 @media (max-width: 399px) {

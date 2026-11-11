@@ -4,7 +4,7 @@
 
 The production web configuration now enables Supabase email-link sign-in and optional cloud backup. The deployed backend passed authenticated HTTP save/restore, ownership isolation, session, and deletion checks. Native Capacitor sign-in is not release-ready and remains hidden.
 
-Production: `https://naamras.xyz`. Backend repairs were deployed in Git commit `a5814e97176f752d9776601eaf5e55aacb0e1f25`; this follow-up enables the public web client configuration. Supabase project: `nsewywsansbnbbolsgba`, Canada Central, PostgreSQL 17.11.0.003.
+Production: `https://naamras.xyz`. Backend repairs were deployed in Git commit `a5814e97176f752d9776601eaf5e55aacb0e1f25`; activation commit `bf0bf9110e511ed9b62b70b8cdf42529330358bc` is deployed to the custom domain (Vercel `dpl_GkyEc23odwCuwzkNjDjbiRyo2aEQ`, READY). Supabase project: `nsewywsansbnbbolsgba`, Canada Central, PostgreSQL 17.11.0.003.
 
 ## Verified live
 
@@ -43,7 +43,7 @@ Production: `https://naamras.xyz`. Backend repairs were deployed in Git commit `
 - TypeScript, production build, startup bundle budget, story-build validation, and ESLint passed.
 - Live checks used disposable accounts through the actual public Auth, REST, and deployed Edge Function endpoints.
 - The rollback-only SQL smoke test was not executed because its confirmation expired. It is retained as an optional repeatable check; authenticated HTTP tests subsequently verified the key behaviors directly.
-- Local interactive preview could not bind a port in this execution environment (`listen EPERM`). Production browser checks are recorded separately from the direct HTTP tests.
+- Local interactive preview could not bind a port in this execution environment (`listen EPERM`). On the deployed `/more` screen, the browser verified Optional cloud backup, the explicit coverage/exclusion list, and an email sign-in form. Apple sign-in was absent as configured. Authenticated persistence tests were performed separately through public HTTP endpoints.
 - Vercel environment-variable access through the connected account returned HTTP 403. Public browser identifiers are committed in `.env.production`, so deployment does not depend on changing hosted secrets.
 
 ## Remaining release limits
