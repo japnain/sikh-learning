@@ -10,6 +10,9 @@ import { useProgressStore } from '../store/progress'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
+import { useLanguageStore } from '../store/language'
+import { useReadingVisibilityStore } from '../store/readingVisibility'
+import { renderScriptText } from '../utils/readerDisplay'
 
 function LocationSpy() {
   const location = useLocation()
@@ -45,6 +48,87 @@ describe('Library saved shelf', () => {
     useSavedFeedbackStore.getState().clearSaved()
     useVocabStore.setState({ vocab: [] })
     useLocaleStore.setState({ locale: 'en' })
+    useLanguageStore.setState({ scriptMode: 'gurmukhi', meaningLanguage: 'en', showTransliteration: false })
+    useReadingVisibilityStore.setState({ hidden: {} })
+  })
+
+  test('search finds favorites by romanization and displayed or full source references', () => {
+    useFavoritesStore.setState({ favorites: [{ id: 'favorite-1', type: 'ang', routeMode: 'canonical', title: 'Opening verse', source: 'G', ang: 1, excerpt: 'ਸਤਿ ਨਾਮੁ', transliteration: 'sat naam', savedAt: '2026-01-01T00:00:00Z' }] })
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    const search = screen.getByRole('searchbox')
+    for (const query of ['sat naam', 'SGGS · Ang 1', 'Sri Guru Granth Sahib Ji']) {
+      fireEvent.change(search, { target: { value: query } })
+      expect(within(screen.getByTestId('library-favorites')).getByRole('link')).toHaveTextContent('Opening verse')
+      expect(screen.queryByTestId('library-shortcuts')).not.toBeInTheDocument()
+    }
+  })
+
+  test('a searched bookmark can collapse and reopens when the query changes', () => {
+    useBookmarksStore.setState({ bookmarks: [{ id: 'bookmark-1', type: 'bani', title: 'Japji Sahib', source: 'G', ang: 1, savedAt: '2026-01-01T00:00:00Z' }] })
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Japji' } })
+    const disclosure = screen.getByRole('button', { name: /1 saved passage/ })
+    fireEvent.click(disclosure)
+    expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+    expect(within(screen.getByTestId('library-bookmarks')).queryByRole('link')).not.toBeInTheDocument()
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Ang 1' } })
+    expect(disclosure).toHaveAttribute('aria-expanded', 'true')
+    expect(within(screen.getByTestId('library-bookmarks')).getByRole('link')).toHaveTextContent('Japji Sahib')
+  })
+
+  test('saved excerpts and meanings follow reading preferences, including fallback language and off', () => {
+    useBookmarksStore.setState({ bookmarks: [{ id: 'bookmark-1', type: 'verse', title: 'Opening verse', source: 'G', ang: 1, excerpt: 'ਸਤਿ ਨਾਮੁ', translation_en: 'True name', translation_hi: 'सच्चा नाम', savedAt: '2026-01-01T00:00:00Z' }] })
+    useLanguageStore.setState({ scriptMode: 'devanagari', meaningLanguage: 'hi' })
+    const view = render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.getByText(renderScriptText('ਸਤਿ ਨਾਮੁ', 'devanagari'))).toHaveAttribute('lang', 'hi')
+    expect(screen.getByText('सच्चा नाम')).toHaveAttribute('lang', 'hi')
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: renderScriptText('ਸਤਿ ਨਾਮੁ', 'devanagari') } })
+    expect(screen.getByText('Opening verse')).toBeInTheDocument()
+    view.unmount()
+    useLanguageStore.setState({ meaningLanguage: 'pa' })
+    const fallback = render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.getByText('True name')).toHaveAttribute('lang', 'en')
+    fallback.unmount()
+    useLanguageStore.setState({ meaningLanguage: 'none' })
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.queryByText('True name')).not.toBeInTheDocument()
+    expect(screen.queryByText('सच्चा नाम')).not.toBeInTheDocument()
+  })
+
+  test('word-only and phrase collections have separate counts, searchable cards and explicit review destinations', () => {
+    const word = { word: 'ਨਾਮੁ', transliteration: 'naam', meaning_en: 'Name', meaning_pa: '', meaning_hi: '', scripture: 'SGGS', sourceId: 'G', savedAt: '2026-01-01T00:00:00Z' }
+    useVocabStore.setState({ vocab: [word, { ...word, kind: 'phrase', word: 'ਸਤਿ ਨਾਮੁ', transliteration: 'sat naam', meaning_en: 'True name' }] })
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    const snapshot = screen.getByTestId('library-snapshot')
+    expect(within(snapshot).getByText('Words').parentElement).toHaveTextContent('1Words')
+    expect(within(snapshot).getByText('Phrases').parentElement).toHaveTextContent('1Phrases')
+    expect(screen.getByTestId('library-words')).toBeInTheDocument()
+    const phraseLink = within(screen.getByTestId('library-phrases')).getByRole('link')
+    const destination = new URL(phraseLink.getAttribute('href')!, 'https://naamras.test')
+    expect(destination.searchParams.get('kind')).toBe('phrase')
+    expect(destination.searchParams.get('q')).toBe('ਸਤਿ ਨਾਮੁ')
+    fireEvent.click(screen.getByRole('button', { name: 'Phrases' }))
+    expect(screen.queryByTestId('library-words')).not.toBeInTheDocument()
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'sat naam' } })
+    expect(screen.getByTestId('library-phrases')).toBeInTheDocument()
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'nothing matches' } })
+    expect(screen.getByText('No saved readings match this search.')).toBeInTheDocument()
+    expect(screen.queryByTestId('library-shortcuts')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Clear search' }))
+    expect(screen.getByTestId('library-words')).toBeInTheDocument()
+  })
+
+  test('Rehat resume uses its saved chapter and can be hidden and restored in Continue reading', () => {
+    useProgressStore.getState().updateSession({ scriptureId: 'rehat-1-2', resumePath: '/banis/rehat/1/chapters/2', readerLocator: { href: '/banis/rehat/1/chapters/2', type: 'text/html', title: 'Rehat · Daily practice', locations: { progression: 0.2, totalProgression: 0.2, position: 2 } }, updatedAt: '2026-01-01T00:00:00Z' })
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.getByTestId('library-resume-reading')).toHaveTextContent('Rehat · Daily practice')
+    expect(screen.getByTestId('library-resume-reading')).not.toHaveTextContent('Page 1')
+    const reading = screen.getByTestId('library-in-progress')
+    fireEvent.click(within(reading).getByRole('button', { name: 'Hide Rehat · Daily practice from Continue reading' }))
+    expect(within(reading).queryByRole('link')).not.toBeInTheDocument()
+    expect(useProgressStore.getState().currentSession).not.toBeNull()
+    fireEvent.click(within(reading).getByRole('button', { name: 'Undo' }))
+    expect(within(reading).getByRole('link')).toHaveTextContent('Daily practice')
   })
 
   test('shows the zero state with reading destinations', () => {

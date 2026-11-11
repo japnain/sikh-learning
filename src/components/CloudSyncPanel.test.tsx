@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import CloudSyncPanel from './CloudSyncPanel'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
@@ -135,4 +135,31 @@ describe('CloudSyncPanel reader-facing backup states', () => {
     await waitFor(() => expect(screen.getByTestId('cloud-delete-account-confirm')).toBeEnabled())
     expect(screen.getByTestId('cloud-delete-account-dialog')).toHaveTextContent('The account change could not be completed')
   })
+})
+
+
+ test.each([{ ok: false, queued: true }, { ok: false, skipped: true }])('does not turn a queued or superseded sync into a sticky failure: %j', async result => {
+  vi.mocked(syncNow).mockResolvedValue(result)
+  renderPanel({ syncQueued: true })
+  fireEvent.click(screen.getByRole('button', { name: 'Sync now' }))
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Sync now' })).toBeEnabled())
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  act(() => useCloudSyncStore.setState({ syncQueued: false, status: 'ready', lastSyncedAt: '2026-04-17T14:01:00.000Z' }))
+  expect(statusLabel()).toHaveTextContent('Connected')
+})
+
+test('clears a manual sync failure once a later sync succeeds', async () => {
+  vi.mocked(syncNow).mockRejectedValue(new Error('temporary'))
+  renderPanel()
+  fireEvent.click(screen.getByRole('button', { name: 'Sync now' }))
+  expect(await screen.findByRole('alert')).toBeInTheDocument()
+  act(() => useCloudSyncStore.setState({ status: 'ready', lastSyncedAt: '2026-04-17T14:01:00.000Z', lastError: null }))
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  expect(statusLabel()).toHaveTextContent('Connected')
+})
+
+test('does not duplicate the parent backup explanation when cloud is unavailable', () => {
+  useCloudSyncStore.setState({ configured: false })
+  render(<CloudSyncPanel embedded />)
+  expect(screen.queryByTestId('more-cloud-sync')).not.toBeInTheDocument()
 })

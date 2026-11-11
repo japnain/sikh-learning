@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { afterEach, describe, it, expect, vi } from 'vitest'
 import { http, HttpResponse } from 'msw'
 import {
   fetchAng,
@@ -21,6 +21,10 @@ import type { ScriptureEntry } from '../types'
 import { MOCK_CHAUPAI_BANI_RESPONSE, MOCK_HUKAMNAMA_RESPONSE, MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
 import { server } from '../test/msw-server'
 import { isExactBaniReading } from '../utils/baniReadingValidation'
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 function firstVisibleLine(entries: ScriptureEntry[]) {
   return entries
@@ -117,6 +121,8 @@ describe('fetchAng', () => {
   })
 
   it('throws on network error', async () => {
+    server.use(http.get('https://api.banidb.com/v2/angs/error/G', () =>
+      HttpResponse.json({ error: 'upstream failure' }, { status: 502 })))
     await expect(fetchAng('error' as unknown as number, 'G')).rejects.toThrow()
   })
 })
@@ -140,6 +146,8 @@ describe('fetchShabadWords', () => {
   })
 
   it('throws on network error', async () => {
+    server.use(http.get('https://api.banidb.com/v2/shabads/error', () =>
+      HttpResponse.json({ error: 'upstream failure' }, { status: 502 })))
     await expect(fetchShabadWords('error' as unknown as number)).rejects.toThrow()
   })
 })
@@ -599,13 +607,20 @@ describe('fetchHukamnama', () => {
           return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
         }
         return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+      }),
+      http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', ({ request }) => {
+        requestedPaths.push(new URL(request.url).pathname)
+        return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
       })
     )
 
     await expect(fetchHukamnama('2026-04-05')).rejects.toThrow(
       'BaniDB /hukamnamas error: 503'
     )
-    expect(requestedPaths).toEqual(['/v2/hukamnamas/2026/04/05'])
+    expect(requestedPaths).toEqual([
+      '/v2/hukamnamas/2026/04/05',
+      '/v2/hukamnamas/2026/04/05',
+    ])
   })
 
   it('rejects a dated response whose Gregorian date does not match the request', async () => {
@@ -646,16 +661,21 @@ describe('fetchHukamnama', () => {
           return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
         }
         return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+      }),
+      http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', ({ request }) => {
+        requestedPaths.push(new URL(request.url).pathname)
+        return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
       })
     )
 
     const hukamnama = await fetchHukamnama(undefined, { signal: controller.signal })
 
     expect(hukamnama.date).toBe('2026-04-05')
-    expect(requestedPaths).toHaveLength(2)
+    expect(requestedPaths).toHaveLength(3)
     expect(requestedPaths[0]).toMatch(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)
-    expect(requestedPaths[1]).toBe('/v2/hukamnamas')
-    expect(fetchSpy.mock.calls).toHaveLength(2)
+    expect(requestedPaths[1]).toBe(requestedPaths[0])
+    expect(requestedPaths[2]).toBe('/v2/hukamnamas')
+    expect(fetchSpy.mock.calls).toHaveLength(3)
     expect(fetchSpy.mock.calls.every(([, options]) => options?.signal === controller.signal)).toBe(true)
     fetchSpy.mockRestore()
   })

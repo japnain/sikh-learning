@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
-import { useBeforeUnload, useNavigate } from 'react-router-dom'
+import { useBeforeUnload, useLocation, useNavigate } from 'react-router-dom'
 import { IconArrowLeft, IconArrowRight, IconClose, IconSearch } from './icons'
 import ModalSheet from './ModalSheet'
 import { useBani } from '../hooks/useBani'
@@ -44,6 +44,9 @@ function LengthChoice({ option, value, onChange }: {
 
 export default function NitnemCustomizePanel() {
   const navigate = useNavigate()
+  const location = useLocation()
+  // Only known in-app entry points may control where the editor returns.
+  const returnPath = location.state?.nitnemOrigin === '/more' ? '/more' : '/'
   const selectedIds = useNitemStore(state => state.selectedIds)
   const weeklyDayGoal = useNitemStore(state => state.weeklyDayGoal)
   const completionTrackingEnabled = useNitemStore(state => state.completionTrackingEnabled)
@@ -73,7 +76,8 @@ export default function NitnemCustomizePanel() {
   const selected = draftIds.map(getNitnemOption).filter((option): option is NitnemRouteOption => option !== null)
   const available = useMemo(() => [...NITNEM_ROUTE_OPTIONS].sort(compareNitnemOptions), [])
     .filter(option => !draftIds.includes(option.id))
-  const matches = available.filter(option => `${option.name} ${option.gurmukhiTitle} ${option.group} ${copy.groups[option.group]}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()))
+  const normalizedQuery = query.normalize('NFKC').trim().toLocaleLowerCase()
+  const matches = available.filter(option => `${option.name} ${option.romanizedTitle} ${option.gurmukhiTitle} ${renderScriptText(option.gurmukhiTitle, 'devanagari')} ${option.group} ${copy.groups[option.group]}`.normalize('NFKC').toLocaleLowerCase().includes(normalizedQuery))
   useLayoutEffect(() => {
     const target = pendingFocus.current
     if (!target) return
@@ -99,7 +103,7 @@ export default function NitnemCustomizePanel() {
   }, [hasUnsavedChanges]))
   const leave = () => {
     if (hasUnsavedChanges) setLeaveOpen(true)
-    else { clearNitnemDraft(); navigate('/') }
+    else { clearNitnemDraft(); navigate(returnPath) }
   }
   const offlineCopy = offline.status === 'ready'
     ? copy.ready(offline.ready, offline.total)
@@ -151,7 +155,7 @@ export default function NitnemCustomizePanel() {
       // Persist the complete draft on every attempt, including a retry after a failed write.
       useSundarGutkaLengthStore.setState({ lengths: nextLengths })
       clearNitnemDraft()
-      navigate('/')
+      navigate(returnPath)
     } catch {
       // Persist middleware updates memory before writing storage. Restore the
       // committed draft fields even when storage remains unavailable.
@@ -228,7 +232,7 @@ export default function NitnemCustomizePanel() {
         <p>{copy.discardBody}</p>
         <div>
           <button ref={keepEditingRef} type="button" onClick={() => setLeaveOpen(false)} className="nitnem-editor-keep-editing">{copy.keepEditing}</button>
-          <button type="button" onClick={() => { clearNitnemDraft(); setLeaveOpen(false); navigate('/') }}>{copy.discard}</button>
+          <button type="button" onClick={() => { clearNitnemDraft(); setLeaveOpen(false); navigate(returnPath) }}>{copy.discard}</button>
         </div>
       </ModalSheet>
       <ModalSheet open={libraryOpen} onClose={() => setLibraryOpen(false)} title={copy.add} description={copy.addDescription} className="nitnem-editor-library" testId="nitnem-selection">

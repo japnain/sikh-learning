@@ -107,20 +107,21 @@ function formatSyncTimestamp(value: string | null, locale: string) {
   return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(value))
 }
 
-export default function CloudSyncPanel() {
+export default function CloudSyncPanel({ embedded = false }: { embedded?: boolean }) {
   const locale = useLocaleStore(state => state.locale)
   const copy = CLOUD_COPY[locale]
   const { configured, status, currentUser, availableProviders, lastSyncedAt, lastError, syncQueued } = useCloudSyncStore()
   const [magicLinkEmail, setMagicLinkEmail] = useState('')
   const [emailSent, setEmailSent] = useState(false)
-  const [actionError, setActionError] = useState(false)
+  const [actionError, setActionError] = useState<{ sync: boolean; lastSyncedAt: string | null; userId: string | null } | null>(null)
   const [actionPending, setActionPending] = useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [isDeletingAccount, setIsDeletingAccount] = useState(false)
   const [detailsOpen, setDetailsOpen] = usePersistentDisclosure('more-cloud-sync', false)
   const isOffline = configured && (status === 'offline' || (typeof navigator !== 'undefined' && navigator.onLine === false))
   const recoveryRequired = lastError === 'personal-data-restore-recovery-required'
-  const hasError = configured && Boolean(lastError || actionError || status === 'error')
+  const currentActionError = actionError && actionError.userId === (currentUser?.id ?? null) && (!actionError.sync || actionError.lastSyncedAt === lastSyncedAt)
+  const hasError = configured && Boolean(lastError || currentActionError || status === 'error')
   const loading = configured && ['booting', 'authenticating', 'syncing'].includes(status)
   const isBusy = loading || actionPending || isDeletingAccount
   const panelState = loading ? 'loading' : hasError || isOffline ? 'degraded' : !configured || !currentUser ? 'empty' : 'ready'
@@ -136,20 +137,22 @@ export default function CloudSyncPanel() {
   const supportsApple = availableProviders.includes('apple')
   const supportsEmail = availableProviders.includes('email')
   const panelId = 'more-cloud-sync-panel'
+  const Heading = embedded ? 'h3' : 'h2'
+  const Subheading = embedded ? 'h4' : 'h3'
   const primaryButton = 'interactive-focus min-h-[48px] w-full rounded-lg bg-saffron px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45'
   const secondaryButton = 'interactive-focus min-h-[48px] w-full rounded-lg border border-sand/15 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
 
-  async function runAction(operation: () => Promise<{ ok: boolean }>, sentEmail = false) {
+  async function runAction(operation: () => Promise<{ ok: boolean; queued?: boolean; skipped?: boolean; offline?: boolean }>, sentEmail = false, sync = false) {
     if (actionPending) return
     setActionPending(true)
-    setActionError(false)
+    setActionError(null)
     setEmailSent(false)
     try {
       const result = await operation()
-      setActionError(!result.ok)
+      setActionError(!result.ok && !result.queued && !result.skipped && !result.offline ? { sync, lastSyncedAt, userId: currentUser?.id ?? null } : null)
       if (result.ok && sentEmail) setEmailSent(true)
     } catch {
-      setActionError(true)
+      setActionError({ sync, lastSyncedAt, userId: currentUser?.id ?? null })
     } finally {
       setActionPending(false)
     }
@@ -158,38 +161,40 @@ export default function CloudSyncPanel() {
   async function handleDeleteAccount() {
     if (isDeletingAccount) return
     setIsDeletingAccount(true)
-    setActionError(false)
+    setActionError(null)
     try {
       const result = await deleteCloudAccount()
       if (result.ok) setDeleteDialogOpen(false)
-      else setActionError(true)
+      else setActionError({ sync: false, lastSyncedAt, userId: currentUser?.id ?? null })
     } catch {
-      setActionError(true)
+      setActionError({ sync: false, lastSyncedAt, userId: currentUser?.id ?? null })
     } finally {
       setIsDeletingAccount(false)
     }
   }
 
+  if (embedded && !configured) return null
+
   return (
-    <section className="section-shell mb-5 overflow-hidden" aria-labelledby="more-cloud-sync-title" lang={locale}
+    <section className={embedded ? "mt-4 overflow-hidden border-t border-sand/20 dark:border-dark-text/15" : "section-shell mb-5 overflow-hidden"} aria-labelledby="more-cloud-sync-title" lang={locale}
       data-testid="more-cloud-sync" data-ai-surface="cloud-sync-panel" data-ai-state={panelState} data-ai-error={panelError}>
       <div className="relative px-5 pt-5 pb-4" data-ai-anchor="cloud-sync-summary">
-        <button type="button" onClick={() => setDetailsOpen(current => !current)} aria-expanded={detailsOpen} aria-controls={panelId}
-          className="interactive-focus relative flex w-full items-start justify-between gap-4 text-left">
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="eyebrow">{copy.eyebrow}</p>
-              <span className={`rounded-full px-3 py-1.5 font-sans text-[11px] font-semibold tracking-[0.12em] ${statusClassName}`} data-ai-anchor="cloud-sync-status">{statusLabel}</span>
-            </div>
-            <h2 id="more-cloud-sync-title" className="mt-3 font-display text-[1.85rem] leading-none text-ink dark:text-dark-text">{configured ? copy.title : copy.localTitle}</h2>
-            <p className="mt-3 max-w-[45ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">{summary}</p>
-            {configured && currentUser ? <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64" data-ai-surface="cloud-sync-metrics" data-ai-state={panelState}>
-              <span data-ai-anchor="cloud-sync-pending">{syncQueued ? copy.changesWaiting : copy.noChangesWaiting}</span>
-              <span data-ai-anchor="cloud-sync-last-synced">{formattedLastSynced ? `${copy.lastSynced}: ${formattedLastSynced}` : copy.notSynced}</span>
-            </div> : null}
-          </div>
-          <span className="icon-surface mt-1 h-10 w-10 shrink-0 text-gold-dark dark:text-gold-light" aria-hidden="true">{detailsOpen ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <span className={`rounded-full px-3 py-1.5 font-sans text-[11px] font-semibold tracking-[0.12em] ${statusClassName}`} data-ai-anchor="cloud-sync-status">{statusLabel}</span>
+        </div>
+        <Heading id="more-cloud-sync-title" className="mt-2 font-display text-[1.85rem] leading-none text-ink dark:text-dark-text">
+          <button type="button" onClick={() => setDetailsOpen(current => !current)} aria-expanded={detailsOpen} aria-controls={panelId}
+            className="interactive-focus relative flex min-h-[48px] w-full items-center justify-between gap-4 rounded-lg text-left">
+            <span>{configured ? copy.title : copy.localTitle}</span>
+            <span className="icon-surface h-10 w-10 shrink-0 text-gold-dark dark:text-gold-light" aria-hidden="true">{detailsOpen ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}</span>
+          </button>
+        </Heading>
+        <p className="mt-2 max-w-[45ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">{summary}</p>
+        {configured && currentUser ? <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-sans text-xs text-ink/68 dark:text-dark-text/64" data-ai-surface="cloud-sync-metrics" data-ai-state={panelState}>
+          <span data-ai-anchor="cloud-sync-pending">{syncQueued ? copy.changesWaiting : copy.noChangesWaiting}</span>
+          <span data-ai-anchor="cloud-sync-last-synced">{formattedLastSynced ? `${copy.lastSynced}: ${formattedLastSynced}` : copy.notSynced}</span>
+        </div> : null}
       </div>
 
       {detailsOpen ? <div id={panelId} className="px-5 pb-5">
@@ -202,8 +207,8 @@ export default function CloudSyncPanel() {
             {currentUser.name ? <p className="mt-1 break-words font-sans text-xs text-ink/68 dark:text-dark-text/64">{currentUser.email}</p> : null}
           </div> : <p className="font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">{copy.mergeHint}</p>}
           <div className="mt-4 space-y-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-            <div><h3 className="font-semibold text-ink dark:text-dark-text">{copy.coverageTitle}</h3><p>{copy.coverage}</p></div>
-            <div><h3 className="font-semibold text-ink dark:text-dark-text">{copy.exclusionsTitle}</h3><p>{copy.exclusions}</p></div>
+            <div><Subheading className="font-semibold text-ink dark:text-dark-text">{copy.coverageTitle}</Subheading><p>{copy.coverage}</p></div>
+            <div><Subheading className="font-semibold text-ink dark:text-dark-text">{copy.exclusionsTitle}</Subheading><p>{copy.exclusions}</p></div>
           </div>
           <div className="mt-4 space-y-2 font-sans text-xs leading-5" aria-live="polite" data-ai-anchor="cloud-sync-notices">
             {isOffline ? <p className="text-saffron dark:text-saffron-light">{copy.offline}</p> : null}
@@ -222,9 +227,9 @@ export default function CloudSyncPanel() {
               </form> : null}
               {!supportsApple && !supportsEmail ? <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.unavailable}</p> : null}
             </> : <>
-              <button type="button" onClick={() => { void runAction(() => syncNow('manual')) }} disabled={isBusy || isOffline || recoveryRequired} data-ai-action="cloud-sync-now" className={primaryButton}>{copy.syncNow}</button>
+              <button type="button" onClick={() => { void runAction(() => syncNow('manual'), false, true) }} disabled={isBusy || isOffline || recoveryRequired} data-ai-action="cloud-sync-now" className={primaryButton}>{copy.syncNow}</button>
               <button type="button" onClick={() => { void runAction(signOutOfCloud) }} disabled={actionPending || isDeletingAccount} data-ai-action="cloud-sign-out" className={secondaryButton}>{copy.signOut}</button>
-              <button type="button" onClick={() => { setActionError(false); setDeleteDialogOpen(true) }} disabled={isBusy || isOffline} data-ai-action="cloud-delete-account"
+              <button type="button" onClick={() => { setActionError(null); setDeleteDialogOpen(true) }} disabled={isBusy || isOffline} data-ai-action="cloud-delete-account"
                 className="interactive-focus min-h-[48px] w-full rounded-lg border border-[#b4553d]/28 bg-[#b4553d]/8 px-4 py-3 font-sans text-sm font-semibold text-[#9b3f2c] disabled:opacity-45 dark:border-[#ffb29d]/22 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">{copy.deleteAccount}</button>
             </>}
           </div>

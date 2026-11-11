@@ -1,28 +1,30 @@
 import { getAppVersion } from './appConfig'
 import { getDiagnosticHistory } from './diagnostics'
+import { SUPPORT_COPY } from './supportCopy'
 
-export function createSupportReport(): string {
+export function createSupportReport(locale: keyof typeof SUPPORT_COPY = 'en'): string {
+  const copy = SUPPORT_COPY[locale]
   const failures = getDiagnosticHistory()
-  return `NaamRas support report
+  return `${copy.reportTitle}
 
-App version: ${getAppVersion()}
-Connection: ${typeof navigator !== 'undefined' && navigator.onLine === false ? 'offline' : 'online or unknown'}
+${copy.version}: ${getAppVersion()}
+${copy.connection}: ${typeof navigator !== 'undefined' && navigator.onLine === false ? copy.offline : copy.online}
 
-What happened:
+${copy.happened}:
 
-Steps to reproduce:
+${copy.steps}:
 1.
 2.
 3.
 
-Expected result:
+${copy.expected}:
 
-Device / operating system (optional):
+${copy.device}:
 
-Recent technical failures from this app session:
-${failures.length ? failures.map(entry => `${entry.occurredAt} | ${entry.code} | ${entry.source} | ${entry.path} | count ${entry.count}`).join('\n') : 'No failures recorded in this session.'}
+${copy.failures}:
+${failures.length ? failures.map(entry => `${entry.occurredAt} | ${entry.code} | ${entry.source} | ${entry.path} | ${copy.count} ${entry.count}`).join('\n') : copy.none}
 
-Technical details exclude search terms, reading titles, saved content, account identifiers, error text, and device identifiers. Review anything you add before sharing. This report has not been sent.`
+${copy.reportPrivacy}`
 }
 
 export function downloadSupportReport(report: string): void {

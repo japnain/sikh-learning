@@ -22,7 +22,7 @@ import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
-import { useVocabStore } from '../store/vocab'
+import { refreshVocabFromStorage, useVocabStore } from '../store/vocab'
 
 type SupabaseOAuthProvider = 'apple'
 
@@ -325,6 +325,10 @@ export function syncNow(reason = 'manual'): Promise<{ ok: boolean; skipped?: boo
   syncTimer = null
   const generation = accountGeneration
   const userId = currentUserId
+  // Other tabs can finish durable writes before their storage events are delivered.
+  useBookmarksStore.getState().hydrateCachedBookmarks()
+  useFavoritesStore.getState().hydrateCachedFavorites()
+  refreshVocabFromStorage()
   const revision = localRevision
   const isCurrent = () => generation === accountGeneration && currentUserId === userId && !restorePaused
   syncStore.setStatus('syncing')
@@ -339,6 +343,9 @@ export function syncNow(reason = 'manual'): Promise<{ ok: boolean; skipped?: boo
       if (response.error) throw response.error
       const result = response.data
       validateCompleteMergeResult(result, snapshot)
+      useBookmarksStore.getState().hydrateCachedBookmarks()
+      useFavoritesStore.getState().hydrateCachedFavorites()
+      refreshVocabFromStorage()
       const hasNewerChanges = localRevision !== revision
       const incoming = hasNewerChanges
         ? reconcileRemoteSnapshotWithLocalChanges(result.snapshot, snapshot, exportLocalSnapshot())

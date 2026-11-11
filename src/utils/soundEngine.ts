@@ -9,11 +9,13 @@ interface PlaybackSession {
 
 const engineState: {
   session: PlaybackSession | null
+  fadingSessions: Set<PlaybackSession>
   targetVolume: number
   commandToken: number
   nextSessionId: number
 } = {
   session: null,
+  fadingSessions: new Set(),
   targetVolume: 0.6,
   commandToken: 0,
   nextSessionId: 0,
@@ -54,6 +56,7 @@ function clearSessionFade(session: PlaybackSession) {
 
 function cleanupSession(session: PlaybackSession) {
   clearSessionFade(session)
+  engineState.fadingSessions.delete(session)
 
   if (session.audio) {
     cleanupAudio(session.audio)
@@ -137,18 +140,20 @@ function startSoundPlayback(id: string, commandToken: number) {
     void nextAudio.play()
       .then(() => {
         if (commandToken !== engineState.commandToken || engineState.session !== session || session.audio !== nextAudio) {
-          cleanupAudio(nextAudio)
+          // Repeated play commands may still own this same audio instance.
+          if (engineState.session !== session || session.audio !== nextAudio) cleanupAudio(nextAudio)
           return
         }
 
         fadeSessionTo(session, engineState.targetVolume)
       })
       .catch(() => {
-        cleanupAudio(nextAudio)
-
         if (commandToken !== engineState.commandToken || engineState.session !== session || session.audio !== nextAudio) {
+          if (engineState.session !== session || session.audio !== nextAudio) cleanupAudio(nextAudio)
           return
         }
+
+        cleanupAudio(nextAudio)
 
         if (allowFallback && sound.fallbackSrc && sound.fallbackSrc !== src) {
           session.audio = null
@@ -170,6 +175,8 @@ export function playSound(id: string): void {
 
   engineState.commandToken += 1
   const commandToken = engineState.commandToken
+  // A new command owns playback, including any previous track still fading out.
+  engineState.fadingSessions.forEach(cleanupSession)
   const activeSession = engineState.session
 
   if (activeSession && activeSession.soundId === id) {
@@ -187,13 +194,17 @@ export function playSound(id: string): void {
     void audio.play()
       .then(() => {
         if (commandToken !== engineState.commandToken || engineState.session !== activeSession || activeSession.audio !== audio) {
-          cleanupAudio(audio)
+          if (engineState.session !== activeSession || activeSession.audio !== audio) cleanupAudio(audio)
           return
         }
 
         fadeSessionTo(activeSession, engineState.targetVolume)
       })
       .catch(() => {
+        if (commandToken !== engineState.commandToken || engineState.session !== activeSession || activeSession.audio !== audio) {
+          if (engineState.session !== activeSession || activeSession.audio !== audio) cleanupAudio(audio)
+          return
+        }
         cleanupSession(activeSession)
         if (engineState.session === activeSession) {
           engineState.session = null
@@ -208,6 +219,7 @@ export function playSound(id: string): void {
 
   if (activeSession) {
     engineState.session = null
+    engineState.fadingSessions.add(activeSession)
     fadeSessionTo(activeSession, 0, () => {
       cleanupSession(activeSession)
 
@@ -223,16 +235,18 @@ export function playSound(id: string): void {
 
 export function stopSound(immediate: boolean = true): void {
   const activeSession = engineState.session
-  if (!activeSession) return
-
+  // Invalidate pending switches even while there is no active session.
   engineState.commandToken += 1
   engineState.session = null
+  engineState.fadingSessions.forEach(cleanupSession)
+  if (!activeSession) return
 
   if (immediate) {
     cleanupSession(activeSession)
     return
   }
 
+  engineState.fadingSessions.add(activeSession)
   fadeSessionTo(activeSession, 0, () => {
     cleanupSession(activeSession)
   })
@@ -268,6 +282,7 @@ export function syncSoundPlayback(nextState: {
 }
 
 export function __resetSoundEngineForTests(): void {
+  stopSound()
   engineState.commandToken = 0
   engineState.nextSessionId = 0
   engineState.targetVolume = 0.6

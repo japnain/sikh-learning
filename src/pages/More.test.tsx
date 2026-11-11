@@ -1,17 +1,20 @@
 import { act, render, screen, fireEvent, within } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import More from './More'
 import { UI_DISCLOSURE_STORAGE_KEY } from '../hooks/usePersistentDisclosure'
 import { useLanguageStore } from '../store/language'
+import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
 import { useMusicStore } from '../store/music'
 import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
-import { getSavedReaderPresentation, setReaderPresentationPreference } from '../utils/readerPresentation'
+import { getSavedReaderPresentation, resetReaderPresentationSessionPreference, setReaderPresentationPreference } from '../utils/readerPresentation'
 
 beforeEach(() => {
+  resetReaderPresentationSessionPreference()
+  useCloudSyncStore.getState().reset()
   window.localStorage.removeItem('naamras-reader-presentation')
   window.localStorage.removeItem(UI_DISCLOSURE_STORAGE_KEY)
   useLanguageStore.setState({
@@ -23,6 +26,7 @@ beforeEach(() => {
     lineSpacing: 'relaxed',
     textAlign: 'left',
     fontSize: 22,
+    supportTextSize: 'standard',
     englishSource: 'bdb',
     punjabiSource: 'ss',
     hindiSource: 'ss',
@@ -205,7 +209,7 @@ test('heavy More sections start collapsed while About stays visible', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
 
   expect(screen.getByRole('button', { name: /expand soundscapes/i })).toHaveAttribute('aria-expanded', 'false')
-  expect(within(screen.getByTestId('more-cloud-sync')).getByRole('button')).toHaveAttribute('aria-expanded', 'false')
+  expect(screen.queryByTestId('more-cloud-sync')).not.toBeInTheDocument()
   expect(screen.getByTestId('more-open-nitnem-customize')).toHaveAttribute('href', '/nitnem/customize')
   expect(screen.getByRole('button', { name: /reader defaults/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByTestId('more-appearance')).toBeInTheDocument()
@@ -278,4 +282,71 @@ test('falls back to public document routes when release URLs are not configured'
   expect(screen.getByTestId('more-open-support')).toHaveAttribute('href', '/support')
   expect(screen.getByTestId('more-open-support')).not.toHaveAttribute('target')
   expect(screen.getByTestId('more-open-public-privacy')).toHaveAttribute('href', '/privacy')
+})
+
+
+test('reading mode remains selected with an explicit session notice when storage is blocked', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  openMoreSection(/Reader Defaults/i)
+  const write = vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new Error('blocked') })
+  fireEvent.click(screen.getByRole('button', { name: 'Read', exact: true }))
+  expect(screen.getByRole('button', { name: 'Read', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByText(/active for this session, but could not be saved/)).toBeInTheDocument()
+  expect(getSavedReaderPresentation()).toBe('read')
+  write.mockRestore()
+  fireEvent.click(screen.getByRole('button', { name: 'Read', exact: true }))
+  expect(screen.queryByText(/active for this session, but could not be saved/)).not.toBeInTheDocument()
+})
+
+test('the live sample reflects reader layout and support settings', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  openMoreSection(/Reader Defaults/i)
+  expect(screen.getByRole('heading', { level: 2, name: /Reader Defaults/ })).toBeInTheDocument()
+  fireEvent.click(within(screen.getByRole('group', { name: 'Text alignment' })).getByRole('button', { name: 'Center' }))
+  fireEvent.click(within(screen.getByRole('group', { name: 'Line spacing' })).getByRole('button', { name: 'Compact' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Extra large', exact: true }))
+  fireEvent.click(screen.getByRole('button', { name: /Transliteration Off/ }))
+  const preview = screen.getByTestId('more-reader-preview')
+  expect(preview).toHaveAttribute('data-support-text-size', 'extra-large')
+  expect(preview.querySelector('[lang="pa-Guru"]')).toHaveStyle({ fontSize: '22px', lineHeight: '1.6' })
+  expect(preview.querySelector('[lang="pa-Guru"]')?.parentElement).toHaveStyle({ textAlign: 'center' })
+  expect(preview.querySelector('[data-reader-support="transliteration"]')).toBeInTheDocument()
+  expect(preview.querySelector('[data-reader-support="meaning"]')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Read', exact: true }))
+  expect(preview.querySelector('[data-reader-support]')).not.toBeInTheDocument()
+  expect(useLanguageStore.getState().supportTextSize).toBe('extra-large')
+})
+
+test('soundscape presets expose selection without development inventory copy', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
+  const presets = within(screen.getByRole('group', { name: 'Listening presets' }))
+  fireEvent.click(presets.getByRole('button', { name: /^Settle/ }))
+  expect(presets.getByRole('button', { name: /^Settle/ })).toHaveAttribute('aria-pressed', 'true')
+  expect(presets.getByRole('button', { name: /^Focus/ })).toHaveAttribute('aria-pressed', 'false')
+  expect(screen.queryByText(/bundled|shipped|transients/)).not.toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /collapse soundscapes/i })).toHaveClass('min-h-[44px]', 'min-w-[44px]')
+})
+
+test('About only offers cloud sync when this build supports it', () => {
+  const view = render(<MemoryRouter><More /></MemoryRouter>)
+  expect(within(screen.getByTestId('more-about')).queryByText(/cloud sync/i)).not.toBeInTheDocument()
+  act(() => useCloudSyncStore.setState({ configured: true }))
+  expect(within(screen.getByTestId('more-about')).getByText(/optional cloud sync/i)).toBeInTheDocument()
+  view.unmount()
+})
+
+
+function NitnemOriginProbe() {
+  const location = useLocation()
+  return <p data-testid="nitnem-origin">{location.state?.nitnemOrigin}</p>
+}
+
+test('the More entry point identifies itself to the Nitnem editor', () => {
+  render(<MemoryRouter initialEntries={['/more']}><Routes>
+    <Route path="/more" element={<More />} />
+    <Route path="/nitnem/customize" element={<NitnemOriginProbe />} />
+  </Routes></MemoryRouter>)
+  fireEvent.click(screen.getByTestId('more-open-nitnem-customize'))
+  expect(screen.getByTestId('nitnem-origin')).toHaveTextContent('/more')
 })
