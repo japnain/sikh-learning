@@ -158,17 +158,31 @@
 .vocab-review-actions { position: sticky; bottom: calc(var(--nav-stack-height, 0px) + var(--fixed-ui-safe-bottom) + .5rem); z-index: 10; padding: .5rem; border: 1px solid rgb(var(--color-border) / .4); border-radius: .75rem; background: rgb(var(--color-bg)); }
 
 .library-shelf-metrics {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: .5rem;
-  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .375rem;
 }
-.library-shelf-metrics > div { min-width: 0; padding: .625rem .375rem; }
-.library-shelf-metric-label { margin-top: .25rem; color: rgb(var(--color-text-muted)); font-size: .8125rem; line-height: 1.5; overflow-wrap: anywhere; }
+.library-shelf-metrics > div {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  gap: .375rem;
+  padding: .375rem .625rem;
+}
+.library-shelf-metrics .text-2xl { font-size: 1rem; line-height: 1.5; }
+.library-shelf-metric-label {
+  margin: 0;
+  color: rgb(var(--color-text-muted));
+  font-size: .8125rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
 [data-page='library'] .library-shelf-empty { padding: 0; border: 0; background: transparent; }
 
 .library-adaptive-layout { display: block; }
-.library-shelf-rail { margin-bottom: 1.5rem; }
+.library-shelf-rail { margin-bottom: 1rem; }
 .library-shelf-content > section { margin-bottom: 1.75rem; }
 .library-section-heading { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
 .library-section-heading > span { flex-wrap: wrap; }
@@ -179,8 +193,3 @@
 .library-shortcuts { padding-top: 1.25rem; border-top: 1px solid rgb(var(--color-border) / .4); }
 [data-page='library'] .story-list-heading h2 { font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: 1.5rem; }
 [data-page='library'] .story-saved-section { margin-bottom: 1.75rem; }
-
-@media (max-width: 480px) {
-  .library-shelf-metric-label { font-size: .6875rem; }
-  .library-shelf-metrics .text-2xl { font-size: 1.25rem; }
-}
