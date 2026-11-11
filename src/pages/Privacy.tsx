@@ -22,7 +22,7 @@ export default function Privacy() {
           You can use the app as a guest. Cloud backup is optional and should only be connected when you want saved progress available across devices.
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective October 24, 2026
+          Effective November 11, 2026
         </p>
       </section>
 
@@ -41,13 +41,13 @@ export default function Privacy() {
           <div className="section-shell-quiet px-4 py-4">
             <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">When cloud sync is connected</p>
             <p className="mt-1 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/66">
-              Account identity and user-owned saved content may be synced through the configured backend so the same shelf can appear on another device.
+              In builds with cloud backup, NaamRas checks Supabase for available sign-in methods. Supabase receives connection information such as your IP address for that request. If you choose to sign in, Supabase processes your account identity and stores your saved passages, vocabulary, reading progress, preferences, and reading activity so they can be restored on another device.
             </p>
           </div>
           <div className="section-shell-quiet px-4 py-4">
             <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Scripture lookup</p>
             <p className="mt-1 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/66">
-              Scripture and translation requests are sent over HTTPS to BaniDB. Search terms and requested content are included in the API request. Khalis Foundation's published policy says its services may record the requesting IP address and requested page or path in server logs.
+              Scripture and translation requests are sent over HTTPS to BaniDB, directly or through NaamRas's Supabase proxy when configured. Search terms and requested content are included in the API request. If the proxy is unavailable and direct access is enabled, NaamRas retries with BaniDB directly. Each service handling a request receives connection information. Khalis Foundation's published policy says its services may record the requesting IP address and requested page or path in server logs.
             </p>
           </div>
           <div className="section-shell-quiet px-4 py-4">
@@ -81,7 +81,7 @@ export default function Privacy() {
           Providers and diagnostics
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. The committed production configuration does not enable Supabase sign-in, cloud sync, or automatic diagnostics. If a release enables them, this notice and the App Store disclosures must be reviewed first. Support reports you copy or download remain under your control; posting one to GitHub makes it public.
+          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. Supabase provides optional account authentication, cloud backup, and scripture proxy services in configured builds. More shows whether cloud backup is available in your build. Automatic diagnostics remain disabled unless an endpoint is configured. Support reports you copy or download remain under your control; posting one to GitHub makes it public.
         </p>
       </section>
 

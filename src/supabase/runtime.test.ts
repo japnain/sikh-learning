@@ -28,6 +28,7 @@ const mocks = vi.hoisted(() => {
   const invoke = vi.fn()
   const exportLocalSnapshot = vi.fn()
   const applyRemoteSnapshot = vi.fn()
+  const discoverAuthProviders = vi.fn()
   const client = {
     auth: {
       getSession,
@@ -49,6 +50,7 @@ const mocks = vi.hoisted(() => {
     invoke,
     exportLocalSnapshot,
     applyRemoteSnapshot,
+    discoverAuthProviders,
   }
 })
 
@@ -59,6 +61,8 @@ vi.mock('./config', () => ({
 vi.mock('./client', () => ({
   getNaamrasSupabaseClient: () => mocks.config.enabled ? mocks.client : null,
 }))
+
+vi.mock('./authProviders', () => ({ discoverAuthProviders: mocks.discoverAuthProviders }))
 
 vi.mock('./snapshot', () => ({
   exportLocalSnapshot: mocks.exportLocalSnapshot,
@@ -75,6 +79,7 @@ import {
   resetCloudSyncRuntimeForTests,
   toSupabaseMergeSnapshot,
   syncNow, signOutOfCloud, deleteCloudAccount, pauseCloudSyncForRestore,
+  signInWithProvider, sendMagicLink,
 } from './runtime'
 
 const EVENT: CloudActivityEvent = {
@@ -158,6 +163,9 @@ beforeEach(() => {
   vi.clearAllMocks()
   localStorage.clear()
   mocks.config.enabled = true
+  mocks.discoverAuthProviders.mockResolvedValue(['email'])
+  mocks.client.auth.signInWithOtp.mockResolvedValue({ error: null })
+  mocks.client.auth.signInWithOAuth.mockResolvedValue({ error: null })
   mocks.onAuthStateChange.mockReturnValue({ data: { subscription: { unsubscribe: vi.fn() } } })
   mocks.client.auth.signOut.mockResolvedValue({ error: null })
   mocks.getSession.mockResolvedValue({
@@ -314,6 +322,44 @@ function deferredResponse() {
 }
 
 describe('cloud concurrency and auth lifecycle', () => {
+  test('only offers server-enabled sign-in methods and refuses disabled Apple sign-in', async () => {
+    await bootstrapCloudSync()
+    expect(useCloudSyncStore.getState().availableProviders).toEqual(['email'])
+    await expect(signInWithProvider('apple')).resolves.toEqual({ ok: false })
+    expect(mocks.client.auth.signInWithOAuth).not.toHaveBeenCalled()
+    await expect(sendMagicLink('simran@example.com')).resolves.toEqual({ ok: true })
+    expect(mocks.client.auth.signInWithOtp).toHaveBeenCalledOnce()
+  })
+
+  test('does not delay session restore or sync while provider discovery is pending', async () => {
+    mocks.discoverAuthProviders.mockReturnValueOnce(new Promise(() => undefined))
+    await bootstrapCloudSync()
+    expect(mocks.invoke).toHaveBeenCalledOnce()
+    expect(useCloudSyncStore.getState()).toMatchObject({ status: 'ready', availableProviders: [] })
+    await expect(sendMagicLink('simran@example.com')).resolves.toEqual({ ok: false })
+    expect(mocks.client.auth.signInWithOtp).not.toHaveBeenCalled()
+  })
+
+  test('rechecks unavailable sign-in methods on reconnect', async () => {
+    mocks.discoverAuthProviders.mockResolvedValueOnce([])
+    await bootstrapCloudSync()
+    expect(useCloudSyncStore.getState().availableProviders).toEqual([])
+    window.dispatchEvent(new Event('online'))
+    await Promise.resolve()
+    expect(useCloudSyncStore.getState().availableProviders).toEqual(['email'])
+  })
+
+  test('ignores discovery responses from an obsolete runtime', async () => {
+    let finish!: (providers: string[]) => void
+    mocks.discoverAuthProviders.mockReturnValueOnce(new Promise(resolve => { finish = resolve }))
+    await bootstrapCloudSync()
+    resetCloudSyncRuntimeForTests()
+    useCloudSyncStore.getState().reset()
+    finish(['apple', 'email'])
+    await Promise.resolve()
+    expect(useCloudSyncStore.getState().availableProviders).toEqual([])
+  })
+
   test('never signs out a new account when an older account deletion finishes', async () => {
     await bootstrapCloudSync()
     let finish!: (value: unknown) => void

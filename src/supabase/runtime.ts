@@ -1,6 +1,7 @@
 import type { User } from '@supabase/supabase-js'
 import { getNaamrasSupabaseClient } from './client'
 import { getNaamrasSupabaseConfig } from './config'
+import { discoverAuthProviders } from './authProviders'
 import { applyRemoteSnapshot, exportLocalSnapshot, reconcileRemoteSnapshotWithLocalChanges } from './snapshot'
 import type {
   CloudLocalSnapshot,
@@ -33,6 +34,7 @@ let cleanupSubscriptions: Array<() => void> = []
 let onlineListenerBound = false
 let storeSubscriptionsBound = false
 let authListenerBound = false
+let providerDiscovery: AbortController | null = null
 let accountGeneration = 0
 let localRevision = 0
 let restorePaused = false
@@ -151,9 +153,15 @@ function toCloudUserSummary(user: User): CloudUserSummary {
   }
 }
 
-function getAvailableProviders() {
-  const config = getNaamrasSupabaseConfig()
-  return config.enabled ? ['apple', 'email'] : []
+function refreshAvailableProviders() {
+  providerDiscovery?.abort()
+  const controller = new AbortController()
+  providerDiscovery = controller
+  void discoverAuthProviders(getNaamrasSupabaseConfig(), controller.signal).then(providers => {
+    if (providerDiscovery !== controller || controller.signal.aborted) return
+    useCloudSyncStore.getState().setAvailableProviders(providers)
+    providerDiscovery = null
+  })
 }
 
 export function toSupabaseMergeSnapshot(snapshot: CloudLocalSnapshot) {
@@ -254,6 +262,7 @@ function bindOnlineListener() {
   if (typeof window === 'undefined' || onlineListenerBound) return
 
   const handleOnline = () => {
+    refreshAvailableProviders()
     if (useCloudSyncStore.getState().syncQueued) {
       void syncNow('reconnect')
     }
@@ -272,7 +281,7 @@ async function refreshCloudState() {
   await withQaControl('supabase-bootstrap', async () => undefined)
 
   syncStore.setConfigured(config.enabled)
-  syncStore.setAvailableProviders(getAvailableProviders())
+  syncStore.setAvailableProviders([])
 
   if (!config.enabled || !client) {
     syncStore.setStatus('idle')
@@ -282,6 +291,7 @@ async function refreshCloudState() {
   }
 
   syncStore.setStatus('booting')
+  refreshAvailableProviders()
 
   const generation = accountGeneration
   const { data, error } = await client.auth.getSession()
@@ -405,6 +415,11 @@ export async function signInWithProvider(
     return { ok: false }
   }
 
+  if (!syncStore.availableProviders.includes(provider)) {
+    syncStore.setLastError(getCloudSyncFailureMessage('auth'))
+    return { ok: false }
+  }
+
   syncStore.setStatus('authenticating')
   syncStore.setLastError(null)
 
@@ -430,6 +445,11 @@ export async function sendMagicLink(email: string, redirectTo?: string) {
 
   if (!client) {
     syncStore.setLastError('Supabase is not configured for this build.')
+    return { ok: false }
+  }
+
+  if (!syncStore.availableProviders.includes('email')) {
+    syncStore.setLastError(getCloudSyncFailureMessage('auth'))
     return { ok: false }
   }
 
@@ -531,6 +551,8 @@ export async function deleteCloudAccount() {
 }
 
 export function resetCloudSyncRuntimeForTests() {
+  providerDiscovery?.abort()
+  providerDiscovery = null
   if (syncTimer !== null && typeof window !== 'undefined') {
     window.clearTimeout(syncTimer)
   }

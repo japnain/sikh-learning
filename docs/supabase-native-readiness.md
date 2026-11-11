@@ -1,30 +1,32 @@
-# NaamRas Native and Supabase Readiness
+# NaamRas backend and native readiness
 
-The SwiftUI app is local first. BaniDB supplies scripture on demand; Supabase is an optional account and state-backup layer.
+The shipping web app and Capacitor `App` target are local first. Supabase supplies optional authentication, PostgreSQL state backup, and a BaniDB proxy. Scripture still comes from BaniDB; this is not a self-hosted scripture corpus. The SwiftUI `NaamRasNative` target is experimental.
 
-## Configure Supabase
+## Provisioning order
 
-1. Create or select the Supabase project.
-2. Run `supabase/schema/001_naamras_native_core.sql`.
-3. Deploy `supabase/functions/merge-local-state` and `supabase/functions/delete-account`.
-4. Enable Sign in with Apple and register bundle id `com.naamras.app`.
-5. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in the native Xcode build settings.
-6. Set the web variables documented in `.env.example` when running the reference app.
+1. Apply the SQL in `supabase/schema/` in numeric order: core schema 001, atomic sync 002, saved-item contract 003, and access hardening 004. Inspect existing migration history before applying anything to an existing project.
+2. Deploy `merge-local-state`, `delete-account`, and `banidb-proxy`. Merge requires `merge_naamras_cloud_snapshot_v3`; a v2-only database cannot serve the current client.
+3. Verify user ownership policies, grants, merge round trips, and deletion cascades using `supabase/tests/backend-transaction-smoke.sql`. The test creates isolated fixtures inside a transaction and rolls everything back.
+4. Configure Auth's Site URL to `https://naamras.xyz` and allow the actual web callback routes. Verify custom SMTP and a real email magic-link round trip before enabling public sign-in. Supabase's default email service is not a general production mail service.
+5. Set the public client URL and publishable key through `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (the latter retains its legacy variable name). Never put a secret or service-role key in any `VITE_` variable. Do not enable production backup until step 4 passes.
+6. Rebuild and deploy the web client. Verify a disposable account's save, second-device restore, sign-out, and account deletion through the deployed Edge Functions.
 
-## Native App Behavior
+The client discovers enabled Apple/email methods from public Auth settings and hides methods that are disabled or cannot be verified. Existing account sync does not wait for that discovery. A failed check is retried on reconnect or page reload.
 
-- Guest mode persists onboarding, appearance, reader settings, bookmarks, and reading progress on device.
-- Four tabs ship: Home, Read, Saved, and More, each with its own `NavigationStack`.
-- Onboarding has four steps: intent, script, support, and reader preview.
-- The reader supports script switching, transliteration, meaning language, font size, alignment, bookmarks, progress, loading, retry, and unavailable states.
-- `NativeCatalog.json` contains 103 unique BaniDB IDs. The app fetches real scripture lines from BaniDB when a reading opens and never maps unsupported library entries to fixture content.
-- Sign in with Apple is shown only when Supabase is configured. Native email magic-link UI remains disabled until a complete deep-link callback flow is implemented and verified.
-- Sync sends a local snapshot to `merge-local-state`, which upserts user-owned state under RLS.
-- Connected users can sign out or confirm permanent account deletion. `delete-account` validates the caller's access token, deletes that same Supabase auth user with the server-side service role, and relies on `on delete cascade` for synced NaamRas rows.
+`banidb-proxy` is public scripture infrastructure: it accepts the project API key without requiring a user session. Transient network/5xx proxy failures can retry BaniDB directly when `VITE_NAAMRAS_BANIDB_DIRECT_FALLBACK` is enabled. Cancellations and 4xx/429 responses are not retried through the fallback.
 
-## Release Checks
+## Audio and optional features
 
-- No IAP, subscriptions, paid locks, or restore-purchase UI exists in the native target.
-- The privacy manifest declares user id and user content for app functionality and no tracking.
-- If cloud backup ships enabled, verify account deletion for every enabled provider and confirm Sign in with Apple token revocation behavior before submission. Keep Supabase configuration absent from the release otherwise.
-- Verify BaniDB first-load, retry, and offline behavior on a physical device before submission.
+Leave `VITE_SUPABASE_AUDIO_BUCKET` blank to use bundled ambient audio. Configure it only after the files exist in a public bucket; configuring cloud accounts alone does not switch audio storage.
+
+`generate-study-response` is not deployed. Keep `VITE_SUPABASE_ENABLE_STUDY_AI` disabled unless a separately reviewed implementation is deployed. This is not required for reading or saved-state backup.
+
+## Native release limits
+
+The shipping Capacitor target lacks the OAuth/magic-link deep-link callback integration. Its sign-in methods remain hidden even when the web build is configured. Do not infer native authentication readiness from web tests.
+
+Before enabling native sign-in, implement and test URL handling and session exchange on a physical device, configure provider redirects, verify Apple credentials if Apple sign-in is offered, and verify Apple token revocation on account deletion. Review App Store privacy disclosures for the enabled release. Existing BaniDB first-load, retry, and offline behavior also require physical-device verification.
+
+## Audit record
+
+See `docs/qa/backend-readiness-20261111.md` for observed production state, completed verification, and remaining external setup.
