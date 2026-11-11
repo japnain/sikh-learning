@@ -2,6 +2,15 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { deterministicProviderResponse, installDeterministicFixtures } from './browser-fixtures.mjs'
 
+test('provider discovery is deterministic while auth mutations remain unmocked', () => {
+  const url = 'https://qa.supabase.co/auth/v1/settings'
+  assert.deepEqual(deterministicProviderResponse(url), { status: 200, data: { external: { email: true, apple: false } } })
+  assert.deepEqual(deterministicProviderResponse(url, null, 'OPTIONS'), { status: 204, data: null })
+  assert.equal(deterministicProviderResponse(url, '{}', 'POST'), null)
+  assert.equal(deterministicProviderResponse('https://qa.supabase.co/auth/v1/otp', '{}', 'POST'), null)
+  assert.equal(deterministicProviderResponse('https://unmocked.example/auth/v1/settings'), null)
+})
+
 test('production, dev proxy and hosted proxy use the same BaniDB fixtures', () => {
   const production = deterministicProviderResponse('https://api.banidb.com/v2/shabads/544')
   const dev = deterministicProviderResponse('http://127.0.0.1:4187/__banidb/v2/shabads/544')

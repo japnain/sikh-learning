@@ -36,7 +36,7 @@ npm run dev
 
 ## Release Configuration
 
-Public Support and Privacy URLs are committed in `.env.production` for web and packaged iOS production builds. Use `.env.example` when configuring another environment:
+Public Support and Privacy URLs, the Supabase project URL, and its browser publishable key are committed in `.env.production`. These client identifiers are public; Auth, RLS, and authenticated Edge Functions enforce access. No secret or service-role key belongs in a `VITE_` variable. Use `.env.example` when configuring another environment:
 
 - `VITE_APP_VERSION`: release version included in anonymous diagnostics
 - `VITE_SUPPORT_URL`: verified public HTTPS support page
@@ -50,7 +50,7 @@ Any release that enables Supabase sign-in must deploy both `merge-local-state` a
 
 Saved-item sync v3 has a strict rollout order: first apply `supabase/schema/003_naamras_cloud_sync_v3.sql`, then deploy the updated `merge-local-state` Edge Function, and only then deploy the web/iOS client. The v3 Edge contract intentionally rejects older v2 snapshots so an installed stale client cannot collapse route-specific or book bookmarks; those clients keep their local data and can sync again after updating.
 
-For complete provisioning, including migration 004 and email delivery / redirect verification, see `docs/supabase-native-readiness.md`. The current web release remains local-only until those sign-in checks pass.
+For complete provisioning, including migration 004 and email delivery / redirect verification, see `docs/supabase-native-readiness.md`. Production web configuration enables optional email-link sign-in and state backup, verified against the deployed backend on November 11, 2026. Guest reading remains local first. Native sign-in stays hidden until Capacitor callback integration and device verification are complete.
 
 ## Quality Checks
 
