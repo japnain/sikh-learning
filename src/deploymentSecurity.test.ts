@@ -65,7 +65,10 @@ test('deployment config applies the production security policy without breaking 
 
 test('the CSP hash matches the inline theme bootstrap exactly', () => {
   const html = fs.readFileSync(path.join(PROJECT_ROOT, 'index.html'), 'utf8')
-  const inlineScript = html.match(/<script>([\s\S]*?)<\/script>/)?.[1]
+  const document = new DOMParser().parseFromString(html, 'text/html')
+  const inlineScripts = document.querySelectorAll('script:not([src])')
+  expect(inlineScripts).toHaveLength(1)
+  const inlineScript = inlineScripts[0]?.textContent
   expect(inlineScript).toBeTruthy()
 
   const expectedHash = crypto

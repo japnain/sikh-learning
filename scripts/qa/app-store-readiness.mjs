@@ -4,6 +4,7 @@ import { basename, dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
 import { getAppStoreEnvironmentChecks } from './app-store-environment.mjs'
+import { hasExactWebAddress } from './web-addresses.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const live = process.argv.includes('--live')
@@ -235,7 +236,7 @@ check(banidbConfig.includes("'https://api.banidb.com'"), 'production defaults to
 const privacyPage = readFileSync(join(root, 'src/pages/Privacy.tsx'), 'utf8')
 check(/Effective [A-Z][a-z]+ \d{1,2}, \d{4}/.test(privacyPage), 'privacy notice has a visible effective date')
 check(privacyPage.includes('record the requesting IP address and requested page or path in server logs'), 'privacy notice discloses BaniDB server-log collection')
-check(privacyPage.includes('banidb.com/tos') && privacyPage.includes('khalisfoundation.org/about/privacy-policy'), 'privacy notice identifies the BaniDB terms and Khalis privacy policy')
+check(hasExactWebAddress(privacyPage, 'https://banidb.com/tos') && hasExactWebAddress(privacyPage, 'https://khalisfoundation.org/about/privacy-policy'), 'privacy notice identifies the BaniDB terms and Khalis privacy policy')
 check(privacyPage.includes('backend.searchgurbani.com') && privacyPage.includes('selected word'), 'privacy notice discloses the SearchGurbani word lookup provider and data sent')
 check(privacyPage.includes('kept in memory') && privacyPage.includes('copy, or download a support report'), 'privacy notice describes user-controlled session reports')
 

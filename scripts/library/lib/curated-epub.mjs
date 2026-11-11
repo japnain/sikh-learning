@@ -38,15 +38,16 @@ export function readEpubFile(epubPath, fileName) {
 }
 
 export function decodeEntities(text) {
-  return text
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>')
-    .replace(/&quot;/gi, '"')
-    .replace(/&apos;|&#39;/gi, "'")
-    .replace(/&#(\d+);/g, (_match, code) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([0-9a-f]+);/gi, (_match, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+  const named = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" }
+  // One pass only: &amp;lt; is literal &lt;, not a second encoded tag opener.
+  return text.replace(/&(#x[0-9a-f]+|#\d+|nbsp|amp|lt|gt|quot|apos);/gi, (_match, entity) => {
+    const name = entity.toLowerCase()
+    if (!name.startsWith('#')) return named[name]
+    const point = name.startsWith('#x') ? Number.parseInt(name.slice(2), 16) : Number(name.slice(1))
+    return point > 0 && point <= 0x10ffff && !(point >= 0xd800 && point <= 0xdfff)
+      ? String.fromCodePoint(point)
+      : '\uFFFD'
+  })
 }
 
 function attributeFallbackText(attributes) {
@@ -61,19 +62,34 @@ function attributeFallbackText(attributes) {
 }
 
 export function htmlToText(html) {
-  const body = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html
-  const text = body
-    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<(p|div|li|h[1-6])\b([^>]*)\/>/gi, (_match, _tag, attributes) => ` ${attributeFallbackText(attributes)} `)
-    .replace(/<(p|div|li|h[1-6])\b([^>]*)>/gi, (_match, _tag, attributes) => {
-      const fallback = attributeFallbackText(attributes)
-      return fallback ? ` ${fallback} ` : ' '
-    })
-    .replace(/<br\s*\/?>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
+  // Inert parsing only: scripts/resources are never enabled. This returns plain
+  // text, not sanitized HTML, and callers must continue rendering it as text.
+  const dom = new JSDOM(html, { includeNodeLocations: true })
+  try {
+    const document = dom.window.document
+    const body = document.body
+    body.querySelectorAll('script, style, template, noscript, iframe, object, embed, svg, canvas')
+      .forEach(element => element.replaceWith(document.createTextNode(' ')))
 
-  return decodeEntities(text).replace(/\s+/g, ' ').trim()
+    for (const element of body.querySelectorAll('*')) {
+      if (/^(?:p|div|li|h[1-6])$/.test(element.localName)) {
+        // Some archived OCR pages stored words as malformed attributes. Preserve
+        // their source order/duplicates; DOM attributes alone would drop them.
+        const startTag = dom.nodeLocation(element)?.startTag
+        if (startTag) {
+          const source = html.slice(startTag.startOffset, startTag.endOffset)
+          const attributes = source.slice(1 + element.localName.length, -1).replace(/\/\s*$/, '')
+          element.prepend(document.createTextNode(` ${attributeFallbackText(attributes)} `))
+        }
+      }
+      element.before(document.createTextNode(' '))
+      element.after(document.createTextNode(' '))
+    }
+    // The parser already decoded character references once.
+    return (body.textContent ?? '').replace(/\s+/g, ' ').trim()
+  } finally {
+    dom.window.close()
+  }
 }
 
 function normalizeExtractedText(text) {
@@ -266,7 +282,8 @@ function resolveZipPath(baseFile, href) {
 }
 
 function resolveNavigationHref(baseFile, href) {
-  const normalizedHref = decodeEntities(href).trim()
+  // Both navigation parsers supply an already-decoded DOM attribute value.
+  const normalizedHref = href.trim()
   if (!normalizedHref || /^[a-z][a-z\d+.-]*:/i.test(normalizedHref)) return undefined
   const hashIndex = normalizedHref.indexOf('#')
   const resourceHref = (hashIndex >= 0 ? normalizedHref.slice(0, hashIndex) : normalizedHref)
@@ -372,7 +389,7 @@ export function inspectEpub(epubPath) {
   const metadata = {}
   for (const field of ['title', 'creator', 'language', 'publisher', 'identifier', 'description']) {
     const value = packageDocument.match(new RegExp(`<dc:${field}\\b[^>]*>([\\s\\S]*?)<\\/dc:${field}>`, 'i'))?.[1]
-    if (value) metadata[field] = decodeEntities(value.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()
+    if (value) metadata[field] = htmlToText(value)
   }
 
   return {

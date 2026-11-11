@@ -326,7 +326,8 @@ test('restores source appendix slices without inventing references or including 
       expect(note.sourceHref).toBe(`EPUB/page_${note.sourcePageNumber}.html`)
       expect(note.printPageNumber).toBe(note.sourcePageNumber - 44)
       const html = execFileSync('unzip', ['-p', path.join(WORK_ROOT, 'assets/volume-1.epub'), note.sourceHref], { encoding: 'utf8' })
-      const normalizedSource = html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim()
+      const sourceDocument = new DOMParser().parseFromString(html, 'text/html')
+      const normalizedSource = (sourceDocument.body.textContent ?? '').replace(/\s+/g, ' ').trim()
       expect(normalizedSource, `${chapter.id}:${note.sourcePageNumber}`).toContain(note.text)
       sourcePages.add(note.sourcePageNumber)
     }

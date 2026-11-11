@@ -160,8 +160,9 @@ describe('reader editorial copy coverage', () => {
 
     for (const copy of [ARDAAS_EDITORIAL_COPY, ARDAAS_HUKAMNAMA_EDITORIAL_COPY, DAILY_HUKAMNAMA_EDITORIAL_COPY, PERSONAL_HUKAMNAMA_EDITORIAL_COPY]) {
       expect(copy.sourceRefs.length).toBeGreaterThanOrEqual(2)
-      expect(copy.sourceRefs.every(ref => ref.url?.startsWith('https://'))).toBe(true)
-      expect(copy.sourceRefs.some(ref => ref.url?.includes('old.sgpc.net'))).toBe(false)
+      const sourceUrls = copy.sourceRefs.map(ref => new URL(ref.url ?? ''))
+      expect(sourceUrls.every(url => url.protocol === 'https:')).toBe(true)
+      expect(sourceUrls.some(({ hostname }) => hostname === 'old.sgpc.net' || hostname.endsWith('.old.sgpc.net'))).toBe(false)
     }
   })
 

@@ -207,7 +207,7 @@ configureLibraryRepositoryLoader(async (resourcePath) => {
   const normalizedPath = resourcePath.startsWith('/')
     ? resourcePath.slice(1)
     : resourcePath
-  const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/library\//, 'data/library/'))
+  const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath)
   return JSON.parse(fs.readFileSync(filePath, 'utf8'))
 })
 
@@ -223,7 +223,7 @@ afterEach(() => {
     const normalizedPath = resourcePath.startsWith('/')
       ? resourcePath.slice(1)
       : resourcePath
-    const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/library\//, 'data/library/'))
+    const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath)
     return JSON.parse(fs.readFileSync(filePath, 'utf8'))
   })
 })
