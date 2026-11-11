@@ -58,14 +58,6 @@
 }
 
 .settings-block > .eyebrow { margin-bottom: .65rem; }
-[data-page='more'] > .more-appearance-grid > .settings-block {
-  padding: 1rem 0;
-  border: 0;
-  border-bottom: 1px solid rgb(var(--color-border) / .35);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
 [data-page='more'] > .more-appearance-grid > .settings-block > .eyebrow + p { margin-top: -.25rem; }
 /* Keep More's live sample readable before the reader route loads its styles. */
 .more-reader-preview [data-reader-support] { margin-top: .65rem; color: rgb(var(--color-text-muted)); font-size: calc(.96rem * var(--more-support-scale, 1)); line-height: 1.65; }
