@@ -181,7 +181,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
   compactFallback: (context: string) => string
   fullBody: string
   fullLibrary: string
-  bundled: (count: number, total: number) => string
+  soundCount: (count: number) => string
   presetReady: (presetName: string) => string
   defaultReady: string
   defaultSummary: string
@@ -201,7 +201,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     compactFallback: context => `Pick a quieter bed for ${context.toLowerCase()} without pulling focus away from Gurbani.`,
     fullBody: 'Ambient focus beds only. No melody, no vocals, no sharp transients, and no spoken overlap.',
     fullLibrary: 'Full library',
-    bundled: (count, total) => `${count}/${total} bundled`,
+    soundCount: count => `${count} sounds`,
     presetReady: presetName => `${presetName} preset ready`,
     defaultReady: 'Focus preset ready',
     defaultSummary: 'Choose a preset or an individual ambient track below.',
@@ -221,7 +221,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     compactFallback: context => `${context.toLowerCase()} ਲਈ ਹੌਲਾ ਪਿਛੋਕੜ ਚੁਣੋ ਜੋ ਗੁਰਬਾਣੀ ਤੋਂ ਧਿਆਨ ਨਾ ਖਿੱਚੇ।`,
     fullBody: 'ਕੇਵਲ ਧਿਆਨ ਲਈ ਆਸ-ਪਾਸ ਦੀਆਂ ਧੁਨਾਂ। ਨਾ ਕੋਈ ਧੁਨ, ਨਾ ਗਾਇਕੀ, ਨਾ ਤੀਖੇ ਝਟਕੇ, ਨਾ ਬੋਲੀ ਮਿਲਾਵਟ।',
     fullLibrary: 'ਪੂਰੀ ਲਾਇਬ੍ਰੇਰੀ',
-    bundled: (count, total) => `${count}/${total} ਸ਼ਾਮਲ`,
+    soundCount: count => `${count} ਧੁਨਾਂ`,
     presetReady: presetName => `${presetName} ਪ੍ਰੀਸੈਟ ਤਿਆਰ`,
     defaultReady: 'ਧਿਆਨ ਪ੍ਰੀਸੈਟ ਤਿਆਰ',
     defaultSummary: 'ਹੇਠਾਂ ਤੋਂ ਪ੍ਰੀਸੈਟ ਜਾਂ ਇਕੱਲਾ ਐਂਬੀਅਂਟ ਟਰੈਕ ਚੁਣੋ।',
@@ -241,7 +241,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
     compactFallback: context => `${context.toLowerCase()} के लिए शांत पृष्ठभूमि चुनें जो गुरबाणी से ध्यान न खींचे।`,
     fullBody: 'सिर्फ एकाग्रता के लिए वातावरण। न धुन, न स्वर, न तेज़ ट्रांज़िएंट, न बोली का ओवरलैप।',
     fullLibrary: 'पूरी लाइब्रेरी',
-    bundled: (count, total) => `${count}/${total} शामिल`,
+    soundCount: count => `${count} ध्वनियाँ`,
     presetReady: presetName => `${presetName} प्रीसेट तैयार`,
     defaultReady: 'फोकस प्रीसेट तैयार',
     defaultSummary: 'नीचे से कोई प्रीसेट या एकल एम्बिएंट ट्रैक चुनें।',
@@ -302,7 +302,6 @@ export default function SoundscapeControls({
   const visibleSounds = SOUNDS.filter(sound => sound.recommendedContexts.includes(context))
   const selectedSound = SOUNDS.find(sound => sound.id === selectedSoundId) ?? null
   const selectedPreset = FOCUS_PRESETS.find(preset => preset.id === selectedPresetId) ?? null
-  const targetLibraryCount = Object.values(SOUND_LIBRARY_TARGETS).reduce((sum, count) => sum + count, 0)
   const panelId = `soundscape-panel-${context}-${variant}`
 
   const selectedSoundText = selectedSound ? SOUND_TEXT[locale][selectedSound.id] ?? SOUND_TEXT.en[selectedSound.id] : null
@@ -500,7 +499,7 @@ export default function SoundscapeControls({
               {copy.fullLibrary}
             </Link>
           ) : (
-            <span className="chip-pill">{copy.bundled(SOUNDS.length, targetLibraryCount)}</span>
+            <span className="chip-pill">{copy.soundCount(SOUNDS.length)}</span>
           )}
 
           <button

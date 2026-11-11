@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { basename, dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
+import { getAppStoreEnvironmentChecks } from './app-store-environment.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const live = process.argv.includes('--live')
@@ -200,7 +201,6 @@ async function verifyLiveSite(distIndex) {
 const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
 const packageLock = JSON.parse(readFileSync(join(root, 'package-lock.json'), 'utf8'))
 const capacitorConfig = readFileSync(join(root, 'capacitor.config.ts'), 'utf8')
-const productionEnv = readFileSync(join(root, '.env.production'), 'utf8')
 const packageSwift = readFileSync(join(root, 'ios/App/CapApp-SPM/Package.swift'), 'utf8')
 const packageResolved = JSON.parse(readFileSync(join(root, 'ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved'), 'utf8'))
 const appCollectedDataTypes = [
@@ -227,10 +227,9 @@ check(resolvedCapacitor?.state?.version === capacitorVersion, 'Xcode resolves th
 check(capacitorConfig.includes("appId: 'com.naamras.app'"), 'Capacitor app id is com.naamras.app')
 check(capacitorConfig.includes("appName: 'NaamRas'"), 'Capacitor app name is NaamRas')
 check(capacitorConfig.includes("webDir: 'dist'"), 'Capacitor packages the production dist directory')
-const envLines = productionEnv.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith('#'))
-check(envLines.includes('VITE_SUPPORT_URL=https://naamras.xyz/support'), 'production support URL is public and valid')
-check(envLines.includes('VITE_PRIVACY_URL=https://naamras.xyz/privacy'), 'production privacy URL is public and valid')
-check(envLines.every((line) => line.startsWith('VITE_SUPPORT_URL=') || line.startsWith('VITE_PRIVACY_URL=')), 'production environment contains no backend credentials or collection endpoints')
+for (const { ok, message, detail } of getAppStoreEnvironmentChecks(root)) {
+  check(ok, message, detail)
+}
 const banidbConfig = readFileSync(join(root, 'src/supabase/config.ts'), 'utf8')
 check(banidbConfig.includes("'https://api.banidb.com'"), 'production defaults to the public BaniDB API')
 const privacyPage = readFileSync(join(root, 'src/pages/Privacy.tsx'), 'utf8')

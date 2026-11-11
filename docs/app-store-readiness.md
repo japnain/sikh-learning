@@ -5,6 +5,12 @@ verification status is maintained in
 [`docs/qa/2026-07-29-comprehensive-app-audit.md`](qa/2026-07-29-comprehensive-app-audit.md);
 do not reuse the test counts or live-parity claims below for changed source.
 
+## Current Configuration Gate — November 11, 2026
+
+Web production now has Supabase accounts and audio configured in Vercel. The tracked `.env.production` file has been removed. This does not make the native release ready: Capacitor sign-in remains disabled until its authentication callbacks and Apple/email provider flows are implemented and tested, and the App Privacy answers are reviewed for cloud use.
+
+`ios:sync` runs the normal Vite production build. It therefore reads `.env`, `.env.local`, `.env.production`, and `.env.production.local` when present, with existing shell variables taking precedence. The native readiness check resolves those same sources, including ignored local files, and rejects nonempty configuration beyond the reviewed Support and Privacy URLs. Missing files are allowed; missing required URLs are reported as failed checks. Run the native release in an explicitly prepared local-only environment, or complete the native backend review before changing this guard. Do not assume that removing a tracked file disables values held in an ignored file or the shell.
+
 ## Product Decision
 
 - The App Store product is the Capacitor `App` scheme in `ios/App/App.xcodeproj`.
@@ -29,7 +35,7 @@ do not reuse the test counts or live-parity claims below for changed source.
 - Tracking: disabled; BaniDB request/server-log data is conservatively declared as collected and linked
 - In-app purchases/subscriptions: none
 
-The initial App Store build is local-first. `.env.production` does not configure Supabase or diagnostics, so sign-in, cloud sync, account collection, and diagnostics are not active in the submitted bundle. Direct BaniDB requests still transmit search terms, requested content paths, and an IP address to the provider. Do not add backend environment values without redoing App Privacy answers and deploying/provider-testing account deletion.
+The historical initial App Store candidate was local-first, without configured Supabase or diagnostics. Direct BaniDB requests still transmitted search terms, requested content paths, and an IP address to the provider. For a new candidate, verify the resolved build configuration using the current gate above; backend activation requires revised App Privacy answers and provider-tested account deletion.
 
 ## Verified On This Machine
 

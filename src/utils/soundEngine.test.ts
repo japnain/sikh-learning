@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
+import { SOUNDS } from '../store/music'
 import {
   __getSoundEngineSnapshotForTests,
   __resetSoundEngineForTests,
@@ -84,6 +85,57 @@ test('stopping playback does not let stale sessions revive after timers settle',
   const snapshot = __getSoundEngineSnapshotForTests()
   expect(snapshot.activeSoundId).toBe(null)
   expect(snapshot.activeAudio).toBe(null)
+})
+
+test('a cloud playback failure retries the local copy once without interrupting the selected sound', async () => {
+  const sound = SOUNDS.find(entry => entry.id === 'gentle-rain')!
+  const originalSources = { src: sound.src, fallbackSrc: sound.fallbackSrc }
+  const cloudSrc = 'https://naamras-qa.supabase.co/storage/v1/object/public/naamras-audio/ambient/gentle-rain.mp3'
+  const localSrc = '/audio/ambient/gentle-rain.mp3'
+  const requestedSources: string[] = []
+  const onPlaybackFailure = vi.fn()
+  const unsubscribe = subscribeToSoundPlaybackFailures(onPlaybackFailure)
+  const originalAudio = globalThis.Audio
+
+  class CloudFallbackAudio {
+    src: string
+    preload = 'auto'
+    loop = false
+    volume = 1
+    currentTime = 0
+    paused = true
+
+    constructor(src: string) {
+      this.src = src
+      requestedSources.push(src)
+    }
+
+    play() {
+      this.paused = false
+      return this.src === cloudSrc ? Promise.reject(new Error('cloud unavailable')) : Promise.resolve()
+    }
+
+    pause() { this.paused = true }
+  }
+
+  Object.assign(sound, { src: cloudSrc, fallbackSrc: localSrc })
+  Object.defineProperty(globalThis, 'Audio', { value: CloudFallbackAudio, configurable: true })
+
+  try {
+    playSound(sound.id)
+    await settlePlayback()
+    const snapshot = __getSoundEngineSnapshotForTests()
+    expect(requestedSources).toEqual([cloudSrc, localSrc])
+    expect(snapshot.activeSoundId).toBe(sound.id)
+    expect(snapshot.activeAudio?.src).toBe(localSrc)
+    expect(snapshot.activeAudio?.paused).toBe(false)
+    expect(onPlaybackFailure).not.toHaveBeenCalled()
+  } finally {
+    stopSound()
+    unsubscribe()
+    Object.assign(sound, originalSources)
+    Object.defineProperty(globalThis, 'Audio', { value: originalAudio, configurable: true })
+  }
 })
 
 test('fallback failure leaves the engine fully stopped', async () => {

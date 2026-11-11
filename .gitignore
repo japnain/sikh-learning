@@ -23,7 +23,16 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env.*
+!.env.example
 .vercel
+
+# Private credential files. Public certificates do not contain private keys.
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
 
 # Local scratch artifacts
 artifacts/
