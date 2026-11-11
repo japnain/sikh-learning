@@ -101,14 +101,24 @@ async function reachableControl(page, locator, label) {
   await locator.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
   await settle(page)
   await horizontallyAccessible(locator, label)
-  const reachable = await locator.evaluate(element => {
+  const metrics = await locator.evaluate(element => {
     const rect = element.getBoundingClientRect()
     const x = rect.left + rect.width / 2
     const y = rect.top + rect.height / 2
     const hit = document.elementFromPoint(x, y)
-    return rect.top >= -2 && rect.bottom <= innerHeight + 2 && (hit === element || element.contains(hit))
+    const nav = document.querySelector('[data-testid="nav-stack"]')?.getBoundingClientRect()
+    const bounds = value => value ? { top: value.top, bottom: value.bottom, left: value.left,
+      right: value.right, width: value.width, height: value.height } : null
+    const styles = getComputedStyle(element)
+    return {
+      reachable: rect.top >= -2 && rect.bottom <= innerHeight + 2 && (hit === element || element.contains(hit)),
+      control: bounds(rect), nav: bounds(nav), viewport: { width: innerWidth, height: innerHeight },
+      hitPoint: { x, y }, hit: hit ? { tag: hit.tagName, id: hit.id, className: hit.getAttribute('class') } : null,
+      scrollPaddingBottom: getComputedStyle(document.documentElement).scrollPaddingBottom,
+      scrollMarginTop: styles.scrollMarginTop, scrollMarginBottom: styles.scrollMarginBottom,
+    }
   })
-  assert(reachable, `${label}: scrolling exposes the control without a fixed overlay covering it`)
+  assert(metrics.reachable, `${label}: scrolling exposes the control without a fixed overlay covering it: ${JSON.stringify(metrics)}`)
 }
 
 async function shot(page, name) {

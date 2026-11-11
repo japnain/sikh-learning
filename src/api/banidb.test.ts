@@ -608,7 +608,7 @@ describe('fetchHukamnama', () => {
         }
         return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
       }),
-      http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', ({ request }) => {
+      http.get('https://api.banidb.com/v2/hukamnamas/2026/04/05', ({ request }) => {
         requestedPaths.push(new URL(request.url).pathname)
         return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
       })
@@ -617,6 +617,8 @@ describe('fetchHukamnama', () => {
     await expect(fetchHukamnama('2026-04-05')).rejects.toThrow(
       'BaniDB /hukamnamas error: 503'
     )
+    // A transport retry may fetch the same date directly, but must never
+    // substitute today's/latest reading for an explicitly requested date.
     expect(requestedPaths).toEqual([
       '/v2/hukamnamas/2026/04/05',
       '/v2/hukamnamas/2026/04/05',
@@ -662,22 +664,25 @@ describe('fetchHukamnama', () => {
         }
         return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
       }),
-      http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', ({ request }) => {
+      http.get(/^https:\/\/api\.banidb\.com\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/, ({ request }) => {
         requestedPaths.push(new URL(request.url).pathname)
         return HttpResponse.json({ error: 'Unavailable.' }, { status: 503 })
       })
     )
 
-    const hukamnama = await fetchHukamnama(undefined, { signal: controller.signal })
+    try {
+      const hukamnama = await fetchHukamnama(undefined, { signal: controller.signal })
 
-    expect(hukamnama.date).toBe('2026-04-05')
-    expect(requestedPaths).toHaveLength(3)
-    expect(requestedPaths[0]).toMatch(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)
-    expect(requestedPaths[1]).toBe(requestedPaths[0])
-    expect(requestedPaths[2]).toBe('/v2/hukamnamas')
-    expect(fetchSpy.mock.calls).toHaveLength(3)
-    expect(fetchSpy.mock.calls.every(([, options]) => options?.signal === controller.signal)).toBe(true)
-    fetchSpy.mockRestore()
+      expect(hukamnama.date).toBe('2026-04-05')
+      expect(requestedPaths).toHaveLength(3)
+      expect(requestedPaths[0]).toMatch(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)
+      expect(requestedPaths[1]).toBe(requestedPaths[0])
+      expect(requestedPaths[2]).toBe('/v2/hukamnamas')
+      expect(fetchSpy.mock.calls).toHaveLength(3)
+      expect(fetchSpy.mock.calls.every(([, options]) => options?.signal === controller.signal)).toBe(true)
+    } finally {
+      fetchSpy.mockRestore()
+    }
   })
 
   it('aborts an in-flight exact Hukamnama request without requesting the latest endpoint', async () => {
@@ -685,14 +690,15 @@ describe('fetchHukamnama', () => {
     const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation((_url, options) => new Promise((_resolve, reject) => {
       options?.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')), { once: true })
     }))
+    const outcome = fetchHukamnama('2026-04-05', { signal: controller.signal }).then(() => null, error => error)
     try {
-      const request = fetchHukamnama('2026-04-05', { signal: controller.signal })
-      const rejection = expect(request).rejects.toMatchObject({ name: 'AbortError' })
       await vi.waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(1))
       controller.abort()
-      await rejection
+      expect(await outcome).toMatchObject({ name: 'AbortError' })
       expect(fetchSpy).toHaveBeenCalledTimes(1)
     } finally {
+      controller.abort()
+      await outcome
       fetchSpy.mockRestore()
     }
   })
