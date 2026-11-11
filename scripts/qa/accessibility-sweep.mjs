@@ -17,6 +17,7 @@ const SCAN_TIMEOUT_MS = Number(process.env.QA_A11Y_SCAN_TIMEOUT_MS) || 45_000
 const DETERMINISTIC = process.env.QA_DETERMINISTIC !== '0'
 const fixtureSessions = []
 const SWEEP_SCOPE = process.env.QA_A11Y_SCOPE ?? 'all'
+const EVIDENCE_DIR = path.resolve('tmp/browser-acceptance/a11y')
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
 const HUKAMNAMA_SHARE_ROUTE = '/study?hukamnamaDate=2026-04-05'
 const ROUTES = [
@@ -25,6 +26,7 @@ const ROUTES = [
   '/study?shabadId=544&verseId=7718',
   '/study?hukamnamaDate=2026-04-05',
   '/study?source=G&ang=183',
+  '/saved',
   '/library',
   '/library/panth-prakash-english',
   '/library/panth-prakash-english/chapters/episode-001',
@@ -201,6 +203,12 @@ async function scanMode(browser, mode) {
 
       await preparePage(page, route)
       const violations = await scanPage(page)
+      if (route === '/saved' || route === '/more') {
+        await page.screenshot({
+          path: path.join(EVIDENCE_DIR, `${mode.id}-${route.slice(1)}.png`),
+          fullPage: true,
+        })
+      }
       if (violations.length > 0) failures.push({ mode: mode.id, route, violations })
 
       const durationSeconds = ((Date.now() - startedAt) / 1000).toFixed(1)
@@ -429,6 +437,7 @@ async function main() {
     throw new Error('QA_A11Y_SCOPE must be one of: all, routes, share-composer.')
   }
 
+  fs.mkdirSync(EVIDENCE_DIR, { recursive: true })
   const server = await startDevServer()
   let browser = null
   const failures = []
