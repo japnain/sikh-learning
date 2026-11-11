@@ -19,11 +19,13 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Block tracked credentials and private environment files
+        run: node --test scripts/qa/secret-scan.test.mjs && node scripts/qa/secret-scan.mjs
       - run: npm ci
       - run: npm run lint
       - run: npm run qa:css-selectors
       - name: Verify browser fixtures and startup budgets
-        run: node --test scripts/qa/browser-fixtures.test.mjs scripts/qa/startup-bundle-audit.test.mjs
+        run: node --test scripts/qa/browser-fixtures.test.mjs scripts/qa/startup-bundle-audit.test.mjs scripts/qa/app-store-environment.test.mjs
       - run: npm run build
       - name: Install Chromium
         run: npx playwright-core install --with-deps chromium
