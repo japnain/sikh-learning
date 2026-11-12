@@ -51,12 +51,12 @@ export default function AccountPage() {
     <div className="court-account-art"><img src={DEFAULT_HOME_ARTWORK.src} alt={DEFAULT_HOME_ARTWORK.localizedDescription[locale]} width={1199} height={1476} /><span>{DEFAULT_HOME_ARTWORK.displayName[locale]}</span></div>
     <div className="court-account-panel">
       <Link to="/" className="court-account-brand" aria-label="NaamRas"><NaamRasLogoMark size={32} /><span>NaamRas</span></Link>
-      <h1 className="court-account-heading">{connected ? copy.connected : 'NaamRas'}</h1>
+      <h1 className={connected ? 'court-account-heading' : 'sr-only'}>{connected ? copy.connected : 'NaamRas'}</h1>
       <p className="account-note">{connected ? passwordSaved ? copy.passwordSaved : copy.connectedBody : copy.body}</p>
-      {!verified ? <p role="status" className="account-notice">{copy.checking}</p> : connected ? <Link to="/" className="account-primary">{copy.continue}</Link> : <>
+      {!verified ? <p role="status" className="account-notice">{copy.checking}</p> : connected ? <Link to="/" state={{ onboarding: 'reading' }} className="account-primary">{copy.continue}</Link> : <>
         {invalidReturn || returnError ? <p role="alert" className="account-error">{copy.errors.expired}</p> : null}
         <AccountAuthForm key={initialMode} locale={locale} initialMode={initialMode} onPasswordSaved={() => setPasswordSaved(true)} />
-        <Link to="/" className="account-guest">{copy.guest}</Link>
+        <Link to="/" state={{ onboarding: 'reading' }} className="account-guest">{copy.guest}</Link>
       </>}
       <p className="account-coverage">{copy.coverage}</p>
       <footer className="account-footer"><Link to="/privacy">{copy.privacy}</Link><Link to="/support">{copy.help}</Link></footer>

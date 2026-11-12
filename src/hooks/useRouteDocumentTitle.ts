@@ -20,6 +20,8 @@ export function getRouteDocumentTitle(pathname: string) {
   if (normalized === '/vocab') return `Vocabulary · ${APP_NAME}`
   if (normalized === '/privacy') return `Privacy · ${APP_NAME}`
   if (normalized === '/support') return `Support · ${APP_NAME}`
+  if (normalized === '/account' || normalized === '/auth/callback') return `Account · ${APP_NAME}`
+  if (normalized === '/auth/recovery') return `Reset password · ${APP_NAME}`
   return `Page not found · ${APP_NAME}`
 }
 

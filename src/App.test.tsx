@@ -61,6 +61,26 @@ function advanceOnboardingToMeanings() {
 
 const JAPJI_READING_PATH = '/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji+Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib'
 
+test('the account route stays reachable before onboarding and guest continuation goes straight to reading setup', async () => {
+  window.history.replaceState({}, '', '/account?mode=signup')
+  render(<App />)
+  expect(await screen.findByRole('heading', { name: 'Make room for your daily reading.' })).toBeInTheDocument()
+  expect(screen.queryByTestId('onboarding-first-run')).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('link', { name: 'Continue without an account' }))
+  expect(await screen.findByTestId('onboarding-script-step')).toBeInTheDocument()
+  expect(screen.queryByTestId('onboarding-begin-action')).not.toBeInTheDocument()
+  advanceOnboardingToMeanings()
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(window.location.pathname).toBe('/')
+})
+
+test('the keyboard skip link reaches the welcome screen before account setup', () => {
+  render(<App />)
+  fireEvent.click(screen.getByTestId('skip-to-content'))
+  expect(screen.getByRole('main')).toHaveFocus()
+})
+
 test('onboarding applies the selected script, pronunciation, and meanings to the requested reader', async () => {
   window.history.replaceState({}, '', JAPJI_READING_PATH)
   documentScroll = mockDocumentScroll({ top: 320 })

@@ -24,6 +24,7 @@ interface Props {
   onComplete: () => void | Promise<void>
   onDismiss?: () => void
   isCompleting?: boolean
+  startWithPreferences?: boolean
 }
 
 const SCRIPTS: ScriptMode[] = ['gurmukhi', 'devanagari']
@@ -46,10 +47,10 @@ function Choice({ selected, children, onClick, testId, className = '' }: {
 
 export default function OnboardingSheet({
   presentation, locale, scriptMode, setScriptMode, showTransliteration, setShowTransliteration,
-  meaningLanguage, setMeaningLanguage, onComplete, onDismiss, isCompleting = false,
+  meaningLanguage, setMeaningLanguage, onComplete, onDismiss, isCompleting = false, startWithPreferences = false,
 }: Props) {
   const [step, setStep] = useState<0 | 1>(0)
-  const [welcome, setWelcome] = useState(presentation === 'first-run')
+  const [welcome, setWelcome] = useState(presentation === 'first-run' && !startWithPreferences)
   const currentUser = useCloudSyncStore(state => state.currentUser)
   const [submitting, setSubmitting] = useState(false)
   const [completionFailed, setCompletionFailed] = useState(false)
@@ -102,7 +103,7 @@ export default function OnboardingSheet({
     }
   }
 
-  if (welcome && !overlay) return <main className="onboarding-root court-welcome" data-testid="onboarding-first-run" data-page="onboarding" data-ai-surface="onboarding" data-ai-state="ready" lang={locale} aria-labelledby="onboarding-title">
+  if (welcome && !overlay) return <main id="main-content" tabIndex={-1} className="onboarding-root court-welcome" data-testid="onboarding-first-run" data-page="onboarding" data-ai-surface="onboarding" data-ai-state="ready" lang={locale} aria-labelledby="onboarding-title">
     <div className="court-welcome-frame">
       <header className="onboarding-header"><span className="onboarding-brand"><NaamRasLogoMark size={30} testId="onboarding-brand-mark" /><span>NaamRas</span></span><span className="court-edition" aria-hidden="true">ੴ</span></header>
       <div className="court-welcome-layout">
@@ -208,5 +209,5 @@ export default function OnboardingSheet({
     </Dialog.Content>
   </Dialog.Portal></Dialog.Root>
 
-  return <main className="onboarding-root" data-testid="onboarding-first-run" data-page="onboarding" data-ai-surface="onboarding" data-ai-state="ready" aria-labelledby="onboarding-title" aria-describedby="onboarding-description">{chrome}</main>
+  return <main id="main-content" tabIndex={-1} className="onboarding-root" data-testid="onboarding-first-run" data-page="onboarding" data-ai-surface="onboarding" data-ai-state="ready" aria-labelledby="onboarding-title" aria-describedby="onboarding-description">{chrome}</main>
 }

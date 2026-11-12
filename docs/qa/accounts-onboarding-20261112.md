@@ -46,4 +46,6 @@ Secrets must remain in provider/backend configuration. Do not commit or paste th
 - Focused auth, onboarding, More, app-shell, recovery, and provider tests passed before preview.
 - Production build and startup budget passed; Supabase remains outside the eager startup graph.
 - A disposable account was created through the production signup endpoint. Confirmation email arrived from the configured sender, and password sign-in accepted the correct password and rejected an incorrect one.
-- Further UI/CI and cleanup results are recorded with the final release verification.
+- The recovery email arrived; its one-time verification created a recovery session. Password update returned HTTP 200, the old password was rejected, and the new password signed in successfully. The disposable account was deleted through the deployed account-deletion function; a read-only SQL count confirmed zero remaining test accounts.
+- The complete local suite passed: 185 suites / 2,854 tests before the final guest-continuation regression test. CSS selectors and credential scanning passed.
+- The preview preserves the entire painting and displays welcome/account choices at desktop and 390 × 844. Preview deployments intentionally have no backend environment configuration; live API checks and the production account page are used for connected verification.
