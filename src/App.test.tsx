@@ -81,6 +81,16 @@ test('the keyboard skip link reaches the welcome screen before account setup', (
   expect(screen.getByRole('main')).toHaveFocus()
 })
 
+test('onboarding does not restore authentication fragments from an older email link', async () => {
+  window.history.replaceState({}, '', '/more#access_token=disposable-test&refresh_token=disposable-test')
+  render(<App />)
+  advanceOnboardingToMeanings()
+  fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
+  expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(window.location.pathname).toBe('/more')
+  expect(window.location.hash).toBe('')
+})
+
 test('onboarding applies the selected script, pronunciation, and meanings to the requested reader', async () => {
   window.history.replaceState({}, '', JAPJI_READING_PATH)
   documentScroll = mockDocumentScroll({ top: 320 })

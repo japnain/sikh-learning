@@ -19,6 +19,7 @@ import { applyThemeToDocument, useThemeStore } from './store/theme'
 import { scrollAppTo } from './utils/appScroll'
 import { getRouterBasename } from './utils/basePath'
 import { setReaderPresentationPreference } from './utils/readerPresentation'
+import { isAuthReturnFragment } from './supabase/authRedirect'
 import {
   buildHukamnamaStudyPath,
   buildPersonalHukamnamaStudyPath,
@@ -172,7 +173,8 @@ function AppShell() {
   const locale = useLocaleStore(s => s.locale)
   const [isCompletingOnboarding, setIsCompletingOnboarding] = useState(false)
   const [pendingOnboardingViewportReset, setPendingOnboardingViewportReset] = useState(false)
-  const firstRunDestinationRef = useRef(isPublicDocumentPath(location.pathname) ? '/' : `${location.pathname}${location.search}${location.hash}`)
+  const authReturnFragment = isAuthReturnFragment(location.hash)
+  const firstRunDestinationRef = useRef(isPublicDocumentPath(location.pathname) ? '/' : `${location.pathname}${location.search}${authReturnFragment ? '' : location.hash}`)
   const isPublicDocument = isPublicDocumentPath(location.pathname)
   const isLibraryChapterReader = /^\/library\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
   const isRehatChapterReader = /^\/banis\/rehat\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
@@ -195,7 +197,7 @@ function AppShell() {
   useAppScrollRestoration({
     mainContentRef,
     enabled: !showFirstRun,
-    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader || isRehatChapterReader || location.pathname.startsWith('/auth/'),
+    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader || isRehatChapterReader || authReturnFragment || location.pathname.startsWith('/auth/'),
     routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader || isRehatChapterReader,
   })
   useRouteDocumentTitle(location.pathname)
