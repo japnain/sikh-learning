@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { formatFindings, scanText, scanTrackedFiles } from './secret-scan.mjs'
 
@@ -55,4 +56,61 @@ test('scans every tracked file including tests, blocks private env names, and ig
   } finally {
     fs.rmSync(root, { recursive: true, force: true })
   }
+})
+
+function sourceFixture(t, files) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'naamras-source-privacy-'))
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }))
+  execFileSync('git', ['init', '-q'], { cwd: root })
+  for (const [file, content] of Object.entries(files)) {
+    const absolute = path.join(root, file)
+    fs.mkdirSync(path.dirname(absolute), { recursive: true })
+    fs.writeFileSync(absolute, content)
+  }
+  // A historical log remains tracked even after *.log is added to .gitignore.
+  execFileSync('git', ['add', '-f', ...Object.keys(files)], { cwd: root })
+  return root
+}
+
+test('detects ignored-but-tracked QA logs and developer plans using the Git inventory', t => {
+  const root = sourceFixture(t, {
+    '.gitignore': '*.log\n',
+    'docs/qa/application-tests.log': 'Starting tests\n RUN /Users/build-user/project\n',
+    'docs/plans/reader.md': 'Working checkout: /home/build-user/project\n',
+    '.hermes/state.json': JSON.stringify({ checkout: 'C:\\Users\\build-user\\project' }),
+    'notes.md': 'Source: \\/Users\\/build-user\\/source.epub\n',
+  })
+  fs.writeFileSync(path.join(root, 'untracked.log'), '/Users/other-user/private\n')
+  const findings = scanTrackedFiles(root).findings
+  assert.equal(findings.length, 4)
+  assert(findings.every(finding => finding.kind === 'developer-home-path'))
+  assert(findings.some(finding => finding.file === 'docs/qa/application-tests.log' && finding.line === 2))
+  const report = formatFindings(findings)
+  assert(!report.includes('build-user'))
+  assert(!report.includes('untracked.log'))
+})
+
+test('preserves upstream attribution and synthetic code fixtures without weakening credential checks', t => {
+  const attribution = 'Upstream example home: /home/upstream-user\nCopyright Example Authors'
+  const root = sourceFixture(t, {
+    'scripts/qa/example.test.mjs': 'const pathFixture = "/Users/synthetic-user/project";',
+    'scripts/qa/fixtures/home-path.json': JSON.stringify({ source: '/home/synthetic-user/project' }),
+    'public/licenses/font-OFL.txt': attribution,
+    'vendor/upstream/README.md': attribution,
+    'docs/THIRD-PARTY-NOTICES.md': attribution,
+    'docs/README.md': 'Use $HOME/project or a path relative to the repository.\n',
+    'scripts/qa/unsafe.test.mjs': ['sb', 'secret', 'x'.repeat(30)].join('_'),
+  })
+  assert.deepEqual(scanTrackedFiles(root).findings.map(finding => finding.kind), ['supabase-secret-key'])
+  assert.equal(fs.readFileSync(path.join(root, 'public/licenses/font-OFL.txt'), 'utf8'), attribution)
+})
+
+test('source scan CLI fails on developer home paths and prints only redacted locations', t => {
+  const root = sourceFixture(t, { 'docs/qa/build.log': 'Build path: /Users/build-user/private/project\n' })
+  const script = fileURLToPath(new URL('./secret-scan.mjs', import.meta.url))
+  const result = spawnSync(process.execPath, [script, root], { encoding: 'utf8' })
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /docs\/qa\/build.log:1: developer-home-path \(value redacted\)/)
+  assert(!result.stderr.includes('build-user'))
+  assert(!result.stderr.includes(root))
 })

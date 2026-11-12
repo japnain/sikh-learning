@@ -1,7 +1,7 @@
 
 [vitest] core stores, API, utils, QA, and content (59 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 
  Test Files  59 passed (59)
@@ -12,7 +12,7 @@
 
 [vitest] data catalog support (8 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 
  Test Files  8 passed (8)
@@ -23,7 +23,7 @@
 
 [vitest] pages and readers (19 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
   npx update-browserslist-db@latest
@@ -37,7 +37,7 @@ Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
 
 [vitest] components, hooks, and app shell (48 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
   npx update-browserslist-db@latest
@@ -51,7 +51,7 @@ Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
 
 [vitest] Panth Prakash repository integrity (1 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 
  Test Files  1 passed (1)
@@ -62,7 +62,7 @@ Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
 
 [vitest] native library file integrity (1 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 
  Test Files  1 passed (1)
@@ -73,7 +73,7 @@ Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
 
 [vitest] miscellaneous tests (22 files)
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
   npx update-browserslist-db@latest

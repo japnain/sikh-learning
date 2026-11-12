@@ -1,5 +1,5 @@
 
- RUN  v4.1.4 /Users/japgrover/Documents/Projects/sikh-learning
+ RUN  v4.1.4 /workspace/naamras
 
 Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
   npx update-browserslist-db@latest
