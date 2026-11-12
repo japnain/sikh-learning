@@ -68,7 +68,7 @@ export default {
 - [ ] **Step 3: Verify build succeeds**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx tsc --noEmit
+cd /workspace/naamras && npx tsc --noEmit
 ```
 
 Expected: no errors.
@@ -76,7 +76,7 @@ Expected: no errors.
 - [ ] **Step 4: Commit**
 
 ```bash
-cd /Users/japgrover/sikh-learning
+cd /workspace/naamras
 git add src/index.css tailwind.config.ts
 git commit -m "feat: add Silkscreen font and campfire design tokens"
 ```
@@ -116,7 +116,7 @@ test('renders plural days for streak > 1', () => {
 - [ ] **Step 2: Run tests to verify they pass against current code**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx vitest run src/components/StreakBadge.test.tsx
+cd /workspace/naamras && npx vitest run src/components/StreakBadge.test.tsx
 ```
 
 Expected: all 3 PASS (tests are behavioral, not visual — they should pass before and after the restyle).
@@ -144,7 +144,7 @@ export default function StreakBadge({ streak }: Props) {
 - [ ] **Step 4: Run tests to confirm still passing**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx vitest run src/components/StreakBadge.test.tsx
+cd /workspace/naamras && npx vitest run src/components/StreakBadge.test.tsx
 ```
 
 Expected: all 3 PASS.
@@ -152,7 +152,7 @@ Expected: all 3 PASS.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /Users/japgrover/sikh-learning
+cd /workspace/naamras
 git add src/components/StreakBadge.tsx src/components/StreakBadge.test.tsx
 git commit -m "feat: restyle StreakBadge with campfire coal/amber aesthetic"
 ```
@@ -239,7 +239,7 @@ test('shows continue reading when session exists', () => {
 - [ ] **Step 2: Run tests to see them fail (or partially fail)**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx vitest run src/pages/Home.test.tsx
+cd /workspace/naamras && npx vitest run src/pages/Home.test.tsx
 ```
 
 Expected: most tests fail because Home.tsx doesn't have the new markup yet (e.g. `role="heading"` on greeting, section labels, etc.). Note which ones fail — that guides Task 4.
@@ -422,7 +422,7 @@ export default function Home() {
 - [ ] **Step 2: Run the Home tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx vitest run src/pages/Home.test.tsx
+cd /workspace/naamras && npx vitest run src/pages/Home.test.tsx
 ```
 
 Expected: all 7 PASS.
@@ -436,7 +436,7 @@ Expected: all 7 PASS.
 - [ ] **Step 3: Run full test suite**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx vitest run
+cd /workspace/naamras && npx vitest run
 ```
 
 Expected: all existing tests still pass (we only touched visual classes, no logic).
@@ -444,7 +444,7 @@ Expected: all existing tests still pass (we only touched visual classes, no logi
 - [ ] **Step 4: Verify TypeScript**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npx tsc --noEmit
+cd /workspace/naamras && npx tsc --noEmit
 ```
 
 Expected: no errors.
@@ -452,7 +452,7 @@ Expected: no errors.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /Users/japgrover/sikh-learning
+cd /workspace/naamras
 git add src/pages/Home.tsx src/pages/Home.test.tsx
 git commit -m "feat: restyle Home page with campfire gathering aesthetic"
 ```
@@ -464,7 +464,7 @@ git commit -m "feat: restyle Home page with campfire gathering aesthetic"
 - [ ] **Step 1: Run production build**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build
+cd /workspace/naamras && npm run build
 ```
 
 Expected: build succeeds with no TypeScript errors, output in `dist/`.

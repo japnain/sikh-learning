@@ -73,5 +73,5 @@ Findings:
    - Log: [more-bootstrap-failure.json](../../output/qa/2026-07-25/more-bootstrap-failure.json)
 
 Artifacts:
-- Screenshots and logs: `/Users/japgrover/Documents/Projects/sikh-learning/output/qa/2026-07-25`
-- Generated report: `/Users/japgrover/Documents/Projects/sikh-learning/docs/qa/2026-07-25-ai-bug-sweep.md`
+- Screenshots and logs: `/workspace/naamras/output/qa/2026-07-25`
+- Generated report: `/workspace/naamras/docs/qa/2026-07-25-ai-bug-sweep.md`

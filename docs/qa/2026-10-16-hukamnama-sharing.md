@@ -31,7 +31,7 @@ There is one complete PNG per reading, 1080 pixels wide, with type reduced to it
 
 Browser evidence:
 
-`/Users/japgrover/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-verified-2026-10-16/`
+`/workspace/local/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-verified-2026-10-16/`
 
 Reports are `chromium/browser-report.json`, `chromium-localized-ui/browser-report.json`, and `webkit/browser-report.json`, each with explicit pass status. Representative Interior audience PNGs, composer screenshots, and labelled typography images are retained; all other matrix exports were encoded/decoded and verified without keeping duplicate image files.
 

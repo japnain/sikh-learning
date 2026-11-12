@@ -853,8 +853,8 @@ function buildReport(results, environment) {
   }
 
   lines.push('Artifacts:')
-  lines.push(`- Screenshots and logs: \`${OUTPUT_ROOT}\``)
-  lines.push(`- Generated report: \`${REPORT_PATH}\``)
+  lines.push(`- Screenshots and logs: \`${path.relative(process.cwd(), OUTPUT_ROOT).split(path.sep).join('/')}\``)
+  lines.push(`- Generated report: \`${path.relative(process.cwd(), REPORT_PATH).split(path.sep).join('/')}\``)
   lines.push('')
 
   return lines.join('\n')

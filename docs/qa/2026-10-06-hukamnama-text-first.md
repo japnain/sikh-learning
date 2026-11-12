@@ -67,7 +67,7 @@ dependency tree contains unavailable cloud-backed files.
 
 Local proof folder:
 
-`/Users/japgrover/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-quiet-2026-10-06/`
+`/workspace/local/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-quiet-2026-10-06/`
 
 It contains the interactive three-reading `index.html` with an artwork selector,
 all 90 PNGs, `revised-preview.png`, `matrix-report.json`, `ui/ui-report.json`,

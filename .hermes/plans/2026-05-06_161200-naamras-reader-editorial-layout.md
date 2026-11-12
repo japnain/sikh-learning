@@ -16,21 +16,21 @@ Specific user requirements:
 
 Screenshots reviewed:
 
-- `/Users/japgrover/Downloads/IMG_7932.jpg`
-- `/Users/japgrover/Downloads/IMG_7933.PNG`
-- `/Users/japgrover/Downloads/IMG_7934.jpg`
+- `/workspace/local/Downloads/IMG_7932.jpg`
+- `/workspace/local/Downloads/IMG_7933.PNG`
+- `/workspace/local/Downloads/IMG_7934.jpg`
 
 Repo files inspected:
 
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/pages/Study.tsx`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/pages/Study.test.tsx`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/data/banis.ts`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/store/nitnem.ts`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/utils/uiCopy.ts`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/components/NavBar.tsx`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/index.css`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/hooks/useHukamnama.ts`
-- `/Users/japgrover/Documents/Projects/sikh-learning/src/api/banidb.ts`
+- `/workspace/naamras/src/pages/Study.tsx`
+- `/workspace/naamras/src/pages/Study.test.tsx`
+- `/workspace/naamras/src/data/banis.ts`
+- `/workspace/naamras/src/store/nitnem.ts`
+- `/workspace/naamras/src/utils/uiCopy.ts`
+- `/workspace/naamras/src/components/NavBar.tsx`
+- `/workspace/naamras/src/index.css`
+- `/workspace/naamras/src/hooks/useHukamnama.ts`
+- `/workspace/naamras/src/api/banidb.ts`
 
 Important current implementation points:
 

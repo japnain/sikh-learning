@@ -4,7 +4,7 @@ Historical record: the user's subsequent instruction, “push to master when don
 
 The local release candidate is verified in the contexts below. This is not global-release clearance or authority to commit, push, publish, deploy, or post socially.
 
-Evidence root: `/Users/japgrover/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-verified-2026-10-16/`.
+Evidence root: `/workspace/local/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-verified-2026-10-16/`.
 
 | Requirement | Current authoritative evidence | Scope/limit |
 | --- | --- | --- |

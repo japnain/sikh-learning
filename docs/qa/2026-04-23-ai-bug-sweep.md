@@ -40,5 +40,5 @@ Findings:
 - No blocking issues were detected in this sweep.
 
 Artifacts:
-- Screenshots and logs: `/Users/japgrover/Documents/Projects/sikh-learning/output/qa/2026-04-23`
-- Generated report: `/Users/japgrover/Documents/Projects/sikh-learning/docs/qa/2026-04-23-ai-bug-sweep.md`
+- Screenshots and logs: `/workspace/naamras/output/qa/2026-04-23`
+- Generated report: `/workspace/naamras/docs/qa/2026-04-23-ai-bug-sweep.md`

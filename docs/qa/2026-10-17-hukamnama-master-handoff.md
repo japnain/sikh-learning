@@ -19,7 +19,7 @@ After a fresh isolated `npm ci --ignore-scripts`, the actual installed package v
 
 ## Fresh evidence
 
-Evidence root: `/Users/japgrover/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-verified-2026-10-17/`.
+Evidence root: `/workspace/local/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-verified-2026-10-17/`.
 
 - Chromium and WebKit each pass **45 complete encoded/decoded PNGs, 36 localized composer journeys, and two bundled-font samples**. The matrices cover short/medium/long × all 14 originals and No art. The localized journeys cover English/Punjabi/Hindi across desktop, light/dark phone, and narrow 200% text layouts. Source ordering, singleton output, dimensions, readiness, accessibility, overflow, Escape, and focus restoration are checked. This is not OCR or scholarly translation review.
 - The fresh Chromium stress suite passes **45 further complete exports** using explicitly labelled repeated verified fixture lines: 30/40 bilingual lines and 40 Gurmukhi-only lines across all 15 choices. It also passes the oversized rejection without encoding a partial image. These are layout stress fixtures, not additional actual Hukamnamas.

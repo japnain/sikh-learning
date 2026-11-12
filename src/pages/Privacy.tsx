@@ -36,7 +36,7 @@ export default function Privacy() {
           {configured ? 'You can use the app as a guest. Cloud backup is optional and can sync supported saved items across devices when you connect an account.' : 'You can use the app without an account. Cloud backup and sign-in are unavailable in this version. Personal reading data stays on this device; use Download backup in More to save a portable copy.'}
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective November 11, 2026
+          Effective November 12, 2026
         </p>
       </section>
 
@@ -95,7 +95,7 @@ export default function Privacy() {
           Providers and diagnostics
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. Supabase provides optional account authentication, cloud backup, and scripture proxy services in configured builds. More shows whether cloud backup is available in your build. {configured ? 'This version offers optional Supabase sign-in and cloud sync.' : 'This version does not enable Supabase sign-in or cloud sync.'} {getDiagnosticsEndpoint() ? 'Automatic technical diagnostics are enabled for the limited fields described above.' : 'Automatic technical diagnostics are disabled in this version.'} Support reports you copy or download remain under your control; posting one to GitHub makes it public.
+          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. Supabase provides optional account authentication, cloud backup, and scripture proxy services in configured builds. More shows whether cloud backup is available in your build. {configured ? 'This version offers optional Supabase sign-in and cloud sync.' : 'This version does not enable Supabase sign-in or cloud sync.'} {getDiagnosticsEndpoint() ? 'Automatic technical diagnostics are enabled for the limited fields described above.' : 'Automatic technical diagnostics are disabled in this version.'} Support reports you copy or download remain under your control. Review anything you add before sharing it; posting a report publicly exposes its contents.
         </p>
       </section>
 

@@ -44,7 +44,7 @@ An isolated QA bundle identifier (`com.naamras.shareqa`) avoids replacing the in
 
 Current visual proof folder:
 
-`/Users/japgrover/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-refined-2026-10-09/`
+`/workspace/local/.codex/visualizations/2026/08/11/019ff31f-9f92-73c3-9f29-24a6f7ed2501/hukamnama-refined-2026-10-09/`
 
 Includes `index.html`, all-backgrounds contact sheet, three-length preview, both browser export matrices/PNGs, both UI reports/screenshots, stress report, and the downloaded PNG. Earlier quiet/minimal/editorial proof folders are historical and do not represent this candidate.
 

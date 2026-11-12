@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run qa:startup-bundle && node ./scripts/copy-public.mjs && npm run stories:verify:build",
+    "build": "tsc -b && vite build && npm run qa:startup-bundle && node ./scripts/copy-public.mjs && npm run stories:verify:build && node ./scripts/qa/public-artifact-privacy.mjs",
     "ios:sync": "npm run build && npx cap sync ios",
     "ios:open": "npx cap open ios",
     "ios:build": "npm run ios:sync && xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",

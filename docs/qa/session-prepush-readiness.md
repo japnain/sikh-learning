@@ -4,7 +4,7 @@ October 21, 2026. The Home, artwork, Daily Nitnem, customization, completion, Gu
 
 ## Scope
 
-The candidate is `/Users/japgrover/.codex/naamras-candidates/20261021-prepush-session-only`, based on `c9538be5a435230b350548b0873d54d3ddb80bd1`. A fresh origin fetch confirmed master at that same commit. Home/reader changes are retained; Stories routes, imports, saved shelves, tab/search integrations, content, styles, tests and verifier script are excluded. Native implementation changes, local design research, generated archives, duplicate configs/worker and unused PNG originals are excluded. Existing artwork dependencies remain in Git. Root Stories work remains intact.
+The candidate is `/workspace/local/.codex/naamras-candidates/20261021-prepush-session-only`, based on `c9538be5a435230b350548b0873d54d3ddb80bd1`. A fresh origin fetch confirmed master at that same commit. Home/reader changes are retained; Stories routes, imports, saved shelves, tab/search integrations, content, styles, tests and verifier script are excluded. Native implementation changes, local design research, generated archives, duplicate configs/worker and unused PNG originals are excluded. Existing artwork dependencies remain in Git. Root Stories work remains intact.
 
 The accompanying [release manifest](session-release-manifest.json) lists the exact selected source and documentation hashes. Only App, NavBar and Library intentionally differ from root because their Stories integration is omitted. The Library contrast correction remains included.
 

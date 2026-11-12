@@ -33,7 +33,7 @@ No canonical scripture, punctuation or provider order changed. Scrolling and rea
 
 ## Build identity and delivery
 
-The exact source is isolated at `/Users/japgrover/.codex/naamras-candidates/20261021-v25-pwa`. The snapshot includes 603 web source/build inputs, with fingerprint `da6c2e4c939b9f8511f9093466972fab955ece455bb9dc7aa36e864f6869becb`. Neither v23 nor v24 was overwritten.
+The exact source is isolated at `/workspace/local/.codex/naamras-candidates/20261021-v25-pwa`. The snapshot includes 603 web source/build inputs, with fingerprint `da6c2e4c939b9f8511f9093466972fab955ece455bb9dc7aa36e864f6869becb`. Neither v23 nor v24 was overwritten.
 
 - Production index SHA-256: `85d55974eacd8cd334cad887f41037cec540007209ec46b8645d22b154fdfe9e`.
 - Generated worker SHA-256: `58ff9212af664cfe9e7eb199dd39e9029819a9ef3ec07de78c94e030effb2e41`; cache version `0e865b7789f8`.

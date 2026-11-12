@@ -93,7 +93,7 @@ body {
 - [ ] **Step 3: Verify build passes**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build
+cd /workspace/naamras && npm run build
 ```
 
 Expected: clean build, no errors about unknown color tokens or missing fonts.
@@ -206,7 +206,7 @@ type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
 - [ ] **Step 6: Verify build passes**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build
+cd /workspace/naamras && npm run build
 ```
 
 Expected: zero TypeScript errors.
@@ -214,7 +214,7 @@ Expected: zero TypeScript errors.
 - [ ] **Step 7: Run existing tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run
+cd /workspace/naamras && npm test -- --run
 ```
 
 Expected: all existing tests pass (no logic changed).
@@ -267,7 +267,7 @@ describe('SCRIPTURES', () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/data/index.test.ts
+cd /workspace/naamras && npm test -- --run src/data/index.test.ts
 ```
 
 Expected: FAIL — SCRIPTURES has only 3 entries, includes SG, no sourceId field.
@@ -295,7 +295,7 @@ Note: `ALL_ENTRIES`, `SARBLOH_ENTRIES`, `getEntriesByScripture`, and the `sarblo
 - [ ] **Step 4: Run test to verify it passes**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/data/index.test.ts
+cd /workspace/naamras && npm test -- --run src/data/index.test.ts
 ```
 
 Expected: 4 tests pass.
@@ -332,7 +332,7 @@ Append these 5 entries at the end of the `BANIS` array (before the closing `]`):
 - [ ] **Step 6: Verify build passes**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build
+cd /workspace/naamras && npm run build
 ```
 
 Expected: TypeScript compiles cleanly — `ALL_ENTRIES` usages in Home.tsx and Study.tsx will now produce errors; those are fixed in Tasks 6 and 7.
@@ -342,7 +342,7 @@ If the build fails only because of `ALL_ENTRIES` references in Home.tsx and Stud
 - [ ] **Step 7: Run all tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run
+cd /workspace/naamras && npm test -- --run
 ```
 
 Expected: data tests pass; any test failures caused only by files edited in later tasks are acceptable at this stage.
@@ -365,7 +365,7 @@ git commit -m "feat: replace SCRIPTURES with 7 BaniDB sources; add browse-only b
 - [ ] **Step 1: Delete `src/pages/AddText.tsx`**
 
 ```bash
-rm /Users/japgrover/sikh-learning/src/pages/AddText.tsx
+rm /workspace/naamras/src/pages/AddText.tsx
 ```
 
 - [ ] **Step 2: Rewrite `src/App.tsx`**
@@ -404,7 +404,7 @@ export default function App() {
 - [ ] **Step 3: Verify build passes**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build 2>&1 | grep -v "ALL_ENTRIES"
+cd /workspace/naamras && npm run build 2>&1 | grep -v "ALL_ENTRIES"
 ```
 
 Expected: only `ALL_ENTRIES`-related errors remain (from Home.tsx and Study.tsx — fixed in Tasks 6 and 7).
@@ -467,7 +467,7 @@ export default function NavBar() {
 - [ ] **Step 2: Run NavBar tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/components/NavBar.test.tsx
+cd /workspace/naamras && npm test -- --run src/components/NavBar.test.tsx
 ```
 
 Expected: all pass (tabs are unchanged: Home, Library, Study, Banis, Vocab).
@@ -637,7 +637,7 @@ export default function WordPopover({ word, onSave, onClose }: Props) {
 - [ ] **Step 6: Run all tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run
+cd /workspace/naamras && npm test -- --run
 ```
 
 Expected: all existing tests pass.
@@ -686,7 +686,7 @@ it('shows Study, Library, and Banis quick action buttons', async () => {
 - [ ] **Step 2: Run Home tests to confirm current state**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Home.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Home.test.tsx
 ```
 
 - [ ] **Step 3: Rewrite `src/pages/Home.tsx`**
@@ -844,7 +844,7 @@ export default function Home() {
 - [ ] **Step 4: Run Home tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Home.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Home.test.tsx
 ```
 
 Expected: all tests pass.
@@ -889,7 +889,7 @@ it('scripture picker shows 7 sources', async () => {
 - [ ] **Step 2: Run Study tests to confirm baseline**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Study.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Study.test.tsx
 ```
 
 - [ ] **Step 3: Rewrite `src/pages/Study.tsx`**
@@ -1093,7 +1093,7 @@ export default function Study() {
 - [ ] **Step 4: Run Study tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Study.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Study.test.tsx
 ```
 
 Expected: all pass.
@@ -1154,7 +1154,7 @@ it('shows all 5 new source sections', () => {
 - [ ] **Step 2: Run Library tests to confirm baseline**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Library.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Library.test.tsx
 ```
 
 - [ ] **Step 3: Rewrite `src/pages/Library.tsx`**
@@ -1324,7 +1324,7 @@ export default function Library() {
 - [ ] **Step 4: Run Library tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Library.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Library.test.tsx
 ```
 
 Expected: all pass.
@@ -1370,13 +1370,13 @@ it('shows browse buttons for all 5 new sources', () => {
 - [ ] **Step 2: Run Banis tests to confirm baseline**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Banis.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Banis.test.tsx
 ```
 
 - [ ] **Step 3: Read current Banis.tsx to see full JSX**
 
 ```bash
-cat /Users/japgrover/sikh-learning/src/pages/Banis.tsx
+cat /workspace/naamras/src/pages/Banis.tsx
 ```
 
 You need to see the full render of bani rows and info cards to replace all campfire classes.
@@ -1422,7 +1422,7 @@ Apply these changes throughout the file:
 - [ ] **Step 5: Run Banis tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run src/pages/Banis.test.tsx
+cd /workspace/naamras && npm test -- --run src/pages/Banis.test.tsx
 ```
 
 Expected: all pass.
@@ -1466,7 +1466,7 @@ Apply these class replacements throughout the file:
 - [ ] **Step 2: Run all tests**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run
+cd /workspace/naamras && npm test -- --run
 ```
 
 Expected: all tests pass.
@@ -1474,7 +1474,7 @@ Expected: all tests pass.
 - [ ] **Step 3: Run full build**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build
+cd /workspace/naamras && npm run build
 ```
 
 Expected: zero errors.
@@ -1482,7 +1482,7 @@ Expected: zero errors.
 - [ ] **Step 4: Verify no `font-pixel` or `font-ui` references remain**
 
 ```bash
-grep -r "font-pixel\|font-ui" /Users/japgrover/sikh-learning/src/
+grep -r "font-pixel\|font-ui" /workspace/naamras/src/
 ```
 
 Expected: no output. If any remain, replace with `font-sans` (UI text) or `font-gurmukhi` (scripture).
@@ -1501,7 +1501,7 @@ git commit -m "feat: restyle Vocab page to Digital Parchment theme"
 - [ ] **Run full test suite**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm test -- --run
+cd /workspace/naamras && npm test -- --run
 ```
 
 Expected: all tests pass, 0 failures.
@@ -1509,7 +1509,7 @@ Expected: all tests pass, 0 failures.
 - [ ] **Run production build**
 
 ```bash
-cd /Users/japgrover/sikh-learning && npm run build
+cd /workspace/naamras && npm run build
 ```
 
 Expected: zero TypeScript errors, zero warnings about undefined tokens.
@@ -1517,7 +1517,7 @@ Expected: zero TypeScript errors, zero warnings about undefined tokens.
 - [ ] **Verify no campfire classes remain**
 
 ```bash
-grep -r "coal\|ember\|#0D0D0D\|#1A0800\|#7B2D00\|#C9A84C\|#1A1A1A\|#2a2a2a\|Silkscreen\|font-pixel\|font-ui" /Users/japgrover/sikh-learning/src/ --include="*.tsx" --include="*.ts" --include="*.css" -l
+grep -r "coal\|ember\|#0D0D0D\|#1A0800\|#7B2D00\|#C9A84C\|#1A1A1A\|#2a2a2a\|Silkscreen\|font-pixel\|font-ui" /workspace/naamras/src/ --include="*.tsx" --include="*.ts" --include="*.css" -l
 ```
 
 Expected: no matches in `src/` (only potentially in test files or comments).
