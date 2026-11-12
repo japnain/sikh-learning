@@ -42,8 +42,34 @@ export function scanText(file, text) {
   return findings
 }
 
+function isDeveloperDocument(file) {
+  // Third-party licensing and upstream source are preserved as supplied. The
+  // home-path check targets authored docs, planning state and captured logs;
+  // synthetic paths in executable test fixtures are outside this scope.
+  if (/(?:^|\/)(?:node_modules|vendor|third[-_]party|licenses?)\//i.test(file)
+    || /(?:^|\/)(?:LICENSE(?:S)?|COPYING|NOTICE(?:S)?|ATTRIBUTIONS?|THIRD[-_]PARTY[-_](?:LICENSES?|NOTICES?))(?:[.-][^/]*)?$/i.test(file)) return false
+  return /^(?:docs|\.hermes)\//.test(file) || /\.(?:md|mdx|log|txt)$/i.test(file)
+}
+
+function scanDeveloperHomePaths(file, text) {
+  if (!isDeveloperDocument(file)) return []
+  const findings = []
+  text.split('\n').forEach((line, index) => {
+    // Include JSON/string-escaped paths in planning state and log output.
+    const normalized = line
+      .replace(/\\(?:u002f|x2f|\/)/gi, '/')
+      .replace(/\\(?:u005c|x5c)/gi, '/')
+      .replace(/\\+/g, '/')
+    if (/(?:^|[^A-Za-z0-9_])(?:[A-Za-z]:)?\/(?:Users|home)\/[^/\s"'<>]+(?:\/|(?=[\s"'<>]|$))/i.test(normalized)
+      || /(?:^|[^A-Za-z0-9_])\/root\/(?:[^/\s"'<>]+)/.test(normalized)) {
+      findings.push({ file, line: index + 1, kind: 'developer-home-path' })
+    }
+  })
+  return findings
+}
+
 export function scanTrackedFiles(root) {
-  const files = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' }).split('\0').filter(Boolean)
+  const files = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).split('\0').filter(Boolean)
   const findings = []
   let scanned = 0
   for (const file of files) {
@@ -59,7 +85,8 @@ export function scanTrackedFiles(root) {
     const data = fs.readFileSync(absolute)
     if (data.includes(0)) continue
     scanned += 1
-    findings.push(...scanText(file, data.toString('utf8')))
+    const text = data.toString('utf8')
+    findings.push(...scanText(file, text), ...scanDeveloperHomePaths(file, text))
   }
   return { scanned, findings }
 }
@@ -69,12 +96,20 @@ export function formatFindings(findings) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
-  const result = scanTrackedFiles(root)
-  if (result.findings.length) {
-    console.error(`Repository credential scan failed:\n${formatFindings(result.findings)}`)
+  const root = process.argv[2]
+    ? path.resolve(process.argv[2])
+    : path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
+  try {
+    const result = scanTrackedFiles(root)
+    if (result.findings.length) {
+      console.error(`Repository credential and source privacy scan failed:\n${formatFindings(result.findings)}`)
+      process.exitCode = 1
+    } else {
+      console.log(`Repository credential and source privacy scan passed: ${result.scanned} tracked text files; no matching credentials, private environment files, or developer home paths.`)
+    }
+  } catch {
+    // Raw filesystem/git errors can include an absolute private checkout path.
+    console.error('Repository credential and source privacy scan failed: Could not inspect tracked files.')
     process.exitCode = 1
-  } else {
-    console.log(`Repository credential scan passed: ${result.scanned} tracked text files; no matching credentials or private environment files.`)
   }
 }

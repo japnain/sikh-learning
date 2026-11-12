@@ -58,7 +58,7 @@
       "priorLog": "tmp/reader-live/verse-tools-final-20261102-typescript.log",
       "latestRecheck": {
         "passed": true,
-        "reportedBy": "/root/reader_consistency",
+        "reportedBy": "reader_consistency",
         "command": "npx tsc -p tsconfig.app.json --noEmit --incremental false",
         "executionSessionId": 7413,
         "exitCode": 0,
@@ -81,7 +81,7 @@
         "files": [
           "src/pages/Study.tsx"
         ],
-        "reportedBy": "/root/reader_consistency",
+        "reportedBy": "reader_consistency",
         "command": "npx eslint src/pages/Study.tsx",
         "executionSessionId": 91141,
         "exitCode": 0,
