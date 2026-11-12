@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core'
 import type { NaamrasSupabaseConfig } from './config'
 
-export type CloudAuthProvider = 'apple' | 'email'
+export type CloudAuthProvider = 'apple' | 'google' | 'email'
 export const AUTH_SETTINGS_TIMEOUT_MS = 5000
 
 /** Public settings describe enabled providers; a URL/key alone does not. */
@@ -33,7 +33,7 @@ export async function discoverAuthProviders(
       if (!settings || typeof settings !== 'object' || !('external' in settings)) return []
       const external = settings.external
       if (!external || typeof external !== 'object') return []
-      return (['apple', 'email'] as const).filter(provider => (
+      return (['apple', 'google', 'email'] as const).filter(provider => (
         provider in external && (external as Record<string, unknown>)[provider] === true
       ))
     } catch {

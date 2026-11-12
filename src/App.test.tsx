@@ -53,7 +53,9 @@ afterEach(() => {
   sessionStorage.clear()
 })
 
+function beginOnboarding() { const action = screen.queryByTestId('onboarding-begin-action'); if (action) fireEvent.click(action) }
 function advanceOnboardingToMeanings() {
+  beginOnboarding()
   fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
 }
 
@@ -68,6 +70,7 @@ test('onboarding applies the selected script, pronunciation, and meanings to the
   expect(screen.getByTestId('onboarding-first-run')).toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument()
 
+  beginOnboarding()
   fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
   fireEvent.click(screen.getByRole('switch', { name: 'Pronunciation help' }))
   advanceOnboardingToMeanings()
@@ -102,6 +105,8 @@ test('onboarding applies the selected script, pronunciation, and meanings to the
 
 test('ordinary first-run onboarding opens Home after its two reader settings pages', async () => {
   render(<App />)
+  expect(screen.getByTestId('onboarding-begin-action')).toBeInTheDocument()
+  beginOnboarding()
   expect(screen.getByTestId('onboarding-script-step')).toBeInTheDocument()
   advanceOnboardingToMeanings()
   expect(screen.getByTestId('onboarding-support-step')).toBeInTheDocument()
@@ -443,6 +448,7 @@ test('saving reopened onboarding preserves the current page, query, and scroll p
     expect(screen.getByTestId('onboarding-overlay')).toBeInTheDocument()
   }, APP_TEST_WAIT)
 
+  beginOnboarding()
   fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
   advanceOnboardingToMeanings()
   fireEvent.click(screen.getByTestId('onboarding-meaning-none'))

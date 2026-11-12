@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { IconChevronDown, IconChevronUp } from './icons'
 import ModalSheet from './ModalSheet'
 import { deleteCloudAccount, sendMagicLink, signInWithProvider, signOutOfCloud, syncNow } from '../supabase/runtime'
@@ -18,7 +19,7 @@ const CLOUD_COPY = {
     exclusionsTitle: 'Keep these in a backup file',
     exclusions: 'Story saves and reading places, earlier Nitnem history, weekly goals, tracking choices, separate places for each bani, an active Nitnem practice, book/story reading preferences, reading mode, supporting-text size, artwork and sound preferences stay on this device. A complete backup file includes them. Downloaded reading content is separate from personal-data backup.',
     mergeHint: 'First sign-in combines supported data from this device with your account.',
-    signInApple: 'Continue with Apple', signInEmail: 'Email a sign-in link', emailLabel: 'Email address',
+    signInApple: 'Continue with Apple', signInGoogle: 'Continue with Google', signIn: 'Sign in with password', createAccount: 'Create account', signInEmail: 'Email a sign-in link', emailLabel: 'Email address',
     emailSent: 'Check your email for your sign-in link. You can keep reading while you wait.',
     unavailable: 'Account sign-in is unavailable right now. You can keep reading and use a backup file.',
     syncNow: 'Sync now', signOut: 'Sign out', deleteAccount: 'Delete cloud account',
@@ -49,7 +50,7 @@ const CLOUD_COPY = {
     exclusionsTitle: 'ਇਨ੍ਹਾਂ ਲਈ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਰੱਖੋ',
     exclusions: 'ਸੰਭਾਲੀਆਂ ਕਹਾਣੀਆਂ ਅਤੇ ਉਨ੍ਹਾਂ ਦੀਆਂ ਪੜ੍ਹਨ ਥਾਵਾਂ, ਪੁਰਾਣਾ ਨਿਤਨੇਮ ਇਤਿਹਾਸ, ਹਫ਼ਤਾਵਾਰੀ ਟੀਚੇ, ਟਰੈਕਿੰਗ ਚੋਣਾਂ, ਹਰ ਬਾਣੀ ਦੀ ਵੱਖਰੀ ਥਾਂ, ਚੱਲਦੀ ਨਿਤਨੇਮ ਪੜ੍ਹਾਈ, ਕਿਤਾਬਾਂ ਜਾਂ ਕਹਾਣੀਆਂ ਦੀਆਂ ਰੀਡਰ ਪਸੰਦਾਂ, ਪੜ੍ਹਨ ਦਾ ਢੰਗ, ਸਹਾਇਕ ਲਿਖਤ ਦਾ ਆਕਾਰ, ਚਿੱਤਰ ਅਤੇ ਆਵਾਜ਼ ਦੀਆਂ ਪਸੰਦਾਂ ਇਸ ਡਿਵਾਈਸ ਤੇ ਰਹਿੰਦੀਆਂ ਹਨ। ਪੂਰੀ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਿੱਚ ਇਹ ਸ਼ਾਮਲ ਹਨ। ਡਾਊਨਲੋਡ ਕੀਤੀ ਪੜ੍ਹਨ ਸਮੱਗਰੀ ਨਿੱਜੀ ਡਾਟੇ ਦੇ ਬੈਕਅੱਪ ਤੋਂ ਵੱਖਰੀ ਹੈ।',
     mergeHint: 'ਪਹਿਲੀ ਸਾਈਨ ਇਨ ਵੇਲੇ ਇਸ ਡਿਵਾਈਸ ਦਾ ਸਮਰਥਿਤ ਡਾਟਾ ਤੁਹਾਡੇ ਖਾਤੇ ਦੇ ਡਾਟੇ ਨਾਲ ਮਿਲਾਇਆ ਜਾਂਦਾ ਹੈ।',
-    signInApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ', signInEmail: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਈਮੇਲ ਕਰੋ', emailLabel: 'ਈਮੇਲ ਪਤਾ',
+    signInApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ', signInGoogle: 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ', signIn: 'ਪਾਸਵਰਡ ਨਾਲ ਸਾਈਨ ਇਨ', createAccount: 'ਖਾਤਾ ਬਣਾਓ', signInEmail: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਈਮੇਲ ਕਰੋ', emailLabel: 'ਈਮੇਲ ਪਤਾ',
     emailSent: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਲਈ ਆਪਣੀ ਈਮੇਲ ਵੇਖੋ। ਉਡੀਕ ਕਰਦੇ ਹੋਏ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।',
     unavailable: 'ਇਸ ਵੇਲੇ ਖਾਤੇ ਵਿੱਚ ਸਾਈਨ ਇਨ ਨਹੀਂ ਹੋ ਸਕਦਾ। ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ ਅਤੇ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਰਤੋ।',
     syncNow: 'ਹੁਣੇ ਸਿੰਕ ਕਰੋ', signOut: 'ਸਾਈਨ ਆਉਟ', deleteAccount: 'ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਓ',
@@ -80,7 +81,7 @@ const CLOUD_COPY = {
     exclusionsTitle: 'इनके लिए बैकअप फ़ाइल रखें',
     exclusions: 'सहेजी कहानियाँ और उनकी पढ़ने की जगहें, पुराना नितनेम इतिहास, साप्ताहिक लक्ष्य, ट्रैकिंग विकल्प, हर बाणी की अलग जगह, जारी नितनेम अभ्यास, किताबों या कहानियों की रीडर पसंद, पढ़ने का तरीका, सहायक पाठ का आकार, चित्र और ध्वनि की पसंद इस डिवाइस पर रहती हैं। पूरी बैकअप फ़ाइल में ये शामिल हैं। डाउनलोड की गई पढ़ने की सामग्री निजी डेटा के बैकअप से अलग है।',
     mergeHint: 'पहली साइन इन पर इस डिवाइस का समर्थित डेटा आपके खाते के डेटा से मिलाया जाता है।',
-    signInApple: 'Apple के साथ जारी रखें', signInEmail: 'साइन इन लिंक ईमेल करें', emailLabel: 'ईमेल पता',
+    signInApple: 'Apple के साथ जारी रखें', signInGoogle: 'Google के साथ जारी रखें', signIn: 'पासवर्ड से साइन इन', createAccount: 'खाता बनाएँ', signInEmail: 'साइन इन लिंक ईमेल करें', emailLabel: 'ईमेल पता',
     emailSent: 'साइन इन लिंक के लिए अपनी ईमेल देखें। इंतज़ार करते हुए पढ़ना जारी रख सकते हैं।',
     unavailable: 'अभी खाते में साइन इन उपलब्ध नहीं है। पढ़ना जारी रखें और बैकअप फ़ाइल इस्तेमाल करें।',
     syncNow: 'अभी सिंक करें', signOut: 'साइन आउट', deleteAccount: 'क्लाउड खाता मिटाएँ',
@@ -135,6 +136,7 @@ export default function CloudSyncPanel({ embedded = false }: { embedded?: boolea
       : 'bg-sand/14 text-ink/72 dark:bg-dark-text/12 dark:text-dark-text/72'
   const formattedLastSynced = formatSyncTimestamp(lastSyncedAt, locale)
   const supportsApple = availableProviders.includes('apple')
+  const supportsGoogle = availableProviders.includes('google')
   const supportsEmail = availableProviders.includes('email')
   const panelId = 'more-cloud-sync-panel'
   const Heading = embedded ? 'h3' : 'h2'
@@ -218,6 +220,8 @@ export default function CloudSyncPanel({ embedded = false }: { embedded?: boolea
           </div>
           <div className="mt-4 grid gap-3">
             {!currentUser ? <>
+              {supportsEmail ? <div className="grid gap-2 sm:grid-cols-2"><Link to="/account" className={`${secondaryButton} text-center`}>{copy.signIn}</Link><Link to="/account?mode=signup" className={`${secondaryButton} text-center`}>{copy.createAccount}</Link></div> : null}
+              {supportsGoogle ? <button type="button" onClick={() => { void runAction(() => signInWithProvider('google')) }} disabled={isBusy || isOffline} data-ai-action="cloud-sign-in-google" className={primaryButton}>{copy.signInGoogle}</button> : null}
               {supportsApple ? <button type="button" onClick={() => { void runAction(() => signInWithProvider('apple')) }} disabled={isBusy || isOffline} data-ai-action="cloud-sign-in-apple" className={primaryButton}>{copy.signInApple}</button> : null}
               {supportsEmail ? <form className="grid gap-2" onSubmit={event => { event.preventDefault(); void runAction(() => sendMagicLink(magicLinkEmail.trim()), true) }}>
                 <label htmlFor="cloud-sign-in-email" className="font-sans text-xs font-semibold text-ink dark:text-dark-text">{copy.emailLabel}</label>
@@ -225,7 +229,7 @@ export default function CloudSyncPanel({ embedded = false }: { embedded?: boolea
                   className="interactive-focus min-h-[48px] w-full rounded-lg border border-sand/15 bg-white/75 px-4 py-3 font-sans text-sm text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text" />
                 <button type="submit" disabled={isBusy || isOffline || !magicLinkEmail.trim()} data-ai-action="cloud-sign-in-email" className={supportsApple ? secondaryButton : primaryButton}>{copy.signInEmail}</button>
               </form> : null}
-              {!supportsApple && !supportsEmail ? <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.unavailable}</p> : null}
+              {!supportsApple && !supportsGoogle && !supportsEmail ? <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.unavailable}</p> : null}
             </> : <>
               <button type="button" onClick={() => { void runAction(() => syncNow('manual'), false, true) }} disabled={isBusy || isOffline || recoveryRequired} data-ai-action="cloud-sync-now" className={primaryButton}>{copy.syncNow}</button>
               <button type="button" onClick={() => { void runAction(signOutOfCloud) }} disabled={actionPending || isDeletingAccount} data-ai-action="cloud-sign-out" className={secondaryButton}>{copy.signOut}</button>

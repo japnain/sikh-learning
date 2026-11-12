@@ -17,7 +17,7 @@ describe('enabled authentication providers', () => {
     const fetcher = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({
       external: { email: true, apple: false, google: true },
     })))
-    await expect(discoverAuthProviders(config)).resolves.toEqual(['email'])
+    await expect(discoverAuthProviders(config)).resolves.toEqual(['google', 'email'])
     expect(fetcher).toHaveBeenCalledWith(`${config.url}/auth/v1/settings`, expect.objectContaining({
       headers: { apikey: config.anonKey }, credentials: 'omit', signal: expect.any(AbortSignal),
     }))

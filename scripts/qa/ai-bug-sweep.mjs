@@ -1084,6 +1084,7 @@ async function main() {
         if (!await page.locator('html').evaluate(element => element.classList.contains('dark'))) {
           throw createAssertionError('Expected onboarding to use dark mode.')
         }
+        if (await page.getByTestId('onboarding-begin-action').count()) await page.getByTestId('onboarding-begin-action').click()
         await ensureVisible(page, '[data-testid="onboarding-script-step"]', 'the script settings page')
         await page.getByTestId('onboarding-script-devanagari').click()
         await page.locator('.onboarding-pronunciation').click()
@@ -1121,6 +1122,7 @@ async function main() {
       run: async ({ page, notes }) => {
         notes.push('Expected two reader settings pages to save Gurbani-only preferences and keep the current page and query.')
         await ensureVisible(page, '[data-testid="onboarding-overlay"]', 'the onboarding overlay shell')
+        if (await page.getByTestId('onboarding-begin-action').count()) await page.getByTestId('onboarding-begin-action').click()
         await ensureVisible(page, '[data-testid="onboarding-script-step"]', 'the script settings page')
         await advanceOnboardingToMeanings(page)
         await page.getByTestId('onboarding-meaning-none').click()

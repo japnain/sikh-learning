@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import CloudSyncPanel from './CloudSyncPanel'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
@@ -16,7 +17,7 @@ function renderPanel(overrides: Partial<ReturnType<typeof useCloudSyncStore.getS
     configured: true, status: 'ready', currentUser: READY_USER, availableProviders: ['apple', 'email'],
     lastSyncedAt: '2026-04-17T14:00:00.000Z', lastError: null, syncQueued: false, ...overrides,
   })
-  const view = render(<CloudSyncPanel />)
+  const view = render(<MemoryRouter><CloudSyncPanel /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { expanded: false }))
   return view
 }

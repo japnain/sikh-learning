@@ -1,0 +1,70 @@
+import type { UiLocale } from '../types'
+
+const en = {
+  signin: 'Welcome back.', signup: 'Make room for your daily reading.', reset: 'Forgot your password?', magic: 'Sign in by email.', recovery: 'Choose a new password.',
+  body: 'An account keeps supported saves, reading progress and preferences with you across devices. Reading is always free.',
+  email: 'Email address', password: 'Password', newPassword: 'New password', confirmPassword: 'Confirm new password',
+  passwordHint: 'Use 12–128 characters, with a lowercase letter, an uppercase letter, a number and a symbol.',
+  show: 'Show password', hide: 'Hide password', signinAction: 'Sign in', signupAction: 'Create account', resetAction: 'Send reset link', magicAction: 'Email a sign-in link', recoveryAction: 'Save new password',
+  google: 'Continue with Google', apple: 'Continue with Apple', divider: 'or use your email',
+  create: 'New here? Create an account', existing: 'Already have an account? Sign in', forgot: 'Forgot password?', useLink: 'Use an email link instead', back: 'Back to sign in',
+  busy: 'Please wait…', opening: 'Opening secure sign-in…', checking: 'Checking your account…',
+  checkEmail: 'Check your email', confirmation: 'If confirmation is needed, you’ll receive an email to finish creating your account. Already registered? Sign in or reset your password.',
+  resetSent: 'If an account exists for this address, we’ve sent a password reset link. Check your inbox and spam folder.',
+  magicSent: 'If an account exists for this address, we’ve sent a sign-in link. Check your inbox and spam folder.',
+  connected: 'You’re signed in.', connectedBody: 'Your account is ready. Your supported reading data will sync when connected.', passwordSaved: 'Your password has been updated.',
+  continue: 'Continue to NaamRas', guest: 'Continue without an account', privacy: 'Privacy', help: 'Help',
+  coverage: 'Cloud backup covers supported reading data. See More → Personal data for the full list and a complete backup file.',
+  mismatch: 'The two passwords don’t match.', offline: 'You’re offline. Reconnect to sign in, or keep reading without an account.',
+  retry: 'Check again',
+  errors: {
+    unavailable: 'Account sign-in is unavailable right now. Please try again, or keep reading without an account.',
+    credentials: 'The email or password is incorrect. Try again or reset your password.',
+    unconfirmed: 'Confirm your email before signing in. Check your inbox, or use an email sign-in link below.',
+    weak: 'Use 12–128 characters with uppercase, lowercase, a number and a symbol. Avoid common or compromised passwords.',
+    rate: 'Too many attempts. Please wait a minute before trying again.',
+    email: 'Enter a valid email address.',
+    expired: 'This sign-in or reset link has expired or could not be verified. Request a new link and try again.',
+    samePassword: 'Choose a password you haven’t used for this account before.',
+  },
+}
+
+const pa: typeof en = {
+  signin: 'ਮੁੜ ਜੀ ਆਇਆਂ ਨੂੰ।', signup: 'ਆਪਣੀ ਰੋਜ਼ਾਨਾ ਪੜ੍ਹਾਈ ਲਈ ਖਾਤਾ ਬਣਾਓ।', reset: 'ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?', magic: 'ਈਮੇਲ ਰਾਹੀਂ ਸਾਈਨ ਇਨ ਕਰੋ।', recovery: 'ਨਵਾਂ ਪਾਸਵਰਡ ਚੁਣੋ।',
+  body: 'ਖਾਤੇ ਨਾਲ ਸਮਰਥਿਤ ਸੰਭਾਲੀਆਂ ਚੀਜ਼ਾਂ, ਪੜ੍ਹਨ ਦੀ ਤਰੱਕੀ ਅਤੇ ਪਸੰਦਾਂ ਵੱਖਰੇ ਡਿਵਾਈਸਾਂ ਤੇ ਮਿਲਦੀਆਂ ਹਨ। ਪੜ੍ਹਨਾ ਹਮੇਸ਼ਾ ਮੁਫ਼ਤ ਹੈ।',
+  email: 'ਈਮੇਲ ਪਤਾ', password: 'ਪਾਸਵਰਡ', newPassword: 'ਨਵਾਂ ਪਾਸਵਰਡ', confirmPassword: 'ਨਵਾਂ ਪਾਸਵਰਡ ਮੁੜ ਲਿਖੋ',
+  passwordHint: '12–128 ਅੱਖਰ ਵਰਤੋ: ਇੱਕ ਛੋਟਾ ਅੰਗਰੇਜ਼ੀ ਅੱਖਰ, ਇੱਕ ਵੱਡਾ ਅੱਖਰ, ਇੱਕ ਅੰਕ ਅਤੇ ਇੱਕ ਚਿੰਨ੍ਹ।',
+  show: 'ਪਾਸਵਰਡ ਵਿਖਾਓ', hide: 'ਪਾਸਵਰਡ ਲੁਕਾਓ', signinAction: 'ਸਾਈਨ ਇਨ', signupAction: 'ਖਾਤਾ ਬਣਾਓ', resetAction: 'ਰੀਸੈੱਟ ਲਿੰਕ ਭੇਜੋ', magicAction: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਈਮੇਲ ਕਰੋ', recoveryAction: 'ਨਵਾਂ ਪਾਸਵਰਡ ਸੰਭਾਲੋ',
+  google: 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ', apple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ', divider: 'ਜਾਂ ਈਮੇਲ ਵਰਤੋ',
+  create: 'ਨਵੇਂ ਹੋ? ਖਾਤਾ ਬਣਾਓ', existing: 'ਪਹਿਲਾਂ ਹੀ ਖਾਤਾ ਹੈ? ਸਾਈਨ ਇਨ ਕਰੋ', forgot: 'ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?', useLink: 'ਇਸ ਦੀ ਥਾਂ ਈਮੇਲ ਲਿੰਕ ਵਰਤੋ', back: 'ਸਾਈਨ ਇਨ ਤੇ ਵਾਪਸ',
+  busy: 'ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕੋ…', opening: 'ਸੁਰੱਖਿਅਤ ਸਾਈਨ ਇਨ ਖੁੱਲ ਰਹੀ ਹੈ…', checking: 'ਖਾਤਾ ਜਾਂਚਿਆ ਜਾ ਰਿਹਾ ਹੈ…',
+  checkEmail: 'ਆਪਣੀ ਈਮੇਲ ਵੇਖੋ', confirmation: 'ਜੇ ਪੁਸ਼ਟੀ ਦੀ ਲੋੜ ਹੈ, ਖਾਤਾ ਪੂਰਾ ਕਰਨ ਲਈ ਈਮੇਲ ਮਿਲੇਗੀ। ਪਹਿਲਾਂ ਖਾਤਾ ਹੈ ਤਾਂ ਸਾਈਨ ਇਨ ਕਰੋ ਜਾਂ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ।',
+  resetSent: 'ਜੇ ਇਸ ਪਤੇ ਨਾਲ ਖਾਤਾ ਹੈ, ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਲਿੰਕ ਭੇਜਿਆ ਗਿਆ ਹੈ। ਇਨਬਾਕਸ ਅਤੇ ਸਪੈਮ ਫੋਲਡਰ ਵੇਖੋ।',
+  magicSent: 'ਜੇ ਇਸ ਪਤੇ ਨਾਲ ਖਾਤਾ ਹੈ, ਸਾਈਨ ਇਨ ਲਿੰਕ ਭੇਜਿਆ ਗਿਆ ਹੈ। ਇਨਬਾਕਸ ਅਤੇ ਸਪੈਮ ਫੋਲਡਰ ਵੇਖੋ।',
+  connected: 'ਤੁਸੀਂ ਸਾਈਨ ਇਨ ਹੋ ਗਏ ਹੋ।', connectedBody: 'ਤੁਹਾਡਾ ਖਾਤਾ ਤਿਆਰ ਹੈ। ਜੁੜੇ ਹੋਣ ਤੇ ਸਮਰਥਿਤ ਪੜ੍ਹਾਈ ਦਾ ਡਾਟਾ ਸਿੰਕ ਹੋਵੇਗਾ।', passwordSaved: 'ਪਾਸਵਰਡ ਬਦਲ ਦਿੱਤਾ ਗਿਆ ਹੈ।',
+  continue: 'ਨਾਮਰਸ ਵਿੱਚ ਅੱਗੇ ਜਾਓ', guest: 'ਬਿਨਾਂ ਖਾਤੇ ਦੇ ਜਾਰੀ ਰੱਖੋ', privacy: 'ਪਰਦੇਦਾਰੀ', help: 'ਮਦਦ',
+  coverage: 'ਕਲਾਉਡ ਬੈਕਅੱਪ ਵਿੱਚ ਸਮਰਥਿਤ ਪੜ੍ਹਾਈ ਦਾ ਡਾਟਾ ਆਉਂਦਾ ਹੈ। ਪੂਰੀ ਸੂਚੀ ਅਤੇ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਲਈ ਹੋਰ → ਨਿੱਜੀ ਡਾਟਾ ਵੇਖੋ।',
+  mismatch: 'ਦੋਵੇਂ ਪਾਸਵਰਡ ਇੱਕੋ ਜਿਹੇ ਨਹੀਂ ਹਨ।', offline: 'ਇੰਟਰਨੈੱਟ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੈ। ਸਾਈਨ ਇਨ ਲਈ ਮੁੜ ਜੁੜੋ ਜਾਂ ਬਿਨਾਂ ਖਾਤੇ ਦੇ ਪੜ੍ਹੋ।', retry: 'ਮੁੜ ਜਾਂਚੋ',
+  errors: { unavailable: 'ਇਸ ਵੇਲੇ ਸਾਈਨ ਇਨ ਨਹੀਂ ਹੋ ਸਕਦਾ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਬਿਨਾਂ ਖਾਤੇ ਦੇ ਪੜ੍ਹੋ।', credentials: 'ਈਮੇਲ ਜਾਂ ਪਾਸਵਰਡ ਗਲਤ ਹੈ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ।', unconfirmed: 'ਸਾਈਨ ਇਨ ਤੋਂ ਪਹਿਲਾਂ ਈਮੇਲ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਨਬਾਕਸ ਵੇਖੋ ਜਾਂ ਹੇਠਾਂ ਈਮੇਲ ਲਿੰਕ ਵਰਤੋ।', weak: '12–128 ਅੱਖਰ ਵਰਤੋ: ਵੱਡਾ ਤੇ ਛੋਟਾ ਅੰਗਰੇਜ਼ੀ ਅੱਖਰ, ਅੰਕ ਅਤੇ ਚਿੰਨ੍ਹ। ਆਮ ਪਾਸਵਰਡ ਨਾ ਵਰਤੋ।', rate: 'ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਹੋਈਆਂ ਹਨ। ਇੱਕ ਮਿੰਟ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।', email: 'ਸਹੀ ਈਮੇਲ ਪਤਾ ਲਿਖੋ।', expired: 'ਇਹ ਲਿੰਕ ਮਿਆਦ ਤੋਂ ਬਾਹਰ ਹੈ ਜਾਂ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ। ਨਵਾਂ ਲਿੰਕ ਮੰਗੋ।', samePassword: 'ਇਸ ਖਾਤੇ ਲਈ ਪਹਿਲਾਂ ਨਾ ਵਰਤਿਆ ਪਾਸਵਰਡ ਚੁਣੋ।' },
+}
+
+const hi: typeof en = {
+  signin: 'फिर से स्वागत है।', signup: 'अपनी रोज़ की पढ़ाई के लिए खाता बनाएँ।', reset: 'पासवर्ड भूल गए?', magic: 'ईमेल से साइन इन करें।', recovery: 'नया पासवर्ड चुनें।',
+  body: 'खाते से समर्थित सहेजी चीज़ें, पढ़ने की प्रगति और पसंद अलग-अलग डिवाइस पर मिलती हैं। पढ़ना हमेशा मुफ़्त है।',
+  email: 'ईमेल पता', password: 'पासवर्ड', newPassword: 'नया पासवर्ड', confirmPassword: 'नया पासवर्ड दोबारा लिखें',
+  passwordHint: '12–128 अक्षर रखें: एक छोटा अंग्रेज़ी अक्षर, एक बड़ा अक्षर, एक अंक और एक चिह्न।',
+  show: 'पासवर्ड दिखाएँ', hide: 'पासवर्ड छिपाएँ', signinAction: 'साइन इन', signupAction: 'खाता बनाएँ', resetAction: 'रीसेट लिंक भेजें', magicAction: 'साइन इन लिंक ईमेल करें', recoveryAction: 'नया पासवर्ड सहेजें',
+  google: 'Google के साथ जारी रखें', apple: 'Apple के साथ जारी रखें', divider: 'या ईमेल इस्तेमाल करें',
+  create: 'नए हैं? खाता बनाएँ', existing: 'पहले से खाता है? साइन इन करें', forgot: 'पासवर्ड भूल गए?', useLink: 'इसके बजाय ईमेल लिंक इस्तेमाल करें', back: 'साइन इन पर वापस',
+  busy: 'कृपया इंतज़ार करें…', opening: 'सुरक्षित साइन इन खुल रही है…', checking: 'खाता जाँचा जा रहा है…',
+  checkEmail: 'अपनी ईमेल देखें', confirmation: 'अगर पुष्टि ज़रूरी है, खाता पूरा करने के लिए ईमेल मिलेगी। पहले से खाता है तो साइन इन करें या पासवर्ड रीसेट करें।',
+  resetSent: 'अगर इस पते से खाता है, पासवर्ड रीसेट लिंक भेज दिया गया है। इनबॉक्स और स्पैम फ़ोल्डर देखें।',
+  magicSent: 'अगर इस पते से खाता है, साइन इन लिंक भेज दिया गया है। इनबॉक्स और स्पैम फ़ोल्डर देखें।',
+  connected: 'आप साइन इन हो गए हैं।', connectedBody: 'आपका खाता तैयार है। जुड़े होने पर समर्थित पढ़ाई का डेटा सिंक होगा।', passwordSaved: 'आपका पासवर्ड बदल दिया गया है।',
+  continue: 'नामरस में आगे जाएँ', guest: 'बिना खाते के जारी रखें', privacy: 'गोपनीयता', help: 'मदद',
+  coverage: 'क्लाउड बैकअप में समर्थित पढ़ाई का डेटा आता है। पूरी सूची और बैकअप फ़ाइल के लिए अधिक → निजी डेटा देखें।',
+  mismatch: 'दोनों पासवर्ड एक जैसे नहीं हैं।', offline: 'इंटरनेट से संपर्क नहीं है। साइन इन करने के लिए दोबारा जुड़ें या बिना खाते के पढ़ें।', retry: 'दोबारा जाँचें',
+  errors: { unavailable: 'अभी साइन इन उपलब्ध नहीं है। फिर कोशिश करें या बिना खाते के पढ़ें।', credentials: 'ईमेल या पासवर्ड गलत है। फिर कोशिश करें या पासवर्ड रीसेट करें।', unconfirmed: 'साइन इन से पहले ईमेल की पुष्टि करें। इनबॉक्स देखें या नीचे ईमेल लिंक इस्तेमाल करें।', weak: '12–128 अक्षर रखें: बड़ा और छोटा अंग्रेज़ी अक्षर, अंक और चिह्न। आम पासवर्ड न इस्तेमाल करें।', rate: 'बहुत प्रयास हो चुके हैं। एक मिनट बाद फिर कोशिश करें।', email: 'सही ईमेल पता लिखें।', expired: 'इस लिंक की अवधि समाप्त हो गई है या पुष्टि नहीं हो सकी। नया लिंक माँगें।', samePassword: 'इस खाते के लिए पहले इस्तेमाल न किया गया पासवर्ड चुनें।' },
+}
+
+export const ACCOUNT_COPY: Record<UiLocale, typeof en> = { en, pa, hi }
