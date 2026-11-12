@@ -45,6 +45,10 @@ scripts/learn/.cache/
 
 # InsForge & AI agent skills
 .insforge
+.codex/
+.hermes/
+.mcp.json
+.mcp.local.json
 .agent
 .agents
 .augment

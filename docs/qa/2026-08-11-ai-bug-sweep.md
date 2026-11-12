@@ -45,5 +45,5 @@ Final verification after remediation:
 - Dependency audit: 0 high-severity production vulnerabilities.
 
 Artifacts:
-- Screenshots and logs: `/workspace/Documents/Projects/sikh-learning/output/qa/2026-08-11`
-- Generated report: `/workspace/Documents/Projects/sikh-learning/docs/qa/2026-08-11-ai-bug-sweep.md`
+- Screenshots and logs: `/workspace/naamras/output/qa/2026-08-11`
+- Generated report: `/workspace/naamras/docs/qa/2026-08-11-ai-bug-sweep.md`

@@ -32,6 +32,7 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: { entries: ['index.html'] },
   build: {
+    sourcemap: false,
     copyPublicDir: false,
     rolldownOptions: {
       output: {
