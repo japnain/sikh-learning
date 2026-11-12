@@ -264,9 +264,10 @@ function AppShell() {
     if (typeof window === 'undefined') return
 
     window.history.replaceState(window.history.state, '', skipToContentHref)
-    mainContentRef.current?.focus()
+    const content = mainContentRef.current ?? document.getElementById('main-content')
+    content?.focus()
     window.requestAnimationFrame(() => {
-      mainContentRef.current?.focus()
+      content?.focus()
     })
   }
 
@@ -296,6 +297,7 @@ function AppShell() {
           setMeaningLanguage={setMeaningLanguage}
           onComplete={handleOnboardingComplete}
           isCompleting={isCompletingOnboarding}
+          startWithPreferences={location.state?.onboarding === 'reading'}
         />
       ) : (
         <div

@@ -9,6 +9,7 @@
 .court-account-panel { width: 100%; max-width: 490px; margin: auto; padding: 28px 26px max(env(safe-area-inset-bottom), 32px); }
 .court-account-brand { display: flex; align-items: center; gap: 8px; width: fit-content; color: #70501e; font-size: 17px; }
 .court-account-heading { font-family: 'Cormorant Garamond', serif; font-size: 30px; line-height: 1.2; margin: 28px 0 10px; }
+.court-account-panel > .account-note { margin-top: 22px; }
 .account-auth { --account-ink: #30281e; --account-muted: #6e604c; --account-border: #b8a78a; color: var(--account-ink); }
 .account-auth-title { font-family: 'Cormorant Garamond', 'Noto Serif Gurmukhi', 'Noto Sans Devanagari', serif; font-size: 34px; line-height: 1.15; letter-spacing: -.02em; margin: 28px 0 22px; outline: none; }
 .account-auth-title:lang(pa), .account-auth-title:lang(hi) { font-size: 27px; line-height: 1.5; }

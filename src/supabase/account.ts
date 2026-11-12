@@ -17,7 +17,7 @@ function errorReason(error: unknown): AccountError {
   return 'unavailable'
 }
 
-// Matches the production password policy. Sign-in intentionally accepts older passwords.
+// Client signup requirements; Supabase also validates. Sign-in accepts older passwords.
 export function meetsPasswordPolicy(password: string) {
   return password.length >= 12 && password.length <= 128 && /[a-z]/.test(password)
     && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*()_+\-=[\]{};'":|<>?,./`~\\]/.test(password)
