@@ -1,5 +1,10 @@
 import { resolveAppPath } from '../utils/basePath'
 
+export function isAuthReturnFragment(hash: string) {
+  const params = new URLSearchParams(hash.replace(/^#/, ''))
+  return ['access_token', 'refresh_token', 'error', 'error_code', 'error_description'].some(key => params.has(key))
+}
+
 /** Fixed destinations: never accept a redirect URL from a query parameter. */
 export function getAuthRedirectUrl(recovery = false) {
   const origin = typeof window !== 'undefined' && /^https?:$/.test(window.location.protocol)
