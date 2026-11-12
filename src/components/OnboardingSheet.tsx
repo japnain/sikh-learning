@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
+import { Link } from 'react-router-dom'
 import type { MeaningLanguage, OnboardingPresentationMode, ScriptMode, UiLocale } from '../types'
 import { getOnboardingCopy, SAMPLE_ONBOARDING_LINE } from '../content/onboardingCopy'
+import { WELCOME_COPY } from '../content/welcomeCopy'
+import { useCloudSyncStore } from '../store/cloudSync'
+import goldenCourtSrc from '../assets/share-highlights/12-golden-court-assembly.jpg'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { lockAppScroll } from '../utils/appScroll'
 import NaamRasLogoMark from './NaamRasLogoMark'
@@ -45,6 +49,8 @@ export default function OnboardingSheet({
   meaningLanguage, setMeaningLanguage, onComplete, onDismiss, isCompleting = false,
 }: Props) {
   const [step, setStep] = useState<0 | 1>(0)
+  const [welcome, setWelcome] = useState(presentation === 'first-run')
+  const currentUser = useCloudSyncStore(state => state.currentUser)
   const [submitting, setSubmitting] = useState(false)
   const [completionFailed, setCompletionFailed] = useState(false)
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -55,6 +61,7 @@ export default function OnboardingSheet({
     presentation === 'overlay' && typeof document !== 'undefined' ? document.activeElement as HTMLElement : null
   )
   const copy = getOnboardingCopy(locale)
+  const welcomeCopy = WELCOME_COPY[locale]
   const overlay = presentation === 'overlay'
   const busy = isCompleting || submitting
 
@@ -78,7 +85,7 @@ export default function OnboardingSheet({
     if (!hasNavigatedRef.current) return
     bodyRef.current?.scrollTo?.({ top: 0, behavior: 'instant' })
     headingRef.current?.focus({ preventScroll: true })
-  }, [step])
+  }, [step, welcome])
 
   async function complete() {
     if (busy || completionInFlight.current) return
@@ -95,10 +102,28 @@ export default function OnboardingSheet({
     }
   }
 
+  if (welcome && !overlay) return <main className="onboarding-root court-welcome" data-testid="onboarding-first-run" data-page="onboarding" data-ai-surface="onboarding" data-ai-state="ready" lang={locale} aria-labelledby="onboarding-title">
+    <div className="court-welcome-frame">
+      <header className="onboarding-header"><span className="onboarding-brand"><NaamRasLogoMark size={30} testId="onboarding-brand-mark" /><span>NaamRas</span></span><span className="court-edition" aria-hidden="true">ੴ</span></header>
+      <div className="court-welcome-layout">
+        <figure className="court-welcome-art"><img src={goldenCourtSrc} alt={locale === 'pa' ? 'ਸੁਨਹਿਰੀ ਦਰਬਾਰੀ ਸਭਾ' : locale === 'hi' ? 'स्वर्णिम दरबारी सभा' : 'Golden court assembly'} width={1199} height={1476} fetchPriority="high" /><figcaption>{locale === 'en' ? 'Golden court assembly' : locale === 'pa' ? 'ਸੁਨਹਿਰੀ ਦਰਬਾਰੀ ਸਭਾ' : 'स्वर्णिम दरबारी सभा'}</figcaption></figure>
+        <div className="court-welcome-content">
+          <p className="court-eyebrow">{welcomeCopy.eyebrow}</p>
+          <h1 id="onboarding-title" className="court-welcome-title">{welcomeCopy.title}</h1>
+          <p className="court-welcome-description">{welcomeCopy.body}</p>
+          <button type="button" className="onboarding-primary" onClick={() => { hasNavigatedRef.current = true; setWelcome(false) }} data-testid="onboarding-begin-action">{welcomeCopy.begin}<IconArrowRight size={18} /></button>
+          {!currentUser ? <div className="court-account-links"><Link to="/account?mode=signup">{welcomeCopy.signup}</Link><Link to="/account">{welcomeCopy.signin}</Link></div> : null}
+          <p className="onboarding-footer-note">{welcomeCopy.guest}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
   const chrome = (
     <div className="onboarding-frame" data-testid={overlay ? 'onboarding-dialog' : 'onboarding-first-run-panel'}>
       <header className="onboarding-header">
         <span className="onboarding-brand"><NaamRasLogoMark size={30} testId="onboarding-brand-mark" /><span>NaamRas</span></span>
+        {!overlay && step === 0 && <button type="button" className="onboarding-icon-button" onClick={() => setWelcome(true)} aria-label={copy.back}><IconArrowLeft size={20} /></button>}
         {overlay && onDismiss && (
           <button type="button" className="onboarding-icon-button" onClick={onDismiss} aria-label={copy.close} disabled={busy}>
             <IconClose size={20} />

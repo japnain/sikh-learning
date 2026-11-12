@@ -1,5 +1,6 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { useState } from 'react'
+import { MemoryRouter } from 'react-router-dom'
 import { expect, test, vi } from 'vitest'
 import type { MeaningLanguage, OnboardingPresentationMode, ScriptMode, UiLocale } from '../types'
 import { SAMPLE_ONBOARDING_LINE } from '../content/onboardingCopy'
@@ -19,21 +20,31 @@ function Harness({
   const [scriptMode, setScriptMode] = useState<ScriptMode>('gurmukhi')
   const [showTransliteration, setShowTransliteration] = useState(false)
   const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguage>('en')
-  return <>
+  return <MemoryRouter>
     <OnboardingSheet {...{
       presentation, locale, scriptMode, setScriptMode, showTransliteration,
       setShowTransliteration, meaningLanguage, setMeaningLanguage, onComplete, onDismiss, isCompleting,
     }} />
     <output data-testid="preferences">{JSON.stringify({ scriptMode, showTransliteration, meaningLanguage })}</output>
-  </>
+  </MemoryRouter>
 }
 
+function begin() { const action = screen.queryByTestId('onboarding-begin-action'); if (action) fireEvent.click(action) }
 function next() { fireEvent.click(screen.getByTestId('onboarding-setup-primary-action')) }
 function preferences() { return JSON.parse(screen.getByTestId('preferences').textContent ?? '{}') }
 
-test('finishes in two pages with one Continue and one completion action', async () => {
+test('welcomes readers with Golden Court Assembly, account choices and a free reading path', () => {
+  render(<Harness />)
+  expect(screen.getByRole('img', { name: 'Golden court assembly' })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Create account' })).toHaveAttribute('href', '/account?mode=signup')
+  expect(screen.getByRole('link', { name: 'Sign in' })).toHaveAttribute('href', '/account')
+  fireEvent.click(screen.getByRole('button', { name: 'Begin reading' }))
+  expect(screen.getByRole('heading', { name: 'Choose your script.' })).toHaveFocus()
+})
+
+test('after the welcome, finishes reading preferences in two pages', async () => {
   const onComplete = vi.fn()
-  render(<Harness onComplete={onComplete} />)
+  render(<Harness onComplete={onComplete} />); begin()
   expect(screen.getByRole('heading', { name: 'Choose your script.' })).toBeInTheDocument()
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1')
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuemax', '2')
@@ -59,7 +70,7 @@ test('finishes in two pages with one Continue and one completion action', async 
 })
 
 test.each(['gurmukhi', 'devanagari'] as const)('shows the selected %s script and lets pronunciation help be turned on and off', script => {
-  render(<Harness />)
+  render(<Harness />); begin()
   fireEvent.click(screen.getByTestId(`onboarding-script-${script}`))
   const pronunciation = screen.getByRole('switch', { name: 'Pronunciation help' })
   expect(pronunciation).not.toBeChecked()
@@ -82,7 +93,7 @@ const meaningCases = (['gurmukhi', 'devanagari'] as const).flatMap(script =>
 )
 
 test.each(meaningCases)('updates $language meanings immediately in the $script preview', ({ script, language }) => {
-  render(<Harness />)
+  render(<Harness />); begin()
   fireEvent.click(screen.getByTestId(`onboarding-script-${script}`))
   next()
   fireEvent.click(screen.getByTestId(`onboarding-meaning-${language}`))
@@ -106,7 +117,7 @@ test.each(meaningCases)('updates $language meanings immediately in the $script p
 })
 
 test('Back preserves every reading choice and focuses the question being edited', () => {
-  render(<Harness />)
+  render(<Harness />); begin()
   fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
   fireEvent.click(screen.getByRole('switch', { name: 'Pronunciation help' }))
   next()
@@ -163,7 +174,7 @@ test('respects an externally pending completion before navigation or dismissal',
 
 test('keeps the selected preferences after a completion failure and allows retry', async () => {
   const onComplete = vi.fn().mockRejectedValueOnce(new Error('unavailable')).mockResolvedValueOnce(undefined)
-  render(<Harness onComplete={onComplete} />)
+  render(<Harness onComplete={onComplete} />); begin()
   fireEvent.click(screen.getByTestId('onboarding-script-devanagari'))
   next()
   fireEvent.click(screen.getByTestId('onboarding-meaning-hi'))
@@ -182,7 +193,7 @@ test.each([
   { locale: 'pa', scriptTitle: 'ਆਪਣੀ ਲਿਪੀ ਚੁਣੋ।', meaningTitle: 'ਅਰਥਾਂ ਦੀ ਭਾਸ਼ਾ ਚੁਣੋ।', continueLabel: 'ਅੱਗੇ', startLabel: 'ਨਾਮਰਸ ਖੋਲ੍ਹੋ' },
   { locale: 'hi', scriptTitle: 'अपनी लिपि चुनें।', meaningTitle: 'अर्थों की भाषा चुनें।', continueLabel: 'आगे', startLabel: 'नामरस खोलें' },
 ] as const)('localizes both pages and the final action in $locale', ({ locale, scriptTitle, meaningTitle, continueLabel, startLabel }) => {
-  render(<Harness locale={locale} />)
+  render(<Harness locale={locale} />); begin()
   expect(screen.getByRole('heading', { name: scriptTitle })).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: continueLabel }))
   expect(screen.getByRole('heading', { name: meaningTitle })).toBeInTheDocument()
@@ -192,7 +203,7 @@ test.each([
 
 test('first run leaves document scrolling available', () => {
   const overflow = document.documentElement.style.overflow
-  const view = render(<Harness />)
+  const view = render(<Harness />); begin()
   expect(document.documentElement.style.overflow).toBe(overflow)
   next()
   expect(document.documentElement.style.overflow).toBe(overflow)

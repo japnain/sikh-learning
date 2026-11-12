@@ -2,6 +2,7 @@ import type { User } from '@supabase/supabase-js'
 import { getNaamrasSupabaseClient } from './client'
 import { getNaamrasSupabaseConfig } from './config'
 import { discoverAuthProviders } from './authProviders'
+import { getAuthRedirectUrl } from './authRedirect'
 import { applyRemoteSnapshot, exportLocalSnapshot, reconcileRemoteSnapshotWithLocalChanges } from './snapshot'
 import type {
   CloudLocalSnapshot,
@@ -24,7 +25,7 @@ import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { refreshVocabFromStorage, useVocabStore } from '../store/vocab'
 
-type SupabaseOAuthProvider = 'apple'
+type SupabaseOAuthProvider = 'apple' | 'google'
 
 let bootstrapPromise: Promise<void> | null = null
 let syncTimer: number | null = null
@@ -153,11 +154,11 @@ function toCloudUserSummary(user: User): CloudUserSummary {
   }
 }
 
-function refreshAvailableProviders() {
+export function refreshAvailableProviders() {
   providerDiscovery?.abort()
   const controller = new AbortController()
   providerDiscovery = controller
-  void discoverAuthProviders(getNaamrasSupabaseConfig(), controller.signal).then(providers => {
+  return discoverAuthProviders(getNaamrasSupabaseConfig(), controller.signal).then(providers => {
     if (providerDiscovery !== controller || controller.signal.aborted) return
     useCloudSyncStore.getState().setAvailableProviders(providers)
     providerDiscovery = null
@@ -433,7 +434,7 @@ export async function signInWithProvider(
   const { error } = await client.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: redirectTo ?? (typeof window !== 'undefined' ? window.location.href : undefined),
+      redirectTo: redirectTo ?? getAuthRedirectUrl(),
     },
   })
 
@@ -466,7 +467,7 @@ export async function sendMagicLink(email: string, redirectTo?: string) {
   const { error } = await client.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: redirectTo ?? (typeof window !== 'undefined' ? window.location.href : undefined),
+      emailRedirectTo: redirectTo ?? getAuthRedirectUrl(),
     },
   })
 

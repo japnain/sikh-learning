@@ -35,12 +35,13 @@ const MorePage = lazy(() => import('./pages/More'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
 const PrivacyPage = lazy(() => import('./pages/Privacy'))
 const SupportPage = lazy(() => import('./pages/Support'))
+const AccountPage = lazy(() => import('./pages/Account'))
 const LibraryChapterReader = lazy(() => import('./pages/library/LibraryChapterReader'))
 const StoryReader = lazy(() => import('./pages/stories/StoryReader'))
 const StoryDraftPreview = import.meta.env.DEV ? lazy(() => import('./pages/stories/StoryDraftPreview')) : null
 const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
 
-const PUBLIC_DOCUMENT_PATHS = new Set(['/privacy', '/support'])
+const PUBLIC_DOCUMENT_PATHS = new Set(['/privacy', '/support', '/account', '/auth/callback', '/auth/recovery'])
 
 function isPublicDocumentPath(pathname: string) {
   const normalizedPath = pathname.replace(/\/+$/, '') || '/'
@@ -171,7 +172,7 @@ function AppShell() {
   const locale = useLocaleStore(s => s.locale)
   const [isCompletingOnboarding, setIsCompletingOnboarding] = useState(false)
   const [pendingOnboardingViewportReset, setPendingOnboardingViewportReset] = useState(false)
-  const firstRunDestinationRef = useRef(`${location.pathname}${location.search}${location.hash}`)
+  const firstRunDestinationRef = useRef(isPublicDocumentPath(location.pathname) ? '/' : `${location.pathname}${location.search}${location.hash}`)
   const isPublicDocument = isPublicDocumentPath(location.pathname)
   const isLibraryChapterReader = /^\/library\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
   const isRehatChapterReader = /^\/banis\/rehat\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
@@ -194,7 +195,7 @@ function AppShell() {
   useAppScrollRestoration({
     mainContentRef,
     enabled: !showFirstRun,
-    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader || isRehatChapterReader,
+    routeHandlesOwnHash: isLibraryChapterReader || isStoryReader || isRehatChapterReader || location.pathname.startsWith('/auth/'),
     routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader || isRehatChapterReader,
   })
   useRouteDocumentTitle(location.pathname)
@@ -343,6 +344,9 @@ function AppShell() {
                 <Route path="/vocab" element={<VocabPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/support" element={<SupportPage />} />
+                <Route path="/account" element={<AccountPage />} />
+                <Route path="/auth/callback" element={<AccountPage />} />
+                <Route path="/auth/recovery" element={<AccountPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Suspense>
