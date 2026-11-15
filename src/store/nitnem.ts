@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { BANIS } from '../data/banis'
+import { BANIS, READ_EXACT_BANIS, type Bani } from '../data/banis'
+import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
 import { toLocalDayStamp } from '../utils/localDates'
 import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils/baniRouteResolver'
 import { queueActivityEvent, useActivityEventsStore } from './activityEvents'
@@ -9,6 +10,38 @@ import { getExactReadingKey } from './readingPlaces'
 import { releaseRebuildableScriptureCache } from './scriptureCache'
 
 export type NitnemGroup = 'Morning' | 'Evening' | 'Night' | 'Additional'
+export const NITNEM_CATEGORY_ORDER = ['daily', 'compositions', 'short', 'vaars', 'raag', 'savaiye', 'dasam'] as const
+export type NitnemCategory = typeof NITNEM_CATEGORY_ORDER[number]
+
+const NITNEM_CATEGORY_LABELS: Record<NitnemCategory, string> = {
+  daily: 'Daily prayers', compositions: 'Longer compositions', short: 'Short banis & saloks',
+  vaars: 'Vaars', raag: 'Raag selections', savaiye: 'Savaiye', dasam: 'Dasam selections',
+}
+
+function getNitnemCategory(bani: Bani): NitnemCategory {
+  if (bani.category === 'Daily Prayers') return 'daily'
+  if (bani.source === 'D') return 'dasam'
+  if (bani.category === 'Vars') return 'vaars'
+  if (bani.category === 'Raag Sections') return 'raag'
+  if (bani.category === 'Swaiye') return 'savaiye'
+  if (bani.category === 'Long Compositions') return 'compositions'
+  return 'short'
+}
+
+const NITNEM_SEARCH_ALIASES: Record<string, string> = {
+  'vaar-sri-bhagauti-ji-ki': 'Chandi Di Vaar Chandi Di Var Bhagauti Bhagoti',
+  'onkar': 'Dakhni Onkar Dakhani Oankar Dakhan Oankar',
+  'sidh-gosht': 'Sidh Gosht Sidh Goshti Sidh Gost',
+  'dukh-bhanjani': 'Dukh Bhanjan Dukh Bhanjani Sahib',
+  'shabad-hazare': 'Shabad Hazare Shabad Hazaare',
+  'sastra-naam-mala': 'Shastar Naam Mala Shastra Nam Mala',
+}
+
+function getNitnemSearchTerms(bani: Bani, baniDbId = bani.baniDbId): string {
+  return [bani.name, bani.variantLabel, NITNEM_SEARCH_ALIASES[bani.id],
+    baniDbId ? BANI_SCRIPT_NAMES[baniDbId]?.hindi : '',
+  ].filter(Boolean).join(' ')
+}
 
 export interface NitnemRouteOption {
   id: string
@@ -25,6 +58,8 @@ export interface NitnemRouteOption {
   variantLabel?: string
   supportsLengthAdjustment: boolean
   detail: string
+  category?: NitnemCategory
+  searchTerms?: string
 }
 
 type NitnemBaseBaniId =
@@ -176,10 +211,12 @@ function createNitnemOption({
     variantLabel,
     supportsLengthAdjustment: meta.supportsLengthAdjustment,
     detail,
+    category: getNitnemCategory(bani),
+    searchTerms: getNitnemSearchTerms(bani, baniDbId),
   }
 }
 
-export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
+const CORE_NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
   createNitnemOption({
     id: 'japji-sahib',
     baseBaniId: 'japji-sahib',
@@ -289,6 +326,51 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     variant: 'adjustable',
     detail: 'Length options appear inside the reader.',
   }),
+]
+
+// Extend the chooser from the same exact readings as Read. Provider identity is
+// the deduplication key: labels and overlapping Ang ranges are not interchangeable.
+// Preserve the original route IDs (including the older Dheenan Ki spelling), so
+// saved routines, reading places and completed versions keep their identities.
+const coreProviderIds = new Set(CORE_NITNEM_ROUTE_OPTIONS.map(option => option.baniDbId))
+const additionalCatalogOptions: NitnemRouteOption[] = READ_EXACT_BANIS.flatMap(bani => {
+  if (!bani.baniDbId || bani.type === 'browse-only' || coreProviderIds.has(bani.baniDbId)
+    || (bani.source !== 'G' && bani.source !== 'D')) return []
+  const scriptTitle = BANI_SCRIPT_NAMES[bani.baniDbId]?.gurmukhi
+  if (!scriptTitle) return []
+  const category = getNitnemCategory(bani)
+  return [{
+    id: bani.id,
+    baseBaniId: bani.variantOf ?? bani.id,
+    name: bani.name,
+    gurmukhiTitle: scriptTitle,
+    romanizedTitle: bani.name,
+    source: bani.source,
+    startAng: bani.startAng,
+    endAng: bani.endAng,
+    group: 'Additional',
+    baniDbId: bani.baniDbId,
+    variant: bani.variantOf ? 'exact-variant' : 'standard',
+    variantLabel: bani.variantLabel,
+    supportsLengthAdjustment: false,
+    detail: NITNEM_CATEGORY_LABELS[category],
+    category,
+    searchTerms: getNitnemSearchTerms(bani),
+  }]
+})
+
+export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
+  ...CORE_NITNEM_ROUTE_OPTIONS,
+  {
+    id: 'ardaas', baseBaniId: 'ardaas', name: 'Ardaas', romanizedTitle: 'Ardaas',
+    gurmukhiTitle: BANI_SCRIPT_NAMES[24]!.gurmukhi,
+    // G/1 is only the reader's fallback route context. Ardaas is fetched in full
+    // by provider ID 24; these values do not assert a scripture attribution/range.
+    source: 'G', startAng: 1, endAng: 1, baniDbId: 24,
+    group: 'Additional', variant: 'standard', supportsLengthAdjustment: false,
+    category: 'short', detail: 'The Sikh prayer.', searchTerms: `Ardas Ardaas ${BANI_SCRIPT_NAMES[24]!.hindi}`,
+  },
+  ...additionalCatalogOptions,
 ]
 
 export const NITNEM_ROUTE_ORDER: Record<NitnemRouteOption['id'], number> = NITNEM_ROUTE_OPTIONS.reduce(

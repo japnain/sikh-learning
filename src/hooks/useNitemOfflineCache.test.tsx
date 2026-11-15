@@ -256,3 +256,20 @@ describe('useNitemOfflineCache', () => {
     expect(useNitnemOfflineStatusStore.getState()).toEqual(before)
   })
 })
+
+
+it('prepares and verifies added catalog selections by exact provider ID while retaining existing lengths', async () => {
+  useNitemStore.setState({ selectedIds: ['shabad-hazare', 'salok-farid', 'ardaas', 'sri-bhagauti-astotr-hazur-sahib', 'rehras-sahib'] })
+  const cached = new Set<number>()
+  vi.mocked(readBaniOfflineCache).mockImplementation(async id => cached.has(id) ? exactBaniResult : null)
+  vi.mocked(fetchBani).mockResolvedValue(exactBaniResult)
+  vi.mocked(writeBaniOfflineCache).mockImplementation(async id => { cached.add(id) })
+  renderHook(() => useNitemOfflineCache())
+  await waitFor(() => expect(useNitnemOfflineStatusStore.getState()).toMatchObject({ ready: 5, total: 5, status: 'ready' }))
+  expect(setProtectedBaniOfflineReadings).toHaveBeenLastCalledWith([
+    { baniDbId: 3, sgLength: null }, { baniDbId: 78, sgLength: null },
+    { baniDbId: 24, sgLength: null }, { baniDbId: 26, sgLength: null },
+    { baniDbId: 21, sgLength: 'short' },
+  ])
+  expect(vi.mocked(fetchBani).mock.calls.map(call => call[0])).toEqual([3, 78, 24, 26, 21])
+})

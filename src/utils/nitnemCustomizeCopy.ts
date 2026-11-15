@@ -1,5 +1,12 @@
 export const NITNEM_CUSTOMIZE_COPY = {
   en: {
+    routineTitle: 'Your reading order', orderHint: 'Move banis with the arrows. Open Reading length where available.',
+    preferences: 'Goals & offline', trackingOff: 'Completion tracking off', goalPaused: 'Your goal is kept for when you turn completion tracking back on.',
+    details: 'Details', fixedReading: 'This bani uses its complete reading. There are no length options to choose.',
+    undo: 'Undo', saveHint: 'Changes stay in this draft until you save. Your reading places and completed banis are kept.', upToDate: 'Routine up to date',
+    libraryCount: (n: number) => `${n} bani readings`, inRoutine: (n: number) => `${n} in your routine`,
+    category: 'Browse by category', allCategories: 'All banis', addShort: 'Add', clearFilters: 'Clear search and filters', allAdded: 'All available banis are in your routine.',
+    categories: { daily: 'Daily prayers', compositions: 'Longer compositions', short: 'Short banis & saloks', vaars: 'Vaars', raag: 'Raag selections', savaiye: 'Savaiye', dasam: 'Dasam selections' },
     title: 'Daily', titleEmphasis: 'Nitnem.', subtitle: 'Choose your banis and reading order.', back: 'Back',
     selected: (n: number) => `${n} selected`, edit: 'Edit', editBani: (name: string) => `Edit ${name}`,
     readingLength: 'Reading length', lengthLabel: (name: string) => `${name} length`, saved: 'saved',
@@ -32,6 +39,12 @@ export const NITNEM_CUSTOMIZE_COPY = {
     draftUnavailable: 'This draft can be recovered while the app stays open. Save before closing; this device could not keep the draft for a reload.',
   },
   pa: {
+    routineTitle: 'ਤੁਹਾਡੇ ਪਾਠ ਦਾ ਕ੍ਰਮ', orderHint: 'ਤੀਰਾਂ ਨਾਲ ਬਾਣੀਆਂ ਦਾ ਕ੍ਰਮ ਬਦਲੋ। ਲੰਬਾਈ ਵੇਖਣ ਲਈ ਬਾਣੀ ਚੁਣੋ।',
+    preferences: 'ਟੀਚਾ ਅਤੇ ਆਫ਼ਲਾਈਨ', trackingOff: 'ਪੂਰੀਆਂ ਬਾਣੀਆਂ ਦਾ ਰਿਕਾਰਡ ਬੰਦ', goalPaused: 'ਰਿਕਾਰਡ ਮੁੜ ਚਾਲੂ ਕਰਨ ਲਈ ਤੁਹਾਡਾ ਟੀਚਾ ਰੱਖਿਆ ਗਿਆ ਹੈ।',
+    details: 'ਵੇਰਵਾ', fixedReading: 'ਇਸ ਬਾਣੀ ਦਾ ਪੂਰਾ ਪਾਠ ਹੈ। ਲੰਬਾਈ ਚੁਣਨ ਦੇ ਵਿਕਲਪ ਨਹੀਂ ਹਨ।',
+    undo: 'ਵਾਪਸ ਰੱਖੋ', saveHint: 'ਸੰਭਾਲਣ ਤੱਕ ਤਬਦੀਲੀਆਂ ਮਸੌਦੇ ਵਿੱਚ ਰਹਿਣਗੀਆਂ। ਪੜ੍ਹਨ ਦੀ ਥਾਂ ਅਤੇ ਪੂਰੀਆਂ ਬਾਣੀਆਂ ਦਾ ਰਿਕਾਰਡ ਕਾਇਮ ਰਹੇਗਾ।', upToDate: 'ਨਿਤਨੇਮ ਸੰਭਾਲਿਆ ਹੋਇਆ ਹੈ',
+    libraryCount: (n: number) => `${n} ਬਾਣੀਆਂ ਦੇ ਪਾਠ`, inRoutine: (n: number) => `ਤੁਹਾਡੇ ਨਿਤਨੇਮ ਵਿੱਚ ${n}`, category: 'ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਵੇਖੋ', allCategories: 'ਸਾਰੀਆਂ ਬਾਣੀਆਂ', addShort: 'ਜੋੜੋ', clearFilters: 'ਖੋਜ ਅਤੇ ਫਿਲਟਰ ਹਟਾਓ', allAdded: 'ਸਾਰੀਆਂ ਉਪਲਬਧ ਬਾਣੀਆਂ ਤੁਹਾਡੇ ਨਿਤਨੇਮ ਵਿੱਚ ਹਨ।',
+    categories: { daily: 'ਰੋਜ਼ਾਨਾ ਪਾਠ', compositions: 'ਲੰਮੀਆਂ ਬਾਣੀਆਂ', short: 'ਛੋਟੀਆਂ ਬਾਣੀਆਂ ਅਤੇ ਸਲੋਕ', vaars: 'ਵਾਰਾਂ', raag: 'ਰਾਗਾਂ ਵਿੱਚ ਬਾਣੀ', savaiye: 'ਸਵੱਯੇ', dasam: 'ਦਸਮ ਬਾਣੀਆਂ' },
     title: 'ਰੋਜ਼ਾਨਾ', titleEmphasis: 'ਨਿਤਨੇਮ।', subtitle: 'ਆਪਣੀਆਂ ਬਾਣੀਆਂ ਅਤੇ ਪੜ੍ਹਨ ਦਾ ਕ੍ਰਮ ਚੁਣੋ।', back: 'ਵਾਪਸ',
     selected: (n: number) => `${n} ਚੁਣੀਆਂ`, edit: 'ਬਦਲੋ', editBani: (name: string) => `${name} ਬਦਲੋ`,
     readingLength: 'ਪਾਠ ਦੀ ਲੰਬਾਈ', lengthLabel: (name: string) => `${name} ਦੀ ਲੰਬਾਈ`, saved: 'ਸੰਭਾਲੀ',
@@ -64,6 +77,12 @@ export const NITNEM_CUSTOMIZE_COPY = {
     draftUnavailable: 'ਐਪ ਖੁੱਲ੍ਹੀ ਰਹਿਣ ਤੱਕ ਮਸੌਦਾ ਮੁੜ ਮਿਲ ਸਕਦਾ ਹੈ। ਬੰਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਭਾਲੋ; ਮੁੜ ਲੋਡ ਲਈ ਮਸੌਦਾ ਰੱਖਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।',
   },
   hi: {
+    routineTitle: 'आपके पाठ का क्रम', orderHint: 'तीरों से बानियों का क्रम बदलें। लंबाई देखने के लिए बानी चुनें।',
+    preferences: 'लक्ष्य और ऑफ़लाइन', trackingOff: 'पूर्णता का रिकॉर्ड बंद', goalPaused: 'रिकॉर्ड फिर शुरू करने के लिए आपका लक्ष्य रखा गया है।',
+    details: 'विवरण', fixedReading: 'इस बानी का पूरा पाठ है। लंबाई चुनने के विकल्प नहीं हैं।',
+    undo: 'वापस रखें', saveHint: 'सहेजने तक बदलाव मसौदे में रहेंगे। पढ़ने की जगह और पूरी बानियों का रिकॉर्ड बना रहेगा।', upToDate: 'नितनेम सहेजा हुआ है',
+    libraryCount: (n: number) => `${n} बानियों के पाठ`, inRoutine: (n: number) => `आपके नितनेम में ${n}`, category: 'श्रेणी के अनुसार देखें', allCategories: 'सभी बानियाँ', addShort: 'जोड़ें', clearFilters: 'खोज और फ़िल्टर हटाएँ', allAdded: 'सभी उपलब्ध बानियाँ आपके नितनेम में हैं।',
+    categories: { daily: 'दैनिक पाठ', compositions: 'लंबी बानियाँ', short: 'छोटी बानियाँ और सलोक', vaars: 'वारें', raag: 'रागों में बानी', savaiye: 'सवैये', dasam: 'दसम बानियाँ' },
     title: 'दैनिक', titleEmphasis: 'नितनेम।', subtitle: 'अपनी बानियाँ और पढ़ने का क्रम चुनें।', back: 'वापस',
     selected: (n: number) => `${n} चुनी गईं`, edit: 'बदलें', editBani: (name: string) => `${name} बदलें`,
     readingLength: 'पाठ की लंबाई', lengthLabel: (name: string) => `${name} की लंबाई`, saved: 'सहेजी',

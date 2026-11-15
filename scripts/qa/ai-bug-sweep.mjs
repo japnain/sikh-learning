@@ -1045,8 +1045,9 @@ async function main() {
       viewport: 'desktop',
       path: '/more',
       run: async ({ page, notes }) => {
-        notes.push('Expected the More route and cloud-sync panel to render without route-level failures.')
+        notes.push('Expected the compact More index to open account controls without route-level failures.')
         await ensureVisible(page, '[data-page="more"][data-ai-state="ready"]', 'the More page shell')
+        await page.getByTestId('more-open-account').click()
         await ensureVisible(page, '[data-ai-surface="cloud-sync-panel"]', 'the cloud-sync panel')
       },
     },
@@ -1059,6 +1060,7 @@ async function main() {
       run: async ({ page, notes }) => {
         notes.push('Expected Supabase bootstrap failures to degrade the cloud-sync panel instead of crashing the route.')
         await ensureVisible(page, '[data-page="more"]', 'the More page shell')
+        await page.getByTestId('more-open-account').click()
         await ensureVisible(page, '[data-ai-surface="cloud-sync-panel"][data-ai-state="degraded"][data-ai-error="supabase-bootstrap"]', 'the cloud-sync degraded state')
       },
     },

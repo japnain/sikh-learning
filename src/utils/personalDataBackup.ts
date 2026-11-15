@@ -5,7 +5,7 @@ import { normalizeStoredFavorites, type FavoriteItem } from '../store/favorites'
 import { buildBookmarkNaturalKey, buildFavoriteNaturalKey } from '../supabase/savedItemKeys'
 import { parseSummary } from '../data/storyValidation'
 import { normalizeNitnemCompletionEvents, getNitnemCompletedIds } from '../store/nitnemHistory'
-import { getNitnemOption, DEFAULT_NITNEM_OPTION_IDS } from '../store/nitnem'
+import { getNitnemOption, DEFAULT_NITNEM_OPTION_IDS, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { normalizeNitnemPractice } from './nitnemPractice'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS } from '../store/sundarGutkaLength'
 import { toLocalDayStamp } from './localDates'
@@ -83,7 +83,7 @@ const domains = {
   'naamras-reading-places': { version: 1, defaults: { places: {} }, check: shape({ places: map(session) }) },
   'naamras-nitnem-history': { version: 1, defaults: { events: [], remoteDays: {} }, check: shape({ events: value => list(record)(value) && normalizeNitnemCompletionEvents(value).length === (value as unknown[]).length, remoteDays: map(shape({ revision: text, updatedAt: date })) }) },
   'naamras-nitnem-practice': { version: 1, defaults: { active: null }, check: shape({ active: value => value === null || normalizeNitnemPractice(value) !== null }) },
-  'sikh-nitnem': { version: 5, defaults: { completedDate: toLocalDayStamp(new Date()), completedIds: [], selectedIds: [...DEFAULT_NITNEM_OPTION_IDS], completionTrackingEnabled: true, weeklyDayGoal: 7 }, check: shape({ completedDate: day, completedIds: list(nitnemId, 50), selectedIds: value => list(nitnemId, 50)(value) && (value as unknown[]).length > 0, completionTrackingEnabled: bool, weeklyDayGoal: number(1, 7) }) },
+  'sikh-nitnem': { version: 5, defaults: { completedDate: toLocalDayStamp(new Date()), completedIds: [], selectedIds: [...DEFAULT_NITNEM_OPTION_IDS], completionTrackingEnabled: true, weeklyDayGoal: 7 }, check: shape({ completedDate: day, completedIds: list(nitnemId, NITNEM_ROUTE_OPTIONS.length), selectedIds: value => list(nitnemId, NITNEM_ROUTE_OPTIONS.length)(value) && (value as unknown[]).length > 0, completionTrackingEnabled: bool, weeklyDayGoal: number(1, 7) }) },
   'sikh-recent-search': { version: 2, defaults: { recent: [] }, check: shape({ recent: list(shape({ query: nonempty, mode: oneOf('first-letters', 'first-letters-anywhere', 'gurmukhi', 'english', 'transliteration', 'ang', 'auto-detect'), source: oneOf('all', 'G', 'D', 'B', 'A'), scope: oneOf('all', 'gurbani', 'books', 'stories'), pinned: bool, savedAt: date }), 200) }) },
 } satisfies Record<string, Domain>
 export const PERSONAL_DATA_KEYS = [...Object.keys(domains), 'sikh-bookmarks', 'sikh-favorites', 'naamras-story-state-v1', 'naamras-reader-presentation', 'naamras-ui-disclosure'] as const

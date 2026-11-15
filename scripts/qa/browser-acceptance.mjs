@@ -69,7 +69,11 @@ async function main() {
       QA_OUTPUT_DIR: path.join(reportDirectory, 'read-discovery'),
       QA_CASES: '',
     })
-    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, and Read discovery journeys.`)
+    await run('scripts/qa/daily-more-acceptance.mjs', [], {
+      QA_BASE_URL: baseUrl,
+      QA_OUTPUT_DIR: path.join(reportDirectory, 'daily-more'),
+    })
+    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, Read discovery, and Daily/More journeys.`)
   } finally {
     if (server && server.exitCode === null) {
       server.kill('SIGTERM')

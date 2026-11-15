@@ -4,7 +4,7 @@ import { fetchBani } from '../api/banidb'
 import { http, HttpResponse } from 'msw'
 import { MOCK_REHRAS_BANI_RESPONSE } from '../test/msw-handlers'
 import { server } from '../test/msw-server'
-import { READ_EXACT_BANIS } from '../data/banis'
+import { READ_BANIDB_CATALOG_IDS, READ_EXACT_BANIS } from '../data/banis'
 import type { SundarGutkaLength } from '../types'
 import { NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { readBaniOfflineCache, setProtectedBaniOfflineReadings, writeBaniOfflineCache } from './baniOfflineCache'
@@ -110,15 +110,22 @@ describe('baniOfflineCache local fallback', () => {
     expect(await readBaniOfflineCache(9, null)).toEqual(buildResult(9))
   })
 
-  it('retains all thirteen exact selected readings through unselected fallback churn', async () => {
+  it('retains all 104 catalog selections through unselected-length fallback churn', async () => {
     const selections = NITNEM_ROUTE_OPTIONS.map(option => ({ baniDbId: option.baniDbId!, sgLength: option.supportsLengthAdjustment ? 'short' as const : null }))
-    expect(selections).toHaveLength(13)
+    expect(selections).toHaveLength(104)
+    expect(selections.map(reading => reading.baniDbId).sort((a, b) => a - b)).toEqual(READ_BANIDB_CATALOG_IDS)
     setProtectedBaniOfflineReadings(selections)
     for (const reading of selections) await writeBaniOfflineCache(reading.baniDbId, reading.sgLength, buildResult(reading.baniDbId, reading.sgLength))
-    for (let id = 100; id < 115; id += 1) await writeBaniOfflineCache(id, null, buildResult(id))
+    // Every provider ID is selected. Other supported lengths are the unselected
+    // readings; writing them must never displace a saved routine's exact version.
+    for (const reading of selections.filter(item => item.sgLength)) {
+      for (const length of ['medium', 'long'] as const) {
+        await writeBaniOfflineCache(reading.baniDbId, length, buildResult(reading.baniDbId, length))
+      }
+    }
     for (const reading of selections) expect(await readBaniOfflineCache(reading.baniDbId, reading.sgLength)).toEqual(buildResult(reading.baniDbId, reading.sgLength))
-    expect(JSON.parse(localStorage.getItem('naamras-bani-reading-index-v1')!)).toHaveLength(13)
-    expect(await readBaniOfflineCache(114, null)).toBeNull()
+    expect(JSON.parse(localStorage.getItem('naamras-bani-reading-index-v1')!)).toHaveLength(104)
+    expect(await readBaniOfflineCache(21, 'medium')).toBeNull()
   })
 
   it('protects the selected length while allowing older lengths to be evicted', async () => {
@@ -198,7 +205,7 @@ describe('baniOfflineCache Cache Storage', () => {
     expect(await readBaniOfflineCache(21, 'long')).toEqual(exact)
   })
 
-  it('retains thirteen selected readings, evicts unselected entries, and remains bounded', async () => {
+  it('retains all 104 catalog selections, evicts unselected lengths, and remains bounded', async () => {
     const entries = new Map<string, Response>()
     const cache = {
       put: vi.fn(async (request: Request, response: Response) => { entries.set(request.url, response.clone()) }),
@@ -210,14 +217,21 @@ describe('baniOfflineCache Cache Storage', () => {
     const selections = NITNEM_ROUTE_OPTIONS.map(option => ({ baniDbId: option.baniDbId!, sgLength: option.supportsLengthAdjustment ? 'short' as const : null }))
     setProtectedBaniOfflineReadings(selections)
     for (const reading of selections) await writeBaniOfflineCache(reading.baniDbId, reading.sgLength, buildResult(reading.baniDbId, reading.sgLength))
-    for (let id = 100; id < 115; id += 1) await writeBaniOfflineCache(id, null, buildResult(id))
+    // Every provider ID is selected. Other supported lengths are the unselected
+    // readings; writing them must never displace a saved routine's exact version.
+    for (const reading of selections.filter(item => item.sgLength)) {
+      for (const length of ['medium', 'long'] as const) {
+        await writeBaniOfflineCache(reading.baniDbId, length, buildResult(reading.baniDbId, length))
+      }
+    }
     for (const reading of selections) expect(await readBaniOfflineCache(reading.baniDbId, reading.sgLength)).toEqual(buildResult(reading.baniDbId, reading.sgLength))
-    expect(entries.size).toBe(13)
+    expect(entries.size).toBe(104)
+    expect(await readBaniOfflineCache(21, 'medium')).toBeNull()
     expect(localStorage.length).toBe(0)
 
     setProtectedBaniOfflineReadings([])
-    await writeBaniOfflineCache(200, null, buildResult(200))
+    await writeBaniOfflineCache(21, 'medium', buildResult(21, 'medium'))
     expect(entries.size).toBe(12)
-    expect(await readBaniOfflineCache(200, null)).toEqual(buildResult(200))
+    expect(await readBaniOfflineCache(21, 'medium')).toEqual(buildResult(21, 'medium'))
   })
 })

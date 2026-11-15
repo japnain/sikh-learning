@@ -63,3 +63,18 @@ test('keeps an existing extra-long alias without changing its saved identity or 
   const reloaded = await import('./nitnemDraft')
   expect(reloaded.readNitnemDraft(legacyBase)).toEqual(legacyDraft)
 })
+
+
+test('recovers a full expanded catalog draft without dropping selections or lengths', async () => {
+  const { NITNEM_ROUTE_OPTIONS } = await import('../store/nitnem')
+  const api = await import('./nitnemDraft')
+  const expanded = { ...draft, selectedIds: NITNEM_ROUTE_OPTIONS.map(option => option.id) }
+  expect(api.rememberNitnemDraft(committed, expanded)).toBe(true)
+  vi.resetModules()
+  const reloaded = await import('./nitnemDraft')
+  expect(reloaded.readNitnemDraft(committed)).toEqual(expanded)
+  const reordered = { ...expanded, selectedIds: [...expanded.selectedIds].reverse() }
+  expect(reloaded.rememberNitnemDraft(expanded, reordered)).toBe(true)
+  vi.resetModules()
+  expect((await import('./nitnemDraft')).readNitnemDraft(expanded)).toEqual(reordered)
+})

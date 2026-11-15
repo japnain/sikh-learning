@@ -472,7 +472,10 @@ test('saving reopened onboarding preserves the current page, query, and scroll p
 
   await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
   documentScroll.setTop(420)
+  fireEvent.click(screen.getByTestId('more-open-about'))
+  expect(screen.getByTestId('more-about-sheet')).toBeInTheDocument()
   fireEvent.click(screen.getByTestId('more-open-onboarding'))
+  expect(screen.queryByTestId('more-about-sheet')).not.toBeInTheDocument()
 
   await waitFor(() => {
     expect(screen.getByTestId('onboarding-overlay')).toBeInTheDocument()
@@ -506,7 +509,10 @@ test('dismissing reopened onboarding keeps the current page and restores its app
   })
   render(<App />)
   await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
+  fireEvent.click(screen.getByTestId('more-open-about'))
+  expect(screen.getByTestId('more-about-sheet')).toBeInTheDocument()
   fireEvent.click(screen.getByTestId('more-open-onboarding'))
+  expect(screen.queryByTestId('more-about-sheet')).not.toBeInTheDocument()
   expect(screen.getByTestId('onboarding-overlay')).toBeInTheDocument()
   expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
 

@@ -1,9 +1,11 @@
 import '../styles/settings.css'
-import { lazy, Suspense, useState, useSyncExternalStore, type ReactNode } from 'react'
+import { lazy, Suspense, useRef, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import CloudSyncPanel from '../components/CloudSyncPanel'
 import PersonalDataPanel from '../components/PersonalDataPanel'
-import DisclosureSection from '../components/DisclosureSection'
+import ModalSheet from '../components/ModalSheet'
+import { MORE_HUB_COPY } from '../content/moreHubCopy'
+import { useMusicStore } from '../store/music'
 import SoundscapeControls from '../components/SoundscapeControls'
 import { useLanguageStore } from '../store/language'
 import { useCloudSyncStore } from '../store/cloudSync'
@@ -25,13 +27,14 @@ import {
   getVisraamSourceLabels,
 } from '../utils/translations'
 import { formatGurbaniText, getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
-import { IconArrowRight, IconExternalLink } from '../components/icons'
+import { IconArrowRight, IconExternalLink, IconBanis, IconSun, IconMusic, IconLayers, IconUsers, IconClose, IconPause, IconPlay } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getPublicAppLinks } from '../utils/appConfig'
 import { getSavedReaderPresentation, isReaderPresentationPreferenceSaved, setReaderPresentationPreference, subscribeReaderPresentation } from '../utils/readerPresentation'
 import { READER_TEXT_SIZE } from '../utils/readerTextSize'
 import '../styles/home-artwork.css'
+import '../styles/more.css'
 
 const HomeArtworkSettings = lazy(() => import('../components/HomeArtworkSettings'))
 
@@ -100,6 +103,17 @@ export default function More() {
   const locale = useLocaleStore(s => s.locale)
   const settingsCopy = MORE_SETTINGS_COPY[locale]
   const cloudConfigured = useCloudSyncStore(state => state.configured)
+  const currentUser = useCloudSyncStore(state => state.currentUser)
+  const cloudStatus = useCloudSyncStore(state => state.status)
+  const syncQueued = useCloudSyncStore(state => state.syncQueued)
+  const musicPlaying = useMusicStore(state => state.isPlaying)
+  const selectedSoundId = useMusicStore(state => state.selectedSoundId)
+  const playbackError = useMusicStore(state => state.playbackError)
+  const toggleSound = useMusicStore(state => state.toggleSound)
+  const hub = MORE_HUB_COPY[locale]
+  const [panel, setPanel] = useState<'appearance' | 'reader' | 'sound' | 'backup' | 'account' | 'about' | null>(null)
+  const [readerSection, setReaderSection] = useState<'layout' | 'support' | 'sources'>('layout')
+  const closeRef = useRef<HTMLButtonElement>(null)
   const presentationSaved = useSyncExternalStore(subscribeReaderPresentation, isReaderPresentationPreferenceSaved, () => true)
   const savedPresentation = useSyncExternalStore(subscribeReaderPresentation, getSavedReaderPresentation, () => null)
   const presentation = savedPresentation ?? (meaningLanguage !== 'none' || showTransliteration ? 'study' : 'read')
@@ -134,19 +148,81 @@ export default function More() {
   const textAlignmentLabels = getTextAlignmentLabels(locale)
   const uiLocaleLabels = getUiLocaleLabels(locale)
   const publicLinks = getPublicAppLinks()
+  const panelTitles = { appearance: hub.appearance, reader: moreCopy.readerDefaults, sound: hub.sound, backup: hub.backup, account: hub.account, about: moreCopy.about }
+  const panelDescriptions = { appearance: hub.appearanceHelp, reader: hub.readerHelp, sound: hub.soundHelp, backup: hub.backupHelp, account: hub.accountHelp, about: hub.aboutHelp }
+  const themeLabel = themeMode === 'system' ? appearanceCopy.system : themeMode === 'dark' ? moreCopy.darkMode : moreCopy.lightMode
+  const accountSummary = cloudStatus === 'error' ? hub.needsAttention
+    : cloudStatus === 'offline' ? hub.offline
+      : cloudStatus === 'booting' ? hub.checking
+        : cloudStatus === 'authenticating' ? hub.signingIn
+          : cloudStatus === 'syncing' ? hub.syncing
+            : currentUser && syncQueued ? hub.waiting
+              : currentUser ? hub.connected : hub.signIn
+  function settingRow(key: Exclude<typeof panel, null>, title: string, summary: string, icon: ReactNode) {
+    return <button type="button" className="more-hub-row interactive-focus" onClick={() => setPanel(key)} aria-haspopup="dialog" data-testid={`more-open-${key}`}>
+      <span className="more-hub-icon" aria-hidden="true">{icon}</span>
+      <span className="more-hub-row-copy"><strong>{title}</strong><small>{summary}</small></span>
+      <IconArrowRight size={16} />
+    </button>
+  }
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-more" data-page="more" data-ai-surface="more" data-ai-state="ready">
-      <div className="more-page-heading mb-5">
+    <div className="page-shell more-hub animate-fade-in" data-testid="page-more" lang={locale === 'pa' ? 'pa-Guru' : locale} data-page="more" data-ai-surface="more" data-ai-state="ready">
+      <header className="more-page-heading">
         <p className="eyebrow">{moreCopy.eyebrow}</p>
-        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">
-          {editorial?.more.title ?? moreCopy.title}
-        </h1>
-        <p className="font-sans text-sm leading-6 text-text-muted mt-3">
-          {editorial?.more.body ?? moreCopy.body}
-        </p>
+        <h1>{hub.title}</h1>
+        <p>{hub.body}</p>
+      </header>
+
+      <section className="more-daily-card" aria-labelledby="more-daily-nitnem-title" data-testid="more-daily-nitnem-link" id="daily-nitnem">
+        <Link to="/nitnem/customize" state={{ nitnemOrigin: '/more' }} className="more-hub-row interactive-focus" data-testid="more-open-nitnem-customize">
+          <span className="more-hub-icon" aria-hidden="true"><IconBanis size={22} /></span>
+          <span className="more-hub-row-copy"><strong id="more-daily-nitnem-title">{hub.daily}</strong><small>{moreCopy.baniCount(selectedNitnemCount)} · {completionTrackingEnabled ? moreCopy.trackingOn : hub.chooseArrange}</small></span>
+          <IconArrowRight size={18} />
+        </Link>
+      </section>
+
+      <div className="more-hub-groups">
+        <section className="more-hub-group" aria-labelledby="more-preferences-title">
+          <h2 className="eyebrow" id="more-preferences-title">{hub.preferences}</h2>
+          <div className="more-hub-list">
+            {settingRow('reader', moreCopy.readerDefaults, `${scriptModeLabels[scriptMode]} · ${fontSize}px · ${presentation === 'read' ? presentationCopy.read : presentationCopy.study}`, <IconBanis size={20} />)}
+            {settingRow('appearance', hub.appearance, `${themeLabel} · ${uiLocaleLabels[locale]}`, <IconSun size={20} />)}
+            <div className="more-sound-row">
+              {settingRow('sound', hub.sound, playbackError ? hub.soundError : musicPlaying ? hub.playing : selectedSoundId ? hub.paused : hub.soundHelp, <IconMusic size={20} />)}
+              {selectedSoundId ? <button type="button" className="more-sound-toggle interactive-focus" onClick={() => selectedSoundId && toggleSound(selectedSoundId)} aria-label={musicPlaying ? hub.pause : hub.play}>
+                {musicPlaying ? <IconPause size={18} /> : <IconPlay size={18} />}
+              </button> : null}
+            </div>
+          </div>
+          {playbackError ? <p className="more-sound-error" role="alert">{hub.soundError}</p> : null}
+        </section>
+
+        <section className="more-hub-group" aria-labelledby="more-data-title">
+          <h2 className="eyebrow" id="more-data-title">{hub.yourData}</h2>
+          <div className="more-hub-list">
+            {cloudConfigured ? settingRow('account', hub.account, accountSummary, <IconUsers size={20} />) : null}
+            {settingRow('backup', hub.backup, cloudConfigured ? hub.backupHelp : hub.deviceBackupHelp, <IconLayers size={20} />)}
+          </div>
+        </section>
       </div>
 
-      <div className="more-appearance-grid mb-5 grid gap-3 sm:grid-cols-2">
+      <footer className="more-hub-footer">
+        <button type="button" onClick={() => setPanel('about')} className="interactive-focus" aria-haspopup="dialog" data-testid="more-open-about">{hub.aboutNaamras}</button>
+        {publicLinks.supportUrl ? <a href={publicLinks.supportUrl} target="_blank" rel="noreferrer" className="interactive-focus" data-testid="more-open-support">{moreCopy.support}<IconExternalLink size={12} /></a> : <Link to="/support" className="interactive-focus" data-testid="more-open-support">{moreCopy.support}</Link>}
+        {publicLinks.privacyUrl ? <a href={publicLinks.privacyUrl} target="_blank" rel="noreferrer" className="interactive-focus" data-testid="more-open-public-privacy">{hub.privacy}<IconExternalLink size={12} /></a> : <Link to="/privacy" className="interactive-focus" data-testid="more-open-public-privacy">{hub.privacy}</Link>}
+      </footer>
+
+      {panel ? <ModalSheet open onClose={() => setPanel(null)} title={panelTitles[panel]} description={panelDescriptions[panel]} className="more-settings-sheet" testId={`more-${panel}-sheet`} initialFocusRef={closeRef}>
+        <header className="more-sheet-heading" lang={locale}>
+          <div><p className="eyebrow">{moreCopy.eyebrow}</p><h2>{panelTitles[panel]}</h2><p>{panelDescriptions[panel]}</p></div>
+          <button type="button" ref={closeRef} onClick={() => setPanel(null)} className="more-sheet-close interactive-focus" aria-label={hub.close}><IconClose size={20} /></button>
+        </header>
+        {panel === 'reader' ? <div className="more-reader-switch" role="group" aria-label={hub.readerSections}>
+          {(['layout', 'support', 'sources'] as const).map(section => <button key={section} type="button" aria-pressed={readerSection === section} className="interactive-focus" onClick={() => setReaderSection(section)}>{hub[section]}</button>)}
+        </div> : null}
+        <div className="more-sheet-body" lang={locale}>
+          {panel === 'appearance' ? (
+      <div className="more-appearance-panels grid gap-3">
         <SettingsBlock
           title={moreCopy.appearanceTitle}
           description={moreCopy.appearanceDescription}
@@ -209,49 +285,9 @@ export default function More() {
         </SettingsBlock>
       </div>
 
-      {artworkSettingsOpen ? <Suspense fallback={<div role="status" className="section-shell-quiet px-4 py-3 font-sans text-sm text-ink dark:text-dark-text">{locale === 'pa' ? 'ਚਿੱਤਰ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…' : locale === 'hi' ? 'चित्र लोड हो रहे हैं…' : 'Loading artworks…'}</div>}><HomeArtworkSettings open onClose={() => setArtworkSettingsOpen(false)} /></Suspense> : null}
-
-      <section
-        id="daily-nitnem"
-        className="section-shell-quiet p-4 mb-5 scroll-mt-24"
-        aria-labelledby="more-daily-nitnem-title"
-        data-testid="more-daily-nitnem-link"
-      >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h2 id="more-daily-nitnem-title" className="mt-2 font-display text-2xl leading-none text-ink dark:text-dark-text">
-              {moreCopy.dailyNitnem}
-            </h2>
-            <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-              {moreCopy.dailyNitnemDescription}
-            </p>
-          </div>
-          <span className="chip-pill shrink-0">
-            {completionTrackingEnabled ? moreCopy.trackingOn : moreCopy.baniCount(selectedNitnemCount)}
-          </span>
-        </div>
-        <Link
-          to="/nitnem/customize"
-          state={{ nitnemOrigin: '/more' }}
-          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
-          data-testid="more-open-nitnem-customize"
-        >
-          {moreCopy.customizeDailyNitnem}
-          <IconArrowRight size={14} />
-        </Link>
-      </section>
-
-      <DisclosureSection
-        storageKey="more-reader-defaults"
-        headingLevel={2}
-        title={moreCopy.readerDefaults}
-        summary={`${scriptModeLabels[scriptMode]} · ${fontSize}px · ${presentation === 'read' ? presentationCopy.read : presentationCopy.study}`}
-        defaultOpen={false}
-        className="section-shell-quiet p-4 mb-5"
-        bodyClassName="mt-4 space-y-3"
-        sectionId="more-reader-defaults"
-        testId="more-reader-defaults"
-      >
+          ) : null}
+          {panel === 'reader' ? <div data-testid="more-reader-defaults" className="more-reader-panels">
+            {readerSection === 'layout' ? <>
         <SettingsBlock
           title={moreCopy.scriptLayoutTitle}
           description={moreCopy.scriptLayoutDescription}
@@ -347,6 +383,9 @@ export default function More() {
           </fieldset>
         </SettingsBlock>
 
+
+            </> : null}
+            {readerSection === 'support' ? <>
         <SettingsBlock
           title={moreCopy.readingSupportTitle}
           description={moreCopy.readingSupportDescription}
@@ -439,11 +478,14 @@ export default function More() {
         </fieldset>
         </SettingsBlock>
 
+
+            </> : null}
+            {readerSection !== 'sources' ? (
         <section className="more-reader-preview section-shell p-4" aria-labelledby="more-reader-preview-title" data-testid="more-reader-preview" data-support-text-size={supportTextSize} data-reader-presentation={presentation}>
           <h3 id="more-reader-preview-title" className="eyebrow mb-3">{settingsCopy.preview}</h3>
           <div style={{ textAlign }}>
             <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text`} style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing === 'relaxed' ? 1.85 : 1.6 }}>
-              {formatGurbaniText(SAMPLE_ONBOARDING_LINE.gurmukhi, { scriptMode, larivaar, showVishraam: true })}
+              {formatGurbaniText(SAMPLE_ONBOARDING_LINE.gurmukhi, { scriptMode, larivaar, showVishraam })}
             </p>
             {presentation === 'study' && showTransliteration ? <p data-reader-support="transliteration" lang="pa-Latn">{SAMPLE_ONBOARDING_LINE.transliteration}</p> : null}
             {presentation === 'study' && meaningLanguage !== 'none' ? <p data-reader-support="meaning" lang={meaningLanguage === 'pa' ? getScriptTextLang(scriptMode) : meaningLanguage} className={meaningLanguage === 'pa' ? getScriptTextFontClass(scriptMode) : meaningLanguage === 'hi' ? getScriptTextFontClass('devanagari') : 'font-sans'}>{meaningLanguage === 'pa' ? renderScriptText(SAMPLE_ONBOARDING_LINE.meaning.pa, scriptMode) : SAMPLE_ONBOARDING_LINE.meaning[meaningLanguage]}</p> : null}
@@ -451,6 +493,9 @@ export default function More() {
           <p className="mt-3 font-sans text-xs leading-5 text-text-muted">{settingsCopy.previewCaption}</p>
         </section>
 
+
+            ) : null}
+            {readerSection === 'sources' ? <>
         <SettingsBlock
           title={moreCopy.translationSourceTitle}
           description={moreCopy.translationSourceDescription}
@@ -545,84 +590,38 @@ export default function More() {
             })}
           </div>
         </SettingsBlock>
-      </DisclosureSection>
 
-      <div className="mb-5">
-        <PersonalDataPanel><CloudSyncPanel embedded /></PersonalDataPanel>
-      </div>
-
-      <div className="mb-5">
-        <SoundscapeControls
-          context="study"
-          variant="full"
-          storageKey="more-soundscapes"
-          defaultExpanded={false}
-        />
-      </div>
-
+            </> : null}
+          </div> : null}
+          {panel === 'backup' ? <PersonalDataPanel /> : null}
+          {panel === 'account' ? <CloudSyncPanel embedded /> : null}
+          {panel === 'sound' ? <SoundscapeControls context="study" variant="full" storageKey="more-soundscapes-sheet" defaultExpanded /> : null}
+          {panel === 'about' ? (
       <section className="more-about section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
         <h2 id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</h2>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
           {editorial?.more.aboutBody ?? moreCopy.aboutBody}
         </p>
         <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2">
-          {moreCopy.aboutSource}
+          {hub.sourceContext}
         </p>
         <p className="font-sans text-xs text-ink/68 dark:text-dark-text/64 mt-2">
           {cloudConfigured ? settingsCopy.cloudTrust : settingsCopy.deviceTrust}
         </p>
         <button
           type="button"
-          onClick={openOnboarding}
+          onClick={() => { setPanel(null); openOnboarding() }}
           className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
           data-testid="more-open-onboarding"
         >
           {moreCopy.reopenOnHome}
           <IconArrowRight size={14} />
         </button>
-        {publicLinks.supportUrl ? (
-          <a
-            href={publicLinks.supportUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
-            data-testid="more-open-support"
-          >
-            {moreCopy.support}
-            <IconExternalLink size={14} />
-          </a>
-        ) : (
-          <Link
-            to="/support"
-            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
-            data-testid="more-open-support"
-          >
-            {moreCopy.support}
-            <IconArrowRight size={14} />
-          </Link>
-        )}
-        {publicLinks.privacyUrl ? (
-          <a
-            href={publicLinks.privacyUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
-            data-testid="more-open-public-privacy"
-          >
-            {moreCopy.publicPrivacyPolicy}
-            <IconExternalLink size={14} />
-          </a>
-        ) : (
-          <Link
-            to="/privacy"
-            className="interactive-focus interactive-pill-link mt-2 min-h-[48px] w-full gap-2 rounded-lg border border-sand/20 px-4 font-sans text-sm font-semibold text-ink dark:border-dark-text/15 dark:text-dark-text"
-            data-testid="more-open-public-privacy"
-          >
-            {moreCopy.publicPrivacyPolicy}
-            <IconArrowRight size={14} />
-          </Link>
-        )}
       </section>
+          ) : null}
+        </div>
+      </ModalSheet> : null}
+      {artworkSettingsOpen ? <Suspense fallback={<div role="status" className="sr-only">{hub.loadingArtwork}</div>}><HomeArtworkSettings open onClose={() => setArtworkSettingsOpen(false)} /></Suspense> : null}
     </div>
   )
 }
