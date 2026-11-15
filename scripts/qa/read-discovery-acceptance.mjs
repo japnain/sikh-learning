@@ -73,19 +73,22 @@ async function horizontallyAccessible(locator, label) {
         if (!['hidden', 'clip', 'auto', 'scroll'].includes(getComputedStyle(ancestor).overflowX)) continue
         const rect = ancestor.getBoundingClientRect()
         bounds.push({ left: rect.left + ancestor.clientLeft, right: rect.left + ancestor.clientLeft + ancestor.clientWidth,
-          name: ancestor.className || ancestor.tagName })
+          name: ancestor.className || ancestor.tagName, self: ancestor === element })
       }
-      const rectangles = [element.getBoundingClientRect()]
+      // The outer border box can be clipped by parents, not by its own smaller
+      // content box. Descendant text still needs the element's own clipping edge.
+      const rectangles = [{ rect: element.getBoundingClientRect(), outer: true }]
       const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT)
       while (walker.nextNode()) {
         if (!walker.currentNode.textContent.trim()) continue
         const range = document.createRange()
         range.selectNodeContents(walker.currentNode)
-        rectangles.push(...range.getClientRects())
+        rectangles.push(...[...range.getClientRects()].map(rect => ({ rect, outer: false })))
       }
-      for (const rect of rectangles) {
+      for (const { rect, outer } of rectangles) {
         if (rect.width <= 0 || rect.height <= 0) continue
-        const clipping = bounds.find(bound => rect.left < bound.left - 2 || rect.right > bound.right + 2)
+        const clipping = bounds.find(bound => !(outer && bound.self)
+          && (rect.left < bound.left - 2 || rect.right > bound.right + 2))
         if (clipping) {
           failures.push({ element: name, clippedBy: clipping.name, left: rect.left, right: rect.right, bounds: clipping })
           break
@@ -148,6 +151,29 @@ async function run(name, config, test) {
 }
 
 try {
+  await run('probe-horizontal-geometry', { width: 390 }, async ({ page }) => {
+    await page.setContent(`
+      <style>
+        input { box-sizing: border-box; width: 180px; padding: 12px; border: 4px solid; overflow-x: hidden; }
+        .clipped-parent { width: 80px; overflow-x: hidden; }
+        #clipped-text { width: 80px; overflow-x: hidden; white-space: nowrap; }
+        #offscreen-input { position: absolute; left: 380px; top: 0; }
+      </style>
+      <input id="padded-input" value="123">
+      <div class="clipped-parent"><input id="clipped-input" value="123"></div>
+      <div id="clipped-text">Text that must remain fully visible</div>
+      <input id="offscreen-input" value="123">
+    `)
+    await horizontallyAccessible(page.locator('#padded-input'), 'padded native input')
+    await assert.rejects(horizontallyAccessible(page.locator('#clipped-input'), 'clipped input'),
+      error => error.actual?.some(failure => failure.clippedBy === 'clipped-parent'))
+    await assert.rejects(horizontallyAccessible(page.locator('#clipped-text'), 'clipped text'),
+      error => error.actual?.some(failure => failure.element === 'clipped-text' && failure.clippedBy === 'DIV'))
+    await assert.rejects(horizontallyAccessible(page.locator('#offscreen-input'), 'offscreen input'),
+      error => error.actual?.some(failure => failure.clippedBy === 'viewport'))
+    return { checks: ['native input border is not treated as clipped by its own content box', 'ancestor clipping still fails', 'self-clipped text still fails', 'viewport clipping still fails'] }
+  })
+
   for (const [locale, digits, open] of [['en', '123', 'Open'], ['pa', '੧੨੩', 'ਖੋਲ੍ਹੋ'], ['hi', '१२३', 'खोलें']]) {
     await run(`source-${locale}`, { locale, width: 390, dark: locale !== 'en' }, async ({ page }) => {
       await visit(page, '/banis?collection=sources')
