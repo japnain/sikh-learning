@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
-import { IconArrowLeft, IconArrowRight, IconExternalLink } from '../components/icons'
-
-const SUPPORT_ISSUE_URL = 'https://github.com/japnain/sikh-learning/issues/new?title=NaamRas%20support%3A%20'
+import { IconArrowLeft, IconArrowRight } from '../components/icons'
 
 const troubleshootingItems = [
   {
@@ -41,18 +39,11 @@ export default function Support() {
           Help that gets you back to reading.
         </h1>
         <p className="mt-3 max-w-[58ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          Start with the checks below. When something is still wrong, send a report with the screen, device, and steps that reproduced it.
+          Start with the checks below. If a problem continues, keep a note of the screen, device, and steps that reproduced it.
         </p>
-        <a
-          href={SUPPORT_ISSUE_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg sm:w-auto"
-          data-testid="support-report-problem"
-        >
-          Report a problem
-          <IconExternalLink size={15} />
-        </a>
+        <p className="mt-3 font-sans text-xs leading-5 text-ink/72 dark:text-dark-text/62" data-testid="support-contact-unavailable">
+          Support delivery is not available in this version. Preparing a report does not send it.
+        </p>
       </section>
 
       <section className="mt-5" aria-labelledby="support-common-title">

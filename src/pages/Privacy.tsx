@@ -21,7 +21,7 @@ export default function Privacy() {
           You can use the app as a guest. Cloud backup is optional and should only be connected when you want saved progress available across devices.
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective July 18, 2026
+          Effective November 16, 2026
         </p>
       </section>
 
@@ -84,7 +84,7 @@ export default function Privacy() {
           Clear access and honest feature claims
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Report source or translation concerns through Support so they can be reviewed against the referenced provider.
+          NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Support lists troubleshooting steps and the information to include when requesting help about source or translation concerns. This version does not offer report delivery.
         </p>
       </section>
 
