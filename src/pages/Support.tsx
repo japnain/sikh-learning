@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IconArrowLeft, IconArrowRight, IconCheck, IconExternalLink, IconShare } from '../components/icons'
+import { IconArrowLeft, IconArrowRight, IconCheck, IconShare } from '../components/icons'
 import { buildSupportMailto, getSupportEmail } from '../utils/appConfig'
 
-const SUPPORT_ISSUE_URL = 'https://github.com/japnain/sikh-learning/issues/new?title=NaamRas%20support%3A%20'
 const SUPPORT_REPORT_TEMPLATE = `NaamRas support report
 
 Page or reading:
@@ -75,7 +74,7 @@ export default function Support() {
           Help that gets you back to reading.
         </h1>
         <p className="mt-3 max-w-[58ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          Start with the checks below. When something is still wrong, send a report with the screen, device, and steps that reproduced it.
+          Start with the checks below. When something is still wrong, prepare a report with the screen, device, and steps that reproduced it.
         </p>
         <div className="mt-4 grid gap-2 sm:flex sm:flex-wrap">
           {supportMailto ? (
@@ -88,20 +87,10 @@ export default function Support() {
               <IconArrowRight size={14} />
             </a>
           ) : null}
-          <a
-            href={SUPPORT_ISSUE_URL}
-            target="_blank"
-            rel="noreferrer"
-            className={`interactive-focus interactive-pill-link min-h-[48px] w-full gap-2 rounded-lg px-4 font-sans text-sm font-semibold sm:w-auto ${supportMailto ? 'border border-sand/20 text-ink dark:border-dark-text/15 dark:text-dark-text' : 'bg-ink text-parchment dark:bg-parchment dark:text-dark-bg'}`}
-            data-testid="support-report-problem"
-          >
-            Open GitHub issue
-            <IconExternalLink size={15} />
-          </a>
         </div>
         {!supportMailto ? (
           <p className="mt-3 font-sans text-xs leading-5 text-ink/72 dark:text-dark-text/62" data-testid="support-email-unavailable">
-            GitHub is the only verified public support endpoint in this build. A monitored email option will appear here only after it is configured.
+            A project support inbox is not available in this build. You can copy the report template below without an account. Copying the template does not send it.
           </p>
         ) : null}
       </section>
