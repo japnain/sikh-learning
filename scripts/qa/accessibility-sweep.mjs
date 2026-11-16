@@ -16,6 +16,7 @@ const SERVER_MODE = process.env.QA_A11Y_SERVER_MODE === 'preview' ? 'preview' : 
 const SCAN_TIMEOUT_MS = Number(process.env.QA_A11Y_SCAN_TIMEOUT_MS) || 45_000
 const DETERMINISTIC = process.env.QA_DETERMINISTIC !== '0'
 const fixtureSessions = []
+let expandedStateChecks = 0
 const SWEEP_SCOPE = process.env.QA_A11Y_SCOPE ?? 'all'
 const EVIDENCE_DIR = path.resolve('tmp/browser-acceptance/a11y')
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
@@ -210,6 +211,7 @@ async function scanMode(browser, mode) {
         })
       }
       if (violations.length > 0) failures.push({ mode: mode.id, route, violations })
+      failures.push(...await scanExpandedSettings(page, mode, route))
 
       const durationSeconds = ((Date.now() - startedAt) / 1000).toFixed(1)
       console.log(`[a11y] ${mode.id} ${route} (${durationSeconds}s)`)
@@ -217,6 +219,62 @@ async function scanMode(browser, mode) {
   } finally {
     await page.close()
     await context.close()
+  }
+
+  return failures
+}
+
+async function scanExpandedSettings(page, mode, route) {
+  const failures = []
+  const record = async state => {
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))
+    const violations = await scanPage(page)
+    expandedStateChecks += 1
+    if (violations.length) {
+      failures.push({ mode: mode.id, route: `${route}#${state}`, violations })
+      await page.screenshot({ path: path.join(EVIDENCE_DIR, `${mode.id}-${state}.png`), fullPage: true })
+    }
+    console.log(`[a11y] ${mode.id} ${route}#${state}`)
+  }
+
+  if (route === '/more') {
+    // These controls used to be inline. Scan each focused sheet so the compact
+    // overview does not silently remove settings from accessibility coverage.
+    for (const name of ['reader', 'appearance', 'sound', 'backup', 'about', 'account']) {
+      const opener = page.getByTestId(`more-open-${name}`)
+      if (name === 'account' && !await opener.count()) continue
+      await opener.click()
+      const sheet = page.getByTestId(`more-${name}-sheet`)
+      await sheet.waitFor()
+      await record(`more-${name}`)
+      if (name === 'reader') {
+        for (const section of ['Reading support', 'Sources']) {
+          await sheet.getByRole('button', { name: section, exact: true }).click()
+          await record(`more-reader-${section === 'Sources' ? 'sources' : 'support'}`)
+        }
+      }
+      await sheet.getByRole('button', { name: 'Close settings', exact: true }).click()
+      await sheet.waitFor({ state: 'hidden' })
+    }
+  } else if (route === '/nitnem/customize') {
+    const preferences = page.locator('#nitnem-continuity')
+    if (!await preferences.evaluate(element => element.open)) {
+      await page.getByLabel('Goals & offline', { exact: true }).click()
+    }
+    await page.getByRole('switch', { name: 'Daily completion', exact: true }).waitFor()
+    await page.getByLabel('Edit Rehras Sahib', { exact: true }).click()
+    await page.getByLabel('Rehras Sahib length', { exact: true }).waitFor()
+    await record('nitnem-preferences-and-length')
+
+    await page.getByRole('button', { name: 'Add a bani', exact: true }).click()
+    const picker = page.getByTestId('nitnem-selection')
+    await picker.waitFor()
+    await record('nitnem-picker')
+    await picker.getByRole('searchbox', { name: 'Search available banis' }).fill('no-matching-bani-qa')
+    await picker.getByRole('button', { name: 'Clear search and filters', exact: true }).waitFor()
+    await record('nitnem-picker-empty')
+    await picker.getByRole('button', { name: 'Close available banis', exact: true }).click()
+    await picker.waitFor({ state: 'hidden' })
   }
 
   return failures
@@ -496,7 +554,7 @@ async function main() {
     const routeChecks = SWEEP_SCOPE === 'share-composer' ? 0 : ROUTES.length * MODES.length
     const composerChecks = SWEEP_SCOPE === 'routes' ? 0 : SHARE_COMPOSER_MODES.length
     console.log(
-      `Accessibility sweep passed ${routeChecks} WCAG 2.2 AA route checks and ${composerChecks} open Hukamnama share-composer checks.`
+      `Accessibility sweep passed ${routeChecks} WCAG 2.2 AA route checks, ${expandedStateChecks} expanded Daily/More states, and ${composerChecks} open Hukamnama share-composer checks.`
     )
     return
   }
