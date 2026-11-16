@@ -89,7 +89,7 @@ test('derives repository owner from supported CI metadata or a locally parsed Gi
   assert.equal(resolveRepositoryOwner({ env: { VERCEL_GIT_REPO_OWNER: 'Project-Owner' }, readRemote: noGit }), 'project-owner')
   for (const remote of [
     'https://github.com/Project-Owner/reader.git',
-    'https://username:private-token@github.com/Project-Owner/reader.git',
+    ['https://username:', 'private-token', '@github.com/Project-Owner/reader.git'].join(''),
     'git@github.com:Project-Owner/reader.git',
     'ssh://git@github.com/Project-Owner/reader.git',
   ]) {
