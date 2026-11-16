@@ -22,7 +22,7 @@ export default function Privacy() {
           You can use the app as a guest. Cloud backup is optional and should only be connected when you want saved progress available across devices.
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective October 24, 2026
+          Effective November 16, 2026
         </p>
       </section>
 
@@ -81,7 +81,7 @@ export default function Privacy() {
           Providers and diagnostics
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. The committed production configuration does not enable Supabase sign-in, cloud sync, or automatic diagnostics. If a release enables them, this notice and the App Store disclosures must be reviewed first. Support reports you copy or download remain under your control; posting one to GitHub makes it public.
+          BaniDB-backed services provide scripture lookup, and SearchGurbani provides additional Mahan Kosh word definitions. Khalis Foundation says it may use request and server-log information to provide and improve services, conduct research, and create anonymous reports. Its terms are at banidb.com/tos and its privacy policy is at khalisfoundation.org/about/privacy-policy. The committed production configuration does not enable Supabase sign-in, cloud sync, or automatic diagnostics. If a release enables them, this notice and the App Store disclosures must be reviewed first. Support reports you copy or download remain under your control. Review anything you add before sharing it; posting a report publicly exposes its contents.
         </p>
       </section>
 
@@ -91,7 +91,7 @@ export default function Privacy() {
           Clear access and honest feature claims
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Report source or translation concerns through Support so they can be reviewed against the referenced provider.
+          NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Support includes troubleshooting and guidance for preparing source or translation reports.
         </p>
       </section>
 
