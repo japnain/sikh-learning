@@ -3,11 +3,9 @@ import { useLocaleStore } from '../store/locale'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { SUPPORT_COPY } from '../utils/supportCopy'
 import { Link } from 'react-router-dom'
-import { IconArrowLeft, IconArrowRight, IconCheck, IconExternalLink, IconShare } from '../components/icons'
+import { IconArrowLeft, IconArrowRight, IconCheck, IconShare } from '../components/icons'
 import { buildSupportMailto, getSupportEmail } from '../utils/appConfig'
 import { createSupportReport, downloadSupportReport } from '../utils/supportReport'
-
-const SUPPORT_ISSUE_URL = 'https://github.com/japnain/sikh-learning/issues/new?title=NaamRas%20support%3A%20'
 
 export default function Support() {
   const locale = useLocaleStore(state => state.locale)
@@ -79,18 +77,7 @@ export default function Support() {
               <IconArrowRight size={14} />
             </a>
           ) : null}
-          <a
-            href={SUPPORT_ISSUE_URL}
-            target="_blank"
-            rel="noreferrer"
-            className={`interactive-focus interactive-pill-link min-h-[48px] w-full gap-2 rounded-lg px-4 font-sans text-sm font-semibold sm:w-auto ${supportMailto ? 'border border-sand/20 text-ink dark:border-dark-text/15 dark:text-dark-text' : 'bg-ink text-parchment dark:bg-parchment dark:text-dark-bg'}`}
-            data-testid="support-report-problem"
-          >
-            {copy.github}
-            <IconExternalLink size={15} />
-          </a>
         </div>
-        {supportMailto && <p className="mt-3 font-sans text-xs leading-5 text-ink/72 dark:text-dark-text/62">{copy.publicIssue}</p>}
         {!supportMailto ? (
           <p className="mt-3 font-sans text-xs leading-5 text-ink/72 dark:text-dark-text/62" data-testid="support-email-unavailable">
             {copy.noEmail}
