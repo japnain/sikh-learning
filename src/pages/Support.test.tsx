@@ -5,6 +5,7 @@ import Support from './Support'
 import { clearDiagnosticHistory, reportProviderFailure } from '../utils/diagnostics'
 
 beforeEach(() => {
+  vi.stubEnv('VITE_SUPPORT_EMAIL', '')
   clearDiagnosticHistory()
   Object.defineProperty(window.navigator, 'clipboard', {
     configurable: true,
@@ -22,7 +23,8 @@ test('offers a reviewable privacy-safe report without inventing a support email 
   render(<MemoryRouter><Support /></MemoryRouter>)
 
   expect(screen.getByTestId('page-support')).toHaveAttribute('lang', 'en')
-  expect(screen.getByTestId('support-report-problem')).toHaveAttribute('href', expect.stringContaining('github.com'))
+  expect(screen.queryByTestId('support-report-problem')).not.toBeInTheDocument()
+  expect(screen.getAllByRole('link').every(link => !link.getAttribute('href')?.includes('github.com'))).toBe(true)
   expect(screen.queryByTestId('support-email')).not.toBeInTheDocument()
   expect(screen.getByTestId('support-email-unavailable')).toBeInTheDocument()
 
@@ -46,7 +48,7 @@ test('copies user-reviewed edits and retains a manual fallback when clipboard is
   expect(navigator.clipboard.writeText).toHaveBeenCalledWith('My reviewed report')
 })
 
-test('shows a configured public support inbox as the primary non-GitHub contact path', () => {
+test('shows only the configured project support inbox as a contact path', () => {
   vi.stubEnv('VITE_SUPPORT_EMAIL', 'help+reader@naamras.example')
 
   render(<MemoryRouter><Support /></MemoryRouter>)
@@ -56,4 +58,5 @@ test('shows a configured public support inbox as the primary non-GitHub contact 
     'mailto:help%2Breader@naamras.example?subject=NaamRas%20support',
   )
   expect(screen.queryByTestId('support-email-unavailable')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('support-report-problem')).not.toBeInTheDocument()
 })
