@@ -1,7 +1,7 @@
 export const SUPPORT_COPY = {
   en: {
     more: 'More', eyebrow: 'NaamRas Support', title: 'Help that gets you back to reading.',
-    intro: 'Start with the checks below. When something is still wrong, send a report with the screen, device, and steps that reproduced it.',
+    intro: 'Start with the checks below. When something is still wrong, prepare a report with the screen, device, and steps that reproduced it.',
     email: 'Email support',
     noEmail: 'You can prepare and save a report below without an account. A project support inbox is not available in this build. Saving a report does not send it.',
     common: 'Common Fixes', tryFirst: 'Try these first',
@@ -23,7 +23,7 @@ export const SUPPORT_COPY = {
   },
   pa: {
     more: 'ਹੋਰ', eyebrow: 'NaamRas ਸਹਾਇਤਾ', title: 'ਪੜ੍ਹਾਈ ਵੱਲ ਮੁੜਨ ਲਈ ਮਦਦ।',
-    intro: 'ਹੇਠਾਂ ਦਿੱਤੇ ਤਰੀਕੇ ਪਹਿਲਾਂ ਅਜ਼ਮਾਓ। ਜੇ ਮੁਸ਼ਕਲ ਰਹੇ, ਤਾਂ ਸਕ੍ਰੀਨ, ਡਿਵਾਈਸ ਅਤੇ ਮੁਸ਼ਕਲ ਦੁਬਾਰਾ ਆਉਣ ਦੇ ਕਦਮਾਂ ਨਾਲ ਰਿਪੋਰਟ ਭੇਜੋ।',
+    intro: 'ਹੇਠਾਂ ਦਿੱਤੇ ਤਰੀਕੇ ਪਹਿਲਾਂ ਅਜ਼ਮਾਓ। ਜੇ ਮੁਸ਼ਕਲ ਰਹੇ, ਤਾਂ ਸਕ੍ਰੀਨ, ਡਿਵਾਈਸ ਅਤੇ ਮੁਸ਼ਕਲ ਦੁਬਾਰਾ ਆਉਣ ਦੇ ਕਦਮਾਂ ਨਾਲ ਰਿਪੋਰਟ ਤਿਆਰ ਕਰੋ।',
     email: 'ਸਹਾਇਤਾ ਨੂੰ ਈਮੇਲ ਕਰੋ',
     noEmail: 'ਤੁਸੀਂ ਬਿਨਾਂ ਖਾਤੇ ਦੇ ਹੇਠਾਂ ਰਿਪੋਰਟ ਤਿਆਰ ਕਰਕੇ ਸੰਭਾਲ ਸਕਦੇ ਹੋ। ਇਸ ਵਰਜਨ ਵਿੱਚ ਪ੍ਰੋਜੈਕਟ ਦਾ ਸਹਾਇਤਾ ਈਮੇਲ ਪਤਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਰਿਪੋਰਟ ਸੰਭਾਲਣ ਨਾਲ ਇਹ ਭੇਜੀ ਨਹੀਂ ਜਾਂਦੀ।',
     common: 'ਆਮ ਹੱਲ', tryFirst: 'ਪਹਿਲਾਂ ਇਹ ਅਜ਼ਮਾਓ',
@@ -45,7 +45,7 @@ export const SUPPORT_COPY = {
   },
   hi: {
     more: 'और', eyebrow: 'NaamRas सहायता', title: 'पढ़ने की ओर लौटने में मदद।',
-    intro: 'पहले नीचे दिए तरीके आज़माएँ। अगर समस्या बनी रहे, तो स्क्रीन, डिवाइस और समस्या दोहराने के चरणों के साथ रिपोर्ट भेजें।',
+    intro: 'पहले नीचे दिए तरीके आज़माएँ। अगर समस्या बनी रहे, तो स्क्रीन, डिवाइस और समस्या दोहराने के चरणों के साथ रिपोर्ट तैयार करें।',
     email: 'सहायता को ईमेल करें',
     noEmail: 'आप बिना खाते के नीचे रिपोर्ट तैयार करके सहेज सकते हैं। इस संस्करण में परियोजना का सहायता ईमेल पता उपलब्ध नहीं है। रिपोर्ट सहेजने से वह भेजी नहीं जाती।',
     common: 'आम समाधान', tryFirst: 'पहले ये आज़माएँ',
