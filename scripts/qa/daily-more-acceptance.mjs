@@ -99,7 +99,7 @@ try {
     await page.goto(new URL('/more', base).href, { waitUntil: 'domcontentloaded' })
     await page.getByTestId('page-more').waitFor()
     const overview = await assertLayout(page, '[data-testid="page-more"]', `more-${key}`)
-    assert(overview.height < (config.scale === 1 ? 1100 : 2600), `more-${key}: overview remains compact`)
+    assert(overview.height < (config.scale === 1 ? 1100 : 2600), `more-${key}: overview remains compact (measured ${Math.round(overview.height)}px)`)
     assert.equal(await page.getByRole('dialog').count(), 0, 'Detailed settings are closed on arrival')
     assert.equal(await page.getByTestId('personal-data-panel').count(), 0, 'Backup detail is not dumped into the overview')
     await page.screenshot({ path: path.join(output, `more-${key}.png`), fullPage: true })

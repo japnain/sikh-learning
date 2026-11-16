@@ -206,6 +206,8 @@ try {
     const lengths = page.getByTestId('bani-length-sheet')
     await lengths.waitFor()
     await lengths.locator('input[type="radio"][value="medium"]').check()
+    assert.equal(await lengths.getByRole('checkbox', { name: 'Use for my Nitnem', exact: true }).isChecked(), false,
+      'This choice applies to the active reading unless explicitly remembered')
     await lengths.locator('button[type="submit"]').click()
     await page.waitForURL(url => url.pathname === '/study' && url.searchParams.get('sgLength') === 'medium')
     await page.locator('[data-page="study"][data-ai-state="ready"]').waitFor()
@@ -221,8 +223,8 @@ try {
     assert.equal(await page.getByLabel('Japji Sahib length', { exact: true }).count(), 0)
     await page.getByRole('button', { name: 'Remove Japji Sahib from Daily Nitnem', exact: true }).waitFor()
     await page.getByLabel('Edit Rehras Sahib', { exact: true }).click()
-    assert.equal(await page.getByLabel('Rehras Sahib length', { exact: true }).inputValue(), 'medium',
-      'The adjustable reading retains the length selected on Home')
+    assert.equal(await page.getByLabel('Rehras Sahib length', { exact: true }).inputValue(), 'short',
+      'A reading-only Medium choice preserves the usual Short Nitnem length')
     await page.getByRole('button', { name: 'Move Japji Sahib down', exact: true }).click()
     assert.match(await page.getByTestId('nitnem-ritual-item').first().innerText(), /Jaap Sahib/)
     await page.getByRole('button', { name: 'Save routine', exact: true }).click()
@@ -242,7 +244,7 @@ try {
     await page.screenshot({ path: path.join(output, 'nitnem-tracking-off.png') })
     fixture.assertNoUnexpectedRequests()
     assert.deepEqual(errors, [])
-    results.push({ kind: 'nitnem-length-customization', checks: ['medium Rehras preview/application opens exact reader', 'Back returns to the selected named reading and current length', 'fixed readings expose direct actions without an empty length editor', 'adjustable reading retains its saved length', 'custom reorder persists into named index', 'tracking can be disabled from Goals & offline while all readings remain available'] })
+    results.push({ kind: 'nitnem-length-customization', checks: ['medium Rehras preview/application opens exact reader', 'Back returns to the selected named reading and current length', 'fixed readings expose direct actions without an empty length editor', 'reading-only length choice preserves the usual Nitnem length', 'custom reorder persists into named index', 'tracking can be disabled from Goals & offline while all readings remain available'] })
     await context.close()
     console.log('PASS nitnem-length-customization')
   }

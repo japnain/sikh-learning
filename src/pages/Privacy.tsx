@@ -36,7 +36,7 @@ export default function Privacy() {
           {configured ? 'You can use the app as a guest. Cloud backup is optional and can sync supported saved items across devices when you connect an account.' : 'You can use the app without an account. Cloud backup and sign-in are unavailable in this version. Personal reading data stays on this device; use Download backup in More to save a portable copy.'}
         </p>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/64">
-          Effective November 12, 2026
+          Effective November 16, 2026
         </p>
       </section>
 
@@ -105,7 +105,7 @@ export default function Privacy() {
           Clear access and honest feature claims
         </h2>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Report source or translation concerns through Support so they can be reviewed against the referenced provider.
+          NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Support includes troubleshooting and guidance for preparing source or translation reports.
         </p>
       </section>
 

@@ -3,6 +3,7 @@
   --more-rule: rgb(var(--color-border) / .42);
   display: block;
   max-width: 54rem;
+  container-type: inline-size;
   color: rgb(var(--color-text));
 }
 .more-hub .more-page-heading { margin-bottom: 1.35rem; }
@@ -69,6 +70,15 @@
 }
 @container (max-width: 14rem) {
   .more-sheet-body .grid-cols-2, .more-sheet-body .grid-cols-3, .more-sheet-body .sm\:grid-cols-4 { grid-template-columns: minmax(0, 1fr); }
+}
+/* At enlarged text sizes, give labels the space used by decorative icons. */
+@container (max-width: 12rem) {
+  .more-hub-row, .more-daily-card .more-hub-row { gap: .5rem; padding: .65rem .55rem; }
+  .more-hub-icon { display: none; }
+  .more-hub-row > svg { width: 14px; height: 14px; }
+  .more-sound-row { flex-wrap: wrap; }
+  .more-sound-row > .more-hub-row { flex-basis: 100%; }
+  .more-sound-toggle { margin: 0 .55rem .65rem; }
 }
 /* Short landscape and zoomed viewports keep every control reachable. */
 @media (max-height: 650px) {
