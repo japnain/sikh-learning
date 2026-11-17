@@ -130,6 +130,20 @@
 .nitnem-editor-library-footer { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 1rem; padding: .5rem 1.25rem .75rem; }
 .nitnem-editor-library-footer .nitnem-editor-hint { margin: 0; }
 .nitnem-editor-library-footer button { display: inline-flex; align-items: center; justify-content: space-between; flex: none; gap: 1rem; padding: .6rem 1rem; border-radius: .5rem; background: var(--editor-ink); color: var(--editor-bg); font-size: .8125rem; }
+.nitnem-editor-library { container: nitnem-picker / inline-size; }
+.nitnem-editor-library-heading > div { min-width: 0; }
+.nitnem-editor-library-heading h2 { overflow-wrap: anywhere; }
+@container nitnem-picker (max-width: 18rem) {
+  .nitnem-editor-library-filters { grid-template-columns: minmax(0,1fr); }
+  .nitnem-editor-library-footer { flex-direction: column; align-items: stretch; gap: .4rem; }
+}
+@container nitnem-picker (max-width: 12rem) {
+  .nitnem-editor-library-heading { position: relative; display: block; }
+  .nitnem-editor-library-heading .nitnem-editor-eyebrow { min-height: 44px; padding-right: 3rem; }
+  .nitnem-editor-library-heading button { position: absolute; top: .75rem; right: .85rem; }
+  .nitnem-editor-available article { flex-direction: column; align-items: stretch; }
+  .nitnem-editor-available button { align-self: flex-start; }
+}
 @media (min-width: 800px) {
   .nitnem-editor-layout { grid-template-columns: minmax(0,1.7fr) minmax(16rem,1fr); gap: 2rem; }
   .nitnem-editor-preferences { position: sticky; top: 1rem; }

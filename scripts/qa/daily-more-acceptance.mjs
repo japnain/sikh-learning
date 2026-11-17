@@ -16,6 +16,7 @@ const matrix = [
   { width: 1440, height: 1000, dark: false, scale: 1 },
 ]
 const results = []
+const layoutFailures = []
 let lastPage
 fs.mkdirSync(output, { recursive: true })
 const browser = await chromium.launch({ executablePath: resolveBrowserExecutable(), headless: true })
@@ -44,12 +45,19 @@ async function assertLayout(page, scope, name) {
     return { documentWidth: document.documentElement.scrollWidth, viewport: innerWidth,
       height: bounds.height, left: bounds.left, right: bounds.right, controls }
   })
-  assert(measurement.documentWidth <= measurement.viewport + 2, `${name}: no document horizontal overflow`)
-  assert(measurement.left >= -2 && measurement.right <= measurement.viewport + 2, `${name}: surface fits viewport`)
+  // Collect geometry failures so every panel and viewport is checked in one run.
+  const check = (condition, message) => {
+    if (!condition) {
+      layoutFailures.push(message)
+      console.error(`LAYOUT FAILURE ${message}`)
+    }
+  }
+  check(measurement.documentWidth <= measurement.viewport + 2, `${name}: no document horizontal overflow`)
+  check(measurement.left >= -2 && measurement.right <= measurement.viewport + 2, `${name}: surface fits viewport`)
   for (const control of measurement.controls) {
-    assert(control.width >= 43.9 && control.height >= 43.9,
+    check(control.width >= 43.9 && control.height >= 43.9,
       `${name}: ${control.name} has a 44px target (${control.width}×${control.height})`)
-    assert(control.left >= -2 && control.right <= measurement.viewport + 2, `${name}: ${control.name} fits horizontally`)
+    check(control.left >= -2 && control.right <= measurement.viewport + 2, `${name}: ${control.name} fits horizontally`)
   }
   return measurement
 }
@@ -66,6 +74,7 @@ async function readSavedRoutine(page) {
 
 try {
   for (const config of matrix) {
+    const initialLayoutFailures = layoutFailures.length
     const context = await browser.newContext({ viewport: { width: config.width, height: config.height },
       colorScheme: config.dark ? 'dark' : 'light', reducedMotion: 'reduce', timezoneId: 'America/Toronto', serviceWorkers: 'block' })
     const fixture = await installDeterministicFixtures(context, base, { distinctBaniLengths: true })
@@ -127,11 +136,13 @@ try {
         assert.equal(await panel.getByRole('button', { name: 'Download backup', exact: true }).count(), 1)
         assert.equal(await panel.getByRole('button', { name: 'Restore from a file', exact: true }).count(), 1)
       }
+      await page.screenshot({ path: path.join(output, `more-${name}-${key}.png`), fullPage: true })
       await closePanel(page, opener, panel)
     }
     if (await page.getByTestId('more-open-account').count()) {
       await page.getByTestId('more-open-account').click()
       await page.locator('[data-ai-surface="cloud-sync-panel"]').waitFor()
+      await assertLayout(page, '[data-testid="more-account-sheet"]', `more-account-${key}`)
       await closePanel(page, 'more-open-account', page.getByTestId('more-account-sheet'))
     }
 
@@ -146,6 +157,7 @@ try {
     const picker = page.getByTestId('nitnem-selection')
     await picker.waitFor()
     await assertLayout(page, '[data-testid="nitnem-selection"]', `picker-${key}`)
+    await page.screenshot({ path: path.join(output, `picker-${key}.png`), fullPage: true })
     await picker.getByRole('searchbox', { name: 'Search available banis' }).fill('Ardas')
     await picker.getByRole('button', { name: 'Add Ardaas', exact: true }).click()
     assert.equal(await picker.getByRole('button', { name: 'Add Ardaas', exact: true }).count(), 0, 'Selected bani cannot be added twice')
@@ -202,9 +214,10 @@ try {
       'saved routine and exact length survive reload', 'cancel discards changes', 'weekly-goal deep link and draft recovery',
     ] })
     await context.close()
-    console.log(`PASS daily-more-${key}`)
+    console.log(`${layoutFailures.length === initialLayoutFailures ? 'PASS' : 'FAIL'} daily-more-${key}`)
   }
-  fs.writeFileSync(path.join(output, 'report.json'), JSON.stringify({ results }, null, 2))
+  fs.writeFileSync(path.join(output, 'report.json'), JSON.stringify({ results, layoutFailures }, null, 2))
+  assert.deepEqual(layoutFailures, [], 'Every viewport and panel preserves usable controls without horizontal overflow')
 } catch (error) {
   if (lastPage && !lastPage.isClosed()) await lastPage.screenshot({ path: path.join(output, 'failure.png'), fullPage: true }).catch(() => {})
   throw error

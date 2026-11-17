@@ -70,6 +70,10 @@
 }
 @container (max-width: 14rem) {
   .more-sheet-body .grid-cols-2, .more-sheet-body .grid-cols-3, .more-sheet-body .sm\:grid-cols-4 { grid-template-columns: minmax(0, 1fr); }
+  .more-sheet-body [data-testid='more-cloud-sync'] > div { padding-inline: 0; }
+  .more-sheet-body [data-ai-surface='cloud-sync-account'] { padding-inline: .5rem; }
+  .more-sheet-body #more-cloud-sync-title button { flex-wrap: wrap; gap: .5rem; }
+  .more-sheet-body #more-cloud-sync-title button > span:first-child { min-width: 0; overflow-wrap: anywhere; }
 }
 /* At enlarged text sizes, give labels the space used by decorative icons. */
 @container (max-width: 12rem) {

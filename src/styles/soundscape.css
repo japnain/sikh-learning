@@ -1,0 +1,58 @@
+.soundscape-controls {
+  container: soundscape / inline-size;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.soundscape-controls .soundscape-volume {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.soundscape-controls .soundscape-header-actions {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.soundscape-controls .soundscape-header-actions > button {
+  flex-shrink: 0;
+}
+
+.soundscape-controls .soundscape-header-actions .chip-pill {
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* Reflow using the space available to the component, including enlarged text. */
+@container soundscape (max-width: 20rem) {
+  .soundscape-controls .soundscape-header,
+  .soundscape-controls .soundscape-summary-layout,
+  .soundscape-controls .soundscape-track-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .soundscape-controls .soundscape-summary-layout > button {
+    justify-self: start;
+  }
+
+  .soundscape-controls .soundscape-presets {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .soundscape-controls .soundscape-summary,
+  .soundscape-controls .soundscape-track {
+    padding-inline: .5rem;
+  }
+
+  .soundscape-controls .soundscape-track-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Decorative energy marks need not grow with the text around them. */
+  .soundscape-controls .soundscape-energy { gap: 4px; }
+  .soundscape-controls .soundscape-energy > span { width: 16px; height: 6px; }
+}
