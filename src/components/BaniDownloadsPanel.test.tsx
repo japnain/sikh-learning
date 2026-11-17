@@ -263,7 +263,7 @@ test('explains how to finish preparing the offline reader when its app shell is 
   openPanel()
   await waitFor(() => expect(screen.getByRole('button', { name: 'Download bani' })).toBeEnabled())
   fireEvent.click(screen.getByRole('button', { name: 'Download bani' }))
-  await screen.findByText('Naamras is still preparing offline reading. Reconnect, close other Naamras tabs, reopen the app, and try again.')
+  await screen.findByText('Offline reading could not be prepared. Keep Naamras open, check your connection and available device storage, then retry the download.')
   expect(screen.getByRole('button', { name: 'Retry download' })).toBeEnabled()
   expect(screen.queryByText('Download complete. These readings are ready offline.')).not.toBeInTheDocument()
 })

@@ -14,7 +14,7 @@ export function registerNaamRasServiceWorker() {
   if (!import.meta.env.PROD || registrationStarted || !('serviceWorker' in navigator)) return
   registrationStarted = true
 
-  window.addEventListener('load', async () => {
+  const register = async () => {
     const basePath = normalizeBasePath(import.meta.env.BASE_URL)
 
     try {
@@ -37,5 +37,8 @@ export function registerNaamRasServiceWorker() {
     } catch (error) {
       if (import.meta.env.DEV) console.warn('NaamRas service worker registration failed:', error)
     }
-  }, { once: true })
+  }
+
+  if (document.readyState === 'complete') void register()
+  else window.addEventListener('load', register, { once: true })
 }

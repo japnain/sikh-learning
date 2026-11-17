@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import { createHash, webcrypto } from 'node:crypto'
 import path from 'node:path'
 import { runInNewContext } from 'node:vm'
 import { expect, test, vi } from 'vitest'
@@ -55,17 +56,32 @@ interface WorkerEvent {
   request?: Request
   data?: unknown
   ports?: { postMessage: (message: unknown) => void }[]
+  source?: WorkerClient
   waitUntil?: (promise: Promise<unknown>) => void
   respondWith?: (promise: Promise<Response>) => void
 }
+
+interface WorkerClient {
+  id: string
+  type: string
+  url: string
+}
+
+const PAGE_CLIENT = { id: 'current-page', type: 'window', url: `${WORKER_ORIGIN}/banis` }
 
 function loadWorker(
   version: string,
   caches: ReturnType<typeof createCacheStorage>,
   fetch: (request: Request) => Promise<Response>,
   assets = [`/assets/app-${version}.js`],
+  options: {
+    indexHtml?: string
+    clients?: () => WorkerClient[]
+    registration?: { installing: unknown; waiting: unknown }
+  } = {},
 ) {
   const listeners = new Map<string, (event: WorkerEvent) => void>()
+  const skipWaiting = vi.fn(async () => {})
   class AbsoluteRequest extends Request {
     constructor(input: string | Request, init?: RequestInit) {
       super(typeof input === 'string' ? new URL(input, WORKER_ORIGIN).href : input, init)
@@ -75,11 +91,14 @@ function loadWorker(
   runInNewContext(
     workerSource
       .replace('__NAAMRAS_BUILD_VERSION__', version)
+      .replace('__NAAMRAS_INDEX_HTML_SHA256__', createHash('sha256').update(options.indexHtml ?? 'installed-shell').digest('hex'))
       .replace('/* __NAAMRAS_PRECACHE_ASSETS__ */ []', JSON.stringify(assets)),
     {
       self: {
         location: { origin: WORKER_ORIGIN },
-        clients: { claim: vi.fn(async () => {}) },
+        registration: options.registration ?? { installing: null, waiting: null },
+        clients: { claim: vi.fn(async () => {}), matchAll: vi.fn(async () => options.clients?.() ?? []) },
+        skipWaiting,
         addEventListener: (type: string, listener: (event: WorkerEvent) => void) => listeners.set(type, listener),
       },
       caches,
@@ -87,10 +106,12 @@ function loadWorker(
       Request: AbsoluteRequest,
       Response,
       URL,
+      crypto: webcrypto,
     },
   )
 
   return {
+    skipWaiting,
     install() {
       let completion: Promise<unknown> | undefined
       listeners.get('install')?.({ waitUntil: promise => { completion = promise } })
@@ -102,15 +123,18 @@ function loadWorker(
       listeners.get('activate')?.({ waitUntil: promise => { completion = promise } })
       return completion
     },
-    async checkReader(assets: string[]) {
+    async message(type: string, assets: unknown, source: WorkerClient | undefined = PAGE_CLIENT) {
       let completion: Promise<unknown> | undefined
       const reply = vi.fn()
       listeners.get('message')?.({
-        data: { type: 'NAAMRAS_CHECK_OFFLINE_READER', assets }, ports: [{ postMessage: reply }],
+        data: { type, assets }, ports: [{ postMessage: reply }], source,
         waitUntil: promise => { completion = promise },
       })
       await completion
       return reply.mock.calls[0]?.[0]
+    },
+    checkReader(assets: string[]) {
+      return this.message('NAAMRAS_CHECK_OFFLINE_READER', assets)
     },
     fetch(request: Request) {
       let response: Promise<Response> | undefined
@@ -134,7 +158,6 @@ test('the production service worker provides an offline shell without forcing an
   expect(worker).toContain("request.mode === 'navigate'")
   expect(worker).toContain("url.origin !== self.location.origin")
   expect(worker).toContain("url.pathname.startsWith('/api/')")
-  expect(worker).not.toContain('skipWaiting')
   expect(worker).not.toContain('SKIP_WAITING')
   expect(registration).not.toContain("window.addEventListener('pagehide'")
   expect(registration).not.toContain('SKIP_WAITING')
@@ -196,18 +219,19 @@ test('an interrupted update leaves the active install-time shell and assets usab
     }
     return new Response(pathname === '/' ? `shell-${deployment}` : `asset-${deployment}`)
   })
-  const activeWorker = loadWorker('a', caches, fetch)
+  const activeWorker = loadWorker('a', caches, fetch, undefined, { indexHtml: 'shell-a' })
   await activeWorker.install()
 
   deployment = 'b'
   const onlineNavigation = await activeWorker.fetch(navigationRequest())
   expect(await onlineNavigation?.text()).toBe('shell-b')
-  const failedWorker = loadWorker('b', caches, fetch)
+  const failedWorker = loadWorker('b', caches, fetch, undefined, { indexHtml: 'shell-b' })
   await expect(failedWorker.install()).rejects.toThrow('Unable to precache required asset: /assets/app-b.js')
   const activeCache = await caches.open('naamras-app-shell-a')
   const incompleteCache = await caches.open('naamras-app-shell-b')
   expect(await (await activeCache.match('/'))?.text()).toBe('shell-a')
-  expect(await (await incompleteCache.match('/'))?.text()).toBe('shell-b')
+  // Other precache requests may still be finishing after the failed asset rejects installation.
+  await vi.waitFor(async () => expect(await (await incompleteCache.match('/'))?.text()).toBe('shell-b'))
 
   deployment = 'offline'
   const offlineNavigation = await activeWorker.fetch(navigationRequest('/study?bani=japji-sahib'))
@@ -291,7 +315,7 @@ test('a cold offline reader route has its lazy code and local fonts after reopen
   fetch.mockImplementation(async () => { throw new TypeError('Network unavailable') })
   // A fresh worker instance has no memory of the installation or prior page.
   const reopened = loadWorker('a', caches, fetch, assets)
-  expect(await reopened.checkReader(['/assets/app-a.js', '/assets/app-a.css'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: true })
+  expect(await reopened.checkReader(['/assets/app-a.js', '/assets/app-a.css'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', matches: true, ready: true })
   for (const route of ['/banis', '/study?shabadosBani=ALHN', '/study?bani=21&length=long']) {
     expect(await (await reopened.fetch(navigationRequest(route)))?.text()).toBe('installed-shell')
   }
@@ -305,14 +329,14 @@ test('a cold offline reader route has its lazy code and local fonts after reopen
 test('reader readiness rejects a different deployment and any missing precached asset', async () => {
   const caches = createCacheStorage()
   const assets = ['/assets/app-a.js', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2']
-  const worker = loadWorker('a', caches, async () => new Response('asset'), assets)
+  const worker = loadWorker('a', caches, async () => new Response('asset'), assets, { indexHtml: 'asset' })
   await worker.install()
-  expect(await worker.checkReader(['/assets/app-b.js'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: false })
-  expect(await worker.checkReader([])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: false })
+  expect(await worker.checkReader(['/assets/app-b.js'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', matches: false, ready: false })
+  expect(await worker.checkReader([])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', matches: false, ready: false })
   for (const required of ['/', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2']) {
     const cache = await caches.open('naamras-app-shell-a')
     await cache.delete(required)
-    expect(await worker.checkReader(['/assets/app-a.js'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: false })
+    expect(await worker.checkReader(['/assets/app-a.js'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', matches: true, ready: false })
     await cache.put(required, new Response('asset'))
   }
 })
@@ -324,9 +348,224 @@ test('activation and removal of old app caches preserve explicit reading packs',
   await packs.put(request, new Response('all verified reading lengths'))
   await caches.open('naamras-app-shell-old')
   await caches.open('naamras-runtime-old')
-  const worker = loadWorker('new', caches, async () => new Response('asset'))
+  const worker = loadWorker('new', caches, async () => new Response('asset'), undefined, { indexHtml: 'asset' })
   await worker.install()
   await worker.activate()
   expect(await caches.keys()).toEqual(['naamras-bani-downloads-v1', 'naamras-app-shell-new'])
   expect(await (await (await caches.open('naamras-bani-downloads-v1')).match(request))?.text()).toBe('all verified reading lengths')
 })
+
+test('explicit preparation repairs evicted reader assets and verifies the complete shell before activation', async () => {
+  const caches = createCacheStorage()
+  const assets = ['/assets/app-a.js', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2']
+  const fetch = vi.fn(async (request: Request) => new Response(new URL(request.url).pathname === '/' ? 'installed-shell' : 'asset'))
+  const worker = loadWorker('a', caches, fetch, assets)
+  await worker.install()
+  expect(worker.skipWaiting).not.toHaveBeenCalled()
+  const shell = await caches.open('naamras-app-shell-a')
+  for (const asset of ['/', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2']) await shell.delete(asset)
+  fetch.mockClear()
+
+  expect(await worker.checkReader(['/assets/app-a.js'])).toMatchObject({ matches: true, ready: false })
+  expect(await worker.message('NAAMRAS_ACTIVATE_OFFLINE_READER', ['/assets/app-a.js']))
+    .toMatchObject({ matches: true, ready: false, activated: false })
+  expect(fetch).not.toHaveBeenCalled()
+  expect(worker.skipWaiting).not.toHaveBeenCalled()
+
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js']))
+    .toEqual({ type: 'NAAMRAS_PREPARE_OFFLINE_READER', matches: true, ready: true })
+  expect(fetch.mock.calls.map(([request]) => new URL(request.url).pathname).sort())
+    .toEqual(['/', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2'])
+  expect(worker.skipWaiting).not.toHaveBeenCalled()
+  expect(await worker.message('NAAMRAS_ACTIVATE_OFFLINE_READER', ['/assets/app-a.js']))
+    .toEqual({ type: 'NAAMRAS_ACTIVATE_OFFLINE_READER', matches: true, ready: true, activated: true })
+  expect(worker.skipWaiting).toHaveBeenCalledTimes(1)
+
+  fetch.mockClear()
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(fetch).not.toHaveBeenCalled()
+})
+
+test.each(['NAAMRAS_PREPARE_OFFLINE_READER', 'NAAMRAS_ACTIVATE_OFFLINE_READER'])(
+  '%s rejects another deployment without opening caches, fetching assets, or activating', async type => {
+    const caches = createCacheStorage()
+    const fetch = vi.fn(async () => new Response('installed-shell'))
+    const worker = loadWorker('a', caches, fetch)
+    for (const assets of [[], ['/assets/app-b.js'], ['/assets/app-a.js', '/assets/app-b.js'], [123], null]) {
+      expect(await worker.message(type, assets)).toMatchObject({ type, matches: false, ready: false })
+    }
+    expect(await caches.keys()).toEqual([])
+    expect(fetch).not.toHaveBeenCalled()
+    expect(worker.skipWaiting).not.toHaveBeenCalled()
+  },
+)
+
+test.each(['NAAMRAS_PREPARE_OFFLINE_READER', 'NAAMRAS_ACTIVATE_OFFLINE_READER'])(
+  '%s accepts mutation requests only from a same-origin window', async type => {
+    const caches = createCacheStorage()
+    const fetch = vi.fn(async () => new Response('installed-shell'))
+    const worker = loadWorker('a', caches, fetch)
+    for (const source of [
+      { ...PAGE_CLIENT, url: 'https://other.test/banis' },
+      { ...PAGE_CLIENT, type: 'worker' },
+      { ...PAGE_CLIENT, id: '' },
+      { ...PAGE_CLIENT, url: 'not-a-url' },
+    ]) {
+      expect(await worker.message(type, ['/assets/app-a.js'], source)).toMatchObject({ matches: true, ready: false })
+    }
+    expect(await caches.keys()).toEqual([])
+    expect(fetch).not.toHaveBeenCalled()
+    expect(worker.skipWaiting).not.toHaveBeenCalled()
+  },
+)
+
+test.each([
+  ['unavailable', () => new Response('unavailable', { status: 503 })],
+  ['HTML fallback', () => new Response('<html>new deployment</html>', { headers: { 'content-type': 'text/html; charset=utf-8' } })],
+] as const)('a %s response cannot complete an evicted JavaScript asset', async (_label, response) => {
+  const caches = createCacheStorage()
+  const fetch = vi.fn(async () => new Response('installed-shell'))
+  const worker = loadWorker('a', caches, fetch)
+  await worker.install()
+  const shell = await caches.open('naamras-app-shell-a')
+  await shell.delete('/assets/app-a.js')
+  fetch.mockImplementation(async () => response())
+
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ matches: true, ready: false })
+  expect(await shell.match('/assets/app-a.js')).toBeUndefined()
+  expect(await worker.message('NAAMRAS_ACTIVATE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: false, activated: false })
+  expect(worker.skipWaiting).not.toHaveBeenCalled()
+})
+
+test('repair never puts another deployment HTML into this worker shell or replaces a valid installed shell', async () => {
+  const caches = createCacheStorage()
+  const fetch = vi.fn(async () => new Response('installed-shell'))
+  const worker = loadWorker('a', caches, fetch)
+  await worker.install()
+  const shell = await caches.open('naamras-app-shell-a')
+  fetch.mockImplementation(async () => new Response('newer-deployment-shell'))
+  fetch.mockClear()
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(fetch).not.toHaveBeenCalled()
+  expect(await (await shell.match('/'))?.text()).toBe('installed-shell')
+
+  await shell.delete('/')
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ matches: true, ready: false })
+  expect(await shell.match('/')).toBeUndefined()
+  expect(await worker.checkReader(['/assets/app-a.js'])).toMatchObject({ ready: false })
+})
+
+test('installation rejects HTML from a different deployment', async () => {
+  const caches = createCacheStorage()
+  const worker = loadWorker('a', caches, async () => new Response('newer-deployment-shell'))
+  await expect(worker.install()).rejects.toThrow('Unable to precache required asset: /')
+  expect(await (await caches.open('naamras-app-shell-a')).match('/')).toBeUndefined()
+  expect(worker.skipWaiting).not.toHaveBeenCalled()
+})
+
+test('readiness detects an incorrect cached shell even when every required URL exists', async () => {
+  const caches = createCacheStorage()
+  const worker = loadWorker('a', caches, async () => new Response('installed-shell'))
+  await worker.install()
+  await (await caches.open('naamras-app-shell-a')).put('/', new Response('wrong-deployment-shell'))
+  expect(await worker.checkReader(['/assets/app-a.js'])).toMatchObject({ matches: true, ready: false })
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: true })
+})
+
+test('activation retains caches needed by open legacy tabs and prunes them once only confirmed current tabs remain', async () => {
+  const caches = createCacheStorage()
+  const legacyPage = { ...PAGE_CLIENT, id: 'legacy-page' }
+  let windows = [PAGE_CLIENT, legacyPage]
+  await (await caches.open('naamras-app-shell-old')).put('/assets/old-reader.js', new Response('old reader code'))
+  await (await caches.open('naamras-runtime-old')).put('/assets/old-font.woff2', new Response('old font'))
+  await (await caches.open('naamras-library-downloads-v1')).put('/reading-pack', new Response('saved reading'))
+  const fetch = vi.fn(async () => new Response('installed-shell'))
+  const worker = loadWorker('a', caches, fetch, undefined, { clients: () => windows })
+  await worker.install()
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(await worker.message('NAAMRAS_ACTIVATE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ activated: true })
+  await worker.activate()
+  expect(await caches.keys()).toContain('naamras-app-shell-old')
+  expect(await caches.keys()).toContain('naamras-runtime-old')
+
+  fetch.mockImplementation(async () => { throw new TypeError('Offline') })
+  expect(await (await worker.fetch(new Request(`${WORKER_ORIGIN}/assets/old-reader.js`)))?.text()).toBe('old reader code')
+  expect(await (await worker.fetch(new Request(`${WORKER_ORIGIN}/assets/old-font.woff2`)))?.text()).toBe('old font')
+
+  windows = [PAGE_CLIENT]
+  expect(await worker.checkReader(['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(await caches.keys()).toEqual(['naamras-library-downloads-v1', 'naamras-app-shell-a'])
+})
+
+test('a waiting worker does not prune active caches even after every open page matches its build', async () => {
+  const caches = createCacheStorage()
+  await caches.open('naamras-app-shell-old')
+  const worker = loadWorker('a', caches, async () => new Response('installed-shell'), undefined, { clients: () => [PAGE_CLIENT] })
+  await worker.install()
+  expect(await worker.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(await caches.keys()).toContain('naamras-app-shell-old')
+  await worker.activate()
+  expect(await caches.keys()).toEqual(['naamras-app-shell-a'])
+})
+
+test('an activated worker can prune closed legacy tabs after its process restarts', async () => {
+  const caches = createCacheStorage()
+  let windows = [PAGE_CLIENT, { ...PAGE_CLIENT, id: 'legacy-page' }]
+  await caches.open('naamras-app-shell-old')
+  await caches.open('naamras-runtime-old')
+  const fetch = vi.fn(async () => new Response('installed-shell'))
+  const original = loadWorker('a', caches, fetch, undefined, { clients: () => windows })
+  await original.install()
+  await original.activate()
+  expect(await caches.keys()).toContain('naamras-app-shell-old')
+
+  windows = [PAGE_CLIENT]
+  const restarted = loadWorker('a', caches, fetch, undefined, { clients: () => windows })
+  expect(await restarted.checkReader(['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(await caches.keys()).toEqual(['naamras-app-shell-a'])
+})
+
+test('a waiting rollback cannot use its previous activation marker to prune the current build', async () => {
+  const caches = createCacheStorage()
+  const fetch = vi.fn(async () => new Response('installed-shell'))
+  const original = loadWorker('a', caches, fetch)
+  await original.install()
+  await original.activate()
+  await caches.open('naamras-app-shell-b')
+  await caches.open('naamras-runtime-b')
+
+  const rollback = loadWorker('a', caches, fetch, undefined, { clients: () => [PAGE_CLIENT] })
+  await rollback.install()
+  expect(await rollback.message('NAAMRAS_PREPARE_OFFLINE_READER', ['/assets/app-a.js'])).toMatchObject({ ready: true })
+  expect(await caches.keys()).toEqual(['naamras-app-shell-a', 'naamras-app-shell-b', 'naamras-runtime-b'])
+  await rollback.activate()
+  expect(await caches.keys()).toEqual(['naamras-app-shell-a'])
+})
+
+test.each(['installing', 'waiting'] as const)(
+  'active readiness does not delete an %s update shell before it can naturally activate', async state => {
+    const caches = createCacheStorage()
+    const registration = { installing: null as unknown, waiting: null as unknown }
+    const fetch = vi.fn(async () => new Response('installed-shell'))
+    let windows = [PAGE_CLIENT]
+    const active = loadWorker('a', caches, fetch, undefined, { registration, clients: () => windows })
+    await active.install()
+    await active.activate()
+
+    const update = loadWorker('b', caches, fetch, undefined, { registration, clients: () => windows })
+    registration[state] = update
+    await update.install()
+    expect(await active.checkReader(['/assets/app-a.js'])).toMatchObject({ ready: true })
+    expect(await caches.keys()).toContain('naamras-app-shell-b')
+
+    // Once old tabs close, the update can activate naturally and still boot offline.
+    registration[state] = null
+    windows = []
+    await update.activate()
+    fetch.mockImplementation(async () => { throw new TypeError('Offline') })
+    const restarted = loadWorker('b', caches, fetch)
+    expect(await restarted.checkReader(['/assets/app-b.js'])).toMatchObject({ ready: true })
+    expect(await (await restarted.fetch(navigationRequest('/study?bani=japji-sahib')))?.text()).toBe('installed-shell')
+    expect(await (await restarted.fetch(new Request(`${WORKER_ORIGIN}/assets/app-b.js`)))?.text()).toBe('installed-shell')
+  },
+)

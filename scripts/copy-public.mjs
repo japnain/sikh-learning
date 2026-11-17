@@ -73,6 +73,7 @@ if (fs.existsSync(serviceWorkerPath)) {
   const buildVersion = buildHash.digest('hex').slice(0, 12)
   const generatedServiceWorker = serviceWorkerSource
     .replace('__NAAMRAS_BUILD_VERSION__', buildVersion)
+    .replace('__NAAMRAS_INDEX_HTML_SHA256__', createHash('sha256').update(indexHtml).digest('hex'))
     .replace('/* __NAAMRAS_PRECACHE_ASSETS__ */ []', JSON.stringify(precacheAssets))
   const generatedPath = `${serviceWorkerPath}.generated`
   fs.writeFileSync(generatedPath, generatedServiceWorker)

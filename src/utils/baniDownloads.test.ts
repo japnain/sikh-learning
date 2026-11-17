@@ -79,6 +79,7 @@ afterEach(() => {
 describe('explicit bani downloads', () => {
   it('does not download or replace a saved pack until its offline reader can reopen', async () => {
     await downloadBani(source())
+    expect(ensureOfflineReaderShell).toHaveBeenCalledWith(expect.any(AbortSignal), { recover: true })
     const saved = await readDownloadedBani('banidb:21', 'long')
     vi.mocked(ensureOfflineReaderShell).mockRejectedValue(new OfflineReaderShellError())
     const replacement = source()

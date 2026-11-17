@@ -207,7 +207,7 @@ async function prepareDownload(source: BaniDownloadSource, options: BaniDownload
   if (typeof globalThis.caches === 'undefined') throw new Error('Offline downloads are unavailable in this browser. Try a browser with website storage enabled.')
   signal.throwIfAborted()
   options.onProgress?.({ completed: 0, total: 1, stage: 'loading', length: null })
-  await ensureOfflineReaderShell(signal)
+  await ensureOfflineReaderShell(signal, { recover: true })
   signal.throwIfAborted()
   const first = await loadWithDeadline(source, undefined, signal)
   const availableLengths = [...first.availableLengths]
