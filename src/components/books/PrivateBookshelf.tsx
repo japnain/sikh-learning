@@ -13,7 +13,7 @@ const COPY = {
     categories: 'Book subjects', all: 'All books', clear: 'Clear filters', reading: 'Continue reading',
     loading: 'Opening your bookshelf…', error: 'Your bookshelf could not be opened.', retry: 'Try again',
     empty: 'Your bookshelf is ready for its first book.', noMatches: 'No books match these filters.',
-    finished: 'Finished', open: (title: string) => `Open ${title}`, progress: (title: string) => `Reading progress for ${title}`,
+    finished: 'Finished', lessThanOne: '<1%', open: (title: string) => `Open ${title}`, progress: (title: string) => `Reading progress for ${title}`,
     count: (n: number) => `${n} ${n === 1 ? 'book' : 'books'}`, results: (n: number, total: number) => `${n} of ${total} books`,
   },
   pa: {
@@ -23,7 +23,7 @@ const COPY = {
     categories: 'ਕਿਤਾਬਾਂ ਦੇ ਵਿਸ਼ੇ', all: 'ਸਾਰੀਆਂ ਕਿਤਾਬਾਂ', clear: 'ਫਿਲਟਰ ਹਟਾਓ', reading: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ',
     loading: 'ਤੁਹਾਡੀਆਂ ਕਿਤਾਬਾਂ ਖੁੱਲ੍ਹ ਰਹੀਆਂ ਹਨ…', error: 'ਤੁਹਾਡੀਆਂ ਕਿਤਾਬਾਂ ਖੋਲ੍ਹੀਆਂ ਨਹੀਂ ਜਾ ਸਕੀਆਂ।', retry: 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ',
     empty: 'ਤੁਹਾਡਾ ਸੰਗ੍ਰਹਿ ਪਹਿਲੀ ਕਿਤਾਬ ਲਈ ਤਿਆਰ ਹੈ।', noMatches: 'ਇਨ੍ਹਾਂ ਫਿਲਟਰਾਂ ਨਾਲ ਕੋਈ ਕਿਤਾਬ ਨਹੀਂ ਮਿਲੀ।',
-    finished: 'ਪੂਰੀ ਹੋਈ', open: (title: string) => `${title} ਖੋਲ੍ਹੋ`, progress: (title: string) => `${title} ਦੀ ਪੜ੍ਹਨ ਤਰੱਕੀ`,
+    finished: 'ਪੂਰੀ ਹੋਈ', lessThanOne: '1% ਤੋਂ ਘੱਟ', open: (title: string) => `${title} ਖੋਲ੍ਹੋ`, progress: (title: string) => `${title} ਦੀ ਪੜ੍ਹਨ ਤਰੱਕੀ`,
     count: (n: number) => `${n} ਕਿਤਾਬਾਂ`, results: (n: number, total: number) => `${total} ਵਿੱਚੋਂ ${n} ਕਿਤਾਬਾਂ`,
   },
   hi: {
@@ -33,7 +33,7 @@ const COPY = {
     categories: 'किताबों के विषय', all: 'सभी किताबें', clear: 'फ़िल्टर हटाएँ', reading: 'पढ़ना जारी रखें',
     loading: 'आपकी किताबें खुल रही हैं…', error: 'आपकी किताबें खोली नहीं जा सकीं।', retry: 'फिर कोशिश करें',
     empty: 'आपका संग्रह पहली किताब के लिए तैयार है।', noMatches: 'इन फ़िल्टरों से कोई किताब नहीं मिली।',
-    finished: 'पूरी हुई', open: (title: string) => `${title} खोलें`, progress: (title: string) => `${title} की पढ़ने की प्रगति`,
+    finished: 'पूरी हुई', lessThanOne: '1% से कम', open: (title: string) => `${title} खोलें`, progress: (title: string) => `${title} की पढ़ने की प्रगति`,
     count: (n: number) => `${n} किताबें`, results: (n: number, total: number) => `${total} में से ${n} किताबें`,
   },
 }
@@ -44,6 +44,7 @@ export type PrivateBookshelfProgress = { fraction: number; updatedAt?: string; c
 
 export interface PrivateBookshelfProps {
   books: PrivateBookSummary[]
+  compact?: boolean
   coverUrls?: Record<string, string | undefined>
   progress?: Record<string, PrivateBookshelfProgress | undefined>
   loading?: boolean
@@ -74,11 +75,20 @@ function coverTone(id: string) {
 
 function PrivateBookCover({ book, url }: { book: PrivateBookSummary; url?: string }) {
   const [failedUrl, setFailedUrl] = useState<string | null>(null)
+  const [portrait, setPortrait] = useState<{ url: string; ratio: number } | null>(null)
   // Covers are fetched with the current session by the parent. Never turn
   // metadata or a remote URL into an unauthenticated browser image request.
   const source = url?.startsWith('blob:') && url !== failedUrl ? url : null
-  return <span className="private-book-cover" data-tone={coverTone(book.id)} aria-hidden="true">
-    {source ? <img src={source} alt="" loading="lazy" decoding="async" onError={() => setFailedUrl(source)} />
+  const ratio = source && portrait?.url === source ? portrait.ratio : null
+  return <span className="private-book-cover" data-tone={coverTone(book.id)} aria-hidden="true"
+    style={ratio ? { aspectRatio: String(ratio), height: 'auto', width: `${Math.min(100, ratio * 148)}%` } : undefined}>
+    {source ? <img src={source} alt="" loading="lazy" decoding="async" onError={() => setFailedUrl(source)} onLoad={event => {
+      const { naturalWidth: width, naturalHeight: height } = event.currentTarget
+      if (!width || !height) return
+      // A landscape scan/spread is a reading page, not usable cover artwork.
+      if (height / width < 1.15) setFailedUrl(source)
+      else setPortrait({ url: source, ratio: width / height })
+    }} />
       : <span className="private-book-cover__fallback" lang={book.language}>
         <span className="private-book-cover__rule" />
         <strong>{book.title}</strong>
@@ -88,7 +98,7 @@ function PrivateBookCover({ book, url }: { book: PrivateBookSummary; url?: strin
   </span>
 }
 
-export default function PrivateBookshelf({ books, coverUrls = {}, progress = {}, loading = false, error = null, onRetry }: PrivateBookshelfProps) {
+export default function PrivateBookshelf({ books, compact = false, coverUrls = {}, progress = {}, loading = false, error = null, onRetry }: PrivateBookshelfProps) {
   const locale = useLocaleStore(state => state.locale)
   const copy = COPY[locale]
   const id = useId()
@@ -117,13 +127,14 @@ export default function PrivateBookshelf({ books, coverUrls = {}, progress = {},
   const navigationState = { privateBookshelfOrigin: '/banis?collection=books' }
   const clearFilters = () => setFilters({ query: '', category: '', sort: filters.sort })
   const hasFilters = Boolean(category || terms.length)
+  const progressLabel = (fraction: number) => fraction > 0 && fraction < .01 ? copy.lessThanOne : `${Math.round(fraction * 100)}%`
 
-  return <section className="private-bookshelf" aria-labelledby={`${id}-title`} lang={locale} data-testid="private-bookshelf">
+  return <section className={`private-bookshelf${compact ? ' private-bookshelf--compact' : ''}`} aria-labelledby={`${id}-title`} lang={locale} data-testid="private-bookshelf">
     <header className="private-bookshelf__header">
       <div>
         <p className="private-bookshelf__eyebrow"><span aria-hidden="true" className="private-bookshelf__seal" />{copy.private}</p>
-        <h2 id={`${id}-title`}>{copy.title}</h2>
-        <p className="private-bookshelf__intro">{copy.body}</p>
+        <h2 id={`${id}-title`} className={compact ? 'sr-only' : undefined}>{copy.title}</h2>
+        {!compact ? <p className="private-bookshelf__intro">{copy.body}</p> : null}
       </div>
       {!loading && !error && books.length > 0 ? <span className="private-bookshelf__total">{copy.count(books.length)}</span> : null}
     </header>
@@ -131,15 +142,22 @@ export default function PrivateBookshelf({ books, coverUrls = {}, progress = {},
       : error ? <div className="private-bookshelf__state" role="status"><p>{copy.error}</p>{onRetry ? <button className="private-bookshelf__reset interactive-focus" type="button" onClick={onRetry}>{copy.retry}</button> : null}</div>
         : !books.length ? <p className="private-bookshelf__state" role="status">{copy.empty}</p>
           : <>
-            {resumeBook && !hasFilters ? <Link className="private-bookshelf__resume interactive-focus" to={`/books/private/${encodeURIComponent(resumeBook.id)}`} state={navigationState}>
+            {resumeBook && !hasFilters ? <Link className="private-bookshelf__resume interactive-focus" to={`/books/private/${encodeURIComponent(resumeBook.id)}/read`} state={navigationState}>
               <span><span className="private-bookshelf__resume-label">{copy.reading}</span><strong lang={resumeBook.language}>{resumeBook.title}</strong></span>
-              <span className="private-bookshelf__resume-end"><span>{Math.round(readingFraction(progress[resumeBook.id]?.fraction) * 100)}%</span><IconArrowRight size={19} /></span>
+              <span className="private-bookshelf__resume-end"><span>{progressLabel(readingFraction(progress[resumeBook.id]?.fraction))}</span><IconArrowRight size={19} /></span>
             </Link> : null}
             <div className="private-bookshelf__controls">
               <div className="private-bookshelf__search">
                 <label className="sr-only" htmlFor={`${id}-search`}>{copy.search}</label>
                 <span aria-hidden="true"><IconSearch size={18} /></span>
                 <input id={`${id}-search`} type="search" autoComplete="off" value={filters.query} placeholder={copy.searchPlaceholder} onChange={event => setFilters(current => ({ ...current, query: event.target.value }))} />
+              </div>
+              <div className="private-bookshelf__subject-select">
+                <label className="sr-only" htmlFor={`${id}-subject`}>{copy.categories}</label>
+                <select id={`${id}-subject`} value={category} onChange={event => setFilters(current => ({ ...current, category: event.target.value }))}>
+                  <option value="">{copy.all}</option>
+                  {categories.map(label => <option key={label} value={label}>{label}</option>)}
+                </select>
               </div>
               <div className="private-bookshelf__sort">
                 <label className="sr-only" htmlFor={`${id}-sort`}>{copy.sort}</label>
@@ -153,7 +171,7 @@ export default function PrivateBookshelf({ books, coverUrls = {}, progress = {},
               {categories.map(label => <button key={label} type="button" aria-pressed={category === label} onClick={() => setFilters(current => ({ ...current, category: label }))}>{label}</button>)}
             </div>
             {hasFilters ? <div className="private-bookshelf__results"><p role="status">{copy.results(filtered.length, books.length)}</p><button className="private-bookshelf__reset interactive-focus" type="button" onClick={clearFilters}>{copy.clear}</button></div> : null}
-            {!filtered.length ? <p className="private-bookshelf__state">{copy.noMatches}</p> : grouped.map((group, index) => <section key={group.label} className="private-book-shelf" aria-labelledby={`${id}-shelf-${index}`}>
+            {!filtered.length ? <p className="private-bookshelf__state">{copy.noMatches}</p> : <div className="private-bookshelf__shelves">{grouped.map((group, index) => <section key={group.label} className={`private-book-shelf${group.books.length > 3 || grouped.length === 1 ? ' private-book-shelf--wide' : ''}`} aria-labelledby={`${id}-shelf-${index}`}>
               <div className="private-book-shelf__heading"><h3 id={`${id}-shelf-${index}`}>{group.label}</h3><span>{copy.count(group.books.length)}</span></div>
               <ul className="private-book-shelf__books">
                 {group.books.map(book => {
@@ -164,11 +182,11 @@ export default function PrivateBookshelf({ books, coverUrls = {}, progress = {},
                       <span className="private-book__display"><PrivateBookCover book={book} url={coverUrls[book.id]} /></span>
                       <span className="private-book__details"><strong lang={book.language}>{book.title}</strong><span className="private-book__authors" lang={book.language}>{book.authors.join(' · ')}</span></span>
                     </Link>
-                    {fraction > 0 ? <div className="private-book__progress"><progress max={1} value={fraction} aria-label={copy.progress(book.title)} /><span>{completed ? copy.finished : `${Math.round(fraction * 100)}%`}</span></div> : null}
+                    {fraction > 0 ? <div className="private-book__progress"><progress max={1} value={fraction} aria-label={copy.progress(book.title)} /><span>{completed ? copy.finished : progressLabel(fraction)}</span></div> : null}
                   </li>
                 })}
               </ul>
-            </section>)}
+            </section>)}</div>}
           </>}
   </section>
 }

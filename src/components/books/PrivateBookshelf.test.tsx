@@ -45,7 +45,7 @@ test('sorts actual book results by title and reading recency', () => {
   expect(within(list).getAllByRole('link').map(link => link.textContent)).toEqual([
     expect.stringContaining('First Reflections'), expect.stringContaining('Old Letters'), expect.stringContaining('The Quiet History'),
   ])
-  fireEvent.change(screen.getByRole('combobox'), { target: { value: 'recent' } })
+  fireEvent.change(screen.getByRole('combobox', { name: 'Sort books' }), { target: { value: 'recent' } })
   list = screen.getByRole('list')
   expect(within(list).getAllByRole('link')[0]).toHaveAccessibleName('Open The Quiet History')
 })
@@ -74,6 +74,40 @@ test('uses only session-fetched blob covers and falls back when a cover fails', 
   expect(view.container).not.toHaveTextContent('ੴ')
 })
 
+test.each([
+  { width: 600, height: 750, ratio: '0.8', frameWidth: '100%' },
+  { width: 600, height: 1200, ratio: '0.5', frameWidth: '74%' },
+])('preserves a $width by $height portrait cover without padding or cropping its artwork', ({ width, height, ratio, frameWidth }) => {
+  const view = renderShelf({ coverUrls: { 'quiet-history': 'blob:http://localhost/portrait-cover' } })
+  const image = view.container.querySelector('img')!
+  Object.defineProperties(image, { naturalWidth: { value: width }, naturalHeight: { value: height } })
+  fireEvent.load(image)
+  expect(image).toBeInTheDocument()
+  expect(image.parentElement).toHaveStyle({ aspectRatio: ratio, height: 'auto', width: frameWidth })
+})
+
+test('replaces wide scanned spreads with the book title cover while preserving navigation', () => {
+  const view = renderShelf({ coverUrls: { 'quiet-history': 'blob:http://localhost/wide-spread' } })
+  const image = view.container.querySelector('img')!
+  Object.defineProperties(image, { naturalWidth: { value: 1200 }, naturalHeight: { value: 800 } })
+  fireEvent.load(image)
+  expect(view.container.querySelector('img')).not.toBeInTheDocument()
+  const link = screen.getByRole('link', { name: 'Open The Quiet History' })
+  expect(link.querySelector('.private-book-cover__fallback')).toHaveTextContent('The Quiet History')
+  expect(link).toHaveAttribute('href', '/books/private/quiet-history')
+})
+
+test('keeps the embedded collection accessible without a second visible page introduction', () => {
+  const view = renderShelf({ compact: true })
+  expect(screen.getByRole('heading', { name: 'Your bookshelf' })).toHaveClass('sr-only')
+  expect(screen.getByRole('region', { name: 'Your bookshelf' })).toBeInTheDocument()
+  expect(screen.queryByText('A place for the books you return to.')).not.toBeInTheDocument()
+  expect(screen.getByText('Private collection')).toBeInTheDocument()
+  view.rerender(<MemoryRouter><PrivateBookshelf books={books} /></MemoryRouter>)
+  expect(screen.getByRole('heading', { name: 'Your bookshelf' })).not.toHaveClass('sr-only')
+  expect(screen.getByText('A place for the books you return to.')).toBeInTheDocument()
+})
+
 test('hides stale titles and cover requests while loading or recovering from an error', () => {
   const retry = vi.fn()
   const view = renderShelf({ loading: true, coverUrls: { 'quiet-history': 'blob:http://localhost/cover-1' } })
@@ -90,15 +124,27 @@ test('hides stale titles and cover requests while loading or recovering from an 
 test('offers the latest unfinished book and caps displayed progress using explicit completion', () => {
   renderShelf({ progress: { 'quiet-history': { fraction: .35, updatedAt: '2026-01-02T12:00:00Z' }, 'old-letters': { fraction: 4, completed: true, updatedAt: '2026-01-03T12:00:00Z' } } })
   const resume = screen.getByRole('link', { name: /Continue reading/ })
-  expect(resume).toHaveAttribute('href', '/books/private/quiet-history')
+  expect(resume).toHaveAttribute('href', '/books/private/quiet-history/read')
   expect(screen.getByRole('progressbar', { name: 'Reading progress for Old Letters' })).toHaveAttribute('value', '1')
   expect(screen.getByText('Finished')).toBeInTheDocument()
 })
 
 test('keeps the final page resumable until the reader explicitly marks the book finished', () => {
   renderShelf({ progress: { 'quiet-history': { fraction: 1, updatedAt: '2026-01-02T12:00:00Z' } } })
-  expect(screen.getByRole('link', { name: /Continue reading/ })).toHaveAttribute('href', '/books/private/quiet-history')
+  expect(screen.getByRole('link', { name: /Continue reading/ })).toHaveAttribute('href', '/books/private/quiet-history/read')
   expect(screen.queryByText('Finished')).not.toBeInTheDocument()
+})
+
+test.each([
+  { locale: 'en' as const, label: '<1%' },
+  { locale: 'pa' as const, label: '1% ਤੋਂ ਘੱਟ' },
+  { locale: 'hi' as const, label: '1% से कम' },
+])('shows positive first-page progress on both the card and Continue link in $locale', ({ locale, label }) => {
+  useLocaleStore.setState({ locale })
+  renderShelf({ progress: { 'quiet-history': { fraction: .00219 } } })
+  expect(screen.getAllByText(label)).toHaveLength(2)
+  expect(screen.queryByText('0%')).not.toBeInTheDocument()
+  expect(screen.getByRole('progressbar')).toHaveAttribute('value', '0.00219')
 })
 
 test('searches contributors and ignores old filter data in browser history', () => {
@@ -115,4 +161,15 @@ test('displays empty and localized states without showing unavailable category c
   expect(screen.getByRole('heading', { name: 'ਤੁਹਾਡੀਆਂ ਕਿਤਾਬਾਂ' })).toBeInTheDocument()
   expect(screen.getByRole('status')).toHaveTextContent('ਤੁਹਾਡਾ ਸੰਗ੍ਰਹਿ ਪਹਿਲੀ ਕਿਤਾਬ ਲਈ ਤਿਆਰ ਹੈ।')
   expect(screen.queryByRole('searchbox')).not.toBeInTheDocument()
+})
+
+
+test('keeps the compact subject selector and category buttons in sync with search results', () => {
+  renderShelf()
+  fireEvent.change(screen.getByRole('combobox', { name: 'Book subjects' }), { target: { value: 'History' } })
+  expect(screen.getByRole('button', { name: 'History', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getAllByRole('link')).toHaveLength(2)
+  fireEvent.click(screen.getByRole('button', { name: 'Reflection', exact: true }))
+  expect(screen.getByRole('combobox', { name: 'Book subjects' })).toHaveValue('Reflection')
+  expect(screen.getByRole('link')).toHaveAccessibleName('Open First Reflections')
 })

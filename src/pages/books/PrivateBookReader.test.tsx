@@ -111,6 +111,9 @@ describe('Private book reading', () => {
     expect(document.getElementById('closing-note')).toBeInTheDocument()
     await waitFor(() => expect(vi.mocked(HTMLElement.prototype.scrollIntoView).mock.contexts).toContain(document.getElementById('closing-note')))
     expect(mocks.fetchAsset).toHaveBeenCalledWith(book.id, 'chapter-closing', expect.objectContaining({ signal: expect.any(AbortSignal) }))
+    await user.click(screen.getByRole('button', { name: 'Back to reading' }))
+    expect(await screen.findByRole('heading', { name: 'A quiet beginning' })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Back to reading' })).not.toBeInTheDocument()
   })
 
   test('resumes the saved section and stores bookmarks through account-scoped state', async () => {
@@ -257,12 +260,13 @@ describe('Private book reading', () => {
     })
     const view = render(<ReaderRoutes />)
     await waitFor(() => expect(mocks.pdfGetDocument).toHaveBeenCalled())
-    expect(mocks.assetInfo).toHaveBeenCalledWith(book.id, 'source-pdf')
+    expect(mocks.assetInfo).toHaveBeenCalledWith(book.id, 'source-pdf', expect.any(AbortSignal))
     expect(mocks.assetRange).toHaveBeenCalledWith(book.id, 'source-pdf', 0, 65_536, expect.any(AbortSignal))
     expect(mocks.assetRange).toHaveBeenCalledWith(book.id, 'source-pdf', 65_536, 131_072, expect.any(AbortSignal))
     expect(mocks.fetchAsset).not.toHaveBeenCalled()
     view.unmount()
     expect(mocks.pdfDestroy).toHaveBeenCalled()
+    expect(mocks.assetInfo.mock.calls[0][2].aborted).toBe(true)
   })
 
   test('searches PDF text only on request and navigates to its matching page', async () => {
@@ -328,5 +332,117 @@ describe('Private book reading', () => {
     await user.click(await screen.findByRole('link', { name: 'Books', exact: true }))
     expect(screen.getByTestId('browse-location')).toHaveTextContent('/banis?collection=books {"privateBookshelfOrigin":"/banis?collection=books"}')
     expect(screen.getByTestId('browse-location')).not.toHaveTextContent('private search words')
+  })
+
+  test('search sheets focus the input, contain keyboard focus, and return focus on Escape', async () => {
+    const user = userEvent.setup()
+    render(<ReaderRoutes />)
+    await screen.findByRole('heading', { name: 'A quiet beginning' })
+    const opener = screen.getByRole('button', { name: 'Find in book' })
+    await user.click(opener)
+    const dialog = screen.getByRole('dialog', { name: 'Find in book' })
+    expect(screen.getByRole('searchbox', { name: 'Search words' })).toHaveFocus()
+    for (let index = 0; index < 5; index++) {
+      await user.tab()
+      expect(dialog).toContainElement(document.activeElement as HTMLElement)
+    }
+    await user.keyboard('{Escape}')
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    await waitFor(() => expect(opener).toHaveFocus())
+  })
+
+  test('focus reading keeps a reachable way to reveal controls and restores keyboard focus', async () => {
+    const user = userEvent.setup()
+    render(<ReaderRoutes />)
+    await screen.findByRole('heading', { name: 'A quiet beginning' })
+    const focus = screen.getByRole('button', { name: 'Focus', exact: true })
+    await user.click(focus)
+    expect(document.querySelector('.private-reader__header')).toHaveAttribute('inert')
+    expect(screen.getByRole('button', { name: 'Show reading controls' })).toHaveFocus()
+    await user.keyboard('{Escape}')
+    expect(document.querySelector('.private-reader__header')).not.toHaveAttribute('inert')
+    expect(focus).toHaveFocus()
+  })
+
+  test('restores the same source passage after typography reflows underneath an appearance sheet', async () => {
+    const user = userEvent.setup()
+    mocks.loadState.mockResolvedValue({ index: 0, offset: 465, blockId: 'verse', blockOffset: 20, progress: .2, bookmarks: [] })
+    let passageTop = 600
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(this: HTMLElement) {
+      return this.dataset.sourceId === 'verse' ? box(passageTop, 200) : box(0, 0)
+    })
+    render(<ReaderRoutes />)
+    await waitFor(() => expect(window.scrollTo).toHaveBeenCalledWith({ top: 485, behavior: 'instant' }))
+    await user.click(screen.getByRole('button', { name: 'Reading appearance' }))
+    await user.click(screen.getByRole('button', { name: 'Increase text size' }))
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Typeface' }), 'classic')
+    expect(useEpubReaderStore.getState()).toEqual(expect.objectContaining({ fontScale: 1.1, fontFamily: 'classic' }))
+    passageTop = 900
+    await user.click(screen.getByRole('button', { name: 'Close reading panel' }))
+    await waitFor(() => expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 785, behavior: 'instant' }))
+    expect(document.querySelector('main')).toHaveStyle('--private-font-family: Georgia, "Times New Roman", serif')
+  })
+
+  test('same-section bookmarks jump after the dialog releases its scroll lock', async () => {
+    const user = userEvent.setup()
+    mocks.loadState.mockResolvedValue({ index: 0, offset: 0, progress: 0, bookmarks: [{ id: 'mark', index: 0, offset: 300, blockId: 'verse', blockOffset: 20, label: 'Saved passage', createdAt: '2026-01-01' }] })
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(this: HTMLElement) {
+      return this.dataset.sourceId === 'verse' ? box(700, 200) : box(0, 0)
+    })
+    render(<ReaderRoutes />)
+    await screen.findByRole('heading', { name: 'A quiet beginning' })
+    await waitFor(() => expect(window.scrollTo).toHaveBeenCalled())
+    await user.click(screen.getByRole('button', { name: 'Bookmarks · 1' }))
+    await user.click(screen.getByRole('button', { name: 'Saved passage', exact: true }))
+    await waitFor(() => expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 585, behavior: 'instant' }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  test('an illustration failure cannot overwrite a saved position before retry succeeds', async () => {
+    mocks.loadState.mockResolvedValue({ index: 0, offset: 500, blockId: 'after-image', blockOffset: 10, progress: .2, bookmarks: [] })
+    mocks.fetchAsset.mockImplementation(async (_book, asset) => jsonBlob(asset === 'chapter-opening' ? {
+      id: 'opening', title: 'Opening', blocks: [
+        { id: 'illustration', type: 'image', assetId: 'illustration-image', alt: '001' },
+        { id: 'after-image', type: 'paragraph', text: 'Text after the illustration.' },
+      ],
+    } : {}))
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(this: HTMLElement) {
+      return this.dataset.sourceId === 'after-image' ? box(700, 120) : box(0, 0)
+    })
+    render(<ReaderRoutes />)
+    const image = await screen.findByRole('img', { name: 'Original book illustration' })
+    expect(document.querySelector('figcaption')).not.toBeInTheDocument()
+    fireEvent.error(image)
+    fireEvent.scroll(window)
+    fireEvent(window, new Event('pagehide'))
+    expect(window.scrollTo).not.toHaveBeenCalled()
+    expect(mocks.saveState).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: 'Retry image' }))
+    fireEvent.load(await screen.findByRole('img', { name: 'Original book illustration' }))
+    await waitFor(() => expect(window.scrollTo).toHaveBeenCalledWith({ top: 575, behavior: 'instant' }))
+  })
+
+  test('PDF outlines navigate to source pages and keyboard navigation never changes an active page field', async () => {
+    const user = userEvent.setup()
+    mocks.loadBook.mockResolvedValue({ ...book, renderer: 'pdf', primaryAssetId: 'source-pdf', pageCount: 3, contents: [{ id: 'final-part', title: 'Final part', page: 3 }] })
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({} as CanvasRenderingContext2D)
+    const getPage = vi.fn(async () => ({
+      getViewport: ({ scale }: { scale: number }) => ({ width: 600 * scale, height: 800 * scale, scale }),
+      render: () => ({ promise: Promise.resolve(), cancel: vi.fn() }),
+      getTextContent: async () => ({ items: [], styles: {} }),
+    }))
+    mocks.pdfGetDocument.mockReturnValue({ destroy: mocks.pdfDestroy, promise: Promise.resolve({ numPages: 3, getPage }) })
+    render(<ReaderRoutes />)
+    await screen.findByRole('img', { name: 'Page 1' })
+    await user.click(screen.getByRole('button', { name: 'Pages', exact: true }))
+    expect(screen.getByRole('spinbutton', { name: 'Page' })).toHaveFocus()
+    await user.keyboard('{ArrowRight}')
+    expect(getPage).not.toHaveBeenCalledWith(2)
+    await user.click(screen.getByRole('button', { name: /Final part/ }))
+    await screen.findByRole('img', { name: 'Page 3' })
+    await user.click(screen.getByRole('button', { name: 'Back to reading' }))
+    await screen.findByRole('img', { name: 'Page 1' })
+    fireEvent.keyDown(window, { key: 'ArrowRight' })
+    expect(await screen.findByRole('img', { name: 'Page 2' })).toBeVisible()
   })
 })

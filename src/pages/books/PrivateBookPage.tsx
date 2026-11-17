@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import { IconArrowLeft, IconArrowRight } from '../../components/icons'
 import { createPrivateObjectUrl, revokePrivateObjectUrl, fetchPrivateAsset, loadPrivateBook, loadPrivateReadingState, type PrivateBook } from '../../data/privateLibrary'
 import { usePrivateLibraryAccess } from '../../hooks/usePrivateLibraryAccess'
+import { privateSectionLabel } from './privateBookNavigation'
 import './private-book-reader.css'
 
 export function PrivateBookAccessMessage({ loading, retry }: { loading?: boolean; retry?: () => void }) {
@@ -89,7 +90,7 @@ function BookDetails({ bookId }: { bookId: string }) {
     {book.renderer === 'chapters' && book.contents.length ? <section className="private-book-contents" aria-labelledby="private-book-contents-title">
       <div className="private-book-section-heading"><h2 id="private-book-contents-title">Inside this book</h2><span>{book.contents.length} sections</span></div>
       <ol>{book.contents.slice(0, visibleContents).map((entry, index) => <li key={entry.id}>
-        <Link to={`${readerPath}?section=${index}`} state={shelfState}><span className="private-book-contents__number">{String(index + 1).padStart(2, '0')}</span><span>{entry.title || `Section ${index + 1}`}</span><IconArrowRight size={16} /></Link>
+        <Link to={`${readerPath}?section=${index}`} state={shelfState}><span className="private-book-contents__number">{String(index + 1).padStart(2, '0')}</span><span>{privateSectionLabel(entry.title, index)}</span><IconArrowRight size={16} /></Link>
       </li>)}</ol>
       {visibleContents < book.contents.length ? <button type="button" className="private-book-button" onClick={() => setVisibleContents(value => value + 40)}>Show more sections</button> : null}
     </section> : <section className="private-book-facsimile-note"><h2>Read the original pages</h2><p>This edition preserves the source pages. Use page navigation and zoom to read comfortably; text search is available only where the source contains usable text.</p></section>}

@@ -235,3 +235,58 @@ test('image-only documents split into bounded page sections while native outline
     assert.equal(read(path.join(out, 'import-report.json')).books[0].checks.warnings.length, 0)
   } finally { fs.rmSync(root, { recursive: true, force: true }) }
 })
+
+test('inline emphasis, drop caps and links remain in one paragraph with stable downstream locators', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'private-inline-flow-'))
+  try {
+    const epub = fixture(root, 'text', { 'EPUB/first.xhtml': '<html><body><h1 id="opening">A heading</h1><div id="paragraph"><b>A</b>cross the <em>quiet</em> room, a <a href="notes.xhtml#n1">note</a> waits.</div><p id="ending">The final paragraph.</p></body></html>' })
+    const out = path.join(root, 'build')
+    await importPrivateBooks({ manifest: manifest(root, epub), out })
+    const [book] = read(path.join(out, 'catalogue.json'))
+    const assets = read(path.join(out, 'assets.json'))
+    const first = read(assets.find(asset => asset.id === book.metadata.contents[0].assetId).path)
+    assert.deepEqual(first.blocks.map(block => block.text), ['A heading', 'Across the quiet room, a note waits.', 'The final paragraph.'])
+    assert.equal(first.blocks[1].id, 'chapter-0001-b00002')
+    assert.equal(first.blocks[2].id, 'chapter-0001-b00008')
+    assert.deepEqual(first.blocks[1].links, [{ text: 'note', targetChapterId: 'chapter-0002', targetAnchor: 'chapter-0002-b00001' }])
+    const checks = read(path.join(out, 'import-report.json')).books[0].checks
+    assert.equal(checks.joinedInlineRuns, 1)
+    assert.equal(checks.locatorMappings.length, 5)
+    assert.ok(checks.locatorMappings.every(mapping => mapping.to === 'chapter-0001-b00002'))
+    const search = read(assets.find(asset => asset.id === book.metadata.searchAssetId).path)
+    assert.equal(search.chapters[0].blocks[1].text, first.blocks[1].text)
+  } finally { fs.rmSync(root, { recursive: true, force: true }) }
+})
+
+test('generic containers preserve inline runs around blocks, images, line breaks and empty anchors', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'private-mixed-flow-'))
+  try {
+    const epub = fixture(root, 'text', { 'EPUB/first.xhtml': '<html><body><div>Before <strong>the image</strong>.<img src="image.png" alt="A diagram"/><a id="after-image"></a><p>A nested paragraph.</p>After <em>the paragraph</em>.<div class="verse">First <b>line</b><br/>Second line</div><a href="#after-image">Return to paragraph</a></div></body></html>' })
+    const out = path.join(root, 'build')
+    await importPrivateBooks({ manifest: manifest(root, epub), out })
+    const [book] = read(path.join(out, 'catalogue.json'))
+    const assets = read(path.join(out, 'assets.json'))
+    const first = read(assets.find(asset => asset.id === book.metadata.contents[0].assetId).path)
+    assert.deepEqual(first.blocks.map(block => block.type), ['paragraph', 'image', 'paragraph', 'paragraph', 'verse', 'paragraph'])
+    assert.deepEqual(first.blocks.filter(block => block.text).map(block => block.text), ['Before the image.', 'A nested paragraph.', 'After the paragraph.', 'First line\nSecond line', 'Return to paragraph'])
+    assert.equal(first.blocks.at(-1).links[0].targetAnchor, first.blocks[2].id)
+    assert.equal(first.blocks.at(-1).links[0].targetChapterId, first.id)
+  } finally { fs.rmSync(root, { recursive: true, force: true }) }
+})
+
+test('leading paragraph illustrations stay before their credit text without shifting original block IDs', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'private-leading-image-'))
+  try {
+    const epub = fixture(root, 'text', { 'EPUB/first.xhtml': '<html><body><p id="opening"><a href="https://example.invalid/"><img src="image.png" alt="Publisher emblem"/></a><br/>Copyright notice<br/>Publisher name</p><p>A following paragraph.</p><p>Before the illustration.<img src="image.png" alt="Ending illustration"/></p></body></html>' })
+    const out = path.join(root, 'build')
+    await importPrivateBooks({ manifest: manifest(root, epub), out })
+    const [book] = read(path.join(out, 'catalogue.json'))
+    const assets = read(path.join(out, 'assets.json'))
+    const first = read(assets.find(asset => asset.id === book.metadata.contents[0].assetId).path)
+    assert.deepEqual(first.blocks.map(block => block.type), ['image', 'paragraph', 'paragraph', 'paragraph', 'image'])
+    assert.deepEqual(first.blocks.map(block => block.id), [2,1,3,4,5].map(number => `chapter-0001-b${String(number).padStart(5, '0')}`))
+    assert.equal(first.blocks[1].text, 'Copyright notice\nPublisher name')
+    assert.equal(first.blocks[2].text, 'A following paragraph.')
+    assert.deepEqual(read(path.join(out, 'import-report.json')).books[0].checks.warnings, [])
+  } finally { fs.rmSync(root, { recursive: true, force: true }) }
+})

@@ -15,12 +15,15 @@ import { JSDOM } from 'jsdom'
 
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const REPO = path.resolve(HERE, '../..')
-const VERSION = 'private-import-v1'
+const VERSION = 'private-import-v2'
+const PDF_VERSION = 'private-import-v1'
 const MAX_FILE = 128 * 1024 * 1024
 const MAX_DOCUMENT = 16 * 1024 * 1024
 const MAX_PAGES = 10000
 const ID = /^[a-z0-9][a-z0-9_-]{0,95}$/
 const UNSAFE = 'script,style,template,noscript,iframe,object,embed,canvas,form,input,button,video,audio'
+const FLOW_BLOCKS = 'address,article,aside,blockquote,body,dd,div,dl,dt,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hr,img,image,li,main,nav,ol,p,pre,section,svg,table,ul'
+const FLOW_BLOCK_TAGS = new Set(FLOW_BLOCKS.split(','))
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
 const text = value => String(value ?? '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '').trim()
 const json = (file, value) => fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, { mode: 0o600 })
@@ -277,6 +280,8 @@ function importEpub(file, writer, temp, requestedRenderer) {
   const anchorTargets = new Map()
   let totalWords = 0
   let emptySpineDocuments = 0
+  const locatorMappings = []
+  let joinedInlineRuns = 0
   for (const item of spineDocuments) {
     const dom = parseDocument(readSource(extracted, files, item.file))
     try {
@@ -288,6 +293,7 @@ function importEpub(file, writer, temp, requestedRenderer) {
       const chapterId = item.chapterId
       const title = (navigation.get(item.file) || text(body.querySelector('h1,h2,h3')?.textContent) || text(document.title) || `Section ${chapters.length + 1}`).slice(0, 1000)
       const blocks = []
+      let blockSequence = 1
       const pendingAnchors = []
       function linksFor(element) {
         return [...element.querySelectorAll('a[href]')].flatMap(link => {
@@ -299,13 +305,38 @@ function importEpub(file, writer, temp, requestedRenderer) {
       function pushBlock(block, element) {
         const anchor = element?.getAttribute('id') || element?.getAttribute('name')
         const links = element ? linksFor(element) : []
-        const id = `${chapterId}-b${String(blocks.length + 1).padStart(5, '0')}`
+        const id = `${chapterId}-b${String(blockSequence++).padStart(5, '0')}`
         for (const targetAnchor of pendingAnchors.splice(0)) if (!anchorTargets.has(`${chapterId}#${targetAnchor}`)) anchorTargets.set(`${chapterId}#${targetAnchor}`, id)
         for (const target of element ? [element, ...element.querySelectorAll('[id],a[name]')] : []) {
           const targetAnchor = target.getAttribute('id') || target.getAttribute('name')
           if (targetAnchor && !anchorTargets.has(`${chapterId}#${targetAnchor}`)) anchorTargets.set(`${chapterId}#${targetAnchor}`, id)
         }
         blocks.push({ id, ...block, ...(anchor ? { anchor } : {}), ...(links.length ? { links } : {}) })
+      }
+      function inlineLeafCount(node) {
+        if (node.nodeType === 3) return text(node.textContent).replace(/\s+/g, ' ') ? 1 : 0
+        return [...node.childNodes].reduce((count, child) => count + inlineLeafCount(child), 0)
+      }
+      function pushInlineRun(nodes, parent) {
+        if (!nodes.length) return
+        const wrapper = document.createElement('div')
+        for (const node of nodes) wrapper.append(node.cloneNode(true))
+        const value = normalizedText(wrapper)
+        if (!value) { recordContainerAnchors(wrapper, blocks.length); return }
+        const sourceCount = nodes.reduce((count, node) => count + inlineLeafCount(node), 0)
+        const firstSequence = blockSequence
+        pushBlock({ type: contextType(parent, 'paragraph'), text: value }, wrapper)
+        // Reserve the original leaf IDs so subsequent locators remain stable.
+        // Removed inline-fragment locators are recorded for a trusted revision
+        // migration, never guessed from prose by the browser reader.
+        if (sourceCount > 1) {
+          const targetId = blocks.at(-1).id
+          for (let index = 1; index < sourceCount; index += 1) locatorMappings.push({
+            chapterId, from: `${chapterId}-b${String(firstSequence + index).padStart(5, '0')}`, to: targetId,
+          })
+          joinedInlineRuns += 1
+        }
+        blockSequence = firstSequence + Math.max(1, sourceCount)
       }
       function recordContainerAnchors(element, startingBlock) {
         const target = blocks[startingBlock]
@@ -324,6 +355,13 @@ function importEpub(file, writer, temp, requestedRenderer) {
           pages.push({ id: `page-${pages.length + 1}`, title: `Page ${pages.length + 1}`, page: pages.length + 1, assetId })
           coverAssetId ??= assetId
         }
+      }
+      function imageTextFlow(element, result = []) {
+        if (element.nodeType === 3) { if (text(element.textContent)) result.push('text'); return result }
+        if (element.nodeType !== 1) return result
+        if (['img', 'image'].includes(element.localName.toLowerCase())) result.push('image')
+        else for (const child of element.childNodes) imageTextFlow(child, result)
+        return result
       }
       function walk(element) {
         if (element.nodeType === 3) {
@@ -363,10 +401,35 @@ function importEpub(file, writer, temp, requestedRenderer) {
             pushBlock({ type, text: value, ...(type === 'heading' ? { level: Number(tag[1]) } : {}) }, element)
           }
           element.querySelectorAll('img,image').forEach(imageElement)
+          if (value && blocks.length > startingBlock + 1) {
+            const flow = imageTextFlow(element)
+            const firstText = flow.indexOf('text')
+            const lastImage = flow.lastIndexOf('image')
+            if (lastImage >= 0 && lastImage < firstText) {
+              // Keep leading logos/illustrations before their caption or credit.
+              // IDs retain the v1 assignments despite the corrected source order.
+              const leading = blocks.splice(startingBlock)
+              blocks.push(...leading.slice(1), leading[0])
+            } else if (firstText >= 0 && lastImage > firstText && flow.slice(lastImage + 1).includes('text')) {
+              warnings.add('Images interleaved within paragraph text require review')
+            }
+          }
           recordContainerAnchors(element, startingBlock)
           return
         }
-        for (const child of element.childNodes) walk(child)
+        // Generic EPUB containers commonly use <div> as a paragraph. Inline
+        // emphasis, drop caps and links belong to that same text run; walking
+        // each text node separately invents paragraphs and can split words.
+        let inlineRun = []
+        const flush = () => { pushInlineRun(inlineRun, element); inlineRun = [] }
+        for (const child of element.childNodes) {
+          if (child.nodeType !== 1 && child.nodeType !== 3) continue
+          const inline = child.nodeType === 3 || (child.nodeType === 1
+            && !FLOW_BLOCK_TAGS.has(child.localName.toLowerCase()) && !child.querySelector(FLOW_BLOCKS))
+          if (inline) inlineRun.push(child)
+          else { flush(); walk(child) }
+        }
+        flush()
         recordContainerAnchors(element, startingBlock)
       }
       walk(body)
@@ -416,7 +479,7 @@ function importEpub(file, writer, temp, requestedRenderer) {
     renderer: pageBased ? 'pages' : 'chapters', coverAssetId, contents,
     ...(searchAssetId ? { searchAssetId } : {}),
     ...(pageBased ? { pageCount: pages.length } : {}),
-    checks: { spineDocuments: spine.length, auxiliaryDocuments, retainedDocuments, readingSections: chapters.length, emptySpineDocuments, extractedWords: totalWords, imageCount: pages.length, warnings: [...warnings] },
+    checks: { spineDocuments: spine.length, auxiliaryDocuments, retainedDocuments, readingSections: chapters.length, emptySpineDocuments, extractedWords: totalWords, imageCount: pages.length, joinedInlineRuns, locatorMappings, warnings: [...warnings] },
   }
 }
 
@@ -457,7 +520,7 @@ export async function importPrivateBooks({ manifest: manifestPath, out: output }
       return { ...file, bytes, checksum: sha(bytes) }
     })
     const primary = sourceInfo.find(file => file.primary) ?? sourceInfo.find(file => file.format === 'epub') ?? sourceInfo[0]
-    const editionVersion = `v_${sha(`${VERSION}:${primary.checksum}:${entry.renderer ?? 'auto'}`).slice(0, 24)}`
+    const editionVersion = `v_${sha(`${primary.format === 'pdf' ? PDF_VERSION : VERSION}:${primary.checksum}:${entry.renderer ?? 'auto'}`).slice(0, 24)}`
     const writer = createWriter(out, entry.id, editionVersion)
     const sources = sourceInfo.map(file => ({ format: file.format, checksum: file.checksum, size: file.bytes.length, assetId: writer.add(file.bytes, file.format === 'pdf' ? 'application/pdf' : 'application/epub+zip', file.format) }))
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'naamras-private-import-'))

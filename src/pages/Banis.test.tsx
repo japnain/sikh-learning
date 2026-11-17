@@ -327,6 +327,38 @@ test('keeps scripture sources separate from EPUB books', async () => {
   expect(within(panthCard).queryByRole('link', { name: /^open panth prakash page 1$/i })).not.toBeInTheDocument()
 })
 
+test('opens Books directly without burying its shelf beneath the Gurbani hero and search', () => {
+  render(<MemoryRouter initialEntries={['/banis?collection=books']}><Banis /></MemoryRouter>)
+  const page = screen.getByTestId('page-banis')
+  expect(screen.getByRole('heading', { level: 1, name: 'Books' })).toBeInTheDocument()
+  expect(page.querySelector('.read-room-hero')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('banis-quick-find')).not.toBeInTheDocument()
+  expect(screen.getByRole('tab', { name: 'Books' })).toHaveAttribute('aria-selected', 'true')
+  expect(screen.getByTestId('read-books-browser')).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Search all readings' })).toHaveAttribute('href', '/banis')
+
+  openReadCollection('Banis')
+  expect(screen.getByRole('heading', { level: 1, name: 'Read' })).toBeInTheDocument()
+  expect(page.querySelector('.read-room-hero')).toBeInTheDocument()
+  expect(screen.getByTestId('banis-quick-find')).toBeInTheDocument()
+})
+
+test('keeps an explicit Books search deep link editable even before its query is long enough', () => {
+  render(<MemoryRouter initialEntries={['/banis?collection=books&scope=books&query=x']}><Banis /></MemoryRouter>)
+  expect(screen.getByRole('heading', { level: 1, name: 'Books' })).toBeInTheDocument()
+  expect(screen.getByTestId('banis-quick-find')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: 'Search books' })).toHaveValue('x')
+  expect(screen.getByTestId('page-banis').querySelector('.read-room-hero__art')).not.toBeInTheDocument()
+})
+
+test('the compact Books search shortcut opens and focuses the full reading search', async () => {
+  render(<MemoryRouter initialEntries={['/banis?collection=books']}><Banis /><LocationSpy /></MemoryRouter>)
+  fireEvent.click(screen.getByRole('link', { name: 'Search all readings' }))
+  expect(screen.getByTestId('location')).toHaveTextContent('/banis')
+  await waitFor(() => expect(screen.getByRole('searchbox', { name: /Search Gurbani, books and stories/ })).toHaveFocus())
+  expect(screen.getByRole('tab', { name: 'Banis' })).toHaveAttribute('aria-selected', 'true')
+})
+
 test('opens the Panth Prakash Read card into the EPUB chapter overview', async () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
@@ -1161,7 +1193,7 @@ test('collection navigation exits global results and makes the previous search r
   await screen.findByTestId('banis-search-gurbani-result')
   fireEvent.click(within(screen.getByRole('group', { name: 'Read collections' })).getByRole('button', { name: 'Books' }))
   await screen.findByRole('tabpanel', { name: 'Books' })
-  expect(screen.getByRole('searchbox')).toHaveValue('')
+  expect(screen.queryByTestId('banis-quick-find')).not.toBeInTheDocument()
   expect(screen.queryByTestId('banis-search-gurbani-result')).not.toBeInTheDocument()
   expect(screen.getByTestId('location')).toHaveTextContent('collection=books')
   fireEvent.click(screen.getByRole('button', { name: 'Return to “truth”' }))

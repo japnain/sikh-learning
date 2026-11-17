@@ -26,7 +26,7 @@ import type { AsyncIssueCode, SearchMode, UiLocale } from '../types'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { getSourceReaderUnit, SOURCE_READER_META } from '../utils/sourceReaderMeta'
 import { getSearchModeLabels } from '../utils/translations'
-import { IconArrowRight, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic } from '../components/icons'
+import { IconArrowRight, IconChevronUp, IconChevronDown, IconLibrary, IconBookmark, IconBookmarkFilled, IconMusic, IconSearch } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import LibraryBookBrowser from '../components/LibraryBookBrowser'
@@ -79,6 +79,12 @@ import PrivateBooksSection from '../components/books/PrivateBooksSection'
 
 type Scripture = 'SGGS' | 'DG'
 const StoryBrowser = lazy(() => import('../components/StoryBrowser'))
+
+const BOOKS_HEADER_COPY = {
+  en: { body: 'History, reflection and discovery.', search: 'Search all readings' },
+  pa: { body: 'ਇਤਿਹਾਸ, ਵਿਚਾਰ ਅਤੇ ਖੋਜ।', search: 'ਸਾਰੀਆਂ ਰਚਨਾਵਾਂ ਖੋਜੋ' },
+  hi: { body: 'इतिहास, विचार और खोज।', search: 'सभी रचनाएँ खोजें' },
+}
 
 const READ_SOURCE_SECTION_IDS = ['sggs', 'dasam-granth', 'bhai-gurdas-vaaran']
 
@@ -255,6 +261,7 @@ export default function Banis() {
   const collectionParam = searchParams.get('collection')
   const activeCollection: ReadCollection = isReadCollectionParam(collectionParam) ? collectionParam : 'banis'
   const copy = READ_PAGE_COPY[locale]
+  const booksHeader = BOOKS_HEADER_COPY[locale]
   const searchModeLabels = getSearchModeLabels(locale)
   const expanded = useMemo<Record<string, boolean>>(() => Object.fromEntries(
     (searchParams.get('open') ?? '').split(',').filter(key => key.length > 0 && key.length <= 200).map(key => [key, true])
@@ -953,7 +960,7 @@ export default function Banis() {
 
   return (
     <div
-      className="read-room-shell page-shell max-w-md mx-auto bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
+      className={`read-room-shell page-shell max-w-md mx-auto bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in${activeCollection === 'books' ? ' read-room-shell--books' : ''}`}
       data-testid="page-banis"
       data-page="banis"
       data-ai-surface="read"
@@ -968,7 +975,17 @@ export default function Banis() {
       }}
     >
       <div className="read-room-stack">
-        <section className="read-room-hero" aria-labelledby="read-room-title">
+        <section className={activeCollection === 'books' ? 'read-books-heading' : 'read-room-hero'} aria-labelledby="read-room-title">
+          {activeCollection === 'books' ? <div className="read-books-heading__row">
+            <div>
+              <p className="eyebrow">{copy.heroEyebrow}</p>
+              <h1 id="read-room-title">{copy.tabs.books}</h1>
+              <p className="read-books-heading__body">{booksHeader.body}</p>
+            </div>
+            <Link to="/banis" state={{ focusSearch: true }} className="read-books-heading__search interactive-focus">
+              <IconSearch size={18} /><span>{booksHeader.search}</span>
+            </Link>
+          </div> : <>
           <div className="read-room-hero__copy">
             <p className="eyebrow">{copy.heroEyebrow}</p>
             <h1 id="read-room-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
@@ -990,8 +1007,15 @@ export default function Banis() {
               fetchPriority="high"
             />
           </figure>
+          </>}
 
-          <div
+          {activeCollection === 'books' && !searchQuery && previousQuery ? <button
+            type="button"
+            className="read-search-recover read-books-heading__recover"
+            onClick={() => { requestSearchReveal(); setSearchQuery(previousQuery) }}
+          >{searchUi.recover(previousQuery)}</button> : null}
+
+          {activeCollection !== 'books' || searchQuery.trim() ? <div
             ref={searchCardRef}
             className="read-quick-find-card"
         aria-labelledby="banis-quick-find-title"
@@ -1323,10 +1347,10 @@ export default function Banis() {
             </button>}
           </div>
         )}
-          </div>
+          </div> : null}
         </section>
 
-        <div className="read-browse-heading"><h2>{searchUi.browse}</h2></div>
+        {activeCollection !== 'books' ? <div className="read-browse-heading"><h2>{searchUi.browse}</h2></div> : null}
         <div className="read-collection-tabs" role={hasActiveSearch ? 'group' : 'tablist'} aria-label={copy.collectionsLabel}>
           {READ_COLLECTIONS.map((collection, index) => {
             const selected = activeCollection === collection
@@ -1701,7 +1725,7 @@ export default function Banis() {
             aria-labelledby="read-tab-books"
             className="read-collection-panel"
           >
-            <PrivateBooksSection />
+            <PrivateBooksSection compact />
 
             <section
               className="read-source-section"

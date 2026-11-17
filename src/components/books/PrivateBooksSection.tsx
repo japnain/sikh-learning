@@ -3,7 +3,7 @@ import PrivateBookshelf from './PrivateBookshelf'
 import { createPrivateObjectUrl, fetchPrivateAsset, loadPrivateBooks, loadPrivateReadingState, revokePrivateObjectUrl, type PrivateBookSummary } from '../../data/privateLibrary'
 import { usePrivateLibraryAccess } from '../../hooks/usePrivateLibraryAccess'
 
-export default function PrivateBooksSection() {
+export default function PrivateBooksSection({ compact = false }: { compact?: boolean }) {
   const access = usePrivateLibraryAccess()
   const [books, setBooks] = useState<PrivateBookSummary[]>([])
   const [covers, setCovers] = useState<Record<string, string>>({})
@@ -46,5 +46,5 @@ export default function PrivateBooksSection() {
     return () => { controller.abort(); urls.forEach(revokePrivateObjectUrl) }
   }, [access.allowed, access.epoch, retry])
   if (!access.allowed) return null
-  return <PrivateBookshelf books={books} coverUrls={covers} progress={progress} loading={loading} error={error} onRetry={() => setRetry(value => value + 1)} />
+  return <PrivateBookshelf books={books} compact={compact} coverUrls={covers} progress={progress} loading={loading} error={error} onRetry={() => setRetry(value => value + 1)} />
 }
