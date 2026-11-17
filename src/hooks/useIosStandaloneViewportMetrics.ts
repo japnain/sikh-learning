@@ -71,17 +71,30 @@ export function useIosStandaloneViewportMetrics() {
 
     const root = document.documentElement
     let stableLoss = 0
+    let navLoss = 0
     let lastAppliedLoss: number | null = null
+    let lastAppliedNavLoss: number | null = null
+    let measuredWidth = window.innerWidth
+    let pendingNavRefresh = false
     let firstFrame: number | null = null
     let secondFrame: number | null = null
 
-    const applyMeasurement = () => {
+    const applyMeasurement = (refreshNavigation: boolean) => {
+      measuredWidth = window.innerWidth
       stableLoss = measureViewportLoss(stableLoss)
-      if (stableLoss === lastAppliedLoss) return
+      if (stableLoss !== lastAppliedLoss) {
+        lastAppliedLoss = stableLoss
+        root.style.setProperty('--ios-standalone-viewport-loss', `${stableLoss}px`)
+        root.dataset.iosStandaloneViewport = stableLoss > 0 ? 'short' : 'full'
+      }
 
-      lastAppliedLoss = stableLoss
-      root.style.setProperty('--ios-standalone-viewport-loss', `${stableLoss}px`)
-      root.dataset.iosStandaloneViewport = stableLoss > 0 ? 'short' : 'full'
+      if (refreshNavigation) {
+        navLoss = measureViewportLoss(navLoss)
+        if (navLoss !== lastAppliedNavLoss) {
+          lastAppliedNavLoss = navLoss
+          root.style.setProperty('--nav-viewport-loss', `${navLoss}px`)
+        }
+      }
     }
 
     const cancelScheduledMeasurement = () => {
@@ -91,28 +104,39 @@ export function useIosStandaloneViewportMetrics() {
       secondFrame = null
     }
 
-    const scheduleMeasurement = () => {
+    const scheduleMeasurement = (refreshNavigation: boolean) => {
+      pendingNavRefresh ||= refreshNavigation
       cancelScheduledMeasurement()
       firstFrame = window.requestAnimationFrame(() => {
         firstFrame = null
         secondFrame = window.requestAnimationFrame(() => {
           secondFrame = null
-          applyMeasurement()
+          const refreshNavigation = pendingNavRefresh
+          pendingNavRefresh = false
+          applyMeasurement(refreshNavigation)
         })
       })
     }
 
-    applyMeasurement()
-    window.addEventListener('pageshow', scheduleMeasurement)
-    window.addEventListener('orientationchange', scheduleMeasurement)
-    window.addEventListener('resize', scheduleMeasurement)
+    const handleResize = () => {
+      // Other fixed surfaces follow viewport changes, while navigation keeps its
+      // home-indicator padding stable through height-only scrolling resizes.
+      scheduleMeasurement(window.innerWidth !== measuredWidth)
+    }
+    const handleLifecycleChange = () => scheduleMeasurement(true)
+
+    applyMeasurement(true)
+    window.addEventListener('pageshow', handleLifecycleChange)
+    window.addEventListener('orientationchange', handleLifecycleChange)
+    window.addEventListener('resize', handleResize)
 
     return () => {
       cancelScheduledMeasurement()
-      window.removeEventListener('pageshow', scheduleMeasurement)
-      window.removeEventListener('orientationchange', scheduleMeasurement)
-      window.removeEventListener('resize', scheduleMeasurement)
+      window.removeEventListener('pageshow', handleLifecycleChange)
+      window.removeEventListener('orientationchange', handleLifecycleChange)
+      window.removeEventListener('resize', handleResize)
       root.style.removeProperty('--ios-standalone-viewport-loss')
+      root.style.removeProperty('--nav-viewport-loss')
       delete root.dataset.iosStandaloneViewport
     }
   }, [])
