@@ -1468,7 +1468,7 @@ export default function Banis() {
         >
           <div className="min-w-0 text-left">
             <p lang={sundarGutkaTitle.primary.lang} className={`${sundarGutkaTitle.primary.fontClassName} font-semibold text-base text-saffron dark:text-saffron-light`}>{sundarGutkaTitle.primary.text}</p>
-            <p lang={sundarGutkaTitle.secondary.lang} className={`${sundarGutkaTitle.secondary.fontClassName} mt-1 text-sm text-ink/65 dark:text-dark-text/80`}>{sundarGutkaTitle.secondary.text}</p>
+            <p lang={sundarGutkaTitle.secondary.lang} className={`${sundarGutkaTitle.secondary.fontClassName} mt-1 ${locale === 'en' ? 'text-lg leading-relaxed text-ink dark:text-dark-text' : 'text-sm text-ink/65 dark:text-dark-text/80'}`}>{sundarGutkaTitle.secondary.text}</p>
           </div>
           <span className="ml-3 flex shrink-0 items-center gap-2">
             <DirectoryCount

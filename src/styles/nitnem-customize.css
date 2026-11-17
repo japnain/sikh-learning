@@ -45,6 +45,7 @@
 .nitnem-editor-bani { min-width: 0; }
 .nitnem-editor-bani-title { font-size: 1.05rem; line-height: 1.7; margin: 0; font-weight: 600; overflow-wrap: anywhere; }
 .nitnem-editor-bani-subtitle { display: block; font-size: .875rem; line-height: 1.55; color: var(--editor-muted); margin: .12rem 0 0; overflow-wrap: anywhere; }
+.nitnem-editor-bani-subtitle:lang(pa) { font-size: 1.125rem; line-height: 1.65; color: var(--editor-ink); }
 .nitnem-editor-period { display: block; font-size: .6875rem; line-height: 1.6; color: var(--editor-accent); margin: .2rem 0 0; }
 .nitnem-editor-edit { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; color: var(--editor-muted); font-size: .6875rem; }
 .nitnem-editor-edit svg { flex-shrink: 0; transform: rotate(90deg); transition: transform .2s; }
