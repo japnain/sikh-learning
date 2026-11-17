@@ -96,11 +96,12 @@ async function networkFirstStableAsset(request) {
 
 self.addEventListener('fetch', event => {
   const { request } = event
-  if (request.method !== 'GET' || request.headers.has('range')) return
+  if (request.method !== 'GET' || request.headers.has('range') || request.headers.has('authorization')) return
 
   const url = new URL(request.url)
   if (url.origin !== self.location.origin) return
-  if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/__banidb/')) return
+  if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/__banidb/')
+    || url.pathname.startsWith('/books/private/') || url.pathname.includes('/private-library')) return
 
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstNavigation(request))

@@ -19,6 +19,8 @@
     "qa:css-selectors": "node ./scripts/qa/css-selector-audit.mjs",
     "qa:app-store": "npm run ios:build:release && node ./scripts/qa/app-store-readiness.mjs",
     "library:import": "node ./scripts/library/import-curated-epub.mjs",
+    "library:import:private": "node ./scripts/library/import-private-books.mjs",
+    "library:test:private": "node --test ./scripts/library/lib/private-import.test.mjs",
     "library:build": "node ./scripts/library/import-panth-prakash-epubs.mjs --vol1-epub ./public/data/library/works/panth-prakash-english/assets/volume-1.epub --vol2-epub ./public/data/library/works/panth-prakash-english/assets/volume-2.epub",
     "library:verify": "node ./scripts/library/verify-library.mjs",
     "stories:verify": "node ./scripts/stories/verify-stories.mjs",
@@ -29,7 +31,9 @@
     "preview": "vite preview",
     "test": "node ./scripts/test-vitest-batches.mjs",
     "test:coverage": "vitest run --coverage",
-    "qa:ai-bug-sweep": "node ./scripts/qa/ai-bug-sweep.mjs"
+    "qa:ai-bug-sweep": "node ./scripts/qa/ai-bug-sweep.mjs",
+    "predev": "node ./scripts/library/prepare-pdf-runtime.mjs",
+    "prebuild": "node ./scripts/library/prepare-pdf-runtime.mjs"
   },
   "dependencies": {
     "@capacitor/core": "8.4.3",
@@ -37,6 +41,7 @@
     "@nuintun/qrcode": "^4.1.12",
     "@radix-ui/react-dialog": "^1.1.19",
     "@supabase/supabase-js": "^2.105.3",
+    "pdfjs-dist": "6.5.438",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.18.2",

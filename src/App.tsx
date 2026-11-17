@@ -41,6 +41,8 @@ const LibraryChapterReader = lazy(() => import('./pages/library/LibraryChapterRe
 const StoryReader = lazy(() => import('./pages/stories/StoryReader'))
 const StoryDraftPreview = import.meta.env.DEV ? lazy(() => import('./pages/stories/StoryDraftPreview')) : null
 const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
+const PrivateBookPage = lazy(() => import('./pages/books/PrivateBookPage'))
+const PrivateBookReader = lazy(() => import('./pages/books/PrivateBookReader'))
 
 const PUBLIC_DOCUMENT_PATHS = new Set(['/privacy', '/support', '/account', '/auth/callback', '/auth/recovery'])
 
@@ -177,12 +179,14 @@ function AppShell() {
   const firstRunDestinationRef = useRef(isPublicDocumentPath(location.pathname) ? '/' : `${location.pathname}${location.search}${authReturnFragment ? '' : location.hash}`)
   const isPublicDocument = isPublicDocumentPath(location.pathname)
   const isLibraryChapterReader = /^\/library\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
+  const isPrivateBookReader = /^\/books\/private\/[^/]+\/read\/?$/.test(location.pathname)
   const isRehatChapterReader = /^\/banis\/rehat\/[^/]+\/chapters\/[^/]+\/?$/.test(location.pathname)
   const isStoryReader = /^\/stories\/[^/]+\/?$/.test(location.pathname)
     || (import.meta.env.DEV && /^\/stories\/drafts\/[^/]+\/?$/.test(location.pathname))
   const isFocusedReader = location.pathname === '/study'
     || location.pathname.startsWith('/study/')
     || isLibraryChapterReader
+    || isPrivateBookReader
     || isRehatChapterReader
     || isStoryReader
   const isFocusedEditor = /^\/nitnem\/customize\/?$/.test(location.pathname)
@@ -198,7 +202,7 @@ function AppShell() {
     mainContentRef,
     enabled: !showFirstRun,
     routeHandlesOwnHash: isLibraryChapterReader || isStoryReader || isRehatChapterReader || authReturnFragment || location.pathname.startsWith('/auth/'),
-    routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader || isRehatChapterReader,
+    routeHandlesOwnPosition: scriptureOwnsResumePosition || isStoryReader || isRehatChapterReader || isPrivateBookReader,
   })
   useRouteDocumentTitle(location.pathname)
   useNitemOfflineCache()
@@ -336,6 +340,8 @@ function AppShell() {
                 <Route path="/library" element={<Navigate to="/saved" replace />} />
                 <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
                 <Route path="/library/:workId/chapters/:chapterId" element={<LibraryChapterReader />} />
+                <Route path="/books/private/:bookId" element={<PrivateBookPage />} />
+                <Route path="/books/private/:bookId/read" element={<PrivateBookReader />} />
                 <Route path="/nitnem/customize" element={<NitnemCustomizePage />} />
                 <Route path="/banis/amrit-keertan" element={<AmritKeertanPage />} />
                 <Route path="/banis/amrit-keertan/:headerId" element={<AmritKeertanPage />} />

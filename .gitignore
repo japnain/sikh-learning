@@ -61,3 +61,6 @@ scripts/learn/.cache/
 .roo
 .trae
 .windsurf
+
+# Generated PDF.js runtime assets (prepared for dev/build).
+/public/vendor/pdfjs/

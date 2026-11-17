@@ -10,6 +10,8 @@ export function getRouteDocumentTitle(pathname: string) {
   if (normalized.startsWith('/stories/')) return `Story Reader · ${APP_NAME}`
   if (normalized === '/stories') return `Read · ${APP_NAME}`
   if (normalized === '/saved' || normalized === '/library') return `Saved · ${APP_NAME}`
+  if (/^\/books\/private\/[^/]+\/read$/.test(normalized)) return `Book Reader · ${APP_NAME}`
+  if (/^\/books\/private\/[^/]+$/.test(normalized)) return `Book · ${APP_NAME}`
   if (/^\/library\/[^/]+\/chapters\/[^/]+$/.test(normalized)) return `Book Reader · ${APP_NAME}`
   if (/^\/library\/[^/]+$/.test(normalized)) return `Book · ${APP_NAME}`
   if (normalized === '/nitnem/customize') return `Customize Nitnem · ${APP_NAME}`

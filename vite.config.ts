@@ -13,6 +13,12 @@ const initialVendorChunkGroups = [
     priority: 30,
   },
   {
+    name: 'vendor-pdf',
+    test: /node_modules[\\/](?:pdfjs-dist)[\\/]/,
+    priority: 25,
+    includeDependenciesRecursively: false,
+  },
+  {
     name: 'vendor-backend',
     test: /node_modules[\\/](?:@insforge|@supabase|@socket\.io|socket\.io-client|socket\.io-parser|engine\.io-client|engine\.io-parser|graphql)[\\/]/,
     priority: 20,

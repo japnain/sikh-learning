@@ -75,7 +75,7 @@ import { getSearchRevealScrollTop } from '../utils/searchReveal'
 import { READ_PAGE_COPY, READ_COLLECTIONS, type ReadCollection, type ReadPageCopy } from '../content/readPageCopy'
 import readHarmandirSrc from '../assets/living-library/read-harmandir.jpeg'
 import banisGuruNanakSrc from '../assets/living-library/banis-guru-nanak.jpeg'
-import booksCourtSrc from '../assets/living-library/books-court.jpeg'
+import PrivateBooksSection from '../components/books/PrivateBooksSection'
 
 type Scripture = 'SGGS' | 'DG'
 const StoryBrowser = lazy(() => import('../components/StoryBrowser'))
@@ -1701,24 +1701,28 @@ export default function Banis() {
             aria-labelledby="read-tab-books"
             className="read-collection-panel"
           >
-            <div className="read-collection-intro read-collection-intro--library">
-              <ReadArtwork
-                src={booksCourtSrc}
-                description={copy.artworkDescriptions.court}
-                fallbackLabel={copy.artworkUnavailable}
-                width={736}
-                height={920}
-                loading="lazy"
-                decoding="async"
-              />
-              <div>
-                <p className="eyebrow">{copy.booksEyebrow}</p>
-                <h2>{copy.booksTitle}</h2>
-                <p className="read-collection-intro__body">{copy.booksBody}</p>
-              </div>
-            </div>
+            <PrivateBooksSection />
 
-            <ReadContinue />
+            <section
+              className="read-source-section"
+              aria-labelledby="read-books-browser-title"
+              data-testid="read-books-browser"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h2 id="read-books-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+                    {copy.booksCatalogTitle}
+                  </h2>
+                  <p className="read-section-copy mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
+                    {copy.booksCatalogBody}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <LibraryBookBrowser dataTestId="read-books-browser-shared" />
+              </div>
+            </section>
             <section className="read-companion-section" aria-labelledby="read-companion-title">
               <div className="read-section-header">
                 <p className="eyebrow">{copy.companionEyebrow}</p>
@@ -1751,26 +1755,6 @@ export default function Banis() {
               </div>
             </section>
 
-            <section
-              className="read-source-section"
-              aria-labelledby="read-books-browser-title"
-              data-testid="read-books-browser"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h2 id="read-books-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
-                    {copy.booksCatalogTitle}
-                  </h2>
-                  <p className="read-section-copy mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76">
-                    {copy.booksCatalogBody}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <LibraryBookBrowser dataTestId="read-books-browser-shared" />
-              </div>
-            </section>
           </div>
         ) : null}
       </div>

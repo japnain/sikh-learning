@@ -85,32 +85,31 @@ export default function LibraryBookBrowser({ dataTestId, className = '' }: Libra
   }
 
   return (
-    <div className={`library-book-browser ${className}`.trim()} lang={lang} data-testid={dataTestId}>
+    <div className={`library-book-browser library-book-browser--shelves ${className}`.trim()} lang={lang} data-testid={dataTestId}>
       {state.works.map(work => (
-        <article key={work.id} className="library-book-card library-book-card--edition" data-testid={`${work.id.replace('-english', '')}-source-card`}>
-          <div className="epub-book-cover library-book-card__cover" aria-hidden="true">
-            <span className="epub-book-cover__mark">ੴ</span>
-            <span lang={work.language}>{work.shortTitle}</span>
-            <small>{/^en(?:glish)?$/i.test(work.language) ? copy.english : work.language}</small>
-          </div>
-          <div className="library-book-card__copy">
-            <p className="eyebrow">{copy.edition} · {copy.volumes(work.publications?.length || 1)}</p>
-            <h3 lang={work.language}>{work.title}</h3>
-            <p lang={work.language}>{work.description}</p>
-            <div>
-              {work.totalChapters ? <span>{copy.episodes(work.totalChapters)}</span> : null}
-              {work.language ? <span>{/^en(?:glish)?$/i.test(work.language) ? copy.english : work.language.toUpperCase()}</span> : null}
-            </div>
-          </div>
+        <article key={work.id} className="library-book-card library-book-card--shelf" data-testid={`${work.id.replace('-english', '')}-source-card`}>
           <Link
             id={`read-book-${work.id}`}
             to={`/library/${work.id}`}
             state={readerNavigationState}
-            className="interactive-focus"
+            className="library-book-card__link interactive-focus"
             aria-label={copy.openLabel(work.shortTitle)}
           >
-            {copy.open}
-            <IconArrowRight size={16} />
+            <div className="library-book-card__display">
+              <div className="epub-book-cover library-book-card__cover" aria-hidden="true">
+                <span className="library-book-card__cover-rule" />
+                <span lang={work.language}>{work.shortTitle}</span>
+                <small>{/^en(?:glish)?$/i.test(work.language) ? copy.english : work.language}</small>
+                <span className="library-book-card__cover-rule" />
+              </div>
+            </div>
+            <div className="library-book-card__copy">
+              <p className="eyebrow">{copy.edition} · {copy.volumes(work.publications?.length || 1)}</p>
+              <h3 lang={work.language}>{work.title}</h3>
+              <p lang={work.language}>{work.description}</p>
+              {work.totalChapters ? <span className="library-book-card__chapter-count">{copy.episodes(work.totalChapters)}</span> : null}
+              <span className="library-book-card__open">{copy.open}<IconArrowRight size={15} /></span>
+            </div>
           </Link>
         </article>
       ))}
