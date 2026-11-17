@@ -100,3 +100,20 @@
   .more-sheet-heading > div > .eyebrow { min-height: 44px; padding-right: 3.25rem; }
   .more-sheet-close { position: absolute; top: .75rem; right: .75rem; width: 44px; }
 }
+
+.prose-settings { display: grid; gap: 1.25rem; }
+.prose-settings label, .prose-settings legend { font-size: .9375rem; font-weight: 600; }
+.prose-settings output { float: right; font-variant-numeric: tabular-nums; }
+.prose-settings input { width: 100%; min-height: 44px; accent-color: rgb(var(--color-accent)); }
+.prose-settings fieldset > div { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.prose-settings button { min-height: 44px; padding: .5rem .875rem; border: 1px solid rgb(var(--color-border) / .45); border-radius: var(--nr-radius-control); font-size: .875rem; }
+.prose-settings button[aria-pressed='true'] { color: rgb(var(--color-bg)); background: rgb(var(--color-text)); }
+.prose-settings :is(button, input):focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 3px; }
+.prose-settings-reset { justify-self: start; text-decoration: underline; }
+
+/* Narrow screens give enlarged labels the width otherwise spent on decoration. */
+@media (max-width: 360px) {
+  .more-hub-row, .more-daily-card .more-hub-row { gap: 8px; padding: 12px; }
+  .more-hub-icon { display: none; }
+}
+

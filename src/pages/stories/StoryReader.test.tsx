@@ -348,7 +348,7 @@ it('resets shared reading preferences without resetting the app theme', async ()
   await user.click(screen.getByRole('button', { name: 'Reset reading settings' }))
   expect(useEpubReaderStore.getState()).toMatchObject(DEFAULT_EPUB_READER_PREFERENCES)
   expect(useThemeStore.getState().mode).toBe('dark')
-  expect(screen.getByRole('dialog')).toHaveClass('story-reader-panel--paper')
+  expect(screen.getByRole('dialog')).toHaveClass('story-reader-panel--night')
 })
 
 it('preserves the exact visible paragraph offset when appearance changes midway through it', async () => {

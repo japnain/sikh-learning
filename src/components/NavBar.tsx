@@ -23,7 +23,7 @@ export default function NavBar() {
             || location.pathname === '/vocab'
             || location.pathname.startsWith('/vocab/')
           ? 'saved'
-          : location.pathname === '/more' || location.pathname.startsWith('/more/')
+          : location.pathname === '/more' || location.pathname.startsWith('/more/') || location.pathname === '/downloads'
             ? 'more'
             : null
 

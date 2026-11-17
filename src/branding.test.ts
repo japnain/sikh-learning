@@ -11,7 +11,7 @@ test('index metadata uses the NaamRas brand', () => {
     '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />'
   )
   expect(indexHtml).toContain('<title>NaamRas</title>')
-  expect(indexHtml).toContain('NaamRas is a premium Gurbani reading app')
+  expect(indexHtml).toContain('Gurbani, daily Nitnem, Sikh stories and books')
 })
 
 test('web manifest uses the NaamRas brand', () => {
@@ -25,5 +25,5 @@ test('web manifest uses the NaamRas brand', () => {
 
   expect(manifest.name).toBe('NaamRas')
   expect(manifest.short_name).toBe('NaamRas')
-  expect(manifest.description).toMatch(/NaamRas is a premium Gurbani reading app/i)
+  expect(manifest.description).toMatch(/Gurbani, daily Nitnem, Sikh stories and books/i)
 })

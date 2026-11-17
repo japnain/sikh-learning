@@ -127,7 +127,7 @@
 .nitnem-editor-empty { font-size: .8125rem; line-height: 1.7; color: var(--editor-muted); padding: 1.5rem 0; text-align: center; }
 .nitnem-editor-empty button { font-size: .8125rem; margin-top: .6rem; }
 .nitnem-editor-library-feedback { flex: none; font-size: .75rem; line-height: 1.6; color: var(--editor-accent); padding: .65rem 1.25rem; margin: 0; border-top: 1px solid var(--editor-line); }
-.nitnem-editor-library-footer { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 1rem; padding: .5rem 1.25rem .75rem; }
+.nitnem-editor-library-footer { display: flex; flex: none; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .5rem 1.25rem .75rem; }
 .nitnem-editor-library-footer .nitnem-editor-hint { margin: 0; }
 .nitnem-editor-library-footer button { display: inline-flex; align-items: center; justify-content: space-between; flex: none; gap: 1rem; padding: .6rem 1rem; border-radius: .5rem; background: var(--editor-ink); color: var(--editor-bg); font-size: .8125rem; }
 .nitnem-editor-library { container: nitnem-picker / inline-size; }

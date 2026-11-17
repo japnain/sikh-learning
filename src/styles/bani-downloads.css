@@ -1,0 +1,42 @@
+.bani-downloads {
+  margin-block: 1rem;
+  border: 1px solid rgb(var(--color-border) / .55);
+  border-radius: .75rem;
+  color: rgb(var(--color-text));
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.bani-downloads__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+  padding: .85rem 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+.bani-downloads__summary::-webkit-details-marker { display: none; }
+.bani-downloads__summary > span { display: grid; gap: .25rem; min-width: 0; }
+.bani-downloads__summary > svg { flex-shrink: 0; }
+.bani-downloads[open] > summary > svg { transform: rotate(180deg); }
+.bani-downloads__title { font-size: .9375rem; font-weight: 600; }
+.bani-downloads__count, .bani-downloads__note { color: rgb(var(--color-text-muted)); font-size: .75rem; line-height: 1.65; }
+.bani-downloads__body { display: grid; gap: .8rem; min-width: 0; padding: 0 1rem 1rem; font-size: .8125rem; line-height: 1.7; }
+.bani-downloads__body > label { margin-bottom: -.4rem; font-weight: 600; }
+.bani-downloads select { width: 100%; min-width: 0; min-height: 44px; border: 1px solid rgb(var(--color-border)); border-radius: .4rem; padding: .6rem; background: rgb(var(--color-surface)); color: inherit; font-size: .875rem; }
+.bani-downloads__actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+.bani-downloads__actions > button { flex: 1 1 160px; min-height: 44px; border: 1px solid rgb(var(--color-accent-strong) / .4); border-radius: .4rem; padding: .6rem .9rem; color: rgb(var(--color-accent-strong)); font-weight: 600; background: rgb(var(--color-accent) / .08); }
+.bani-downloads__actions > .bani-downloads__secondary { background: transparent; }
+.bani-downloads button:disabled, .bani-downloads select:disabled { cursor: default; opacity: .55; }
+.bani-downloads__progress { display: grid; gap: .4rem; }
+.bani-downloads progress { width: 100%; height: 6px; accent-color: rgb(var(--color-accent-strong)); }
+.bani-downloads__text-button { min-height: 44px; padding: .4rem 0; color: rgb(var(--color-accent-strong)); text-align: start; text-decoration: underline; text-underline-offset: .2em; font-size: .75rem; }
+.bani-downloads__saved { list-style: none; margin: 0; padding: 0; }
+.bani-downloads__saved > li { display: flex; align-items: start; justify-content: space-between; flex-wrap: wrap; gap: .25rem 1rem; padding-block: .65rem; border-top: 1px solid rgb(var(--color-border) / .4); }
+.bani-downloads__saved > li > div:first-child { flex: 1 1 180px; min-width: 0; overflow-wrap: anywhere; }
+.bani-downloads__saved-title { font-weight: 600; }
+.bani-downloads__saved-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+.bani-downloads :is(button, select, summary):focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 3px; border-radius: .3rem; }
+
+.bani-downloads__filter { display: grid; gap: .35rem; margin-top: 1rem; }
+.bani-downloads__filter input { width: 100%; min-height: 44px; padding: .6rem .75rem; border: 1px solid rgb(var(--color-border) / .5); border-radius: .5rem; background: rgb(var(--color-bg)); color: rgb(var(--color-text)); font-size: 1rem; }

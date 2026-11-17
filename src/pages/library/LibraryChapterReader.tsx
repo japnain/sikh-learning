@@ -1,3 +1,4 @@
+import { useResolvedEpubPalette, EPUB_APP_PALETTE_LABEL } from '../../store/epubReader'
 import '../../styles/catalog.css'
 import {
   Fragment,
@@ -187,7 +188,7 @@ function SegmentedControl<T extends string>({
   return (
     <fieldset className="epub-setting-group">
       <legend>{label}</legend>
-      <div className="epub-segmented-control">
+      <div className="epub-segmented-control" data-count={options.length}>
         {options.map(option => (
           <button
             key={option.value}
@@ -283,7 +284,8 @@ export default function LibraryChapterReader() {
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
   const measure = useEpubReaderStore(state => state.measure)
-  const palette = useEpubReaderStore(state => state.palette)
+  const palettePreference = useEpubReaderStore(state => state.palette)
+  const palette = useResolvedEpubPalette()
   const setFontScale = useEpubReaderStore(state => state.setFontScale)
   const setLineHeight = useEpubReaderStore(state => state.setLineHeight)
   const setMeasure = useEpubReaderStore(state => state.setMeasure)
@@ -877,8 +879,9 @@ export default function LibraryChapterReader() {
           />
           <SegmentedControl<EpubReaderPalette>
             label={readerCopy.pageColor}
-            value={palette}
+            value={palettePreference}
             options={[
+              { value: 'app', label: EPUB_APP_PALETTE_LABEL[locale] },
               { value: 'paper', label: readerCopy.paper },
               { value: 'sepia', label: readerCopy.sepia },
               { value: 'night', label: readerCopy.night },

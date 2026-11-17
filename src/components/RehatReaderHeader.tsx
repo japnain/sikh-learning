@@ -1,3 +1,4 @@
+import { EPUB_APP_PALETTE_LABEL, useResolvedEpubPalette } from '../store/epubReader'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { RehatChapterSummary } from '../types'
@@ -32,6 +33,7 @@ export default function RehatReaderHeader({ title, subtitle, rehatId, chapterId,
 }) {
   const { t, locale } = useCompanionCopy()
   const ui = STORY_UI[locale]
+  const resolvedPalette = useResolvedEpubPalette()
   const copy = COPY[locale]
   const [panel, setPanel] = useState<'contents' | 'appearance' | null>(null)
   const [findOpen, setFindOpen] = useState(false)
@@ -64,7 +66,7 @@ export default function RehatReaderHeader({ title, subtitle, rehatId, chapterId,
       </>}
       secondary={findOpen ? <div id="rehat-reader-find" className="rehat-reader-find" ref={searchRef}>{search}</div> : null}
     />
-    <ModalSheet open={panel === 'contents'} onClose={closePanel} title={copy.contents} description={ui.contentsDescription} className={`rehat-reader-sheet ${REHAT_PALETTE_CLASSES[palette]}`} testId="rehat-contents-sheet">
+    <ModalSheet open={panel === 'contents'} onClose={closePanel} title={copy.contents} description={ui.contentsDescription} className={`rehat-reader-sheet ${REHAT_PALETTE_CLASSES[resolvedPalette]}`} testId="rehat-contents-sheet">
       <div className="rehat-reader-sheet__heading"><h2>{copy.contents}</h2><button type="button" className="interactive-focus" aria-label={ui.close(copy.contents)} onClick={closePanel}><IconClose size={20} /></button></div>
       <p lang="en" className="rehat-reader-sheet__source">{subtitle}</p>
       {loading ? <p role="status">{t('Loading chapters...')}</p> : error ? <div role="alert"><p>{t('Rehat chapters could not load right now.')}</p><button type="button" className="interactive-focus" onClick={onRetry}>{t('Retry')}</button></div> : <nav aria-label={copy.contents}>
@@ -72,12 +74,12 @@ export default function RehatReaderHeader({ title, subtitle, rehatId, chapterId,
       </nav>}
       <Link className="interactive-focus rehat-reader-sheet__chapter" state={navigationState} to={rehatId ? `/banis/rehat/${rehatId}` : '/banis/rehat'} onClick={closePanel}>{t('Back to all sections')}</Link>
     </ModalSheet>
-    <ModalSheet open={panel === 'appearance'} onClose={closeAppearance} title={ui.appearance} description={copy.description} className={`rehat-reader-sheet ${REHAT_PALETTE_CLASSES[palette]}`} testId="rehat-appearance-sheet">
+    <ModalSheet open={panel === 'appearance'} onClose={closeAppearance} title={ui.appearance} description={copy.description} className={`rehat-reader-sheet ${REHAT_PALETTE_CLASSES[resolvedPalette]}`} testId="rehat-appearance-sheet">
       <div className="rehat-reader-sheet__heading"><h2>{ui.appearance}</h2><button type="button" className="interactive-focus" aria-label={ui.close(ui.appearance)} onClick={closeAppearance}><IconClose size={20} /></button></div>
       <div className="rehat-reader-setting"><p>{ui.textSize}</p><div className="rehat-reader-setting__scale"><button type="button" className="interactive-focus" aria-label={ui.decrease} disabled={fontScale <= EPUB_FONT_SCALE_MIN} onClick={() => setFontScale(fontScale - EPUB_FONT_SCALE_STEP)}>A−</button><output aria-live="polite">{Math.round(fontScale * 100)}%</output><button type="button" className="interactive-focus" aria-label={ui.increase} disabled={fontScale >= EPUB_FONT_SCALE_MAX} onClick={() => setFontScale(fontScale + EPUB_FONT_SCALE_STEP)}>A+</button></div></div>
       <div className="rehat-reader-setting"><p id="rehat-line-spacing">{ui.lineSpacing}</p><div role="group" aria-labelledby="rehat-line-spacing">{(['compact', 'comfortable', 'spacious'] as const).map((value, index) => <button key={value} type="button" className="interactive-focus" aria-pressed={lineHeight === value} onClick={() => setLineHeight(value)}>{[ui.closeSpacing, ui.natural, ui.open][index]}</button>)}</div></div>
       <div className="rehat-reader-setting"><p id="rehat-reading-width">{ui.width}</p><div role="group" aria-labelledby="rehat-reading-width">{(['narrow', 'standard', 'wide'] as const).map(value => <button key={value} type="button" className="interactive-focus" aria-pressed={measure === value} onClick={() => setMeasure(value)}>{ui[value]}</button>)}</div></div>
-      <div className="rehat-reader-setting"><p id="rehat-page-appearance">{copy.palette}</p><div role="group" aria-labelledby="rehat-page-appearance">{(['paper', 'sepia', 'night'] as const).map(value => <button key={value} type="button" className="interactive-focus" aria-pressed={palette === value} onClick={() => setPalette(value)}>{copy[value]}</button>)}</div></div>
+      <div className="rehat-reader-setting"><p id="rehat-page-appearance">{copy.palette}</p><div role="group" aria-labelledby="rehat-page-appearance">{(['app', 'paper', 'sepia', 'night'] as const).map(value => <button key={value} type="button" className="interactive-focus" aria-pressed={palette === value} onClick={() => setPalette(value)}>{value === 'app' ? EPUB_APP_PALETTE_LABEL[locale] : copy[value]}</button>)}</div></div>
       <button type="button" className="interactive-focus rehat-reader-reset" onClick={resetPreferences}>{copy.reset}</button>
     </ModalSheet>
   </>

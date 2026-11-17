@@ -101,7 +101,7 @@
 
   .app-nav-tab__icon img {
     object-fit: contain;
-    image-rendering: pixelated;
+    image-rendering: auto;
     user-select: none;
   }
 

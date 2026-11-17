@@ -22,3 +22,12 @@ test('includes a durable Rehat paragraph in Continue with its own reading identi
   expect(result.current).toEqual([{ id: 'rehat:1', title: 'Sikh Rehat Maryada · Daily Discipline', detail: 'Saved passage',
     path: `${path}#rehat-r1-seva-1`, updatedAt: '2026-10-31T10:00:00Z', kind: 'rehat' }])
 })
+
+test('lists an exact Shabad OS reading beside existing BaniDB places and preserves its offline locator', () => {
+  const path = '/study?shabadosBani=ALHN&source=G&ang=579&bani=Alahnia&resumeSource=G'
+  useReadingPlacesStore.getState().remember({ scriptureId: 'shabados-ALHN', resumePath: path,
+    resumeVerseId: 7_000_000_001_234, updatedAt: '2026-11-12T12:00:00Z' })
+  const { result } = renderHook(useContinueReadings)
+  expect(result.current).toEqual([{ id: 'shabados:ALHN', title: 'Alahnia', detail: 'SGGS · Ang 579 · Saved passage',
+    path: `${path}&resumeVerseId=7000000001234`, updatedAt: '2026-11-12T12:00:00Z', kind: 'bani' }])
+})

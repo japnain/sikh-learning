@@ -1,4 +1,6 @@
-import { DEFAULT_EPUB_READER_PREFERENCES, useEpubReaderStore } from './epubReader'
+import { act, renderHook } from '@testing-library/react'
+import { useThemeStore } from './theme'
+import { DEFAULT_EPUB_READER_PREFERENCES, useEpubReaderStore, useResolvedEpubPalette } from './epubReader'
 
 beforeEach(() => {
   window.localStorage.clear()
@@ -36,4 +38,23 @@ test('resets EPUB reading preferences', () => {
   useEpubReaderStore.getState().resetPreferences()
 
   expect(useEpubReaderStore.getState()).toEqual(expect.objectContaining(DEFAULT_EPUB_READER_PREFERENCES))
+})
+
+
+test('follows app appearance by default while explicit palettes survive theme changes', () => {
+  useThemeStore.getState().setMode('dark')
+  const palette = renderHook(useResolvedEpubPalette)
+  expect(palette.result.current).toBe('night')
+  act(() => useThemeStore.getState().setMode('light'))
+  expect(palette.result.current).toBe('paper')
+  act(() => useEpubReaderStore.getState().setPalette('sepia'))
+  act(() => useThemeStore.getState().setMode('dark'))
+  expect(palette.result.current).toBe('sepia')
+  expect(useEpubReaderStore.getState().palette).toBe('sepia')
+})
+
+test('restores an existing explicit version-one palette without migrating it to Follow app', async () => {
+  localStorage.setItem('sikh-epub-reader-preferences', JSON.stringify({ state: { ...DEFAULT_EPUB_READER_PREFERENCES, palette: 'paper', fontScale: 1.4 }, version: 1 }))
+  await useEpubReaderStore.persist.rehydrate()
+  expect(useEpubReaderStore.getState()).toMatchObject({ palette: 'paper', fontScale: 1.4 })
 })

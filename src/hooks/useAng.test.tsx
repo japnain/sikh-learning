@@ -21,6 +21,29 @@ function deferred<T>() {
 }
 
 describe('useAng', () => {
+  it('makes no request for an inactive Ang reader, then loads when enabled', async () => {
+    const fetch = vi.spyOn(baniApi, 'fetchAng').mockResolvedValue([entry])
+    const { result, rerender } = renderHook(({ enabled }) => useAng(1, 'G', enabled), { initialProps: { enabled: false } })
+    expect(result.current.status).toBe('empty')
+    act(() => result.current.refetch())
+    expect(fetch).not.toHaveBeenCalled()
+    rerender({ enabled: true })
+    await waitFor(() => expect(result.current.entries).toEqual([entry]))
+    expect(fetch).toHaveBeenCalledTimes(1)
+  })
+
+  it('aborts a pending Ang request when switching to an exact bani', async () => {
+    const held = deferred<ScriptureEntry[]>()
+    const fetch = vi.spyOn(baniApi, 'fetchAng').mockReturnValue(held.promise)
+    const { result, rerender } = renderHook(({ enabled }) => useAng(1, 'G', enabled), { initialProps: { enabled: true } })
+    const signal = fetch.mock.calls[0][2]
+    rerender({ enabled: false })
+    expect(signal?.aborted).toBe(true)
+    await act(async () => held.resolve([entry]))
+    expect(result.current.entries).toEqual([])
+    expect(useScriptureCacheStore.getState().getAng('G', 1)).toBeUndefined()
+  })
+
   it('starts loading, then returns entries', async () => {
     const { result } = renderHook(() => useAng(1, 'G'))
     expect(result.current.loading).toBe(true)

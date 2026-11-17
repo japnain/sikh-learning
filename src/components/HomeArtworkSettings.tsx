@@ -138,7 +138,9 @@ function ArtworkSettingsContent({ onClose }: { onClose: () => void }) {
           </div>
           <div><p className="home-artwork-eyebrow">{copy.preview}</p><h3>{preview.displayName[locale]}</h3>
             {failedPreviewId === preview.id ? <button type="button" className="home-artwork-retry" onClick={retryPreview} disabled={applying}>{copy.retry}</button> : previewLoading ? <p role="status">{copy.loading}</p> : <p>{preview.localizedDescription[locale]}</p>}
-            {preview.credit ? <a className="home-artwork-source" href={preview.credit.url} target="_blank" rel="noreferrer">{copy.source} · {preview.credit.label}<span aria-hidden="true"> ↗</span></a> : null}
+            <details className="home-artwork-context"><summary>{locale === 'pa' ? 'ਇਸ ਚਿੱਤਰ ਬਾਰੇ' : locale === 'hi' ? 'इस चित्र के बारे में' : 'About this artwork'}</summary>
+              {preview.credit ? <a className="home-artwork-source" href={preview.credit.url} target="_blank" rel="noreferrer">{copy.source} · {preview.credit.label}<span aria-hidden="true"> ↗</span></a> : <p>{locale === 'pa' ? 'ਇਹ ਨਾਮ ਨਾਮਰਸ ਵਿੱਚ ਪਛਾਣ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕਲਾਕਾਰ, ਤਾਰੀਖ਼ ਅਤੇ ਮੂਲ ਸੰਗ੍ਰਹਿ ਦੀ ਪੁਸ਼ਟੀ ਹਾਲੇ ਨਹੀਂ ਹੋਈ।' : locale === 'hi' ? 'यह नाम नामरस में पहचान के लिए इस्तेमाल किया गया है। कलाकार, तारीख और मूल संग्रह की अभी पुष्टि नहीं हुई है।' : 'This is NaamRas’s display title. The artist, date and original collection have not yet been verified.'}</p>}
+            </details>
           </div>
         </div>
         <details className="home-artwork-rhythm">

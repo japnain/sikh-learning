@@ -1,3 +1,4 @@
+import { useEpubReaderStore } from '../store/epubReader'
 import { act, render, screen, fireEvent, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, vi } from 'vitest'
@@ -262,4 +263,16 @@ test('the account summary reflects loading and queued changes', () => {
   expect(screen.getByTestId('more-open-account')).toHaveTextContent('Checking your account')
   act(() => useCloudSyncStore.setState({ status: 'ready', currentUser: { id: 'test', email: 'reader@example.com', name: null }, syncQueued: true }))
   expect(screen.getByTestId('more-open-account')).toHaveTextContent('Changes waiting to sync')
+})
+
+
+test('provides prose preferences separately from Gurbani and links to device downloads', () => {
+  renderMore()
+  expect(screen.getByRole('link', { name: /Downloads/ })).toHaveAttribute('href', '/downloads')
+  openPanel('prose')
+  expect(screen.getByRole('dialog', { name: 'Books, stories and Rehat' })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Follow app' }))
+  fireEvent.change(screen.getByRole('slider'), { target: { value: '1.5' } })
+  expect(useEpubReaderStore.getState()).toMatchObject({ palette: 'app', fontScale: 1.5 })
+  expect(useLanguageStore.getState().fontSize).toBe(22)
 })

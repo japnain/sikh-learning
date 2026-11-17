@@ -1,0 +1,11 @@
+.downloads-page { max-width: 54rem; margin-inline: auto; }
+.downloads-page header h1 { font-family: var(--font-display); font-size: 2.75rem; line-height: 1.15; margin-top: .75rem; }
+.downloads-page p { font-size: .9375rem; line-height: 1.65; color: rgb(var(--color-text-muted)); }
+.downloads-page > section { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgb(var(--color-border) / .45); }
+.downloads-page h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: .75rem; }
+.downloads-page h3 { font-size: 1rem; line-height: 1.6; font-weight: 600; }
+.downloads-page article + article { margin-top: 1.5rem; }
+.downloads-back, .downloads-page button { min-height: 44px; }
+.downloads-back { display: inline-flex; align-items: center; font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
+.downloads-help { margin-top: .75rem; }
+.downloads-page :is(a, button, input, summary):focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 3px; }

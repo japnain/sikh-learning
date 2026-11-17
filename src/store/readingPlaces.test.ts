@@ -20,6 +20,24 @@ const sessionFor = (id: string, verse: number, date = '2026-10-17T12:00:00Z'): S
   resumeVerseId: verse, updatedAt: date,
 })
 
+test('Shabad OS readings retain provider-scoped positions across reload without changing a saved length', async () => {
+  useSundarGutkaLengthStore.getState().setLength('rehras-sahib', 'long')
+  const first: Session = { scriptureId: 'shabados-ALHN', resumePath: '/study?shabadosBani=ALHN&source=G&ang=578&bani=Alahnia',
+    resumeVerseId: 7_000_000_001_234, updatedAt: '2026-11-12T12:00:00Z' }
+  const second = { ...first, scriptureId: 'shabados-ANN6', resumePath: '/study?shabadosBani=ANN6&source=G&ang=578&bani=Anand' }
+  useProgressStore.getState().updateSession(first)
+  useProgressStore.getState().updateSession(second)
+  const persisted = localStorage.getItem('naamras-reading-places')!
+  useReadingPlacesStore.setState({ places: {} })
+  localStorage.setItem('naamras-reading-places', persisted)
+  await useReadingPlacesStore.persist.rehydrate()
+  expect(useReadingPlacesStore.getState().places).toEqual({ 'shabados:ALHN': first, 'shabados:ANN6': second })
+  expect(getExactReadingKey('/study?shabadosBani=ALHN&ang=579&resumeVerseId=7000000001234')).toBe('shabados:ALHN')
+  expect(getExactReadingKey('/study?shabadosBani=ALHN&baniDbId=2')).toBeNull()
+  expect(getExactReadingKey('/study?shabadosBani=ALHN&sgLength=long')).toBeNull()
+  expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('long')
+})
+
 test('returning from another bani preserves each saved verse after local reload', async () => {
   const japji = sessionFor('japji-sahib', 101)
   const jaap = sessionFor('jaap-sahib', 202, '2026-10-17T13:00:00Z')

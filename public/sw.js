@@ -45,6 +45,27 @@ self.addEventListener('activate', event => {
   })())
 })
 
+self.addEventListener('message', event => {
+  if (event.data?.type !== 'NAAMRAS_CHECK_OFFLINE_READER' || !event.ports?.[0]) return
+  const port = event.ports[0]
+  event.waitUntil((async () => {
+    let ready = false
+    try {
+      const assets = event.data.assets
+      // An older active worker must not approve a page from a newer deployment.
+      if (Array.isArray(assets) && assets.length > 0
+        && assets.every(path => typeof path === 'string' && BUILD_ASSETS.includes(path))) {
+        const cache = await caches.open(APP_SHELL_CACHE)
+        const responses = await Promise.all([...new Set(REQUIRED_ASSETS)].map(path => cache.match(path, { ignoreVary: true })))
+        ready = responses.every(isSuccessfulResponse)
+      }
+    } catch {
+      // Missing or evicted shell assets must never be presented as offline-ready.
+    }
+    port.postMessage({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready })
+  })())
+})
+
 async function networkFirstNavigation(request) {
   let response
   try {

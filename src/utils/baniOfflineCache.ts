@@ -89,6 +89,19 @@ export async function readBaniOfflineCache(
 
   if (typeof globalThis.caches !== 'undefined') {
     try {
+      // The Home preparation hook shares this bounded cache. Load the full pack
+      // manager only when needed, keeping download/provider code off startup.
+      const { readDownloadedBani } = await import('./baniDownloads')
+      const validateDownload = (reading: unknown) => normalizeCachedBaniReading(reading, baniDbId, sgLength) !== null
+      const downloaded = await readDownloadedBani(`banidb:${baniDbId}`, sgLength, validateDownload)
+        ?? ((baniDbId === 9 || baniDbId === 22) && sgLength === 'extralong'
+          ? await readDownloadedBani(`banidb:${baniDbId}`, 'long', validateDownload)
+          : null)
+      if (downloaded) return normalizeCachedBaniReading(downloaded, baniDbId, sgLength)
+    } catch {
+      // An interrupted app update must not disable the existing bounded cache.
+    }
+    try {
       const cache = await globalThis.caches.open(CACHE_NAME)
       const response = await cache.match(getCacheRequest(baniDbId, sgLength))
       if (response) {

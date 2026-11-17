@@ -1,3 +1,4 @@
+import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
 import { beforeEach, vi } from 'vitest'
 import { flushSync } from 'react-dom'
 import { render, screen, fireEvent, waitFor, within, act } from '@testing-library/react'
@@ -11,13 +12,15 @@ import PanthPrakashLibraryHome from './library/PanthPrakashLibraryHome'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
-import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
+import { READ_PAGE_COPY } from '../content/readPageCopy'
 import { useRecentSearchStore } from '../store/recentSearch'
 import { getSearchRevealScrollTop } from '../utils/searchReveal'
 import * as appSearch from '../utils/appSearch'
 import { SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, READ_BANIDB_CATALOG_IDS } from '../data/banis'
 import { getBaniDiscovery } from '../content/baniDiscovery'
 import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
+import { SHABADOS_BANIS, getShabadosBaniPath } from '../data/shabadosBanis'
+import * as scriptureCatalogue from '../api/scriptureCatalogue'
 
 function renderBanis() {
   return render(<MemoryRouter><Banis /></MemoryRouter>)
@@ -111,7 +114,7 @@ test('renders page heading', () => {
   expect(screen.getByRole('tab', { name: 'Books' })).toBeInTheDocument()
   expect(screen.getByRole('tabpanel', { name: 'Banis' })).toHaveAttribute('id', 'read-active-collection-panel')
   expect(screen.getByRole('button', { name: /refine/i })).toBeInTheDocument()
-  expect(screen.getByText(/^Auto detect$/i)).toBeInTheDocument()
+  expect(screen.queryByText(/^Auto detect$/i)).not.toBeInTheDocument()
   expect(screen.queryByRole('button', { name: /first letters/i })).not.toBeInTheDocument()
 
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
@@ -168,6 +171,24 @@ test('hydrates the read search from the url so home can hand off the same query'
 
   const searchInput = document.querySelector('#banis-search') as HTMLInputElement | null
   expect(searchInput?.value).toBe('Japji Sahib')
+})
+
+test('opens additional readings in the current Study reader and includes them in offline downloads', async () => {
+  vi.spyOn(scriptureCatalogue, 'fetchPublishedScriptureReadingKeys').mockResolvedValue(SHABADOS_BANIS.map(bani => `shabados:${bani.id}`))
+  render(<MemoryRouter><Banis /><LocationSpy /></MemoryRouter>)
+  fireEvent.click(screen.getByTestId('banis-directory-additional'))
+  const panel = document.querySelector('#banis-additional-readings-panel')!
+  for (const bani of SHABADOS_BANIS) {
+    const row = panel.querySelector<HTMLElement>(`[data-bani-identity="shabados:${bani.id}"]`)!
+    expect(row).toHaveClass('read-bani-row')
+    expect(within(row).getByText(bani.summary)).toBeInTheDocument()
+  }
+  const first = SHABADOS_BANIS[0]!
+  fireEvent.click(within(panel.querySelector<HTMLElement>(`[data-bani-identity="shabados:${first.id}"]`)!).getByRole('button', { name: new RegExp(first.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) }))
+  expect(screen.getByTestId('location')).toHaveTextContent(getShabadosBaniPath(first.id))
+  fireEvent.click(screen.getByText('Offline banis'))
+  await within(screen.getByTestId('bani-downloads')).findByRole('option', { name: first.name })
+  expect(within(screen.getByTestId('bani-downloads')).getByRole('combobox')).toContainHTML(`value="shabados:${first.id}"`)
 })
 
 test('persists collection tabs in the url and restores them through browser history', async () => {
@@ -264,7 +285,7 @@ test('keeps catalog and secondary source cards readable in dark mode', () => {
   const rehatCard = screen.getByTestId('banis-open-rehat')
 
   expect(rehatCard).toHaveClass('read-extra-source-card')
-  expect(within(rehatCard).getByText(/Conduct, practice/i)).toHaveClass(
+  expect(within(rehatCard).getByText(/Read Rehat by chapter/i)).toHaveClass(
     'read-extra-source-card__body',
     'dark:text-dark-text/82'
   )
@@ -461,15 +482,10 @@ test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other
   renderBanis()
 
   const featuredFlow = screen.getByTestId('banis-featured-flow')
-  expect(featuredFlow).toHaveClass('read-featured-flow-card')
-  expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
-  expect(within(featuredFlow).getByText(/Begin Ardaas/i)).toHaveClass(
-    'read-featured-flow-card__cta',
-    'text-cream'
-  )
-  expect(
-    screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek)
-  ).toBeInTheDocument()
+  expect(featuredFlow).toHaveClass('read-devotion-link')
+  expect(featuredFlow).toHaveAttribute('href', '/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')
+  expect(within(featuredFlow).getByText('Ardaas + Hukamnama')).toBeInTheDocument()
+  expect(within(featuredFlow).getByText(READ_PAGE_COPY.en.featuredFlowBody)).toBeInTheDocument()
 
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
   await waitFor(() => expect(screen.getByText('Other')).toBeInTheDocument())
@@ -1012,6 +1028,7 @@ test('localizes Read controls while English searches always include the matching
   expect(screen.getByRole('heading', { level: 1, name: 'ਪੜ੍ਹੋ' })).toBeInTheDocument()
   expect(screen.getByRole('tab', { name: 'ਬਾਣੀਆਂ' })).toHaveAttribute('aria-selected', 'true')
   expect(screen.getByRole('tab', { name: 'ਸਰੋਤ' })).toBeInTheDocument()
+  fireEvent.focus(screen.getByRole('searchbox'))
   expect(screen.getByText('ਆਪਣੇ ਆਪ ਪਛਾਣੋ')).toBeInTheDocument()
 
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'preferenceprobe' } })
@@ -1032,12 +1049,12 @@ test('localizes Read controls while English searches always include the matching
 test('shows a provenance-honest visible fallback when Read artwork fails', () => {
   renderBanis()
 
-  fireEvent.error(screen.getByRole('img', { name: /gold-domed shrine beside a sarovar/i }))
+  fireEvent.error(screen.getByRole('img', { name: /Painted gathering beneath a flowering border/i }))
 
   const fallback = screen.getByTestId('read-artwork-fallback')
   expect(fallback).toHaveAttribute(
     'aria-label',
-    'Painted view of a gold-domed shrine beside a sarovar and surrounding buildings.'
+    'Painted gathering beneath a flowering border, with seated and standing figures.'
   )
   expect(within(fallback).getByText('Artwork unavailable')).toBeInTheDocument()
 })
@@ -1199,6 +1216,7 @@ test('rapid scope selection and typing retain the selected scope across browser-
   }])
   window.history.replaceState(null, '', '/banis?collection=stories')
   render(<BrowserRouter><Banis /><LocationSpy /></BrowserRouter>)
+  fireEvent.focus(screen.getByRole('searchbox'))
   const scope = within(screen.getByRole('group', { name: 'Result type' })).getByRole('button', { name: 'Stories', exact: true })
   const input = screen.getByRole('searchbox')
   // Typing is an urgent update while the scope URL change is a Router transition.

@@ -283,11 +283,11 @@ export default function PanthPrakashLibraryHome() {
           <h2 id="epub-edition-note-title">{copy.editionTitle}</h2>
         </div>
         <p>{copy.editionBody}</p>
-        {work.editionNote ? <details className="epub-edition-details">
+        {work.editionNote || work.sourceQualityNote ? <details className="epub-edition-details">
           <summary>{copy.editionDetails}</summary>
-          <p lang="en">{work.editionNote}</p>
+          {work.editionNote ? <p lang="en">{work.editionNote}</p> : null}
+          {work.sourceQualityNote ? <p lang="en" className="epub-source-quality">{work.sourceQualityNote}</p> : null}
         </details> : null}
-        {work.sourceQualityNote ? <p lang="en" className="epub-source-quality">{work.sourceQualityNote}</p> : null}
         {work.historicalContext ? <aside className="epub-historical-context" aria-labelledby="epub-historical-context-title">
           <h3 id="epub-historical-context-title">{copy.historicalContext}</h3>
           <p lang="en">{work.historicalContext}</p>

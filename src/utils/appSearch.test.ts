@@ -4,6 +4,7 @@ import * as libraryRepository from '../data/libraryRepository'
 import { getBaniDiscovery } from '../content/baniDiscovery'
 import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
 import { READ_BANIDB_CATALOG_IDS } from '../data/banis'
+import { SHABADOS_BANIS, getShabadosBaniPath } from '../data/shabadosBanis'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import {
   getAngTargets,
@@ -129,6 +130,25 @@ test.each([
 ] as const)('keeps the displayed script name %s specific to exact reading %s', (query, expectedId) => {
   const ids = getAppSearchMatches(query).map(match => Number(new URLSearchParams(match.path.split('?')[1]).get('baniDbId')))
   expect(ids).toEqual([expectedId])
+})
+
+test('finds each additional reading by its exact English and Gurmukhi title without inventing BaniDB IDs', () => {
+  for (const bani of SHABADOS_BANIS) {
+    for (const query of [bani.name, bani.gurmukhi]) {
+      const matches = getAppSearchMatches(query).filter(match => new URLSearchParams(match.path.split('?')[1]).get('shabadosBani') === bani.id)
+      expect(matches).toHaveLength(1)
+      expect(matches[0]).toMatchObject({ label: bani.name, path: getShabadosBaniPath(bani.id), kind: 'read-route' })
+      expect(new URLSearchParams(matches[0].path.split('?')[1]).has('baniDbId')).toBe(false)
+    }
+  }
+})
+
+test('filters additional readings by their actual source route', () => {
+  for (const bani of SHABADOS_BANIS) {
+    const source = new URLSearchParams(getShabadosBaniPath(bani.id).split('?')[1]).get('source')
+    const unrelatedSource = source === 'D' ? 'G' : 'D'
+    expect(getAppSearchMatches(bani.name, unrelatedSource).some(match => new URLSearchParams(match.path.split('?')[1]).get('shabadosBani') === bani.id)).toBe(false)
+  }
 })
 
 test('uses the selected adjustable reading length without creating duplicate routes', () => {

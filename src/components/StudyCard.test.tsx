@@ -460,3 +460,22 @@ test('keeps later BaniDB headers in their source sequence instead of hoisting th
   expect(orderedLines.map(line => line.dataset.lineKind)).toEqual(['header', 'verse', 'header', 'verse'])
   expect(orderedLines[2]).toHaveAttribute('data-header-level', '2')
 })
+
+
+test('verse actions use one tab stop and arrow keys retain access to every line', () => {
+  render(<StudyCard entry={introOnlyEntry} presentation="read" />)
+  const actions = screen.getAllByRole('button', { name: /Open verse actions for line/ })
+  expect(actions).toHaveLength(2)
+  expect(actions.map(button => button.tabIndex)).toEqual([0, -1])
+  act(() => actions[0].focus())
+  fireEvent.keyDown(actions[0], { key: 'ArrowDown' })
+  expect(actions[1]).toHaveFocus()
+  expect(actions.map(button => button.tabIndex)).toEqual([-1, 0])
+  fireEvent.keyDown(actions[1], { key: 'Home' })
+  expect(actions[0]).toHaveFocus()
+  fireEvent.keyDown(actions[0], { key: 'End' })
+  expect(actions[1]).toHaveFocus()
+  fireEvent.click(actions[1])
+  expect(screen.getByRole('dialog', { name: 'Verse actions' })).toBeInTheDocument()
+  expect(screen.getByRole('dialog')).toHaveTextContent(introOnlyEntry.lines![1].gurmukhi)
+})

@@ -968,7 +968,7 @@
   text-underline-offset: 0.2em;
 }
 
-.epub-reader-panel {
+.epub-reader-panel.epub-reader-panel {
   --epub-page: 248 246 240;
   --epub-page-raised: 255 253 248;
   --epub-ink: 35 33 29;
@@ -991,7 +991,7 @@
   color: rgb(var(--epub-ink));
 }
 
-.epub-reader-panel--sepia {
+.epub-reader-panel.epub-reader-panel--sepia {
   --epub-page: 244 234 211;
   --epub-page-raised: 250 242 223;
   --epub-ink: 58 43 27;
@@ -1000,7 +1000,7 @@
   --epub-accent: 139 77 30;
 }
 
-.epub-reader-panel--night {
+.epub-reader-panel.epub-reader-panel--night {
   --epub-page: 24 25 24;
   --epub-page-raised: 32 33 31;
   --epub-ink: 229 224 211;
@@ -1304,7 +1304,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .epub-reader-panel {
+  .epub-reader-panel.epub-reader-panel {
     top: max(0.75rem, var(--safe-area-top));
     right: max(0.75rem, var(--safe-area-right));
     bottom: max(0.75rem, var(--fixed-ui-safe-bottom));
@@ -1390,3 +1390,12 @@
 @media (min-width: 1024px) {
   .epub-edition-details { grid-column: 2; }
 }
+
+/* Reader palettes own their complete surfaces, including native controls. */
+.epub-reader-panel, .epub-reader-shell { color-scheme: light; }
+.epub-reader-panel--night, .epub-reader-shell[data-palette='night'] { color-scheme: dark; }
+.epub-reader-chapter-nav small, .epub-reader-toc small, .epub-setting-group legend,
+.epub-font-slider output, .epub-reset-settings, .epub-reader-edition-link a { font-size: .8125rem; }
+.epub-reader-chapter-nav strong, .epub-reader-toc a strong { font-size: .9375rem; line-height: 1.5; }
+
+.epub-segmented-control[data-count="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }

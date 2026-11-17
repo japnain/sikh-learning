@@ -99,9 +99,8 @@ describe('Library saved shelf', () => {
     const word = { word: 'ਨਾਮੁ', transliteration: 'naam', meaning_en: 'Name', meaning_pa: '', meaning_hi: '', scripture: 'SGGS', sourceId: 'G', savedAt: '2026-01-01T00:00:00Z' }
     useVocabStore.setState({ vocab: [word, { ...word, kind: 'phrase', word: 'ਸਤਿ ਨਾਮੁ', transliteration: 'sat naam', meaning_en: 'True name' }] })
     render(<MemoryRouter><Library /></MemoryRouter>)
-    const snapshot = screen.getByTestId('library-snapshot')
-    expect(within(snapshot).getByText('Words').parentElement).toHaveTextContent('1Words')
-    expect(within(snapshot).getByText('Phrases').parentElement).toHaveTextContent('1Phrases')
+    expect(screen.getByRole('button', { name: 'Words' })).toHaveTextContent('Words 1')
+    expect(screen.getByRole('button', { name: 'Phrases' })).toHaveTextContent('Phrases 1')
     expect(screen.getByTestId('library-words')).toBeInTheDocument()
     const phraseLink = within(screen.getByTestId('library-phrases')).getByRole('link')
     const destination = new URL(phraseLink.getAttribute('href')!, 'https://naamras.test')
@@ -121,8 +120,8 @@ describe('Library saved shelf', () => {
   test('Rehat resume uses its saved chapter and can be hidden and restored in Continue reading', () => {
     useProgressStore.getState().updateSession({ scriptureId: 'rehat-1-2', resumePath: '/banis/rehat/1/chapters/2', readerLocator: { href: '/banis/rehat/1/chapters/2', type: 'text/html', title: 'Rehat · Daily practice', locations: { progression: 0.2, totalProgression: 0.2, position: 2 } }, updatedAt: '2026-01-01T00:00:00Z' })
     render(<MemoryRouter><Library /></MemoryRouter>)
-    expect(screen.getByTestId('library-resume-reading')).toHaveTextContent('Rehat · Daily practice')
-    expect(screen.getByTestId('library-resume-reading')).not.toHaveTextContent('Page 1')
+    expect(within(screen.getByTestId('library-in-progress')).getByRole('link')).toHaveTextContent('Rehat · Daily practice')
+    expect(within(screen.getByTestId('library-in-progress')).getByRole('link')).not.toHaveTextContent('Page 1')
     const reading = screen.getByTestId('library-in-progress')
     fireEvent.click(within(reading).getByRole('button', { name: 'Hide Rehat · Daily practice from Continue reading' }))
     expect(within(reading).queryByRole('link')).not.toBeInTheDocument()
@@ -201,7 +200,7 @@ describe('Library saved shelf', () => {
     })
 
     renderLibraryRoutes()
-    fireEvent.click(screen.getByTestId('library-resume-reading'))
+    fireEvent.click(within(screen.getByTestId('library-in-progress')).getByRole('link'))
 
     await waitFor(() => {
       expect(screen.getByTestId('location')).toHaveTextContent('/study?source=G&ang=1')
@@ -212,7 +211,7 @@ describe('Library saved shelf', () => {
     )
   })
 
-  test('bookmark feedback highlights the bookmark metric', () => {
+  test('bookmark feedback announces the save without a duplicate metric', () => {
     useSavedFeedbackStore.setState({
       lastSaved: {
         kind: 'bookmark',
@@ -224,8 +223,7 @@ describe('Library saved shelf', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
 
     expect(screen.getByRole('status')).toHaveTextContent(/Bookmarked passage added to Saved/i)
-    const bookmarkMetric = within(screen.getByTestId('library-snapshot')).getByText('Bookmarks').closest('.section-shell-quiet')
-    expect(bookmarkMetric).toHaveClass('saved-feedback-highlight')
+    expect(screen.queryByTestId('library-resume-reading')).not.toBeInTheDocument()
   })
 
   test('sorts saved readings newest-first and filters title or excerpt text', () => {

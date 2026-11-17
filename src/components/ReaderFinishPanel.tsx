@@ -143,7 +143,7 @@ export default function ReaderFinishPanel({ readingPath, onReadAgain, onBack }: 
   }
 
   return (
-    <section className="reader-finish" aria-label={copy.title} data-reader-interactive data-testid="reader-finish-panel">
+    <section id="reading-end" tabIndex={-1} className="reader-finish" aria-label={copy.title} data-reader-interactive data-testid="reader-finish-panel">
       <span className="reader-finish__rule" aria-hidden="true" />
       <h2>{copy.title}</h2>
       {eligible ? (

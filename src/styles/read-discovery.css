@@ -6,19 +6,6 @@
   overflow: hidden;
 }
 
-.read-room-hero__art {
-  position: relative;
-  align-self: stretch;
-  height: 100%;
-  min-height: 0;
-  aspect-ratio: auto;
-}
-
-.read-room-hero__art img {
-  position: absolute;
-  inset: 0;
-}
-
 .read-room-shell .read-quick-find-card__heading > button {
   font-size: .8125rem !important;
   white-space: normal;
@@ -95,15 +82,6 @@
   background: rgb(var(--color-text)) !important;
   color: rgb(var(--color-bg)) !important;
   border-color: rgb(var(--color-text)) !important;
-}
-.read-room-shell .read-featured-flow-card__cta {
-  background: rgb(var(--color-text)) !important;
-  color: rgb(var(--color-bg)) !important;
-  border: 1px solid transparent;
-  border-radius: .5rem;
-  font-size: .875rem !important;
-  letter-spacing: 0;
-  text-transform: none;
 }
 .read-room-shell .read-search-summary .read-metadata {
   background: transparent !important;
@@ -203,3 +181,26 @@
   outline: 2px solid rgb(var(--color-accent-strong));
   outline-offset: 3px;
 }
+
+/* A compact entrance; collection artwork stays above its reading list. */
+.read-room-shell .read-room-hero__copy { min-height: 0; padding: 0; background: none; text-align: left; border-radius: 0; }
+.read-room-shell .read-room-hero .read-room-hero__copy h1 { font-size: clamp(2.25rem, 5vw, 3rem) !important; color: rgb(var(--color-text)) !important; line-height: 1.1 !important; }
+.read-room-shell .read-room-hero__copy .eyebrow { color: rgb(var(--color-text-muted)) !important; }
+.read-room-shell .read-room-hero .read-room-hero__body { margin-inline: 0; color: rgb(var(--color-text-muted)) !important; max-width: 50ch; }
+.read-room-shell .read-collection-intro { min-height: 11rem; aspect-ratio: auto; }
+.read-room-shell .read-collection-intro > div { padding: 1.5rem 1rem 1rem; }
+.read-room-shell .read-collection-intro h2 { font-size: 1.65rem; line-height: 1.2; }
+.read-devotion-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-top: 1px solid rgb(var(--color-border) / .4); }
+.read-devotion-link > span { flex: 1; min-width: 0; }
+.read-devotion-link strong { display: block; font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2; }
+.read-devotion-link span span { display: block; margin-top: .4rem; font-size: .875rem; line-height: 1.6; color: rgb(var(--color-text-muted)); }
+.read-downloads-link { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
+.read-room-shell .read-search-clear { background: transparent !important; border: 1px solid rgb(var(--color-border) / .5); color: rgb(var(--color-text)) !important; font-size: .875rem; }
+@container read-discovery (min-width: 40rem) {
+  .read-room-shell .read-collection-intro { min-height: 18rem; }
+  .read-devotion-link { grid-column: 2; }
+}
+
+.read-search-history > summary { min-height: 44px; align-content: center; cursor: pointer; font-size: .875rem; color: rgb(var(--color-text-muted)); }
+.read-search-history button { min-height: 44px; }
+.read-search-history > summary:focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 3px; }

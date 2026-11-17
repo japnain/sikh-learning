@@ -53,7 +53,7 @@ afterEach(() => {
   sessionStorage.clear()
 })
 
-function beginOnboarding() { const action = screen.queryByTestId('onboarding-begin-action'); if (action) fireEvent.click(action) }
+function beginOnboarding() { const action = screen.queryByTestId('onboarding-personalize-action'); if (action) fireEvent.click(action) }
 function advanceOnboardingToMeanings() {
   beginOnboarding()
   fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
@@ -624,4 +624,15 @@ test('finds a lazy-rendered hash target on a direct book deep link', async () =>
     expect(scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })
   }, APP_TEST_WAIT)
   expect(contents).toHaveAttribute('id', 'contents')
+})
+
+
+test('Begin reading keeps the requested reading and skips optional personalization', async () => {
+  window.history.replaceState({}, '', JAPJI_READING_PATH)
+  render(<App />)
+  fireEvent.click(screen.getByTestId('onboarding-begin-action'))
+  expect(await screen.findByTestId('page-study', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(screen.queryByTestId('onboarding-script-step')).not.toBeInTheDocument()
+  expect(window.location.pathname + window.location.search).toBe(JAPJI_READING_PATH)
+  expect(useOnboardingStore.getState().hasCompletedOnboarding).toBe(true)
 })

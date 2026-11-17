@@ -1,3 +1,4 @@
+import { useResolvedEpubPalette } from '../store/epubReader'
 import '../styles/catalog.css'
 import '../styles/rehat-reader.css'
 import RehatReaderHeader from '../components/RehatReaderHeader'
@@ -265,7 +266,7 @@ export default function Rehat() {
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
   const measure = useEpubReaderStore(state => state.measure)
-  const palette = useEpubReaderStore(state => state.palette)
+  const palette = useResolvedEpubPalette()
   const selectedRehatId = parseNumericParam(rehatIdParam)
   const selectedChapterId = parseNumericParam(chapterIdParam)
   const rehats = useScriptureCacheStore(state => state.rehatList)

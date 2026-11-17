@@ -1,3 +1,4 @@
+import { useResolvedEpubPalette, EPUB_APP_PALETTE_LABEL } from '../../store/epubReader'
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import ModalSheet from '../../components/ModalSheet'
@@ -39,11 +40,11 @@ type StoryLoadState =
 
 const LINE_HEIGHTS: Record<EpubReaderLineHeight, string> = { compact: '1.6', comfortable: '1.8', spacious: '2' }
 const MEASURES: Record<EpubReaderMeasure, string> = { narrow: '32rem', standard: '38rem', wide: '44rem' }
-const PANEL_PALETTES: Record<EpubReaderPalette, string> = { paper: 'story-reader-panel--paper', sepia: 'story-reader-panel--sepia', night: 'story-reader-panel--night' }
+const PANEL_PALETTES: Record<Exclude<EpubReaderPalette, 'app'>, string> = { paper: 'story-reader-panel--paper', sepia: 'story-reader-panel--sepia', night: 'story-reader-panel--night' }
 const APPEARANCE_COPY = {
-  en: { description: 'Text size, spacing, width and page color are shared with Books and Rehat. Your app theme stays separate.', pageColor: 'Page color', paper: 'Paper', sepia: 'Sepia', night: 'Night', reset: 'Reset reading settings', compact: 'Compact', comfortable: 'Comfort', spacious: 'Spacious', preview: 'Text preview' },
-  pa: { description: 'ਲਿਖਤ ਦਾ ਆਕਾਰ, ਫ਼ਾਸਲਾ, ਚੌੜਾਈ ਅਤੇ ਪੰਨੇ ਦਾ ਰੰਗ ਕਿਤਾਬਾਂ ਅਤੇ ਰਹਿਤ ਨਾਲ ਸਾਂਝੇ ਹਨ। ਐਪ ਦਾ ਥੀਮ ਵੱਖਰਾ ਰਹਿੰਦਾ ਹੈ।', pageColor: 'ਪੰਨੇ ਦਾ ਰੰਗ', paper: 'ਕਾਗਜ਼', sepia: 'ਸੇਪੀਆ', night: 'ਰਾਤ', reset: 'ਪਾਠ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਮੁੜ ਸੈੱਟ ਕਰੋ', compact: 'ਨੇੜੇ', comfortable: 'ਸਧਾਰਨ', spacious: 'ਖੁੱਲ੍ਹਾ', preview: 'ਲਿਖਤ ਦੀ ਝਲਕ' },
-  hi: { description: 'अक्षरों का आकार, अंतर, चौड़ाई और पन्ने का रंग किताबों और रहित के साथ साझा हैं। ऐप की थीम अलग रहती है।', pageColor: 'पन्ने का रंग', paper: 'कागज़', sepia: 'सेपिया', night: 'रात', reset: 'पाठ की सेटिंग रीसेट करें', compact: 'पास', comfortable: 'सामान्य', spacious: 'खुला', preview: 'पाठ का पूर्वावलोकन' },
+  en: { description: 'Text size, spacing, width and page color are shared with Books and Rehat. Choose Follow app to match its appearance.', pageColor: 'Page color', paper: 'Paper', sepia: 'Sepia', night: 'Night', reset: 'Reset reading settings', compact: 'Compact', comfortable: 'Comfort', spacious: 'Spacious', preview: 'Text preview' },
+  pa: { description: 'ਲਿਖਤ ਦਾ ਆਕਾਰ, ਫ਼ਾਸਲਾ, ਚੌੜਾਈ ਅਤੇ ਪੰਨੇ ਦਾ ਰੰਗ ਕਿਤਾਬਾਂ ਅਤੇ ਰਹਿਤ ਨਾਲ ਸਾਂਝੇ ਹਨ। ਐਪ ਦੀ ਦਿੱਖ ਵਰਤਣ ਲਈ ਐਪ ਅਨੁਸਾਰ ਚੁਣੋ।', pageColor: 'ਪੰਨੇ ਦਾ ਰੰਗ', paper: 'ਕਾਗਜ਼', sepia: 'ਸੇਪੀਆ', night: 'ਰਾਤ', reset: 'ਪਾਠ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਮੁੜ ਸੈੱਟ ਕਰੋ', compact: 'ਨੇੜੇ', comfortable: 'ਸਧਾਰਨ', spacious: 'ਖੁੱਲ੍ਹਾ', preview: 'ਲਿਖਤ ਦੀ ਝਲਕ' },
+  hi: { description: 'अक्षरों का आकार, अंतर, चौड़ाई और पन्ने का रंग किताबों और रहित के साथ साझा हैं। ऐप की दिखावट के लिए ऐप के अनुसार चुनें।', pageColor: 'पन्ने का रंग', paper: 'कागज़', sepia: 'सेपिया', night: 'रात', reset: 'पाठ की सेटिंग रीसेट करें', compact: 'पास', comfortable: 'सामान्य', spacious: 'खुला', preview: 'पाठ का पूर्वावलोकन' },
 }
 type AppearanceAnchor = { paragraphId: string; offset: number } | { scrollTop: number }
 type StoryFindRange = { start: number; end: number }
@@ -190,7 +191,8 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   const fontScale = useEpubReaderStore(state => state.fontScale)
   const lineHeight = useEpubReaderStore(state => state.lineHeight)
   const measure = useEpubReaderStore(state => state.measure)
-  const palette = useEpubReaderStore(state => state.palette)
+  const palettePreference = useEpubReaderStore(state => state.palette)
+  const palette = useResolvedEpubPalette()
   const setFontScale = useEpubReaderStore(state => state.setFontScale)
   const setLineHeight = useEpubReaderStore(state => state.setLineHeight)
   const setMeasure = useEpubReaderStore(state => state.setMeasure)
@@ -680,7 +682,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
                 </div>
                 <StoryChoiceGroup title={copy.lineSpacing} options={[{ value: 'compact', label: appearanceCopy.compact }, { value: 'comfortable', label: appearanceCopy.comfortable }, { value: 'spacious', label: appearanceCopy.spacious }]} value={lineHeight} onChange={value => changeAppearance(() => setLineHeight(value))} />
                 <StoryChoiceGroup title={copy.width} options={[{ value: 'narrow', label: copy.narrow }, { value: 'standard', label: copy.standard }, { value: 'wide', label: copy.wide }]} value={measure} onChange={value => changeAppearance(() => setMeasure(value))} />
-                <StoryChoiceGroup<EpubReaderPalette> title={appearanceCopy.pageColor} options={[{ value: 'paper', label: appearanceCopy.paper }, { value: 'sepia', label: appearanceCopy.sepia }, { value: 'night', label: appearanceCopy.night }]} value={palette} onChange={value => changeAppearance(() => setPalette(value))} />
+                <StoryChoiceGroup<EpubReaderPalette> title={appearanceCopy.pageColor} options={[{ value: 'app', label: EPUB_APP_PALETTE_LABEL[locale] }, { value: 'paper', label: appearanceCopy.paper }, { value: 'sepia', label: appearanceCopy.sepia }, { value: 'night', label: appearanceCopy.night }]} value={palettePreference} onChange={value => changeAppearance(() => setPalette(value))} />
                 <button type="button" className="story-text-button" onClick={() => changeAppearance(resetPreferences)}>{appearanceCopy.reset}</button>
               </>
             ) : panel === 'find' ? (

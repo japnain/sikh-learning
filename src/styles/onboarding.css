@@ -115,3 +115,9 @@
   .onboarding-step { animation: none; }
   .onboarding-root *, .onboarding-root *::after { transition: none; }
 }
+
+.welcome-languages { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+.welcome-languages button, .onboarding-personalize { min-height: 44px; padding: .6rem .8rem; border: 1px solid #8d754d; border-radius: .5rem; color: #f5e8cf; font-size: .875rem; }
+.welcome-languages button[aria-pressed='true'] { background: #f5e8cf; color: #211d17; }
+.onboarding-personalize { width: 100%; margin-top: .6rem; }
+.onboarding-brand > span { font-family: var(--font-display); font-size: 1.6rem; font-style: italic; }

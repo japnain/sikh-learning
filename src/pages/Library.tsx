@@ -14,6 +14,7 @@ import { useStoryStore } from '../store/stories'
 import SavedStories from '../components/SavedStories'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
+import { getStudiedEntryPath } from '../utils/studiedEntryPath'
 import {
   buildLibraryReaderNavigationState,
   buildReaderOriginNavigationState,
@@ -21,7 +22,7 @@ import {
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
-import { formatSourceReaderReference, SOURCE_READER_META } from '../utils/sourceReaderMeta'
+import { formatSourceReaderReference } from '../utils/sourceReaderMeta'
 import type { ScriptMode, UiLocale, VocabEntry } from '../types'
 import type { SavedMeaning } from '../utils/savedShelf'
 import { useReadingVisibilityStore } from '../store/readingVisibility'
@@ -35,13 +36,6 @@ import {
   IconClose,
   IconHeartFilled,
 } from '../components/icons'
-
-const SOURCE_FULL_NAME: Record<string, string> = {
-  G: SOURCE_READER_META.G.name,
-  D: SOURCE_READER_META.D.name,
-  B: SOURCE_READER_META.B.name,
-  A: SOURCE_READER_META.A.name,
-}
 
 type SavedFilter = 'all' | 'favorites' | 'bookmarks' | 'stories' | 'words' | 'phrases'
 type PendingRemoval =
@@ -147,19 +141,7 @@ function bookmarkReference(bookmark: Bookmark, bookLabel: string, locale: UiLoca
   })
 }
 
-function formatSessionReference(scriptureId: string, locale: UiLocale): string {
-  const panthEpisode = scriptureId.match(/^panth-prakash-english-episode-(\d{1,3})$/)
-  if (panthEpisode) return `Panth Prakash · Episode ${Number(panthEpisode[1])}`
 
-  const [source, ang] = scriptureId.split('-')
-  if (!source || !ang || !SOURCE_FULL_NAME[source]) return scriptureId.startsWith('rehat') ? 'Rehat' : scriptureId
-  return formatSourceReaderReference({
-    source,
-    value: ang,
-    locale,
-    sourceLabel: SOURCE_FULL_NAME[source],
-  })
-}
 
 function SavedMeaningPreview({ meaning, scriptMode }: { meaning: SavedMeaning | null; scriptMode: ScriptMode }) {
   if (!meaning) return null
@@ -206,8 +188,6 @@ export default function Library() {
   const filterLabels = { ...messages.filters, stories: shelfCopy.stories, words: shelfCopy.words, phrases: shelfCopy.phrases }
   const currentPlace = currentSession ? readingPlaces.find(item => item.id === getReadingPlaceKey(currentSession.resumePath)) : null
   const resumePath = currentPlace?.path ?? (currentSession?.resumePath.startsWith('/library/') ? null : buildSessionResumePath(currentSession))
-  const resumeReference = currentPlace ? `${currentPlace.title} · ${currentPlace.detail}`
-    : currentSession?.readerLocator?.title || (currentSession ? formatSessionReference(currentSession.scriptureId, locale) : null)
   const allRecentStudy = [...studied].reverse().map(item => getEntryById(item.id)).filter(Boolean)
   const recentStudy = showAllHistory ? allRecentStudy : allRecentStudy.slice(0, 3)
   const normalizedSavedQuery = normalizeSavedSearch(savedQuery)
@@ -262,9 +242,11 @@ export default function Library() {
     </article>
   }
 
+  const preview = <T,>(items: T[]) => isBrowsing ? items.slice(0, 6) : items
+  const moreInCategory = (kind: SavedFilter, count: number) => isBrowsing && count > 6 ? <button type="button" className="min-h-11 mt-3 text-sm underline interactive-focus" onClick={() => { setSavedFilter(kind); setBookmarksExpanded(true); document.querySelector<HTMLInputElement>('.library-search input')?.focus() }}>{locale === 'pa' ? 'ਸਾਰੇ ਵੇਖੋ' : locale === 'hi' ? 'सभी देखें' : 'View all'} · {filterLabels[kind]} ({count})</button> : null
   const vocabSection = (items: VocabEntry[], kind: 'words' | 'phrases') => items.length ? <section aria-labelledby={`library-${kind}-title`} data-testid={`library-${kind}`}>
     <div className="library-section-heading"><h2 id={`library-${kind}-title`} className="font-display text-2xl">{shelfCopy[kind]}</h2><span className="chip-pill">{items.length}</span></div>
-    <div className="library-saved-grid">{items.map(entry => {
+    <div className="library-saved-grid">{preview(items).map(entry => {
       const meaning = savedVocabMeaning(entry, meaningLanguage)
       return <Link key={`${entry.kind ?? 'word'}:${entry.word}`} to={savedReviewPath(entry)} className="section-shell interactive-focus interactive-card-link p-4">
         <h3 lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl leading-relaxed`}>{renderScriptText(entry.word, scriptMode)}</h3>
@@ -272,7 +254,7 @@ export default function Library() {
         <SavedMeaningPreview meaning={meaning} scriptMode={scriptMode} />
         <p className="mt-3 font-sans text-xs text-gold-dark dark:text-gold-light">{shelfCopy.review} · {entry.scripture}</p>
       </Link>
-    })}</div>
+    })}</div>{moreInCategory(kind, items.length)}
   </section> : null
 
   return <div className="page-shell animate-fade-in" data-testid="page-library" data-page="library" data-ai-surface="library" data-ai-state="ready">
@@ -285,17 +267,23 @@ export default function Library() {
       <figure className="library-art-band" aria-hidden="true"><img src={savedMuralSrc} alt="" width={1920} height={1080} decoding="async" /></figure>
     </div>
     <div className="library-adaptive-layout">
-      <section className="library-shelf-rail" aria-label={messages.overview} data-testid="library-snapshot">
-        {totalSaved > 0 || lastSaved ? <div className="library-shelf-metrics">{(['bookmarks', 'favorites', 'stories', 'words', 'phrases'] as const).map(kind => <div key={kind} className={`section-shell-quiet px-3 py-3 ${lastSaved?.kind === (kind === 'bookmarks' ? 'bookmark' : kind === 'favorites' ? 'favorite' : kind === 'words' || kind === 'phrases' ? 'review' : '') ? 'saved-feedback-highlight' : ''}`}>
-          <p className="font-sans text-2xl text-ink dark:text-dark-text">{counts[kind]}</p><p className="library-shelf-metric-label">{filterLabels[kind]}</p>
-        </div>)}</div> : null}
+      {!hasSavedShelfContent || savedShelfNotice ? <section className="library-shelf-rail" aria-label={messages.overview} data-testid="library-snapshot">
         {savedShelfNotice ? <p role="status" className="mt-3 font-sans text-xs text-gold-dark dark:text-gold-light">{savedShelfNotice}</p> : null}
         {!hasSavedShelfContent ? <div className="library-shelf-empty">
           <h2 className="font-display text-2xl">{messages.startShelf}</h2><p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">{messages.emptyBody}</p>
           <div className="mt-4 flex flex-wrap gap-2"><Link to="/banis" className="interactive-focus interactive-pill-link rounded-lg bg-[rgb(var(--color-text))] px-4 py-2 font-sans text-sm font-semibold text-[rgb(var(--color-bg))]">{messages.browseRead}</Link><Link to="/vocab" className="interactive-focus interactive-pill-link rounded-lg border border-sand/18 px-4 py-2 font-sans text-sm font-semibold">{libraryCopy.reviewBank}</Link></div>
         </div> : null}
-      </section>
+      </section> : null}
       <div className="library-shelf-content">
+        {isBrowsing ? <>
+          {readingPlaces.length > 0 ? <section aria-labelledby="library-in-progress-title" data-testid="library-in-progress">
+            <h2 id="library-in-progress-title" className="font-display text-2xl mb-3">{messages.inProgress}</h2>
+            <div className="space-y-2">{inProgress.map(item => <div key={item.id} className="section-shell relative"><Link to={item.path} state={item.kind === 'story' ? buildLibraryReaderNavigationState('/saved') : buildReaderOriginNavigationState(item.path, '/saved')} className="w-full interactive-focus interactive-card-link pl-4 pr-14 py-3 text-left"><h3 className="font-sans text-sm">{item.title}</h3><p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">{item.detail}</p></Link><button type="button" className="absolute right-1 top-1 min-h-11 min-w-11 flex items-center justify-center text-ink/64 dark:text-dark-text/64" aria-label={shelfCopy.hide(item.title)} onClick={() => { hide(item.id, item.updatedAt); setLastHidden({ id: item.id, title: item.title }) }}><IconClose size={14} /></button></div>)}</div>
+            {lastHidden ? <div role="status" className="mt-3 font-sans text-xs">{shelfCopy.hidden(lastHidden.title)} <button type="button" className="min-h-11 px-3 underline" onClick={() => { restore(lastHidden.id); setLastHidden(null) }}>{messages.undo}</button></div> : null}
+            {visiblePlaces.length > 4 ? <button type="button" className="mt-3 min-h-11 text-sm underline interactive-focus" aria-expanded={showAllPlaces} onClick={() => setShowAllPlaces(value => !value)}>{showAllPlaces ? messages.fewerReadingPlaces : messages.allReadingPlaces}</button> : null}
+            {visiblePlaces.length < readingPlaces.length ? <button type="button" className="mt-3 min-h-11 px-2 text-sm underline interactive-focus" onClick={() => { restoreAll(); setLastHidden(null) }}>{shelfCopy.restorePlaces}</button> : null}
+          </section> : null}
+        </> : null}
         {totalSaved > 0 || savedQuery || savedFilter !== 'all' ? <section className="library-search" aria-label={messages.searchLabel}>
           <label className="block"><span className="eyebrow">{messages.searchLabel}</span><input type="search" value={savedQuery} onChange={event => { setSavedQuery(event.target.value); setBookmarksExpanded(true) }} placeholder={messages.searchPlaceholder} aria-describedby="library-search-hint" className="mt-2 min-h-11 w-full rounded-xl border border-sand/20 bg-parchment-card/80 px-4 font-sans text-sm text-ink dark:border-dark-text/12 dark:bg-dark-card/80 dark:text-dark-text" /></label>
           <p id="library-search-hint" className="mt-2 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/66">{shelfCopy.searchHint}</p>
@@ -305,28 +293,22 @@ export default function Library() {
         {savedActionNotice ? <div role="status" aria-live="polite" className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gold/16 bg-gold/10 px-3 py-2 font-sans text-xs"><span>{savedActionNotice}</span>{pendingRemoval ? <button type="button" onClick={handleUndoRemoval} className="min-h-11 px-3 font-semibold text-saffron dark:text-saffron-light">{messages.undo}</button> : null}</div> : null}
         {resultCount === 0 && (totalSaved > 0 || savedQuery || savedFilter !== 'all') ? <div role="status" className="section-shell-quiet p-4 font-sans text-sm"><p>{messages.noMatches}</p><button type="button" className="min-h-11 underline" onClick={() => { setSavedQuery(''); setSavedFilter('all'); setBookmarksExpanded(true) }}>{messages.clearSearch}</button></div> : null}
 
-        {visibleFavorites.length > 0 ? <section aria-labelledby="library-favorites-title" data-testid="library-favorites"><div className="library-section-heading"><h2 id="library-favorites-title" className="font-display text-2xl flex items-center gap-2"><IconHeartFilled size={16} className="text-saffron" />{libraryCopy.favorites}</h2><span className="chip-pill">{visibleFavorites.length}</span></div><div className="library-saved-grid">{visibleFavorites.map(item => passageCard(item, 'favorite'))}</div></section> : null}
+        {visibleFavorites.length > 0 ? <section aria-labelledby="library-favorites-title" data-testid="library-favorites"><div className="library-section-heading"><h2 id="library-favorites-title" className="font-display text-2xl flex items-center gap-2"><IconHeartFilled size={16} className="text-saffron" />{libraryCopy.favorites}</h2><span className="chip-pill">{visibleFavorites.length}</span></div><div className="library-saved-grid">{preview(visibleFavorites).map(item => passageCard(item, 'favorite'))}</div>{moreInCategory('favorites', visibleFavorites.length)}</section> : null}
         {visibleBookmarks.length > 0 ? <section aria-labelledby="library-bookmarks-title" data-testid="library-bookmarks">
           <h2 id="library-bookmarks-title"><button type="button" onClick={() => setBookmarksExpanded(value => !value)} className="library-section-heading w-full min-h-11 text-left" aria-expanded={bookmarksExpanded} aria-controls="library-bookmarks-panel"><span className="font-display text-2xl flex items-center gap-2"><IconBookmarkFilled size={16} className="text-gold-dark" />{libraryCopy.bookmarks}<span className="font-sans text-xs text-ink/64 dark:text-dark-text/66">{messages.savedPassages(visibleBookmarks.length)}</span></span>{bookmarksExpanded ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</button></h2>
-          {bookmarksExpanded ? <div id="library-bookmarks-panel" className="library-saved-grid">{visibleBookmarks.map(item => passageCard(item, 'bookmark'))}</div> : null}
+          {bookmarksExpanded ? <div id="library-bookmarks-panel" className="library-saved-grid">{preview(visibleBookmarks).map(item => passageCard(item, 'bookmark'))}{moreInCategory('bookmarks', visibleBookmarks.length)}</div> : null}
         </section> : null}
-        <SavedStories stories={visibleStories} />
+        <SavedStories stories={visibleStories} limit={isBrowsing ? 6 : undefined} />
+        {moreInCategory('stories', visibleStories.length)}
         {vocabSection(visibleWords, 'words')}
         {vocabSection(visiblePhrases, 'phrases')}
 
         {isBrowsing && hasSavedShelfContent ? <>
-          <div className="library-shortcuts grid gap-3 sm:grid-cols-2" data-testid="library-shortcuts">
-            <Link to="/vocab" className={`section-shell interactive-focus interactive-card-link p-4 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`} data-testid="library-open-vocab"><p className="eyebrow">{libraryCopy.reviewBank}</p><h2 className="font-sans text-base font-semibold mt-2">{libraryCopy.reviewBankTitle}</h2><p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">{messages.reviewCounts(words.length, phrases.length)} {editorial?.library.reviewBody}</p></Link>
-            <Link to={resumePath ?? '/banis'} state={resumePath ? buildReaderOriginNavigationState(resumePath, '/saved') : undefined} className="section-shell interactive-focus interactive-card-link p-4" data-testid="library-resume-reading"><p className="eyebrow">{resumePath ? libraryCopy.resume : messages.read}</p><h2 className="font-sans text-base font-semibold mt-2">{resumePath ? libraryCopy.resumeTitle : messages.browseRead}</h2><p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">{resumePath ? resumeReference : messages.chooseReading}</p></Link>
-          </div>
-          {readingPlaces.length > 0 ? <section aria-labelledby="library-in-progress-title" data-testid="library-in-progress">
-            <h2 id="library-in-progress-title" className="font-display text-2xl mb-3">{messages.inProgress}</h2>
-            <div className="space-y-2">{inProgress.map(item => <div key={item.id} className="section-shell relative"><Link to={item.path} state={item.kind === 'story' ? buildLibraryReaderNavigationState('/saved') : buildReaderOriginNavigationState(item.path, '/saved')} className="w-full interactive-focus interactive-card-link pl-4 pr-14 py-3 text-left"><h3 className="font-sans text-sm">{item.title}</h3><p className="mt-1 font-sans text-xs text-ink/68 dark:text-dark-text/64">{item.detail}</p></Link><button type="button" className="absolute right-1 top-1 min-h-11 min-w-11 flex items-center justify-center text-ink/64 dark:text-dark-text/64" aria-label={shelfCopy.hide(item.title)} onClick={() => { hide(item.id, item.updatedAt); setLastHidden({ id: item.id, title: item.title }) }}><IconClose size={14} /></button></div>)}</div>
-            {lastHidden ? <div role="status" className="mt-3 font-sans text-xs">{shelfCopy.hidden(lastHidden.title)} <button type="button" className="min-h-11 px-3 underline" onClick={() => { restore(lastHidden.id); setLastHidden(null) }}>{messages.undo}</button></div> : null}
-            {visiblePlaces.length > 4 ? <button type="button" className="mt-3 min-h-11 text-sm underline interactive-focus" aria-expanded={showAllPlaces} onClick={() => setShowAllPlaces(value => !value)}>{showAllPlaces ? messages.fewerReadingPlaces : messages.allReadingPlaces}</button> : null}
-            {visiblePlaces.length < readingPlaces.length ? <button type="button" className="mt-3 min-h-11 px-2 text-sm underline interactive-focus" onClick={() => { restoreAll(); setLastHidden(null) }}>{shelfCopy.restorePlaces}</button> : null}
-          </section> : null}
-          {recentStudy.length > 0 ? <section aria-labelledby="library-reading-history-title" data-testid="library-reading-history"><h2 id="library-reading-history-title" className="font-display text-2xl mb-3">{shelfCopy.history}</h2><div className="space-y-2">{recentStudy.map(entry => <Link key={entry!.id} to={`/study?source=${entry!.source}&ang=${entry!.ang}`} state={buildReaderOriginNavigationState(`/study?source=${entry!.source}&ang=${entry!.ang}`, '/saved')} className="w-full section-shell-quiet interactive-focus interactive-card-link px-4 py-4 text-left"><p className="font-sans text-xs text-gold-dark dark:text-gold-light">{entry!.scripture}</p><p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed mt-2 line-clamp-2`}>{renderScriptText(entry!.gurmukhi, scriptMode)}</p></Link>)}</div>{allRecentStudy.length > 3 ? <button type="button" className="mt-3 min-h-11 text-sm underline interactive-focus" aria-expanded={showAllHistory} onClick={() => setShowAllHistory(value => !value)}>{showAllHistory ? messages.fewerReadingPlaces : shelfCopy.allHistory}</button> : null}</section> : null}
+          {words.length + phrases.length > 0 ? <div className="library-shortcuts grid gap-3 sm:grid-cols-2" data-testid="library-shortcuts">
+            {words.length + phrases.length > 0 ? <Link to="/vocab" className={`section-shell interactive-focus interactive-card-link p-4 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`} data-testid="library-open-vocab"><p className="eyebrow">{libraryCopy.reviewBank}</p><h2 className="font-sans text-base font-semibold mt-2">{libraryCopy.reviewBankTitle}</h2><p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">{messages.reviewCounts(words.length, phrases.length)} {editorial?.library.reviewBody}</p></Link> : null}
+
+          </div> : null}
+          {recentStudy.length > 0 ? <section aria-labelledby="library-reading-history-title" data-testid="library-reading-history"><h2 id="library-reading-history-title" className="font-display text-2xl mb-3">{shelfCopy.history}</h2><div className="space-y-2">{recentStudy.map(entry => <Link key={entry!.id} to={getStudiedEntryPath(entry!)} state={buildReaderOriginNavigationState(getStudiedEntryPath(entry!), '/saved')} className="w-full section-shell-quiet interactive-focus interactive-card-link px-4 py-4 text-left"><p className="font-sans text-xs text-gold-dark dark:text-gold-light">{entry!.scripture}</p><p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed mt-2 line-clamp-2`}>{renderScriptText(entry!.gurmukhi, scriptMode)}</p></Link>)}</div>{allRecentStudy.length > 3 ? <button type="button" className="mt-3 min-h-11 text-sm underline interactive-focus" aria-expanded={showAllHistory} onClick={() => setShowAllHistory(value => !value)}>{showAllHistory ? messages.fewerReadingPlaces : shelfCopy.allHistory}</button> : null}</section> : null}
         </> : null}
       </div>
     </div>

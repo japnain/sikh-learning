@@ -6,6 +6,7 @@ import {
   canUseLegacySavedLocationFallback,
   getSavedReturnIdentity,
   isSafeSavedReturnPath,
+  isShabadosSavedVersePath,
 } from '../utils/savedRouteIdentity'
 import { queueActivityEvent } from './activityEvents'
 import { useSavedFeedbackStore } from './savedFeedback'
@@ -90,7 +91,9 @@ function normalizeStoredFavorite(value: unknown): FavoriteItem | null {
   }
 
   const routeMode = resolveFavoriteRouteMode(candidate)
-  if (routeMode === 'verse' && (!candidate.shabadId || !candidate.verseId)) return null
+  const hasShabadosVerse = candidate.source === 'G' && candidate.shabadId === undefined
+    && isShabadosSavedVersePath(candidate.returnPath, candidate.verseId)
+  if (routeMode === 'verse' && (!candidate.verseId || (!candidate.shabadId && !hasShabadosVerse))) return null
   if (routeMode === 'shabad' && !candidate.shabadId) return null
 
   return {

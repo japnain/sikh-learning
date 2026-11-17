@@ -100,6 +100,8 @@ export interface ScriptureWriterMeta {
 
 export interface ScriptureLine {
   verseId: number
+  /** Original provider key when verseId is only a namespaced local reader anchor. */
+  providerLineId?: string
   shabadId: number
   ang: number
   originalAng?: number | null
@@ -119,6 +121,8 @@ export interface ScriptureLine {
 
 export interface ScriptureEntry {
   id: string
+  /** Exact local reader route retained for recently studied provider readings. */
+  readerReturnPath?: string
   scripture: string
   ang: number
   source?: 'G' | 'D' | 'B' | 'A'

@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { useThemeStore } from './theme'
 
 export type EpubReaderLineHeight = 'compact' | 'comfortable' | 'spacious'
 export type EpubReaderMeasure = 'narrow' | 'standard' | 'wide'
-export type EpubReaderPalette = 'paper' | 'sepia' | 'night'
+export type EpubReaderPalette = 'app' | 'paper' | 'sepia' | 'night'
 
 export const EPUB_FONT_SCALE_MIN = 0.85
 export const EPUB_FONT_SCALE_MAX = 2
@@ -28,7 +29,7 @@ export const DEFAULT_EPUB_READER_PREFERENCES: EpubReaderPreferences = {
   fontScale: 1,
   lineHeight: 'comfortable',
   measure: 'standard',
-  palette: 'paper',
+  palette: 'app',
 }
 
 function clampFontScale(fontScale: number) {
@@ -58,3 +59,10 @@ export const useEpubReaderStore = create<EpubReaderState>()(
     }
   )
 )
+
+export function useResolvedEpubPalette(): Exclude<EpubReaderPalette, 'app'> {
+  const palette = useEpubReaderStore(state => state.palette)
+  const dark = useThemeStore(state => state.dark)
+  return palette === 'app' ? dark ? 'night' : 'paper' : palette
+}
+export const EPUB_APP_PALETTE_LABEL = { en: 'Follow app', pa: 'ਐਪ ਅਨੁਸਾਰ', hi: 'ऐप के अनुसार' }

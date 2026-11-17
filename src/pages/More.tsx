@@ -1,3 +1,6 @@
+import ProseReaderSettings from '../components/ProseReaderSettings'
+import { PROSE_SETTINGS_COPY } from '../content/proseSettingsCopy'
+import { DOWNLOADS_COPY } from '../content/downloadsCopy'
 import '../styles/settings.css'
 import { lazy, Suspense, useRef, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
@@ -111,7 +114,7 @@ export default function More() {
   const playbackError = useMusicStore(state => state.playbackError)
   const toggleSound = useMusicStore(state => state.toggleSound)
   const hub = MORE_HUB_COPY[locale]
-  const [panel, setPanel] = useState<'appearance' | 'reader' | 'sound' | 'backup' | 'account' | 'about' | null>(null)
+  const [panel, setPanel] = useState<'appearance' | 'reader' | 'prose' | 'sound' | 'backup' | 'account' | 'about' | null>(null)
   const [readerSection, setReaderSection] = useState<'layout' | 'support' | 'sources'>('layout')
   const closeRef = useRef<HTMLButtonElement>(null)
   const presentationSaved = useSyncExternalStore(subscribeReaderPresentation, isReaderPresentationPreferenceSaved, () => true)
@@ -148,8 +151,8 @@ export default function More() {
   const textAlignmentLabels = getTextAlignmentLabels(locale)
   const uiLocaleLabels = getUiLocaleLabels(locale)
   const publicLinks = getPublicAppLinks()
-  const panelTitles = { appearance: hub.appearance, reader: moreCopy.readerDefaults, sound: hub.sound, backup: hub.backup, account: hub.account, about: moreCopy.about }
-  const panelDescriptions = { appearance: hub.appearanceHelp, reader: hub.readerHelp, sound: hub.soundHelp, backup: hub.backupHelp, account: hub.accountHelp, about: hub.aboutHelp }
+  const panelTitles = { prose: PROSE_SETTINGS_COPY[locale].title, appearance: hub.appearance, reader: moreCopy.readerDefaults, sound: hub.sound, backup: hub.backup, account: hub.account, about: moreCopy.about }
+  const panelDescriptions = { prose: PROSE_SETTINGS_COPY[locale].body, appearance: hub.appearanceHelp, reader: hub.readerHelp, sound: hub.soundHelp, backup: hub.backupHelp, account: hub.accountHelp, about: hub.aboutHelp }
   const themeLabel = themeMode === 'system' ? appearanceCopy.system : themeMode === 'dark' ? moreCopy.darkMode : moreCopy.lightMode
   const accountSummary = cloudStatus === 'error' ? hub.needsAttention
     : cloudStatus === 'offline' ? hub.offline
@@ -186,6 +189,7 @@ export default function More() {
           <h2 className="eyebrow" id="more-preferences-title">{hub.preferences}</h2>
           <div className="more-hub-list">
             {settingRow('reader', moreCopy.readerDefaults, `${scriptModeLabels[scriptMode]} · ${fontSize}px · ${presentation === 'read' ? presentationCopy.read : presentationCopy.study}`, <IconBanis size={20} />)}
+            {settingRow('prose', PROSE_SETTINGS_COPY[locale].title, PROSE_SETTINGS_COPY[locale].summary, <IconBanis size={20} />)}
             {settingRow('appearance', hub.appearance, `${themeLabel} · ${uiLocaleLabels[locale]}`, <IconSun size={20} />)}
             <div className="more-sound-row">
               {settingRow('sound', hub.sound, playbackError ? hub.soundError : musicPlaying ? hub.playing : selectedSoundId ? hub.paused : hub.soundHelp, <IconMusic size={20} />)}
@@ -201,6 +205,7 @@ export default function More() {
           <h2 className="eyebrow" id="more-data-title">{hub.yourData}</h2>
           <div className="more-hub-list">
             {cloudConfigured ? settingRow('account', hub.account, accountSummary, <IconUsers size={20} />) : null}
+            <Link to="/downloads" className="more-hub-row interactive-focus"><span className="more-hub-icon" aria-hidden="true"><IconLayers size={20} /></span><span className="more-hub-row-copy"><strong>{DOWNLOADS_COPY[locale].title}</strong><small>{DOWNLOADS_COPY[locale].hint}</small></span><IconArrowRight size={16} /></Link>
             {settingRow('backup', hub.backup, cloudConfigured ? hub.backupHelp : hub.deviceBackupHelp, <IconLayers size={20} />)}
           </div>
         </section>
@@ -221,6 +226,7 @@ export default function More() {
           {(['layout', 'support', 'sources'] as const).map(section => <button key={section} type="button" aria-pressed={readerSection === section} className="interactive-focus" onClick={() => setReaderSection(section)}>{hub[section]}</button>)}
         </div> : null}
         <div className="more-sheet-body" lang={locale}>
+          {panel === 'prose' ? <ProseReaderSettings /> : null}
           {panel === 'appearance' ? (
       <div className="more-appearance-panels grid gap-3">
         <SettingsBlock

@@ -84,6 +84,17 @@ export function useBani(
         })
       }
 
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        if (cachedReading) {
+          // A verified local reading is the complete source while offline.
+          settled = true
+          window.clearTimeout(deadline)
+        } else {
+          fail(new Error('You are offline. Download this bani and length before reading it without a connection.'))
+        }
+        return
+      }
+
       try {
         const data = await fetchBani(baniDbId, sgLength, controller.signal)
         if (cancelled || settled) return

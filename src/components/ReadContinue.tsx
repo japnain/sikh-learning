@@ -21,7 +21,7 @@ const VISIBILITY_COPY = {
   hi: { hide: (title: string) => `${title} को जारी पाठों से छिपाएँ`, hidden: (title: string) => `${title} जारी पाठों से छिपाया गया। पढ़ने का स्थान सुरक्षित है।`, undo: 'वापस करें', restore: 'छिपे हुए पाठ फिर दिखाएँ', empty: 'आपके पाठ छिपे हुए हैं। यहाँ फिर दिखाएँ या पढ़ना जारी रखने के लिए कोई पाठ खोलें।' },
 }
 
-export default function ReadContinue() {
+export default function ReadContinue({ showEmpty = true }: { showEmpty?: boolean }) {
   const locale = useLocaleStore(state => state.locale)
   const allReadings = useContinueReadings()
   const hidden = useReadingVisibilityStore(state => state.hidden)
@@ -48,6 +48,7 @@ export default function ReadContinue() {
   const copy = COPY[locale]
   const visibilityCopy = VISIBILITY_COPY[locale]
   const beginPath = buildCanonicalBaniStudyPath(BANIS.find(bani => bani.id === 'japji-sahib')!)
+  if (!showEmpty && !allReadings.length) return null
   return <section className="read-continue" aria-labelledby="read-continue-title" data-testid="read-continue" lang={locale}>
     <div className="read-continue__intro"><h2 ref={titleRef} tabIndex={-1} id="read-continue-title">{allReadings.length ? copy.title : copy.begin}</h2><p>{readings.length ? copy.body : hiddenCount ? visibilityCopy.empty : copy.beginBody}</p></div>
     {readings.length ? <ol className="read-continue__list">{readings.map(reading => <li key={reading.id}>

@@ -1,5 +1,5 @@
 import { beforeEach, expect, test, vi } from 'vitest'
-import { useFavoritesStore } from './favorites'
+import { normalizeStoredFavorites, useFavoritesStore } from './favorites'
 
 beforeEach(() => {
   localStorage.clear()
@@ -98,6 +98,25 @@ test('migrates legacy route modes and drops malformed persisted favorites', () =
     expect.objectContaining({ id: 'favorite-legacy', routeMode: 'shabad' }),
   ])
   expect(useFavoritesStore.getState().isFavorite('G', 1, 10, undefined, 'shabad')).toBe(true)
+})
+
+test('retains a Shabad OS verse favorite after reopening without a BaniDB shabad ID', () => {
+  const verseId = 7_000_000_481_114
+  const result = useFavoritesStore.getState().addFavorite({
+    title: 'Alahnia · Ang 578', source: 'G', ang: 578, type: 'shabad', routeMode: 'verse', verseId,
+    returnPath: `/study?shabadosBani=ALHN&source=G&ang=578&verseId=${verseId}&resumeVerseId=${verseId}`,
+  })
+  expect(result.persisted).toBe(true)
+  useFavoritesStore.setState({ favorites: [] })
+  useFavoritesStore.getState().hydrateCachedFavorites()
+  expect(useFavoritesStore.getState().favorites).toEqual([result.item])
+  const favorite = result.item!
+  for (const path of [
+    `/study?source=G&ang=578&verseId=${verseId}`,
+    `/study?shabadosBani=ALHN&verseId=${verseId + 1}`,
+    `/study?shabadosBani=XXXX&verseId=${verseId}`,
+    `/study?shabadosBani=ALHN&baniDbId=2&verseId=${verseId}`,
+  ]) expect(normalizeStoredFavorites([{ ...favorite, returnPath: path }])).toEqual([])
 })
 
 test('keeps canonical Japji, generic Ang, Daily and Personal Hukamnama identities separate', () => {
