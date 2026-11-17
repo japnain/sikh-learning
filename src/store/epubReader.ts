@@ -7,6 +7,8 @@ export type EpubReaderMeasure = 'narrow' | 'standard' | 'wide'
 export type EpubReaderPalette = 'app' | 'paper' | 'sepia' | 'night'
 export type EpubReaderFontFamily = 'literary' | 'classic' | 'sans'
 export type EpubReaderParagraphSpacing = 'compact' | 'comfortable'
+export type EpubReaderMode = 'paged' | 'scroll'
+export type EpubReaderPageTurn = 'curl' | 'fade'
 
 export const EPUB_FONT_SCALE_MIN = 0.85
 export const EPUB_FONT_SCALE_MAX = 2
@@ -19,6 +21,8 @@ export interface EpubReaderPreferences {
   palette: EpubReaderPalette
   fontFamily: EpubReaderFontFamily
   paragraphSpacing: EpubReaderParagraphSpacing
+  readingMode: EpubReaderMode
+  pageTurn: EpubReaderPageTurn
 }
 
 interface EpubReaderState extends EpubReaderPreferences {
@@ -28,6 +32,8 @@ interface EpubReaderState extends EpubReaderPreferences {
   setPalette: (palette: EpubReaderPalette) => void
   setFontFamily: (fontFamily: EpubReaderFontFamily) => void
   setParagraphSpacing: (paragraphSpacing: EpubReaderParagraphSpacing) => void
+  setReadingMode: (readingMode: EpubReaderMode) => void
+  setPageTurn: (pageTurn: EpubReaderPageTurn) => void
   resetPreferences: () => void
 }
 
@@ -38,6 +44,8 @@ export const DEFAULT_EPUB_READER_PREFERENCES: EpubReaderPreferences = {
   palette: 'app',
   fontFamily: 'literary',
   paragraphSpacing: 'comfortable',
+  readingMode: 'paged',
+  pageTurn: 'curl',
 }
 
 function clampFontScale(fontScale: number) {
@@ -54,6 +62,8 @@ function normalizedPreferences(value: unknown): EpubReaderPreferences {
     palette: ['app', 'paper', 'sepia', 'night'].includes(data.palette ?? '') ? data.palette! : 'app',
     fontFamily: ['literary', 'classic', 'sans'].includes(data.fontFamily ?? '') ? data.fontFamily! : 'literary',
     paragraphSpacing: ['compact', 'comfortable'].includes(data.paragraphSpacing ?? '') ? data.paragraphSpacing! : 'comfortable',
+    readingMode: ['paged', 'scroll'].includes(data.readingMode ?? '') ? data.readingMode! : 'paged',
+    pageTurn: ['curl', 'fade'].includes(data.pageTurn ?? '') ? data.pageTurn! : 'curl',
   }
 }
 
@@ -67,6 +77,8 @@ export const useEpubReaderStore = create<EpubReaderState>()(
       setPalette: palette => set({ palette }),
       setFontFamily: fontFamily => set({ fontFamily: normalizedPreferences({ fontFamily }).fontFamily }),
       setParagraphSpacing: paragraphSpacing => set({ paragraphSpacing: normalizedPreferences({ paragraphSpacing }).paragraphSpacing }),
+      setReadingMode: readingMode => set({ readingMode: normalizedPreferences({ readingMode }).readingMode }),
+      setPageTurn: pageTurn => set({ pageTurn: normalizedPreferences({ pageTurn }).pageTurn }),
       resetPreferences: () => set(DEFAULT_EPUB_READER_PREFERENCES),
     }),
     {
@@ -81,6 +93,8 @@ export const useEpubReaderStore = create<EpubReaderState>()(
         palette: state.palette,
         fontFamily: state.fontFamily,
         paragraphSpacing: state.paragraphSpacing,
+        readingMode: state.readingMode,
+        pageTurn: state.pageTurn,
       }),
     }
   )

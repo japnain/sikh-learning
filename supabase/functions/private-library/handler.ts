@@ -7,7 +7,8 @@ import {
   PRIVATE_RANGE_MAX_BYTES, PRIVATE_STATE_MAX_BYTES,
   type PrivateAsset, type PrivateBookMetadata,
 } from './contract.ts';
-import { validStateTimestamp } from './state.ts';
+import { validStateTimestamp, PrivateStateWriteError } from './state.ts';
+import { validPrivateReadingState } from './annotations.ts';
 
 export interface PrivateLibraryIdentity { userId: string; sessionId: string }
 export interface PrivateLibraryService {
@@ -18,7 +19,7 @@ export interface PrivateLibraryService {
   getAsset(bookId: string, assetId: string): Promise<PrivateAsset | null>;
   fetchAsset(asset: PrivateAsset, range: string | null, signal: AbortSignal): Promise<Response>;
   getState(userId: string, bookId: string, editionVersion: string): Promise<Record<string, unknown> | null>;
-  putState(userId: string, bookId: string, editionVersion: string, state: Record<string, unknown>): Promise<void>;
+  putState(userId: string, bookId: string, editionVersion: string, state: Record<string, unknown>): Promise<Record<string, unknown>>;
 }
 
 export interface PrivateLibraryServiceConfig {
@@ -72,22 +73,6 @@ export function parsePrivateRange(value: string | null, size: number): { start: 
   return Number.isSafeInteger(start) && Number.isSafeInteger(end)
     && start >= 0 && start < size && end >= start && end - start + 1 <= PRIVATE_RANGE_MAX_BYTES
     ? { start, end } : false;
-}
-
-function validState(value: unknown): value is Record<string, unknown> {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
-  const pending: Array<{ value: unknown; depth: number }> = [{ value, depth: 0 }];
-  let visited = 0;
-  while (pending.length) {
-    const item = pending.pop()!;
-    if (++visited > 10000 || item.depth > 12) return false;
-    if (item.value === null || typeof item.value !== 'object') continue;
-    for (const [key, child] of Object.entries(item.value)) {
-      if (['__proto__', 'prototype', 'constructor'].includes(key)) return false;
-      pending.push({ value: child, depth: item.depth + 1 });
-    }
-  }
-  return true;
 }
 
 function boundedStream(source: ReadableStream<Uint8Array>, expected: number, release: () => void) {
@@ -161,7 +146,7 @@ export function createPrivateLibraryHandler(options: PrivateLibraryHandlerOption
         if (!validEdition(editionVersion)) return error(request, 400, 'invalid-edition');
         if (request.method === 'GET') {
           const state = await service.getState(identity.userId, bookId, editionVersion);
-          if (state !== null && !validState(state)) throw new Error('Invalid private state.');
+          if (state !== null && !validPrivateReadingState(state)) throw new Error('Invalid private state.');
           return json(request, { state });
         }
         if (book.editionVersion !== editionVersion) return error(request, 409, 'edition-changed');
@@ -171,10 +156,18 @@ export function createPrivateLibraryHandler(options: PrivateLibraryHandlerOption
         catch (cause) {
           return error(request, cause instanceof RequestBodyError && cause.code === 'request-too-large' ? 413 : 400, 'invalid-state');
         }
-        if (Object.keys(body).length !== 1 || !validState(body.state)
+        if (Object.keys(body).length !== 1 || !validPrivateReadingState(body.state, book)
           || !validStateTimestamp(body.state.updatedAt)) return error(request, 400, 'invalid-state');
-        await service.putState(identity.userId, bookId, editionVersion, body.state);
-        return json(request, { state: body.state });
+        try {
+          const saved = await service.putState(identity.userId, bookId, editionVersion, body.state);
+          if (!validPrivateReadingState(saved)) throw new Error('Invalid saved state.');
+          return json(request, { state: saved });
+        } catch (cause) {
+          if (cause instanceof PrivateStateWriteError) return error(request,
+            cause.code === 'capacity' ? 413 : cause.code === 'edition-changed' ? 409 : 400,
+            cause.code === 'capacity' ? 'state-capacity-exceeded' : cause.code === 'edition-changed' ? 'edition-changed' : 'invalid-state');
+          throw cause;
+        }
       }
       if (action !== 'asset') return error(request, 405, 'method-not-allowed');
       const assetId = params.get('assetId');

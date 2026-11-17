@@ -21,7 +21,18 @@ export interface PrivateBookSummary {
   contents: PrivateBookContentsEntry[]
 }
 export type PrivateBook = PrivateBookSummary
-export interface PrivateBookBookmark { id: string; index: number; offset: number; label: string; createdAt: string; blockId?: string; blockOffset?: number }
+export interface PrivateBookBookmark { id: string; index: number; offset: number; label: string; createdAt: string; blockId?: string; blockOffset?: number; charOffset?: number }
+export type PrivateAnnotationColor = 'yellow' | 'green' | 'blue' | 'pink'
+interface PrivateAnnotationBase { id: string; index: number; createdAt: string; updatedAt: string }
+export type PrivateBookAnnotation = PrivateAnnotationBase & (
+  | { kind: 'text'; blockId: string; start: number; end: number; quote: string; color: PrivateAnnotationColor; note?: string }
+  | { kind: 'page'; note: string }
+)
+export interface PrivateAnnotationDeletion { id: string; updatedAt: string }
+export const PRIVATE_ANNOTATION_MAX_COUNT = 128
+export const PRIVATE_ANNOTATION_MAX_QUOTE_LENGTH = 1000
+export const PRIVATE_ANNOTATION_MAX_NOTE_LENGTH = 2000
+export const PRIVATE_READING_STATE_SOFT_BYTES = 44 * 1024
 export interface PrivateReadingState {
   index: number
   offset: number
@@ -31,6 +42,9 @@ export interface PrivateReadingState {
   updatedAt?: string
   blockId?: string
   blockOffset?: number
+  charOffset?: number
+  annotations?: PrivateBookAnnotation[]
+  annotationDeletes?: PrivateAnnotationDeletion[]
 }
 export interface PrivateLibraryAccess {
   allowed: boolean

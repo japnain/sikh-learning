@@ -1,0 +1,38 @@
+.private-reader{--private-chrome-top:calc(4rem + env(safe-area-inset-top));--private-chrome-bottom:calc(6rem + env(safe-area-inset-bottom))}
+.private-reader--paged{height:100dvh;min-height:0;overflow:hidden;padding:0;overscroll-behavior:none}
+.private-reader--paged .private-reader__content{height:100%;min-height:0;max-width:calc(var(--private-measure,42rem) + 4rem);padding:calc(var(--private-chrome-top) + 1rem) clamp(1.15rem,4vw,2rem) calc(var(--private-chrome-bottom) + 1rem);box-sizing:border-box}
+/* WebKit can stop painting transformed multicolumn text with overflow:clip. Keep hidden;
+   pagination removes offscreen Tab stops and resets any internal focus scroll. */
+.private-reader-book-viewport{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate;touch-action:pan-y pinch-zoom}
+.private-reader-book-pages{height:100%;column-fill:auto;column-gap:40px;column-count:auto;overflow:visible;transform:translateX(0);will-change:transform}
+.private-reader-book-pages .private-reader-prose{margin:0}
+.private-reader-book-pages .private-reader-block{break-inside:auto}
+.private-reader-book-pages :is(h2,h3){break-after:avoid}
+.private-reader-book-pages :is(p,li){orphans:2;widows:2}
+.private-reader-book-pages figure{break-inside:avoid;max-height:100%;margin:1rem 0}
+.private-reader-book-pages blockquote{break-inside:auto}
+.private-reader-book-pages .private-reader-table{overflow:visible;max-width:100%}
+.private-reader-book-pages table{width:100%;table-layout:fixed;break-inside:auto}
+.private-reader-book-pages td{min-width:0;overflow-wrap:anywhere}
+.private-reader-book-pages tr{break-inside:avoid}
+.private-reader-book-pages figure img{max-height:calc(100dvh - var(--private-chrome-top) - var(--private-chrome-bottom) - 5rem);width:auto;object-fit:contain}
+.private-reader-book-viewport--turning::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(90deg,transparent 25%,rgb(0 0 0/.07) 62%,rgb(255 255 255/.18) 78%,rgb(0 0 0/.15) 99%);transform-origin:right center;animation:private-reader-fold 300ms ease-out both}
+.private-reader-book-viewport--turning[data-turn-direction=previous]::after{transform-origin:left center;background:linear-gradient(270deg,transparent 25%,rgb(0 0 0/.07) 62%,rgb(255 255 255/.18) 78%,rgb(0 0 0/.15) 99%)}
+.private-reader-book-viewport--turning[data-page-turn=fade]::after{display:none}
+.private-reader-book-viewport--turning[data-page-turn=fade] .private-reader-book-pages{animation:private-reader-page-fade 220ms ease-out}
+.private-reader-book-viewport[data-turn-rendering=leaf]::after,.private-reader-book-viewport[data-turn-rendering=fade]::after{display:none}
+.private-reader-book-viewport--turning[data-turn-rendering=fade]>.private-reader-book-pages{animation:private-reader-page-fade 220ms ease-out}
+.private-reader-book-turn-leaf{position:absolute;inset:0;overflow:hidden;z-index:3;background:var(--private-paper);pointer-events:none;user-select:none;transform-origin:left center;backface-visibility:hidden;box-shadow:12px 0 32px rgb(0 0 0/.2);animation:private-reader-paper-turn-next 300ms cubic-bezier(.25,.65,.25,1) both}
+.private-reader-book-turn-leaf::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 25%,rgb(0 0 0/.12) 85%,rgb(255 255 255/.2));pointer-events:none}
+.private-reader-book-viewport[data-turn-direction=previous] .private-reader-book-turn-leaf{transform-origin:right center;animation-name:private-reader-paper-turn-previous}
+.private-reader-book-turn-leaf>.private-reader-book-pages{animation:none!important}
+.private-reader--scroll .private-reader__content,.private-reader--original .private-reader__content{padding-top:calc(var(--private-chrome-top) + 1.5rem);padding-bottom:calc(var(--private-chrome-bottom) + 1.5rem)}
+.private-reader--original .private-reader__content{min-height:100dvh}
+.private-reader-gesture-surface{touch-action:pan-y pinch-zoom}
+@keyframes private-reader-fold{from{opacity:.85;transform:perspective(1000px) rotateY(-25deg) scaleX(.85)}to{opacity:0;transform:perspective(1000px) rotateY(-80deg) scaleX(.08)}}
+@keyframes private-reader-page-fade{from{opacity:.35}to{opacity:1}}
+@keyframes private-reader-paper-turn-next{from{transform:perspective(1300px) rotateY(0deg);opacity:1}to{transform:perspective(1300px) rotateY(-105deg);opacity:.2}}
+@keyframes private-reader-paper-turn-previous{from{transform:perspective(1300px) rotateY(0deg);opacity:1}to{transform:perspective(1300px) rotateY(105deg);opacity:.2}}
+@media(prefers-reduced-motion:reduce){.private-reader-book-viewport::after,.private-reader-book-pages{animation:none!important;transition:none!important}}
+
+.private-reader--original[data-reader-zoomed=true] .private-reader-gesture-surface{touch-action:pan-x pan-y pinch-zoom}

@@ -6,27 +6,30 @@ export function validStateTimestamp(value: unknown): value is string {
   return Number.isFinite(time) && new Date(time).toISOString() === value;
 }
 
-/**
- * A departing page can send its latest state while an older save is in flight.
- * Insert-only initialization and a conditional UPDATE make either arrival order
- * safe. PostgreSQL rechecks the timestamp predicate after any row-lock wait.
- * The timestamp is a client revision, never an authentication decision.
- */
+export class PrivateStateWriteError extends Error {
+  constructor(readonly code: 'capacity' | 'edition-changed' | 'invalid-state') {
+    super('Reading state could not be saved.');
+  }
+}
+
+/** Progress, per-note revisions and persistent tombstones commit atomically. */
 export async function writeOrderedPrivateState(
   backend: SupabaseClient, userId: string, bookId: string, editionVersion: string,
   state: Record<string, unknown>,
-): Promise<void> {
+): Promise<Record<string, unknown>> {
   if (!validStateTimestamp(state.updatedAt)) throw new Error('Invalid reading revision.');
-  const row = {
-    user_id: userId, book_id: bookId, edition_version: editionVersion,
-    state, updated_at: new Date().toISOString(),
-  };
-  const { error: insertError } = await backend.from('private_library_state').upsert(row, {
-    onConflict: 'user_id,book_id,edition_version', ignoreDuplicates: true,
+  const { data, error } = await backend.rpc('write_private_library_state', {
+    requested_user_id: userId, requested_book_id: bookId,
+    requested_edition_version: editionVersion, requested_state: state,
   });
-  if (insertError) throw new Error('Reading state unavailable.');
-  const { error: updateError } = await backend.from('private_library_state').update(row)
-    .eq('user_id', userId).eq('book_id', bookId).eq('edition_version', editionVersion)
-    .or(`state->>updatedAt.is.null,state->>updatedAt.lt.${state.updatedAt}`);
-  if (updateError) throw new Error('Reading state unavailable.');
+  if (error) {
+    const reasons: Record<string, PrivateStateWriteError['code']> = { 'private-library-state-capacity': 'capacity',
+      'private-library-edition-changed': 'edition-changed',
+      'private-library-invalid-state': 'invalid-state' };
+    const reason = reasons[error.message];
+    if (reason) throw new PrivateStateWriteError(reason);
+    throw new Error('Reading state unavailable.');
+  }
+  if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Reading state unavailable.');
+  return data as Record<string, unknown>;
 }

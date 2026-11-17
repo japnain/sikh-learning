@@ -1,5 +1,6 @@
 import { describe, expect, test, vi } from 'vitest'
 import { authenticatePrivateLibrary } from '../../supabase/functions/private-library/auth'
+import { PrivateStateWriteError } from '../../supabase/functions/private-library/state'
 import {
   createPrivateLibraryHandler, parsePrivateRange,
   type PrivateLibraryService,
@@ -79,7 +80,7 @@ function setup(overrides: Partial<PrivateLibraryService> = {}) {
         },
       })
     }),
-    getState: vi.fn(async () => null), putState: vi.fn(async () => {}), ...overrides,
+    getState: vi.fn(async () => null), putState: vi.fn(async (_user, _book, _edition, state) => state), ...overrides,
   }
   const createService = vi.fn(() => service)
   const handler = createPrivateLibraryHandler({
@@ -194,9 +195,9 @@ describe('private library data boundaries', () => {
 
   test('binds state writes to the verified owner and current edition, and retains old-edition reads', async () => {
     const { handler, service } = setup()
-    const saved = await handler(request('state', { method: 'PUT', body: { state: { locator: { page: 3 }, bookmarks: [], updatedAt: '2026-11-17T12:00:00.000Z' } } }))
+    const saved = await handler(request('state', { method: 'PUT', body: { state: { index: 2, offset: 0, progress: 0.3, bookmarks: [], updatedAt: '2026-11-17T12:00:00.000Z' } } }))
     expect(saved.status).toBe(200)
-    expect(service.putState).toHaveBeenCalledWith(identity.userId, book.id, book.editionVersion, { locator: { page: 3 }, bookmarks: [], updatedAt: '2026-11-17T12:00:00.000Z' })
+    expect(service.putState).toHaveBeenCalledWith(identity.userId, book.id, book.editionVersion, { index: 2, offset: 0, progress: 0.3, bookmarks: [], updatedAt: '2026-11-17T12:00:00.000Z' })
     expect((await handler(request('state', { method: 'PUT', edition: 'old-edition', body: { state: {} } }))).status).toBe(409)
     expect((await handler(request('state', { edition: 'old-edition' }))).status).toBe(200)
     expect(service.getState).toHaveBeenLastCalledWith(identity.userId, book.id, 'old-edition')
@@ -220,6 +221,24 @@ describe('private library data boundaries', () => {
     for (const updatedAt of [undefined, 'invalid', '2026-11-17T12:00:00Z', '2026-02-30T00:00:00.000Z']) {
       expect((await handler(request('state', { method: 'PUT', body: { state: { index: 2, updatedAt } } }))).status).toBe(400)
     }
+    expect(service.putState).not.toHaveBeenCalled()
+  })
+
+  test('returns recoverable merged-note capacity and edition errors without private diagnostics', async () => {
+    for (const [code, status, message] of [['capacity', 413, 'state-capacity-exceeded'], ['edition-changed', 409, 'edition-changed']] as const) {
+      const { handler } = setup({ putState: async () => { throw new PrivateStateWriteError(code) } })
+      const response = await handler(request('state', { method: 'PUT', body: { state: { index: 0, updatedAt: '2026-11-17T12:00:00.000Z' } } }))
+      expect(response.status).toBe(status)
+      expect(await response.json()).toEqual({ error: message })
+      expect(response.headers.get('cache-control')).toBe('private, no-store')
+    }
+  })
+
+  test('bounds annotation payloads by UTF-8 bytes before any mutation', async () => {
+    const { handler, service } = setup()
+    const notes = Array.from({ length: 12 }, (_, index) => ({ id: `note-${index}`, kind: 'page', index: 0, note: 'ੴ'.repeat(2000),
+      createdAt: '2026-11-17T12:00:00.000Z', updatedAt: '2026-11-17T12:00:00.000Z' }))
+    expect((await handler(request('state', { method: 'PUT', body: { state: { annotations: notes, updatedAt: '2026-11-17T12:00:00.000Z' } } }))).status).toBe(413)
     expect(service.putState).not.toHaveBeenCalled()
   })
 })

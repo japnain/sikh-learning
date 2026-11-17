@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { vi } from 'vitest'
@@ -15,7 +15,8 @@ const mocks = vi.hoisted(() => ({
   registerSnapshot: vi.fn(),
 }))
 vi.mock('../../hooks/usePrivateLibraryAccess', () => ({ usePrivateLibraryAccess: () => mocks.access }))
-vi.mock('../../data/privateLibrary', () => ({
+vi.mock('../../data/privateLibrary', async importOriginal => ({
+  ...await importOriginal<typeof import('../../data/privateLibrary')>(),
   loadPrivateBook: mocks.loadBook, loadPrivateReadingState: mocks.loadState, savePrivateReadingState: mocks.saveState,
   fetchPrivateAsset: mocks.fetchAsset, createPrivateObjectUrl: mocks.createUrl, revokePrivateObjectUrl: mocks.revokeUrl,
   getPrivateAssetInfo: mocks.assetInfo, fetchPrivateAssetRange: mocks.assetRange,
@@ -74,6 +75,17 @@ function box(top: number, height: number): DOMRect {
   return { x: 0, y: top, top, bottom: top + height, left: 0, right: 700, width: 700, height, toJSON: () => ({}) }
 }
 
+async function openTool(user: ReturnType<typeof userEvent.setup>, name: 'Find in book' | 'Reading appearance' | 'Contents' | 'Bookmarks') {
+  const reveal = screen.queryByRole('button', { name: 'Show reading controls' })
+  if (reveal) await user.click(reveal)
+  const opener = screen.getByRole('button', { name: 'Reading options' })
+  await user.click(opener)
+  await user.click(within(screen.getByRole('dialog', { name: 'Reading options' })).getByRole('button', { name, exact: true }))
+  const title = name === 'Contents' ? 'Book navigation' : name === 'Bookmarks' ? 'Saved bookmarks' : name
+  await screen.findByRole('dialog', { name: title })
+  return opener
+}
+
 describe('Private book reading', () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -86,7 +98,7 @@ describe('Private book reading', () => {
     mocks.assetInfo.mockResolvedValue({ size: 131_072, contentType: 'application/pdf' })
     mocks.assetRange.mockImplementation(async (_book, _asset, begin, end) => new ArrayBuffer(end - begin))
     mocks.registerSnapshot.mockReturnValue(() => {})
-    useEpubReaderStore.setState(DEFAULT_EPUB_READER_PREFERENCES)
+    useEpubReaderStore.setState({ ...DEFAULT_EPUB_READER_PREFERENCES, readingMode: 'scroll' })
     vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
     vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
   })
@@ -128,7 +140,7 @@ describe('Private book reading', () => {
     expect(screen.queryByText('A quiet beginning')).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Bookmark this position' }))
     await waitFor(() => expect(mocks.saveState).toHaveBeenCalledWith(book.id, book.editionVersion, expect.objectContaining({ index: 1, bookmarks: [expect.objectContaining({ index: 1, label: 'Closing' })] })), { timeout: 2000 })
-    await user.click(screen.getByRole('button', { name: /Bookmarks · 1/ }))
+    await openTool(user, 'Bookmarks')
     expect(screen.getByRole('heading', { name: 'Your bookmarks' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Remove bookmark: Closing' })).toBeInTheDocument()
   })
@@ -207,7 +219,7 @@ describe('Private book reading', () => {
     render(<ReaderRoutes />)
     await screen.findByRole('heading', { name: 'A quiet beginning' })
     expect(mocks.fetchAsset.mock.calls.some(call => call[1] === 'book-search')).toBe(false)
-    await user.click(screen.getByRole('button', { name: 'Find in book' }))
+    await openTool(user, 'Find in book')
     await user.type(screen.getByRole('searchbox', { name: 'Search words' }), 'preserved')
     await user.click(screen.getByRole('button', { name: 'Find', exact: true }))
     expect(await screen.findByText('1 matching passages')).toBeInTheDocument()
@@ -216,13 +228,16 @@ describe('Private book reading', () => {
   })
 
   test('reads image-page EPUBs without dropping their content', async () => {
+    const user = userEvent.setup()
     mocks.loadBook.mockResolvedValue({ ...book, renderer: 'pages', pageCount: 2, contents: [{ id: 'page-one', title: 'Page 1', page: 1, assetId: 'image-one' }, { id: 'page-two', title: 'Page 2', page: 2, assetId: 'image-two' }] })
     render(<ReaderRoutes />)
     const page = await screen.findByRole('img', { name: 'Page 1' })
     expect(page).toHaveAttribute('src', 'blob:private-image')
     fireEvent.load(page)
+    await user.click(screen.getByRole('button', { name: 'Reading options' }))
     expect(screen.queryByRole('button', { name: 'Find in book' })).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    await user.click(screen.getByRole('button', { name: 'Close reading options' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }))
     expect(await screen.findByRole('img', { name: 'Page 2' })).toBeInTheDocument()
     expect(mocks.revokeUrl).toHaveBeenCalledWith('blob:private-image')
   })
@@ -235,18 +250,18 @@ describe('Private book reading', () => {
     render(<ReaderRoutes />)
     const image = await screen.findByRole('img', { name: 'Original scanned page' })
     fireEvent.load(image)
-    expect(screen.getByText('Opening', { selector: '.reader-header__subtitle' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open contents: Opening' })).toBeInTheDocument()
     expect(image).toHaveStyle({ width: '100%' })
     expect(image.closest('figure')).toHaveAttribute('tabindex', '0')
     await user.click(screen.getByRole('button', { name: 'Zoom in' }))
     expect(image).toHaveStyle({ width: '120%' })
     await user.click(screen.getByRole('button', { name: 'Fit width' }))
     expect(image).toHaveStyle({ width: '100%' })
-    await user.click(screen.getByRole('button', { name: 'Reading appearance' }))
+    await openTool(user, 'Reading appearance')
     expect(screen.getByRole('slider', { name: /Page zoom/ })).toBeInTheDocument()
     expect(screen.queryByRole('slider', { name: 'Text size' })).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Close reading panel' }))
-    await user.click(screen.getByRole('button', { name: 'Next' }))
+    await user.click(screen.getByRole('button', { name: 'Next page' }))
     await screen.findByRole('heading', { name: 'A closing reflection' })
     expect(screen.queryByRole('button', { name: 'Fit width' })).not.toBeInTheDocument()
   })
@@ -286,12 +301,12 @@ describe('Private book reading', () => {
     render(<ReaderRoutes />)
     await waitFor(() => expect(getPage).toHaveBeenCalledWith(1))
     expect(getPage).not.toHaveBeenCalledWith(2)
-    await user.click(screen.getByRole('button', { name: 'Find in book' }))
+    await openTool(user, 'Find in book')
     await user.type(screen.getByRole('searchbox', { name: 'Search words' }), 'attention')
     await user.click(screen.getByRole('button', { name: 'Find', exact: true }))
     expect(await screen.findByText('1 matching passages')).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: /Page 2: A passage about careful attention/ }))
-    expect(await screen.findByText('Page 2 of 3')).toBeInTheDocument()
+    expect(await screen.findByRole('img', { name: 'Page 2' })).toBeInTheDocument()
   })
 
   test('hides the previous PDF canvas while the next page is rendering', async () => {
@@ -306,7 +321,7 @@ describe('Private book reading', () => {
     }) }) })
     render(<ReaderRoutes />)
     expect(await screen.findByRole('img', { name: 'Page 1' })).toBeVisible()
-    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }))
     expect(await screen.findByText('Loading page 2…')).toBeInTheDocument()
     expect(document.querySelector('canvas')).not.toBeVisible()
     await act(async () => { finishPage(); await pendingPage })
@@ -342,8 +357,7 @@ describe('Private book reading', () => {
     const user = userEvent.setup()
     render(<ReaderRoutes />)
     await screen.findByRole('heading', { name: 'A quiet beginning' })
-    const opener = screen.getByRole('button', { name: 'Find in book' })
-    await user.click(opener)
+    const opener = await openTool(user, 'Find in book')
     const dialog = screen.getByRole('dialog', { name: 'Find in book' })
     expect(screen.getByRole('searchbox', { name: 'Search words' })).toHaveFocus()
     for (let index = 0; index < 5; index++) {
@@ -359,13 +373,14 @@ describe('Private book reading', () => {
     const user = userEvent.setup()
     render(<ReaderRoutes />)
     await screen.findByRole('heading', { name: 'A quiet beginning' })
-    const focus = screen.getByRole('button', { name: 'Focus', exact: true })
+    const focus = screen.getByRole('button', { name: 'Reading options' })
     await user.click(focus)
-    expect(document.querySelector('.private-reader__header')).toHaveAttribute('inert')
+    await user.click(screen.getByRole('button', { name: 'Hide reading controls' }))
+    await waitFor(() => expect(document.querySelector('.private-reader-chrome__header')).toHaveAttribute('inert'))
     expect(screen.getByRole('button', { name: 'Show reading controls' })).toHaveFocus()
     await user.keyboard('{Escape}')
-    expect(document.querySelector('.private-reader__header')).not.toHaveAttribute('inert')
-    expect(focus).toHaveFocus()
+    expect(document.querySelector('.private-reader-chrome__header')).not.toHaveAttribute('inert')
+    await waitFor(() => expect(focus).toHaveFocus())
   })
 
   test('restores the same source passage after typography reflows underneath an appearance sheet', async () => {
@@ -377,7 +392,7 @@ describe('Private book reading', () => {
     })
     render(<ReaderRoutes />)
     await waitFor(() => expect(window.scrollTo).toHaveBeenCalledWith({ top: 485, behavior: 'instant' }))
-    await user.click(screen.getByRole('button', { name: 'Reading appearance' }))
+    await openTool(user, 'Reading appearance')
     await user.click(screen.getByRole('button', { name: 'Increase text size' }))
     await user.selectOptions(screen.getByRole('combobox', { name: 'Typeface' }), 'classic')
     await user.selectOptions(screen.getByRole('combobox', { name: 'Paragraph spacing' }), 'compact')
@@ -398,7 +413,7 @@ describe('Private book reading', () => {
     render(<ReaderRoutes />)
     await screen.findByRole('heading', { name: 'A quiet beginning' })
     await waitFor(() => expect(window.scrollTo).toHaveBeenCalled())
-    await user.click(screen.getByRole('button', { name: 'Bookmarks · 1' }))
+    await openTool(user, 'Bookmarks')
     await user.click(screen.getByRole('button', { name: 'Saved passage', exact: true }))
     await waitFor(() => expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 585, behavior: 'instant' }))
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
@@ -440,7 +455,7 @@ describe('Private book reading', () => {
     mocks.pdfGetDocument.mockReturnValue({ destroy: mocks.pdfDestroy, promise: Promise.resolve({ numPages: 3, getPage }) })
     render(<ReaderRoutes />)
     await screen.findByRole('img', { name: 'Page 1' })
-    await user.click(screen.getByRole('button', { name: 'Pages', exact: true }))
+    await openTool(user, 'Contents')
     expect(screen.getByRole('spinbutton', { name: 'Page' })).toHaveFocus()
     await user.keyboard('{ArrowRight}')
     expect(getPage).not.toHaveBeenCalledWith(2)
@@ -458,7 +473,7 @@ describe('Private book reading', () => {
     await screen.findByRole('heading', { name: 'A quiet beginning' })
     await waitFor(() => expect(window.scrollTo).toHaveBeenCalled())
     mocks.saveState.mockClear()
-    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }))
     expect(mocks.saveState).toHaveBeenLastCalledWith(book.id, book.editionVersion, expect.objectContaining({ index: 1 }))
     await screen.findByRole('heading', { name: 'A closing reflection' })
     fireEvent.click(screen.getByRole('button', { name: 'Bookmark this position' }))

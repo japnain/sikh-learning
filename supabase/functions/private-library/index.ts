@@ -53,13 +53,14 @@ const handler = createPrivateLibraryHandler({
         });
       },
       getState: async (userId, bookId, editionVersion) => {
-        const { data, error } = await backend.from('private_library_state').select('state')
-          .eq('user_id', userId).eq('book_id', bookId).eq('edition_version', editionVersion).maybeSingle();
+        const { data, error } = await backend.rpc('get_private_library_state', {
+          requested_user_id: userId, requested_book_id: bookId, requested_edition_version: editionVersion,
+        });
         if (error) throw new Error('Reading state unavailable.');
-        return data?.state as Record<string, unknown> | null ?? null;
+        return data as Record<string, unknown> | null ?? null;
       },
       putState: async (userId, bookId, editionVersion, state) => {
-        await writeOrderedPrivateState(backend, userId, bookId, editionVersion, state);
+        return await writeOrderedPrivateState(backend, userId, bookId, editionVersion, state);
       },
     };
   },

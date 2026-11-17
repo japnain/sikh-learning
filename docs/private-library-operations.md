@@ -9,6 +9,11 @@ Being signed in or having an unrelated admin role does not grant access.
 1. Apply `supabase/schema/006_naamras_private_library.sql` after migrations 001–005.
    It creates four private tables, a service-only authorization function, a private
    bucket and restrictive storage policies. Do not grant client access to these tables.
+   Then apply `supabase/schema/007_private_library_annotations.sql`. It adds a fifth
+   private table and service-only read/write state RPCs. Apply it before deploying
+   the annotation-aware gateway; deploy `annotations.ts` and `state.ts` with the
+   other function files. Run `supabase/tests/private-library-annotations-smoke.sql`
+   for rollback-only checks of the real RPCs, revision ordering and capacity rollback.
 2. Before seeding an owner, run `supabase/tests/private-library-session-smoke.sql`.
    Its synthetic accounts and sessions roll back; it refuses to run with an enabled
    real grant. Run `supabase/tests/private-library-access-smoke.sql` as well.
@@ -82,6 +87,16 @@ For immediate denial of new requests, disable the enabled private grant using
 trusted administration. A frontend feature flag alone is insufficient. Restore
 the prior gateway/catalogue revision if necessary; preserve private objects and
 reading state for recovery. Do not make the bucket public to troubleshoot access.
+
+Annotations merge by ID and revision independently of reading progress. Missing
+annotation fields and empty arrays preserve existing notes; deletion requires an
+explicit revisioned tombstone. Tombstones stay server-side so a stale tab cannot
+resurrect a deleted note. Do not prune them while old clients can still submit
+that edition. Clients preflight a 44 KiB state body; the server enforces 48 KiB and
+128 active annotations after merging. Capacity failures roll back the entire write
+and return a recoverable 413 response. Keep the existing state and let the reader
+shorten a note or remove annotations before retrying. Restore an older gateway
+only if it uses the state RPCs; a blind full-state upsert can bypass note revisions.
 
 The gateway checks live sessions and grants on each request. It cannot retract
 bytes already delivered or necessarily stop an already-authorized stream. The app
