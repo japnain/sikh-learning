@@ -19,6 +19,7 @@
   .home-arrival-caption { display: flex; align-items: center; gap: .75rem; margin: 1.1rem 0 0; color: var(--arrival-muted); font-family: 'Plus Jakarta Sans', sans-serif; font-size: .625rem; line-height: 1.6; letter-spacing: .08em; }
   .home-arrival-caption::before, .home-arrival-caption::after { content: ''; flex: 1; min-width: .5rem; height: 1px; background: color-mix(in srgb, var(--arrival-ink) 16%, transparent); }
   .home-arrival-caption > span { max-width: 75%; text-align: center; text-wrap: balance; }
+  .home-arrival-art picture { display: block; width: 100%; height: 100%; }
   .home-arrival-art img,.home-hero-art-fallback { display: block; width: 100%; height: 100%; object-fit: contain; }
   .home-hero-art-fallback { background: radial-gradient(ellipse at 62% 32%,#c4aa7b35,transparent 22%),linear-gradient(160deg,#182d3a,#111923 80%); }
   .home-masthead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: calc(var(--safe-area-top) + 1.15rem) 1.5rem 0; min-height: calc(var(--safe-area-top) + 4.6rem); }
@@ -69,6 +70,17 @@
   .home-arrival { min-height: 44rem; border-radius: 0 0 .5rem .5rem; }
   .home-arrival[data-pinnable='true'] { position: sticky; top: 0; }
   .home-practice-column { margin-top: 0; padding: 2rem 2rem 1.5rem; border-top: 0; border-left: 1px solid rgb(var(--color-border) / .22); border-radius: 0; }
+}
+/* Golden Court has a dedicated widescreen adaptation; other artwork keeps
+   its existing framed composition and desktop columns. */
+@media (min-width: 768px) {
+  .home-arrival-frame[data-responsive-art='true'] { --home-artwork-frame-ratio: var(--home-artwork-wide-ratio); --home-artwork-frame-width: 100%; }
+}
+@media (min-width: 1024px) {
+  .home-stack.page-shell[data-artwork-id='golden-court-assembly'] { display: block; max-width: 84rem; }
+  .home-stack[data-artwork-id='golden-court-assembly'] > .home-arrival { position: relative; top: auto; min-height: 0; }
+  .home-stack[data-artwork-id='golden-court-assembly'] .home-practice-column { width: 100%; max-width: 70rem; margin-inline: auto; border-left: 0; border-top: 1px solid rgb(var(--color-border) / .22); }
+  .home-stack[data-artwork-id='golden-court-assembly'] .home-hukam-content { max-width: 70rem; margin-inline: auto; }
 }
 @media (max-width: 359px) {
   .home-masthead { padding-inline: 1.25rem; }

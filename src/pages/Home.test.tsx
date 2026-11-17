@@ -14,6 +14,7 @@ import { useLocaleStore } from '../store/locale'
 import { buildNitnemStudyPath, DEFAULT_NITNEM_OPTION_IDS, getNitnemOption, useNitemStore } from '../store/nitnem'
 import { useNitnemHistoryStore, type NitnemCompletionEvent } from '../store/nitnemHistory'
 import { useHomeArtworkStore } from '../store/homeArtwork'
+import { DEFAULT_HOME_ARTWORK, ECLIPSE_ARTWORK } from '../utils/homeArtwork'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
@@ -1043,4 +1044,54 @@ test('restores the bani returned from the reader without retargeting an unfinish
   expect(useNitnemPracticeStore.getState().active!.readingPath).toBe(exact)
   expect(useNitemStore.getState().completedIds).toEqual([])
   expect(useNitnemHistoryStore.getState().events).toEqual([])
+})
+
+
+test('Golden Court provides one responsive picture while retaining the original phone image and saved artwork identity', () => {
+  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: DEFAULT_HOME_ARTWORK.id })
+  renderHome()
+  const image = screen.getByTestId('home-hero-artwork')
+  const picture = image.closest('picture')!
+  const source = picture.querySelector('source')!
+  expect(picture.querySelectorAll('img')).toHaveLength(1)
+  expect(source).toHaveAttribute('media', '(min-width: 768px)')
+  expect(source).toHaveAttribute('srcset', DEFAULT_HOME_ARTWORK.wide!.src)
+  expect(source).toHaveAttribute('width', '1774')
+  expect(source).toHaveAttribute('height', '887')
+  expect(image).toHaveAttribute('src', DEFAULT_HOME_ARTWORK.src)
+  expect(image).toHaveAttribute('width', '1199')
+  expect(image).toHaveAttribute('height', '1476')
+  expect(image).toHaveStyle({ objectFit: 'contain' })
+  expect(screen.getByTestId('page-home')).toHaveAttribute('data-artwork-id', 'golden-court-assembly')
+  expect(useHomeArtworkStore.getState().selectedId).toBe('golden-court-assembly')
+})
+
+test('a failed widescreen image falls back once to the portrait before the existing artwork fallback, and reapply retries', () => {
+  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: DEFAULT_HOME_ARTWORK.id })
+  renderHome()
+  const wideImage = screen.getByTestId('home-hero-artwork')
+  Object.defineProperty(wideImage, 'currentSrc', { value: new URL(DEFAULT_HOME_ARTWORK.wide!.src, document.baseURI).href })
+  fireEvent.error(wideImage)
+  const portrait = screen.getByTestId('home-hero-artwork')
+  expect(portrait).not.toBe(wideImage)
+  expect(portrait).toHaveAttribute('src', DEFAULT_HOME_ARTWORK.src)
+  expect(portrait.closest('picture')?.querySelector('source')).toBeNull()
+  expect(screen.getByTestId('home-hero-art-stage')).not.toHaveAttribute('data-responsive-art')
+  expect(useHomeArtworkStore.getState().selectedId).toBe(DEFAULT_HOME_ARTWORK.id)
+  expect(screen.getByRole('link', { name: 'Read Hukamnama' })).toBeInTheDocument()
+  fireEvent.error(portrait)
+  expect(screen.getByTestId('home-hero-artwork')).toHaveAttribute('src', ECLIPSE_ARTWORK.src)
+  expect(screen.getByTestId('home-hero-artwork').closest('picture')?.querySelector('source')).toBeNull()
+  act(() => { useHomeArtworkStore.getState().applyPreferences({ mode: 'fixed', selectedId: DEFAULT_HOME_ARTWORK.id }) })
+  expect(screen.getByTestId('home-hero-artwork').closest('picture')?.querySelector('source')).toHaveAttribute('srcset', DEFAULT_HOME_ARTWORK.wide!.src)
+})
+
+test('an original portrait failure never retries the broken original through the widescreen source', () => {
+  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: DEFAULT_HOME_ARTWORK.id })
+  renderHome()
+  const portrait = screen.getByTestId('home-hero-artwork')
+  Object.defineProperty(portrait, 'currentSrc', { value: new URL(DEFAULT_HOME_ARTWORK.src, document.baseURI).href })
+  fireEvent.error(portrait)
+  expect(screen.getByTestId('home-hero-artwork')).toHaveAttribute('src', ECLIPSE_ARTWORK.src)
+  expect(screen.getByTestId('home-hero-artwork').closest('picture')?.querySelector('source')).toBeNull()
 })

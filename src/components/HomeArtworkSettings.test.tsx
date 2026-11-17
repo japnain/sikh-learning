@@ -4,7 +4,7 @@ import HomeArtworkSettings from './HomeArtworkSettings'
 import { useHomeArtworkStore } from '../store/homeArtwork'
 import { homeArtworkCatalog } from '../data/homeArtworkCatalog'
 import { useLocaleStore } from '../store/locale'
-import { preloadHomeArtwork } from '../utils/homeArtwork'
+import { DEFAULT_HOME_ARTWORK, preloadHomeArtwork } from '../utils/homeArtwork'
 
 vi.mock('../utils/homeArtwork', async (importOriginal) => ({
   ...await importOriginal<typeof import('../utils/homeArtwork')>(),
@@ -86,4 +86,16 @@ test('offers a fresh preview retry without changing the saved artwork', () => {
   fireEvent.load(retriedPreview)
   expect(screen.queryByText('Loading artwork…')).not.toBeInTheDocument()
   expect(useHomeArtworkStore.getState().selectedId).toBe('eclipse')
+})
+
+
+test.each(['en', 'pa', 'hi'] as const)('discloses the AI adaptation in %s while the gallery preview remains the original portrait', locale => {
+  useLocaleStore.setState({ locale })
+  useHomeArtworkStore.setState({ mode: 'fixed', selectedId: DEFAULT_HOME_ARTWORK.id })
+  render(<HomeArtworkSettings open onClose={() => {}} />)
+  const note = screen.getByText(DEFAULT_HOME_ARTWORK.wide!.adaptationNote[locale])
+  expect(note.closest('details')).toHaveClass('home-artwork-context')
+  expect(screen.getByRole('img')).toHaveAttribute('src', DEFAULT_HOME_ARTWORK.src)
+  expect(screen.getByRole('img')).toHaveAttribute('width', '1199')
+  expect(screen.getByRole('img')).toHaveAttribute('height', '1476')
 })

@@ -19,7 +19,7 @@ const COMPOSITIONS: Record<string, Composition> = {
   'rider-and-attendants': { palette: 'jade', height: 270, inset: 16 },
   'falconer-on-horseback': { palette: 'parchment', height: 380, inset: 28 },
   'floral-teacher-mural': { palette: 'parchment', height: 360, inset: 28 },
-  'golden-court-assembly': { palette: 'ochre', height: 380, inset: 28 },
+  'golden-court-assembly': { palette: 'ochre', height: 380, inset: 16 },
   'gurmukhi-floral-medallion': { palette: 'rose', height: 390, inset: 28 },
   'ceremonial-arms-display': { palette: 'ochre', height: 370, inset: 28 },
   'nanak-bala-mardana': { palette: 'rose', height: 380, inset: 28 },
@@ -42,9 +42,10 @@ export function getHomeArtworkComposition(asset: HomeArtworkAsset, dark: boolean
   const direction = COMPOSITIONS[asset.id] ?? { palette: 'parchment', height: 380, inset: 24 }
   const [background, ink, muted, accent] = PALETTES[direction.palette][dark ? 'dark' : 'light']
   const ratio = asset.width / asset.height
-  // Keep three source pixels per CSS pixel on high-density phone screens.
-  // Smaller reproductions receive a smaller frame instead of being enlarged.
-  const maxWidth = Math.min(direction.height * ratio, asset.width / 3)
+  // The default portrait intentionally fills phones up to 440 CSS px. Its
+  // separate widescreen adaptation has its own dimensions; other artworks
+  // retain the original three-source-pixels-per-CSS-pixel presentation.
+  const maxWidth = asset.id === 'golden-court-assembly' ? 440 : Math.min(direction.height * ratio, asset.width / 3)
   return {
     orientation: ratio > 1.85 ? 'panorama' : ratio >= 1 ? 'landscape' : 'portrait',
     arrivalStyle: {
@@ -54,6 +55,10 @@ export function getHomeArtworkComposition(asset: HomeArtworkAsset, dark: boolean
       '--arrival-accent': accent,
       '--artwork-inset': `${direction.inset}px`,
     } as CSSProperties,
-    frameStyle: { aspectRatio: ratio, maxWidth: `${maxWidth}px` } as CSSProperties,
+    frameStyle: asset.wide ? {
+      aspectRatio: `var(--home-artwork-frame-ratio, ${ratio})`,
+      maxWidth: `var(--home-artwork-frame-width, ${maxWidth}px)`,
+      '--home-artwork-wide-ratio': asset.wide.width / asset.wide.height,
+    } as CSSProperties : { aspectRatio: ratio, maxWidth: `${maxWidth}px` } as CSSProperties,
   }
 }

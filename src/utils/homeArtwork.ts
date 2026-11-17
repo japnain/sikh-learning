@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import eclipseSrc from '../assets/home-eclipse/hero-eclipse.avif'
 import goldenCourtAssemblySrc from '../assets/share-highlights/12-golden-court-assembly.jpg'
 import goldenCourtAssemblyThumbnail from '../assets/share-highlights/thumbnails/12-golden-court-assembly.jpg'
+import goldenCourtAssemblyWide from '../assets/home-artwork/golden-court-assembly-wide.jpg'
 import type { ShareHighlightAsset } from '../assets/share-highlights/manifest'
 
 export interface HomeArtworkAsset {
@@ -18,6 +19,7 @@ export interface HomeArtworkAsset {
   focalPosition: { x: number; y: number }
   protectedSubject?: ShareHighlightAsset['storyProfile']['protectedSubject']
   credit?: { label: string; url: string }
+  wide?: { src: string; width: number; height: number; media: string; adaptationNote: ShareHighlightAsset['localizedDescription'] }
 }
 
 export const ECLIPSE_ARTWORK: HomeArtworkAsset = {
@@ -45,6 +47,14 @@ export const DEFAULT_HOME_ARTWORK: HomeArtworkAsset = {
     hi: 'बैठी आकृतियों और संगीतकारों वाला सममित स्वर्णिम दरबारी दृश्य।',
   },
   width: 1199, height: 1476, mat: '#252219', focalPosition: { x: 0.5, y: 0.56 },
+  wide: {
+    src: goldenCourtAssemblyWide, width: 1774, height: 887, media: '(min-width: 768px)',
+    adaptationNote: {
+      en: 'The widescreen Home banner is an AI-expanded adaptation. Narrow screens keep the original portrait image.',
+      pa: 'ਚੌੜੀ ਸਕ੍ਰੀਨ ਲਈ ਮੁੱਖ ਪੰਨੇ ਦਾ ਬੈਨਰ AI ਨਾਲ ਵਿਸਤਾਰਿਆ ਰੂਪ ਹੈ। ਛੋਟੀ ਸਕ੍ਰੀਨ ਉੱਤੇ ਅਸਲ ਲੰਬਾ ਚਿੱਤਰ ਦਿਖਦਾ ਹੈ।',
+      hi: 'चौड़ी स्क्रीन का होम बैनर AI से विस्तारित रूप है। छोटी स्क्रीन पर मूल लंबवत चित्र दिखता है।',
+    },
+  },
   protectedSubject: { bounds: { x: 0.05, y: 0.2, width: 0.9, height: 0.72 }, intent: 'keep-clear-of-text' },
 }
 

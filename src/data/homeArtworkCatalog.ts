@@ -1,6 +1,6 @@
 import { shareHighlightHukamnamaAssets } from '../assets/share-highlights/manifest'
 import { getHukamnamaArtDirection } from '../features/shareHighlight/hukamnamaArtDirection'
-import type { HomeArtworkAsset } from '../utils/homeArtwork'
+import { DEFAULT_HOME_ARTWORK, type HomeArtworkAsset } from '../utils/homeArtwork'
 import { homeArtworkAdditions } from './homeArtworkAdditions'
 import devotionalInterior from '../assets/home-artwork/devotional-interior.webp'
 import devotionalInteriorThumb from '../assets/home-artwork/devotional-interior-thumb.jpg'
@@ -16,7 +16,7 @@ const homeSourceUpgrades: Partial<Record<string, Pick<HomeArtworkAsset, 'src' | 
   },
 }
 
-export const homeArtworkCatalog: HomeArtworkAsset[] = [...shareHighlightHukamnamaAssets.map(asset => ({
+export const homeArtworkCatalog: HomeArtworkAsset[] = [...shareHighlightHukamnamaAssets.map(asset => asset.id === DEFAULT_HOME_ARTWORK.id ? DEFAULT_HOME_ARTWORK : ({
   id: asset.id,
   src: asset.src,
   thumbnail: asset.thumbnail,

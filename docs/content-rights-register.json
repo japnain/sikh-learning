@@ -3207,6 +3207,29 @@
           "sha256": "45f61bd52d85870df992ac73bf29450e4f0a2a5452ea49745aafcb020c47037a"
         }
       ]
+    },
+    {
+      "id": "art-home-artwork-golden-court-assembly-wide.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "src/assets/share-highlights/12-golden-court-assembly.jpg",
+      "creator": "AI-generated adaptation for Naamras; underlying artwork creator unverified",
+      "license": null,
+      "evidence": "docs/design/golden-court-responsive-banner.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Golden court assembly; wide-screen AI adaptation disclosed in About this artwork.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Generated with the existing portrait as reference at the user's request. Not a verified historical panorama or exact-pixel outpaint. Original source status remains unresolved; generation does not establish underlying rights.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/golden-court-assembly-wide.jpg",
+          "sha256": "4f070ee7238ab3b5dbe58f3f295b185d0284219199afb1bd7ebb597d00139fc3"
+        }
+      ]
     }
   ]
 }

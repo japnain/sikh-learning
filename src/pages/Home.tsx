@@ -334,12 +334,14 @@ export default function Home() {
   const [artOpen, setArtOpen] = useState(false)
   const [pinnableArrival, setPinnableArrival] = useState(false)
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null)
+  const [failedWideImageKey, setFailedWideImageKey] = useState<string | null>(null)
   const [notice, setNotice] = useState('')
   const [chosenOptionId, setChosenOptionId] = useState<string | null>(null)
   const [initialBrowseId] = useState(getHomeNitnemReturn)
   useEffect(() => { clearHomeNitnemReturn(initialBrowseId) }, [initialBrowseId])
   const { asset, imageStyle, onImageError, imageKey } = useHomeArtwork()
   const artworkComposition = getHomeArtworkComposition(asset, isDark)
+  const responsiveArtwork = failedWideImageKey !== imageKey ? asset.wide : undefined
   const { data: hukamnama, loading, refreshing, isCached, isOlder, retry } = useHukamnama()
 
   const selected = useMemo(() => nitnem.selectedIds.map(id => NITNEM_ROUTE_OPTIONS.find(o => o.id === id)).filter((o): o is NitnemRouteOption => Boolean(o)), [nitnem.selectedIds])
@@ -490,7 +492,7 @@ export default function Home() {
   }, [bookmarks, favorites, vocab, copy.library, homeMessages.savedBook, locale, meaningLanguage])
 
   return (
-    <div className="home-stack page-shell home-experience" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
+    <div className="home-stack page-shell home-experience" data-artwork-id={asset.id} data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section ref={arrivalRef} className="home-arrival" style={artworkComposition.arrivalStyle} aria-labelledby="home-hukamnama-title" data-testid="home-hero" data-pinnable={pinnableArrival ? 'true' : undefined} data-gallery-art={asset.id !== 'eclipse' ? 'true' : undefined} data-artwork-orientation={artworkComposition.orientation} data-ai-surface="daily-reading-room">
         <header className="home-masthead" data-testid="home-brand-header">
           <h1 id="home-title" className="home-wordmark">Naam<span>Ras</span><i aria-hidden="true" /></h1>
@@ -505,8 +507,19 @@ export default function Home() {
           <span>{practiceResume(activeOption) ? entryCopy.resume : entryCopy.begin}<IconArrowRight size={17} /></span>
         </Link> : allComplete ? <a className="home-nitnem-entry" href="#home-nitnem-title"><span><small>{entryCopy.label}</small><span>{entryCopy.complete}</span></span><span>{entryCopy.view}<IconArrowRight size={17} /></span></a> : null}
         <figure className="home-arrival-art" data-artwork-id={asset.id}>
-          <div className="home-arrival-frame" style={artworkComposition.frameStyle} data-testid="home-hero-art-stage" data-artwork-id={asset.id}>
-          {failedImageKey === imageKey ? <div className="home-hero-art-fallback" role="img" aria-label={homeMessages.artworkUnavailable} data-testid="home-hero-art-fallback" /> : <img key={imageKey} src={asset.src} alt={asset.localizedDescription[locale]} width={asset.width} height={asset.height} decoding="async" loading="eager" fetchPriority="high" style={imageStyle} onError={() => { onImageError(); if (asset.id === 'eclipse') setFailedImageKey(imageKey) }} data-testid="home-hero-artwork" />}
+          <div className="home-arrival-frame" style={artworkComposition.frameStyle} data-testid="home-hero-art-stage" data-artwork-id={asset.id} data-responsive-art={responsiveArtwork ? 'true' : undefined}>
+          {failedImageKey === imageKey ? <div className="home-hero-art-fallback" role="img" aria-label={homeMessages.artworkUnavailable} data-testid="home-hero-art-fallback" /> : <picture>
+            {responsiveArtwork ? <source media={responsiveArtwork.media} srcSet={responsiveArtwork.src} width={responsiveArtwork.width} height={responsiveArtwork.height} /> : null}
+            <img key={`${imageKey}:${responsiveArtwork ? 'responsive' : 'portrait'}`} src={asset.src} alt={asset.localizedDescription[locale]} width={asset.width} height={asset.height} decoding="async" loading="eager" fetchPriority="high" style={imageStyle} onError={event => {
+              const currentSrc = event.currentTarget.currentSrc
+              const wideFailed = responsiveArtwork && (currentSrc
+                ? currentSrc === new URL(responsiveArtwork.src, document.baseURI).href
+                : window.matchMedia(responsiveArtwork.media).matches)
+              if (wideFailed) { setFailedWideImageKey(imageKey); return }
+              onImageError()
+              if (asset.id === 'eclipse') setFailedImageKey(imageKey)
+            }} data-testid="home-hero-artwork" />
+          </picture>}
           </div>
           <figcaption className="home-arrival-caption" lang={locale}><span>{asset.displayName[locale]}</span></figcaption>
         </figure>
