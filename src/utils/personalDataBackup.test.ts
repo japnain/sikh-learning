@@ -6,7 +6,7 @@ import { useNitnemHistoryStore } from '../store/nitnemHistory'
 import { useVocabStore } from '../store/vocab'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { useBookmarksStore } from '../store/bookmarks'
-import { useNitemStore, buildNitnemStudyPath, getNitnemOption } from '../store/nitnem'
+import { useNitemStore, buildNitnemStudyPath, getNitnemOption, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { useReadingVisibilityStore } from '../store/readingVisibility'
 import { getLocalCollectionSnapshotKey } from './localCollection'
 
@@ -356,4 +356,16 @@ it('keeps an unsaved vocabulary retry available when a later restore hydration f
   expect(useVocabStore.getState().vocab).toHaveLength(1)
   expect(useVocabStore.getState().retryPersistence()).toBe(true)
   expect(state(createPersonalDataBackup(), 'sikh-vocab').vocab).toHaveLength(1)
+})
+
+
+it('exports and restores an expanded daily routine without the obsolete fifty-bani limit', async () => {
+  const ids = NITNEM_ROUTE_OPTIONS.map(option => option.id).reverse()
+  useNitemStore.setState({ selectedIds: ids, completedIds: [], completedDate: '2026-11-12', completionTrackingEnabled: true, weeklyDayGoal: 7 })
+  const result = createPersonalDataBackupResult()
+  expect(result.omittedPreferences).not.toContain('sikh-nitnem')
+  const parsed = parsePersonalDataBackup(JSON.stringify(result.backup))
+  expect(state(parsed, 'sikh-nitnem').selectedIds).toEqual(ids)
+  await restorePersonalDataBackup(parsed, 'replace', noRuntime)
+  expect(JSON.parse(localStorage.getItem('sikh-nitnem')!).state.selectedIds).toEqual(ids)
 })

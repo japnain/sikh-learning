@@ -54,6 +54,32 @@ function exactResult(baniDbId: number, length: SundarGutkaLength | null = null):
 }
 
 describe('useBani offline recovery', () => {
+  it('opens a verified offline reading without making a live request or displaying a network error', async () => {
+    const online = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false)
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(cachedResult)
+    try {
+      const { result } = renderHook(() => useBani(2))
+      await waitFor(() => expect(result.current.status).toBe('ready'))
+      expect(result.current.entries).toEqual(cachedResult.entries)
+      expect(result.current.issue).toBeNull()
+      expect(result.current.isCached).toBe(true)
+      expect(fetchBani).not.toHaveBeenCalled()
+      expect(writeBaniOfflineCache).not.toHaveBeenCalled()
+    } finally { online.mockRestore() }
+  })
+
+  it('reports an undownloaded offline reading without waiting on a network timeout', async () => {
+    const online = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false)
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(null)
+    try {
+      const { result } = renderHook(() => useBani(2))
+      await waitFor(() => expect(result.current.status).toBe('degraded'))
+      expect(result.current.entries).toEqual([])
+      expect(result.current.loading).toBe(false)
+      expect(fetchBani).not.toHaveBeenCalled()
+    } finally { online.mockRestore() }
+  })
+
   it('keeps a committed prepared reading visible when its cache write failed and subsequent live loading is offline', async () => {
     const exact = exactResult(21, 'long')
     vi.mocked(readBaniOfflineCache).mockResolvedValue(null)

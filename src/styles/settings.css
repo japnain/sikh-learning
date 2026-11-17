@@ -10,55 +10,11 @@
 }
 
 @media (min-width: 760px) {
-  [data-page='more'] {
-    display: grid;
-    max-width: var(--nr-page-max);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--nr-layout-gap);
-    align-items: start;
-  }
-
-  [data-page='more'] > * {
-    min-width: 0;
-    margin-bottom: 0;
-  }
-
-  [data-page='more'] > .more-page-heading,
-  [data-page='more'] > .more-appearance-grid,
-  [data-page='more'] > .more-about {
-    grid-column: 1 / -1;
-  }
-
   [data-page='privacy'],
-  [data-page='nitnem-customize'] {
-    max-width: 56rem;
-  }
-
-  .privacy-data-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  [data-page='nitnem-customize'] { max-width: 56rem; }
+  .privacy-data-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-
-/* Expanded defaults use their own row rather than a tall paired grid cell. */
-@media (min-width: 760px) {
-  [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] { grid-column: 1 / -1; }
-  [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-  [data-page='more'] [data-testid='more-translation-source'] { grid-column: 1 / -1; }
-  [data-page='more'] .more-reader-preview { grid-column: 1 / -1; }
-}
-[data-page='more'] .text-xs { font-size: .8125rem; line-height: 1.6; }
-[data-page='more'] button[aria-pressed='true'] { border-color: rgb(var(--color-text)); background: rgb(var(--color-text)); color: rgb(var(--color-bg)); }
-
-@media (min-width: 760px) {
-  [data-page='more'] > [data-testid='more-reader-defaults'][data-state='open'] > div > * { margin-block: 0; }
-}
-
-@media (min-width: 760px) {
-  [data-page='more']:has(> [data-testid='more-reader-defaults'][data-state='open']) > [data-testid='more-daily-nitnem-link'] { grid-column: 1 / -1; }
-}
-
 .settings-block > .eyebrow { margin-bottom: .65rem; }
-[data-page='more'] > .more-appearance-grid > .settings-block > .eyebrow + p { margin-top: -.25rem; }
 /* Keep More's live sample readable before the reader route loads its styles. */
 .more-reader-preview [data-reader-support] { margin-top: .65rem; color: rgb(var(--color-text-muted)); font-size: calc(.96rem * var(--more-support-scale, 1)); line-height: 1.65; }
 .more-reader-preview [data-reader-support='transliteration'] { font-size: calc(.82rem * var(--more-support-scale, 1)); }

@@ -12,6 +12,10 @@ import {
 } from './nitnem'
 import { useSundarGutkaLengthStore } from './sundarGutkaLength'
 import { useScriptureCacheStore } from './scriptureCache'
+import { READ_BANIDB_CATALOG_IDS, READ_EXACT_BANIS } from '../data/banis'
+import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
+import { getExactReadingKey } from './readingPlaces'
+import { getSelectedNitnemReading } from '../utils/nitnemReadingIdentity'
 
 beforeEach(() => {
   vi.useFakeTimers()
@@ -51,16 +55,14 @@ test('starts with completion tracking enabled and preserves an explicit later op
 test('keeps the additional banis grouped under Additional with clean card copy', () => {
   const additionalOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.group === 'Additional')
 
-  expect(additionalOptions.map(option => option.id)).toEqual([
+  expect(additionalOptions.slice(0, 5).map(option => option.id)).toEqual([
     'salok-mahalla-9',
     'sukhmani-sahib',
     'asa-di-var',
     'aarti',
     'laavan',
   ])
-  expect(DEFAULT_NITNEM_OPTION_IDS).not.toEqual(
-    expect.arrayContaining(additionalOptions.map(option => option.id))
-  )
+  expect(additionalOptions.every(option => !DEFAULT_NITNEM_OPTION_IDS.includes(option.id as typeof DEFAULT_NITNEM_OPTION_IDS[number]))).toBe(true)
 
   const aarti = getNitnemOption('aarti')
   expect(aarti).not.toBeNull()
@@ -139,6 +141,8 @@ test('distinguishes the source-verified Dheenan Ki title from the Sraavag Suddh 
     baniDbId: 7, source: 'D', baseBaniId: 'tav-prasad-savaiye',
   })
   expect(dheenanKi?.gurmukhiTitle).not.toContain('ਸ੍ਰਾਵਗ ਸੁੱਧ')
+  expect(dheenanKi?.searchTerms).toContain('दीनन की')
+  expect(dheenanKi?.searchTerms).not.toContain('स्रावग सुद्ध')
   expect(sraavagSuddh?.gurmukhiTitle).toContain('ਸ੍ਰਾਵਗ ਸੁੱਧ')
   expect(sraavagSuddh?.baniDbId).toBe(6)
 })
@@ -357,4 +361,45 @@ test('safe completion respects an opt-out and resolves the local day at the acti
   expect(setNitnemCompletionSafely('japji-sahib', true)).toBe('changed')
   expect(useNitemStore.getState().completedDate).toBe('2026-10-18')
   expect(useNitnemHistoryStore.getState().events[0].date).toBe('2026-10-18')
+})
+
+
+test('offers every exact reading from Read once, excluding browse-only books and preserving the original routes', () => {
+  expect(NITNEM_ROUTE_OPTIONS).toHaveLength(104)
+  expect(NITNEM_ROUTE_OPTIONS.map(option => option.baniDbId).sort((a, b) => a! - b!)).toEqual(READ_BANIDB_CATALOG_IDS)
+  expect(new Set(NITNEM_ROUTE_OPTIONS.map(option => option.id)).size).toBe(NITNEM_ROUTE_OPTIONS.length)
+  expect(NITNEM_ROUTE_OPTIONS.every(option => option.gurmukhiTitle && option.category && getExactReadingKey(buildNitnemStudyPath(option)))).toBe(true)
+  expect(NITNEM_ROUTE_OPTIONS.map(option => option.id)).not.toContain('zafarnama')
+  expect(NITNEM_ROUTE_OPTIONS.map(option => option.id)).not.toContain('bhai-gurdas-vaaran')
+  expect(NITNEM_ROUTE_OPTIONS.map(option => option.id)).not.toContain('tav-prasad-savaiye-dinan-ki')
+  expect(NITNEM_ROUTE_OPTIONS.filter(option => option.supportsLengthAdjustment).map(option => option.id)).toEqual([
+    'chaupai-sahib', 'rehras-sahib', 'aarti', 'kirtan-sohila',
+  ])
+})
+
+test('new catalog selections keep the same exact identity in Read, Home and completion tracking', () => {
+  const originalIds = new Set(NITNEM_ROUTE_OPTIONS.slice(0, 13).map(option => option.id))
+  for (const option of NITNEM_ROUTE_OPTIONS.filter(item => !originalIds.has(item.id) && item.id !== 'ardaas')) {
+    const bani = READ_EXACT_BANIS.find(item => item.baniDbId === option.baniDbId)!
+    const readPath = buildCanonicalBaniStudyPath(bani)
+    expect(getExactReadingKey(buildNitnemStudyPath(option))).toBe(getExactReadingKey(readPath))
+    expect(getSelectedNitnemReading(readPath, [option.id])?.id).toBe(option.id)
+  }
+  const ardaas = getNitnemOption('ardaas')!
+  expect(getSelectedNitnemReading(buildNitnemStudyPath(ardaas), ['ardaas'])?.id).toBe('ardaas')
+  expect(getSelectedNitnemReading(`${buildNitnemStudyPath(ardaas)}&flow=ardaas-hukamnama`, ['ardaas'])).toBeNull()
+})
+
+test('preserves expanded selections, order, completions and saved lengths after rehydration', async () => {
+  const ids = ['salok-farid', 'ardaas', 'rehras-sahib', 'shabad-hazare', 'sri-bhagauti-astotr-hazur-sahib']
+  useSundarGutkaLengthStore.getState().setLength('rehras-sahib', 'long')
+  useNitemStore.getState().setSelectedIds(ids)
+  for (const id of ['salok-farid', 'ardaas', 'sri-bhagauti-astotr-hazur-sahib']) {
+    expect(setNitnemCompletionSafely(id, true, buildNitnemStudyPath(getNitnemOption(id)!))).toBe('changed')
+  }
+  await useNitemStore.persist.rehydrate()
+  expect(useNitemStore.getState().selectedIds).toEqual(ids)
+  expect(useNitemStore.getState().completedIds).toEqual(['salok-farid', 'ardaas', 'sri-bhagauti-astotr-hazur-sahib'])
+  expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('long')
+  expect(normalizePersistedNitnemIds(['shabad-hazare', 'rehras-sahib-focused', 'shabad-hazare', 'invalid'])).toEqual(['shabad-hazare', 'rehras-sahib'])
 })

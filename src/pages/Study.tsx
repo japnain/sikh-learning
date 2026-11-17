@@ -1,3 +1,4 @@
+import { READER_STATE_COPY } from '../content/readerStateCopy'
 import '../styles/reader.css'
 import { lazy, Suspense, useState, useEffect, useMemo, useRef, useCallback, type MouseEvent } from 'react'
 import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
@@ -6,6 +7,8 @@ import SurfaceStateCard from '../components/SurfaceStateCard'
 import { useProgressStore, type Session } from '../store/progress'
 import { useAng } from '../hooks/useAng'
 import { useBani } from '../hooks/useBani'
+import { useShabadosBani } from '../hooks/useShabadosBani'
+import { getShabadosBani } from '../data/shabadosBanis'
 import { useShabad } from '../hooks/useShabad'
 import { useHukamnama } from '../hooks/useHukamnama'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
@@ -28,7 +31,7 @@ import { isActiveNitnemPracticeReading } from '../utils/nitnemPractice'
 import WordPopover from '../components/WordPopover'
 import { hasReaderSelection, type ReaderWordContext } from '../hooks/useReaderInteraction'
 import { useReaderPresentation, type ReaderPresentation } from '../hooks/useReaderPresentation'
-import { captureReaderAnchor, findVisibleReaderLine, getReaderBodyLines, getReaderViewportTop, isReaderScrollUnmovedOrClamped, restoreReaderAnchor, type ReaderAnchor } from '../utils/readerAnchor'
+import { captureReaderAnchor, findVisibleReaderLine, getReaderBodyLines, getReaderViewportTop, restoreReaderAnchor, type ReaderAnchor } from '../utils/readerAnchor'
 import { getSavedReturnIdentity, isSafeSavedReturnPath, isScriptureBookmark, useBookmarksStore } from '../store/bookmarks'
 import { resolveFavoriteRouteMode, useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
@@ -96,6 +99,7 @@ import {
 } from '../utils/sourceReaderMeta'
 import {
   addAppScrollSettledListener,
+  focusElementWithoutAppScroll,
   getAppScrollTop,
   getAppViewportBounds,
   getAppViewportHeight,
@@ -252,6 +256,8 @@ function getRandomSggsAng(randomValue: number): number {
 }
 
 function parseShabadId(entry: ScriptureEntry): number | null {
+  // Shabad OS line/page identifiers are local reader locators, never BaniDB IDs.
+  if (entry.id.startsWith('shabados-')) return null
   if (typeof entry.shabadId === 'number') return entry.shabadId > 0 ? entry.shabadId : null
   const parts = entry.id.split('-')
   if (parts.length === 3) {
@@ -707,16 +713,18 @@ export default function Study() {
 
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
-  const baniName = searchParams.get('bani')
-  const baniIdParam = searchParams.get('baniId')
+  const shabadosBaniParam = searchParams.get('shabadosBani')
+  const shabadosBani = shabadosBaniParam ? getShabadosBani(shabadosBaniParam) : undefined
+  const baniName = shabadosBani?.name ?? searchParams.get('bani')
+  const baniIdParam = shabadosBaniParam ? null : searchParams.get('baniId')
   const sgLengthParam = normalizeSundarGutkaLength(searchParams.get('sgLength'))
   const startAngParam = Number(searchParams.get('startAng')) || null
   const endAngParam = Number(searchParams.get('endAng')) || null
-  const shabadIdParam = Number(searchParams.get('shabadId')) || null
+  const shabadIdParam = shabadosBaniParam ? null : Number(searchParams.get('shabadId')) || null
   const verseIdParam = Number(searchParams.get('verseId')) || null
   const resumeVerseIdParam = Number(searchParams.get('resumeVerseId')) || null
   const resumeVerseSourceParam = searchParams.get('resumeSource')
-  const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
+  const baniDbIdParam = shabadosBaniParam ? null : Number(searchParams.get('baniDbId')) || null
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
   const flowParam = searchParams.get('flow')
   const randomHukamnamaAngParam = Number(searchParams.get('randomHukamnamaAng')) || null
@@ -726,7 +734,7 @@ export default function Study() {
   const akItemParam = Number(searchParams.get('akItem')) || null
   const akPageParam = Number(searchParams.get('akPage')) || null
 
-  if ((!source || !angParam) && scriptureId && !shabadIdParam && !baniDbIdParam) {
+  if ((!source || !angParam) && scriptureId && !shabadIdParam && !baniDbIdParam && !shabadosBaniParam) {
     const parts = scriptureId.split('-')
     if (parts.length >= 2) {
       source = parts[0] as BaniSource
@@ -734,9 +742,9 @@ export default function Study() {
     }
   }
 
-  const supportedSundarGutkaBaniId =
+  const supportedSundarGutkaBaniId = shabadosBaniParam ? null : (
     asSupportedSundarGutkaBaniId(baniIdParam)
-    ?? getSupportedSundarGutkaBaniIdByBaniDbId(baniDbIdParam)
+    ?? getSupportedSundarGutkaBaniIdByBaniDbId(baniDbIdParam))
   const supportedSundarGutkaBani = supportedSundarGutkaBaniId
     ? findCanonicalBaniById(supportedSundarGutkaBaniId)
     : null
@@ -756,22 +764,24 @@ export default function Study() {
       ?? SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].defaultLength)
     : null
 
-  const isExactShabadMode = shabadIdParam !== null
-  const isBaniDbMode = baniDbIdParam !== null
-  const isHukamnamaMode = Boolean(hukamnamaDateParam)
-  const isArdaasHukamnamaFlow = flowParam === 'ardaas-hukamnama'
+  const isExactShabadMode = shabadIdParam !== null && !shabadosBaniParam
+  const isShabadosMode = Boolean(shabadosBaniParam)
+  const isBaniDbMode = baniDbIdParam !== null && !isShabadosMode
+  const isBaniMode = isBaniDbMode || isShabadosMode
+  const isHukamnamaMode = Boolean(hukamnamaDateParam) && !isShabadosMode
+  const isArdaasHukamnamaFlow = flowParam === 'ardaas-hukamnama' && !isShabadosMode
   const isRandomHukamnamaMode =
     isArdaasHukamnamaFlow
     && isExactShabadMode
     && randomHukamnamaAngParam !== null
   const isArdaasReaderFlow =
     isArdaasHukamnamaFlow
-    && isBaniDbMode
+    && isBaniMode
     && baniDbIdParam === 24
     && !isRandomHukamnamaMode
   const isBaniRangeMode = baniName !== null && endAngParam !== null && source !== null && angParam !== null
-  const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode && !isHukamnamaMode
-  const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode || isHukamnamaMode
+  const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniMode && !isHukamnamaMode
+  const isApiMode = isAngMode || isExactShabadMode || isBaniMode || isHukamnamaMode
   const shouldTrackProgress = !isArdaasHukamnamaFlow
   const searchParamsString = searchParams.toString()
   const resumeSettledRef = useRef<string | null>(null)
@@ -783,11 +793,14 @@ export default function Study() {
 
   const angResult = useAng(
     isAngMode ? angParam! : 1,
-    isAngMode ? source! : 'G'
+    isAngMode ? source! : 'G',
+    isAngMode
   )
   const beforeBaniRefresh = useRef<(() => void) | null>(null)
   const lengthSelection = useBaniLengthSelection(searchParamsString)
-  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, requestedSgLength, () => beforeBaniRefresh.current?.(), lengthSelection.preparedReading)
+  const baniDbResult = useBani(isBaniDbMode ? baniDbIdParam! : null, requestedSgLength, () => beforeBaniRefresh.current?.(), lengthSelection.preparedReading)
+  const shabadosResult = useShabadosBani(isShabadosMode ? shabadosBaniParam : null, () => beforeBaniRefresh.current?.())
+  const baniResult = isShabadosMode ? shabadosResult : baniDbResult
   const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
   const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
   const { addBookmark, removeBookmark, bookmarks, hasBookmark } = useBookmarksStore()
@@ -797,7 +810,7 @@ export default function Study() {
     : null
 
   useEffect(() => {
-    if (!isBaniDbMode || isExactShabadMode || isHukamnamaMode || !supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !effectiveSgLength) return
+    if (!isBaniMode || isExactShabadMode || isHukamnamaMode || !supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !effectiveSgLength) return
 
     const nextParams = new URLSearchParams(searchParamsString)
     const currentAng = angParam ?? startAngParam ?? supportedSundarGutkaBani.startAng
@@ -820,7 +833,7 @@ export default function Study() {
   }, [
     angParam,
     effectiveSgLength,
-    isBaniDbMode,
+    isBaniMode,
     isExactShabadMode,
     isHukamnamaMode,
     location.state,
@@ -832,9 +845,9 @@ export default function Study() {
   ])
 
   const baniPageEntries = useMemo(() => {
-    if (!isBaniDbMode || baniResult.entries.length === 0) return []
+    if (!isBaniMode || baniResult.entries.length === 0) return []
     return baniResult.entries
-  }, [baniResult.entries, isBaniDbMode])
+  }, [baniResult.entries, isBaniMode])
   const availableSundarGutkaLengths = useMemo(() => {
     if (!supportedSundarGutkaBaniId || !effectiveSgLength) return []
 
@@ -901,7 +914,7 @@ export default function Study() {
         ? [savedFallbackEntry]
         : []
     if (isExactShabadMode) return exactEntries
-    if (isBaniDbMode) return baniPageEntries.length > 0
+    if (isBaniMode) return baniPageEntries.length > 0
       ? baniPageEntries
       : baniResult.error && savedFallbackEntry
         ? [savedFallbackEntry]
@@ -912,23 +925,23 @@ export default function Study() {
         ? [savedFallbackEntry]
         : []
     return []
-  }, [angResult.entries, angResult.error, baniPageEntries, baniResult.error, exactEntries, hukamnamaResult.data, hukamnamaResult.error, isAngMode, isBaniDbMode, isExactShabadMode, isHukamnamaMode, savedFallbackEntry])
+  }, [angResult.entries, angResult.error, baniPageEntries, baniResult.error, exactEntries, hukamnamaResult.data, hukamnamaResult.error, isAngMode, isBaniMode, isExactShabadMode, isHukamnamaMode, savedFallbackEntry])
 
   const loading =
     isHukamnamaMode ? hukamnamaResult.loading :
     isExactShabadMode ? shabadResult.loading :
-    isBaniDbMode ? baniResult.loading :
+    isBaniMode ? baniResult.loading :
     angResult.loading
 
   const error =
     isHukamnamaMode ? hukamnamaResult.error :
     isExactShabadMode ? shabadResult.error :
-    isBaniDbMode ? baniResult.error :
+    isBaniMode ? baniResult.error :
     angResult.error
   const liveReaderStatus =
     isHukamnamaMode ? hukamnamaResult.status :
     isExactShabadMode ? shabadResult.status :
-    isBaniDbMode ? baniResult.status :
+    isBaniMode ? baniResult.status :
     angResult.status
   const usingSavedFallback = Boolean(savedFallbackEntry && entries.some(entry => entry.id === savedFallbackEntry.id))
   const readerStatus = usingSavedFallback ? 'degraded' : liveReaderStatus
@@ -949,7 +962,7 @@ export default function Study() {
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
   // A composite bani can cross scriptures; its saved reading identity must remain canonical.
-  const resumeSource = isBaniDbMode
+  const resumeSource = isBaniMode
     ? (supportedSundarGutkaBani?.source ?? source ?? baniResult.entries[0]?.source ?? currentSource)
     : currentSource
   const currentReadingUnit = currentEntry ? getEntryReadingUnit(currentEntry) : getSourceReaderUnit(currentSource)
@@ -990,6 +1003,18 @@ export default function Study() {
   const readerJumpGenerationRef = useRef(0)
   const deliberateDestinationRef = useRef<DeliberateReaderDestination | null>(null)
   useEffect(() => {
+    const cancelStaySettlement = (event: Event) => {
+      if (event instanceof KeyboardEvent) {
+        if (event.defaultPrevented || !['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) return
+        if (event.target instanceof Element && event.target.closest('button, a, input, textarea, select, [contenteditable="true"]')) return
+      }
+      deliberateDestinationRef.current = null
+    }
+    const events = ['wheel', 'touchmove', 'keydown'] as const
+    events.forEach(type => document.addEventListener(type, cancelStaySettlement, { passive: true }))
+    return () => events.forEach(type => document.removeEventListener(type, cancelStaySettlement))
+  }, [])
+  useEffect(() => {
     deliberateDestinationRef.current = null
     readerJumpGenerationRef.current += 1
   }, [entries, searchParamsString])
@@ -1000,8 +1025,9 @@ export default function Study() {
     const scrollTop = getAppScrollTop()
     const positionMatches = Math.abs(scrollTop - destination.scrollTop) <= 2
       // Stay removes Return/Stay from the header, which can shorten the document
-      // and clamp its last viewport. Accept that intentional transition only.
-      || (destination.settlingStay && isReaderScrollUnmovedOrClamped(destination.scrollTop))
+      // and trigger browser scroll anchoring. Keep the selected line during this
+      // brief layout transition; new scroll intent cancels it below.
+      || destination.settlingStay
     const body = destination.body
     if (destination.route !== reading.route || destination.entries !== reading.entries
       || !destination.element.isConnected || destination.element.dataset.readerAnchor !== destination.key
@@ -1040,7 +1066,7 @@ export default function Study() {
     .map(item => item.word)), [vocab])
   const { recordAng } = useReadingProgressStore()
   const studyExperienceCopy = STUDY_EXPERIENCE_COPY[locale]
-  const entrySequenceCopy = isBaniDbMode
+  const entrySequenceCopy = isBaniMode
     ? BANI_SEQUENCE_COPY[locale]
     : currentSource === 'B'
       ? VAAR_SEQUENCE_COPY[locale]
@@ -1058,10 +1084,10 @@ export default function Study() {
   const contentsScrollRef = useRef<HTMLDivElement | null>(null)
   const contentsHeadingRef = useRef<HTMLHeadingElement | null>(null)
   const findIdentity = JSON.stringify([
-    source, baniIdParam, baniDbIdParam, startAngParam, endAngParam, sgLengthParam,
+    source, baniIdParam, baniDbIdParam, shabadosBaniParam, startAngParam, endAngParam, sgLengthParam,
     shabadIdParam, hukamnamaDateParam, flowParam, randomHukamnamaAngParam,
     // The visible Ang and incoming verse can move within one bani.
-    isBaniDbMode || isBaniRangeMode ? null : angParam,
+    isBaniMode || isBaniRangeMode ? null : angParam,
   ])
   const findSession = useRef({ identity: findIdentity, scrollTop: 0 })
   const [findQuery, setFindQuery] = useState('')
@@ -1107,7 +1133,7 @@ export default function Study() {
     setShareHighlightContent(null)
   }
   const readerSheetOpen = controlsOpen || sectionsOpen || lengthOpen || readerMenuOpen || showBookmarkForm || Boolean(exploredWord) || Boolean(shareHighlightContent)
-  const { presentation, changePresentation, rememberReadingPosition, discardReadingPosition } = useReaderPresentation(searchParamsString, readerSheetOpen, isBaniDbMode ? baniResult.entries : null)
+  const { presentation, changePresentation, rememberReadingPosition, discardReadingPosition } = useReaderPresentation(searchParamsString, readerSheetOpen, isBaniMode ? baniResult.entries : null)
   useEffect(() => { beforeBaniRefresh.current = () => {
     // The cached opening viewport must not replace an authoritative incoming verse.
     if (resumeVerseIdParam && resumeSettledRef.current !== searchParamsString) return
@@ -1182,7 +1208,14 @@ export default function Study() {
     nextParams.set('source', resumeSource)
     nextParams.set('ang', String(currentAng))
 
-    if (isBaniDbMode || isBaniRangeMode) {
+    if (isShabadosMode && shabadosBaniParam) {
+      nextParams.set('shabadosBani', shabadosBaniParam)
+      if (baniName) nextParams.set('bani', baniName)
+      if (currentEntry?.source) nextParams.set('resumeSource', currentEntry.source)
+      return `/study?${nextParams}`
+    }
+
+    if (isBaniMode || isBaniRangeMode) {
       const startAng = startAngParam ?? angParam ?? currentAng
 
       nextParams.set('startAng', String(startAng))
@@ -1191,9 +1224,9 @@ export default function Study() {
       if (baniName) nextParams.set('bani', baniName)
       if (baniIdParam) nextParams.set('baniId', baniIdParam)
       if (baniDbIdParam) nextParams.set('baniDbId', String(baniDbIdParam))
-      if (isBaniDbMode) nextParams.set('exactBani', '1')
+      if (isBaniMode) nextParams.set('exactBani', '1')
       if (effectiveSgLength) nextParams.set('sgLength', effectiveSgLength)
-      if (isBaniDbMode && currentEntry?.source) nextParams.set('resumeSource', currentEntry.source)
+      if (isBaniMode && currentEntry?.source) nextParams.set('resumeSource', currentEntry.source)
       const practiceMarker = new URLSearchParams(searchParamsString).get('nitnemPractice')
       if (practiceMarker) nextParams.set('nitnemPractice', practiceMarker)
     }
@@ -1205,12 +1238,14 @@ export default function Study() {
     baniDbIdParam,
     baniIdParam,
     baniName,
+    shabadosBaniParam,
+    isShabadosMode,
     currentAng,
     resumeSource,
     effectiveSgLength,
     endAngParam,
     hukamnamaDateParam,
-    isBaniDbMode,
+    isBaniMode,
     isBaniRangeMode,
     isHukamnamaMode,
     shouldTrackProgress,
@@ -1223,10 +1258,10 @@ export default function Study() {
     if (!shouldTrackProgress || !currentAng || !canonicalResumePath) return null
 
     return {
-      scriptureId: `${currentSource}-${currentAng}`,
+      scriptureId: isShabadosMode ? `shabados-${shabadosBaniParam}` : `${currentSource}-${currentAng}`,
       resumePath: canonicalResumePath,
     }
-  }, [canonicalResumePath, currentAng, currentSource, shouldTrackProgress])
+  }, [canonicalResumePath, currentAng, currentSource, shouldTrackProgress, isShabadosMode, shabadosBaniParam])
 
   const latestBaseSessionRef = useRef(baseSession)
   latestBaseSessionRef.current = baseSession
@@ -1281,12 +1316,12 @@ export default function Study() {
       const resumeParams = new URLSearchParams(session.resumePath.split('?')[1] ?? '')
       if (visibleEntry && !isHukamnamaMode) {
         resumeParams.set('ang', String(visibleEntry.ang))
-        if (!isBaniDbMode) resumeParams.set('source', visibleEntry.source ?? currentSource)
+        if (!isBaniMode) resumeParams.set('source', visibleEntry.source ?? currentSource)
         else if (visibleEntry.source) resumeParams.set('resumeSource', visibleEntry.source)
       }
       const persisted = persistReadingSession({
         ...session,
-        ...(visibleEntry ? { scriptureId: `${visibleEntry.source ?? currentSource}-${visibleEntry.ang}`, resumePath: `/study?${resumeParams.toString()}` } : {}),
+        ...(visibleEntry ? { scriptureId: isShabadosMode ? session.scriptureId : `${visibleEntry.source ?? currentSource}-${visibleEntry.ang}`, resumePath: `/study?${resumeParams.toString()}` } : {}),
         resumeVerseId: nextVerseId,
         updatedAt: new Date().toISOString(),
       })
@@ -1297,7 +1332,9 @@ export default function Study() {
         if (studiedEntry) {
           const cache = useScriptureCacheStore.getState()
           try {
-            cache.setStudyEntry(studiedEntry)
+            const studiedParams = new URLSearchParams(resumeParams)
+            studiedParams.set('resumeVerseId', String(nextVerseId))
+            cache.setStudyEntry(isShabadosMode ? { ...studiedEntry, readerReturnPath: `/study?${studiedParams}` } : studiedEntry)
           } catch { /* Optional recent-reading persistence must not interrupt reading or leaving the reader. */ }
           markStudied(studiedEntry.id)
         }
@@ -1339,7 +1376,7 @@ export default function Study() {
       window.removeEventListener('pagehide', syncBeforePageHide)
       document.removeEventListener('visibilitychange', syncBeforeSuspension)
     }
-  }, [currentSource, entries, getDeliberateDestination, isBaniDbMode, isHukamnamaMode, loading, markStudied, resumeVerseIdParam, searchParamsString, shouldTrackProgress, persistReadingSession])
+  }, [currentSource, entries, getDeliberateDestination, isBaniMode, isShabadosMode, isHukamnamaMode, loading, markStudied, resumeVerseIdParam, searchParamsString, shouldTrackProgress, persistReadingSession])
 
   useEffect(() => {
     const retryAnchor = fallbackRetryAnchorRef.current?.route === searchParamsString ? fallbackRetryAnchorRef.current : null
@@ -1420,12 +1457,12 @@ export default function Study() {
         const params = new URLSearchParams(session.resumePath.split('?')[1] ?? '')
         if (!isHukamnamaMode) {
           params.set('ang', String(entry.ang))
-          if (!isBaniDbMode) params.set('source', entry.source ?? currentSource)
+          if (!isBaniMode) params.set('source', entry.source ?? currentSource)
           else if (entry.source) params.set('resumeSource', entry.source)
         }
         persistReadingSession({
           ...session,
-          scriptureId: `${entry.source ?? currentSource}-${entry.ang}`,
+          scriptureId: isShabadosMode ? session.scriptureId : `${entry.source ?? currentSource}-${entry.ang}`,
           resumePath: `/study?${params.toString()}`,
           resumeVerseId: requestedResumeVerseId,
           updatedAt: new Date().toISOString(),
@@ -1476,7 +1513,7 @@ export default function Study() {
       if (timeoutId !== null) window.clearTimeout(timeoutId)
       removeIntentListeners()
     }
-  }, [currentSource, discardReadingPosition, entries, isBaniDbMode, isHukamnamaMode, loading, resumeVerseIdParam, resumeVerseSourceParam, searchParamsString, shouldTrackProgress, persistReadingSession, usingSavedFallback])
+  }, [currentSource, discardReadingPosition, entries, isBaniMode, isShabadosMode, isHukamnamaMode, loading, resumeVerseIdParam, resumeVerseSourceParam, searchParamsString, shouldTrackProgress, persistReadingSession, usingSavedFallback])
 
   const announceAction = (message: string) => {
     setActionNotice(message)
@@ -1598,7 +1635,7 @@ export default function Study() {
         })
       : null
     if (exactPassageParams && baniName?.trim()) exactPassageParams.set('baniName', baniName.trim())
-    const baniPassageParams = isBaniDbMode && canonicalResumePath
+    const baniPassageParams = isBaniMode && canonicalResumePath
       ? new URLSearchParams(canonicalResumePath.split('?')[1])
       : null
     if (baniPassageParams && Number.isSafeInteger(line.verseId) && line.verseId > 0) {
@@ -1785,25 +1822,28 @@ export default function Study() {
     [entries, safeActiveEntryIndex]
   )
   const { wordDataMap } = useMultiShabadWordData(isApiMode ? shabadIds : [])
-  const isExactSearchResult = isExactShabadMode && verseIdParam !== null
+  const isExactSearchResult = (isExactShabadMode || isShabadosMode) && verseIdParam !== null
   const currentFavoriteRouteMode = isExactSearchResult
     ? 'verse'
     : isExactShabadMode
       ? 'shabad'
       : 'canonical'
 
-  const currentSavedLine = currentEntry ? findFirstRenderableLine([currentEntry]) : null
+  const currentSavedLine = currentEntry
+    ? (isShabadosMode && verseIdParam ? currentEntry.lines?.find(line => line.verseId === verseIdParam) : null)
+      ?? findFirstRenderableLine([currentEntry])
+    : null
   const currentSavedReturnPath = useMemo(() => {
     const params = new URLSearchParams(searchParamsString)
     if (currentAng) params.set('ang', String(currentAng))
-    params.set('source', isBaniDbMode ? resumeSource : currentSource)
+    params.set('source', isBaniMode ? resumeSource : currentSource)
     if (currentSavedLine?.verseId && !verseIdParam) {
       params.set('resumeVerseId', String(currentSavedLine.verseId))
-      if (isBaniDbMode) params.set('resumeSource', currentSource)
+      if (isBaniMode) params.set('resumeSource', currentSource)
     }
     const nextSearch = params.toString()
     return nextSearch ? `/study?${nextSearch}` : '/study'
-  }, [currentAng, currentSavedLine?.verseId, currentSource, isBaniDbMode, resumeSource, searchParamsString, verseIdParam])
+  }, [currentAng, currentSavedLine?.verseId, currentSource, isBaniMode, resumeSource, searchParamsString, verseIdParam])
   const currentSavedIdentity = getSavedReturnIdentity(currentSavedReturnPath)
 
   const currentBookmark = currentEntry && currentAng
@@ -1934,6 +1974,31 @@ export default function Study() {
   }
 
   const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {
+    if (isShabadosMode && shabadosBaniParam && Number.isSafeInteger(line.verseId) && line.verseId > 0) {
+      const params = new URLSearchParams(canonicalResumePath?.split('?')[1] ?? searchParamsString)
+      params.set('shabadosBani', shabadosBaniParam)
+      params.set('ang', String(line.ang))
+      params.set('verseId', String(line.verseId))
+      params.set('resumeVerseId', String(line.verseId))
+      const returnPath = `/study?${params}`
+      const identity = getSavedReturnIdentity(returnPath)
+      const existing = bookmarks.find(bookmark => isScriptureBookmark(bookmark)
+        && bookmark.verseId === line.verseId && getSavedReturnIdentity(bookmark.returnPath) === identity)
+      if (existing) {
+        const result = removeBookmark(existing.id)
+        announceAction(result.persisted ? studyExperienceCopy.bookmarkRemoved : studyExperienceCopy.storageUnavailable)
+        return
+      }
+      const result = addBookmark({
+        type: 'verse', title: `${baniName ?? entry.scripture} · ${getEntryReadingUnit(entry)} ${line.ang}`,
+        source: (entry.source ?? currentSource) as BaniSource, ang: line.ang, verseId: line.verseId,
+        excerpt: truncateSavedText(line.gurmukhi), transliteration: truncateSavedText(line.transliteration),
+        translation_en: truncateSavedText(line.translation_en), translation_hi: truncateSavedText(line.translation_hi),
+        translation_pa: truncateSavedText(line.translation_pa), returnPath,
+      })
+      announceAction(result.persisted ? studyExperienceCopy.lineBookmarked : studyExperienceCopy.storageUnavailable)
+      return
+    }
     if (!hasExactLineIdentity(line)) {
       if (!usingSavedFallback) return
 
@@ -2105,7 +2170,10 @@ export default function Study() {
   }
 
   const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) => (
-    usingSavedFallback && !hasExactLineIdentity(line)
+    isShabadosMode
+      ? bookmarks.some(bookmark => isScriptureBookmark(bookmark) && bookmark.verseId === line.verseId
+        && new URLSearchParams(bookmark.returnPath?.split('?')[1] ?? '').get('shabadosBani') === shabadosBaniParam)
+    : usingSavedFallback && !hasExactLineIdentity(line)
       ? Boolean(currentBookmark)
       : hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
   )
@@ -2209,8 +2277,8 @@ export default function Study() {
   }), [entries, entrySequenceCopy])
 
   const compositionSections = useMemo(() => getBaniSections(entries, {
-    baniId: baniIdParam, baniDbId: baniDbIdParam, exactBani: isBaniDbMode, locale,
-  }), [entries, baniIdParam, baniDbIdParam, isBaniDbMode, locale])
+    baniId: baniIdParam, baniDbId: baniDbIdParam, exactBani: isBaniMode, locale,
+  }), [entries, baniIdParam, baniDbIdParam, isBaniMode, locale])
   const currentCompositionPath = useMemo(() => {
     if (!contentsAnchorKey) return []
     const separator = contentsAnchorKey.lastIndexOf(':')
@@ -2223,15 +2291,15 @@ export default function Study() {
   const sourcePageLabel = locale === 'pa' ? 'ਸਰੋਤ ਦੇ ਪੰਨੇ' : locale === 'hi' ? 'स्रोत के पृष्ठ' : 'Source pages'
   const neutralPageLabel = locale === 'pa' ? 'ਪੰਨਾ' : locale === 'hi' ? 'पृष्ठ' : 'Page'
 
-  const rangeEntries = isBaniDbMode ? baniResult.entries : entries
-  const navMinAng = isBaniDbMode
+  const rangeEntries = isBaniMode ? baniResult.entries : entries
+  const navMinAng = isBaniMode
       ? (rangeEntries[0]?.ang ?? null)
     : isBaniRangeMode
       ? (startAngParam ?? angParam)
       : isAngMode
         ? 1
         : null
-  const navMaxAng = isBaniDbMode
+  const navMaxAng = isBaniMode
     ? (rangeEntries[rangeEntries.length - 1]?.ang ?? null)
     : isBaniRangeMode
       ? endAngParam
@@ -2257,7 +2325,16 @@ export default function Study() {
   }
 
   const navTo = (newAng: number) => {
-    if (isBaniDbMode) {
+    if (isShabadosMode && shabadosBaniParam) {
+      const params = new URLSearchParams(searchParamsString)
+      params.set('ang', String(newAng))
+      params.delete('resumeVerseId')
+      params.delete('verseId')
+      setSearchParams(params)
+      resetReaderViewport()
+      return
+    }
+    if (isBaniMode) {
       const params: Record<string, string> = {
         baniDbId: String(baniDbIdParam!),
         ang: String(newAng),
@@ -2356,8 +2433,11 @@ export default function Study() {
     }, 2)
   }
   const continueHere = () => {
+    // Focusing the sticky Stay control can itself adjust document scrolling.
+    // Explicit scrolling has already cleared this intent; retain the selected
+    // visible line through control focus and the subsequent header reflow.
+    if (deliberateDestinationRef.current) deliberateDestinationRef.current.settlingStay = true
     const destination = getDeliberateDestination()
-    if (destination) destination.settlingStay = true
     discardReadingPosition()
     explorationRef.current = null
     setHasExploration(false)
@@ -2374,7 +2454,7 @@ export default function Study() {
   const showAngNavigation = !isExactShabadMode
     && !isHukamnamaMode
     && !isArdaasHukamnamaFlow
-    && !isBaniDbMode
+    && !isBaniMode
     && Boolean(currentAng)
     && navMinAng !== null
     && navMaxAng !== null
@@ -2382,7 +2462,7 @@ export default function Study() {
     ? hukamnamaResult.retry
     : isExactShabadMode
       ? shabadResult.retry
-      : isBaniDbMode
+      : isBaniMode
         ? baniResult.retry
         : angResult.refetch
   const retryReader = () => {
@@ -2403,6 +2483,7 @@ export default function Study() {
   }
   const readerPageRef = useReaderHeaderLayout(searchParamsString, `${readerStatus}:${readerTitle}:${canChangeBaniLength}:${hasExploration}`)
   const previewMeaning = appearancePreview ? getLineMeaningText(appearancePreview, meaningLanguage, englishSource) : ''
+  const stateCopy = READER_STATE_COPY[locale]
   const readerStateTopbar = (
     <ReaderHeader className="study-reader-topbar" data-testid="study-reader-topbar"
       title={readerTitle} subtitle={entrySourceDisplay} heading titleId="study-reader-title"
@@ -2423,15 +2504,16 @@ export default function Study() {
         data-page="study"
         data-ai-surface="study-reader"
         data-ai-state="loading"
-        data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
+        data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniMode ? 'bani' : 'ang'}
       >
         {readerStateTopbar}
-        <div className="section-shell p-6 min-h-[300px] animate-pulse" data-ai-surface="study-reader-body" data-ai-state="loading">
+        <p role="status" className="sr-only">{stateCopy.loading}</p>
+        <div role="region" aria-label={stateCopy.reader} aria-busy="true"><div aria-hidden="true" className="section-shell p-6 min-h-[300px] animate-pulse" data-ai-surface="study-reader-body" data-ai-state="loading">
           <div className="h-3 bg-sand/30 dark:bg-dark-text/10 rounded w-1/4 mb-4" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-full mb-3" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-4/5 mb-3" />
           <div className="h-4 bg-sand/30 dark:bg-dark-text/10 rounded w-2/3" />
-        </div>
+        </div></div>
       </div>
     )
   }
@@ -2443,20 +2525,20 @@ export default function Study() {
         <SurfaceStateCard
           surface="study-reader"
           state="degraded"
-          eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
-          title="This reading couldn’t be loaded."
-          body="Check your connection and try again. Readings saved on this device remain available offline."
+          eyebrow={isHukamnamaMode ? stateCopy.hukamnama : stateCopy.reader}
+          title={stateCopy.failed}
+          body={stateCopy.failureHelp}
           pageShell={false}
           headingLevel={2}
           errorCode={error ?? 'unavailable'}
           actions={[
             {
-              label: 'Try Again',
+              label: stateCopy.retry,
               onClick: retryReader,
               aiAction: 'retry-study',
             },
             {
-              label: 'Back',
+              label: stateCopy.back,
               onClick: handleReaderBack,
               aiAction: 'study-back',
               emphasis: 'secondary',
@@ -2474,19 +2556,19 @@ export default function Study() {
         <SurfaceStateCard
           surface="study-reader"
           state="empty"
-          eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
-          title="This passage isn’t available."
-          body={`Open another Ang, bani or saved passage${baniName ? `, or return to ${baniName} from your reading list` : ''}.`}
+          eyebrow={isHukamnamaMode ? stateCopy.hukamnama : stateCopy.reader}
+          title={stateCopy.empty}
+          body={stateCopy.emptyHelp}
           pageShell={false}
           headingLevel={2}
           actions={[
             {
-              label: 'Back',
+              label: stateCopy.back,
               onClick: handleReaderBack,
               aiAction: 'study-back',
             },
             {
-              label: 'Browse Read',
+              label: stateCopy.browse,
               onClick: () => navigate('/banis'),
               aiAction: 'browse-read',
               emphasis: 'secondary',
@@ -2510,8 +2592,9 @@ export default function Study() {
       data-reader-controls="visible"
       data-reader-has-length={canChangeBaniLength ? 'true' : undefined}
       data-has-ang-navigation={showAngNavigation ? 'true' : undefined}
-      data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
+      data-ai-flow={isHukamnamaMode ? 'hukamnama' : isRandomHukamnamaMode ? 'personal-hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniMode ? 'bani' : 'ang'}
     >
+
       <ReaderHeader className="study-reader-topbar" data-testid="study-reader-topbar"
         title={readerTitle} heading titleId="study-reader-title"
         titleLang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
@@ -2545,6 +2628,7 @@ export default function Study() {
           <span ref={readerProgressBarRef} />
         </div>}
       />
+      <a className="reader-skip-end" href="#reading-end" onClick={event => { event.preventDefault(); const end = document.getElementById('reading-end'); if (end) { focusElementWithoutAppScroll(end); scrollElementIntoAppView(end, { block: 'start', behavior: 'auto' }) } }}>{stateCopy.skip}</a>
 
       <div className="study-reader-opening" data-testid="study-reader-opening">
         <p className={readerTitleUsesScript ? getScriptTextFontClass(scriptMode) : undefined} lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}>{readerTitle}</p>
@@ -2658,7 +2742,7 @@ export default function Study() {
 
       {(readerEditorialCopy?.historicalNote || readerEditorialCopy?.practiceNote || readerEditorialCopy?.sourceRefs.length) ? (
         <DisclosureSection
-          storageKey={`study-reader-context-${baniIdParam ?? baniDbIdParam ?? currentSource}`}
+          storageKey={`study-reader-context-${shabadosBaniParam ?? baniIdParam ?? baniDbIdParam ?? currentSource}`}
           title={studyExperienceCopy.contextTitle}
           summary={studyExperienceCopy.contextSummary}
           defaultOpen={false}
@@ -2765,7 +2849,7 @@ export default function Study() {
           data-ai-state="degraded"
         >
           <p className="font-sans text-xs leading-5 text-ink/75 dark:text-dark-text/76">
-            {isBaniDbMode && !baniResult.isCached && !usingSavedFallback ? studyExperienceCopy.retainedReading : studyExperienceCopy.savedOffline}
+            {isBaniMode && !baniResult.isCached && !usingSavedFallback ? studyExperienceCopy.retainedReading : studyExperienceCopy.savedOffline}
           </p>
           <button
             type="button"
@@ -3141,7 +3225,7 @@ export default function Study() {
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{studyCopy.exactSearchResult}</p>
           <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
-            {currentEntry.scripture} · {getEntryReadingUnit(currentEntry)} {currentEntry.ang}{verseIdParam ? ` · ${studyCopy.verse} ${verseIdParam}` : ''}
+            {currentEntry.scripture} · {getEntryReadingUnit(currentEntry)} {currentEntry.ang}{verseIdParam && !isShabadosMode ? ` · ${studyCopy.verse} ${verseIdParam}` : ''}
           </p>
           {verseIdParam && fullShabadEntry && (currentEntry.lines?.length ?? 0) < (fullShabadEntry.lines?.length ?? 0) && (
             <button
@@ -3154,7 +3238,7 @@ export default function Study() {
         </div>
       )}
 
-      {baniName && !isExactShabadMode && !isBaniDbMode && isBaniRangeMode && (
+      {baniName && !isExactShabadMode && !isBaniMode && isBaniRangeMode && (
         <div className="section-shell p-4 mb-4" aria-label="Reading range">
           <p className="font-sans text-ink/68 dark:text-dark-text/64 text-xs">
             {currentReadingUnit} {currentAng} of {startAngParam ?? angParam}–{endAngParam}

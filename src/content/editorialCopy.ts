@@ -56,7 +56,7 @@ const ENGLISH_EDITORIAL_COPY: EditorialCopy = {
     domain: "Naamras.xyz",
     promise: "A deliberate daily space for Gurbani, meaning, and return.",
     metaTitle: "NaamRas",
-    metaDescription: "NaamRas is a premium Gurbani reading app for daily Nitnem, canonical study, and a steadier return to scripture.",
+    metaDescription: "Read Gurbani, keep your daily Nitnem, and explore Sikh stories and books. Free, with reading downloads for offline use.",
     splashTagline: "Read. Reflect. Return.",
     attribution: "via NaamRas",
   },

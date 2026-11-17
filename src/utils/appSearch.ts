@@ -3,6 +3,7 @@ import { loadLibrarySearchIndex, loadLibraryDiscoveryCatalog } from '../data/lib
 import { loadStoryCatalog } from '../data/storyRepository'
 import { buildLibrarySearchPath, normalizeLibraryQuery } from './librarySearch'
 import { BANIS, READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
+import { SHABADOS_BANIS, getShabadosBaniPath } from '../data/shabadosBanis'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
 import { SOURCE_READER_META } from './sourceReaderMeta'
@@ -407,8 +408,17 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
       })
     : []
 
+  const additionalMatches = SHABADOS_BANIS.flatMap((bani): AppSearchMatch[] => {
+    const path = getShabadosBaniPath(bani.id)
+    const source = new URLSearchParams(path.split('?')[1] ?? '').get('source')
+    if (searchSource !== 'all' && source !== searchSource) return []
+    const score = getCanonicalRouteMatchScore(query, [bani.name, bani.gurmukhi])
+    if (score < 0) return []
+    return [{ key: `read-shabados-${bani.id}`, label: bani.name, detail: 'Additional readings', excerpt: bani.summary, path, score, kind: 'read-route' }]
+  })
+
   const distinct = new Map<string, AppSearchMatch>()
-  for (const match of [...matches, ...browseMatches, ...standaloneMatches]) {
+  for (const match of [...matches, ...browseMatches, ...standaloneMatches, ...additionalMatches]) {
     const [pathname, search = ''] = match.path.split('?')
     const params = new URLSearchParams(search)
     const providerId = params.get('baniDbId')

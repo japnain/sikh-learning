@@ -23,6 +23,10 @@ class MemoryCache {
   async match(request: CacheRequest) {
     return this.responses.get(cacheUrl(request))?.clone()
   }
+
+  async delete(request: CacheRequest) {
+    return this.responses.delete(cacheUrl(request))
+  }
 }
 
 function createCacheStorage() {
@@ -49,6 +53,8 @@ function createCacheStorage() {
 
 interface WorkerEvent {
   request?: Request
+  data?: unknown
+  ports?: { postMessage: (message: unknown) => void }[]
   waitUntil?: (promise: Promise<unknown>) => void
   respondWith?: (promise: Promise<Response>) => void
 }
@@ -90,6 +96,21 @@ function loadWorker(
       listeners.get('install')?.({ waitUntil: promise => { completion = promise } })
       if (!completion) throw new Error('The worker did not handle installation')
       return completion
+    },
+    activate() {
+      let completion: Promise<unknown> | undefined
+      listeners.get('activate')?.({ waitUntil: promise => { completion = promise } })
+      return completion
+    },
+    async checkReader(assets: string[]) {
+      let completion: Promise<unknown> | undefined
+      const reply = vi.fn()
+      listeners.get('message')?.({
+        data: { type: 'NAAMRAS_CHECK_OFFLINE_READER', assets }, ports: [{ postMessage: reply }],
+        waitUntil: promise => { completion = promise },
+      })
+      await completion
+      return reply.mock.calls[0]?.[0]
     },
     fetch(request: Request) {
       let response: Promise<Response> | undefined
@@ -257,4 +278,55 @@ test('canonical API, proxy, range, external, and non-GET requests bypass the wor
 
   for (const request of requests) expect(worker.fetch(request)).toBeUndefined()
   expect(fetch).not.toHaveBeenCalled()
+})
+
+test('a cold offline reader route has its lazy code and local fonts after reopening', async () => {
+  const caches = createCacheStorage()
+  const assets = ['/assets/app-a.js', '/assets/Study-a.js', '/assets/Banis-a.js', '/assets/BaniLengthSheet-a.js',
+    '/assets/BaniFindPanel-a.js', '/assets/app-a.css', '/assets/noto-serif-gurmukhi-a.woff2']
+  const fetch = vi.fn(async (request: Request) => new Response(new URL(request.url).pathname === '/' ? 'installed-shell' : request.url))
+  const installing = loadWorker('a', caches, fetch, assets)
+  await installing.install()
+  await installing.activate()
+  fetch.mockImplementation(async () => { throw new TypeError('Network unavailable') })
+  // A fresh worker instance has no memory of the installation or prior page.
+  const reopened = loadWorker('a', caches, fetch, assets)
+  expect(await reopened.checkReader(['/assets/app-a.js', '/assets/app-a.css'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: true })
+  for (const route of ['/banis', '/study?shabadosBani=ALHN', '/study?bani=21&length=long']) {
+    expect(await (await reopened.fetch(navigationRequest(route)))?.text()).toBe('installed-shell')
+  }
+  fetch.mockClear()
+  for (const asset of assets) {
+    expect(await (await reopened.fetch(new Request(`${WORKER_ORIGIN}${asset}`)))?.text()).toBe(`${WORKER_ORIGIN}${asset}`)
+  }
+  expect(fetch).not.toHaveBeenCalled()
+})
+
+test('reader readiness rejects a different deployment and any missing precached asset', async () => {
+  const caches = createCacheStorage()
+  const assets = ['/assets/app-a.js', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2']
+  const worker = loadWorker('a', caches, async () => new Response('asset'), assets)
+  await worker.install()
+  expect(await worker.checkReader(['/assets/app-b.js'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: false })
+  expect(await worker.checkReader([])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: false })
+  for (const required of ['/', '/assets/Study-a.js', '/assets/gurmukhi-a.woff2']) {
+    const cache = await caches.open('naamras-app-shell-a')
+    await cache.delete(required)
+    expect(await worker.checkReader(['/assets/app-a.js'])).toEqual({ type: 'NAAMRAS_CHECK_OFFLINE_READER', ready: false })
+    await cache.put(required, new Response('asset'))
+  }
+})
+
+test('activation and removal of old app caches preserve explicit reading packs', async () => {
+  const caches = createCacheStorage()
+  const packs = await caches.open('naamras-bani-downloads-v1')
+  const request = 'https://naamras.local/__naamras-downloads/packs/shabados%3AALHN'
+  await packs.put(request, new Response('all verified reading lengths'))
+  await caches.open('naamras-app-shell-old')
+  await caches.open('naamras-runtime-old')
+  const worker = loadWorker('new', caches, async () => new Response('asset'))
+  await worker.install()
+  await worker.activate()
+  expect(await caches.keys()).toEqual(['naamras-bani-downloads-v1', 'naamras-app-shell-new'])
+  expect(await (await (await caches.open('naamras-bani-downloads-v1')).match(request))?.text()).toBe('all verified reading lengths')
 })

@@ -10,10 +10,12 @@ import { useLanguageStore } from '../store/language'
 import { renderScriptText } from '../utils/readerDisplay'
 import { clearNitnemDraft, NITNEM_DRAFT_KEY } from '../utils/nitnemDraft'
 
-const baniRequest = vi.hoisted(() => ({ loading: false, error: null as string | null, retry: vi.fn() }))
-vi.mock('../hooks/useBani', () => ({ useBani: (id: number) => ({
+const baniRequest = vi.hoisted(() => ({ calls: vi.fn(), loading: false, error: null as string | null, retry: vi.fn() }))
+vi.mock('../hooks/useBani', () => ({ useBani: (id: number) => {
+  baniRequest.calls(id)
+  return {
   availableLengths: baniRequest.error ? [] : id === 9 || id === 22 ? ['short','medium','long'] : ['short','medium','long','extralong'], ...baniRequest,
-}) }))
+} } }))
 
 function LocationSpy() {
   const location = useLocation()
@@ -27,12 +29,14 @@ function renderCustomize(nitnemOrigin?: string) {
   </Routes></MemoryRouter>)
 }
 function editBani(name: string) {
-  fireEvent.click(screen.getByLabelText(`Edit ${name}`))
+  const edit = screen.queryByLabelText(`Edit ${name}`)
+  if (edit) fireEvent.click(edit)
 }
 beforeEach(() => {
   baniRequest.loading = false
   baniRequest.error = null
   baniRequest.retry.mockReset()
+  baniRequest.calls.mockReset()
   localStorage.clear()
   clearNitnemDraft()
   useLocaleStore.setState({ locale: 'en' })
@@ -413,4 +417,91 @@ test('available bani search matches the displayed Hindi title', () => {
   fireEvent.change(screen.getByRole('searchbox', { name: 'Search available banis' }), { target: { value: hindiTitle } })
   expect(screen.getByRole('button', { name: 'Add Japji Sahib' })).toBeInTheDocument()
   expect(screen.queryByRole('button', { name: 'Add Salok Mahalla 9' })).not.toBeInTheDocument()
+})
+
+test('loads length choices only when that reading is opened', () => {
+  renderCustomize()
+  expect(baniRequest.calls).not.toHaveBeenCalled()
+  editBani('Rehras Sahib')
+  expect(baniRequest.calls).toHaveBeenCalled()
+  const loadedIds = new Set(baniRequest.calls.mock.calls.map(([id]) => id))
+  expect(loadedIds.size).toBe(1)
+  expect(screen.queryByLabelText('Benati Chaupai Sahib length')).not.toBeInTheDocument()
+  expect(screen.queryByLabelText('Edit Japji Sahib')).not.toBeInTheDocument()
+  editBani('Rehras Sahib')
+  expect(screen.queryByLabelText('Rehras Sahib length')).not.toBeInTheDocument()
+})
+
+test('offers visible reorder and remove controls without opening a reading', () => {
+  renderCustomize()
+  expect(screen.getByRole('button', { name: 'Move Japji Sahib down' })).toBeVisible()
+  expect(screen.getByRole('button', { name: 'Remove Japji Sahib from Daily Nitnem' })).toBeVisible()
+  fireEvent.click(screen.getByRole('button', { name: 'Move Japji Sahib down' }))
+  expect(within(screen.getAllByTestId('nitnem-ritual-item')[1]).getByText('Japji Sahib')).toBeInTheDocument()
+  expect(useNitemStore.getState().selectedIds[0]).toBe('japji-sahib')
+  expect(screen.getByRole('button', { name: 'Move Japji Sahib down' })).toHaveFocus()
+})
+
+test('undo restores a removed bani in its original position without changing saved completion', () => {
+  useNitemStore.setState({ completedIds: ['japji-sahib'] })
+  renderCustomize()
+  fireEvent.click(screen.getByRole('button', { name: 'Remove Japji Sahib from Daily Nitnem' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Undo', exact: true }))
+  expect(within(screen.getAllByTestId('nitnem-ritual-item')[0]).getByText('Japji Sahib')).toBeInTheDocument()
+  expect(screen.getByLabelText('Japji Sahib', { exact: true })).toHaveFocus()
+  expect(screen.queryByText('Unsaved changes')).not.toBeInTheDocument()
+  expect(useNitemStore.getState().completedIds).toEqual(['japji-sahib'])
+})
+
+test('filters the expanded catalog and searches aliases while adding multiple banis', () => {
+  renderCustomize()
+  fireEvent.click(screen.getByRole('button', { name: 'Add a bani', exact: true }))
+  const dialog = screen.getByRole('dialog')
+  const category = screen.getByRole('combobox', { name: 'Browse by category' })
+  fireEvent.change(category, { target: { value: 'dasam' } })
+  const search = screen.getByRole('searchbox', { name: 'Search available banis' })
+  fireEvent.change(search, { target: { value: 'chandi di vaar' } })
+  fireEvent.click(screen.getByRole('button', { name: 'Add Vaar Sri Bhagauti Ji Ki' }))
+  expect(within(dialog).getByText('Vaar Sri Bhagauti Ji Ki added to your routine.')).toBeVisible()
+  expect(screen.queryByRole('button', { name: 'Add Vaar Sri Bhagauti Ji Ki' })).not.toBeInTheDocument()
+  expect(within(dialog).getByText('8 in your routine')).toBeVisible()
+  fireEvent.click(screen.getByRole('button', { name: 'Clear search and filters' }))
+  expect(category).toHaveValue('all')
+  expect(search).toHaveValue('')
+  fireEvent.change(search, { target: { value: 'Ardaas' } })
+  fireEvent.click(screen.getByRole('button', { name: 'Add Ardaas' }))
+  expect(within(dialog).getByText('9 in your routine')).toBeVisible()
+  fireEvent.click(screen.getByRole('button', { name: 'Done' }))
+  expect(screen.getAllByTestId('nitnem-ritual-item')).toHaveLength(9)
+  fireEvent.click(screen.getByRole('button', { name: 'Save routine' }))
+  expect(useNitemStore.getState().selectedIds).toContain('vaar-sri-bhagauti-ji-ki')
+  expect(useNitemStore.getState().selectedIds).toContain('ardaas')
+})
+
+test('keeps preferences collapsed on small screens and exposes the current goal in the summary', () => {
+  const width = window.innerWidth
+  Object.defineProperty(window, 'innerWidth', { configurable: true, value: 390 })
+  try {
+    renderCustomize()
+    const details = document.getElementById('nitnem-continuity')!
+    expect(details).not.toHaveAttribute('open')
+    expect(screen.getByRole('switch', { name: 'Daily completion' })).not.toBeVisible()
+    expect(within(details).getByText('7 days a week', { selector: 'small' })).toBeVisible()
+    fireEvent.click(screen.getByLabelText('Goals & offline'))
+    expect(screen.getByRole('switch', { name: 'Daily completion' })).toBeVisible()
+  } finally {
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: width })
+  }
+})
+
+test('opens the weekly goal deep link even on a small screen', () => {
+  const width = window.innerWidth
+  Object.defineProperty(window, 'innerWidth', { configurable: true, value: 390 })
+  try {
+    render(<MemoryRouter initialEntries={['/nitnem/customize#nitnem-continuity']}><NitnemCustomize /></MemoryRouter>)
+    expect(document.getElementById('nitnem-continuity')).toHaveAttribute('open')
+    expect(screen.getByRole('switch', { name: 'Daily completion' })).toBeVisible()
+  } finally {
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: width })
+  }
 })

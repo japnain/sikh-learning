@@ -1,3 +1,5 @@
+import { getShabadosBani } from '../data/shabadosBanis'
+
 export function isSafeSavedReturnPath(value: unknown): value is string {
   const hasControlCharacter = typeof value === 'string'
     && Array.from(value).some(character => {
@@ -38,13 +40,14 @@ export function getSavedReturnIdentity(value: unknown) {
     // A live resume position changes while reading. Keep it on the return
     // route, but exclude it from the identity used for duplicate detection.
     url.searchParams.delete('resumeVerseId')
-    if (url.searchParams.has('baniDbId') || url.searchParams.has('baniId')) {
+    if (url.searchParams.has('baniDbId') || url.searchParams.has('baniId') || url.searchParams.has('shabadosBani')) {
       url.searchParams.delete('ang')
       url.searchParams.delete('source')
       url.searchParams.delete('bani')
       url.searchParams.delete('exactBani')
       url.searchParams.delete('startAng')
       url.searchParams.delete('endAng')
+      if (url.searchParams.has('shabadosBani')) url.searchParams.delete('resumeSource')
     }
     if (url.searchParams.has('shabadId')) {
       url.searchParams.delete('ang')
@@ -60,6 +63,18 @@ export function getSavedReturnIdentity(value: unknown) {
   } catch {
     return null
   }
+}
+
+/** Local Shabad OS anchors are valid only inside their named reading, never as BaniDB IDs. */
+export function isShabadosSavedVersePath(value: unknown, verseId: unknown): boolean {
+  if (!isSafeSavedReturnPath(value) || !Number.isSafeInteger(verseId) || Number(verseId) <= 0) return false
+  const url = new URL(value, 'https://naamras.local')
+  const params = url.searchParams
+  return url.pathname === '/study'
+    && Boolean(getShabadosBani(params.get('shabadosBani')))
+    && params.get('verseId') === String(verseId)
+    && (!params.has('source') || params.get('source') === 'G')
+    && !['shabadId', 'baniDbId', 'baniId', 'sgLength', 'hukamnamaDate', 'flow'].some(key => params.has(key))
 }
 
 /**
@@ -79,6 +94,7 @@ export function canUseLegacySavedLocationFallback(value: unknown) {
       || url.searchParams.get('flow') === 'ardaas-hukamnama'
       || url.searchParams.has('baniDbId')
       || url.searchParams.has('baniId')
+      || url.searchParams.has('shabadosBani')
     ) {
       return false
     }

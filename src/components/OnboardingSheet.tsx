@@ -3,6 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Link } from 'react-router-dom'
 import type { MeaningLanguage, OnboardingPresentationMode, ScriptMode, UiLocale } from '../types'
 import { getOnboardingCopy, SAMPLE_ONBOARDING_LINE } from '../content/onboardingCopy'
+import { useLocaleStore } from '../store/locale'
 import { WELCOME_COPY } from '../content/welcomeCopy'
 import { useCloudSyncStore } from '../store/cloudSync'
 import goldenCourtSrc from '../assets/share-highlights/12-golden-court-assembly.jpg'
@@ -49,6 +50,7 @@ export default function OnboardingSheet({
   presentation, locale, scriptMode, setScriptMode, showTransliteration, setShowTransliteration,
   meaningLanguage, setMeaningLanguage, onComplete, onDismiss, isCompleting = false, startWithPreferences = false,
 }: Props) {
+  const setLocale = useLocaleStore(state => state.setLocale)
   const [step, setStep] = useState<0 | 1>(0)
   const [welcome, setWelcome] = useState(presentation === 'first-run' && !startWithPreferences)
   const currentUser = useCloudSyncStore(state => state.currentUser)
@@ -109,10 +111,13 @@ export default function OnboardingSheet({
       <div className="court-welcome-layout">
         <figure className="court-welcome-art"><img src={goldenCourtSrc} alt={locale === 'pa' ? 'ਸੁਨਹਿਰੀ ਦਰਬਾਰੀ ਸਭਾ' : locale === 'hi' ? 'स्वर्णिम दरबारी सभा' : 'Golden court assembly'} width={1199} height={1476} fetchPriority="high" /><figcaption>{locale === 'en' ? 'Golden court assembly' : locale === 'pa' ? 'ਸੁਨਹਿਰੀ ਦਰਬਾਰੀ ਸਭਾ' : 'स्वर्णिम दरबारी सभा'}</figcaption></figure>
         <div className="court-welcome-content">
+          <div className="welcome-languages" role="group" aria-label={locale === 'pa' ? 'ਐਪ ਭਾਸ਼ਾ' : locale === 'hi' ? 'ऐप की भाषा' : 'App language'}>{(['en', 'pa', 'hi'] as const).map(value => <button type="button" key={value} lang={value === 'pa' ? 'pa-Guru' : value} aria-pressed={value === locale} onClick={() => setLocale(value)}>{value === 'en' ? 'English' : value === 'pa' ? 'ਪੰਜਾਬੀ' : 'हिन्दी'}</button>)}</div>
           <p className="court-eyebrow">{welcomeCopy.eyebrow}</p>
           <h1 id="onboarding-title" className="court-welcome-title">{welcomeCopy.title}</h1>
           <p className="court-welcome-description">{welcomeCopy.body}</p>
-          <button type="button" className="onboarding-primary" onClick={() => { hasNavigatedRef.current = true; setWelcome(false) }} data-testid="onboarding-begin-action">{welcomeCopy.begin}<IconArrowRight size={18} /></button>
+          {completionFailed && <p className="onboarding-error" role="alert">{copy.completionError}</p>}
+          <button type="button" className="onboarding-primary" disabled={busy} onClick={() => { void complete() }} data-testid="onboarding-begin-action">{busy ? copy.saving : welcomeCopy.begin}<IconArrowRight size={18} /></button>
+          <button type="button" className="onboarding-personalize" data-testid="onboarding-personalize-action" disabled={busy} onClick={() => { hasNavigatedRef.current = true; setWelcome(false) }}>{locale === 'pa' ? 'ਪੜ੍ਹਨ ਦੀਆਂ ਪਸੰਦਾਂ ਚੁਣੋ' : locale === 'hi' ? 'पढ़ने की पसंद चुनें' : 'Personalize reading'}</button>
           {!currentUser ? <div className="court-account-links"><Link to="/account?mode=signup">{welcomeCopy.signup}</Link><Link to="/account">{welcomeCopy.signin}</Link></div> : null}
           <p className="onboarding-footer-note">{welcomeCopy.guest}</p>
         </div>

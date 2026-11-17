@@ -1,3 +1,4 @@
+import { READ_PAGE_COPY } from '../content/readPageCopy'
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, useLocation } from 'react-router-dom'
@@ -43,12 +44,14 @@ beforeEach(() => {
 test.each(['__proto__', 'constructor', 'toString'])('invalid mode/source %s fall back without crashing', key => {
   renderSearch(`/banis?mode=${key}&source=${key}`)
   expect(screen.getByRole('searchbox')).toHaveValue('')
+  fireEvent.focus(screen.getByRole('searchbox'))
   expect(screen.getByText('Auto detect')).toBeInTheDocument()
 })
 
 test('restores query, mode, source and scope atomically from a recent search', async () => {
   useRecentSearchStore.getState().addRecent('Bhai Lalo', 'english', 'D', 'stories')
   renderSearch('/banis?scope=books&mode=transliteration&source=G&raag=Asa&matches=36')
+  fireEvent.click(screen.getByText(READ_PAGE_COPY.en.recent))
   fireEvent.click(screen.getByRole('button', { name: /Bhai Lalo · Stories/ }))
   fireEvent.submit(screen.getByRole('search'))
   await waitFor(() => expect(appSearch.getStorySearchMatches).toHaveBeenCalledWith('Bhai Lalo'))
@@ -67,6 +70,7 @@ test.each(['en', 'pa', 'hi'] as const)('history starts with three entries, expan
   store.togglePinned('History 0', 'auto-detect', 'all', 'books')
   renderSearch()
   const ui = READ_SEARCH_UI[locale]
+  fireEvent.click(screen.getByText(READ_PAGE_COPY[locale].recent))
   expect(screen.getAllByRole('button', { name: /^History \d ·/ })).toHaveLength(3)
   fireEvent.click(screen.getByRole('button', { name: ui.moreRecent(5) }))
   expect(screen.getAllByRole('button', { name: /^History \d ·/ })).toHaveLength(5)

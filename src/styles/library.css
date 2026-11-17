@@ -156,29 +156,6 @@
 .vocab-review-word { font-size: 3rem; line-height: 1.5; }
 .vocab-review-phrase { font-size: clamp(1.5rem, 5vw, 2rem); line-height: 1.65; }
 .vocab-review-actions { position: sticky; bottom: calc(var(--nav-stack-height, 0px) + var(--fixed-ui-safe-bottom) + .5rem); z-index: 10; padding: .5rem; border: 1px solid rgb(var(--color-border) / .4); border-radius: .75rem; background: rgb(var(--color-bg)); }
-
-.library-shelf-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .375rem;
-}
-.library-shelf-metrics > div {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: baseline;
-  gap: .375rem;
-  padding: .375rem .625rem;
-}
-.library-shelf-metrics .text-2xl { font-size: 1rem; line-height: 1.5; }
-.library-shelf-metric-label {
-  margin: 0;
-  color: rgb(var(--color-text-muted));
-  font-size: .8125rem;
-  line-height: 1.5;
-  white-space: nowrap;
-  overflow-wrap: normal;
-  word-break: normal;
-}
 [data-page='library'] .library-shelf-empty { padding: 0; border: 0; background: transparent; }
 
 .library-adaptive-layout { display: block; }

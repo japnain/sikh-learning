@@ -27,11 +27,11 @@ type RefreshState = {
   issue: AsyncIssue | null
 }
 
-export function useAng(ang: number, source: BaniSource) {
+export function useAng(ang: number, source: BaniSource, enabled = true) {
   const { getAng, hasCompleteAng, setAng } = useScriptureCacheStore()
   const cachedEntries = hasCompleteAng(source, ang) ? getAng(source, ang) ?? null : null
   const requestKey = `${source}:${ang}`
-  const route = useMemo(() => ({ key: requestKey }), [requestKey])
+  const route = useMemo(() => ({ key: requestKey, enabled }), [requestKey, enabled])
   const [state, setState] = useState<AngRequestState | null>(null)
   const [refreshState, setRefreshState] = useState<RefreshState | null>(null)
   const currentState = state?.key === requestKey ? state : null
@@ -54,7 +54,7 @@ export function useAng(ang: number, source: BaniSource) {
   }, [cancelRequest, route])
 
   const startRequest = useCallback((refresh: boolean) => {
-    if (activeRoute.current !== route) return
+    if (!enabled || activeRoute.current !== route) return
     cancelRequest()
     const request: AngRequest = {
       controller: new AbortController(),
@@ -100,18 +100,18 @@ export function useAng(ang: number, source: BaniSource) {
         } catch { /* Optional cache persistence cannot turn valid scripture into a source error. */ }
       })
       .catch(fail)
-  }, [ang, cancelRequest, requestKey, route, setAng, source])
+  }, [ang, cancelRequest, enabled, requestKey, route, setAng, source])
 
   useEffect(() => {
-    if (cachedEntries || currentState) return
+    if (!enabled || cachedEntries || currentState) return
     startRequest(false)
-  }, [cachedEntries, currentState, startRequest])
+  }, [cachedEntries, currentState, enabled, startRequest])
 
   const refetch = useCallback(() => {
-    if (activeRoute.current !== route) return
+    if (!enabled || activeRoute.current !== route) return
     setRefreshState({ key: requestKey, route, status: 'loading', issue: null })
     startRequest(true)
-  }, [requestKey, route, startRequest])
+  }, [enabled, requestKey, route, startRequest])
 
   const issue = currentRefreshState?.issue ?? currentState?.issue ?? null
   const status = currentRefreshState?.status
@@ -127,11 +127,11 @@ export function useAng(ang: number, source: BaniSource) {
     : cachedEntries ?? currentState?.entries ?? []
 
   return {
-    entries,
-    status,
-    issue,
-    loading: status === 'loading',
-    error: issue?.code ?? null,
+    entries: enabled ? entries : [],
+    status: enabled ? status : 'empty' as const,
+    issue: enabled ? issue : null,
+    loading: enabled && status === 'loading',
+    error: enabled ? issue?.code ?? null : null,
     refetch,
   }
 }

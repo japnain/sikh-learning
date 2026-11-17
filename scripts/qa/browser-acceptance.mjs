@@ -34,6 +34,17 @@ async function main() {
   fs.mkdirSync(reportDirectory, { recursive: true })
   const url = new URL(baseUrl)
   let server
+  const failures = []
+  // Each journey owns isolated browser storage. Finish the independent journeys
+  // so one stale selector does not hide failures elsewhere in the same CI run.
+  const check = async (script, args = [], environment = {}) => {
+    try { await run(script, args, environment) }
+    catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      failures.push(message)
+      console.error(message)
+    }
+  }
   try {
     if (!skipServer) {
       server = spawn(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'preview', '--host', url.hostname, '--port', url.port || '4187', '--strictPort', '--configLoader', 'runner'], { cwd: root, stdio: ['ignore', 'inherit', 'inherit'] })
@@ -50,26 +61,31 @@ async function main() {
     ]
     for (const [surface, locale, theme, scale] of cases) {
       const route = surface === 'home' ? '/' : surface === 'length' ? lengthReader : baseReader
-      await run('scripts/qa/bani-reader-acceptance.mjs', [
+      await check('scripts/qa/bani-reader-acceptance.mjs', [
         `--url=${new URL(route, baseUrl).href}`, `--surface=${surface}`, `--locale=${locale}`,
         `--theme=${theme}`, `--text-scale=${scale}`, '--width=320', '--height=568', '--deterministic',
         `--output=${path.join(reportDirectory, `bani-${surface}-${locale}-${theme}-${scale}.json`)}`,
       ])
     }
-    await run('scripts/qa/stories-reader-acceptance.mjs', [
+    await check('scripts/qa/stories-reader-acceptance.mjs', [
       `--url=${baseUrl}`, '--published-only', '--deterministic', `--output=${path.join(reportDirectory, 'stories/acceptance.json')}`,
     ])
-    await run('scripts/qa/reader-nitnem-polish.mjs', [], {
+    await check('scripts/qa/reader-nitnem-polish.mjs', [], {
       QA_BASE_URL: baseUrl,
       QA_OUTPUT_DIR: path.join(reportDirectory, 'reader-nitnem'),
       QA_CASES: '',
     })
-    await run('scripts/qa/read-discovery-acceptance.mjs', [], {
+    await check('scripts/qa/read-discovery-acceptance.mjs', [], {
       QA_BASE_URL: baseUrl,
       QA_OUTPUT_DIR: path.join(reportDirectory, 'read-discovery'),
       QA_CASES: '',
     })
-    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, and Read discovery journeys.`)
+    await check('scripts/qa/daily-more-acceptance.mjs', [], {
+      QA_BASE_URL: baseUrl,
+      QA_OUTPUT_DIR: path.join(reportDirectory, 'daily-more'),
+    })
+    if (failures.length) throw new Error(`Production browser acceptance failed (${failures.length} journeys):\n${failures.join('\n')}`)
+    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, Read discovery, and Daily/More journeys.`)
   } finally {
     if (server && server.exitCode === null) {
       server.kill('SIGTERM')

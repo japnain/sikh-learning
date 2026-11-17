@@ -1,3 +1,4 @@
+import { DOWNLOADS_COPY } from '../content/downloadsCopy'
 import '../styles/catalog.css'
 import '../styles/reader.css'
 import '../styles/read-discovery.css'
@@ -33,6 +34,10 @@ import LibraryBookBrowser from '../components/LibraryBookBrowser'
 import AppSearchResultGroup from '../components/read/AppSearchResultGroup'
 import ReadSearchControls from '../components/read/ReadSearchControls'
 import ReadBaniRow from '../components/read/ReadBaniRow'
+import BaniDownloadsPanel, { type BaniDownloadItem } from '../components/BaniDownloadsPanel'
+import { SHABADOS_BANIS, getShabadosBaniPath } from '../data/shabadosBanis'
+import { createShabadosDownloadSource } from '../api/shabados'
+import { createBaniDbDownloadSource } from '../utils/baniDownloads'
 import { getBaniDiscovery, getBrowseBaniDiscovery } from '../content/baniDiscovery'
 import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
 import { buildReadBaniCatalog, type ReadBaniCatalogItem } from '../utils/readBaniCatalog'
@@ -890,6 +895,26 @@ export default function Banis() {
     )
   }
 
+  const downloadItems: BaniDownloadItem[] = [
+    ...[
+      ...baniCatalog.sundarGutka.flatMap(group => group.items),
+      ...baniCatalog.scriptures.SGGS,
+      ...baniCatalog.scriptures.DG,
+    ].flatMap(item => {
+      if (!item.baniDbId) return []
+      const id = item.baniDbId
+      const title = getBaniDiscovery(id)?.name ?? item.bani?.name ?? `Bani ${id}`
+      return [{ key: `banidb:${id}`, title, createSource: () => createBaniDbDownloadSource(id, title), onOpen: () => openBani(item) }]
+    }),
+    ...SHABADOS_BANIS.map(item => ({
+      key: `shabados:${item.id}`,
+      title: item.name,
+      createSource: () => createShabadosDownloadSource(item.id),
+      onOpen: () => openSearchDestination(getShabadosBaniPath(item.id)),
+    })),
+  ]
+  const additionalReadingsLabel = locale === 'pa' ? 'ਹੋਰ ਪਾਠ' : locale === 'hi' ? 'अतिरिक्त पाठ' : 'Additional readings'
+
   const groupedSearchResults = useMemo(
     () => groupSearchResults(searchResults, { raag: raagFilter, writer: writerFilter }),
     [raagFilter, searchResults, writerFilter]
@@ -995,18 +1020,6 @@ export default function Banis() {
               {copy.heroBody}
             </p>
           </div>
-          <figure className="read-room-hero__art">
-            <ReadArtwork
-              src={readHarmandirSrc}
-              description={copy.artworkDescriptions.harmandir}
-              fallbackLabel={copy.artworkUnavailable}
-              width={1200}
-              height={1500}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-            />
-          </figure>
           </>}
 
           {activeCollection === 'books' && !searchQuery && previousQuery ? <button
@@ -1317,9 +1330,9 @@ export default function Banis() {
           </section>
         )}
         {!searchQuery && recent.length > 0 && (
-          <div className="mt-2">
+          <details className="read-search-history mt-2"><summary>{copy.recent}</summary>
             <div className="flex justify-between items-center mb-1">
-              <p className="font-sans text-[10px] text-ink/75 dark:text-dark-text/76 uppercase tracking-wider">{copy.recent}</p>
+
               {recent.some(item => !item.pinned) && <button onClick={() => { clearRecent(); setRecentExpanded(false) }} className="font-sans text-[10px] text-ink/75 dark:text-dark-text/76">{searchUi.clearHistory}</button>}
             </div>
             <div className="space-y-2">
@@ -1334,7 +1347,7 @@ export default function Banis() {
                   <button
                     onClick={() => togglePinned(item.query, item.mode, item.source, item.scope)}
                     aria-label={`${item.pinned ? copy.unpin : copy.pin} ${item.query}`}
-                    className="min-h-[40px] min-w-[40px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/68 dark:text-dark-text/64"
+                    className="min-h-[44px] min-w-[44px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/68 dark:text-dark-text/64"
                   >
                     {item.pinned ? <IconBookmarkFilled size={15} className="text-saffron dark:text-saffron-light" /> : <IconBookmark size={15} />}
                   </button>
@@ -1345,11 +1358,12 @@ export default function Banis() {
               onClick={() => setRecentExpanded(value => !value)}>
               {recentExpanded ? searchUi.fewerRecent : searchUi.moreRecent(recent.length)}
             </button>}
-          </div>
+          </details>
         )}
           </div> : null}
         </section>
 
+        {!hasActiveSearch && activeCollection !== 'books' && <ReadContinue showEmpty={false} />}
         {activeCollection !== 'books' ? <div className="read-browse-heading"><h2>{searchUi.browse}</h2></div> : null}
         <div className="read-collection-tabs" role={hasActiveSearch ? 'group' : 'tablist'} aria-label={copy.collectionsLabel}>
           {READ_COLLECTIONS.map((collection, index) => {
@@ -1391,7 +1405,7 @@ export default function Banis() {
         {!hasActiveSearch && activeCollection === 'stories' ? (
           <div id="read-active-collection-panel" role="tabpanel" aria-labelledby="read-tab-stories" className="read-collection-panel">
             <Suspense fallback={<p role="status" className="p-5 text-sm">{searchUi.openingStories}</p>}>
-              <StoryBrowser showSearch={false} continuation={<ReadContinue />} />
+              <StoryBrowser showSearch={false} continuation={<></>} />
             </Suspense>
           </div>
         ) : null}
@@ -1419,42 +1433,14 @@ export default function Banis() {
                 <p className="read-collection-intro__body">{copy.banisBody}</p>
               </div>
             </div>
-            <ReadContinue />
 
-        <Link
-          to="/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama"
-          state={{ readerOrigin: readSearchOrigin }}
-          id="read-ardaas-flow"
-          className="read-featured-flow-card w-full text-left active:scale-[0.99] transition-transform duration-150"
-          data-testid="banis-featured-flow"
-          data-ai-action="open-ardaas-hukamnama-flow"
-        >
-          <div className="flex items-center justify-between gap-3">
-            <p className="eyebrow">{copy.featuredFlowEyebrow}</p>
-          </div>
-          <div className="mt-3 flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <h2 className="font-display text-3xl leading-none text-ink dark:text-dark-text">
-                {copy.featuredFlowTitle}
-              </h2>
-              <p className="read-featured-flow-card__body mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
-                {copy.featuredFlowBody}
-              </p>
-            </div>
-            <span className="read-featured-flow-card__action mt-1 shrink-0 text-gold-dark dark:text-gold-light">
-              <IconArrowRight size={18} />
-            </span>
-          </div>
-          <span className="read-featured-flow-card__cta mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream dark:bg-gold-light dark:text-dark-bg">
-            {copy.beginFlow}
-            <IconArrowRight size={15} />
-          </span>
-        </Link>
+
+
 
         <section
           className="read-directory-section"
           aria-labelledby="read-directory-title"
-          data-bani-catalog-count={READ_BANIDB_CATALOG_COUNT}
+          data-bani-catalog-count={READ_BANIDB_CATALOG_COUNT + SHABADOS_BANIS.length}
         >
           <div className="read-section-header">
             <p className="eyebrow">{copy.directoryEyebrow}</p>
@@ -1465,6 +1451,9 @@ export default function Banis() {
               {copy.directoryBody}
             </p>
           </div>
+
+          <BaniDownloadsPanel items={downloadItems} />
+          <Link to="/downloads" className="read-downloads-link interactive-focus">{DOWNLOADS_COPY[locale].manage}<IconArrowRight size={16} /></Link>
 
           <div className="read-directory-list mt-4">
             <div>
@@ -1593,6 +1582,26 @@ export default function Banis() {
         )
       })}
 
+      {SHABADOS_BANIS.length ? <div>
+        <button type="button" onClick={() => toggle('additional-readings')}
+          className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+          data-open={expanded['additional-readings'] ? 'true' : 'false'}
+          data-testid="banis-directory-additional"
+          aria-expanded={Boolean(expanded['additional-readings'])}
+          aria-controls="banis-additional-readings-panel">
+          <span className="min-w-0 text-left font-sans text-base font-semibold text-saffron dark:text-saffron-light">{additionalReadingsLabel}</span>
+          <span className="ml-3 flex shrink-0 items-center gap-2">
+            <DirectoryCount count={SHABADOS_BANIS.length} copy={copy} testId="banis-directory-additional-count" />
+            <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['additional-readings'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+          </span>
+        </button>
+        {expanded['additional-readings'] ? <div id="banis-additional-readings-panel" className="read-bani-group-panel mt-2 ml-2">
+          {SHABADOS_BANIS.map(item => <ReadBaniRow key={item.id} identity={`shabados:${item.id}`} entry={item}
+            scriptTitle={renderScriptText(item.gurmukhi, scriptMode)} scriptLang={getScriptTextLang(scriptMode)} scriptClassName={getScriptTextFontClass(scriptMode)}
+            onOpen={() => openSearchDestination(getShabadosBaniPath(item.id))} />)}
+        </div> : null}
+      </div> : null}
+
       <div>
         <button
           type="button"
@@ -1662,7 +1671,7 @@ export default function Banis() {
       </Link>
           </div>
         </section>
-
+        <Link to="/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama" state={{ readerOrigin: readSearchOrigin }} id="read-ardaas-flow" className="read-devotion-link interactive-focus" data-testid="banis-featured-flow" data-ai-action="open-ardaas-hukamnama-flow"><span><strong>{copy.featuredFlowTitle}</strong><span>{copy.featuredFlowBody}</span></span><IconArrowRight size={18} /></Link>
           </div>
         ) : null}
 
@@ -1690,7 +1699,7 @@ export default function Banis() {
               </div>
             </div>
 
-            <ReadContinue />
+
             <section
               className="read-source-section"
               aria-labelledby="read-source-browser-title"

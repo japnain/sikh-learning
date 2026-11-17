@@ -2077,3 +2077,15 @@ describe('Study adjustable STTM lengths', () => {
     })
   })
 })
+
+
+test('the keyboard skip link reaches the reading finish panel without marking it complete', async () => {
+  render(<MemoryRouter initialEntries={['/study?source=G&ang=1']}><Study /></MemoryRouter>)
+  const link = await screen.findByRole('link', { name: 'Skip to end of reading' })
+  const end = screen.getByTestId('reader-finish-panel')
+  const scroll = vi.spyOn(end, 'scrollIntoView')
+  fireEvent.click(link)
+  expect(end).toHaveFocus()
+  expect(scroll).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })
+  expect(screen.queryByText('Completed for today')).not.toBeInTheDocument()
+})

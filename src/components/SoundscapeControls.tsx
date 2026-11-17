@@ -8,6 +8,7 @@ import {
   useMusicStore,
 } from '../store/music'
 import { useLocaleStore } from '../store/locale'
+import '../styles/soundscape.css'
 
 const CATEGORY_LABELS: Record<UiLocale, Record<SoundCategory, string>> = {
   en: {
@@ -258,7 +259,7 @@ const SOUNDSCAPE_COPY: Record<UiLocale, {
 
 function EnergyDots({ energy }: { energy: 1 | 2 | 3 }) {
   return (
-    <div className="flex items-center gap-1" aria-hidden="true">
+    <div className="soundscape-energy flex items-center gap-1" aria-hidden="true">
       {[1, 2, 3].map(step => (
         <span
           key={step}
@@ -336,7 +337,7 @@ export default function SoundscapeControls({
 
   const details = variant === 'compact' ? (
     <div id={panelId} hidden={!isExpanded}>
-      <div className="mt-4 grid grid-cols-3 gap-2" role="group" aria-label={copy.presets}>
+      <div className="soundscape-presets mt-4 grid grid-cols-3 gap-2" role="group" aria-label={copy.presets}>
         {FOCUS_PRESETS.map(preset => {
           const selected = selectedPresetId === preset.id
           const presetText = PRESET_TEXT[locale][preset.id] ?? PRESET_TEXT.en[preset.id]
@@ -362,7 +363,7 @@ export default function SoundscapeControls({
         })}
       </div>
 
-      <div className="mt-4 flex items-center gap-3">
+      <div className="soundscape-volume mt-4 grid gap-1.5">
         <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/68 dark:text-dark-text/64">
           {copy.volume}
         </span>
@@ -373,14 +374,14 @@ export default function SoundscapeControls({
           step="0.05"
           value={volume}
           onChange={event => setVolume(Number(event.target.value))}
-          className="min-h-[44px] min-w-0 flex-1 accent-gold"
+          className="min-h-[44px] min-w-[44px] w-full accent-gold"
           aria-label={copy.volume}
         />
       </div>
     </div>
   ) : (
     <div id={panelId} hidden={!isExpanded}>
-      <div className="mt-4 grid grid-cols-3 gap-2" role="group" aria-label={copy.presets}>
+      <div className="soundscape-presets mt-4 grid grid-cols-3 gap-2" role="group" aria-label={copy.presets}>
         {FOCUS_PRESETS.map(preset => {
           const selected = selectedPresetId === preset.id
           const presetText = PRESET_TEXT[locale][preset.id] ?? PRESET_TEXT.en[preset.id]
@@ -406,7 +407,7 @@ export default function SoundscapeControls({
         })}
       </div>
 
-      <div className="mt-4 flex items-center gap-3">
+      <div className="soundscape-volume mt-4 grid gap-1.5">
         <span className="font-sans text-xs text-ink/68 dark:text-dark-text/64">{copy.volume}</span>
         <input
           type="range"
@@ -415,7 +416,7 @@ export default function SoundscapeControls({
           step="0.05"
           value={volume}
           onChange={event => setVolume(Number(event.target.value))}
-          className="min-h-[44px] min-w-0 flex-1 accent-gold"
+          className="min-h-[44px] min-w-[44px] w-full accent-gold"
           aria-label={copy.volume}
         />
       </div>
@@ -431,7 +432,7 @@ export default function SoundscapeControls({
               type="button"
               onClick={() => toggleSound(sound.id)}
               aria-pressed={selected}
-              className={`w-full rounded-lg border px-4 py-4 text-left ${
+              className={`soundscape-track w-full rounded-lg border px-4 py-4 text-left ${
                 active
                   ? 'border-saffron bg-saffron text-white'
                   : selected
@@ -439,7 +440,7 @@ export default function SoundscapeControls({
                     : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
               }`}
             >
-              <div className="flex items-start justify-between gap-3">
+              <div className="soundscape-track-layout flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="font-sans text-sm font-semibold">
                     {soundText.name}
@@ -452,7 +453,7 @@ export default function SoundscapeControls({
                     {categoryLabels[sound.category]}
                   </p>
                 </div>
-                <div className="flex shrink-0 flex-col items-end gap-2">
+                <div className="soundscape-track-meta flex shrink-0 flex-col items-end gap-2" aria-hidden="true">
                   <span className="text-lg">{sound.icon}</span>
                   <EnergyDots energy={sound.energy} />
                 </div>
@@ -465,11 +466,11 @@ export default function SoundscapeControls({
   )
 
   return (
-    <section aria-labelledby={`${panelId}-heading`} className={variant === 'compact' ? 'section-shell-quiet p-4' : 'section-shell p-4'}>
-      <div className="flex items-start justify-between gap-3">
+    <section aria-labelledby={`${panelId}-heading`} className={`soundscape-controls ${variant === 'compact' ? 'section-shell-quiet p-4' : 'section-shell p-4'}`}>
+      <div className="soundscape-header flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <IconMusic size={14} className="text-gold-dark dark:text-gold-light" />
+            <IconMusic size={14} className="shrink-0 text-gold-dark dark:text-gold-light" />
             <h2 id={`${panelId}-heading`} className="eyebrow">{copy.eyebrow}</h2>
           </div>
           <p className={`mt-2 font-sans text-sm ${variant === 'compact' ? 'text-ink dark:text-dark-text' : 'text-ink/68 dark:text-dark-text/70'}`}>
@@ -477,9 +478,9 @@ export default function SoundscapeControls({
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="soundscape-header-actions flex items-center gap-2">
           {variant === 'compact' ? (
-            <Link to="/more" className="font-sans text-xs text-gold-dark dark:text-gold-light underline underline-offset-2">
+            <Link to="/more" className="inline-flex min-h-[44px] min-w-[44px] items-center font-sans text-xs text-gold-dark dark:text-gold-light underline underline-offset-2">
               {copy.fullLibrary}
             </Link>
           ) : (
@@ -499,8 +500,8 @@ export default function SoundscapeControls({
         </div>
       </div>
 
-      <div className="mt-4 rounded-lg border border-sand/15 bg-white/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card">
-        <div className="flex items-center justify-between gap-3">
+      <div className="soundscape-summary mt-4 rounded-lg border border-sand/15 bg-white/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card">
+        <div className="soundscape-summary-layout flex items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
               {summaryTitle}
@@ -512,7 +513,7 @@ export default function SoundscapeControls({
           <button
             type="button"
             onClick={handlePlaybackToggle}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-saffron text-white"
+            className="flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full bg-saffron text-white"
             aria-label={isPlaying ? copy.pause : copy.play}
           >
             {isPlaying ? <IconPause size={14} /> : <IconPlay size={14} />}

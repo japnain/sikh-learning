@@ -137,3 +137,7 @@
   .home-artwork-body { min-height: auto; overflow: visible; padding-block: .5rem; }
   .home-artwork-footer { padding-block: .5rem; }
 }
+
+.home-artwork-context { margin-top: .5rem; font-size: .875rem; line-height: 1.6; }
+.home-artwork-context summary { min-height: 44px; align-content: center; cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+.home-artwork-context summary:focus-visible { outline: 2px solid rgb(var(--color-focus)); outline-offset: 3px; }

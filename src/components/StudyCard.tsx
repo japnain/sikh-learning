@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { Fragment, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react'
 import type { MeaningLanguage, ScriptureEntry, ScriptureLine, ScriptureVisraamMarker, UiLocale, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
@@ -264,8 +264,19 @@ export default function StudyCard({
   const actionTriggerRef = useRef<HTMLButtonElement | null>(null)
   const restoreWordFocusRef = useRef(false)
   const restoreActionFocusRef = useRef(false)
+  const actionHelpId = useId()
+  const [activeActionIndex, setActiveActionIndex] = useState(0)
+
+  const moveActionFocus = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || !['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return
+    const actions = Array.from(cardRef.current?.querySelectorAll<HTMLButtonElement>('.study-line-action') ?? [])
+    const current = actions.indexOf(event.currentTarget)
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? actions.length - 1 : Math.max(0, Math.min(actions.length - 1, current + (event.key === 'ArrowDown' ? 1 : -1)))
+    if (actions[next]) { event.preventDefault(); actions[next].focus() }
+  }
   const cardRef = useRef<HTMLElement | null>(null)
   const locale = useLocaleStore(s => s.locale)
+  const actionHelp = locale === 'pa' ? 'ਪੰਕਤੀ ਦੀਆਂ ਕਾਰਵਾਈਆਂ ਲਈ ਉੱਪਰ ਅਤੇ ਹੇਠਾਂ ਤੀਰ ਵਰਤੋ। ਪਹਿਲੀ ਜਾਂ ਆਖ਼ਰੀ ਪੰਕਤੀ ਲਈ Home ਜਾਂ End, ਖੋਲ੍ਹਣ ਲਈ Enter, ਅੱਗੇ ਜਾਣ ਲਈ Tab ਦਬਾਓ।' : locale === 'hi' ? 'पंक्ति की कार्रवाइयों के लिए ऊपर और नीचे के तीर चलाएँ। पहली या आख़िरी पंक्ति के लिए Home या End, खोलने के लिए Enter, आगे जाने के लिए Tab दबाएँ।' : 'Use Up and Down arrows to move between verse actions. Home and End move to the first and last line. Enter opens actions; Tab continues to the next control.'
   const cardCopy = STUDY_CARD_COPY[locale]
   const supportCopy = SUPPORT_COPY[locale]
   const scriptMode = useLanguageStore(s => s.scriptMode)
@@ -290,6 +301,7 @@ export default function StudyCard({
     () => (entry.lines && entry.lines.length > 0 ? entry.lines : [fallbackLine(entry)]),
     [entry]
   )
+  const focusedActionIndex = Math.min(activeActionIndex, lines.length - 1)
   const firstNonHeaderIndex = lines.findIndex(line => !line.isHeader)
   const leadingHeaderCount = showHeaderBlock && lines[0]?.isHeader
     ? (firstNonHeaderIndex === -1 ? lines.length : firstNonHeaderIndex)
@@ -501,8 +513,13 @@ export default function StudyCard({
         data-study-entry-id={entry.id}
         data-reader-presentation={presentation}
         tabIndex={-1}
+        onFocusCapture={event => {
+          const line = (event.target as HTMLElement).closest<HTMLElement>('[data-sequence-index]')
+          if (line && cardRef.current?.contains(line)) setActiveActionIndex(Number(line.dataset.sequenceIndex))
+        }}
         className="study-passage"
       >
+        <p id={actionHelpId} className="sr-only">{actionHelp}</p>
         {(!firstPassage || !openingContextProvided) ? <header className={`study-passage-heading${firstPassage ? ' study-passage-heading--opening' : ''}`}>
           {firstPassage ? <p className="study-passage-source">{entry.sourceName || entry.scripture}</p> : <>
             <h2>{onOpenSections ? <button type="button" onClick={onOpenSections} aria-label={locale === 'en' ? `Jump to section: ${sectionEyebrow}` : sectionEyebrow ?? undefined}>{sectionEyebrow ?? `${getSourceReaderUnit(entry.source, entry.scripture)} ${entry.ang}`}<span aria-hidden="true">⌄</span></button> : sectionEyebrow ?? `${getSourceReaderUnit(entry.source, entry.scripture)} ${entry.ang}`}</h2>
@@ -538,7 +555,7 @@ export default function StudyCard({
                     data-reader-plain={scriptMode === 'gurmukhi' ? 'true' : undefined}
                     className="relative"
                   >
-                    <button type="button" className="study-line-action absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full" aria-label={cardCopy.openActions(index + 1)} aria-haspopup="dialog" aria-expanded={actionLine === line} onClick={event => { actionTriggerRef.current = event.currentTarget; setActionLine(line); setMoreToolsOpen(true); setSourceLayersOpen(false) }}><IconMoreHorizontal size={16} /></button>
+                    <button type="button" tabIndex={focusedActionIndex === index ? 0 : -1} aria-describedby={actionHelpId} onFocus={() => setActiveActionIndex(index)} onKeyDown={moveActionFocus} className="study-line-action absolute right-0 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full" aria-label={cardCopy.openActions(index + 1)} aria-haspopup="dialog" aria-expanded={actionLine === line} onClick={event => { actionTriggerRef.current = event.currentTarget; setActionLine(line); setMoreToolsOpen(true); setSourceLayersOpen(false) }}><IconMoreHorizontal size={16} /></button>
                     <p
                       lang={getScriptTextLang(scriptMode)}
                       data-testid="study-gurbani-line"
@@ -613,6 +630,10 @@ export default function StudyCard({
                         setMoreToolsOpen(true)
                         setSourceLayersOpen(false)
                       }}
+                      tabIndex={focusedActionIndex === sequenceIndex || (!shouldRenderHeaderBlock && focusedActionIndex < leadingHeaderCount && index === 0) ? 0 : -1}
+                      aria-describedby={actionHelpId}
+                      onFocus={() => setActiveActionIndex(sequenceIndex)}
+                      onKeyDown={moveActionFocus}
                       aria-label={cardCopy.openActions(sequenceIndex + 1)}
                       aria-haspopup="dialog"
                       aria-expanded={actionLine === line}

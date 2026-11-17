@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { downloadStoryCollection, getOfflineStoryIds, getStoredStoryIds, loadStoryCatalog, removeOfflineStories, subscribeStoryCatalog } from '../data/storyRepository'
 import { useStoryStore } from '../store/stories'
@@ -11,7 +11,7 @@ import { IconArrowRight, IconBookmark, IconBookmarkFilled, IconSearch } from './
 import '../styles/stories.css'
 import { matchesStorySearch } from '../utils/storySearch'
 
-export default function StoryBrowser({ showSearch = true, continuation }: { showSearch?: boolean; continuation?: ReactNode }) {
+export default function StoryBrowser({ showSearch = true, continuation, downloadsOnly = false }: { showSearch?: boolean; continuation?: ReactNode; downloadsOnly?: boolean }) {
   const locale = useLocaleStore(state => state.locale)
   const copy = STORY_UI[locale]
   const location = useLocation()
@@ -34,6 +34,7 @@ export default function StoryBrowser({ showSearch = true, continuation }: { show
   const [offlineIds, setOfflineIds] = useState(getOfflineStoryIds)
   const [storedIds, setStoredIds] = useState(getStoredStoryIds)
   const [download, setDownload] = useState<{ loaded: number; total: number } | null>(null)
+  const downloadController = useRef<AbortController | null>(null)
   const [notice, setNotice] = useState('')
   const saved = useStoryStore(state => state.saved)
   const positions = useStoryStore(state => state.positions)
@@ -75,22 +76,36 @@ export default function StoryBrowser({ showSearch = true, continuation }: { show
       : copy.storage)
   }
   const downloadStories = async () => {
+    const controller = new AbortController()
+    downloadController.current = controller
     setNotice('')
     setDownload({ loaded: 0, total: catalog?.stories.length ?? 0 })
     try {
-      const result = await downloadStoryCollection(undefined, (loaded, total) => setDownload({ loaded, total }))
+      const result = await downloadStoryCollection(undefined, (loaded, total) => setDownload({ loaded, total }), controller.signal)
       setNotice(copy.downloadDone(result.downloaded))
     } catch {
-      setNotice(copy.downloadError)
+      setNotice(controller.signal.aborted ? (locale === 'pa' ? 'ਡਾਊਨਲੋਡ ਰੱਦ ਹੋਇਆ। ਪੂਰੇ ਪਾਠ ਸੰਭਾਲੇ ਹਨ।' : locale === 'hi' ? 'डाउनलोड रद्द हुआ। पूरे पाठ सुरक्षित हैं।' : 'Download cancelled. Completed stories are kept.') : copy.downloadError)
     } finally {
       setOfflineIds(getOfflineStoryIds())
       setStoredIds(getStoredStoryIds())
       setDownload(null)
+      downloadController.current = null
     }
   }
 
   if (error) return <div className="story-status" role="alert"><p>{copy.loadError}</p><button className="story-text-button" onClick={() => { setError(false); setRequest(value => value + 1) }}>{copy.retry}</button></div>
   if (!catalog) return <div className="story-status" role="status">{copy.openingCollection}</div>
+
+  const downloadPanel = <>
+      <div className="story-offline-panel">
+        <div><h3>{copy.offlineTitle}</h3><p>{allOffline ? copy.offlineReady : copy.offlineBody}</p></div>
+        <button className="story-action-button" disabled={Boolean(download) || allOffline} onClick={() => { void downloadStories() }}>{download ? copy.downloading(download.loaded, download.total) : allOffline ? copy.availableOffline : copy.download}</button>
+        {download ? <button className="story-text-button" type="button" onClick={() => downloadController.current?.abort()}>{locale === 'pa' ? 'ਡਾਊਨਲੋਡ ਰੱਦ ਕਰੋ' : locale === 'hi' ? 'डाउनलोड रद्द करें' : 'Cancel download'}</button> : null}
+        {storedIds.length > 0 && !download && <button className="story-text-button" onClick={() => { try { removeOfflineStories(); setOfflineIds(getOfflineStoryIds()); setStoredIds(getStoredStoryIds()); setNotice(copy.downloadsRemoved) } catch { setNotice(copy.removeError) } }}>{copy.removeDownloads}</button>}
+      </div>
+      <p className="story-feedback" role="status" aria-live="polite">{notice}</p>
+  </>
+  if (downloadsOnly) return downloadPanel
 
   return (
     <div className="story-browser" lang={storyUiLang(locale)} data-testid="story-browser">
@@ -99,6 +114,7 @@ export default function StoryBrowser({ showSearch = true, continuation }: { show
         <span className="story-count">{copy.count(catalog.stories.length)}</span>
       </header>
 
+      {downloadPanel}
       {isBrowsing && continuation}
       {!continuation && continueStory && isBrowsing && <Link id={`story-continue-${continueStory.id}`} to={`/stories/${continueStory.id}`} state={navigationState} className="story-continue">
         <span><span className="eyebrow">{copy.continue}</span><strong lang="en">{continueStory.title}</strong><span>{copy.percent(Math.round(positions[continueStory.id].progress * 100))}</span></span><IconArrowRight size={19} />
@@ -138,12 +154,6 @@ export default function StoryBrowser({ showSearch = true, continuation }: { show
         </article>)}
       </div>
       {stories.length === 0 && <div className="story-status"><p>{copy.noMatches}</p><button className="story-text-button" onClick={() => updateDiscovery('', 'all')}>{copy.showAll}</button></div>}
-      <div className="story-offline-panel">
-        <div><h3>{copy.offlineTitle}</h3><p>{allOffline ? copy.offlineReady : copy.offlineBody}</p></div>
-        <button className="story-action-button" disabled={Boolean(download) || allOffline} onClick={() => { void downloadStories() }}>{download ? copy.downloading(download.loaded, download.total) : allOffline ? copy.availableOffline : copy.download}</button>
-        {storedIds.length > 0 && !download && <button className="story-text-button" onClick={() => { try { removeOfflineStories(); setOfflineIds(getOfflineStoryIds()); setStoredIds(getStoredStoryIds()); setNotice(copy.downloadsRemoved) } catch { setNotice(copy.removeError) } }}>{copy.removeDownloads}</button>}
-      </div>
-      <p className="story-feedback" role="status" aria-live="polite">{notice}</p>
       <p className="story-editorial-footnote">{copy.editorial}</p>
     </div>
   )

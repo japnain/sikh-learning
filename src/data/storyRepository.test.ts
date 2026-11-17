@@ -529,3 +529,12 @@ describe('shared story validation', () => {
     expect(storyPublicationErrors(publication)).toEqual([])
   })
 })
+
+
+it('cancels the remaining collection while keeping each completed story', async () => {
+  const loader = installLoader()
+  const controller = new AbortController()
+  await expect(downloadStoryCollection(undefined, loaded => { if (loaded === 1) controller.abort() }, controller.signal)).rejects.toMatchObject({ name: 'AbortError' })
+  expect(getOfflineStoryIds()).toEqual(['a-shared-meal'])
+  expect(loader.mock.calls.some(([path]) => path.endsWith('an-open-door.json'))).toBe(false)
+})

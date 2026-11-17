@@ -233,11 +233,14 @@ export function getOfflineStoryIds(): string[] {
 export async function downloadStoryCollection(
   collectionId?: string,
   onProgress?: (loaded: number, total: number) => void,
+  signal?: AbortSignal,
 ): Promise<{ downloaded: number; total: number }> {
   const generation = requestGeneration
   const ensureActive = () => {
+    signal?.throwIfAborted()
     if (generation !== requestGeneration) throw new Error('The offline story download was cancelled.')
   }
+  ensureActive()
   const catalog = await refreshStoryCatalog()
   ensureActive()
   if (collectionId !== undefined && !catalog.collections.some((collection) => collection.id === collectionId)) {
@@ -248,6 +251,7 @@ export async function downloadStoryCollection(
   onProgress?.(downloaded, summaries.length)
   if (!persistCache(catalog)) throw new StoryStorageError()
   for (const summary of summaries) {
+    ensureActive()
     const story = await loadCurrentStory(summary.id, catalog, generation)
     ensureActive()
     if (!story || !persistCache(catalog, story)) throw new StoryStorageError()

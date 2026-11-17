@@ -15,8 +15,8 @@ describe('persistent book appearance', () => {
   beforeEach(() => { vi.restoreAllMocks() })
   afterEach(() => { localStorage.clear() })
 
-  test('migrates an existing version-one preference without changing its reading appearance', async () => {
-    const oldAppearance = { fontScale: 1.45, lineHeight: 'spacious', measure: 'narrow', palette: 'night' }
+  test.each(['paper', 'night'] as const)('migrates an existing version-one %s preference without changing its reading appearance', async palette => {
+    const oldAppearance = { fontScale: 1.45, lineHeight: 'spacious', measure: 'narrow', palette }
     const { useEpubReaderStore } = await loadStore({ version: 1, state: oldAppearance })
     expect(useEpubReaderStore.getState()).toMatchObject({ ...oldAppearance, fontFamily: 'literary' })
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY)!)

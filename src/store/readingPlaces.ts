@@ -12,6 +12,12 @@ export function getExactReadingKey(path: string): string | null {
   const [pathname, search = ''] = path.split('?')
   if (pathname !== '/study' || path.includes('#')) return null
   const params = new URLSearchParams(search)
+  const shabadosBani = params.get('shabadosBani')
+  if (shabadosBani !== null) {
+    if (!/^[A-Z0-9]{4}$/.test(shabadosBani)
+      || ['baniDbId', 'baniId', 'shabadId', 'hukamnamaDate', 'sgLength'].some(key => params.has(key))) return null
+    return `shabados:${shabadosBani}`
+  }
   const source = params.get('source')
   const baniId = params.get('baniId')
   const dbId = Number(params.get('baniDbId'))

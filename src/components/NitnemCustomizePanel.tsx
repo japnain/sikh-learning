@@ -4,8 +4,8 @@ import { IconArrowLeft, IconArrowRight, IconClose, IconSearch } from './icons'
 import ModalSheet from './ModalSheet'
 import { useBani } from '../hooks/useBani'
 import {
-  DEFAULT_NITNEM_OPTION_IDS, NITNEM_ROUTE_OPTIONS, compareNitnemOptions,
-  getNitnemOption, type NitnemRouteOption, useNitemStore,
+  DEFAULT_NITNEM_OPTION_IDS, NITNEM_ROUTE_OPTIONS, NITNEM_CATEGORY_ORDER, compareNitnemOptions,
+  getNitnemOption, type NitnemRouteOption, type NitnemCategory, useNitemStore,
 } from '../store/nitnem'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useLanguageStore } from '../store/language'
@@ -64,26 +64,38 @@ export default function NitnemCustomizePanel() {
   const draftStorageAvailable = useSyncExternalStore(subscribeNitnemDraftStorage, isNitnemDraftStorageAvailable, () => true)
   const [libraryOpen, setLibraryOpen] = useState(false)
   const [query, setQuery] = useState('')
+  const [category, setCategory] = useState<NitnemCategory | 'all'>('all')
+  const [expanded, setExpanded] = useState<string[]>([])
+  const [preferencesOpen, setPreferencesOpen] = useState(() => location.hash === '#nitnem-continuity' || (typeof window !== 'undefined' && window.innerWidth >= 800))
+  const [lastRemoved, setLastRemoved] = useState<{ id: string; index: number } | null>(null)
   const [notice, setNotice] = useState('')
   const [saveError, setSaveError] = useState('')
   const [leaveOpen, setLeaveOpen] = useState(false)
   const keepEditingRef = useRef<HTMLButtonElement>(null)
   const selectedControls = useRef(new Map<string, HTMLElement>())
+  const moveControls = useRef(new Map<string, HTMLButtonElement>())
   const availableControls = useRef(new Map<string, HTMLButtonElement>())
   const librarySearchRef = useRef<HTMLInputElement>(null)
   const editorHeadingRef = useRef<HTMLHeadingElement>(null)
-  const pendingFocus = useRef<{ list: 'selected' | 'available'; id?: string } | null>(null)
+  const pendingFocus = useRef<{ list: 'selected' | 'available' | 'move'; id?: string } | null>(null)
   const selected = draftIds.map(getNitnemOption).filter((option): option is NitnemRouteOption => option !== null)
   const available = useMemo(() => [...NITNEM_ROUTE_OPTIONS].sort(compareNitnemOptions), [])
     .filter(option => !draftIds.includes(option.id))
-  const normalizedQuery = query.normalize('NFKC').trim().toLocaleLowerCase()
-  const matches = available.filter(option => `${option.name} ${option.romanizedTitle} ${option.gurmukhiTitle} ${renderScriptText(option.gurmukhiTitle, 'devanagari')} ${option.group} ${copy.groups[option.group]}`.normalize('NFKC').toLocaleLowerCase().includes(normalizedQuery))
+  const normalizeSearch = (value: string) => value.normalize('NFKC').toLocaleLowerCase().replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim()
+  const queryWords = normalizeSearch(query).split(/\s+/).filter(Boolean)
+  const matches = available.filter(option => {
+    if (category !== 'all' && option.category !== category) return false
+    const haystack = normalizeSearch(`${option.name} ${option.romanizedTitle} ${option.gurmukhiTitle} ${renderScriptText(option.gurmukhiTitle, 'devanagari')} ${option.searchTerms ?? ''} ${option.group} ${copy.groups[option.group]}`)
+    return queryWords.every(word => haystack.includes(word))
+  })
+  const openLibrary = () => { setQuery(''); setCategory('all'); setNotice(''); setLibraryOpen(true) }
+  const toggleBani = (id: string) => setExpanded(ids => ids.includes(id) ? ids.filter(value => value !== id) : [...ids, id])
   useLayoutEffect(() => {
     const target = pendingFocus.current
     if (!target) return
     pendingFocus.current = null
     const control = target.id
-      ? (target.list === 'selected' ? selectedControls.current : availableControls.current).get(target.id)
+      ? (target.list === 'selected' ? selectedControls.current : target.list === 'move' ? moveControls.current : availableControls.current).get(target.id)
       : undefined
     ;(control ?? (libraryOpen ? librarySearchRef.current : editorHeadingRef.current))?.focus({ preventScroll: true })
   }, [draftIds, libraryOpen])
@@ -118,15 +130,18 @@ export default function NitnemCustomizePanel() {
     const index = draftIds.indexOf(id)
     const target = index + (direction === 'up' ? -1 : 1)
     if (target < 0 || target >= draftIds.length) return
+    pendingFocus.current = { list: 'move', id: `${id}-${target === 0 ? 'down' : target === draftIds.length - 1 ? 'up' : direction}` }
     const next = [...draftIds]
     ;[next[index], next[target]] = [next[target], next[index]]
     setDraftIds(next)
+    setLastRemoved(null)
     setNotice(copy.moved(getNitnemOption(id)?.name ?? id, target + 1))
   }
   const remove = (id: string) => {
     if (draftIds.length <= 1) return
     const index = draftIds.indexOf(id)
     pendingFocus.current = { list: 'selected', id: draftIds[index + 1] ?? draftIds[index - 1] }
+    setLastRemoved({ id, index })
     setDraftIds(draftIds.filter(value => value !== id))
     setNotice(copy.removed(getNitnemOption(id)?.name ?? id))
   }
@@ -134,8 +149,18 @@ export default function NitnemCustomizePanel() {
     const index = matches.findIndex(item => item.id === option.id)
     pendingFocus.current = { list: 'available', id: matches[index + 1]?.id ?? matches[index - 1]?.id }
     setDraftIds(ids => ids.includes(option.id) ? ids : [...ids, option.id])
+    setLastRemoved(null)
     setNotice(copy.added(option.name))
     if (available.length === 1) setLibraryOpen(false)
+  }
+  const undoRemove = () => {
+    if (!lastRemoved) return
+    const next = draftIds.filter(id => id !== lastRemoved.id)
+    next.splice(Math.min(lastRemoved.index, next.length), 0, lastRemoved.id)
+    pendingFocus.current = { list: 'selected', id: lastRemoved.id }
+    setDraftIds(next)
+    setLastRemoved(null)
+    setNotice(copy.added(getNitnemOption(lastRemoved.id)?.name ?? lastRemoved.id))
   }
   const save = () => {
     const current = useNitemStore.getState()
@@ -181,52 +206,72 @@ export default function NitnemCustomizePanel() {
         {recoveredDraft ? <p className="nitnem-editor-recovered" role="status">{copy.recovered}</p> : null}
         {hasChanges && !draftStorageAvailable ? <p className="nitnem-editor-draft-warning" role="status">{copy.draftUnavailable}</p> : null}
       </header>
-      <section aria-labelledby="nitnem-customize-title" data-testid="nitnem-ritual-order">
-        <p className="nitnem-editor-selection-count">{copy.selected(selected.length)}</p>
+      <div className="nitnem-editor-layout">
+      <section className="nitnem-editor-routine" aria-labelledby="nitnem-routine-title" data-testid="nitnem-ritual-order">
+        <div className="nitnem-editor-routine-heading">
+          <div><h2 id="nitnem-routine-title">{copy.routineTitle}</h2><p className="nitnem-editor-selection-count">{copy.selected(selected.length)}</p></div>
+          <button type="button" onClick={openLibrary} disabled={!available.length} className="nitnem-editor-add"><span aria-hidden="true">＋</span>{copy.add}</button>
+        </div>
+        <p className="nitnem-editor-hint">{copy.orderHint}</p>
         <ol className="nitnem-editor-list">
           {selected.map((option, index) => {
             const lengthId = asSupportedSundarGutkaBaniId(option.baseBaniId)
+            const isExpanded = expanded.includes(option.id)
             return <li className="nitnem-editor-row" key={option.id} data-testid="nitnem-ritual-item">
-              <details className="nitnem-editor-bani-details">
-                <summary aria-label={copy.editBani(option.romanizedTitle)} ref={node => { if (node) selectedControls.current.set(option.id, node); else selectedControls.current.delete(option.id) }}>
+              {lengthId ? <details className="nitnem-editor-bani-details" open={isExpanded}>
+                <summary aria-label={copy.editBani(option.romanizedTitle)} onClick={event => { event.preventDefault(); toggleBani(option.id) }} ref={node => { if (node) selectedControls.current.set(option.id, node); else selectedControls.current.delete(option.id) }}>
                   <span className="nitnem-editor-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                   <div className="nitnem-editor-bani">{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}{lengthId ? ` · ${copy.lengths[draftLengths[lengthId]]}` : ''}</p></div>
-                  <span className="nitnem-editor-edit" aria-hidden="true">{copy.edit} <IconArrowRight size={14} /></span>
+                  <span className="nitnem-editor-edit" aria-hidden="true">{copy.readingLength}<IconArrowRight size={14} /></span>
                 </summary>
-                <div className="nitnem-editor-bani-adjustments">
-                  {lengthId ? <LengthChoice option={option} value={draftLengths[lengthId]} onChange={value => setDraftLengths(current => ({ ...current, [lengthId]: value }))} /> : null}
-                  <div className="nitnem-editor-row-actions">
-                    <span>{copy.position(index + 1, selected.length)}</span>
-                    <div>
-                      <button type="button" disabled={index === 0} onClick={() => move(option.id, 'up')} aria-label={copy.moveUp(option.romanizedTitle)}><IconArrowRight size={16} className="-rotate-90" /><span>{copy.up}</span></button>
-                      <button type="button" disabled={index === selected.length - 1} onClick={() => move(option.id, 'down')} aria-label={copy.moveDown(option.romanizedTitle)}><IconArrowRight size={16} className="rotate-90" /><span>{copy.down}</span></button>
-                    </div>
-                    <button type="button" disabled={selected.length === 1} onClick={() => remove(option.id)} aria-label={copy.removeBani(option.romanizedTitle)}>{copy.remove}</button>
-                  </div>
-                  {selected.length === 1 ? <p className="nitnem-editor-hint">{copy.keepOne}</p> : null}
+                {isExpanded ? <div className="nitnem-editor-bani-adjustments">
+                  <LengthChoice option={option} value={draftLengths[lengthId]} onChange={value => setDraftLengths(current => ({ ...current, [lengthId]: value }))} />
+                  <p className="nitnem-editor-hint">{copy.position(index + 1, selected.length)}</p>
+                </div> : null}
+              </details> : <div className="nitnem-editor-fixed-title" role="group" tabIndex={-1} aria-label={option.romanizedTitle} ref={node => { if (node) selectedControls.current.set(option.id, node); else selectedControls.current.delete(option.id) }}>
+                <span className="nitnem-editor-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <div className="nitnem-editor-bani">{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}</p></div>
+              </div>}
+              <div className="nitnem-editor-row-actions">
+                <div>
+                  <button type="button" disabled={index === 0} onClick={() => move(option.id, 'up')} ref={node => { if (node) moveControls.current.set(`${option.id}-up`, node); else moveControls.current.delete(`${option.id}-up`) }} aria-label={copy.moveUp(option.romanizedTitle)}><IconArrowRight size={14} className="-rotate-90" /><span>{copy.up}</span></button>
+                  <button type="button" disabled={index === selected.length - 1} onClick={() => move(option.id, 'down')} ref={node => { if (node) moveControls.current.set(`${option.id}-down`, node); else moveControls.current.delete(`${option.id}-down`) }} aria-label={copy.moveDown(option.romanizedTitle)}><IconArrowRight size={14} className="rotate-90" /><span>{copy.down}</span></button>
                 </div>
-              </details>
+                <button type="button" disabled={selected.length === 1} onClick={() => remove(option.id)} aria-label={copy.removeBani(option.romanizedTitle)}><IconClose size={14} />{copy.remove}</button>
+              </div>
             </li>
           })}
         </ol>
-        <div className="nitnem-editor-add-row">
-          <button type="button" onClick={() => { setQuery(''); setLibraryOpen(true) }} disabled={!available.length} className="nitnem-editor-add"><span aria-hidden="true">＋</span><span>{copy.add}</span><small>{copy.available(available.length)}</small></button>
-          <button type="button" className="nitnem-editor-reset" onClick={() => { setDraftIds([...DEFAULT_NITNEM_OPTION_IDS]); setNotice(copy.restoredSeven) }} data-testid="nitnem-reset">{copy.restore}</button>
-        </div>
+        {selected.length === 1 ? <p className="nitnem-editor-hint">{copy.keepOne}</p> : null}
+        {lastRemoved ? <div className="nitnem-editor-undo" role="status"><span>{copy.removed(getNitnemOption(lastRemoved.id)?.name ?? lastRemoved.id)}</span><button type="button" onClick={undoRemove}>{copy.undo}</button></div> : null}
+        <button type="button" className="nitnem-editor-reset" onClick={() => { setDraftIds([...DEFAULT_NITNEM_OPTION_IDS]); setLastRemoved(null); setNotice(copy.restoredSeven) }} data-testid="nitnem-reset">{copy.restore}</button>
       </section>
-      <section className="nitnem-editor-offline" aria-labelledby="nitnem-offline-title" data-offline-status={offline.status}>
-        <div><h2 id="nitnem-offline-title">{copy.offlineTitle}</h2><p role="status">{offlineCopy}</p>{readingsChanged ? <p className="nitnem-editor-offline-draft">{copy.draftPreparing}</p> : null}</div>
-        {['offline', 'paused', 'partial', 'error'].includes(offline.status) ? <button type="button" onClick={offline.retry}>{offline.status === 'paused' ? copy.prepareNow : copy.tryAgain}<IconArrowRight size={16} /></button> : null}
-      </section>
-      <section id="nitnem-continuity" className="nitnem-editor-goal" aria-labelledby="nitnem-weekly-goal-title">
-        <div><p className="nitnem-editor-eyebrow">{copy.continuity}</p><h2 id="nitnem-weekly-goal-title">{copy.goalTitle}</h2><p>{copy.goalDescription}</p></div>
-        <div className="nitnem-editor-tracking"><div><span id="nitnem-tracking-label">{copy.completion}</span><p id="nitnem-tracking-description">{copy.completionDescription}</p></div><button type="button" role="switch" aria-labelledby="nitnem-tracking-label" aria-describedby="nitnem-tracking-description" aria-checked={draftTracking} onClick={() => setDraftTracking(value => !value)}><span /></button></div>
-        <label htmlFor="nitnem-weekly-goal">{copy.weeklyGoal}</label>
-        <select id="nitnem-weekly-goal" value={draftGoal} onChange={event => setDraftGoal(Number(event.target.value))}>{Array.from({ length: 7 }, (_, index) => index + 1).map(day => <option key={day} value={day}>{copy.daysPerWeek(day)}</option>)}</select>
-      </section>
+      <aside className="nitnem-editor-preferences">
+        <details open={preferencesOpen} className="nitnem-editor-preferences-disclosure" id="nitnem-continuity">
+          <summary aria-label={copy.preferences} onClick={event => { event.preventDefault(); setPreferencesOpen(value => !value) }}>
+            <div><span>{copy.preferences}</span><small>{draftTracking ? copy.daysPerWeek(draftGoal) : copy.trackingOff}</small></div><IconArrowRight size={18} />
+          </summary>
+          <div className="nitnem-editor-preferences-body">
+            <section className="nitnem-editor-goal" aria-labelledby="nitnem-weekly-goal-title">
+              <h2 id="nitnem-weekly-goal-title">{copy.continuity}</h2>
+              <p>{copy.goalDescription}</p>
+              <div className="nitnem-editor-tracking"><div><span id="nitnem-tracking-label">{copy.completion}</span><p id="nitnem-tracking-description">{copy.completionDescription}</p></div><button type="button" role="switch" aria-labelledby="nitnem-tracking-label" aria-describedby="nitnem-tracking-description" aria-checked={draftTracking} onClick={() => setDraftTracking(value => !value)}><span /></button></div>
+              <label htmlFor="nitnem-weekly-goal">{copy.weeklyGoal}</label>
+              <select id="nitnem-weekly-goal" value={draftGoal} onChange={event => setDraftGoal(Number(event.target.value))}>{Array.from({ length: 7 }, (_, index) => index + 1).map(day => <option key={day} value={day}>{copy.daysPerWeek(day)}</option>)}</select>
+              {!draftTracking ? <p className="nitnem-editor-hint">{copy.goalPaused}</p> : null}
+            </section>
+            <section className="nitnem-editor-offline" aria-labelledby="nitnem-offline-title" data-offline-status={offline.status}>
+              <div><h2 id="nitnem-offline-title">{copy.offlineTitle}</h2><p role="status">{offlineCopy}</p>{readingsChanged ? <p className="nitnem-editor-offline-draft">{copy.draftPreparing}</p> : null}</div>
+              {['offline', 'paused', 'partial', 'error'].includes(offline.status) ? <button type="button" onClick={offline.retry}>{offline.status === 'paused' ? copy.prepareNow : copy.tryAgain}<IconArrowRight size={16} /></button> : null}
+            </section>
+          </div>
+        </details>
+        <p className="nitnem-editor-save-hint">{copy.saveHint}</p>
+      </aside>
+      </div>
       <p className="nitnem-editor-notice sr-only" role="status" aria-live="polite">{notice}</p>
       {saveError ? <p className="nitnem-editor-save-error" role="alert">{saveError}</p> : null}
-      <footer className="nitnem-editor-footer"><p className="nitnem-editor-save-state" aria-live="polite">{saveError ? copy.notSaved : hasChanges ? copy.unsaved : ''}</p><div className="nitnem-editor-save-actions"><button type="button" onClick={leave} className="nitnem-editor-cancel">{copy.cancel}</button><button type="button" onClick={save} className="nitnem-editor-save" aria-label={copy.saveRoutine}>{copy.save}<IconArrowRight size={18} /></button></div></footer>
+      <footer className="nitnem-editor-footer"><p className="nitnem-editor-save-state" aria-live="polite">{saveError ? copy.notSaved : hasChanges ? copy.unsaved : copy.upToDate}</p><div className="nitnem-editor-save-actions"><button type="button" onClick={leave} className="nitnem-editor-cancel">{copy.cancel}</button><button type="button" onClick={save} className="nitnem-editor-save" aria-label={copy.saveRoutine}>{copy.saveRoutine}<IconArrowRight size={18} /></button></div></footer>
       <ModalSheet open={leaveOpen} onClose={() => setLeaveOpen(false)} title={copy.discardTitle} description={copy.discardDescription} className="nitnem-editor-discard" initialFocusRef={keepEditingRef}>
         <h2>{copy.discardTitle}</h2>
         <p>{copy.discardBody}</p>
@@ -235,14 +280,22 @@ export default function NitnemCustomizePanel() {
           <button type="button" onClick={() => { clearNitnemDraft(); setLeaveOpen(false); navigate(returnPath) }}>{copy.discard}</button>
         </div>
       </ModalSheet>
-      <ModalSheet open={libraryOpen} onClose={() => setLibraryOpen(false)} title={copy.add} description={copy.addDescription} className="nitnem-editor-library" testId="nitnem-selection">
-        <div className="nitnem-editor-library-heading"><div><p className="nitnem-editor-eyebrow">{copy.title} {copy.titleEmphasis}</p><h2>{copy.addTitle}</h2></div><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = 0 }} aria-label={copy.closeAvailable}><IconClose size={20} /></button></div>
+      <ModalSheet open={libraryOpen} onClose={() => setLibraryOpen(false)} title={copy.add} description={copy.addDescription} className="nitnem-editor-library" testId="nitnem-selection" initialFocusRef={librarySearchRef}>
+        <div className="nitnem-editor-library-heading"><div><p className="nitnem-editor-eyebrow">{copy.libraryCount(NITNEM_ROUTE_OPTIONS.length)}</p><h2>{copy.addTitle}</h2></div><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = 0 }} aria-label={copy.closeAvailable}><IconClose size={20} /></button></div>
         <label className="nitnem-editor-search"><IconSearch size={18} /><input ref={librarySearchRef} type="search" aria-label={copy.searchLabel} placeholder={copy.searchPlaceholder} value={query} onChange={event => setQuery(event.target.value)} /></label>
-        <div className="nitnem-editor-available">
-          {matches.map(option => <article key={option.id}><div>{title(option)}<p className="nitnem-editor-period">{copy.groups[option.group]}</p></div><button type="button" ref={node => { if (node) availableControls.current.set(option.id, node); else availableControls.current.delete(option.id) }} onClick={() => add(option)} aria-label={copy.addBani(option.romanizedTitle)}><span aria-hidden="true">＋</span></button></article>)}
-          {matches.length === 0 ? <p className="nitnem-editor-empty">{copy.noMatches}</p> : null}
+        <div className="nitnem-editor-library-filters">
+          <label htmlFor="nitnem-library-category">{copy.category}</label>
+          <select id="nitnem-library-category" value={category} onChange={event => setCategory(event.target.value as NitnemCategory | 'all')}>
+            <option value="all">{copy.allCategories}</option>
+            {NITNEM_CATEGORY_ORDER.map(value => <option key={value} value={value}>{copy.categories[value]}</option>)}
+          </select>
+          <p aria-live="polite">{copy.available(matches.length)}</p>
         </div>
-        <footer className="nitnem-editor-library-footer"><p className="nitnem-editor-hint">{copy.addedHint}</p><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = sheet.scrollHeight }}>{copy.done}<IconArrowRight size={18} /></button></footer>
+        <div className="nitnem-editor-available">
+          {matches.map(option => <article key={option.id}><div>{title(option)}<p className="nitnem-editor-period">{option.category ? copy.categories[option.category] : copy.groups[option.group]}</p></div><button type="button" ref={node => { if (node) availableControls.current.set(option.id, node); else availableControls.current.delete(option.id) }} onClick={() => add(option)} aria-label={copy.addBani(option.romanizedTitle)}><span aria-hidden="true">＋</span><span>{copy.addShort}</span></button></article>)}
+          {matches.length === 0 ? <div className="nitnem-editor-empty"><p>{available.length === 0 ? copy.allAdded : copy.noMatches}</p>{available.length > 0 ? <button type="button" onClick={() => { setQuery(''); setCategory('all'); librarySearchRef.current?.focus() }}>{copy.clearFilters}</button> : null}</div> : null}
+        </div>
+        <p className="nitnem-editor-library-feedback" role="status">{notice || copy.addedHint}</p><footer className="nitnem-editor-library-footer"><p className="nitnem-editor-hint">{copy.inRoutine(selected.length)}</p><button type="button" onClick={() => setLibraryOpen(false)} onFocus={event => { const sheet = event.currentTarget.closest<HTMLElement>('.nitnem-editor-library'); if (sheet) sheet.scrollTop = sheet.scrollHeight }}>{copy.done}<IconArrowRight size={18} /></button></footer>
       </ModalSheet>
     </div>
   )

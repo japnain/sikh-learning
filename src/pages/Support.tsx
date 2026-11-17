@@ -64,7 +64,7 @@ export default function Support() {
           {copy.title}
         </h1>
         <p className="mt-3 max-w-[58ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-          {copy.intro}
+          {supportEmail ? copy.intro : locale === 'pa' ? 'ਹੇਠਾਂ ਦਿੱਤੇ ਹੱਲ ਅਜ਼ਮਾਓ। ਜੇ ਸਮੱਸਿਆ ਜਾਰੀ ਰਹੇ, ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਰਿਪੋਰਟ ਤਿਆਰ ਕਰਕੇ ਰੱਖੋ। ਇਹ ਆਪਣੇ ਆਪ ਨਹੀਂ ਭੇਜੀ ਜਾਂਦੀ।' : locale === 'hi' ? 'नीचे दिए उपाय आज़माएँ। समस्या जारी रहे तो इस डिवाइस पर रिपोर्ट तैयार करके रखें। यह अपने आप नहीं भेजी जाती।' : 'Try the checks below. If the issue continues, prepare and save a report on this device. This page does not send it.'}
         </p>
         <div className="mt-4 grid gap-2 sm:flex sm:flex-wrap">
           {supportMailto ? (

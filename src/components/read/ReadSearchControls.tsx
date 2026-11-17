@@ -1,4 +1,4 @@
-import type { Ref } from 'react'
+import { useState, type Ref } from 'react'
 import '../../styles/read-search.css'
 import type { SearchMode, UiLocale } from '../../types'
 import type { ReadPageCopy } from '../../content/readPageCopy'
@@ -44,6 +44,8 @@ type Props = {
 
 export default function ReadSearchControls({ copy, locale, inputRef, query, mode, source, scope, optionsOpen,
   active, status, previousQuery, onQuery, onSubmit, onMode, onSource, onScope, onToggleOptions, onExit, onRecover }: Props) {
+  const [engaged, setEngaged] = useState(false)
+  const showOptions = engaged || active || optionsOpen || Boolean(query.trim()) || mode !== 'auto-detect' || scope !== 'all'
   const labels = getSearchModeLabels(locale)
   const ui = READ_SEARCH_UI[locale]
   const intentCopy = SEARCH_INTENT_COPY[locale]
@@ -66,8 +68,8 @@ export default function ReadSearchControls({ copy, locale, inputRef, query, mode
       <div className="read-search-field">
       <input ref={inputRef} id="banis-search" name="banis-search" type="search"
         aria-label={ui.searchLabels[scope]} maxLength={SEARCH_QUERY_MAX_LENGTH} autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck={false}
-        aria-describedby={hasGurbaniOptions ? 'banis-search-intent-hint' : undefined}
-        enterKeyHint="search" inputMode={hasGurbaniOptions && mode === 'ang' ? 'numeric' : 'search'} value={query} onChange={event => onQuery(event.target.value)}
+        aria-describedby={hasGurbaniOptions && showOptions ? 'banis-search-intent-hint' : undefined}
+        onFocus={() => setEngaged(true)} enterKeyHint="search" inputMode={hasGurbaniOptions && mode === 'ang' ? 'numeric' : 'search'} value={query} onChange={event => onQuery(event.target.value)}
         placeholder={hasGurbaniOptions ? intent.placeholder : ui.placeholders[scope]}
         className="read-search-input w-full rounded-lg border border-sand/15 bg-parchment-card py-4 font-sans text-base text-ink outline-none transition-colors duration-300 placeholder:text-ink/36 focus:border-saffron/45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text dark:placeholder:text-dark-text/38"
         data-ai-action="read-smart-search" />
@@ -79,7 +81,7 @@ export default function ReadSearchControls({ copy, locale, inputRef, query, mode
       <button type="submit" className="read-search-submit" aria-label={intentCopy.submit}><span aria-hidden="true"><IconSearch size={19} /></span></button>
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">{status}</p>
     </form>
-    {hasGurbaniOptions && <>
+    {hasGurbaniOptions && showOptions && <>
       <div className="read-search-intents" role="group" aria-label={intentCopy.groupLabel}>
         {PRIMARY_SEARCH_MODES.map(value => <button type="button" key={value} aria-pressed={mode === value} onClick={() => onMode(value)}>{intentCopy.modes[value].label}</button>)}
       </div>
@@ -88,9 +90,9 @@ export default function ReadSearchControls({ copy, locale, inputRef, query, mode
         {intent.examples.map(example => <button type="button" key={example} onClick={() => onQuery(example)}>{example}</button>)}
       </div>}
     </>}
-    <div className="read-search-kinds" role="group" aria-label={ui.scopeLabel}>
+    {showOptions && <div className="read-search-kinds" role="group" aria-label={ui.scopeLabel}>
       {SEARCH_SCOPES.map(value => <button type="button" key={value} aria-pressed={scope === value} onClick={() => onScope(value)}>{ui.scopes[value]}</button>)}
-    </div>
+    </div>}
     {scope === 'stories' ? <p className="read-search-hint">{ui.metadataHint}</p> : null}
     {!optionsOpen && hasGurbaniOptions && (isAdvancedMode || source !== 'all') && <div className="read-search-summary mt-3 flex flex-wrap items-center gap-2">
       {isAdvancedMode && <span className="read-metadata">{labels[mode]}</span>}

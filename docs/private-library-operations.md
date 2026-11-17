@@ -6,7 +6,7 @@ Being signed in or having an unrelated admin role does not grant access.
 
 ## Deploy the boundary first
 
-1. Apply `supabase/schema/005_naamras_private_library.sql` after migrations 001–004.
+1. Apply `supabase/schema/006_naamras_private_library.sql` after migrations 001–005.
    It creates four private tables, a service-only authorization function, a private
    bucket and restrictive storage policies. Do not grant client access to these tables.
 2. Before seeding an owner, run `supabase/tests/private-library-session-smoke.sql`.

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { READ_EXACT_BANIS } from '../data/banis'
+import { getShabadosBani } from '../data/shabadosBanis'
 import { loadLibraryChapterIndex, loadLibraryWorkCatalog } from '../data/libraryRepository'
 import { loadStoryCatalog } from '../data/storyRepository'
 import { useLocaleStore } from '../store/locale'
@@ -88,6 +89,15 @@ export function useContinueReadings() {
       if (!isSourceReaderId(source)) continue
       const path = buildSessionResumePath(session)
       if (!path) continue
+      const shabadosBani = getShabadosBani(params.get('shabadosBani'))
+      if (id.startsWith('shabados:')) {
+        if (!shabadosBani || id !== `shabados:${shabadosBani.id}`) continue
+        const reference = formatSourceReaderReference({ source, value: params.get('ang') ?? 1, locale })
+        items.push({ id, title: shabadosBani.name,
+          detail: [reference, session.resumeVerseId ? copy.savedPassage : null].filter(Boolean).join(' · '),
+          path, updatedAt: session.updatedAt, kind: 'bani' })
+        continue
+      }
       const bani = READ_EXACT_BANIS.find(item => (item.variantOf ?? item.id) === params.get('baniId')
         && item.baniDbId === Number(params.get('baniDbId')) && item.source === source
         && item.startAng === Number(params.get('startAng')) && item.endAng === Number(params.get('endAng')))

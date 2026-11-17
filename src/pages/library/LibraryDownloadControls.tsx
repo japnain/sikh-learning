@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { downloadLibraryWork, getLibraryDownloadStatus, removeDownloadedLibraryWork, type LibraryDownloadStatus } from '../../data/libraryRepository'
 import type { LibraryWork } from '../../types'
 import { useLocaleStore } from '../../store/locale'
@@ -6,6 +6,7 @@ import { LIBRARY_DOWNLOAD_COPY } from '../../content/libraryBookCopy'
 import '../../styles/library-tools.css'
 
 export default function LibraryDownloadControls({ work }: { work: LibraryWork }) {
+  const headingId = useId()
   const locale = useLocaleStore(state => state.locale)
   const copy = LIBRARY_DOWNLOAD_COPY[locale]
   const [saved, setSaved] = useState<LibraryDownloadStatus | null>(null)
@@ -65,10 +66,10 @@ export default function LibraryDownloadControls({ work }: { work: LibraryWork })
   }
 
   return (
-    <section className="epub-download-panel" aria-labelledby="epub-download-title">
+    <section className="epub-download-panel" aria-labelledby={headingId}>
       <div>
         <p className="eyebrow">{copy.eyebrow}</p>
-        <h2 id="epub-download-title">{copy.title}</h2>
+        <h2 id={headingId}>{copy.title}</h2>
         <p>{copy.body}</p>
       </div>
       <p>{saved ? copy.saved(saved.downloaded, saved.total) : copy.empty}</p>
@@ -85,6 +86,7 @@ export default function LibraryDownloadControls({ work }: { work: LibraryWork })
         {saved ? <button type="button" disabled={busy} onClick={() => { void remove() }}>{copy.remove}</button> : null}
         {operation === 'download' ? <button type="button" onClick={() => controller.current?.abort()}>{copy.cancel}</button> : null}
       </div>
+      {operation === 'download' ? <p>{locale === 'pa' ? 'ਕਿਤਾਬ ਡਾਊਨਲੋਡ ਹੋਣ ਤੱਕ ਇਸ ਸਕ੍ਰੀਨ ਉੱਤੇ ਰਹੋ। ਇੱਥੋਂ ਜਾਣ ਨਾਲ ਮੌਜੂਦਾ ਡਾਊਨਲੋਡ ਰੱਦ ਹੋਵੇਗਾ।' : locale === 'hi' ? 'किताब डाउनलोड होने तक इस स्क्रीन पर रहें। यहाँ से जाने पर मौजूदा डाउनलोड रद्द होगा।' : 'Stay on this screen while the book downloads. Leaving cancels the current download.'}</p> : null}
       {progress ? <progress aria-label={copy.progress} value={progress.loaded} max={progress.total} /> : null}
       <p role={failed ? 'alert' : 'status'} aria-live="polite">{notice}</p>
     </section>

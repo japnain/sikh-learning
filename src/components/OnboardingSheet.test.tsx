@@ -1,3 +1,4 @@
+import { useLocaleStore } from '../store/locale'
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { useState } from 'react'
 import { MemoryRouter } from 'react-router-dom'
@@ -29,17 +30,19 @@ function Harness({
   </MemoryRouter>
 }
 
-function begin() { const action = screen.queryByTestId('onboarding-begin-action'); if (action) fireEvent.click(action) }
+function begin() { const action = screen.queryByTestId('onboarding-personalize-action'); if (action) fireEvent.click(action) }
 function next() { fireEvent.click(screen.getByTestId('onboarding-setup-primary-action')) }
 function preferences() { return JSON.parse(screen.getByTestId('preferences').textContent ?? '{}') }
 
-test('welcomes readers with Golden Court Assembly, account choices and a free reading path', () => {
-  render(<Harness />)
+test('welcomes readers with Golden Court Assembly, account choices and a free reading path', async () => {
+  const onComplete = vi.fn()
+  render(<Harness onComplete={onComplete} />)
   expect(screen.getByRole('img', { name: 'Golden court assembly' })).toBeInTheDocument()
   expect(screen.getByRole('link', { name: 'Create account' })).toHaveAttribute('href', '/account?mode=signup')
   expect(screen.getByRole('link', { name: 'Sign in' })).toHaveAttribute('href', '/account')
-  fireEvent.click(screen.getByRole('button', { name: 'Begin reading' }))
-  expect(screen.getByRole('heading', { name: 'Choose your script.' })).toHaveFocus()
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Begin reading' })) })
+  expect(onComplete).toHaveBeenCalledOnce()
+  expect(screen.queryByRole('heading', { name: 'Choose your script.' })).not.toBeInTheDocument()
 })
 
 test('after the welcome, finishes reading preferences in two pages', async () => {
@@ -241,4 +244,16 @@ test('Escape dismisses an idle overlay', async () => {
   fireEvent.keyDown(document, { key: 'Escape' })
   await waitFor(() => expect(onDismiss).toHaveBeenCalledOnce())
   view.unmount()
+})
+
+
+test('welcome changes interface language without changing scripture or meaning preferences', () => {
+  useLocaleStore.setState({ locale: 'en' })
+  const Welcome = () => { const locale = useLocaleStore(state => state.locale); return <Harness locale={locale} /> }
+  render(<Welcome />)
+  fireEvent.click(screen.getByRole('button', { name: 'ਪੰਜਾਬੀ' }))
+  expect(useLocaleStore.getState().locale).toBe('pa')
+  expect(screen.getByRole('button', { name: 'ਪੜ੍ਹਨਾ ਸ਼ੁਰੂ ਕਰੋ' })).toBeInTheDocument()
+  expect(preferences()).toEqual({ scriptMode: 'gurmukhi', showTransliteration: false, meaningLanguage: 'en' })
+  fireEvent.click(screen.getByRole('button', { name: 'English' }))
 })

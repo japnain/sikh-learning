@@ -32,6 +32,7 @@ const BanisPage = lazy(() => import('./pages/Banis'))
 const AmritKeertanPage = lazy(() => import('./pages/AmritKeertan'))
 const RehatPage = lazy(() => import('./pages/Rehat'))
 const NitnemCustomizePage = lazy(() => import('./pages/NitnemCustomize'))
+const DownloadsPage = lazy(() => import('./pages/Downloads'))
 const MorePage = lazy(() => import('./pages/More'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
 const PrivacyPage = lazy(() => import('./pages/Privacy'))
@@ -286,7 +287,7 @@ function AppShell() {
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[120] focus:rounded-full focus:bg-parchment-card focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-medium focus:text-ink dark:focus:bg-dark-card dark:focus:text-dark-text"
         data-testid="skip-to-content"
       >
-        Skip to main content
+        {locale === 'pa' ? 'ਮੁੱਖ ਸਮੱਗਰੀ ਵੱਲ ਜਾਓ' : locale === 'hi' ? 'मुख्य सामग्री पर जाएँ' : 'Skip to main content'}
       </a>
       <SplashScreen />
       <MusicControllerBridge />
@@ -349,6 +350,7 @@ function AppShell() {
                 <Route path="/banis/rehat/:rehatId" element={<RehatPage />} />
                 <Route path="/banis/rehat/:rehatId/chapters/:chapterId" element={<RehatPage />} />
                 <Route path="/banis" element={<BanisPage />} />
+                <Route path="/downloads" element={<DownloadsPage />} />
                 <Route path="/more" element={<MorePage />} />
                 <Route path="/learn/*" element={<Navigate to="/" replace />} />
                 <Route path="/vocab" element={<VocabPage />} />

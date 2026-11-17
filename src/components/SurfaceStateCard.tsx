@@ -58,8 +58,8 @@ export default function SurfaceStateCard({
               onClick={action.onClick}
               className={
                 action.emphasis === 'secondary'
-                  ? 'rounded-full border border-sand/16 bg-white/78 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'
-                  : 'rounded-lg bg-saffron px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white'
+                  ? 'min-h-11 rounded-lg border border-sand/16 bg-white/78 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text'
+                  : 'min-h-11 rounded-lg bg-saffron px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white'
               }
               data-ai-action={action.aiAction}
             >
