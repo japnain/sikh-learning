@@ -8,10 +8,10 @@ import {
   getNitnemOption, type NitnemRouteOption, type NitnemCategory, useNitemStore,
 } from '../store/nitnem'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
-import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
-import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import { renderScriptText } from '../utils/readerDisplay'
+import { getBaniTitlePresentation } from '../utils/baniTitlePresentation'
 import { asSupportedSundarGutkaBaniId, normalizeSundarGutkaLength } from '../utils/sundarGutkaLength'
 import { clearNitnemDraft, isNitnemDraftStorageAvailable, readNitnemDraft, rememberNitnemDraft, subscribeNitnemDraftStorage } from '../utils/nitnemDraft'
 import { NITNEM_CUSTOMIZE_COPY } from '../utils/nitnemCustomizeCopy'
@@ -51,7 +51,6 @@ export default function NitnemCustomizePanel() {
   const weeklyDayGoal = useNitemStore(state => state.weeklyDayGoal)
   const completionTrackingEnabled = useNitemStore(state => state.completionTrackingEnabled)
   const lengths = useSundarGutkaLengthStore(state => state.lengths)
-  const scriptMode = useLanguageStore(state => state.scriptMode)
   const locale = useLocaleStore(state => state.locale)
   const copy = NITNEM_CUSTOMIZE_COPY[locale]
   const offline = useNitnemOfflineStatusStore()
@@ -190,12 +189,13 @@ export default function NitnemCustomizePanel() {
       setSaveError(copy.saveError)
     }
   }
-  const title = (option: NitnemRouteOption) => (
-    <>
-      <p className={`nitnem-editor-bani-title ${getScriptTextFontClass(scriptMode)}`} lang={getScriptTextLang(scriptMode)}>{renderScriptText(option.gurmukhiTitle, scriptMode)}</p>
-      <p className="nitnem-editor-bani-name">{option.romanizedTitle}</p>
+  const title = (option: NitnemRouteOption) => {
+    const { primary, secondary } = getBaniTitlePresentation(option, locale)
+    return <>
+      <p className={`nitnem-editor-bani-title ${primary.fontClassName}${primary.lang === 'en' ? ' nitnem-editor-bani-name' : ''}`} lang={primary.lang}>{primary.text}</p>
+      <p className={`nitnem-editor-bani-subtitle ${secondary.fontClassName}${secondary.lang === 'en' ? ' nitnem-editor-bani-name' : ''}`} lang={secondary.lang}>{secondary.text}</p>
     </>
-  )
+  }
   return (
     <div className="nitnem-editor" data-testid="nitnem-customize-panel">
       <nav className="nitnem-editor-nav" aria-label={copy.titleEmphasis}>

@@ -55,7 +55,8 @@ import {
 } from '../utils/appSearch'
 import { buildReadSearchPath } from '../utils/searchRoutes'
 import { rememberDiscoveryReturn, restoreDiscoveryReturn } from '../utils/discoveryReturn'
-import ReadContinue from '../components/ReadContinue'
+import ReadPageFooter from '../components/ReadPageFooter'
+import { getBaniTitlePresentation } from '../utils/baniTitlePresentation'
 import { READ_SEARCH_UI, SEARCH_SCOPES, type SearchScope } from '../content/readSearchCopy'
 import { withSearchDeadline } from '../utils/searchDeadline'
 import { getGurbaniSearchSession, rememberGurbaniSearchSession } from '../utils/gurbaniSearchSession'
@@ -868,6 +869,7 @@ export default function Banis() {
     label: copy.sundarGroups[group.key],
   }))
   const sundarGutkaCount = sundarGutkaGroups.reduce((count, group) => count + group.items.length, 0)
+  const sundarGutkaTitle = getBaniTitlePresentation({ romanizedTitle: 'Sundar Gutka', gurmukhiTitle: 'ਸੁੰਦਰ ਗੁਟਕਾ' }, locale)
   const scriptureGroups = (Object.keys(SCRIPTURE_META) as Scripture[]).reduce<Record<Scripture, Array<{ category: string; label: string; items: ReadBaniCatalogItem[] }>>>((groups, scripture) => {
     groups[scripture] = SCRIPTURE_META[scripture].categoryOrder.map(category => ({
       category,
@@ -1004,7 +1006,7 @@ export default function Banis() {
           {activeCollection === 'books' ? <div className="read-books-heading__row">
             <div>
               <p className="eyebrow">{copy.heroEyebrow}</p>
-              <h1 id="read-room-title">{copy.tabs.books}</h1>
+              <h1 id="read-room-title" tabIndex={-1}>{copy.tabs.books}</h1>
               <p className="read-books-heading__body">{booksHeader.body}</p>
             </div>
             <Link to="/banis" state={{ focusSearch: true }} className="read-books-heading__search interactive-focus">
@@ -1013,7 +1015,7 @@ export default function Banis() {
           </div> : <>
           <div className="read-room-hero__copy">
             <p className="eyebrow">{copy.heroEyebrow}</p>
-            <h1 id="read-room-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
+            <h1 id="read-room-title" tabIndex={-1} className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
               {copy.title}
             </h1>
             <p className="read-room-hero__body mt-3 max-w-[32ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
@@ -1363,7 +1365,6 @@ export default function Banis() {
           </div> : null}
         </section>
 
-        {!hasActiveSearch && activeCollection !== 'books' && <ReadContinue showEmpty={false} />}
         {activeCollection !== 'books' ? <div className="read-browse-heading"><h2>{searchUi.browse}</h2></div> : null}
         <div className="read-collection-tabs" role={hasActiveSearch ? 'group' : 'tablist'} aria-label={copy.collectionsLabel}>
           {READ_COLLECTIONS.map((collection, index) => {
@@ -1466,7 +1467,8 @@ export default function Banis() {
           aria-controls="banis-sundar-gutka-panel"
         >
           <div className="min-w-0 text-left">
-            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} font-semibold text-base text-saffron dark:text-saffron-light`}>{renderScriptText('ਸੁੰਦਰ ਗੁਟਕਾ', scriptMode)} · Sundar Gutka</p>
+            <p lang={sundarGutkaTitle.primary.lang} className={`${sundarGutkaTitle.primary.fontClassName} font-semibold text-base text-saffron dark:text-saffron-light`}>{sundarGutkaTitle.primary.text}</p>
+            <p lang={sundarGutkaTitle.secondary.lang} className={`${sundarGutkaTitle.secondary.fontClassName} mt-1 text-sm text-ink/65 dark:text-dark-text/80`}>{sundarGutkaTitle.secondary.text}</p>
           </div>
           <span className="ml-3 flex shrink-0 items-center gap-2">
             <DirectoryCount
@@ -1790,6 +1792,7 @@ export default function Banis() {
 
           </div>
         ) : null}
+        <ReadPageFooter />
       </div>
     </div>
   )

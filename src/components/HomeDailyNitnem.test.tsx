@@ -300,3 +300,18 @@ test('opening All banis reveals the browsed row within the list without moving f
   expect(within(dialog).getByRole('button', { name: 'Close your banis' })).toHaveFocus()
   expect(screen.getByTestId('home-nitnem-active-reading')).toHaveAttribute('data-nitnem-id', selected[6].id)
 })
+
+test('English Home and All banis lead with romanized names while retaining Punjabi names and the reader script preference', () => {
+  useLanguageStore.setState({ scriptMode: 'devanagari' })
+  renderDaily()
+  const active = screen.getByTestId('home-nitnem-active-reading')
+  expect(active.querySelector('.home-daily-title')).toHaveTextContent('Japji Sahib')
+  expect(active.querySelector('.home-daily-title')).toHaveAttribute('lang', 'en')
+  expect(active.querySelector('.home-daily-subtitle')).toHaveTextContent('ਜਪੁਜੀ ਸਾਹਿਬ')
+  expect(active.querySelector('.home-daily-subtitle')).toHaveAttribute('lang', 'pa-Guru')
+  fireEvent.click(screen.getByRole('button', { name: 'All 7 banis' }))
+  const first = within(screen.getByRole('dialog')).getAllByRole('listitem')[0]
+  expect(first.querySelector('.home-daily-row-title')).toHaveTextContent('Japji Sahib')
+  expect(first.querySelector('.home-daily-row-subtitle')).toHaveTextContent('ਜਪੁਜੀ ਸਾਹਿਬ')
+  expect(useLanguageStore.getState().scriptMode).toBe('devanagari')
+})

@@ -513,3 +513,23 @@ test('opens the weekly goal deep link even on a small screen', () => {
     Object.defineProperty(window, 'innerWidth', { configurable: true, value: width })
   }
 })
+
+test.each([
+  ['en', 'devanagari', 'Japji Sahib', 'ਜਪੁਜੀ ਸਾਹਿਬ', 'Ardaas', 'en'],
+  ['pa', 'devanagari', 'ਜਪੁਜੀ ਸਾਹਿਬ', 'Japji Sahib', 'ਅਰਦਾਸ', 'pa-Guru'],
+  ['hi', 'gurmukhi', 'जपुजी साहिब', 'Japji Sahib', 'अरदास', 'hi'],
+] as const)('uses %s interface titles in both the routine and picker without changing the reader script', (locale, scriptMode, primary, secondary, available, lang) => {
+  useLocaleStore.setState({ locale })
+  useLanguageStore.setState({ scriptMode })
+  const view = renderCustomize()
+  const first = screen.getAllByTestId('nitnem-ritual-item')[0]
+  expect(first.querySelector('.nitnem-editor-bani-title')).toHaveTextContent(primary)
+  expect(first.querySelector('.nitnem-editor-bani-title')).toHaveAttribute('lang', lang)
+  expect(first.querySelector('.nitnem-editor-bani-subtitle')).toHaveTextContent(secondary)
+  fireEvent.click(view.container.querySelector('.nitnem-editor-add')!)
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Ardaas' } })
+  const item = screen.getByTestId('nitnem-selection').querySelector('.nitnem-editor-available article')!
+  expect(item.querySelector('.nitnem-editor-bani-title')).toHaveTextContent(available)
+  expect(item.querySelector('.nitnem-editor-bani-title')).toHaveAttribute('lang', lang)
+  expect(useLanguageStore.getState().scriptMode).toBe(scriptMode)
+})

@@ -38,8 +38,8 @@ html:is(.dark,[data-theme='dark']) .home-daily-reading[data-period='Additional']
 .home-daily-period::before { content: ''; width: 1.4rem; height: 1px; flex: none; background: currentColor; opacity: .5; }
 .home-daily-reading-panel { min-width: 0; }
 .home-daily-reading h3 { display: grid; gap: .3rem; margin: 0; font-weight: 400; }
-.home-daily-script { font-size: clamp(2rem,8cqi,2.625rem); font-weight: 400; line-height: 1.8; overflow-wrap: anywhere; text-wrap: pretty; }
-.home-daily-english { color: var(--daily-muted); font-size: .9375rem; font-weight: 500; line-height: 1.65; overflow-wrap: anywhere; }
+.home-daily-title { font-size: clamp(2rem,8cqi,2.625rem); font-weight: 400; line-height: 1.5; overflow-wrap: anywhere; text-wrap: pretty; }
+.home-daily-subtitle { color: var(--daily-muted); font-size: .9375rem; font-weight: 500; line-height: 1.65; overflow-wrap: anywhere; }
 .home-daily-reading-options { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; min-height: 44px; margin-top: .85rem; }
 .home-daily-availability { color: var(--daily-muted); font-size: .8125rem; line-height: 1.7; }
 .home-daily-current-meta { margin: .8rem 0 0; color: var(--daily-muted); font-size: .8125rem; line-height: 1.7; }
@@ -66,8 +66,8 @@ html:is(.dark,[data-theme='dark']) .home-daily-reading[data-period='Additional']
 .home-daily-sheet-reading { display: grid; grid-template-columns: 1.25rem minmax(0,1fr) 1.25rem; align-items: center; gap: .875rem; min-height: 44px; padding-block: .375rem .125rem; text-decoration: none; }
 .home-daily-next-number { align-self: start; padding-top: .4rem; color: var(--daily-accent); font-size: .8125rem; line-height: 1.6; font-variant-numeric: tabular-nums; }
 .home-daily-next-copy { display: grid; min-width: 0; gap: .125rem; }
-.home-daily-row-script { font-size: 1.125rem; font-weight: 400; line-height: 1.75; overflow-wrap: anywhere; text-wrap: pretty; }
-.home-daily-row-english { font-size: .8125rem; line-height: 1.6; overflow-wrap: anywhere; }
+.home-daily-row-title { font-size: 1.125rem; font-weight: 500; line-height: 1.75; overflow-wrap: anywhere; text-wrap: pretty; }
+.home-daily-row-subtitle { color: var(--daily-muted); font-size: .9375rem; line-height: 1.6; overflow-wrap: anywhere; }
 .home-daily-next-meta { color: var(--daily-muted); font-size: .8125rem; line-height: 1.7; }
 .home-daily-sheet-reading > svg { color: var(--daily-accent); }
 
@@ -85,8 +85,8 @@ html:is(.dark,[data-theme='dark']) .home-daily-reading[data-period='Additional']
 
 .home-daily-sheet.home-daily-sheet { --modal-sheet-bottom: 0px; display: flex; flex-direction: column; background: var(--daily-bg); inset-inline: 0; top: 0; width: 100%; max-width: 44rem; height: 100dvh; max-height: 100dvh; padding-block: var(--safe-area-top) var(--fixed-ui-safe-bottom); border: 0; border-radius: 0; }
 .home-daily-sheet .home-daily-next-copy { gap: 0; }
-.home-daily-sheet .home-daily-row-script { line-height: 1.55; }
-.home-daily-sheet .home-daily-row-english, .home-daily-sheet .home-daily-next-meta { line-height: 1.5; }
+.home-daily-sheet .home-daily-row-title { line-height: 1.55; }
+.home-daily-sheet .home-daily-row-subtitle, .home-daily-sheet .home-daily-next-meta { line-height: 1.5; }
 .home-daily-sheet-row-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .25rem 1rem; margin-left: 2.125rem; }
 .home-daily-sheet-row-actions:empty { display: none; }
 .home-daily-sheet-row-actions > .home-daily-sheet-complete { margin-left: 0; }

@@ -9,6 +9,7 @@ import { useReadingPlacesStore } from '../store/readingPlaces'
 import type { BaniFetchResult } from '../api/banidb'
 import type { SundarGutkaLength, UiLocale } from '../types'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import { getBaniTitlePresentation } from '../utils/baniTitlePresentation'
 import { asSupportedSundarGutkaBaniId, normalizeSundarGutkaLength } from '../utils/sundarGutkaLength'
 import { readBaniOfflineCache } from '../utils/baniOfflineCache'
 import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
@@ -157,11 +158,15 @@ export default function HomeDailyNitnem({ selected, completed, tracking, activeI
     return () => { cancelled = true }
   }, [activePath, offlineRevision])
   const cachedActive = cachedPlace?.path === activePath && cachedPlace?.revision === offlineRevision ? cachedPlace : null
-  const title = (option: NitnemRouteOption, heading = false) => <>
-    <span className={`${getScriptTextFontClass(scriptMode)} ${heading ? 'home-daily-script' : 'home-daily-row-script'}`}
-      lang={getScriptTextLang(scriptMode)}>{renderScriptText(option.gurmukhiTitle, scriptMode)}</span>
-    <span className={heading ? 'home-daily-english' : 'home-daily-row-english'}>{option.romanizedTitle}</span>
-  </>
+  const title = (option: NitnemRouteOption, heading = false) => {
+    const { primary, secondary } = getBaniTitlePresentation(option, locale)
+    return <>
+      <span className={`${heading && primary.lang === 'en' ? 'font-display' : primary.fontClassName} ${heading ? 'home-daily-title' : 'home-daily-row-title'}`}
+        lang={primary.lang}>{primary.text}</span>
+      <span className={`${secondary.fontClassName} ${heading ? 'home-daily-subtitle' : 'home-daily-row-subtitle'}`}
+        lang={secondary.lang}>{secondary.text}</span>
+    </>
+  }
   const completion = (option: NitnemRouteOption, className: string) => <button type="button" className={className}
     aria-label={`${isDone(option) ? copy.undo : copy.mark}: ${option.romanizedTitle}`}
     aria-pressed={isDone(option)} onClick={() => { browse(option.id); onComplete(option) }}>

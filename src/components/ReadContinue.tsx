@@ -10,9 +10,9 @@ import { IconArrowRight, IconClose } from './icons'
 import '../styles/read-continue.css'
 
 const COPY = {
-  en: { all: 'All reading places', fewer: 'Show fewer', title: 'Continue reading', body: 'Return to the places you left open.', begin: 'Begin here', beginBody: 'A quiet place to start: Japji Sahib, the opening bani of Sri Guru Granth Sahib Ji.', start: 'Read Japji Sahib' },
-  pa: { all: 'ਪੜ੍ਹਨ ਦੀਆਂ ਸਾਰੀਆਂ ਥਾਵਾਂ', fewer: 'ਘੱਟ ਵੇਖੋ', title: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ', body: 'ਆਪਣੇ ਛੱਡੇ ਹੋਏ ਪਾਠਾਂ ਵੱਲ ਮੁੜੋ।', begin: 'ਇੱਥੋਂ ਸ਼ੁਰੂ ਕਰੋ', beginBody: 'ਜਪੁਜੀ ਸਾਹਿਬ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ — ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਪਹਿਲੀ ਬਾਣੀ।', start: 'ਜਪੁਜੀ ਸਾਹਿਬ ਪੜ੍ਹੋ' },
-  hi: { all: 'पढ़ने के सभी स्थान', fewer: 'कम दिखाएँ', title: 'पढ़ना जारी रखें', body: 'अपने छोड़े हुए पाठों पर लौटें।', begin: 'यहाँ से शुरू करें', beginBody: 'जपुजी साहिब से शुरू करें — श्री गुरु ग्रंथ साहिब जी की पहली बाणी।', start: 'जपुजी साहिब पढ़ें' },
+  en: { eyebrow: 'Your reading', all: 'All reading places', fewer: 'Show fewer', title: 'Continue reading', body: 'Pick up where you left off.', begin: 'Begin here', beginBody: 'A quiet place to start: Japji Sahib, the opening bani of Sri Guru Granth Sahib Ji.', start: 'Read Japji Sahib' },
+  pa: { eyebrow: 'ਤੁਹਾਡੇ ਪਾਠ', all: 'ਪੜ੍ਹਨ ਦੀਆਂ ਸਾਰੀਆਂ ਥਾਵਾਂ', fewer: 'ਘੱਟ ਵੇਖੋ', title: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ', body: 'ਆਪਣੇ ਛੱਡੇ ਹੋਏ ਪਾਠਾਂ ਵੱਲ ਮੁੜੋ।', begin: 'ਇੱਥੋਂ ਸ਼ੁਰੂ ਕਰੋ', beginBody: 'ਜਪੁਜੀ ਸਾਹਿਬ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ — ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਪਹਿਲੀ ਬਾਣੀ।', start: 'ਜਪੁਜੀ ਸਾਹਿਬ ਪੜ੍ਹੋ' },
+  hi: { eyebrow: 'आपके पाठ', all: 'पढ़ने के सभी स्थान', fewer: 'कम दिखाएँ', title: 'पढ़ना जारी रखें', body: 'अपने छोड़े हुए पाठों पर लौटें।', begin: 'यहाँ से शुरू करें', beginBody: 'जपुजी साहिब से शुरू करें — श्री गुरु ग्रंथ साहिब जी की पहली बाणी।', start: 'जपुजी साहिब पढ़ें' },
 }
 
 const VISIBILITY_COPY = {
@@ -50,7 +50,7 @@ export default function ReadContinue({ showEmpty = true }: { showEmpty?: boolean
   const beginPath = buildCanonicalBaniStudyPath(BANIS.find(bani => bani.id === 'japji-sahib')!)
   if (!showEmpty && !allReadings.length) return null
   return <section className="read-continue" aria-labelledby="read-continue-title" data-testid="read-continue" lang={locale}>
-    <div className="read-continue__intro"><h2 ref={titleRef} tabIndex={-1} id="read-continue-title">{allReadings.length ? copy.title : copy.begin}</h2><p>{readings.length ? copy.body : hiddenCount ? visibilityCopy.empty : copy.beginBody}</p></div>
+    <div className="read-continue__intro"><p className="read-continue__eyebrow">{copy.eyebrow}</p><h2 ref={titleRef} tabIndex={-1} id="read-continue-title">{allReadings.length ? copy.title : copy.begin}</h2><p>{readings.length ? copy.body : hiddenCount ? visibilityCopy.empty : copy.beginBody}</p></div>
     {readings.length ? <ol className="read-continue__list">{readings.map(reading => <li key={reading.id}>
       <Link id={`read-continue-${reading.id}`} className="read-continue__link interactive-focus" to={reading.path} state={reading.kind === 'story' ? buildLibraryReaderNavigationState(origin) : buildReaderOriginNavigationState(reading.path, origin)}>
         <span><strong lang="en">{reading.title}</strong><span>{reading.detail}</span></span><IconArrowRight size={18} />
