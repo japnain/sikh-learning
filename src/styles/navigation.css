@@ -29,6 +29,9 @@
   }
 
   .app-nav {
+    /* The live safe-area inset changes as mobile browser controls collapse.
+       Reserve its maximum so the tab row does not grow upward while scrolling. */
+    --nav-safe-bottom: env(safe-area-max-inset-bottom, var(--fixed-ui-safe-bottom));
     --nav-surface: 245 240 228;
     --nav-ink: 83 94 108;
     --nav-accent: 49 92 128;
@@ -38,7 +41,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     font-size: .8125rem;
     gap: 0.15rem;
-    padding: 0.375rem max(0.875rem, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(0.875rem, var(--safe-area-left));
+    padding: 0.375rem max(0.875rem, var(--safe-area-right)) max(0.375rem, var(--nav-safe-bottom)) max(0.875rem, var(--safe-area-left));
     overflow: hidden;
     border: 0;
     border-top: 1px solid rgb(var(--nav-line) / 0.2);
@@ -174,7 +177,7 @@ html {
   .app-nav {
     min-height: 84px;
     gap: 0.08rem;
-    padding: 0.375rem max(8px, var(--safe-area-right)) max(0.375rem, var(--fixed-ui-safe-bottom)) max(8px, var(--safe-area-left));
+    padding: 0.375rem max(8px, var(--safe-area-right)) max(0.375rem, var(--nav-safe-bottom)) max(8px, var(--safe-area-left));
   }
 
   .app-nav-tab {
@@ -189,6 +192,21 @@ html {
 /* Reflow whole labels when text is enlarged; never create a 3 + 1 row. */
 @media (max-width: 1023px) {
   .app-nav[data-expanded-labels='true'] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Where iOS WebKit lacks the maximum-inset variable, keep a stable
+   home-indicator allowance, including the navigation's standalone viewport
+   correction. Other fixed surfaces still use their own live safe-area inset. */
+@supports (-webkit-touch-callout: none) {
+  .app-nav {
+    --nav-safe-bottom: max(0px, calc(env(safe-area-max-inset-bottom, 36px) - var(--nav-viewport-loss, 0px)));
+  }
+
+  @media (orientation: landscape) {
+    .app-nav {
+      --nav-safe-bottom: max(0px, calc(env(safe-area-max-inset-bottom, 21px) - var(--nav-viewport-loss, 0px)));
+    }
+  }
 }
 
 @media (min-width: 1024px) {

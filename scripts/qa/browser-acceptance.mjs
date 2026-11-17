@@ -84,8 +84,12 @@ async function main() {
       QA_BASE_URL: baseUrl,
       QA_OUTPUT_DIR: path.join(reportDirectory, 'daily-more'),
     })
+    await check('scripts/qa/navigation-scroll-acceptance.mjs', [], {
+      QA_BASE_URL: baseUrl,
+      QA_OUTPUT_DIR: path.join(reportDirectory, 'navigation-scroll'),
+    })
     if (failures.length) throw new Error(`Production browser acceptance failed (${failures.length} journeys):\n${failures.join('\n')}`)
-    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, Read discovery, and Daily/More journeys.`)
+    console.log(`Production browser acceptance passed: ${cases.length} Bani/Home surfaces, published Stories, persistent reader/Folio journeys, Read discovery, Daily/More, and navigation scrolling.`)
   } finally {
     if (server && server.exitCode === null) {
       server.kill('SIGTERM')
