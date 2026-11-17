@@ -7,6 +7,7 @@ import {
   PRIVATE_RANGE_MAX_BYTES, PRIVATE_STATE_MAX_BYTES,
   type PrivateAsset, type PrivateBookMetadata,
 } from './contract.ts';
+import { validStateTimestamp } from './state.ts';
 
 export interface PrivateLibraryIdentity { userId: string; sessionId: string }
 export interface PrivateLibraryService {
@@ -170,7 +171,8 @@ export function createPrivateLibraryHandler(options: PrivateLibraryHandlerOption
         catch (cause) {
           return error(request, cause instanceof RequestBodyError && cause.code === 'request-too-large' ? 413 : 400, 'invalid-state');
         }
-        if (Object.keys(body).length !== 1 || !validState(body.state)) return error(request, 400, 'invalid-state');
+        if (Object.keys(body).length !== 1 || !validState(body.state)
+          || !validStateTimestamp(body.state.updatedAt)) return error(request, 400, 'invalid-state');
         await service.putState(identity.userId, bookId, editionVersion, body.state);
         return json(request, { state: body.state });
       }

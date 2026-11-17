@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
 
 const STORAGE_KEY = 'sikh-epub-reader-preferences'
-const appearanceKeys = ['fontFamily', 'fontScale', 'lineHeight', 'measure', 'palette']
+const appearanceKeys = ['fontFamily', 'fontScale', 'lineHeight', 'measure', 'palette', 'paragraphSpacing']
 
 async function loadStore(persisted?: { version: number; state: Record<string, unknown> }) {
   vi.resetModules()
@@ -18,17 +18,24 @@ describe('persistent book appearance', () => {
   test.each(['paper', 'night'] as const)('migrates an existing version-one %s preference without changing its reading appearance', async palette => {
     const oldAppearance = { fontScale: 1.45, lineHeight: 'spacious', measure: 'narrow', palette }
     const { useEpubReaderStore } = await loadStore({ version: 1, state: oldAppearance })
-    expect(useEpubReaderStore.getState()).toMatchObject({ ...oldAppearance, fontFamily: 'literary' })
+    expect(useEpubReaderStore.getState()).toMatchObject({ ...oldAppearance, fontFamily: 'literary', paragraphSpacing: 'comfortable' })
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY)!)
     expect(stored.version).toBe(2)
-    expect(stored.state).toEqual({ ...oldAppearance, fontFamily: 'literary' })
+    expect(stored.state).toEqual({ ...oldAppearance, fontFamily: 'literary', paragraphSpacing: 'comfortable' })
     expect(typeof useEpubReaderStore.getState().setFontFamily).toBe('function')
+    expect(typeof useEpubReaderStore.getState().setParagraphSpacing).toBe('function')
+  })
+
+  test('keeps existing version-two appearance and defaults its missing paragraph spacing', async () => {
+    const oldAppearance = { fontScale: 1.3, lineHeight: 'compact', measure: 'wide', palette: 'sepia', fontFamily: 'classic' }
+    const { useEpubReaderStore } = await loadStore({ version: 2, state: oldAppearance })
+    expect(useEpubReaderStore.getState()).toMatchObject({ ...oldAppearance, paragraphSpacing: 'comfortable' })
   })
 
   test('normalizes malformed current-version settings and ignores unexpected stored fields', async () => {
     const { useEpubReaderStore, DEFAULT_EPUB_READER_PREFERENCES } = await loadStore({
       version: 2,
-      state: { fontScale: 'not a number', lineHeight: 'enormous', measure: 'full', palette: 'custom', fontFamily: 'remote-url', bookId: 'synthetic-book', excerpt: 'Synthetic content must not hydrate.', bookmarks: ['a'] },
+      state: { fontScale: 'not a number', lineHeight: 'enormous', measure: 'full', palette: 'custom', fontFamily: 'remote-url', paragraphSpacing: 'negative', bookId: 'synthetic-book', excerpt: 'Synthetic content must not hydrate.', bookmarks: ['a'] },
     })
     const state = useEpubReaderStore.getState()
     expect(state).toMatchObject(DEFAULT_EPUB_READER_PREFERENCES)
@@ -67,6 +74,15 @@ describe('persistent book appearance', () => {
     expect(reloaded.useEpubReaderStore.getState().palette).toBe(palette)
   })
 
+  test.each(['compact', 'comfortable'] as const)('persists and rehydrates %s paragraph spacing', async paragraphSpacing => {
+    const { useEpubReaderStore } = await loadStore()
+    useEpubReaderStore.getState().setParagraphSpacing(paragraphSpacing)
+    const persisted = localStorage.getItem(STORAGE_KEY)!
+    const reloaded = await loadStore(JSON.parse(persisted))
+    expect(reloaded.useEpubReaderStore.getState().paragraphSpacing).toBe(paragraphSpacing)
+    expect(Object.keys(JSON.parse(persisted).state).sort()).toEqual(appearanceKeys)
+  })
+
   test('follows the app theme by default while an explicit palette survives theme changes', async () => {
     const { useEpubReaderStore, useResolvedEpubPalette } = await loadStore()
     const { useThemeStore } = await import('./theme')
@@ -90,7 +106,8 @@ describe('persistent book appearance', () => {
     preferences.setLineHeight('spacious')
     preferences.setMeasure('wide')
     preferences.setPalette('night')
-    expect(useEpubReaderStore.getState()).toMatchObject({ fontFamily: 'sans', fontScale: 1.8, lineHeight: 'spacious', measure: 'wide', palette: 'night' })
+    preferences.setParagraphSpacing('compact')
+    expect(useEpubReaderStore.getState()).toMatchObject({ fontFamily: 'sans', fontScale: 1.8, lineHeight: 'spacious', measure: 'wide', palette: 'night', paragraphSpacing: 'compact' })
     preferences.resetPreferences()
     expect(useEpubReaderStore.getState()).toMatchObject(DEFAULT_EPUB_READER_PREFERENCES)
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY)!)
@@ -99,7 +116,7 @@ describe('persistent book appearance', () => {
     expect(localStorage.length).toBe(1)
   })
 
-  test('bounds persisted size and rejects an unsupported font supplied at runtime', async () => {
+  test('bounds persisted size and rejects unsupported font and paragraph spacing supplied at runtime', async () => {
     const { useEpubReaderStore } = await loadStore({ version: 2, state: { fontScale: 99, fontFamily: 'classic' } })
     expect(useEpubReaderStore.getState().fontScale).toBe(2)
     useEpubReaderStore.getState().setFontScale(-20)
@@ -108,5 +125,7 @@ describe('persistent book appearance', () => {
     expect(useEpubReaderStore.getState().fontScale).toBe(1)
     useEpubReaderStore.getState().setFontFamily('invalid' as 'literary')
     expect(useEpubReaderStore.getState().fontFamily).toBe('literary')
+    useEpubReaderStore.getState().setParagraphSpacing('invalid' as 'compact')
+    expect(useEpubReaderStore.getState().paragraphSpacing).toBe('comfortable')
   })
 })

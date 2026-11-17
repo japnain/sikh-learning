@@ -76,7 +76,7 @@
 .private-reader-prose{font-family:var(--private-font-family,var(--font-reading,Georgia,serif));font-size:calc(1.15rem * var(--private-font-scale,1));line-height:var(--private-line-height,1.85);overflow-wrap:break-word}
 .private-reader-block{scroll-margin-top:calc(var(--reader-header-height,130px) + 1.5rem)}
 .private-reader-block h2{font-family:inherit;font-size:1.5em;line-height:1.3;font-weight:500;margin:1.8em 0 1em}
-.private-reader-block p{margin:0 0 1.1em;white-space:pre-line}
+.private-reader-block p{margin:0 0 var(--private-paragraph-gap,1.1em);white-space:pre-line}
 .private-reader-block--verse p{white-space:pre-wrap;margin:1.5em 0;padding-left:1em;border-left:1px solid var(--private-rule)}
 .private-reader-block blockquote{margin:1.7em 0;padding:0 1.2em;border-left:2px solid var(--private-rule);font-style:italic;white-space:pre-line}
 .private-reader-block aside{font-size:.85em;line-height:1.7;color:var(--private-muted);padding:.8em 1em;border-left:2px solid var(--private-rule);margin:1.2em 0;white-space:pre-line}
@@ -144,3 +144,5 @@
 .private-pdf-text-layer[data-main-rotation='270']{transform:rotate(270deg) translateX(-100%)}
 @media(max-width:600px){.private-reader-panel{max-height:80dvh}.private-reader__secondary{font-size:.72rem}.private-reader-panel h2{font-size:1.7rem}.private-reader-settings label,.private-reader-settings legend,.private-reader-type-size{font-size:.8rem}}
 @media(prefers-reduced-motion:reduce){.private-reader-sheet *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+.private-book-state__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem}

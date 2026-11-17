@@ -6,6 +6,7 @@ export type EpubReaderLineHeight = 'compact' | 'comfortable' | 'spacious'
 export type EpubReaderMeasure = 'narrow' | 'standard' | 'wide'
 export type EpubReaderPalette = 'app' | 'paper' | 'sepia' | 'night'
 export type EpubReaderFontFamily = 'literary' | 'classic' | 'sans'
+export type EpubReaderParagraphSpacing = 'compact' | 'comfortable'
 
 export const EPUB_FONT_SCALE_MIN = 0.85
 export const EPUB_FONT_SCALE_MAX = 2
@@ -17,6 +18,7 @@ export interface EpubReaderPreferences {
   measure: EpubReaderMeasure
   palette: EpubReaderPalette
   fontFamily: EpubReaderFontFamily
+  paragraphSpacing: EpubReaderParagraphSpacing
 }
 
 interface EpubReaderState extends EpubReaderPreferences {
@@ -25,6 +27,7 @@ interface EpubReaderState extends EpubReaderPreferences {
   setMeasure: (measure: EpubReaderMeasure) => void
   setPalette: (palette: EpubReaderPalette) => void
   setFontFamily: (fontFamily: EpubReaderFontFamily) => void
+  setParagraphSpacing: (paragraphSpacing: EpubReaderParagraphSpacing) => void
   resetPreferences: () => void
 }
 
@@ -34,6 +37,7 @@ export const DEFAULT_EPUB_READER_PREFERENCES: EpubReaderPreferences = {
   measure: 'standard',
   palette: 'app',
   fontFamily: 'literary',
+  paragraphSpacing: 'comfortable',
 }
 
 function clampFontScale(fontScale: number) {
@@ -49,6 +53,7 @@ function normalizedPreferences(value: unknown): EpubReaderPreferences {
     measure: ['narrow', 'standard', 'wide'].includes(data.measure ?? '') ? data.measure! : 'standard',
     palette: ['app', 'paper', 'sepia', 'night'].includes(data.palette ?? '') ? data.palette! : 'app',
     fontFamily: ['literary', 'classic', 'sans'].includes(data.fontFamily ?? '') ? data.fontFamily! : 'literary',
+    paragraphSpacing: ['compact', 'comfortable'].includes(data.paragraphSpacing ?? '') ? data.paragraphSpacing! : 'comfortable',
   }
 }
 
@@ -61,6 +66,7 @@ export const useEpubReaderStore = create<EpubReaderState>()(
       setMeasure: measure => set({ measure }),
       setPalette: palette => set({ palette }),
       setFontFamily: fontFamily => set({ fontFamily: normalizedPreferences({ fontFamily }).fontFamily }),
+      setParagraphSpacing: paragraphSpacing => set({ paragraphSpacing: normalizedPreferences({ paragraphSpacing }).paragraphSpacing }),
       resetPreferences: () => set(DEFAULT_EPUB_READER_PREFERENCES),
     }),
     {
@@ -74,6 +80,7 @@ export const useEpubReaderStore = create<EpubReaderState>()(
         measure: state.measure,
         palette: state.palette,
         fontFamily: state.fontFamily,
+        paragraphSpacing: state.paragraphSpacing,
       }),
     }
   )

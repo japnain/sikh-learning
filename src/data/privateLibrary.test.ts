@@ -258,7 +258,8 @@ describe('private catalogue authorization and isolation', () => {
     await expect(api.savePrivateReadingState('work-one', 'revision-one', state)).resolves.toEqual(state)
     const [url, options] = fetchMock.mock.calls[0]
     expect(new URL(String(url)).searchParams.get('editionVersion')).toBe('revision-one')
-    expect(options).toMatchObject({ method: 'PUT', body: JSON.stringify({ state }), cache: 'no-store' })
+    expect(options).toMatchObject({ method: 'PUT', cache: 'no-store' })
+    expect(JSON.parse(String(options?.body))).toEqual({ state: { ...state, updatedAt: expect.any(String) } })
     expect(localSet).not.toHaveBeenCalled()
   })
 
@@ -313,6 +314,203 @@ describe('private catalogue authorization and isolation', () => {
     expect(await next).toMatchObject({ name: 'AbortError' })
     expect(fetchMock).not.toHaveBeenCalled()
     expect(api.getPrivateLibraryAccess().allowed).toBe(true)
+  })
+})
+
+describe('private reading state on departure', () => {
+  it('synchronously saves the latest snapshot before privacy cleanup without another session lookup or local persistence', async () => {
+    await signIn()
+    const cover = api.createPrivateObjectUrl(new Blob(['cover']))
+    api.rememberPrivateBookshelfState({ query: 'sample phrase', category: 'Essays', sort: 'title' })
+    const asset = deferred<Response>()
+    const departure = deferred<Response>()
+    fetchMock.mockImplementation((_url, options) => {
+      if (options?.keepalive) {
+        expect(api.getPrivateLibraryAccess().allowed).toBe(true)
+        expect(revoked).not.toHaveBeenCalled()
+        return departure.promise
+      }
+      return asset.promise
+    })
+    const assetResult = api.fetchPrivateAsset('work-one', 'asset-one').catch(error => error)
+    await flushMicrotasks()
+    const assetSignal = fetchMock.mock.calls[0][1]?.signal
+    let latest = { index: 1, offset: 10, progress: .2 }
+    const supplier = vi.fn(() => ({ bookId: 'work-one', editionVersion: 'revision-one', state: latest }))
+    api.registerPrivateReadingSnapshot(supplier)
+    latest = { index: 4, offset: 75, progress: .8 }
+    auth.getSession.mockClear()
+    const storageReads = vi.spyOn(Storage.prototype, 'getItem')
+    const storageWrites = vi.spyOn(Storage.prototype, 'setItem')
+
+    window.dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true }))
+
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    const [url, options] = fetchMock.mock.calls[1]
+    expect(new URL(String(url)).searchParams.toString()).toBe('action=state&bookId=work-one&editionVersion=revision-one')
+    expect(options).toMatchObject({
+      method: 'PUT', keepalive: true, cache: 'no-store', credentials: 'omit', redirect: 'error',
+      headers: { Authorization: 'Bearer session-for-owner-account', apikey: 'test-publishable-key', 'Content-Type': 'application/json' },
+    })
+    expect(JSON.parse(String(options?.body))).toEqual({ state: { ...latest, updatedAt: expect.any(String) } })
+    expect(auth.getSession).not.toHaveBeenCalled()
+    expect(storageReads).not.toHaveBeenCalled()
+    expect(storageWrites).not.toHaveBeenCalled()
+    expect(assetSignal?.aborted).toBe(true)
+    expect(options?.signal?.aborted).toBe(false)
+    expect(api.getPrivateLibraryAccess().allowed).toBe(false)
+    expect(api.getPrivateBookshelfState()).toBeNull()
+    expect(revoked).toHaveBeenCalledWith(cover)
+    expect(supplier).toHaveBeenCalledTimes(1)
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    expect(supplier).toHaveBeenCalledTimes(1)
+    asset.resolve(new Response(new Uint8Array([1, 2, 3])))
+    expect(await assetResult).toMatchObject({ name: 'AbortError' })
+    departure.resolve(reply({ state: latest }))
+    await flushMicrotasks()
+  })
+
+  it('dispatches the departure snapshot immediately while ordinary writes are in flight or queued', async () => {
+    await signIn()
+    const ordinary = deferred<Response>()
+    const departure = deferred<Response>()
+    fetchMock.mockImplementation((_url, options) => options?.keepalive ? departure.promise : ordinary.promise)
+    const firstState = { index: 1, offset: 10, progress: .2 }
+    const latest = { index: 3, offset: 90, progress: .7 }
+    const first = api.savePrivateReadingState('work-one', 'revision-one', firstState).catch(error => error)
+    const queued = api.savePrivateReadingState('work-one', 'revision-one', { ...latest, index: 2 }).catch(error => error)
+    await flushMicrotasks()
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    const ordinaryOptions = fetchMock.mock.calls[0][1]
+    api.registerPrivateReadingSnapshot(() => ({ bookId: 'work-one', editionVersion: 'revision-one', state: latest }))
+
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    const departureOptions = fetchMock.mock.calls[1][1]
+    expect(departureOptions?.keepalive).toBe(true)
+    expect(ordinaryOptions?.signal?.aborted).toBe(true)
+    expect(departureOptions?.signal?.aborted).toBe(false)
+    const ordinaryTimestamp = Date.parse(JSON.parse(String(ordinaryOptions?.body)).state.updatedAt)
+    const departureState = JSON.parse(String(departureOptions?.body)).state
+    expect(departureState).toMatchObject(latest)
+    expect(Date.parse(departureState.updatedAt)).toBeGreaterThan(ordinaryTimestamp + 1)
+    ordinary.resolve(reply({ state: firstState }))
+    expect(await first).toMatchObject({ name: 'AbortError' })
+    expect(await queued).toMatchObject({ name: 'AbortError' })
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    departure.resolve(reply({ state: latest }))
+    await flushMicrotasks()
+  })
+
+  it.each(['logout', 'account switch'] as const)('aborts a surviving departure write on %s and cannot replay the old snapshot', async change => {
+    await signIn()
+    const departure = deferred<Response>()
+    fetchMock.mockReturnValue(departure.promise)
+    const supplier = vi.fn(() => ({ bookId: 'work-one', editionVersion: 'revision-one', state: { index: 2, offset: 20, progress: .4 } }))
+    api.registerPrivateReadingSnapshot(supplier)
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+    const signal = fetchMock.mock.calls[0][1]?.signal
+    expect(signal?.aborted).toBe(false)
+
+    auth.session = change === 'logout' ? null : { access_token: 'new-account-token', user: { id: 'new-account' } }
+    auth.callback?.(change === 'logout' ? 'SIGNED_OUT' : 'SIGNED_IN', auth.session)
+
+    expect(signal?.aborted).toBe(true)
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(supplier).toHaveBeenCalledTimes(1)
+    departure.resolve(reply({ state: null }))
+    await flushMicrotasks()
+  })
+
+  it.each(['signed out', 'revoked'] as const)('does not consult the snapshot or send departure data when access is %s', async condition => {
+    if (condition === 'revoked') {
+      await signIn()
+      fetchMock.mockResolvedValue(reply({ allowed: false }))
+      await api.recheckPrivateLibraryAccess()
+    } else {
+      api.initializePrivateLibrarySession()
+      await flushMicrotasks()
+    }
+    const supplier = vi.fn(() => ({ bookId: 'work-one', editionVersion: 'revision-one', state: { index: 1, offset: 0, progress: .2 } }))
+    api.registerPrivateReadingSnapshot(supplier)
+    fetchMock.mockClear()
+    auth.getSession.mockClear()
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+    expect(supplier).not.toHaveBeenCalled()
+    expect(fetchMock).not.toHaveBeenCalled()
+    expect(auth.getSession).not.toHaveBeenCalled()
+  })
+
+  it('unregisters only the matching reader supplier', async () => {
+    await signIn()
+    const previous = vi.fn(() => null)
+    const unregisterPrevious = api.registerPrivateReadingSnapshot(previous)
+    const current = vi.fn(() => ({ bookId: 'work-two', editionVersion: 'revision-two', state: { index: 3, offset: 0, progress: .5 } }))
+    api.registerPrivateReadingSnapshot(current)
+    unregisterPrevious()
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+    expect(previous).not.toHaveBeenCalled()
+    expect(current).toHaveBeenCalledTimes(1)
+    expect(new URL(String(fetchMock.mock.calls[0][0])).searchParams.get('bookId')).toBe('work-two')
+    await flushMicrotasks()
+  })
+
+  it.each(['unregistered', 'clean'] as const)('does not create a departure write for a %s reader', async condition => {
+    await signIn()
+    const unregister = api.registerPrivateReadingSnapshot(() => condition === 'clean' ? null : ({
+      bookId: 'work-one', editionVersion: 'revision-one', state: { index: 1, offset: 0, progress: .2 },
+    }))
+    if (condition === 'unregistered') unregister()
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+    expect(fetchMock).not.toHaveBeenCalled()
+    expect(api.getPrivateLibraryAccess().allowed).toBe(false)
+  })
+
+  it.each([0, 1])('enforces the departure body limit using UTF-8 bytes at 48 KiB plus %s', async excess => {
+    vi.setSystemTime(new Date('2026-11-17T12:00:00.000Z'))
+    await signIn()
+    const timestamp = new Date().toISOString()
+    const state = { index: 1, offset: 0, progress: .2, bookmarks: [{ id: 'mark-one', index: 1, offset: 0, label: '', createdAt: timestamp }] }
+    const overhead = new TextEncoder().encode(JSON.stringify({ state: { ...state, updatedAt: timestamp } })).byteLength
+    const labelBytes = 48 * 1024 + excess - overhead
+    state.bookmarks[0].label = 'ੴ'.repeat(Math.floor(labelBytes / 3)) + 'x'.repeat(labelBytes % 3)
+    api.registerPrivateReadingSnapshot(() => ({ bookId: 'work-one', editionVersion: 'revision-one', state }))
+
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+
+    expect(api.getPrivateLibraryAccess().allowed).toBe(false)
+    if (excess) expect(fetchMock).not.toHaveBeenCalled()
+    else {
+      expect(fetchMock).toHaveBeenCalledTimes(1)
+      expect(new TextEncoder().encode(String(fetchMock.mock.calls[0][1]?.body)).byteLength).toBe(48 * 1024)
+    }
+    await flushMicrotasks()
+  })
+
+  it('seeds the write clock from loaded state and advances every save and departure even if the device clock moves backwards', async () => {
+    vi.setSystemTime(new Date('2026-11-17T12:00:00.000Z'))
+    await signIn()
+    const state = { index: 1, offset: 0, progress: .2, updatedAt: '2028-01-01T00:00:00.000Z' }
+    fetchMock.mockResolvedValueOnce(reply({ state }))
+    expect(await api.loadPrivateReadingState('work-one', 'revision-one')).toEqual(state)
+    fetchMock.mockClear()
+    fetchMock.mockImplementation(async (_url, options) => reply({ state: JSON.parse(String(options?.body)).state }))
+
+    const first = await api.savePrivateReadingState('work-one', 'revision-one', state)
+    vi.setSystemTime(new Date('2025-01-01T00:00:00.000Z'))
+    const second = await api.savePrivateReadingState('work-one', 'revision-one', { ...state, index: 2 })
+    api.registerPrivateReadingSnapshot(() => ({ bookId: 'work-one', editionVersion: 'revision-one', state: { ...state, index: 3 } }))
+    window.dispatchEvent(new PageTransitionEvent('pagehide'))
+
+    const last = JSON.parse(String(fetchMock.mock.calls[2][1]?.body)).state
+    expect(first.updatedAt).toBe('2028-01-01T00:00:00.001Z')
+    expect(second.updatedAt).toBe('2028-01-01T00:00:00.002Z')
+    expect(last.updatedAt).toBe('2028-01-01T00:00:00.003Z')
+    expect(state.updatedAt).toBe('2028-01-01T00:00:00.000Z')
+    await flushMicrotasks()
   })
 })
 

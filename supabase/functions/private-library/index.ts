@@ -2,6 +2,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.105.3';
 import { PRIVATE_BOOK_BUCKET, type PrivateAsset, type PrivateBookMetadata } from './contract.ts';
 import { createPrivateLibraryHandler } from './handler.ts';
 import { authenticatePrivateLibrary } from './auth.ts';
+import { writeOrderedPrivateState } from './state.ts';
 
 const handler = createPrivateLibraryHandler({
   readEnv: name => Deno.env.get(name),
@@ -58,11 +59,7 @@ const handler = createPrivateLibraryHandler({
         return data?.state as Record<string, unknown> | null ?? null;
       },
       putState: async (userId, bookId, editionVersion, state) => {
-        const { error } = await backend.from('private_library_state').upsert({
-          user_id: userId, book_id: bookId, edition_version: editionVersion,
-          state, updated_at: new Date().toISOString(),
-        }, { onConflict: 'user_id,book_id,edition_version' });
-        if (error) throw new Error('Reading state unavailable.');
+        await writeOrderedPrivateState(backend, userId, bookId, editionVersion, state);
       },
     };
   },

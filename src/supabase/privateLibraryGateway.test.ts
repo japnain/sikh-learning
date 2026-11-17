@@ -194,9 +194,9 @@ describe('private library data boundaries', () => {
 
   test('binds state writes to the verified owner and current edition, and retains old-edition reads', async () => {
     const { handler, service } = setup()
-    const saved = await handler(request('state', { method: 'PUT', body: { state: { locator: { page: 3 }, bookmarks: [] } } }))
+    const saved = await handler(request('state', { method: 'PUT', body: { state: { locator: { page: 3 }, bookmarks: [], updatedAt: '2026-11-17T12:00:00.000Z' } } }))
     expect(saved.status).toBe(200)
-    expect(service.putState).toHaveBeenCalledWith(identity.userId, book.id, book.editionVersion, { locator: { page: 3 }, bookmarks: [] })
+    expect(service.putState).toHaveBeenCalledWith(identity.userId, book.id, book.editionVersion, { locator: { page: 3 }, bookmarks: [], updatedAt: '2026-11-17T12:00:00.000Z' })
     expect((await handler(request('state', { method: 'PUT', edition: 'old-edition', body: { state: {} } }))).status).toBe(409)
     expect((await handler(request('state', { edition: 'old-edition' }))).status).toBe(200)
     expect(service.getState).toHaveBeenLastCalledWith(identity.userId, book.id, 'old-edition')
@@ -212,6 +212,14 @@ describe('private library data boundaries', () => {
     let nested: unknown = {}
     for (let i = 0; i < 20; i++) nested = { child: nested }
     expect((await handler(request('state', { method: 'PUT', body: { state: nested } }))).status).toBe(400)
+    expect(service.putState).not.toHaveBeenCalled()
+  })
+
+  test('requires a canonical timestamp before accepting a state revision', async () => {
+    const { handler, service } = setup()
+    for (const updatedAt of [undefined, 'invalid', '2026-11-17T12:00:00Z', '2026-02-30T00:00:00.000Z']) {
+      expect((await handler(request('state', { method: 'PUT', body: { state: { index: 2, updatedAt } } }))).status).toBe(400)
+    }
     expect(service.putState).not.toHaveBeenCalled()
   })
 })

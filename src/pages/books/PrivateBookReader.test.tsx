@@ -12,6 +12,7 @@ const mocks = vi.hoisted(() => ({
   loadBook: vi.fn(), loadState: vi.fn(), saveState: vi.fn(), fetchAsset: vi.fn(),
   createUrl: vi.fn(), revokeUrl: vi.fn(), assetInfo: vi.fn(), assetRange: vi.fn(),
   pdfGetDocument: vi.fn(), pdfDestroy: vi.fn(), rangeData: vi.fn(),
+  registerSnapshot: vi.fn(),
 }))
 vi.mock('../../hooks/usePrivateLibraryAccess', () => ({ usePrivateLibraryAccess: () => mocks.access }))
 vi.mock('../../data/privateLibrary', () => ({
@@ -19,6 +20,7 @@ vi.mock('../../data/privateLibrary', () => ({
   fetchPrivateAsset: mocks.fetchAsset, createPrivateObjectUrl: mocks.createUrl, revokePrivateObjectUrl: mocks.revokeUrl,
   getPrivateAssetInfo: mocks.assetInfo, fetchPrivateAssetRange: mocks.assetRange,
   getPrivateLibraryAccess: () => mocks.access,
+  registerPrivateReadingSnapshot: mocks.registerSnapshot,
 }))
 vi.mock('pdfjs-dist/legacy/build/pdf.mjs', () => ({
   GlobalWorkerOptions: { workerSrc: '' },
@@ -83,6 +85,7 @@ describe('Private book reading', () => {
     mocks.createUrl.mockReturnValue('blob:private-image')
     mocks.assetInfo.mockResolvedValue({ size: 131_072, contentType: 'application/pdf' })
     mocks.assetRange.mockImplementation(async (_book, _asset, begin, end) => new ArrayBuffer(end - begin))
+    mocks.registerSnapshot.mockReturnValue(() => {})
     useEpubReaderStore.setState(DEFAULT_EPUB_READER_PREFERENCES)
     vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
     vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
@@ -97,6 +100,7 @@ describe('Private book reading', () => {
     expect(mocks.loadState).not.toHaveBeenCalled()
     expect(mocks.fetchAsset).not.toHaveBeenCalled()
     expect(screen.queryByText(book.title)).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Sign in / account' })).toHaveAttribute('href', '/account')
   })
 
   test('preserves poems, ordered lists, tables and cross-section source notes', async () => {
@@ -376,11 +380,13 @@ describe('Private book reading', () => {
     await user.click(screen.getByRole('button', { name: 'Reading appearance' }))
     await user.click(screen.getByRole('button', { name: 'Increase text size' }))
     await user.selectOptions(screen.getByRole('combobox', { name: 'Typeface' }), 'classic')
-    expect(useEpubReaderStore.getState()).toEqual(expect.objectContaining({ fontScale: 1.1, fontFamily: 'classic' }))
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Paragraph spacing' }), 'compact')
+    expect(useEpubReaderStore.getState()).toEqual(expect.objectContaining({ fontScale: 1.1, fontFamily: 'classic', paragraphSpacing: 'compact' }))
     passageTop = 900
     await user.click(screen.getByRole('button', { name: 'Close reading panel' }))
     await waitFor(() => expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 785, behavior: 'instant' }))
     expect(document.querySelector('main')).toHaveStyle('--private-font-family: Georgia, "Times New Roman", serif')
+    expect(document.querySelector('main')).toHaveStyle('--private-paragraph-gap: .12em')
   })
 
   test('same-section bookmarks jump after the dialog releases its scroll lock', async () => {
@@ -444,5 +450,26 @@ describe('Private book reading', () => {
     await screen.findByRole('img', { name: 'Page 1' })
     fireEvent.keyDown(window, { key: 'ArrowRight' })
     expect(await screen.findByRole('img', { name: 'Page 2' })).toBeVisible()
+  })
+
+  test('navigation and bookmark changes save immediately and expose the latest departure snapshot', async () => {
+    mocks.saveState.mockImplementation(() => new Promise(() => {}))
+    render(<ReaderRoutes />)
+    await screen.findByRole('heading', { name: 'A quiet beginning' })
+    await waitFor(() => expect(window.scrollTo).toHaveBeenCalled())
+    mocks.saveState.mockClear()
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    expect(mocks.saveState).toHaveBeenLastCalledWith(book.id, book.editionVersion, expect.objectContaining({ index: 1 }))
+    await screen.findByRole('heading', { name: 'A closing reflection' })
+    fireEvent.click(screen.getByRole('button', { name: 'Bookmark this position' }))
+    expect(mocks.saveState).toHaveBeenLastCalledWith(book.id, book.editionVersion, expect.objectContaining({ index: 1, bookmarks: [expect.objectContaining({ index: 1 })] }))
+    const supply = mocks.registerSnapshot.mock.calls.at(-1)![0]
+    expect(supply()).toMatchObject({ bookId: book.id, editionVersion: book.editionVersion, state: { index: 1, bookmarks: [expect.objectContaining({ index: 1 })] } })
+    fireEvent.click(screen.getByRole('button', { name: 'Remove bookmark at this position' }))
+    expect(mocks.saveState).toHaveBeenLastCalledWith(book.id, book.editionVersion, expect.objectContaining({ bookmarks: [] }))
+    fireEvent.click(screen.getByRole('button', { name: 'Mark finished' }))
+    expect(mocks.saveState).toHaveBeenLastCalledWith(book.id, book.editionVersion, expect.objectContaining({ completed: true, progress: 1 }))
+    mocks.access = { ...mocks.access, allowed: false, epoch: 2 }
+    expect(supply()).toBeNull()
   })
 })

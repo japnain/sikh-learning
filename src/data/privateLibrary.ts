@@ -48,6 +48,11 @@ const listeners = new Set<() => void>()
 const pending = new Set<AbortController>()
 const objectUrls = new Set<string>()
 const stateWrites = new Map<string, Promise<PrivateReadingState>>()
+const stateClocks = new Map<string, number>()
+type ReadingSnapshot = { bookId: string; editionVersion: string; state: PrivateReadingState }
+let departureSnapshot: (() => ReadingSnapshot | null) | null = null
+let departureWrite: AbortController | null = null
+let requestSession: { userId: string; epoch: number; token: string } | null = null
 type BookshelfState = { query: string; category: string; sort: 'collection' | 'title' | 'author' | 'recent' }
 let bookshelfState: BookshelfState | null = null
 export const getPrivateBookshelfState = () => bookshelfState
@@ -57,12 +62,16 @@ function publish(next: Partial<PrivateLibraryAccess>) {
   access = { ...access, ...next }
   listeners.forEach(listener => listener())
 }
-function discardPrivateContent() {
+function discardPrivateContent(preserveDepartureWrite = false) {
+  if (!preserveDepartureWrite) { departureWrite?.abort(); departureWrite = null }
+  requestSession = null
+  departureSnapshot = null
   for (const controller of pending) controller.abort()
   pending.clear()
   for (const url of objectUrls) URL.revokeObjectURL(url)
   objectUrls.clear()
   stateWrites.clear()
+  stateClocks.clear()
   bookshelfState = null
   accessRequest = null
   publish({ allowed: false, loading: false, epoch: access.epoch + 1 })
@@ -105,6 +114,7 @@ async function request(action: string, params: Record<string, string> = {}, opti
     clearPrivateLibrarySession()
     throw new PrivateLibraryError('Please sign in again.', 401)
   }
+  requestSession = { userId: expectedUser, epoch, token: data.session.access_token }
   const url = new URL(endpoint)
   url.searchParams.set('action', action)
   for (const [key, value] of Object.entries(params)) url.searchParams.set(key, value)
@@ -184,6 +194,7 @@ export function initializePrivateLibrarySession() {
   client.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT') { clearPrivateLibrarySession(); return }
     changeIdentity(session?.user.id ?? null)
+    requestSession = session ? { userId: session.user.id, epoch: access.epoch, token: session.access_token } : null
     setTimeout(() => { void recheckPrivateLibraryAccess() }, 0)
   })
   const bootstrapEpoch = access.epoch
@@ -197,7 +208,10 @@ export function initializePrivateLibrarySession() {
   window.addEventListener('focus', refresh)
   document.addEventListener('visibilitychange', refresh)
   window.addEventListener('online', refresh)
-  window.addEventListener('pagehide', () => { if (userId) discardPrivateContent() })
+  window.addEventListener('pagehide', () => {
+    if (!userId) return
+    try { flushDepartureState() } finally { discardPrivateContent(true) }
+  })
   window.addEventListener('pageshow', event => {
     if (event.persisted && userId) { discardPrivateContent(); void recheckPrivateLibraryAccess() }
   })
@@ -263,13 +277,61 @@ export function createPrivateObjectUrl(blob: Blob) {
 }
 export function revokePrivateObjectUrl(url: string) { URL.revokeObjectURL(url); objectUrls.delete(url) }
 export async function loadPrivateReadingState(bookId: string, editionVersion: string, signal?: AbortSignal) {
-  return (await json<{ state: PrivateReadingState | null }>('state', { bookId, editionVersion }, { signal })).state
+  const epoch = access.epoch
+  const owner = userId
+  const key = `${userId}:${bookId}:${editionVersion}`
+  await stateWrites.get(key)?.catch(() => undefined)
+  if (epoch !== access.epoch || owner !== userId || signal?.aborted) throw cancelled()
+  const state = (await json<{ state: PrivateReadingState | null }>('state', { bookId, editionVersion }, { signal })).state
+  const timestamp = Date.parse(state?.updatedAt ?? '')
+  if (Number.isFinite(timestamp)) stateClocks.set(key, Math.max(stateClocks.get(key) ?? 0, timestamp))
+  return state
+}
+function snapshotReadingState(key: string, state: PrivateReadingState) {
+  const timestamp = Math.max(Date.now(), (stateClocks.get(key) ?? 0) + 1)
+  stateClocks.set(key, timestamp)
+  return { ...structuredClone(state), updatedAt: new Date(timestamp).toISOString() }
+}
+
+/** The supplier stays in RAM and is read before the global pagehide privacy cleanup. */
+export function registerPrivateReadingSnapshot(supplier: () => ReadingSnapshot | null) {
+  departureSnapshot = supplier
+  return () => { if (departureSnapshot === supplier) departureSnapshot = null }
+}
+
+function flushDepartureState() {
+  const session = requestSession
+  const endpoint = getNaamrasSupabaseFunctionUrl('private-library')
+  if (!access.allowed || !session || session.userId !== userId || session.epoch !== access.epoch || !endpoint) return
+  const snapshot = departureSnapshot?.()
+  if (!snapshot) return
+  const key = `${userId}:${snapshot.bookId}:${snapshot.editionVersion}`
+  const body = JSON.stringify({ state: snapshotReadingState(key, snapshot.state) })
+  // Keep the whole write below both the gateway's 48 KiB limit and Fetch's 64 KiB keepalive budget.
+  if (new TextEncoder().encode(body).byteLength > 48 * 1024) return
+  const url = new URL(endpoint)
+  url.searchParams.set('action', 'state')
+  url.searchParams.set('bookId', snapshot.bookId)
+  url.searchParams.set('editionVersion', snapshot.editionVersion)
+  const headers: Record<string, string> = { Authorization: `Bearer ${session.token}`, 'Content-Type': 'application/json' }
+  const anonKey = getNaamrasSupabaseConfig().anonKey
+  if (anonKey) headers.apikey = anonKey
+  const controller = new AbortController()
+  departureWrite?.abort()
+  departureWrite = controller
+  // Dispatch synchronously: awaiting auth or the ordinary write queue can outlive page teardown.
+  // The server rejects older timestamps, including ordinary writes already in flight.
+  void fetch(url, { method: 'PUT', headers, body, keepalive: true, cache: 'no-store',
+    credentials: 'omit', redirect: 'error', signal: controller.signal }).then(response => response.body?.cancel()).catch(() => {
+    // Departure delivery is best effort; never retain private state locally for a later retry.
+  }).finally(() => { if (departureWrite === controller) departureWrite = null })
 }
 export async function savePrivateReadingState(bookId: string, editionVersion: string, state: PrivateReadingState, signal?: AbortSignal) {
   const epoch = access.epoch
   const owner = userId
+  if (!owner || !access.allowed) throw new PrivateLibraryError('This collection is not available.', 403)
   const key = `${owner}:${bookId}:${editionVersion}`
-  const payload = structuredClone(state)
+  const payload = snapshotReadingState(key, state)
   const previous = stateWrites.get(key)
   const write = (previous ? previous.catch(() => undefined) : Promise.resolve()).then(async () => {
     if (epoch !== access.epoch || owner !== userId || signal?.aborted) throw cancelled()

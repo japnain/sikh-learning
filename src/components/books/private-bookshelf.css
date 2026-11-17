@@ -19,9 +19,10 @@
 .private-bookshelf__resume-label { display:block; margin-bottom:.3rem; color:rgb(var(--color-accent)); font-size:.7rem; }
 .private-bookshelf__resume strong { display:block; overflow-wrap:anywhere; font-family:var(--font-display, Georgia, serif); font-size:1.2rem; font-weight:400; line-height:1.35; }
 .private-bookshelf__resume-end { display:flex; flex-shrink:0; align-items:center; gap:.75rem; color:rgb(var(--color-accent)); font-size:.75rem; }
-.private-bookshelf--compact .private-bookshelf__header { margin-bottom:.6rem; }
+.private-bookshelf--compact .private-bookshelf__header { flex-wrap:wrap; margin-bottom:.6rem; }
+.private-bookshelf--compact .private-bookshelf__header > div { min-width:0; max-width:100%; }
 .private-bookshelf--compact .private-bookshelf__eyebrow { margin:0; }
-.private-bookshelf--compact .private-bookshelf__total { align-self:center; padding:0; }
+.private-bookshelf--compact .private-bookshelf__total { align-self:center; max-width:100%; margin-left:auto; padding:0; overflow-wrap:anywhere; }
 .private-bookshelf--compact .private-bookshelf__resume { padding:.55rem 0; margin-bottom:.75rem; }
 .private-bookshelf--compact .private-bookshelf__resume-label { margin-bottom:.1rem; }
 .private-bookshelf--compact .private-bookshelf__resume strong { font-size:1.1rem; line-height:1.25; }
@@ -43,9 +44,9 @@
 .private-bookshelf__results { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.5rem; color:rgb(var(--color-text-muted)); font-size:.78rem; }
 .private-bookshelf__reset { min-height:44px; padding:.5rem 0; border:0; background:transparent; color:rgb(var(--color-accent)); text-decoration:underline; text-underline-offset:.2rem; font:inherit; }
 .private-book-shelf { margin-bottom:2.2rem; }
-.private-book-shelf__heading { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:1.3rem; padding-bottom:.7rem; border-bottom:1px solid rgb(var(--color-border) / .3); }
-.private-book-shelf__heading h3 { margin:0; font-family:var(--font-display, Georgia, serif); font-size:1.28rem; line-height:1.35; font-weight:400; }
-.private-book-shelf__heading > span { flex-shrink:0; color:rgb(var(--color-text-muted)); font-size:.68rem; }
+.private-book-shelf__heading { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:.3rem 1rem; margin-bottom:1.3rem; padding-bottom:.7rem; border-bottom:1px solid rgb(var(--color-border) / .3); }
+.private-book-shelf__heading h3 { min-width:0; margin:0; overflow-wrap:anywhere; font-family:var(--font-display, Georgia, serif); font-size:1.28rem; line-height:1.35; font-weight:400; }
+.private-book-shelf__heading > span { flex-shrink:0; margin-left:auto; color:rgb(var(--color-text-muted)); font-size:.68rem; }
 .private-bookshelf--compact .private-book-shelf__heading { margin-bottom:.7rem; padding-bottom:.4rem; }
 .private-book-shelf__books { list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.9rem 1.4rem; margin:0; padding:0; }
 .private-book { min-width:0; }

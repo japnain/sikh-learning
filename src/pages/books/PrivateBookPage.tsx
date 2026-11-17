@@ -12,7 +12,7 @@ export function PrivateBookAccessMessage({ loading, retry }: { loading?: boolean
     <p className="private-book-eyebrow">Naamras</p>
     <h1>{loading ? 'Opening your collection…' : 'This book is unavailable'}</h1>
     <p>{loading ? 'Checking your access.' : 'Sign in with an account that has access, then try again.'}</p>
-    {!loading && retry ? <button type="button" className="private-book-button" onClick={retry}>Try again</button> : null}
+    {!loading ? <div className="private-book-state__actions"><Link className="private-book-button private-book-button--primary" to="/account">Sign in / account</Link>{retry ? <button type="button" className="private-book-button" onClick={retry}>Try again</button> : null}</div> : null}
   </main>
 }
 

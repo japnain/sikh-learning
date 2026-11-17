@@ -4,7 +4,7 @@ import type { PDFDocumentProxy } from 'pdfjs-dist'
 import ReaderHeader from '../../components/ReaderHeader'
 import ModalSheet from '../../components/ModalSheet'
 import { IconArrowLeft, IconArrowRight, IconBookmark, IconBookmarkFilled, IconCheck, IconClose } from '../../components/icons'
-import { createPrivateObjectUrl, revokePrivateObjectUrl, fetchPrivateAsset, fetchPrivateAssetRange, getPrivateAssetInfo, getPrivateLibraryAccess, loadPrivateBook, loadPrivateReadingState, savePrivateReadingState, type PrivateBook } from '../../data/privateLibrary'
+import { createPrivateObjectUrl, revokePrivateObjectUrl, fetchPrivateAsset, fetchPrivateAssetRange, getPrivateAssetInfo, getPrivateLibraryAccess, loadPrivateBook, loadPrivateReadingState, savePrivateReadingState, registerPrivateReadingSnapshot, type PrivateBook } from '../../data/privateLibrary'
 import { usePrivateLibraryAccess } from '../../hooks/usePrivateLibraryAccess'
 import { useEpubReaderStore, useResolvedEpubPalette, EPUB_FONT_SCALE_MIN, EPUB_FONT_SCALE_MAX } from '../../store/epubReader'
 import { PrivateBookAccessMessage } from './PrivateBookPage'
@@ -151,30 +151,36 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
     previousFocusMode.current = focusedReading
   }, [focusedReading])
 
-  const updateState = useCallback((patch: Partial<ReadingState>) => {
-    const next = { ...currentState.current, ...patch, updatedAt: new Date().toISOString() }
-    currentState.current = next
-    dirtyRef.current = true
-    setReadingState(next)
-    setDirty(true)
-  }, [])
-
   const flushPosition = useCallback(() => {
     const access = getPrivateLibraryAccess()
     const snapshot = currentState.current
     if (!dirtyRef.current || !access.allowed || access.epoch !== mountedEpoch.current || queuedState.current === snapshot) return
     queuedState.current = snapshot
+    setSaving('saving')
     void savePrivateReadingState(book.id, book.editionVersion, snapshot).then(() => {
-      if (currentState.current === snapshot) dirtyRef.current = false
-    }).catch(() => { if (queuedState.current === snapshot) queuedState.current = null })
+      if (currentState.current === snapshot) { dirtyRef.current = false; setSaving('saved') }
+    }).catch(() => { if (queuedState.current === snapshot) { queuedState.current = null; setSaving('error') } })
   }, [book.id, book.editionVersion])
+
+  const updateState = useCallback((patch: Partial<ReadingState>, immediate = false) => {
+    const next = { ...currentState.current, ...patch, updatedAt: new Date().toISOString() }
+    currentState.current = next
+    dirtyRef.current = true
+    setReadingState(next)
+    setDirty(true)
+    if (immediate) flushPosition()
+  }, [flushPosition])
+
+  useEffect(() => registerPrivateReadingSnapshot(() => {
+    const access = getPrivateLibraryAccess()
+    return dirtyRef.current && access.allowed && access.epoch === mountedEpoch.current
+      ? { bookId: book.id, editionVersion: book.editionVersion, state: currentState.current } : null
+  }), [book.id, book.editionVersion])
 
   useEffect(() => {
     const hide = () => { if (document.visibilityState === 'hidden') flushPosition() }
-    window.addEventListener('pagehide', flushPosition)
     document.addEventListener('visibilitychange', hide)
     return () => {
-      window.removeEventListener('pagehide', flushPosition)
       document.removeEventListener('visibilitychange', hide)
       flushPosition()
     }
@@ -224,7 +230,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       })
     })
     return () => { cancelAnimationFrame(firstFrame); cancelAnimationFrame(secondFrame) }
-  }, [panel, ready, index, layoutRevision, isPages, imageChapter, zoom, preferences.fontScale, preferences.fontFamily, preferences.lineHeight, preferences.measure, updateState])
+  }, [panel, ready, index, layoutRevision, isPages, imageChapter, zoom, preferences.fontScale, preferences.fontFamily, preferences.lineHeight, preferences.measure, preferences.paragraphSpacing, updateState])
   useEffect(() => {
     if (!ready) return
     const generation = ++restoreGeneration.current
@@ -311,7 +317,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       if (panel) requestAnimationFrame(() => requestAnimationFrame(scrollToPlace))
       else scrollToPlace()
     } else { setReady(false); setImageChapter(false); setIndex(clamped) }
-    updateState({ index: clamped, offset, blockId: anchor, blockOffset: anchor ? blockOffset : undefined, progress: currentState.current.completed ? 1 : isPages ? (clamped + 1) / total : clamped / total })
+    updateState({ index: clamped, offset, blockId: anchor, blockOffset: anchor ? blockOffset : undefined, progress: currentState.current.completed ? 1 : isPages ? (clamped + 1) / total : clamped / total }, true)
   }
   const openReference = (chapterId?: string, anchor?: string) => {
     const next = chapterId ? book.contents.findIndex(entry => entry.id === chapterId) : index
@@ -319,7 +325,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
   }
   const toggleBookmark = () => {
     const existing = bookmarks.find(mark => mark.index === index && Math.abs(mark.offset - readingState.offset) < 100)
-    updateState({ bookmarks: existing ? bookmarks.filter(mark => mark.id !== existing.id) : [...bookmarks.slice(-199), { id: crypto.randomUUID(), index, offset: currentState.current.offset, blockId: currentState.current.blockId, blockOffset: currentState.current.blockOffset, label, createdAt: new Date().toISOString() }] })
+    updateState({ bookmarks: existing ? bookmarks.filter(mark => mark.id !== existing.id) : [...bookmarks.slice(-199), { id: crypto.randomUUID(), index, offset: currentState.current.offset, blockId: currentState.current.blockId, blockOffset: currentState.current.blockOffset, label, createdAt: new Date().toISOString() }] }, true)
   }
   const jumpPage = (event: FormEvent) => { event.preventDefault(); if (/^\d+$/.test(pageInput)) go(Number(pageInput) - 1) }
   const pageNavigation = useRef({ go, index, ready, panel, isPages, imageChapter, zoom })
@@ -338,7 +344,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
     window.addEventListener('keydown', navigate)
     return () => window.removeEventListener('keydown', navigate)
   }, [])
-  const articleStyle = { '--private-font-scale': preferences.fontScale, '--private-font-family': preferences.fontFamily === 'classic' ? 'Georgia, "Times New Roman", serif' : preferences.fontFamily === 'sans' ? '"Plus Jakarta Sans", system-ui, sans-serif' : '"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif', '--private-line-height': preferences.lineHeight === 'compact' ? 1.6 : preferences.lineHeight === 'spacious' ? 2.1 : 1.85, '--private-measure': preferences.measure === 'narrow' ? '34rem' : preferences.measure === 'wide' ? '52rem' : '42rem' } as CSSProperties
+  const articleStyle = { '--private-font-scale': preferences.fontScale, '--private-font-family': preferences.fontFamily === 'classic' ? 'Georgia, "Times New Roman", serif' : preferences.fontFamily === 'sans' ? '"Plus Jakarta Sans", system-ui, sans-serif' : '"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif', '--private-line-height': preferences.lineHeight === 'compact' ? 1.6 : preferences.lineHeight === 'spacious' ? 2.1 : 1.85, '--private-paragraph-gap': preferences.paragraphSpacing === 'compact' ? '.12em' : '1.1em', '--private-measure': preferences.measure === 'narrow' ? '34rem' : preferences.measure === 'wide' ? '52rem' : '42rem' } as CSSProperties
   const panelTitle = panel === 'display' ? 'Reading appearance' : panel === 'contents' ? 'Book navigation' : panel === 'search' ? 'Find in book' : 'Saved bookmarks'
 
   return <main className={`private-reader private-reader--${palette}${focusedReading ? ' private-reader--focused' : ''}`} style={articleStyle} lang={book.language || 'en'}>
@@ -350,7 +356,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       <button type="button" aria-expanded={panel === 'bookmarks'} onClick={() => setPanel(value => value === 'bookmarks' ? null : 'bookmarks')}>Bookmarks{bookmarks.length ? ` · ${bookmarks.length}` : ''}</button>
       {book.renderer !== 'pages' ? <button type="button" aria-expanded={panel === 'search'} onClick={() => setPanel(value => value === 'search' ? null : 'search')}>Find in book</button> : null}
       <button ref={focusButtonRef} type="button" onClick={() => setFocusedReading(true)}>Focus</button>
-      <span className="private-reader__save" role="status">{saving === 'saving' ? 'Saving place…' : saving === 'error' ? <button type="button" onClick={() => updateState({})}>Place not saved · Retry</button> : `${Math.round(readingState.progress * 100)}% read`}</span>
+      <span className="private-reader__save" role="status">{saving === 'saving' ? 'Saving place…' : saving === 'error' ? <button type="button" onClick={() => updateState({}, true)}>Place not saved · Retry</button> : `${Math.round(readingState.progress * 100)}% read`}</span>
     </div>} />
 
     {focusedReading ? <button ref={showControlsRef} className="private-reader-show-controls" type="button" onClick={() => setFocusedReading(false)} aria-label="Show reading controls">Aa <span>Show controls</span></button> : null}
@@ -359,13 +365,13 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
     {panel ? <ModalSheet open onClose={() => setPanel(null)} title={panelTitle} description="Adjust your reading or choose a place in the book. Close this panel to return to the page." initialFocusRef={panelFocusRef} className={`private-reader-sheet private-reader--${palette}`}><section className="private-reader-panel">
       <button className="private-reader-panel__close private-reader__icon" onClick={() => setPanel(null)} aria-label="Close reading panel"><IconClose size={18} /></button>
       {panel === 'display' ? <><h2>Make yourself comfortable</h2><div className="private-reader-settings">
-        {!isPages && !imageChapter ? <><div className="private-reader-type-size"><span>Text size</span><div><button type="button" aria-label="Decrease text size" disabled={preferences.fontScale <= EPUB_FONT_SCALE_MIN} onClick={() => changeAppearance(() => preferences.setFontScale(preferences.fontScale - .1))}>A−</button><output aria-live="polite">{Math.round(preferences.fontScale * 100)}%</output><button type="button" aria-label="Increase text size" disabled={preferences.fontScale >= EPUB_FONT_SCALE_MAX} onClick={() => changeAppearance(() => preferences.setFontScale(preferences.fontScale + .1))}>A+</button></div><label className="sr-only" htmlFor="private-reader-text-size">Text size</label><input id="private-reader-text-size" type="range" min="0.85" max="2" step="0.05" value={preferences.fontScale} onChange={event => changeAppearance(() => preferences.setFontScale(Number(event.target.value)))} /></div><label>Typeface<select value={preferences.fontFamily} onChange={event => changeAppearance(() => preferences.setFontFamily(event.target.value as 'literary' | 'classic' | 'sans'))}><option value="literary">Literary · Palatino</option><option value="classic">Classic · Georgia</option><option value="sans">Clear · Sans serif</option></select></label><label>Line spacing<select value={preferences.lineHeight} onChange={event => changeAppearance(() => preferences.setLineHeight(event.target.value as 'compact' | 'comfortable' | 'spacious'))}><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="spacious">Spacious</option></select></label><label>Reading width<select value={preferences.measure} onChange={event => changeAppearance(() => preferences.setMeasure(event.target.value as 'narrow' | 'standard' | 'wide'))}><option value="narrow">Narrow</option><option value="standard">Standard</option><option value="wide">Wide</option></select></label></> : <label>Page zoom<input type="range" min="0.7" max="2.5" step="0.1" value={zoom} onChange={event => changeAppearance(() => setZoom(Number(event.target.value)))} /><span>{Math.round(zoom * 100)}%</span></label>}
+        {!isPages && !imageChapter ? <><div className="private-reader-type-size"><span>Text size</span><div><button type="button" aria-label="Decrease text size" disabled={preferences.fontScale <= EPUB_FONT_SCALE_MIN} onClick={() => changeAppearance(() => preferences.setFontScale(preferences.fontScale - .1))}>A−</button><output aria-live="polite">{Math.round(preferences.fontScale * 100)}%</output><button type="button" aria-label="Increase text size" disabled={preferences.fontScale >= EPUB_FONT_SCALE_MAX} onClick={() => changeAppearance(() => preferences.setFontScale(preferences.fontScale + .1))}>A+</button></div><label className="sr-only" htmlFor="private-reader-text-size">Text size</label><input id="private-reader-text-size" type="range" min="0.85" max="2" step="0.05" value={preferences.fontScale} onChange={event => changeAppearance(() => preferences.setFontScale(Number(event.target.value)))} /></div><label>Typeface<select value={preferences.fontFamily} onChange={event => changeAppearance(() => preferences.setFontFamily(event.target.value as 'literary' | 'classic' | 'sans'))}><option value="literary">Literary · Palatino</option><option value="classic">Classic · Georgia</option><option value="sans">Clear · Sans serif</option></select></label><label>Line spacing<select value={preferences.lineHeight} onChange={event => changeAppearance(() => preferences.setLineHeight(event.target.value as 'compact' | 'comfortable' | 'spacious'))}><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="spacious">Spacious</option></select></label><label>Paragraph spacing<select value={preferences.paragraphSpacing} onChange={event => changeAppearance(() => preferences.setParagraphSpacing(event.target.value as 'compact' | 'comfortable'))}><option value="compact">Compact</option><option value="comfortable">Comfortable</option></select></label><label>Reading width<select value={preferences.measure} onChange={event => changeAppearance(() => preferences.setMeasure(event.target.value as 'narrow' | 'standard' | 'wide'))}><option value="narrow">Narrow</option><option value="standard">Standard</option><option value="wide">Wide</option></select></label></> : <label>Page zoom<input type="range" min="0.7" max="2.5" step="0.1" value={zoom} onChange={event => changeAppearance(() => setZoom(Number(event.target.value)))} /><span>{Math.round(zoom * 100)}%</span></label>}
         <fieldset><legend>Paper</legend><div className="private-reader-palette">{(['app', 'paper', 'sepia', 'night'] as const).map(choice => <button key={choice} className={`private-reader-palette__${choice}`} aria-pressed={preferences.palette === choice} onClick={() => preferences.setPalette(choice)}>{choice === 'app' ? 'Follow app' : choice}</button>)}</div></fieldset>
         <button type="button" className="private-reader-reset" onClick={() => changeAppearance(() => { preferences.resetPreferences(); setZoom(1) })}>Reset appearance</button>
       </div></> : null}
       {panel === 'contents' ? <><h2>{isPages ? 'Go to a page' : 'Contents'}</h2>{isPages ? <><form className="private-reader-page-jump" onSubmit={jumpPage}><label>Page<input ref={element => { panelFocusRef.current = element }} type="number" min="1" max={total} value={pageInput} onChange={event => setPageInput(event.target.value)} /></label><span>of {total}</span><button className="private-book-button" type="submit">Go</button></form>{book.renderer === 'pdf' && book.contents.some(entry => entry.page) ? <><h3 className="private-reader-outline-title">In this edition</h3><ol className="private-reader-toc">{book.contents.filter(entry => entry.page).map((entry, entryIndex) => <li key={entry.id}><button onClick={() => go((entry.page || 1) - 1)}><span>{entry.page}</span>{privateSectionLabel(entry.title, entryIndex)}</button></li>)}</ol></> : null}</> : <ol className="private-reader-toc">{book.contents.map((entry, entryIndex) => <li key={entry.id}><button ref={entryIndex === index ? element => { panelFocusRef.current = element } : undefined} aria-current={entryIndex === index ? 'location' : undefined} onClick={() => go(entryIndex)}><span>{String(entryIndex + 1).padStart(2, '0')}</span>{privateSectionLabel(entry.title, entryIndex)}</button></li>)}</ol>}</> : null}
       {panel === 'search' ? <BookSearch inputRef={panelFocusRef} book={book} onOpen={(next, anchor) => go(next, 0, anchor)} searchPdf={(term, signal) => pdfSearchRef.current ? pdfSearchRef.current(term, signal) : Promise.reject(new Error('Pages are still loading'))} /> : null}
-      {panel === 'bookmarks' ? <><h2>Your bookmarks</h2>{bookmarks.length ? <ol className="private-reader-marks">{bookmarks.map(mark => <li key={mark.id}><button onClick={() => go(mark.index, mark.offset, mark.blockId, mark.blockOffset)}>{mark.label}</button><button className="private-reader__icon" aria-label={`Remove bookmark: ${mark.label}`} onClick={() => updateState({ bookmarks: bookmarks.filter(item => item.id !== mark.id) })}><IconClose size={16} /></button></li>)}</ol> : <p>Save a place with the bookmark button above. Your bookmarks are private to your account.</p>}</> : null}
+      {panel === 'bookmarks' ? <><h2>Your bookmarks</h2>{bookmarks.length ? <ol className="private-reader-marks">{bookmarks.map(mark => <li key={mark.id}><button onClick={() => go(mark.index, mark.offset, mark.blockId, mark.blockOffset)}>{mark.label}</button><button className="private-reader__icon" aria-label={`Remove bookmark: ${mark.label}`} onClick={() => updateState({ bookmarks: bookmarks.filter(item => item.id !== mark.id) }, true)}><IconClose size={16} /></button></li>)}</ol> : <p>Save a place with the bookmark button above. Your bookmarks are private to your account.</p>}</> : null}
     </section></ModalSheet> : null}
 
     <div ref={articleRef} className={`private-reader__content ${isPages || imageChapter ? 'private-reader__content--pages' : ''}`}>
@@ -379,7 +385,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
     <nav className="private-reader-pagination" aria-label={isPages ? 'Page navigation' : 'Section navigation'}>
       <button className="private-book-button" type="button" disabled={index === 0} onClick={() => go(index - 1)}><IconArrowLeft size={17} /> Previous</button>
       <span>{index + 1} / {total}</span>
-      {index < total - 1 ? <button className="private-book-button" type="button" onClick={() => go(index + 1)}>Next <IconArrowRight size={17} /></button> : <button className="private-book-button private-book-button--primary" type="button" onClick={() => updateState({ completed: !readingState.completed, progress: readingState.completed ? index / total : 1 })}>{readingState.completed ? <><IconCheck size={17} /> Finished</> : 'Mark finished'}</button>}
+      {index < total - 1 ? <button className="private-book-button" type="button" onClick={() => go(index + 1)}>Next <IconArrowRight size={17} /></button> : <button className="private-book-button private-book-button--primary" type="button" onClick={() => updateState({ completed: !readingState.completed, progress: readingState.completed ? index / total : 1 }, true)}>{readingState.completed ? <><IconCheck size={17} /> Finished</> : 'Mark finished'}</button>}
     </nav>
     {isPages ? <p className="private-reader-source-note">Original pages · Text selection depends on the source.</p> : null}
   </main>
