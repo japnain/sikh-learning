@@ -124,6 +124,7 @@ export default function NitnemCustomizePanel() {
     : offline.status === 'offline' ? copy.offline(offline.ready, offline.total)
     : offline.status === 'paused' ? copy.paused(offline.ready, offline.total)
     : offline.status === 'partial' ? copy.partial(offline.ready, offline.total)
+    : offline.status === 'shell-unavailable' ? copy.shellUnavailable
     : copy.offlineError
 
   const move = (id: string, direction: 'up' | 'down') => {
@@ -262,7 +263,7 @@ export default function NitnemCustomizePanel() {
             </section>
             <section className="nitnem-editor-offline" aria-labelledby="nitnem-offline-title" data-offline-status={offline.status}>
               <div><h2 id="nitnem-offline-title">{copy.offlineTitle}</h2><p role="status">{offlineCopy}</p>{readingsChanged ? <p className="nitnem-editor-offline-draft">{copy.draftPreparing}</p> : null}</div>
-              {['offline', 'paused', 'partial', 'error'].includes(offline.status) ? <button type="button" onClick={offline.retry}>{offline.status === 'paused' ? copy.prepareNow : copy.tryAgain}<IconArrowRight size={16} /></button> : null}
+              {['offline', 'paused', 'partial', 'error', 'shell-unavailable'].includes(offline.status) ? <button type="button" onClick={offline.retry}>{offline.status === 'paused' ? copy.prepareNow : copy.tryAgain}<IconArrowRight size={16} /></button> : null}
             </section>
           </div>
         </details>

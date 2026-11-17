@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { mockDocumentScroll } from '../test/documentScroll'
 import {
+  addAppScrollListener,
   addAppScrollSettledListener,
   focusElementWithoutAppScroll,
   getAppScrollTop,
@@ -52,6 +53,27 @@ describe('native app document scrolling', () => {
   test('clamps negative iOS rubber-band positions', () => {
     documentScroll = mockDocumentScroll({ top: -18 })
     expect(getAppScrollTop()).toBe(0)
+  })
+
+  test('optionally observes nested scrollers and removes the matching capture listener', () => {
+    const nested = document.createElement('div')
+    document.getElementById('root')!.append(nested)
+    const rootOnly = vi.fn()
+    const allScrolls = vi.fn()
+    const removeRoot = addAppScrollListener(rootOnly)
+    const removeAll = addAppScrollListener(allScrolls, { capture: true })
+    nested.dispatchEvent(new Event('scroll'))
+    expect(rootOnly).not.toHaveBeenCalled()
+    expect(allScrolls).toHaveBeenCalledOnce()
+    document.dispatchEvent(new Event('scroll'))
+    expect(rootOnly).toHaveBeenCalledOnce()
+    expect(allScrolls).toHaveBeenCalledTimes(2)
+    removeRoot()
+    removeAll()
+    nested.dispatchEvent(new Event('scroll'))
+    document.dispatchEvent(new Event('scroll'))
+    expect(rootOnly).toHaveBeenCalledOnce()
+    expect(allScrolls).toHaveBeenCalledTimes(2)
   })
 
   test('restores document position if legacy focus ignores preventScroll', () => {

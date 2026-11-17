@@ -1,9 +1,8 @@
 import './styles/support-surfaces.css'
-import { lazy, Suspense, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
+import { lazy, Suspense, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type MouseEvent } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
-import OnboardingSheet from './components/OnboardingSheet'
 import SplashScreen from './components/SplashScreen'
 import SurfaceStateCard from './components/SurfaceStateCard'
 import { useAppScrollRestoration } from './hooks/useAppScrollRestoration'
@@ -20,12 +19,14 @@ import { scrollAppTo } from './utils/appScroll'
 import { getRouterBasename } from './utils/basePath'
 import { setReaderPresentationPreference } from './utils/readerPresentation'
 import { isAuthReturnFragment } from './supabase/authRedirect'
+import { getPersonalStorageGeneration, onPersonalOwnerChange } from './utils/ownerStorage'
 import {
   buildHukamnamaStudyPath,
   buildPersonalHukamnamaStudyPath,
 } from './utils/hukamnamaShareRoute'
 
 const HomePage = lazy(() => import('./pages/Home'))
+const OnboardingSheet = lazy(() => import('./components/OnboardingSheet'))
 const StudyPage = lazy(() => import('./pages/Study'))
 const LibraryPage = lazy(() => import('./pages/Library'))
 const BanisPage = lazy(() => import('./pages/Banis'))
@@ -293,6 +294,7 @@ function AppShell() {
       <MusicControllerBridge />
 
       {showFirstRun ? (
+        <Suspense fallback={<main id="main-content" tabIndex={-1} className="page-shell" aria-busy="true"><p role="status">Loading NaamRas…</p></main>}>
         <OnboardingSheet
           presentation="first-run"
           locale={locale}
@@ -306,6 +308,7 @@ function AppShell() {
           isCompleting={isCompletingOnboarding}
           startWithPreferences={location.state?.onboarding === 'reading'}
         />
+        </Suspense>
       ) : (
         <div
           className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
@@ -365,6 +368,7 @@ function AppShell() {
           </main>
 
           {showOverlay && (
+            <Suspense fallback={null}>
             <OnboardingSheet
               presentation="overlay"
               locale={locale}
@@ -378,6 +382,7 @@ function AppShell() {
               onDismiss={closeOnboarding}
               isCompleting={isCompletingOnboarding}
             />
+            </Suspense>
           )}
         </div>
       )}
@@ -386,12 +391,19 @@ function AppShell() {
   )
 }
 
+function OwnerBoundAppShell() {
+  const ownerGeneration = useSyncExternalStore(onPersonalOwnerChange, getPersonalStorageGeneration, getPersonalStorageGeneration)
+  // Auth changes must discard open forms, draft selections and old closures as
+  // well as the persisted stores. The router keeps the current public route.
+  return <AppShell key={ownerGeneration} />
+}
+
 export default function App() {
   const routerBasename = getRouterBasename(import.meta.env.BASE_URL)
 
   return (
     <BrowserRouter basename={routerBasename}>
-      <AppShell />
+      <OwnerBoundAppShell />
     </BrowserRouter>
   )
 }

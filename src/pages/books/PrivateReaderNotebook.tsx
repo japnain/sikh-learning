@@ -7,6 +7,7 @@ import {
   PRIVATE_ANNOTATION_NOTE_LIMIT, canAddPrivateAnnotations, capturePrivateTextSelection,
   createPrivateTextAnnotations, nextPrivateAnnotationTimestamp, privateAnnotationDomRange, privateAnnotationVisibleRects, type PrivateAnnotationColor, type PrivateTextSelection,
 } from './privateBookAnnotations'
+import { addAppScrollListener } from '../../utils/appScroll'
 import './private-book-annotations.css'
 
 interface Props {
@@ -96,11 +97,12 @@ export default function PrivateReaderNotebook({ contentRef, chapterIndex, annota
     const resize = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(schedule)
     resize?.observe(root)
     window.addEventListener('resize', schedule)
-    window.addEventListener('scroll', schedule, true)
+    // Include nested source tables/overflow containers as well as the app root.
+    const removeScrollListener = addAppScrollListener(schedule, { capture: true })
     schedule()
     return () => {
       cancelAnimationFrame(frame); observer.disconnect(); resize?.disconnect()
-      window.removeEventListener('resize', schedule); window.removeEventListener('scroll', schedule, true)
+      window.removeEventListener('resize', schedule); removeScrollListener()
       for (const currentColor of PRIVATE_ANNOTATION_COLORS) registry?.delete(highlightName(currentColor))
       painted.current = []
     }

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPersonalDataBackupResult, createPersonalDataBackup, mergePersonalDataBackups, parsePersonalDataBackup, PERSONAL_DATA_KEYS, restorePersonalDataBackupResult, restorePersonalDataBackup, summarizePersonalDataBackup } from './personalDataBackup'
 import { useLanguageStore } from '../store/language'
 import { useStoryStore } from '../store/stories'
@@ -9,6 +9,8 @@ import { useBookmarksStore } from '../store/bookmarks'
 import { useNitemStore, buildNitnemStudyPath, getNitnemOption, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { useReadingVisibilityStore } from '../store/readingVisibility'
 import { getLocalCollectionSnapshotKey } from './localCollection'
+import { DEFAULT_EPUB_READER_PREFERENCES, EPUB_READER_PREFERENCES_KEY } from './epubReaderPreferences'
+import { getPersonalStorage, getPersonalStorageForOwner, resetPersonalStorageOwnerForTests, selectPersonalStorageOwner } from './ownerStorage'
 
 const clock = '2026-10-20T10:00:00.000Z'
 const bookmark = { id: 'saved-a', title: 'Japji Sahib', type: 'bani', source: 'G', ang: 1, savedAt: clock }
@@ -18,7 +20,127 @@ const word = { word: 'ਨਾਮੁ', transliteration: 'naam', kind: 'word', mean
   senses: [{ meaning_en: 'Divine Name', meaning_hi: '', meaning_pa: '', context: { scripture: 'Other line', sourceId: 'G', ang: 2 } }] }
 const noRuntime = { rehydrate: async () => {}, pauseSync: () => () => {} }
 function state(backup: ReturnType<typeof createPersonalDataBackup>, key: string) { return (backup.data[key] as { state: Record<string, unknown> }).state }
-beforeEach(() => { localStorage.clear(); vi.restoreAllMocks() })
+beforeEach(() => { resetPersonalStorageOwnerForTests(); localStorage.clear(); vi.restoreAllMocks() })
+afterEach(() => { resetPersonalStorageOwnerForTests() })
+
+describe('portable data owner boundary', () => {
+  it('allows only validated synchronous restore hydration to persist migrated reading places while sync is paused', async () => {
+    selectPersonalStorageOwner('restore-hydration-account')
+    const backup = createPersonalDataBackup()
+    const path = buildNitnemStudyPath(getNitnemOption('japji-sahib')!)
+    const session = { scriptureId: 'G-1', resumePath: path, resumeVerseId: 10, updatedAt: clock }
+    state(backup, 'sikh-progress').currentSession = session
+    state(backup, 'naamras-reading-places').places = {}
+    await restorePersonalDataBackup(backup, 'replace')
+    const storedPlaces = JSON.parse(getPersonalStorage().getItem('naamras-reading-places')!).state.places
+    expect(Object.values(storedPlaces)).toContainEqual(session)
+    expect(getPersonalStorage().getItem('naamras-personal-data-restore-recovery')).toBeNull()
+  })
+
+  it('exports only the active account partition and keeps guest data separate', () => {
+    localStorage.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    selectPersonalStorageOwner('synthetic-account-a')
+    const accountBookmark = { ...bookmark, id: 'account-bookmark', ang: 2 }
+    getPersonalStorage().setItem('sikh-bookmarks', JSON.stringify([accountBookmark]))
+    expect(createPersonalDataBackup().data['sikh-bookmarks']).toEqual([accountBookmark])
+    expect(createPersonalDataBackup(getPersonalStorageForOwner('local')).data['sikh-bookmarks']).toEqual([bookmark])
+  })
+
+  it('rolls back only the captured owner when identity changes during asynchronous restore hydration', async () => {
+    selectPersonalStorageOwner('synthetic-account-a')
+    const accountA = getPersonalStorage()
+    accountA.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    const incoming = createPersonalDataBackup()
+    incoming.data['sikh-bookmarks'] = [{ ...bookmark, id: 'restored-a', ang: 2 }]
+    const beforeA = accountA.getItem('sikh-bookmarks')
+    const accountBBookmark = { ...bookmark, id: 'account-b', ang: 3 }
+    const hydrate = vi.fn(async () => {
+      selectPersonalStorageOwner('synthetic-account-b')
+      getPersonalStorage().setItem('sikh-bookmarks', JSON.stringify([accountBBookmark]))
+    })
+    await expect(restorePersonalDataBackup(incoming, 'replace', { rehydrate: hydrate, pauseSync: noRuntime.pauseSync })).rejects.toThrow('restore-failed')
+    expect(accountA.getItem('sikh-bookmarks')).toBe(beforeA)
+    expect(JSON.parse(getPersonalStorage().getItem('sikh-bookmarks')!)).toEqual([accountBBookmark])
+    expect(hydrate).toHaveBeenCalledTimes(1)
+  })
+
+  it('preserves intervening edits when A returns during restore and keeps recovery blocked', async () => {
+    selectPersonalStorageOwner('synthetic-account-a')
+    getPersonalStorage().setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    const incoming = createPersonalDataBackup()
+    const newer = { ...bookmark, id: 'newer-account-a', ang: 4 }
+    const resume = vi.fn()
+    await expect(restorePersonalDataBackup(incoming, 'replace', {
+      pauseSync: () => resume,
+      rehydrate: async () => {
+        selectPersonalStorageOwner('synthetic-account-b')
+        selectPersonalStorageOwner('synthetic-account-a')
+        getPersonalStorage().setItem('sikh-bookmarks', JSON.stringify([newer]))
+      },
+    })).rejects.toThrow('restore-rollback-failed')
+    expect(JSON.parse(getPersonalStorage().getItem('sikh-bookmarks')!)).toEqual([newer])
+    expect(resume).toHaveBeenCalledWith(false, false)
+  })
+})
+
+describe('portable reader appearance compatibility', () => {
+  const appearance = { fontScale: 1.7, lineHeight: 'spacious', measure: 'wide', palette: 'sepia', fontFamily: 'sans', paragraphSpacing: 'compact', readingMode: 'scroll', pageTurn: 'fade' } as const
+
+  it.each(['merge', 'replace'] as const)('round-trips all eight current fields through %s, actual store hydration and re-export', async mode => {
+    const { useEpubReaderStore } = await import('../store/epubReader')
+    useEpubReaderStore.setState(appearance)
+    const exported = createPersonalDataBackupResult()
+    expect(exported.omittedPreferences).not.toContain(EPUB_READER_PREFERENCES_KEY)
+    expect(exported.backup.data[EPUB_READER_PREFERENCES_KEY]).toEqual({ version: 2, state: appearance })
+    useEpubReaderStore.getState().resetPreferences()
+    localStorage.clear()
+    await restorePersonalDataBackup(exported.backup, mode, { pauseSync: noRuntime.pauseSync })
+    await useEpubReaderStore.persist.rehydrate()
+    expect(useEpubReaderStore.getState()).toMatchObject(appearance)
+    expect(createPersonalDataBackup().data[EPUB_READER_PREFERENCES_KEY]).toEqual({ version: 2, state: appearance })
+  })
+
+  it.each([1, 2])('preserves version %s fields and supplies only absent newer appearance fields', async version => {
+    const legacy = version === 1
+      ? { fontScale: 1.45, lineHeight: 'compact', measure: 'narrow', palette: 'night' }
+      : { fontScale: 1.45, lineHeight: 'compact', measure: 'narrow', palette: 'night', fontFamily: 'classic', paragraphSpacing: 'compact' }
+    const raw = JSON.stringify({ version, state: legacy })
+    localStorage.setItem(EPUB_READER_PREFERENCES_KEY, raw)
+    const exported = createPersonalDataBackupResult()
+    const expected = { version: 2, state: { ...DEFAULT_EPUB_READER_PREFERENCES, ...legacy } }
+    expect(exported.omittedPreferences).not.toContain(EPUB_READER_PREFERENCES_KEY)
+    expect(exported.backup.data[EPUB_READER_PREFERENCES_KEY]).toEqual(expected)
+    expect(localStorage.getItem(EPUB_READER_PREFERENCES_KEY)).toBe(raw)
+    exported.backup.data[EPUB_READER_PREFERENCES_KEY] = { version, state: legacy }
+    await restorePersonalDataBackup(exported.backup, 'replace', { pauseSync: noRuntime.pauseSync })
+    expect(createPersonalDataBackup().data[EPUB_READER_PREFERENCES_KEY]).toEqual(expected)
+  })
+
+  it('rejects future schemas on import and explicitly reports them on export without overwriting their bytes', () => {
+    const backup = createPersonalDataBackup()
+    const future = { version: 3, state: { ...appearance, newPreference: 'preserve' } }
+    backup.data[EPUB_READER_PREFERENCES_KEY] = future
+    expect(() => parsePersonalDataBackup(JSON.stringify(backup))).toThrow('preference-version')
+    const raw = JSON.stringify(future)
+    localStorage.setItem(EPUB_READER_PREFERENCES_KEY, raw)
+    const result = createPersonalDataBackupResult()
+    expect(result.omittedPreferences).toContain(EPUB_READER_PREFERENCES_KEY)
+    expect(result.backup.data[EPUB_READER_PREFERENCES_KEY]).toEqual({ version: 2, state: DEFAULT_EPUB_READER_PREFERENCES })
+    expect(localStorage.getItem(EPUB_READER_PREFERENCES_KEY)).toBe(raw)
+  })
+
+  it.each([
+    { fontScale: 3 }, { fontScale: '1.3' }, { lineHeight: 'huge' }, { measure: 'full' },
+    { palette: 'custom' }, { fontFamily: 'remote' }, { paragraphSpacing: -1 },
+    { readingMode: 'unknown' }, { pageTurn: 'unknown' }, { unknownField: true },
+  ])('rejects malformed appearance fields before any restore writes: %j', async invalid => {
+    const backup = createPersonalDataBackup()
+    backup.data[EPUB_READER_PREFERENCES_KEY] = { version: 2, state: { ...appearance, ...invalid } }
+    const write = vi.spyOn(localStorage, 'setItem')
+    await expect(restorePersonalDataBackup(backup, 'replace', noRuntime)).rejects.toThrow('preference-state')
+    expect(write).not.toHaveBeenCalled()
+  })
+})
 
 describe('portable personal data', () => {
   it('replace restores hidden places to the shelf while merge keeps device-local dismissals', async () => {
@@ -154,7 +276,7 @@ describe('portable personal data', () => {
     })
     const resume = vi.fn()
     await expect(restorePersonalDataBackup(incoming, 'replace', { ...noRuntime, pauseSync: () => resume })).rejects.toThrow('restore-rollback-failed')
-    expect(resume).toHaveBeenCalledWith(false)
+    expect(resume).toHaveBeenCalledWith(false, false)
   })
 
   it('restores full continuity and preferences onto a clean device and rehydrates the actual stores', async () => {
@@ -329,7 +451,7 @@ it('keeps recovery-required classification when storage reads fail during rollba
     throw new Error('hydrate-failed')
   })
   await expect(restorePersonalDataBackup(incoming, 'replace', { rehydrate, pauseSync: () => resume })).rejects.toThrow('restore-rollback-failed')
-  expect(resume).toHaveBeenCalledWith(false)
+  expect(resume).toHaveBeenCalledWith(false, false)
 })
 
 it('allows explicit replace to recover a corrupt collection snapshot', async () => {

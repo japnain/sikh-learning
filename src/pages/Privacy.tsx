@@ -107,6 +107,10 @@ export default function Privacy() {
         <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
           NaamRas identifies source context where available and does not present subscriptions, trials, paid locks, or restore-purchase controls in this build. Support includes troubleshooting and guidance for preparing source or translation reports.
         </p>
+        <p className="mt-3 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
+          Typography uses Cormorant Garamond, Noto Serif Gurmukhi, Plus Jakarta Sans, and Noto Sans Devanagari.{' '}
+          <a className="interactive-focus underline underline-offset-4" href="/licenses/index.html">Font credits and licenses</a>
+        </p>
       </section>
 
       <Link

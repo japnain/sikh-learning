@@ -1,3 +1,4 @@
+import { getPersonalStorage, getPersonalStorageOwner, onPersonalOwnerHydration, onPersonalStorageReset } from '../utils/ownerStorage'
 import { create } from 'zustand'
 import { createLocalCollection, readResolvedLocalCollection } from '../utils/localCollection'
 import type { VocabContext, VocabEntry, VocabKind, VocabReviewState, VocabSense } from '../types'
@@ -24,7 +25,10 @@ interface VocabState {
 }
 
 const VOCAB_STORAGE_KEY = 'sikh-vocab'
-const pendingWrites = new Map<string, { before: VocabEntry | null; after: VocabEntry | null }>()
+type PendingChange = { before: VocabEntry | null; after: VocabEntry | null }
+const pendingByOwner = new Map<string, Map<string, PendingChange>>()
+let pendingWrites = new Map<string, PendingChange>()
+let pendingOwner = getPersonalStorageOwner()
 let persistedSnapshot: { raw: string | null; keys: Set<string>; entries: Map<string, VocabEntry> } | null = null
 const vocabKey = (word: string, kind: VocabKind = 'word') => JSON.stringify([kind, word])
 
@@ -34,7 +38,7 @@ export function isVocabEntryPersisted(word: string, kind: VocabKind = 'word', se
     if (typeof window === 'undefined') return false
     const pending = pendingWrites.get(vocabKey(word, kind))
     if (pending && (!pending.after || !pending.before || (sense && !hasVocabSense(pending.before, sense)))) return false
-    const raw = readResolvedLocalCollection(VOCAB_STORAGE_KEY, window.localStorage)
+    const raw = readResolvedLocalCollection(VOCAB_STORAGE_KEY, getPersonalStorage())
     if (persistedSnapshot?.raw !== raw) {
       const stored = raw ? JSON.parse(raw) : null
       const entries: unknown = typeof stored?.version === 'number' && stored.version !== 0 ? [] : stored?.state?.vocab
@@ -304,3 +308,14 @@ export function refreshVocabFromStorage() {
 
 const unsubscribeVocab = vocabCollection.subscribe(items => setMemory({ vocab: withPending(items) }))
 if (import.meta.hot) import.meta.hot.dispose(unsubscribeVocab)
+
+onPersonalOwnerHydration(hydrate => {
+  pendingByOwner.set(pendingOwner, pendingWrites)
+  pendingOwner = getPersonalStorageOwner()
+  pendingWrites = pendingByOwner.get(pendingOwner) ?? new Map()
+  persistedSnapshot = null
+  setMemory({ vocab: [], hasPendingChanges: pendingWrites.size > 0 })
+  if (hydrate) refreshVocabFromStorage()
+})
+
+onPersonalStorageReset(() => { pendingByOwner.clear(); pendingWrites.clear(); pendingOwner = getPersonalStorageOwner(); persistedSnapshot = null })

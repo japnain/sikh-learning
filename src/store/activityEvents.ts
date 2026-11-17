@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { createNaamrasObjectId, getNaamrasDeviceId } from '../supabase/device'
 import type { CloudActivityEvent } from '../supabase/types'
 
@@ -44,7 +46,7 @@ export const useActivityEventsStore = create<ActivityEventsState>()(
       clearPendingEvents: () => set({ pendingEvents: [] }),
     }),
     {
-      name: 'naamras-cloud-activity-events',
+      name: 'naamras-cloud-activity-events', storage: createJSONStorage(getActivePersonalStorage),
       merge: (persistedState, currentState) => {
         const persisted = persistedState as Partial<ActivityEventsState> | undefined
         return {
@@ -65,3 +67,5 @@ export function queueActivityEvent(
 ) {
   return useActivityEventsStore.getState().appendEvent(eventType, payload, occurredAt)
 }
+
+registerPersonalStore(useActivityEventsStore)

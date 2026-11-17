@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { toLocalDayStamp } from '../utils/localDates'
 import { getExactReadingKey } from './readingPlaces'
 
@@ -173,7 +175,7 @@ export const useNitnemHistoryStore = create<NitnemHistoryState>()(
       },
     }),
     {
-      name: 'naamras-nitnem-history',
+      name: 'naamras-nitnem-history', storage: createJSONStorage(getActivePersonalStorage),
       version: 1,
       merge: (persisted, current) => ({
         ...current,
@@ -244,3 +246,5 @@ export function getNitnemHistorySummary(events: NitnemCompletionEvent[], now = n
     weeklyDayGoal: normalizeWeeklyDayGoal(weeklyGoal),
   }
 }
+
+registerPersonalStore(useNitnemHistoryStore)

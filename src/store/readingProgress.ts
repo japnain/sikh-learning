@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { BANIS } from '../data/banis'
 import { queueActivityEvent } from './activityEvents'
 
@@ -50,6 +52,8 @@ export const useReadingProgressStore = create<ReadingProgressState>()(
         return { done, total, pct: total > 0 ? Math.round((done / total) * 100) : 0 }
       },
     }),
-    { name: 'sikh-reading-progress' }
+    { name: 'sikh-reading-progress', storage: createJSONStorage(getActivePersonalStorage), }
   )
 )
+
+registerPersonalStore(useReadingProgressStore)

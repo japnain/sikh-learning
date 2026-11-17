@@ -19,6 +19,8 @@ interface CloudSyncState {
   lastSyncedAt: string | null
   lastError: string | null
   syncQueued: boolean
+  localDataAvailable: boolean
+  setLocalDataAvailable: (value: boolean) => void
   setConfigured: (configured: boolean) => void
   setStatus: (status: CloudSyncStatus) => void
   setCurrentUser: (user: CloudUserSummary | null) => void
@@ -37,6 +39,7 @@ const INITIAL_STATE = {
   lastSyncedAt: null,
   lastError: null,
   syncQueued: false,
+  localDataAvailable: false,
 }
 
 export const useCloudSyncStore = create<CloudSyncState>()((set) => ({
@@ -47,6 +50,7 @@ export const useCloudSyncStore = create<CloudSyncState>()((set) => ({
   setAvailableProviders: (availableProviders) => set({ availableProviders }),
   setLastSyncedAt: (lastSyncedAt) => set({ lastSyncedAt }),
   setLastError: (lastError) => set({ lastError }),
+  setLocalDataAvailable: (localDataAvailable) => set({ localDataAvailable }),
   setSyncQueued: (syncQueued) => set({ syncQueued }),
   reset: () => set(INITIAL_STATE),
 }))

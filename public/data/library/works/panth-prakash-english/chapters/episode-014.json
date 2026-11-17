@@ -4,7 +4,7 @@
   "chapterNumber": 14,
   "episodeNumber": 14,
   "kind": "episode",
-  "title": "The Khalsa Must Be Autonomous And Self- Respecting",
+  "title": "The Khalsa Must Be Autonomous And Self-Respecting",
   "volume": 1,
   "publicationId": "volume-1",
   "startSourcePage": 119,
@@ -571,7 +571,8 @@
   ],
   "source": {
     "type": "epub",
-    "fileName": "vol1.epub"
+    "fileName": "vol1.epub",
+    "title": "The Khalsa Must Be Autonomous And Self- Respecting"
   },
   "previousChapterId": "episode-013",
   "nextChapterId": "episode-015",

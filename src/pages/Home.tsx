@@ -1,4 +1,5 @@
 import '../styles/home.css'
+import { getPersonalStorage, getPersonalStorageGeneration } from '../utils/ownerStorage'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { IconArrowRight, IconMoon, IconSun } from '../components/icons'
@@ -375,11 +376,15 @@ export default function Home() {
   }
   const changeReadingLength = async (option: NitnemRouteOption, length: SundarGutkaLength, remember: boolean, signal?: AbortSignal,
     preparedReading?: BaniFetchResult, preparedDestination?: BaniLengthDestination) => {
+    const ownerGeneration = getPersonalStorageGeneration()
+    const assertOwner = () => { if (getPersonalStorageGeneration() !== ownerGeneration) throw new DOMException('Reading change cancelled.', 'AbortError') }
     const id = asSupportedSundarGutkaBaniId(option.baseBaniId)
     if (!id || !option.baniDbId) return
     const { getBaniLengthDestination, loadExactBaniReading } = await import('../utils/baniLengthSelection')
+    assertOwner()
     const prepared = isExactBaniReading(preparedReading, option.baniDbId, length)
     const loaded = prepared ? preparedReading! : await loadExactBaniReading(option.baniDbId, length, signal)
+    assertOwner()
     if (signal?.aborted) throw new DOMException('Reading change cancelled.', 'AbortError')
     const resolvedLength = loaded.resolvedLength ?? length
     const currentPath = readingPath(option)
@@ -396,8 +401,9 @@ export default function Home() {
     const store = useNitnemPracticeStore.getState()
     const previousPractice = store.active
     const previousLengths = { ...useSundarGutkaLengthStore.getState().lengths }
-    const persistedPractice = localStorage.getItem('naamras-nitnem-practice')
-    const persistedLengths = localStorage.getItem('sikh-sundar-gutka-lengths')
+    const storage = getPersonalStorage()
+    const persistedPractice = storage.getItem('naamras-nitnem-practice')
+    const persistedLengths = storage.getItem('sikh-sundar-gutka-lengths')
     try {
       const ongoing = getActiveNitnemPractice([option], store.active)
       const saved = ongoing ? store.switchReading(option.id, path) : store.start(option.id, path)
@@ -407,7 +413,7 @@ export default function Home() {
       try { useNitnemPracticeStore.setState({ active: previousPractice }) } catch { /* Restore memory even when device storage is unavailable. */ }
       try { useSundarGutkaLengthStore.setState({ lengths: previousLengths }) } catch { /* Restore the previous preference independently. */ }
       for (const [key, value] of [['naamras-nitnem-practice', persistedPractice], ['sikh-sundar-gutka-lengths', persistedLengths]]) {
-        try { if (value === null) localStorage.removeItem(key!); else localStorage.setItem(key!, value!) } catch { /* Keep the chooser retryable. */ }
+        try { if (value === null) storage.removeItem(key!); else storage.setItem(key!, value!) } catch { /* Keep the chooser retryable. */ }
       }
       throw error
     }

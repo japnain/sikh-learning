@@ -162,7 +162,7 @@ test('shows verified saved readiness separately from unsaved reading choices', (
   expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('short')
 })
 
-test.each(['partial', 'offline', 'error', 'paused'] as const)('offers preparation retry for %s without saving the draft', status => {
+test.each(['partial', 'offline', 'error', 'paused', 'shell-unavailable'] as const)('offers preparation retry for %s without saving the draft', status => {
   useNitnemOfflineStatusStore.setState({ status, ready: 2, total: 7 })
   renderCustomize()
   editBani('Rehras Sahib')
@@ -170,6 +170,14 @@ test.each(['partial', 'offline', 'error', 'paused'] as const)('offers preparatio
   fireEvent.click(screen.getByRole('button', { name: status === 'paused' ? 'Prepare now' : 'Try again' }))
   expect(useNitnemOfflineStatusStore.getState().retryRevision).toBe(1)
   expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
+})
+
+test('explains that saved text does not yet guarantee reopening offline', () => {
+  useNitnemOfflineStatusStore.setState({ status: 'shell-unavailable', ready: 7, total: 7 })
+  renderCustomize()
+  expect(screen.getByText(/Your reading text is saved, but offline reopening is not ready/)).toBeInTheDocument()
+  expect(screen.queryByText('7 of 7 saved readings ready offline.')).not.toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Try again' })).toBeEnabled()
 })
 
 test('the add sheet has a separate Done action and keeps additions in the draft', () => {

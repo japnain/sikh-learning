@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import LibraryChapterReader from './LibraryChapterReader'
@@ -16,6 +16,7 @@ import path from 'node:path'
 import { configureLibraryRepositoryLoader } from '../../data/libraryRepository'
 import { writeLibraryDownload } from '../../data/libraryOffline'
 import type { LibraryWork } from '../../types'
+import { resetPersonalStorageOwnerForTests, selectPersonalStorageOwner } from '../../utils/ownerStorage'
 
 const FIRST_EPISODE_PATH = '/library/panth-prakash-english/chapters/episode-001'
 let documentScroll: ReturnType<typeof mockDocumentScroll> | null = null
@@ -53,6 +54,7 @@ async function seedDownloadedSection() {
 
 describe('LibraryChapterReader', () => {
   beforeEach(() => {
+    resetPersonalStorageOwnerForTests()
     localStorage.clear()
     useProgressStore.setState({
       streak: 0,
@@ -67,10 +69,24 @@ describe('LibraryChapterReader', () => {
   })
 
   afterEach(() => {
+    resetPersonalStorageOwnerForTests()
     documentScroll?.restore()
     documentScroll = null
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
+  })
+
+  test('does not commit the outgoing chapter into another account on unmount', async () => {
+    selectPersonalStorageOwner('chapter-reader-a')
+    const update = vi.spyOn(useProgressStore.getState(), 'updateSession')
+    documentScroll = mockDocumentScroll({ top: 1200, viewportHeight: 800, scrollHeight: 2000 })
+    const view = renderReader()
+    await screen.findByTestId('panth-chapter-reader')
+    act(() => { selectPersonalStorageOwner('chapter-reader-b') })
+    update.mockClear()
+    view.unmount()
+    expect(update).not.toHaveBeenCalled()
+    expect(useProgressStore.getState().currentSession).toBeNull()
   })
 
   test('failed direct chapter loads offer Retry and Back, and reconnect retries automatically', async () => {

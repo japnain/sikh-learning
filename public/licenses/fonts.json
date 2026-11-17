@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "fonts": [
+    {
+      "family": "Cormorant Garamond",
+      "file": "src/assets/fonts/cormorant-garamond-latin.woff2",
+      "sha256": "d80df8ff5aecd299a61549f9e29ab1ed0b9b05f4ea71d50fe978e07d5240b235",
+      "version": "Version 4.001",
+      "embeddedCopyright": "Copyright 2015 The Cormorant Project Authors (github.com/CatharsisFonts/Cormorant)",
+      "copyright": "Copyright 2015 the Cormorant Project Authors (github.com/CatharsisFonts/Cormorant)",
+      "license": "OFL-1.1",
+      "notice": "licenses/CormorantGaramond-OFL.txt",
+      "noticeSha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/OFL.txt",
+      "source": "https://github.com/CatharsisFonts/Cormorant",
+      "inspectedAt": "2026-11-17",
+      "versionEvidence": "Bundled WOFF2 name table IDs 0, 3, 5 and 14",
+      "sourceEvidence": "Font-family copyright and license matched to the official Google Fonts family notice; original acquisition URL was not recorded for the first three files. Current Google Fonts subsets have different hashes; no byte-identity to those newer downloads is claimed."
+    },
+    {
+      "family": "Noto Serif Gurmukhi",
+      "file": "src/assets/fonts/noto-serif-gurmukhi.woff2",
+      "sha256": "548610ec54f8a494bcbb74b4375e8326362cc4e25ec67d15f0ddf7b3998ffedf",
+      "version": "Version 2.004",
+      "embeddedCopyright": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/gurmukhi)",
+      "copyright": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/gurmukhi)",
+      "license": "OFL-1.1",
+      "notice": "licenses/NotoSerifGurmukhi-OFL.txt",
+      "noticeSha256": "3f7451b7e2c8381be0c5712f7b0dd5c2d75fe787ae16a99f18b7fa45627a0fde",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/notoserifgurmukhi/OFL.txt",
+      "source": "https://github.com/notofonts/gurmukhi",
+      "inspectedAt": "2026-11-17",
+      "versionEvidence": "Bundled WOFF2 name table IDs 0, 3, 5 and 14",
+      "sourceEvidence": "Font-family copyright and license matched to the official Google Fonts family notice; original acquisition URL was not recorded for the first three files. Current Google Fonts subsets have different hashes; no byte-identity to those newer downloads is claimed."
+    },
+    {
+      "family": "Plus Jakarta Sans",
+      "file": "src/assets/fonts/plus-jakarta-sans-latin.woff2",
+      "sha256": "153fc85b70298beeb1d61a5f723331649e7f23bb77302a66e61cb3e2fbdb5e79",
+      "version": "Version 2.071;gftools[0.9.30]",
+      "embeddedCopyright": "Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)",
+      "copyright": "Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)",
+      "license": "OFL-1.1",
+      "notice": "licenses/PlusJakartaSans-OFL.txt",
+      "noticeSha256": "995c7199cab65954f545996326755daee7b63cc6b42b06c13da1f9502ab08a99",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/plusjakartasans/OFL.txt",
+      "source": "https://github.com/tokotype/PlusJakartaSans",
+      "inspectedAt": "2026-11-17",
+      "versionEvidence": "Bundled WOFF2 name table IDs 0, 3, 5 and 14",
+      "sourceEvidence": "Font-family copyright and license matched to the official Google Fonts family notice; original acquisition URL was not recorded for the first three files. Current Google Fonts subsets have different hashes; no byte-identity to those newer downloads is claimed."
+    },
+    {
+      "family": "Noto Sans Devanagari",
+      "file": "src/assets/fonts/noto-sans-devanagari.woff2",
+      "sha256": "12223f2beeb4752c6fe7662550978ee22be4d56e49a8f937c324b015ac5ef77a",
+      "version": "Version 2.006",
+      "embeddedCopyright": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/devanagari)",
+      "copyright": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/devanagari)",
+      "license": "OFL-1.1",
+      "notice": "licenses/NotoSansDevanagari-OFL.txt",
+      "noticeSha256": "a216f6f8d85c7228093e0ee5e258d9d377e6671f68acb4db1930b29583d0f331",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansdevanagari/OFL.txt",
+      "source": "https://github.com/notofonts/devanagari",
+      "inspectedAt": "2026-11-17",
+      "versionEvidence": "Bundled WOFF2 name table IDs 0, 3, 5 and 14",
+      "sourceEvidence": "Exact download URL and SHA-256 retained in src/assets/fonts/NotoSansDevanagari.md; existing license is byte-identical to the upstream notice inspected on 2026-11-17.",
+      "exactDownloadUrl": "https://fonts.gstatic.com/s/notosansdevanagari/v30/TuG7UUFzXI5FBtUq5a8bjKYTZjtRU6Sgv3NaV_SNmI0b8QQCQmHN5TV_5Kl4-GIB.woff2"
+    }
+  ]
+}

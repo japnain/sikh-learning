@@ -1,3 +1,4 @@
+import { onPersonalOwnerHydration } from '../utils/ownerStorage'
 import { create } from 'zustand'
 import { createLocalCollection } from '../utils/localCollection'
 import { createNaamrasObjectId } from '../supabase/device'
@@ -278,3 +279,8 @@ const unsubscribeFavorites = favoriteCollection.subscribe(favorites => {
   }
 })
 if (import.meta.hot) import.meta.hot.dispose(unsubscribeFavorites)
+
+onPersonalOwnerHydration(hydrate => {
+  setMemory({ favorites: [] })
+  if (hydrate) useFavoritesStore.getState().hydrateCachedFavorites()
+})

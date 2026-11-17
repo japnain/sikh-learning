@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import App from './App'
@@ -8,6 +8,7 @@ import { useOnboardingStore } from './store/onboarding'
 import { DARK_THEME_COLOR, LIGHT_THEME_COLOR, useThemeStore } from './store/theme'
 import { mockDocumentScroll } from './test/documentScroll'
 import { renderScriptText } from './utils/readerDisplay'
+import { getPersonalStorageForOwner, selectPersonalStorageOwner, LOCAL_DATA_OWNER } from './utils/ownerStorage'
 
 vi.mock('./hooks/useSupabaseBootstrap', () => ({
   useSupabaseBootstrap: () => undefined,
@@ -61,6 +62,28 @@ function advanceOnboardingToMeanings() {
 
 const JAPJI_READING_PATH = '/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji+Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib'
 
+test('switching account owners dismisses the outgoing account’s open sheet and preserves the route', async () => {
+  window.history.replaceState({}, '', '/more?from=settings')
+  const state = { ...useOnboardingStore.getInitialState(), hasCompletedOnboarding: true, isOnboardingOpen: false, presentationMode: 'overlay' }
+  for (const owner of ['app-owner-a', 'app-owner-b']) {
+    getPersonalStorageForOwner(owner).setItem('sikh-onboarding', JSON.stringify({ version: 0, state }))
+  }
+  selectPersonalStorageOwner('app-owner-a')
+  const view = render(<App />)
+  try {
+    await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
+    fireEvent.click(screen.getByTestId('more-open-about'))
+    expect(screen.getByTestId('more-about-sheet')).toBeInTheDocument()
+    act(() => selectPersonalStorageOwner('app-owner-b'))
+    await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)
+    expect(screen.queryByTestId('more-about-sheet')).not.toBeInTheDocument()
+    expect(window.location.pathname + window.location.search).toBe('/more?from=settings')
+  } finally {
+    view.unmount()
+    selectPersonalStorageOwner(LOCAL_DATA_OWNER)
+  }
+})
+
 test('the account route stays reachable before onboarding and guest continuation goes straight to reading setup', async () => {
   window.history.replaceState({}, '', '/account?mode=signup')
   render(<App />)
@@ -75,8 +98,9 @@ test('the account route stays reachable before onboarding and guest continuation
   expect(window.location.pathname).toBe('/')
 })
 
-test('the keyboard skip link reaches the welcome screen before account setup', () => {
+test('the keyboard skip link reaches the welcome screen before account setup', async () => {
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
   fireEvent.click(screen.getByTestId('skip-to-content'))
   expect(screen.getByRole('main')).toHaveFocus()
 })
@@ -84,6 +108,7 @@ test('the keyboard skip link reaches the welcome screen before account setup', (
 test('onboarding does not restore authentication fragments from an older email link', async () => {
   window.history.replaceState({}, '', '/more#access_token=disposable-test&refresh_token=disposable-test')
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
   advanceOnboardingToMeanings()
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
   expect(await screen.findByTestId('page-more', undefined, APP_TEST_WAIT)).toBeInTheDocument()
@@ -95,6 +120,7 @@ test('onboarding applies the selected script, pronunciation, and meanings to the
   window.history.replaceState({}, '', JAPJI_READING_PATH)
   documentScroll = mockDocumentScroll({ top: 320 })
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
 
   expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', `${JAPJI_READING_PATH}#main-content`)
   expect(screen.getByTestId('onboarding-first-run')).toBeInTheDocument()
@@ -135,6 +161,7 @@ test('onboarding applies the selected script, pronunciation, and meanings to the
 
 test('ordinary first-run onboarding opens Home after its two reader settings pages', async () => {
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
   expect(screen.getByTestId('onboarding-begin-action')).toBeInTheDocument()
   beginOnboarding()
   expect(screen.getByTestId('onboarding-script-step')).toBeInTheDocument()
@@ -154,6 +181,7 @@ test('onboarding uses dark mode and restores the saved app appearance after comp
   document.head.append(themeMeta)
   try {
     render(<App />)
+    await screen.findByTestId('onboarding-first-run')
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
     expect(themeMeta.content).toBe(DARK_THEME_COLOR)
     expect(useThemeStore.getState().mode).toBe('light')
@@ -173,6 +201,7 @@ test('preserves the originally requested deep link through first-run onboarding'
   window.history.replaceState({}, '', '/more?from=shared-link#daily-nitnem')
   const scrollIntoView = vi.spyOn(HTMLElement.prototype, 'scrollIntoView')
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
 
   advanceOnboardingToMeanings()
   expect(screen.getByTestId('onboarding-preview-primary-action')).toHaveTextContent('Open NaamRas')
@@ -190,6 +219,7 @@ test('preserves the originally requested deep link through first-run onboarding'
 test('preserves a compact Hukamnama link through first-run onboarding before resolving it', async () => {
   window.history.replaceState({}, '', '/h/2026-08-03')
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
 
   advanceOnboardingToMeanings()
   fireEvent.click(screen.getByTestId('onboarding-preview-primary-action'))
@@ -442,6 +472,7 @@ test('Gurbani-only choices open a requested reader in Read with support layers h
   window.history.replaceState({}, '', JAPJI_READING_PATH)
   localStorage.setItem('naamras-reader-presentation', 'study')
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
 
   advanceOnboardingToMeanings()
   fireEvent.click(screen.getByTestId('onboarding-meaning-none'))
@@ -630,6 +661,7 @@ test('finds a lazy-rendered hash target on a direct book deep link', async () =>
 test('Begin reading keeps the requested reading and skips optional personalization', async () => {
   window.history.replaceState({}, '', JAPJI_READING_PATH)
   render(<App />)
+  await screen.findByTestId('onboarding-first-run')
   fireEvent.click(screen.getByTestId('onboarding-begin-action'))
   expect(await screen.findByTestId('page-study', undefined, APP_TEST_WAIT)).toBeInTheDocument()
   expect(screen.queryByTestId('onboarding-script-step')).not.toBeInTheDocument()

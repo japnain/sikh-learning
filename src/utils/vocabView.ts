@@ -1,3 +1,5 @@
+import { personalSessionKey } from './personalSession'
+
 export type VocabMode = 'list' | 'flashcard' | 'review'
 export type VocabFilter = 'all' | 'word' | 'phrase'
 export type VocabSort = 'newest' | 'oldest'
@@ -28,7 +30,7 @@ export function readVocabView(search: string): VocabViewState {
     reviewQueue: null,
   }
   try {
-    const saved = JSON.parse(sessionStorage.getItem(RETURN_STATE_KEY) ?? 'null')
+    const saved = JSON.parse(sessionStorage.getItem(personalSessionKey(RETURN_STATE_KEY)) ?? 'null')
     if (saved?.path === buildVocabReturnPath(view) && Array.isArray(saved.reviewQueue)
       && saved.reviewQueue.length <= 5000 && saved.reviewQueue.every((key: unknown) => typeof key === 'string' && key.length <= 20000)) {
       view.reviewQueue = saved.reviewQueue
@@ -50,6 +52,6 @@ export function buildVocabReturnPath(view: VocabViewState): string {
 
 export function rememberVocabView(view: VocabViewState) {
   try {
-    sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ path: buildVocabReturnPath(view), reviewQueue: view.reviewQueue }))
+    sessionStorage.setItem(personalSessionKey(RETURN_STATE_KEY), JSON.stringify({ path: buildVocabReturnPath(view), reviewQueue: view.reviewQueue }))
   } catch { /* The URL still preserves filters, mode, and the current flashcard. */ }
 }

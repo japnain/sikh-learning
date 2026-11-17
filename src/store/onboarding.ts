@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import type {
   LearningGoal,
   LearningLevel,
@@ -52,6 +54,8 @@ export const useOnboardingStore = create<OnboardingState>()(
         learningGoal: 'read',
       }),
     }),
-    { name: 'sikh-onboarding' }
+    { name: 'sikh-onboarding', storage: createJSONStorage(getActivePersonalStorage), }
   )
 )
+
+registerPersonalStore(useOnboardingStore)

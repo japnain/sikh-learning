@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import type { SearchMode } from '../types'
 import { isDirectLookupQuery, type SearchSource } from '../utils/appSearch'
 import { SEARCH_SCOPES, type SearchScope } from '../content/readSearchCopy'
@@ -122,9 +124,11 @@ export const useRecentSearchStore = create<RecentSearchState>()(
       clearRecent: () => set(state => ({ recent: state.recent.filter(item => item.pinned) })),
     }),
     {
-      name: 'sikh-recent-search',
+      name: 'sikh-recent-search', storage: createJSONStorage(getActivePersonalStorage),
       version: 2,
       migrate: persistedState => migrateRecentSearchState(persistedState) as RecentSearchState,
     }
   )
 )
+
+registerPersonalStore(useRecentSearchStore)

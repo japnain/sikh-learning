@@ -9,7 +9,7 @@ function defaults(): PrivateReaderChromeProps {
     onToggle: vi.fn(), onReveal: vi.fn(), backHref: '/books/private/example', onBack: vi.fn(),
     bookmarked: false, onBookmark: vi.fn(), onContents: vi.fn(), onAppearance: vi.fn(), onSearch: vi.fn(),
     onBookmarks: vi.fn(), onAnnotations: vi.fn(), searchEnabled: true, saving: 'saved', onRetry: vi.fn(),
-    page: 2, count: 12, chapterLabel: 'An opening chapter', bookProgress: .15,
+    locationUnit: 'page', page: 2, count: 12, chapterLabel: 'An opening chapter', bookProgress: .15,
     canPrevious: true, canNext: true, onPrevious: vi.fn(), onNext: vi.fn(), onSeek: vi.fn(),
     finished: false, onFinish: vi.fn(),
   }
@@ -31,6 +31,24 @@ test('provides a concise heading, bookmarked state and accessible page navigatio
   expect(props.onNext).toHaveBeenCalledOnce()
   expect(props.onPrevious).toHaveBeenCalledOnce()
   expect(screen.getByRole('slider', { name: 'Reading position' })).toHaveAttribute('aria-valuetext', 'Page 2 of 12, An opening chapter')
+})
+
+test('uses section vocabulary for scrolling sections, including scrubber previews', () => {
+  const props = { ...defaults(), locationUnit: 'section' as const, page: 1, count: 3 }
+  render(reader(props))
+  expect(screen.getByText('Section 1 of 3')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Next section' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Previous section' }))
+  expect(props.onNext).toHaveBeenCalledOnce()
+  expect(props.onPrevious).toHaveBeenCalledOnce()
+  expect(screen.queryByRole('button', { name: 'Next page' })).not.toBeInTheDocument()
+  const slider = screen.getByRole('slider', { name: 'Reading position' })
+  expect(slider).toHaveAttribute('aria-valuetext', 'Section 1 of 3, An opening chapter')
+  fireEvent.pointerDown(slider, { pointerId: 1 })
+  fireEvent.change(slider, { target: { value: '3' } })
+  expect(slider).toHaveAttribute('aria-valuetext', 'Section 3 of 3, An opening chapter')
+  fireEvent.pointerUp(slider, { pointerId: 1 })
+  expect(props.onSeek).toHaveBeenCalledExactlyOnceWith(3)
 })
 
 test('opens keyboard-accessible options and restores a persistent opener before switching tools', async () => {

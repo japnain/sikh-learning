@@ -106,19 +106,32 @@ async function reachableControl(page, locator, label) {
   await horizontallyAccessible(locator, label)
   const metrics = await locator.evaluate(element => {
     const rect = element.getBoundingClientRect()
-    const x = rect.left + rect.width / 2
-    const y = rect.top + rect.height / 2
-    const hit = document.elementFromPoint(x, y)
-    const nav = document.querySelector('[data-testid="nav-stack"]')?.getBoundingClientRect()
-    const bounds = value => value ? { top: value.top, bottom: value.bottom, left: value.left,
-      right: value.right, width: value.width, height: value.height } : null
-    const styles = getComputedStyle(element)
+    // A book link may be taller than the viewport. Its visible intersection
+    // must contain a real hit target; the whole cover + summary need not fit.
+    let left = Math.max(0, rect.left)
+    let right = Math.min(innerWidth, rect.right)
+    let top = Math.max(0, rect.top)
+    let bottom = Math.min(innerHeight, rect.bottom)
+    for (let ancestor = element.parentElement; ancestor; ancestor = ancestor.parentElement) {
+      // Root overflow is propagated to the viewport, not its translated box.
+      if (ancestor === document.documentElement || ancestor === document.body) continue
+      const styles = getComputedStyle(ancestor)
+      if (!['hidden', 'clip', 'auto', 'scroll'].includes(styles.overflowY)) continue
+      const parent = ancestor.getBoundingClientRect()
+      top = Math.max(top, parent.top + ancestor.clientTop)
+      bottom = Math.min(bottom, parent.top + ancestor.clientTop + ancestor.clientHeight)
+    }
+    const hits = []
+    for (const fraction of [0.5, 0.25, 0.75]) {
+      const x = left + (right - left) / 2
+      const y = top + (bottom - top) * fraction
+      const hit = document.elementFromPoint(x, y)
+      hits.push({ x, y, owned: !!hit && (hit === element || element.contains(hit)) })
+    }
     return {
-      reachable: rect.top >= -2 && rect.bottom <= innerHeight + 2 && (hit === element || element.contains(hit)),
-      control: bounds(rect), nav: bounds(nav), viewport: { width: innerWidth, height: innerHeight },
-      hitPoint: { x, y }, hit: hit ? { tag: hit.tagName, id: hit.id, className: hit.getAttribute('class') } : null,
-      scrollPaddingBottom: getComputedStyle(document.documentElement).scrollPaddingBottom,
-      scrollMarginTop: styles.scrollMarginTop, scrollMarginBottom: styles.scrollMarginBottom,
+      reachable: right - left >= 24 && bottom - top >= 24 && hits.some(hit => hit.owned),
+      control: { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right },
+      intersection: { left, right, top, bottom }, hits,
     }
   })
   assert(metrics.reachable, `${label}: scrolling exposes the control without a fixed overlay covering it: ${JSON.stringify(metrics)}`)
@@ -171,7 +184,23 @@ try {
       error => error.actual?.some(failure => failure.element === 'clipped-text' && failure.clippedBy === 'DIV'))
     await assert.rejects(horizontallyAccessible(page.locator('#offscreen-input'), 'offscreen input'),
       error => error.actual?.some(failure => failure.clippedBy === 'viewport'))
-    return { checks: ['native input border is not treated as clipped by its own content box', 'ancestor clipping still fails', 'self-clipped text still fails', 'viewport clipping still fails'] }
+    await page.setContent(`
+      <style>body { margin:0; } a { display:block; width:280px; }
+        #tall { height:1500px; } #covered { height:80px; }
+        #shield { position:fixed; inset:0; z-index:100; }
+        #offscreen { position:fixed; top:-200px; height:60px; }
+      </style>
+      <a id="tall" href="#activated">Tall actionable link</a>
+    `)
+    const tall = page.locator('#tall')
+    await reachableControl(page, tall, 'tall link visible intersection')
+    await tall.click()
+    assert.equal(new URL(page.url()).hash, '#activated', 'Tall link really activates')
+    await page.setContent('<a id="covered" href="#bad" style="display:block;width:280px;height:80px">Covered</a><div style="position:fixed;inset:0;z-index:100"></div>')
+    await assert.rejects(reachableControl(page, page.locator('#covered'), 'fully occluded link'), /fixed overlay/)
+    await page.setContent('<a id="offscreen" href="#bad" style="position:fixed;top:-200px;width:280px;height:60px">Offscreen</a>')
+    await assert.rejects(reachableControl(page, page.locator('#offscreen'), 'wholly offscreen link'), /fixed overlay/)
+    return { checks: ['native input border is not treated as clipped by its own content box', 'ancestor clipping still fails', 'self-clipped text still fails', 'viewport clipping still fails', 'tall links activate through their visible intersection', 'fully occluded and wholly offscreen controls fail'] }
   })
 
   for (const [locale, digits, open] of [['en', '123', 'Open'], ['pa', '੧੨੩', 'ਖੋਲ੍ਹੋ'], ['hi', '१२३', 'खोलें']]) {
@@ -220,6 +249,8 @@ try {
           && (new URL(location.href).searchParams.get('scope') ?? 'all') === value
       }, { label, value })
     }
+    await input.focus()
+    await scope.waitFor()
     await chooseScope('Stories', 'stories')
     await input.fill('Lalo')
     const stories = page.getByTestId('banis-search-story-results')
@@ -237,7 +268,8 @@ try {
     assert.equal(await scope.getByRole('button', { name: 'Stories', exact: true }).getAttribute('aria-pressed'), 'true')
     await page.locator('#read-tab-books').click()
     await page.getByTestId('read-books-browser').waitFor()
-    assert.equal(await input.inputValue(), '', 'Selecting a collection exits the search')
+    assert.equal(new URL(page.url()).searchParams.get('query'), null, 'Selecting a collection exits the search')
+    assert.equal(await input.count(), 0, 'The Books shelf collapses inactive search and exposes query recovery')
     await page.getByRole('button', { name: 'Return to “Lalo”', exact: true }).click()
     await stories.locator('[data-read-launch]').first().waitFor()
     assert.equal(await input.inputValue(), 'Lalo', 'The previous search can be recovered from another collection')
@@ -257,6 +289,23 @@ try {
     await page.getByTestId('read-books-browser').waitFor()
     assert.equal(await page.locator('#read-tab-books').getAttribute('aria-selected'), 'true')
     return { checks: ['story search and reader return', 'collection exit and query recovery', 'All/Gurbani/Books/Stories scopes', 'collection remains selected after search'] }
+  })
+
+  await run('book-navigation-titles', { width: 390 }, async ({ page }) => {
+    await visit(page, '/library/panth-prakash-english', '[data-testid="panth-library-home"]')
+    const titles = [
+      'The Khalsa Must Be Autonomous And Self-Respecting',
+      'Martyrdom of the Elder Sahibzadas - The Battle of Chamkaur',
+    ]
+    const contents = page.getByTestId('panth-chapter-browser')
+    for (const title of titles) assert(await contents.getByText(title, { exact: true }).count() > 0,
+      `Contents renders corrected navigation title: ${title}`)
+    await page.locator('#epub-book-search').fill('Chamkaur')
+    await page.locator('#epub-book-search').press('Enter')
+    await page.getByTestId('panth-full-text-results').waitFor()
+    assert(await page.getByTestId('panth-full-text-results').getByText(titles[1], { exact: true }).count() > 0,
+      'Full-text search renders the same corrected navigation title')
+    return { checks: ['corrected chapter navigation titles in Contents', 'corrected title in full-text search results'] }
   })
 
   await run('continuity-book-bani', { width: 390 }, async ({ page }) => {
@@ -289,7 +338,11 @@ try {
     assert.equal(saved.resumePath, before.resumePath, 'Opening a bani does not replace the book route')
     assert.equal(saved.readerLocator.locations.blockId, before.readerLocator.locations.blockId, 'Opening a bani does not replace the book block')
     const expected = `${bookPath}#${encodeURIComponent(before.readerLocator.locations.blockId)}`
-    const resume = page.locator('[id="read-continue-book:panth-prakash-english"]')
+    // Books intentionally resumes from its overview, where Continue reading
+    // carries the exact saved block. Exercise the visible product entry point.
+    await page.locator('#read-book-panth-prakash-english').click()
+    await page.getByTestId('panth-library-home').waitFor()
+    const resume = page.getByRole('link', { name: 'Continue reading', exact: true })
     await resume.waitFor()
     assert.equal(await resume.getAttribute('href'), expected)
     await resume.click()
@@ -303,7 +356,7 @@ try {
       return position && position.top < innerHeight && position.bottom > 0
     }, before.readerLocator.locations.blockId)
     await shot(page, 'book-resume-after-bani-and-refresh')
-    return { checks: ['book catalog → book → chapter', 'scroll saves genuine block locator', 'bani leaves book continuity intact', 'Read Continue restores saved block after refresh'], savedBlock: before.readerLocator.locations.blockId }
+    return { checks: ['book catalog → book → chapter', 'scroll saves genuine block locator', 'bani leaves book continuity intact', 'Book overview Continue reading restores saved block after refresh'], savedBlock: before.readerLocator.locations.blockId }
   })
 
   for (const config of [{ width: 320, height: 568, dark: false, scale: 1 }, { width: 390, height: 844, dark: true, scale: 1 }, { width: 320, height: 568, dark: true, scale: 2 }, { width: 1440, height: 1000, dark: false, scale: 1 }]) {
@@ -338,8 +391,24 @@ try {
         if (collection === 'books') {
           const card = page.getByTestId('panth-prakash-source-card')
           await horizontallyAccessible(card.locator('.library-book-card__copy, .library-book-card__copy > *, a'), 'book text and action')
-          await reachableControl(page, page.locator('#read-book-panth-prakash-english'), 'Open book')
+          const book = page.locator('#read-book-panth-prakash-english')
+          const open = book.locator('.library-book-card__open')
+          await reachableControl(page, open, 'Open book label')
+          const measure = await card.evaluate(element => ({ width: element.getBoundingClientRect().width,
+            shelf: element.parentElement.getBoundingClientRect().width }))
+          if (config.width <= 430 || config.scale === 2) {
+            assert(measure.width >= measure.shelf - 2, 'Narrow and enlarged-text shelves use the full available width')
+          }
           await shot(page, `read-book-action-${key}`)
+          await open.click()
+          await page.getByTestId('panth-library-home').waitFor()
+          await page.goBack()
+          await book.waitFor()
+          await book.focus()
+          await page.keyboard.press('Enter')
+          await page.getByTestId('panth-library-home').waitFor()
+          await page.goBack()
+          await book.waitFor()
         }
         if (collection === 'sources') {
           // Four-digit Ang labels stress the real expanded surface, not merely
@@ -411,6 +480,55 @@ try {
       await shot(page, `rehat-reader-${key}`)
       return { checks: ['shared persistent reader header', 'contents exposes selected chapter', 'Find highlights chapter match', 'Find controls share one row with 44px targets', 'open Find preserves at least 45% viewport reading area', 'appearance saves across refresh', 'no horizontal overflow'], findLayout }
     })
+  }
+
+  // Synthetic discovery data exercises layout only. No source book text is
+  // changed; actual reader navigation is covered by the original journeys.
+  for (const locale of ['en', 'pa', 'hi']) {
+    for (const [width, height] of [[320, 568], [390, 844], [430, 932], [844, 390]]) {
+      for (const scale of [1, 2]) {
+        await run(`shelf-${locale}-${width}-${scale * 100}`, { locale, width, height, scale }, async ({ page, context }) => {
+          const descriptions = {
+            en: 'A complete description with a long title remains readable at every text size, without clipping or hiding the summary.',
+            pa: 'ਕਿਤਾਬ ਦਾ ਪੂਰਾ ਵੇਰਵਾ ਅਤੇ ਲੰਮਾ ਸਿਰਲੇਖ ਹਰ ਅੱਖਰ ਆਕਾਰ ਵਿੱਚ ਪੜ੍ਹਨ ਲਈ ਉਪਲਬਧ ਰਹਿੰਦਾ ਹੈ।',
+            hi: 'पुस्तक का पूरा विवरण और लंबा शीर्षक हर अक्षर आकार में पढ़ने के लिए उपलब्ध रहता है।',
+          }
+          let count = 1
+          await context.route('**/data/library/works.json', route => route.fulfill({ status: 200,
+            contentType: 'application/json', body: JSON.stringify(Array.from({ length: count }, (_, index) => ({
+              id: `fixture-book-${index}`, title: `${descriptions[locale]} ${index + 1}`,
+              shortTitle: locale === 'en' ? 'A very long book title for readable shelves' : descriptions[locale],
+              description: descriptions[locale].repeat(2), language: locale, totalChapters: 169,
+            }))) }))
+          const measures = []
+          for (count of [1, 4]) {
+            await visit(page, '/banis?collection=books')
+            const cards = page.locator('.library-book-card--shelf')
+            await cards.first().waitFor()
+            assert.equal(await cards.count(), count)
+            await horizontallyAccessible(cards.locator('.library-book-card__copy, .library-book-card__copy > *'), 'complete shelf copy')
+            const metrics = await cards.evaluateAll(elements => elements.map(element => {
+              const rect = element.getBoundingClientRect()
+              const shelf = element.parentElement.getBoundingClientRect()
+              return { width: rect.width, shelfWidth: shelf.width, height: rect.height,
+                rootSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize) }
+            }))
+            for (const metric of metrics) {
+              if (count === 1 || width <= 430 || scale === 2) assert(metric.width >= metric.shelfWidth - 2,
+                'A single book or narrow/enlarged-text row uses the full available measure')
+              else assert(metric.width >= 16 * metric.rootSize - 2, 'Each wide shelf track retains at least 16rem of readable measure')
+            }
+            for (const open of await cards.locator('.library-book-card__open').all()) {
+              await reachableControl(page, open, 'synthetic book Open label')
+            }
+            await fits(page, `shelf-${locale}-${width}-${scale}-${count}`)
+            await shot(page, `shelf-${locale}-${width}-${scale}-${count}`)
+            measures.push({ count, cards: metrics })
+          }
+          return { checks: ['one and four books', 'complete long titles and descriptions', 'localized controls and source-language text', 'full narrow and large-text measure', 'reachable Open labels', 'no horizontal clipping'], measures }
+        })
+      }
+    }
   }
 
   for (const [locale, retry] of [['en', 'Try again'], ['pa', 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ'], ['hi', 'फिर कोशिश करें']]) {

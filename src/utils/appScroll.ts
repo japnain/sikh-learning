@@ -94,10 +94,10 @@ export function scrollElementIntoAppView(element: HTMLElement, options: ScrollIn
   element.scrollIntoView(options)
 }
 
-export function addAppScrollListener(listener: ScrollListener) {
+export function addAppScrollListener(listener: ScrollListener, { capture = false }: { capture?: boolean } = {}) {
   if (typeof document === 'undefined') return () => {}
-  document.addEventListener('scroll', listener, { passive: true })
-  return () => document.removeEventListener('scroll', listener)
+  document.addEventListener('scroll', listener, { passive: true, capture })
+  return () => document.removeEventListener('scroll', listener, capture)
 }
 
 export function focusElementWithoutAppScroll(element: HTMLElement) {

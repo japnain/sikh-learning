@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { getNitnemOption } from './nitnem'
 import { isActiveNitnemPracticeReading, isNitnemPracticeReading, normalizeNitnemPractice } from '../utils/nitnemPractice'
 
@@ -68,7 +70,7 @@ export const useNitnemPracticeStore = create<NitnemPracticeState>()(persist<Nitn
     }
   },
   {
-    name: 'naamras-nitnem-practice', version: 1,
+    name: 'naamras-nitnem-practice', storage: createJSONStorage(getActivePersonalStorage), version: 1,
     partialize: state => ({ active: state.active }),
     merge: (persisted, current) => ({
       ...current,
@@ -76,3 +78,5 @@ export const useNitnemPracticeStore = create<NitnemPracticeState>()(persist<Nitn
     }),
   },
 ))
+
+registerPersonalStore(useNitnemPracticeStore)

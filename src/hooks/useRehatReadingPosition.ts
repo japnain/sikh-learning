@@ -1,3 +1,4 @@
+import { getPersonalStorageGeneration } from '../utils/ownerStorage'
 import { useCallback, useEffect, useLayoutEffect, useRef, type RefObject } from 'react'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { addAppScrollSettledListener, getAppScrollTop, getAppViewportBounds, scrollAppTo } from '../utils/appScroll'
@@ -14,6 +15,7 @@ export function useRehatReadingPosition({ rootRef, rehatId, chapterId, sourceTit
   finding: boolean
   hash?: string
 }) {
+  const ownerGeneration = useRef(getPersonalStorageGeneration())
   const blocksRef = useRef<NodeListOf<HTMLElement> | null>(null)
   const appearanceAnchor = useRef<RehatReadingAnchor | null>(null)
   const appearanceOpen = useRef(false)
@@ -45,13 +47,13 @@ export function useRehatReadingPosition({ rootRef, rehatId, chapterId, sourceTit
     const savedBlock = position?.resumePath === path && locator?.revision === revision ? locator.locations.blockId : null
     const restoreBlock = hash ? requestedBlock : savedBlock
     const restore = () => {
-      if (disposed || userInteracted || !blocksRef.current || findingRef.current) return
+      if (getPersonalStorageGeneration() !== ownerGeneration.current || disposed || userInteracted || !blocksRef.current || findingRef.current) return
       const restored = restoreBlock && restoreRehatReadingAnchor(root, blocksRef.current, { blockId: restoreBlock, fraction: 0, offset: 0 })
       if (!restored) scrollAppTo({ top: 0, left: 0, behavior: 'auto' })
     }
     const markInteraction = () => { userInteracted = true }
     const save = () => {
-      if (!ready || disposed || currentIdentity.current !== identity || appearanceOpen.current || findingRef.current || !blocksRef.current || !root.isConnected
+      if (getPersonalStorageGeneration() !== ownerGeneration.current || !ready || disposed || currentIdentity.current !== identity || appearanceOpen.current || findingRef.current || !blocksRef.current || !root.isConnected
         || root.closest('[inert],[aria-hidden="true"]') || getAppScrollTop() <= 0) return
       const anchor = captureRehatReadingAnchor(root, blocksRef.current)
       if (!anchor) return

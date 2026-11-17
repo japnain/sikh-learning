@@ -1,3 +1,4 @@
+import { getPersonalStorageGeneration } from '../../utils/ownerStorage'
 import { useResolvedEpubPalette, EPUB_APP_PALETTE_LABEL } from '../../store/epubReader'
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
@@ -166,6 +167,7 @@ function StoryReaderState({ status, backTo, retry }: { status: 'loading' | 'erro
 }
 
 export function StoryReadingView({ story, catalog, backTo, hash, preview: requestedPreview = false }: { story: Story; catalog: StoryCatalog | null; backTo: string; hash: string; preview?: boolean }) {
+  const ownerGeneration = useRef(getPersonalStorageGeneration())
   const locale = useLocaleStore(state => state.locale)
   const copy = STORY_UI[locale]
   const preview = import.meta.env.DEV && requestedPreview
@@ -285,7 +287,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   }, [copy])
 
   const updateProgress = useCallback(() => {
-    if (!restoredRef.current || panelRef.current) return
+    if (getPersonalStorageGeneration() !== ownerGeneration.current || !restoredRef.current || panelRef.current) return
     const position = readPosition()
     activeParagraphRef.current = position.paragraphId
     currentProgressRef.current = position.progress
@@ -296,7 +298,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   }, [readPosition])
 
   const commitPosition = useCallback(() => {
-    if (!restoredRef.current || panelRef.current) return
+    if (getPersonalStorageGeneration() !== ownerGeneration.current || !restoredRef.current || panelRef.current) return
     updateProgress()
     if (preview) return
     const paragraphId = activeParagraphRef.current
@@ -472,6 +474,7 @@ export function StoryReadingView({ story, catalog, backTo, hash, preview: reques
   }
 
   const finishStory = () => {
+    if (getPersonalStorageGeneration() !== ownerGeneration.current) return
     const lastParagraph = story.paragraphs.at(-1)
     if (!lastParagraph) return
     activeParagraphRef.current = lastParagraph.id

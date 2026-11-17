@@ -23,6 +23,7 @@ export interface PrivateReaderChromeProps {
   searchEnabled: boolean
   saving: 'saved' | 'saving' | 'error'
   onRetry: () => void
+  locationUnit: 'page' | 'section'
   page: number
   count: number
   chapterLabel: string
@@ -43,7 +44,7 @@ function pageNumber(value: number, count: number) {
 
 export default function PrivateReaderChrome({ title, subtitle, hidden, onToggle, onReveal, backHref, backState, onBack,
   bookmarked, onBookmark, onContents, onAppearance, onSearch, onBookmarks, onAnnotations, searchEnabled,
-  saving, onRetry, page, count, chapterLabel, bookProgress, canPrevious, canNext, onPrevious, onNext, onSeek,
+  saving, onRetry, locationUnit, page, count, chapterLabel, bookProgress, canPrevious, canNext, onPrevious, onNext, onSeek,
   finished, onFinish, palette = 'paper' }: PrivateReaderChromeProps) {
   const [optionsOpen, setOptionsOpen] = useState(false)
   const [previewPage, setPreviewPage] = useState<number | null>(null)
@@ -62,7 +63,8 @@ export default function PrivateReaderChrome({ title, subtitle, hidden, onToggle,
   const displayedPage = previewPage === null ? currentPage : pageNumber(previewPage, safeCount)
   const fraction = Number.isFinite(bookProgress) ? Math.max(0, Math.min(1, bookProgress)) : 0
   const progressText = fraction > 0 && fraction < .01 ? '<1%' : `${Math.round(fraction * 100)}%`
-  const pageText = `Page ${displayedPage} of ${safeCount}`
+  const locationLabel = locationUnit === 'section' ? 'Section' : 'Page'
+  const pageText = `${locationLabel} ${displayedPage} of ${safeCount}`
 
   useLayoutEffect(() => {
     const header = headerRef.current
@@ -143,7 +145,7 @@ export default function PrivateReaderChrome({ title, subtitle, hidden, onToggle,
           <span className="private-reader-chrome__book-progress">{progressText} <span>of book</span></span>
         </div>
         <nav className="private-reader-chrome__navigation" aria-label="Reading navigation">
-          <button className="private-reader-chrome__button" type="button" aria-label="Previous page" disabled={!canPrevious} onClick={onPrevious}><IconArrowLeft size={20} /></button>
+          <button className="private-reader-chrome__button" type="button" aria-label={`Previous ${locationUnit}`} disabled={!canPrevious} onClick={onPrevious}><IconArrowLeft size={20} /></button>
           <div className="private-reader-chrome__scrubber">
             <label htmlFor={sliderId} className="sr-only">Reading position</label>
             <input id={sliderId} type="range" min={1} max={safeCount} step={1} value={displayedPage} disabled={safeCount <= 1}
@@ -158,7 +160,7 @@ export default function PrivateReaderChrome({ title, subtitle, hidden, onToggle,
               onLostPointerCapture={commitSeek} onBlur={commitSeek} />
             <span className="private-reader-chrome__page-label" aria-hidden="true">{pageText}</span>
           </div>
-          {canNext ? <button className="private-reader-chrome__button" type="button" aria-label="Next page" onClick={onNext}><IconArrowRight size={20} /></button>
+          {canNext ? <button className="private-reader-chrome__button" type="button" aria-label={`Next ${locationUnit}`} onClick={onNext}><IconArrowRight size={20} /></button>
             : <button className="private-reader-chrome__button" type="button" aria-label={finished ? 'Mark unfinished' : 'Mark finished'} aria-pressed={finished} onClick={onFinish}><IconCheck size={20} /></button>}
         </nav>
       </div>

@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage, getPersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { BANIS, READ_EXACT_BANIS, type Bani } from '../data/banis'
 import { BANI_SCRIPT_NAMES } from '../content/baniScriptNames'
 import { toLocalDayStamp } from '../utils/localDates'
@@ -614,7 +616,7 @@ export const useNitemStore = create<NitemState>()(
       },
     }),
     {
-      name: 'sikh-nitnem',
+      name: 'sikh-nitnem', storage: createJSONStorage(getActivePersonalStorage),
       version: 5,
       migrate: (persisted) => {
         const state = (persisted ?? {}) as Partial<NitemState>
@@ -665,7 +667,7 @@ export function setNitnemCompletionSafely(id: string, completed: boolean, readin
   const keys = ['sikh-nitnem', 'naamras-nitnem-history', 'naamras-cloud-activity-events']
   let persisted: (string | null)[]
   try {
-    persisted = keys.map(key => localStorage.getItem(key))
+    persisted = keys.map(key => getPersonalStorage().getItem(key))
   } catch {
     return 'failed'
   }
@@ -687,8 +689,8 @@ export function setNitnemCompletionSafely(id: string, completed: boolean, readin
       }
       keys.forEach((key, index) => {
         try {
-          if (persisted[index] === null) localStorage.removeItem(key)
-          else localStorage.setItem(key, persisted[index]!)
+          if (persisted[index] === null) getPersonalStorage().removeItem(key)
+          else getPersonalStorage().setItem(key, persisted[index]!)
         } catch { /* Keep the UI retryable when device storage remains unavailable. */ }
       })
       // Both Home and Reader use this transaction. Roll back the partial event
@@ -699,3 +701,5 @@ export function setNitnemCompletionSafely(id: string, completed: boolean, readin
   }
   return 'failed'
 }
+
+registerPersonalStore(useNitemStore)

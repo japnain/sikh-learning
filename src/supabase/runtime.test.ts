@@ -1,3 +1,4 @@
+import { getPersonalStorageForRestore, getPersonalStorage, getPersonalStorageForOwner } from '../utils/ownerStorage'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useCloudSyncStore } from '../store/cloudSync'
@@ -172,6 +173,7 @@ beforeEach(() => {
   mocks.getSession.mockResolvedValue({
     data: {
       session: {
+        access_token: 'synthetic-user-1-token',
         user: {
           id: 'user-1',
           email: 'simran@example.com',
@@ -189,7 +191,7 @@ beforeEach(() => {
   })
   mocks.applyRemoteSnapshot.mockImplementation(() => undefined)
   useCloudSyncStore.getState().reset()
-  useActivityEventsStore.setState({ pendingEvents: [EVENT] })
+  getPersonalStorageForOwner('user-1').setItem('naamras-cloud-activity-events', JSON.stringify({ version: 0, state: { pendingEvents: [EVENT] } }))
   Object.defineProperty(window.navigator, 'onLine', {
     configurable: true,
     value: true,
@@ -366,8 +368,9 @@ describe('cloud concurrency and auth lifecycle', () => {
     let finish!: (value: unknown) => void
     mocks.invoke.mockReturnValueOnce(new Promise(resolve => { finish = resolve }))
     const deleting = deleteCloudAccount()
+    expect(mocks.invoke.mock.calls.at(-1)![1].headers).toEqual({ Authorization: 'Bearer synthetic-user-1-token' })
     const listener = mocks.onAuthStateChange.mock.calls[0][0]
-    listener('SIGNED_IN', { user: { id: 'user-2', app_metadata: {}, user_metadata: {} } })
+    listener('SIGNED_IN', { access_token: 'synthetic-user-2-token', user: { id: 'user-2', app_metadata: {}, user_metadata: {} } })
     finish({ data: { deleted: true }, error: null })
     await expect(deleting).resolves.toMatchObject({ skipped: true })
     expect(mocks.client.auth.signOut).not.toHaveBeenCalled()
@@ -427,7 +430,7 @@ describe('cloud concurrency and auth lifecycle', () => {
       id: 'bookmark-other-tab', type: 'bani', title: 'Other tab save',
       source: 'G', ang: 5, savedAt: '2026-04-17T12:01:00.000Z',
     }
-    localStorage.setItem('sikh-bookmarks', JSON.stringify([bookmark]))
+    getPersonalStorage().setItem('sikh-bookmarks', JSON.stringify([bookmark]))
     deferred.resolve()
     await expect(syncing).resolves.toMatchObject({ ok: false, queued: true })
     expect(useBookmarksStore.getState().bookmarks).toEqual([bookmark])
@@ -455,7 +458,7 @@ describe('cloud concurrency and auth lifecycle', () => {
     mocks.invoke.mockReturnValueOnce(deferred.promise)
     const first = syncNow()
     const listener = mocks.onAuthStateChange.mock.calls[0][0]
-    listener('SIGNED_IN', { user: { id: 'user-2', app_metadata: {}, user_metadata: {} } })
+    listener('SIGNED_IN', { access_token: 'synthetic-user-2-token', user: { id: 'user-2', app_metadata: {}, user_metadata: {} } })
     deferred.resolve()
     await first
     expect(mocks.applyRemoteSnapshot).not.toHaveBeenCalled()
@@ -474,7 +477,9 @@ describe('cloud concurrency and auth lifecycle', () => {
     mocks.invoke.mockReturnValueOnce(deferred.promise)
     const first = syncNow()
     const resume = pauseCloudSyncForRestore()
-    useLanguageStore.getState().setFontSize(26)
+    expect(() => useLanguageStore.getState().setFontSize(26)).toThrow('personal-data-owner-recovery-required')
+    getPersonalStorageForRestore().setItem('sikh-language', JSON.stringify({ version: 0, state: { ...useLanguageStore.getState(), fontSize: 26 } }))
+    await useLanguageStore.persist.rehydrate()
     await expect(syncNow()).resolves.toMatchObject({ skipped: true })
     deferred.resolve()
     await first

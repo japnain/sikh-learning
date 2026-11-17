@@ -5,10 +5,10 @@ import CloudSyncPanel from './CloudSyncPanel'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
 import type { CloudUserSummary } from '../supabase/types'
-import { deleteCloudAccount, sendMagicLink, signOutOfCloud, syncNow } from '../supabase/runtime'
+import { resolveLocalDataMigration, deleteCloudAccount, sendMagicLink, signOutOfCloud, syncNow } from '../supabase/runtime'
 
 vi.mock('../supabase/runtime', () => ({
-  deleteCloudAccount: vi.fn(), sendMagicLink: vi.fn(), signInWithProvider: vi.fn(), signOutOfCloud: vi.fn(), syncNow: vi.fn(),
+  resolveLocalDataMigration: vi.fn(), deleteCloudAccount: vi.fn(), sendMagicLink: vi.fn(), signInWithProvider: vi.fn(), signOutOfCloud: vi.fn(), syncNow: vi.fn(),
 }))
 
 const READY_USER: CloudUserSummary = { id: 'user-1', email: 'simran@example.com', name: 'Simran', providers: ['apple', 'email'] }
@@ -121,7 +121,8 @@ describe('CloudSyncPanel reader-facing backup states', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Delete cloud account' }))
     const dialog = screen.getByTestId('cloud-delete-account-dialog')
     expect(dialog).toHaveTextContent('all synced NaamRas data will be permanently deleted')
-    expect(dialog).toHaveTextContent('Reading data on this device stays available')
+    expect(dialog).toHaveTextContent('Download a personal backup before deleting')
+    expect(dialog).toHaveTextContent('will no longer be accessible after deletion')
     expect(deleteCloudAccount).not.toHaveBeenCalled()
     fireEvent.click(screen.getByTestId('cloud-delete-account-confirm'))
     await waitFor(() => expect(screen.queryByTestId('cloud-delete-account-dialog')).not.toBeInTheDocument())
@@ -163,4 +164,16 @@ test('does not duplicate the parent backup explanation when cloud is unavailable
   useCloudSyncStore.setState({ configured: false })
   render(<CloudSyncPanel embedded />)
   expect(screen.queryByTestId('more-cloud-sync')).not.toBeInTheDocument()
+})
+
+test('requires an explicit local-data choice and keeps the account boundary clear', async () => {
+  vi.mocked(resolveLocalDataMigration).mockResolvedValue({ ok: true })
+  renderPanel({ localDataAvailable: true })
+  expect(screen.getByRole('region', { name: 'Earlier local reading data' })).toHaveTextContent('only if it belongs to you')
+  expect(resolveLocalDataMigration).not.toHaveBeenCalled()
+  fireEvent.click(screen.getByRole('button', { name: 'Keep separate' }))
+  await waitFor(() => expect(resolveLocalDataMigration).toHaveBeenCalledWith(false))
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Import into this account' })).not.toBeDisabled())
+  fireEvent.click(screen.getByRole('button', { name: 'Import into this account' }))
+  await waitFor(() => expect(resolveLocalDataMigration).toHaveBeenCalledWith(true))
 })

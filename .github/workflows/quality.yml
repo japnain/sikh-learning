@@ -27,8 +27,9 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run qa:css-selectors
+      - run: npm run qa:rights-inventory
       - name: Verify browser fixtures and startup budgets
-        run: node --test scripts/qa/browser-fixtures.test.mjs scripts/qa/startup-bundle-audit.test.mjs scripts/qa/app-store-environment.test.mjs scripts/qa/web-addresses.test.mjs scripts/qa/public-artifact-privacy.test.mjs scripts/library/lib/curated-epub.test.mjs
+        run: node --test scripts/qa/browser-fixtures.test.mjs scripts/qa/startup-bundle-audit.test.mjs scripts/qa/app-store-environment.test.mjs scripts/qa/web-addresses.test.mjs scripts/qa/public-artifact-privacy.test.mjs scripts/library/lib/curated-epub.test.mjs scripts/qa/font-notices.test.mjs scripts/qa/content-rights.test.mjs
       - run: npm run build
       - name: Install Chromium
         run: npx playwright-core install --with-deps chromium

@@ -152,4 +152,19 @@ describe('private notebook interactions', () => {
     await waitFor(() => expect(container.querySelector('[data-private-annotation-id]')).toHaveStyle({ left: '150px', width: '50px' }))
     expect(contentRef.current!.textContent).toBe('Alpha & beta 🪷.')
   })
+
+  test('repaints fallback highlights when the app scrolls and removes the listener on unmount', async () => {
+    let top = 100
+    Object.defineProperty(Range.prototype, 'getClientRects', { configurable: true, value: () => [{ left: 30, top, right: 130, bottom: top + 25, width: 100, height: 25 }] })
+    const removeListener = vi.spyOn(document, 'removeEventListener')
+    const { container, contentRef, unmount } = setup({ annotations: [annotation] })
+    vi.spyOn(contentRef.current!, 'getBoundingClientRect').mockReturnValue({ left: 20, top: 20, right: 200, bottom: 300 } as DOMRect)
+    await waitFor(() => expect(container.querySelector('[data-private-annotation-id]')).toHaveStyle({ top: '100px' }))
+    top = 30
+    fireEvent.scroll(document)
+    await waitFor(() => expect(container.querySelector('[data-private-annotation-id]')).toHaveStyle({ top: '30px' }))
+    expect(contentRef.current!.textContent).toBe('Alpha & beta 🪷.')
+    unmount()
+    expect(removeListener).toHaveBeenCalledWith('scroll', expect.any(Function), true)
+  })
 })

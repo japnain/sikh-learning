@@ -1,3 +1,4 @@
+import { getPersonalStorageGeneration } from '../utils/ownerStorage'
 import { READER_STATE_COPY } from '../content/readerStateCopy'
 import '../styles/reader.css'
 import { lazy, Suspense, useState, useEffect, useMemo, useRef, useCallback, type MouseEvent } from 'react'
@@ -686,6 +687,7 @@ const FOCUSED_READER_COPY: Record<UiLocale, {
 }
 
 export default function Study() {
+  const ownerGeneration = useRef(getPersonalStorageGeneration())
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -1046,6 +1048,7 @@ export default function Study() {
     return destination
   }, [])
   const persistReadingSession = useCallback((session: Session) => {
+    if (getPersonalStorageGeneration() !== ownerGeneration.current) return false
     if (explorationRef.current?.route === searchParamsString) return true
     const sessionPersisted = updateSession(session)
     let practicePersisted = true
@@ -1287,7 +1290,7 @@ export default function Study() {
     const syncVisibleVerse = (force = false, preferredElement?: HTMLElement) => {
       if (resumeVerseIdParam && resumeSettledRef.current !== searchParamsString) return
       const session = latestBaseSessionRef.current
-      if (!session || verseElements.length === 0) return
+      if (getPersonalStorageGeneration() !== ownerGeneration.current || !session || verseElements.length === 0) return
       const destination = getDeliberateDestination()
       if (preferredElement && destination?.element === preferredElement) {
         // Resolve once on explicit Stay. Later settled/pagehide saves reuse the
@@ -1545,7 +1548,7 @@ export default function Study() {
   }
 
   useEffect(() => {
-    if (shouldTrackProgress && currentAng) {
+    if (getPersonalStorageGeneration() === ownerGeneration.current && shouldTrackProgress && currentAng) {
       try {
         recordAng(currentSource, currentAng)
       } catch { /* Optional reading statistics must not unmount an otherwise usable reading. */ }
@@ -1553,7 +1556,7 @@ export default function Study() {
   }, [currentAng, currentSource, recordAng, shouldTrackProgress])
 
   useEffect(() => {
-    if (!shouldTrackProgress || loading || error || entries.length === 0) return
+    if (getPersonalStorageGeneration() !== ownerGeneration.current || !shouldTrackProgress || loading || error || entries.length === 0) return
     recordSwipeToday()
   }, [entries.length, error, loading, recordSwipeToday, shouldTrackProgress])
 
@@ -2144,6 +2147,7 @@ export default function Study() {
     const currentPath = `${location.pathname}?${searchParamsString}`
     syncReadingPlaceRef.current?.()
     const reading = await lengthSelection.prepare(baniDbIdParam, nextLength, preparedReading)
+    if (getPersonalStorageGeneration() !== ownerGeneration.current) throw new DOMException('Reading change cancelled.', 'AbortError')
     const preview = lengthDestinationRef.current
     const destination = preview?.origin === currentPath && preview.reading === reading ? preview.destination : resolveBaniLengthDestination(reading)
     if (remember) {

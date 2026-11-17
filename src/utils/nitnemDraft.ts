@@ -1,6 +1,7 @@
 import { getNitnemOption, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS } from '../store/sundarGutkaLength'
 import { SUNDAR_GUTKA_SUPPORTED_BANI_IDS, normalizeSundarGutkaLength } from './sundarGutkaLength'
+import { personalSessionKey } from './personalSession'
 
 export const NITNEM_DRAFT_KEY = 'naamras-nitnem-draft'
 const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000
@@ -22,8 +23,8 @@ interface StoredDraft {
 
 // One bounded tab-session fallback; no reading places, scripture or completion
 // history belong to this draft. It cannot promise recovery after a reload.
-let memoryDraft: StoredDraft | null = null
-let ignorePreviousSessionCopy = false
+const memoryDrafts = new Map<string, StoredDraft>()
+const ignoredSessionCopies = new Set<string>()
 let storageAvailable = true
 const storageListeners = new Set<() => void>()
 
@@ -90,12 +91,13 @@ function validateDraft(input: unknown, committed: NitnemDraftValues, now: number
 }
 
 export function readNitnemDraft(committed: NitnemDraftValues): NitnemDraftValues | null {
+  const key = personalSessionKey(NITNEM_DRAFT_KEY)
   const now = Date.now()
-  const inMemory = validateDraft(memoryDraft, committed, now)
+  const inMemory = validateDraft(memoryDrafts.get(key), committed, now)
   if (inMemory) return inMemory.values
-  if (ignorePreviousSessionCopy) return null
+  if (ignoredSessionCopies.has(key)) return null
   try {
-    const raw = sessionStorageOrNull()?.getItem(NITNEM_DRAFT_KEY)
+    const raw = sessionStorageOrNull()?.getItem(key)
     if (!raw || raw.length > MAX_BYTES) return null
     return validateDraft(JSON.parse(raw), committed, now)?.values ?? null
   } catch { return null }
@@ -106,18 +108,20 @@ export function rememberNitnemDraft(committed: NitnemDraftValues, values: Nitnem
   const stored: StoredDraft = { version: 1, baseline, updatedAt: Date.now(), values }
   const valid = validateDraft(stored, committed, Date.now())
   if (!valid) return false
-  memoryDraft = valid
-  ignorePreviousSessionCopy = false
+  const key = personalSessionKey(NITNEM_DRAFT_KEY)
+  memoryDrafts.set(key, valid)
+  ignoredSessionCopies.delete(key)
   try {
     const storage = sessionStorageOrNull()
     if (!storage) return reportStorageAvailable(false)
-    storage.setItem(NITNEM_DRAFT_KEY, JSON.stringify(valid))
+    storage.setItem(key, JSON.stringify(valid))
     return reportStorageAvailable(true)
   } catch { return reportStorageAvailable(false) }
 }
 
 export function clearNitnemDraft(): void {
-  memoryDraft = null
-  ignorePreviousSessionCopy = true
-  try { sessionStorageOrNull()?.removeItem(NITNEM_DRAFT_KEY) } catch { /* The current in-memory draft is still discarded. */ }
+  const key = personalSessionKey(NITNEM_DRAFT_KEY)
+  memoryDrafts.delete(key)
+  ignoredSessionCopies.add(key)
+  try { sessionStorageOrNull()?.removeItem(key) } catch { /* The current in-memory draft is still discarded. */ }
 }

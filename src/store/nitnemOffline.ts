@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type NitnemOfflineStatus = 'checking' | 'preparing' | 'ready' | 'offline' | 'paused' | 'partial' | 'error'
+export type NitnemOfflineStatus = 'checking' | 'preparing' | 'ready' | 'offline' | 'paused' | 'partial' | 'error' | 'shell-unavailable'
 
 interface NitnemOfflineState {
   ready: number

@@ -1,3 +1,4 @@
+import { onPersonalOwnerHydration } from '../utils/ownerStorage'
 import { create } from 'zustand'
 import { createLocalCollection } from '../utils/localCollection'
 import { persistBookmarkToCloud, removeBookmarkFromCloud } from '../supabase/bookmarks'
@@ -351,3 +352,8 @@ const unsubscribeBookmarks = bookmarkCollection.subscribe(bookmarks => {
   }
 })
 if (import.meta.hot) import.meta.hot.dispose(unsubscribeBookmarks)
+
+onPersonalOwnerHydration(hydrate => {
+  setMemory({ bookmarks: [] })
+  if (hydrate) useBookmarksStore.getState().hydrateCachedBookmarks()
+})

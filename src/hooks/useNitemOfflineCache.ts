@@ -47,9 +47,17 @@ export function useNitemOfflineCache() {
 
   useEffect(() => {
     const changed = () => setConnectionRevision(value => value + 1)
+    const visible = () => { if (document.visibilityState === 'visible') changed() }
     window.addEventListener('online', changed)
     window.addEventListener('offline', changed)
-    return () => { window.removeEventListener('online', changed); window.removeEventListener('offline', changed) }
+    document.addEventListener('visibilitychange', visible)
+    navigator.serviceWorker?.addEventListener('controllerchange', changed)
+    return () => {
+      window.removeEventListener('online', changed)
+      window.removeEventListener('offline', changed)
+      document.removeEventListener('visibilitychange', visible)
+      navigator.serviceWorker?.removeEventListener('controllerchange', changed)
+    }
   }, [])
 
   useEffect(() => {
@@ -72,6 +80,20 @@ export function useNitemOfflineCache() {
     const publish = (ready: number, status: ReturnType<typeof useNitnemOfflineStatusStore.getState>['status']) => {
       if (!cancelled) useNitnemOfflineStatusStore.setState({ ready, total: readings.length, signature, status })
     }
+    const verifyShell = async (ready: number) => {
+      publish(ready, 'preparing')
+      try {
+        // Check once per readiness transition, not once per reading. This also
+        // verifies the current build, rather than trusting an older installation.
+        const { ensureOfflineReaderShell } = await import('../utils/offlineReaderShell')
+        if (cancelled) return
+        await ensureOfflineReaderShell(controller.signal)
+        publish(ready, 'ready')
+      } catch {
+        // Cached text remains usable in this open app and is never removed.
+        publish(ready, 'shell-unavailable')
+      }
+    }
 
     const verifyAndPrepare = async () => {
       const missing: BaniOfflineReading[] = []
@@ -82,7 +104,7 @@ export function useNitemOfflineCache() {
         if (isReady(cached, reading)) ready += 1
         else missing.push(reading)
       }
-      if (!missing.length) { publish(ready, 'ready'); return }
+      if (!missing.length) { await verifyShell(ready); return }
       if (navigator.onLine === false) { publish(ready, 'offline'); return }
       const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
       if (connection?.saveData && retryRevision === 0) { publish(ready, 'paused'); return }
@@ -106,7 +128,8 @@ export function useNitemOfflineCache() {
             if (isReady(cached, reading)) { ready += 1; publish(ready, 'preparing') }
           } catch { /* Retain verified readings and expose retry without blocking Save. */ }
         }
-        publish(ready, ready === readings.length ? 'ready' : navigator.onLine === false ? 'offline' : ready > 0 ? 'partial' : 'error')
+        if (ready === readings.length) await verifyShell(ready)
+        else publish(ready, navigator.onLine === false ? 'offline' : ready > 0 ? 'partial' : 'error')
       }
       if (typeof window.requestIdleCallback === 'function') {
         idleId = window.requestIdleCallback(() => { void prepare() }, { timeout: 1500 })

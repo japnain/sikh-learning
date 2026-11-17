@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import type { SundarGutkaLength } from '../types'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANI_IDS,
@@ -39,7 +41,7 @@ export const useSundarGutkaLengthStore = create<SundarGutkaLengthState>()(
       reset: () => set({ lengths: { ...DEFAULT_SUNDAR_GUTKA_LENGTHS } }),
     }),
     {
-      name: 'sikh-sundar-gutka-lengths',
+      name: 'sikh-sundar-gutka-lengths', storage: createJSONStorage(getActivePersonalStorage),
       version: 2,
       migrate: (persisted) => {
         const state = (persisted ?? {}) as Partial<SundarGutkaLengthState>
@@ -69,3 +71,5 @@ export function getStoredSundarGutkaLength(
   if (!supportedBaniId) return null
   return useSundarGutkaLengthStore.getState().lengths[supportedBaniId] ?? DEFAULT_SUNDAR_GUTKA_LENGTHS[supportedBaniId]
 }
+
+registerPersonalStore(useSundarGutkaLengthStore)

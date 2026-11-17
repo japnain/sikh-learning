@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import type { Session } from './progress'
 import type { LibraryChapterIndexEntry, LibraryWork } from '../types'
 import { isSourceReaderId, SOURCE_READER_META } from '../utils/sourceReaderMeta'
@@ -149,7 +151,7 @@ export const useReadingPlacesStore = create<ReadingPlacesState>()(persist<Readin
     },
   }),
   {
-    name: 'naamras-reading-places', version: 1,
+    name: 'naamras-reading-places', storage: createJSONStorage(getActivePersonalStorage), version: 1,
     partialize: state => ({ places: state.places }),
     merge: (persisted, current) => {
       const input = (persisted as Partial<ReadingPlacesState> | undefined)?.places
@@ -164,3 +166,5 @@ export const useReadingPlacesStore = create<ReadingPlacesState>()(persist<Readin
     },
   },
 ))
+
+registerPersonalStore(useReadingPlacesStore)

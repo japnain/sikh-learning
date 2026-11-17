@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage, getPersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 
 export const THEME_STORAGE_KEY = 'sikh-theme'
 export const LIGHT_THEME_COLOR = '#e5dfd2'
@@ -39,7 +41,7 @@ function getBrowserStorage(): Storage | null {
   if (typeof window === 'undefined') return null
 
   try {
-    return window.localStorage
+    return getPersonalStorage()
   } catch {
     return null
   }
@@ -108,7 +110,7 @@ export const useThemeStore = create<ThemeState>()(
       }),
     }),
     {
-      name: THEME_STORAGE_KEY,
+      name: THEME_STORAGE_KEY, storage: createJSONStorage(getActivePersonalStorage),
       version: 1,
       migrate: (persistedState) => {
         const state = (persistedState ?? {}) as { mode?: unknown; dark?: unknown }
@@ -147,3 +149,5 @@ if (import.meta.hot) {
     else systemThemeQuery?.removeListener?.(handleSystemThemeChange)
   })
 }
+
+registerPersonalStore(useThemeStore, { mode: 'system', dark: false })

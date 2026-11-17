@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import type { UiLocale } from '../types'
 
 interface LocaleState {
@@ -13,6 +15,8 @@ export const useLocaleStore = create<LocaleState>()(
       locale: 'en',
       setLocale: (locale) => set({ locale }),
     }),
-    { name: 'sikh-ui-locale' }
+    { name: 'sikh-ui-locale', storage: createJSONStorage(getActivePersonalStorage), }
   )
 )
+
+registerPersonalStore(useLocaleStore)

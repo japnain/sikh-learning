@@ -32,6 +32,13 @@ describe('persistent book appearance', () => {
     expect(useEpubReaderStore.getState()).toMatchObject({ ...oldAppearance, paragraphSpacing: 'comfortable' })
   })
 
+  test('does not downgrade an unsupported future envelope during hydration', async () => {
+    const future = { version: 3, state: { fontScale: 1.3, fontFamily: 'classic', futureSetting: true } }
+    const { useEpubReaderStore, DEFAULT_EPUB_READER_PREFERENCES } = await loadStore(future)
+    expect(useEpubReaderStore.getState()).toMatchObject(DEFAULT_EPUB_READER_PREFERENCES)
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!)).toEqual(future)
+  })
+
   test('normalizes malformed current-version settings and ignores unexpected stored fields', async () => {
     const { useEpubReaderStore, DEFAULT_EPUB_READER_PREFERENCES } = await loadStore({
       version: 2,

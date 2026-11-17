@@ -1080,10 +1080,6 @@
   inset: 0;
 }
 
-.read-collection-intro--library img {
-  object-position: center 42%;
-}
-
 .read-collection-intro > div {
   z-index: 1;
   grid-column: 1;

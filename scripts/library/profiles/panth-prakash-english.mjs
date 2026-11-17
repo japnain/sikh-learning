@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { PANTH_PRAKASH_DISPLAY_TITLES, panthPrakashDisplayTitle } from './panth-prakash-display-titles.mjs'
 import {
   copyEpubAsset,
   countWords,
@@ -405,7 +406,7 @@ function buildChapters(episodeDrafts) {
       chapterNumber: draft.episodeNumber,
       episodeNumber: draft.episodeNumber,
       kind: 'episode',
-      title: titleFromOpening(draft.fragments[0]?.text ?? '', draft.episodeNumber),
+      title: panthPrakashDisplayTitle(draft.episodeNumber, titleFromOpening(draft.fragments[0]?.text ?? '', draft.episodeNumber)),
       volume: draft.volume,
       publicationId: draft.publicationId,
       startSourcePage: pages[0]?.sourcePageNumber ?? 0,
@@ -417,6 +418,8 @@ function buildChapters(episodeDrafts) {
       source: {
         type: 'epub',
         fileName: draft.publicationId === 'volume-1' ? 'vol1.epub' : 'vol2.epub',
+        ...(PANTH_PRAKASH_DISPLAY_TITLES.some(entry => entry.episodeNumber === draft.episodeNumber)
+          ? { title: titleFromOpening(draft.fragments[0]?.text ?? '', draft.episodeNumber) } : {}),
       },
     }
     startPosition += wordCount
@@ -652,6 +655,7 @@ export function importPanthPrakashEnglish({ vol1Epub, vol2Epub, libraryRoot = 'p
       'Episode 3 has no descriptive heading in the body; its display title is taken from the source volume’s contents page.',
     ],
     verifiedCorrections: VERIFIED_CORRECTIONS,
+    displayTitleOverrides: PANTH_PRAKASH_DISPLAY_TITLES,
     unresolvedSourceArtifacts: [{ publicationId: 'volume-1', sourcePageNumber: 49, text: "Delhi Ruler's Version44", status: 'present-in-printed-source', evidence: 'The same-edition PDF, printed p. 5, also contains Version44. Retained rather than guessing what the number means.', sourceUrl: 'https://library.gurmat.info/download/sri-gur-panth-prakash-volume-1-history-of-the-10-gurus-rattan-singh-bhangoo-translation-kulwant-singh.pdf#page=50' }],
     locatorPolicy: 'Chapter startPosition is the one-based cumulative word position. Page locators retain publication ID, EPUB source href, source page number, and printed page number.',
   }

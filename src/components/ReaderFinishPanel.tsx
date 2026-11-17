@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getPersonalStorage } from '../utils/ownerStorage'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useLocaleStore } from '../store/locale'
@@ -130,15 +131,16 @@ export default function ReaderFinishPanel({ readingPath, onReadAgain, onBack }: 
     if (!currentOption || (current.completionTrackingEnabled && !current.isComplete(currentOption.id))
       || !isActiveNitnemPracticeReading(readingPath, previous)) return
     const key = useNitnemPracticeStore.persist.getOptions().name ?? 'naamras-nitnem-practice'
+    const storage = getPersonalStorage()
     let saved: string | null
-    try { saved = localStorage.getItem(key) } catch {
+    try { saved = storage.getItem(key) } catch {
       setFailure({ path: readingPath, date: toLocalDayStamp(new Date(timestamp)) })
       return
     }
     if (practice.finish(currentOption.id)) return
     // A failed persistent write must leave an unfinished context that can retry.
     try { useNitnemPracticeStore.setState({ active: previous }) } catch { /* The in-memory rollback still applies. */ }
-    try { if (saved === null) localStorage.removeItem(key); else localStorage.setItem(key, saved) } catch { /* Preserve the retry action when storage stays unavailable. */ }
+    try { if (saved === null) storage.removeItem(key); else storage.setItem(key, saved) } catch { /* Preserve the retry action when storage stays unavailable. */ }
     setFailure({ path: readingPath, date: toLocalDayStamp(new Date(timestamp)) })
   }
 

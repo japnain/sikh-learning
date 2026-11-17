@@ -6,6 +6,9 @@ import { useNitnemOfflineStatusStore } from '../store/nitnemOffline'
 import { readBaniOfflineCache, setProtectedBaniOfflineReadings, writeBaniOfflineCache } from '../utils/baniOfflineCache'
 import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useNitemOfflineCache } from './useNitemOfflineCache'
+import { ensureOfflineReaderShell } from '../utils/offlineReaderShell'
+
+vi.mock('../utils/offlineReaderShell', () => ({ ensureOfflineReaderShell: vi.fn() }))
 
 vi.mock('../api/banidb', () => ({
   fetchBani: vi.fn(),
@@ -40,6 +43,7 @@ beforeEach(() => {
   vi.mocked(readBaniOfflineCache).mockReset().mockResolvedValue(null)
   vi.mocked(writeBaniOfflineCache).mockReset()
   vi.mocked(setProtectedBaniOfflineReadings).mockReset()
+  vi.mocked(ensureOfflineReaderShell).mockReset().mockResolvedValue(undefined)
   useNitnemOfflineStatusStore.setState({ ready: 0, total: 0, status: 'checking', signature: '', retryRevision: 0 })
   Object.defineProperty(navigator, 'connection', { configurable: true, value: undefined })
   useSundarGutkaLengthStore.setState({ lengths: { ...DEFAULT_SUNDAR_GUTKA_LENGTHS } })
@@ -63,6 +67,57 @@ beforeEach(() => {
 afterEach(() => vi.useRealTimers())
 
 describe('useNitemOfflineCache', () => {
+  it('does not promise offline readiness when cached text has no matching reader shell', async () => {
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(exactBaniResult)
+    vi.mocked(ensureOfflineReaderShell).mockRejectedValue(new Error('missing or wrong-build shell'))
+    renderHook(() => useNitemOfflineCache())
+    await waitFor(() => expect(useNitnemOfflineStatusStore.getState()).toMatchObject({ ready: 2, total: 2, status: 'shell-unavailable' }))
+    expect(fetchBani).not.toHaveBeenCalled()
+    expect(writeBaniOfflineCache).not.toHaveBeenCalled()
+  })
+
+  it('waits for the matching shell and retries without downloading or replacing saved text', async () => {
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(exactBaniResult)
+    vi.mocked(ensureOfflineReaderShell).mockRejectedValueOnce(new Error('old shell'))
+    renderHook(() => useNitemOfflineCache())
+    await waitFor(() => expect(useNitnemOfflineStatusStore.getState().status).toBe('shell-unavailable'))
+    let finishShell!: () => void
+    vi.mocked(ensureOfflineReaderShell).mockImplementationOnce(() => new Promise(resolve => { finishShell = resolve }))
+    act(() => useNitnemOfflineStatusStore.getState().retry())
+    await waitFor(() => expect(ensureOfflineReaderShell).toHaveBeenCalledTimes(2))
+    expect(useNitnemOfflineStatusStore.getState()).toMatchObject({ ready: 2, status: 'preparing' })
+    await act(async () => finishShell())
+    expect(useNitnemOfflineStatusStore.getState()).toMatchObject({ ready: 2, total: 2, status: 'ready' })
+    expect(fetchBani).not.toHaveBeenCalled()
+    expect(writeBaniOfflineCache).not.toHaveBeenCalled()
+    expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib', 'rehras-sahib'])
+  })
+
+  it('does not publish an obsolete shell result after the routine changes', async () => {
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(exactBaniResult)
+    let finishOld!: () => void
+    vi.mocked(ensureOfflineReaderShell).mockImplementationOnce(() => new Promise(resolve => { finishOld = resolve }))
+    renderHook(() => useNitemOfflineCache())
+    await waitFor(() => expect(ensureOfflineReaderShell).toHaveBeenCalledTimes(1))
+    const signal = vi.mocked(ensureOfflineReaderShell).mock.calls[0][0]
+    vi.mocked(ensureOfflineReaderShell).mockRejectedValueOnce(new Error('shell unavailable'))
+    act(() => useNitemStore.setState({ selectedIds: ['japji-sahib'] }))
+    await waitFor(() => expect(useNitnemOfflineStatusStore.getState()).toMatchObject({ total: 1, status: 'shell-unavailable' }))
+    expect(signal?.aborted).toBe(true)
+    await act(async () => finishOld())
+    expect(useNitnemOfflineStatusStore.getState()).toMatchObject({ ready: 1, total: 1, status: 'shell-unavailable' })
+  })
+
+  it('rechecks the shell when returning to the app after cache eviction', async () => {
+    vi.mocked(readBaniOfflineCache).mockResolvedValue(exactBaniResult)
+    renderHook(() => useNitemOfflineCache())
+    await waitFor(() => expect(useNitnemOfflineStatusStore.getState().status).toBe('ready'))
+    vi.mocked(ensureOfflineReaderShell).mockRejectedValueOnce(new Error('evicted shell'))
+    act(() => document.dispatchEvent(new Event('visibilitychange')))
+    await waitFor(() => expect(useNitnemOfflineStatusStore.getState().status).toBe('shell-unavailable'))
+    expect(fetchBani).not.toHaveBeenCalled()
+  })
+
   it('prepares the new exact length after a saved preference changes', async () => {
     vi.mocked(readBaniOfflineCache).mockResolvedValue(null)
     vi.mocked(fetchBani).mockResolvedValue(exactBaniResult)

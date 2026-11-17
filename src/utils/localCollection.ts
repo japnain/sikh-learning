@@ -1,3 +1,4 @@
+import { getPersonalStorage, getPersonalStorageOwner, onPersonalStorageReset, personalStorageEventKey } from './ownerStorage'
 /**
  * Synchronous collections with atomic per-item writes and durable tombstones.
  * The legacy list is a compatibility mirror. Independent tabs never overwrite
@@ -64,7 +65,7 @@ function write(storage: Storage, key: string, after: string) {
   return storage.getItem(key) === after
 }
 function browserStorage(): Storage | null {
-  try { return typeof window === 'undefined' ? null : window.localStorage }
+  try { return typeof window === 'undefined' ? null : getPersonalStorage() }
   catch { return null }
 }
 function namespace(storageKey: string) { return `${PREFIX}${encodeURIComponent(storageKey)}:` }
@@ -89,7 +90,19 @@ export function createLocalCollection<T>(options: CollectionOptions<T>) {
   const snapshotKey = getLocalCollectionSnapshotKey(options.storageKey)
   const recordRoot = `${namespace(options.storageKey)}record:`
   const getStorage = options.storage ?? browserStorage
-  const pending = new Map<string, T | null>()
+  const pendingByOwner = new Map<string, Map<string, T | null>>()
+  onPersonalStorageReset(() => pendingByOwner.clear())
+  const pendingForOwner = () => {
+    const owner = getPersonalStorageOwner()
+    if (!pendingByOwner.has(owner)) pendingByOwner.set(owner, new Map())
+    return pendingByOwner.get(owner)!
+  }
+  const pending = {
+    [Symbol.iterator]: () => pendingForOwner()[Symbol.iterator](),
+    set: (id: string, item: T | null) => pendingForOwner().set(id, item),
+    delete: (id: string) => pendingForOwner().delete(id),
+    clear: () => pendingForOwner().clear(),
+  }
   const withPending = (items: T[]) => {
     const merged = new Map(items.map(item => [options.getId(item), item]))
     for (const [id, item] of pending) {
@@ -238,8 +251,9 @@ export function createLocalCollection<T>(options: CollectionOptions<T>) {
     subscribe: (listener: (items: T[]) => void) => {
       if (typeof window === 'undefined') return () => {}
       const onStorage = (event: StorageEvent) => {
-        if (event.storageArea && event.storageArea !== getStorage()) return
-        if (event.key === null || event.key === snapshotKey || event.key === options.storageKey || event.key.startsWith(recordRoot)) {
+        const key = personalStorageEventKey(event)
+        if (key === undefined) return
+        if (key === null || key === snapshotKey || key === options.storageKey || key.startsWith(recordRoot)) {
           const target = getStorage()
           if (!target) return
           try { listener(withPending(readFrom(target))) } catch { /* Keep useful session state if storage is temporarily unreadable. */ }

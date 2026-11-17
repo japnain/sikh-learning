@@ -9,6 +9,7 @@ import { mockDocumentScroll } from '../../test/documentScroll'
 import type { Story, StoryCatalog, StorySummary } from '../../types/stories'
 import StoryReader, { StoryReadingView } from './StoryReader'
 import StoryDraftPreview from './StoryDraftPreview'
+import { resetPersonalStorageOwnerForTests, selectPersonalStorageOwner } from '../../utils/ownerStorage'
 
 const mocks = vi.hoisted(() => ({
   loadStory: vi.fn(),
@@ -514,6 +515,21 @@ it('commits the visible paragraph when scrolling settles without moving keyboard
     fireEvent(window, new Event('pagehide'))
   })
   expect(useStoryStore.getState().positions[story.id]).toMatchObject({ paragraphId: 'milk-p03', progress: 1 })
+})
+
+it('does not commit the outgoing story into another account on unmount', async () => {
+  selectPersonalStorageOwner('story-reader-a')
+  const save = vi.spyOn(useStoryStore.getState(), 'savePosition')
+  const view = renderReader()
+  await screen.findByRole('heading', { name: story.title })
+  await waitFor(() => expect(screen.getByRole('article')).toHaveFocus())
+  documentScroll.setTop(1300)
+  act(() => { selectPersonalStorageOwner('story-reader-b') })
+  save.mockClear()
+  view.unmount()
+  expect(save).not.toHaveBeenCalled()
+  expect(useStoryStore.getState().positions).toEqual({})
+  resetPersonalStorageOwnerForTests()
 })
 
 it('restores a paragraph from durable reading state after a fresh mount', async () => {

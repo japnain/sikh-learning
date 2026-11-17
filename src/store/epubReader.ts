@@ -2,28 +2,19 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useThemeStore } from './theme'
 
-export type EpubReaderLineHeight = 'compact' | 'comfortable' | 'spacious'
-export type EpubReaderMeasure = 'narrow' | 'standard' | 'wide'
-export type EpubReaderPalette = 'app' | 'paper' | 'sepia' | 'night'
-export type EpubReaderFontFamily = 'literary' | 'classic' | 'sans'
-export type EpubReaderParagraphSpacing = 'compact' | 'comfortable'
-export type EpubReaderMode = 'paged' | 'scroll'
-export type EpubReaderPageTurn = 'curl' | 'fade'
-
-export const EPUB_FONT_SCALE_MIN = 0.85
-export const EPUB_FONT_SCALE_MAX = 2
-export const EPUB_FONT_SCALE_STEP = 0.05
-
-export interface EpubReaderPreferences {
-  fontScale: number
-  lineHeight: EpubReaderLineHeight
-  measure: EpubReaderMeasure
-  palette: EpubReaderPalette
-  fontFamily: EpubReaderFontFamily
-  paragraphSpacing: EpubReaderParagraphSpacing
-  readingMode: EpubReaderMode
-  pageTurn: EpubReaderPageTurn
-}
+import {
+  DEFAULT_EPUB_READER_PREFERENCES, EPUB_READER_PREFERENCES_KEY, EPUB_READER_PREFERENCES_VERSION,
+  clampEpubFontScale, normalizeEpubReaderPreferences, migrateEpubReaderPreferences,
+  type EpubReaderPreferences, type EpubReaderLineHeight, type EpubReaderMeasure, type EpubReaderPalette,
+  type EpubReaderFontFamily, type EpubReaderParagraphSpacing, type EpubReaderMode, type EpubReaderPageTurn,
+} from '../utils/epubReaderPreferences'
+export {
+  DEFAULT_EPUB_READER_PREFERENCES, EPUB_FONT_SCALE_MIN, EPUB_FONT_SCALE_MAX, EPUB_FONT_SCALE_STEP,
+} from '../utils/epubReaderPreferences'
+export type {
+  EpubReaderPreferences, EpubReaderLineHeight, EpubReaderMeasure, EpubReaderPalette,
+  EpubReaderFontFamily, EpubReaderParagraphSpacing, EpubReaderMode, EpubReaderPageTurn,
+} from '../utils/epubReaderPreferences'
 
 interface EpubReaderState extends EpubReaderPreferences {
   setFontScale: (fontScale: number) => void
@@ -37,55 +28,25 @@ interface EpubReaderState extends EpubReaderPreferences {
   resetPreferences: () => void
 }
 
-export const DEFAULT_EPUB_READER_PREFERENCES: EpubReaderPreferences = {
-  fontScale: 1,
-  lineHeight: 'comfortable',
-  measure: 'standard',
-  palette: 'app',
-  fontFamily: 'literary',
-  paragraphSpacing: 'comfortable',
-  readingMode: 'paged',
-  pageTurn: 'curl',
-}
-
-function clampFontScale(fontScale: number) {
-  if (!Number.isFinite(fontScale)) return DEFAULT_EPUB_READER_PREFERENCES.fontScale
-  return Math.min(EPUB_FONT_SCALE_MAX, Math.max(EPUB_FONT_SCALE_MIN, Math.round(fontScale * 20) / 20))
-}
-
-function normalizedPreferences(value: unknown): EpubReaderPreferences {
-  const data = value && typeof value === 'object' ? value as Partial<EpubReaderPreferences> : {}
-  return {
-    fontScale: typeof data.fontScale === 'number' ? clampFontScale(data.fontScale) : DEFAULT_EPUB_READER_PREFERENCES.fontScale,
-    lineHeight: ['compact', 'comfortable', 'spacious'].includes(data.lineHeight ?? '') ? data.lineHeight! : 'comfortable',
-    measure: ['narrow', 'standard', 'wide'].includes(data.measure ?? '') ? data.measure! : 'standard',
-    palette: ['app', 'paper', 'sepia', 'night'].includes(data.palette ?? '') ? data.palette! : 'app',
-    fontFamily: ['literary', 'classic', 'sans'].includes(data.fontFamily ?? '') ? data.fontFamily! : 'literary',
-    paragraphSpacing: ['compact', 'comfortable'].includes(data.paragraphSpacing ?? '') ? data.paragraphSpacing! : 'comfortable',
-    readingMode: ['paged', 'scroll'].includes(data.readingMode ?? '') ? data.readingMode! : 'paged',
-    pageTurn: ['curl', 'fade'].includes(data.pageTurn ?? '') ? data.pageTurn! : 'curl',
-  }
-}
-
 export const useEpubReaderStore = create<EpubReaderState>()(
   persist(
     set => ({
       ...DEFAULT_EPUB_READER_PREFERENCES,
-      setFontScale: fontScale => set({ fontScale: clampFontScale(fontScale) }),
+      setFontScale: fontScale => set({ fontScale: clampEpubFontScale(fontScale) }),
       setLineHeight: lineHeight => set({ lineHeight }),
       setMeasure: measure => set({ measure }),
       setPalette: palette => set({ palette }),
-      setFontFamily: fontFamily => set({ fontFamily: normalizedPreferences({ fontFamily }).fontFamily }),
-      setParagraphSpacing: paragraphSpacing => set({ paragraphSpacing: normalizedPreferences({ paragraphSpacing }).paragraphSpacing }),
-      setReadingMode: readingMode => set({ readingMode: normalizedPreferences({ readingMode }).readingMode }),
-      setPageTurn: pageTurn => set({ pageTurn: normalizedPreferences({ pageTurn }).pageTurn }),
+      setFontFamily: fontFamily => set({ fontFamily: normalizeEpubReaderPreferences({ fontFamily }).fontFamily }),
+      setParagraphSpacing: paragraphSpacing => set({ paragraphSpacing: normalizeEpubReaderPreferences({ paragraphSpacing }).paragraphSpacing }),
+      setReadingMode: readingMode => set({ readingMode: normalizeEpubReaderPreferences({ readingMode }).readingMode }),
+      setPageTurn: pageTurn => set({ pageTurn: normalizeEpubReaderPreferences({ pageTurn }).pageTurn }),
       resetPreferences: () => set(DEFAULT_EPUB_READER_PREFERENCES),
     }),
     {
-      name: 'sikh-epub-reader-preferences',
-      version: 2,
-      migrate: persisted => normalizedPreferences(persisted),
-      merge: (persisted, current) => ({ ...current, ...normalizedPreferences(persisted) }),
+      name: EPUB_READER_PREFERENCES_KEY,
+      version: EPUB_READER_PREFERENCES_VERSION,
+      migrate: migrateEpubReaderPreferences,
+      merge: (persisted, current) => ({ ...current, ...normalizeEpubReaderPreferences(persisted) }),
       partialize: state => ({
         fontScale: state.fontScale,
         lineHeight: state.lineHeight,

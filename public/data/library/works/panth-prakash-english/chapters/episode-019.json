@@ -4,7 +4,7 @@
   "chapterNumber": 19,
   "episodeNumber": 19,
   "kind": "episode",
-  "title": "Martyrdom of the Elder Sahibzadas - The Battale of Chamkaur",
+  "title": "Martyrdom of the Elder Sahibzadas - The Battle of Chamkaur",
   "volume": 1,
   "publicationId": "volume-1",
   "startSourcePage": 163,
@@ -783,7 +783,8 @@
   ],
   "source": {
     "type": "epub",
-    "fileName": "vol1.epub"
+    "fileName": "vol1.epub",
+    "title": "Martyrdom of the Elder Sahibzadas - The Battale of Chamkaur"
   },
   "previousChapterId": "episode-018",
   "nextChapterId": "episode-020",

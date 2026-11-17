@@ -1,3 +1,5 @@
+import { getPersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
@@ -29,11 +31,13 @@ export const useReadingVisibilityStore = create<ReadingVisibilityState>()(persis
     name: 'naamras-reading-visibility',
     version: 1,
     storage: createJSONStorage(() => ({
-      getItem: key => { try { return localStorage.getItem(key) } catch { return null } },
-      setItem: (key, value) => { try { localStorage.setItem(key, value) } catch { /* Keep reversible shelf choices usable for this session. */ } },
-      removeItem: key => { try { localStorage.removeItem(key) } catch { /* In-memory state remains usable. */ } },
+      getItem: key => { try { return getPersonalStorage().getItem(key) } catch { return null } },
+      setItem: (key, value) => { try { getPersonalStorage().setItem(key, value) } catch { /* Keep reversible shelf choices usable for this session. */ } },
+      removeItem: key => { try { getPersonalStorage().removeItem(key) } catch { /* In-memory state remains usable. */ } },
     })),
     partialize: state => ({ hidden: state.hidden }),
     merge: (persisted, current) => ({ ...current, hidden: normalizeHidden((persisted as { hidden?: unknown } | null)?.hidden) }),
   },
 ))
+
+registerPersonalStore(useReadingVisibilityStore)

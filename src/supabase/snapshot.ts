@@ -1,3 +1,4 @@
+import { getPersonalStorage } from '../utils/ownerStorage'
 import { beginLocalCollectionTransaction } from '../utils/localCollection'
 import type { VocabEntry } from '../types'
 import { useBookmarksStore } from '../store/bookmarks'
@@ -111,7 +112,7 @@ function readSnapshotMetadata(): SnapshotMetadataMap {
   if (!canUseStorage()) return {}
 
   try {
-    const raw = globalThis.localStorage.getItem(SNAPSHOT_METADATA_STORAGE_KEY)
+    const raw = getPersonalStorage().getItem(SNAPSHOT_METADATA_STORAGE_KEY)
     if (!raw) return {}
 
     const parsed = JSON.parse(raw)
@@ -126,8 +127,8 @@ function writeSnapshotMetadata(metadata: SnapshotMetadataMap) {
 
   try {
     const encoded = JSON.stringify(metadata)
-    globalThis.localStorage.setItem(SNAPSHOT_METADATA_STORAGE_KEY, encoded)
-    return globalThis.localStorage.getItem(SNAPSHOT_METADATA_STORAGE_KEY) === encoded
+    getPersonalStorage().setItem(SNAPSHOT_METADATA_STORAGE_KEY, encoded)
+    return getPersonalStorage().getItem(SNAPSHOT_METADATA_STORAGE_KEY) === encoded
   } catch {
     // Local reading remains usable when browser storage is under pressure.
     return false
@@ -604,7 +605,7 @@ export function exportLocalSnapshot(): CloudLocalSnapshot {
     learningProgress: extractLearningProgress(metadata, now),
     activityEvents,
   }
-  writeSnapshotMetadata(metadata)
+  if (!writeSnapshotMetadata(metadata)) throw new Error('cloud-export-metadata-not-persisted')
   return snapshot
 }
 
@@ -800,7 +801,7 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
   const restoreStores = stores.map((store, index) => store.persist?.captureRollback?.() ?? (() => store.setState(originalStates[index], true)))
   const keys = [...stores.flatMap(store => store.persist ? [store.persist.getOptions().name] : []),
     'sikh-bookmarks', 'sikh-favorites', SNAPSHOT_METADATA_STORAGE_KEY]
-  const previous = new Map(keys.map(key => [key, localStorage.getItem(key)]))
+  const previous = new Map(keys.map(key => [key, getPersonalStorage().getItem(key)]))
   const collectionTransaction = beginLocalCollectionTransaction()
   try {
     applyProfileRecord(snapshot.profile)
@@ -813,7 +814,7 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
       if (!store.persist || store.getState() === originalStates[index]) return
       const options = store.persist.getOptions()
       const state = options.partialize ? options.partialize(store.getState()) : store.getState()
-      if (localStorage.getItem(options.name) !== JSON.stringify({ state, version: options.version ?? 0 })) {
+      if (getPersonalStorage().getItem(options.name) !== JSON.stringify({ state, version: options.version ?? 0 })) {
         throw new Error('Cloud data could not be persisted on this device.')
       }
     })
@@ -828,10 +829,10 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
     try { collectionTransaction.rollback() } catch { rollbackFailed = true }
     for (const [key, raw] of previous) {
       try {
-        if (localStorage.getItem(key) === raw) continue
-        if (raw === null) localStorage.removeItem(key)
-        else localStorage.setItem(key, raw)
-        if (localStorage.getItem(key) !== raw) rollbackFailed = true
+        if (getPersonalStorage().getItem(key) === raw) continue
+        if (raw === null) getPersonalStorage().removeItem(key)
+        else getPersonalStorage().setItem(key, raw)
+        if (getPersonalStorage().getItem(key) !== raw) rollbackFailed = true
       } catch { rollbackFailed = true }
     }
     useBookmarksStore.getState().hydrateCachedBookmarks()

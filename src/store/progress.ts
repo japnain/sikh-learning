@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import type { LibraryReaderLocator, StudiedEntry } from '../types'
 import { getUpdatedStreak } from '../utils/streak'
 import { queueActivityEvent } from './activityEvents'
@@ -194,7 +196,7 @@ export const useProgressStore = create<ProgressState>()(
       }
     },
     {
-      name: 'sikh-progress',
+      name: 'sikh-progress', storage: createJSONStorage(getActivePersonalStorage),
       version: 3,
       merge: (persisted, current) => {
         const stored = (persisted as Partial<ProgressState> | undefined) ?? {}
@@ -217,3 +219,5 @@ export const useProgressStore = create<ProgressState>()(
     }
   )
 )
+
+registerPersonalStore(useProgressStore)

@@ -54,6 +54,7 @@ for (const work of works) {
     if (!requireFile(publicPath(entry.path), `${work.id}/${entry.id}`)) return
     const chapter = readJson(publicPath(entry.path))
     if (chapter.id !== entry.id) errors.push(`${work.id}/${entry.id}: payload ID mismatch`)
+    if (chapter.title !== entry.title) errors.push(`${work.id}/${entry.id}: display title mismatch`)
     if (chapter.chapterNumber !== entry.chapterNumber) errors.push(`${work.id}/${entry.id}: chapter number mismatch`)
     if (index > 0 && chapter.previousChapterId !== chapterIndex[index - 1].id) errors.push(`${work.id}/${entry.id}: previousChapterId mismatch`)
     if (index < chapterIndex.length - 1 && chapter.nextChapterId !== chapterIndex[index + 1].id) errors.push(`${work.id}/${entry.id}: nextChapterId mismatch`)
@@ -82,6 +83,22 @@ for (const work of works) {
   }
 
   if (work.id === 'panth-prakash-english') {
+    const episodes = readJson(path.join(libraryRoot, 'works', work.id, 'episodes.json'))
+    const search = readJson(path.join(libraryRoot, 'works', work.id, 'search-index.json'))
+    const provenance = readJson(publicPath(work.provenancePath))
+    for (const chapter of chapterIndex) {
+      if (episodes.find(entry => entry.chapterId === chapter.id)?.title !== chapter.title
+        || search.chapters.find(entry => entry.chapterId === chapter.id)?.title !== chapter.title) {
+        errors.push(`${work.id}/${chapter.id}: catalogue/search display title mismatch`)
+      }
+    }
+    for (const override of provenance.displayTitleOverrides ?? []) {
+      const chapter = chapterIndex.find(entry => entry.episodeNumber === override.episodeNumber)
+      if (!chapter || chapter.title !== override.displayTitle
+        || readJson(publicPath(chapter.path)).source?.title !== override.sourceTitle) {
+        errors.push(`${work.id}: display-title provenance mismatch for episode ${override.episodeNumber}`)
+      }
+    }
     const validationPath = path.join(libraryRoot, 'works', work.id, 'validation.json')
     const validation = readJson(validationPath)
     if (validation.status !== 'passed') errors.push(`${work.id}: generated validation is ${validation.status}`)

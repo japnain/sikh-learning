@@ -1,3 +1,4 @@
+import { onPersonalOwnerHydration } from '../utils/ownerStorage'
 import { create } from 'zustand'
 import { createLocalCollection } from '../utils/localCollection'
 import type { StorySummary } from '../types/stories'
@@ -185,3 +186,8 @@ const unsubscribeStories = storyCollection.subscribe(records => {
   }
 })
 if (import.meta.hot) import.meta.hot.dispose(unsubscribeStories)
+
+onPersonalOwnerHydration(hydrate => {
+  setMemory({ saved: {}, positions: {} })
+  if (hydrate) useStoryStore.getState().hydrateCachedStories()
+})

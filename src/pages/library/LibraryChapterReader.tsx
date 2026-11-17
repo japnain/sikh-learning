@@ -1,3 +1,4 @@
+import { getPersonalStorageGeneration } from '../../utils/ownerStorage'
 import { useResolvedEpubPalette, EPUB_APP_PALETTE_LABEL } from '../../store/epubReader'
 import '../../styles/catalog.css'
 import {
@@ -245,6 +246,7 @@ function ReaderPanelShell({ title, description, palette, onClose, children, clos
 }
 
 export default function LibraryChapterReader() {
+  const ownerGeneration = useRef(getPersonalStorageGeneration())
   const updateSession = useProgressStore(state => state.updateSession)
   const locale = useLocaleStore(state => state.locale)
   const readerCopy = BOOK_READER_COPY[locale]
@@ -432,7 +434,7 @@ export default function LibraryChapterReader() {
   }, [renderLocationProgress])
 
   const commitLocation = useCallback((blockId: string) => {
-    if (!reader || committedBlockIdRef.current === blockId) return
+    if (getPersonalStorageGeneration() !== ownerGeneration.current || !reader || committedBlockIdRef.current === blockId) return
     const locator = createLocator(blockId)
     if (!locator) return
     committedBlockIdRef.current = blockId

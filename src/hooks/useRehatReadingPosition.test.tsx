@@ -3,6 +3,7 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { useRehatReadingPosition } from './useRehatReadingPosition'
 import { useReadingPlacesStore } from '../store/readingPlaces'
 import { scrollAppTo } from '../utils/appScroll'
+import { resetPersonalStorageOwnerForTests, selectPersonalStorageOwner } from '../utils/ownerStorage'
 
 const scrolling = vi.hoisted(() => ({ top: 0, settled: null as (() => void) | null }))
 vi.mock('../utils/appScroll', () => ({
@@ -15,11 +16,12 @@ vi.mock('../utils/appScroll', () => ({
 beforeEach(() => {
   vi.useFakeTimers()
   vi.clearAllMocks()
+  resetPersonalStorageOwnerForTests()
   localStorage.clear()
   useReadingPlacesStore.setState({ places: {} })
   scrolling.top = 0
 })
-afterEach(() => { vi.useRealTimers(); document.body.innerHTML = '' })
+afterEach(() => { vi.useRealTimers(); document.body.innerHTML = ''; resetPersonalStorageOwnerForTests() })
 
 function geometry(top: number, height: number) {
   return { top, bottom: top + height, height, left: 0, right: 300, width: 300, x: 0, y: top, toJSON: () => ({}) } as DOMRect
@@ -36,6 +38,19 @@ function reading() {
   return { root, secondGeometry, props: { rootRef: { current: root }, rehatId: 1, chapterId: 11,
     sourceTitle: 'Sikh Rehat Maryada', chapterTitle: 'Daily Discipline', revision: 'r1', renderedHtml: root.innerHTML, finding: false } }
 }
+
+test('an outgoing reader cannot save its position during the next account unmount cleanup', () => {
+  selectPersonalStorageOwner('reader-account-a')
+  const { props } = reading()
+  const hook = renderHook(() => useRehatReadingPosition(props))
+  act(() => { vi.runAllTimers() })
+  scrolling.top = 300
+  act(() => { selectPersonalStorageOwner('reader-account-b') })
+  const save = vi.spyOn(useReadingPlacesStore.getState(), 'remember')
+  hook.unmount()
+  expect(save).not.toHaveBeenCalled()
+  expect(useReadingPlacesStore.getState().places).toEqual({})
+})
 
 test('saves only a settled or suspended reading, and reopens its verified paragraph', () => {
   const { props } = reading()

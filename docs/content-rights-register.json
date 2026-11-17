@@ -1,0 +1,3212 @@
+{
+  "version": 1,
+  "createdAt": "2026-11-17",
+  "scope": "Conservative inventory of source artwork, public art/audio, exact public book editions and derived reader files, stories, and scripture providers. Font files are independently registered in public/licenses/fonts.json. Unresolved is not an infringement finding. Private permission correspondence must stay outside the public repository.",
+  "entries": [
+    {
+      "id": "art-hero.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/hero.png",
+          "sha256": "72a860570eddf1dd9988f26c7106c67be286bc9f2fd3303c465ce87edb1ae6cd"
+        }
+      ]
+    },
+    {
+      "id": "art-home-artwork-akal-takht-simpson-thumb.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1246579502&title=File:Watercolour_painting_titled_'Akal_Boonga_(Akal_Bunga,_known_today_as_the_Akal_Takht)_at_the_Golden_temple._Umritsar_(Amritsar)._Punjaub_(Punjab)',_painted_in_1864_by_William_Simpson.jpg",
+      "creator": "William Simpson (1823\u20131899), 1864; V&A reproduction",
+      "license": "Commons PD-Art / PD-old-auto-expired; V&A reproduction terms need resolution",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Exact original SHA-1 matches Commons metadata. Commons assesses reproduction as public domain; V&A September2026terms impose separate digital-size,homepage and credit conditions. Whether and how those terms apply to Commons acquisition needs a deliberate review; no infringement conclusion. Current unlimited Home/offline use is not approved by this register.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/akal-takht-simpson-thumb.jpg",
+          "sha256": "2e2f7217400357da1085c81124b29298c5d0545cec455219271c87461b455071"
+        }
+      ],
+      "sourceOriginalSha1": "be1c1461c8d85c458ff3991c97dea5e2a8d296a8"
+    },
+    {
+      "id": "art-home-artwork-akal-takht-simpson.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1246579502&title=File:Watercolour_painting_titled_'Akal_Boonga_(Akal_Bunga,_known_today_as_the_Akal_Takht)_at_the_Golden_temple._Umritsar_(Amritsar)._Punjaub_(Punjab)',_painted_in_1864_by_William_Simpson.jpg",
+      "creator": "William Simpson (1823\u20131899), 1864; V&A reproduction",
+      "license": "Commons PD-Art / PD-old-auto-expired; V&A reproduction terms need resolution",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Exact original SHA-1 matches Commons metadata. Commons assesses reproduction as public domain; V&A September2026terms impose separate digital-size,homepage and credit conditions. Whether and how those terms apply to Commons acquisition needs a deliberate review; no infringement conclusion. Current unlimited Home/offline use is not approved by this register.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/akal-takht-simpson.jpg",
+          "sha256": "e1f94135c87799808e2a44becd5b9eb6059a7932ab7f28c75da6622c574801e8"
+        }
+      ],
+      "sourceOriginalSha1": "be1c1461c8d85c458ff3991c97dea5e2a8d296a8"
+    },
+    {
+      "id": "art-home-artwork-devotional-interior-thumb.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/devotional-interior-thumb.jpg",
+          "sha256": "64c3f9c730ad2067a18a7d81acf577909a011f011762e60d3fa3f30d71789c78"
+        }
+      ]
+    },
+    {
+      "id": "art-home-artwork-devotional-interior.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/devotional-interior.webp",
+          "sha256": "a5f89b07811b88317e8989b94142962dc00fb6d9542d7ed682eef4305c24523a"
+        }
+      ]
+    },
+    {
+      "id": "art-home-artwork-golden-temple-carpenter-thumb.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1246598901&title=File:1854_Golden_temple_painting_by_William_Carpenter.jpg",
+      "creator": "William Carpenter (1818\u20131899), February 1854, V&A IS.50-1882",
+      "license": "Commons PD-Art / PD-old-100-expired; V&A reproduction terms need resolution",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Exact original SHA-1 matches Commons metadata. Commons assesses reproduction as public domain; V&A September2026terms impose separate digital-size,homepage and credit conditions. Whether and how those terms apply to Commons acquisition needs a deliberate review; no infringement conclusion. Current unlimited Home/offline use is not approved by this register.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/golden-temple-carpenter-thumb.jpg",
+          "sha256": "eb71ccd169f04071a04f15cbe29dfc48bc9d9b6e4b7f8b191241100047c33229"
+        }
+      ],
+      "sourceOriginalSha1": "1db1a6fda726407d2442c33dee404282e346db97"
+    },
+    {
+      "id": "art-home-artwork-golden-temple-carpenter.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1246598901&title=File:1854_Golden_temple_painting_by_William_Carpenter.jpg",
+      "creator": "William Carpenter (1818\u20131899), February 1854, V&A IS.50-1882",
+      "license": "Commons PD-Art / PD-old-100-expired; V&A reproduction terms need resolution",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Exact original SHA-1 matches Commons metadata. Commons assesses reproduction as public domain; V&A September2026terms impose separate digital-size,homepage and credit conditions. Whether and how those terms apply to Commons acquisition needs a deliberate review; no infringement conclusion. Current unlimited Home/offline use is not approved by this register.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/golden-temple-carpenter.jpg",
+          "sha256": "5a9ae6cae828bfdb884ba41bdddef2b0d9fd8952f1ea1179984ccf7b5a60933c"
+        }
+      ],
+      "sourceOriginalSha1": "1db1a6fda726407d2442c33dee404282e346db97"
+    },
+    {
+      "id": "art-home-artwork-nanak-bala-mardana-thumb.jpg",
+      "category": "artwork",
+      "status": "approved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1014954499&title=File:Guru_Nanak_With_Mardana_and_Bala,_circa_1830.jpg",
+      "creator": "Unknown artist, circa 1830",
+      "license": "Public domain: Commons PD-Art / PD-old-100-expired / PDM-1.0",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": true,
+        "offline": true,
+        "transformation": true
+      },
+      "notes": "Bounded approval based on Commons public-domain assessment and exact original SHA-1 match. Original533221bytes,1100x1467; thumbnail240x320 visually confirmed same complete composition. Existing source credit retained. Supports the current credited Home display and mechanical thumbnail/offline copy; no universal-jurisdiction warranty or expansion into the Hukamnama cultural allowlist.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/nanak-bala-mardana-thumb.jpg",
+          "sha256": "ac9b6e5ce0e8cf56c52905e93c6a77c4203c6be0fa019c90715f4ffe9d28b793"
+        }
+      ],
+      "sourceOriginalSha1": "36f27c02565073cd43db5f8359a972db27b88cd3"
+    },
+    {
+      "id": "art-home-artwork-nanak-bala-mardana.jpg",
+      "category": "artwork",
+      "status": "approved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1014954499&title=File:Guru_Nanak_With_Mardana_and_Bala,_circa_1830.jpg",
+      "creator": "Unknown artist, circa 1830",
+      "license": "Public domain: Commons PD-Art / PD-old-100-expired / PDM-1.0",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": true,
+        "offline": true,
+        "transformation": true
+      },
+      "notes": "Bounded approval based on Commons public-domain assessment and exact original SHA-1 match. Original533221bytes,1100x1467; thumbnail240x320 visually confirmed same complete composition. Existing source credit retained. Supports the current credited Home display and mechanical thumbnail/offline copy; no universal-jurisdiction warranty or expansion into the Hukamnama cultural allowlist.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/nanak-bala-mardana.jpg",
+          "sha256": "dcf6a3e33e67e88ddb46b40273e845d9c12c5e584a9c6a9f34bcb11b8d329259"
+        }
+      ],
+      "sourceOriginalSha1": "36f27c02565073cd43db5f8359a972db27b88cd3"
+    },
+    {
+      "id": "art-home-artwork-nanak-companions-thumb.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1211704274&title=File:Painting_of_Guru_Nanak_flanked_by_Bala_on_the_right_and_Mardana_on_the_left,_Punjab,_circa_early_19th_century.jpg",
+      "creator": "Unknown artist, early nineteenth century",
+      "license": "Commons PD-Art / PD-old-70; U.S. tag missing",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Commons has PD-Art/PD-old-70 but explicitly requests missing U.S.public-domain tag. Current original fetch returned429; no provider checksum exposed for comparison. Preserve unresolved until source identity and adequate publication/copyright basis are documented.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/nanak-companions-thumb.jpg",
+          "sha256": "4a2b2af26ae741f20f52b1b52abe95ed7a70b421a6cbfe582d9f49ad8604c516"
+        }
+      ]
+    },
+    {
+      "id": "art-home-artwork-nanak-companions.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://commons.wikimedia.org/w/index.php?oldid=1211704274&title=File:Painting_of_Guru_Nanak_flanked_by_Bala_on_the_right_and_Mardana_on_the_left,_Punjab,_circa_early_19th_century.jpg",
+      "creator": "Unknown artist, early nineteenth century",
+      "license": "Commons PD-Art / PD-old-70; U.S. tag missing",
+      "evidence": "docs/qa/wikimedia-artwork-review-20261117.md",
+      "reviewedAt": "2026-11-17",
+      "attribution": "Existing Home credit and source link in src/data/homeArtworkAdditions.ts; retain artist/date and do not imply endorsement.",
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Commons has PD-Art/PD-old-70 but explicitly requests missing U.S.public-domain tag. Current original fetch returned429; no provider checksum exposed for comparison. Preserve unresolved until source identity and adequate publication/copyright basis are documented.",
+      "files": [
+        {
+          "path": "src/assets/home-artwork/nanak-companions.jpg",
+          "sha256": "81cff45e62bc7683dbdf26b933e04e7b1791f8402898e413878ee7beaaba95b6"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-ardaas-hukamnama-pixel-motif.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/ardaas-hukamnama-pixel-motif.webp",
+          "sha256": "2f30fb34b35d13bebab2f695201f6e90cebaa7e8af409a835b79d2005a91fa99"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-featured-instrument.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/featured-instrument.webp",
+          "sha256": "e51025584aa3dbadb2c287bc9dbf8f07e13117b98a98e77f272ff21dfd4fb6fe"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-guidance-pixel-motif.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/guidance-pixel-motif.webp",
+          "sha256": "b2aa8bed638ca3e8a166759d9be279a5faa61e30fed5ab24801befba874085ad"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-landscape-dark-reveal.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/landscape-dark-reveal.jpg",
+          "sha256": "de5c5e571d3b8cb29d5ed4772759fc6377ef852849f1a3f3f255f0c7861e7491"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-landscape-dark-wide.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/landscape-dark-wide.webp",
+          "sha256": "7ce1f81911845a55c595198479b94e2a820bf9a887d1725dc494e1798a8d9b36"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-landscape-light-generated.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/landscape-light-generated.webp",
+          "sha256": "c6030829c35d35c8a7869a8e4cab9f0ad75d2b22b7923a1c084073f37e3c03d0"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-landscape-light-reveal.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/landscape-light-reveal.jpg",
+          "sha256": "0773613dfd2c254219789ee1bba0998806eb522443c827cef0aa63afe4ef1dd1"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-landscape-light-wide.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/landscape-light-wide.webp",
+          "sha256": "b2a4593cf42335420b88ccf8664e78de5a50d360bbd45c8bf82f7d07b137af3c"
+        }
+      ]
+    },
+    {
+      "id": "art-home-calm-nitnem-pixel-motif.webp",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-calm/nitnem-pixel-motif.webp",
+          "sha256": "36e0f7937c8a8ebad734cff3249add0e4585c92100120601e9356b0df5dc7bcd"
+        }
+      ]
+    },
+    {
+      "id": "art-home-eclipse-hero-eclipse.avif",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-eclipse/hero-eclipse.avif",
+          "sha256": "228630fa88333941026a60d8e8e47683644cb48e8ccf20d97d294ad9cc935cba"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-doorway-frame-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/doorway-frame-dark.png",
+          "sha256": "e70f1c8b74955f3dcc4f518f98c7bb344147cd2ed3088510a208ddcad1a60d27"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-doorway-frame-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/doorway-frame-light.png",
+          "sha256": "cee5524aeb95a892b548a775e67108017a2db0ae824bfb6ea52e00c1493e2ef6"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-featured-tag-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/featured-tag-dark.png",
+          "sha256": "e0a9eff15faeae4072155d942827e210c49619eb10a1f1cc4252984168c884fc"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-featured-tag-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/featured-tag-light.png",
+          "sha256": "aeb539e2eabc7900823780aadf816c0ffaafc1b86e2edf4d036293a662727fed"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-guidance-note-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/guidance-note-dark.png",
+          "sha256": "456164483fc0d55d8c96a6e6afc6df5c9a96a115ccb3cf7f00da765253fa00ee"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-guidance-note-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/guidance-note-light.png",
+          "sha256": "f7d3f8c2f957c6035802463cfc711c50895e877c02697dc2c09fd43f0069e5e2"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-home-scroll-backdrop-dark.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/home-scroll-backdrop-dark.jpg",
+          "sha256": "5b2b566493ae511d9256eca2f1deb8d3956442af111d808daeed98c16fddc2c6"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-home-scroll-backdrop-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/home-scroll-backdrop-dark.png",
+          "sha256": "dcd4d6b90fa5ce6c9ae4ff995c76bd024df18eb19d03aa43900a7eb33a89d540"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-home-scroll-backdrop-light.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/home-scroll-backdrop-light.jpg",
+          "sha256": "eda3e772a7e6d0ff0790588337078d846e148fda1e34b8c6b1745d0cb336644a"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-home-scroll-backdrop-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/home-scroll-backdrop-light.png",
+          "sha256": "8fb678d0a41e4ec0b77e7012499238bf472021bc0b0cf3c49c7ae5281877ccd8"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-nitnem-tray-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/nitnem-tray-dark.png",
+          "sha256": "cdb448e5732027875759b05838dfd864f862b23babdcd430f987d35583f78af2"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-nitnem-tray-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/nitnem-tray-light.png",
+          "sha256": "c6b9b38a1c6ea349180d06f63f083d77ddc7a21f466aecaf75e63113910da85e"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-read-sheet-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/read-sheet-dark.png",
+          "sha256": "6742f04a7d5af710f57819a35c9b7dd5587147cf83d714231f9340384cc0767a"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-read-sheet-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/read-sheet-light.png",
+          "sha256": "a7cdd2c0dce088464da889c71b6db9e3bfc9399d8d23168c5b212176a778b3a1"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-saved-shelf-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/saved-shelf-dark.png",
+          "sha256": "efcb3a8808ab3a18b8e39c153de50e825b419d2d65f195817f609c80000196e2"
+        }
+      ]
+    },
+    {
+      "id": "art-home-premium-saved-shelf-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/home-premium/saved-shelf-light.png",
+          "sha256": "184fb818964d54f3c698a651f4e38f3f4b20ba0a9a6ad33ca3bbc0f2e58061d2"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-banis-guru-nanak.avif",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/banis-guru-nanak.avif",
+          "sha256": "b86334751b6b8c2a90ec8cc574eff63031a2105441dc6596cd3462bdce0b92e0"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-banis-guru-nanak.jpeg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/banis-guru-nanak.jpeg",
+          "sha256": "c9fa430c7402e546d384e49241da90407438f5b38f1bafb2492dc1607ff9aae5"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-books-court.avif",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/books-court.avif",
+          "sha256": "764d5d4009cdecbc92408ab82072ae39915be76545f8460a77e6179d29f9ced1"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-books-court.jpeg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/books-court.jpeg",
+          "sha256": "2533738c353fea979910c7c85ca0e547eb7d2561c69c6521c51170c22f9be560"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-read-harmandir.avif",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/read-harmandir.avif",
+          "sha256": "d18232f23836415d9253a70ade4cdf74f685e0a17acc240bde3c545b309dccb5"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-read-harmandir.jpeg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/read-harmandir.jpeg",
+          "sha256": "603a1a208dfa3202fae0a07fb8c0f922862019f281054610a7a73de05d317385"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-saved-mural-landscape.avif",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/saved-mural-landscape.avif",
+          "sha256": "360788bca88a5676d2066234d9b7538781020b998500dcdf72d57757cbde4c8b"
+        }
+      ]
+    },
+    {
+      "id": "art-living-library-saved-mural.jpeg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/living-library/saved-mural.jpeg",
+          "sha256": "ed497894fc66d7b1a0c164e969029d8230533b71316c920fa0975f9c07e11fe1"
+        }
+      ]
+    },
+    {
+      "id": "art-nav-active-glow.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/nav/active-glow.png",
+          "sha256": "d4adf7475706418ce034b54bdac58d98a567d97483ca279ecf02937204186a98"
+        }
+      ]
+    },
+    {
+      "id": "art-nav-dock-dark.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/nav/dock-dark.png",
+          "sha256": "e46c33cd8d0500cf680cd97ecf5ea4551487e3a792212a0f4d41b1cc7edad235"
+        }
+      ]
+    },
+    {
+      "id": "art-nav-dock-light.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/nav/dock-light.png",
+          "sha256": "7eaa403eab7d4a9621e5803bc9fcfe67b6a57812a4578af4d535760c398d10fb"
+        }
+      ]
+    },
+    {
+      "id": "art-navigation-blue-pottery-home.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/navigation/blue-pottery/home.png",
+          "sha256": "d1203668afee7b28f5cdbefa5a3b37dfb539604b48c3853374672150f7662675"
+        }
+      ]
+    },
+    {
+      "id": "art-navigation-blue-pottery-more.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/navigation/blue-pottery/more.png",
+          "sha256": "a35d3bef9175473814c07be65ade6d38ce3e259af67b190017fe9b59570d3691"
+        }
+      ]
+    },
+    {
+      "id": "art-navigation-blue-pottery-read.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/navigation/blue-pottery/read.png",
+          "sha256": "45ddd374bc78aadd1e5b7a35a7c3ef69a922ea649320add3d489c8c09205e752"
+        }
+      ]
+    },
+    {
+      "id": "art-navigation-blue-pottery-saved.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/navigation/blue-pottery/saved.png",
+          "sha256": "6b5f1b860c8442b51c36f0b61a69aa27274476379ca8045790c68aa916d85a30"
+        }
+      ]
+    },
+    {
+      "id": "art-react.svg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/react.svg",
+          "sha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-00-quiet-parchment.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "src/assets/share-highlights/PROVENANCE.md",
+      "creator": "OpenAI image generation, source images none (recorded 2026-08-11)",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Generated origin recorded with original SHA256. Cultural allowlist excludes this background from the current Hukamnama composer. Review distribution decision without overriding that separate cultural policy.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/00-quiet-parchment.jpg",
+          "sha256": "b98f4b3ab6ad21a719f6830faf23b185ca6debec8772414cb12014ca6f1ac40d"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-01-court-mural.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/01-court-mural.jpg",
+          "sha256": "c9a94c461f40c876674942b33c70798ee0ceb09b2d389030d79635d669deb4ea"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-02-interior-audience.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/02-interior-audience.jpg",
+          "sha256": "c76e7768b9d229780bd8c38bc423d9e77e62e1fd7d69da17a4ef98e004cca0e3"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-03-court-assembly.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/03-court-assembly.jpg",
+          "sha256": "44288d30bb3a15bd78307a57a587096f19d9341703f2df699e948cdae67f56f3"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-04-fort-procession.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://collections.portlandmuseum.org/objects-1/info/18836",
+      "creator": "Edwin Lord Weeks; exact local derivative owner unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/04-fort-procession.jpg",
+          "sha256": "6fb026d1310175d66b3b1fbfca596c2a86a0e4c36f16654fb024f9d89ce7c530"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-05-string-and-tabla.jpg",
+      "category": "artwork",
+      "status": "blocked",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/05-string-and-tabla.jpg",
+          "sha256": "1617fb5954865dc62deb4da2a5abc9a61fce58b2a0c34b4dfc74ebf01e696e86"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-06-devotional-interior.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://collections.vam.ac.uk/item/O430745/interior-of-the-golden-temple-painting-william-carpenter/",
+      "creator": "William Carpenter; V&A accession IS.47-1882; exact derivative unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/06-devotional-interior.jpg",
+          "sha256": "9816c9195d8636a81c223902a1a78540a212347f4d41673003ca5970314533d5"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-07-waterside-temple.jpg",
+      "category": "artwork",
+      "status": "blocked",
+      "source": "https://www.singhtwins.co.uk/shop_2020/giclee-prints_buy_unsigned/gc_buy_u-nineteen-eighty-four-.html",
+      "creator": "The Singh Twins; exact derivative unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/07-waterside-temple.jpg",
+          "sha256": "68487dbdbd45c847d62add0d2d55114bfafd94cf6dad046c0a92427b1fd3caa1"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-08-miniature-collage.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/08-miniature-collage.jpg",
+          "sha256": "929ee3d521537fd4ae56619ce167fb8d4130e590314d5250504c3a7709281853"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-09-rider-and-attendants.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/09-rider-and-attendants.jpg",
+          "sha256": "6ff0b062498ec42f66fca7fe45b05ae6fbd60d757a562416ff370a1cd3fdf9ab"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-10-falconer-on-horseback.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://www.kashihouse.com/artprints/equestrian-portrait-of-the-warrior-poet-guru-gobind-singh-1850",
+      "creator": "Attributed to Ram Chand; Toor Collection; exact derivative unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/10-falconer-on-horseback.jpg",
+          "sha256": "bbc21fa6063e77120811f0e07529a49a49270013e0ce0d38cc5663cc9dccdf81"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-11-floral-teacher-mural.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/11-floral-teacher-mural.jpg",
+          "sha256": "559ca29c04ecfdc446cefa7a9e25c799f6c6278cf4fa4b69f4b73b25f693dc10"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-12-golden-court-assembly.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/12-golden-court-assembly.jpg",
+          "sha256": "641714ce9e89b4ce7c10b91c5f79b694d2e4731c601f7e6ed3c7e4707f194c66"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-13-gurmukhi-floral-medallion.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/13-gurmukhi-floral-medallion.jpg",
+          "sha256": "fc85dd19e740768f02c598ae95c64a3531e3743d60309129f9ba5fc679c56c42"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-14-ceremonial-arms-display.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/14-ceremonial-arms-display.jpg",
+          "sha256": "fcbd52ccdb2eef4436ea695fcb4825791338d591d89fa08aac49db9535215bd6"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-00-quiet-parchment.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "src/assets/share-highlights/PROVENANCE.md",
+      "creator": "OpenAI image generation, source images none (recorded 2026-08-11)",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Generated origin recorded with original SHA256. Cultural allowlist excludes this background from the current Hukamnama composer. Review distribution decision without overriding that separate cultural policy.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/00-quiet-parchment.jpg",
+          "sha256": "6bbfd35f187003a6857e3b20c406be937481c34c6c1f7c386b02b1cb6f4a9cbb"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-01-court-mural.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/01-court-mural.jpg",
+          "sha256": "e68b10ac7acf54ce65b98f4a2f119c7fe2bdb088c3c3bf914e32a2aeeebbf18d"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-02-interior-audience.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/02-interior-audience.jpg",
+          "sha256": "ee64d87e4ffce3942d2d4da3f1347f959627f670540e461ec54aba150059d0f3"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-03-court-assembly.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/03-court-assembly.jpg",
+          "sha256": "28124a3ac0d990e389cc9157e4b1f9bfb560d6a741f8c351c690bf435b366b9e"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-04-fort-procession.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://collections.portlandmuseum.org/objects-1/info/18836",
+      "creator": "Edwin Lord Weeks; exact local derivative owner unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/04-fort-procession.jpg",
+          "sha256": "4c667a296e93a2d80af8c744f212fe9d40590dfcd4ba408616bee6c39abdc286"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-05-string-and-tabla.jpg",
+      "category": "artwork",
+      "status": "blocked",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/05-string-and-tabla.jpg",
+          "sha256": "cd140b802e81a42c65b86d576789aa7bfb6609c7b1f8e3dc4d3f89a4b939e4f1"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-06-devotional-interior.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://collections.vam.ac.uk/item/O430745/interior-of-the-golden-temple-painting-william-carpenter/",
+      "creator": "William Carpenter; V&A accession IS.47-1882; exact derivative unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/06-devotional-interior.jpg",
+          "sha256": "08ebb79dc2be1718502e6f09ed7be88431afef653f8c5988bbeee0e674b4a520"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-07-waterside-temple.jpg",
+      "category": "artwork",
+      "status": "blocked",
+      "source": "https://www.singhtwins.co.uk/shop_2020/giclee-prints_buy_unsigned/gc_buy_u-nineteen-eighty-four-.html",
+      "creator": "The Singh Twins; exact derivative unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/07-waterside-temple.jpg",
+          "sha256": "e964d0fa99b923dc3a0929c6ef9047437c1937e8e95e78afb09fdd0e56a38acd"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-08-miniature-collage.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/08-miniature-collage.jpg",
+          "sha256": "6d8d532717691a007e21255b12a95763a91f60f28c389863a8128e04519e4acc"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-09-rider-and-attendants.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/09-rider-and-attendants.jpg",
+          "sha256": "1daf9f861e170328966af6edd0212ab6165eeeced57a1ef025dc40040c728361"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-10-falconer-on-horseback.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": "https://www.kashihouse.com/artprints/equestrian-portrait-of-the-warrior-poet-guru-gobind-singh-1850",
+      "creator": "Attributed to Ram Chand; Toor Collection; exact derivative unverified",
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Underlying work identified in existing provenance. This does not establish acquisition or reuse terms for the exact scan, crop, color treatment or composite. Source record remains a review lead, not approval.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/10-falconer-on-horseback.jpg",
+          "sha256": "e03770c40b47598f465d955c77d4e805549a89909a3f6d68fc740583693717bf"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-11-floral-teacher-mural.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/11-floral-teacher-mural.jpg",
+          "sha256": "13697d7f3e07e88f497416cfa6b495df83016ef1cff04d8cc90fa2500f850ca8"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-12-golden-court-assembly.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/12-golden-court-assembly.jpg",
+          "sha256": "72a9a32a7bc03ba42f048d29c922b82ff04136037545686860b05da77c0e02bf"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-13-gurmukhi-floral-medallion.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/13-gurmukhi-floral-medallion.jpg",
+          "sha256": "5927d9b73d3c95f2e8a00a9e3b269aaa89ce588e092d9ead91860853c03fcf28"
+        }
+      ]
+    },
+    {
+      "id": "art-share-highlights-thumbnails-14-ceremonial-arms-display.jpg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "src/assets/share-highlights/PROVENANCE.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "src/assets/share-highlights/thumbnails/14-ceremonial-arms-display.jpg",
+          "sha256": "7dd4895594fab27077502a85fd68bafdf4ff90d63b25c6f64e7d5dfd62363b0c"
+        }
+      ]
+    },
+    {
+      "id": "public-audio-ambient-forest-canopy.mp3",
+      "category": "audio",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/audio/ambient/forest-canopy.mp3",
+          "sha256": "04e12511c3ffd29b291e4cb84c9a62ff1f211774d6c2f0de5270f98c8b89a713"
+        }
+      ]
+    },
+    {
+      "id": "public-audio-ambient-gentle-rain.mp3",
+      "category": "audio",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/audio/ambient/gentle-rain.mp3",
+          "sha256": "2c934d1c3f058b321bcec22de34451f9d95c830e4bfb72c16dad2454e6703567"
+        }
+      ]
+    },
+    {
+      "id": "public-audio-ambient-mountain-stream.mp3",
+      "category": "audio",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/audio/ambient/mountain-stream.mp3",
+          "sha256": "36966590022c105db01ae409e53652e51829241adf37080992da82b4a01b91bb"
+        }
+      ]
+    },
+    {
+      "id": "public-audio-ambient-night-meadow.mp3",
+      "category": "audio",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/audio/ambient/night-meadow.mp3",
+          "sha256": "26520f9770bd34c757f8adf3c85ad21654a039c0bc17d014c58d39f2db4e8b52"
+        }
+      ]
+    },
+    {
+      "id": "public-audio-ambient-sea-waves.mp3",
+      "category": "audio",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/audio/ambient/sea-waves.mp3",
+          "sha256": "176398e804608b69131d9e25cf6fbd6f2a8bcff8fb4433848dcb3ac4b64fb586"
+        }
+      ]
+    },
+    {
+      "id": "public-audio-ambient-temple-fountain.mp3",
+      "category": "audio",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/audio/ambient/temple-fountain.mp3",
+          "sha256": "5deb17b447e9871228322f42d3c7b80c3caa0e91c0f0528276ded7ba457ae73a"
+        }
+      ]
+    },
+    {
+      "id": "public-favicon.svg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/favicon.svg",
+          "sha256": "27d2c446381f19415d87164837d7fb09a3129bc51f03944f2b31a78ab6591d5d"
+        }
+      ]
+    },
+    {
+      "id": "public-icons-apple-touch-icon.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/icons/apple-touch-icon.png",
+          "sha256": "70ea59e511fd842df042345e99c924c0d9c0d739fb46e2e093b10cef52d07615"
+        }
+      ]
+    },
+    {
+      "id": "public-icons-icon-192.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/icons/icon-192.png",
+          "sha256": "d534c804a4c33f571a4061a4fcc2d33f114a0a273f00109504a5a6d5b39a21eb"
+        }
+      ]
+    },
+    {
+      "id": "public-icons-icon-512.png",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/icons/icon-512.png",
+          "sha256": "00452237425faea4536a89c4614f8245c0d20a18b54bd0d625bca2d07e7fbec3"
+        }
+      ]
+    },
+    {
+      "id": "public-icons.svg",
+      "category": "artwork",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Distribution approval is not recorded. Obtain evidence covering the exact bytes and intended web, offline, and transformed use.",
+      "files": [
+        {
+          "path": "public/icons.svg",
+          "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+        }
+      ]
+    },
+    {
+      "id": "book-panth-prakash-volume-1",
+      "category": "translated-book",
+      "status": "unresolved",
+      "source": null,
+      "creator": "Kulwant Singh (translator); Institute of Sikh Studies (publisher)",
+      "license": null,
+      "evidence": "public/data/library/works/panth-prakash-english/provenance.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Source edition 2006; ISBN 81-85815-28-3. Provenance describes acquisition/transformation, not a redistribution grant. Keep public reader/download and all derived JSON withheld from a wider release pending an exact-edition grant. Do not delete private books or personal positions.",
+      "files": [
+        {
+          "path": "public/data/library/works/panth-prakash-english/assets/volume-1.epub",
+          "sha256": "f9f801cc84551a8e895df8f9b812c634f5b9ecaf630e10f58ad5a99e90771768"
+        }
+      ]
+    },
+    {
+      "id": "book-panth-prakash-volume-2",
+      "category": "translated-book",
+      "status": "unresolved",
+      "source": null,
+      "creator": "Kulwant Singh (translator); Institute of Sikh Studies (publisher)",
+      "license": null,
+      "evidence": "public/data/library/works/panth-prakash-english/provenance.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Source edition 2010; ISBN 81-85815-31-3. Provenance describes acquisition/transformation, not a redistribution grant. Keep public reader/download and all derived JSON withheld from a wider release pending an exact-edition grant. Do not delete private books or personal positions.",
+      "files": [
+        {
+          "path": "public/data/library/works/panth-prakash-english/assets/volume-2.epub",
+          "sha256": "243827ebbb3a4152b1252834b5d9a1620bdf52478ce3021f3d1cdbd35d73d5bf"
+        }
+      ]
+    },
+    {
+      "id": "book-panth-prakash-derived-reader",
+      "category": "translated-book-derived",
+      "status": "unresolved",
+      "source": null,
+      "creator": "Kulwant Singh (translator); Institute of Sikh Studies (publisher)",
+      "license": null,
+      "evidence": "public/data/library/works/panth-prakash-english/provenance.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Derived chapter text, metadata and indexes must be covered by the two publication permissions; file hashes ensure a later edition is re-reviewed.",
+      "files": [
+        {
+          "path": "public/data/library/manifest.json",
+          "sha256": "ff4750dca50d31356d381e1969a4803996b706d30be2e5facccbd5b56372c0c7"
+        },
+        {
+          "path": "public/data/library/search-index.json",
+          "sha256": "f8ff326dfba44180251823e847fa6b676a207c4fb399a8eb0b0614112aafdafe"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-001.json",
+          "sha256": "2857fcf6d4c716811b4399bab2d2228278c3d80b5aae3673732e181ebc25467a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-002.json",
+          "sha256": "b9d8fdfd420eeb35f7bb3fc384051d43576c8bd965073094a75f10b0b3d3d57a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-003.json",
+          "sha256": "ab121a3ca5a41973de2739f43b366aab89c9828b3dea5a9957cc869a7f2ab213"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-004.json",
+          "sha256": "d01673857839d6c0897a4033f17b2c426343bad48fba3fccc2a4cb66e5ada7ad"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-005.json",
+          "sha256": "9ac1f7c27493c6bc818952f85451531a7083609b9de05f0e871e7f8e5a510f35"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-006.json",
+          "sha256": "41c2acd4c5d18a7b0d2c87c7ec085b21232b4da11356fee292a722114ba51242"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-007.json",
+          "sha256": "67e507df4716e5d84a3b04ab8731c35babf0a8f1872e25f86c29a7e00bc1ec8b"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-008.json",
+          "sha256": "b4a059ccafc77fd8498b157da762434d4576c606883fd56db646fcd52503a713"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-009.json",
+          "sha256": "45eab302b7d7e1e5ca0e0fe08c76b8701242c215a20ba661377f14b900f91f87"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-010.json",
+          "sha256": "0c484b108824639cc76a4296416cfbbb2efdf1c0b748bfe12e26a7a8bccf4be9"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-011.json",
+          "sha256": "3f808010ba7a8f37c0876aa5baecf7f61298722dd416643fd236a7338d3c3981"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-012.json",
+          "sha256": "0675b1e33d1890819d0704cb7ad0f27ca5a51ff77e043e1e4f64bf8014b0bd34"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-013.json",
+          "sha256": "7068ffc6febc2ce11c8c856b504641acc3deac253e51eaaf54086527d403c27e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-014.json",
+          "sha256": "f6ea87838cc996beded920ef80e48d3c19bc99246177a2ad6297a3dc33f8d718"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-015.json",
+          "sha256": "550e81c576268484f47b927d44ea98eee8bc9df8a5b7acd4935089746332cad7"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-016.json",
+          "sha256": "0819d80375c367354c18a0bb42ab05d4138310c1718ad326f4a89fc8633c8964"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-017.json",
+          "sha256": "901acf6fd1691372ab3389d5afb22f1bdca6ebd19534fb6deb85f5c44a05e467"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-018.json",
+          "sha256": "0c5966f1f18fae46225e1a5d5f08183f9ad65495a604adcda2450c83f20f27b3"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-019.json",
+          "sha256": "7c5e6f4e5001fc32a20bf9580c5ad4390ad683f3422f30b65ab90b06ae0c3c78"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-020.json",
+          "sha256": "5eb7d9d20c2075aeade414c8a4a9a9ef94735e769b6d24c6f9e01fd774a1a950"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-021.json",
+          "sha256": "8137413cc1ee60ee54dcbdf74f96408371325d395866c2350fbfa1daf70a4388"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-022.json",
+          "sha256": "0c6dae7755ef3c9758b0b381dc025ff2e8046c6808482b2c8e6d972de9959c49"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-023.json",
+          "sha256": "ffa53dddb944e40cdc873ef7ef5dfcc7c9c49aa40f0ff397a06d353d2352314f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-024.json",
+          "sha256": "2edd58ed55eaa00f729923ca9449e6b7ba605bb93f4ec6dd4e5ba38416ef5577"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-025.json",
+          "sha256": "c6a425e174681b05eaeb16b6efd8ec5e6a2d82ea53e7444900b8634f8e1a9b43"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-026.json",
+          "sha256": "48410f627cf5876e1291fe26d83ad0bad33702858625ca339f618fd9c7d889e8"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-027.json",
+          "sha256": "9b530d3b640bb9687068e13d54d2b7058742150b04c98ce138260b1835e28bb9"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-028.json",
+          "sha256": "4cd0e41f3d78c9f33ce2c1cee17ee80d941a9106debb8f2cd56491d1fc26cfba"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-029.json",
+          "sha256": "ec35d9659054549ef96597683f3e94e1b0829319ba9a8c2ee18d5ae8a5273445"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-030.json",
+          "sha256": "8eeed67bd40a39d8aa1a88ef06f3a152181825d8215faec1589ea8573b988a41"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-031.json",
+          "sha256": "da29df05a0981577da9e511e1e06a3c5c88ee165886c33038bd6a6e84f56d3b7"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-032.json",
+          "sha256": "bdbd9a67113932e5837420f7cca62b80ef5eefc15bfbf44a534cef55ba18128f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-033.json",
+          "sha256": "bceac1756b8fa5d97a593eeaf1c5b0f2d606f0ccfa771664a8d33d4ab43d0773"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-034.json",
+          "sha256": "98982856fe0d5737899aee2323d92e1273af1a99fe05521762f33bf5637c9ca1"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-035.json",
+          "sha256": "56a028c9c6ca3db47033aa0d441f8209ccf60a5fbce24a9e483e6d4243ed3f97"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-036.json",
+          "sha256": "ad3e41c87606a99ac581260e82b730a2eaad0b0654bad59c80b4fde87b46d723"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-037.json",
+          "sha256": "e9c0ed524b688ceb8dc8a87be0ab2f6f735a3358068273bcca8dcbe20d8b3b01"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-038.json",
+          "sha256": "3343e28fbea7e35027bea4e6a25aefecf1c9b8a55a6bc2a4150d21564d644ba7"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-039.json",
+          "sha256": "834e951dfe03ec7519b9cf96b9f9a8e16f06d084028b27d5c1712b34ae51b447"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-040.json",
+          "sha256": "f257f0549d060d8a2c0cc6b56f7a54be416c93190b2a3a17291194a2dbcaeaac"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-041.json",
+          "sha256": "6d505ddc83f6e4bde73d4b5a78c39e98cd2cb6db81053b9e6904005c7d8a5008"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-042.json",
+          "sha256": "8edcecb6dc914f4ab9f66cd19ec4583d0eeb6a92271e2a64fd4bbbf714dc9cd8"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-043.json",
+          "sha256": "6254634b4da027bc5409eb820469858d254fa0bc248f9b8148563b85a1c42e2e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-044.json",
+          "sha256": "c5551824124d2a26a29c929a9679116abec528ae3f1fd0a94fb81d8b0c780b99"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-045.json",
+          "sha256": "fedf15e85db989668a806e52e17df84382568a72771f05c8b397a2041d2b0099"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-046.json",
+          "sha256": "b1175c78a97e206674db74670d8e63c5d6747d8399e5e5c6453a5f4cac463adf"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-047.json",
+          "sha256": "48ec5eb4b9be77a9dceaa01a1e1802d73e09e0c596f7e7b65189ab9a90db0496"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-048.json",
+          "sha256": "fb5308bd33a8c8bf6869f7cd401848580bbd092f54108034289576effe5c8a57"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-049.json",
+          "sha256": "a9f3c716a67617be78c4a274e017029ca3219d3d49c40ef083cc83f99525d95d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-050.json",
+          "sha256": "f5949cd400d8dc08e0058f46c771fe4fb9aff1ca98951337da8365329835eab1"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-051.json",
+          "sha256": "34c2fabca5ede9675dcddd8575744dcf5e0a4c6ccbab91f935e1caefeecdc2c8"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-052.json",
+          "sha256": "87e49c7b8422dcbe04875d393c402ef7ed0be2f5ae2736e42272b348a4bee974"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-053.json",
+          "sha256": "ad3b92ccdf19306d789b366e2de518a08c5743baf4196cd28190ae3bea9d844f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-054.json",
+          "sha256": "4963292a62a7c0e872c65d3f75c078f5a4e8efd3b4b629a8a4e893f795fcf4dc"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-055.json",
+          "sha256": "68717203c68f6195db46edb8d982b6aedf4eaa35d2c3f29aae575493fafbc167"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-056.json",
+          "sha256": "5be42e73ca4ae2b8dc1a6d6d9baab9b0834c22bdae810cc0a287424d30cd89a7"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-057.json",
+          "sha256": "cdce6ec04e346bf8c6d71c803c06933f3309062780490fbe92b741ce9b128896"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-058.json",
+          "sha256": "dcaf4bb42ae776eb7e3f28a4cd22e231e0f897b6ac989fe6f907a9aa2d4d2ed0"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-059.json",
+          "sha256": "b8e175ea50f1af9adaa5f4180606a7bca5c3708b2b2a9906b89ce3a4f4555c05"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-060.json",
+          "sha256": "49e3ec2ed0a228f2841422aa8f6ec60b42850af6a96e67e2d6595fb20437ce51"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-061.json",
+          "sha256": "0283bdc2ce1c3613c8cb3c4527cb95678c87bbe7bf6b134a43671108184896d3"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-062.json",
+          "sha256": "bb2b143ac57a8ae69d34ee889c1580e66b4bd002c79637c1d06cea747b8594e8"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-063.json",
+          "sha256": "82af49f888f1c13ec48cc4b2e51689f7e9e5702fd5deb32b1e7f00d8cf7ccad5"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-064.json",
+          "sha256": "ef04e34f9c374ad0ee47c8831f6942cfa34503360dd04d902d6b95ab5201a835"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-065.json",
+          "sha256": "7261b66f0a3e05af4480eac4af026d630ced9c40b0a3b3e2d11fe636960de3e8"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-066.json",
+          "sha256": "2731515181c547a1e467a1a82929ee6ff11c88ba8b38809fb6d5a58b8492a3aa"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-067.json",
+          "sha256": "20f294650df62ef5693de649011583048403a86c32ebe7cd330afe118a53ff78"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-068.json",
+          "sha256": "c2504f8064d7ca26490999ade9a5d834943f4a9a04859b6f4957a4778a672729"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-069.json",
+          "sha256": "3943e332ccca6a6f2ee8b9c0c902ce5f6a6394e25e371ae9f4f3f820cb18a698"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-070.json",
+          "sha256": "adc0c3bb2548a00f2e2e91627f6f5f52c3b1d066569805d99c86add29dbbe0c2"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-071.json",
+          "sha256": "32961aaa1627bfeb3d1f25530ebbc25606ccd5bab62b89d72a8fd41f00e9b06e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-072.json",
+          "sha256": "716d3dcadb6319790e15e4f3aff79dd1fa7efe5168ffdb9ed551699a68d4289f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-073.json",
+          "sha256": "0a98c610dc089ecbb1b7f668d6a894230604f0ea28c629ab587bc9ec35c35ab2"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-074.json",
+          "sha256": "83504e9328f966ab0db910af21d9f24daf905079d4df53926972d6d8a317849f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-075.json",
+          "sha256": "262e242359e1b3ceec6a9d3da934a034c57565835df658fab227e24c9012d821"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-076.json",
+          "sha256": "cf08588b6d0e45b0c0de542b1fc618bef440471e16ea517e3dcb5f3ae82a1764"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-077.json",
+          "sha256": "07c22355e84a8544f2a88f55f40c0f5bef1c1cee1db8bbdbc3d713f607727ea2"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-078.json",
+          "sha256": "dca95bf55e356b80a663f8a8649826e1c3c2f8e973c312dbe14118a59bc83f05"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-079.json",
+          "sha256": "4a9cf0201cefeea2d23fda15ab93ee7d285225563323be66b91576bc9d66a67e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-080.json",
+          "sha256": "a36cb0ddd8e69706e4922afd5aeb2c94277a448b6d9dab22ff7cc9b9a8eb671d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-081.json",
+          "sha256": "b6f9c049aaf2561e0fcd76dca72eadc7bd039c008d78446e9ed733b2fbb800c6"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-082.json",
+          "sha256": "e27aa62798a3bf13239de55616990204b50308cddc3d08198933c7b9ce6b9c8b"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-083.json",
+          "sha256": "42b3f49cf89e0297aeb4d5ba8edc8e1ef6a49374a324279edda57ec1d7499440"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-084.json",
+          "sha256": "312f3c6257124752fdb95063001764f10335af0bda1bed3477e4476582c43f40"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-085.json",
+          "sha256": "4279c37ee767f00f20b746b03e47b08f2f759dde9c96c20ce9fc26739039b645"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-086.json",
+          "sha256": "1489974bd999546cb3ae2ba975e91b68d8aac6141c037379e3081850bd242efb"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-087.json",
+          "sha256": "ab18e04d37db4a365ec3d63e48354f0a9220cc96bec39de706ab50a4ddd817c3"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-088.json",
+          "sha256": "03f9b8d3a1478a9e9dc3f35563596517fd4baaf10060d864cd96583af9128676"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-089.json",
+          "sha256": "e92baa6bee4a15fb24547678645b2f6ef5bdca4f7f113dc40fe01566f5f97ecf"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-090.json",
+          "sha256": "eff508ab6dd75fad7deee619cef6be5373835733fd5f6bbf2eedadd2c6a9e67a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-091.json",
+          "sha256": "fcec38318e3e1c2bc7e84b1b6407734ef529f130f7aef5214575c25b8cc049ce"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-092.json",
+          "sha256": "ff360aee18b72573c72a0ee1fc7485f7bfc91da44ecf9a34b9224ffa371de420"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-093.json",
+          "sha256": "2ee5f76497638a278e17c213f33bf6ae8eb7c333c5b481a085e3c91658fb5849"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-094.json",
+          "sha256": "a58f0f8b7d4dbd8965f8db5e8bcbabe1164abeb98eb4552ebbe1b8c2edbf617c"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-095.json",
+          "sha256": "6829020f20ff96c16d69d974b016a26176ec4c5861f8da789767f35a625ed959"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-096.json",
+          "sha256": "c2209d6e3b9ecd1582c88420941cab67e4edb11be0d45c2523c17713cd1dad16"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-097.json",
+          "sha256": "e41216b6dc8737afc2cbf2faec0d94837f19fb856715d40a368b76e6f2028283"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-098.json",
+          "sha256": "097c9d6911c4b4d83f62ba7cb4e7ab2cea239f136cfc4169b06387796d1b6591"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-099.json",
+          "sha256": "7610e3fe0393c6cb3faf8c70ec954b9d229281c21024d9e34c98c216d711ba43"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-100.json",
+          "sha256": "86a80e2e5d43b350b0ccfebd7aa80ab32e4234e864e175b78f874600b01470c3"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-101.json",
+          "sha256": "a811be3e1b6635ea289775683614f057b637cbc0a4729dc54b2efd874c99ed02"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-102.json",
+          "sha256": "1fa65ae1efc5899157ad39a9ace30a87abf31664874cc47569c41aa5de863108"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-103.json",
+          "sha256": "fd515a87e3eefba60e5e431b408263ac5227af46eef0f932b3631bebf852e28b"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-104.json",
+          "sha256": "2d66535475a49f25198a659c5abbb873d0fbede4996b40cbcfbf5310057bcb88"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-105.json",
+          "sha256": "0744399be4f79a712c854580c3263949a212bf6a80c5fa7eb11e5ee04b5aabe1"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-106.json",
+          "sha256": "cf6463be05ad893fb70d3d54c93543aadbb0b6af04f4fe507a823d3be3b2855d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-107.json",
+          "sha256": "0d07a456ef436167c573e80ce476814ab64caaa262f7c8c5f1f6bac0403df57f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-108.json",
+          "sha256": "a58c166d17f79cc408d4de68b201e9148a324545c6139322c27e740345f959fd"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-109.json",
+          "sha256": "834a13337e2ba238d07b1689f44c39c13f2602a1394e56693912ffbd544fc83d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-110.json",
+          "sha256": "8405f07a5285b071859aaa19939b137a5750d54225cca5649dabe5bd3cd4384f"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-111.json",
+          "sha256": "8e577b2b5eef99a0371e092cf894e47d427f421ff571458bf6a4d01642606943"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-112.json",
+          "sha256": "a0c301ece45213b8a6c2e5f3b9d11962352bbeed355d67c532b25b4300e670c6"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-113.json",
+          "sha256": "9a08dacda68b0d4fdcd13bfd92ae11a692b26a1b321f1adc8bb82ae4654faaaa"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-114.json",
+          "sha256": "9ddceb400ce1f7a9da3e57f1485da21dc2a29ae4c0e9bff597cf1a1ec5b8c459"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-115.json",
+          "sha256": "7d3075f97b2af964b34e26d25f26a45adb5aab23ea4f9fd8ac9aa89886d09a5a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-116.json",
+          "sha256": "2ecad61ed36bcb5660d34eb840490082ad218e4130c0fed46e5dc19f7602f5d5"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-117.json",
+          "sha256": "41d947296838a659a8db0c2b5658385a190cbb837bf10e26950e296233602125"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-118.json",
+          "sha256": "0ea08c2bf30c950949e406b047ff48b6493e3b4343df992a366910a220876d4e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-119.json",
+          "sha256": "b33f1e17ca6516291b8d1e3f0f37d0614ae2625129f44d2e4d1f04be60411a2e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-120.json",
+          "sha256": "2c70e819c9f62950c5b20aafecdbefbb522b86bab496a272db292b15f290c5d1"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-121.json",
+          "sha256": "429db8278a34bbe9e0db77c6c49f410819e87e58eb4c33bc5c679747e656d2df"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-122.json",
+          "sha256": "ce7aff3371e3ef38dfcd727fb4431e69defd5f0bbc016f660ce1632fb33ed2c2"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-123.json",
+          "sha256": "78734283fc484b0f6e6e22adb8249592452845c95964456cb88730e3e98c67cf"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-124.json",
+          "sha256": "0123c0a76757da747a9339ce37268c30f928a978d05ce4a270215f58bda39b48"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-125.json",
+          "sha256": "714b414782bed6e7e76c3a5fa87a47a0b26177ee14b24f6d9006f4538acf00b2"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-126.json",
+          "sha256": "5f0485a29759176b0c52ff26cda075c4b0365913deddf3ef103a0ae7ead874df"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-127.json",
+          "sha256": "7b01b2700fb10a5a615257ab8869515f971ce0890099eaa97d06a046539a8b57"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-128.json",
+          "sha256": "b4f239fb35007f6298d119f07617bbcce4859d5f75cae0d68a0bc296323a3012"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-129.json",
+          "sha256": "0068e01597815fa3780436e72eba23faaf2e41e916c3cc215e31bd64ef7e1cbc"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-130.json",
+          "sha256": "773abd91c17e53de886870fe685012dce35d7504e7ade39b16f60153fcab7fe4"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-131.json",
+          "sha256": "9fc39b7c4bdd5fb31527670fddcc1d125ee920ce340e74c6d8f7ecd2a817d7ab"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-132.json",
+          "sha256": "4d290c1051cd7e356dde6c44bb113cdbaeaf5cea5b8adb3ac930749da1826f6a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-133.json",
+          "sha256": "a003aef7629b024e6c28c735725dba936de9c3d2cdba1a8347d4fe9a2ced5dae"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-134.json",
+          "sha256": "b88e881ba216d61c2d837741026d003355beb7906866ad9cf1145527d441c2f4"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-135.json",
+          "sha256": "03da6b291bd56fb388ece883540c9a6146242913d6b026c380fdf0b765d33fd6"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-136.json",
+          "sha256": "3a27ad736bb6e7c8d85346104b193f4d142cedf384e6e4f1deec96d6d5e50168"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-137.json",
+          "sha256": "86c08d230a5d4bd8a91cf86ea0c0663e10d8dff407770e4d644afa74acde2595"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-138.json",
+          "sha256": "ea14b32c6b9a214cd4ae4b373d8666eee8a56e116113ee77bafcd85a7deecd86"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-139.json",
+          "sha256": "441bad72f273fc8070288361ba03ee8c2810b63e41d278e5fa2f9c0331a58c5d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-140.json",
+          "sha256": "4958e645755700f51704c51cbfcec2a896112293b6bc0426a8d05c6e2ae1cdfa"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-141.json",
+          "sha256": "d175f932ba317289fb29420402eda9018a2837c6b524e03bd2a013ebc2d0aabf"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-142.json",
+          "sha256": "7d13f1cd93a7a90573462f2354ba528dd90f2ae9baec82e7d8ba667cb686b0c8"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-143.json",
+          "sha256": "193a7c72b64f360facff9b54c3256adfa691f33e2c26ce1a990fca3e48c50c14"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-144.json",
+          "sha256": "e7126737033259db14d196e4ae65a9e39021677b9519622722f0054b476c62ab"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-145.json",
+          "sha256": "4012a50b5fae3a50749f1491ad1ebb7d9635438b7a420f7d9cf66310154154b4"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-146.json",
+          "sha256": "90a00ae6fc4223af9c44f74011d1c0f3d67854782ff1759585a9ddb6c4d2532a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-147.json",
+          "sha256": "1002f3695e199d08d0eeacebc97db420d367c852c72aadfd81f3716dd6198861"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-148.json",
+          "sha256": "067166e22b443012f85431d36d4ebe8a52f623034a9a05e50a884f4aa6b54cf4"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-149.json",
+          "sha256": "22a5b2e9b6824ba734a732ad5a709708d2465bafac910f39763a8e2c20c4cd16"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-150.json",
+          "sha256": "61466f8c5fcbdf0317c5b9b5f2fc1b0f8049d29bbd9e18b26051cbe3e13d3c60"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-151.json",
+          "sha256": "c16e77461fcdc8628f4e5f2e28c591d5603bc8e22b7f29ffdadc8d374b1b24cd"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-152.json",
+          "sha256": "9ee7103f5936584541a54e0a223d6f7912fff8ac607369d01f998566a6bdc86d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-153.json",
+          "sha256": "28f126266bf3cb9c04d7b39806ff00cdee8d81569b523613006fda4c02e9866a"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-154.json",
+          "sha256": "e1b3d1c7f990137b5c4e170ffbd15d11213638ac9947dfad6b294c2ed7c5ea62"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-155.json",
+          "sha256": "7b66fe9fb4a7dd2952d43d4544717d92770bed3736ed297bbc76bbb7b3eddbe7"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-156.json",
+          "sha256": "d38e815370ad916eaf56754edf3f56347861265010ee0a1e8e8dd52c50374910"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-157.json",
+          "sha256": "0388d511b3818897af3af6e5efe374510389ca136c3d4c3de1ce8607738317d0"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-158.json",
+          "sha256": "940ccfe1392a7f89eb94b886fa906814c2d578268ffae29a50a84dabd67d5baa"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-159.json",
+          "sha256": "49a5d39b706faa111599d0eefe5a83d863a28ba7f0c595b2584589d13d4bf98e"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-160.json",
+          "sha256": "21c2d39130b92f0ff7d1ce59089b75f08d0d832aee8334190b7acb58957e6545"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-161.json",
+          "sha256": "abbe0d9dda5e41915ee1a017dc14ece9711a8fa057a2a661e5293e0f357a3ffe"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-162.json",
+          "sha256": "9741b5c2d89200ef7f9cbdb90c34269b93f1f1b3ddcd5a0ff4b9c1275a439a0c"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-163.json",
+          "sha256": "cb9d4413878eb29cadf6f5cfd91e48d5513b40dfe88b7cba423773c82e844fc3"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-164.json",
+          "sha256": "9c612c6cbbb026778b7ec7467cc542996e61530480a86b3aaa24163e1e9aacf6"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-165.json",
+          "sha256": "8972443119b42ba6172a81d1ef7744f77fd6e59cf7717b09ad470eac4741a4b1"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-166.json",
+          "sha256": "64dcfbfa5cde81f7f0941d9af318bbc816dc574ed81eeff576904a4ea3652731"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-167.json",
+          "sha256": "7d7e8c68a7c1248ce84b6477fa11a15277ef663a8e8383a8809f60a5fdb8aa06"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-168.json",
+          "sha256": "ea04b1382de465334621b44e220300cc97d1062c9af4b106cb1dde3f72cede89"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters/episode-169.json",
+          "sha256": "1fed5d1dbf62d83cd304ea834b6026e57bf3f5717effd7fcca892ceb845442c9"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/chapters.json",
+          "sha256": "a25012a21e3b7b6969c7851a9c6f43f512d66ea817bf23366e9d793beccb951d"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/episodes.json",
+          "sha256": "5d616bb5a10b55ca5d563622a7d648d010c1dbc76026a0715abeee91525f46f7"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/provenance.json",
+          "sha256": "15564e181e062b22a25b9834e75d5474fff301feacd275616637a580cdb902a9"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/search-index.json",
+          "sha256": "5dde584c3955e13e345625502e8fc7b24628b247793150e0af188b360ec75adf"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/validation.json",
+          "sha256": "405f87509dcfa495b017cea90ca845d06ecd3cf7492bffc56f833d466a97e4c1"
+        },
+        {
+          "path": "public/data/library/works/panth-prakash-english/work.json",
+          "sha256": "3eb926e854453ff3c3e1d0e2af1fdbf3f66b36dcccfb1c505b619e44ab4482e8"
+        },
+        {
+          "path": "public/data/library/works.json",
+          "sha256": "9ac3c973ce320f3de1ee13aaa42d37b52cd6cababd73f99f88f18f44a4b91b37"
+        }
+      ]
+    },
+    {
+      "id": "story-bhai-lalo",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/bhai-lalo.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/bhai-lalo.json",
+          "sha256": "097ac748b6419e8b050df4aedb6cce30655f61983317ec4448751557506f24ac"
+        }
+      ]
+    },
+    {
+      "id": "story-catalog",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/catalog.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/catalog.json",
+          "sha256": "96c9d1e5e02f37bf0f7fa61db34086433e285c9f673322c35de830080c6a2fa3"
+        }
+      ]
+    },
+    {
+      "id": "story-guru-amar-das-service",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/guru-amar-das-service.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/guru-amar-das-service.json",
+          "sha256": "648942f9ac6fc953f8639e9e73ba4a9b978616e08bb58697a4d248ff32500e8d"
+        }
+      ]
+    },
+    {
+      "id": "story-mata-khivi",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/mata-khivi.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/mata-khivi.json",
+          "sha256": "e2118c8f892367ce46e4953d16841ed45166cfaa6624e50b8878c877f7291a11"
+        }
+      ]
+    },
+    {
+      "id": "story-sajjan",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/sajjan.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/sajjan.json",
+          "sha256": "d9c96335d8eaf70e2b928be979daa8c966aa43bcda6911ed79ee13014c8d6f08"
+        }
+      ]
+    },
+    {
+      "id": "story-the-milk-and-the-coin",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/the-milk-and-the-coin.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/the-milk-and-the-coin.json",
+          "sha256": "25b97a0f64285b520e51af6f85a42bb68731563909e8182f3b0c8005f4ef492f"
+        }
+      ]
+    },
+    {
+      "id": "story-the-needle",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/the-needle.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/the-needle.json",
+          "sha256": "cf8c344abf0231b70e76bd7645f19139ade17a553ff3f0aa6456e237fd4d05f5"
+        }
+      ]
+    },
+    {
+      "id": "story-the-sacred-thread",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/the-sacred-thread.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/the-sacred-thread.json",
+          "sha256": "a294516da17781793df0ee84c4ec0a0ccbfeb0e1b0fe70aa5bd45fe78d004875"
+        }
+      ]
+    },
+    {
+      "id": "story-water-at-haridwar",
+      "category": "story",
+      "status": "unresolved",
+      "source": null,
+      "creator": null,
+      "license": null,
+      "evidence": "public/data/stories/water-at-haridwar.json",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Review prose authorship, embedded artwork and source citations independently; a historical subject does not establish rights in a modern retelling.",
+      "files": [
+        {
+          "path": "public/data/stories/water-at-haridwar.json",
+          "sha256": "02a74a1b2fbca6318252819b92641aae4c18fe5815ed05713759486406f3a708"
+        }
+      ]
+    },
+    {
+      "id": "provider-banidb",
+      "category": "scripture-dataset-and-translations",
+      "status": "unresolved",
+      "source": "https://www.banidb.com/tos/",
+      "creator": "Khalis Foundation and identified text/translation contributors",
+      "license": null,
+      "evidence": null,
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Public API access is distinct from redistribution. Verify attribution/logo, contributor conditions, copy freshness and offline redistribution of each enabled translation. Do not change sacred text to resolve this gate.",
+      "files": []
+    },
+    {
+      "id": "provider-shabados",
+      "category": "scripture-dataset-and-translations",
+      "status": "unresolved",
+      "source": "https://github.com/shabados/database/tree/v5.0.0-next.0",
+      "creator": "Shabad OS and asset-specific bibliography contributors",
+      "license": null,
+      "evidence": "scripts/shabados/README.md",
+      "reviewedAt": null,
+      "attribution": null,
+      "distribution": {
+        "web": null,
+        "offline": null,
+        "transformation": null
+      },
+      "notes": "Pinned database SHA256 517890c7e7c2f3dcef7f21b51d074a581b8eded4ebe14c504b84ea075ff16aeb; definitions revision 157b8dc3749fa6b8789610af8c7cb1c4eff3b35a. Separate code license from source-text/translation redistribution. Verify DSSK, SBMS, PSST and other enabled layer terms before clearance.",
+      "files": [
+        {
+          "path": "scripts/shabados/definitions/ALHN.toml",
+          "sha256": "cc88d6633f9405c5b44c3848cf6d4dd2a6c03ea251f56444e331c2d41f20701e"
+        },
+        {
+          "path": "scripts/shabados/definitions/ANN6.toml",
+          "sha256": "3bac97b6c65a8c5c69ad7cb78433bea14bd4ca28e8bf87c1ebe075a00a5fb333"
+        },
+        {
+          "path": "scripts/shabados/definitions/MDVI.toml",
+          "sha256": "6dfc2616ab11c951a41762ac721b525290f55f2413571266b748c3b9ee419dbd"
+        },
+        {
+          "path": "scripts/shabados/definitions/RGMA.toml",
+          "sha256": "45f61bd52d85870df992ac73bf29450e4f0a2a5452ea49745aafcb020c47037a"
+        }
+      ]
+    }
+  ]
+}

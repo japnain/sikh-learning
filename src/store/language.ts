@@ -1,5 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { getActivePersonalStorage } from '../utils/ownerStorage'
+import { registerPersonalStore } from '../utils/ownerStore'
 import { normalizeReaderTextSize, READER_TEXT_SIZE } from '../utils/readerTextSize'
 import type {
   EnglishSource,
@@ -78,7 +80,7 @@ export const useLanguageStore = create<LanguageState>()(
       setVisraamSource: (visraamSource) => set({ visraamSource }),
     }),
     {
-      name: 'sikh-language',
+      name: 'sikh-language', storage: createJSONStorage(getActivePersonalStorage),
       merge: (persisted, current) => {
         const saved = persisted && typeof persisted === 'object' ? persisted as Partial<LanguageState> : {}
         return { ...current, ...saved, fontSize: normalizeReaderTextSize(saved.fontSize ?? current.fontSize) }
@@ -86,3 +88,5 @@ export const useLanguageStore = create<LanguageState>()(
     }
   )
 )
+
+registerPersonalStore(useLanguageStore)

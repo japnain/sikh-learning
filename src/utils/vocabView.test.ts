@@ -1,7 +1,19 @@
 import { beforeEach, expect, test, vi } from 'vitest'
 import { buildVocabReturnPath, readVocabView, rememberVocabView, type VocabViewState } from './vocabView'
+import { resetPersonalStorageOwnerForTests, selectPersonalStorageOwner } from './ownerStorage'
 
-beforeEach(() => { vi.restoreAllMocks(); sessionStorage.clear() })
+beforeEach(() => { vi.restoreAllMocks(); sessionStorage.clear(); resetPersonalStorageOwnerForTests() })
+
+test('retains a review queue only in the account that created it', () => {
+  const view: VocabViewState = { mode: 'review', query: '', kind: 'all', sort: 'newest', cardIndex: 0, revealed: false, reviewQueue: ['account-a-only'] }
+  selectPersonalStorageOwner('review-account-a')
+  rememberVocabView(view)
+  selectPersonalStorageOwner('review-account-b')
+  expect(readVocabView('?mode=review').reviewQueue).toBeNull()
+  selectPersonalStorageOwner('review-account-a')
+  expect(readVocabView('?mode=review').reviewQueue).toEqual(view.reviewQueue)
+  resetPersonalStorageOwnerForTests()
+})
 
 test('retains the review queue only for the matching vocabulary return path', () => {
   const view: VocabViewState = { mode: 'review', query: 'ਸਤਿ ਨਾਮੁ', kind: 'phrase', sort: 'oldest', cardIndex: 0,

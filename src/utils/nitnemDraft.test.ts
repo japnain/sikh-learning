@@ -7,6 +7,23 @@ const draft: NitnemDraftValues = { ...committed, selectedIds: ['rehras-sahib', '
 
 beforeEach(() => { sessionStorage.clear(); vi.resetModules(); vi.restoreAllMocks() })
 
+test('keeps guest and each account draft separate, including in-memory recovery', async () => {
+  const api = await import('./nitnemDraft')
+  const owner = await import('./ownerStorage')
+  api.rememberNitnemDraft(committed, draft)
+  owner.selectPersonalStorageOwner('draft-account-a')
+  expect(api.readNitnemDraft(committed)).toBeNull()
+  const accountDraft = { ...draft, weeklyDayGoal: 2 }
+  api.rememberNitnemDraft(committed, accountDraft)
+  owner.selectPersonalStorageOwner('draft-account-b')
+  expect(api.readNitnemDraft(committed)).toBeNull()
+  api.clearNitnemDraft()
+  owner.selectPersonalStorageOwner('draft-account-a')
+  expect(api.readNitnemDraft(committed)).toEqual(accountDraft)
+  owner.selectPersonalStorageOwner(owner.LOCAL_DATA_OWNER)
+  expect(api.readNitnemDraft(committed)).toEqual(draft)
+})
+
 test('a persisted draft restores after module reload without changing the committed routine', async () => {
   const first = await import('./nitnemDraft')
   expect(first.rememberNitnemDraft(committed, draft)).toBe(true)

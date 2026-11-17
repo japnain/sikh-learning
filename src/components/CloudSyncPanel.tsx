@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconChevronDown, IconChevronUp } from './icons'
 import ModalSheet from './ModalSheet'
-import { deleteCloudAccount, sendMagicLink, signInWithProvider, signOutOfCloud, syncNow } from '../supabase/runtime'
+import { resolveLocalDataMigration, deleteCloudAccount, sendMagicLink, signInWithProvider, signOutOfCloud, syncNow } from '../supabase/runtime'
 import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
@@ -18,14 +18,14 @@ const CLOUD_COPY = {
     coverage: 'Scripture and book bookmarks, saved scripture passages, vocabulary, reading progress, your most recent reading, selected Nitnem banis and the current day’s completions, core scripture-reader settings, app language and theme.',
     exclusionsTitle: 'Keep these in a backup file',
     exclusions: 'Story saves and reading places, earlier Nitnem history, weekly goals, tracking choices, separate places for each bani, an active Nitnem practice, book/story reading preferences, reading mode, supporting-text size, artwork and sound preferences stay on this device. A complete backup file includes them. Downloaded reading content is separate from personal-data backup.',
-    mergeHint: 'First sign-in combines supported data from this device with your account.',
+    mergeHint: 'Each account keeps its own reading data. Earlier local data is added only if you choose to import it.',
     signInApple: 'Continue with Apple', signInGoogle: 'Continue with Google', signIn: 'Sign in with password', createAccount: 'Create account', signInEmail: 'Email a sign-in link', emailLabel: 'Email address',
     emailSent: 'Check your email for your sign-in link. You can keep reading while you wait.',
     unavailable: 'Account sign-in is unavailable right now. You can keep reading and use a backup file.',
     syncNow: 'Sync now', signOut: 'Sign out', deleteAccount: 'Delete cloud account',
     deleteTitle: 'Delete your cloud account?',
     deleteDescription: 'Your account and all synced NaamRas data will be permanently deleted. This cannot be undone.',
-    deleteLocalNote: 'Reading data on this device stays available until you clear the app or site data.',
+    deleteLocalNote: 'Download a personal backup before deleting. The retained local copy belongs to this account and will no longer be accessible after deletion.',
     deleteConfirm: 'Delete account permanently', deleteCancel: 'Keep account', deleting: 'Deleting account…',
     queueReady: 'Your changes are waiting for the next successful connection.',
     offline: 'You are offline. Keep reading on this device; cloud backup will resume when you reconnect.',
@@ -49,14 +49,14 @@ const CLOUD_COPY = {
     coverage: 'ਗੁਰਬਾਣੀ ਅਤੇ ਕਿਤਾਬਾਂ ਦੇ ਬੁੱਕਮਾਰਕ, ਸੰਭਾਲੇ ਗੁਰਬਾਣੀ ਅੰਸ਼, ਸ਼ਬਦਾਵਲੀ, ਪੜ੍ਹਾਈ ਦੀ ਤਰੱਕੀ, ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਪੜ੍ਹਨ ਦੀ ਥਾਂ, ਚੁਣੀਆਂ ਨਿਤਨੇਮ ਬਾਣੀਆਂ ਅਤੇ ਅੱਜ ਦੀ ਪੂਰਨਤਾ, ਗੁਰਬਾਣੀ ਰੀਡਰ ਦੀਆਂ ਮੁੱਖ ਸੈਟਿੰਗਾਂ, ਐਪ ਦੀ ਭਾਸ਼ਾ ਅਤੇ ਥੀਮ।',
     exclusionsTitle: 'ਇਨ੍ਹਾਂ ਲਈ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਰੱਖੋ',
     exclusions: 'ਸੰਭਾਲੀਆਂ ਕਹਾਣੀਆਂ ਅਤੇ ਉਨ੍ਹਾਂ ਦੀਆਂ ਪੜ੍ਹਨ ਥਾਵਾਂ, ਪੁਰਾਣਾ ਨਿਤਨੇਮ ਇਤਿਹਾਸ, ਹਫ਼ਤਾਵਾਰੀ ਟੀਚੇ, ਟਰੈਕਿੰਗ ਚੋਣਾਂ, ਹਰ ਬਾਣੀ ਦੀ ਵੱਖਰੀ ਥਾਂ, ਚੱਲਦੀ ਨਿਤਨੇਮ ਪੜ੍ਹਾਈ, ਕਿਤਾਬਾਂ ਜਾਂ ਕਹਾਣੀਆਂ ਦੀਆਂ ਰੀਡਰ ਪਸੰਦਾਂ, ਪੜ੍ਹਨ ਦਾ ਢੰਗ, ਸਹਾਇਕ ਲਿਖਤ ਦਾ ਆਕਾਰ, ਚਿੱਤਰ ਅਤੇ ਆਵਾਜ਼ ਦੀਆਂ ਪਸੰਦਾਂ ਇਸ ਡਿਵਾਈਸ ਤੇ ਰਹਿੰਦੀਆਂ ਹਨ। ਪੂਰੀ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਿੱਚ ਇਹ ਸ਼ਾਮਲ ਹਨ। ਡਾਊਨਲੋਡ ਕੀਤੀ ਪੜ੍ਹਨ ਸਮੱਗਰੀ ਨਿੱਜੀ ਡਾਟੇ ਦੇ ਬੈਕਅੱਪ ਤੋਂ ਵੱਖਰੀ ਹੈ।',
-    mergeHint: 'ਪਹਿਲੀ ਸਾਈਨ ਇਨ ਵੇਲੇ ਇਸ ਡਿਵਾਈਸ ਦਾ ਸਮਰਥਿਤ ਡਾਟਾ ਤੁਹਾਡੇ ਖਾਤੇ ਦੇ ਡਾਟੇ ਨਾਲ ਮਿਲਾਇਆ ਜਾਂਦਾ ਹੈ।',
+    mergeHint: 'ਹਰ ਖਾਤੇ ਦਾ ਪੜ੍ਹਾਈ ਡਾਟਾ ਵੱਖਰਾ ਰਹਿੰਦਾ ਹੈ। ਪੁਰਾਣਾ ਸਥਾਨਕ ਡਾਟਾ ਸਿਰਫ਼ ਤੁਹਾਡੀ ਚੋਣ ਨਾਲ ਜੋੜਿਆ ਜਾਂਦਾ ਹੈ।',
     signInApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ', signInGoogle: 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ', signIn: 'ਪਾਸਵਰਡ ਨਾਲ ਸਾਈਨ ਇਨ', createAccount: 'ਖਾਤਾ ਬਣਾਓ', signInEmail: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਈਮੇਲ ਕਰੋ', emailLabel: 'ਈਮੇਲ ਪਤਾ',
     emailSent: 'ਸਾਈਨ ਇਨ ਲਿੰਕ ਲਈ ਆਪਣੀ ਈਮੇਲ ਵੇਖੋ। ਉਡੀਕ ਕਰਦੇ ਹੋਏ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।',
     unavailable: 'ਇਸ ਵੇਲੇ ਖਾਤੇ ਵਿੱਚ ਸਾਈਨ ਇਨ ਨਹੀਂ ਹੋ ਸਕਦਾ। ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ ਅਤੇ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਵਰਤੋ।',
     syncNow: 'ਹੁਣੇ ਸਿੰਕ ਕਰੋ', signOut: 'ਸਾਈਨ ਆਉਟ', deleteAccount: 'ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਓ',
     deleteTitle: 'ਆਪਣਾ ਕਲਾਉਡ ਖਾਤਾ ਮਿਟਾਉਣਾ ਹੈ?',
     deleteDescription: 'ਤੁਹਾਡਾ ਖਾਤਾ ਅਤੇ ਸਿੰਕ ਕੀਤਾ ਸਾਰਾ NaamRas ਡਾਟਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟ ਜਾਵੇਗਾ। ਇਹ ਵਾਪਸ ਨਹੀਂ ਹੋ ਸਕਦਾ।',
-    deleteLocalNote: 'ਇਸ ਡਿਵਾਈਸ ਦੀ ਪੜ੍ਹਾਈ ਦਾ ਡਾਟਾ ਤਦ ਤੱਕ ਰਹੇਗਾ ਜਦ ਤੱਕ ਤੁਸੀਂ ਐਪ ਜਾਂ ਸਾਈਟ ਦਾ ਡਾਟਾ ਸਾਫ਼ ਨਹੀਂ ਕਰਦੇ।',
+    deleteLocalNote: 'ਮਿਟਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਨਿੱਜੀ ਬੈਕਅੱਪ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਖਾਤੇ ਦੀ ਸਥਾਨਕ ਕਾਪੀ ਮਿਟਾਉਣ ਤੋਂ ਬਾਅਦ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੇਗੀ।',
     deleteConfirm: 'ਖਾਤਾ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਓ', deleteCancel: 'ਖਾਤਾ ਰੱਖੋ', deleting: 'ਖਾਤਾ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…',
     queueReady: 'ਤੁਹਾਡੇ ਬਦਲਾਅ ਅਗਲੇ ਸਫਲ ਕਨੈਕਸ਼ਨ ਦੀ ਉਡੀਕ ਕਰ ਰਹੇ ਹਨ।',
     offline: 'ਇੰਟਰਨੈੱਟ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੈ। ਇਸ ਡਿਵਾਈਸ ਤੇ ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ; ਦੁਬਾਰਾ ਜੁੜਨ ਤੇ ਕਲਾਉਡ ਬੈਕਅੱਪ ਜਾਰੀ ਹੋਵੇਗਾ।',
@@ -80,14 +80,14 @@ const CLOUD_COPY = {
     coverage: 'गुरबाणी और किताबों के बुकमार्क, सहेजे गुरबाणी अंश, शब्दावली, पढ़ने की प्रगति, सबसे हाल की पढ़ने की जगह, चुनी नितनेम बाणियाँ और आज की पूर्णता, गुरबाणी रीडर की मुख्य सेटिंग, ऐप की भाषा और थीम।',
     exclusionsTitle: 'इनके लिए बैकअप फ़ाइल रखें',
     exclusions: 'सहेजी कहानियाँ और उनकी पढ़ने की जगहें, पुराना नितनेम इतिहास, साप्ताहिक लक्ष्य, ट्रैकिंग विकल्प, हर बाणी की अलग जगह, जारी नितनेम अभ्यास, किताबों या कहानियों की रीडर पसंद, पढ़ने का तरीका, सहायक पाठ का आकार, चित्र और ध्वनि की पसंद इस डिवाइस पर रहती हैं। पूरी बैकअप फ़ाइल में ये शामिल हैं। डाउनलोड की गई पढ़ने की सामग्री निजी डेटा के बैकअप से अलग है।',
-    mergeHint: 'पहली साइन इन पर इस डिवाइस का समर्थित डेटा आपके खाते के डेटा से मिलाया जाता है।',
+    mergeHint: 'हर खाते का पढ़ाई डेटा अलग रहता है। पुराना स्थानीय डेटा आपकी पसंद पर ही जोड़ा जाता है।',
     signInApple: 'Apple के साथ जारी रखें', signInGoogle: 'Google के साथ जारी रखें', signIn: 'पासवर्ड से साइन इन', createAccount: 'खाता बनाएँ', signInEmail: 'साइन इन लिंक ईमेल करें', emailLabel: 'ईमेल पता',
     emailSent: 'साइन इन लिंक के लिए अपनी ईमेल देखें। इंतज़ार करते हुए पढ़ना जारी रख सकते हैं।',
     unavailable: 'अभी खाते में साइन इन उपलब्ध नहीं है। पढ़ना जारी रखें और बैकअप फ़ाइल इस्तेमाल करें।',
     syncNow: 'अभी सिंक करें', signOut: 'साइन आउट', deleteAccount: 'क्लाउड खाता मिटाएँ',
     deleteTitle: 'अपना क्लाउड खाता मिटाना है?',
     deleteDescription: 'आपका खाता और सिंक किया गया सारा NaamRas डेटा हमेशा के लिए मिट जाएगा। इसे वापस नहीं लाया जा सकता।',
-    deleteLocalNote: 'इस डिवाइस की पढ़ाई का डेटा तब तक रहेगा जब तक आप ऐप या साइट का डेटा साफ़ नहीं करते।',
+    deleteLocalNote: 'मिटाने से पहले निजी बैकअप डाउनलोड करें। इस खाते की स्थानीय कॉपी खाता मिटाने के बाद खोली नहीं जा सकेगी।',
     deleteConfirm: 'खाता हमेशा के लिए मिटाएँ', deleteCancel: 'खाता रखें', deleting: 'खाता मिटाया जा रहा है…',
     queueReady: 'आपके बदलाव अगले सफल कनेक्शन का इंतज़ार कर रहे हैं।',
     offline: 'इंटरनेट से संपर्क नहीं है। इस डिवाइस पर पढ़ना जारी रखें; दोबारा जुड़ने पर क्लाउड बैकअप जारी होगा।',
@@ -111,7 +111,7 @@ function formatSyncTimestamp(value: string | null, locale: string) {
 export default function CloudSyncPanel({ embedded = false }: { embedded?: boolean }) {
   const locale = useLocaleStore(state => state.locale)
   const copy = CLOUD_COPY[locale]
-  const { configured, status, currentUser, availableProviders, lastSyncedAt, lastError, syncQueued } = useCloudSyncStore()
+  const { configured, status, currentUser, availableProviders, lastSyncedAt, lastError, syncQueued, localDataAvailable } = useCloudSyncStore()
   const [magicLinkEmail, setMagicLinkEmail] = useState('')
   const [emailSent, setEmailSent] = useState(false)
   const [actionError, setActionError] = useState<{ sync: boolean; lastSyncedAt: string | null; userId: string | null } | null>(null)
@@ -120,7 +120,7 @@ export default function CloudSyncPanel({ embedded = false }: { embedded?: boolea
   const [isDeletingAccount, setIsDeletingAccount] = useState(false)
   const [detailsOpen, setDetailsOpen] = usePersistentDisclosure('more-cloud-sync', false)
   const isOffline = configured && (status === 'offline' || (typeof navigator !== 'undefined' && navigator.onLine === false))
-  const recoveryRequired = lastError === 'personal-data-restore-recovery-required'
+  const recoveryRequired = lastError === 'personal-data-restore-recovery-required' || lastError === 'personal-data-owner-recovery-required'
   const currentActionError = actionError && actionError.userId === (currentUser?.id ?? null) && (!actionError.sync || actionError.lastSyncedAt === lastSyncedAt)
   const hasError = configured && Boolean(lastError || currentActionError || status === 'error')
   const loading = configured && ['booting', 'authenticating', 'syncing'].includes(status)
@@ -180,6 +180,13 @@ export default function CloudSyncPanel({ embedded = false }: { embedded?: boolea
   return (
     <section className={embedded ? "mt-4 overflow-hidden border-t border-sand/20 dark:border-dark-text/15" : "section-shell mb-5 overflow-hidden"} aria-labelledby="more-cloud-sync-title" lang={locale}
       data-testid="more-cloud-sync" data-ai-surface="cloud-sync-panel" data-ai-state={panelState} data-ai-error={panelError}>
+      {currentUser && localDataAvailable ? <div className="p-5" role="region" aria-label={locale === 'pa' ? 'ਸਥਾਨਕ ਡਾਟਾ' : locale === 'hi' ? 'स्थानीय डेटा' : 'Earlier local reading data'}>
+        <p className="font-sans text-sm leading-6">{locale === 'pa' ? 'ਪਹਿਲਾਂ ਤੋਂ ਇਸ ਡਿਵਾਈਸ ਤੇ ਪੜ੍ਹਾਈ ਡਾਟਾ ਹੈ। ਸਿਰਫ਼ ਆਪਣਾ ਡਾਟਾ ਹੀ ਇਸ ਖਾਤੇ ਵਿੱਚ ਜੋੜੋ। ਅਸਲ ਕਾਪੀ ਵੱਖਰੀ ਰਹੇਗੀ।' : locale === 'hi' ? 'इस डिवाइस पर पहले का पढ़ाई डेटा है। सिर्फ़ अपना डेटा इस खाते में जोड़ें। मूल कॉपी अलग रहेगी।' : 'This device has earlier local reading data. Import it only if it belongs to you. The original copy stays separate and is never automatically added to another account.'}</p>
+        <div className="mt-3 flex flex-wrap gap-3">
+          <button className={secondaryButton} disabled={isBusy} onClick={() => { void runAction(() => resolveLocalDataMigration(true)) }}>{locale === 'pa' ? 'ਇਸ ਖਾਤੇ ਵਿੱਚ ਜੋੜੋ' : locale === 'hi' ? 'इस खाते में जोड़ें' : 'Import into this account'}</button>
+          <button className={secondaryButton} disabled={isBusy} onClick={() => { void runAction(() => resolveLocalDataMigration(false)) }}>{locale === 'pa' ? 'ਵੱਖਰਾ ਰੱਖੋ' : locale === 'hi' ? 'अलग रखें' : 'Keep separate'}</button>
+        </div>
+      </div> : null}
       <div className="relative px-5 pt-5 pb-4" data-ai-anchor="cloud-sync-summary">
         <div className="flex flex-wrap items-center gap-2">
           <p className="eyebrow">{copy.eyebrow}</p>

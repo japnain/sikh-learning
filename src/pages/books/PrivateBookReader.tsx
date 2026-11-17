@@ -16,6 +16,8 @@ import type { PrivateReadingState, PrivateBookBookmark, PrivateBookAnnotation } 
 import PrivateReaderNotebook from './PrivateReaderNotebook'
 import { isPrivateReadingStateWithinBudget, normalizePrivateAnnotations, nextPrivateAnnotationTimestamp } from './privateBookAnnotations'
 import { classifyPrivateReaderGesture } from './privateReaderGestures'
+import { addAppScrollListener, getAppScrollTop, getAppViewportBounds, getAppViewportHeight, scrollAppTo, scrollElementIntoAppView } from '../../utils/appScroll'
+import { getPersonalStorageGeneration } from '../../utils/ownerStorage'
 import './private-book-reader.css'
 import './private-pagination.css'
 
@@ -140,6 +142,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
   const pendingBlock = useRef(sectionFromUrl === null && initialState.blockId ? { id: initialState.blockId, offset: initialState.blockOffset || 0 } : null)
   const currentState = useRef(readingState)
   const mountedEpoch = useRef(getPrivateLibraryAccess().epoch)
+  const mountedOwnerGeneration = useRef(getPersonalStorageGeneration())
   const dirtyRef = useRef(false)
   const queuedState = useRef<ReadingState | null>(null)
   const pendingSave = useRef<Promise<boolean> | null>(null)
@@ -175,14 +178,14 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
   const flushPosition = useCallback(() => {
     const access = getPrivateLibraryAccess()
     const snapshot = currentState.current
-    if (!access.allowed || access.epoch !== mountedEpoch.current) return Promise.resolve(false)
+    if (!access.allowed || access.epoch !== mountedEpoch.current || getPersonalStorageGeneration() !== mountedOwnerGeneration.current) return Promise.resolve(false)
     if (!dirtyRef.current) return Promise.resolve(true)
     if (queuedState.current === snapshot) return pendingSave.current || Promise.resolve(true)
     queuedState.current = snapshot
     setSaving('saving')
     const promise = savePrivateReadingState(book.id, book.editionVersion, snapshot).then(saved => {
       const latestAccess = getPrivateLibraryAccess()
-      if (!latestAccess.allowed || latestAccess.epoch !== mountedEpoch.current) return false
+      if (!latestAccess.allowed || latestAccess.epoch !== mountedEpoch.current || getPersonalStorageGeneration() !== mountedOwnerGeneration.current) return false
       const unchanged = currentState.current === snapshot
       const latest = currentState.current
       const annotations = latest.annotations === snapshot.annotations && saved.annotations
@@ -200,6 +203,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
   }, [book.id, book.editionVersion])
 
   const updateState = useCallback((patch: Partial<ReadingState>, immediate = false) => {
+    if (getPersonalStorageGeneration() !== mountedOwnerGeneration.current) return
     const next = { ...currentState.current, ...patch, updatedAt: new Date().toISOString() }
     currentState.current = next
     dirtyRef.current = true
@@ -231,7 +235,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
 
   useEffect(() => registerPrivateReadingSnapshot(() => {
     const access = getPrivateLibraryAccess()
-    return dirtyRef.current && access.allowed && access.epoch === mountedEpoch.current
+    return dirtyRef.current && access.allowed && access.epoch === mountedEpoch.current && getPersonalStorageGeneration() === mountedOwnerGeneration.current
       ? { bookId: book.id, editionVersion: book.editionVersion, state: currentState.current } : null
   }), [book.id, book.editionVersion])
 
@@ -259,7 +263,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       const article = articleRef.current
       const rect = article?.getBoundingClientRect()
       const viewport = paginated ? pagination.viewportRef.current?.getBoundingClientRect()
-        : rect && { left: rect.left, right: rect.right, top: article ? readingInset(article) : 0, bottom: window.innerHeight }
+        : rect && { left: rect.left, right: rect.right, top: article ? readingInset(article) : 0, bottom: getAppViewportBounds().bottom }
       const position = paginated && paginationLocator.current ? paginationLocator.current
         : article && viewport && !isPages && !imageChapter ? findPrivateVisibleLocator(article, viewport) : null
       const state = { ...currentState.current, ...(position || {}) }
@@ -280,7 +284,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
         if (!article || article.querySelector('.private-reader-pdf[aria-busy="true"]')) return
         if (paginated) {
           paginationLocator.current = saved.state.blockId ? { blockId: saved.state.blockId, charOffset: saved.state.charOffset || 0 } : null
-          window.scrollTo({ top: 0, behavior: 'instant' })
+          scrollAppTo({ top: 0, behavior: 'instant' })
           appearancePlace.current = null
           refreshPagination()
           return
@@ -292,11 +296,11 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
         const textRange = saved.state.blockId && saved.state.charOffset !== undefined && !imageChapter
           ? findPrivateTextRange(article, { blockId: saved.state.blockId, charOffset: saved.state.charOffset }) : null
         const textTop = textRange && typeof textRange.getBoundingClientRect === 'function' ? textRange.getBoundingClientRect().top : undefined
-        const top = textTop !== undefined ? textTop + window.scrollY - inset : target && !imageChapter
-          ? target.getBoundingClientRect().top + window.scrollY - inset + blockOffset
-          : article.getBoundingClientRect().top + window.scrollY - inset + offset
+        const top = textTop !== undefined ? textTop + getAppScrollTop() - inset : target && !imageChapter
+          ? target.getBoundingClientRect().top + getAppScrollTop() - inset + blockOffset
+          : article.getBoundingClientRect().top + getAppScrollTop() - inset + offset
         appearancePlace.current = null
-        window.scrollTo({ top: Math.max(0, top), behavior: 'instant' })
+        scrollAppTo({ top: Math.max(0, top), behavior: 'instant' })
         updateState({ offset, blockId: saved.state.blockId, blockOffset, charOffset: saved.state.charOffset })
       })
     })
@@ -315,13 +319,13 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       const textLocator = paginationLocator.current
       const textRange = textLocator && !isPages && !imageChapter ? findPrivateTextRange(article, textLocator) : null
       if (textRange && typeof textRange.getBoundingClientRect === 'function') {
-        window.scrollTo({ top: Math.max(0, textRange.getBoundingClientRect().top + window.scrollY - inset), behavior: 'instant' })
+        scrollAppTo({ top: Math.max(0, textRange.getBoundingClientRect().top + getAppScrollTop() - inset), behavior: 'instant' })
         blockId = textLocator!.blockId
         blockOffset = 0
         pendingAnchor.current = null
       } else if (pendingAnchor.current) {
         const target = findSourceBlock(article, pendingAnchor.current)
-        target?.scrollIntoView({ block: 'start' })
+        if (target) scrollElementIntoAppView(target, { block: 'start' })
         blockId = target?.dataset.sourceId
         blockOffset = 0
         pendingAnchor.current = null
@@ -329,10 +333,10 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
         const target = findSourceBlock(article, pendingBlock.current.id)!
         blockId = target.dataset.sourceId
         blockOffset = Math.min(pendingBlock.current.offset, Math.max(0, target.getBoundingClientRect().height - 1))
-        window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - inset + blockOffset), behavior: 'instant' })
+        scrollAppTo({ top: Math.max(0, target.getBoundingClientRect().top + getAppScrollTop() - inset + blockOffset), behavior: 'instant' })
       } else {
-        const top = article.getBoundingClientRect().top + window.scrollY
-        window.scrollTo({ top: Math.max(0, top - inset + pendingOffset.current), behavior: 'instant' })
+        const top = article.getBoundingClientRect().top + getAppScrollTop()
+        scrollAppTo({ top: Math.max(0, top - inset + pendingOffset.current), behavior: 'instant' })
       }
       pendingBlock.current = null
       updateState({ index, offset: pendingOffset.current, blockId, blockOffset, charOffset: textLocator?.charOffset, progress: currentState.current.completed ? 1 : isPages ? (index + 1) / total : index / total })
@@ -348,13 +352,13 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       const article = articleRef.current
       if (!article) return
       const inset = readingInset(article)
-      const top = article.getBoundingClientRect().top + window.scrollY
-      const offset = Math.max(0, window.scrollY - Math.max(0, top - inset))
-      const within = Math.min(1, offset / Math.max(1, article.scrollHeight - window.innerHeight + inset))
+      const top = article.getBoundingClientRect().top + getAppScrollTop()
+      const offset = Math.max(0, getAppScrollTop() - Math.max(0, top - inset))
+      const within = Math.min(1, offset / Math.max(1, article.scrollHeight - getAppViewportHeight() + inset))
       const blocks = !isPages ? Array.from(article.querySelectorAll<HTMLElement>('[data-source-id]')) : []
       const block = blocks.find(element => element.getBoundingClientRect().bottom > inset) || blocks.at(-1)
       const rect = article.getBoundingClientRect()
-      const textPosition = !isPages && !imageChapter ? findPrivateVisibleLocator(article, { left: rect.left, right: rect.right, top: inset, bottom: window.innerHeight }) : null
+      const textPosition = !isPages && !imageChapter ? findPrivateVisibleLocator(article, { left: rect.left, right: rect.right, top: inset, bottom: getAppViewportBounds().bottom }) : null
       if (textPosition) paginationLocator.current = textPosition
       const snapshot: ReadingState = {
         ...currentState.current, index, offset,
@@ -373,8 +377,8 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
         setDirty(true)
       }, 200)
     }
-    window.addEventListener('scroll', remember, { passive: true })
-    return () => { window.removeEventListener('scroll', remember); clearTimeout(timeout) }
+    const removeScrollListener = addAppScrollListener(remember)
+    return () => { removeScrollListener(); clearTimeout(timeout) }
   }, [index, total, ready, isPages, imageChapter, paginated, panel])
 
   const go = (next: number, offset = 0, anchor?: string, blockOffset = 0, rememberReturn = panel !== null || Boolean(anchor), charOffset = 0, end = false, searchTerm?: string) => {
@@ -406,9 +410,9 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
         const target = anchor ? findSourceBlock(article, anchor) : undefined
         const textRange = anchor && charOffset > 0 ? findPrivateTextRange(article, { blockId: anchor, charOffset }) : null
         const textTop = textRange && typeof textRange.getBoundingClientRect === 'function' ? textRange.getBoundingClientRect().top : undefined
-        const top = textTop !== undefined ? textTop + window.scrollY - readingInset(article) : target ? target.getBoundingClientRect().top + window.scrollY - readingInset(article) + blockOffset
-          : article.getBoundingClientRect().top + window.scrollY - readingInset(article) + offset
-        window.scrollTo({ top: Math.max(0, top), behavior: 'instant' })
+        const top = textTop !== undefined ? textTop + getAppScrollTop() - readingInset(article) : target ? target.getBoundingClientRect().top + getAppScrollTop() - readingInset(article) + blockOffset
+          : article.getBoundingClientRect().top + getAppScrollTop() - readingInset(article) + offset
+        scrollAppTo({ top: Math.max(0, top), behavior: 'instant' })
       }
       // Wait for the sheet's scroll lock to release before applying an in-section jump.
       if (panel) requestAnimationFrame(() => requestAnimationFrame(scrollToPlace))
@@ -475,6 +479,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
     else if (action && (paginated || isPages || imageChapter)) { event.preventDefault(); turnPage(action === 'next' ? 1 : -1) }
   }
   const changeAnnotations = async (annotations: PrivateBookAnnotation[]) => {
+    if (getPersonalStorageGeneration() !== mountedOwnerGeneration.current) return false
     const previous = currentState.current
     const removed = previous.annotations?.filter(item => !annotations.some(next => next.id === item.id)) || []
     const deletions = new Map((previous.annotationDeletes || []).map(item => [item.id, item]))
@@ -499,6 +504,7 @@ function PrivateReaderSession({ book, initialState }: { book: PrivateBook; initi
       onAppearance={() => { revealControls(); setPanel('display') }} onSearch={() => { revealControls(); setPanel('search') }}
       onBookmarks={() => { revealControls(); setPanel('bookmarks') }} onAnnotations={() => { revealControls(); setAnnotationsOpen(true) }}
       searchEnabled={book.renderer !== 'pages'} saving={saving} onRetry={() => { void flushPosition() }}
+      locationUnit={paginated || isPages || imageChapter ? 'page' : 'section'}
       page={paginated ? pagination.page + 1 : index + 1} count={paginated ? pagination.count : total}
       chapterLabel={label} bookProgress={readingState.progress}
       canPrevious={index > 0 || (paginated && pagination.page > 0)}
